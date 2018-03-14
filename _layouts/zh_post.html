@@ -1,0 +1,18 @@
+---
+layout: head
+---
+<body>
+<article>
+<header>
+<blockquote>
+<h2><a href="/zh/Topics.html#{{ page.Topic }}">{{ page.Title }}</a></h2>
+</blockquote>
+<blockquote>{% assign Resources = page.Resources | remove:' ' | split:',' %}
+<mark>更新: {{ page.Revised }}</mark>
+<mark>作者: {{ page.Authors | replace:',',', '}}</mark>
+<mark>资源: <mark>{% for Resource in Resources %}<a href="{{ Resource }}">{{ Resource | remove:'resources/' }}</a>{% endfor %}</mark></mark>
+</blockquote>
+</header>
+{{ content }}
+</article>
+</body>

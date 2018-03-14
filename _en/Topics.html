@@ -1,0 +1,19 @@
+---
+layout: en_page
+Title:  Topics
+Back:   index.html
+---
+<aside>
+<form autocomplete="on">
+<i class="fa fa-search"></i><i class="fa fa-spinner fa-spin"></i><input name="input" type="search" autocomplete="on" placeholder="#Topic Date Article ···" oninput="searchAnything(this.value)" />
+</form>
+<script type="text/javascript" async src="https://use.fontawesome.com/f35173b42b.js"></script>
+</aside>
+<main>{% capture Topics %}{% for post in site.en %}{% if post.Topic %}{{ post.Topic | append:',' }}{% endif %}{% endfor %}{% endcapture %} {% assign Topics = Topics | split:',' | sort | uniq %} {% for Topic in Topics %}
+<section name="section">
+<dl><dt id="{{ Topic }}">#{{ Topic }}</dt>{% for post in site.en %}{% if post.Topic == Topic %}
+<dd><mark>{{ post.Revised | date: '%Y-%m-%d' }}» </mark><a href="{{ post.url }}">{{ post.Title }}</a></dd>{% endif %}{% endfor %}
+</dl>
+<br/>
+</section>{% endfor %}
+</main>

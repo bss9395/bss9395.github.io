@@ -1,0 +1,15 @@
+encoding: UTF-8
+timezone: Asia/Shanghai
+github: [metadata]
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  
+collections:
+  css-js:
+    output: true
+  en:
+    output: true
+  zh: 
+    output: true
