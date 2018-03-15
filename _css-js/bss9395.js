@@ -5,7 +5,9 @@ window.onload = function () {
     function images() {
         var imgs = document.querySelectorAll("img");
         for (var i = 0; i < imgs.length; i++) {
-            imgs[i].style = imgs[i].alt;
+        	if (imgs[i].alt !== "") {
+        		imgs[i].style = imgs[i].alt;
+        	}
         }
     }
     images();

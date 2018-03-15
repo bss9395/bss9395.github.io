@@ -15,7 +15,7 @@ Back:   mailto:bss9395@outlook.com
 > 01. Extraordinary claims require extraordinary proof.
 > 01. Follow my heart, lead my life.
 > 01. Fool me once, shame on you; Fool me twice, shame on me.
-> 01. However bad life may seem, there is always something you can do and succeed at. Where there's life, there's hope.
+> 01. However bad life may seem, there is always something you can do and succeed at. Where there is life, there is hope.
 > 01. It is easier to make enemies than friends.
 > 01. LESS is MORE.
 > 01. No pain, no gain.
