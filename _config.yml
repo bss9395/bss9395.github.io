@@ -5,11 +5,14 @@ markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
-  
+
 collections:
   css-js:
     output: true
   en:
     output: true
-  zh: 
+  zh:
     output: true
+
+ip1: 192.30.252.153
+ip2: 192.30.252.154

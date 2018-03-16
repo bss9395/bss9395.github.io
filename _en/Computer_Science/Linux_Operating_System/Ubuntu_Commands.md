@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     Linux Operating System
 Title:     Ubuntu Commands
-Revised:   2018-03-08 20:52:00 +08 @ China-Xinjiang-Urumqi +06
+Revised:   2018-03-16 23:04:00 +08 @ China-Xinjiang-Urumqi +06
 Authors:   BSS9395
 Resources: 
 ---
@@ -81,6 +81,7 @@ Resources:
 > | *`df`*       |                  | Report file system disk space usage.                 |
 > | *`dgst`*     |                  | Message digests.                                     |
 > | *`diff`*     | `-a -r -u` `-N` | Compare files line by line.                          |
+> | *`dig`* | `+answer +noall +nocmd +nocomments +nostats` | DNS lookup utility. |
 > | *`dirs`*     |                  | Display directory stack.                             |
 > | *`disown`*   |                  | Remove jobs from current shell.                      |
 > | *`display`*  |                  | Displays an image or image sequence on any X server. |
