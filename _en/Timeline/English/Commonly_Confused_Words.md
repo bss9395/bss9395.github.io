@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Commonly Confused Words
-Revised:   2018-03-06 23:21:00 +08 @ China-Xinjiang-Urumqi +06
+Revised:   2018-03-17 23:21:00 +08 @ China-Xinjiang-Urumqi +06
 Authors:   BSS9395
 Resources:
 ---
@@ -13,6 +13,7 @@ Resources:
 > + adequate / ample / enough / sufficient
 > + ambipolar / bipolar 
 > + apparent / conspicuous / obvious
+> + ashamed / embarrassed / mortified
 > + believable / credible / dependable / plausible / reliable 
 > + clear / lucid
 > + committed / dedicated / devoted 
@@ -44,8 +45,10 @@ Resources:
 > + configuration / conformation
 > + conjecture / speculation
 > + correlation / relevance
+> + demonstrator / marcher 
 > + dot / mark / patch / speck / speckle / spot 
 > + earnings / income / pay / salary / wage
+> + embarrassment / humiliation / shame
 > + emptiness / void
 > + excess / plethora
 > + fibre / filament / thread
@@ -64,7 +67,7 @@ Resources:
 > + resolution / solution
 > + scheme / scenario
 > + stone / rock
-> 
+
 > ![Mountain](figures/Mountain.svg)
 
 ### Verb
@@ -77,6 +80,7 @@ Resources:
 > + assure / ensure/ guarantee / insure
 > + attain / reach
 > + await / wait
+> + ban / prohibit
 > + breach / break / defy / violate
 > + clean / cleanse
 > + coagulate / condense
@@ -95,8 +99,10 @@ Resources:
 > + incline / lean / slope / tilt 
 > + justify / warrant
 > + leverage / utilize
+> + mortify / humiliate
 > + orbit / revolve / rotate
 > + research / study / survey
+> + stammer  / stutter
 > + transfer / transit / transmit / transport
 
 ### Other
