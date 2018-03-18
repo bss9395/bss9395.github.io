@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Commonly Confused Words
-Revised:   2018-03-18 18:51:00 +08 @ China-Xinjiang-Urumqi +06
+Revised:   2018-03-19 02:22:00 +08 @ China-Xinjiang-Urumqi +06
 Authors:   BSS9395
 Resources:
 ---
@@ -10,10 +10,12 @@ Resources:
 ### Adjective
 
 > + abundant : copious : plentiful : substantial
+> + address : cope with : deal with : handle : manage : tackle : treat 
 > + adequate : ample : enough : sufficient
 > + ambipolar : bipolar
 > + apparent : conspicuous : obvious
 > + ashamed : embarrassed : mortified
+> + average : ordinary
 > + believable : credible : dependable : plausible : reliable
 > + bizarre : strange : weird
 > + clear : lucid
@@ -52,6 +54,7 @@ Resources:
 > + conjecture : speculation
 > + correlation : relevance
 > + demonstrator : marcher
+> + dictatorship : tyranny
 > + dot : mark : patch : speck : speckle : spot
 > + earnings : income : pay : salary : wage
 > + embarrassment : humiliation : shame
@@ -75,6 +78,7 @@ Resources:
 > + resolution : solution
 > + scheme : scenario
 > + stone : rock
+> + tortoise : turtle
 
 > ![Mountain](figures/Mountain.svg)
 
@@ -95,6 +99,8 @@ Resources:
 > + coagulate : condense
 > + collide : ram
 > + comment : note : observe : remark
+> + crave : long for
+> + decline : refuse
 > + deter : hamper : hinder : impede : inhibit : obstruct : prevent : prohibit : retard
 > + differentiate : discriminate : distinguish
 > + disrupt : disturb : interrupt  : perturb
@@ -105,6 +111,7 @@ Resources:
 > + encompass : encircle : surround
 > + endeavour : strive
 > + evoke : summon
+> + exterminate : wipe out
 > + fill : populate
 > + groan : moan
 > + grunt : mumble : murmur : mutter
@@ -114,7 +121,7 @@ Resources:
 > + mortify : humiliate
 > + orbit : revolve : rotate
 > + research : study : survey
-> + stammer  : stutter
+> + stammer : stutter
 > + transfer : transit : transmit : transport
 
 ### Other
