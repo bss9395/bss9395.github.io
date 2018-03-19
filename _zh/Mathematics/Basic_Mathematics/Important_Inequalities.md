@@ -12,7 +12,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \Uparrow\;   & \left\lVert \sum^m {^m v_m} \right\rVert \le \sum^m \lVert {^m v_m} \rVert \\
-> \Downarrow\; & \left\lvert \sum^m {^1 v_m} \right\rvert \mathop{\le}\limits_{\langle {^1 v_{m_1}} {^1 v_{m_2}} \ge 0 \rangle} \sum^m \lvert {^1 v_m} \rvert \\
+> \Downarrow\; & \left\lvert \sum^m {^1 v_m} \right\rvert \mathop{\le}\limits_{\langle {^1 v_m} \ge 0 \rangle} \sum^m \lvert {^1 v_m} \rvert \\
 > \end{alignedat}
 > $$
 >

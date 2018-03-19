@@ -26,7 +26,7 @@ Resources:
 > + contemporary : contemporaneous
 > + critical : crucial
 > + deceased : dead
-> + essential : necessary : vital
+> + essential : fundamental : necessary : vital
 > + fantastic : marvelous : splendid
 > + fussy : hazy : indistinct : vague
 > + inborn : innate
