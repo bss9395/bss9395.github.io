@@ -18,7 +18,7 @@ function searchAnything(value) {
     var input = value.replace(/(\s|»)+/igm, " ").toLowerCase();
     var tag = input.match(/^#\S+\s*/igm);
     var content = input.replace(tag, "");
-    var section = document.getElementsByName("section");
+    var section = document.getElementsByTagName("section");
     var i = 0,
         j = 0,
         dd;

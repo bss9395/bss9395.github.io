@@ -295,7 +295,7 @@ Resources:
 > | *`functions`*           |      | Information about function handle.       |
 > | *`funm`*                |      | Evaluate general matrix function.        |
 > | *`fuzarith`*            |      | Perform fuzzy arithmetic.                |
-> | *` fuzzyLogicDesigner`* |      | Design and test fuzzy inference systems. |
+> | *`fuzzyLogicDesigner`* |      | Design and test fuzzy inference systems. |
 > | *`fzero`*               |      | Root of nonlinear function.              |
 
 > ### G g
