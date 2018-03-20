@@ -459,7 +459,7 @@ Resources:
 > | *`if, elseif, else`*      |                       | Execute statements if condition is true. |
 > | *`ifourier`*              |                       | Inverse Fourier transform.               |
 > | *`ilaplace`*              |                       | Inverse Laplace transform.               |
-> | *`im2bw`*                 | ` imbinarize`         | Convert image to binary image, based on threshold. |
+> | *`im2bw`*                 | `imbinarize`         | Convert image to binary image, based on threshold. |
 > | *`im2double`*             |                       | Convert image to double precision.       |
 > | *`im2int16`*              |                       | Convert image to 16-bit signed integers. |
 > | *`im2java2d`*             |                       | Convert image to Java buffered image.    |
@@ -581,7 +581,7 @@ Resources:
 > | *`iptaddcallback`*        |                       | Add function handle to callback list.    |
 > | *`iptcheckhandle`*        |                       | Check validity of handle.                |
 > | *`iptcheckinput`*         | `validateattributes`  | Check validity of array.                 |
-> | *`iptchecknargin`*        | ` narginchk`          | Check number of input arguments.         |
+> | *`iptchecknargin`*        | `narginchk`          | Check number of input arguments.         |
 > | *`iptgetapi`*             |                       | Get Application Programmer Interface (API) for handle. |
 > | *`iptGetPointerBehavior`* |                       | Retrieve pointer behavior from graphics object. |
 > | *`iptgetpref`*            |                       | Get values of Image Processing Toolbox preferences. |
@@ -927,7 +927,7 @@ Resources:
 > | *`ruleedit`*        |                  | Open Rule Editor.                        |
 > | *`ruleview`*        |                  | Open Rule Viewer.                        |
 
-> ### S S
+> ### S s
 
 > | *`save`*                    |          | Save workspace variables to file.        |
 > | :-------------------------- | :------- | :--------------------------------------- |
