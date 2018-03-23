@@ -1,7 +1,7 @@
 ---
 layout: en_page
 Title:  BSS9395's Zone
-Back:   mailto:bss9395@outlook.com
+Back:   mailto:brilliantstarrysky9395@gmail.com
 ---
 
 > ### Things to Bear in Mind
@@ -16,7 +16,9 @@ Back:   mailto:bss9395@outlook.com
 > 01. Follow my heart, lead my life.
 > 01. Fool me once, shame on you; Fool me twice, shame on me.
 > 01. However bad life may seem, there is always something you can do and succeed at. Where there is life, there is hope.
+> 01. If I didn't meet you, I wouldn't like you; If I didn't like you, I wouldn't love you; If I didn't love you, I wouldn't miss you; But I did, I do, and I will.
 > 01. It is easier to make enemies than friends.
+> 01. Justice delayed is justice denied
 > 01. LESS is MORE.
 > 01. No pain, no gain.
 > 01. Nothing ventured, nothing gained.
