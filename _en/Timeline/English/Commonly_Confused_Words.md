@@ -7,7 +7,7 @@ Authors:   BSS9395
 Resources:
 ---
 
-### Adjective
+>  ### Adjective
 
 > + abundant : copious : plentiful : substantial
 > + address : cope with : deal with : handle : manage : tackle : treat 
@@ -37,7 +37,7 @@ Resources:
 > + rigid : strict : stringent
 > + significant : important
 
-### Noun
+>  ### Noun
 
 > + absurd : preposterous : ridiculous
 > + ancestor : progenitor
@@ -82,7 +82,7 @@ Resources:
 
 > ![Mountain](figures/Mountain.svg)
 
-### Verb
+>  ### Verb
 
 > + advance : proceed : progress
 > + agglomerate : aggregate
@@ -124,7 +124,7 @@ Resources:
 > + stammer : stutter
 > + transfer : transit : transmit : transport
 
-### Other
+>  ### Other
 
 > + additionally : also : as well : further more : in addition to : likewise : moreover : too
 > + although : despite : even though : in spite of : though
