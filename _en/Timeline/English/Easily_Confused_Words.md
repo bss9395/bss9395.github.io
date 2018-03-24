@@ -1,8 +1,8 @@
 ---
 layout:    en_post
 Topic:     English
-Title:     Commonly Confused Words
-Revised:   2018-03-19 02:22:00 +08 @ China-Xinjiang-Urumqi +06
+Title:     Easily Confused Words
+Revised:   2018-03-24 01:22:00 +08 @ China-Xinjiang-Urumqi +06
 Authors:   BSS9395
 Resources:
 ---
@@ -26,6 +26,7 @@ Resources:
 > + contemporary : contemporaneous
 > + critical : crucial
 > + deceased : dead
+> + dizzying : vertiginous
 > + essential : fundamental : necessary : vital
 > + fantastic : marvelous : splendid
 > + fussy : hazy : indistinct : vague
@@ -55,6 +56,7 @@ Resources:
 > + correlation : relevance
 > + demonstrator : marcher
 > + dictatorship : tyranny
+> + dizziness : vertigo
 > + dot : mark : patch : speck : speckle : spot
 > + earnings : income : pay : salary : wage
 > + embarrassment : humiliation : shame
@@ -62,7 +64,7 @@ Resources:
 > + excess : plethora
 > + fibre : filament : thread
 > + genesis : origin
-> + groan : moan
+> + groan : moan : wail
 > + growing : increasing : mounting
 > + inclination : propensity
 > + issue : problem : trouble
