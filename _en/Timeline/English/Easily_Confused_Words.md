@@ -55,6 +55,7 @@ Resources:
 > + conjecture : speculation
 > + correlation : relevance
 > + demonstrator : marcher
+> + checker : draught
 > + dictatorship : tyranny
 > + dizziness : vertigo
 > + dot : mark : patch : speck : speckle : spot

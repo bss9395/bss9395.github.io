@@ -1,6 +1,6 @@
 ---
 layout:    en_post
-Topic:     MATLAB Programming Language
+Topic:     Programming Language
 Title:     MATLAB Operators and Special Characters
 Revised:   2017-07-22 17:46:00 +08 @ China-Xinjiang-Urumqi +06
 Authors:   BSS9395

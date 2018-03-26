@@ -1,6 +1,6 @@
 ---
 layout:    en_post
-Topic:     Linux Operating System
+Topic:     Operating System
 Title:     Ubuntu Commands
 Revised:   2018-03-16 23:04:00 +08 @ China-Xinjiang-Urumqi +06
 Authors:   BSS9395

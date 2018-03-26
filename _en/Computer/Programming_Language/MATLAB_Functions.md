@@ -1,6 +1,6 @@
 ---
 layout:    en_post
-Topic:     MATLAB Programming Language
+Topic:     Programming Language
 Title:     MATLAB Functions
 Revised:   2017-12-05 13:42:00 +08 @ China-Xinjiang-Urumqi +06
 Authors:   BSS9395
