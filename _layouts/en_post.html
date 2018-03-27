@@ -6,10 +6,11 @@ layout: head
 <blockquote>
 <h2><a href="/en/Topics.html#{{ page.Topic }}">{{ page.Title }}</a></h2>
 </blockquote>
-<blockquote>{% assign Resources = page.Resources | remove:' ' | split:',' %}
+
+<blockquote>{% assign Resources = page.Resources | split:';' %}
 <mark>Revi: {{ page.Revised }}</mark>
 <mark>Auth: {{ page.Authors }}</mark>
-<mark>Reso: <mark>{% for Resource in Resources %}<a href="{{ Resource }}">{{ Resource | remove:'resources/' }}</a>{% endfor %}</mark></mark>
+<mark>Reso: <mark>{% for Resource in Resources %}{% assign Res = Resource | split:',' %}<a href="{{ Res.last }}">{{ Res.first }}</a>{% endfor %}</mark></mark>
 </blockquote>
 {{ content }}
 </article>

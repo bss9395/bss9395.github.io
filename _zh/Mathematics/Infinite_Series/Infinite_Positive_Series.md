@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     无穷级数
 Title:     无穷正项级数
-Revised:   2018-03-25 21:05:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-03-27 20:18:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -11,24 +11,24 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; & s_n \ge 0 \Rightarrow \left\langle \sum^{+\infty} s_n \to \mathcal{Conv.} \Leftrightarrow \sum^n s_n < M \right\rangle \\
+> \fbox{1}\; & \sum^{+\infty} s_n \to \mathcal{Conv.} \Leftrightarrow \sum^n s_n < M \\
 > \fbox{2}\; & \varliminf_{+\infty} \dfrac{s_{n + 1}}{s_n} \le \varliminf_{+\infty} \sqrt[n]{s_n} \le \varlimsup_{+\infty} \sqrt[n]{s_n} \le \varlimsup_{+\infty} \dfrac{s_{n + 1}}{s_n} \\
 > \end{alignedat}
 > $$
 >
 
-> ###  比较判别法
+> ###  $s_n < t_n$审敛法
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\;           && \exists N \in \mathbb{N}; n > N &\Rightarrow s_n \le t_n \\
-> \fbox{1}\Downarrow\; && \sum^{+\infty} s_n \to \mathcal{Conv.} \quad&\Leftarrow\quad \sum^{+\infty} t_n \to \mathcal{Conv.} \\
+> \Uparrow\;           &&                  \exists N \in \mathbb{N}; n > N &; s_n \le t_n \\
+> \fbox{1}\Downarrow\; &&      \sum^{+\infty} s_n \to \mathcal{Conv.} \quad&\Leftarrow\quad \sum^{+\infty} t_n \to \mathcal{Conv.} \\
 > \fbox{2}\Downarrow\; && \sum^{+\infty} s_n \not \to \mathcal{Conv.} \quad&\Rightarrow\quad \sum^{+\infty} t_n \not\to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >
 
-> ### 比较判别法的极限形式
+> ### $s_n < t_n$审敛法的极限形式
 
 > $$
 > \begin{alignedat}{3}
@@ -42,20 +42,20 @@ Resources:
 > $$
 >
 
-> ### 积分判别法
+> ### $\int^{+\infty} \mathrm{d} x$审敛法
 
 > $$
 > \begin{alignedat}{3}
 > \Uparrow\;   &&                      f_\downarrow (\alpha + n + 1) \le f_\downarrow & (x) \le f_\downarrow (\alpha + n) \\
-> \Downarrow\; &&               \int_\alpha^{+\infty} f (\alpha + n + 1) \mathrm{d} x &= \sum_0^{+\infty} \int_{\alpha + n}^{\alpha + n + 1} f (\alpha + n + 1) \mathrm{d} x \\
-> \le\;        &&                            \int_\alpha^{+\infty} f (x) \mathrm{d} x &= \sum_0^{+\infty} \int_{\alpha + n}^{\alpha + n + 1} f (x) \mathrm{d} x \\
-> \le\;        &&                   \int_\alpha^{+\infty} f (\alpha + n) \mathrm{d} x &= \sum_0^{+\infty} \int_{\alpha + n}^{\alpha + n + 1} f (\alpha + n) \mathrm{d} x \\
+> \Downarrow\; &&    \int_\alpha^{+\infty} f_\downarrow (\alpha + n + 1) \mathrm{d} x &= \sum_0^{+\infty} \int_{\alpha + n}^{\alpha + n + 1} f_\downarrow (\alpha + n + 1) \mathrm{d} x \\
+> \le\;        &&                 \int_\alpha^{+\infty} f_\downarrow (x) \mathrm{d} x &= \sum_0^{+\infty} \int_{\alpha + n}^{\alpha + n + 1} f_\downarrow (x) \mathrm{d} x \\
+> \le\;        &&        \int_\alpha^{+\infty} f_\downarrow (\alpha + n) \mathrm{d} x &= \sum_0^{+\infty} \int_{\alpha + n}^{\alpha + n + 1} f_\downarrow (\alpha + n) \mathrm{d} x \\
 > \Downarrow\; && \mathcal{Conv.} \gets \int^{+\infty} f_\downarrow (x) \mathcal{d} x &\Leftrightarrow \sum^{+\infty} f_\downarrow (\alpha + n) \to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >
 
-> ### 比值判别法
+> ### $\frac{s_{n + 1}}{s_n}$审敛法
 
 > $$
 > \begin{alignedat}{3}
@@ -65,7 +65,7 @@ Resources:
 > $$
 >
 
-> ### 比值判别法的极限形式
+> ### $\frac{s_{n + 1}}{s_n}$审敛法的极限形式
 
 > $$
 > \begin{alignedat}{3}
@@ -75,7 +75,7 @@ Resources:
 > $$
 >
 
-> ### 根值判别法
+> ### $\sqrt[n]{s_n}$审敛法
 
 > $$
 > \begin{alignedat}{3}
@@ -85,7 +85,7 @@ Resources:
 > $$
 >
 
-> ### 根值判别法的极限形式
+> ### $\sqrt[n]{s_n}$审敛法的极限形式
 
 > $$
 > \begin{alignedat}{3}
@@ -95,22 +95,71 @@ Resources:
 > $$
 >
 
-> ### 等比判别法
+> ### $q^n$审敛法的极限形式
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; &&          \varlimsup_{+\infty} \sqrt[n]{s_n} < 1 \quad&\Rightarrow\quad \lim_{+\infty} \dfrac{s_n}{\langle r < 1 \rangle^n} \to 0 \\
-> \fbox{2}\; && \varlimsup_{+\infty} \dfrac{s_{n + 1}}{s_n} < 1 \quad&\Rightarrow\quad \lim_{+\infty} \dfrac{s_n}{\langle r < 1 \rangle^n} \to 0 \\
+> \fbox{1}\; &&          \varlimsup_{+\infty} \sqrt[n]{s_n} < 1 \quad&\Rightarrow\quad \lim_{+\infty} \dfrac{s_n}{\langle q < 1 \rangle^n} \to 0 \\
+> \fbox{2}\; && \varlimsup_{+\infty} \dfrac{s_{n + 1}}{s_n} < 1 \quad&\Rightarrow\quad \lim_{+\infty} \dfrac{s_n}{\langle q < 1 \rangle^n} \to 0 \\
 > \end{alignedat}
 > $$
 >
 
-> ### $\frac{1}{n^\alpha}$判别法
+> ### $\frac{1}{n^\alpha}$审敛法
 
 > $$
 > \begin{alignedat}{3}
->
+> \Uparrow\;         &&                                    \exists N \in \mathbb{N}; n > N; s_n \le \dfrac{M}{n^{\langle \alpha > 1 \rangle}} \quad&\Rightarrow\quad \sum^{+\infty} s_n \to \mathcal{Conv.} \\
+> \Uparrow\;         &&                            \exists N \in \mathbb{N}; n > N; M \ge n^\alpha \cdot s_n > (n + 1)^\alpha \cdot s_{n + 1} \quad&\Rightarrow\quad \dfrac{s_n}{s_{n + 1}} > \left( 1 + \dfrac{1}{n} \right)^\alpha  \\
+> \Uparrow\;         && \exists N \in \mathbb{N}; n > N; \dfrac{s_n}{s_{n + 1}} \ge 1 + \dfrac{r}{n} > \left( 1 + \dfrac{1}{n} \right)^\alpha \quad&\Leftarrow\quad \lim_{+\infty} n \cdot \left[ \left( 1 + \dfrac{1}{n} \right)^\alpha - 1 \right] = \alpha < r \\
+> \fbox{1}\Uparrow\; &&                                \exists N \in \mathbb{N}; n > N; n \left( \dfrac{s_n}{s_{n + 1}} - 1 \right) \ge r > 1 \quad&\Rightarrow\quad \sum^{+\infty} s_n \to \mathcal{Conv.} \\
+> \fbox{2}\Uparrow\; &&                                    \exists N \in \mathbb{N}; n > N; n \left( \dfrac{s_n}{s_{n + 1}} - 1 \right) \le 1 \quad&\Rightarrow\quad \sum^{+\infty} s_n \not\to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >
 
+> ### $\frac{1}{n^\alpha}$审敛法的极限形式
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\; && \varliminf_{+\infty} n \left( \dfrac{s_n}{s_{n + 1}} - 1 \right) > 1 \quad&\Rightarrow\quad \sum^{+\infty} s_n \to \mathcal{Conv.} \\
+> \fbox{2}\; && \varlimsup_{+\infty} n \left( \dfrac{s_n}{s_{n + 1}} - 1 \right) < 1 \quad&\Rightarrow\quad \sum^{+\infty} s_n \to \mathcal{Conv.} \\
+> \end{alignedat}
+> $$
+>
+
+> ### $\frac{1}{n \cdot \ln^\beta n}$审敛法
+
+> $$
+> \begin{alignedat}{3}
+> \Uparrow\;         &&                                                                         \exists N \in \mathbb{N}; n > N; s_n \le \dfrac{M}{n \cdot \ln^{\langle \beta > 1 \rangle} n} \quad&\Rightarrow\quad \sum^{+\infty} s_n \to \mathcal{Conv.} \\
+> \Uparrow\;         &&                                                \exists N \in \mathbb{N}; n > N; M \ge n \cdot \ln^\beta n \cdot s_n > (n + 1) \cdot \ln^\beta (n + 1) \cdot s_{n + 1} \quad&\Rightarrow\quad \dfrac{s_n}{s_{n + 1}} - \dfrac{n + 1}{n} \cdot \left[ \dfrac{\ln (n + 1)}{\ln n} \right]^\beta > 0 \\
+> \Uparrow\;         && \exists N \in \mathbb{N}; n >\dfrac{s_n}{s_{n + 1}} = 1 + \dfrac{1}{n} + \dfrac{\langle r > \beta \rangle}{n \cdot \ln n} + o \left( \dfrac{1}{n \cdot \ln n} \right) \quad&\Leftarrow\quad \dfrac{\ln (n + 1)}{\ln n} = 1 + \dfrac{1}{\ln n} \cdot \left[ \dfrac{1}{n} + o \left( \dfrac{1}{n} \right) \right] \\ 
+> \fbox{1}\Uparrow\; && \exists N \in \mathbb{N}; n > N; \dfrac{s_n}{s_{n + 1}} = 1 + \dfrac{1}{n} + \dfrac{\langle r > 1 \rangle}{n \cdot \ln n} + o \left( \dfrac{1}{n \cdot \ln n} \right) \quad&\Rightarrow\quad \sum^{+\infty} s_n \to \mathcal{Conv.} \\
+> \fbox{2}\Uparrow\; &&  \exist N \in \mathbb{N}; n > N; \dfrac{s_n}{s_{n + 1}} = 1 + \dfrac{1}{n} + \dfrac{\langle r < 1 \rangle}{n \cdot \ln n} + o \left( \dfrac{1}{n \cdot \ln n} \right) \quad&\Rightarrow\quad \sum^{+\infty} s_n \not\to \mathcal{Conv.} \\
+> \end{alignedat}
+> $$
+>
+
+> ### $\frac{1}{n \cdot \ln^\beta n}$审敛法的极限形式
+
+> $$
+> \begin{alignedat}{3}
+> \Uparrow\;           && \exists N \in \mathbb{N}; n > N; \dfrac{s_n}{s_{n + 1}} &= 1 + \dfrac{1}{n} + \dfrac{r_n}{n \cdot \ln n} + o \left( \dfrac{1}{n \cdot \ln n} \right) \\
+> \fbox{1}\Downarrow\; &&                             \lim_{+\infty} r_n > 1 \quad&\Rightarrow\quad \sum^{+\infty} s_n \to \mathcal{Conv.} \\
+> \fbox{2}\Downarrow\; &&                             \lim_{+\infty} r_n < 1 \quad&\Rightarrow\quad \sum^{+\infty} s_n \not\to \mathcal{Conv.} \\
+> \end{alignedat}
+> $$
+>
+
+> ### $n \cdot s_n$审敛法
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\Uparrow\; && \varlimsup_{+\infty} \dfrac{s_{n + 1}}{s_n} < 1 \quad&\Leftrightarrow\quad \varlimsup_{+\infty} \dfrac{(n + 1) \cdot s_{n + 1}}{n \cdot s_n} < 1 \\
+> \fbox{2}\Uparrow\; &&          \varlimsup_{+\infty} \sqrt[n]{s_n} < 1 \quad&\Leftrightarrow\quad \varlimsup_{+\infty} \sqrt[n]{n \cdot s_n} < 1 \\
+> \fbox{3}\Uparrow\; &&              \lim_{+\infty} \dfrac{s_n}{n \cdot s_n} &= \lim_{+\infty} \dfrac{1}{n} \to 0 \\
+> \Downarrow\;       &&  \mathcal{Conv.} \gets \sum^{+\infty} \cdot s_n \quad&\Leftarrow\quad \sum^{+\infty} n \cdot s_n \to \mathcal{Conv.} \\
+> \end{alignedat}
+> $$
+>

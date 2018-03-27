@@ -1,7 +1,7 @@
 ---
 layout:    zh_post
 Topic:     无穷级数
-Title:     重要无穷乘积
+Title:     重要乘积
 Revised:   2018-03-24 13:48:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:

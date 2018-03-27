@@ -1,65 +1,65 @@
 "use strict";
 
 window.onload = function () {
-    /* images */
-    function images() {
-        var imgs = document.querySelectorAll("img");
-        for (var i = 0; i < imgs.length; i++) {
-        	if (imgs[i].alt !== "") {
-        		imgs[i].style = imgs[i].alt;
-        	}
-        }
-    }
-    images();
+	/* images */
+	function images() {
+		var imgs = document.querySelectorAll("img");
+		for (var i = 0; i < imgs.length; i++) {
+			if (imgs[i].alt !== "") {
+				imgs[i].style = imgs[i].alt;
+			}
+		}
+	}
+	images();
 };
 
 /* search */
 function searchAnything(value) {
-    var input = value.replace(/(\s|»)+/igm, " ").toLowerCase();
-    var tag = input.match(/^#\S+\s*/igm);
-    var content = input.replace(tag, "");
-    var section = document.getElementsByTagName("section");
-    var i = 0,
-        j = 0,
-        dd;
-    if (tag) {
-        for (i = 0; i < section.length; i++) {
-            var index = (section[i].textContent || section[i].innerText).replace(/(\s|»)+/igm, " ").toLowerCase().indexOf(tag);
-            if (index === 1 || index === 0) {
-                section[i].style.display = "";
-                dd = section[i].getElementsByTagName("dd");
-                if (content && content.length > 0) {
-                    for (j = 0; j < dd.length; j++) {
-                        if ((dd[j].textContent || dd[j].innerText).replace(/(\s|»)+/igm, " ").toLowerCase().indexOf(content) > -1) {
-                            dd[j].style.display = "";
-                        } else {
-                            dd[j].style.display = "none";
-                        }
-                    }
-                } else {
-                    for (j = 0; j < dd.length; j++) {
-                        dd[j].style.display = "";
-                    }
-                }
-            } else {
-                section[i].style.display = "none";
-            }
-        }
-    } else {
-        for (i = 0; i < section.length; i++) {
-            if ((section[i].textContent || section[i].innerText).replace(/(\s|»)+/igm, " ").toLowerCase().indexOf(content) > -1) {
-                section[i].style.display = "";
-                dd = section[i].getElementsByTagName("dd");
-                for (j = 0; j < dd.length; j++) {
-                    if ((dd[j].textContent || dd[j].innerText).replace(/(\s|»)+/igm, " ").toLowerCase().indexOf(content) > -1) {
-                        dd[j].style.display = "";
-                    } else {
-                        dd[j].style.display = "none";
-                    }
-                }
-            } else {
-                section[i].style.display = "none";
-            }
-        }
-    }
+	var input = value.replace(/(\s|»)+/igm, " ").toLowerCase();
+	var tag = input.match(/^#\S+\s*/igm);
+	var content = input.replace(tag, "");
+	var dl = document.getElementsByTagName("dl");
+	var i = 0,
+		j = 0;
+	if (tag) {
+		for (i = 0; i < dl.length; i++) {
+			var dt = dl[i].getElementsByTagName("dt");
+			var index = (dt[0].textContent || dt[0].innerText).replace(/(\s|»)+/igm, " ").toLowerCase().indexOf((tag + "").replace("#", ""));
+			if (index > -1) {
+				dl[i].style.display = "";
+				var dd = dl[i].getElementsByTagName("dd");
+				if (content && content.length > 0) {
+					for (j = 0; j < dd.length; j++) {
+						if ((dd[j].textContent || dd[j].innerText).replace(/(\s|»)+/igm, " ").toLowerCase().indexOf(content) > -1) {
+							dd[j].style.display = "";
+						} else {
+							dd[j].style.display = "none";
+						}
+					}
+				} else {
+					for (j = 0; j < dd.length; j++) {
+						dd[j].style.display = "";
+					}
+				}
+			} else {
+				dl[i].style.display = "none";
+			}
+		}
+	} else {
+		for (i = 0; i < dl.length; i++) {
+			if ((dl[i].textContent || dl[i].innerText).replace(/(\s|»)+/igm, " ").toLowerCase().indexOf(content) > -1) {
+				dl[i].style.display = "";
+				var dd = dl[i].getElementsByTagName("dd");
+				for (j = 0; j < dd.length; j++) {
+					if ((dd[j].textContent || dd[j].innerText).replace(/(\s|»)+/igm, " ").toLowerCase().indexOf(content) > -1) {
+						dd[j].style.display = "";
+					} else {
+						dd[j].style.display = "none";
+					}
+				}
+			} else {
+				dl[i].style.display = "none";
+			}
+		}
+	}
 }
