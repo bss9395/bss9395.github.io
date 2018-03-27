@@ -136,7 +136,7 @@ Resources:
 > \Uparrow\;         &&                                                \exists N \in \mathbb{N}; n > N; M \ge n \cdot \ln^\beta n \cdot s_n > (n + 1) \cdot \ln^\beta (n + 1) \cdot s_{n + 1} \quad&\Rightarrow\quad \dfrac{s_n}{s_{n + 1}} - \dfrac{n + 1}{n} \cdot \left[ \dfrac{\ln (n + 1)}{\ln n} \right]^\beta > 0 \\
 > \Uparrow\;         && \exists N \in \mathbb{N}; n >\dfrac{s_n}{s_{n + 1}} = 1 + \dfrac{1}{n} + \dfrac{\langle r > \beta \rangle}{n \cdot \ln n} + o \left( \dfrac{1}{n \cdot \ln n} \right) \quad&\Leftarrow\quad \dfrac{\ln (n + 1)}{\ln n} = 1 + \dfrac{1}{\ln n} \cdot \left[ \dfrac{1}{n} + o \left( \dfrac{1}{n} \right) \right] \\ 
 > \fbox{1}\Uparrow\; && \exists N \in \mathbb{N}; n > N; \dfrac{s_n}{s_{n + 1}} = 1 + \dfrac{1}{n} + \dfrac{\langle r > 1 \rangle}{n \cdot \ln n} + o \left( \dfrac{1}{n \cdot \ln n} \right) \quad&\Rightarrow\quad \sum^{+\infty} s_n \to \mathcal{Conv.} \\
-> \fbox{2}\Uparrow\; &&  \exist N \in \mathbb{N}; n > N; \dfrac{s_n}{s_{n + 1}} = 1 + \dfrac{1}{n} + \dfrac{\langle r < 1 \rangle}{n \cdot \ln n} + o \left( \dfrac{1}{n \cdot \ln n} \right) \quad&\Rightarrow\quad \sum^{+\infty} s_n \not\to \mathcal{Conv.} \\
+> \fbox{2}\Uparrow\; &&  \exists N \in \mathbb{N}; n > N; \dfrac{s_n}{s_{n + 1}} = 1 + \dfrac{1}{n} + \dfrac{\langle r < 1 \rangle}{n \cdot \ln n} + o \left( \dfrac{1}{n \cdot \ln n} \right) \quad&\Rightarrow\quad \sum^{+\infty} s_n \not\to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >
