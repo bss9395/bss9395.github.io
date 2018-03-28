@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     无穷级数
 Title:     重要级数
-Revised:   2018-03-27 21:39:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-03-30 01:47:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -64,22 +64,6 @@ Resources:
 > $$
 >
 
-> ### 调和级数
-
-> $$
-> \begin{alignedat}{3}
-> \Uparrow\;   &&                   & \ln \left( 1 + \dfrac{1}{n} \right)^n < \ln e < \ln \left( 1 + \dfrac{1}{n} \right)^{n + 1} \\
-> \Downarrow\; &&                   & \dfrac{1}{n + 1} < \ln \left(1 + \dfrac{1}{n} \right) < \dfrac{1}{n} \\
-> \Downarrow\; &&                   & \dfrac{1}{n} - \ln \left( 1 + \dfrac{1}{n} \right) < \dfrac{1}{n} - \dfrac{1}{n + 1} < \dfrac{1}{n^2} \\
-> \Downarrow\; && \mathcal{Conv.} \;&\leftarrow\; \sum^{+\infty}_1 \left[ \dfrac{1}{n} - \ln \left( 1 + \dfrac{1}{n} \right) \right] \\
->              &&                   &= \sum^{+\infty}_1 \left[ \dfrac{1}{n} - \ln (n + 1) + \ln n \right] \\
->              &&                   &= \lim_{+\infty} \left[ \sum^n_1 \dfrac{1}{n} - \ln (n + 1) \right] \\
-> \Downarrow\; &&                 1 &= \lim_{+\infty} \dfrac{\sum\limits^{n}_1 \dfrac{1}{n}}{\ln n} \\
-> \Downarrow\; &&             \ln n &\mathop{\longleftrightarrow}_{+\infty} \sum^n_1 \dfrac{1}{n} \\
-> \end{alignedat}
-> $$
->
-
 > ### 对数级数
 
 > $$
@@ -119,3 +103,15 @@ Resources:
 > $$
 >
 
+> ### 调和级数
+
+> $$
+> \begin{alignedat}{3}
+> \Uparrow\;           &&                            f^\downarrow (x - 1) &\ge f^\downarrow (\lfloor x \rfloor) \ge \left\lvert \alpha - \left[ \sum_m^{\lfloor x \rfloor} f^\downarrow (x) - \int_m^x f^\downarrow (x) \mathrm{d} x \right] \right\rvert  \\
+> \Uparrow\;           &&                                           f (x) &= \dfrac{1}{x^{\langle h \ne 1 \rangle}}; \int_m^n f (x) \mathrm{d} x = \dfrac{n^{1- h} - m^{1 - h}}{1 - h}; f (x - 1) = O \left( \dfrac{1}{x^h} \right); \\
+> \fbox{1}\Downarrow\; && \sum_m^n \dfrac{1}{n^{\langle h \ne 1 \rangle}} &= \dfrac{n^{1- h} - m^{1 - h}}{1 - h} + \mathcal{Const.} + O \left( \dfrac{1}{x^h} \right) \\
+> \Uparrow\;           &&                                           f (x) &= \dfrac{1}{x}; \int_m^n f (x) \mathrm{d} x = \ln \dfrac{n}{m}; f (x - 1) = O \left( \dfrac{1}{n} \right); \\
+> \fbox{2}\Downarrow\; &&                           \sum_m^n \dfrac{1}{n} &= \ln \dfrac{n}{m} + \mathcal{Conv.} + O \left( \dfrac{1}{x^h} \right) \\
+> \end{alignedat}
+> $$
+>
