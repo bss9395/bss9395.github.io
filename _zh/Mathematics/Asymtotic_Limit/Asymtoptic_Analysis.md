@@ -7,18 +7,7 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 渐近过程
-
-> $$
-> \begin{alignedat}{3}
-> \fbox{1}\; && f \mathop{=}\limits_\mathcal{B} o (g) &\iff \lim_\mathcal{B} \dfrac{f (x)}{g (x)} = 0 \\
-> \fbox{2}\; && f \mathop{=}\limits_\mathcal{B} O (g) &\iff \left\lvert \lim_\mathcal{B} \dfrac{f (x)}{g (x)} \right\rvert \lt \mathcal{Const.} \\
-> \fbox{3}\; &&  f \mathop{\sim}\limits_\mathcal{B} g &\iff \lim_\mathcal{B} \dfrac{f (x)}{g (x)} = 1 \\ 
-> \end{alignedat}
-> $$
->
-
-> ### 渐近过程的运算法则
+> ### 渐近过程的性质
 
 > $$
 > \begin{alignedat}{3}
@@ -31,7 +20,7 @@ Resources:
 > \fbox{07}\; &&                                      o^n (f) &\mathop{\implies}\limits_\mathcal{B} o (f^n) \\
 > \fbox{08}\; &&                                      O^n (f) &\mathop{\implies}\limits_\mathcal{B} O (f^n) \\
 > \fbox{09}\; &&                                O (x^{n + m}) &\mathop{\implies}\limits_{x \to 0} o (x^n) \\
-> \fbox{10}\; && f \mathop{\sim}\limits_\mathcal{B} \tilde{f} &\implies \left( \lim_\mathcal{B} f (x) g (x) = \lim_\mathcal{B} \tilde{f} (x) g (x) \right) \\
+> \fbox{10}\; && f \mathop{\sim}\limits_\mathcal{B} \tilde{f} &\implies \lim_\mathcal{B} f (x) g (x) = \lim_\mathcal{B} \tilde{f} (x) g (x) \\
 > \end{alignedat}
 > $$
 >
@@ -44,3 +33,4 @@ Resources:
 > \end{alignedat}
 > $$
 >
+

@@ -75,10 +75,10 @@ Resources:
 
 > ### I i
 
-> | *`icacls`*   |      |                                                    |
-> | :----------- | :--- | :------------------------------------------------- |
-> | *`if`*       |      | Performs conditional processing in batch programs. |
-> | *`ipconfig`* |      |                                                    |
+> | *`icacls`*   |             |                                                    |
+> | :----------- | :---------- | :------------------------------------------------- |
+> | *`if`*       |             | Performs conditional processing in batch programs. |
+> | *`ipconfig`* | `/flushdns` |                                                    |
 
 > ### J j
 

@@ -2,10 +2,26 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     特殊符号
-Revised:   2018-03-23 23:12:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-03-28 20:01:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
+
+> ### 数列符号
+
+> $$
+> \begin{alignedat}{3}
+> s_n^+ &= \left\lbrace\begin{alignedat}{3}
+>          + s_n \quad&\Leftarrow\quad s_n \ge 0 \\
+>              0 \quad&\Leftarrow\quad s_n \lt 0 \\
+>          \end{alignedat}\right. \\
+> s_n^- &= \left\lbrace\begin{alignedat}{3}
+>              0 \quad&\Leftarrow\quad s_n \ge 0 \\
+>          - s_n \quad&\Leftarrow\quad s_n \lt 0 \\
+>          \end{alignedat}\right. \\
+> \end{alignedat}
+> $$
+>
 
 > ### 取整符号
 
@@ -18,7 +34,18 @@ Resources:
 > $$
 >
 
-> ### 范数符号
+> ### 渐近符号
+
+> $$
+> \begin{alignedat}{3}
+> f \mathop{=}\limits_\mathcal{B} o (g) &\iff \lim_\mathcal{B} \dfrac{f (x)}{g (x)} = 0 \\
+> f \mathop{=}\limits_\mathcal{B} O (g) &\iff \left\lvert \lim_\mathcal{B} \dfrac{f (x)}{g (x)} \right\rvert \le \mathcal{Const.} \\
+> f \mathop{\sim}\limits_\mathcal{B} g &\iff \lim_\mathcal{B} \dfrac{f (x)}{g (x)} = 1 \\ 
+> \end{alignedat}
+> $$
+>
+
+> ### $\Vert$符号
 
 > $$
 > \begin{alignedat}{3}
@@ -31,7 +58,7 @@ Resources:
 > $$
 >
 
-> ### 阶乘符号
+> ### $!$符号
 
 > $$
 > \begin{alignedat}{3}
@@ -75,7 +102,6 @@ Resources:
 >                    0 &\quad\Leftarrow\quad x \notin \mathbb{Q} \\
 >                    1 &\quad\Leftarrow\quad x \in \mathbb{Q} \\
 >                    \end{alignedat}\right. \\
->                 &\equiv \lvert \mathrm{sgn} (\mathcal{R} (x)) \rvert
 > \end{alignedat}
 > $$
 >
@@ -131,3 +157,4 @@ Resources:
 > \end{alignedat}
 > $$
 >
+

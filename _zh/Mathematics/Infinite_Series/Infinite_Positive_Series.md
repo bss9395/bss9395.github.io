@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     无穷级数
 Title:     无穷正项级数
-Revised:   2018-03-27 20:18:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-03-28 13:54:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -17,7 +17,7 @@ Resources:
 > $$
 >
 
-> ###  $s_n < t_n$审敛法
+> ###  $s_n \le t_n$审敛法
 
 > $$
 > \begin{alignedat}{3}
@@ -28,7 +28,7 @@ Resources:
 > $$
 >
 
-> ### $s_n < t_n$审敛法的极限形式
+> ### $s_n \le t_n$审敛法的极限形式
 
 > $$
 > \begin{alignedat}{3}
@@ -105,6 +105,18 @@ Resources:
 > $$
 >
 
+> ### $n \cdot s_n$审敛法
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\Uparrow\; && \varlimsup_{+\infty} \dfrac{s_{n + 1}}{s_n} < 1 \quad&\Leftrightarrow\quad \varlimsup_{+\infty} \dfrac{(n + 1) \cdot s_{n + 1}}{n \cdot s_n} < 1 \\
+> \fbox{2}\Uparrow\; &&          \varlimsup_{+\infty} \sqrt[n]{s_n} < 1 \quad&\Leftrightarrow\quad \varlimsup_{+\infty} \sqrt[n]{n \cdot s_n} < 1 \\
+> \fbox{3}\Uparrow\; &&              \lim_{+\infty} \dfrac{s_n}{n \cdot s_n} &= \lim_{+\infty} \dfrac{1}{n} \to 0 \\
+> \Downarrow\;       &&        \mathcal{Conv.} \gets \sum^{+\infty} s_n \quad&\Leftarrow\quad \sum^{+\infty} n \cdot s_n \to \mathcal{Conv.} \\
+> \end{alignedat}
+> $$
+>
+
 > ### $\frac{1}{n^\alpha}$审敛法
 
 > $$
@@ -152,14 +164,19 @@ Resources:
 > $$
 >
 
-> ### $n \cdot s_n$审敛法
+> ### 构造性收敛正项级数
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\Uparrow\; && \varlimsup_{+\infty} \dfrac{s_{n + 1}}{s_n} < 1 \quad&\Leftrightarrow\quad \varlimsup_{+\infty} \dfrac{(n + 1) \cdot s_{n + 1}}{n \cdot s_n} < 1 \\
-> \fbox{2}\Uparrow\; &&          \varlimsup_{+\infty} \sqrt[n]{s_n} < 1 \quad&\Leftrightarrow\quad \varlimsup_{+\infty} \sqrt[n]{n \cdot s_n} < 1 \\
-> \fbox{3}\Uparrow\; &&              \lim_{+\infty} \dfrac{s_n}{n \cdot s_n} &= \lim_{+\infty} \dfrac{1}{n} \to 0 \\
-> \Downarrow\;       &&  \mathcal{Conv.} \gets \sum^{+\infty} \cdot s_n \quad&\Leftarrow\quad \sum^{+\infty} n \cdot s_n \to \mathcal{Conv.} \\
+> \Uparrow\; &&                                                                               1 = \dfrac{s_n}{(S - S_{n - 1}) - (S - S_n)} \quad&\Leftarrow\quad 0 < s_n = S_n - S_{n - 1} \\
+> \Uparrow\; && 0 \gets \lim_{+\infty} \dfrac{s_n \cdot \left( \sqrt{S - S_{n - 1}} + \sqrt{S - S_n} \right)}{(S - S_{n - 1}) - (S - S_n)} \quad&\Leftarrow\quad 0 \gets \lim_{+\infty} \sqrt{S - S_n} \\
+> \Uparrow\; &&                                                                                    0 \gets \lim_{+\infty} \dfrac{s_n}{t_n} \quad&\Leftarrow\quad t_n = \sqrt{S - S_{n - 1}} - \sqrt{S - S_n} \\
+> \Uparrow\; &&   0 \gets \lim_{+\infty} \dfrac{\widetilde{s}_n}{t_n} = \lim_{+\infty} \dfrac{\widetilde{s}_n}{s_n} \cdot \dfrac{s_n}{t_n} \quad&\Leftarrow\quad s_n = \left\lbrace\begin{alignedat}{3}
+>                                                                                                                                                                                 s_n \quad&\Leftarrow\quad 0 < s_n \\
+>                                                                                                                                                                      \dfrac{1}{2^n} \quad&\Leftarrow\quad 0 = \widetilde{s}_n \\
+>                                                                                                                                                                      \end{alignedat}\right. \\
+> \Uparrow\; &&                                                                           \widetilde{S} = \sum_1^{+\infty} \widetilde{s}_n \quad&\Leftrightarrow\quad \sum_1^{+\infty} \left\langle t_n = \sqrt{S - S_{n - 1}} - \sqrt{S - S_n} \right\rangle = \sqrt{S} \\
 > \end{alignedat}
 > $$
 >
+
