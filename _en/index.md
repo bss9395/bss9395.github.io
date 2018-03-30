@@ -27,4 +27,5 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > 01. This plan does not gone to plan
 > 01. Time will tell.
 > 01. TRIALs and ERRORs.
+> 01. What is rational is real, and what is real is rational.
 > 01. You win some, you lose some.

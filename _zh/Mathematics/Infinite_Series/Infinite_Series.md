@@ -7,7 +7,7 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 级数的性质
+> ### 收敛级数的性质
 
 > $$
 > \begin{alignedat}{3}

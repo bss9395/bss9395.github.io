@@ -107,7 +107,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\;           &&                            f^\downarrow (x - 1) &\ge f^\downarrow (\lfloor x \rfloor) \ge \left\lvert \alpha - \left[ \sum_m^{\lfloor x \rfloor} f^\downarrow (x) - \int_m^x f^\downarrow (x) \mathrm{d} x \right] \right\rvert  \\
+> \Uparrow\;           &&                            f^\downarrow (x - 1) &\ge f^\downarrow (\lfloor x \rfloor) \ge \left\lvert \alpha - \left[ \sum_m^{\lfloor x \rfloor} f^\downarrow (x) - \int_m^x f^\downarrow (x) \mathrm{d} x \right] \right\rvert \quad\Leftarrow\quad \lim_{+\infty} f^\downarrow (x) \to 0 \\
 > \Uparrow\;           &&                                           f (x) &= \dfrac{1}{x^{\langle h \ne 1 \rangle}}; \int_m^n f (x) \mathrm{d} x = \dfrac{n^{1- h} - m^{1 - h}}{1 - h}; f (x - 1) = O \left( \dfrac{1}{x^h} \right); \\
 > \fbox{1}\Downarrow\; && \sum_m^n \dfrac{1}{n^{\langle h \ne 1 \rangle}} &= \dfrac{n^{1- h} - m^{1 - h}}{1 - h} + \mathcal{Const.} + O \left( \dfrac{1}{x^h} \right) \\
 > \Uparrow\;           &&                                           f (x) &= \dfrac{1}{x}; \int_m^n f (x) \mathrm{d} x = \ln \dfrac{n}{m}; f (x - 1) = O \left( \dfrac{1}{n} \right); \\

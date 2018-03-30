@@ -26,7 +26,8 @@ Resources:
 >         \Downarrow\; && - f (\lfloor y \rfloor) + \int_{\lfloor y \rfloor}^y f (x) \mathrm{d} x &\le g (m, x) - g (m, y) \le \int_{\lfloor y \rfloor}^y f (x) \mathrm{d} x \quad&&\Leftarrow\quad 0 \le g (m, x) \le f (m) \\
 > \fbox{1}\Downarrow\; &&                                       \lvert g (m, x) - g (m, y) \rvert &\le f^\downarrow (\lfloor y \rfloor) \le f^\downarrow (y - 1) \\
 > \fbox{2}\Downarrow\; &&                              \lim_{+\infty} f^\downarrow (x) \to 0 \quad&\Rightarrow\quad \alpha \gets \lim_{+\infty} \left[ \sum_m^{\lfloor x \rfloor} f^\downarrow (x) - \int_m^x f^\downarrow (x) \mathrm{d} x \right] \\
-> \fbox{3}\Downarrow\; &&               f^\downarrow (x - 1) \ge f^\downarrow (\lfloor x \rfloor) &\ge \left\lvert \alpha - \left[ \sum_m^{\lfloor x \rfloor} f^\downarrow (x) - \int_m^x f^\downarrow (x) \mathrm{d} x \right] \right\rvert \\
+> \fbox{3}\Downarrow\; &&               f^\downarrow (x - 1) \ge f^\downarrow (\lfloor x \rfloor) &\ge \left\lvert \alpha - \left[ \sum_m^{\lfloor x \rfloor} f^\downarrow (x) - \int_m^x f^\downarrow (x) \mathrm{d} x \right] \right\rvert \quad\Leftarrow\quad \lim_{+\infty} f^\downarrow (x) \to 0 \\
 > \end{alignedat}
 > $$
 >
+

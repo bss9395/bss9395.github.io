@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     重要不等式
-Revised:   2017-10-23 19:07:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-03-31 00:03:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -13,6 +13,15 @@ Resources:
 > \begin{alignedat}{3}
 > \Uparrow\;   & \left\lVert \sum^m {^m v_m} \right\rVert \le \sum^m \lVert {^m v_m} \rVert \\
 > \Downarrow\; & \left\lvert \sum^m {^1 v_m} \right\rvert \mathop{\le}\limits_{\langle {^1 v_m} \gtreqqless 0 \rangle} \sum^m \lvert {^1 v_m} \rvert \\
+> \end{alignedat}
+> $$
+>
+
+> ### 乘积不等式
+
+> $$
+> \begin{alignedat}{3}
+> s_n \ge 0 \implies \prod_1^n (1 + s_n) \ge \sum_1^n s_n
 > \end{alignedat}
 > $$
 >
