@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     重要不等式
-Revised:   2018-03-31 00:03:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-03-31 23:47:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -22,6 +22,15 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > s_n \ge 0 \implies \prod_1^n (1 + s_n) \ge \sum_1^n s_n
+> \end{alignedat}
+> $$
+>
+
+> ### 对数不等式
+
+> $$
+> \begin{alignedat}{3}
+> \ln \lvert 1 + x \rvert \mathop{\le}_{x = 0} \lvert x \rvert \\
 > \end{alignedat}
 > $$
 >

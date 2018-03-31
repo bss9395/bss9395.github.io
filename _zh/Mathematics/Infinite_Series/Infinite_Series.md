@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     无穷级数
 Title:     无穷级数
-Revised:   2018-03-28 23:14:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-01 00:25:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -70,7 +70,16 @@ Resources:
 > $$
 >
 
-> ### 绝对收敛的性质
+> ### 对数审敛法
+
+> $$
+> \begin{alignedat}{3}
+> \sum^{+\infty} s_n \to \mathcal{Conv.} \Leftrightarrow\quad \sum_N^{+\infty} \ln \lvert 1 + s_n \rvert \to \mathcal{Conv.} \\
+> \end{alignedat}
+> $$
+>
+
+> ### 绝对收敛级数的性质
 
 > $$
 > \begin{alignedat}{3}
@@ -78,22 +87,22 @@ Resources:
 > \fbox{1}\Downarrow\; & \sum^{+\infty} \lvert s_n \rvert \to \mathcal{Conv.} \quad\Rightarrow\quad \sum^{+\infty} s_n \to \mathcal{Conv.} \\
 > \Uparrow\; & \sum^{+\infty} \lvert s_n \rvert = \sum^{+\infty} s_n^+ + \sum^{+\infty} s_n^- \\
 > \fbox{2}\Downarrow\; & \sum^{+\infty} \lvert s_n \rvert \to \mathcal{Conv.} \quad\Leftrightarrow\quad \sum^{+\infty} s_n^+ \to \mathcal{Conv.} \land \sum^{+\infty} s_n^- \to \mathcal{Conv.} \\
-> \Uparrow\; & \sum^{+\infty} s_n = \sum^{+\infty} s_n^+ - \sum^{+\infty} s_n^- \\
-> \fbox{3}\Downarrow\; & \sum^{+\infty} \lvert s_n \rvert \not\to \mathcal{Conv.} \land \sum^{+\infty} s_n \to \mathcal{Conv.} \quad\Rightarrow\quad \sum^{+\infty} s_n^+ \to +\infty \land \sum^{+\infty} s_n^- \to +\infty \\
 > \Uparrow\; & \sum^{+\infty} s_m^+ \le \sum^{+\infty} s_n^+ \land \sum^{+\infty} s_n^+ \le \sum^{+\infty} s_m^+ \\
-> \fbox{4}\Downarrow\; & \sum^{+\infty} s_m^+ = \sum^{+\infty} s_n^+ \quad\Rightarrow\quad \sum^{+\infty} s_m = \sum^{+\infty} s_n \\
+> \fbox{3}\Downarrow\; & \sum^{+\infty} s_m^+ = \sum^{+\infty} s_n^+ \quad\Rightarrow\quad \sum^{+\infty} s_m = \sum^{+\infty} s_n \\
 > \end{alignedat}
 > $$
 >
 
-> ### 条件收敛的性质
+> ### 条件收敛级数的性质
 
 > $$
 > \begin{alignedat}{3}
 >                      & \sum^{+\infty} \lvert s_n \rvert \not\to \mathcal{Conv.} \land \sum^{+\infty} s_n \to \mathcal{Conv.} \\
-> \fbox{1}\Downarrow\; & \sum^{+\infty} s_m = S \\
-> \fbox{2}\Downarrow\; & \sum^{+\infty} s_m = \pm \infty \\
-> \fbox{3}\Downarrow\; & \sum^{+\infty} s_m \not\to \mathcal{Conv.} \\
+> \Uparrow\;           & \sum^{+\infty} s_n = \sum^{+\infty} s_n^+ - \sum^{+\infty} s_n^- \\
+> \fbox{1}\Downarrow\; & \sum^{+\infty} s_n^+ \to +\infty \land \sum^{+\infty} s_n^- \to +\infty \\
+> \fbox{2}\Downarrow\; & \sum^{+\infty} s_m = S \\
+> \fbox{3}\Downarrow\; & \sum^{+\infty} s_m = \pm \infty \\
+> \fbox{4}\Downarrow\; & \sum^{+\infty} s_m \not\to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >

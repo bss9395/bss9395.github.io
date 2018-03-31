@@ -35,6 +35,7 @@ Resources:
 > + linear : rectilinear
 > + omnipresent : pervasive : prevalent : ubiquitous : universal
 > + perspective : prospective
+> + stimulating : inspiring
 > + rigid : strict : stringent
 > + significant : important
 
@@ -48,6 +49,7 @@ Resources:
 > + cavity : hole : hollow
 > + character : characteristic : feature : nature : quality : trait : personality
 > + chart : diagram :figure : graph
+> + checker : draught
 > + clay : dirt : dust : earth : ground : land : mud : soil
 > + clump : cluster
 > + complement : supplement
@@ -55,7 +57,6 @@ Resources:
 > + conjecture : speculation
 > + correlation : relevance
 > + demonstrator : marcher
-> + checker : draught
 > + dictatorship : tyranny
 > + dizziness : vertigo
 > + dot : mark : patch : speck : speckle : spot
@@ -90,6 +91,7 @@ Resources:
 > + advance : proceed : progress
 > + agglomerate : aggregate
 > + aggregate : assemble : converge
+> + devise : think up
 > + alleviate : decline : decrease : diminish : lessen : reduce
 > + associate : connect : interlink : link
 > + assume : postulate : presume : speculate : suppose
@@ -134,6 +136,7 @@ Resources:
 > + because of : due to : on the account of : owing to
 > + but : however : nevertheless : nonetheless
 > + consequently : hence : thereby : therefore : thus
+> + whatever : whatsoever
 > + eventually : finally : lastly : ultimately
 > + when : while : whilst
 > + whereas : while : whilst
