@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     重要不等式
-Revised:   2018-03-31 23:47:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-01 21:30:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -30,10 +30,12 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \ln \lvert 1 + x \rvert \mathop{\le}_{x = 0} \lvert x \rvert \\
+> \ln (\lvert 1 + x \rvert) \mathop{\le}_{x = 0} 0 \mathop{\le}_{x = 0} \ln (1 + \lvert x \rvert) \mathop{\le}_{x = 0} \lvert x \rvert \\
 > \end{alignedat}
 > $$
 >
+
+> ![max-width:360px;](figures/ABS_Logarithmic_Functions.svg)
 
 > ### 二项式不等式
 

@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     初等函数
-Revised:   2017-10-10 18:28:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-01 16:52:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -86,6 +86,8 @@ Resources:
 > $$
 >
 
+> ![max-width:360px;](figures/Hyperbolic_Functions.svg)
+
 > ### 反双曲函数 $\mathop{\rm{arsinh}} x \; \mathop{\rm{arcosh}} x \; \mathop{\rm{artanh}} x$
 
 > $$
@@ -96,3 +98,5 @@ Resources:
 > \end{array}
 > $$
 >
+
+> ![max-width:360px;](figures/Inverse_Hyperbolic_Functions.svg)

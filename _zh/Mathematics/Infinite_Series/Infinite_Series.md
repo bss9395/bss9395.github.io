@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     无穷级数
 Title:     无穷级数
-Revised:   2018-04-01 00:25:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-01 13:38:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -74,7 +74,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \sum^{+\infty} s_n \to \mathcal{Conv.} \Leftrightarrow\quad \sum_N^{+\infty} \ln \lvert 1 + s_n \rvert \to \mathcal{Conv.} \\
+> \fbox{1}\; && \sum^{+\infty} \ln (1 + \lvert s_n \rvert) \to \mathcal{Conv.} \quad\Leftrightarrow\quad \sum^{+\infty} \lvert s_n \rvert \to \mathcal{Conv.} \quad\Leftrightarrow\quad \sum_N^{+\infty} \lvert \ln (1 + s_n) \rvert \mathop{\to}_{s_n \ne -1} \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >
