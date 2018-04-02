@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     重要不等式
-Revised:   2018-04-02 01:25:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-02 12:14:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -30,8 +30,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; && \ln (1 + x) \mathop{=}_{-1 \lt x} \ln (\lvert 1 + x \rvert) &\mathop{\le}_{0 \le x} \ln (1 + \lvert x \rvert) \mathop{\le}_{0 = x} \lvert x \rvert \\
-> \fbox{2}\; && 0 &\mathop{\le}_{0 = x} \ln (1 + \lvert x \rvert) \mathop{\le}_{0 = x} \lvert x \rvert \\
+> \fbox{1}\; &&             \ln (1 + x) \mathop{=}_{-1 \lt x} \ln (|1 + x|) &\mathop{\le}_{0 \le x} \ln (1 + |x|) \mathop{\le}_{0 \le x} | \ln (1 + x)| \\
+> \fbox{2}\; &&                                                           0 &\mathop{\le}_{0 = x} \ln (1 + \lvert x \rvert) \mathop{\le}_{0 = x} \lvert x \rvert \\
 > \end{alignedat}
 > $$
 >

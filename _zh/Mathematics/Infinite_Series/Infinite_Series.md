@@ -51,9 +51,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\Uparrow\; &&                              \lvert S_n \rvert \le M \land t^\updownarrow_n \to 0 \quad&\Rightarrow\quad \left\lvert \sum_{n + 1}^{n + m} s_n \cdot t_n \right\rvert \le 2 M (\lvert t_{n + 1} \rvert + \lvert t_{n + m} \rvert) \to 0 \\
-> \fbox{2}\Uparrow\; && \sum^{+\infty} s_n \to \mathcal{Conv.} \land \lvert t^\updownarrow_n \rvert \le M \quad&\Rightarrow\quad \left\lvert \sum_{n + 1}^{n + m} s_n \cdot t_n \right\rvert \le 2 \varepsilon (M + M) \to 0 \\
-> \Downarrow\;       &&              \left\lvert \sum^{+\infty} s_n \cdot t_n \right\rvert \to \mathcal{Conv.} & \\
+> \fbox{1}\Uparrow\; &&                              \lvert S_n \rvert \le M \land t^\updownarrow_n \to 0 \quad&\Rightarrow\quad \left\lvert \sum_{N + 1}^{N + m} s_n \cdot t_n \right\rvert \le 2 (2 M) (\lvert t_{N + 1} \rvert + \lvert t_{N + m} \rvert) \to 0 \\
+> \fbox{2}\Uparrow\; && \sum^{+\infty} s_n \to \mathcal{Conv.} \land \lvert t^\updownarrow_n \rvert \le M \quad&\Rightarrow\quad \left\lvert \sum_{N + 1}^{N + m} s_n \cdot t_n \right\rvert \le 2 \varepsilon (M + M) \to 0 \\
+> \Downarrow\;       &&              \left\lvert \sum^{+\infty} s_n \cdot t_n \right\rvert \to \mathcal{Conv.} \quad& \\
 > \end{alignedat}
 > $$
 >
