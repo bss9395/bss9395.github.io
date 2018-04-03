@@ -2,10 +2,19 @@
 layout:    zh_post
 Topic:     渐进极限
 Title:     重要极限
-Revised:   2018-03-30 19:10:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-03 12:58:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
+
+> ### 初等极限
+
+> |              | **$$x \to 0$$**                                      | **$$x \to +\infty$$**                                        | **$$x \to \infty$$**                                         | **$$n \to +\infty$$**                                        |
+> | :----------: | :--------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+> | $$\fbox{1}$$ | $$\lim\limits_{x \to 0} \dfrac{\sin x}{x} = 1$$      | $$\lim\limits_{x \to +\infty} \dfrac{x^\alpha}{\langle r > 1 \rangle^x} = 0$$ | $$\lim\limits_{x \to \infty} \left(1 + \dfrac{1}{x} \right)^x = e$$ | $$\lim\limits_{n \to +\infty} \dfrac{n}{\langle r > 1 \rangle^n} = 0$$ |
+> | $$\fbox{2}$$ | $$\lim\limits_{x \to 0} \dfrac{\ln (1 + x)}{x} = 1$$ |                                                              |                                                              | $$\lim\limits_{n \to +\infty} \dfrac{r^n}{n !} = 0$$         |
+> | $$\fbox{3}$$ |                                                      |                                                              |                                                              | $$\lim\limits_{n \to +\infty} \sqrt[n]{\langle r > 0 \rangle} = 1$$ |
+> | $$\fbox{4}$$ |                                                      |                                                              |                                                              | $$\lim\limits_{n \to +\infty} \sqrt[n]{n} = 1$$              |
 
 > ### 平均值极限
 

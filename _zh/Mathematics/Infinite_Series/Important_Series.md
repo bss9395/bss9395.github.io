@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     无穷级数
 Title:     重要级数
-Revised:   2018-03-30 01:47:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-03 01:48:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -40,12 +40,12 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; \sum^n_1 \cos n x &= \dfrac{1}{2\sin \dfrac{x}{2}} \cdot \sum^n_1 2 \sin \dfrac{x}{2} \cdot \cos n x \\
->                              &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \sum^n_1 \left[ \sin \left( n + \dfrac{1}{2} \right) x - \sin \left( n - \dfrac{1}{2} \right) x \right] \\
->                              &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \left[ \sin \left( n + \dfrac{1}{2} \right) x - \sin \dfrac{x}{2} \right] \\
-> \fbox{2}\; \sum^n_1 \sin n x &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \sum^n_1 2 \sin \dfrac{x}{2} \cdot \sin n x \\
->                              &= \dfrac{1}{\sin \dfrac{x}{2}} \cdot \sum^n_1 \left[ \cos \left( n - \dfrac{1}{2} \right) x - \cos \left( n + \dfrac{1}{2} \right) x \right] \\
->                              &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \left[ \cos \dfrac{x}{2} - \cos \left( n + \dfrac{1}{2} \right) x \right] \\
+> \fbox{1}\; \sum_m^n \cos n x &= \dfrac{1}{2\sin \dfrac{x}{2}} \cdot \sum_m^n 2 \sin \dfrac{x}{2} \cdot \cos n x \\
+>                              &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \sum_m^n \left[ \sin \left( n + \dfrac{1}{2} \right) x - \sin \left( n - \dfrac{1}{2} \right) x \right] \\
+>                              &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \left[ \sin \left( n + \dfrac{1}{2} \right) x - \sin \left( m - \dfrac{1}{2} \right) x \right] \\
+> \fbox{2}\; \sum_m^n \sin n x &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \sum_m^n 2 \sin \dfrac{x}{2} \cdot \sin n x \\
+>                              &= \dfrac{1}{\sin \dfrac{x}{2}} \cdot \sum_m^n \left[ \cos \left( n - \dfrac{1}{2} \right) x - \cos \left( n + \dfrac{1}{2} \right) x \right] \\
+>                              &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \left[ \cos \left( m - \dfrac{1}{2} \right) x - \cos \left( n + \dfrac{1}{2} \right) x \right] \\
 > \end{alignedat}
 > $$
 >

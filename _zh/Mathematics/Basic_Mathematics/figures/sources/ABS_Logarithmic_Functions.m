@@ -5,7 +5,7 @@ clc;
 syms x;
 
 figure(1); hold on;
-fplot(abs(log(1+x)), [-1, 5]); fplot(abs(x), 'k--'); fplot(log(1+abs(x))); fplot(log(abs(1+x))); fplot(log(1+x), [-1, 5]);
+fplot(abs(log(1+x)), [-1, 5]); fplot(abs(x), 'k--'); fplot(log(1+abs(x))); fplot(log(abs(1+x))); fplot(log(1+x), [-1, 5]); fplot(0, 'k--');
 box on; grid on; grid minor;
 axis square equal;
 xlim([-4, 3]);
