@@ -30,8 +30,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; &&             \ln (1 + x) \mathop{=}_{-1 \lt x} \ln (|1 + x|) &\mathop{\le}_{0 \le x} \ln (1 + |x|) \mathop{\le}_{0 \le x} | \ln (1 + x)| \\
-> \fbox{2}\; &&                                                           0 &\mathop{\le}_{0 = x} \ln (1 + \lvert x \rvert) \mathop{\le}_{0 = x} \lvert x \rvert \\
+> \fbox{1}\; &&             \ln (1 + x) \mathop{=}_{\langle -1 \lt x \rangle} \ln (|1 + x|) &\mathop{\le}_{\langle 0 \le x \rangle} \ln (1 + |x|) \mathop{\le}_{\langle 0 \le x \rangle} | \ln (1 + x)| \\
+> \fbox{2}\; &&                                                           0 &\mathop{\le}_{\langle 0 = x \rangle} \ln (1 + \lvert x \rvert) \mathop{\le}_{\langle 0 = x \rangle} \lvert x \rvert \\
 > \end{alignedat}
 > $$
 >
@@ -42,7 +42,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> 0 \le \theta \le \dfrac{\pi}{2} \implies \dfrac{2}{\pi} \theta \mathop{\le}_{\theta = 0, \frac{\pi}{2}} \sin \theta \mathop{\le}_{\theta = 0} \theta \mathop{\le}_{\theta = 0} \tan \theta \lt \dfrac{1}{\cos \theta} \\
+> 0 \le \theta \le \dfrac{\pi}{2} \implies \dfrac{2}{\pi} \theta \mathop{\le}_{\langle \theta = 0, \frac{\pi}{2} \rangle} \sin \theta \mathop{\le}_{\langle \theta = 0 \rangle} \theta \mathop{\le}_{\langle \theta = 0 \rangle} \tan \theta \lt \dfrac{1}{\cos \theta} \\
 > \end{alignedat}
 > $$
 >
