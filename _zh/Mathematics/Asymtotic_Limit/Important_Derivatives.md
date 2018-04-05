@@ -11,7 +11,7 @@ Resources:
 
 > |   $$\fbox{01}$$  | $(x^P)' = P x^{P - 1}$                                       |                                                              |                                                    |
 > | :----------: | :----------------------------------------------------------- | :----------------------------------------------------------- | :------------------------------------------------- |
-> | $$\fbox{02}$$ | $(E^x)' = E^x \ln E$                                         | $(E^x)' = E^x$                                               |                                                    |
+> | $$\fbox{02}$$ | $(E^x)' = E^x \ln E$                                         | $(e^x)' = e^x$                                            |                                                    |
 > | $$\fbox{03}$$ | $(\log_L \lvert x \rvert)' = \dfrac{1}{x \ln L}$            | $(\ln \lvert x \rvert)' = \dfrac{1}{x}$                      |                                                    |
 > | $$\fbox{04}$$ | $(\sin x)' = \cos x = \sin \left( x + \dfrac{\pi}{2} \right)$ | $(\cos x)' = - \sin x = \cos \left( x + \dfrac{\pi}{2} \right)$ | $(\tan x)' = \sec^2 x$                             |
 > | $$\fbox{05}$$ | $(\csc x)' = - \csc x \cdot \cot x$                          | $(\sec x)' = \sec x \cdot \tan x$                            | $(\cot x)' = - \csc^2 x$                           |
