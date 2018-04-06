@@ -19,6 +19,7 @@ Resources:
 > + believable : credible : dependable : plausible : reliable
 > + bizarre : strange : weird
 > + clear : lucid
+> + brutal : ferocious : savage 
 > + committed : dedicated : devoted
 > + complex : complicated
 > + consecutive : continual : continuous
@@ -35,14 +36,16 @@ Resources:
 > + linear : rectilinear
 > + omnipresent : pervasive : prevalent : ubiquitous : universal
 > + perspective : prospective
-> + stimulating : inspiring
 > + rigid : strict : stringent
 > + significant : important
+> + stimulating : inspiring
 
 >  ### Noun
 
 > + absurd : preposterous : ridiculous
 > + ancestor : progenitor
+> + forecast : prognosis : prognostication
+> + groove : trajectory
 > + berk : idiot
 > + block : chunk : hunk : lump
 > + caution : caveat : warning
@@ -64,6 +67,7 @@ Resources:
 > + embarrassment : humiliation : shame
 > + emptiness : void
 > + excess : plethora
+> + disease : illness 
 > + fibre : filament : thread
 > + genesis : origin
 > + groan : moan : wail

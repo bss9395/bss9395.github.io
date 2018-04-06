@@ -1,7 +1,7 @@
 ---
 layout:    zh_post
 Topic:     渐进极限
-Title:     渐近分析
+Title:     渐近过程
 Revised:   2017-10-10 19:47:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:

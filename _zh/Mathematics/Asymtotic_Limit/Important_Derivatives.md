@@ -21,3 +21,4 @@ Resources:
 > | $$\fbox{09}$$ | $(\mathop{\rm{csch}} x)' = - \mathop{\rm{csch}} x \cdot \coth x$ | $(\mathop{\rm{sech}} x)' = - \mathop{\rm{sech}} x \cdot \tanh x$ | $(\coth x)' = - \dfrac{1}{\sinh^2 x}$              |
 > | $$\fbox{10}$$ | $(\mathop{\rm{arsinh}} x)' = \dfrac{1}{\sqrt{x^2 + 1}}$      | $(\mathop{\rm{arcosh}} x)' = \dfrac{1}{\sqrt{x^2 - 1}}$      | $(\mathop{\rm{artanh}} x)' = \dfrac{1}{1 - x^2}$   |
 > | $$\fbox{11}$$ | $(\mathop{\rm{arcsch}} x)' = - \dfrac{1}{\lvert x \rvert \sqrt{1 + x^2}}$ | $(\mathop{\rm{arsech}} x)' = - \dfrac{1}{x \sqrt{1 - x^2}}$  | $(\mathop{\rm{arcoth}} x)' = - \dfrac{1}{x^2 - 1}$ |
+
