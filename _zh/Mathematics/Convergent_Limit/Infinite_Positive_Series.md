@@ -1,8 +1,8 @@
 ---
 layout:    zh_post
-Topic:     无穷级数
+Topic:     收敛极限
 Title:     无穷正项级数
-Revised:   2018-03-28 13:54:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-07 18:46:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---

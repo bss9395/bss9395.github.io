@@ -1,15 +1,15 @@
 ---
 layout:    zh_post
-Topic:     无穷级数
+Topic:     收敛极限
 Title:     重要级数
-Revised:   2018-03-30 01:47:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-03 01:48:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
 
 > ### 初等级数
 
-> | **$$f (x)$$** | **$$\sum\limits_0^{+\infty}  \dfrac{f^{(n)} (x)}{n !} x^n + O (x^{n + 1})$$** | **$$f^{(n)} (x)$$** |
+> | **$$f (x)$$** | **$$f (0) + \sum\limits_1^{+\infty}  \dfrac{f^{(n)} (x)}{n !} x^n + O (x^{n + 1})$$** | **$$f^{(n)} (x)$$** |
 > | :------------------- | :--------------------------------------- | :--------------------------------------- |
 > | $(1 + x)^P$          | $$1 + \sum\limits_1^{+ \infty} \dfrac{P (P - 1) \cdots (P - n + 1)}{n !} x^n + O (x^{n + 1})$$ | $$P (P - 1) \cdots (P - n + 1) (1 + x)^{P - n}$$ |
 > | $$\dfrac{1}{1 + x}$$ | $$1 + \sum\limits_1^{+ \infty} (- 1)^n x^n + O (x^{n + 1})$$ | $$(- 1)^n n ! (1 + x)^{- n - 1}$$        |
@@ -40,12 +40,12 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; \sum^n_1 \cos n x &= \dfrac{1}{2\sin \dfrac{x}{2}} \cdot \sum^n_1 2 \sin \dfrac{x}{2} \cdot \cos n x \\
->                              &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \sum^n_1 \left[ \sin \left( n + \dfrac{1}{2} \right) x - \sin \left( n - \dfrac{1}{2} \right) x \right] \\
->                              &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \left[ \sin \left( n + \dfrac{1}{2} \right) x - \sin \dfrac{x}{2} \right] \\
-> \fbox{2}\; \sum^n_1 \sin n x &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \sum^n_1 2 \sin \dfrac{x}{2} \cdot \sin n x \\
->                              &= \dfrac{1}{\sin \dfrac{x}{2}} \cdot \sum^n_1 \left[ \cos \left( n - \dfrac{1}{2} \right) x - \cos \left( n + \dfrac{1}{2} \right) x \right] \\
->                              &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \left[ \cos \dfrac{x}{2} - \cos \left( n + \dfrac{1}{2} \right) x \right] \\
+> \fbox{1}\; \sum_m^n \cos n x &= \dfrac{1}{2\sin \dfrac{x}{2}} \cdot \sum_m^n 2 \sin \dfrac{x}{2} \cdot \cos n x \\
+>                              &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \sum_m^n \left[ \sin \left( n + \dfrac{1}{2} \right) x - \sin \left( n - \dfrac{1}{2} \right) x \right] \\
+>                              &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \left[ \sin \left( n + \dfrac{1}{2} \right) x - \sin \left( m - \dfrac{1}{2} \right) x \right] \\
+> \fbox{2}\; \sum_m^n \sin n x &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \sum_m^n 2 \sin \dfrac{x}{2} \cdot \sin n x \\
+>                              &= \dfrac{1}{\sin \dfrac{x}{2}} \cdot \sum_m^n \left[ \cos \left( n - \dfrac{1}{2} \right) x - \cos \left( n + \dfrac{1}{2} \right) x \right] \\
+>                              &= \dfrac{1}{2 \sin \dfrac{x}{2}} \cdot \left[ \cos \left( m - \dfrac{1}{2} \right) x - \cos \left( n + \dfrac{1}{2} \right) x \right] \\
 > \end{alignedat}
 > $$
 >
@@ -107,7 +107,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\;           &&                            f^\downarrow (x - 1) &\ge f^\downarrow (\lfloor x \rfloor) \ge \left\lvert \alpha - \left[ \sum_m^{\lfloor x \rfloor} f^\downarrow (x) - \int_m^x f^\downarrow (x) \mathrm{d} x \right] \right\rvert  \\
+> \Uparrow\;           &&                            f^\downarrow (x - 1) &\ge f^\downarrow (\lfloor x \rfloor) \ge \left\lvert \alpha - \left[ \sum_m^{\lfloor x \rfloor} f^\downarrow (x) - \int_m^x f^\downarrow (x) \mathrm{d} x \right] \right\rvert \quad\Leftarrow\quad \lim_{+\infty} f^\downarrow (x) \to 0 \\
 > \Uparrow\;           &&                                           f (x) &= \dfrac{1}{x^{\langle h \ne 1 \rangle}}; \int_m^n f (x) \mathrm{d} x = \dfrac{n^{1- h} - m^{1 - h}}{1 - h}; f (x - 1) = O \left( \dfrac{1}{x^h} \right); \\
 > \fbox{1}\Downarrow\; && \sum_m^n \dfrac{1}{n^{\langle h \ne 1 \rangle}} &= \dfrac{n^{1- h} - m^{1 - h}}{1 - h} + \mathcal{Const.} + O \left( \dfrac{1}{x^h} \right) \\
 > \Uparrow\;           &&                                           f (x) &= \dfrac{1}{x}; \int_m^n f (x) \mathrm{d} x = \ln \dfrac{n}{m}; f (x - 1) = O \left( \dfrac{1}{n} \right); \\

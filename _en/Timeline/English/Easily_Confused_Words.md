@@ -19,6 +19,7 @@ Resources:
 > + believable : credible : dependable : plausible : reliable
 > + bizarre : strange : weird
 > + clear : lucid
+> + brutal : ferocious : savage 
 > + committed : dedicated : devoted
 > + complex : complicated
 > + consecutive : continual : continuous
@@ -37,17 +38,21 @@ Resources:
 > + perspective : prospective
 > + rigid : strict : stringent
 > + significant : important
+> + stimulating : inspiring
 
 >  ### Noun
 
 > + absurd : preposterous : ridiculous
 > + ancestor : progenitor
+> + forecast : prognosis : prognostication
+> + groove : trajectory
 > + berk : idiot
 > + block : chunk : hunk : lump
 > + caution : caveat : warning
 > + cavity : hole : hollow
 > + character : characteristic : feature : nature : quality : trait : personality
 > + chart : diagram :figure : graph
+> + checker : draught
 > + clay : dirt : dust : earth : ground : land : mud : soil
 > + clump : cluster
 > + complement : supplement
@@ -55,7 +60,6 @@ Resources:
 > + conjecture : speculation
 > + correlation : relevance
 > + demonstrator : marcher
-> + checker : draught
 > + dictatorship : tyranny
 > + dizziness : vertigo
 > + dot : mark : patch : speck : speckle : spot
@@ -63,6 +67,7 @@ Resources:
 > + embarrassment : humiliation : shame
 > + emptiness : void
 > + excess : plethora
+> + disease : illness 
 > + fibre : filament : thread
 > + genesis : origin
 > + groan : moan : wail
@@ -90,6 +95,7 @@ Resources:
 > + advance : proceed : progress
 > + agglomerate : aggregate
 > + aggregate : assemble : converge
+> + devise : think up
 > + alleviate : decline : decrease : diminish : lessen : reduce
 > + associate : connect : interlink : link
 > + assume : postulate : presume : speculate : suppose
@@ -134,6 +140,7 @@ Resources:
 > + because of : due to : on the account of : owing to
 > + but : however : nevertheless : nonetheless
 > + consequently : hence : thereby : therefore : thus
+> + whatever : whatsoever
 > + eventually : finally : lastly : ultimately
 > + when : while : whilst
 > + whereas : while : whilst
