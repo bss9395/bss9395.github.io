@@ -11,20 +11,39 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; & F_n (x) = x^n &&= 1 + \sum_1^n \left[ x^n - x^{n - 1} \right] &&\;\Leftarrow\; x \in (0, 1) \\
-> \fbox{2}\; & F_n (x) = n e^{- n x} &&= 0 + \sum_1^n \left[ n e^{- n x} - (n - 1) e^{- (n - 1) x} \right] &&\;\Leftarrow\; x \in (0, 1) \\
-> \fbox{3}\; & F_n (x) = e^{- n^2 x^2} &&= 1 + \sum_1^n \left[ e^{- n^2 x^2} - e^{- (n - 1)^2 x^2} \right] &&\;\Leftarrow\; x \in (0, 1) \\
+> \fbox{1}\; & F_n (x) = x^n                   &&= 1 + \sum_1^n \left[ x^n - x^{n - 1} \right]                                         &&\;\Leftarrow\; x \in (0, 1) \\
+> \fbox{2}\; & F_n (x) = n e^{- n x}           &&= 0 + \sum_1^n \left[ n e^{- n x} - (n - 1) e^{- (n - 1) x} \right]                   &&\;\Leftarrow\; x \in (0, 1) \\
+> \fbox{3}\; & F_n (x) = e^{- n^2 x^2}         &&= 1 + \sum_1^n \left[ e^{- n^2 x^2} - e^{- (n - 1)^2 x^2} \right]                     &&\;\Leftarrow\; x \in (0, 1) \\
 > \fbox{4}\; & F_n (x) = 2 n^2 x e^{- n^2 x^2} &&= 0 + \sum_1^n \left[ 2 n^2 x e^{- n^2 x^2} - 2 (n - 1)^2 x e^{- (n - 1) x^2} \right] &&\;\Leftarrow\; x \in (0, 1) \\
 > \end{alignedat}
 > $$
 >
 
-> ### 绝对且一致收敛
+> ### 绝对收敛且一致收敛非绝对一致收敛
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; & F_n (x) = \sum_1^n \dfrac{(- 1)^{n - 1}}{n} x^n \;\Leftarrow\; x \in (0, 1) \\
->            & \lvert F_n (x) \rvert \to \mathcal{Conv.}; F_n (x) \rightrightarrows \mathcal{Conv.}; \lvert F_n (x) \rvert \not\rightrightarrows \mathcal{Conv.} \\
+> \fbox{1}\; & \sum_1^n \dfrac{(- 1)^{n - 1}}{n} x^n \;\Leftarrow\; x \in (0, 1) \\
+>            & \sum_1^n \left\lvert \dfrac{(- 1)^{n - 1}}{n} x^n \right\rvert \to \mathcal{Conv.}; \sum_1^n \dfrac{(- 1)^{n - 1}}{n} x^n \rightrightarrows \mathcal{Conv.}; \sum_1^n \left\lvert \dfrac{(- 1)^{n - 1}}{n} x^n \right\rvert \to \not\rightrightarrows \mathcal{Conv.} \\
+> \end{alignedat}
+> $$
+>
+
+> ### 发散的幂级数展开
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\; & f (x) = \sum_0^{+\infty} \dfrac{\sin 2^n x}{n !} = \sum_0^{+\infty} \dfrac{(- 1)^l e^{2^{2 l + 1}}}{(2 l + 1) !} x^{2 l + 1} \not\to \mathcal{Conv.} \quad\Leftarrow\quad \dfrac{s_{n + 1}}{s_n} \to +\infty \\
+>            & f^{(k)} (0) = \sum_0^{+\infty} \dfrac{(2^n)^k \sin \dfrac{k \pi}{2}}{n !} \xlongequal[]{k = 2 l + 1} \sum_0^{+\infty} \dfrac{(- 1)^l (2^{2 l + 1})^n}{n !} = (- 1)^l e^{2^{2 l + 1}} \\
+> \end{alignedat}
+> $$
+>
+
+> ### 非收敛于自身的幂级数展开
+
+> $$
+> \begin{alignedat}{3}
+>
 > \end{alignedat}
 > $$
 >

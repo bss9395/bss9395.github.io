@@ -18,8 +18,8 @@ Resources:
 >                                                                                      s_n t_1 & s_n t_2 & \cdots & s_n t_m \\
 >                                                                                      \end{pmatrix} \\
 > \Downarrow\; && \sum_1^{+\infty} s_n \cdot \sum_1^{+\infty} t_n &= (s_1 t_1) + (s_1 t_2 + s_2 t_1) + \cdots + (s_1 t_n + s_2 t_{n - 1} + \cdots + s_n t_1) + \cdots \\
->              &&                                      \fbox{1}\; &= \sum_1^{+\infty} \left[ \sum_{i = 1}^n s_i t_{n - i + 1} \right] \\
->              &&                                      \fbox{2}\; &= \lim_{+\infty} \left[ \sum_{i = 1}^n s_i T_{n - i + 1} \right] \\
+>              &&                                      \fbox{1}\; &= \sum_1^{+\infty} \left[ \sum_{i + j = n + 1} s_i t_j \right] \\
+>              &&                                      \fbox{2}\; &= \lim_{+\infty} \left[ \sum_{i + j = n + 1} s_i T_j \right] \\
 > \Downarrow\; && \sum_1^{+\infty} s_n \cdot \sum_1^{+\infty} t_n &= (s_1 t_1) + (s_1 t_2 + s_2 t_2 + s_2 t_1) + \cdots + (s_1 t_n + s_2 t_n + \cdots + s_n t_n + \cdots + s_n t_2 + s_n t_1) + \cdots \\
 >              &&                                      \fbox{3}\; &= \sum_1^{+\infty} \left[ - s_n t_n + \sum_{i = 1}^n (s_i t_n + s_n t_i) \right] \\
 > \end{alignedat}
@@ -30,12 +30,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                    & \sum_1^{+\infty} s_n = S;\quad \sum_1^{+\infty} t_n = T \\
-> \fbox{1}\Uparrow\; & \sum_1^{+\infty} \lvert s_n \rvert \to \mathcal{Conv.} \quad\Rightarrow\quad\lim_{+\infty} \sum_{i + j = n + 1} s_i \cdot (T_j - T) \to 0 \\
-> \Uparrow\;         & \sum_{i + j = n + 1} s_i \cdot T_j = \sum_{i = 1}^n s_i \cdot T + \sum_{i + j = n + 1} s_i \cdot (T_j - T) \\
-> \fbox{2}\Uparrow\; & \lim_{+\infty} \sum_{i + j = n + 1} s_i \cdot T_j \to \mathcal{Conv.} \\
-> \Uparrow\;         & \lim_{+\infty} \sum_{i + j = n + 1} s_i \cdot T_j = \lim_{+\infty} \dfrac{1}{m} \sum_{n = 1}^m \left( \sum_{i + j = n + 1} s_i \cdot T_j \right) = \lim_{+\infty} \dfrac{1}{m} \sum_{i + j = m + 1} S_i \cdot T_j \\
-> \Downarrow\;       & \sum_1^{+\infty} s_n \cdot \sum_1^{+\infty} t_n = S \cdot T = \lim_{+\infty} \sum_{i + j = n + 1} s_i \cdot T_j \\
+>            & \sum_1^{+\infty} s_n = S;\quad \sum_1^{+\infty} t_n = T \\
+> \Uparrow\; & \sum_1^{+\infty} \lvert s_n \rvert \to \mathcal{Conv.} \quad\Rightarrow\quad\lim_{+\infty} \sum_{i + j = n + 1} s_i \cdot (T_j - T) \to 0 \\
+> \Uparrow\; & \sum_{i + j = n + 1} s_i \cdot T_j = \sum_{i = 1}^n s_i \cdot T + \sum_{i + j = n + 1} s_i \cdot (T_j - T) \\
 > \end{alignedat}
 > $$
 >
@@ -52,3 +49,4 @@ Resources:
 > \end{alignedat}
 > $$
 >
+
