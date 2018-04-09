@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     收敛极限中的反例
-Revised:   2018-04-09 01:49:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-09 15:32:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -56,3 +56,6 @@ Resources:
 > \end{alignedat}
 > $$
 >
+
+> ![max-width:360px;](figures/Power_Series_not_Convergent_to_Itself.svg)
+

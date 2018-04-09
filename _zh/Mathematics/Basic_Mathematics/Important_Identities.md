@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     重要恒等式
-Revised:   2018-04-07 20:21:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-09 13:48:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -12,6 +12,15 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > 1 - x^n = (1 - x) \cdot \sum_0^{n - 1} x^n \\
+> \end{alignedat}
+> $$
+>
+
+> ### 级数和恒等式
+
+> $$
+> \begin{alignedat}{3}
+> \sum_{m = m_0}^n \sum_{l = l_0}^m = \sum_{l = l_0}^n \sum_{m = l + m_0 - l_0}^n = \sum_{l = l_0}^n \sum_{m - m_0 \ge l - l_0} \\
 > \end{alignedat}
 > $$
 >
