@@ -26,7 +26,7 @@ Resources:
 > \begin{alignedat}{3}
 > \fbox{1}\; &&                                                 \lim_\mathcal{B} \sum^{+\infty} f_n (x) = \lim_\mathcal{B} \lim_{+\infty} \sum^n f_n (x) = \lim_\mathcal{B} \lim_{+\infty} F_n (x) &\xlongequal[F_n (x) \rightrightarrows \mathcal{Conv.}]{?} \lim_{+\infty} \lim_\mathcal{B} F_n (x) = \lim_{+\infty} \lim_\mathcal{B} \sum^n f_n (x) = \sum^{+\infty} \lim_\mathcal{B} f_n (x) \\
 > \fbox{2}\; &&                            \int \mathrm{d} x \cdot \sum^{+\infty} f_n (x) = \int \mathrm{d} x \cdot \lim_{+\infty} \sum^n f_n (x) = \int \mathrm{d} x \cdot \lim_{+\infty} F_n (x) &\xlongequal[F_n (x) \rightrightarrows \mathcal{Conv.}]{?} \lim_{+\infty} \int \mathrm{d} x \cdot F_n (x) = \lim_{+\infty} \int \mathrm{d} x \cdot \sum^n f_n (x) = \sum^{+\infty} \int \mathrm{d} x \cdot f_n (x) \\
-> \fbox{3}\; && \dfrac{\mathrm{d}}{\mathrm{d} x} \sum^{+\infty} f_n (x) = \dfrac{\mathrm{d}}{\mathrm{d} x} \lim_{+\infty} \sum^n f_n (x) = \dfrac{\mathrm{d}}{\mathrm{d} x} \lim_{+\infty} F_n (x) &\xlongequal[F_n' (x) \rightrightarrows \mathcal{Conv.}]{?} \lim_{+\infty} \dfrac{\mathrm{d}}{\mathrm{d} x} F_n (x) = \lim_{+\infty} \dfrac{\mathrm{d}}{\mathrm{d} x} \sum^n f_n (x) = \sum^{+\infty} \dfrac{\mathrm{d}}{\mathrm{d} x} f_n (x) \\
+> \fbox{3}\; && \dfrac{\mathrm{d}}{\mathrm{d} x} \sum^{+\infty} f_n (x) = \dfrac{\mathrm{d}}{\mathrm{d} x} \lim_{+\infty} \sum^n f_n (x) = \dfrac{\mathrm{d}}{\mathrm{d} x} \lim_{+\infty} F_n (x) &\xlongequal[F_n (x) \rightrightarrows \mathcal{Conv.}]{?} \lim_{+\infty} \dfrac{\mathrm{d}}{\mathrm{d} x} F_n (x) = \lim_{+\infty} \dfrac{\mathrm{d}}{\mathrm{d} x} \sum^n f_n (x) = \sum^{+\infty} \dfrac{\mathrm{d}}{\mathrm{d} x} f_n (x) \\
 > \end{alignedat}
 > $$
 >

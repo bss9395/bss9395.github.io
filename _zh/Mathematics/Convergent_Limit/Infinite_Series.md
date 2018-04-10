@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     无穷级数
-Revised:   2018-04-01 13:38:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-10 14:51:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -51,9 +51,21 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\;           & \forall \varepsilon \gt 0; \exists N \in \mathbb{N};     && \lvert s_n \rvert \le t_n \\
-> \fbox{1}\Downarrow\; & \sum^{+\infty} t_n \to \mathcal{Conv.}                   &&\;\Rightarrow\; \sum^{+\infty} \lvert s_n \rvert \\
+> \Uparrow\;           & \forall \varepsilon \gt 0; \exists N \in \mathbb{N};     && \lvert s_n \rvert \le t_n; \\
+> \fbox{1}\Downarrow\; & \sum^{+\infty} \lvert s_n \rvert \to \mathcal{Conv.}     &&\;\Leftarrow\; \sum^{+\infty} t_n \to \mathcal{Conv.} \\
 > \fbox{2}\Downarrow\; & \sum^{+\infty} \lvert s_n \rvert \not\to \mathcal{Conv.} &&\;\Rightarrow\; \sum^{+\infty} t_n \not\to \mathcal{Conv.} \\
+> \end{alignedat}
+> $$
+>
+
+> ### 优级数审敛法的极限形式
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\Uparrow\; &&    0 \le \varlimsup_{+\infty} \dfrac{\lvert s_n \rvert}{t_n} &\lt +\infty \\
+> \Downarrow\;       &&     \mathcal{Conv.} \gets \sum^{+\infty} \lvert s_n \rvert \;&\Leftarrow\; \sum^{+\infty} t_n \to \mathcal{Conv.} \\
+> \fbox{2}\Uparrow\; &&    0 \lt \varliminf_{+\infty} \dfrac{t_n}{\lvert s_n \rvert} &\le +\infty \\
+> \Downarrow\;       && \mathcal{Conv.} \not\gets \sum^{+\infty} \lvert s_n \rvert \;&\Rightarrow\; \sum^{+\infty} t_n \not\to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >
@@ -64,7 +76,7 @@ Resources:
 > \begin{alignedat}{3}
 > \fbox{1}\Uparrow\; &&                              \lvert S_n \rvert \le M \land t^\updownarrow_n \to 0 \quad&\Rightarrow\quad \left\lvert \sum_{N + 1}^{N + m} s_n \cdot t_n \right\rvert \le 2 (2 M) (\lvert t_{N + 1} \rvert + \lvert t_{N + m} \rvert) \to 0 \\
 > \fbox{2}\Uparrow\; && \sum^{+\infty} s_n \to \mathcal{Conv.} \land \lvert t^\updownarrow_n \rvert \le M \quad&\Rightarrow\quad \left\lvert \sum_{N + 1}^{N + m} s_n \cdot t_n \right\rvert \le 2 \varepsilon (M + M) \to 0 \\
-> \Downarrow\;       &&              \left\lvert \sum^{+\infty} s_n \cdot t_n \right\rvert \to \mathcal{Conv.} \quad& \\
+> \Downarrow\;       &&         \left\lvert \sum^{+\infty} s_n \cdot t_n \right\rvert \to \mathcal{Conv.} \quad& \\
 > \end{alignedat}
 > $$
 >
@@ -94,11 +106,11 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\;   & \exists N \in \mathbb{N}; n > N; \left\lvert \sum_{n + 1}^{n + m} s_n \right\rvert \le \sum_{n + 1}^{n + m} \lvert s_n \rvert \lt \varepsilon \\
+> \Uparrow\;           & \exists N \in \mathbb{N}; n > N; \left\lvert \sum_{n + 1}^{n + m} s_n \right\rvert \le \sum_{n + 1}^{n + m} \lvert s_n \rvert \lt \varepsilon \\
 > \fbox{1}\Downarrow\; & \sum^{+\infty} \lvert s_n \rvert \to \mathcal{Conv.} \quad\Rightarrow\quad \sum^{+\infty} s_n \to \mathcal{Conv.} \\
-> \Uparrow\; & \sum^{+\infty} \lvert s_n \rvert = \sum^{+\infty} s_n^+ + \sum^{+\infty} s_n^- \\
+> \Uparrow\;           & \sum^{+\infty} \lvert s_n \rvert = \sum^{+\infty} s_n^+ + \sum^{+\infty} s_n^- \\
 > \fbox{2}\Downarrow\; & \sum^{+\infty} \lvert s_n \rvert \to \mathcal{Conv.} \quad\Leftrightarrow\quad \sum^{+\infty} s_n^+ \to \mathcal{Conv.} \land \sum^{+\infty} s_n^- \to \mathcal{Conv.} \\
-> \Uparrow\; & \sum^{+\infty} s_m^+ \le \sum^{+\infty} s_n^+ \land \sum^{+\infty} s_n^+ \le \sum^{+\infty} s_m^+ \\
+> \Uparrow\;           & \sum^{+\infty} s_m^+ \le \sum^{+\infty} s_n^+ \land \sum^{+\infty} s_n^+ \le \sum^{+\infty} s_m^+ \\
 > \fbox{3}\Downarrow\; & \sum^{+\infty} s_m^+ = \sum^{+\infty} s_n^+ \quad\Rightarrow\quad \sum^{+\infty} s_m = \sum^{+\infty} s_n \\
 > \end{alignedat}
 > $$
