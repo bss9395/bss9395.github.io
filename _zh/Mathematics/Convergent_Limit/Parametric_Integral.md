@@ -11,7 +11,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; & f (x, u), \alpha (u), \beta (u) \in \mathcal{Conti.} \quad\Rightarrow\quad \int_{\alpha (u)}^{\beta (u)} f (x, u) \mathrm{d} x \in \mathcal{Conti.} \\
+> \fbox{1}\; & f (x, u), \alpha (u), \beta (u) \to \mathcal{Conti.} \quad\Rightarrow\quad \int_{\alpha (u)}^{\beta (u)} f (x, u) \mathrm{d} x \to \mathcal{Conti.} \\
 > \fbox{2}\; & \dfrac{\mathrm{d}}{\mathrm{d} u} \int_{\alpha (u)}^{\beta (u)} f (x, u) \mathrm{d} x = \int_{\alpha (u)}^{\beta (u)} \dfrac{\mathrm{d}}{\mathrm{d} u} f (x, u) \mathrm{d} x + \int_{\alpha (u)}^{\frac{\mathrm{d}}{\mathrm{d} u} \beta (u)} f (x, u) \mathrm{d} x - \int_{\frac{\mathrm{d}}{\mathrm{d} u} \alpha (u)}^{\beta (u)} f (x, u) \mathrm{d} x \\
 >
 > \end{alignedat}

@@ -11,10 +11,10 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; & f_n (x) \rightrightarrows f (x) \;\land\; f_n (x) \in \mathcal{Conti.}       &&\;\Rightarrow\; \lim_\mathcal{B} \lim_{+\infty} f_n (x) = f (x_0) = \lim_{+\infty} \lim_\mathcal{B} f_n (x) \\
+> \fbox{1}\; & f_n (x) \rightrightarrows f (x) \;\land\; f_n (x) \to \mathcal{Conti.}       &&\;\Rightarrow\; \lim_\mathcal{B} \lim_{+\infty} f_n (x) = f (x_0) = \lim_{+\infty} \lim_\mathcal{B} f_n (x) \\
 > \fbox{2}\; &                                              f_n (x) \rightrightarrows f (x) &&\;\Rightarrow\; \int_r^s \lim_{+\infty} f_n (x) \mathrm{d} x = \int_r^s f (x) \mathrm{d} x = \lim_{+\infty} \int_r^s f_n (x) \mathrm{d} x \\
-> \fbox{3}\; &    f_n' (x) \rightrightarrows f' (x) \;\land\; f_n' (x) \in \mathcal{Conti.} &&\;\Rightarrow\; \left[ \lim_{+\infty} f_n (x) \right]' = \lim_{+\infty} f_n' (x) \\
-> \fbox{4}\; & f_n (x), f (x) \in \mathcal{Conti.} \;\land\; f^\updownarrow_n (x) \to f (x) &&\;\Rightarrow\; f_n (x) \rightrightarrows f (x) \\
+> \fbox{3}\; &    f_n' (x) \rightrightarrows f' (x) \;\land\; f_n' (x) \to \mathcal{Conti.} &&\;\Rightarrow\; \left[ \lim_{+\infty} f_n (x) \right]' = \lim_{+\infty} f_n' (x) \\
+> \fbox{4}\; & f_n (x), f (x) \to \mathcal{Conti.} \;\land\; f^\updownarrow_n (x) \to f (x) &&\;\Rightarrow\; f_n (x) \rightrightarrows f (x) \\
 > \end{alignedat}
 > $$
 >

@@ -74,9 +74,10 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\Uparrow\; &&                              \lvert S_n \rvert \le M \land t^\updownarrow_n \to 0 \quad&\Rightarrow\quad \left\lvert \sum_{N + 1}^{N + m} s_n \cdot t_n \right\rvert \le 2 (2 M) (\lvert t_{N + 1} \rvert + \lvert t_{N + m} \rvert) \to 0 \\
-> \fbox{2}\Uparrow\; && \sum^{+\infty} s_n \to \mathcal{Conv.} \land \lvert t^\updownarrow_n \rvert \le M \quad&\Rightarrow\quad \left\lvert \sum_{N + 1}^{N + m} s_n \cdot t_n \right\rvert \le 2 \varepsilon (M + M) \to 0 \\
-> \Downarrow\;       &&         \left\lvert \sum^{+\infty} s_n \cdot t_n \right\rvert \to \mathcal{Conv.} \quad& \\
+> \Uparrow\;         &&                                  \left\lvert \sum_{m + 1}^n s_n \cdot t_n \right\rvert &\le 2 M (\lvert t_{m + 1} \rvert + \lvert t_n \rvert) \\
+> \fbox{1}\Uparrow\; &&                              \lvert S_n \rvert \le M \land t^\updownarrow_n \to 0 \quad&\Rightarrow\quad \left\lvert \sum_{N + 1}^{N + m} s_n \cdot t_n \right\rvert \le 2 \cdot 2 M \cdot (\varepsilon + \varepsilon) \to 0 \\
+> \fbox{2}\Uparrow\; && \sum^{+\infty} s_n \to \mathcal{Conv.} \land \lvert t^\updownarrow_n \rvert \le M \quad&\Rightarrow\quad \left\lvert \sum_{N + 1}^{N + m} s_n \cdot t_n \right\rvert \le 2 \cdot \varepsilon \cdot (M + M) \to 0 \\
+> \Downarrow\;       &&                                  \left\lvert \sum^{+\infty} s_n \cdot t_n \right\rvert &\to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >

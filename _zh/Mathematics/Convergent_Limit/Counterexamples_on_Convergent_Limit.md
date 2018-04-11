@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     收敛极限中的反例
-Revised:   2018-04-09 15:32:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-11 20:29:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -59,3 +59,33 @@ Resources:
 
 > ![max-width:360px;](figures/Power_Series_not_Convergent_to_Itself.svg)
 
+> ### 无穷积分被积函数不收敛
+
+> $$
+> \begin{alignedat}{3}
+> & \left\lbrace\begin{alignedat}{3}
+>         p \le 0 \;&\Rightarrow\; \int_\alpha^{+\infty} \dfrac{\sin x}{x^p} \not\to \mathcal{Conv.} \\
+>   0 \lt p \le 1 \;&\Rightarrow\; \int_\alpha^{+\infty} \dfrac{\sin x}{x^p} \to \mathcal{Conv.} \;\land\; \int_\alpha^{+\infty} \left\lvert \dfrac{\sin x}{x^p} \right\rvert \not\to \mathcal{Conv.} \\
+>         1 \le p \;&\Rightarrow\; \int_\alpha^{+\infty} \left\lvert \dfrac{\sin x}{x^p} \right\rvert \to \mathcal{Conv.} \\
+>   \end{alignedat}\right. \\
+> & \lim_{+\infty} \sin x^2 \not\to \mathcal{Conv.} \;\land\; \int_\alpha^{+\infty} \sin x^2 \mathrm{d} x \xlongequal{t = x^2} \dfrac{1}{2} \int_{\alpha^2}^{+\infty} \dfrac{\sin t}{t^\frac{1}{2}} \mathrm{d} t \to \mathcal{Conv.} \\
+> \end{alignedat}
+> $$
+>
+
+> ### 正项无穷积分被积函数不收敛
+
+> $$
+> \begin{alignedat}{3}
+> & f (x) = \left\lbrace\begin{alignedat}{3}
+>           & 2^n n^2 \left[ x - \left( n - \dfrac{1}{2^n n} \right) \right] \;&&\Leftarrow\; x \in \left[ n - \dfrac{1}{2^n n}, n \right] \\
+>           & 2^n n^2 \left[ \left( n + \dfrac{1}{2^n n} \right) - x \right] \;&&\Leftarrow\; x \in \left[ n, n + \dfrac{1}{2^n n} \right] \\
+>           & 0                                                              \;&&\Leftarrow\; x \not\in \left[ n - \dfrac{1}{2^n n}, n + \dfrac{1}{2^n n} \right] \\
+>           \end{alignedat}\right. \\
+> & f (x) \ge 0 \;\land \; \lim_{+\infty} f (n) = n \to +\infty \\
+> & \int_\varepsilon^{+\infty} f (x) \mathrm{d} x = \sum_1^{+\infty} \dfrac{1}{2} \cdot \dfrac{1}{2^{n - 1} n} \cdot n = 1 \\
+> \end{alignedat}
+> $$
+>
+
+> ![max-width:360px;](figures/Integrand_of_Infinite_Integral_not_Convergent.svg)
