@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     重要积分
-Revised:   2018-04-10 12:36:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-13 00:40:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -61,6 +61,7 @@ Resources:
 > \begin{alignedat}{3}
 > \fbox{1}\; & \int_0^\pi \ln (1 - 2 r \cos x + r^2) \mathrm{d} x \xlongequal[\langle \lvert r \rvert < 1 \rangle]{t = \tan \frac{x}{2}} 0 \\
 > \fbox{2}\; & \int_{- \pi}^\pi \dfrac{1 - r^2}{1 - 2 r \cdot \cos x + r^2} \mathrm{d} x \xlongequal[\langle 0 \lt r \lt 1 \rangle]{t = \tan \frac{x}{2}} 2 \pi \\
+> \fbox{3}\; & \int_0^{+\infty} \sin x^2 \mathrm{d} x = \int_0^{+\infty} \cos x^2 \mathrm{d} x = \dfrac{1}{2} \sqrt{\dfrac{\pi}{2}} \\
 > \end{alignedat}
 > $$
 >

@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     反常积分
-Revised:   2018-04-11 23:14:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-12 01:10:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -19,7 +19,8 @@ Resources:
 >            &&                                             &= F (\beta) - F (\xi^+) + F (\xi^-) - F (\alpha) \\
 > \fbox{3}\; &&    \int_\alpha^{+\infty} f (x) \mathrm{d} x &= \lim_{v \to +\infty} \int_\xi^v f (x) \mathrm{d} x + \lim_{u \to \alpha^+} \int_u^\xi f (x) \mathrm{d} x \quad&&\Leftarrow\quad f (\alpha) = \infty \\
 >            &&                                             &= \left[ \lim_{v \to +\infty} F (v) - F (\xi) \right] + \left[ F (\xi) - \lim_{u \to \alpha^+} F (u) \right] \\
->            &&                                             &= F (+\infty) - F (\alpha^+)
+>            &&                                             &= F (+\infty) - F (\alpha^+) \\
+> \fbox{4}\; &&              \int_\alpha f (x) \mathrm{d} x &\xlongequal{t = \frac{1}{x - \alpha}} \int^{+\infty} f \left( \alpha + \dfrac{1}{t} \right) \cdot \dfrac{1}{t^2} \mathrm{d} t \\
 > \end{alignedat}
 > $$
 >
@@ -35,7 +36,7 @@ Resources:
 > $$
 >
 
-> ### 优积分审敛法
+> ### 优函数审敛法
 
 > $$
 > \begin{alignedat}{3}
@@ -46,7 +47,7 @@ Resources:
 > $$
 >
 
-> ### 优积分审敛法的极限形式
+> ### 优函数审敛法的极限形式
 
 > $$
 > \begin{alignedat}{3}
