@@ -63,7 +63,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 >          n ! &:= \prod_1^n n \\
->     (2 n) !! &:= \prod_1^n (2 n) \\
+>     (2 n) !! &:= \prod_1^n (2 n) = 2^n n ! \\
 > (2 n - 1) !! &:= \prod_1^n (2 n - 1) \\
 > \end{alignedat}
 > $$

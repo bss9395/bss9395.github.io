@@ -58,36 +58,37 @@ Resources:
 
 > ### B b
 
-> | *`bar`*          |      | Bar graph.                               |
-> | :--------------- | :--- | :--------------------------------------- |
-> | *`besselh`*      |      | Bessel function of third kind (Hankel function). |
-> | *`besseli`*      |      | Modified Bessel function of first kind.  |
-> | *`besselj`*      |      | Bessel function of first kind.           |
-> | *`beta`*         |      | Beta function.                           |
-> | *`binocdf`*      |      | Binomial cumulative distribution function. |
-> | *`binopdf`*      |      | Binomial probability density function.   |
-> | *`binornd`*      |      | Binomial random numbers.                 |
-> | *`bitand`*       |      | Bit-wise AND.                            |
-> | *`bitcmp`*       |      | Bit-wise complement.                     |
-> | *`bitget`*       |      | Get bit at specified position.           |
-> | *`bitor`*        |      | Bit-wise OR.                             |
-> | *`bitset`*       |      | Set bit at specific location.            |
-> | *`bitshift`*     |      | Shift bits specified number of places.   |
-> | *`blanks`*       |      | Create character array of blanks.        |
+> | *`bar`*          |      | Bar graph.                                                   |
+> | :--------------- | :--- | :----------------------------------------------------------- |
+> | *`besselh`*      |      | Bessel function of third kind (Hankel function).             |
+> | *`besseli`*      |      | Modified Bessel function of first kind.                      |
+> | *`besselj`*      |      | Bessel function of first kind.                               |
+> | *`beta`*         |      | Beta function.                                               |
+> | *`betaln`*       |      | Logarithm of beta function.                                  |
+> | *`binocdf`*      |      | Binomial cumulative distribution function.                   |
+> | *`binopdf`*      |      | Binomial probability density function.                       |
+> | *`binornd`*      |      | Binomial random numbers.                                     |
+> | *`bitand`*       |      | Bit-wise AND.                                                |
+> | *`bitcmp`*       |      | Bit-wise complement.                                         |
+> | *`bitget`*       |      | Get bit at specified position.                               |
+> | *`bitor`*        |      | Bit-wise OR.                                                 |
+> | *`bitset`*       |      | Set bit at specific location.                                |
+> | *`bitshift`*     |      | Shift bits specified number of places.                       |
+> | *`blanks`*       |      | Create character array of blanks.                            |
 > | *`bode`*         |      | Bode plot of frequency response, magnitude and phase of frequency response. |
-> | *`boundary`*     |      | Boundary of a set of points in 2-D or 3-D. |
-> | *`box`*          |      | Display axes outline.                    |
-> | *`break`*        |      | Terminate execution of for or while loop. |
-> | *`brighten`*     |      | Brighten or darken colormap.             |
-> | *`bwareaopen`*   |      | Remove small objects from binary image.  |
-> | *`bwboundaries`* |      | Trace region boundaries in binary image. |
-> | *`bwconncomp`*   |      | Find connected components in binary image. |
-> | *`bwdist`*       |      | Distance transform of binary image.      |
-> | *`bwhitmiss`*    |      | Binary hit-miss operation.               |
-> | *`bwlabel`*      |      | Label connected components in 2-D binary image. |
-> | *`bwlabeln`*     |      | Label connected components in binary image. |
-> | *`bwlookup`*     |      | Nonlinear filtering using lookup tables. |
-> | *`bwmorph`*      |      | Morphological operations on binary images. |
+> | *`boundary`*     |      | Boundary of a set of points in 2-D or 3-D.                   |
+> | *`box`*          |      | Display axes outline.                                        |
+> | *`break`*        |      | Terminate execution of for or while loop.                    |
+> | *`brighten`*     |      | Brighten or darken colormap.                                 |
+> | *`bwareaopen`*   |      | Remove small objects from binary image.                      |
+> | *`bwboundaries`* |      | Trace region boundaries in binary image.                     |
+> | *`bwconncomp`*   |      | Find connected components in binary image.                   |
+> | *`bwdist`*       |      | Distance transform of binary image.                          |
+> | *`bwhitmiss`*    |      | Binary hit-miss operation.                                   |
+> | *`bwlabel`*      |      | Label connected components in 2-D binary image.              |
+> | *`bwlabeln`*     |      | Label connected components in binary image.                  |
+> | *`bwlookup`*     |      | Nonlinear filtering using lookup tables.                     |
+> | *`bwmorph`*      |      | Morphological operations on binary images.                   |
 
 > ### C c
 
