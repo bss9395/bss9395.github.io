@@ -32,7 +32,7 @@ Resources:
 > \Downarrow\; & \dfrac{(2 n) !!}{(2 n + 2) !!} < \dfrac{(2 n -1) !!}{(2 n) !!} \cdot  \dfrac{\pi}{2} < \dfrac{(2 n - 1) !!}{(2 n - 1) !!} \\
 > \Downarrow\; & \dfrac{1}{2 n + 1} \left[ \dfrac{(2 n) !!}{(2 n - 1) !!} \right]^2 < \dfrac{\pi}{2} < \dfrac{1}{2 n} \left[ \dfrac{(2 n) !!}{(2 n - 1) !!} \right]^2 \\
 > \Downarrow\; & \dfrac{2 n}{2 n + 1} \cdot \dfrac{\pi}{2} < \dfrac{1}{2 n + 1} \left[ \dfrac{(2 n) !!}{(2 n - 1) !!} \right]^2 < \dfrac{\pi}{2} \\
-> \Downarrow\; & \dfrac{\pi}{2} = \prod_1^{+ \infty} \dfrac{(2 n)^2}{(2 n - 1) (2 n + 1)} = \dfrac{1}{2 n + 1} \prod_1^{+\infty} \left[ \dfrac{2 n}{2 n - 1} \right]^2 = \dfrac{1}{2 n + 1} \left[ \dfrac{(2 n) !!}{(2 n - 1) !!} \right]^2 \\
+> \Downarrow\; & \dfrac{\pi}{2} = \lim_{+\infty} \dfrac{1}{2 n + 1} \left[ \dfrac{(2 n) !!}{(2 n - 1) !!} \right]^2 = \lim_{+\infty} \dfrac{1}{2 n + 1} \prod_1^n \left[ \dfrac{2 n}{2 n - 1} \right]^2 = \prod_1^{+ \infty} \dfrac{(2 n)^2}{(2 n - 1) (2 n + 1)} \\
 > \end{alignedat}
 > $$
 >
