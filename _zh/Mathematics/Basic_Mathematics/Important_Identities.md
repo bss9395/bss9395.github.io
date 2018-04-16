@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     重要恒等式
-Revised:   2018-04-15 22:45:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-16 19:25:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -12,6 +12,17 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > 1 - x^n = (1 - x) \cdot \sum_0^{n - 1} x^n \\
+> \end{alignedat}
+> $$
+>
+
+> ### 周期恒等式
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\; & \int_{- x}^x f (x) \mathrm{d} x \xlongequal{x = - t} 0                               &&\;\Leftarrow\; f (- x) = - f (x) \\
+> \fbox{2}\; & \int_{- x}^x f (x) \mathrm{d} x \xlongequal{x = - t} 2 \int_0^x f (x) \mathrm{d} x   &&\;\Leftarrow\; f (- x) = f (x) \\
+> \fbox{3}\; & \int_x^{x + T} f (x) \mathrm{d} x \xlongequal{x = t + T} \int_0^T f (x) \mathrm{d} x &&\;\Leftarrow\; f (x + T) = f (x) \\
 > \end{alignedat}
 > $$
 >
@@ -49,7 +60,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> n ! = \sqrt{2 \pi n} \left( \dfrac{n}{e} \right)^n \cdot e^\frac{\langle 0 \lt \theta \lt 1 \rangle}{12 n} \\
+> n ! = \sqrt{2 \pi n} \left( \dfrac{n}{e} \right)^n \cdot e^\frac{\langle 0 \lt \theta (n) \lt 1 \rangle}{12 n} \\
 > \end{alignedat}
 > $$
 >
