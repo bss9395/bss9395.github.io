@@ -22,6 +22,7 @@ Resources:
 > \Uparrow\;   & \dfrac{\pi}{2} = \lim_{+\infty} \dfrac{1}{2 n + 1} \left[ \dfrac{(2 n) !!}{(2 n - 1) !!} \right]^2 = \lim_{+\infty} \dfrac{1}{2 n + 1} \left[ \dfrac{(2^n \cdot n !)^2}{(2 n) !} \right]^2 \\
 > \Downarrow\; & \dfrac{\pi}{2} = \lim_{+\infty} \dfrac{1}{2 n + 1} \dfrac{1}{s^2} \dfrac{n}{2} e^\frac{4 \theta (n) - \theta (2 n)}{12 n} = \dfrac{1}{4 s^2} \quad\Rightarrow\quad s = \dfrac{1}{\sqrt{2 \pi}} \\
 > \Downarrow\; & n ! = \sqrt{2 \pi n} \left( \dfrac{n}{e} \right)^n e^\frac{\langle 0 \lt \theta (n) \lt 1 \rangle}{12 n} \\
+> \Downarrow\; & n ! \mathop{\sim}_{+\infty} \sqrt{2 \pi n} \left( \dfrac{n}{e} \right)^n
 > \end{alignedat}
 > $$
 >

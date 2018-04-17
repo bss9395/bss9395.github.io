@@ -2,12 +2,12 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     重要级数
-Revised:   2018-04-09 20:33:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-17 22:13:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 初等级数
+> ### 初等幂级数
 
 > | **$$f (x)$$** | **(-R, +R)** | **$$f (0) + \sum\limits_1^{+\infty}  \dfrac{f^{(n)} (x)}{n !} x^n + O (x^{n + 1})$$** | **$$f^{(n)} (x)$$** |
 > | :------------------- | :--------------------------------------- | :--------------------------------------- | :--------------------------------------- |
@@ -21,11 +21,21 @@ Resources:
 > | $$\cos x$$           | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{(- 1)^n}{(2 n) !} x^{2 n} + O (x^{2 n + 2})$$ | $$\cos \left( x + n \dfrac{\pi}{2} \right)$$ |
 > | $$\arcsin x$$        | $$[-1, -1]$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{(2 n) !}{4^n (n !)^2 (2 n + 1)} x^{2 n + 1} + O (x^{2 n + 3})$$ |                                          |
 > | $$\arctan x$$        | $$[-1, +1]$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{(- 1)^n}{2 n + 1} x^{2 n + 1} + O (x^{2 n + 3})$$ |                                          |
-> | $$\sinh x$$          | $$(-\infty, +\infty)$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{1}{(2 n + 1) !} x^{2 n + 1} + O (x^{2 n + 3})$$ | $$\dfrac{e^x + (-1)^{n - 1} e^{- x}}{2}$$ |
+> | $$\sinh x$$         | $$(-\infty, +\infty)$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{1}{(2 n + 1) !} x^{2 n + 1} + O (x^{2 n + 3})$$ | $$\dfrac{e^x + (-1)^{n - 1} e^{- x}}{2}$$ |
 > | $$\cosh x$$          | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{1}{(2 n) !} x^{2 n} + O (x^{2 n + 2})$$ | $$\dfrac{e^x + (- 1)^n e^{- x}}{2}$$     |
 > 
 
-> ### 等幂级数
+> ### 初等三角级数
+
+> | **$$f (x)$$**      | $$(- \pi, + \pi)$$ | **$$\dfrac{1}{\pi} \left[ \dfrac{a_0}{2} + \sum\limits_1^{+\infty} (a_n \cos n x + b_n \sin n x) \right]$$** |
+> | :----------------- | :----------------- | :----------------------------------------------------------- |
+> | $$e^{\alpha x}$$   | $$(- \pi, + \pi)$$ | $$\dfrac{1}{\pi} \left[ \dfrac{2 \sinh \alpha \pi}{\alpha} + \sum\limits_1^{+\infty} (- 1)^n \dfrac{2 \sinh \alpha \pi}{\alpha^2 + n^2} (\alpha \cos n x - n \sin n x) \right]$$ |
+> | $$\sin \alpha x$$  | $$(- \pi, + \pi)$$ | $$\dfrac{1}{\pi} \left[ 0 + \sum\limits_1^{+\infty} (- 1)^n \dfrac{2 n \sin \alpha \pi}{\alpha^2 - n^2} \sin n x \right]$$ |
+> | $$\cos \alpha x$$  | $$[- \pi, + \pi]$$ | $$\dfrac{1}{\pi} \left[ \dfrac{\sin \alpha \pi}{\alpha} + \sum\limits_1^{+\infty} (- 1)^n \dfrac{2 \alpha \sin \alpha \pi}{\alpha^2 - n^2} \cos n x \right]$$ |
+> | $$\sinh \alpha x$$ | $$(- \pi, + \pi)$$ | $$\dfrac{1}{\pi} \left[ \dfrac{\sinh \alpha \pi}{\alpha} + \sum\limits_1^{+\infty} (- 1)^n \dfrac{2 \alpha \sinh \alpha \pi}{\alpha^2 + n^2} \cos n x \right]$$ |
+> | $$\cos \alpha x$$  | $$(- \pi, + \pi)$$ | $$\dfrac{1}{\pi} + \left[ 0 + \sum\limits_1^{+\infty} (- 1)^{n - 1} \dfrac{2 n \sinh \alpha \pi}{\alpha^2 + n^2} \sin n x \right]$$ |
+
+> ###  等幂级数
 
 > $$
 > \begin{alignedat}{3}

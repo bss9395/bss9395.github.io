@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     初等函数
-Revised:   2018-04-01 16:52:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-17 19:52:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -51,10 +51,10 @@ Resources:
 
 > $$
 > \begin{array}{l|l|l|l}
-> \fbox{1} & \sin \theta = \dfrac{e^{\imath \theta} - e^{- \imath \theta}}{2} & \cos \theta = \dfrac{e^{\imath \theta} + e^{- \imath \theta}}{2} & \tan \theta = \dfrac{\sin \theta}{\cos \theta} \\
-> \fbox{2} & \sin (- \theta) = - \sin \theta                                  & \cos (- \theta) = \cos \theta                                    & \tan (- \theta) = - \tan \theta \\
-> \fbox{3} & \sin \theta \cdot \csc \theta = 1                                & \cos \theta \cdot \sec \theta = 1                                & \tan \theta \cdot \cot \theta = 1 \\
-> \fbox{4} &  \sin^2 \theta + \cos^2 \theta = 1                               & \tan^2 \theta + 1 = \sec^2 \theta                                & 1 + \cot^2 \theta = \csc^2 \theta \\
+> \fbox{1} & \sin \theta = \dfrac{e^{\imath \theta} - e^{- \imath \theta}}{2 \imath} & \cos \theta = \dfrac{e^{\imath \theta} + e^{- \imath \theta}}{2} & \tan \theta = \dfrac{\sin \theta}{\cos \theta} \\
+> \fbox{2} & \sin (- \theta) = - \sin \theta                                         & \cos (- \theta) = \cos \theta                                    & \tan (- \theta) = - \tan \theta \\
+> \fbox{3} & \sin \theta \cdot \csc \theta = 1                                       & \cos \theta \cdot \sec \theta = 1                                & \tan \theta \cdot \cot \theta = 1 \\
+> \fbox{4} &  \sin^2 \theta + \cos^2 \theta = 1                                      & \tan^2 \theta + 1 = \sec^2 \theta                                & 1 + \cot^2 \theta = \csc^2 \theta \\
 > \end{array}
 > $$
 >
@@ -82,6 +82,8 @@ Resources:
 > \fbox{2} & \sinh (- t) = - \sinh t                & \cosh (-t) = \cosh t                   & \tanh (- t) = - \tanh t \\
 > \fbox{3} & \sinh t \cdot \mathop{\rm{csch}} t = 1 & \cosh t \cdot \mathop{\rm{sech}} t = 1 & \tanh t \cdot \mathop{\rm{coth}} t = 1 \\
 > \fbox{4} & \cosh^2 t - \sinh^2 t = 1              & \coth^2 t - 1 = \mathop{\rm{csch}}^2 t & 1 - \tanh^2 t = \mathop{\rm{sech}}^2 t \\
+> \fbox{5} & \sinh (\imath t) = \imath \sin t       & \cosh (\imath t) = \cos t              & \tanh (\imath t) = \imath \tan t \\
+> \fbox{6} & \sinh t = - \imath \sin (\imath t)     & \cosh t = \cos (\imath t)              & \tanh t = - \imath \tanh t \\
 > \end{array}
 > $$
 >

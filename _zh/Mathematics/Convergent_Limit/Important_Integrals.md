@@ -60,24 +60,10 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; & \int_{- \pi}^\pi e^{\imath m x} \cdot e^{- \imath n x} \mathrm{d} x = \left\lbrace\begin{alignedat}{3}
->                                                                                    & 0     &&\;\Leftarrow\; m \ne n \\
->                                                                                    & 2 \pi &&\;\Leftarrow\; m = n \\
->                                                                                    \end{alignedat}\right. \\
-> \fbox{2}\; & \int_{- \pi}^\pi \sin m x \cdot \sin n x \mathrm{d} x = \left\lbrace\begin{alignedat}{3}
->                                                                      & 0   &&\;\Leftarrow\; m \ne n \\
->                                                                      & \pi &&\;\Leftarrow\; m = n \ne 0 \\
->                                                                      \end{alignedat}\right. \\
-> \fbox{3}\; & \int_{- \pi}^\pi \cos m x \cdot \cos n x \mathrm{d} x = \left\lbrace\begin{alignedat}{3}
->                                                                      & 0     &&\;\Leftarrow\; m \ne n \\
->                                                                      & \pi   &&\;\Leftarrow\; m = n \ne 0 \\
->                                                                      & 2 \pi &&\;\Leftarrow\; m = n = 0 \\
->                                                                      \end{alignedat}\right. \\
-> \fbox{4}\; & \int_{- \pi}^\pi \sin m x \cdot \cos n x \mathrm{d} x = \int_{- \pi}^\pi \cos m x \cdot \sin n x \mathrm{d} x = 0 \\
-> \fbox{5}\; & \int_0^{+\infty} \sin x^2 \mathrm{d} x = \int_0^{+\infty} \cos x^2 \mathrm{d} x = \dfrac{1}{2} \sqrt{\dfrac{\pi}{2}} \\
-> \fbox{6}\; & \int_0^\pi \ln (1 - 2 r \cos x + r^2) \mathrm{d} x \xlongequal[\langle \lvert r \rvert < 1 \rangle]{t = \tan \frac{x}{2}} 0 \\
-> \fbox{7}\; & \int_{- \pi}^\pi \dfrac{1 - r^2}{1 - 2 r \cdot \cos x + r^2} \mathrm{d} x \xlongequal[\langle 0 \lt r \lt 1 \rangle]{t = \tan \frac{x}{2}} 2 \pi \\
-> \fbox{8}\; & \int_0^\pi \dfrac{\sin \left( n + \dfrac{1}{2} \right) x}{\sin \dfrac{x}{2}} \mathrm{d} x \xlongequal{\sum_1^n \cos n x} \pi \\
+> \fbox{1}\; & \int_0^{+\infty} \sin x^2 \mathrm{d} x = \int_0^{+\infty} \cos x^2 \mathrm{d} x = \dfrac{1}{2} \sqrt{\dfrac{\pi}{2}} \\
+> \fbox{2}\; & \int_0^\pi \ln (1 - 2 r \cos x + r^2) \mathrm{d} x \xlongequal[\langle \lvert r \rvert < 1 \rangle]{t = \tan \frac{x}{2}} 0 \\
+> \fbox{3}\; & \int_{- \pi}^\pi \dfrac{1 - r^2}{1 - 2 r \cdot \cos x + r^2} \mathrm{d} x \xlongequal[\langle 0 \lt r \lt 1 \rangle]{t = \tan \frac{x}{2}} 2 \pi \\
+> \fbox{4}\; & \int_0^\pi \dfrac{\sin \left( n + \dfrac{1}{2} \right) x}{\sin \dfrac{x}{2}} \mathrm{d} x \xlongequal{\sum_1^n \cos n x} \pi \\
 > \end{alignedat}
 > $$
 >
