@@ -21,7 +21,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \Uparrow\;   & \left\lVert \sum^m {^m v_m} \right\rVert \le \sum^m \lVert {^m v_m} \rVert \\
-> \Downarrow\; & \left\lvert \sum^m {^1 v_m} \right\rvert \mathop{\le}\limits_{\langle {^1 v_m} \gtreqqless 0 \rangle} \sum^m \lvert {^1 v_m} \rvert \\
+> \Downarrow\; & \left\lvert \sum^m {^1 v_m} \right\rvert \mathop{\le}\limits_{\langle {^1 v_m} \gtreqless 0 \rangle} \sum^m \lvert {^1 v_m} \rvert \\
 > \end{alignedat}
 > $$
 >
@@ -30,8 +30,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; &&             \ln (1 + x) \mathop{=}_{\langle -1 \lt x \rangle} \ln (|1 + x|) &\mathop{\le}_{\langle 0 \le x \rangle} \ln (1 + |x|) \mathop{\le}_{\langle 0 \le x \rangle} | \ln (1 + x)| \\
-> \fbox{2}\; &&                                                           0 &\mathop{\le}_{\langle 0 = x \rangle} \ln (1 + \lvert x \rvert) \mathop{\le}_{\langle 0 = x \rangle} \lvert x \rvert \\
+> \fbox{1}\; && \ln (1 + x) \mathop{=}_{\langle -1 \lt x \rangle} \ln (|1 + x|) &\mathop{\le}_{\langle 0 \le x \rangle} \ln (1 + |x|) \mathop{\le}_{\langle 0 \le x \rangle} | \ln (1 + x)| \\
+> \fbox{2}\; &&                                                               0 &\mathop{\le}_{\langle 0 = x \rangle} \ln (1 + \lvert x \rvert) \mathop{\le}_{\langle 0 = x \rangle} \lvert x \rvert \\
 > \end{alignedat}
 > $$
 >
@@ -67,8 +67,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{5}
-> \Uparrow\;   && \sum\limits^n (\lambda_n \gt 0) = 1 &\implies f \left( \sum\limits^n \lambda_n x_n \right) \mathop{\le}\limits_{\langle f' (x) \equiv \mathrm{const} \rangle} \sum\limits^n \lambda_n f (x_n) \\
-> \Downarrow\; &&                         \mu_n \gt 0 &\implies f \left( \dfrac{\sum\limits^n \mu_n x_n}{\sum\limits^n \mu_n} \right) \mathop{\le}\limits_{\langle f' (x) \equiv \mathrm{const} \rangle} \dfrac{\sum\limits^n \mu_n f (x_n)}{\sum\limits^n \mu_n} &&\;\Leftarrow\; \lambda_n &= \dfrac{\mu_n}{\sum\limits^n \mu_n} \\
+> \Uparrow\;   && \sum\limits^n \langle \lambda_n \gt 0 \rangle = 1 &\implies f \left( \sum\limits^n \lambda_n x_n \right) \mathop{\le}\limits_{\langle f' (x) \equiv \mathrm{Const.} \rangle} \sum\limits^n \lambda_n f (x_n) \\
+> \Downarrow\; &&                                       \mu_n \gt 0 &\implies f \left( \dfrac{\sum\limits^n \mu_n x_n}{\sum\limits^n \mu_n} \right) \mathop{\le}\limits_{\langle f' (x) \equiv \mathrm{Const.} \rangle} \dfrac{\sum\limits^n \mu_n f (x_n)}{\sum\limits^n \mu_n} &&\;\Leftarrow\; \lambda_n &= \dfrac{\mu_n}{\sum\limits^n \mu_n} \\
 > \end{alignedat}
 > $$
 >
@@ -77,7 +77,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \sum^n (\lambda_n \gt 0) = 1 \implies \prod^n x_n^{\lambda_n} \mathop{\le}\limits_{\langle x_n \equiv x \rangle} \sum^n \lambda_n x_n \\
+> \sum^n \langle \lambda_n \gt 0 \rangle = 1 \implies \prod^n x_n^{\lambda_n} \mathop{\le}\limits_{\langle x_n \equiv x \rangle} \sum^n \lambda_n x_n \\
 > \end{alignedat}
 > $$
 >
@@ -138,4 +138,3 @@ Resources:
 > \end{alignedat}
 > $$
 >
-
