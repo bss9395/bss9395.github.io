@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     特殊符号
-Revised:   2018-03-28 20:01:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-21 00:05:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -158,3 +158,14 @@ Resources:
 > $$
 >
 
+> ### 多项式符号
+
+> $$
+> \begin{alignedat}{3}
+> P (n, x) &= \sum_0^n \alpha_n x^n \\
+> T (n, x) &= \Alpha + \sum_1^{n} (\alpha_n \cos n x + \beta_n \sin n x) \\
+> T^{\cos} (n, x) &= \Alpha + \sum_1^n \alpha_n \cos n x \\
+> T^{\sin} (n, x) &= \Alpha + \sum_1^n \beta_n \sin n x \\
+> \end{alignedat}
+> $$
+>

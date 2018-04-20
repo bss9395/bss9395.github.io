@@ -96,8 +96,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; && \sin (\alpha + \beta) \cdot \sin (\alpha - \beta) = \sin^2 \alpha - \sin^2 \beta$ \\
-> \fbox{2}\; && \cos (\alpha + \beta) \cdot \cos (\alpha - \beta) = \cos^2 \alpha - \sin^2 \beta$ \\
+> \fbox{1}\; && \sin (\alpha + \beta) \cdot \sin (\alpha - \beta) = \sin^2 \alpha - \sin^2 \beta \\
+> \fbox{2}\; && \cos (\alpha + \beta) \cdot \cos (\alpha - \beta) = \cos^2 \alpha - \sin^2 \beta \\
 > \end{alignedat}
 > $$
 >

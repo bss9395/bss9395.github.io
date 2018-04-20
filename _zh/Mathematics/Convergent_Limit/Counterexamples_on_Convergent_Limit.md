@@ -89,3 +89,13 @@ Resources:
 >
 
 > ![max-width:360px;](figures/Integrand_of_Infinite_Integral_not_Convergent.svg)
+
+> ### 多项式非一致逼近开区间连续函数
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\; && f (x) = \dfrac{1}{x} \;&\Leftarrow\; x \in (0, \beta] \\
+> \fbox{2}\; && f (x) = \dfrac{1}{x} \;&\Leftarrow\; x \in [\alpha, +\infty) \\
+> \end{alignedat}
+> $$
+>
