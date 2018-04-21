@@ -11,9 +11,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; & \exists P (n, x) \rightrightarrows f (x) \implies | f (x) | \le M \\
-> \fbox{2}\; & f (x) \in \mathcal{Integ.} \implies \int_\alpha^\beta | \exists P (n, x) - f (x) | \mathrm{d} x \rightrightarrows 0 \\
-> \fbox{3}\; & \exists P (n, x) \rightrightarrows f (x \in (-\infty, +\infty)) \implies f (x) \in \mathcal{Poly.} \\ 
+> \fbox{1}\; & \exists \mathcal{P} (n, x) \rightrightarrows f (x) \implies | f (x) | \le M \\
+> \fbox{2}\; & f (x) \in \mathcal{Integ.} \implies \int_\alpha^\beta | \exists \mathcal{P} (n, x) - f (x) | \mathrm{d} x \rightrightarrows 0 \\
+> \fbox{3}\; & \exists \mathcal{P} (n, x) \rightrightarrows f (x \in (-\infty, +\infty)) \implies f (x) \in \mathcal{Poly.} \\ 
 > \end{alignedat}
 > $$
 >
@@ -60,19 +60,19 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{01}\; &&     T^{\cos} (n, x) \cdot \cos x &\in T^{\cos} (n + 1, x)  \\
-> \fbox{02}\; &&     T^{\cos} (n, x) \cdot \sin x &\in T^{\sin} (n + 1, x) \\
-> \fbox{03}\; &&     T^{\sin} (n, x) \cdot \cos x &\in T^{\sin} (n + 1, x) \\
-> \fbox{04}\; &&     T^{\sin} (n, x) \cdot \sin x &\in T^{\cos} (n + 1, x) \\
-> \fbox{05}\; &&                T (n, x + \alpha) &\in T (n, x) \\
-> \fbox{06}\; &&                         \cos^n x &\in T^{\cos} (n, x) \\
-> \fbox{07}\; &&               f (x \in [0, \pi]) &= f (\arccos t) \leftleftarrows \exists P (n, t) = \exists T^{\cos} (n, x \in [0, \pi]) \\
-> \fbox{08}\; &&                  f (x) = f (- x) &= f (x + 2 \pi) \quad\Rightarrow\quad f (x) \leftleftarrows \exists T^{\cos} (n, x) \\
-> \fbox{09}\; && [f (x^{2 \pi}) + f (- x)] \cos x &\leftleftarrows \exists T^{\cos} (n, x) \\
-> \fbox{10}\; && [f (x^{2 \pi}) - f (- x)] \sin x &\leftleftarrows \exists T^{\sin} (n, x) \\
-> \fbox{11}\; &&                  2 f (x^{2 \pi}) &= [f (x^{2 \pi}) + f (- x)] \cos x \cdot \cos x + [f (x^{2 \pi}) - f (- x)] \sin x \cdot \sin x \\
->             &&                                  &\leftleftarrows \exists T_1^{\cos} (n, x) \cdot \cos x + \exists T_2^{\cos} (n, x) \cdot \sin x \\
->             &&                                  &\leftleftarrows \exists T (n + 1, x) \\
+> \fbox{01}\; && \mathcal{T}^{\cos} (n, x) \cdot \cos x &\in \mathcal{T}^{\cos} (n + 1, x)  \\
+> \fbox{02}\; && \mathcal{T}^{\cos} (n, x) \cdot \sin x &\in \mathcal{T}^{\sin} (n + 1, x) \\
+> \fbox{03}\; && \mathcal{T}^{\sin} (n, x) \cdot \cos x &\in \mathcal{T}^{\sin} (n + 1, x) \\
+> \fbox{04}\; && \mathcal{T}^{\sin} (n, x) \cdot \sin x &\in \mathcal{T}^{\cos} (n + 1, x) \\
+> \fbox{05}\; &&                      T (n, x + \alpha) &\in T (n, x) \\
+> \fbox{06}\; &&                               \cos^n x &\in \mathcal{T}^{\cos} (n, x) \\
+> \fbox{07}\; &&                     f (x \in [0, \pi]) &= f (\arccos t) \leftleftarrows \exists \mathcal{P} (n, t) = \exists \mathcal{T}^{\cos} (n, x \in [0, \pi]) \\
+> \fbox{08}\; &&                        f (x) = f (- x) &= f (x + 2 \pi) \quad\Rightarrow\quad f (x) \leftleftarrows \exists \mathcal{T}^{\cos} (n, x) \\
+> \fbox{09}\; &&       [f (x^{2 \pi}) + f (- x)] \cos x &\leftleftarrows \exists \mathcal{T}^{\cos} (n, x) \\
+> \fbox{10}\; &&       [f (x^{2 \pi}) - f (- x)] \sin x &\leftleftarrows \exists \mathcal{T}^{\sin} (n, x) \\
+> \fbox{11}\; &&                        2 f (x^{2 \pi}) &= [f (x^{2 \pi}) + f (- x)] \cos x \cdot \cos x + [f (x^{2 \pi}) - f (- x)] \sin x \cdot \sin x \\
+>             &&                                        &\leftleftarrows \exists \mathcal{T}_1^{\cos} (n, x) \cdot \cos x + \exists \mathcal{T}_2^{\cos} (n, x) \cdot \sin x \\
+>             &&                                        &\leftleftarrows \exists \mathcal{T} (n + 1, x) \\
 > \end{alignedat}
 > $$
 >

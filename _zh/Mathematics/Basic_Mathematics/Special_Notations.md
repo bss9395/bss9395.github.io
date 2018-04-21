@@ -162,10 +162,10 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> P (n, x) &= \sum_0^n \alpha_n x^n \\
-> T (n, x) &= \Alpha + \sum_1^{n} (\alpha_n \cos n x + \beta_n \sin n x) \\
-> T^{\cos} (n, x) &= \Alpha + \sum_1^n \alpha_n \cos n x \\
-> T^{\sin} (n, x) &= \Alpha + \sum_1^n \beta_n \sin n x \\
+>        \mathcal{P} (n, x) &= \sum_0^n \alpha_n x^n \\
+>        \mathcal{T} (n, x) &= \Alpha + \sum_1^{n} (\alpha_n \cos n x + \beta_n \sin n x) \\
+> \mathcal{T}^{\cos} (n, x) &= \Alpha + \sum_1^n \alpha_n \cos n x \\
+> \mathcal{T}^{\sin} (n, x) &= \Alpha + \sum_1^n \beta_n \sin n x \\
 > \end{alignedat}
 > $$
 >
