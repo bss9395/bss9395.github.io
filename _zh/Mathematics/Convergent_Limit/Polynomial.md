@@ -60,12 +60,12 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{01}\; &&                         \cos^n x &\in T^{\cos} (n, x) \\
-> \fbox{02}\; &&     T^{\cos} (n, x) \cdot \cos x &\in T^{\cos} (n + 1, x)  \\
-> \fbox{03}\; &&     T^{\cos} (n, x) \cdot \sin x &\in T^{\sin} (n + 1, x) \\
-> \fbox{04}\; &&     T^{\sin} (n, x) \cdot \cos x &\in T^{\sin} (n + 1, x) \\
-> \fbox{05}\; &&     T^{\sin} (n, x) \cdot \sin x &\in T^{\cos} (n + 1, x) \\
-> \fbox{06}\; &&                T (n, x + \alpha) &\in T (n, x) \\
+> \fbox{01}\; &&     T^{\cos} (n, x) \cdot \cos x &\in T^{\cos} (n + 1, x)  \\
+> \fbox{02}\; &&     T^{\cos} (n, x) \cdot \sin x &\in T^{\sin} (n + 1, x) \\
+> \fbox{03}\; &&     T^{\sin} (n, x) \cdot \cos x &\in T^{\sin} (n + 1, x) \\
+> \fbox{04}\; &&     T^{\sin} (n, x) \cdot \sin x &\in T^{\cos} (n + 1, x) \\
+> \fbox{05}\; &&                T (n, x + \alpha) &\in T (n, x) \\
+> \fbox{06}\; &&                         \cos^n x &\in T^{\cos} (n, x) \\
 > \fbox{07}\; &&               f (x \in [0, \pi]) &= f (\arccos t) \leftleftarrows \exists P (n, t) = \exists T^{\cos} (n, x \in [0, \pi]) \\
 > \fbox{08}\; &&                  f (x) = f (- x) &= f (x + 2 \pi) \quad\Rightarrow\quad f (x) \leftleftarrows \exists T^{\cos} (n, x) \\
 > \fbox{09}\; && [f (x^{2 \pi}) + f (- x)] \cos x &\leftleftarrows \exists T^{\cos} (n, x) \\
