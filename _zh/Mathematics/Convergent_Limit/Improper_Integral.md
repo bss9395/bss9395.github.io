@@ -20,7 +20,7 @@ Resources:
 > \fbox{3}\; &&    \int_\alpha^{+\infty} f (x) \mathrm{d} x &= \lim_{v \to +\infty} \int_\xi^v f (x) \mathrm{d} x + \lim_{u \to \alpha^+} \int_u^\xi f (x) \mathrm{d} x \quad&&\Leftarrow\quad f (\alpha) = \infty \\
 >            &&                                             &= \left[ \lim_{v \to +\infty} F (v) - F (\xi) \right] + \left[ F (\xi) - \lim_{u \to \alpha^+} F (u) \right] \\
 >            &&                                             &= F (+\infty) - F (\alpha^+) \\
-> \fbox{4}\; &&              \int_\alpha f (x) \mathrm{d} x &\xlongequal{t = \frac{1}{x - \alpha}} \int^{+\infty} f \left( \alpha + \dfrac{1}{t} \right) \cdot \dfrac{1}{t^2} \mathrm{d} t \\
+> \fbox{4}\; &&              \int_\alpha^\gamma f (x) \mathrm{d} x &\xlongequal{t = \frac{1}{x - \alpha}} \int_{\frac{1}{\gamma - \alpha}}^{+\infty} f \left( \alpha + \dfrac{1}{t} \right) \cdot \dfrac{1}{t^2} \mathrm{d} t \xlongequal{t = \frac{\gamma - \alpha}{x - \alpha}} \int_1^{+\infty} f \left( \alpha + \dfrac{\gamma - \alpha}{t} \right) \cdot \dfrac{1}{t^2} \mathrm{d} t \\
 > \end{alignedat}
 > $$
 >

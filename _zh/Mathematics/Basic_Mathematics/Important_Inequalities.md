@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     重要不等式
-Revised:   2018-04-03 01:39:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-22 19:53:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -21,7 +21,8 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \Uparrow\;   & \left\lVert \sum^m {^m v_m} \right\rVert \le \sum^m \lVert {^m v_m} \rVert \\
-> \Downarrow\; & \left\lvert \sum^m {^1 v_m} \right\rvert \mathop{\le}\limits_{\langle {^1 v_m} \gtreqless 0 \rangle} \sum^m \lvert {^1 v_m} \rvert \\
+> \Downarrow\; & \left\lvert \sum^m {^1 v_m} \right\rvert \mathop{\le}\limits_{\langle {^1 v_m} \lesseqgtr 0 \rangle} \sum^m \lvert {^1 v_m} \rvert \\
+> \Downarrow\; & \left| \int f (x) \mathrm{d} x \right| \mathop{\le}_{\langle f (x) \lesseqgtr 0 \rangle} \int |f (x)| \mathrm{d} x \\
 > \end{alignedat}
 > $$
 >

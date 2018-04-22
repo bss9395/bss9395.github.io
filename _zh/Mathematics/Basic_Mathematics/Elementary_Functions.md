@@ -7,6 +7,10 @@ Authors:   璀璨星辰
 Resources:
 ---
 
+> ### 常用函数
+
+> ![max-width:360px;](figures/Common_Functions.svg)
+
 > ### 幂函数 $x^P$
 
 > $$
