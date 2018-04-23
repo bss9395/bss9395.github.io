@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     统一收敛极限理论
-Revised:   2018-04-24 00:35:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-24 02:49:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -39,12 +39,10 @@ Resources:
 >                                         & \int_{\alpha^+}^r f (x, u) \mathrm{d} x \\
 >                                         \end{alignedat}\right. \\
 > && \lim_{\mathcal{B} (u)} L \left( \lim_{\mathcal{B} (z)} F (f, z, u), u \right) &\iff \left\lbrace\begin{alignedat}{3}
->                                                                                        & \lim_{\mathcal{B} (u)} \lim_{\mathcal{B} (x)} f (x, u) \\
->                                                                                        & \lim_{\mathcal{B} (x)} \lim_{n \to +\infty} \left\langle S_n (x) =  \sum_1^n s_n (x) \right\rangle \\
->                                                                                        & \int_\alpha^\beta \mathrm{d} x \cdot \lim_{n \to +\infty} \left\langle S_n (x) = \sum_1^n s_n (x) \right\rangle \\
->                                                                                        & \int_\alpha^{+\infty} \mathrm{d} x \cdot \lim_{n \to +\infty} \left\langle S_n (x) = \sum_1^n s_n (x) \right\rangle \\
->                                                                                        & \int_{\alpha^+}^\beta \mathrm{d} x \cdot \lim_{n \to +\infty} \left\langle S_n (x) = \sum_1^n s_n (x) \right\rangle \\
->                                                                                        & \dfrac{\mathrm{d}}{\mathrm{d} x} \lim_{n \to +\infty} \left\langle S_n (x) = \sum_1^n s_n (x) \right\rangle \\
+>                                                                                        & \lim_{\mathcal{B} (u)} L (F (f, \infty), u)  \\
+>                                                                                        & \int_\alpha^{+\infty} \mathrm{d} x \cdot F (f, \infty) \\
+>                                                                                        & \int_{\alpha^+}^\beta \mathrm{d} x \cdot F (f, \infty) \\
+>                                                                                        & \dfrac{\mathrm{d}}{\mathrm{d} x} F (f, \infty) \\
 >                                                                                        \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
@@ -96,20 +94,10 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \Uparrow\; & \lim_{\mathcal{B} (z)} \sup_u |F (f, z \to \infty, u)| \rightrightarrows 0 \\
-> \Downarrow\; & \lim_{\mathcal{B} (u)} L \left( \lim_{\mathcal{B} (z)} F (f, z, u), u \right) \\
+> \Downarrow\; & \lim_{\mathcal{B} (u)} L \left( \lim_{\mathcal{B} (z)} F (f, z, u), u \right) = \lim_{\mathcal{B} (z)} F \left( \lim_{\mathcal{B} (u)} L (f, z, u), z, u \right) \\
 > \end{alignedat}
 > $$
 >
 
-$$
-\begin{alignedat}{3}
-&& \lim_{\mathcal{B} (u)} L \left( \lim_{\mathcal{B} (z)} F (f, z, u), u \right) &\iff \left\lbrace\begin{alignedat}{3}
-& \lim_{\mathcal{B} (u)} \lim_{\mathcal{B} (x)} f (x, u) \\
-& \lim_{\mathcal{B} (x)} \lim_{n \to +\infty} \left\langle S_n (x) =  \sum_1^n s_n (x) \right\rangle \\
-& \int_\alpha^\beta \mathrm{d} x \cdot \lim_{n \to +\infty} \left\langle S_n (x) = \sum_1^n s_n (x) \right\rangle \\
-& \int_\alpha^{+\infty} \mathrm{d} x \cdot \lim_{n \to +\infty} \left\langle S_n (x) = \sum_1^n s_n (x) \right\rangle \\
-& \int_{\alpha^+}^\beta \mathrm{d} x \cdot \lim_{n \to +\infty} \left\langle S_n (x) = \sum_1^n s_n (x) \right\rangle \\
-& \dfrac{\mathrm{d}}{\mathrm{d} x} \lim_{n \to +\infty} \left\langle S_n (x) = \sum_1^n s_n (x) \right\rangle \\
-\end{alignedat}\right. \\
-\end{alignedat}
-$$
+
+
