@@ -42,7 +42,7 @@ Resources:
 > \begin{alignedat}{3}
 > \Uparrow\;           &&                                                              \lvert f (x) \rvert &\le g (x) \\
 > \fbox{1}\Downarrow\; &&                   \int_\alpha^{+\infty} g (x) \mathrm{d} x \to \mathcal{Conv.} \;&\Rightarrow\; \int_\alpha^{+\infty} \lvert f (x) \rvert \mathrm{d} x \to \mathcal{Conv.} \\
-> \fbox{2}\Downarrow\; && \int_\alpha^{+\infty} \lvert f (x) \rvert \mathrm{d} x \not\to \mathcal{Conv.} \;&\Rightarrow\; \int_\alpha^{+\infty} g (x) \mathrm{d} x \to \mathrm{Conv.} \\
+> \fbox{2}\Downarrow\; && \int_\alpha^{+\infty} \lvert f (x) \rvert \mathrm{d} x \not\to \mathcal{Conv.} \;&\Rightarrow\; \int_\alpha^{+\infty} g (x) \mathrm{d} x \to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >
