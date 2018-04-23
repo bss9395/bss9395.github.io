@@ -60,7 +60,6 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-<<<<<<< HEAD
 > \fbox{01}\; && \mathcal{T}^{\cos} (n, x) \cdot \cos x &\in \mathcal{T}^{\cos} (n + 1, x)  \\
 > \fbox{02}\; && \mathcal{T}^{\cos} (n, x) \cdot \sin x &\in \mathcal{T}^{\sin} (n + 1, x) \\
 > \fbox{03}\; && \mathcal{T}^{\sin} (n, x) \cdot \cos x &\in \mathcal{T}^{\sin} (n + 1, x) \\
@@ -74,21 +73,6 @@ Resources:
 > \fbox{11}\; &&                        2 f (x^{2 \pi}) &= [f (x^{2 \pi}) + f (- x)] \cos x \cdot \cos x + [f (x^{2 \pi}) - f (- x)] \sin x \cdot \sin x \\
 >             &&                                        &\leftleftarrows \exists \mathcal{T}_1^{\cos} (n, x) \cdot \cos x + \exists \mathcal{T}_2^{\cos} (n, x) \cdot \sin x \\
 >             &&                                        &\leftleftarrows \exists \mathcal{T} (n + 1, x) \\
-=======
-> \fbox{01}\; &&     T^{\cos} (n, x) \cdot \cos x &\in T^{\cos} (n + 1, x)  \\
-> \fbox{02}\; &&     T^{\cos} (n, x) \cdot \sin x &\in T^{\sin} (n + 1, x) \\
-> \fbox{03}\; &&     T^{\sin} (n, x) \cdot \cos x &\in T^{\sin} (n + 1, x) \\
-> \fbox{04}\; &&     T^{\sin} (n, x) \cdot \sin x &\in T^{\cos} (n + 1, x) \\
-> \fbox{05}\; &&                T (n, x + \alpha) &\in T (n, x) \\
-> \fbox{06}\; &&                         \cos^n x &\in T^{\cos} (n, x) \\
-> \fbox{07}\; &&               f (x \in [0, \pi]) &= f (\arccos t) \leftleftarrows \exists P (n, t) = \exists T^{\cos} (n, x \in [0, \pi]) \\
-> \fbox{08}\; &&                  f (x) = f (- x) &= f (x + 2 \pi) \quad\Rightarrow\quad f (x) \leftleftarrows \exists T^{\cos} (n, x) \\
-> \fbox{09}\; && [f (x^{2 \pi}) + f (- x)] \cos x &\leftleftarrows \exists T^{\cos} (n, x) \\
-> \fbox{10}\; && [f (x^{2 \pi}) - f (- x)] \sin x &\leftleftarrows \exists T^{\sin} (n, x) \\
-> \fbox{11}\; &&                  2 f (x^{2 \pi}) &= [f (x^{2 \pi}) + f (- x)] \cos x \cdot \cos x + [f (x^{2 \pi}) - f (- x)] \sin x \cdot \sin x \\
->             &&                                  &\leftleftarrows \exists T_1^{\cos} (n, x) \cdot \cos x + \exists T_2^{\cos} (n, x) \cdot \sin x \\
->             &&                                  &\leftleftarrows \exists T (n + 1, x) \\
->>>>>>> ab3aeabde487c66a6ccb7a30bea371d7df83f57f
 > \end{alignedat}
 > $$
 >
