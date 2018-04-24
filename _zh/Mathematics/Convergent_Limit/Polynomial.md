@@ -68,11 +68,12 @@ Resources:
 > \fbox{06}\; &&                               \cos^n x &\in \mathcal{T}^{\cos} (n, x) \\
 > \fbox{07}\; &&                     f (x \in [0, \pi]) &= f (\arccos t) \leftleftarrows \exists \mathcal{P} (n, t) = \exists \mathcal{T}^{\cos} (n, x \in [0, \pi]) \\
 > \fbox{08}\; &&                        f (x) = f (- x) &= f (x + 2 \pi) \quad\Rightarrow\quad f (x) \leftleftarrows \exists \mathcal{T}^{\cos} (n, x) \\
-> \fbox{09}\; &&       [f (x^{2 \pi}) + f (- x)] \cos x &\leftleftarrows \exists \mathcal{T}^{\cos} (n, x) \\
-> \fbox{10}\; &&       [f (x^{2 \pi}) - f (- x)] \sin x &\leftleftarrows \exists \mathcal{T}^{\sin} (n, x) \\
+> \fbox{09}\; && [f (x^{2 \pi}) + f (- x)] \cdot \cos x &\leftleftarrows \exists \mathcal{T}^{\cos} (n, x) \\
+> \fbox{10}\; && [f (x^{2 \pi}) - f (- x)] \cdot \sin x &\leftleftarrows \exists \mathcal{T}^{\sin} (n, x) \\
 > \fbox{11}\; &&                        2 f (x^{2 \pi}) &= [f (x^{2 \pi}) + f (- x)] \cos x \cdot \cos x + [f (x^{2 \pi}) - f (- x)] \sin x \cdot \sin x \\
 >             &&                                        &\leftleftarrows \exists \mathcal{T}_1^{\cos} (n, x) \cdot \cos x + \exists \mathcal{T}_2^{\cos} (n, x) \cdot \sin x \\
 >             &&                                        &\leftleftarrows \exists \mathcal{T} (n + 1, x) \\
 > \end{alignedat}
 > $$
 >
+

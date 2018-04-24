@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     统一收敛极限理论
-Revised:   2018-04-24 02:49:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-25 00:11:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -11,39 +11,37 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> && \lim_{\mathcal{B} (z)} F (f, z, u) \rightrightarrows F (f, \infty) &\iff \left\lbrace\begin{alignedat}{3}
->                                                                             & \lim_{\mathcal{B} (x)} f (x) \to f (\infty) \\                                                                                                                                                                                          
->                                                                             & \lim_{n \to +\infty} \left\langle S_n = \sum_1^n s_n \right\rangle \to \left\langle S_{+\infty} = \sum_1^{+\infty} s_n \right\rangle \\
->                                                                             & \lim_{r \to +\infty} \int_\alpha^r f (x) \mathrm{d} x \to \int_\alpha^{+\infty} f (x) \mathrm{d} x \\                                  
->                                                                             & \lim_{r \to \alpha^+} \int_r^\beta f (x) \mathrm{d} x \to \int_{\alpha^+}^\beta f (x) \mathrm{d} x \\                                  
->                                                                             \end{alignedat}\right.
->                                                                             &\quad& \left\lbrace\begin{alignedat}{3}
->                                                                                     & \lim_{\mathcal{B} (x)} f (x, u) \rightrightarrows f (\infty) \\
->                                                                                     & \lim_{n \to +\infty} \left\langle S_n (x) = \sum_1^n s_n (x) \right\rangle \rightrightarrows \left\langle S_{+\infty} = \sum_1^{+\infty} s_n \right\rangle \\
->                                                                                     & \lim_{r \to +\infty} \int_\alpha^r f (x, u) \mathrm{d} x \rightrightarrows \int_\alpha^{+\infty} f (x) \mathrm{d} x \\
->                                                                                     & \lim_{r \to \alpha^+} \int_r^\beta f (x, u) \mathrm{d} x \rightrightarrows \int_{\alpha^+}^\beta f (x) \mathrm{d} x \\
->                                                                                     \end{alignedat}\right. \\
+> && \lim_{\mathcal{B} (z)} F (f; z, u) \rightrightarrows F (f; \infty, \cancel{u}) &\iff \left\lbrace\begin{alignedat}{3}
+>                                                                                         & \lim_{\mathcal{B} (z)} f (z, \cancel{u}) \to f (\infty, \cancel{u}) \\
+>                                                                                         & \lim_{\mathcal{B} (z)} \left\langle f'_z (z, \cancel{u}) =  \dfrac{\mathrm{d} f}{\mathrm{d} z} (z, \cancel{u}) \right\rangle \to \left\langle f'_z (\infty, \cancel{u}) = \dfrac{\mathrm{d} f}{\mathrm{d} z} (\infty, \cancel{u}) \right\rangle \\
+>                                                                                         & \lim_{z \to +\infty} \left\langle S_z (\cancel{u}) = \sum_1^z f_z (\cancel{u}) \right\rangle \to \left\langle S_{+\infty} (\cancel{u}) = \sum_1^{+\infty} f_z (\cancel{u}) \right\rangle \\
+>                                                                                         & \lim_{z \to +\infty} \int_\alpha^z f (z, \cancel{u}) \mathrm{d} z \to \int_\alpha^{+\infty} f (z, \cancel{u}) \mathrm{d} z \\
+>                                                                                         & \lim_{z \to \alpha^+} \int_z^\beta f (z, \cancel{u}) \mathrm{d} z \to \int_{\alpha^+}^\beta f (z, \cancel{u}) \mathrm{d} z \\
+>                                                                                         \end{alignedat}\right.
+>                                                                                         &\quad& \left\lbrace\begin{alignedat}{3}
+>                                                                                                 & \lim_{\mathcal{B} (z)} f (z, u) \rightrightarrows f (\infty, \cancel{u}) \\
+>                                                                                                 & \lim_{\mathcal{B} (z)} \left\langle f'_z (z, u) = \dfrac{\mathrm{d} f}{\mathrm{d} z} (z, u) \right\rangle \rightrightarrows \left\langle f'_z (\infty, \cancel{u}) = \dfrac{\mathrm{d} f}{\mathrm{d} z} (\infty, \cancel{u}) \right\rangle \\
+>                                                                                                 & \lim_{z \to +\infty} \left\langle S_z (u) = \sum_1^z f_z (u) \right\rangle \rightrightarrows \left\langle S_{+\infty} (\cancel{u}) = \sum_1^{+\infty} f_z (\cancel{u}) \right\rangle \\
+>                                                                                                 & \lim_{z \to +\infty} \int_\alpha^z f (z, u) \mathrm{d} z \rightrightarrows \int_\alpha^{+\infty} f (z, \cancel{u}) \mathrm{d} z \\
+>                                                                                                 & \lim_{z \to \alpha^+} \int_z^\beta f (z, u) \mathrm{d} z \rightrightarrows \int_{\alpha^+}^\beta f (z, \cancel{u}) \mathrm{d} z \\
+>                                                                                                 \end{alignedat}\right. \\
 > && \left\Updownarrow\begin{alignedat}{3}
->    - [F (f, z, u) - F (f, \infty)] \\
->    F (f, z \to \infty, u) \\
+>    - [F (f; z, u) - F (f; \infty, \cancel{u})] \\
+>    F (f; z \to \infty, u) \\
 >    \end{alignedat}\right. &\iff \left\lbrace\begin{alignedat}{3}
->                                 & f (\infty) - f (x) \\
->                                 & \left\langle S_{+\infty} - S_n = \sum_{n + 1}^{+\infty} s_n \right\rangle \\
->                                 & \int_r^{+\infty} f (x) \mathrm{d} x \\
->                                 & \int_{\alpha^+}^r f (x) \mathrm{d} x \\
->                                 \end{alignedat}\right. 
+>                                 & f (\infty, \cancel{u}) - f (z, \cancel{u}) \\
+>                                 & \left\langle f'_z (\infty, \cancel{u}) - f'_z (z, \cancel{u}) = \dfrac{\mathrm{d} f}{\mathrm{d} z} (\infty, \cancel{u}) - \dfrac{\mathrm{d} f}{\mathrm{d} z} (z, \cancel{u}) \right\rangle \\
+>                                 & \left\langle S_{+\infty} (\cancel{u}) - S_z (\cancel{u}) = \sum_{z + 1}^{+\infty} f_z (\cancel{u}) \right\rangle \\
+>                                 & \int_z^{+\infty} f (z, \cancel{u}) \mathrm{d} z \\
+>                                 & \int_{\alpha^+}^z f (z, \cancel{u}) \mathrm{d} z \\
+>                                 \end{alignedat}\right.
 >                                 &\quad& \left\lbrace\begin{alignedat}{3}
->                                         & f (\infty, u) - f (x, u) \\
->                                         & \left\langle S_{+\infty} (x) - S_n (x) = \sum_{n + 1}^{+\infty} s_n (x) \right\rangle \\
->                                         & \int_r^{+\infty} f (x, u) \mathrm{d} x \\
->                                         & \int_{\alpha^+}^r f (x, u) \mathrm{d} x \\
+>                                         & f (\infty, u) - f (z, u) \\
+>                                         & \left\langle f'_z (\infty, u) - f'_z (z, u) = \dfrac{\mathrm{d} f}{\mathrm{d} z} (\infty, u) - \dfrac{\mathrm{d} f}{\mathrm{d} z} (z, u) \right\rangle \\
+>                                         & \left\langle S_{+\infty} (u) - S_z (u) = \sum_{z + 1}^{+\infty} f_z (u) \right\rangle \\
+>                                         & \int_z^{+\infty} f (z, u) \mathrm{d} z \\
+>                                         & \int_{\alpha^+}^z f (z, u) \mathrm{d} z \\
 >                                         \end{alignedat}\right. \\
-> && \lim_{\mathcal{B} (u)} L \left( \lim_{\mathcal{B} (z)} F (f, z, u), u \right) &\iff \left\lbrace\begin{alignedat}{3}
->                                                                                        & \lim_{\mathcal{B} (u)} L (F (f, \infty), u)  \\
->                                                                                        & \int_\alpha^{+\infty} \mathrm{d} x \cdot F (f, \infty) \\
->                                                                                        & \int_{\alpha^+}^\beta \mathrm{d} x \cdot F (f, \infty) \\
->                                                                                        & \dfrac{\mathrm{d}}{\mathrm{d} x} F (f, \infty) \\
->                                                                                        \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
 >
@@ -51,16 +49,25 @@ Resources:
 > ### 收敛极限理论
 
 > $$
-> \begin{alignedat}{9}
-> \fbox{1}\quad & \lim_{\mathcal{B} (z)} F (f, z) \to F (f, \infty)       &&\quad\Updownarrow\quad \lim_{\mathcal{B} (z)} F (f, z, u) \rightrightarrows F (f, \infty) &&\quad\Leftrightarrow\quad \Updownarrow                                                   &&\quad\Rightarrow\quad \lim_{\mathcal{B} (z)} F (f, z, u) \to F (f, \infty) \\
-> \fbox{2}\quad & \lim_{\mathcal{B} (z)} F (f, z \to \infty, u) \to 0     &&\quad\Updownarrow\quad \lim_{\mathcal{B} (z)} F (f, z \to \infty, u) \rightrightarrows 0     &&\quad\Leftrightarrow\quad \Updownarrow                                                   &&\quad\Rightarrow\quad \lim_{\mathcal{B} (z)} F (f, z \to \infty, u) \to 0     \\
-> \fbox{3}\quad & \lim_{\mathcal{B} (z)} |F (f, z \to \infty, u)| \to 0   &&\quad\Updownarrow\quad \lim_{\mathcal{B} (z)} |F (f, z \to \infty, u)| \rightrightarrows 0   &&\quad\Leftrightarrow\quad \lim_{\mathcal{B} (z)} \sup_u |F (f, z \to \infty, u)| \to 0   &&\quad\Rightarrow\quad \Updownarrow                                            \\
-> \fbox{4}\quad & \lim_{\mathcal{B} (z)} |F (f, z \to \infty, u)|^2 \to 0 &&\quad\Updownarrow\quad \lim_{\mathcal{B} (z)} |F (f, z \to \infty, u)|^2 \rightrightarrows 0 &&\quad\Leftrightarrow\quad \lim_{\mathcal{B} (z)} \sup_u |F (f, z \to \infty, u)|^2 \to 0 &&\quad\Rightarrow\quad \Updownarrow                                            \\
->               &                                                         &&\quad\Updownarrow\quad \lim_{\mathcal{B} (z)} F (f, z' \to z'', u) \rightrightarrows         && \lim_{\mathcal{B} (z)} F (f, \infty \to z'', u)                                                                                                                         \\
-> \fbox{5}\quad & \lim_{\mathcal{B} (z)} F (f, z' \to z'', u) \to 0       &&\quad\Updownarrow\quad \lim_{\mathcal{B} (z)} F (f, z' \to z'', u) \rightrightarrows 0       &&\quad\Leftrightarrow\quad \Updownarrow                                                   &&\quad\Rightarrow\quad \lim_{\mathcal{B} (z)} F (f, z' \to z'', u) \to 0       \\
-> \fbox{6}\quad & \lim_{\mathcal{B} (z)} |F (f, z' \to z'', u)| \to 0     &&\quad\Updownarrow\quad \lim_{\mathcal{B} (z)} |F (f, z' \to z'', u)| \rightrightarrows 0     &&\quad\Leftrightarrow\quad \lim_{\mathcal{B} (z)} \sup_u |F (f, z' \to z'', u)| \to 0     &&\quad\Rightarrow\quad \Updownarrow                                            \\
-> \fbox{7}\quad & \lim_{\mathcal{B} (z)} |F (f, z' \to z'', u)|^2 \to 0   &&\quad\Updownarrow\quad \lim_{\mathcal{B} (z)} |F (f, z' \to z'', u)|^2 \rightrightarrows0    &&\quad\Leftrightarrow\quad \lim_{\mathcal{B} (z)} \sup_u |F (f, z' \to z'', u)|^2 \to 0   &&\quad\Rightarrow\quad \Updownarrow                                            \\
-> \end{alignedat}
+> \left.\begin{alignedat}{3}
+> \fbox{1}\quad & \lim_{\mathcal{B} (z)} F (f; z, \cancel{u}) \to F (f; \infty, \cancel{u}) \\
+> \fbox{2}\quad & \lim_{\mathcal{B} (z)} F (f; z \to \infty, \cancel{u}) \to 0 \\
+> \fbox{3}\quad & \lim_{\mathcal{B} (z)} |F (f; z \to \infty, \cancel{u})| \to 0 \\
+> \fbox{4}\quad & \lim_{\mathcal{B} (z)} |F (f; z \to \infty, \cancel{u})|^2 \to 0 \\
+>               & \\
+> \fbox{5}\quad & \lim_{\mathcal{B} (z)} F (f; z' \to z'', \cancel{u}) \to 0 \\
+> \fbox{6}\quad & \lim_{\mathcal{B} (z)} |F (f; z' \to z'', \cancel{u})| \to 0 \\
+> \fbox{7}\quad & \lim_{\mathcal{B} (z)} |F (f; z' \to z'', \cancel{u})|^2 \to 0 \\
+> \end{alignedat}\middle\Updownarrow \begin{alignedat}{3}
+>                                    & \lim_{\mathcal{B} (z)} F (f; z, u) \rightrightarrows F (f; \infty, \cancel{u}) &&\quad\Leftrightarrow\quad \Updownarrow                                                   &&\quad\Rightarrow\quad \lim_{\mathcal{B} (z)} F (f; z, u) \to F (f; \infty, \cancel{u}) \\
+>                                    & \lim_{\mathcal{B} (z)} F (f; z \to \infty, u) \rightrightarrows 0              &&\quad\Leftrightarrow\quad \Updownarrow                                                   &&\quad\Rightarrow\quad \lim_{\mathcal{B} (z)} F (f; z \to \infty, u) \to 0 \\
+>                                    & \lim_{\mathcal{B} (z)} |F (f; z \to \infty, u)| \rightrightarrows 0            &&\quad\Leftrightarrow\quad \lim_{\mathcal{B} (z)} \sup_u |F (f; z \to \infty, u)| \to 0   &&\quad\Rightarrow\quad \Updownarrow \\
+>                                    & \lim_{\mathcal{B} (z)} |F (f; z \to \infty, u)|^2 \rightrightarrows 0          &&\quad\Leftrightarrow\quad \lim_{\mathcal{B} (z)} \sup_u |F (f; z \to \infty, u)|^2 \to 0 &&\quad\Rightarrow\quad \Updownarrow \\
+>                                    & \lim_{\mathcal{B} (z)} F (f; z' \to z'', u) \rightrightarrows                  && \lim_{\mathcal{B} (z)} F (f; \infty \to z'', u) \\
+>                                    & \lim_{\mathcal{B} (z)} F (f; z' \to z'', u) \rightrightarrows 0                &&\quad\Leftrightarrow\quad \Updownarrow                                                   &&\quad\Rightarrow\quad \lim_{\mathcal{B} (z)} F (f; z' \to z'', u) \to 0 \\
+>                                    & \lim_{\mathcal{B} (z)} |F (f; z' \to z'', u)| \rightrightarrows 0              &&\quad\Leftrightarrow\quad \lim_{\mathcal{B} (z)} \sup_u |F (f; z' \to z'', u)| \to 0     &&\quad\Rightarrow\quad \Updownarrow \\
+>                                    & \lim_{\mathcal{B} (z)} |F (f; z' \to z'', u)|^2 \rightrightarrows0             &&\quad\Leftrightarrow\quad \lim_{\mathcal{B} (z)} \sup_u |F (f; z' \to z'', u)|^2 \to 0   &&\quad\Rightarrow\quad \Updownarrow \\
+>                                    \end{alignedat}\right.
 > $$
 >
 
@@ -68,8 +75,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{9}
-> \Uparrow\;  & F (f, z, u) \le F (|f|, z, u) \le F (g, z, u) \quad\Leftarrow\quad f \le |f| \le g \\
-> \Downarrow\;& \lim_{\mathcal{B} (z)} F (f, z, u) \rightrightarrows F (f, \infty) \quad\Leftarrow\quad \lim_{\mathcal{B} (z)} F (| f |, z, u) \rightrightarrows F (| f |, \infty) \quad\Leftarrow\quad \lim_{\mathcal{B} (z)} F (g, z, u) \rightrightarrows F (g, \infty) \\
+> \Uparrow\;   & F (f; z, u) \le F (|f|; z, u) \le F (g; z, u) \quad\mathop\Leftarrow\quad f (z, u) \le |f (z, u)| \le g (z, u) \\
+> \Downarrow\; & \lim_{\mathcal{B} (z)} \sup_u |F (f; z \to \infty, u)| \le \lim_{\mathcal{B} (z)} \sup_u |F (|f|; z \to \infty, u)| \le \lim_{\mathcal{B} (z)} \sup_u |F (g; z \to \infty, u)| \\
+> \Downarrow\; & \lim_{\mathcal{B} (z)} F (f; z, u) \rightrightarrows F (f; \infty, \cancel{u}) \quad\Leftarrow\quad \lim_{\mathcal{B} (z)} F (|f|; z, u) \rightrightarrows F (|f|; \infty, \cancel{u}) \quad\Leftarrow\quad \lim_{\mathcal{B} (z)} F (g; z, u) \rightrightarrows F (g; \infty, \cancel{u}) \\
 > \end{alignedat}
 > $$
 >
@@ -78,13 +86,13 @@ Resources:
 
 > $$
 > \begin{alignedat}{9}
-> \fbox{1}\Uparrow\; & \lim_{\mathcal{B} (z)} f (z, u) \rightrightarrows 0 \quad\land \quad \lim_{\mathcal{B} (z)} F (|g|, z, u) \le M \\
-> \Downarrow\;       & \lim_{\mathcal{B} (z)} \sup_u |F (f \cdot g, z \to \infty, u)| \le \lim_{\mathcal{B} (z)} \sup_u F (|f| \cdot |g|, z \to \infty, u) \le \lim_{\mathcal{B} (z)} \sup_u [|f (z, u)| \cdot F (|g|, z \to \infty, u)] \to 0 \\
-> \fbox{2}\Uparrow\; & \lim_{\mathcal{B} (z)} f^\updownarrow (z, u) \rightrightarrows 0 \quad\land\quad \lim_{\mathcal{B} (z)} |F (g, z, u)| \le M \\
-> \Downarrow\;       & \lim_{\mathcal{B} (z)} \sup_u |F (f \cdot g, z \to \infty, u)| \le \lim_{\mathcal{B} (z)} \sup_u |f (z, u) \cdot F (g, z \to \infty, u)| = \lim_{\mathcal{B} (z)} \sup_u [|f (z, u)| \cdot |F (g, z \to \infty, u)|] \to 0 \\
-> \fbox{3}\Uparrow\; & \lim_{\mathcal{B} (z)} |f^\updownarrow (z, u)| \le M \quad\land\quad \lim_{\mathcal{B} (z)} F (g, z, u) \rightrightarrows F (g, \infty) \\
-> \Downarrow\;       & \lim_{\mathcal{B} (z)} \sup_u |F (f \cdot g, z \to \infty, u)| \le \lim_{\mathcal{B} (z)} \sup_u |f^\updownarrow (z, u) \cdot F (g, z \to \infty, u)| = \lim_{\mathcal{B} (z)} \sup_u [|f^\updownarrow (z, u)| \cdot |F (g, z \to \infty, u)|] \to 0 \\
-> \Downarrow\;       & \lim_{\mathcal{B} (z)} F (f \cdot g, z, u) \rightrightarrows F (f \cdot g, \infty) \\
+> \fbox{1}\Uparrow\; & \lim_{\mathcal{B} (z)} f (z, u) \rightrightarrows 0 \quad\land \quad \lim_{\mathcal{B} (z)} \sup_u |F (|g|; z, u)| \le M \\
+> \Downarrow\;       & \lim_{\mathcal{B} (z)} \sup_u |F (f \cdot g; z \to \infty, u)| \le \lim_{\mathcal{B} (z)} \sup_u F (|f| \cdot |g|; z \to \infty, u) \le \lim_{\mathcal{B} (z)} \sup_u [|f (z, u)| \cdot F (|g|; z \to \infty, u)] \to 0 \\
+> \fbox{2}\Uparrow\; & \lim_{\mathcal{B} (z)} f^\updownarrow (z, u) \rightrightarrows 0 \quad\land\quad \lim_{\mathcal{B} (z)} \sup_u |F (g; z, u)| \le M \\
+> \Downarrow\;       & \lim_{\mathcal{B} (z)} \sup_u |F (f^\updownarrow \cdot g; z \to \infty, u)| \le \lim_{\mathcal{B} (z)} \sup_u |f^\updownarrow (z, u) \cdot F (g; z \to \infty, u)| = \lim_{\mathcal{B} (z)} \sup_u [|f^\updownarrow (z, u)| \cdot |F (g; z \to \infty, u)|] \to 0 \\
+> \fbox{3}\Uparrow\; & \lim_{\mathcal{B} (z)} \sup_u |f^\updownarrow (z, u)| \le M \quad\land\quad \lim_{\mathcal{B} (z)} F (g; z, u) \rightrightarrows F (g; \infty, \cancel{u}) \\
+> \Downarrow\;       & \lim_{\mathcal{B} (z)} \sup_u |F (f^\updownarrow \cdot g; z \to \infty, u)| \le \lim_{\mathcal{B} (z)} \sup_u |f^\updownarrow (z, u) \cdot F (g; z \to \infty, u)| = \lim_{\mathcal{B} (z)} \sup_u [|f^\updownarrow (z, u)| \cdot |F (g; z \to \infty, u)|] \to 0 \\
+> \Downarrow\;       & \lim_{\mathcal{B} (z)} F (f \cdot g; z, u) \mathop{\rightrightarrows} F (f \cdot g; \cancel{z}, \infty) \\
 > \end{alignedat}
 > $$
 >
@@ -93,11 +101,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\; & \lim_{\mathcal{B} (z)} \sup_u |F (f, z \to \infty, u)| \rightrightarrows 0 \\
-> \Downarrow\; & \lim_{\mathcal{B} (u)} L \left( \lim_{\mathcal{B} (z)} F (f, z, u), u \right) = \lim_{\mathcal{B} (z)} F \left( \lim_{\mathcal{B} (u)} L (f, z, u), z, u \right) \\
+> \Uparrow\;   &&                 \lim_{\mathcal{B} (u)} L \left( F (f; z, u); z, u \right) \rightrightarrows L (F (f; z, u); \cancel{z}, \infty) \quad&\lor\quad \lim_{\mathcal{B} (z)} F (L (f; z, u); z, u) \rightrightarrows F (L (f; z, u); \infty, \cancel{u}) \\
+> \Downarrow\; &&                                                          \lim_{\mathcal{B} (u)} \sup_z |L (F (f; z, u); z, u \to \infty)| \to 0 \quad&\lor\quad \lim_{\mathcal{B} (z)} \sup_u |F (L (f; z, u); z \to \infty, u)| \to 0 \\
+> \Downarrow\; && L (F (f; \infty, u); \cancel{z}, \infty) = \lim_{\mathcal{B} (u)} L \left( \lim_{\mathcal{B} (z)} F (f; z, u); \cancel{z}, u \right) &= \lim_{\mathcal{B} (z)} F \left( \lim_{\mathcal{B} (u)} L (f; z, u); z, \cancel{u} \right) = F (L (f; z, \infty); \infty, \cancel{u}) \\
 > \end{alignedat}
 > $$
 >
-
-
-

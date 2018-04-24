@@ -43,7 +43,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \fbox{1}\; && \int_\alpha^\beta \lambda^\updownarrow (x) f (x) \mathrm{d} x &= f (\xi) \int_\alpha^\beta \lambda^\updownarrow (x) \mathrm{d} x \\
->            &&                          \int_\alpha^\beta f (x) \mathrm{d} x &= f (\xi) \cdot (\beta - \alpha)                                                              &&\;\Leftarrow\; g^\updownarrow (x) = 1 \\
+>            &&                          \int_\alpha^\beta f (x) \mathrm{d} x &= f (\xi) \cdot (\beta - \alpha)                                                              &&\;\Leftarrow\; \lambda^\updownarrow (x) = 1 \\
 > \fbox{2}\; &&   \int_\alpha^\beta \lambda^\downarrow (x) f (x) \mathrm{d} x &= \lambda (\alpha) \int_\alpha^\xi f (x) \mathrm{d} x                                         &&\;\Leftarrow\; \lambda^\downarrow (x) \ge 0 \\
 >            &&       \int_\alpha^\beta g^\updownarrow (x) f (x) \mathrm{d} x &= g (\alpha) \int_\alpha^\xi f (x) \mathrm{d} x + g (\beta) \int_\xi^\beta f (x) \mathrm{d} x &&\;\Leftarrow\; \lambda^\downarrow (x) = \dfrac{g^\updownarrow (x) - g (b)}{g (a) - g (b)} \\
 > \end{alignedat}
