@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     统一收敛极限理论
-Revised:   2018-04-25 01:47:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-25 :47:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -13,14 +13,14 @@ Resources:
 > \begin{alignedat}{3}
 > && \lim_{\mathcal{B} (z)} F (f; z, u) \rightrightarrows F (f; \infty, u) &\iff \left\lbrace\begin{alignedat}{3}
 >                                                                                & \lim_{\mathcal{B} (z)} f (z, \cancel{u}) \to f (\infty, \cancel{u}) \\
->                                                                                & \lim_{\mathcal{B} (z)} \left\langle f'_z (z, \cancel{u}) =  \dfrac{\mathrm{d} f}{\mathrm{d} z} (z, \cancel{u}) \right\rangle \to \left\langle f'_z (\infty, \cancel{u}) = \dfrac{\mathrm{d} f}{\mathrm{d} z} (\infty, \cancel{u}) \right\rangle \\
+>                                                                                & \lim_{\mathcal{B} (z)} \left\langle f'_z (z, \cancel{u}) =  \dfrac{\mathrm{d}}{\mathrm{d} z} f (z, \cancel{u}) \right\rangle \to \left\langle f'_z (\infty, \cancel{u}) = \dfrac{\mathrm{d}}{\mathrm{d} z} f (\infty, \cancel{u}) \right\rangle \\
 >                                                                                & \lim_{z \to +\infty} \left\langle S_z (\cancel{u}) = \sum_1^z f_z (\cancel{u}) \right\rangle \to \left\langle S_{+\infty} (\cancel{u}) = \sum_1^{+\infty} f_z (\cancel{u}) \right\rangle \\
 >                                                                                & \lim_{z \to +\infty} \int_\alpha^z f (z, \cancel{u}) \mathrm{d} z \to \int_\alpha^{+\infty} f (z, \cancel{u}) \mathrm{d} z \\
 >                                                                                & \lim_{z \to \alpha^+} \int_z^\beta f (z, \cancel{u}) \mathrm{d} z \to \int_{\alpha^+}^\beta f (z, \cancel{u}) \mathrm{d} z \\
 >                                                                                \end{alignedat}\right.
 >                                                                                &\quad& \left\lbrace\begin{alignedat}{3}
 >                                                                                        & \lim_{\mathcal{B} (z)} f (z, u) \rightrightarrows f (\infty, u) \\
->                                                                                        & \lim_{\mathcal{B} (z)} \left\langle f'_z (z, u) = \dfrac{\mathrm{d} f}{\mathrm{d} z} (z, u) \right\rangle \rightrightarrows \left\langle f'_z (\infty, u) = \dfrac{\mathrm{d} f}{\mathrm{d} z} (\infty, u) \right\rangle \\
+>                                                                                        & \lim_{\mathcal{B} (z)} \left\langle f'_z (z, u) = \dfrac{\partial}{\partial z} f (z, u) \right\rangle \rightrightarrows \left\langle f'_z (\infty, u) = \dfrac{\partial}{\partial z} f (\infty, u) \right\rangle \\
 >                                                                                        & \lim_{z \to +\infty} \left\langle S_z (u) = \sum_1^z f_z (u) \right\rangle \rightrightarrows \left\langle S_{+\infty} (u) = \sum_1^{+\infty} f_z (u) \right\rangle \\
 >                                                                                        & \lim_{z \to +\infty} \int_\alpha^z f (z, u) \mathrm{d} z \rightrightarrows \int_\alpha^{+\infty} f (z, u) \mathrm{d} z \\
 >                                                                                        & \lim_{z \to \alpha^+} \int_z^\beta f (z, u) \mathrm{d} z \rightrightarrows \int_{\alpha^+}^\beta f (z, u) \mathrm{d} z \\
@@ -30,14 +30,14 @@ Resources:
 >    F (f; z \to \infty, u) \\
 >    \end{alignedat}\right. &\iff \left\lbrace\begin{alignedat}{3}
 >                                 & f (\infty, \cancel{u}) - f (z, \cancel{u}) \\
->                                 & \left\langle f'_z (\infty, \cancel{u}) - f'_z (z, \cancel{u}) = \dfrac{\mathrm{d} f}{\mathrm{d} z} (\infty, \cancel{u}) - \dfrac{\mathrm{d} f}{\mathrm{d} z} (z, \cancel{u}) \right\rangle \\
+>                                 & \left\langle f'_z (\infty, \cancel{u}) - f'_z (z, \cancel{u}) = \dfrac{\mathrm{d}}{\mathrm{d} z} f (\infty, \cancel{u}) - \dfrac{\mathrm{d}}{\mathrm{d} z} f (z, \cancel{u}) \right\rangle \\
 >                                 & \left\langle S_{+\infty} (\cancel{u}) - S_z (\cancel{u}) = \sum_{z + 1}^{+\infty} f_z (\cancel{u}) \right\rangle \\
 >                                 & \int_z^{+\infty} f (z, \cancel{u}) \mathrm{d} z \\
 >                                 & \int_{\alpha^+}^z f (z, \cancel{u}) \mathrm{d} z \\
 >                                 \end{alignedat}\right.
 >                                 &\quad& \left\lbrace\begin{alignedat}{3}
 >                                         & f (\infty, u) - f (z, u) \\
->                                         & \left\langle f'_z (\infty, u) - f'_z (z, u) = \dfrac{\mathrm{d} f}{\mathrm{d} z} (\infty, u) - \dfrac{\mathrm{d} f}{\mathrm{d} z} (z, u) \right\rangle \\
+>                                         & \left\langle f'_z (\infty, u) - f'_z (z, u) = \dfrac{\partial}{\partial z} f (\infty, u) - \dfrac{\partial}{\partial z} f (z, u) \right\rangle \\
 >                                         & \left\langle S_{+\infty} (u) - S_z (u) = \sum_{z + 1}^{+\infty} f_z (u) \right\rangle \\
 >                                         & \int_z^{+\infty} f (z, u) \mathrm{d} z \\
 >                                         & \int_{\alpha^+}^z f (z, u) \mathrm{d} z \\

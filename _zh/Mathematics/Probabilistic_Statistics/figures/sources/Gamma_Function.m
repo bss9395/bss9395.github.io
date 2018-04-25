@@ -26,3 +26,5 @@ axis image;
 xlim([-5, 5]);
 ylim([-5, 5]);
 set(gca, 'visible', 'off');
+
+legend({'$\Gamma (t) = \int\limits_0^{+\infty} x^{t - 1} e^{- x} \mathrm{d} x$'}, 'interpreter', 'latex', 'location', 'southeast');
