@@ -29,8 +29,12 @@
       /><line y2="7" style="fill:none;" x1="157.5022" x2="157.5022" y1="460"
       /><line y2="7" style="fill:none;" x1="202.9955" x2="202.9955" y1="460"
       /><line y2="7" style="fill:none;" x1="248.498" x2="248.498" y1="460"
-      /><line x1="315.0042" x2="315.0042" y1="233.5" style="fill:none; stroke:black; stroke-width:1.6667;" y2="193.3822"
       /><line x1="248.5" x2="339.5" y1="188.2" style="fill:none; stroke:black; stroke-width:1.6667;" y2="188.2"
+      /><line x1="248.5" x2="385" y1="142.9" style="fill:none; stroke:black; stroke-width:1.6667;" y2="142.9"
+      /><line x1="315.0042" x2="315.0042" y1="233.5" style="fill:none; stroke:black; stroke-width:1.6667;" y2="193.3822"
+      /><line x1="294" x2="294" y1="233.5" style="fill:none; stroke:black; stroke-width:1.6667;" y2="188.2"
+      /><line x1="339.5" x2="339.5" y1="233.5" style="fill:none; stroke:black; stroke-width:1.6667;" y2="188.2"
+      /><line x1="385" x2="385" y1="233.5" style="fill:none; stroke:black; stroke-width:1.6667;" y2="142.9"
     /></g
     ><g style="text-rendering:geometricPrecision; stroke-width:1.6667; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality;"
     ><path d="M21 233.5 L476 233.5 L21 233.5" style="fill:none; fill-rule:evenodd;"
