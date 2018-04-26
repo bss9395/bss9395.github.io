@@ -2,10 +2,14 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     收敛极限中的反例
-Revised:   2018-04-11 20:29:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-26 19:32:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
+
+> ### 有瑕点的单调导数
+
+> ![max-width: 360px;](figures/Improper_Monotonous_Derivative.svg)
 
 > ### 非一致收敛
 
