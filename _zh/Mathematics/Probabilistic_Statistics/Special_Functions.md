@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     特殊函数
-Revised:   2018-04-27 00:05:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-27 02:46:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -14,6 +14,7 @@ Resources:
 > \left\lbrace\begin{alignedat}{3}
 > \fbox{1}\; & \Gamma (t) = \int_0^{+\infty} x^{t - 1} e^{- x} \mathrm{d} x \\
 > \fbox{2}\; & \Gamma (t) = \lim_{+\infty} \dfrac{n^t \cdot n !}{\prod\limits_0^n (t + n)} \\
+> \fbox{3}\; & \Gamma (t) = \dfrac{1}{t} \prod_1^{+\infty} \dfrac{\left( 1 + \dfrac{1}{n} \right)^t}{1 + \dfrac{t}{n}} \\
 > \end{alignedat}\right.
 > $$
 >
@@ -62,9 +63,13 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; & \Beta (t, s) = \Beta (s, t) \\
-> \fbox{2}\; & \Beta (t + 1, s) = \dfrac{t}{t + s} \Beta (t, s) \\
-> \fbox{3}\; & \Beta (t + 1, s + 1) = \dfrac{t \cdot s}{(t + s + 1) \cdot (t + s)} \Beta (t, s) \\
+> \fbox{1}\; & \Beta (1, s) = \dfrac{1}{s} \\
+> \fbox{2}\; & \Beta (t, s) = \Beta (s, t) \\
+> \fbox{3}\; & \Beta (t, t) \xlongequal{\frac{1}{2} - x = \frac{1}{2} \sqrt{y}} \\
+> \fbox{4}\; & \Beta (t, 1 - t) = \dfrac{\pi}{\sin \pi t} \\
+> \fbox{5}\; & \Beta (t + 1, s) = \dfrac{t}{t + s} \Beta (t, s) \\
+> \fbox{6}\; & \Beta (t + 1, s + 1) = \dfrac{t \cdot s}{(t + s + 1) \cdot (t + s)} \Beta (t, s) \\
+> \fbox{7}\; & \Beta (n, s) = \dfrac{(n - 1) !}{\prod\limits_1^{n} (\alpha + n - 1)} \\
 > \end{alignedat}
 > $$
 >
