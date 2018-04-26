@@ -7,6 +7,6 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-![max-width: 600px;](figures/2017-01-02T01-28-00+08.svg)
+> ![max-width: 480px;](figures/2017-01-02T01-28-00+08.svg)
 
 于2018年04月27日 04：29 +08 在乌鲁木齐 +06
