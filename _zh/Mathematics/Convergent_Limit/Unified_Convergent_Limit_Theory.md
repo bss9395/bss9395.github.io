@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     统一收敛极限理论
-Revised:   2018-04-25 :47:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-25 00:47:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
