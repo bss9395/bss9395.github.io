@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     无穷三角级数
-Revised:   2018-04-19 21:16:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-28 01:58:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -48,18 +48,25 @@ Resources:
 > $$
 >
 
-> ### 三角级数的部分和
+> ### 三角级数的收敛性
 
 > $$
 > \begin{alignedat}{3}
 > \Uparrow\; && S_n (x_0) &= \dfrac{a_0}{2} + \sum_1^{+\infty} (a_n \cos n x_0 + b_n \sin n x_0) \\
 >            &&           &= \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) \mathrm{d} x + \dfrac{1}{\pi} \sum_1^{+\infty} \int_{- \pi}^\pi f (x) \cdot  (\cos n x \cos n x_0 + \sin n x \sin n x_0) \mathrm{d} x \\
 >            &&           &= \dfrac{1}{\pi} \int_{- \pi}^\pi f (x) \cdot \left[ \dfrac{1}{2} + \sum_1^{+\infty} \cos n (x - x_0) \right] \mathrm{d} x \\
->            &&           &= \dfrac{1}{\pi} \left\langle \int_{- \pi}^\pi = \int_{x_0 - \pi}^{x_0 + \pi} \right\rangle f (x) \cdot \dfrac{\sin \left( n + \dfrac{1}{2} \right) (x - x_0)}{2 \sin \dfrac{1}{2} (x - x_0)} \mathrm{d} x \\
->            &&           &\xlongequal{t = x - x_0} \dfrac{1}{\pi} \int_{- \pi}^\pi f (x_0 + t) \cdot \dfrac{\sin \left( n + \dfrac{1}{2} \right) t}{2 \sin \dfrac{t}{2}} \mathrm{d} t \\
+>            &&           &= \dfrac{1}{\pi} \int_{- \pi}^\pi f (x) \cdot \dfrac{\sin \left( n + \dfrac{1}{2} \right) (x - x_0)}{2 \sin \dfrac{1}{2} (x - x_0)} \mathrm{d} x \\
+>            &&           &\xlongequal{t = x - x_0} \dfrac{1}{\pi} \left\langle \int_{- \pi - x_0}^{\pi - x_0} = \int_{- \pi}^\pi \right\rangle f (x_0 + t) \cdot \dfrac{\sin \left( n + \dfrac{1}{2} \right) t}{2 \sin \dfrac{t}{2}} \mathrm{d} t \\
 >            &&           &\xlongequal{t = - u} \dfrac{1}{\pi} \int_0^\pi [f (x_0 + t) + f (x_0 - t)] \cdot \dfrac{\sin \left( n + \dfrac{1}{2} \right) t}{2 \sin \dfrac{t}{2}} \mathrm{d} t \\
-> \Uparrow\; && \lim_{n \to +\infty} & \int_\delta^\pi \dfrac{f (x_0 + t) + f (x_0 - t)}{2 \sin \dfrac{t}{2}} \cdot \sin \left( n + \dfrac{1}{2} \right) t \to 0 \\
-> \Downarrow\; && f (x_0) &= \lim_{+\infty} S_n (x_0) = \lim_{n \to +\infty} \int_0^\delta [f (x_0 + t) + f (x_0 - t)] \cdot \dfrac{\sin \left( n + \dfrac{1}{2} \right)}{2 \sin \dfrac{t}{2}} \mathrm{d} t \\
+> \Uparrow\; && & \int_0^\pi \dfrac{f (x_0 + t) + f (x_0 - t)}{t} \cdot \mathrm{d} t \to \mathcal{Conv.} \\
+> \Downarrow\; && \lim_{n \to +\infty} & \int_\delta^\pi \dfrac{f (x_0 + t) + f (x_0 - t)}{2 \sin \dfrac{t}{2}} \cdot \sin \left( n + \dfrac{1}{2} \right) t \mathrm{d} t \to 0 \quad\Leftarrow\quad \lim_{\lambda \to +\infty} \int_0^\pi \varphi (t) \sin \lambda t \mathrm{d} t \to 0 \\
+> \fbox{1}\Downarrow\; && f (x_0) &= \lim_{n \to +\infty} \dfrac{1}{\pi} \int_0^\delta [f (x_0 + t) + f (x_0 - t)] \cdot \dfrac{\sin \left( n + \dfrac{1}{2} \right)}{2 \sin \dfrac{t}{2}} \mathrm{d} t \\
+> \Downarrow\; && 1 &\xlongequal{f (x) \equiv 1} \lim_{n \to +\infty} \dfrac{1}{\pi} \int_0^\delta \dfrac{\sin \left( n + \dfrac{1}{2} \right)}{2 \sin \dfrac{t}{2}} \mathrm{d}  t \\
+> \fbox{2}\Downarrow\; && f (x_0) - l &= \lim_{n \to +\infty} \dfrac{1}{\pi} \int_0^\delta [f (x_0 + t) + f (x_0 - t) - 2 l] \cdot \dfrac{\sin \left( n + \dfrac{1}{2} \right)}{2 \sin \dfrac{t}{2}} \mathrm{d} t \\
+> && &\le \lim_{n \to +\infty} \dfrac{1}{\pi} \int_0^\delta \dfrac{f (x_0 + t) + f (x_0 - t) - 2 l}{t} \cdot \sin \left( n + \dfrac{1}{2} \right) \mathrm{d} t \\
+> && &\to 0 \quad\Leftarrow\quad \left| \dfrac{f (x_0 + t) + f (x_0 - t) - 2 l}{t} \right| \le \dfrac{M}{t^{\langle \alpha < 1 \rangle}} \\
+> \fbox{3}\Downarrow\; && f (x_0) &\xlongequal{2 l = f (x_0^+) + f (x_0^-)} \dfrac{f (x_0^+) + f (x_0^-)}{2} \\
+> && &= \lim_{n \to +\infty} \dfrac{1}{\pi} \int_0^\delta \left[ \left\langle \dfrac{f (x_0 + t) - f (x_0^+)}{t} \to f' (x_0^+) \right\rangle + \left\langle \dfrac{f (x_0 - t) - f (x_0^-)}{t} \to f' (x_0^-) \right\rangle \right] \cdot \sin \left( n + \dfrac{1}{2} \right) \mathrm{d} t \\
 > \end{alignedat}
 > $$
 >
