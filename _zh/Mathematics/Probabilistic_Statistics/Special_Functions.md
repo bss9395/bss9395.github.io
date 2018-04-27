@@ -65,11 +65,11 @@ Resources:
 > \begin{alignedat}{3}
 > \fbox{1}\; & \Beta (1, s) = \dfrac{1}{s} \\
 > \fbox{2}\; & \Beta (t, s) = \Beta (s, t) \\
-> \fbox{3}\; & \Beta (t, t) \xlongequal{\frac{1}{2} - x = \frac{1}{2} \sqrt{y}} \\
-> \fbox{4}\; & \Beta (t, 1 - t) = \dfrac{\pi}{\sin \pi t} \\
-> \fbox{5}\; & \Beta (t + 1, s) = \dfrac{t}{t + s} \Beta (t, s) \\
-> \fbox{6}\; & \Beta (t + 1, s + 1) = \dfrac{t \cdot s}{(t + s + 1) \cdot (t + s)} \Beta (t, s) \\
-> \fbox{7}\; & \Beta (n, s) = \dfrac{(n - 1) !}{\prod\limits_1^{n} (\alpha + n - 1)} \\
+> \fbox{3}\; & \Beta (t, t) \xlongequal{\frac{1}{2} - x = \frac{1}{2} \sqrt{y}} \dfrac{1}{2^{2 t - 1}} \Beta \left( \dfrac{1}{2}, t \right) \\
+> \fbox{4}\; & \Beta (t, 1 - t) = \dfrac{\pi}{\sin \pi t}  \\
+> \fbox{5}\; & \Beta (t, s + 1) = \dfrac{s}{t + s} \Beta (t, s) \\
+> \fbox{6}\; & \Beta (t, n) = \dfrac{(n - 1) !}{\prod\limits_1^{n} (t + n - 1)} \\
+> \fbox{7}\; & \Beta (t + 1, s + 1) = \dfrac{t \cdot s}{(t + s + 1) \cdot (t + s)} \Beta (t, s) \\
 > \end{alignedat}
 > $$
 >
