@@ -14,8 +14,8 @@ Resources:
 > | $(1 + x)^P$          | $$(-1, +1); P \le -1$$ $$(-1, +1]; -1 \lt P \lt 0$$ $$[-1, +1]; P \gt 0$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{P (P - 1) \cdots (P - n + 1)}{n !} x^n + O (x^{n + 1})$$ | $$P (P - 1) \cdots (P - n + 1) (1 + x)^{P - n}$$ |
 > | $$\dfrac{1}{1 - x}$$ | $$(-1, +1)$$ | $$1 + \sum\limits_1^{+ \infty} x^n + O (x^{n + 1})$$ | $$n ! (1 + x)^{- n - 1}$$       |
 > | $$E^x$$              | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{\ln^n E}{n !} x^n + O (x^{n + 1})$$ | $$E^x \ln^n E$$                          |
-> | $$e^x$$              | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{1}{n !} x^n + O (x^{n + 1})$$ | $$e^x$$                                  |
-> | $$\log_L (1 + x)$$   |    | $$0 + \sum\limits_1^{+ \infty} \dfrac{(- 1)^{n - 1}}{n \ln L} x^n + O (x^{n + 1})$$ | $$\dfrac{(- 1)^{n - 1} (n - 1) !}{(1 + x)^n \ln L}$$ |
+> | $$e^x$$             | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{1}{n !} x^n + O (x^{n + 1})$$ | $$e^x$$                                  |
+> | $$\log_L (1 + x)$$   | $$(-1, +1]$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{(- 1)^{n - 1}}{n \ln L} x^n + O (x^{n + 1})$$ | $$\dfrac{(- 1)^{n - 1} (n - 1) !}{(1 + x)^n \ln L}$$ |
 > | $$\ln (1 + x)$$      | $$(-1, +1]$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{(- 1)^{n - 1}}{n} x^n + O (x^{n + 1})$$ | $$\dfrac{(- 1)^{n - 1} (n - 1) !}{(1 + x)^n}$$ |
 > | $\sin x$             | $$(-\infty, +\infty)$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{(- 1)^n}{(2 n + 1) !} x^{2 n + 1} + O (x^{2 n + 3})$$ | $$\sin \left( x + n \dfrac{\pi}{2} \right)$$ |
 > | $$\cos x$$           | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{(- 1)^n}{(2 n) !} x^{2 n} + O (x^{2 n + 2})$$ | $$\cos \left( x + n \dfrac{\pi}{2} \right)$$ |
@@ -95,20 +95,20 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                    && 1 + \sum_1^{+\infty} \dfrac{\alpha \cdots (\alpha + n - 1) \cdot \beta \cdots (\beta +n - 1)}{\gamma \cdots (\gamma + n - 1)} \dfrac{x^n}{n !} & \\
-> \Uparrow\;         &&                                                   \dfrac{s_{n + 1}}{s_n} = \dfrac{(n + \alpha) (n + \beta)}{(n + \gamma) (n + 1)} \cdot x \quad&\Rightarrow\quad \lim_{+\infty} \dfrac{s_{n + 1}}{s_n} = x \\
-> \fbox{1}\Uparrow\; &&                                                                                                                             0 \le x \lt 1 \quad&\Leftarrow\quad \lim_{+\infty} \dfrac{s_{n + 1}}{s_n} < 1 \\
-> \Downarrow\;       && 1 + \sum_1^{+\infty} \dfrac{\alpha \cdots (\alpha + n - 1) \cdot \beta \cdots (\beta +n - 1)}{\gamma \cdots (\gamma + n - 1)} \dfrac{x^n}{n !} &\to \mathcal{Conv.} \\
-> \fbox{2}\Uparrow\; &&                                                                                                                                     x > 1 \quad&\Leftarrow\quad \lim_{+\infty} \dfrac{s_{n + 1}}{s_n} > 1 \\
-> \Downarrow\;       && 1 + \sum_1^{+\infty} \dfrac{\alpha \cdots (\alpha + n - 1) \cdot \beta \cdots (\beta +n - 1)}{\gamma \cdots (\gamma + n - 1)} \dfrac{x^n}{n !} &\not\to \mathcal{Conv.} \\
-> \Uparrow\;         &&                                            \lim_{+\infty} n \cdot \left( \dfrac{s_n}{s_{n + 1}} - 1 \right) = \gamma + 1 - \alpha - \beta \quad&\Leftarrow\quad n \cdot \left( \dfrac{s_n}{s_{n + 1}} - 1 \right) = \dfrac{(\gamma + 1 - \alpha - \beta) n^2 + (\gamma - \alpha \beta) n}{n^2 + (\alpha + \beta) n + \alpha \beta} \\
-> \fbox{3}\Uparrow\; &&                                                                                                            x = 1, \gamma > \alpha + \beta \quad&\Leftarrow\quad \gamma + 1 - \alpha - \beta > 1 \\
-> \Downarrow\;       && 1 + \sum_1^{+\infty} \dfrac{\alpha \cdots (\alpha + n - 1) \cdot \beta \cdots (\beta +n - 1)}{\gamma \cdots (\gamma + n - 1)} \dfrac{x^n}{n !} &\to \mathcal{Conv.} \\
-> \fbox{4}\Uparrow\; &&                                                                                                            x = 1, \gamma < \alpha + \beta \quad&\Leftarrow\quad \gamma + 1 - \alpha - \beta < 1 \\
-> \Downarrow\;       && 1 + \sum_1^{+\infty} \dfrac{\alpha \cdots (\alpha + n - 1) \cdot \beta \cdots (\beta +n - 1)}{\gamma \cdots (\gamma + n - 1)} \dfrac{x^n}{n !} &\not\to \mathcal{Conv.} \\
-> \Uparrow\;         &&                                                                                              n \cdot \left( \dfrac{s_n}{s_{n + 1}} - 1 \right) &= \dfrac{n^2}{n^2 + \langle \gamma = \alpha + \beta \rangle n + \alpha \beta} < 1 \\
-> \fbox{5}\Uparrow\; &&                                                                                                            x = 1, \gamma = \alpha + \beta \quad&\Leftarrow\quad \gamma + 1 - \alpha - \beta = 1 \\
-> \Downarrow\;       && 1 + \sum_1^{+\infty} \dfrac{\alpha \cdots (\alpha + n - 1) \cdot \beta \cdots (\beta +n - 1)}{\gamma \cdots (\gamma + n - 1)} \dfrac{x^n}{n !} &\not\to \mathcal{Conv.} \\
+>                    & 1 + \sum_1^{+\infty} \dfrac{\alpha \cdots (\alpha + n - 1) \cdot \beta \cdots (\beta +n - 1)}{\gamma \cdots (\gamma + n - 1)} \dfrac{x^n}{n !} \\
+> \Uparrow\;         & \dfrac{s_{n + 1}}{s_n} = \dfrac{(n + \alpha) (n + \beta)}{(n + \gamma) (n + 1)} \cdot x \quad\Rightarrow\quad \lim_{+\infty} \dfrac{s_{n + 1}}{s_n} = x \\
+> \fbox{1}\Uparrow\; & 0 \le x \lt 1 \quad\Leftarrow\quad \lim_{+\infty} \dfrac{s_{n + 1}}{s_n} < 1 \\
+> \Downarrow\;       & 1 + \sum_1^{+\infty} \dfrac{\alpha \cdots (\alpha + n - 1) \cdot \beta \cdots (\beta +n - 1)}{\gamma \cdots (\gamma + n - 1)} \dfrac{x^n}{n !} \to \mathcal{Conv.} \\
+> \fbox{2}\Uparrow\; & x > 1 \quad\Leftarrow\quad \lim_{+\infty} \dfrac{s_{n + 1}}{s_n} > 1 \\
+> \Downarrow\;       & 1 + \sum_1^{+\infty} \dfrac{\alpha \cdots (\alpha + n - 1) \cdot \beta \cdots (\beta +n - 1)}{\gamma \cdots (\gamma + n - 1)} \dfrac{x^n}{n !} \not\to \mathcal{Conv.} \\
+> \Uparrow\;         & \lim_{+\infty} n \cdot \left( \dfrac{s_n}{s_{n + 1}} - 1 \right) = \gamma + 1 - \alpha - \beta \quad\Leftarrow\quad n \cdot \left( \dfrac{s_n}{s_{n + 1}} - 1 \right) = \dfrac{(\gamma + 1 - \alpha - \beta) n^2 + (\gamma - \alpha \beta) n}{n^2 + (\alpha + \beta) n + \alpha \beta} \\
+> \fbox{3}\Uparrow\; & x = 1, \gamma > \alpha + \beta \quad\Leftarrow\quad \gamma + 1 - \alpha - \beta > 1 \\
+> \Downarrow\;       & 1 + \sum_1^{+\infty} \dfrac{\alpha \cdots (\alpha + n - 1) \cdot \beta \cdots (\beta +n - 1)}{\gamma \cdots (\gamma + n - 1)} \dfrac{x^n}{n !} \to \mathcal{Conv.} \\
+> \fbox{4}\Uparrow\; & x = 1, \gamma < \alpha + \beta \quad\Leftarrow\quad \gamma + 1 - \alpha - \beta < 1 \\
+> \Downarrow\;       & 1 + \sum_1^{+\infty} \dfrac{\alpha \cdots (\alpha + n - 1) \cdot \beta \cdots (\beta +n - 1)}{\gamma \cdots (\gamma + n - 1)} \dfrac{x^n}{n !} \not\to \mathcal{Conv.} \\
+> \Uparrow\;         & n \cdot \left( \dfrac{s_n}{s_{n + 1}} - 1 \right) = \dfrac{n^2}{n^2 + \langle \gamma = \alpha + \beta \rangle n + \alpha \beta} < 1 \\
+> \fbox{5}\Uparrow\; & x = 1, \gamma = \alpha + \beta \quad\Leftarrow\quad \gamma + 1 - \alpha - \beta = 1 \\
+> \Downarrow\;       & 1 + \sum_1^{+\infty} \dfrac{\alpha \cdots (\alpha + n - 1) \cdot \beta \cdots (\beta +n - 1)}{\gamma \cdots (\gamma + n - 1)} \dfrac{x^n}{n !} \not\to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >

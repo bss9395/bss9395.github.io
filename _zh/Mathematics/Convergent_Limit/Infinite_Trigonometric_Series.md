@@ -10,10 +10,56 @@ Resources:
 > ### 正交三角系
 
 > $$
+> 0 < m, 0 < n \implies
+> \left\lbrace\begin{alignedat}{3}
+> \fbox{1}\; & \int_{- \pi}^\pi e^{\imath m x} \cdot e^{- \imath n x} \mathrm{d} x = 2 \pi \cdot \delta^{m n} \\
+> \fbox{2}\; & \int_{- \pi}^\pi \sin m x \cdot \sin n x \mathrm{d} x = \int_{- \pi}^\pi \cos m x \cdot \cos n x \mathrm{d} x = \pi \cdot \delta^{m n} \\
+> \fbox{3}\; & \int_{- \pi}^\pi \sin m x \cdot \cos n x \mathrm{d} x = \int_{- \pi}^\pi \cos m x \cdot \sin n x \mathrm{d} x = 0 \\
+> \end{alignedat}\right.
+> $$
+>
+
+> ### 三角级数
+
+> $$
 > \begin{alignedat}{3}
-> \fbox{1}\; & \int_{- \pi}^\pi e^{\imath m^+ x} \cdot e^{- \imath n^+ x} \mathrm{d} x = 2 \pi \cdot \delta^{m^+ n^+} \\
-> \fbox{2}\; & \int_{- \pi}^\pi \sin m^+ x \cdot \sin n^+ x \mathrm{d} x = \int_{- \pi}^\pi \cos m^+ x \cdot \cos n^+ x \mathrm{d} x = \pi \cdot \delta^{m^+ n^+} \\
-> \fbox{4}\; & \int_{- \pi}^\pi \sin m^+ x \cdot \cos n^+ x \mathrm{d} x = \int_{- \pi}^\pi \cos m^+ x \cdot \sin n^+ x \mathrm{d} x = 0 \\
+> && f (x) &= \dfrac{a_0}{2} + \sum_1^{+\infty} a_n \cos n x + b_n \sin n x \\
+> &&   a_0 &= \dfrac{1}{\pi} \int_{- \pi}^\pi f (x) \mathrm{d} x \\
+> &&   a_n &= \dfrac{1}{\pi} \int_{- \pi}^\pi f (x) \cos n x \mathrm{d} x \\
+> &&   b_n &= \dfrac{1}{\pi} \int_{- \pi}^\pi f (x) \sin n x \mathrm{d} x \\
+> \end{alignedat}
+> $$
+>
+
+> ### 三角级数的系数
+
+> $$
+> \begin{alignedat}{3}
+> \Uparrow\;           & \int_\alpha^\beta f^{(k)} (x) \mathrm{d} x \to \mathcal{Conv.} \quad\Rightarrow\quad \dfrac{1}{\lambda} \cdot \int_\alpha^\beta f^{(k)} \left( \dfrac{\lambda x}{\lambda} \right) \mathrm{d} (\lambda x) \to \mathcal{Conv.} \\
+> \fbox{1}\Downarrow\; & \lim_{+ \infty} \int_\alpha^\beta f (x) \cos \lambda x \mathrm{d} x \xlongequal[g (t) = f \left( \frac{t}{\lambda} \right)]{t = \lambda x} \lim_{+\infty} \dfrac{1}{\lambda} \int_{\lambda \alpha}^{\lambda \beta} g (t) \cos t \mathrm{d} t \to 0 \\
+> \Downarrow\;         & \lim_{+\infty} a_n \to 0 \\
+> \fbox{2}\Downarrow\; & \lim_{+\infty} \int_\alpha^\beta f (x) \sin \lambda x \mathrm{d} x \xlongequal[g (t) = f \left( \frac{t}{\lambda} \right)]{t = \lambda x} \lim_{+\infty} \int_{\lambda \alpha}^{\lambda \beta} g (t) \sin t \mathrm{d} t \to 0 \\
+> \Downarrow\;         & \lim_{+\infty} b_n \to 0 \\
+> \fbox{3}\Uparrow\;   & a_n = \dfrac{1}{n} \int_{- \pi}^\pi f (x) \cos n x \mathrm{d} x = - \dfrac{1}{n \pi} \int_{- \pi}^\pi f' (x) \sin n x \mathrm{d} x = - \dfrac{b_n^{(1)}}{n} \\
+> \Downarrow\;         & a_n = o \left( \dfrac{1}{n^1} \right) = o \left( \dfrac{1}{n^k} \right) \\
+> \fbox{4}\Uparrow\;   & b_n = \dfrac{1}{n} \int_{-\pi}^\pi f (x) \sin n x \mathrm{d} x = + \dfrac{1}{n \pi} \int_{- \pi}^\pi f' (x) \cos n x \mathrm{d} x = \dfrac{a_n^{(1)}}{n} \\
+> \Downarrow\;         & b_n = o \left( \dfrac{1}{n^1} \right) = o \left( \dfrac{1}{n^k} \right) \\
+> \end{alignedat}
+> $$
+>
+
+> ### 三角级数的部分和
+
+> $$
+> \begin{alignedat}{3}
+> \Uparrow\; && S_n (x_0) &= \dfrac{a_0}{2} + \sum_1^{+\infty} (a_n \cos n x_0 + b_n \sin n x_0) \\
+>            &&           &= \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) \mathrm{d} x + \dfrac{1}{\pi} \sum_1^{+\infty} \int_{- \pi}^\pi f (x) \cdot  (\cos n x \cos n x_0 + \sin n x \sin n x_0) \mathrm{d} x \\
+>            &&           &= \dfrac{1}{\pi} \int_{- \pi}^\pi f (x) \cdot \left[ \dfrac{1}{2} + \sum_1^{+\infty} \cos n (x - x_0) \right] \mathrm{d} x \\
+>            &&           &= \dfrac{1}{\pi} \left\langle \int_{- \pi}^\pi = \int_{x_0 - \pi}^{x_0 + \pi} \right\rangle f (x) \cdot \dfrac{\sin \left( n + \dfrac{1}{2} \right) (x - x_0)}{2 \sin \dfrac{1}{2} (x - x_0)} \mathrm{d} x \\
+>            &&           &\xlongequal{t = x - x_0} \dfrac{1}{\pi} \int_{- \pi}^\pi f (x_0 + t) \cdot \dfrac{\sin \left( n + \dfrac{1}{2} \right) t}{2 \sin \dfrac{t}{2}} \mathrm{d} t \\
+>            &&           &\xlongequal{t = - u} \dfrac{1}{\pi} \int_0^\pi [f (x_0 + t) + f (x_0 - t)] \cdot \dfrac{\sin \left( n + \dfrac{1}{2} \right) t}{2 \sin \dfrac{t}{2}} \mathrm{d} t \\
+> \Uparrow\; && \lim_{n \to +\infty} & \int_\delta^\pi \dfrac{f (x_0 + t) + f (x_0 - t)}{2 \sin \dfrac{t}{2}} \cdot \sin \left( n + \dfrac{1}{2} \right) t \to 0 \\
+> \Downarrow\; && f (x_0) &= \lim_{+\infty} S_n (x_0) = \lim_{n \to +\infty} \int_0^\delta [f (x_0 + t) + f (x_0 - t)] \cdot \dfrac{\sin \left( n + \dfrac{1}{2} \right)}{2 \sin \dfrac{t}{2}} \mathrm{d} t \\
 > \end{alignedat}
 > $$
 >
