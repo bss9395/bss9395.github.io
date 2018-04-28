@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     收敛极限中的反例
-Revised:   2018-04-26 19:32:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-28 20:22:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -100,6 +100,19 @@ Resources:
 > \begin{alignedat}{3}
 > \fbox{1}\; && f (x) = \dfrac{1}{x} \;&\Leftarrow\; x \in (0, \beta] \\
 > \fbox{2}\; && f (x) = \dfrac{1}{x} \;&\Leftarrow\; x \in [\alpha, +\infty) \\
+> \end{alignedat}
+> $$
+>
+
+> ### 平方可积
+
+> $$
+> \begin{alignedat}{3}
+> & f (x) = \left\lbrace\begin{alignedat}{3}
+> + \dfrac{1}{x^\frac{1}{4}} &\;\Leftarrow\; x \in \mathbb{Q} \\
+> - \dfrac{1}{x^\frac{1}{4}} &\;\Leftarrow\; x \not\in \mathbb{Q} \\
+> \end{alignedat}\right. \\
+> & \int_0^1 f (x) \mathrm{d} x \not\to \mathcal{Conv.} \quad\land\quad \int_0^1 f^2 (x) \mathrm{d} x \to \mathcal{Conv.}
 > \end{alignedat}
 > $$
 >

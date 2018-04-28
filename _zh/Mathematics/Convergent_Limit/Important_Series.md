@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     重要级数
-Revised:   2018-04-17 22:13:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-28 18:08:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -30,19 +30,21 @@ Resources:
 > | **$$f (x)$$**      | $$(- \pi, + \pi)$$ | **$$\dfrac{1}{\pi} \left[ \dfrac{a_0}{2} + \sum\limits_1^{+\infty} (a_n \cos n x + b_n \sin n x) \right]$$** |
 > | :----------------- | :----------------- | :----------------------------------------------------------- |
 > | $$e^{\alpha x}$$   | $$(- \pi, + \pi)$$ | $$\dfrac{1}{\pi} \left[ \dfrac{2 \sinh \alpha \pi}{\alpha} + \sum\limits_1^{+\infty} (- 1)^n \dfrac{2 \sinh \alpha \pi}{\alpha^2 + n^2} (\alpha \cos n x - n \sin n x) \right]$$ |
+> | $$e^{\alpha x}$$   | $$(0, 2 \pi)$$     | $$\dfrac{1}{\pi} \left[ \dfrac{e^{2 \pi \alpha} - 1}{2 \alpha} + \sum\limits_1^{+\infty} \dfrac{e^{2 \pi \alpha} - 1}{\alpha^2 + n^2} (\alpha \cos n x - n \sin n x) \right]$$ |
 > | $$\sin \alpha x$$  | $$(- \pi, + \pi)$$ | $$\dfrac{1}{\pi} \left[ 0 + \sum\limits_1^{+\infty} (- 1)^n \dfrac{2 n \sin \alpha \pi}{\alpha^2 - n^2} \sin n x \right]$$ |
 > | $$\cos \alpha x$$  | $$[- \pi, + \pi]$$ | $$\dfrac{1}{\pi} \left[ \dfrac{\sin \alpha \pi}{\alpha} + \sum\limits_1^{+\infty} (- 1)^n \dfrac{2 \alpha \sin \alpha \pi}{\alpha^2 - n^2} \cos n x \right]$$ |
 > | $$\sinh \alpha x$$ | $$(- \pi, + \pi)$$ | $$\dfrac{1}{\pi} \left[ \dfrac{\sinh \alpha \pi}{\alpha} + \sum\limits_1^{+\infty} (- 1)^n \dfrac{2 \alpha \sinh \alpha \pi}{\alpha^2 + n^2} \cos n x \right]$$ |
-> | $$\cos \alpha x$$  | $$(- \pi, + \pi)$$ | $$\dfrac{1}{\pi} + \left[ 0 + \sum\limits_1^{+\infty} (- 1)^{n - 1} \dfrac{2 n \sinh \alpha \pi}{\alpha^2 + n^2} \sin n x \right]$$ |
+> | $$\cosh \alpha x$$ | $$(- \pi, + \pi)$$ | $$\dfrac{1}{\pi} \left[ 0 + \sum\limits_1^{+\infty} (- 1)^{n - 1} \dfrac{2 n \sinh \alpha \pi}{\alpha^2 + n^2} \sin n x \right]$$ |
 
 > ###  等幂级数
 
 > $$
-> \begin{alignedat}{3}
-> \fbox{1}\; && \sum_1^n n^1 &= \dfrac{1}{2} n^2 + \dfrac{1}{2} n \\
-> \fbox{2}\; && \sum_1^n n^2 &= \dfrac{1}{3} n^3 + \dfrac{1}{2} n^2 + \dfrac{1}{6} n \\
-> \fbox{3}\; && \sum_1^n n^3 &= \dfrac{1}{4} n^4 + \dfrac{1}{2} n^3 + \dfrac{1}{4} n^2 \\
-> \end{alignedat}
+> \begin{array}{l|l|l}
+> \fbox{1}\; & \sum\limits_1^{+\infty} \dfrac{1}{n^2} = \dfrac{\pi^2}{6}                    & \sum\limits_1^{+\infty} \dfrac{(- 1)^n}{n^2} = - \dfrac{\pi^2}{12} & \sum\limits_1^{+\infty} \dfrac{(- 1)^{n - 1}}{n^2} = \dfrac{\pi^2}{12} \\
+> \fbox{2}\; & \sum\limits_1^n n^1 = \dfrac{1}{2} n^2 + \dfrac{1}{2} n \\
+> \fbox{3}\; & \sum\limits_1^n n^2 = \dfrac{1}{3} n^3 + \dfrac{1}{2} n^2 + \dfrac{1}{6} n \\
+> \fbox{4}\; & \sum\limits_1^n n^3 = \dfrac{1}{4} n^4 + \dfrac{1}{2} n^3 + \dfrac{1}{4} n^2 \\
+> \end{array}
 > $$
 >
 
