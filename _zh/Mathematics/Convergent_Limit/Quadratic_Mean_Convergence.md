@@ -93,17 +93,16 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\;           &&                  \left\lVert f - \sum_0^n \lambda_k \varphi_k \right\rVert^2 &= \int_{- \pi}^\pi \left[ f (x) - \sum_0^n \lambda_k \varphi_k (x) \right]^2 \mathrm{d} x \\
->                      &&                                                                              &= \lVert f \rVert^2 - 2 \sum_0^n \lambda_k \int_{- \pi}^\pi f (x) \cdot \varphi_k (x) \mathrm{d} x + \sum_0^n \sum_0^n a_i a_j \int_{- \pi}^\pi \varphi_i (x) \cdot \varphi_j (x) \mathrm{d} x \\
->                      &&                                                                              &= \lVert f \rVert^2 - 2 \sum_0^n \lambda_k c_k + \sum_0^n \lambda_k^2 \\
->                      &&                                                                              &= \lVert f \rVert^2 - \sum_0^n c_k^2 + \sum_0^n (\lambda_k - c_k)^2 \\
-> \fbox{1}\Downarrow\; &&                  \left\lVert f - \sum_0^n \lambda_k \varphi_k \right\rVert^2 &\mathop{\ge}_{\lambda_k \equiv c_k} \lVert f \rVert^2 - \sum_0^n c_k^2 = \left\lVert f - \sum_0^n c_k \varphi_k \right\rVert^2 \\
+> \Uparrow\;           &&                        \left\lVert f - \sum_0^n \lambda_k \varphi_k \right\rVert^2 &= \int_{- \pi}^\pi \left[ f (x) - \sum_0^n \lambda_k \varphi_k (x) \right]^2 \mathrm{d} x \\
+>                      &&                                                                                    &= \lVert f \rVert^2 - 2 \sum_0^n \lambda_k \int_{- \pi}^\pi f (x) \cdot \varphi_k (x) \mathrm{d} x + \sum_0^n \sum_0^n a_i a_j \int_{- \pi}^\pi \varphi_i (x) \cdot \varphi_j (x) \mathrm{d} x \\
+>                      &&                                                                                    &= \lVert f \rVert^2 - 2 \sum_0^n \lambda_k c_k + \sum_0^n \lambda_k^2 \\
+>                      &&                                                                                    &= \lVert f \rVert^2 - \sum_0^n c_k^2 + \sum_0^n (\lambda_k - c_k)^2 \\
+> \fbox{1}\Downarrow\; &&                        \left\lVert f - \sum_0^n \lambda_k \varphi_k \right\rVert^2 &\mathop{\ge}_{\lambda_k \equiv c_k} \lVert f \rVert^2 - \sum_0^n c_k^2 = \left\lVert f - \sum_0^n c_k \varphi_k \right\rVert^2 \\
 > \fbox{2}\Downarrow\; && \lim_{+\infty} \left\lVert f - \sum_0^{+\infty} \lambda_k \varphi_k \right\rVert^2 &\to 0 \quad\Leftrightarrow\quad \lVert f \rVert^2 = \sum_0^{+\infty} c_k^2 \quad\Rightarrow\quad \lim_{+\infty} c_k \to 0 \\
-> \Downarrow\; && f &= \sum_0^{+\infty} c_k \varphi_k (x) \\
-> \fbox{3}\Downarrow\; && \int_{- \pi}^\pi f (x) \cdot g (x) \mathrm{d} x &= \dfrac{1}{4} \int_{- \pi}^\pi \left[ f (x) + g (x) \right]^2 \mathrm{d} x - \dfrac{1}{4} \int_{- \pi}^\pi [f (x) - g (x)]^2 \mathrm{d} x \\
-> && &= \dfrac{1}{4} \left[ \sum_0^{+\infty} (c_k^f + c_k^g)^2 - \sum_0^{+\infty} (c_k^f - c_k^g)^2 \right] \\
-> && &= \sum_0^{+\infty} c_k^f \cdot c_k^g \\
+> \Downarrow\;         &&                                                                                  f &= \sum_0^{+\infty} c_k \varphi_k (x) \\
+> \fbox{3}\Downarrow\; &&                                    \int_{- \pi}^\pi f (x) \cdot g (x) \mathrm{d} x &= \dfrac{1}{4} \int_{- \pi}^\pi \left[ f (x) + g (x) \right]^2 \mathrm{d} x - \dfrac{1}{4} \int_{- \pi}^\pi [f (x) - g (x)]^2 \mathrm{d} x \\
+>                      &&                                                                                    &= \dfrac{1}{4} \left[ \sum_0^{+\infty} (c_k^f + c_k^g)^2 - \sum_0^{+\infty} (c_k^f - c_k^g)^2 \right] \\
+>                      &&                                                                                    &= \sum_0^{+\infty} c_k^f \cdot c_k^g \\
 > \end{alignedat}
 > $$
 >
-
