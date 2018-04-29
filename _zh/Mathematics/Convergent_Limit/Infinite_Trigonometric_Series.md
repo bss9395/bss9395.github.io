@@ -10,12 +10,15 @@ Resources:
 > ### 正交三角系
 
 > $$
-> 0 < m, 0 < n \implies
+> \begin{alignedat}{3}
+> && \lbrace \varphi_k \rbrace &= \lbrace 1, \cos x, \sin x, \cdots, \cos k x, \sin k x, \cdots \rbrace \\
+> && 0 < m, 0 < n &\implies
 > \left\lbrace\begin{alignedat}{3}
 > \fbox{1}\; & \int_{- \pi}^\pi e^{\imath m x} \cdot e^{- \imath n x} \mathrm{d} x = 2 \pi \cdot \delta^{m n} \\
 > \fbox{2}\; & \int_{- \pi}^\pi \sin m x \cdot \sin n x \mathrm{d} x = \int_{- \pi}^\pi \cos m x \cdot \cos n x \mathrm{d} x = \pi \cdot \delta^{m n} \\
 > \fbox{3}\; & \int_{- \pi}^\pi \sin m x \cdot \cos n x \mathrm{d} x = \int_{- \pi}^\pi \cos m x \cdot \sin n x \mathrm{d} x = 0 \\
-> \end{alignedat}\right.
+> \end{alignedat}\right. \\
+> \end{alignedat}
 > $$
 >
 
@@ -38,7 +41,7 @@ Resources:
 >                  0 = a_n &= \dfrac{1}{\pi} \int_{- \pi}^{\pi} f (x) \cos n x \mathrm{d} x  \\
 >                  b_n &= \dfrac{2}{\pi} \int_0^{\pi} f (x) \sin n x \mathrm{d} x \\
 >                  \end{alignedat}\right. \\
-> &&    g (t+ 2 T) &= g (t) \xlongequal[f (x) = f (x + 2 \pi)]{g \left( \left\langle t = \frac{T}{\pi} x \right\rangle \right)} \dfrac{a_0}{2} + \sum_1^{+\infty} \left( a_n \cos \dfrac{n}{T} \pi t + b_n \sin \dfrac{n}{T} \pi t \right)
+> &&    g (t+ 2 T) &= g (\langle - T \le t \le T \rangle) \xlongequal[f (x) = f (x + 2 \pi)]{g \left( \left\langle t = \frac{T}{\pi} x \right\rangle \right)} \dfrac{a_0}{2} + \sum_1^{+\infty} \left( a_n \cos \dfrac{n}{T} \pi t + b_n \sin \dfrac{n}{T} \pi t \right)
 > &&\;\Leftarrow\; \left\lbrace\begin{alignedat}{3}
 >                  a_n &= \dfrac{1}{T} \int_{- T}^T g (t) \cos \dfrac{n}{T} \pi t \mathrm{d} t = \dfrac{1}{\pi} \int_{- \pi}^\pi g \left( \dfrac{T}{\pi} x \right) \cos n x \mathrm{d} x \\
 >                  b_n &= \dfrac{1}{T} \int_{- T}^T g (t) \sin \dfrac{n}{T} \pi t \mathrm{d} t = \dfrac{1}{\pi} \int_{- \pi}^\pi g \left( \dfrac{T}{\pi} \right) x \sin n x \mathrm{d} x \\

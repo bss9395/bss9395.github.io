@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     收敛极限中的反例
-Revised:   2018-04-28 20:22:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-04-29 18:25:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -112,7 +112,18 @@ Resources:
 > + \dfrac{1}{x^\frac{1}{4}} &\;\Leftarrow\; x \in \mathbb{Q} \\
 > - \dfrac{1}{x^\frac{1}{4}} &\;\Leftarrow\; x \not\in \mathbb{Q} \\
 > \end{alignedat}\right. \\
-> & \int_0^1 f (x) \mathrm{d} x \not\to \mathcal{Conv.} \quad\land\quad \int_0^1 f^2 (x) \mathrm{d} x \to \mathcal{Conv.}
+> & \int_0^1 f (x) \mathrm{d} x \not\to \mathcal{Conv.} \quad\land\quad \int_0^1 |f (x)| \mathrm{d} x \to \mathcal{Conv.} \quad\land\quad \int_0^1 f^2 (x) \mathrm{d} x \to \mathcal{Conv.}
 > \end{alignedat}
 > $$
 >
+
+> ### 非平方平均收敛
+
+> $$
+> \begin{alignedat}{3}
+> & f (x) = \sum_2^{+\infty} \dfrac{\sin n x}{\ln n} \rightrightarrows \mathcal{Conv.} \\
+> & \int_{- \pi}^\pi f^2 (x) \mathrm{d} x = \sum_{n = 2}^{+\infty} \dfrac{1}{\ln^2 n} \to +\infty \\
+> \end{alignedat}
+> $$
+>
+

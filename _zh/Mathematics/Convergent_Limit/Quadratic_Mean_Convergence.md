@@ -1,8 +1,8 @@
 ---
 layout:    zh_post
 Topic:     收敛极限
-Title:     多项式
-Revised:   2018-04-21 01:34:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Title:     平方平均收敛
+Revised:   2018-04-29 18:15:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -42,7 +42,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\;           &&                                                                 f (x \in [0, 1]) \to \mathcal{Conti.} \quad&\Rightarrow\quad | f (x') - f (x'') | \lt \varepsilon \\
+> \Uparrow\;           &&                                                                 f (x \in [0, 1]) \in \mathcal{Conti.} \quad&\Rightarrow\quad | f (x') - f (x'') | \lt \varepsilon \\
 > \Uparrow\;           &&                                                                    | F (f ([0, 1]); n; x, 1 - x) - f (x) | &\le \sum_{i = 0}^n \left| f \left( \dfrac{i}{n} \right) - f (x) \right| \cdot \mathcal{C}_n^i x^i (1 - x)^{n - i} \\
 >                      &&                                                                                                            &= \left( \sum_{| \frac{i}{n} - x | \lt \delta}^n + \sum_{| \frac{i}{n} - x | \ge \delta}^n \right) \left| f \left( \dfrac{i}{n} \right) - f (x) \right| \cdot \mathcal{C}_n^i x^i (1 - x)^{n - i} \\
 >                      &&                                                                                                            &\le \varepsilon \cdot \sum_{| \frac{i}{n} - x | \lt \delta}^n \mathcal{C}_n^i x^i (1 - x)^{n - i} + \dfrac{2 M}{\delta^2} \cdot \sum_{| \frac{i}{n} - x | \ge \delta}^n \delta^2 \cdot \mathcal{C}_n^i x^i (1 - x)^{n - i} \\
@@ -51,7 +51,7 @@ Resources:
 > \Downarrow\;         &&                                                                                F (f ([0, 1]); n; x, 1 - x) &\rightrightarrows f (x \in [0, 1]) \\
 > \Uparrow\;           &&                                                    f (x \in [0, 1]) = g (\alpha + (\beta - \alpha) x) \quad&\Rightarrow\quad x = \dfrac{t - \alpha}{\beta - \alpha} \\
 > \fbox{1}\Downarrow\; && F \left( f ([0, 1]); n; \dfrac{t - \alpha}{\beta - \alpha}, 1 - \dfrac{t - \alpha}{\beta - \alpha} \right) &\rightrightarrows f \left( x = \dfrac{t - \alpha}{\beta - \alpha} \right) = g (t \in [\alpha, \beta]) \\
-> \fbox{2}\Downarrow\; &&                                                                 f (x \in [0, 1]) \to \mathcal{Conti.} \quad& \\
+> \fbox{2}\Downarrow\; &&                                                                 f (x \in [0, 1]) \in \mathcal{Conti.} \quad& \\
 > \end{alignedat}
 > $$
 >
@@ -73,6 +73,36 @@ Resources:
 > \fbox{11}\; &&                        2 f (x^{2 \pi}) &= [f (x^{2 \pi}) + f (- x)] \cos x \cdot \cos x + [f (x^{2 \pi}) - f (- x)] \sin x \cdot \sin x \\
 >             &&                                        &\leftleftarrows \exists \mathcal{T}_1^{\cos} (n, x) \cdot \cos x + \exists \mathcal{T}_2^{\cos} (n, x) \cdot \sin x \\
 >             &&                                        &\leftleftarrows \exists \mathcal{T} (n + 1, x) \\
+> \end{alignedat}
+> $$
+>
+
+> ### 规范正交三角系
+
+> $$
+> \begin{alignedat}{3}
+> &&                \lbrace \varphi_k \rbrace &= \left\lbrace \dfrac{1}{\sqrt{2 \pi}}, \dfrac{\cos x}{\sqrt{\pi}}, \dfrac{\sin x}{\sqrt{\pi}}, \cdots, \dfrac{\cos k x}{\sqrt{\pi}}, \dfrac{\sin k x}{\sqrt{\pi}}, \cdots \right\rbrace \\
+> &&                             \delta^{i j} &= \int_{- \pi}^\pi \varphi_i (x) \cdot \varphi_j (x) \mathrm{d} x \\
+> &&                                      c_k &= \int_{- \pi}^\pi f (x) \cdot \varphi_k (x) \mathrm{d} x \\
+> && \left\lVert f - \varphi_k \right\rVert^2 &= \int_{- \pi}^\pi [f (x) - \varphi_k (x)]^2 \mathrm{d} x \\
+> \end{alignedat}
+> $$
+>
+
+> ### 平方平均收敛
+
+> $$
+> \begin{alignedat}{3}
+> \Uparrow\;           &&                  \left\lVert f - \sum_0^n \lambda_k \varphi_k \right\rVert^2 &= \int_{- \pi}^\pi \left[ f (x) - \sum_0^n \lambda_k \varphi_k (x) \right]^2 \mathrm{d} x \\
+>                      &&                                                                              &= \lVert f \rVert^2 - 2 \sum_0^n \lambda_k \int_{- \pi}^\pi f (x) \cdot \varphi_k (x) \mathrm{d} x + \sum_0^n \sum_0^n a_i a_j \int_{- \pi}^\pi \varphi_i (x) \cdot \varphi_j (x) \mathrm{d} x \\
+>                      &&                                                                              &= \lVert f \rVert^2 - 2 \sum_0^n \lambda_k c_k + \sum_0^n \lambda_k^2 \\
+>                      &&                                                                              &= \lVert f \rVert^2 - \sum_0^n c_k^2 + \sum_0^n (\lambda_k - c_k)^2 \\
+> \fbox{1}\Downarrow\; &&                  \left\lVert f - \sum_0^n \lambda_k \varphi_k \right\rVert^2 &\mathop{\ge}_{\lambda_k \equiv c_k} \lVert f \rVert^2 - \sum_0^n c_k^2 = \left\lVert f - \sum_0^n c_k \varphi_k \right\rVert^2 \\
+> \fbox{2}\Downarrow\; && \lim_{+\infty} \left\lVert f - \sum_0^{+\infty} \lambda_k \varphi_k \right\rVert^2 &\to 0 \quad\Leftrightarrow\quad \lVert f \rVert^2 = \sum_0^{+\infty} c_k^2 \quad\Rightarrow\quad \lim_{+\infty} c_k \to 0 \\
+> \Downarrow\; && f &= \sum_0^{+\infty} c_k \varphi_k (x) \\
+> \fbox{3}\Downarrow\; && \int_{- \pi}^\pi f (x) \cdot g (x) \mathrm{d} x &= \dfrac{1}{4} \int_{- \pi}^\pi \left[ f (x) + g (x) \right]^2 \mathrm{d} x - \dfrac{1}{4} \int_{- \pi}^\pi [f (x) - g (x)]^2 \mathrm{d} x \\
+> && &= \dfrac{1}{4} \left[ \sum_0^{+\infty} (c_k^f + c_k^g)^2 - \sum_0^{+\infty} (c_k^f - c_k^g)^2 \right] \\
+> && &= \sum_0^{+\infty} c_k^f \cdot c_k^g \\
 > \end{alignedat}
 > $$
 >
