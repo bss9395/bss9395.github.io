@@ -75,3 +75,15 @@ Resources:
 > \end{alignedat}
 > $$
 >
+
+> ### 卷积运算
+
+> $$
+> \begin{alignedat}{3}
+> \Uparrow\; && (f * g) (t) &= \dfrac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} f (\tau) \cdot g (t - \tau) \mathrm{d} \tau \\
+> \Downarrow\; && \widehat{(f * g)} (x) &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \left( \int_{-\infty}^{+\infty} f (\tau) \cdot g (t - \tau) \mathrm{d} \tau \right) e^{- \imath x t} \mathrm{d} t \\
+> && &\xlongequal{u = t - \tau} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} f (\tau) e^{- \imath x \tau} \mathrm{d} \tau \int_{-\infty}^{+\infty} g (u) e^{- \imath x u} \mathrm{d} u \\
+> && &= \hat{f} (x) \cdot \hat{g} (x) \\
+> \end{alignedat}
+> $$
+>
