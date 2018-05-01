@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     特殊符号
-Revised:   2018-04-21 00:05:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-01 21:12:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -166,6 +166,16 @@ Resources:
 >        \mathcal{T} (n, x) &= \Alpha + \sum_1^{n} (\alpha_n \cos n x + \beta_n \sin n x) \\
 > \mathcal{T}^{\cos} (n, x) &= \Alpha + \sum_1^n \alpha_n \cos n x \\
 > \mathcal{T}^{\sin} (n, x) &= \Alpha + \sum_1^n \beta_n \sin n x \\
+> \end{alignedat}
+> $$
+>
+
+> ### 卷积
+
+> $$
+> \begin{alignedat}{3}
+> (f * g) (t) &= \dfrac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} f (\tau) \cdot g (t - \tau) \mathrm{d} \tau \\
+>             &= \dfrac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} f (t - \tau) \cdot g (t) \mathrm{d} \tau \\
 > \end{alignedat}
 > $$
 >
