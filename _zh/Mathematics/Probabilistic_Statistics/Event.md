@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     事件
-Revised:   2018-05-02 00:55:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-02 01:20:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -18,5 +18,16 @@ Resources:
 > \fbox{5}\; & \overline{A \cup B} = \overline{A} \cap \overline{B} & \overline{\bigcup A_n} = \bigcap \overline{A_n} \\
 > \fbox{6}\; & \overline{A \cap B} = \overline{A} \cup \overline{B} & \overline{\bigcap A_n} = \bigcup \overline{A_n} \\
 > \end{array}
+> $$
+>
+
+> ### 事件域
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\; & \Omega \in \mathscr{J} \\
+> \fbox{2}\; & A \in \mathscr{J} \implies \overline{A} \in \mathscr{J} \\
+> \fbox{3}\; & A \in \mathscr{J} \implies \bigcup A_n \in \mathscr{J} \\
+> \end{alignedat}
 > $$
 >
