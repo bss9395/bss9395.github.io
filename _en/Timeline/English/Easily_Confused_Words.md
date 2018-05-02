@@ -18,8 +18,8 @@ Resources:
 > + average : ordinary
 > + believable : credible : dependable : plausible : reliable
 > + bizarre : strange : weird
-> + clear : lucid
 > + brutal : ferocious : savage 
+> + clear : lucid
 > + committed : dedicated : devoted
 > + complex : complicated
 > + consecutive : continual : continuous
@@ -42,10 +42,9 @@ Resources:
 
 >  ### Noun
 
+> + middle : midst
 > + absurd : preposterous : ridiculous
 > + ancestor : progenitor
-> + forecast : prognosis : prognostication
-> + groove : trajectory
 > + berk : idiot
 > + block : chunk : hunk : lump
 > + caution : caveat : warning
@@ -61,16 +60,18 @@ Resources:
 > + correlation : relevance
 > + demonstrator : marcher
 > + dictatorship : tyranny
+> + disease : illness 
 > + dizziness : vertigo
 > + dot : mark : patch : speck : speckle : spot
 > + earnings : income : pay : salary : wage
 > + embarrassment : humiliation : shame
 > + emptiness : void
 > + excess : plethora
-> + disease : illness 
 > + fibre : filament : thread
+> + forecast : prognosis : prognostication
 > + genesis : origin
 > + groan : moan : wail
+> + groove : trajectory
 > + growing : increasing : mounting
 > + inclination : propensity
 > + issue : problem : trouble
@@ -92,10 +93,11 @@ Resources:
 
 >  ### Verb
 
+> + tip : tilt
+> + entice : lure
 > + advance : proceed : progress
 > + agglomerate : aggregate
 > + aggregate : assemble : converge
-> + devise : think up
 > + alleviate : decline : decrease : diminish : lessen : reduce
 > + associate : connect : interlink : link
 > + assume : postulate : presume : speculate : suppose
@@ -111,6 +113,7 @@ Resources:
 > + crave : long for
 > + decline : refuse
 > + deter : hamper : hinder : impede : inhibit : obstruct : prevent : prohibit : retard
+> + devise : think up
 > + differentiate : discriminate : distinguish
 > + disrupt : disturb : interrupt  : perturb
 > + elucidate : explain
@@ -140,7 +143,7 @@ Resources:
 > + because of : due to : on the account of : owing to
 > + but : however : nevertheless : nonetheless
 > + consequently : hence : thereby : therefore : thus
-> + whatever : whatsoever
 > + eventually : finally : lastly : ultimately
+> + whatever : whatsoever
 > + when : while : whilst
 > + whereas : while : whilst
