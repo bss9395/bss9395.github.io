@@ -11,16 +11,18 @@ Resources:
 
 > $$
 > \begin{array}{ll|l}
-> \fbox{01} & A \cup B = B \cup A                                                                       & A B = B A \\
-> \fbox{02} & (A \cup B) \cup C = A \cup (B \cup C)                                                     & (A B) C = A (B C) \\
-> \fbox{03} & (A \cup B) \cap C = (A \cap C) \cup (B \cap C)                                            & \\
-> \fbox{04} & (A \cap B) \cup C = (A \cup C) \cap (B \cup C)                                            & \\
-> \fbox{05} & \overline{A \cup B} = \overline{A} \cap \overline{B}                                      & \overline{\bigcup A_n} = \bigcap \overline{A_n} \\
-> \fbox{06} & \overline{A \cap B} = \overline{A} \cup \overline{B}                                      & \overline{\bigcap A_n} = \bigcup \overline{A_n} \\
-> \fbox{07} & A - B = A - A B                                                                           & A B \subseteq A \\
-> \fbox{08} & A \cup B = (A - B) \cup B                                                                 & A \cup B = (A - A B) \cup B \\
-> \fbox{09} & A \overline{B} = A - B                                                                    & A \overline{B} = A - A B \\
-> \fbox{10} & E_n \subseteq E_{n + 1} \implies \lim\limits_{+\infty} E_n = \bigcup\limits^{+\infty} E_n & E_n \supseteq E_{n + 1} \implies \lim\limits_{+\infty} E_n = \bigcap\limits^{+\infty} E_n \\
+> \fbox{01} & A \cup B = B \cup A                                                                       & \\
+> \fbox{02} & A \cap B = B \cap A                                                                       & A B = B A \\
+> \fbox{03} & (A \cup B) \cup C = A \cup (B \cup C)                                                     & \\
+> \fbox{04} & (A \cap B) \cap C = A \cap (B \cap C)                                                     & (A B) C = A (B C) \\
+> \fbox{05} & (A \cup B) \cap C = (A \cap C) \cup (B \cap C)                                            & \\
+> \fbox{06} & (A \cap B) \cup C = (A \cup C) \cap (B \cup C)                                            & \\
+> \fbox{07} & \overline{A \cup B} = \overline{A} \cap \overline{B}                                      & \overline{\bigcup A_n} = \bigcap \overline{A_n} \\
+> \fbox{08} & \overline{A\cap B} = \overline{A} \cup \overline{B}                                       & \overline{\bigcap A_n} = \bigcup \overline{A_n} \\
+> \fbox{09} & A - B = A \overline{B}                                                                    & A - B = A - A B \\
+> \fbox{10} & A \cup B = (A \overline{B}) \cup B                                                        & A \cup B = (A - A B) \cup B \\
+> \fbox{11} & E_n \subseteq E_{n + 1} \implies \lim\limits_{+\infty} E_n = \bigcup\limits^{+\infty} E_n & \\
+> \fbox{12} & E_n \supseteq E_{n + 1} \implies \lim\limits_{+\infty} E_n = \bigcap\limits^{+\infty} E_n & \\
 > \end{array}
 > $$
 >
@@ -30,8 +32,8 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \fbox{1}\quad & \Omega \in \mathscr{E} \\
-> \fbox{2}\quad & A \in \mathscr{E} \implies \overline{A} \in \mathscr{E} \\
-> \fbox{3}\quad & A \in \mathscr{E} \implies \bigcup A_n \in \mathscr{E} \\
+> \fbox{2}\quad & E \in \mathscr{E} \implies \overline{E} \in \mathscr{E} \\
+> \fbox{3}\quad & E \in \mathscr{E} \implies \bigcup E_n \in \mathscr{E} \\
 > \end{alignedat}
 > $$
 >
@@ -40,7 +42,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> P (A) = \dfrac{n_A}{N} \\
+> P (E) = \dfrac{N_{umber} (E)}{N_{umber} (\Omega)} \\
 > \end{alignedat}
 > $$
 >
@@ -49,7 +51,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> P (A) &= \lim_{+\infty} \left\langle f_n (A) = \dfrac{n (A)}{N} \right\rangle \\
+> P (E) &= \lim_{+\infty} \left\langle f_n (E) = \dfrac{T_{rial} (E)}{T_{rial} (\Omega)} \right\rangle \\
 > \end{alignedat}
 > $$
 >
@@ -58,22 +60,27 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> P (A) = \dfrac{S_A}{S_\Omega} \\
+> P (E) = \dfrac{S_{ize} (E)}{S_{ize} (\Omega)} \\
 > \end{alignedat}
 > $$
 >
 
 > ### 主观概率
 
-> 一个事件的概率是人们根据经验对该事件发生的可能性所给出的个人信念。
+> $$
+> \begin{alignedat}{3}
+> P (E) = C_{onfidence} (E) \\
+> \end{alignedat}
+> $$
+>
 
 > ### 公理化概率
 
 > $$
 > \begin{array}{lll}
-> \fbox{1} & \text{Non-Negativity:}       & A \in \mathscr{E} \implies 0 \le P (A) \\
+> \fbox{1} & \text{Non-Negativity:}       & E \in \mathscr{E} \implies 0 \le P (E) \\
 > \fbox{2} & \text{Regularity:}           & P (\Omega) = 1 \\
-> \fbox{3} & \text{Countable Additivity:} & A_n \cap A_m = \emptyset \implies P \left( \bigcup A_n \right) = \sum P (A_n) \\
+> \fbox{3} & \text{Countable Additivity:} & E_n \cap E_m = \varnothing \implies P \left( \bigcup E_n \right) = \sum P (E_n) \\
 > \end{array}
 > $$
 >
@@ -82,14 +89,12 @@ Resources:
 
 > $$
 > \begin{array}{ll|l}
-> \fbox{1} & P (\varnothing) = 0                                                                                             & \\
-> \fbox{2} & P (\overline{A}) = 1 - P (A)                                                                                    & P (A) + P (\overline{A}) = 1 \\
-> \fbox{3} & A \supseteq B \implies P (A - B) = P (A) - P (B)                                                                & P (B) \le P (A) \\
-> \fbox{4} & P (A - B) = P (A) - P (A B)                                                                                     & P (A B) \le P (A) \\
-> \fbox{5} & P (A \cup B) = P (A) + P (B) - P (A B)                                                                          & P (A \cup B) \le P (A) + P (B)  \\
-> \fbox{6} & P (\bigcup A_n) = \sum\limits_1^n (- 1)^{n - 1} \sum\limits_{1 \le i \le \cdots \le j \le n} P (A_i \cdots A_j) & P (\bigcup A_n) \le \sum P (A_n) \\
-> \fbox{7} & \lim\limits_{+\infty} P (E_n) =P \left( \lim\limits_{+\infty} E_n \right)                                       & \\
->
+> \fbox{01} & P (\varnothing) = 0                                                                                             & \\
+> \fbox{02} & P (\overline{A}) = 1 - P (A)                                                                                    & P (A) + P (\overline{A}) = 1 \\
+> \fbox{03} & P (A \overline{B}) = P (A) - P (A B)                                                                            & P (A) \ge P (A B) \\
+> \fbox{04} & P (A \cup B) = P (A) + P (B) - P (A B)                                                                          & P (A) + P (B) \ge P (A \cup B) \\
+> \fbox{05} & P (\bigcup A_n) = \sum\limits_1^n (- 1)^{n - 1} \sum\limits_{1 \le i \le \cdots \le j \le n} P (A_i \cdots A_j) & \sum P (A_n) \ge P (\bigcup A_n) \\
+> \fbox{06} & \lim\limits_{+\infty} P (E_n) = P \left( \lim\limits_{+\infty} E_n \right)                                      & \\
 > \end{array}
 > $$
 >
@@ -100,4 +105,3 @@ Resources:
 >
 > ——《$\S$ 1.2 概率的定义及其确定方法》
 > ——《概率论与数理统计教程 (第二版)》茆诗松/程依明/濮晓龙/等著
-
