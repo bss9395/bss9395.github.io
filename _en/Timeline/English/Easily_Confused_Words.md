@@ -9,6 +9,7 @@ Resources:
 
 >  ### Adjective
 
+> + imminent : impending
 > + abundant : copious : plentiful : substantial
 > + address : cope with : deal with : handle : manage : tackle : treat 
 > + adequate : ample : enough : sufficient
@@ -93,6 +94,8 @@ Resources:
 
 >  ### Verb
 
+> + crave for : long for
+> + finance : fund
 > + tip : tilt
 > + entice : lure
 > + advance : proceed : progress
