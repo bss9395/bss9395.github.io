@@ -33,7 +33,7 @@ Resources:
 > \begin{alignedat}{3}
 > \fbox{1}\quad & \Omega \in \mathscr{E} \\
 > \fbox{2}\quad & E \in \mathscr{E} \implies \overline{E} \in \mathscr{E} \\
-> \fbox{3}\quad & E \in \mathscr{E} \implies \bigcup E_n \in \mathscr{E} \\
+> \fbox{3}\quad & E_n \in \mathscr{E} \implies \bigcup E_n \in \mathscr{E} \\
 > \end{alignedat}
 > $$
 >

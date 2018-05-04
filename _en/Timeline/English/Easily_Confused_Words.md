@@ -9,6 +9,7 @@ Resources:
 
 >  ### Adjective
 
+> + real : realistic
 > + imminent : impending
 > + abundant : copious : plentiful : substantial
 > + address : cope with : deal with : handle : manage : tackle : treat 
