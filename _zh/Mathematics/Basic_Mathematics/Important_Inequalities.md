@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     重要不等式
-Revised:   2018-04-22 19:53:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-05 16:39:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -137,5 +137,15 @@ Resources:
 >                         \left[ \sum^n (u_n + v_n)^p \right]^\frac{1}{p} &\mathop{\ge}\limits_{\langle u_n \equiv \lambda v_n \rangle} \left( \sum^n u_n^p \right)^\frac{1}{p} + \left( \sum^n v_n^p \right)^\frac{1}{p} &&\;\Leftarrow\; p &\lt 1 \\
 >                         \end{alignedat}\right. \\
 > \end{alignedat}
+> $$
+>
+
+> ### 偏差概率不等式
+
+> $$
+> \begin{array}{l|ll}
+> P (|X - E (X)| \ge \varepsilon) \le \dfrac{\mathrm{Var} (X)}{\varepsilon^2}     & P (|X - E (X)| \gt \varepsilon) \lt \dfrac{\mathrm{Var} (X)}{\varepsilon^2} \\
+> P (|X - E (X)| \lt \varepsilon) \ge 1 - \dfrac{\mathrm{Var} (X)}{\varepsilon^2} & P (|X - E (X)| \le \varepsilon) \gt 1 - \dfrac{\mathrm{Var} (X)}{\varepsilon^2} \\
+> \end{array}
 > $$
 >
