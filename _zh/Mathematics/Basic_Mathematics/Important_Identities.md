@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     重要恒等式
-Revised:   2018-04-17 20:01:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-06 00:50:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -62,6 +62,15 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > n ! = \sqrt{2 \pi n} \left( \dfrac{n}{e} \right)^n \cdot e^\frac{\langle 0 \lt \theta (n) \lt 1 \rangle}{12 n} \\
+> \end{alignedat}
+> $$
+>
+
+> ### 组合恒等式
+
+> $$
+> \begin{alignedat}{3}
+> k \mathcal{C}_n^k = k {n \choose k} = k \cdot \dfrac{n !}{k ! (n - k) !} = n \cdot \dfrac{(n - 1) !}{(k - 1) ! (n - k) !} = n {n - 1 \choose k - 1} = n \mathcal{C}_{n - 1}^{k - 1} \\
 > \end{alignedat}
 > $$
 >

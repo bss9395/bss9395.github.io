@@ -11,8 +11,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->     E (X) &= \sum x_i \cdot p (x_i)     &&\;\Leftarrow\; \sum |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
-> E [f (X)] &= \sum f (x_i) \cdot p (x_i) &&\;\Leftarrow\; \sum |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
+>     \mathrm{E_{xpected}} (X) &= \sum x_i \cdot p (x_i)     &&\;\Leftarrow\; \sum |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
+> \mathrm{E_{xpected}} (f (X)) &= \sum f (x_i) \cdot p (x_i) &&\;\Leftarrow\; \sum |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >
@@ -21,8 +21,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->     E (X) &= \int x \cdot p (x) \mathrm{d} x     &&\;\Leftarrow\; \int |x| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\
-> E [f (X)] &= \int f (x) \cdot p (x) \mathrm{d} x &&\;\Leftarrow\; \int |f (x)| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\ 
+>     \mathrm{E_{xpected}} (X) &= \int x \cdot p (x) \mathrm{d} x     &&\;\Leftarrow\; \int |x| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\
+> \mathrm{E_{xpected}} (f (X)) &= \int f (x) \cdot p (x) \mathrm{d} x &&\;\Leftarrow\; \int |f (x)| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\ 
 > \end{alignedat}
 > $$
 >
@@ -31,9 +31,9 @@ Resources:
 
 > $$
 > \begin{array}{lll}
-> \fbox{1} & E (c) = c \\
-> \fbox{2} & E (c \cdot X) = c \cdot E (X) \\
-> \fbox{3} & E [f (X) + g (X)] = E [f (X)] + E [g (X)] \\
+> \fbox{1} & \mathrm{E} (c) = c \\
+> \fbox{2} & \mathrm{E} (c \cdot X) = c \cdot \mathrm{E} (X) \\
+> \fbox{3} & \mathrm{E} (f (X) + g (X)) = \mathrm{E} (f (X)) + \mathrm{E} (g (X)) \\
 > \end{array}
 > $$
 >
