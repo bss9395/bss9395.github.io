@@ -11,7 +11,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->             \mathrm{Var_{riation}} (X) &= E (X - E (X))^2 \\
+>              \mathrm{Var_{riance}} (X) &= E (X - E (X))^2 \\
 >                                        &= E (X^2 - 2 X \cdot E (X) + E^2 (X)) \\
 >                                        &= E (X^2) - E^2 (X) \\
 >  \mathrm{S_{tandard} D_{eviation}} (X) &= \sqrt{\mathrm{Var} (X)} \\
@@ -36,7 +36,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->             \mathrm{Var_{iation}} (X) &= \sum x_i^2 \cdot p (x_i) - \left[ \sum x_i \cdot p (x_i) \right]^2 \\
+>              \mathrm{Var_{iance}} (X) &= \sum x_i^2 \cdot p (x_i) - \left[ \sum x_i \cdot p (x_i) \right]^2 \\
 > \mathrm{S_{tandard} D_{eviation}} (X) &= \sqrt{\sum x_i^2 \cdot p (x_i) - \left[ \sum x_i \cdot p (x_i) \right]^2}
 > \end{alignedat}
 > $$
@@ -46,7 +46,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->             \mathrm{Var_{iation}} (X) &= \int x^2 \cdot p (x) \mathrm{d} x - \left[ \int x \cdot p (x) \mathrm{d} x \right]^2 \\
+>              \mathrm{Var_{iance}} (X) &= \int x^2 \cdot p (x) \mathrm{d} x - \left[ \int x \cdot p (x) \mathrm{d} x \right]^2 \\
 > \mathrm{S_{tandard} D_{eviation}} (X) &= \sqrt{\int x^2 \cdot p (x) \mathrm{d} x - \left[ \int x \cdot p (x) \mathrm{d} x \right]^2} \\
 > \end{alignedat}
 > $$
