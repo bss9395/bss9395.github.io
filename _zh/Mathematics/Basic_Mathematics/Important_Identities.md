@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     重要恒等式
-Revised:   2018-05-06 00:50:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-07 00:59:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -27,11 +27,12 @@ Resources:
 > $$
 >
 
-> ### 级数和恒等式
+> ### 级数恒等式
 
 > $$
 > \begin{alignedat}{3}
-> \sum_{m = m_0}^n \sum_{l = l_0}^m = \sum_{l = l_0}^n \sum_{m = l + m_0 - l_0}^n = \sum_{l = l_0}^n \sum_{m - m_0 \ge l - l_0} \\
+> \fbox{1}\quad & \sum_{m = m_0}^n \sum_{l = l_0}^m = \sum_{l = l_0}^n \sum_{m = l + m_0 - l_0}^n = \sum_{l = l_0}^n \sum_{m - m_0 \ge l - l_0} \\
+> \fbox{2}\quad & \left( \sum_{i = 0}^n c_i x^i \right) \cdot \left( \sum_{j = 0}^m d_j x^j \right) = \sum_{l = 0}^{n + m} \left( \sum_{k = 0}^l c_k d_{l - k} \right) x^l \\
 > \end{alignedat}
 > $$
 >
