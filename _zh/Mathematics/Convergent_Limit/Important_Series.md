@@ -11,7 +11,7 @@ Resources:
 
 > | **$$f (x)$$** | **(-R, +R)** | **$$f (0) + \sum\limits_1^{+\infty}  \dfrac{f^{(n)} (x)}{n !} x^n + O (x^{n + 1})$$** | **$$f^{(n)} (x)$$** |
 > | :------------------- | :--------------------------------------- | :--------------------------------------- | :--------------------------------------- |
-> | $(1 + x)^P$          | $$(-1, +1); P \le -1$$ $$(-1, +1]; -1 \lt P \lt 0$$ $$[-1, +1]; P \gt 0$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{P (P - 1) \cdots (P - n + 1)}{n !} x^n + O (x^{n + 1})$$ | $$P (P - 1) \cdots (P - n + 1) (1 + x)^{P - n}$$ |
+> | $(1 + x)^P$          | $$(-1, +1) \Leftarrow P \in (-\infty, -1];$$ $$(-1, +1] \Leftarrow P \in (-1, 0);$$ $$[-1, +1] \Leftarrow P \in (0, +\infty);$$ | $$1 + \sum\limits_1^{+ \infty} \mathcal{C}_P^n x^n + O (x^{n + 1})$$ | $$\mathcal{P}_P^n (1 + x)^{P - n}$$ |
 > | $$\dfrac{1}{1 - x}$$ | $$(-1, +1)$$ | $$1 + \sum\limits_1^{+ \infty} x^n + O (x^{n + 1})$$ | $$n ! (1 + x)^{- n - 1}$$       |
 > | $$E^x$$              | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{\ln^n E}{n !} x^n + O (x^{n + 1})$$ | $$E^x \ln^n E$$                          |
 > | $$e^x$$             | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{1}{n !} x^n + O (x^{n + 1})$$ | $$e^x$$                                  |

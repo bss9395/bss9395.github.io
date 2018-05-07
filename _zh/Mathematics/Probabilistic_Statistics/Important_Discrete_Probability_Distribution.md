@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要离散概率分布
-Revised:   2018-05-07 21:40:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-08 03:58:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -124,12 +124,12 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\Uparrow\quad &&                                                          p &= \lim_{k \le n \ll N} \dfrac{K}{N} = \lim_{k \le n \ll N} \dfrac{K - k + 1}{N - k + 1} \\
-> \fbox{2}\Uparrow\quad &&                                                      1 - p &= \lim_{k \le n \ll N} \dfrac{N - K}{N} = \lim_{k \le n \ll N} \dfrac{(N - K) - (n - k) + 1}{(N - k) - (n - k) + 1}  \\
-> \Downarrow\quad       && \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} &= \dfrac{n !}{k ! (n - k) !} \dfrac{\frac{K !}{(K - k) !}}{\frac{N !}{(N - k) !}} \dfrac{\frac{(N - K) !}{[(N - K) - (n - k)] !}}{\frac{(N - k) !}{(N - n) !}} \\
->                       &&                                                            &= {n \choose k} \dfrac{K (K - 1) \cdots (K - k + 1)}{N (N - 1) \cdots (N - k + 1)} \dfrac{(N - K) [(N - K) - 1] \cdots [(N - K) - (n - k) + 1]}{(N - k) [(N - k) - 1] \cdots [(N - k) - (n - k) + 1]} \\
->                       &&                                                            &\approx {n \choose k} \left( \dfrac{K}{N} \right)^k \left( \dfrac{N - K}{N} \right)^{n - k} \\
-> \Downarrow\quad       && \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} &\approx {n \choose k} p^k (1 - p)^{n - k} \\
+> \fbox{1}\Uparrow\quad &&                                                                               p &= \lim_{k \le n \ll N} \dfrac{K}{N} = \lim_{k \le n \ll N} \dfrac{K - k + 1}{N - k + 1} \\
+> \fbox{2}\Uparrow\quad &&                                                                           1 - p &= \lim_{k \le n \ll N} \dfrac{N - K}{N} = \lim_{k \le n \ll N} \dfrac{(N - K) - (n - k) + 1}{(N - k) - (n - k) + 1}  \\
+> \Downarrow\quad       && \lim_{k \le n \ll N} \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} &= \lim_{k \le n \ll N} \dfrac{n !}{k ! (n - k) !} \dfrac{\frac{K !}{(K - k) !}}{\frac{N !}{(N - k) !}} \dfrac{\frac{(N - K) !}{[(N - K) - (n - k)] !}}{\frac{(N - k) !}{(N - n) !}} \\
+>                       &&                                                                                 &= \lim_{k \le n \ll N} {n \choose k} \dfrac{K (K - 1) \cdots (K - k + 1)}{N (N - 1) \cdots (N - k + 1)} \dfrac{(N - K) [(N - K) - 1] \cdots [(N - K) - (n - k) + 1]}{(N - k) [(N - k) - 1] \cdots [(N - k) - (n - k) + 1]} \\
+>                       &&                                                                                 &= \lim_{k \le n \ll N} {n \choose k} \left( \dfrac{K}{N} \right)^k \left( \dfrac{N - K}{N} \right)^{n - k} \\
+> \Downarrow\quad       &&                      \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} &\approx {n \choose k} p^k (1 - p)^{n - k} \\
 > \end{alignedat}
 > $$
 >
@@ -138,8 +138,16 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> P (X = k) &= {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \quad\Leftarrow\quad k \in [n, \cdots) \\
-> \mathrm{E} (X) &= 
+>                         P (X = k) &= {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \quad\Leftarrow\quad k \in [n, +\infty) \\
+>                     P (X - n = l) &= {n + l - 1 \choose l} p^n (1 - p)^l \quad\Leftarrow\quad l \in \mathbb{N} \\
+> \mathrm{E} [\mathrm{NB} (n, p)]^h &= \sum_{k = n}^{+\infty} k^h {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \\
+>                                   &= \dfrac{n}{p} \sum_{k = n}^{+\infty} k^{h - 1} {k \choose n} p^{n + 1} (1 - p)^{k - n} \\
+>                                   &= \dfrac{n}{p} \sum_{l = n + 1}^{+\infty} (l - 1)^{h - 1} {l - 1 \choose n} p^{n + 1} (1 - p)^{l - (n + 1)} \\
+>                                   &= \dfrac{n}{p} \cdot \mathrm{E} [\mathrm{NB} (n + 1, p) - 1]^{h - 1} \\
+> \mathrm{E} [\mathrm{NB} (n, p)]^1 &= \dfrac{n}{p} \\
+> \mathrm{E} [\mathrm{NB} (n, p)]^2 &= \dfrac{n}{p} \cdot \left( \dfrac{n + 1}{p} - 1 \right) \\
+> \mathrm{Var} [\mathrm{NB} (n, p)] &= \dfrac{n (1 - p)}{p^2} \\
 > \end{alignedat}
 > $$
 >
+
