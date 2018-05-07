@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     组合数学
 Title:     排列组合
-Revised:   2018-05-07 01:13:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-07 17:45:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -20,7 +20,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> n^k \\
+> \mathcal{P} = n^k \\
 > \end{alignedat}
 > $$
 >
@@ -38,7 +38,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> {n + k - 1 \choose k} \\
+> \mathcal{C} = {n + k - 1 \choose k} \\
 > \end{alignedat}
 > $$
 >
@@ -46,14 +46,15 @@ Resources:
 > ### 组合的性质
 
 > $$
-> \begin{array}{lll}
-> \fbox{1} & {n \choose k} = {n \choose n - k} \\
-> \fbox{2} & {n \choose k} = {n - 1 \choose k - 1} + {n - 1 \choose k} \\
-> \fbox{3} & \sum\limits_{k = 0}^n {n \choose k} = 2^n \\
-> \fbox{4} & \sum\limits_{k = 1}^n k {n \choose k} = n 2^{n - 1} \\
-> \fbox{5} & \sum\limits_{l = 0}^k {n \choose l} {m \choose k - l} = {n + m \choose k} &\Leftarrow\; \left[ \sum\limits_{i = 0}^n {n \choose i} x^i \right] \cdot \left[ \sum\limits_{j = 0}^m {m \choose j} x^j \right] \xlongequal[(1 + x)^{n + m}]{(1 + x)^n \cdot (1 + x)^m} \sum\limits_{k = 0}^{n + m} {n + m \choose k} x^k \\
-> \fbox{6} & \sum\limits_{k = 0}^n {n \choose k}^2 = {2 n \choose n} \\
-> \end{array}
+> \begin{alignedat}{3}
+> \fbox{1}\quad & {n \choose k} = {n \choose n - k} \\
+> \fbox{2}\quad & {n \choose k} = \dfrac{n}{k} {n - 1 \choose k - 1} \\
+> \fbox{3}\quad & {n \choose k} = {n - 1 \choose k - 1} + {n - 1 \choose k} \\
+> \fbox{4}\quad & \sum\limits_{k = 0}^n {n \choose k} = 2^n \\
+> \fbox{5}\quad & \sum\limits_{k = 1}^n k {n \choose k} = n 2^{n - 1} \\
+> \fbox{6}\quad & \sum\limits_{\max (0, k - m)}^{\min (n, k)} {n \choose i} {m \choose k - i} = \sum\limits_{\max (k -n, 0)}^{\min (k, m)} {n \choose k - j} {m \choose j} = {n + m \choose k} &\Leftarrow\; \left[ \sum\limits_{i = 0}^n {n \choose i} x^i \right] \cdot \left[ \sum\limits_{j = 0}^m {m \choose j} x^j \right] \xlongequal[(1 + x)^{n + m}]{(1 + x)^n \cdot (1 + x)^m} \sum\limits_{k = 0}^{n + m} {n + m \choose k} x^k \\
+> \fbox{7}\quad & \sum\limits_{k = 0}^n {n \choose k}^2 = {2 n \choose n} \\
+> \end{alignedat}
 > $$
 >
 
