@@ -11,11 +11,11 @@ Resources:
 
 > $$
 > \begin{array}{l|l|l}
->                     & P (X \lt \beta) = C (\beta^-)           & P (\alpha \lt X \lt \beta) = C(\beta^-) - C (\alpha) \\
->                     & P (X \le \beta) = C (\beta)             & P (\alpha \lt X \le \beta) = C (\beta) - C (\alpha) \\
-> C (x) = P (X \le x) & P (X = \beta) = C (\beta) - C (\beta^-) & \\
->                     & P (X \ge \beta) = 1 - C (\beta^-)       & P (\alpha \le X \lt \beta) = C (\beta^-) - C (\alpha^-) \\
->                     & P (X \gt \beta) = 1 - C (\beta)         & P (\alpha \le X \le \beta) = C (\beta) - C (\alpha^-) \\
+>                                 & P (X \lt \beta) = C (\beta^-)           & P (\alpha \lt X \lt \beta) = C(\beta^-) - C (\alpha) \\
+>                                 & P (X \le \beta) = C (\beta)             & P (\alpha \lt X \le \beta) = C (\beta) - C (\alpha) \\
+> C_{umulative} (x) = P (X \le x) & P (X = \beta) = C (\beta) - C (\beta^-) & \\
+>                                 & P (X \ge \beta) = 1 - C (\beta^-)       & P (\alpha \le X \lt \beta) = C (\beta^-) - C (\alpha^-) \\
+>                                 & P (X \gt \beta) = 1 - C (\beta)         & P (\alpha \le X \le \beta) = C (\beta) - C (\alpha^-) \\
 > \end{array}
 > $$
 >
@@ -24,9 +24,9 @@ Resources:
 
 > $$
 > \begin{array}{ll|l}
-> \fbox{1} & x \lt y \implies F (x) \le F (y) \\
-> \fbox{2} & F (-\infty) = \lim\limits_{-\infty} F (x) = 0 & F (+\infty) = \lim\limits_{+\infty} F (x) = 1 \\
-> \fbox{3} & F (x_0) = \lim\limits_{x_0^+} F (x)           & F (x_0^-) \le F (x_0) = F (x_0^+) \\
+> \fbox{1} & x \lt y \implies C (x) \le C (y) \\
+> \fbox{2} & C (-\infty) = \lim\limits_{-\infty} C (x) = 0 & C (+\infty) = \lim\limits_{+\infty} C (x) = 1 \\
+> \fbox{3} & C (x_0) = \lim\limits_{x_0^+} C (x)           & C (x_0^-) \le C (x_0) = C (x_0^+) \\
 > \end{array}
 > $$
 >
@@ -43,11 +43,11 @@ Resources:
 > ### 离散概率密度函数的性质
 
 > $$
-> \begin{array}{lll}
-> \fbox{1} & p (x_i) \ge 0 \\
-> \fbox{2} & \sum\limits_{-\infty}^{+\infty} p (x_i) = 1 \\
-> \fbox{3} & C (x) = \sum\limits_{-\infty}^x p (x_i) \\
-> \end{array}
+> \begin{alignedat}{3}
+> \fbox{1}\quad & p (x_i) \ge 0 \\
+> \fbox{2}\quad & \sum\limits_{-\infty}^{+\infty} p (x_i) = 1 \\
+> \fbox{3}\quad & \sum\limits_{-\infty}^x p (x_i) = C (x) \\
+> \end{alignedat}
 > $$
 >
 
@@ -63,11 +63,11 @@ Resources:
 > ### 连续概率密度函数的性质
 
 > $$
-> \begin{array}{lll}
-> \fbox{1} & p (x) \ge 0 \\
-> \fbox{2} & \int_{-\infty}^{+\infty} p (x) = 1 \\
-> \fbox{3} & C (x) = \int_{-\infty}^x p (x) \\
-> \end{array}
+> \begin{alignedat}{3}
+> \fbox{1}\quad & p (x) \ge 0 \\
+> \fbox{2}\quad & \int_{-\infty}^{+\infty} p (x) = 1 \\
+> \fbox{3}\quad & \int_{-\infty}^x p (x) = C (x) \\
+> \end{alignedat}
 > $$
 >
 

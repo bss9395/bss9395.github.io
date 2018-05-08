@@ -2,27 +2,29 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     统计特性
-Revised:   2018-05-08 04:16:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-08 20:08:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 离散期望值
+> ### 离散期望值 $\mathrm{E_{xpected}} [X]$
 
 > $$
 > \begin{alignedat}{3}
->     \mathrm{E_{xpected}} [X] &= \sum x_i \cdot p (x_i)     &&\;\Leftarrow\; \sum |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
-> \mathrm{E_{xpected}} [f (X)] &= \sum f (x_i) \cdot p (x_i) &&\;\Leftarrow\; \sum |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
+>     \mathrm{E} [X] &= \sum x_i \cdot p (x_i)     &&\;\Leftarrow\; \sum |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
+> \mathrm{E} [f (X)] &= \sum f (x_i) \cdot p (x_i) &&\;\Leftarrow\; \sum |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
+>   \mathrm{E} [X]^h &= \sum x_i^h \cdot p (x_i)   &&\;\Leftarrow\; \sum |x_i^h| \cdot p (x_i) \to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >
 
-> ### 连续期望值
+> ### 连续期望值 $\mathrm{E_{xpected}} [X]$
 
 > $$
 > \begin{alignedat}{3}
->     \mathrm{E_{xpected}} [X] &= \int x \cdot p (x) \mathrm{d} x     &&\;\Leftarrow\; \int |x| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\
-> \mathrm{E_{xpected}} [f (X)] &= \int f (x) \cdot p (x) \mathrm{d} x &&\;\Leftarrow\; \int |f (x)| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\ 
+>     \mathrm{E} [X] &= \int x \cdot p (x) \mathrm{d} x     &&\;\Leftarrow\; \int |x| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\
+> \mathrm{E} [f (X)] &= \int f (x) \cdot p (x) \mathrm{d} x &&\;\Leftarrow\; \int |f (x)| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\ 
+>   \mathrm{E} [X]^h &= \int x^h \cdot p (x) \mathrm{d} x   &&\;\Leftarrow\; \int |x^h| \cdot p (x) \mathrm{d} x \to \mathrm{Conv.} \\
 > \end{alignedat}
 > $$
 >
@@ -38,13 +40,13 @@ Resources:
 > $$
 >
 
-> ### 方差
+> ### 方差 $\mathrm{Var_{iance}} [X]$
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{Var_{riance}} [X] &= E [X - E [X]]^2 \\
->                           &= E [X^2 - 2 X \cdot E [X] + E^2 [X]] \\
->                           &= E [X]^2 - E^2 [X] \\
+> \mathrm{Var} [X] &= E [X - E [X]]^2 \\
+>                  &= E [X^2 - 2 X \cdot E [X] + E^2 [X]] \\
+>                  &= E [X]^2 - E^2 [X] \\
 > \end{alignedat}
 > $$
 >
@@ -61,12 +63,12 @@ Resources:
 > $$
 >
 
-> ### 标准差
+> ### 标准差 $\mathrm{S_{tandard} D_{eviation}} [X]$
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{S_{tandard} D_{eviation}} [X] &= \sqrt{\mathrm{Var} [X]} \\
->                                       &= \sqrt{E [X]^2 - E^2 [X]} \\
+> \mathrm{SD} [X] &= \sqrt{\mathrm{Var} [X]} \\
+>                 &= \sqrt{E [X]^2 - E^2 [X]} \\
 > \end{alignedat}
 > $$
 >

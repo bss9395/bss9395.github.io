@@ -456,8 +456,8 @@ Resources:
 > | *`iccroot`*               |                       | Find system default ICC profile repository. |
 > | *`iccwrite`*              |                       | Write ICC color profile to disk file.    |
 > | *`idivide`*               |                       | Integer division with rounding option.   |
-> | *`ifftshift`*             |                       | Inverse zero-frequency shift.            |
 > | *`if, elseif, else`*      |                       | Execute statements if condition is true. |
+> | *`ifftshift`*             |                       | Inverse zero-frequency shift.            |
 > | *`ifourier`*              |                       | Inverse Fourier transform.               |
 > | *`ilaplace`*              |                       | Inverse Laplace transform.               |
 > | *`im2bw`*                 | `imbinarize`         | Convert image to binary image, based on threshold. |
@@ -465,17 +465,17 @@ Resources:
 > | *`im2int16`*              |                       | Convert image to 16-bit signed integers. |
 > | *`im2java2d`*             |                       | Convert image to Java buffered image.    |
 > | *`im2single`*             |                       | Convert image to single precision.       |
-> | *`im2uint8`*              |                       | Convert image to 8-bit unsigned integers. |
 > | *`im2uint16`*             |                       | Convert image to 16-bit unsigned integers. |
+> | *`im2uint8`*              |                       | Convert image to 8-bit unsigned integers. |
 > | *`imabsdiff`*             |                       | Absolute difference of two images.       |
-> | *`imag`*                  |                       | Imaginary part of complex number.        |
-> | *`image`*                 |                       | Display image from array.                |
-> | *`imagesc`*               |                       | Display image with scaled colors.        |
 > | *`imadd`*                 |                       | Add two images or add constant to image. |
 > | *`imadjust`*              |                       | Adjust image intensity values or colormap. |
+> | *`imag`*                  |                       | Imaginary part of complex number.        |
+> | *`image`*                 |                       | Display image from array.                |
 > | *`imageAdapter`*          |                       | Interface for image I/O.                 |
 > | *`imageinfo`*             |                       | Image Information tool.                  |
 > | *`imagemodel`*            |                       | Image Model object.                      |
+> | *`imagesc`*               |                       | Display image with scaled colors.        |
 > | *`imapprox`*              |                       | Approximate indexed image by reducing number of colors. |
 > | *`imattributes`*          |                       | Information about image attributes.      |
 > | *`imbinarize`*            |                       | Binarize image by thresholding.          |
@@ -498,8 +498,8 @@ Resources:
 > | *`imformats`*             |                       | Manage image file format registry.       |
 > | *`imfreehand`*            |                       | Create draggable freehand region.        |
 > | *`imfuse`*                |                       | Composite of two images.                 |
-> | *`imgaussfilt`*           |                       | 2-D Gaussian filtering of images.        |
 > | *`imgaussfilt3`*          |                       | 3-D Gaussian filtering of 3-D images.    |
+> | *`imgaussfilt`*           |                       | 2-D Gaussian filtering of images.        |
 > | *`imgca`*                 |                       | Get current axes containing image.       |
 > | *`imgcf`*                 |                       | Get current figure containing image.     |
 > | *`imgCompress`*           |                       | Compress HDU from one file into another. |
@@ -550,7 +550,6 @@ Resources:
 > | *`Inf`*                   |                       | Infinity.                                |
 > | *`inline`*                | `Anonymous Functions` | Construct inline object.                 |
 > | *`inpolygon`*             |                       | Points located inside or on edge of polygonal region. |
-> | *`intlut`*                |                       | Convert integer values using lookup table. |
 > | *`input`*                 |                       | Request user input.                      |
 > | *`inputname`*             |                       | Variable name of function input.         |
 > | *`insertATbl`*            |                       | Insert ASCII table after current HDU.    |
@@ -575,6 +574,7 @@ Resources:
 > | *`interp3`*               |                       | Interpolation for 3-D gridded data in meshgrid format. |
 > | *`interpn`*               |                       | Interpolation for 1-D, 2-D, 3-D, and N-D gridded data in ndgrid format. |
 > | *`intersect`*             |                       | Set intersection of two arrays.          |
+> | *`intlut`*                |                       | Convert integer values using lookup table. |
 > | *`intmax`*                |                       | Largest value of specified integer type. |
 > | *`intmin`*                |                       | Smallest value of specified integer type. |
 > | *`inv`*                   |                       | Matrix inverse.                          |
