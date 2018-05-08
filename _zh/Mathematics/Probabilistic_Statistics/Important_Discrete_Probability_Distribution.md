@@ -2,37 +2,36 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要离散概率分布
-Revised:   2018-05-08 03:58:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-08 16:18:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 二项分布 $X \mapsto \mathrm{B_{inary}} (n, p)$
+> ### 二项分布 $X \mapsto \mathrm{B_{inomial}} (n, p)$
 
 > $$
 > \begin{alignedat}{3}
->        P (X = k) &= {n \choose k} p^k (1 - p)^{n - k} \quad\Leftarrow\quad k \in \lbrace 0, \cdots, n \rbrace \\
->   \mathrm{E} (X) &= \sum_0^n k {n \choose k} p^k (1 - p)^{n - k} \\
->                  &= n p \sum_1^n {n - 1 \choose k - 1} p^{k - 1} (1 - p)^{(n - 1) - (k - 1)} \\
->                  &= np \\
-> \mathrm{E} (X^2) &= \sum_0^n k^2 {n \choose k} p^k (1 - p)^{n - k} \\
->                  &= \sum_0^n k (k - 1) {n \choose k} p^k (1 - p)^{n - k} + \sum_0^n k {n \choose k} p^k (1 - p)^{n - k} \\
->                  &= n (n - 1) p^2 \sum_2^n {n - 2 \choose k - 2} p^{k - 2} (1 - p)^{(n - 2) - (k - 2)} + \mathrm{E} (X) \\
->                  &= n (n - 1) p^2 + n p \\
-> \mathrm{Var} (X) &= E (X^2) - [E (X)]^2 \\
->                  &= n p (1 - p) = n p q \\
+>                        P (X = k) &= {n \choose k} p^k (1 - p)^{n - k} \quad\Leftarrow\quad k \in \lbrace 0, \cdots, n \rbrace \\
+> \mathrm{E} [\mathrm{B} (n, p)]^h &= \sum_{k = 0}^n k^h {n \choose k} p^k (1 - p)^{n - k} \\
+>                                  &= n p \sum_{ k = 1}^n k^{h - 1} {n - 1 \choose k - 1} p^{k - 1} (1- p)^{(n - 1) - (k - 1)} \\
+>                                  &\xlongequal{l = k - 1} n p \sum_{l = 0}^{n - 1} (l + 1)^{h - 1} {n - 1 \choose l} p^l (1 - p)^{(n - 1) - l} \\
+>                                  &= n p \cdot \mathrm{E} [\mathrm{B} (n - 1, p) + 1]^{h - 1} \\
+> \mathrm{E} [\mathrm{B} (n, p)]^1 &= np \\
+> \mathrm{E} [\mathrm{B} (n, p)]^2 &= n (n - 1) p^2 + n p \\
+> \mathrm{Var} [\mathrm{B} (n, p)] &= n p (1 - p) \\
 > \end{alignedat}
 > $$
 >
 
-> ### 二点分布 $X \mapsto \mathrm{B_{inary}} (1, p)$
+> ### 二点分布 $X \mapsto \mathrm{T_{wo}} (p) = \mathrm{B_{inomial}} (1, p)$
 
 > $$
 > \begin{alignedat}{3}
->        P (X = k) &= p^k (1 - p)^{1 - k} \quad\Leftarrow\quad k \in \lbrace 0, 1 \rbrace \\
->   \mathrm{E} (X) &= p \\
-> \mathrm{E} (X^2) &= p \\
-> \mathrm{Var} (X) &= p (1 - p) = p q \\
+>                     P (X = k) &= p^k (1 - p)^{1 - k} \quad\Leftarrow\quad k \in \lbrace 0, 1 \rbrace \\
+> \mathrm{E} [\mathrm{T} (p)]^h &= \mathrm{E} [\mathrm{B}  (1, p)]^h \\
+> \mathrm{E} [\mathrm{T} (p)]^1 &= p \\
+> \mathrm{E} [\mathrm{T} (p)]^2 &= p \\
+> \mathrm{Var} [\mathrm{T} (p)] &= p (1 - p) \\
 > \end{alignedat}
 > $$
 >
@@ -41,16 +40,14 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->        P (X = k) &= \dfrac{\lambda^k}{k !} e^{- \lambda} \quad\Leftarrow\quad k \in \mathbb{N} \\
->   \mathrm{E} (X) &= \sum_0^{+\infty} k \dfrac{\lambda^k}{k !} e^{- \lambda} \\
->                  &= \lambda e^{- \lambda} \sum_1^{+\infty} \dfrac{\lambda^{k - 1}}{(k - 1) !} \\
->                  &= \lambda \\
-> \mathrm{E} (X^2) &= \sum_0^{+\infty} k^2 \dfrac{\lambda^k}{k !} e^{- \lambda} \\
->                  &= \sum_0^{+\infty} k (k - 1) \dfrac{\lambda^k}{k !} e^{- \lambda} + \sum_0^{+\infty} k \dfrac{\lambda^k}{k !} e^{- \lambda} \\
->                  &= \lambda^2 e^{- \lambda} \sum_2^{+\infty} \dfrac{\lambda^{k - 2}}{(k - 2) !} + \mathrm{E} (X) \\
->                  &= \lambda (\lambda + 1) \\
-> \mathrm{Var} (X) &= \mathrm{E} (X^2) - [\mathrm{E} (X)]^2 \\
->                  &= \lambda \\
+>                           P (X = k) &= \dfrac{\lambda^k}{k !} e^{- \lambda} \quad\Leftarrow\quad k \in \mathbb{N} \\
+> \mathrm{E} [\mathrm{S} (\lambda)]^h &= \sum_{k = 0}^{+\infty} k^h \dfrac{\lambda^k}{k !} e^{- \lambda} \\
+>                                     &= \lambda \sum_{k = 1}^{+\infty} k^{h - 1} \dfrac{\lambda^{k - 1}}{(k - 1) !}  e^{- \lambda} \\
+>                                     &\xlongequal{l = k - 1} \lambda \sum_{l = 0}^{+\infty} (l + 1)^{h - 1} \dfrac{\lambda^l}{l !}  e^{- \lambda} \\
+>                                     &= \lambda \cdot \mathrm{E} [\mathrm{S} (\lambda) + 1]^{h - 1} \\
+> \mathrm{E} [\mathrm{S} (\lambda)]^1 &= \lambda \\
+> \mathrm{E} [\mathrm{S} (\lambda)]^2 &= \lambda^2 + \lambda \\
+> \mathrm{Var} [\mathrm{S} (\lambda)] &= \lambda \\
 > \end{alignedat}
 > $$
 >
@@ -69,22 +66,32 @@ Resources:
 > $$
 >
 
-> ### 几何分布 $X \mapsto \mathrm{G_{eometric}} (p)$
+> ### 负二项分布 $X \mapsto \mathrm{N_{egative} B_{inomial} (n, p)}$
 
 > $$
 > \begin{alignedat}{3}
->        P (X = k) &= (1 - p)^{k - 1} p \quad\Leftarrow\quad k \in \mathbb{N}^+ \\
->   \mathrm{E} (X) &= \sum_1^{+\infty} k (1 - p)^{k - 1} p \\
->                  &= p \sum_1^{+\infty} \dfrac{\mathrm{d} q^k}{\mathrm{d} q} = \dfrac{\mathrm{d}}{\mathrm{d} q} \sum_0^{+\infty} q^k \\
->                  &= p \dfrac{\mathrm{d}}{\mathrm{d} q} \dfrac{1}{1 - q} \\
->                  &= \dfrac{1}{p} \\
-> \mathrm{E} (X^2) &= \sum_1^{+\infty} k^2 (1 - p)^{k - 1} p \\
->                  &= \sum_1^{+\infty} k (k - 1) (1 - p)^{k - 1} p + \sum_1^{+\infty} k (1 - p)^{k - 1} p \\
->                  &= p q \sum_1^{+\infty} \dfrac{\mathrm{d}^2 q^k}{\mathrm{d} q^2} + \mathrm{E} (X) = p q \dfrac{\mathrm{d}^2}{\mathrm{d} q^2} \sum_0^{+\infty} q^k + \mathrm{E} (X) \\
->                  &= p q \dfrac{\mathrm{d}^2}{\mathrm{d} q^2} \dfrac{1}{1 - q} + \dfrac{1}{p} \\
->                  &= \dfrac{2 - p}{p^2} = \dfrac{1 + q}{p^2} \\
-> \mathrm{Var} (X) &= \mathrm{E} (X^2) - [\mathrm{E} (X)]^2 \\
->                  &= \dfrac{1 - p}{p^2} = \dfrac{1}{p^2} \\
+>                         P (X = k) &= {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \quad\Leftarrow\quad k \in [n, +\infty) \\
+>                     P (X - n = l) &\xlongequal{l = k - n} {n + l - 1 \choose l} p^n (1 - p)^l \quad\Leftarrow\quad l \in \mathbb{N} \\
+> \mathrm{E} [\mathrm{NB} (n, p)]^h &= \sum_{k = n}^{+\infty} k^h {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \\
+>                                   &= \dfrac{n}{p} \sum_{k = n}^{+\infty} k^{h - 1} {k \choose n} p^{n + 1} (1 - p)^{k - n} \\
+>                                   &\xlongequal{k = l - 1} \dfrac{n}{p} \sum_{l = n + 1}^{+\infty} (l - 1)^{h - 1} {l - 1 \choose n} p^{n + 1} (1 - p)^{l - (n + 1)} \\
+>                                   &= \dfrac{n}{p} \cdot \mathrm{E} [\mathrm{NB} (n + 1, p) - 1]^{h - 1} \\
+> \mathrm{E} [\mathrm{NB} (n, p)]^1 &= \dfrac{n}{p} \\
+> \mathrm{E} [\mathrm{NB} (n, p)]^2 &= \dfrac{n (n + 1)}{p^2} - \dfrac{n}{p} \\
+> \mathrm{Var} [\mathrm{NB} (n, p)] &= \dfrac{n (1 - p)}{p^2} \\
+> \end{alignedat}
+> $$
+>
+
+> ### 几何分布 $X \mapsto \mathrm{G_{eometric}} (p) = \mathrm{NB} (1, p)$
+
+> $$
+> \begin{alignedat}{3}
+>                     P (X = k) &= (1 - p)^{k - 1} p \quad\Leftarrow\quad k \in \mathbb{N}^+ \\
+> \mathrm{E} [\mathrm{G} (p)]^h &= \mathrm{E} [\mathrm{NB} (1, p)]^h \\
+> \mathrm{E} [\mathrm{G} (p)]^1 &= \dfrac{1}{p} \\
+> \mathrm{E} [\mathrm{G} (p)]^2 &= \dfrac{2}{p^2} - \dfrac{1}{p} \\
+> \mathrm{Var} [\mathrm{G} (p)] &= \dfrac{1 - p}{p^2} \\
 > \end{alignedat}
 > $$
 >
@@ -106,16 +113,14 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->        P (X = k) &= \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \quad\Leftarrow\quad k \in \lbrace \max (0, n - N + K) \cdots, \min (K, n) \rbrace \\
->   \mathrm{E} (X) &= \sum_{\max (0, n - N + K)}^{\min (K, n)} k \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \\
->                  &= \dfrac{n K}{N} \sum_{\max (1, n - N + K)}^{\min (K, n)} \dfrac{{K - 1 \choose k - 1} {N - K \choose n - k}}{{N - 1 \choose n - 1}} \\
->                  &= \dfrac{n K}{N} \\
-> \mathrm{E} (X^2) &= \sum_{\max (0, n - N + K)}^{\min (K, n)} k^2 \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \\
->                  &= \sum_{\max (0, n - N + K)}^{\min (K, n)} k (k - 1) \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} + \sum_{\max (0, n - N + K)}^{\min (K, n)} k \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \\
->                  &= \dfrac{n (n - 1) M (M - 1)}{N (N - 1)} \sum_{\max (2, n - N + K)}^{\min (K, n)} \dfrac{{K - 2 \choose k - 2} {N - K \choose n - k}}{{N - 2 \choose n - 2}} + \mathrm{E} (X) \\
->                  &= \dfrac{n (n - 1) M (M - 1)}{N (N - 1)} + \dfrac{n K}{N} \\
-> \mathrm{Var} (X) &= \mathrm{E} (X^2) - [\mathrm{E} (X)]^2 \\
->                  &= \dfrac{n M (N - M) (N - n)}{N^2 (N - 1)} \\
+>                           P (X = k) &= \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \quad\Leftarrow\quad k \in \lbrace \max (0, n - N + K), \cdots, \min (K, n) \rbrace \\
+> \mathrm{E} [\mathrm{H} (N, K, n)]^h &= \sum_{\max (0, n - N + K)}^{\min (K, n)} k^h \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \\
+>                                     &= \dfrac{n K}{N} \sum_{k = \max (1, n - N + K)}^{\min (K, n)} k^{h - 1} \dfrac{{K - 1 \choose k - 1} {N - K \choose n - k}}{N - 1 \choose n - 1} \\
+>                                     &\xlongequal{l = k - 1} \dfrac{n K}{N} \sum_{l = \max (0, n - 1 - N + K)}^{\min (K - 1, n - 1)} (l +1)^{h - 1} \dfrac{{K - 1 \choose l} {N - K \choose n - 1 - l}}{{N - 1 \choose n - 1}} \\
+>                                     &= \dfrac{n K}{N} \cdot \mathrm{E} [\mathrm{H} (N - 1, K - 1, n - 1) + 1]^{h - 1} \\
+> \mathrm{E} [\mathrm{H} (N, K, n)]^1 &= \dfrac{n K}{N} \\\
+> \mathrm{E} [\mathrm{H} (N, K, n)]^2 &= \dfrac{n (n - 1) K (K - 1)}{N (N - 1)} + \dfrac{n K}{N} \\
+> \mathrm{Var} [\mathrm{H} (N, K, n)] &= \dfrac{n K (N - K) (N - n)}{N^2 (N - 1)} \\
 > \end{alignedat}
 > $$
 >
@@ -133,21 +138,3 @@ Resources:
 > \end{alignedat}
 > $$
 >
-
-> ### 负二项分布 $X \mapsto \mathrm{N_{egative} B_{inomial} (n, p)}$
-
-> $$
-> \begin{alignedat}{3}
->                         P (X = k) &= {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \quad\Leftarrow\quad k \in [n, +\infty) \\
->                     P (X - n = l) &= {n + l - 1 \choose l} p^n (1 - p)^l \quad\Leftarrow\quad l \in \mathbb{N} \\
-> \mathrm{E} [\mathrm{NB} (n, p)]^h &= \sum_{k = n}^{+\infty} k^h {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \\
->                                   &= \dfrac{n}{p} \sum_{k = n}^{+\infty} k^{h - 1} {k \choose n} p^{n + 1} (1 - p)^{k - n} \\
->                                   &= \dfrac{n}{p} \sum_{l = n + 1}^{+\infty} (l - 1)^{h - 1} {l - 1 \choose n} p^{n + 1} (1 - p)^{l - (n + 1)} \\
->                                   &= \dfrac{n}{p} \cdot \mathrm{E} [\mathrm{NB} (n + 1, p) - 1]^{h - 1} \\
-> \mathrm{E} [\mathrm{NB} (n, p)]^1 &= \dfrac{n}{p} \\
-> \mathrm{E} [\mathrm{NB} (n, p)]^2 &= \dfrac{n}{p} \cdot \left( \dfrac{n + 1}{p} - 1 \right) \\
-> \mathrm{Var} [\mathrm{NB} (n, p)] &= \dfrac{n (1 - p)}{p^2} \\
-> \end{alignedat}
-> $$
->
-
