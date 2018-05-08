@@ -7,24 +7,24 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 离散期望值 $\mathrm{E_{xpected}} [X]$
+> ### 离散期望值 $\mathrm{Exp_{ected}} [X]$
 
 > $$
 > \begin{alignedat}{3}
->     \mathrm{E} [X] &= \sum x_i \cdot p (x_i)     &&\;\Leftarrow\; \sum |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
-> \mathrm{E} [f (X)] &= \sum f (x_i) \cdot p (x_i) &&\;\Leftarrow\; \sum |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
->   \mathrm{E} [X]^h &= \sum x_i^h \cdot p (x_i)   &&\;\Leftarrow\; \sum |x_i^h| \cdot p (x_i) \to \mathcal{Conv.} \\
+>     \mathrm{Exp} [X] &= \sum x_i \cdot p (x_i)     &&\;\Leftarrow\; \sum |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
+> \mathrm{Exp} [f (X)] &= \sum f (x_i) \cdot p (x_i) &&\;\Leftarrow\; \sum |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
+>   \mathrm{Exp} [X]^h &= \sum x_i^h \cdot p (x_i)   &&\;\Leftarrow\; \sum |x_i^h| \cdot p (x_i) \to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >
 
-> ### 连续期望值 $\mathrm{E_{xpected}} [X]$
+> ### 连续期望值 $\mathrm{Exp_{ected}} [X]$
 
 > $$
 > \begin{alignedat}{3}
->     \mathrm{E} [X] &= \int x \cdot p (x) \mathrm{d} x     &&\;\Leftarrow\; \int |x| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\
-> \mathrm{E} [f (X)] &= \int f (x) \cdot p (x) \mathrm{d} x &&\;\Leftarrow\; \int |f (x)| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\ 
->   \mathrm{E} [X]^h &= \int x^h \cdot p (x) \mathrm{d} x   &&\;\Leftarrow\; \int |x^h| \cdot p (x) \mathrm{d} x \to \mathrm{Conv.} \\
+>     \mathrm{Exp} [X] &= \int x \cdot p (x) \mathrm{d} x     &&\;\Leftarrow\; \int |x| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\
+> \mathrm{Exp} [f (X)] &= \int f (x) \cdot p (x) \mathrm{d} x &&\;\Leftarrow\; \int |f (x)| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\ 
+>   \mathrm{Exp} [X]^h &= \int x^h \cdot p (x) \mathrm{d} x   &&\;\Leftarrow\; \int |x^h| \cdot p (x) \mathrm{d} x \to \mathrm{Conv.} \\
 > \end{alignedat}
 > $$
 >
@@ -33,9 +33,9 @@ Resources:
 
 > $$
 > \begin{array}{lll}
-> \fbox{1} & \mathrm{E} [c] = c \\
-> \fbox{2} & \mathrm{E} [c \cdot X] = c \cdot \mathrm{E} [X] \\
-> \fbox{3} & \mathrm{E} [f (X) + g (X)] = \mathrm{E} [f (X)] + \mathrm{E} [g (X)] \\
+> \fbox{1} & \mathrm{Exp} [c] = c \\
+> \fbox{2} & \mathrm{Exp} [c \cdot X] = c \cdot \mathrm{E} [X] \\
+> \fbox{3} & \mathrm{Exp} [f (X) + g (X)] = \mathrm{E} [f (X)] + \mathrm{E} [g (X)] \\
 > \end{array}
 > $$
 >
@@ -44,9 +44,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{Var} [X] &= E [X - E [X]]^2 \\
->                  &= E [X^2 - 2 X \cdot E [X] + E^2 [X]] \\
->                  &= E [X]^2 - E^2 [X] \\
+> \mathrm{Var} [X] &= \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 \\
+>                  &= \mathrm{Exp} [X^2 - 2 X \cdot \mathrm{Exp} [X] + \mathrm{Exp}^2 [X]] \\
+>                  &= \mathrm{Exp} [X]^2 - \mathrm{Exp}^2 [X] \\
 > \end{alignedat}
 > $$
 >
@@ -57,8 +57,8 @@ Resources:
 > \begin{array}{lll}
 > \fbox{1} & \mathrm{Var} [c] = 0 \\
 > \fbox{2} & \mathrm{Var} [c \cdot X + d] = c^2 \cdot \mathrm{Var} [X] \\
-> \fbox{3} & \mathrm{Var} [X] + \mathrm{E}^2 [X] = \mathrm{E} [X]^2 = 0 \implies \mathrm{E} [X] = 0 \;\and\; \mathrm{Var} [X] = 0 \\
-> \fbox{4} & \mathrm{Var} [X] = 0 \iff P (X = \mathrm{E} [X]) = 1  \\
+> \fbox{3} & \mathrm{Var} [X] + \mathrm{Exp}^2 [X] = \mathrm{Exp} [X]^2 = 0 \implies \mathrm{Exp} [X] = 0 \;\and\; \mathrm{Var} [X] = 0 \\
+> \fbox{4} & \mathrm{Var} [X] = 0 \iff P (X = \mathrm{Exp} [X]) = 1  \\
 > \end{array}
 > $$
 >
@@ -68,7 +68,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \mathrm{SD} [X] &= \sqrt{\mathrm{Var} [X]} \\
->                 &= \sqrt{E [X]^2 - E^2 [X]} \\
+>                 &= \sqrt{\mathrm{Exp} [X]^2 - \mathrm{Exp}^2 [X]} \\
 > \end{alignedat}
 > $$
 >
@@ -77,12 +77,12 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad   && P (|X - \mathrm{E} [X]| \ge \varepsilon) &= \sum_{|x_i - \mathrm{E} [X]| \ge \varepsilon} p (x_i) \\
->                 &&                                          &\le \sum_{|x_i - \mathrm{E} [X]| \ge \varepsilon} \dfrac{(x_i - \mathrm{E} [X])^2}{\varepsilon^2} p (x_i) \\
->                 &&                                          &\le \sum \dfrac{(x_i - \mathrm{E} [X])^2}{\varepsilon^2} p (x_i) \\
->                 &&                                          &= \dfrac{\mathrm{Var} [X]}{\varepsilon^2} \\
-> \Downarrow\quad && P (|X - \mathrm{E} [X]| \lt \varepsilon) &= 1 - P (|X - \mathrm{E} [X]| \ge \varepsilon) \\
->                 &&                                          &\ge 1 - \dfrac{\mathrm{Var} [X]}{\varepsilon^2} \\
+> \Uparrow\quad   && P (|X - \mathrm{Exp} [X]| \ge \varepsilon) &= \sum_{|x_i - \mathrm{Exp} [X]| \ge \varepsilon} p (x_i) \\
+>                 &&                                            &\le \sum_{|x_i - \mathrm{Exp} [X]| \ge \varepsilon} \dfrac{(x_i - \mathrm{Exp} [X])^2}{\varepsilon^2} p (x_i) \\
+>                 &&                                            &\le \sum \dfrac{(x_i - \mathrm{Exp} [X])^2}{\varepsilon^2} p (x_i) \\
+>                 &&                                            &= \dfrac{\mathrm{Var} [X]}{\varepsilon^2} \\
+> \Downarrow\quad && P (|X - \mathrm{Exp} [X]| \lt \varepsilon) &= 1 - P (|X - \mathrm{Exp} [X]| \ge \varepsilon) \\
+>                 &&                                            &\ge 1 - \dfrac{\mathrm{Var} [X]}{\varepsilon^2} \\
 > \end{alignedat}
 > $$
 >
