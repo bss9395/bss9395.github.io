@@ -7,47 +7,47 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 二项分布 $X \mapsto \mathrm{B_{inomial}} (n, p)$
+> ### 二项分布 $X \mapsto \mathrm{Bi_{nomial}} (n, p)$
 
 > $$
 > \begin{alignedat}{3}
->                          P (X = k) &= {n \choose k} p^k (1 - p)^{n - k} \quad\Leftarrow\quad k \in \lbrace 0, \cdots, n \rbrace \\
-> \mathrm{Exp} [\mathrm{B} (n, p)]^h &= \sum_{k = 0}^n k^h {n \choose k} p^k (1 - p)^{n - k} \\
->                                    &= n p \sum_{ k = 1}^n k^{h - 1} {n - 1 \choose k - 1} p^{k - 1} (1- p)^{(n - 1) - (k - 1)} \\
->                                    &\xlongequal{l = k - 1} n p \sum_{l = 0}^{n - 1} (l + 1)^{h - 1} {n - 1 \choose l} p^l (1 - p)^{(n - 1) - l} \\
->                                    &= n p \cdot \mathrm{Exp} [\mathrm{B} (n - 1, p) + 1]^{h - 1} \\
-> \mathrm{Exp} [\mathrm{B} (n, p)]^1 &= np \\
-> \mathrm{Exp} [\mathrm{B} (n, p)]^2 &= n (n - 1) p^2 + n p \\
->   \mathrm{Var} [\mathrm{B} (n, p)] &= n p (1 - p) \\
+>                           P (X = k) &= {n \choose k} p^k (1 - p)^{n - k} \quad\Leftarrow\quad k \in \lbrace 0, \cdots, n \rbrace \\
+> \mathrm{Exp} [\mathrm{Bi} (n, p)]^h &= \sum_{k = 0}^n k^h {n \choose k} p^k (1 - p)^{n - k} \\
+>                                     &= n p \sum_{ k = 1}^n k^{h - 1} {n - 1 \choose k - 1} p^{k - 1} (1- p)^{(n - 1) - (k - 1)} \\
+>                                     &\xlongequal{l = k - 1} n p \sum_{l = 0}^{n - 1} (l + 1)^{h - 1} {n - 1 \choose l} p^l (1 - p)^{(n - 1) - l} \\
+>                                     &= n p \cdot \mathrm{Exp} [\mathrm{Bi} (n - 1, p) + 1]^{h - 1} \\
+>                  \mathrm{Exp} [X]^1 &= np \\
+>                  \mathrm{Exp} [X]^2 &= n (n - 1) p^2 + n p \\
+>                    \mathrm{Var} [X] &= n p (1 - p) \\
 > \end{alignedat}
 > $$
 >
 
-> ### 二点分布 $X \mapsto \mathrm{T_{wo}} (p) = \mathrm{B_{inomial}} (1, p)$
+> ### 二点分布 $X \mapsto \mathrm{Tw_{o}} (p) = \mathrm{Bi_{nomial}} (1, p)$
 
 > $$
 > \begin{alignedat}{3}
->                       P (X = k) &= p^k (1 - p)^{1 - k} \quad\Leftarrow\quad k \in \lbrace 0, 1 \rbrace \\
-> \mathrm{Exp} [\mathrm{T} (p)]^h &= \mathrm{Exp} [\mathrm{B}  (1, p)]^h \\
-> \mathrm{Exp} [\mathrm{T} (p)]^1 &= p \\
-> \mathrm{Exp} [\mathrm{T} (p)]^2 &= p \\
->   \mathrm{Var} [\mathrm{T} (p)] &= p (1 - p) \\
+>                        P (X = k) &= p^k (1 - p)^{1 - k} \quad\Leftarrow\quad k \in \lbrace 0, 1 \rbrace \\
+> \mathrm{Exp} [\mathrm{Tw} (p)]^h &= \mathrm{Exp} [\mathrm{Bi}  (1, p)]^h \\
+>               \mathrm{Exp} [X]^1 &= p \\
+>               \mathrm{Exp} [X]^2 &= p \\
+>                 \mathrm{Var} [X] &= p (1 - p) \\
 > \end{alignedat}
 > $$
 >
 
-> ### 随机分布 $X \mapsto \mathrm{S_{tochastic}} (\lambda)$
+> ### 随机分布 $X \mapsto \mathrm{St_{ochastic}} (\lambda)$
 
 > $$
 > \begin{alignedat}{3}
->                             P (X = k) &= \dfrac{\lambda^k}{k !} e^{- \lambda} \quad\Leftarrow\quad k \in \mathbb{N} \\
-> \mathrm{Exp} [\mathrm{S} (\lambda)]^h &= \sum_{k = 0}^{+\infty} k^h \dfrac{\lambda^k}{k !} e^{- \lambda} \\
->                                       &= \lambda \sum_{k = 1}^{+\infty} k^{h - 1} \dfrac{\lambda^{k - 1}}{(k - 1) !}  e^{- \lambda} \\
->                                       &\xlongequal{l = k - 1} \lambda \sum_{l = 0}^{+\infty} (l + 1)^{h - 1} \dfrac{\lambda^l}{l !}  e^{- \lambda} \\
->                                       &= \lambda \cdot \mathrm{Exp} [\mathrm{S} (\lambda) + 1]^{h - 1} \\
-> \mathrm{Exp} [\mathrm{S} (\lambda)]^1 &= \lambda \\
-> \mathrm{Exp} [\mathrm{S} (\lambda)]^2 &= \lambda^2 + \lambda \\
->   \mathrm{Var} [\mathrm{S} (\lambda)] &= \lambda \\
+>                              P (X = k) &= \dfrac{\lambda^k}{k !} e^{- \lambda} \quad\Leftarrow\quad k \in \mathbb{N} \\
+> \mathrm{Exp} [\mathrm{St} (\lambda)]^h &= \sum_{k = 0}^{+\infty} k^h \dfrac{\lambda^k}{k !} e^{- \lambda} \\
+>                                        &= \lambda \sum_{k = 1}^{+\infty} k^{h - 1} \dfrac{\lambda^{k - 1}}{(k - 1) !}  e^{- \lambda} \\
+>                                        &\xlongequal{l = k - 1} \lambda \sum_{l = 0}^{+\infty} (l + 1)^{h - 1} \dfrac{\lambda^l}{l !}  e^{- \lambda} \\
+>                                        &= \lambda \cdot \mathrm{Exp} [\mathrm{St} (\lambda) + 1]^{h - 1} \\
+>                     \mathrm{Exp} [X]^1 &= \lambda \\
+>                     \mathrm{Exp} [X]^2 &= \lambda^2 + \lambda \\
+>                       \mathrm{Var} [X] &= \lambda \\
 > \end{alignedat}
 > $$
 >
@@ -76,9 +76,9 @@ Resources:
 >                                     &= \dfrac{n}{p} \sum_{k = n}^{+\infty} k^{h - 1} {k \choose n} p^{n + 1} (1 - p)^{k - n} \\
 >                                     &\xlongequal{k = l - 1} \dfrac{n}{p} \sum_{l = n + 1}^{+\infty} (l - 1)^{h - 1} {l - 1 \choose n} p^{n + 1} (1 - p)^{l - (n + 1)} \\
 >                                     &= \dfrac{n}{p} \cdot \mathrm{Exp} [\mathrm{NB} (n + 1, p) - 1]^{h - 1} \\
-> \mathrm{Exp} [\mathrm{NB} (n, p)]^1 &= \dfrac{n}{p} \\
-> \mathrm{Exp} [\mathrm{NB} (n, p)]^2 &= \dfrac{n (n + 1)}{p^2} - \dfrac{n}{p} \\
->   \mathrm{Var} [\mathrm{NB} (n, p)] &= \dfrac{n (1 - p)}{p^2} \\
+>                  \mathrm{Exp} [X]^1 &= \dfrac{n}{p} \\
+>                  \mathrm{Exp} [X]^2 &= \dfrac{n (n + 1)}{p^2} - \dfrac{n}{p} \\
+>                    \mathrm{Var} [X] &= \dfrac{n (1 - p)}{p^2} \\
 > \end{alignedat}
 > $$
 >
@@ -89,9 +89,9 @@ Resources:
 > \begin{alignedat}{3}
 >                       P (X = k) &= (1 - p)^{k - 1} p \quad\Leftarrow\quad k \in \mathbb{N}^+ \\
 > \mathrm{Exp} [\mathrm{G} (p)]^h &= \mathrm{Exp} [\mathrm{NB} (1, p)]^h \\
-> \mathrm{Exp} [\mathrm{G} (p)]^1 &= \dfrac{1}{p} \\
-> \mathrm{Exp} [\mathrm{G} (p)]^2 &= \dfrac{2}{p^2} - \dfrac{1}{p} \\
->   \mathrm{Var} [\mathrm{G} (p)] &= \dfrac{1 - p}{p^2} \\
+>              \mathrm{Exp} [X]^1 &= \dfrac{1}{p} \\
+>              \mathrm{Exp} [X]^2 &= \dfrac{2}{p^2} - \dfrac{1}{p} \\
+>                \mathrm{Var} [X] &= \dfrac{1 - p}{p^2} \\
 > \end{alignedat}
 > $$
 >
@@ -108,18 +108,18 @@ Resources:
 > $$
 >
 
-> ### 超几何分布 $X \mapsto \mathrm{H_{ypergeometric}} (N, K, n) $
+> ### 超几何分布 $X \mapsto \mathrm{H_{yper} G_{eometric}} (N, K, n) $
 
 > $$
 > \begin{alignedat}{3}
->                             P (X = k) &= \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \quad\Leftarrow\quad k \in \lbrace \max (0, n - N + K), \cdots, \min (K, n) \rbrace \\
-> \mathrm{Exp} [\mathrm{H} (N, K, n)]^h &= \sum_{\max (0, n - N + K)}^{\min (K, n)} k^h \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \\
->                                       &= \dfrac{n K}{N} \sum_{k = \max (1, n - N + K)}^{\min (K, n)} k^{h - 1} \dfrac{{K - 1 \choose k - 1} {N - K \choose n - k}}{N - 1 \choose n - 1} \\
->                                       &\xlongequal{l = k - 1} \dfrac{n K}{N} \sum_{l = \max (0, n - 1 - N + K)}^{\min (K - 1, n - 1)} (l +1)^{h - 1} \dfrac{{K - 1 \choose l} {N - K \choose n - 1 - l}}{{N - 1 \choose n - 1}} \\
->                                       &= \dfrac{n K}{N} \cdot \mathrm{Exp} [\mathrm{H} (N - 1, K - 1, n - 1) + 1]^{h - 1} \\
-> \mathrm{Exp} [\mathrm{H} (N, K, n)]^1 &= \dfrac{n K}{N} \\\
-> \mathrm{Exp} [\mathrm{H} (N, K, n)]^2 &= \dfrac{n (n - 1) K (K - 1)}{N (N - 1)} + \dfrac{n K}{N} \\
->   \mathrm{Var} [\mathrm{H} (N, K, n)] &= \dfrac{n K (N - K) (N - n)}{N^2 (N - 1)} \\
+>                              P (X = k) &= \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \quad\Leftarrow\quad k \in \lbrace \max (0, n - N + K), \cdots, \min (K, n) \rbrace \\
+> \mathrm{Exp} [\mathrm{HG} (N, K, n)]^h &= \sum_{\max (0, n - N + K)}^{\min (K, n)} k^h \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \\
+>                                        &= \dfrac{n K}{N} \sum_{k = \max (1, n - N + K)}^{\min (K, n)} k^{h - 1} \dfrac{{K - 1 \choose k - 1} {N - K \choose n - k}}{N - 1 \choose n - 1} \\
+>                                        &\xlongequal{l = k - 1} \dfrac{n K}{N} \sum_{l = \max (0, n - 1 - N + K)}^{\min (K - 1, n - 1)} (l +1)^{h - 1} \dfrac{{K - 1 \choose l} {N - K \choose n - 1 - l}}{{N - 1 \choose n - 1}} \\
+>                                        &= \dfrac{n K}{N} \cdot \mathrm{Exp} [\mathrm{HG} (N - 1, K - 1, n - 1) + 1]^{h - 1} \\
+>                     \mathrm{Exp} [X]^1 &= \dfrac{n K}{N} \\\
+>                     \mathrm{Exp} [X]^2 &= \dfrac{n (n - 1) K (K - 1)}{N (N - 1)} + \dfrac{n K}{N} \\
+>                       \mathrm{Var} [X] &= \dfrac{n K (N - K) (N - n)}{N^2 (N - 1)} \\
 > \end{alignedat}
 > $$
 >
