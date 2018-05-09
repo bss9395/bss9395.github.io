@@ -7,7 +7,7 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 累积概率分布函数
+> ### 累积概率分布
 
 > $$
 > \begin{array}{l|l|l}
@@ -20,7 +20,7 @@ Resources:
 > $$
 >
 
-> ### 累积概率分布函数的性质
+> ### 累积概率分布的性质
 
 > $$
 > \begin{array}{ll|l}
@@ -31,7 +31,7 @@ Resources:
 > $$
 >
 
-> ### 离散概率密度函数
+> ### 离散概率密度
 
 > $$
 > \begin{array}{lll}
@@ -40,7 +40,7 @@ Resources:
 > $$
 >
 
-> ### 离散概率密度函数的性质
+> ### 离散概率密度的性质
 
 > $$
 > \begin{alignedat}{3}
@@ -51,16 +51,16 @@ Resources:
 > $$
 >
 
-> ### 连续概率密度函数
+> ### 连续概率密度
 
 > $$
 > \begin{array}{lll}
-> p (x) = \dfrac{P (x \lt X \lt x + \mathrm{d} x)}{\mathrm{d} x} = \dfrac{\mathrm{d} C (x)}{\mathrm{d} x} \\
+> p (x) = \dfrac{P (x \lt X \le x + \mathrm{d} x)}{\mathrm{d} x} = \dfrac{\mathrm{d} C (x)}{\mathrm{d} x} \\
 > \end{array}
 > $$
 >
 
-> ### 连续概率密度函数的性质
+> ### 连续概率密度的性质
 
 > $$
 > \begin{alignedat}{3}
