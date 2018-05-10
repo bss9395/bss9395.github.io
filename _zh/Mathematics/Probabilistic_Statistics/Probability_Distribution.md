@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     概率分布
-Revised:   2018-05-10 21:37:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-11 00:35:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -35,8 +35,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->     p (x_i) &= P (X = x_i) = C (x_i) - C (x_i^-) \\
-> p [f (x_i)] &= P (Y = y_i) = p (x_i) \\
+>   p (x_i) &= P (X = x_i) = C (x_i) - C (x_i^-) \\
+> p_f (y_i) &= P [f (X) = y_i] = p (x_i) \\
 > \end{alignedat}
 > $$
 >
@@ -56,8 +56,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->     p (x) &= \dfrac{P (x \lt X \le x + \mathrm{d} x)}{\mathrm{d} x} = \dfrac{\mathrm{d} C (x)}{\mathrm{d} x} \\
-> p [f (x)] &= \dfrac{P (y \lt Y \le y + \mathrm{d} y)}{\mathrm{d} y} = p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} f (x)} \right| \\
+>   p (x) &= \dfrac{P (x \lt X \le x + \mathrm{d} x)}{\mathrm{d} x} = \dfrac{\mathrm{d} C (x)}{\mathrm{d} x} \\
+> p_f (y) &= \dfrac{P [y \lt f (X) \le y + \mathrm{d} y]}{\mathrm{d} y} = p [f^{- 1} (y)] \cdot \left| \dfrac{\mathrm{d} f^{- 1} (y)}{\mathrm{d} y} \right| \\
 > \end{alignedat}
 > $$
 >

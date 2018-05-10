@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     统计特性
-Revised:   2018-05-08 20:08:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-10 01:14:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -11,11 +11,12 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->     \mathrm{Exp} [X] &= \sum x_i \cdot p (x_i)                              &&\;\Leftarrow\; \sum |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
-> \mathrm{Exp} [f (X)] &= \sum_i f (x_i) \cdot P [f (X) = f (x_i)]            &&\;\Leftarrow\; \sum |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
->                      &= \sum_i f (x_i) \sum_{j : f (x_j) = f (x_i)} p (x_j) \\
->                      &= \sum_i f (x_i) \cdot p (x_i) \\
->   \mathrm{Exp} [X]^h &= \sum x_i^h \cdot p (x_i)                            &&\;\Leftarrow\; \sum |x_i^h| \cdot p (x_i) \to \mathcal{Conv.} \\
+>     \mathrm{Exp} [X] &= \sum_i x_i \cdot p (x_i)                             &&\;\Leftarrow\; \sum_i |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
+> \mathrm{Exp} [f (X)] &= \sum_j y_j \cdot P [f (X) = y_j] \\
+>                      &= \sum_j f (x_j) \sum_{i : f (x_i) = f (x_j)} p (x_i) \\
+>                      &= \sum_i p (x_i) \sum_{j : f (x_j) = f (x_i)}  f (x_j) \\
+>                      &= \sum_i f (x_i) \cdot p (x_i)                         &&\;\Leftarrow\; \sum_i |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
+>   \mathrm{Exp} [X]^h &= \sum_i x_i^h \cdot p (x_i)                           &&\;\Leftarrow\; \sum_i |x_i^h| \cdot p (x_i) \to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >
@@ -24,12 +25,12 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->     \mathrm{Exp} [X] &= \int x \cdot p (x) \mathrm{d} x                                                                                                                     &&\;\Leftarrow\; \int |x| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\
-> \mathrm{Exp} [f (X)] &= \int_0^{+\infty} P [f (X) \ge y] \mathrm{d} y - \int_0^{+\infty} P [f (X) \lt - y] \mathrm{d} y                                                     &&\;\Leftarrow\; \int |f (x)| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\ 
+>     \mathrm{Exp} [X] &= \int_x x \cdot p (x) \mathrm{d} x                                                                                                                   &&\;\Leftarrow\; \int_x |x| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\
+> \mathrm{Exp} [f (X)] &= \int_0^{+\infty} P [f (X) \ge y] \mathrm{d} y - \int_0^{+\infty} P [f (X) \lt - y] \mathrm{d} y \\
 >                      &= \int_0^{+\infty} \int_{x : f (x) \ge y} p (x) \mathrm{d} x \mathrm{d} y - \int_0^{+\infty} \int_{x : - f (x) \gt y} p (x) \mathrm{d} x \mathrm{d} y \\
 >                      &= \int_{x : f (x) \ge 0} p (x) \int_0^{f (x)} \mathrm{d} y \mathrm{d} x - \int_{x : f (x) \lt 0} p (x) \int_{0}^{- f (x)} \mathrm{d} y \mathrm{d} x \\
->                      &= \int_x f (x) \cdot p (x) \mathrm{d} x \\
->   \mathrm{Exp} [X]^h &= \int x^h \cdot p (x) \mathrm{d} x                                                                                                                   &&\;\Leftarrow\; \int |x^h| \cdot p (x) \mathrm{d} x \to \mathrm{Conv.} \\
+>                      &= \int_x f (x) \cdot p (x) \mathrm{d} x                                                                                                               &&\;\Leftarrow\; \int_x |f (x)| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\ 
+>   \mathrm{Exp} [X]^h &= \int_x x^h \cdot p (x) \mathrm{d} x                                                                                                                 &&\;\Leftarrow\; \int_x |x^h| \cdot p (x) \mathrm{d} x \to \mathrm{Conv.} \\
 > \end{alignedat}
 > $$
 >
@@ -39,7 +40,7 @@ Resources:
 > $$
 > \begin{array}{lll}
 > \fbox{1} & \mathrm{Exp} [c] = c \\
-> \fbox{2} & \mathrm{Exp} [c \cdot X] = c \cdot \mathrm{E} [X] \\
+> \fbox{2} & \mathrm{Exp} [c \cdot X + d] = c \cdot \mathrm{E} [X] + d \\
 > \fbox{3} & \mathrm{Exp} [f (X) + g (X)] = \mathrm{E} [f (X)] + \mathrm{E} [g (X)] \\
 > \end{array}
 > $$
@@ -82,9 +83,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad   && P (|X - \mathrm{Exp} [X]| \ge \varepsilon) &= \sum_{|x_i - \mathrm{Exp} [X]| \ge \varepsilon} p (x_i) \\
->                 &&                                            &\le \sum_{|x_i - \mathrm{Exp} [X]| \ge \varepsilon} \dfrac{(x_i - \mathrm{Exp} [X])^2}{\varepsilon^2} p (x_i) \\
->                 &&                                            &\le \sum \dfrac{(x_i - \mathrm{Exp} [X])^2}{\varepsilon^2} p (x_i) \\
+> \Uparrow\quad   && P (|X - \mathrm{Exp} [X]| \ge \varepsilon) &= \mathop{\left\langle \sum \int \right\rangle}\limits_{|x_i - \mathrm{Exp} [X]| \ge \varepsilon} p (x_i) \\
+>                 &&                                            &\le \mathop{\left\langle \sum \int \right\rangle}\limits_{|x_i - \mathrm{Exp} [X]| \ge \varepsilon} \dfrac{(x_i - \mathrm{Exp} [X])^2}{\varepsilon^2} p (x_i) \\
+>                 &&                                            &\le {\left\langle \sum \int \right\rangle} \dfrac{(x_i - \mathrm{Exp} [X])^2}{\varepsilon^2} p (x_i) \\
 >                 &&                                            &= \dfrac{\mathrm{Var} [X]}{\varepsilon^2} \\
 > \Downarrow\quad && P (|X - \mathrm{Exp} [X]| \lt \varepsilon) &= 1 - P (|X - \mathrm{Exp} [X]| \ge \varepsilon) \\
 >                 &&                                            &\ge 1 - \dfrac{\mathrm{Var} [X]}{\varepsilon^2} \\

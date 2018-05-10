@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要连续概率分布
-Revised:   2018-05-09 20:47:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-11 02:33:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -33,8 +33,8 @@ Resources:
 >                                       &\xlongequal{t = \frac{x^2}{2}} (h - 1 \mod 2) \dfrac{\sqrt{2}^h}{\sqrt{\pi}} \int_0^{+\infty} t^{\frac{h + 1}{2} - 1} e^{- t} \mathrm{d} t \\
 >                                       &= (h - 1 \mod 2) \dfrac{\sqrt{2}^h}{\sqrt{\pi}} \Gamma \left( {\dfrac{h + 1}{2}} \right) \\
 >                    \mathrm{Exp} [X]^1 &= 0 \\
->                    \mathrm{Exp} [X]^2 &= 1 \\
->                      \mathrm{Var} [X] &= 1 \\
+>                    \mathrm{Exp} [X]^2 &= 1^2 \\
+>                      \mathrm{Var} [X] &= 1^2 \\
 > \end{alignedat}
 > $$
 >
@@ -46,7 +46,7 @@ Resources:
 >                                        p (x) &= \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
 >                                        C (x) &= \dfrac{1}{2} \left[ 1 + \mathrm{E_{rr}} \left( \dfrac{x - \mu}{\sqrt{2} \sigma} \right) \right] \\
 > \mathrm{Exp} [\mathrm{No} (\mu, \sigma^2)]^h &= \int_{-\infty}^{+\infty} x^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
->                                              &\xlongequal{t = \frac{x - \mu}{\sigma}} \int_{-\infty}^{+\infty} (\sigma t + \mu)^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{t}{2}} \mathrm{d} t \\
+>                                              &\xlongequal{t = \frac{x - \mu}{\sigma}} \int_{-\infty}^{+\infty} (\sigma t + \mu)^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{t^2}{2}} \mathrm{d} t \\
 >                                              &= \mathrm{Exp} [\sigma \cdot \mathrm{No} (0, 1^2) + \mu]^h \\
 >                           \mathrm{Exp} [X]^1 &= \mu \\
 >                           \mathrm{Exp} [X]^2 &= \sigma^2 + \mu^2 \\
@@ -59,10 +59,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->         \Uparrow\quad   &&       P (c X + d \le x) &= P \left( X \le \dfrac{x - d}{c} \right) \\
->         \Downarrow\quad &&         C_{c X + d} (x) &= C_X \left( \dfrac{x - d}{c} \right) \\
->         \Downarrow\quad &&         p_{c X + d} (x) &= \dfrac{1}{c} \cdot p_X \left( \dfrac{x - d}{c} \right) \\
->         \Downarrow\quad &&         p_{c X + d} (x) &= \dfrac{1}{\sqrt{2 \pi} (c \sigma)} e^{- \frac{(x - c \mu - d)^2}{2 (c \sigma)^2}} \\
+>           \Uparrow\quad &&         p_{c X + d} (x) &= p \left( \dfrac{x - d}{c} \right) \cdot \left| \dfrac{\mathrm{d}}{\mathrm{d} x} \left( \dfrac{x - d}{c} \right) \right| \\
+>                         &&                         &= \dfrac{1}{\sqrt{2 \pi} |c \sigma|} e^{- \frac{(x - c \mu - d)^2}{2 (c \sigma)^2}} \\
 > \fbox{1}\Downarrow\quad &&                 c X + d &\mapsto \mathrm{No} (c \mu + d, c^2 \sigma^2) \\
 > \fbox{2}\Downarrow\quad && \dfrac{X - \mu}{\sigma} &\mapsto \mathrm{No} (0, 1^2) \\
 > \end{alignedat}
@@ -77,6 +75,22 @@ Resources:
 > \fbox{2}\quad & P (X \le x) = \Phi \left( \dfrac{x - \mu}{\sigma} \right) \\
 > \fbox{3}\quad & P (|X| \le x) = 2 \Phi \left( \dfrac{x - \mu}{\sigma} \right)  - 1 \\
 > \fbox{4}\quad & P (|X - \mu| \lt n \sigma) = 2 \Phi (n) - 1 \\
+> \end{alignedat}
+> $$
+>
+
+> ### 对数正态分布 $e^{X \mapsto \mathrm{No} (\mu, \sigma^2)} = Y \mapsto \mathrm{L_{og} N_{ormal}} (\mu, \sigma^2)$
+
+> $$
+> \begin{alignedat}{3}
+>                                  p_{e^X} (y) &= p (\ln y) \cdot \left| \dfrac{\mathrm{d}}{\mathrm{d} y} \ln y \right| \quad\Leftarrow\quad y \in (0, +\infty) \\
+>                                              &= \dfrac{1}{\sqrt{2 \pi} \sigma y} e^{- \frac{(\ln y - \mu)^2}{2 \sigma^2}} \\
+> \mathrm{Exp} [\mathrm{LN} (\mu, \sigma^2)]^h &= \int_{-\infty}^{+\infty} (e^x)^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
+>                                              &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \cdot \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{[x - (\mu + \sigma^2 h)]^2}{2 \sigma^2}} \mathrm{d} x \\
+>                                              &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \\
+>                           \mathrm{Exp} [Y]^1 &= e^{\mu + \frac{\sigma^2}{2}} \\
+>                           \mathrm{Exp} [Y]^2 &= e^{2 \mu + 2 \sigma^2} \\
+>                             \mathrm{Var} [Y] &= e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1) \\
 > \end{alignedat}
 > $$
 >
