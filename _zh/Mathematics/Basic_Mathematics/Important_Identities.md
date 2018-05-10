@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     重要恒等式
-Revised:   2018-05-10 02:34:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-10 20:11:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -11,7 +11,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> 1 - x^n = (1 - x) \cdot \sum_0^{n - 1} x^n \\
+> y^{n + 1} - x^{n + 1} &= (y - x) \cdot \sum_{i = 0}^n y^{n - i} x^i  \\
+>               1 - x^n &= (1 - x) \cdot \sum_{i = 0}^{n - 1} x^i \\
 > \end{alignedat}
 > $$
 >
@@ -68,11 +69,13 @@ Resources:
 > $$
 >
 
-> ### 组合恒等式
+> ### 概率恒等式
 
 > $$
 > \begin{alignedat}{3}
-> k \mathcal{C}_n^k = k {n \choose k} = k \cdot \dfrac{n !}{k ! (n - k) !} = n \cdot \dfrac{(n - 1) !}{(k - 1) ! (n - k) !} = n {n - 1 \choose k - 1} = n \mathcal{C}_{n - 1}^{k - 1} \\
+> \fbox{1}\quad &&   \int_0^{+\infty} P (Y \ge y) \mathrm{d} y &= \int_0^{+\infty} x \cdot p_Y (x) \mathrm{d} x \\
+> \fbox{2}\quad && \int_0^{+\infty} P (Y \lt - y) \mathrm{d} y &= - \int_{-\infty}^0 x \cdot p_Y (x) \mathrm{d} x \\
 > \end{alignedat}
 > $$
 >
+

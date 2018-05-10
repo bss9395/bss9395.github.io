@@ -11,9 +11,11 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->     \mathrm{Exp} [X] &= \sum x_i \cdot p (x_i)     &&\;\Leftarrow\; \sum |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
-> \mathrm{Exp} [f (X)] &= \sum f (x_i) \cdot p (x_i) &&\;\Leftarrow\; \sum |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
->   \mathrm{Exp} [X]^h &= \sum x_i^h \cdot p (x_i)   &&\;\Leftarrow\; \sum |x_i^h| \cdot p (x_i) \to \mathcal{Conv.} \\
+>     \mathrm{Exp} [X] &= \sum x_i \cdot p (x_i)                              &&\;\Leftarrow\; \sum |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
+> \mathrm{Exp} [f (X)] &= \sum_i f (x_i) \cdot P [f (X) = f (x_i)]            &&\;\Leftarrow\; \sum |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
+>                      &= \sum_i f (x_i) \sum_{j : f (x_j) = f (x_i)} p (x_j) \\
+>                      &= \sum_i f (x_i) \cdot p (x_i) \\
+>   \mathrm{Exp} [X]^h &= \sum x_i^h \cdot p (x_i)                            &&\;\Leftarrow\; \sum |x_i^h| \cdot p (x_i) \to \mathcal{Conv.} \\
 > \end{alignedat}
 > $$
 >
@@ -22,9 +24,12 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->     \mathrm{Exp} [X] &= \int x \cdot p (x) \mathrm{d} x     &&\;\Leftarrow\; \int |x| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\
-> \mathrm{Exp} [f (X)] &= \int f (x) \cdot p (x) \mathrm{d} x &&\;\Leftarrow\; \int |f (x)| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\ 
->   \mathrm{Exp} [X]^h &= \int x^h \cdot p (x) \mathrm{d} x   &&\;\Leftarrow\; \int |x^h| \cdot p (x) \mathrm{d} x \to \mathrm{Conv.} \\
+>     \mathrm{Exp} [X] &= \int x \cdot p (x) \mathrm{d} x                                                                                                                     &&\;\Leftarrow\; \int |x| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\
+> \mathrm{Exp} [f (X)] &= \int_0^{+\infty} P [f (X) \ge y] \mathrm{d} y - \int_0^{+\infty} P [f (X) \lt - y] \mathrm{d} y                                                     &&\;\Leftarrow\; \int |f (x)| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\ 
+>                      &= \int_0^{+\infty} \int_{x : f (x) \ge y} p (x) \mathrm{d} x \mathrm{d} y - \int_0^{+\infty} \int_{x : - f (x) \gt y} p (x) \mathrm{d} x \mathrm{d} y \\
+>                      &= \int_{x : f (x) \ge 0} p (x) \int_0^{f (x)} \mathrm{d} y \mathrm{d} x - \int_{x : f (x) \lt 0} p (x) \int_{0}^{- f (x)} \mathrm{d} y \mathrm{d} x \\
+>                      &= \int_x f (x) \cdot p (x) \mathrm{d} x \\
+>   \mathrm{Exp} [X]^h &= \int x^h \cdot p (x) \mathrm{d} x                                                                                                                   &&\;\Leftarrow\; \int |x^h| \cdot p (x) \mathrm{d} x \to \mathrm{Conv.} \\
 > \end{alignedat}
 > $$
 >

@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     概率分布
-Revised:   2018-05-04 19:50:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-10 21:37:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -34,9 +34,10 @@ Resources:
 > ### 离散概率密度
 
 > $$
-> \begin{array}{lll}
-> p (x_i) = P (X = x_i) = C (x_i) - C (x_i^-) \\
-> \end{array}
+> \begin{alignedat}{3}
+>     p (x_i) &= P (X = x_i) = C (x_i) - C (x_i^-) \\
+> p [f (x_i)] &= P (Y = y_i) = p (x_i) \\
+> \end{alignedat}
 > $$
 >
 
@@ -54,9 +55,10 @@ Resources:
 > ### 连续概率密度
 
 > $$
-> \begin{array}{lll}
-> p (x) = \dfrac{P (x \lt X \le x + \mathrm{d} x)}{\mathrm{d} x} = \dfrac{\mathrm{d} C (x)}{\mathrm{d} x} \\
-> \end{array}
+> \begin{alignedat}{3}
+>     p (x) &= \dfrac{P (x \lt X \le x + \mathrm{d} x)}{\mathrm{d} x} = \dfrac{\mathrm{d} C (x)}{\mathrm{d} x} \\
+> p [f (x)] &= \dfrac{P (y \lt Y \le y + \mathrm{d} y)}{\mathrm{d} y} = p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} f (x)} \right| \\
+> \end{alignedat}
 > $$
 >
 
@@ -65,8 +67,8 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \fbox{1}\quad & p (x) \ge 0 \\
-> \fbox{2}\quad & \int_{-\infty}^{+\infty} p (x) = 1 \\
-> \fbox{3}\quad & \int_{-\infty}^x p (x) = C (x) \\
+> \fbox{2}\quad & \int_{-\infty}^{+\infty} p (x) \mathrm{d} x = 1 \\
+> \fbox{3}\quad & \int_{-\infty}^x p (x) \mathrm{d} x = C (x) \\
 > \end{alignedat}
 > $$
 >
