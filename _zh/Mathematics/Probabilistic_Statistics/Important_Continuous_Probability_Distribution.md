@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要连续概率分布
-Revised:   2018-05-11 02:33:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-11 21:41:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -11,14 +11,34 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                                        p (x) &= \dfrac{1}{\beta - \alpha} \quad\Leftarrow\quad x \in [\alpha, \beta] \\
->                                        C (x) &= \dfrac{x - \alpha}{\beta - \alpha} \\
-> \mathrm{Exp} [\mathrm{Un} (\alpha, \beta)]^h &= \int_\alpha^\beta x^h \dfrac{1}{\beta - \alpha} \mathrm{d} x \\
->                                              &= \left. \dfrac{1}{\beta - \alpha} \dfrac{x^{h + 1}}{h + 1} \right|_\alpha^\beta \\
->                                              &= \dfrac{\beta^{h + 1} - \alpha^{h + 1}}{(\beta - \alpha) (h + 1)} \\
->                           \mathrm{Exp} [X]^1 &= \dfrac{\beta + \alpha}{2} \\
->                           \mathrm{Exp} [X]^2 &= \dfrac{\beta^2 + \beta \alpha + \alpha^2}{3} \\
->                             \mathrm{Var} [X] &= \dfrac{(\beta - \alpha)^2}{12} \\
+>                                                           p (x) &= \dfrac{1}{\beta - \alpha} \quad\Leftarrow\quad x \in [\alpha, \beta] \\
+>                                                           C (x) &= \dfrac{x - \alpha}{\beta - \alpha} \\
+>                    \mathrm{Exp} [\mathrm{Un} (\alpha, \beta)]^h &= \int_\alpha^\beta x^h \dfrac{1}{\beta - \alpha} \mathrm{d} x \\
+>                                                                 &= \left. \dfrac{1}{\beta - \alpha} \dfrac{x^{h + 1}}{h + 1} \right|_\alpha^\beta \\
+>                                                                 &= \dfrac{\beta^{h + 1} - \alpha^{h + 1}}{(h + 1) (\beta - \alpha)} \\
+> \mathrm{Exp} [\mathrm{Un} (\alpha, \beta) - \mathrm{Exp} [X]]^h &= \int_\alpha^\beta \left( x - \dfrac{\beta + \alpha}{2} \right)^h \dfrac{1}{\beta - \alpha} \mathrm{d} x \\
+>                                                                 &= \dfrac{1}{\beta - \alpha} \dfrac{1}{h + 1} \left. \left( x - \dfrac{\beta + \alpha}{2} \right)^{h + 1} \right|_\alpha^\beta \\
+>                                                                 &= \dfrac{(\beta - \alpha)^{h + 1} - (\alpha - \beta)^{h + 1}}{2^{h + 1} (h + 1) (\beta - \alpha)} \\
+> \end{alignedat} \\
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{SD} [X] = \dfrac{\beta - \alpha}{2 \sqrt{3}} & \mathrm{Exp} [X]^1 = \dfrac{\beta + \alpha}{2}                                                              & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
+> \mathrm{Var} [X] = \dfrac{(\beta - \alpha)^2}{12}    & \mathrm{Exp} [X]^2 = \dfrac{\beta^2 + \beta \alpha + \alpha^2}{3}                                           & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \dfrac{(\beta - \alpha)^2}{12} \\
+> \mathrm{Ske} [X] = 0                                 & \mathrm{Exp} [X]^3 = \dfrac{\beta^3 + \beta^2 \alpha + \beta \alpha^2 + \alpha^3}{4}                        & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 0 \\
+> \mathrm{Kur} [X] = - 1.2                             & \mathrm{Exp} [X]^4 = \dfrac{\beta^4 + \beta^3 \alpha^1 + \beta^2 \alpha^2 + \beta^1 \alpha^3 + \alpha^4}{5} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = \dfrac{(\beta - \alpha)^4}{80} \\
+> \hline
+> \end{array}
+> $$
+>
+
+> ### 连续累积分布函数服从均匀分布
+
+> $$
+> \begin{alignedat}{3}
+> p_C (y) &= p [C^{- 1} (y)] \cdot \left| \dfrac{\mathrm{d} C^{- 1} (y)}{\mathrm{d} y} \right| \quad\Leftarrow\quad y \in [0, 1] \\
+>         &= p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} C (x)} \right| \\
+>         &= p (x) \cdot \dfrac{1}{p (x)} \\
+>         &= 1 \\
 > \end{alignedat}
 > $$
 >
@@ -27,15 +47,21 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                                 p (x) &= \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{x^2}{2}} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
->                      \Phi (x) = C (x) &= \dfrac{1}{2} \left[ 1 + \mathrm{E_{rr}} \left( \dfrac{x}{\sqrt{2}} \right) \right] \\
-> \mathrm{Exp} [\mathrm{No} (0, 1^2)]^h &= \int_{-\infty}^{+\infty} x^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{x^2}{2}} \mathrm{d} x \\
->                                       &\xlongequal{t = \frac{x^2}{2}} (h - 1 \mod 2) \dfrac{\sqrt{2}^h}{\sqrt{\pi}} \int_0^{+\infty} t^{\frac{h + 1}{2} - 1} e^{- t} \mathrm{d} t \\
->                                       &= (h - 1 \mod 2) \dfrac{\sqrt{2}^h}{\sqrt{\pi}} \Gamma \left( {\dfrac{h + 1}{2}} \right) \\
->                    \mathrm{Exp} [X]^1 &= 0 \\
->                    \mathrm{Exp} [X]^2 &= 1^2 \\
->                      \mathrm{Var} [X] &= 1^2 \\
-> \end{alignedat}
+>                                                    p (x) &= \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{x^2}{2}} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
+>                                         \Phi (x) = C (x) &= \dfrac{1}{2} \left[ 1 + \mathrm{E_{rr}} \left( \dfrac{x}{\sqrt{2}} \right) \right] \\
+>                    \mathrm{Exp} [\mathrm{No} (0, 1^2)]^h &= \int_{-\infty}^{+\infty} x^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{x^2}{2}} \mathrm{d} x \\
+>                                                          &\xlongequal{t = \frac{x^2}{2}} (h - 1 \mod 2) \dfrac{\sqrt{2}^h}{\sqrt{\pi}} \int_0^{+\infty} t^{\frac{h + 1}{2} - 1} e^{- t} \mathrm{d} t \\
+>                                                          &= (h - 1 \mod 2) \dfrac{\sqrt{2}^h}{\sqrt{\pi}} \Gamma \left( {\dfrac{h + 1}{2}} \right) \\
+> \mathrm{Exp} [\mathrm{No} (0, 1^2) - \mathrm{Exp} [X]]^h &= \mathrm{Exp} [\mathrm{No} (0, 1^2)]^h \\
+> \end{alignedat} \\
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{SD} [X] = 1  & \mathrm{Exp} [X]^1 = 0 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [X]]^1 = 0 \\
+> \mathrm{Var} [X] = 1 & \mathrm{Exp} [X]^2 = 1 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [X]]^2 = 1 \\
+> \mathrm{Ske} [X] = 0 & \mathrm{Exp} [X]^3 = 0 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [X]]^3 = 0 \\
+> \mathrm{Kur} [X] = 0 & \mathrm{Exp} [X]^4 = 3 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [X]]^4 = 3 \\
+> \hline
+> \end{array}
 > $$
 >
 
@@ -43,15 +69,23 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                                        p (x) &= \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
->                                        C (x) &= \dfrac{1}{2} \left[ 1 + \mathrm{E_{rr}} \left( \dfrac{x - \mu}{\sqrt{2} \sigma} \right) \right] \\
-> \mathrm{Exp} [\mathrm{No} (\mu, \sigma^2)]^h &= \int_{-\infty}^{+\infty} x^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
->                                              &\xlongequal{t = \frac{x - \mu}{\sigma}} \int_{-\infty}^{+\infty} (\sigma t + \mu)^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{t^2}{2}} \mathrm{d} t \\
->                                              &= \mathrm{Exp} [\sigma \cdot \mathrm{No} (0, 1^2) + \mu]^h \\
->                           \mathrm{Exp} [X]^1 &= \mu \\
->                           \mathrm{Exp} [X]^2 &= \sigma^2 + \mu^2 \\
->                             \mathrm{Var} [X] &= \sigma^2 \\
-> \end{alignedat}
+>                                                           p (x) &= \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
+>                                                           C (x) &= \dfrac{1}{2} \left[ 1 + \mathrm{E_{rr}} \left( \dfrac{x - \mu}{\sqrt{2} \sigma} \right) \right] \\
+>                    \mathrm{Exp} [\mathrm{No} (\mu, \sigma^2)]^h &= \int_{-\infty}^{+\infty} x^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
+>                                                                 &\xlongequal{t = \frac{x - \mu}{\sigma}} \int_{-\infty}^{+\infty} (\sigma t + \mu)^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{t^2}{2}} \mathrm{d} t \\
+>                                                                 &= \mathrm{Exp} [\sigma \cdot \mathrm{No} (0, 1^2) + \mu]^h \\
+> \mathrm{Exp} [\mathrm{No} (\mu, \sigma^2) - \mathrm{Exp} [X]]^h &= \int_{-\infty}^{+\infty} (x - \mu)^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
+>                                                                 &\xlongequal{t = \frac{x - \mu}{\sigma}} \int_{-\infty}^{+\infty} (\sigma t)^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{t^2}{2}} \mathrm{d} x \\
+>                                                                 &= \sigma^h \cdot \mathrm{Exp} [\mathrm{No} (0, 1^2)]^h \\
+> \end{alignedat} \\
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{SD} [X] = \sigma    & \mathrm{Exp} [X]^1 = \mu                                   & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
+> \mathrm{Var} [X] = \sigma^2 & \mathrm{Exp} [X]^2 = \sigma^2 + \mu^2                      & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \sigma^2 \\
+> \mathrm{Ske} [X] = 0        & \mathrm{Exp} [X]^3 = 3 \sigma^2 \mu + \mu^3                & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 0 \\
+> \mathrm{Kur} [X] = 0        & \mathrm{Exp} [X]^4 = 3 \sigma^4 + 6 \sigma^2 \mu^2 + \mu^4 & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = 3 \sigma^4 \\
+> \hline
+> \end{array}
 > $$
 >
 
@@ -189,9 +223,7 @@ Resources:
 >                                       C (x) &= \dfrac{1}{\pi} \left[ \arctan \left( \dfrac{x - \mu}{\lambda} \right) + \dfrac{\pi}{2} \right] \\
 > \mathrm{Exp} |\mathrm{AT} (\mu, \lambda)^h| &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} |x^h| \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \mathrm{d} x \\
 >                                             &\to +\infty \\
->                          \mathrm{Exp} [X]^1 &= \mathcal{Undef.} \\
->                          \mathrm{Exp} [X]^2 &= \mathcal{Undef.} \\
->                            \mathrm{Var} [X] &= \mathcal{Undef.} \\
 > \end{alignedat}
 > $$
 >
+

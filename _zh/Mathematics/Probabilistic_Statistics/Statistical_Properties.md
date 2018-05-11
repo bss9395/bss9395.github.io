@@ -2,12 +2,12 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     统计特性
-Revised:   2018-05-10 01:14:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-11 20:58:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 离散期望值 $\mathrm{Exp_{ected}} [X]$
+> ### 离散期望值 $\mathrm{Exp_{ected}}$
 
 > $$
 > \begin{alignedat}{3}
@@ -21,7 +21,7 @@ Resources:
 > $$
 >
 
-> ### 连续期望值 $\mathrm{Exp_{ected}} [X]$
+> ### 连续期望值 $\mathrm{Exp_{ected}}$
 
 > $$
 > \begin{alignedat}{3}
@@ -38,15 +38,16 @@ Resources:
 > ### 期望值的性质
 
 > $$
-> \begin{array}{lll}
-> \fbox{1} & \mathrm{Exp} [c] = c \\
-> \fbox{2} & \mathrm{Exp} [c \cdot X + d] = c \cdot \mathrm{E} [X] + d \\
-> \fbox{3} & \mathrm{Exp} [f (X) + g (X)] = \mathrm{E} [f (X)] + \mathrm{E} [g (X)] \\
-> \end{array}
+> \begin{alignedat}{3}
+> \fbox{1}\quad & \mathrm{Exp} [c] = c \\
+> \fbox{2}\quad & \mathrm{Exp} [c \cdot X + d] = c \cdot \mathrm{E} [X] + d \\
+> \fbox{3}\quad & \mathrm{Exp} [f (X) + g (X)] = \mathrm{E} [f (X)] + \mathrm{E} [g (X)] \\
+> \fbox{4}\quad & \mathrm{Exp} [X - \mathrm{Exp} [X]]^h = \sum_{i = 0}^h {h \choose i} (- \mathrm{Exp} [X])^{h - i} \cdot \mathrm{Exp} [X]^i \\
+> \end{alignedat}
 > $$
 >
 
-> ### 方差 $\mathrm{Var_{iance}} [X]$
+> ### 方差 $\mathrm{Var_{iance}}$
 
 > $$
 > \begin{alignedat}{3}
@@ -69,7 +70,7 @@ Resources:
 > $$
 >
 
-> ### 标准差 $\mathrm{S_{tandard} D_{eviation}} [X]$
+> ### 标准差 $\mathrm{S_{tandard} D_{eviation}}$
 
 > $$
 > \begin{alignedat}{3}
@@ -89,6 +90,45 @@ Resources:
 >                 &&                                            &= \dfrac{\mathrm{Var} [X]}{\varepsilon^2} \\
 > \Downarrow\quad && P (|X - \mathrm{Exp} [X]| \lt \varepsilon) &= 1 - P (|X - \mathrm{Exp} [X]| \ge \varepsilon) \\
 >                 &&                                            &\ge 1 - \dfrac{\mathrm{Var} [X]}{\varepsilon^2} \\
+> \end{alignedat}
+> $$
+>
+
+> ### 分位数 $\mathrm{Qua_{ntile}}$
+
+> $$
+> \begin{alignedat}{3}
+> & \mathrm{Qua} [_q X] = x \iff C (x) = q \\
+> & \mathrm{Qua} [^q X] = x \iff 1 - C (x) = q \\
+> & \mathrm{Qua} [_q X] = \mathrm{Qua} [^{1 - q} X] \\
+> \end{alignedat}
+> $$
+>
+
+> ### 变异度 $\mathrm{C_{oefficient} {_{of}} V_{ariance}}$
+
+> $$
+> \begin{alignedat}{3}
+> \mathrm{CV} [X] = \dfrac{\mathrm{SD} [X]}{\mathrm{Exp} [X]} \\
+> \end{alignedat}
+> $$
+>
+
+> ### 偏度 $\mathrm{Ske_{wness}}$
+
+> $$
+> \begin{alignedat}{3}
+> \mathrm{Ske} [X] = \dfrac{\mathrm{Exp} [X - \mathrm{Exp} [X]]^3}{\mathrm{SD}^3 [X]} \\
+> \end{alignedat}
+> $$
+>
+
+> ### 峰度 $\mathrm{Kur_{tosis}}$
+
+> $$
+> \begin{alignedat}{3}
+> \mathrm{Kur} [X] &= \dfrac{\mathrm{Exp} [X - \mathrm{Exp} [X]]^4}{\mathrm{SD}^4 [X]} - 3 \\
+>                  &= \dfrac{\mathrm{Exp} [X - \mathrm{Exp} [X]]^4}{\mathrm{SD}^4 [X]} - \mathrm{Exp} [\mathrm{No} (0, 1^2)]^4 \\
 > \end{alignedat}
 > $$
 >
