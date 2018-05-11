@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要连续概率分布
-Revised:   2018-05-11 21:41:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-12 00:07:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -133,15 +133,23 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                                     p (x) &= \dfrac{\lambda}{\Gamma (t)} (\lambda x)^{t - 1} e^{- \lambda x} \quad\Leftarrow\quad x \in [0, +\infty) \\
->                                     C (x) &= \dfrac{\lambda}{\Gamma (t)} \int_0^x (\lambda x)^{t - 1} e^{- \lambda x} \mathrm{d} x \\
-> \mathrm{Exp} [\mathrm{Ga} (t, \lambda)]^h &= \dfrac{\lambda}{\Gamma (t)} \int_0^{+\infty} x^h (\lambda x)^{t - 1} e^{- \lambda x} \mathrm{d} x \\
->                                           &= \dfrac{\Gamma (t + 1)}{\lambda \Gamma (t)} \dfrac{\lambda}{\Gamma (t + 1)} \int_0^{+\infty} x^{h - 1} (\lambda x)^t e^{- \lambda x} \mathrm{d} x \\
->                                           &= \dfrac{t}{\lambda} \mathrm{Exp} [\mathrm{Ga} (t + 1, \lambda)]^{h - 1} \\
->                        \mathrm{Exp} [X]^1 &= \dfrac{t}{\lambda} \\
->                        \mathrm{Exp} [X]^2 &= \dfrac{t (t + 1)}{\lambda^2} \\
->                          \mathrm{Var} [X] &= \dfrac{t}{\lambda^2} \\
-> \end{alignedat}
+>                                                        p (x) &= \dfrac{\lambda}{\Gamma (t)} (\lambda x)^{t - 1} e^{- \lambda x} \quad\Leftarrow\quad x \in [0, +\infty) \\
+>                                                        C (x) &= \dfrac{\lambda}{\Gamma (t)} \int_0^x (\lambda x)^{t - 1} e^{- \lambda x} \mathrm{d} x \\
+>                    \mathrm{Exp} [\mathrm{Ga} (t, \lambda)]^h &= \dfrac{\lambda}{\Gamma (t)} \int_0^{+\infty} x^h (\lambda x)^{t - 1} e^{- \lambda x} \mathrm{d} x \\
+>                                                              &= \dfrac{\Gamma (t + 1)}{\lambda \Gamma (t)} \dfrac{\lambda}{\Gamma (t + 1)} \int_0^{+\infty} x^{h - 1} (\lambda x)^t e^{- \lambda x} \mathrm{d} x \\
+>                                                              &= \dfrac{t}{\lambda} \mathrm{Exp} [\mathrm{Ga} (t + 1, \lambda)]^{h - 1} \\
+> \mathrm{Exp} [\mathrm{Ga} (t, \lambda) - \mathrm{Exp} [X]]^h &= \dfrac{\lambda}{\Gamma (t)} \int_0^{+\infty} \left( x - \dfrac{t}{\lambda} \right)^h (\lambda x)^{t - 1} e^{- \lambda x} \mathrm{d} x \\
+>                                                              &= \dfrac{\Gamma (t + 1)}{\lambda \Gamma (t)} \dfrac{\lambda}{\Gamma (t + 1)} \int_0^{+\infty} \left( x - \dfrac{t}{\lambda } \right)^{h - 1} (\lambda x)^t e^{- \lambda x} \mathrm{d} x - \dfrac{t}{\lambda} \dfrac{\lambda}{\Gamma (t)} \int_0^{+\infty} \left( x - \dfrac{t}{\lambda} \right)^{h - 1} (\lambda x)^{t - 1} e^{- \lambda x} \mathrm{d} x \\
+>                                                              &= \dfrac{t}{\lambda} \mathrm{Exp} \left[ \mathrm{Ga} (t + 1, \lambda) - \dfrac{t}{\lambda} \right]^{h - 1} - \dfrac{t}{\lambda} \mathrm{Exp} \left[ \mathrm{Ga} (t, \lambda) - \dfrac{t}{\lambda} \right]^{h - 1} \\
+> \end{alignedat} \\
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{SD} [X] = \dfrac{\sqrt{t}}{\lambda} & \mathrm{Exp} [X]^1 = \dfrac{t}{\lambda}                           & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
+> \mathrm{Var} [X] = \dfrac{t}{\lambda^2}     & \mathrm{Exp} [X]^2 = \dfrac{t (t + 1)}{\lambda^2}                 & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \dfrac{t}{\lambda^2} \\
+> \mathrm{Ske} [X] = \dfrac{2}{\sqrt{t}}      & \mathrm{Exp} [X]^3 = \dfrac{t (t + 1) (t + 2)}{\lambda^3}         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = \dfrac{2 t}{\lambda^3} \\
+> \mathrm{Kur} [X] = \dfrac{6}{t}             & \mathrm{Exp} [X]^4 = \dfrac{t (t + 1) (t + 2) (t + 3)}{\lambda^4} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{3 t (t + 2)}{\lambda^4} \\
+> \hline
+> \end{array}
 > $$
 >
 
@@ -163,13 +171,19 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                                  p (x) &= \lambda e^{- \lambda x} \quad\Leftarrow\quad x \in [0, +\infty) \\
->                                  C (x) &= 1 - e^{- \lambda x} \\
-> \mathrm{Exp} [\mathrm{Ex} (\lambda)]^h &= \mathrm{Exp} [\mathrm{Ga} (1, \lambda)]^h \\
->                     \mathrm{Exp} [X]^1 &= \dfrac{1}{\lambda} \\
->                     \mathrm{Exp} [X]^2 &= \dfrac{2}{\lambda^2} \\
->                       \mathrm{Var} [X] &= \dfrac{1}{\lambda^2} \\
-> \end{alignedat}
+>                                                     p (x) &= \lambda e^{- \lambda x} \quad\Leftarrow\quad x \in [0, +\infty) \\
+>                                                     C (x) &= 1 - e^{- \lambda x} \\
+>                    \mathrm{Exp} [\mathrm{Ex} (\lambda)]^h &= \mathrm{Exp} [\mathrm{Ga} (1, \lambda)]^h \\
+> \mathrm{Exp} [\mathrm{Ex} (\lambda) - \mathrm{Exp} [X]]^h &= \mathrm{Exp} [\mathrm{Ga} (1, \lambda) - \mathrm{Exp} [X]]^h \\
+> \end{alignedat} \\
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{SD} [X] = \dfrac{1}{\lambda}    & \mathrm{Exp} [X]^1 = \dfrac{1}{\lambda}    & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
+> \mathrm{Var} [X] = \dfrac{1}{\lambda^2} & \mathrm{Exp} [X]^2 = \dfrac{2}{\lambda^2}  & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \dfrac{1}{\lambda^2} \\
+> \mathrm{Ske} [X] = 2                    & \mathrm{Exp} [X]^3 = \dfrac{6}{\lambda^3}  & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = \dfrac{2}{\lambda^3} \\
+> \mathrm{Kur} [X] = 6                    & \mathrm{Exp} [X]^4 = \dfrac{24}{\lambda^4} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{9}{\lambda^2} \\
+> \hline
+> \end{array}
 > $$
 >
 
@@ -189,13 +203,17 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                            p (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \quad\Leftarrow\quad x \in [0, +\infty) \\
->                            C (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} \int_0^x x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \quad\Leftarrow\quad x \in [0, +\infty) \mathrm{d} x \\
-> \mathrm{Exp} [\mathrm{Ch} (n)]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) \right]^h \\
->               \mathrm{Exp} [X]^1 &= n \\
->               \mathrm{Exp} [X]^2 &= n (n + 2) \\
->                 \mathrm{Var} [X] &= 2 n \\
-> \end{alignedat}
+>                                               p (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \quad\Leftarrow\quad x \in [0, +\infty) \\
+>                                               C (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} \int_0^x x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \quad\Leftarrow\quad x \in [0, +\infty) \mathrm{d} x \\
+>                    \mathrm{Exp} [\mathrm{Ch} (n)]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) \right]^h \\
+> \mathrm{Exp} [\mathrm{Ch} (n) - \mathrm{Exp} [X]]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) - \mathrm{Exp} [X] \right]^h \\
+> \end{alignedat} \\
+> \begin{array}{l|l|l}
+> \mathrm{SD} [X] = \sqrt{2 n}           & \mathrm{Exp} [X]^1 = n                         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
+> \mathrm{Var} [X] = 2 n                 & \mathrm{Exp} [X]^2 = n (n + 2)                 & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = 2 n \\
+> \mathrm{Ske} [X] = \sqrt{\dfrac{8}{n}} & \mathrm{Exp} [X]^3 = n (n + 2) (n + 4)         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 8 n \\
+> \mathrm{Fur} [X] = \dfrac{12}{n}       & \mathrm{Exp} [X]^4 = n (n + 2) (n + 4) (n + 6) & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = 12 n (n + 4) \\
+> \end{array}
 > $$
 >
 
