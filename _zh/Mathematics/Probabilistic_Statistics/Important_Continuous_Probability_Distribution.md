@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要连续概率分布
-Revised:   2018-05-12 00:07:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-12 03:50:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -122,10 +122,13 @@ Resources:
 > \mathrm{Exp} [\mathrm{LN} (\mu, \sigma^2)]^h &= \int_{-\infty}^{+\infty} (e^x)^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
 >                                              &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \cdot \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{[x - (\mu + \sigma^2 h)]^2}{2 \sigma^2}} \mathrm{d} x \\
 >                                              &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \\
->                           \mathrm{Exp} [Y]^1 &= e^{\mu + \frac{\sigma^2}{2}} \\
->                           \mathrm{Exp} [Y]^2 &= e^{2 \mu + 2 \sigma^2} \\
->                             \mathrm{Var} [Y] &= e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1) \\
-> \end{alignedat}
+> 
+> \end{alignedat} \\
+> \begin{array}{l|l|l}
+>                           \mathrm{Exp} [Y]^1 = e^{\mu + \frac{\sigma^2}{2}} \\
+>                           \mathrm{Exp} [Y]^2 = e^{2 \mu + 2 \sigma^2} \\
+>                             \mathrm{Var} [Y] = e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1) \\
+> \end{array}
 > $$
 >
 
@@ -136,11 +139,12 @@ Resources:
 >                                                        p (x) &= \dfrac{\lambda}{\Gamma (t)} (\lambda x)^{t - 1} e^{- \lambda x} \quad\Leftarrow\quad x \in [0, +\infty) \\
 >                                                        C (x) &= \dfrac{\lambda}{\Gamma (t)} \int_0^x (\lambda x)^{t - 1} e^{- \lambda x} \mathrm{d} x \\
 >                    \mathrm{Exp} [\mathrm{Ga} (t, \lambda)]^h &= \dfrac{\lambda}{\Gamma (t)} \int_0^{+\infty} x^h (\lambda x)^{t - 1} e^{- \lambda x} \mathrm{d} x \\
->                                                              &= \dfrac{\Gamma (t + 1)}{\lambda \Gamma (t)} \dfrac{\lambda}{\Gamma (t + 1)} \int_0^{+\infty} x^{h - 1} (\lambda x)^t e^{- \lambda x} \mathrm{d} x \\
->                                                              &= \dfrac{t}{\lambda} \mathrm{Exp} [\mathrm{Ga} (t + 1, \lambda)]^{h - 1} \\
+>                                                              &\xlongequal{y = \lambda x} \dfrac{1}{\lambda^h \Gamma (t)} \int_0^{+\infty} y^{t + h - 1} e^{- y} \mathrm{d} y \\
+>                                                              &= \dfrac{\Gamma (t + h)}{\lambda^h \Gamma (t)} \\
 > \mathrm{Exp} [\mathrm{Ga} (t, \lambda) - \mathrm{Exp} [X]]^h &= \dfrac{\lambda}{\Gamma (t)} \int_0^{+\infty} \left( x - \dfrac{t}{\lambda} \right)^h (\lambda x)^{t - 1} e^{- \lambda x} \mathrm{d} x \\
->                                                              &= \dfrac{\Gamma (t + 1)}{\lambda \Gamma (t)} \dfrac{\lambda}{\Gamma (t + 1)} \int_0^{+\infty} \left( x - \dfrac{t}{\lambda } \right)^{h - 1} (\lambda x)^t e^{- \lambda x} \mathrm{d} x - \dfrac{t}{\lambda} \dfrac{\lambda}{\Gamma (t)} \int_0^{+\infty} \left( x - \dfrac{t}{\lambda} \right)^{h - 1} (\lambda x)^{t - 1} e^{- \lambda x} \mathrm{d} x \\
->                                                              &= \dfrac{t}{\lambda} \mathrm{Exp} \left[ \mathrm{Ga} (t + 1, \lambda) - \dfrac{t}{\lambda} \right]^{h - 1} - \dfrac{t}{\lambda} \mathrm{Exp} \left[ \mathrm{Ga} (t, \lambda) - \dfrac{t}{\lambda} \right]^{h - 1} \\
+>                                                              &= \dfrac{1}{\lambda^h \Gamma (t)} \int_0^{+\infty} (\lambda x - t)^{h - 1} \mathrm{d} [- (\lambda x)^t e^{- \lambda x}] \\
+>                                                              &= \dfrac{(h - 1) \cdot \Gamma (t + 1)}{\lambda^h \cdot \Gamma (t)} \dfrac{\lambda}{\Gamma (t + 1)} \int_0^{+\infty} (\lambda x - t)^{h - 2} (\lambda x)^{t} e^{- \lambda x} \mathrm{d} x \\
+>                                                              &= \dfrac{(h - 1) t}{\lambda^h} \mathrm{Exp} [\lambda \cdot \mathrm{Ga} (t + 1, \lambda) - t]^{h - 2} \\
 > \end{alignedat} \\
 > \begin{array}{l|l|l}
 > \hline
@@ -209,10 +213,12 @@ Resources:
 > \mathrm{Exp} [\mathrm{Ch} (n) - \mathrm{Exp} [X]]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) - \mathrm{Exp} [X] \right]^h \\
 > \end{alignedat} \\
 > \begin{array}{l|l|l}
+> \hline
 > \mathrm{SD} [X] = \sqrt{2 n}           & \mathrm{Exp} [X]^1 = n                         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
 > \mathrm{Var} [X] = 2 n                 & \mathrm{Exp} [X]^2 = n (n + 2)                 & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = 2 n \\
 > \mathrm{Ske} [X] = \sqrt{\dfrac{8}{n}} & \mathrm{Exp} [X]^3 = n (n + 2) (n + 4)         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 8 n \\
 > \mathrm{Fur} [X] = \dfrac{12}{n}       & \mathrm{Exp} [X]^4 = n (n + 2) (n + 4) (n + 6) & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = 12 n (n + 4) \\
+> \hline
 > \end{array}
 > $$
 >
@@ -221,15 +227,24 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                               p (x) &= \dfrac{1}{\Beta (t, s)} x^{t - 1} (1 - x)^{s - 1} \quad\Leftarrow\quad x \in [0, 1] \\
->                               C (x) &= \dfrac{1}{\Beta (t, s)} \int_0^x x^{t - 1} (1 - x)^{s - 1} \mathrm{d} x \\
-> \mathrm{Exp} [\mathrm{Be} (t, s)]^h &= \dfrac{1}{\Beta (t, s)} \int_0^1 x^h x^{t - 1} (1 - x)^{s - 1} \mathrm{d} x \\
->                                     &= \dfrac{1}{\Beta (t, s)} \Beta (h + t, s) \\
->                                     &= \dfrac{\Gamma (t + s)}{\Gamma (t)} \dfrac{\Gamma (t + h)}{\Gamma (t + s + h)} \\
->                  \mathrm{Exp} [X]^1 &= \dfrac{t}{t + s} \\
->                  \mathrm{Exp} [X]^2 &= \dfrac{t (t + 1)}{(t + s) (t + s + 1)} \\
->                    \mathrm{Var} [X] &= \dfrac{t s}{(t + s)^2 (t + s + 1)} \\
-> \end{alignedat}
+>                                                  p (x) &= \dfrac{1}{\Beta (t, s)} x^{t - 1} (1 - x)^{s - 1} \quad\Leftarrow\quad x \in [0, 1] \\
+>                                                  C (x) &= \dfrac{1}{\Beta (t, s)} \int_0^x x^{t - 1} (1 - x)^{s - 1} \mathrm{d} x \\
+>                    \mathrm{Exp} [\mathrm{Be} (t, s)]^h &= \dfrac{1}{\Beta (t, s)} \int_0^1 x^h x^{t - 1} (1 - x)^{s - 1} \mathrm{d} x \\
+>                                                        &= \dfrac{1}{\Beta (t, s)} \Beta (h + t, s) \\
+>                                                        &= \dfrac{\Gamma (t + s)}{\Gamma (t)} \dfrac{\Gamma (t + h)}{\Gamma (t + s + h)} \\
+> \mathrm{Exp} [\mathrm{Be} (t, s) - \mathrm{Exp} [X]]^h &= \dfrac{1}{\mathrm{\Beta} (t, s)} \int_0^1 \left( x - \dfrac{t}{t + s} \right)^h x^{t - 1} (1 - x)^{s - 1} \mathrm{d} x \\
+>                                                        &= \dfrac{1}{(t + s)^h \cdot \mathrm{\Beta} (t, s)} \int _0^1 [(t + s) x - t]^{h - 1} \mathrm{d} [- x^t (1 - x)^s] \\
+>                                                        &= \dfrac{(h - 1) \cdot \Beta (t + 1, s + 1)}{(t + s)^{h - 1} \cdot \Beta (t, s)} \dfrac{1}{\Beta (t + 1, s + 1)} \int_0^1 [(t + s) x - t]^{h - 2} x^t (1 - x)^s \mathrm{d} x \\
+>                                                        &= \dfrac{(h - 1) t s}{(t + s)^h (t + s + 1)} \mathrm{Exp} [(t + s) \cdot \mathrm{\Beta} (t + 1, s + 1) - t]^{h - 2} \\
+> \end{alignedat} \\
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{SD} [X] = \dfrac{1}{t + s} \sqrt{\dfrac{t s}{t +s + 1}}                                     & \mathrm{Exp} [X]^1 = \dfrac{t}{t + s}                                                               & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
+> \mathrm{Var} [X] = \dfrac{t s}{(t + s)^2 (t + s + 1)}                                               & \mathrm{Exp} [X]^2 = \dfrac{t (t + 1)}{(t + s) (t + s + 1)}                                         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \dfrac{t s}{(t + s)^2 (t + s + 1)} \\
+> \mathrm{Ske} [X] = \dfrac{2 (s - t)}{t + s + 2} \sqrt{\dfrac{t + s + 1}{t s}}                       & \mathrm{Exp} [X]^3 = \dfrac{t (t + 1) (t + 2)}{(t + s) (t + s + 1) (t + s + 2)}                     & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = \dfrac{2 t s (s - t)}{(t + s)^3 (t + s + 1) (t + s + 2)} \\
+> \mathrm{Fur} [X] = \dfrac{6 [(t - s)^2 (t + s + 1) - t s (t + s + 2)]}{t s (t + s + 2) (t + s + 3)} & \mathrm{Exp} [X]^4 = \dfrac{t (t + 1) (t + 2) (t + 3)}{(t + s) (t + s + 1) (t + s + 2) (t + s + 3)} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{3 s t [2 (t - s)^2 + s t (t + s + 2)]}{(t + s)^4 (t + s + 1) (t + s + 2) (t + s + 3)} \\
+> \hline
+> \end{array}
 > $$
 >
 
@@ -244,4 +259,12 @@ Resources:
 > \end{alignedat}
 > $$
 >
+
+$$
+\begin{alignedat}{3}
+\mathrm{Exp} [\mathrm{LN} (\mu, \sigma^2) - \mathrm{Exp} [Y]]^h &= \int_{-\infty}^{+\infty} (e^x - e^{\mu + \frac{\sigma^2}{2}})^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
+&\xlongequal{t = \frac{x - \mu}{\sigma}} e^{\mu h} \int_{-\infty}^{+\infty} (e^{\sigma t} - e^{\frac{\sigma^2}{2}})^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{t^2}{2}} \mathrm{d} t \\
+&= e^{\mu h} \mathrm{Exp} [e^\sigma \cdot \mathrm{LN} (0, 1^2) - e^\frac{\sigma^2}{2}]^h \\
+\end{alignedat}
+$$
 
