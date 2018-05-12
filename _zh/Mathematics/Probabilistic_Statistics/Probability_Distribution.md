@@ -26,7 +26,27 @@ Resources:
 > \begin{array}{ll|l}
 > \fbox{1} & x \lt y \implies C (x) \le C (y) \\
 > \fbox{2} & C (-\infty) = \lim\limits_{-\infty} C (x) = 0 & C (+\infty) = \lim\limits_{+\infty} C (x) = 1 \\
-> \fbox{3} & C (x_0) = \lim\limits_{x_0^+} C (x)           & C (x_0^-) \le C (x_0) = C (x_0^+) \\
+> \fbox{3} & C (x0) = \lim\limits_{x0^+} C (x)           & C (x0^-) \le C (x0) = C (x0^+) \\
+> \end{array}
+> $$
+>
+
+> ### 联合概率分布
+
+> $$
+> \begin{alignedat}{3}
+> J_{oint} (\cdots, x_n, \cdots) = P (\cdots, X_n \le x_n, \cdots) \\
+> \end{alignedat}
+> $$
+>
+
+> ### 联合概率分布的性质
+
+> $$
+> \begin{array}{ll|l}
+> \fbox{1} & x \lt y \implies J (\cdots, x, \cdots) \le J (\cdots, y, \cdots) \\
+> \fbox{2} & J (\cdots, -\infty, \cdots) = \lim\limits_{-\infty} J (\cdots, x, \cdots) = 0 & J (+\infty, \cdots, +\infty) = \lim\limits_{+\infty} J (\cdots, x_n, \cdots) = 1 \\
+> \fbox{3} & J (\cdots, x0, \cdots) = \lim\limits_{x0^+} J (\cdots, x, \cdots) & J (\cdots, x0^-, \cdots) \le J (\cdots, x0, \cdots) = J (\cdots, x0^+, \cdots) \\
 > \end{array}
 > $$
 >

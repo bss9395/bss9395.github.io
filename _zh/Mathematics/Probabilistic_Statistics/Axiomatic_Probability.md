@@ -89,12 +89,12 @@ Resources:
 
 > $$
 > \begin{array}{ll|l}
-> \fbox{01} & P (\varnothing) = 0                                                                                             & \\
-> \fbox{02} & P (\overline{A}) = 1 - P (A)                                                                                    & P (A) + P (\overline{A}) = 1 \\
-> \fbox{03} & P (A \overline{B}) = P (A) - P (A B)                                                                            & P (A) \ge P (A B) \\
-> \fbox{04} & P (A \cup B) = P (A) + P (B) - P (A B)                                                                          & P (A) + P (B) \ge P (A \cup B) \\
-> \fbox{05} & P (\bigcup A_n) = \sum\limits_1^n (- 1)^{n - 1} \sum\limits_{1 \le i \le \cdots \le j \le n} P (A_i \cdots A_j) & \sum P (A_n) \ge P (\bigcup A_n) \\
-> \fbox{06} & \lim\limits_{+\infty} P (E_n) = P \left( \lim\limits_{+\infty} E_n \right)                                      & \\
+> \fbox{1} & P (\varnothing) = 0                                                            & \\
+> \fbox{2} & P (\overline{A}) = 1 - P (A)                                                   & P (A) + P (\overline{A}) = 1 \\
+> \fbox{3} & P (A \overline{B}) = P (A) - P (A B)                                           & P (A) \ge P (A B) \\
+> \fbox{4} & P (A \cup B) = P (A) + P (B) - P (A B)                                         & P (A) + P (B) \ge P (A \cup B) \\
+> \fbox{5} & P (\bigcup A_n) = \sum\limits_1^n (- 1)^{n - 1} \sum P (\cdots A_{i_n} \cdots) & \sum P (A_n) \ge P (\bigcup A_n) \\
+> \fbox{6} & \lim\limits_{+\infty} P (E_n) = P \left( \lim\limits_{+\infty} E_n \right)     & \\
 > \end{array}
 > $$
 >
