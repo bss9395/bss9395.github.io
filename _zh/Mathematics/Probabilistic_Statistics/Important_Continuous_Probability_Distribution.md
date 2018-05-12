@@ -117,17 +117,20 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                                  p_{e^X} (y) &= p (\ln y) \cdot \left| \dfrac{\mathrm{d}}{\mathrm{d} y} \ln y \right| \quad\Leftarrow\quad y \in (0, +\infty) \\
->                                              &= \dfrac{1}{\sqrt{2 \pi} \sigma y} e^{- \frac{(\ln y - \mu)^2}{2 \sigma^2}} \\
-> \mathrm{Exp} [\mathrm{LN} (\mu, \sigma^2)]^h &= \int_{-\infty}^{+\infty} (e^x)^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
->                                              &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \cdot \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{[x - (\mu + \sigma^2 h)]^2}{2 \sigma^2}} \mathrm{d} x \\
->                                              &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \\
-> 
+>                                                     p_{e^X} (y) &= p (\ln y) \cdot \left| \dfrac{\mathrm{d}}{\mathrm{d} y} \ln y \right| \quad\Leftarrow\quad y \in (0, +\infty) \\
+>                                                                 &= \dfrac{1}{\sqrt{2 \pi} \sigma y} e^{- \frac{(\ln y - \mu)^2}{2 \sigma^2}} \\
+>                    \mathrm{Exp} [\mathrm{LN} (\mu, \sigma^2)]^h &= \int_{-\infty}^{+\infty} (e^x)^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
+>                                                                 &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \cdot \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{[x - (\mu + \sigma^2 h)]^2}{2 \sigma^2}} \mathrm{d} x \\
+>                                                                 &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \\
+> \mathrm{Exp} [\mathrm{LN} (\mu, \sigma^2) - \mathrm{Exp} [Y]]^h &= \mathrm{Exp} \left[ Y - e^{\mu + \frac{\sigma^2}{2}} \right]^h \\
 > \end{alignedat} \\
 > \begin{array}{l|l|l}
->                           \mathrm{Exp} [Y]^1 = e^{\mu + \frac{\sigma^2}{2}} \\
->                           \mathrm{Exp} [Y]^2 = e^{2 \mu + 2 \sigma^2} \\
->                             \mathrm{Var} [Y] = e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1) \\
+> \hline
+> \mathrm{SD} [Y] = e^{\mu + \frac{\sigma^2}{2}} \sqrt{e^{\sigma^2} - 1}      & \mathrm{Exp} [Y]^1 = e^{\mu + \frac{\sigma^2}{2}}     & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^1 = 0 \\
+> \mathrm{Var} [Y] = e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1)                  & \mathrm{Exp} [Y]^2 = e^{2 \mu + 2 \sigma^2}           & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^2 = e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1) \\
+> \mathrm{Ske} [Y] = (e^{\sigma^2} + 2) \sqrt{e^{\sigma^2} - 1}               & \mathrm{Exp} [Y]^3 = e^{3 \mu + \frac{9 \sigma^2}{2}} & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^3 = e^{3 \mu + \frac{3 \sigma^2}{2}} (e^{\sigma^2} - 1)^2 (e^{\sigma^2} + 2) \\
+> \mathrm{Kur} [Y] = e^{4 \sigma^2} + 2 e^{3 \sigma^2} + 3 e^{2 \sigma^2} - 6 & \mathrm{Exp} [Y]^4 = e^{4 \mu + 8 \sigma^2}           & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^4 = e^{4 \mu + 2 \sigma^2} (e^{\sigma^2} - 1)^2 (e^{4 \sigma^2} + 2 e^{3 \sigma^3} + 3 e^{\sigma^2} - 3) \\
+> \hline
 > \end{array}
 > $$
 >
@@ -259,12 +262,4 @@ Resources:
 > \end{alignedat}
 > $$
 >
-
-$$
-\begin{alignedat}{3}
-\mathrm{Exp} [\mathrm{LN} (\mu, \sigma^2) - \mathrm{Exp} [Y]]^h &= \int_{-\infty}^{+\infty} (e^x - e^{\mu + \frac{\sigma^2}{2}})^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
-&\xlongequal{t = \frac{x - \mu}{\sigma}} e^{\mu h} \int_{-\infty}^{+\infty} (e^{\sigma t} - e^{\frac{\sigma^2}{2}})^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{t^2}{2}} \mathrm{d} t \\
-&= e^{\mu h} \mathrm{Exp} [e^\sigma \cdot \mathrm{LN} (0, 1^2) - e^\frac{\sigma^2}{2}]^h \\
-\end{alignedat}
-$$
 
