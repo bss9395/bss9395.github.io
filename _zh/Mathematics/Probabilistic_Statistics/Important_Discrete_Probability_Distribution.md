@@ -7,7 +7,7 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 二项分布 $X \mapsto \mathrm{Bi_{nomial}} (n, p)$
+> ### 二项分布 $X \mapsto \mathrm{B_{i} N_{omial}} (n, p)$
 
 > $$
 > \begin{alignedat}{3}
@@ -23,7 +23,7 @@ Resources:
 > $$
 >
 
-> ### 二点分布 $X \mapsto \mathrm{Tw_{o}} (p) = \mathrm{Bi_{nomial}} (1, p)$
+> ### 二点分布 $X \mapsto \mathrm{Tw_{o}} (p) = \mathrm{BN} (1, p)$
 
 > $$
 > \begin{alignedat}{3}
