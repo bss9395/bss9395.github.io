@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     概率分布
-Revised:   2018-05-11 00:35:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-13 23:08:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -11,11 +11,11 @@ Resources:
 
 > $$
 > \begin{array}{l|l|l}
->                                 & P (X \lt \beta) = C (\beta^-)           & P (\alpha \lt X \lt \beta) = C(\beta^-) - C (\alpha) \\
->                                 & P (X \le \beta) = C (\beta)             & P (\alpha \lt X \le \beta) = C (\beta) - C (\alpha) \\
-> C_{umulative} (x) = P (X \le x) & P (X = \beta) = C (\beta) - C (\beta^-) & \\
->                                 & P (X \ge \beta) = 1 - C (\beta^-)       & P (\alpha \le X \lt \beta) = C (\beta^-) - C (\alpha^-) \\
->                                 & P (X \gt \beta) = 1 - C (\beta)         & P (\alpha \le X \le \beta) = C (\beta) - C (\alpha^-) \\
+>                                 & P [X \lt \beta] = C [\beta^-]           & P [\alpha \lt X \lt \beta] = C [\beta^-] - C [\alpha] \\
+>                                 & P [X \le \beta] = C [\beta]             & P [\alpha \lt X \le \beta] = C [\beta] - C [\alpha] \\
+> C_{umulative} (x) = P [X \le x] & P [X = \beta] = C [\beta] - C [\beta^-] & \\
+>                                 & P [X \ge \beta] = 1 - C [\beta^-]       & P [\alpha \le X \lt \beta] = C [\beta^-] - C [\alpha^-] \\
+>                                 & P [X \gt \beta] = 1 - C [\beta]         & P [\alpha \le X \le \beta] = C [\beta] - C [\alpha^-] \\
 > \end{array}
 > $$
 >
@@ -26,7 +26,7 @@ Resources:
 > \begin{array}{ll|l}
 > \fbox{1} & x \lt y \implies C (x) \le C (y) \\
 > \fbox{2} & C (-\infty) = \lim\limits_{-\infty} C (x) = 0 & C (+\infty) = \lim\limits_{+\infty} C (x) = 1 \\
-> \fbox{3} & C (x0) = \lim\limits_{x0^+} C (x)           & C (x0^-) \le C (x0) = C (x0^+) \\
+> \fbox{3} & C (x0) = \lim\limits_{x0^+} C (x)             & C (x0^-) \le C (x0) = C (x0^+) \\
 > \end{array}
 > $$
 >
@@ -35,7 +35,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> J_{oint} (\cdots, x_n, \cdots) = P (\cdots, X_n \le x_n, \cdots) \\
+> J_{oint} (\cdots, x_i, \cdots) = P [\cdots, X_i \le x_i, \cdots] \\
 > \end{alignedat}
 > $$
 >
@@ -44,9 +44,10 @@ Resources:
 
 > $$
 > \begin{array}{ll|l}
-> \fbox{1} & x \lt y \implies J (\cdots, x, \cdots) \le J (\cdots, y, \cdots) \\
-> \fbox{2} & J (\cdots, -\infty, \cdots) = \lim\limits_{-\infty} J (\cdots, x, \cdots) = 0 & J (+\infty, \cdots, +\infty) = \lim\limits_{+\infty} J (\cdots, x_n, \cdots) = 1 \\
-> \fbox{3} & J (\cdots, x0, \cdots) = \lim\limits_{x0^+} J (\cdots, x, \cdots) & J (\cdots, x0^-, \cdots) \le J (\cdots, x0, \cdots) = J (\cdots, x0^+, \cdots) \\
+> \fbox{1} & x_i \lt y_i \implies J (\cdots, x_i, \cdots) \le J (\cdots, y_i, \cdots) \\
+> \fbox{2} & J (\cdots, -\infty, \cdots) = \lim\limits_{-\infty} J (\cdots, x_i, \cdots) = 0 & J (+\infty, \cdots, +\infty) = \lim\limits_{+\infty} \cdots \lim\limits_{+\infty} J (x_1, \cdots, x_n) = 1 \\
+> \fbox{3} & J (\cdots, x0, \cdots) = \lim\limits_{x0^+} J (\cdots, x_i, \cdots)             & J (\cdots, x0^-, \cdots) \le J (\cdots, x0, \cdots) = J (\cdots, x0^+, \cdots) \\
+> \fbox{4} & P (\alpha_1 \lt X_1 \le \beta_1, \alpha_2 \lt X_2 \le \beta_2)                  &= J (\beta_1, \beta_2) - J (\alpha_1, \beta_2) - J (\alpha_2, \beta_1) + J (\alpha_1, \alpha_2) \\
 > \end{array}
 > $$
 >
@@ -55,8 +56,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->   p (x_i) &= P (X = x_i) = C (x_i) - C (x_i^-) \\
-> p_f (y_i) &= P [f (X) = y_i] = p (x_i) \\
+> p (\cdots, x_i, \cdots) &= P [\cdots, X_i = x_i, \cdots] = C (\cdots, x_i, \cdots) - C (\cdots, x_i^-, \cdots) \\
+>                 p_f (y) &= P [f = y] = p (x) \\
 > \end{alignedat}
 > $$
 >
@@ -65,9 +66,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\quad & p (x_i) \ge 0 \\
-> \fbox{2}\quad & \sum\limits_{-\infty}^{+\infty} p (x_i) = 1 \\
-> \fbox{3}\quad & \sum\limits_{-\infty}^x p (x_i) = C (x) \\
+> \fbox{1}\quad & p (\cdots, x_i, \cdots) \ge 0 \\
+> \fbox{2}\quad & \sum\limits_{-\infty}^{+\infty} \cdots \sum\limits_{-\infty}^{+\infty} p (x_1, \cdots, x_n) = 1 \\
+> \fbox{3}\quad & \sum\limits_{-\infty}^{x_i} p (\cdots, x_i, \cdots) = C (\cdots, x_i, \cdots) \\
 > \end{alignedat}
 > $$
 >
@@ -76,8 +77,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->   p (x) &= \dfrac{P (x \lt X \le x + \mathrm{d} x)}{\mathrm{d} x} = \dfrac{\mathrm{d} C (x)}{\mathrm{d} x} \\
-> p_f (y) &= \dfrac{P [y \lt f (X) \le y + \mathrm{d} y]}{\mathrm{d} y} = p [f^{- 1} (y)] \cdot \left| \dfrac{\mathrm{d} f^{- 1} (y)}{\mathrm{d} y} \right| \\
+> p (\cdots, x_i, \cdots) &= \dfrac{P [\cdots, x_i \lt X_i \le x_i + \partial x_i, \cdots]}{\partial x_i} = \dfrac{\partial C (\cdots, x_i, \cdots)}{\partial x_i} \\
+>                 p_f (y) &= \dfrac{P [y \lt f (X) \le y + \mathrm{d} y]}{\mathrm{d} y} = p [f^{- 1} (y)] \cdot \left| \dfrac{\mathrm{d} f^{- 1} (y)}{\mathrm{d} y} \right| \\
 > \end{alignedat}
 > $$
 >
@@ -86,10 +87,10 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\quad & p (x) \ge 0 \\
-> \fbox{2}\quad & \int_{-\infty}^{+\infty} p (x) \mathrm{d} x = 1 \\
-> \fbox{3}\quad & \int_{-\infty}^x p (x) \mathrm{d} x = C (x) \\
+> \fbox{1}\quad & p (\cdots, x_i, \cdots) \ge 0 \\
+> \fbox{2}\quad & \int_{-\infty}^{+\infty} \cdots \int_{-\infty}^{+\infty} p (x_1, \cdots, x_n) \mathrm{d} x_1 \cdots \mathrm{d} x_n = 1 \\
+> \fbox{3}\quad & \int_{-\infty}^{x_i} p (\cdots, x_i, \cdots) \mathrm{d} x_i = C (\cdots, x_i, 
+> \cdots) \\
 > \end{alignedat}
 > $$
 >
-
