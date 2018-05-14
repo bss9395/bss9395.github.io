@@ -45,7 +45,7 @@ Resources:
 > $$
 > \begin{array}{ll|l}
 > \fbox{1} & x_i \lt y_i \implies J (\cdots, x_i, \cdots) \le J (\cdots, y_i, \cdots) \\
-> \fbox{2} & J (\cdots, -\infty, \cdots) = \lim\limits_{-\infty} J (\cdots, x_i, \cdots) = 0 & J (+\infty, \cdots, +\infty) = \lim\limits_{+\infty} \cdots \lim\limits_{+\infty} J (x_1, \cdots, x_n) = 1 \\
+> \fbox{2} & J (\cdots, -\infty, \cdots) = \lim\limits_{-\infty} J (\cdots, x_i, \cdots) = 0 & J (+\infty, \cdots, +\infty) = \lim\limits_{+\infty} \cdots \lim\limits_{+\infty} J (x_1, \cdots, x_m) = 1 \\
 > \fbox{3} & J (\cdots, x0, \cdots) = \lim\limits_{x0^+} J (\cdots, x_i, \cdots)             & J (\cdots, x0^-, \cdots) \le J (\cdots, x0, \cdots) = J (\cdots, x0^+, \cdots) \\
 > \fbox{4} & P (\alpha_1 \lt X_1 \le \beta_1, \alpha_2 \lt X_2 \le \beta_2)                  &= J (\beta_1, \beta_2) - J (\alpha_1, \beta_2) - J (\alpha_2, \beta_1) + J (\alpha_1, \alpha_2) \\
 > \end{array}
@@ -67,7 +67,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \fbox{1}\quad & p (\cdots, x_i, \cdots) \ge 0 \\
-> \fbox{2}\quad & \sum\limits_{-\infty}^{+\infty} \cdots \sum\limits_{-\infty}^{+\infty} p (x_1, \cdots, x_n) = 1 \\
+> \fbox{2}\quad & \sum\limits_{-\infty}^{+\infty} \cdots \sum\limits_{-\infty}^{+\infty} p (x_1, \cdots, x_m) = 1 \\
 > \fbox{3}\quad & \sum\limits_{-\infty}^{x_i} p (\cdots, x_i, \cdots) = C (\cdots, x_i, \cdots) \\
 > \end{alignedat}
 > $$
@@ -88,7 +88,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \fbox{1}\quad & p (\cdots, x_i, \cdots) \ge 0 \\
-> \fbox{2}\quad & \int_{-\infty}^{+\infty} \cdots \int_{-\infty}^{+\infty} p (x_1, \cdots, x_n) \mathrm{d} x_1 \cdots \mathrm{d} x_n = 1 \\
+> \fbox{2}\quad & \int_{-\infty}^{+\infty} \cdots \int_{-\infty}^{+\infty} p (x_1, \cdots, x_m) \mathrm{d} x_1 \cdots \mathrm{d} x_m = 1 \\
 > \fbox{3}\quad & \int_{-\infty}^{x_i} p (\cdots, x_i, \cdots) \mathrm{d} x_i = C (\cdots, x_i, 
 > \cdots) \\
 > \end{alignedat}

@@ -7,7 +7,7 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 多项分布 $X \mapsto \mathrm{M_{ulti} n_{omial}} (n, p_1, \cdots, p_m)$
+> ### 多项分布 $(X_1, \cdots, X_m) \mapsto \mathrm{M_{ulti} n_{omial}} (n, p_1, \cdots, p_m)$
 
 > $$
 > \begin{alignedat}{3}
@@ -17,7 +17,7 @@ Resources:
 > $$
 >
 
-> ### 多维超几何分布 $X \mapsto \mathrm{M_{ultivariate} H_{yper geometric}} (N_1, \cdots, N_m, n)$
+> ### 多维超几何分布 $(X_1, \cdots, X_m) \mapsto \mathrm{M_{ultivariate} H_{yper geometric}} (N_1, \cdots, N_m, n)$
 
 > $$
 > \begin{alignedat}{3}
@@ -27,4 +27,4 @@ Resources:
 > $$
 >
 
-> ### 
+###
