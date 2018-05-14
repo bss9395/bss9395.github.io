@@ -2,20 +2,42 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要离散概率分布
-Revised:   2018-05-08 16:18:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-14 23:16:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 二项分布 $X \mapsto \mathrm{B_{i} N_{omial}} (n, p)$
+> ### 均匀分布 $X \mapsto \mathrm{Un_{iform}} (\alpha, \beta)$ 
+
+> $$
+> \begin{alignedat}{3}
+>                                                       P (X = k) &= \dfrac{1}{\beta - \alpha + 1} \quad\Leftarrow\quad k \in \lbrace \alpha, \cdots, \beta \rbrace \\
+>                    \mathrm{Exp} [\mathrm{Un} (\alpha, \beta)]^h &= \sum_\alpha^\beta k^h \dfrac{1}{\beta - \alpha + 1} \\
+>                                                                 &= \dfrac{1}{\beta - \alpha + 1} \sum_\alpha^\beta k^h \\
+> \mathrm{Exp} [\mathrm{Un} (\alpha, \beta) - \mathrm{Exp} [X]]^h &= \sum_\alpha^\beta \left( k - \dfrac{\beta + \alpha}{2} \right)^h \dfrac{1}{\beta - \alpha + 1} \\
+>                                                                 &= \dfrac{1}{2^h} \sum_\alpha^\beta [2 k - (\beta + \alpha)]^h \dfrac{1}{(\beta - \alpha + 1)} \\
+>                                                                 &= \dfrac{1}{2^h} \mathrm{Exp} [2 \cdot \mathrm{Un} (\alpha, \beta) - (\beta + \alpha)]^h \\
+> \end{alignedat} \\
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{SD} [X] = \dfrac{1}{2} \sqrt{\dfrac{(\beta - \alpha + 1)^2 - 1}{3}}                 & \mathrm{Exp} [X]^1 = \dfrac{\beta + \alpha}{2}                                                                                                                                                     & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
+> \mathrm{Var} [X] = \dfrac{(\beta - \alpha + 1)^2 - 1}{12}                                   & \mathrm{Exp} [X]^2 = \dfrac{(\beta + \alpha)^2 + \beta^2 + \alpha^2 + \beta - \alpha}{6}                                                                                                           & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \dfrac{(\beta - \alpha + 1)^2 - 1}{12} \\
+> \mathrm{Ske} [X] = 0                                                                        & \mathrm{Exp} [X]^3 = \dfrac{(\beta^2 + \alpha^2 + \beta - \alpha) (\beta + \alpha)}{4}                                                                                                             & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 0 \\
+> \mathrm{Kur} [X] = - \dfrac{6 [(\beta - \alpha + 1)^2 + 1]}{5 [(\beta - \alpha + 1)^2 - 1]} & \mathrm{Exp} [X]^4 = \dfrac{6 (\beta^4 + \beta^3 \alpha + \beta^2 \alpha^2 + \beta \alpha^3 + \alpha^4) + 9 (\beta^3 - \alpha^3) + (\beta - \alpha)^2 + (\beta - \alpha) (3 \beta \alpha - 1)}{30} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{[(\beta - \alpha + 1)^2 - 1] [3 (\beta - \alpha + 1)^2 - 7]}{240} \\
+> \hline
+> \end{array}
+> $$
+>
+
+> ### 二项分布 $X \mapsto \mathrm{B_{i} n_{omial}} (n, p)$
 
 > $$
 > \begin{alignedat}{3}
 >                           P (X = k) &= {n \choose k} p^k (1 - p)^{n - k} \quad\Leftarrow\quad k \in \lbrace 0, \cdots, n \rbrace \\
-> \mathrm{Exp} [\mathrm{Bi} (n, p)]^h &= \sum_{k = 0}^n k^h {n \choose k} p^k (1 - p)^{n - k} \\
+> \mathrm{Exp} [\mathrm{Bn} (n, p)]^h &= \sum_{k = 0}^n k^h {n \choose k} p^k (1 - p)^{n - k} \\
 >                                     &= n p \sum_{ k = 1}^n k^{h - 1} {n - 1 \choose k - 1} p^{k - 1} (1- p)^{(n - 1) - (k - 1)} \\
 >                                     &\xlongequal{l = k - 1} n p \sum_{l = 0}^{n - 1} (l + 1)^{h - 1} {n - 1 \choose l} p^l (1 - p)^{(n - 1) - l} \\
->                                     &= n p \cdot \mathrm{Exp} [\mathrm{Bi} (n - 1, p) + 1]^{h - 1} \\
+>                                     &= n p \cdot \mathrm{Exp} [\mathrm{Bn} (n - 1, p) + 1]^{h - 1} \\
 >                  \mathrm{Exp} [X]^1 &= np \\
 >                  \mathrm{Exp} [X]^2 &= n (n - 1) p^2 + n p \\
 >                    \mathrm{Var} [X] &= n p (1 - p) \\
@@ -23,12 +45,12 @@ Resources:
 > $$
 >
 
-> ### 二点分布 $X \mapsto \mathrm{Tw_{o}} (p) = \mathrm{BN} (1, p)$
+> ### 二点分布 $X \mapsto \mathrm{Tw_{o}} (p) = \mathrm{Bn} (1, p)$
 
 > $$
 > \begin{alignedat}{3}
 >                        P (X = k) &= p^k (1 - p)^{1 - k} \quad\Leftarrow\quad k \in \lbrace 0, 1 \rbrace \\
-> \mathrm{Exp} [\mathrm{Tw} (p)]^h &= \mathrm{Exp} [\mathrm{Bi}  (1, p)]^h \\
+> \mathrm{Exp} [\mathrm{Tw} (p)]^h &= \mathrm{Exp} [\mathrm{Bn}  (1, p)]^h \\
 >               \mathrm{Exp} [X]^1 &= p \\
 >               \mathrm{Exp} [X]^2 &= p \\
 >                 \mathrm{Var} [X] &= p (1 - p) \\
@@ -83,15 +105,15 @@ Resources:
 > $$
 >
 
-> ### 几何分布 $X \mapsto \mathrm{G_{eometric}} (p) = \mathrm{NB} (1, p)$
+> ### 几何分布 $X \mapsto \mathrm{Ge_{ometric}} (p) = \mathrm{NB} (1, p)$
 
 > $$
 > \begin{alignedat}{3}
->                       P (X = k) &= (1 - p)^{k - 1} p \quad\Leftarrow\quad k \in \mathbb{N}^+ \\
-> \mathrm{Exp} [\mathrm{G} (p)]^h &= \mathrm{Exp} [\mathrm{NB} (1, p)]^h \\
->              \mathrm{Exp} [X]^1 &= \dfrac{1}{p} \\
->              \mathrm{Exp} [X]^2 &= \dfrac{2}{p^2} - \dfrac{1}{p} \\
->                \mathrm{Var} [X] &= \dfrac{1 - p}{p^2} \\
+>                        P (X = k) &= (1 - p)^{k - 1} p \quad\Leftarrow\quad k \in \mathbb{N}^+ \\
+> \mathrm{Exp} [\mathrm{Ge} (p)]^h &= \mathrm{Exp} [\mathrm{NB} (1, p)]^h \\
+>               \mathrm{Exp} [X]^1 &= \dfrac{1}{p} \\
+>               \mathrm{Exp} [X]^2 &= \dfrac{2}{p^2} - \dfrac{1}{p} \\
+>                 \mathrm{Var} [X] &= \dfrac{1 - p}{p^2} \\
 > \end{alignedat}
 > $$
 >

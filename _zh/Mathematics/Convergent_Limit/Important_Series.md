@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     重要级数
-Revised:   2018-04-28 18:08:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-14 19:24:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -39,12 +39,12 @@ Resources:
 > ###  等幂级数
 
 > $$
-> \begin{array}{l|l|l}
-> \fbox{1}\; & \sum\limits_1^{+\infty} \dfrac{1}{n^2} = \dfrac{\pi^2}{6}                    & \sum\limits_1^{+\infty} \dfrac{(- 1)^n}{n^2} = - \dfrac{\pi^2}{12} & \sum\limits_1^{+\infty} \dfrac{(- 1)^{n - 1}}{n^2} = \dfrac{\pi^2}{12} \\
-> \fbox{2}\; & \sum\limits_1^n n^1 = \dfrac{1}{2} n^2 + \dfrac{1}{2} n \\
-> \fbox{3}\; & \sum\limits_1^n n^2 = \dfrac{1}{3} n^3 + \dfrac{1}{2} n^2 + \dfrac{1}{6} n \\
-> \fbox{4}\; & \sum\limits_1^n n^3 = \dfrac{1}{4} n^4 + \dfrac{1}{2} n^3 + \dfrac{1}{4} n^2 \\
-> \end{array}
+> \begin{alignedat}{3}
+> \fbox{1}\quad && \sum_1^n n^1 &= \dfrac{1}{2} n^2 + \dfrac{1}{2} n \\
+> \fbox{2}\quad && \sum_1^n n^2 &= \dfrac{1}{3} n^3 + \dfrac{1}{2} n^2 + \dfrac{2}{12} n \\
+> \fbox{3}\quad && \sum_1^n n^3 &= \dfrac{1}{4} n^4 + \dfrac{1}{2} n^3 + \dfrac{3}{12} n^2 \\
+> \fbox{4}\quad && \sum_1^n n^4 &= \dfrac{1}{5} n^5 + \dfrac{1}{2} n^4 + \dfrac{4}{12} n^3 - \dfrac{1}{30} n \\
+> \end{alignedat}
 > $$
 >
 
@@ -119,7 +119,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\;           &&                            f^\downarrow (x - 1) &\ge f^\downarrow (\lfloor x \rfloor) \ge \left\lvert \alpha - \left[ \sum_m^{\lfloor x \rfloor} f^\downarrow (x) - \int_m^x f^\downarrow (x) \mathrm{d} x \right] \right\rvert \quad\Leftarrow\quad \lim_{+\infty} f^\downarrow (x) \to 0 \\
+> \Uparrow\;           &&                            f^\downarrow (x - 1) &\ge f^\downarrow (\lfloor x \rfloor) \ge \left\lvert \alpha - \left[ \sum_m^{\lfloor x \rfloor} f^\downarrow (n) - \int_m^x f^\downarrow (x) \mathrm{d} x \right] \right\rvert \quad\Leftarrow\quad \lim_{+\infty} f^\downarrow (x) \to 0 \\
 > \Uparrow\;           &&                                           f (x) &= \dfrac{1}{x^{\langle h \ne 1 \rangle}}; \int_m^n f (x) \mathrm{d} x = \dfrac{n^{1- h} - m^{1 - h}}{1 - h}; f (x - 1) = O \left( \dfrac{1}{x^h} \right); \\
 > \fbox{1}\Downarrow\; && \sum_m^n \dfrac{1}{n^{\langle h \ne 1 \rangle}} &= \dfrac{n^{1- h} - m^{1 - h}}{1 - h} + \mathcal{Const.} + O \left( \dfrac{1}{n^h} \right) \\
 > \Uparrow\;           &&                                           f (x) &= \dfrac{1}{x}; \int_m^n f (x) \mathrm{d} x = \ln \dfrac{n}{m}; f (x - 1) = O \left( \dfrac{1}{x} \right); \\
@@ -127,4 +127,3 @@ Resources:
 > \end{alignedat}
 > $$
 >
-
