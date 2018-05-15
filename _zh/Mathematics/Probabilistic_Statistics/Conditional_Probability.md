@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     条件概率
-Revised:   2018-05-03 19:38:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-15 19:38:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -35,7 +35,7 @@ Resources:
 > \Downarrow\quad         & P (A) = P \left( \bigcup (A B_n) \right) = \sum P (A B_n) \\
 > \fbox{1}\Downarrow\quad & P (A) = \sum P (B_n) \cdot P (A | B_n) \\
 > \fbox{2}\Downarrow\quad & P (A) = P (B) \cdot P (A | B) + P (\overline{B}) \cdot P (A | \overline{B}) \\
-> \fbox{3}\Downarrow\quad & P (B_n | A) = \dfrac{P (B_n) \cdot P (A | B_n)}{\sum p (B_n) \cdot P (A | B_n)} \\
+> \fbox{3}\Downarrow\quad & P (B_n | A) = \dfrac{P (B_n) \cdot P (A | B_n)}{\sum P (B_n) \cdot P (A | B_n)} \\
 > \end{alignedat}
 > $$
 >
@@ -68,3 +68,20 @@ Resources:
 > $$
 >
 
+> ### 独立随机变量
+
+> $$
+> \begin{alignedat}{3}
+> \forall x_1, \cdots, x_m;\;  J (x_1, \cdots, x_m) &= \prod_1^m M_m (x_m) \\
+> \end{alignedat}
+> $$
+>
+
+> ### 独立随机变量的性质
+
+> $$
+> \begin{alignedat}{3}
+> \forall x_1, \cdots, x_m;\; p (x_1, \cdots, x_m) = \prod_1^m p_m (x_m) \\
+> \end{alignedat}
+> $$
+>

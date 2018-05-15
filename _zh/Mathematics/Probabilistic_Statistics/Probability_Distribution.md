@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     概率分布
-Revised:   2018-05-13 23:08:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-15 16:10:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -20,17 +20,6 @@ Resources:
 > $$
 >
 
-> ### 累积概率分布的性质
-
-> $$
-> \begin{array}{ll|l}
-> \fbox{1} & x \lt y \implies C (x) \le C (y) \\
-> \fbox{2} & C (-\infty) = \lim\limits_{-\infty} C (x) = 0 & C (+\infty) = \lim\limits_{+\infty} C (x) = 1 \\
-> \fbox{3} & C (x0) = \lim\limits_{x0^+} C (x)             & C (x0^-) \le C (x0) = C (x0^+) \\
-> \end{array}
-> $$
->
-
 > ### 联合概率分布
 
 > $$
@@ -40,11 +29,20 @@ Resources:
 > $$
 >
 
-> ### 联合概率分布的性质
+> ### 边际概率分布
+
+> $$
+> \begin{alignedat}{3}
+> {M_{arginal}}_i (x_i) &= J (+\infty, \cdots, x_i, \cdots, +\infty) \\
+> \end{alignedat}
+> $$
+>
+
+> ### 概率分布的性质
 
 > $$
 > \begin{array}{ll|l}
-> \fbox{1} & x_i \lt y_i \implies J (\cdots, x_i, \cdots) \le J (\cdots, y_i, \cdots) \\
+> \fbox{1} & C (x) \equiv J (x)                                                              & x_i \lt y_i \implies J (\cdots, x_i, \cdots) \le J (\cdots, y_i, \cdots) \\
 > \fbox{2} & J (\cdots, -\infty, \cdots) = \lim\limits_{-\infty} J (\cdots, x_i, \cdots) = 0 & J (+\infty, \cdots, +\infty) = \lim\limits_{+\infty} \cdots \lim\limits_{+\infty} J (x_1, \cdots, x_m) = 1 \\
 > \fbox{3} & J (\cdots, x0, \cdots) = \lim\limits_{x0^+} J (\cdots, x_i, \cdots)             & J (\cdots, x0^-, \cdots) \le J (\cdots, x0, \cdots) = J (\cdots, x0^+, \cdots) \\
 > \fbox{4} & P (\alpha_1 \lt X_1 \le \beta_1, \alpha_2 \lt X_2 \le \beta_2)                  &= J (\beta_1, \beta_2) - J (\alpha_1, \beta_2) - J (\alpha_2, \beta_1) + J (\alpha_1, \alpha_2) \\
@@ -56,8 +54,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> p (\cdots, x_i, \cdots) &= P [\cdots, X_i = x_i, \cdots] = C (\cdots, x_i, \cdots) - C (\cdots, x_i^-, \cdots) \\
->                 p_f (y) &= P [f = y] = p (x) \\
+> p (\cdots, x_i, \cdots) &= P [\cdots, X_i = x_i, \cdots] = J (\cdots, x_i, \cdots) - J (\cdots, x_i^-, \cdots) \\
+>               p_i (x_i) &= P [+\infty, \cdots, X_i = x_i, \cdots, +\infty] = J (+\infty, \cdots, x_i, \cdots, +\infty) - J (+\infty, \cdots, x_i^-, \cdots, +\infty) \\
+>                 p_f (y) &= P [f (X) = y] = p (x) \\
 > \end{alignedat}
 > $$
 >
@@ -77,7 +76,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> p (\cdots, x_i, \cdots) &= \dfrac{P [\cdots, x_i \lt X_i \le x_i + \partial x_i, \cdots]}{\partial x_i} = \dfrac{\partial C (\cdots, x_i, \cdots)}{\partial x_i} \\
+> p (\cdots, x_i, \cdots) &= \dfrac{P [\cdots, x_i \lt X_i \le x_i + \partial x_i, \cdots]}{\partial x_i} = \dfrac{\partial J (\cdots, x_i, \cdots)}{\partial x_i} \\
+>               p_i (x_i) &= \dfrac{P [+\infty, \cdots, x_i \lt X_i \le x_i + \partial x_i, \cdots, +\infty]}{\partial x_i} = \dfrac{\partial J (+\infty, \cdots, x_i, \cdots, +\infty)}{\partial x_i} \\
 >                 p_f (y) &= \dfrac{P [y \lt f (X) \le y + \mathrm{d} y]}{\mathrm{d} y} = p [f^{- 1} (y)] \cdot \left| \dfrac{\mathrm{d} f^{- 1} (y)}{\mathrm{d} y} \right| \\
 > \end{alignedat}
 > $$
