@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要连续概率分布
-Revised:   2018-05-12 03:50:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-16 22:06:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -101,6 +101,21 @@ Resources:
 > $$
 >
 
+> ### 正态分布的可加性
+
+> $$
+> \begin{alignedat}{3}
+> \Uparrow\quad           &&                  X_1 \mapsto \mathrm{No} (\mu_1, \sigma_1^2) \quad&\land\quad X_2 \mapsto \mathrm{No} (\mu_2, \sigma_2^2) \\
+> \Uparrow\quad           &&                                                             p (z) &= \int_{-\infty}^{+\infty} p_{X_1} (x) \cdot p_{X_2} (z - x) \mathrm{d} x \\
+>                         &&                                                                   &= \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi} \sigma_1} e^{- \frac{(x - \mu_1)^2}{2 \sigma_1^2}} \cdot \dfrac{1}{\sqrt{2 \pi} \sigma_2} e^{- \frac{(z - x - \mu_2)^2}{2 \sigma_2^2}} \mathrm{d} x \\
+>                         &&                                                                   &= \dfrac{1}{\sqrt{2 \pi (\sigma_1^2 + \sigma_2^2)}} e^{- \frac{(z - \mu_1 - \mu_2)^2}{2 (\sigma_1^2 + \sigma_2^2)}} \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi}} \sqrt{\dfrac{\sigma_1^2 + \sigma_2^2}{\sigma_1^2 \sigma_2^2}} e^{- \frac{\sigma_1^2 + \sigma_2^2}{2 \sigma_1^2 \sigma_2^2} \left[ x - \frac{\sigma_2^2 \mu_1 + \sigma_1^2 (z - \mu_2)}{\sigma_2^2 + \sigma_2^2} \right]^2} \mathrm{d} x \\
+>                         &&                                                                   &= \dfrac{1}{\sqrt{2 \pi (\sigma_1^2 + \sigma_2^2)}} e^{- \frac{(x - \mu_1 - \mu_2)^2}{2 (\sigma_1^2 + \sigma_2^2)}} \\
+> \fbox{1}\Downarrow\quad && \mathrm{No} (\mu_1, \sigma_1^2) * \mathrm{No} (\mu_2, \sigma_2^2) &= \mathrm{No} (\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2) \\
+> \fbox{2}\Downarrow\quad &&                                   [\mathrm{No} (\mu, \sigma^2)]^h &= \mathrm{No} (h \mu, h \sigma^2) \\
+> \end{alignedat}
+> $$
+>
+
 > ### 正态分布的性质
 
 > $$
@@ -157,6 +172,21 @@ Resources:
 > \mathrm{Kur} [X] = \dfrac{6}{t}             & \mathrm{Exp} [X]^4 = \dfrac{t (t + 1) (t + 2) (t + 3)}{\lambda^4} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{3 t (t + 2)}{\lambda^4} \\
 > \hline
 > \end{array}
+> $$
+>
+
+> ### 独立$\Gamma$ 分布的可加性
+
+> $$
+> \begin{alignedat}{3}
+> \Uparrow\quad           &&   X_1 \mapsto \mathrm{Ga} (t_1, \lambda) \quad&\land\quad X_2 \mapsto \mathrm{Ga} (t_2, \lambda) \\
+> \Downarrow\quad         &&                                         p (z) &= \dfrac{\lambda^2}{\Gamma (t_1) \Gamma(t_2)} \int_0^z (\lambda x)^{t_1 - 1} e^{- \lambda x} \cdot [\lambda (z - x)]^{t_2 - 1} e^{- \lambda (z - x)} \mathrm{d} x \\
+>                         &&                                               &\xlongequal{y = \frac{x}{z}} \dfrac{\lambda^{t_1 + t_2} e^{- \lambda z}}{\Gamma (t_1) \Gamma (t_2)} z^{t_1 + t_2 - 1} \int_0^1 y^{t_1 - 1} (1 - y)^{t_2 - 1} \mathrm{d} y \\
+>                         &&                                               &= \dfrac{\lambda \Beta(t_1, t_2)}{\Gamma (t_1) \Gamma (t_2)} (\lambda z)^{t_1 + t_2 - 1} e^{- \lambda z} \\
+>                         &&                                               &= \dfrac{\lambda}{\Gamma (t_1 + t_2)} (\lambda z)^{t_1 + t_2 - 1} e^{- \lambda z} \\
+> \fbox{1}\Downarrow\quad && \Gamma (t_1, \lambda) * \Gamma (t_2, \lambda) &= \Gamma (t_1 + t_2, \lambda) \\
+> \fbox{2}\Downarrow\quad &&                       [\Gamma (t, \lambda)]^h &= \Gamma (h t, \lambda) \\
+> \end{alignedat}
 > $$
 >
 
