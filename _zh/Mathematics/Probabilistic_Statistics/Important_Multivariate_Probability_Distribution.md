@@ -87,21 +87,51 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> C (z) &= P (X + Y \le z) \\
-> &= \iint\limits_{x + y \le z} p_X (x) \cdot p_Y (y) \mathrm{d} x \mathrm{d} y \\
-> &= \int_{-\infty}^{+\infty} \int_{-\infty}^{z - y} p_X (x) \cdot p_Y (y) \mathrm{d} x \mathrm{d} y &&= \int_{-\infty}^{+\infty} \int_{-\infty}^{z - x} p_X (x) \cdot p_Y (y) \mathrm{d} y \mathrm{d} x \\
-> &\xlongequal{t = x + y} \int_{-\infty}^{+\infty} \int_{-\infty}^z p_X (t - y) \cdot p_Y (y) \mathrm{d} t \mathrm{d} y &&= \int_{-\infty}^{+\infty} \int_{-\infty}^z p_X (x) \cdot p_Y (t - y) \mathrm{d} t \mathrm{d} x \\
-> &= \int_{-\infty}^z \int_{-\infty}^{+\infty} p_X (t - y) \cdot p_Y (y) \mathrm{d} y \mathrm{d} t &&= \int_{-\infty}^z \int_{-\infty}^{+\infty} p_X (x) \cdot p_Y (t - y) \mathrm{d} x \mathrm{d} t \\
-> p (z) &= \int_{-\infty}^{+\infty} p_X (z - y) \cdot p_Y (y) \mathrm{d} y &&= \int_{-\infty}^{+\infty} p_X (x) \cdot p_Y (z - x) \mathrm{d} x \\
+> \Uparrow\quad   && C (z) &= P (X + Y \le z) \\
+>                 &&       &= \iint\limits_{x + y \le z} p_X (x) \cdot p_Y (y) \mathrm{d} x \mathrm{d} y \\
+>                 &&       &= \int_{-\infty}^{+\infty} \int_{-\infty}^{z - x} p_X (x) \cdot p_Y (y) \mathrm{d} y \mathrm{d} x \\
+>                 &&       &\xlongequal{t = x + y} \int_{-\infty}^{+\infty} \int_{-\infty}^z p_X (x) \cdot p_Y (t - y) \mathrm{d} t \mathrm{d} x \\
+>                 &&       &= \int_{-\infty}^z \int_{-\infty}^{+\infty} p_X (x) \cdot p_Y (t - y) \mathrm{d} x \mathrm{d} t \\
+> \Downarrow\quad && p (z) &= \int_{-\infty}^{+\infty} p_X (x) \cdot p_Y (z - x) \mathrm{d} x \\
+>                 &&       &\xlongequal{y = z - x} \int_{-\infty}^{+\infty} p_X (z - y) \cdot p_Y (y) \mathrm{d} x \\
 > \end{alignedat}
 > $$
 >
 
-> ### 独立
+> ### 独立连续积分布 $Z \mapsto \mathrm{Mu_{ltiplication}} (X, Y)$
 
 > $$
 > \begin{alignedat}{3}
+> \Uparrow\quad   &&          & \left\lbrace\begin{alignedat}{3}
+>                               z &= x y \\
+>                               t &= x \\
+>                               \end{alignedat}\right. \quad\Rightarrow\quad \left\lbrace\begin{alignedat}{3}
+>                               x &= t \\
+>                               y &= \dfrac{z}{t} \\
+>                               \end{alignedat}\right. \quad\Rightarrow\quad \dfrac{\partial (x, y)}{\partial (z, t)} = - \dfrac{1}{t} \\
+> \Downarrow\quad && p_f (z, t) &= p (x, y) \cdot \left| \dfrac{\partial (x, y)}{\partial (z, t)} \right| \\
+>                 &&          &= p_X (t) \cdot p_Y \left( \dfrac{z}{t} \right) \cdot \dfrac{1}{|t|} \\
+> \Downarrow\quad &&  p_Z (z) &= \int_{-\infty}^{+\infty}p_X (t) \cdot p_Y \left( \dfrac{z}{t} \right) \cdot \dfrac{1}{|t|} \mathrm{d} t \\
+> && &\xlongequal{s = \frac{z}{t}} \int_{-\infty}^{+\infty} p_X \left( \dfrac{z}{s} \right) \cdot p_Y (s) \cdot \dfrac{1}{|s|} \mathrm{d} s \\
+> \end{alignedat}
+> $$
 >
+
+> ### 独立连续商分布 $Z \mapsto \mathrm{Di_{vision}} (X, Y)$
+
+> $$
+> \begin{alignedat}{3}
+> \Uparrow\quad   &&            & \left\lbrace\begin{alignedat}{3}
+>                                 z &= \dfrac{x}{y} \\
+>                                 t &= x \\
+>                                 \end{alignedat}\right. \quad\Rightarrow\quad \left\lbrace\begin{alignedat}{3}
+>                                 x &= t \\
+>                                 y &= \dfrac{t}{z} \\
+>                                 \end{alignedat}\right. \quad\Rightarrow\quad \dfrac{\partial (x, y)}{\partial (z, t)} = \dfrac{t}{z^2} \\
+> \Downarrow\quad && p_f (z, t) &= p (x, y) \cdot \left| \dfrac{\partial (x, y)}{\partial (z, t)} \right| \\
+>                 &&            &= p_X (t) \cdot p_Y \left( \dfrac{t}{z} \right) \cdot \left| \dfrac{t}{z^2} \right| \\
+> \Downarrow\quad &&    p_Z (z) &= \int_{-\infty}^{+\infty} p_X (t) \cdot p_Y \left( \dfrac{t}{z} \right) \cdot \left| \dfrac{t}{z^2} \right| \mathrm{d} t \\
+> && &= \\
 > \end{alignedat}
 > $$
 >
