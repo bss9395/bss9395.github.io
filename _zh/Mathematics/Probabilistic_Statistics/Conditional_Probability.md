@@ -72,7 +72,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \forall x_1, \cdots, x_m;\;  J (x_1, \cdots, x_m) &= \prod_1^m M_m (x_m) \\
+> \forall x_1, \cdots, x_m;\;  J (x_1, \cdots, x_m) &= \prod_1^m M_{X_m} (x_m) \\
 > \end{alignedat}
 > $$
 >
@@ -81,7 +81,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \forall x_1, \cdots, x_m;\; p (x_1, \cdots, x_m) = \prod_1^m p_m (x_m) \\
+> \forall x_1, \cdots, x_m;\; p (x_1, \cdots, x_m) = \prod_1^m p_{X_m} (x_m) \\
 > \end{alignedat}
 > $$
 >

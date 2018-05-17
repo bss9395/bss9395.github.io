@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要多维概率分布
-Revised:   2018-05-14 00:56:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-17 16:04:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -102,17 +102,17 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad   &&          & \left\lbrace\begin{alignedat}{3}
->                               z &= x y \\
->                               t &= x \\
->                               \end{alignedat}\right. \quad\Rightarrow\quad \left\lbrace\begin{alignedat}{3}
->                               x &= t \\
->                               y &= \dfrac{z}{t} \\
->                               \end{alignedat}\right. \quad\Rightarrow\quad \dfrac{\partial (x, y)}{\partial (z, t)} = - \dfrac{1}{t} \\
+> \Uparrow\quad   &&            & \left\lbrace\begin{alignedat}{3}
+>                                 z &= x y \\
+>                                 t &= x \\
+>                                 \end{alignedat}\right. \quad\Rightarrow\quad \left\lbrace\begin{alignedat}{3}
+>                                                                              x &= t \\
+>                                                                              y &= \dfrac{z}{t} \\
+>                                                                              \end{alignedat}\right. \quad\Rightarrow\quad \dfrac{\partial (x, y)}{\partial (z, t)} = - \dfrac{1}{t} \\
 > \Downarrow\quad && p_f (z, t) &= p (x, y) \cdot \left| \dfrac{\partial (x, y)}{\partial (z, t)} \right| \\
->                 &&          &= p_X (t) \cdot p_Y \left( \dfrac{z}{t} \right) \cdot \dfrac{1}{|t|} \\
-> \Downarrow\quad &&  p_Z (z) &= \int_{-\infty}^{+\infty}p_X (t) \cdot p_Y \left( \dfrac{z}{t} \right) \cdot \dfrac{1}{|t|} \mathrm{d} t \\
-> && &\xlongequal{s = \frac{z}{t}} \int_{-\infty}^{+\infty} p_X \left( \dfrac{z}{s} \right) \cdot p_Y (s) \cdot \dfrac{1}{|s|} \mathrm{d} s \\
+>                 &&            &= p_X (t) \cdot p_Y \left( \dfrac{z}{t} \right) \cdot \dfrac{1}{|t|} \\
+> \Downarrow\quad &&    p_Z (z) &= \int_{-\infty}^{+\infty}p_X (t) \cdot p_Y \left( \dfrac{z}{t} \right) \cdot \dfrac{1}{|t|} \mathrm{d} t \\
+>                 &&            &\xlongequal{s = \frac{z}{t}} \int_{-\infty}^{+\infty} p_X \left( \dfrac{z}{s} \right) \cdot p_Y (s) \cdot \dfrac{1}{|s|} \mathrm{d} s \\
 > \end{alignedat}
 > $$
 >
@@ -125,13 +125,13 @@ Resources:
 >                                 z &= \dfrac{x}{y} \\
 >                                 t &= x \\
 >                                 \end{alignedat}\right. \quad\Rightarrow\quad \left\lbrace\begin{alignedat}{3}
->                                 x &= t \\
->                                 y &= \dfrac{t}{z} \\
->                                 \end{alignedat}\right. \quad\Rightarrow\quad \dfrac{\partial (x, y)}{\partial (z, t)} = \dfrac{t}{z^2} \\
+>                                                                              x &= t \\
+>                                                                              y &= \dfrac{t}{z} \\
+>                                                                              \end{alignedat}\right. \quad\Rightarrow\quad \dfrac{\partial (x, y)}{\partial (z, t)} = \dfrac{t}{z^2} \\
 > \Downarrow\quad && p_f (z, t) &= p (x, y) \cdot \left| \dfrac{\partial (x, y)}{\partial (z, t)} \right| \\
 >                 &&            &= p_X (t) \cdot p_Y \left( \dfrac{t}{z} \right) \cdot \left| \dfrac{t}{z^2} \right| \\
 > \Downarrow\quad &&    p_Z (z) &= \int_{-\infty}^{+\infty} p_X (t) \cdot p_Y \left( \dfrac{t}{z} \right) \cdot \left| \dfrac{t}{z^2} \right| \mathrm{d} t \\
-> && &= \\
+>                 &&            &\xlongequal{s = \frac{t}{z}} \int_{-\infty}^{+\infty} p_X (z s) \cdot p_Y (s) \cdot |s| \mathrm{d} s \\
 > \end{alignedat}
 > $$
 >

@@ -2,35 +2,47 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     统计特性
-Revised:   2018-05-11 20:58:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-17 21:46:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 离散期望值 $\mathrm{Exp_{ected}}$
+> ### 离散期望值 $\mathrm{Exp_{ectation}}$
 
 > $$
 > \begin{alignedat}{3}
->     \mathrm{Exp} [X] &= \sum_i x_i \cdot p (x_i)                             &&\;\Leftarrow\; \sum_i |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
-> \mathrm{Exp} [f (X)] &= \sum_j y_j \cdot P [f (X) = y_j] \\
->                      &= \sum_j f (x_j) \sum_{i : f (x_i) = f (x_j)} p (x_i) \\
->                      &= \sum_i p (x_i) \sum_{j : f (x_j) = f (x_i)}  f (x_j) \\
->                      &= \sum_i f (x_i) \cdot p (x_i)                         &&\;\Leftarrow\; \sum_i |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
->   \mathrm{Exp} [X]^h &= \sum_i x_i^h \cdot p (x_i)                           &&\;\Leftarrow\; \sum_i |x_i^h| \cdot p (x_i) \to \mathcal{Conv.} \\
+>                    \mathrm{Exp} [X] &= \sum_{x_i} x_i \cdot p (x_i)                               &&\quad\Leftarrow\quad \sum_{x_i} |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
+>                \mathrm{Exp} [f (X)] &= \sum_{x_j} y_j \cdot P [f (X) = y_j] \\
+>                                     &= \sum_{x_j} f (x_j) \sum_{x_i : f (x_i) = f (x_j)} p (x_i) \\
+>                                     &= \sum_{x_i} p (x_i) \sum_{x_j : f (x_j) = f (x_i)}  f (x_j) \\
+>                                     &= \sum_{x_i} f (x_i) \cdot p (x_i)                           &&\quad\Leftarrow\quad \sum_{x_i} |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
+>                  \mathrm{Exp} [X]^h &= \sum_{x_i} x_i^h \cdot p (x_i)                             &&\quad\Leftarrow\quad f (X) = X^h \\
+> \end{alignedat} \\
+> \begin{alignedat}{3}
+> \mathrm{Exp} [f (X_1, \cdots, X_m)] &= \sum_{(x_1, \cdots, x_m)_j} y_j \cdot P [f (X_1, \cdots, X_m) = y_j] \\
+>                                     &= \sum_{(x_1, \cdots, x_m)_j} [f (x_1, \cdots, x_m)]_j \mathop{\sum \cdots \sum}_{(x_1, \cdots, x_m)_i : [f (x_1, \cdots, x_m)]_i = [f (x_1, \cdots, x_m)]_j} [p (x_1, \cdots, x_m)]_i \\
+>                                     &= \sum_{(x_1, \cdots, x_m)_i} [p (x_1, \cdots, x_m)]_i \mathop{\sum \cdots \sum}_{(x_1, \cdots, x_m)_j : [f (x_1, \cdots, x_m)]_j = [f (x_1, \cdots, x_m)]_i} [f (x_1, \cdots, x_m)]_j \\
+>                                     &= \mathop{\sum \cdots \sum}_{(x_1, \cdots, x_m)} f (x_1, \cdots, x_m) \cdot p (x_1, \cdots, x_m) \\
 > \end{alignedat}
 > $$
 >
 
-> ### 连续期望值 $\mathrm{Exp_{ected}}$
+> ### 连续期望值 $\mathrm{Exp_{ectation}}$
 
 > $$
 > \begin{alignedat}{3}
->     \mathrm{Exp} [X] &= \int_x x \cdot p (x) \mathrm{d} x                                                                                                                   &&\;\Leftarrow\; \int_x |x| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\
-> \mathrm{Exp} [f (X)] &= \int_0^{+\infty} P [f (X) \ge y] \mathrm{d} y - \int_0^{+\infty} P [f (X) \lt - y] \mathrm{d} y \\
->                      &= \int_0^{+\infty} \int_{x : f (x) \ge y} p (x) \mathrm{d} x \mathrm{d} y - \int_0^{+\infty} \int_{x : - f (x) \gt y} p (x) \mathrm{d} x \mathrm{d} y \\
->                      &= \int_{x : f (x) \ge 0} p (x) \int_0^{f (x)} \mathrm{d} y \mathrm{d} x - \int_{x : f (x) \lt 0} p (x) \int_{0}^{- f (x)} \mathrm{d} y \mathrm{d} x \\
->                      &= \int_x f (x) \cdot p (x) \mathrm{d} x                                                                                                               &&\;\Leftarrow\; \int_x |f (x)| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\ 
->   \mathrm{Exp} [X]^h &= \int_x x^h \cdot p (x) \mathrm{d} x                                                                                                                 &&\;\Leftarrow\; \int_x |x^h| \cdot p (x) \mathrm{d} x \to \mathrm{Conv.} \\
+>                    \mathrm{Exp} [X] &= \int_x x \cdot p (x) \mathrm{d} x                                                                                                                   &&\quad\Leftarrow\quad \int_x |x| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\
+>                \mathrm{Exp} [f (X)] &= \int_0^{+\infty} P [f (X) \ge y] \mathrm{d} y - \int_0^{+\infty} P [f (X) \lt - y] \mathrm{d} y \\
+>                                     &= \int_0^{+\infty} \int_{x : f (x) \ge y} p (x) \mathrm{d} x \mathrm{d} y - \int_0^{+\infty} \int_{x : - f (x) \gt y} p (x) \mathrm{d} x \mathrm{d} y \\
+>                                     &= \int_{x : f (x) \ge 0} p (x) \int_0^{f (x)} \mathrm{d} y \mathrm{d} x - \int_{x : f (x) \lt 0} p (x) \int_{0}^{- f (x)} \mathrm{d} y \mathrm{d} x \\
+>                                     &= \int_x f (x) \cdot p (x) \mathrm{d} x                                                                                                               &&\quad\Leftarrow\quad \int_x |f (x)| \cdot p (x) \mathrm{d} x \to \mathcal{Conv.} \\ 
+>                  \mathrm{Exp} [X]^h &= \int_x x^h \cdot p (x) \mathrm{d} x                                                                                                                 &&\quad\Leftarrow\quad f (X) = X^h \\
+> \end{alignedat} \\
+> \begin{alignedat}{3}
+> \mathrm{Exp} [f (X_1, \cdots, X_m)] &= \int_0^{+\infty} P [f (X_1, \cdots, X_m) \ge y] \mathrm{d} y - \int_0^{+\infty} P [f (X_1, \cdots, X_m) \lt - y] \mathrm{d} y \\
+>                                     &= \int_0^{+\infty} \mathop{\int \cdots \int}\limits_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \ge y} p (x_1, \cdots, x_m) \mathrm{d} x_1\cdots \mathrm{d} x_m \mathrm{d} y - \int_0^{+\infty} \mathop{\int \cdots \int}\limits_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \lt y} p (x_1, \cdots, x_m) \mathrm{d} x_1 \cdots \mathrm{d} x_m \mathrm{d} y \\
+>                                     &= \mathop{\int \cdots \int}\limits_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \ge 0} p (x_1, \cdots, x_m) \int_0^{f (x_1, \cdots, x_m)} \mathrm{d} y \mathrm{d} x_1 \cdots \mathrm{d} x_m - \mathop{\int \cdots \int}\limits_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \lt 0} p (x_1, \cdots, x_m) \int_0^{- f (x_1, \cdots, x_m)} \mathrm{d} y \mathrm{d} x_1 \cdots \mathrm{d} x_m \\
+>                                     &= \mathop{\int \cdots \int}_{(x_1, \cdots, x_m)} f (x_1, \cdots, x_m) p (x_1, \cdots, x_m) \mathrm{d} x_1 \cdots \mathrm{d} x_m \\
 > \end{alignedat}
 > $$
 >
@@ -41,8 +53,33 @@ Resources:
 > \begin{alignedat}{3}
 > \fbox{1}\quad & \mathrm{Exp} [c] = c \\
 > \fbox{2}\quad & \mathrm{Exp} [c \cdot X + d] = c \cdot \mathrm{E} [X] + d \\
-> \fbox{3}\quad & \mathrm{Exp} [f (X) + g (X)] = \mathrm{E} [f (X)] + \mathrm{E} [g (X)] \\
-> \fbox{4}\quad & \mathrm{Exp} [X - \mathrm{Exp} [X]]^h = \sum_{i = 0}^h {h \choose i} (- \mathrm{Exp} [X])^{h - i} \cdot \mathrm{Exp} [X]^i \\
+> \fbox{3}\quad & \mathrm{Exp} [X - \mathrm{Exp} [X]]^h = \sum_{i = 0}^h {h \choose i} (- \mathrm{Exp} [X])^{h - i} \cdot \mathrm{Exp} [X]^i \\
+> \fbox{4}\quad & \mathrm{Exp} [f_1 (X_1) + \cdots + f_m (X_m)] = \mathrm{Exp} [f (X_1)] + \cdots + \mathrm{Exp} [f_m (X_m)] \\
+> \fbox{5}\quad & \mathrm{Exp} [f_1 (X_1) \cdots f_m (X_m)] = \mathrm{Exp} [f_1 (X)] \cdots \mathrm{Exp} [f_m (X_m)] &&\;\Leftarrow\; p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
+> \end{alignedat}
+> $$
+>
+
+> ### 协方差 $\mathrm{CoV_{ariance}}$
+
+> $$
+> \begin{alignedat}{3}
+> \mathrm{CoV} [X, Y] &=  \mathrm{Exp} [(X - \mathrm{Exp} [X]) \cdot (Y - \mathrm{Exp} [Y])] \\
+>                     &= \mathrm{Exp} [X Y - X \cdot \mathrm{Exp} [Y] - Y \cdot \mathrm{Exp} [X] + \mathrm{Exp} [X] \cdot \mathrm{Exp} [Y]] \\
+>                     &= \mathrm{Exp} [X Y] - \mathrm{Exp} [X] \cdot \mathrm{Exp} [Y] \\
+> \end{alignedat}
+> $$
+>
+
+> ### 协方差的性质
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\quad & \mathrm{CoV} [c, Y] = 0 \\
+> \fbox{2}\quad & \mathrm{CoV} [X, Y] = \mathrm{CoV} [Y, X] \\
+> \fbox{3}\quad & \mathrm{CoV} [c X, Y] = c \cdot \mathrm{CoV} [X, Y] \\
+> \fbox{4}\quad & \mathrm{CoV} \left[ \sum_1^n X_n, \sum_1^m Y_m \right] = \sum_1^n \sum_1^m \mathrm{CoV} [X_n, Y_m] \\
+> \fbox{5}\quad & p (x, y) = p_X (x) \cdot p_Y (y) \quad\Rightarrow\quad \mathrm{CoV} [X, Y] = 0 \\
 > \end{alignedat}
 > $$
 >
@@ -51,8 +88,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{Var} [X] &= \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 \\
->                  &= \mathrm{Exp} [X^2 - 2 X \cdot \mathrm{Exp} [X] + \mathrm{Exp}^2 [X]] \\
+> \mathrm{Var} [X] &= \mathrm{Cov} [X, X] \\
 >                  &= \mathrm{Exp} [X]^2 - \mathrm{Exp}^2 [X] \\
 > \end{alignedat}
 > $$
@@ -61,12 +97,13 @@ Resources:
 > ### 方差的性质
 
 > $$
-> \begin{array}{lll}
-> \fbox{1} & \mathrm{Var} [c] = 0 \\
-> \fbox{2} & \mathrm{Var} [c \cdot X + d] = c^2 \cdot \mathrm{Var} [X] \\
-> \fbox{3} & \mathrm{Var} [X] + \mathrm{Exp}^2 [X] = \mathrm{Exp} [X]^2 = 0 \implies \mathrm{Exp} [X] = 0 \;\and\; \mathrm{Var} [X] = 0 \\
-> \fbox{4} & \mathrm{Var} [X] = 0 \iff P (X = \mathrm{Exp} [X]) = 1  \\
-> \end{array}
+> \begin{alignedat}{3}
+> \fbox{1}\quad & \mathrm{Var} [c] = 0 \\
+> \fbox{2}\quad & \mathrm{Var} [c \cdot X + d] = c^2 \cdot \mathrm{Var} [X] \\
+> \fbox{3}\quad & \mathrm{Var} [X] + \mathrm{Exp}^2 [X] = \mathrm{Exp} [X]^2 = 0 \implies \mathrm{Exp} [X] = 0 \;\and\; \mathrm{Var} [X] = 0 \\
+> \fbox{4}\quad & \mathrm{Var} [X] = 0 \iff P (X = \mathrm{Exp} [X]) = 1  \\
+> \fbox{5}\quad & \mathrm{Var} [X_1 + \cdots + X_m] = \mathrm{Var} [X_1] + \cdots + \mathrm{Var} [X_m] \quad\Leftarrow\quad p (x_1 \cdots x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
+> \end{alignedat}
 > $$
 >
 
@@ -105,11 +142,11 @@ Resources:
 > $$
 >
 
-> ### 变异度 $\mathrm{C_{oefficient} {_{of}} V_{ariance}}$
+> ### 变异度 $\mathrm{Coe_{fficient} {_{of}} {_{variance}}}$
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{CV} [X] = \dfrac{\mathrm{SD} [X]}{\mathrm{Exp} [X]} \\
+> \mathrm{Coe} [X] = \dfrac{\mathrm{SD} [X]}{\mathrm{Exp} [X]} \\
 > \end{alignedat}
 > $$
 >
