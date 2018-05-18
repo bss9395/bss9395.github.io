@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要连续概率分布
-Revised:   2018-05-16 22:06:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-18 21:58:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -24,8 +24,8 @@ Resources:
 > \hline
 > \mathrm{SD} [X] = \dfrac{\beta - \alpha}{2 \sqrt{3}} & \mathrm{Exp} [X]^1 = \dfrac{\beta + \alpha}{2}                                                              & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
 > \mathrm{Var} [X] = \dfrac{(\beta - \alpha)^2}{12}    & \mathrm{Exp} [X]^2 = \dfrac{\beta^2 + \beta \alpha + \alpha^2}{3}                                           & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \dfrac{(\beta - \alpha)^2}{12} \\
-> \mathrm{Ske} [X] = 0                                 & \mathrm{Exp} [X]^3 = \dfrac{\beta^3 + \beta^2 \alpha + \beta \alpha^2 + \alpha^3}{4}                        & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 0 \\
-> \mathrm{Kur} [X] = - 1.2                             & \mathrm{Exp} [X]^4 = \dfrac{\beta^4 + \beta^3 \alpha^1 + \beta^2 \alpha^2 + \beta^1 \alpha^3 + \alpha^4}{5} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = \dfrac{(\beta - \alpha)^4}{80} \\
+> \mathrm{Skew} [X] = 0                                & \mathrm{Exp} [X]^3 = \dfrac{\beta^3 + \beta^2 \alpha + \beta \alpha^2 + \alpha^3}{4}                        & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 0 \\
+> \mathrm{Kurt} [X] = - 1.2                            & \mathrm{Exp} [X]^4 = \dfrac{\beta^4 + \beta^3 \alpha^1 + \beta^2 \alpha^2 + \beta^1 \alpha^3 + \alpha^4}{5} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = \dfrac{(\beta - \alpha)^4}{80} \\
 > \hline
 > \end{array}
 > $$
@@ -43,23 +43,23 @@ Resources:
 > $$
 >
 
-> ### 标准正态分布 $X \mapsto \mathrm{No_{rmal}} (0, 1^2)$
+> ### 标准正态分布 $U \mapsto \mathrm{No_{rmal}} (0, 1^2)$
 
 > $$
 > \begin{alignedat}{3}
->                                                    p (x) &= \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{x^2}{2}} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
->                                         \Phi (x) = C (x) &= \dfrac{1}{2} \left[ 1 + \mathrm{E_{rr}} \left( \dfrac{x}{\sqrt{2}} \right) \right] \\
->                    \mathrm{Exp} [\mathrm{No} (0, 1^2)]^h &= \int_{-\infty}^{+\infty} x^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{x^2}{2}} \mathrm{d} x \\
->                                                          &\xlongequal{t = \frac{x^2}{2}} (h - 1 \mod 2) \dfrac{\sqrt{2}^h}{\sqrt{\pi}} \int_0^{+\infty} t^{\frac{h + 1}{2} - 1} e^{- t} \mathrm{d} t \\
+>                                                    p (u) &= \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{u^2}{2}} \quad\Leftarrow\quad u \in (-\infty, +\infty) \\
+>                                         \Phi (u) = C (u) &= \dfrac{1}{2} \left[ 1 + \mathrm{E_{rr}} \left( \dfrac{u}{\sqrt{2}} \right) \right] \\
+>                    \mathrm{Exp} [\mathrm{No} (0, 1^2)]^h &= \int_{-\infty}^{+\infty} u^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{u^2}{2}} \mathrm{d} x \\
+>                                                          &\xlongequal{t = \frac{u^2}{2}} (h - 1 \mod 2) \dfrac{\sqrt{2}^h}{\sqrt{\pi}} \int_0^{+\infty} t^{\frac{h + 1}{2} - 1} e^{- t} \mathrm{d} t \\
 >                                                          &= (h - 1 \mod 2) \dfrac{\sqrt{2}^h}{\sqrt{\pi}} \Gamma \left( {\dfrac{h + 1}{2}} \right) \\
-> \mathrm{Exp} [\mathrm{No} (0, 1^2) - \mathrm{Exp} [X]]^h &= \mathrm{Exp} [\mathrm{No} (0, 1^2)]^h \\
+> \mathrm{Exp} [\mathrm{No} (0, 1^2) - \mathrm{Exp} [U]]^h &= \mathrm{Exp} [\mathrm{No} (0, 1^2)]^h \\
 > \end{alignedat} \\
 > \begin{array}{l|l|l}
 > \hline
-> \mathrm{SD} [X] = 1  & \mathrm{Exp} [X]^1 = 0 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [X]]^1 = 0 \\
-> \mathrm{Var} [X] = 1 & \mathrm{Exp} [X]^2 = 1 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [X]]^2 = 1 \\
-> \mathrm{Ske} [X] = 0 & \mathrm{Exp} [X]^3 = 0 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [X]]^3 = 0 \\
-> \mathrm{Kur} [X] = 0 & \mathrm{Exp} [X]^4 = 3 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [X]]^4 = 3 \\
+> \mathrm{SD} [U] = 1   & \mathrm{Exp} [U]^1 = 0 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [U]]^1 = 0 \\
+> \mathrm{Var} [U] = 1  & \mathrm{Exp} [U]^2 = 1 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [U]]^2 = 1 \\
+> \mathrm{Skew} [U] = 0 & \mathrm{Exp} [U]^3 = 0 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [U]]^3 = 0 \\
+> \mathrm{Kurt} [U] = 0 & \mathrm{Exp} [U]^4 = 3 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [U]]^4 = 3 \\
 > \hline
 > \end{array}
 > $$
@@ -82,8 +82,8 @@ Resources:
 > \hline
 > \mathrm{SD} [X] = \sigma    & \mathrm{Exp} [X]^1 = \mu                                   & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
 > \mathrm{Var} [X] = \sigma^2 & \mathrm{Exp} [X]^2 = \sigma^2 + \mu^2                      & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \sigma^2 \\
-> \mathrm{Ske} [X] = 0        & \mathrm{Exp} [X]^3 = 3 \sigma^2 \mu + \mu^3                & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 0 \\
-> \mathrm{Kur} [X] = 0        & \mathrm{Exp} [X]^4 = 3 \sigma^4 + 6 \sigma^2 \mu^2 + \mu^4 & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = 3 \sigma^4 \\
+> \mathrm{Skew} [X] = 0       & \mathrm{Exp} [X]^3 = 3 \sigma^2 \mu + \mu^3                & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 0 \\
+> \mathrm{Kurt} [X] = 0       & \mathrm{Exp} [X]^4 = 3 \sigma^4 + 6 \sigma^2 \mu^2 + \mu^4 & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = 3 \sigma^4 \\
 > \hline
 > \end{array}
 > $$
@@ -93,10 +93,12 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->           \Uparrow\quad &&         p_{c X + d} (x) &= p \left( \dfrac{x - d}{c} \right) \cdot \left| \dfrac{\mathrm{d}}{\mathrm{d} x} \left( \dfrac{x - d}{c} \right) \right| \\
->                         &&                         &= \dfrac{1}{\sqrt{2 \pi} |c \sigma|} e^{- \frac{(x - c \mu - d)^2}{2 (c \sigma)^2}} \\
-> \fbox{1}\Downarrow\quad &&                 c X + d &\mapsto \mathrm{No} (c \mu + d, c^2 \sigma^2) \\
-> \fbox{2}\Downarrow\quad && \dfrac{X - \mu}{\sigma} &\mapsto \mathrm{No} (0, 1^2) \\
+>       X &\mapsto \mathrm{No} (\mu, \sigma^2) \\
+> p_U (u) &\xlongequal{u = \frac{x - \mu}{\sigma}} p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} u} \right| \\
+>         &= \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{u^2}{2}} \quad\Leftarrow\quad \dfrac{\mathrm{d} x}{\mathrm{d} u} = \left. 1 \middle/ \dfrac{\mathrm{d} u}{\mathrm{d} x} \right. = \sigma \\
+> p_Y (y) &\xlongequal{y = c \cdot x + d} p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} y} \right| \\
+>         &= \dfrac{1}{\sqrt{2 \pi} |c \cdot \sigma|} e^{- \frac{[y - (c \cdot \mu + d)]^2}{2 (c \cdot \sigma)^2}} \quad\Leftarrow\quad \dfrac{\mathrm{d} x}{\mathrm{d} y} = \left. 1 \middle/ \dfrac{\mathrm{d} y}{\mathrm{d} x} \right. = \dfrac{1}{c} \\
+>       Y &\mapsto \mathrm{No} (c \cdot \mu + d, c^2 \cdot \sigma^2) \\
 > \end{alignedat}
 > $$
 >
@@ -141,10 +143,10 @@ Resources:
 > \end{alignedat} \\
 > \begin{array}{l|l|l}
 > \hline
-> \mathrm{SD} [Y] = e^{\mu + \frac{\sigma^2}{2}} \sqrt{e^{\sigma^2} - 1}      & \mathrm{Exp} [Y]^1 = e^{\mu + \frac{\sigma^2}{2}}     & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^1 = 0 \\
-> \mathrm{Var} [Y] = e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1)                  & \mathrm{Exp} [Y]^2 = e^{2 \mu + 2 \sigma^2}           & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^2 = e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1) \\
-> \mathrm{Ske} [Y] = (e^{\sigma^2} + 2) \sqrt{e^{\sigma^2} - 1}               & \mathrm{Exp} [Y]^3 = e^{3 \mu + \frac{9 \sigma^2}{2}} & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^3 = e^{3 \mu + \frac{3 \sigma^2}{2}} (e^{\sigma^2} - 1)^2 (e^{\sigma^2} + 2) \\
-> \mathrm{Kur} [Y] = e^{4 \sigma^2} + 2 e^{3 \sigma^2} + 3 e^{2 \sigma^2} - 6 & \mathrm{Exp} [Y]^4 = e^{4 \mu + 8 \sigma^2}           & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^4 = e^{4 \mu + 2 \sigma^2} (e^{\sigma^2} - 1)^2 (e^{4 \sigma^2} + 2 e^{3 \sigma^3} + 3 e^{\sigma^2} - 3) \\
+> \mathrm{SD} [Y] = e^{\mu + \frac{\sigma^2}{2}} \sqrt{e^{\sigma^2} - 1}       & \mathrm{Exp} [Y]^1 = e^{\mu + \frac{\sigma^2}{2}}     & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^1 = 0 \\
+> \mathrm{Var} [Y] = e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1)                   & \mathrm{Exp} [Y]^2 = e^{2 \mu + 2 \sigma^2}           & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^2 = e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1) \\
+> \mathrm{Skew} [Y] = (e^{\sigma^2} + 2) \sqrt{e^{\sigma^2} - 1}               & \mathrm{Exp} [Y]^3 = e^{3 \mu + \frac{9 \sigma^2}{2}} & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^3 = e^{3 \mu + \frac{3 \sigma^2}{2}} (e^{\sigma^2} - 1)^2 (e^{\sigma^2} + 2) \\
+> \mathrm{Kurt} [Y] = e^{4 \sigma^2} + 2 e^{3 \sigma^2} + 3 e^{2 \sigma^2} - 6 & \mathrm{Exp} [Y]^4 = e^{4 \mu + 8 \sigma^2}           & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^4 = e^{4 \mu + 2 \sigma^2} (e^{\sigma^2} - 1)^2 (e^{4 \sigma^2} + 2 e^{3 \sigma^3} + 3 e^{\sigma^2} - 3) \\
 > \hline
 > \end{array}
 > $$
@@ -168,8 +170,8 @@ Resources:
 > \hline
 > \mathrm{SD} [X] = \dfrac{\sqrt{t}}{\lambda} & \mathrm{Exp} [X]^1 = \dfrac{t}{\lambda}                           & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
 > \mathrm{Var} [X] = \dfrac{t}{\lambda^2}     & \mathrm{Exp} [X]^2 = \dfrac{t (t + 1)}{\lambda^2}                 & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \dfrac{t}{\lambda^2} \\
-> \mathrm{Ske} [X] = \dfrac{2}{\sqrt{t}}      & \mathrm{Exp} [X]^3 = \dfrac{t (t + 1) (t + 2)}{\lambda^3}         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = \dfrac{2 t}{\lambda^3} \\
-> \mathrm{Kur} [X] = \dfrac{6}{t}             & \mathrm{Exp} [X]^4 = \dfrac{t (t + 1) (t + 2) (t + 3)}{\lambda^4} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{3 t (t + 2)}{\lambda^4} \\
+> \mathrm{Skew} [X] = \dfrac{2}{\sqrt{t}}     & \mathrm{Exp} [X]^3 = \dfrac{t (t + 1) (t + 2)}{\lambda^3}         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = \dfrac{2 t}{\lambda^3} \\
+> \mathrm{Kurt} [X] = \dfrac{6}{t}            & \mathrm{Exp} [X]^4 = \dfrac{t (t + 1) (t + 2) (t + 3)}{\lambda^4} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{3 t (t + 2)}{\lambda^4} \\
 > \hline
 > \end{array}
 > $$
@@ -217,8 +219,8 @@ Resources:
 > \hline
 > \mathrm{SD} [X] = \dfrac{1}{\lambda}    & \mathrm{Exp} [X]^1 = \dfrac{1}{\lambda}    & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
 > \mathrm{Var} [X] = \dfrac{1}{\lambda^2} & \mathrm{Exp} [X]^2 = \dfrac{2}{\lambda^2}  & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \dfrac{1}{\lambda^2} \\
-> \mathrm{Ske} [X] = 2                    & \mathrm{Exp} [X]^3 = \dfrac{6}{\lambda^3}  & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = \dfrac{2}{\lambda^3} \\
-> \mathrm{Kur} [X] = 6                    & \mathrm{Exp} [X]^4 = \dfrac{24}{\lambda^4} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{9}{\lambda^2} \\
+> \mathrm{Skew} [X] = 2                   & \mathrm{Exp} [X]^3 = \dfrac{6}{\lambda^3}  & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = \dfrac{2}{\lambda^3} \\
+> \mathrm{Kurt} [X] = 6                   & \mathrm{Exp} [X]^4 = \dfrac{24}{\lambda^4} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{9}{\lambda^2} \\
 > \hline
 > \end{array}
 > $$
@@ -247,10 +249,10 @@ Resources:
 > \end{alignedat} \\
 > \begin{array}{l|l|l}
 > \hline
-> \mathrm{SD} [X] = \sqrt{2 n}           & \mathrm{Exp} [X]^1 = n                         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
-> \mathrm{Var} [X] = 2 n                 & \mathrm{Exp} [X]^2 = n (n + 2)                 & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = 2 n \\
-> \mathrm{Ske} [X] = \sqrt{\dfrac{8}{n}} & \mathrm{Exp} [X]^3 = n (n + 2) (n + 4)         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 8 n \\
-> \mathrm{Fur} [X] = \dfrac{12}{n}       & \mathrm{Exp} [X]^4 = n (n + 2) (n + 4) (n + 6) & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = 12 n (n + 4) \\
+> \mathrm{SD} [X] = \sqrt{2 n}            & \mathrm{Exp} [X]^1 = n                         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
+> \mathrm{Var} [X] = 2 n                  & \mathrm{Exp} [X]^2 = n (n + 2)                 & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = 2 n \\
+> \mathrm{Skew} [X] = \sqrt{\dfrac{8}{n}} & \mathrm{Exp} [X]^3 = n (n + 2) (n + 4)         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 8 n \\
+> \mathrm{Kurt} [X] = \dfrac{12}{n}       & \mathrm{Exp} [X]^4 = n (n + 2) (n + 4) (n + 6) & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = 12 n (n + 4) \\
 > \hline
 > \end{array}
 > $$
@@ -272,10 +274,10 @@ Resources:
 > \end{alignedat} \\
 > \begin{array}{l|l|l}
 > \hline
-> \mathrm{SD} [X] = \dfrac{1}{t + s} \sqrt{\dfrac{t s}{t +s + 1}}                                     & \mathrm{Exp} [X]^1 = \dfrac{t}{t + s}                                                               & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
-> \mathrm{Var} [X] = \dfrac{t s}{(t + s)^2 (t + s + 1)}                                               & \mathrm{Exp} [X]^2 = \dfrac{t (t + 1)}{(t + s) (t + s + 1)}                                         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \dfrac{t s}{(t + s)^2 (t + s + 1)} \\
-> \mathrm{Ske} [X] = \dfrac{2 (s - t)}{t + s + 2} \sqrt{\dfrac{t + s + 1}{t s}}                       & \mathrm{Exp} [X]^3 = \dfrac{t (t + 1) (t + 2)}{(t + s) (t + s + 1) (t + s + 2)}                     & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = \dfrac{2 t s (s - t)}{(t + s)^3 (t + s + 1) (t + s + 2)} \\
-> \mathrm{Fur} [X] = \dfrac{6 [(t - s)^2 (t + s + 1) - t s (t + s + 2)]}{t s (t + s + 2) (t + s + 3)} & \mathrm{Exp} [X]^4 = \dfrac{t (t + 1) (t + 2) (t + 3)}{(t + s) (t + s + 1) (t + s + 2) (t + s + 3)} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{3 s t [2 (t - s)^2 + s t (t + s + 2)]}{(t + s)^4 (t + s + 1) (t + s + 2) (t + s + 3)} \\
+> \mathrm{SD} [X] = \dfrac{1}{t + s} \sqrt{\dfrac{t s}{t +s + 1}}                                      & \mathrm{Exp} [X]^1 = \dfrac{t}{t + s}                                                               & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
+> \mathrm{Var} [X] = \dfrac{t s}{(t + s)^2 (t + s + 1)}                                                & \mathrm{Exp} [X]^2 = \dfrac{t (t + 1)}{(t + s) (t + s + 1)}                                         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \dfrac{t s}{(t + s)^2 (t + s + 1)} \\
+> \mathrm{Skew} [X] = \dfrac{2 (s - t)}{t + s + 2} \sqrt{\dfrac{t + s + 1}{t s}}                       & \mathrm{Exp} [X]^3 = \dfrac{t (t + 1) (t + 2)}{(t + s) (t + s + 1) (t + s + 2)}                     & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = \dfrac{2 t s (s - t)}{(t + s)^3 (t + s + 1) (t + s + 2)} \\
+> \mathrm{Kurt} [X] = \dfrac{6 [(t - s)^2 (t + s + 1) - t s (t + s + 2)]}{t s (t + s + 2) (t + s + 3)} & \mathrm{Exp} [X]^4 = \dfrac{t (t + 1) (t + 2) (t + 3)}{(t + s) (t + s + 1) (t + s + 2) (t + s + 3)} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{3 s t [2 (t - s)^2 + s t (t + s + 2)]}{(t + s)^4 (t + s + 1) (t + s + 2) (t + s + 3)} \\
 > \hline
 > \end{array}
 > $$
@@ -292,4 +294,3 @@ Resources:
 > \end{alignedat}
 > $$
 >
-

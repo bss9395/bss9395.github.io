@@ -132,13 +132,13 @@ Resources:
 > $$
 >
 
-> ### 分位数 $\mathrm{Qua_{ntile}}$
+> ### 分位数 $\mathrm{Quan_{tile}}$
 
 > $$
 > \begin{alignedat}{3}
-> & \mathrm{Qua} [_q X] = x \iff C (x) = q \\
-> & \mathrm{Qua} [^q X] = x \iff 1 - C (x) = q \\
-> & \mathrm{Qua} [_q X] = \mathrm{Qua} [^{1 - q} X] \\
+> & \mathrm{Quan} [_q X] = x \iff C (x) = q \\
+> & \mathrm{Quan} [^q X] = x \iff 1 - C (x) = q \\
+> & \mathrm{Quan} [_q X] = \mathrm{Qua} [^{1 - q} X] \\
 > \end{alignedat}
 > $$
 >
@@ -152,21 +152,33 @@ Resources:
 > $$
 >
 
-> ### 偏度 $\mathrm{Ske_{wness}}$
+> ### 偏度 $\mathrm{Skew_{ness}}$
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{Ske} [X] = \dfrac{\mathrm{Exp} [X - \mathrm{Exp} [X]]^3}{\mathrm{SD}^3 [X]} \\
+> \mathrm{Skew} [X] = \dfrac{\mathrm{Exp} [X - \mathrm{Exp} [X]]^3}{\mathrm{SD}^3 [X]} \\
 > \end{alignedat}
 > $$
 >
 
-> ### 峰度 $\mathrm{Kur_{tosis}}$
+> ### 峰度 $\mathrm{Kurt_{osis}}$
 
 > $$
 > \begin{alignedat}{3}
 > \mathrm{Kur} [X] &= \dfrac{\mathrm{Exp} [X - \mathrm{Exp} [X]]^4}{\mathrm{SD}^4 [X]} - \mathrm{Exp} [\mathrm{No} (0, 1^2)]^4 \\
 >                  &= \dfrac{\mathrm{Exp} [X - \mathrm{Exp} [X]]^4}{\mathrm{SD}^4 [X]} - 3 \\
+> \end{alignedat}
+> $$
+>
+
+> ### 相关系数 $\mathrm{Corr_{elation}}$ 
+
+> $$
+> \begin{alignedat}{3}
+> \mathrm{Cor} (X, Y) &= \dfrac{\mathrm{CoV} [X, Y]}{\mathrm{SD} [X] \cdot \mathrm{SD} [Y]} \\
+>                     &= \dfrac{\mathrm{CoV} [X - \mathrm{Exp} [X], Y - \mathrm{Exp} [Y]]}{\mathrm{SD} [X] \cdot \mathrm{SD} [Y]} \\
+>                     &= \mathrm{CoV} \left[ \dfrac{X - \mathrm{Exp} [X]}{\mathrm{SD} [X]}, \dfrac{Y - \mathrm{Exp} [Y]}{\mathrm{SD} [Y]} \right] \\
+>                     &= \mathrm{CoV} [X^*, Y^*] \\
 > \end{alignedat}
 > $$
 >

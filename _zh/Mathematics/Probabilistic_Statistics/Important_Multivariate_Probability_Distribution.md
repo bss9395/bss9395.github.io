@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要多维概率分布
-Revised:   2018-05-17 16:04:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-18 21:58:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -38,13 +38,54 @@ Resources:
 > $$
 >
 
+> ### 标准二维正态分布 $(U, V) \mapsto \mathrm{B_{ivariate} N_{ormal}} (0, 0, 1^2, 1^2, 0)$
+
+> $$
+> \begin{alignedat}{3}
+>                                         p (u, v) &= \dfrac{1}{2 \pi} e^{- \frac{u^2 + v^2}{2}} \\
+>                                          p_U (u) &= \dfrac{1}{2 \pi} e^{- \frac{u^2}{2}} \\
+>                                          p_V (v) &= \dfrac{1}{2 \pi} e^{- \frac{v^2}{2}} \\
+> \mathrm{CoV} [\mathrm{BN} (0, 0, 1^2, 1^2, 0)]^h &= \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} (u v)^h \dfrac{1}{2 \pi} e^{- \frac{u^2 + v^2}{2}} \mathrm{d} u \mathrm{d} v \\
+>                                                  &= \int_{-\infty}^{+\infty} u^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{u^2}{2}} \mathrm{d} u \int_{-\infty}^{+\infty} v^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{v^2}{2}} \mathrm{d} v \\
+>                                                  &= \mathrm{Exp}^2 [\mathrm{No} (0, 1^2)]^h
+> \end{alignedat} \\
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{Exp} [U]^1 = 0 & \mathrm{Exp} [V]^1 = 0 & \mathrm{Exp} [U V]^1 = 0 \\
+> \mathrm{Var} [U]^1 = 1 & \mathrm{Var} [V]^1 = 1 & \mathrm{CoV} [U, V]^1 = 0 \\
+> \mathrm{SD} [U] = 1    & \mathrm{SD} [V] = 1    & \mathrm{Corr} [U, V] = 0 \\
+> \hline
+> \end{array}
+> $$
+>
+
 > ### 二维正态分布 $(X, Y) \mapsto \mathrm{B_{ivariate} N_{ormal}} (\mu_X, \mu_Y, \sigma_X^2, \sigma_Y^2, \rho)$
 
 > $$
 > \begin{alignedat}{3}
-> p (x, y) &= \dfrac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} e^{- \frac{1}{2 (1 - \rho^2)} \left[ \frac{(x - \mu_X)^2}{\sigma_X^2} - 2 \rho \frac{(x - \mu_X) (y - \mu_Y)}{\sigma_X \sigma_Y} + \frac{(y - \mu_Y)^2}{\sigma_Y^2} \right]} \quad\Leftarrow\quad x, y \in (-\infty, +\infty) \\
->        P &= \dfrac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} \iint_D e^{- \frac{1}{2 (1 - \rho^2)} \left[ \frac{(x - \mu_X)^2}{\sigma_X^2} - 2 \rho \frac{(x - \mu_X) (y - \mu_Y)}{\sigma_X \sigma_Y} + \frac{(y - \mu_Y)^2}{\sigma_Y^2} \right]} \mathrm{d} x \mathrm{d} y \\
->          &\xlongequal[v = \frac{y - \mu_Y}{\sigma_Y} \sqrt{1 - \rho^2}]{u = \frac{x - \mu_X}{\sigma_X} - \rho \frac{y - \mu_Y}{\sigma_Y}} \dfrac{1}{2 \pi (1 - \rho^2)} \iint_D e^{- \frac{u^2 + v^2}{2 (1 - \rho^2)}} \mathrm{d} u \mathrm{d} v \quad\Leftarrow\quad \dfrac{\partial (u, v)}{\partial (x, y)} = \dfrac{\sqrt{1 - \rho^2}}{\sigma_X \sigma_Y} \\
+>                                                                  p (x, y) &= \dfrac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} e^{- \frac{1}{2 (1 - \rho^2)} \left[ \frac{(x - \mu_X)^2}{\sigma_X^2} - 2 \rho \frac{(x - \mu_X) (y - \mu_Y)}{\sigma_X \sigma_Y} + \frac{(y - \mu_Y)^2}{\sigma_Y^2} \right]} \quad\Leftarrow\quad x, y \in (-\infty, +\infty) \\
+>                                                                   p_Y (y) &= p_V (v) \cdot \left| \dfrac{\mathrm{d} v}{\mathrm{d} y} \right| \\
+>                                                                           &= \dfrac{1}{\sqrt{2 \pi} \sigma_Y} e^{- \frac{(y - \mu_Y)^2}{2 \sigma_Y^2}} \\
+> \mathrm{CoV} [\mathrm{BN} (\mu_X, \mu_Y, \sigma_X^2, \sigma_Y^2, \rho)]^h &= \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} (x - \mu_X)^h (y - \mu_Y)^h \dfrac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} e^{- \frac{1}{2 (1 - \rho^2)} \left[ \frac{(x - \mu_X)^2}{\sigma_X^2} - 2 \rho \frac{(x - \mu_X) (y - \mu_Y)}{\sigma_X \sigma_Y} + \frac{(y - \mu_Y)^2}{\sigma_Y^2} \right]} \mathrm{d} x \mathrm{d} y \\
+>                                                                           &\xlongequal[v = \frac{y - \mu_Y}{\sigma_Y}]{u = \frac{1}{\sqrt{1 - \rho^2}} \left( \frac{x - \mu_X}{\sigma_X} - \rho \frac{y - \mu_Y}{\sigma_Y} \right)} \dfrac{\sigma_X^h \sigma_Y^h}{2 \pi} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \left( \sqrt{1 - \rho^2} u v + \rho v^2 \right)^h e^{- \frac{u^2 + v^2}{2}} \mathrm{d} u \mathrm{d} v \\
+> \end{alignedat} \\
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{Exp} [X]^1 = \mu_X      & \mathrm{Exp} [Y]^1 = \mu_Y      & \mathrm{Exp} [X Y]^1 = \rho \sigma_X \sigma_Y + \mu_X \mu_Y \\
+> \mathrm{Var} [X]^1 = \sigma_X^2 & \mathrm{Var} [Y]^1 = \sigma_Y^2 & \mathrm{CoV} [X, Y]^1 = \rho \sigma_X \sigma_Y \\
+> \mathrm{SD} [X] = \sigma_X      & \mathrm{SD} [Y] = \sigma_Y      & \mathrm{Cor} [X, Y] = \rho \\
+> \hline
+> \end{array}
+> $$
+>
+
+> ### 二维正态分布的标准化
+
+> $$
+> \begin{alignedat}{3}
+>          (X, Y) &\mapsto \mathrm{BN} (\mu_X, \mu_Y, \sigma_X^2, \sigma_Y^2, \rho) \\
+> p_{U, V} (u, v) &\xlongequal[v = \frac{y - \mu_Y}{\sigma_Y}]{u = \frac{1}{\sqrt{1 - \rho^2}} \left( \frac{x - \mu_X}{\sigma_X} - \rho \frac{y - \mu_Y}{\sigma_Y} \right)} p (x, y) \cdot \left| \dfrac{\partial (x, y)}{\partial (u, v)} \right| \\
+>                 &= \dfrac{1}{2 \pi} e^{- \frac{u^2 + v^2}{2}} \quad\Leftarrow\quad \dfrac{\partial (x, y)}{\partial (u, v)} = \left. 1 \middle/ \dfrac{\partial (u, v)}{\partial (x, y)} \right. = \sigma_X \sigma_Y \sqrt{1 - \rho^2} \\
 > \end{alignedat}
 > $$
 >
