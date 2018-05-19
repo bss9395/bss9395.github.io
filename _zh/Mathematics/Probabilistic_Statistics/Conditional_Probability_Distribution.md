@@ -1,8 +1,8 @@
 ---
 layout:    zh_post
 Topic:     概率统计
-Title:     条件分布
-Revised:   2018-05-15 19:38:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Title:     条件概率分布
+Revised:   2018-05-20 01:36:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -86,11 +86,11 @@ Resources:
 > $$
 >
 
-> ### 条件分布
+> ### 条件概率分布
 
 > $$
 > \begin{alignedat}{3}
->
+>p_{X_1, \cdots, X_m} (x_1, \cdots, x_m \mid x_{m + 1}, \cdots, x_n) &= \dfrac{p (x_1, \cdots, x_m, x_{m + 1}, \cdots, x_n)}{p_{X_{m + 1, \cdots, X_n}} (x_{m + 1}, \cdots, x_n)} \\
 > \end{alignedat}
 > $$
 >

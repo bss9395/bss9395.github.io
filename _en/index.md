@@ -6,8 +6,9 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 
 > ### Things to Bear in Mind
 
-> 01. [Give] credit where credit is due. [Give] comment where comment is necessary. 
+> 01. [Give] Credit where credit is due. [Give] comment where comment is necessary. 
 > 01. [I] Love to be loved. 
+> 01. [Whether you] Like it or not, the world exists.
 > 01. A friend in need is a friend indeed.
 > 01. All of your hard work will pay off one day.
 > 01. All roads lead to Rome.

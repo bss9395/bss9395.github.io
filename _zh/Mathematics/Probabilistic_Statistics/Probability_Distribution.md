@@ -68,7 +68,7 @@ Resources:
 > \begin{alignedat}{3}
 > \fbox{1}\quad & p (\cdots, x_i, \cdots) \ge 0 \\
 > \fbox{2}\quad & \sum\limits_{-\infty}^{+\infty} \cdots \sum\limits_{-\infty}^{+\infty} p (x_1, \cdots, x_m) = 1 \\
-> \fbox{3}\quad & \sum\limits_{-\infty}^{x_i} p (\cdots, x_i, \cdots) = C (\cdots, x_i, \cdots) \\
+> \fbox{3}\quad & \sum\limits_{-\infty}^{x_i} p (\cdots, x_i, \cdots) = J (\cdots, x_i, \cdots) \\
 > \end{alignedat}
 > $$
 >
@@ -91,7 +91,7 @@ Resources:
 > \begin{alignedat}{3}
 > \fbox{1}\quad & p (\cdots, x_i, \cdots) \ge 0 \\
 > \fbox{2}\quad & \int_{-\infty}^{+\infty} \cdots \int_{-\infty}^{+\infty} p (x_1, \cdots, x_m) \mathrm{d} x_1 \cdots \mathrm{d} x_m = 1 \\
-> \fbox{3}\quad & \int_{-\infty}^{x_i} p (\cdots, x_i, \cdots) \mathrm{d} x_i = C (\cdots, x_i, 
+> \fbox{3}\quad & \int_{-\infty}^{x_i} p (\cdots, x_i, \cdots) \mathrm{d} x_i = J (\cdots, x_i, 
 > \cdots) \\
 > \end{alignedat}
 > $$
