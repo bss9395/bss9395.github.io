@@ -43,8 +43,10 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 >                                         p (u, v) &= \dfrac{1}{2 \pi} e^{- \frac{u^2 + v^2}{2}} \\
->                                          p_U (u) &= \dfrac{1}{2 \pi} e^{- \frac{u^2}{2}} \\
->                                          p_V (v) &= \dfrac{1}{2 \pi} e^{- \frac{v^2}{2}} \\
+>                                          p_U (u) &= \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{u^2}{2}} \\
+>                                          p_V (v) &= \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{v^2}{2}} \\
+>                                     p (u \mid v) &= \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{u^2}{2}} \quad\Leftarrow\quad \dfrac{p (u, v)}{p_V (v)} \\
+>                                     p (v \mid u) &= \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{v^2}{2}} \quad\Leftarrow\quad \dfrac{p (u, v)}{p_U (u)} \\
 > \mathrm{CoV} [\mathrm{BN} (0, 0, 1^2, 1^2, 0)]^h &= \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} (u v)^h \dfrac{1}{2 \pi} e^{- \frac{u^2 + v^2}{2}} \mathrm{d} u \mathrm{d} v \\
 >                                                  &= \int_{-\infty}^{+\infty} u^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{u^2}{2}} \mathrm{d} u \int_{-\infty}^{+\infty} v^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{v^2}{2}} \mathrm{d} v \\
 >                                                  &= \mathrm{Exp}^2 [\mathrm{No} (0, 1^2)]^h
@@ -64,8 +66,10 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 >                                                                  p (x, y) &= \dfrac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} e^{- \frac{1}{2 (1 - \rho^2)} \left[ \frac{(x - \mu_X)^2}{\sigma_X^2} - 2 \rho \frac{(x - \mu_X) (y - \mu_Y)}{\sigma_X \sigma_Y} + \frac{(y - \mu_Y)^2}{\sigma_Y^2} \right]} \quad\Leftarrow\quad x, y \in (-\infty, +\infty) \\
->                                                                   p_Y (y) &= p_V (v) \cdot \left| \dfrac{\mathrm{d} v}{\mathrm{d} y} \right| \\
->                                                                           &= \dfrac{1}{\sqrt{2 \pi} \sigma_Y} e^{- \frac{(y - \mu_Y)^2}{2 \sigma_Y^2}} \\
+>                                                                   p_X (x) &= \dfrac{1}{\sqrt{2 \pi} \sigma_X} e^{- \frac{(x - \mu_X)^2}{2 \sigma_X^2}} \\
+>                                                                   p_Y (y) &= \dfrac{1}{\sqrt{2 \pi} \sigma_Y} e^{- \frac{(y - \mu_Y)^2}{2 \sigma_Y^2}} \quad\Leftarrow\quad p_V (v) \cdot \left| \dfrac{\mathrm{d} v}{\mathrm{d} y} \right| \\
+>                                                              p (x \mid y) &= \dfrac{1}{\sqrt{2 \pi \sigma_X^2 (1 - \rho^2)}} e^{- \frac{1}{2 \sigma_X^2 (1 - \rho^2)} \left[ x - \left( \mu_X + \rho \frac{\sigma_X}{\sigma_Y} (y - \mu_Y) \right) \right]^2} \quad\Leftarrow\quad p (x \mid y) = \dfrac{p (x, y)}{p_Y (y)} \\
+>                                                              p (y \mid x) &= \dfrac{1}{\sqrt{2 \pi \sigma_Y^2 (1 - \rho^2)}} e^{- \frac{1}{2 \sigma_Y^2 (1 - \rho^2)} \left[ y - \left( \mu_Y + \rho \frac{\sigma_Y}{\sigma_X} (x - \mu_X) \right) \right]^2} \quad\Leftarrow\quad p (y \mid x) = \dfrac{p (x, y)}{p_X (x)} \\
 > \mathrm{CoV} [\mathrm{BN} (\mu_X, \mu_Y, \sigma_X^2, \sigma_Y^2, \rho)]^h &= \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} (x - \mu_X)^h (y - \mu_Y)^h \dfrac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} e^{- \frac{1}{2 (1 - \rho^2)} \left[ \frac{(x - \mu_X)^2}{\sigma_X^2} - 2 \rho \frac{(x - \mu_X) (y - \mu_Y)}{\sigma_X \sigma_Y} + \frac{(y - \mu_Y)^2}{\sigma_Y^2} \right]} \mathrm{d} x \mathrm{d} y \\
 >                                                                           &\xlongequal[v = \frac{y - \mu_Y}{\sigma_Y}]{u = \frac{1}{\sqrt{1 - \rho^2}} \left( \frac{x - \mu_X}{\sigma_X} - \rho \frac{y - \mu_Y}{\sigma_Y} \right)} \dfrac{\sigma_X^h \sigma_Y^h}{2 \pi} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \left( \sqrt{1 - \rho^2} u v + \rho v^2 \right)^h e^{- \frac{u^2 + v^2}{2}} \mathrm{d} u \mathrm{d} v \\
 > \end{alignedat} \\

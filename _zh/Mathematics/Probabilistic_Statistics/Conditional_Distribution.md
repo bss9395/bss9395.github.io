@@ -1,7 +1,7 @@
 ---
 layout:    zh_post
 Topic:     概率统计
-Title:     条件概率
+Title:     条件分布
 Revised:   2018-05-15 19:38:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
@@ -82,6 +82,15 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \forall x_1, \cdots, x_m;\; p (x_1, \cdots, x_m) = \prod_1^m p_{X_m} (x_m) \\
+> \end{alignedat}
+> $$
+>
+
+> ### 条件分布
+
+> $$
+> \begin{alignedat}{3}
+>
 > \end{alignedat}
 > $$
 >

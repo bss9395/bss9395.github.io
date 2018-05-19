@@ -80,6 +80,7 @@ Resources:
 > \fbox{3}\quad & \mathrm{CoV} [c X, Y] = c \cdot \mathrm{CoV} [X, Y] \\
 > \fbox{4}\quad & \mathrm{CoV} \left[ \sum_1^n X_n, \sum_1^m Y_m \right] = \sum_1^n \sum_1^m \mathrm{CoV} [X_n, Y_m] \\
 > \fbox{5}\quad & p (x, y) = p_X (x) \cdot p_Y (y) \quad\Rightarrow\quad \mathrm{CoV} [X, Y] = 0 \\
+> \fbox{6}\quad & \mathrm{CoV}^2 [X, Y] \le \sigma_X^2 \cdot \sigma_Y^2 \\
 > \end{alignedat}
 > $$
 >
@@ -171,7 +172,7 @@ Resources:
 > $$
 >
 
-> ### 相关系数 $\mathrm{Corr_{elation}}$ 
+> ### 线性相关系数 $\mathrm{Corr_{elation}}$ 
 
 > $$
 > \begin{alignedat}{3}
@@ -179,6 +180,16 @@ Resources:
 >                     &= \dfrac{\mathrm{CoV} [X - \mathrm{Exp} [X], Y - \mathrm{Exp} [Y]]}{\mathrm{SD} [X] \cdot \mathrm{SD} [Y]} \\
 >                     &= \mathrm{CoV} \left[ \dfrac{X - \mathrm{Exp} [X]}{\mathrm{SD} [X]}, \dfrac{Y - \mathrm{Exp} [Y]}{\mathrm{SD} [Y]} \right] \\
 >                     &= \mathrm{CoV} [X^*, Y^*] \\
+> \end{alignedat}
+> $$
+>
+
+> ### 线性相关系数的性质
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\quad & |\mathrm{Corr} [X, Y]| \le 1 \\
+> \fbox{2}\quad & |\mathrm{Corr} [X, Y]| = 1 \iff Y = \pm \dfrac{\sigma_Y}{\sigma_X} \cdot X + c \\
 > \end{alignedat}
 > $$
 >

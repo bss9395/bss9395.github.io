@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     概率分布
-Revised:   2018-05-15 16:10:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-19 19:03:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -56,6 +56,7 @@ Resources:
 > \begin{alignedat}{3}
 > p (\cdots, x_i, \cdots) &= P [\cdots, X_i = x_i, \cdots] = J (\cdots, x_i, \cdots) - J (\cdots, x_i^-, \cdots) \\
 >           p_{X_i} (x_i) &= P [+\infty, \cdots, X_i = x_i, \cdots, +\infty] = J (+\infty, \cdots, x_i, \cdots, +\infty) - J (+\infty, \cdots, x_i^-, \cdots, +\infty) \\
+>  p_f (y_1, \cdots, y_m) &= P [f_1 (X_1, \cdots, X_m) = y_1, \cdots, f_m (X_1, \cdots, X_m) = y_m] = p (x_1, \cdots, x_m) \\
 >                 p_f (y) &= P [f (X) = y] = p (x) \\
 > \end{alignedat}
 > $$
@@ -95,4 +96,3 @@ Resources:
 > \end{alignedat}
 > $$
 >
-

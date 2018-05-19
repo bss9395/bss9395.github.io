@@ -7,16 +7,16 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 均匀分布 $X \mapsto \mathrm{Un_{iform}} (\alpha, \beta)$ 
+> ### 离散均匀分布 $X \mapsto \mathrm{D_{iscrete} U_{niform}} (\alpha, \beta)$ 
 
 > $$
 > \begin{alignedat}{3}
 >                                                       P (X = k) &= \dfrac{1}{\beta - \alpha + 1} \quad\Leftarrow\quad k \in \lbrace \alpha, \cdots, \beta \rbrace \\
->                    \mathrm{Exp} [\mathrm{Un} (\alpha, \beta)]^h &= \sum_\alpha^\beta k^h \dfrac{1}{\beta - \alpha + 1} \\
+>                    \mathrm{Exp} [\mathrm{DU} (\alpha, \beta)]^h &= \sum_\alpha^\beta k^h \dfrac{1}{\beta - \alpha + 1} \\
 >                                                                 &= \dfrac{1}{\beta - \alpha + 1} \sum_\alpha^\beta k^h \\
-> \mathrm{Exp} [\mathrm{Un} (\alpha, \beta) - \mathrm{Exp} [X]]^h &= \sum_\alpha^\beta \left( k - \dfrac{\beta + \alpha}{2} \right)^h \dfrac{1}{\beta - \alpha + 1} \\
+> \mathrm{Exp} [\mathrm{DU} (\alpha, \beta) - \mathrm{Exp} [X]]^h &= \sum_\alpha^\beta \left( k - \dfrac{\beta + \alpha}{2} \right)^h \dfrac{1}{\beta - \alpha + 1} \\
 >                                                                 &= \dfrac{1}{2^h} \sum_\alpha^\beta [2 k - (\beta + \alpha)]^h \dfrac{1}{(\beta - \alpha + 1)} \\
->                                                                 &= \dfrac{1}{2^h} \mathrm{Exp} [2 \cdot \mathrm{Un} (\alpha, \beta) - (\beta + \alpha)]^h \\
+>                                                                 &= \dfrac{1}{2^h} \mathrm{Exp} [2 \cdot \mathrm{DU} (\alpha, \beta) - (\beta + \alpha)]^h \\
 > \end{alignedat} \\
 > \begin{array}{l|l|l}
 > \hline

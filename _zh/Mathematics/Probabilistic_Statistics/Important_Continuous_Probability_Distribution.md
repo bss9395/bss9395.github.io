@@ -7,16 +7,16 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 均匀分布 $X \mapsto \mathrm{Un_{iform}} (\alpha, \beta)$
+> ### 连续均匀分布 $X \mapsto \mathrm{C_{ontinuous} U_{niform}} (\alpha, \beta)$
 
 > $$
 > \begin{alignedat}{3}
 >                                                           p (x) &= \dfrac{1}{\beta - \alpha} \quad\Leftarrow\quad x \in [\alpha, \beta] \\
 >                                                           C (x) &= \dfrac{x - \alpha}{\beta - \alpha} \\
->                    \mathrm{Exp} [\mathrm{Un} (\alpha, \beta)]^h &= \int_\alpha^\beta x^h \dfrac{1}{\beta - \alpha} \mathrm{d} x \\
+>                    \mathrm{Exp} [\mathrm{CU} (\alpha, \beta)]^h &= \int_\alpha^\beta x^h \dfrac{1}{\beta - \alpha} \mathrm{d} x \\
 >                                                                 &= \left. \dfrac{1}{\beta - \alpha} \dfrac{x^{h + 1}}{h + 1} \right|_\alpha^\beta \\
 >                                                                 &= \dfrac{\beta^{h + 1} - \alpha^{h + 1}}{(h + 1) (\beta - \alpha)} \\
-> \mathrm{Exp} [\mathrm{Un} (\alpha, \beta) - \mathrm{Exp} [X]]^h &= \int_\alpha^\beta \left( x - \dfrac{\beta + \alpha}{2} \right)^h \dfrac{1}{\beta - \alpha} \mathrm{d} x \\
+> \mathrm{Exp} [\mathrm{CU} (\alpha, \beta) - \mathrm{Exp} [X]]^h &= \int_\alpha^\beta \left( x - \dfrac{\beta + \alpha}{2} \right)^h \dfrac{1}{\beta - \alpha} \mathrm{d} x \\
 >                                                                 &= \dfrac{1}{\beta - \alpha} \dfrac{1}{h + 1} \left. \left( x - \dfrac{\beta + \alpha}{2} \right)^{h + 1} \right|_\alpha^\beta \\
 >                                                                 &= \dfrac{(\beta - \alpha)^{h + 1} - (\alpha - \beta)^{h + 1}}{2^{h + 1} (h + 1) (\beta - \alpha)} \\
 > \end{alignedat} \\
@@ -31,12 +31,28 @@ Resources:
 > $$
 >
 
-> ### 连续累积分布函数服从均匀分布
+> ### 独立连续均匀分布的可加性
 
 > $$
 > \begin{alignedat}{3}
-> p_C (y) &= p [C^{- 1} (y)] \cdot \left| \dfrac{\mathrm{d} C^{- 1} (y)}{\mathrm{d} y} \right| \quad\Leftarrow\quad y \in [0, 1] \\
->         &= p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} C (x)} \right| \\
+> \Uparrow\quad && X_1 \mapsto \mathrm{CU} (\alpha, \beta) \quad&\land\quad X_2 \mapsto \mathrm{CU} (\alpha, \beta) \\
+> \Uparrow\quad && p (z) &= \int_{-\infty}^{+\infty} p_{X_1} (x) \cdot p_{X_2} (z - x) \mathrm{d} x \\
+> && &= \int_\alpha^\beta \dfrac{1}{\beta - \alpha} \cdot p_{X_2} (z - x) \mathrm{d} x \\
+> && &\xlongequal{t = z - x} \dfrac{1}{\beta - \alpha} \int_{z - \beta}^{z - \alpha} p_{X_2} (t) \mathrm{d} t \\
+> && \fbox{1} &\xlongequal{z - \alpha \in [\alpha, \beta]} \dfrac{1}{(\beta - \alpha)^2} \int_{\alpha}^{z - \alpha} \mathrm{d} t \\
+> && &= \dfrac{z - 2 \alpha}{(\beta - \alpha)^2} \quad\Leftarrow\quad z \in [2 \alpha, \alpha + \beta] \\
+> && \fbox{2} &\xlongequal{z - \beta \in [\alpha, \beta]} \dfrac{1}{(\beta - \alpha)^2} \int_{z - \beta}^\beta \mathrm{d} t \\
+> && &= \dfrac{2 \beta - z}{(\beta - \alpha)^2} \quad\Leftarrow\quad z \in [\alpha + \beta, 2 \beta] \\
+> \end{alignedat}
+> $$
+>
+
+> ### 连续累积分布函数服从连续均匀分布
+
+> $$
+> \begin{alignedat}{3}
+>       y &= C (x) \quad\Rightarrow\quad y \in [0, 1] \\
+> p_C (y) &=  p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} C (x)} \right| \\
 >         &= p (x) \cdot \dfrac{1}{p (x)} \\
 >         &= 1 \\
 > \end{alignedat}
@@ -103,7 +119,7 @@ Resources:
 > $$
 >
 
-> ### 正态分布的可加性
+> ### 独立正态分布的可加性
 
 > $$
 > \begin{alignedat}{3}
@@ -111,7 +127,7 @@ Resources:
 > \Uparrow\quad           &&                                                             p (z) &= \int_{-\infty}^{+\infty} p_{X_1} (x) \cdot p_{X_2} (z - x) \mathrm{d} x \\
 >                         &&                                                                   &= \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi} \sigma_1} e^{- \frac{(x - \mu_1)^2}{2 \sigma_1^2}} \cdot \dfrac{1}{\sqrt{2 \pi} \sigma_2} e^{- \frac{(z - x - \mu_2)^2}{2 \sigma_2^2}} \mathrm{d} x \\
 >                         &&                                                                   &= \dfrac{1}{\sqrt{2 \pi (\sigma_1^2 + \sigma_2^2)}} e^{- \frac{(z - \mu_1 - \mu_2)^2}{2 (\sigma_1^2 + \sigma_2^2)}} \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi}} \sqrt{\dfrac{\sigma_1^2 + \sigma_2^2}{\sigma_1^2 \sigma_2^2}} e^{- \frac{\sigma_1^2 + \sigma_2^2}{2 \sigma_1^2 \sigma_2^2} \left[ x - \frac{\sigma_2^2 \mu_1 + \sigma_1^2 (z - \mu_2)}{\sigma_2^2 + \sigma_2^2} \right]^2} \mathrm{d} x \\
->                         &&                                                                   &= \dfrac{1}{\sqrt{2 \pi (\sigma_1^2 + \sigma_2^2)}} e^{- \frac{(x - \mu_1 - \mu_2)^2}{2 (\sigma_1^2 + \sigma_2^2)}} \\
+>                         &&                                                                   &= \dfrac{1}{\sqrt{2 \pi (\sigma_1^2 + \sigma_2^2)}} e^{- \frac{(z - \mu_1 - \mu_2)^2}{2 (\sigma_1^2 + \sigma_2^2)}} \\
 > \fbox{1}\Downarrow\quad && \mathrm{No} (\mu_1, \sigma_1^2) * \mathrm{No} (\mu_2, \sigma_2^2) &= \mathrm{No} (\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2) \\
 > \fbox{2}\Downarrow\quad &&                                   [\mathrm{No} (\mu, \sigma^2)]^h &= \mathrm{No} (h \mu, h \sigma^2) \\
 > \end{alignedat}
@@ -177,7 +193,7 @@ Resources:
 > $$
 >
 
-> ### 独立$\Gamma$ 分布的可加性
+> ### 独立 $\Gamma$ 分布的可加性
 
 > $$
 > \begin{alignedat}{3}
