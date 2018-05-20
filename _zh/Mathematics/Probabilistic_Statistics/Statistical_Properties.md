@@ -166,8 +166,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{Kur} [X] &= \dfrac{\mathrm{Exp} [X - \mathrm{Exp} [X]]^4}{\mathrm{SD}^4 [X]} - \mathrm{Exp} [\mathrm{No} (0, 1^2)]^4 \\
->                  &= \dfrac{\mathrm{Exp} [X - \mathrm{Exp} [X]]^4}{\mathrm{SD}^4 [X]} - 3 \\
+> \mathrm{Kurt} [X] &= \dfrac{\mathrm{Exp} [X - \mathrm{Exp} [X]]^4}{\mathrm{SD}^4 [X]} - \mathrm{Exp} [\mathrm{No} (0, 1^2)]^4 \\
+>                   &= \dfrac{\mathrm{Exp} [X - \mathrm{Exp} [X]]^4}{\mathrm{SD}^4 [X]} - 3 \\
 > \end{alignedat}
 > $$
 >
@@ -176,20 +176,37 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{Cor} (X, Y) &= \dfrac{\mathrm{CoV} [X, Y]}{\mathrm{SD} [X] \cdot \mathrm{SD} [Y]} \\
->                     &= \dfrac{\mathrm{CoV} [X - \mathrm{Exp} [X], Y - \mathrm{Exp} [Y]]}{\mathrm{SD} [X] \cdot \mathrm{SD} [Y]} \\
->                     &= \mathrm{CoV} \left[ \dfrac{X - \mathrm{Exp} [X]}{\mathrm{SD} [X]}, \dfrac{Y - \mathrm{Exp} [Y]}{\mathrm{SD} [Y]} \right] \\
->                     &= \mathrm{CoV} [X^*, Y^*] \\
+> \mathrm{Corr} (X, Y) &= \dfrac{\mathrm{CoV} [X, Y]}{\mathrm{SD} [X] \cdot \mathrm{SD} [Y]} \\
+>                      &= \dfrac{\mathrm{CoV} [X - \mathrm{Exp} [X], Y - \mathrm{Exp} [Y]]}{\mathrm{SD} [X] \cdot \mathrm{SD} [Y]} \\
+>                      &= \mathrm{CoV} \left[ \dfrac{X - \mathrm{Exp} [X]}{\mathrm{SD} [X]}, \dfrac{Y - \mathrm{Exp} [Y]}{\mathrm{SD} [Y]} \right] \\
+>                      &= \mathrm{CoV} [X^*, Y^*] \\
 > \end{alignedat}
 > $$
 >
 
-> ### 线性相关系数的性质
+> ### 均方差与线性相关系数
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\quad & |\mathrm{Corr} [X, Y]| \le 1 \\
-> \fbox{2}\quad & |\mathrm{Corr} [X, Y]| = 1 \iff Y = \pm \dfrac{\sigma_Y}{\sigma_X} \cdot X + c \\
+> \Uparrow\quad           &&                                           e &= \mathrm{Exp} [Y - (c \cdot X + d)]^2 \\
+> \Downarrow\quad         && \dfrac{1}{2} \dfrac{\partial e}{\partial c} &= \mathrm{Exp} [c \cdot X^2 + d \cdot X - X \cdot Y] \\
+>                         &&                                             &= c \cdot \mathrm{Exp} [X]^2 + d \cdot \mathrm{Exp} [X] - \mathrm{Exp} [X \cdot Y] \\
+> \Downarrow\quad         && \dfrac{1}{2} \dfrac{\partial e}{\partial d} &= \mathrm{Exp} [c \cdot X + d - Y] \\
+>                         &&                                             &= c \cdot \mathrm{Exp} [X] + d - \mathrm{Exp} [Y] \\
+> \Downarrow\quad         && \left\lbrace\begin{alignedat}{3}
+>                            \dfrac{\partial e}{\partial c} &= 0 \\
+>                            \dfrac{\partial e}{\partial d} &= 0 \\
+>                            \end{alignedat}\right. &\Rightarrow \left\lbrace\begin{alignedat}{3}
+>                                                                c0 &= \dfrac{\mathrm{CoV} [X, Y]}{\mathrm{Var} [X]} = \mathrm{Corr} [X, Y] \cdot \dfrac{\mathrm{SD} [Y]}{\mathrm{SD} [X]} \\
+>                                                                d0 &= \mathrm{Exp} [Y] - \mathrm{Exp} [X] \cdot \dfrac{\mathrm{CoV} [X, Y]}{\mathrm{Var} [X]} \\
+>                                                                \end{alignedat}\right. \\
+> \Downarrow\quad         &&                             \min_{c0, d0} e &= \mathrm{Var} [Y - (c0 \cdot X + d0)] + \mathrm{Exp}^2 [Y - (c0 \cdot X + d0)] \\
+>                         &&                                             &= \mathrm{Var} [Y - c0 \cdot X] \\
+>                         &&                                             &= \mathrm{Var} [Y] - c0^2 \cdot \mathrm{Var} [X] - 2 c0 \cdot \mathrm{CoV} [X, Y] \\
+>                         &&                                             &= \mathrm{Var} [Y] \cdot \left( 1 - \dfrac{\mathrm{CoV}^2 [X, Y]}{\mathrm{Var} [X] \cdot \mathrm{Var} [Y]} \right) \\
+> \Downarrow\quad         &&                             \min_{c0, d0} e &= \mathrm{Var} [Y] \cdot (1 - \mathrm{Corr}^2 [X, Y]) \\
+> \fbox{1}\Downarrow\quad &&                      |\mathrm{Corr} [X, Y]| &\le 1 \\
+> \fbox{2}\Downarrow\quad &&                      |\mathrm{Corr} [X, Y]| &= 1 \iff Y = \pm \dfrac{\mathrm{SD} [Y]}{\mathrm{SD} [X]} \cdot X + \mathrm{Exp} [Y] \mp \mathrm{Exp} [X] \cdot \dfrac{\mathrm{SD} [Y]}{\mathrm{SD} [X]} \\
 > \end{alignedat}
 > $$
 >

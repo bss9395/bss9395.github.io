@@ -33,7 +33,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> {M_{arginal}}_{X_i} (x_i) &= J (+\infty, \cdots, x_i, \cdots, +\infty) \\
+> {M_{arginal}}_{X_i} (x_i) = J (+\infty, \cdots, x_i, \cdots, +\infty) \\
 > \end{alignedat}
 > $$
 >

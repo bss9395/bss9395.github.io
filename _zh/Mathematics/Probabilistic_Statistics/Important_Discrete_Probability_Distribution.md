@@ -73,6 +73,23 @@ Resources:
 > $$
 >
 
+> ### 负二项分布 $X \mapsto \mathrm{N_{egative} B_{inomial} (n, p)}$
+
+> $$
+> \begin{alignedat}{3}
+>                           P (X = k) &= {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \quad\Leftarrow\quad k \in [n, +\infty) \\
+>                       P (X - n = l) &\xlongequal{l = k - n} {n + l - 1 \choose l} p^n (1 - p)^l \quad\Leftarrow\quad l \in \mathbb{N} \\
+> \mathrm{Exp} [\mathrm{NB} (n, p)]^h &= \sum_{k = n}^{+\infty} k^h {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \\
+>                                     &= \dfrac{n}{p} \sum_{k = n}^{+\infty} k^{h - 1} {k \choose n} p^{n + 1} (1 - p)^{k - n} \\
+>                                     &\xlongequal{k = l - 1} \dfrac{n}{p} \sum_{l = n + 1}^{+\infty} (l - 1)^{h - 1} {l - 1 \choose n} p^{n + 1} (1 - p)^{l - (n + 1)} \\
+>                                     &= \dfrac{n}{p} \cdot \mathrm{Exp} [\mathrm{NB} (n + 1, p) - 1]^{h - 1} \\
+>                  \mathrm{Exp} [X]^1 &= \dfrac{n}{p} \\
+>                  \mathrm{Exp} [X]^2 &= \dfrac{n (n + 1)}{p^2} - \dfrac{n}{p} \\
+>                    \mathrm{Var} [X] &= \dfrac{n (1 - p)}{p^2} \\
+> \end{alignedat}
+> $$
+>
+
 > ### 随机分布 $X \mapsto \mathrm{St_{ochastic}} (\lambda)$
 
 > $$
@@ -118,23 +135,6 @@ Resources:
 > $$
 >
 
-> ### 负二项分布 $X \mapsto \mathrm{N_{egative} B_{inomial} (n, p)}$
-
-> $$
-> \begin{alignedat}{3}
->                           P (X = k) &= {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \quad\Leftarrow\quad k \in [n, +\infty) \\
->                       P (X - n = l) &\xlongequal{l = k - n} {n + l - 1 \choose l} p^n (1 - p)^l \quad\Leftarrow\quad l \in \mathbb{N} \\
-> \mathrm{Exp} [\mathrm{NB} (n, p)]^h &= \sum_{k = n}^{+\infty} k^h {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \\
->                                     &= \dfrac{n}{p} \sum_{k = n}^{+\infty} k^{h - 1} {k \choose n} p^{n + 1} (1 - p)^{k - n} \\
->                                     &\xlongequal{k = l - 1} \dfrac{n}{p} \sum_{l = n + 1}^{+\infty} (l - 1)^{h - 1} {l - 1 \choose n} p^{n + 1} (1 - p)^{l - (n + 1)} \\
->                                     &= \dfrac{n}{p} \cdot \mathrm{Exp} [\mathrm{NB} (n + 1, p) - 1]^{h - 1} \\
->                  \mathrm{Exp} [X]^1 &= \dfrac{n}{p} \\
->                  \mathrm{Exp} [X]^2 &= \dfrac{n (n + 1)}{p^2} - \dfrac{n}{p} \\
->                    \mathrm{Var} [X] &= \dfrac{n (1 - p)}{p^2} \\
-> \end{alignedat}
-> $$
->
-
 > ### 几何分布 $X \mapsto \mathrm{Ge_{ometric}} (p) = \mathrm{NB} (1, p)$
 
 > $$
@@ -148,7 +148,7 @@ Resources:
 > $$
 >
 
-> ###  几何分布的无记忆性
+> ### 几何分布的无记忆性
 
 > $$
 > \begin{alignedat}{3}
@@ -165,7 +165,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 >                              P (X = k) &= \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \quad\Leftarrow\quad k \in \lbrace \max (0, n - N + K), \cdots, \min (K, n) \rbrace \\
-> \mathrm{Exp} [\mathrm{HG} (N, K, n)]^h &= \sum_{\max (0, n - N + K)}^{\min (K, n)} k^h \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \\
+> \mathrm{Exp} [\mathrm{HG} (N, K, n)]^h &= \sum_{k = \max (0, n - N + K)}^{\min (K, n)} k^h \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \\
 >                                        &= \dfrac{n K}{N} \sum_{k = \max (1, n - N + K)}^{\min (K, n)} k^{h - 1} \dfrac{{K - 1 \choose k - 1} {N - K \choose n - k}}{N - 1 \choose n - 1} \\
 >                                        &\xlongequal{l = k - 1} \dfrac{n K}{N} \sum_{l = \max (0, n - 1 - N + K)}^{\min (K - 1, n - 1)} (l +1)^{h - 1} \dfrac{{K - 1 \choose l} {N - K \choose n - 1 - l}}{{N - 1 \choose n - 1}} \\
 >                                        &= \dfrac{n K}{N} \cdot \mathrm{Exp} [\mathrm{HG} (N - 1, K - 1, n - 1) + 1]^{h - 1} \\
@@ -186,6 +186,17 @@ Resources:
 >                       &&                                                                                 &= \lim_{k \le n \ll N} {n \choose k} \dfrac{K (K - 1) \cdots (K - k + 1)}{N (N - 1) \cdots (N - k + 1)} \dfrac{(N - K) [(N - K) - 1] \cdots [(N - K) - (n - k) + 1]}{(N - k) [(N - k) - 1] \cdots [(N - k) - (n - k) + 1]} \\
 >                       &&                                                                                 &= \lim_{k \le n \ll N} {n \choose k} \left( \dfrac{K}{N} \right)^k \left( \dfrac{N - K}{N} \right)^{n - k} \\
 > \Downarrow\quad       &&                      \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} &\approx {n \choose k} p^k (1 - p)^{n - k} \\
+> \end{alignedat}
+> $$
+>
+
+> ### 负超几何分布 $X \mapsto \mathrm{N_{egative} H_{ypergeometric}} (N, K, n)$
+
+> $$
+> \begin{alignedat}{3}
+>                              P (X = k) &= \dfrac{{K \choose k - 1} {N - K \choose n - k}}{{N \choose n - 1}} \dfrac{K - k + 1}{N - n + 1} \quad\Leftarrow\quad k \in [\max (1, n - N + k), \cdots, \min (K + 1, n)] \\
+> \mathrm{Exp} [\mathrm{NH} (N, K, n)]^h &= \sum_{k = \max (1, n - N + k)}^{\min (K + 1, n)} k^h \dfrac{{K \choose k - 1} {N - K \choose n - k}}{{N \choose n - 1}} \dfrac{K - k + 1}{N - n + 1} \\
+> &= 
 > \end{alignedat}
 > $$
 >

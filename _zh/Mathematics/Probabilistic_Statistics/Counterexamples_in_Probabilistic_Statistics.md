@@ -1,8 +1,8 @@
 ---
 layout:    zh_post
 Topic:     概率统计
-Title:     概率统计中的典例
-Revised:   2018-05-03 19:30:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Title:     概率统计中的反例
+Revised:   2018-05-20 18:26:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -50,3 +50,22 @@ Resources:
 >
 > ——《$\S$ 1.5 独立性》
 > ——《概率论与数理统计教程(第二版)》茆诗松/程依明/濮晓龙/编著
+
+> ### 线性相关系数
+
+> 设 $X \mapsto \mathrm{CU} \left( - \frac{1}{2}, \frac{1}{2} \right)$，即区间 $\left[ - \frac{1}{2}, \frac{1}{2} \right]$ 内的均匀分布，而 $Y = \cos X$，$Y$ 与 $X$ 有严格函数关系。
+>
+> $$
+> \begin{alignedat}{3}
+> \mathrm{CoV} [X, Y] &= \mathrm{Exp} [X \cdot Y] - \mathrm{Exp} [X] \cdot \mathrm{Exp} [Y] \\
+>                     &= \mathrm{Exp} [ X \cdot \cos X]                                     &&\;\Leftarrow\; \mathrm{Exp} [X] = 0 \\
+>                     &= \int_{-\frac{1}{2}}^{\frac{1}{2}} x \cdot \cos x \mathrm{d} x \\
+>                     &= 0 \\
+> \end{alignedat}
+> $$
+>
+> $X, Y$ 说是不相关，它们之间却有着严格的关系 $Y = \cos X$。足见这样的相关只是指线性而言，一超出这个范围，这个概念就失去了其意义。
+>
+> ——《$\S$ 3.3 协方差与相关系数》
+>
+> ——《概率论与数理统计》陈希孺/编著
