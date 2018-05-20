@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要离散概率分布
-Revised:   2018-05-16 22:09:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-21 03:08:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -190,13 +190,24 @@ Resources:
 > $$
 >
 
-> ### 负超几何分布 $X \mapsto \mathrm{N_{egative} H_{ypergeometric}} (N, K, n)$
+> ### 负超几何分布 $X \mapsto \mathrm{N_{egative} H_{ypergeometric}} (K, N, n)$
 
 > $$
 > \begin{alignedat}{3}
->                              P (X = k) &= \dfrac{{K \choose k - 1} {N - K \choose n - k}}{{N \choose n - 1}} \dfrac{K - k + 1}{N - n + 1} \quad\Leftarrow\quad k \in [\max (1, n - N + k), \cdots, \min (K + 1, n)] \\
-> \mathrm{Exp} [\mathrm{NH} (N, K, n)]^h &= \sum_{k = \max (1, n - N + k)}^{\min (K + 1, n)} k^h \dfrac{{K \choose k - 1} {N - K \choose n - k}}{{N \choose n - 1}} \dfrac{K - k + 1}{N - n + 1} \\
-> &= 
-> \end{alignedat}
+>                              P (X = k) &= \dfrac{{N \choose n - 1} {K - N \choose k - n}}{{K \choose k - 1}} \dfrac{N - n + 1}{K - k + 1} \quad\Leftarrow\quad k \in [\max (1, n), \cdots, \min (K, K - N + n)] \\
+>                                        &= \dfrac{{k - 1 \choose n - 1} {K - k \choose N - n}}{{K \choose N}} \\
+>                          p (X - n = l) &= \dfrac{{n + l -1 \choose l} {K - l - n \choose K - l - N}}{K \choose N} \\
+> \mathrm{Exp} [\mathrm{NH} (N, K, n)]^h &= \sum_{k = \max (1, n)}^{\min (K, K - N + n)} k^h \dfrac{{k - 1 \choose n - 1} {K - k \choose N - n}}{{K \choose N}} \\
+>                                        &= n \sum_{k = \max (1, n)}^{\min (K, K - N + n)} k^{h - 1} \dfrac{{k \choose n} {K - k \choose N - n}}{{K \choose N}} \\
+>                                        &\xlongequal{k = l - 1} n \sum_{l = \max (1, n + 1)}^{\min (K + 1, K + 1 - N + n)} (l - 1)^{h - 1} \dfrac{{l - 1 \choose n} {K + 1 - l \choose N - n}}{{K + 1 \choose N + 1}} \\
+>                                        &= \dfrac{n (K + 1)}{N + 1} \cdot \mathrm{Exp} [\mathrm{NH} (N + 1, K + 1, n + 1) - 1]^{h - 1} \\
+> \end{alignedat} \\
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{SD} [X] = \dfrac{1}{N + 1} \sqrt{\dfrac{n (K + 1) (K - N) (N - n + 1)}{N + 2}} & \mathrm{Exp} [X]^1 = \dfrac{n (K + 1)}{N + 1} \\
+> \mathrm{Var} [X] = \dfrac{n (K + 1) (K - N) (N - n + 1)}{(N + 1)^2 (N + 2)}            & \mathrm{Exp} [X]^2 = \dfrac{n (K + 1)}{(N + 1)} \left[ \dfrac{(n + 1) (K + 2)}{N + 2} - 1 \right] \\
+> \hline
+> \end{array}
 > $$
 >
+
