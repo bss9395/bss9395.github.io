@@ -19,7 +19,11 @@ Resources:
 > \mathrm{Exp} [\mathrm{CU} (\alpha, \beta) - \mathrm{Exp} [X]]^h &= \int_\alpha^\beta \left( x - \dfrac{\beta + \alpha}{2} \right)^h \dfrac{1}{\beta - \alpha} \mathrm{d} x \\
 >                                                                 &= \dfrac{1}{\beta - \alpha} \dfrac{1}{h + 1} \left. \left( x - \dfrac{\beta + \alpha}{2} \right)^{h + 1} \right|_\alpha^\beta \\
 >                                                                 &= \dfrac{(\beta - \alpha)^{h + 1} - (\alpha - \beta)^{h + 1}}{2^{h + 1} (h + 1) (\beta - \alpha)} \\
-> \end{alignedat} \\
+> \end{alignedat}
+> $$
+>
+
+> $$
 > \begin{array}{l|l|l}
 > \hline
 > \mathrm{SD} [X] = \dfrac{\beta - \alpha}{2 \sqrt{3}} & \mathrm{Exp} [X]^1 = \dfrac{\beta + \alpha}{2}                                                              & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
@@ -69,7 +73,11 @@ Resources:
 >                                                          &\xlongequal{t = \frac{u^2}{2}} (h - 1 \mod 2) \dfrac{\sqrt{2}^h}{\sqrt{\pi}} \int_0^{+\infty} t^{\frac{h + 1}{2} - 1} e^{- t} \mathrm{d} t \\
 >                                                          &= (h - 1 \mod 2) \dfrac{\sqrt{2}^h}{\sqrt{\pi}} \Gamma \left( {\dfrac{h + 1}{2}} \right) \\
 > \mathrm{Exp} [\mathrm{No} (0, 1^2) - \mathrm{Exp} [U]]^h &= \mathrm{Exp} [\mathrm{No} (0, 1^2)]^h \\
-> \end{alignedat} \\
+> \end{alignedat}
+> $$
+>
+
+> $$
 > \begin{array}{l|l|l}
 > \hline
 > \mathrm{SD} [U] = 1   & \mathrm{Exp} [U]^1 = 0 & \mathrm{Exp} [\mathrm{X} - \mathrm{Exp} [U]]^1 = 0 \\
@@ -93,7 +101,11 @@ Resources:
 > \mathrm{Exp} [\mathrm{No} (\mu, \sigma^2) - \mathrm{Exp} [X]]^h &= \int_{-\infty}^{+\infty} (x - \mu)^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
 >                                                                 &\xlongequal{t = \frac{x - \mu}{\sigma}} \int_{-\infty}^{+\infty} (\sigma t)^h \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{t^2}{2}} \mathrm{d} x \\
 >                                                                 &= \sigma^h \cdot \mathrm{Exp} [\mathrm{No} (0, 1^2)]^h \\
-> \end{alignedat} \\
+> \end{alignedat}
+> $$
+>
+
+> $$
 > \begin{array}{l|l|l}
 > \hline
 > \mathrm{SD} [X] = \sigma    & \mathrm{Exp} [X]^1 = \mu                                   & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
@@ -156,7 +168,11 @@ Resources:
 >                                                                 &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \cdot \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{[x - (\mu + \sigma^2 h)]^2}{2 \sigma^2}} \mathrm{d} x \\
 >                                                                 &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \\
 > \mathrm{Exp} [\mathrm{LN} (\mu, \sigma^2) - \mathrm{Exp} [Y]]^h &= \mathrm{Exp} \left[ Y - e^{\mu + \frac{\sigma^2}{2}} \right]^h \\
-> \end{alignedat} \\
+> \end{alignedat}
+> $$
+>
+
+> $$
 > \begin{array}{l|l|l}
 > \hline
 > \mathrm{SD} [Y] = e^{\mu + \frac{\sigma^2}{2}} \sqrt{e^{\sigma^2} - 1}       & \mathrm{Exp} [Y]^1 = e^{\mu + \frac{\sigma^2}{2}}     & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^1 = 0 \\
@@ -181,7 +197,11 @@ Resources:
 >                                                              &= \dfrac{1}{\lambda^h \Gamma (t)} \int_0^{+\infty} (\lambda x - t)^{h - 1} \mathrm{d} [- (\lambda x)^t e^{- \lambda x}] \\
 >                                                              &= \dfrac{(h - 1) \cdot \Gamma (t + 1)}{\lambda^h \cdot \Gamma (t)} \dfrac{\lambda}{\Gamma (t + 1)} \int_0^{+\infty} (\lambda x - t)^{h - 2} (\lambda x)^{t} e^{- \lambda x} \mathrm{d} x \\
 >                                                              &= \dfrac{(h - 1) t}{\lambda^h} \mathrm{Exp} [\lambda \cdot \mathrm{Ga} (t + 1, \lambda) - t]^{h - 2} \\
-> \end{alignedat} \\
+> \end{alignedat}
+> $$
+>
+
+> $$
 > \begin{array}{l|l|l}
 > \hline
 > \mathrm{SD} [X] = \dfrac{\sqrt{t}}{\lambda} & \mathrm{Exp} [X]^1 = \dfrac{t}{\lambda}                           & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
@@ -230,7 +250,11 @@ Resources:
 >                                                     C (x) &= 1 - e^{- \lambda x} \\
 >                    \mathrm{Exp} [\mathrm{Ex} (\lambda)]^h &= \mathrm{Exp} [\mathrm{Ga} (1, \lambda)]^h \\
 > \mathrm{Exp} [\mathrm{Ex} (\lambda) - \mathrm{Exp} [X]]^h &= \mathrm{Exp} [\mathrm{Ga} (1, \lambda) - \mathrm{Exp} [X]]^h \\
-> \end{alignedat} \\
+> \end{alignedat}
+> $$
+>
+
+> $$
 > \begin{array}{l|l|l}
 > \hline
 > \mathrm{SD} [X] = \dfrac{1}{\lambda}    & \mathrm{Exp} [X]^1 = \dfrac{1}{\lambda}    & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
@@ -262,7 +286,11 @@ Resources:
 >                                               C (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} \int_0^x x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \quad\Leftarrow\quad x \in [0, +\infty) \mathrm{d} x \\
 >                    \mathrm{Exp} [\mathrm{Ch} (n)]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) \right]^h \\
 > \mathrm{Exp} [\mathrm{Ch} (n) - \mathrm{Exp} [X]]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) - \mathrm{Exp} [X] \right]^h \\
-> \end{alignedat} \\
+> \end{alignedat}
+> $$
+>
+
+> $$
 > \begin{array}{l|l|l}
 > \hline
 > \mathrm{SD} [X] = \sqrt{2 n}            & \mathrm{Exp} [X]^1 = n                         & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
@@ -287,7 +315,11 @@ Resources:
 >                                                        &= \dfrac{1}{(t + s)^h \cdot \mathrm{\Beta} (t, s)} \int _0^1 [(t + s) x - t]^{h - 1} \mathrm{d} [- x^t (1 - x)^s] \\
 >                                                        &= \dfrac{(h - 1) \cdot \Beta (t + 1, s + 1)}{(t + s)^{h - 1} \cdot \Beta (t, s)} \dfrac{1}{\Beta (t + 1, s + 1)} \int_0^1 [(t + s) x - t]^{h - 2} x^t (1 - x)^s \mathrm{d} x \\
 >                                                        &= \dfrac{(h - 1) t s}{(t + s)^h (t + s + 1)} \mathrm{Exp} [(t + s) \cdot \mathrm{\Beta} (t + 1, s + 1) - t]^{h - 2} \\
-> \end{alignedat} \\
+> \end{alignedat}
+> $$
+>
+
+> $$
 > \begin{array}{l|l|l}
 > \hline
 > \mathrm{SD} [X] = \dfrac{1}{t + s} \sqrt{\dfrac{t s}{t +s + 1}}                                      & \mathrm{Exp} [X]^1 = \dfrac{t}{t + s}                                                               & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\

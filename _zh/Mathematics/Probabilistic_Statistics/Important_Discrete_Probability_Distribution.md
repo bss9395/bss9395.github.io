@@ -11,19 +11,22 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                                                       P (X = k) &= \dfrac{1}{\beta - \alpha + 1} \quad\Leftarrow\quad k \in \lbrace \alpha, \cdots, \beta \rbrace \\
->                    \mathrm{Exp} [\mathrm{DU} (\alpha, \beta)]^h &= \sum_\alpha^\beta k^h \dfrac{1}{\beta - \alpha + 1} \\
->                                                                 &= \dfrac{1}{\beta - \alpha + 1} \sum_\alpha^\beta k^h \\
-> \mathrm{Exp} [\mathrm{DU} (\alpha, \beta) - \mathrm{Exp} [X]]^h &= \sum_\alpha^\beta \left( k - \dfrac{\beta + \alpha}{2} \right)^h \dfrac{1}{\beta - \alpha + 1} \\
->                                                                 &= \dfrac{1}{2^h} \sum_\alpha^\beta [2 k - (\beta + \alpha)]^h \dfrac{1}{(\beta - \alpha + 1)} \\
->                                                                 &= \dfrac{1}{2^h} \mathrm{Exp} [2 \cdot \mathrm{DU} (\alpha, \beta) - (\beta + \alpha)]^h \\
-> \end{alignedat} \\
+>                                         P (X = k) &= \dfrac{1}{\beta - \alpha + 1} \quad\Leftarrow\quad k \in \lbrace \alpha, \cdots, \beta \rbrace \\
+>                      \mathrm{Exp} [e^{t \cdot X}] &= \sum_{k = \alpha}^\beta e^{t \cdot k} \dfrac{1}{\beta - \alpha + 1} \\
+>                                                   &= \dfrac{e^{(\beta + 1) t} - e^{\alpha t}}{(\beta - \alpha + 1) \cdot (e^t - 1)} \\
+> \mathrm{Exp} [e^{t \cdot (X - \mathrm{Exp} [X])}] &= \dfrac{e^{(\beta + 1) t} - e^{\alpha t}}{(\beta - \alpha + 1) \cdot (e^t - 1)} \cdot e^{- \frac{\beta + \alpha}{2} t} \\
+> \end{alignedat}
+> $$
+>
+
+> $$
 > \begin{array}{l|l|l}
 > \hline
-> \mathrm{SD} [X] = \dfrac{1}{2} \sqrt{\dfrac{(\beta - \alpha + 1)^2 - 1}{3}}                 & \mathrm{Exp} [X]^1 = \dfrac{\beta + \alpha}{2}                                                                                                                                                     & \mathrm{Exp} [X - \mathrm{Exp} [X]]^1 = 0 \\
-> \mathrm{Var} [X] = \dfrac{(\beta - \alpha + 1)^2 - 1}{12}                                   & \mathrm{Exp} [X]^2 = \dfrac{(\beta + \alpha)^2 + \beta^2 + \alpha^2 + \beta - \alpha}{6}                                                                                                           & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \dfrac{(\beta - \alpha + 1)^2 - 1}{12} \\
-> \mathrm{Ske} [X] = 0                                                                        & \mathrm{Exp} [X]^3 = \dfrac{(\beta^2 + \alpha^2 + \beta - \alpha) (\beta + \alpha)}{4}                                                                                                             & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 0 \\
-> \mathrm{Kur} [X] = - \dfrac{6 [(\beta - \alpha + 1)^2 + 1]}{5 [(\beta - \alpha + 1)^2 - 1]} & \mathrm{Exp} [X]^4 = \dfrac{6 (\beta^4 + \beta^3 \alpha + \beta^2 \alpha^2 + \beta \alpha^3 + \alpha^4) + 9 (\beta^3 - \alpha^3) + (\beta - \alpha)^2 + (\beta - \alpha) (3 \beta \alpha - 1)}{30} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{[(\beta - \alpha + 1)^2 - 1] [3 (\beta - \alpha + 1)^2 - 7]}{240} \\
+> \mathrm{SD} [X] = \dfrac{1}{2} \sqrt{\dfrac{(\beta - \alpha + 1)^2 - 1}{3}}                  & \mathrm{Exp} [X]^1 = \dfrac{\beta + \alpha}{2} \\
+> \mathrm{Coe} [X] = \dfrac{1}{\beta - \alpha} \sqrt{\dfrac{(\beta - \alpha + 1)^2 - 1}{3}}    & \mathrm{Exp} [X]^2 = \dfrac{(\beta + \alpha)^2 + \beta^2 + \alpha^2 + \beta - \alpha}{6} \\
+> \mathrm{Var} [X] = \dfrac{(\beta - \alpha + 1)^2 - 1}{12}                                    & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = \dfrac{(\beta - \alpha + 1)^2 - 1}{12} \\
+> \mathrm{Skew} [X] = 0                                                                        & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 0 \\
+> \mathrm{Kurt} [X] = - \dfrac{6 [(\beta - \alpha + 1)^2 + 1]}{5 [(\beta - \alpha + 1)^2 - 1]} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = \dfrac{[(\beta - \alpha + 1)^2 - 1] [3 (\beta - \alpha + 1)^2 - 7]}{240} \\
 > \hline
 > \end{array}
 > $$
@@ -33,15 +36,25 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                           P (X = k) &= {n \choose k} p^k (1 - p)^{n - k} \quad\Leftarrow\quad k \in \lbrace 0, \cdots, n \rbrace \\
-> \mathrm{Exp} [\mathrm{Bn} (n, p)]^h &= \sum_{k = 0}^n k^h {n \choose k} p^k (1 - p)^{n - k} \\
->                                     &= n p \sum_{ k = 1}^n k^{h - 1} {n - 1 \choose k - 1} p^{k - 1} (1- p)^{(n - 1) - (k - 1)} \\
->                                     &\xlongequal{l = k - 1} n p \sum_{l = 0}^{n - 1} (l + 1)^{h - 1} {n - 1 \choose l} p^l (1 - p)^{(n - 1) - l} \\
->                                     &= n p \cdot \mathrm{Exp} [\mathrm{Bn} (n - 1, p) + 1]^{h - 1} \\
->                  \mathrm{Exp} [X]^1 &= np \\
->                  \mathrm{Exp} [X]^2 &= n (n - 1) p^2 + n p \\
->                    \mathrm{Var} [X] &= n p (1 - p) \\
+>                                         P (X = k) &= {n \choose k} p^k (1 - p)^{n - k} \quad\Leftarrow\quad k \in \lbrace 0, \cdots, n \rbrace \\
+>                      \mathrm{Exp} [e^{t \cdot X}] &= \sum_{k = 0}^n e^{t \cdot k} {n \choose k} p^k (1 - p)^{n - k} \\
+>                                                   &= \sum_{k = 0}^n {n \choose k} (p e^t)^k (1 - p)^{n - k} \\
+>                                                   &= (p e^t + 1 - p)^n \\
+> \mathrm{Exp} [e^{t \cdot (X - \mathrm{Exp} [X])}] &= (p e^t + 1 - p)^n \cdot e^{- n p \cdot t} \\
 > \end{alignedat}
+> $$
+>
+
+> $$
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{SD} [X] = \sqrt{n p (1 - p)}                     & \mathrm{Exp} [X]^1 = n p \\
+> \mathrm{Coe} [X] = \sqrt{\dfrac{1 - p}{n p}}             & \mathrm{Exp} [X]^2 = n (n - 1) p^2 + n p \\
+> \mathrm{Var} [X] = n p (1 - p)                           & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = n p ( 1 - p) \\    
+> \mathrm{Skew} [x] = \dfrac{1 - 2 p}{\sqrt{n p (1 - p)}}  & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = n p (1 - p) (1 - 2 p) \\
+> \mathrm{Kurt} [X] = \dfrac{1 - 6 p (1 - p)}{n p (1 - p)} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = n p ( 1- p) [1 - 3 (2 + n) p (1 - p)] \\
+> \hline
+> \end{array}
 > $$
 >
 
@@ -64,12 +77,23 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                        P (X = k) &= p^k (1 - p)^{1 - k} \quad\Leftarrow\quad k \in \lbrace 0, 1 \rbrace \\
-> \mathrm{Exp} [\mathrm{Tw} (p)]^h &= \mathrm{Exp} [\mathrm{Bn}  (1, p)]^h \\
->               \mathrm{Exp} [X]^1 &= p \\
->               \mathrm{Exp} [X]^2 &= p \\
->                 \mathrm{Var} [X] &= p (1 - p) \\
+>                                         P (X = k) &= p^k (1 - p)^{1 - k} \quad\Leftarrow\quad k \in \lbrace 0, 1 \rbrace \\
+>                      \mathrm{Exp} [e^{t \cdot X}] &= p e^t + 1 - p \\
+> \mathrm{Exp} [e^{t \cdot (X - \mathrm{Exp} [X])}] &= (p e^t + 1 - p) \cdot e^{- p \cdot t} \\
 > \end{alignedat}
+> $$
+>
+
+> $$
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{SD} [X] = \sqrt{p (1 - p)}                     & \mathrm{Exp} [X]^1 = p \\
+> \mathrm{Coe} [X] = \sqrt{\dfrac{1 - p}{p}}             & \mathrm{Exp} [X]^2 = p \\
+> \mathrm{Var} [X] = p (1 - p)                           & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = p (1 - p)  \\      
+> \mathrm{Skew} [X] = \sqrt{\dfrac{1 - 2 p}{p (1 - p)}}  & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = p (1 - p) (1 - 2 p) \\
+> \mathrm{Kurt} [X] = \dfrac{1 - 6 p (1 - p)}{p (1 - p)} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = p (1 - p) [1 - 9 p (1 - p)] \\
+> \hline
+> \end{array}
 > $$
 >
 
@@ -77,16 +101,24 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                           P (X = k) &= {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \quad\Leftarrow\quad k \in [n, +\infty) \\
->                       P (X - n = l) &\xlongequal{l = k - n} {n + l - 1 \choose l} p^n (1 - p)^l \quad\Leftarrow\quad l \in \mathbb{N} \\
-> \mathrm{Exp} [\mathrm{NB} (n, p)]^h &= \sum_{k = n}^{+\infty} k^h {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \\
->                                     &= \dfrac{n}{p} \sum_{k = n}^{+\infty} k^{h - 1} {k \choose n} p^{n + 1} (1 - p)^{k - n} \\
->                                     &\xlongequal{k = l - 1} \dfrac{n}{p} \sum_{l = n + 1}^{+\infty} (l - 1)^{h - 1} {l - 1 \choose n} p^{n + 1} (1 - p)^{l - (n + 1)} \\
->                                     &= \dfrac{n}{p} \cdot \mathrm{Exp} [\mathrm{NB} (n + 1, p) - 1]^{h - 1} \\
->                  \mathrm{Exp} [X]^1 &= \dfrac{n}{p} \\
->                  \mathrm{Exp} [X]^2 &= \dfrac{n (n + 1)}{p^2} - \dfrac{n}{p} \\
->                    \mathrm{Var} [X] &= \dfrac{n (1 - p)}{p^2} \\
+>                                          P (X = k) &= {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \quad\Leftarrow\quad k \in [n, +\infty) \\
+>                                      P (X - n = l) &\xlongequal{l = k - n} {n + l - 1 \choose l} p^n (1 - p)^l \quad\Leftarrow\quad l \in \mathbb{N} \\
+>                                                    &= {- n \choose l} p^n (p - 1)^l \\
+>                       \mathrm{Exp} [e^{t \cdot X}] &= \sum_{k = n}^{+\infty} e^{t \cdot k} {k - 1 \choose n - 1} p^n (1 - p)^{k - n} \\
+>                                                    &\xlongequal{l = k - n} (e^t p)^n \sum_{l = 0}^{+\infty} {- n \choose l} [e^t (p - 1)]^l \\
+>                                                    &= (e^t p)^n \cdot [1 + e^t (p - 1)]^{- n} \\
+>                                                    &= \left[ \dfrac{p}{e^{- t} + p - 1} \right]^n \\
+> \mathrm{Exp} [e^{t \cdot (X  - \mathrm{Exp} [X])}] &= \left[ \dfrac{p}{e^{- t} + p - 1} \right]^n \cdot e^{- \frac{n}{p} t} 
 > \end{alignedat}
+> $$
+>
+
+> $$
+> \begin{array}{l|l|l}
+>             &     \mathrm{Exp} [X]^1 = \dfrac{n}{p} \\
+>              &    \mathrm{Exp} [X]^2 = \dfrac{n (n + 1)}{p^2} - \dfrac{n}{p} \\
+>                    \mathrm{Var} [X] = \dfrac{n (1 - p)}{p^2} &
+> \end{array}
 > $$
 >
 
@@ -199,9 +231,13 @@ Resources:
 >                          p (X - n = l) &= \dfrac{{n + l -1 \choose l} {K - l - n \choose K - l - N}}{K \choose N} \\
 > \mathrm{Exp} [\mathrm{NH} (N, K, n)]^h &= \sum_{k = \max (1, n)}^{\min (K, K - N + n)} k^h \dfrac{{k - 1 \choose n - 1} {K - k \choose N - n}}{{K \choose N}} \\
 >                                        &= n \sum_{k = \max (1, n)}^{\min (K, K - N + n)} k^{h - 1} \dfrac{{k \choose n} {K - k \choose N - n}}{{K \choose N}} \\
->                                        &\xlongequal{k = l - 1} n \sum_{l = \max (1, n + 1)}^{\min (K + 1, K + 1 - N + n)} (l - 1)^{h - 1} \dfrac{{l - 1 \choose n} {K + 1 - l \choose N - n}}{{K + 1 \choose N + 1}} \\
+>                                        &\xlongequal{k = l - 1} \dfrac{n (K + 1)}{N + 1} \sum_{l = \max (1, n + 1)}^{\min (K + 1, K + 1 - N + n)} (l - 1)^{h - 1} \dfrac{{l - 1 \choose n} {K + 1 - l \choose N - n}}{{K + 1 \choose N + 1}} \\
 >                                        &= \dfrac{n (K + 1)}{N + 1} \cdot \mathrm{Exp} [\mathrm{NH} (N + 1, K + 1, n + 1) - 1]^{h - 1} \\
-> \end{alignedat} \\
+> \end{alignedat}
+> $$
+>
+
+> $$
 > \begin{array}{l|l|l}
 > \hline
 > \mathrm{SD} [X] = \dfrac{1}{N + 1} \sqrt{\dfrac{n (K + 1) (K - N) (N - n + 1)}{N + 2}} & \mathrm{Exp} [X]^1 = \dfrac{n (K + 1)}{N + 1} \\
@@ -210,4 +246,3 @@ Resources:
 > \end{array}
 > $$
 >
-

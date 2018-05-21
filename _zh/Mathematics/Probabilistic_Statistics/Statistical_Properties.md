@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     统计特性
-Revised:   2018-05-17 21:46:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-21 22:56:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -60,6 +60,18 @@ Resources:
 > $$
 >
 
+> ### 矩母函数 $\mathrm{M_{oment} G_{enerating} F_{unction}}$
+
+> $$
+> \begin{alignedat}{3}
+>                      \mathrm{MGF} [t \cdot X] &= \mathrm{Exp} [e^{t \cdot X}] \\
+> \mathrm{MGF} [t \cdot (X - \mathrm{Exp} [X])] &= e^{- t \cdot \mathrm{Exp} [X]} \cdot \mathrm{Exp} [e^{t \cdot X}] \\
+>                            \mathrm{Exp} [X]^h &= \lim_{t \to 0} \dfrac{\mathrm{d}^h}{\mathrm{d} t^h} \mathrm{MGF} [t \cdot X] \\
+>         \mathrm{Exp} [X - \mathrm{Exp} [X]]^h &= \lim_{t \to 0} \dfrac{\mathrm{d}^h}{\mathrm{d} t^h} \mathrm{MGF} [t \cdot (X - \mathrm{Exp} [X])] \\
+> \end{alignedat}
+> $$
+>
+
 > ### 协方差 $\mathrm{CoV_{ariance}}$
 
 > $$
@@ -80,7 +92,7 @@ Resources:
 > \fbox{3}\quad & \mathrm{CoV} [c X, Y] = c \cdot \mathrm{CoV} [X, Y] \\
 > \fbox{4}\quad & \mathrm{CoV} \left[ \sum_1^n X_n, \sum_1^m Y_m \right] = \sum_1^n \sum_1^m \mathrm{CoV} [X_n, Y_m] \\
 > \fbox{5}\quad & p (x, y) = p_X (x) \cdot p_Y (y) \quad\Rightarrow\quad \mathrm{CoV} [X, Y] = 0 \\
-> \fbox{6}\quad & \mathrm{CoV}^2 [X, Y] \le \sigma_X^2 \cdot \sigma_Y^2 \\
+> \fbox{6}\quad & \mathrm{CoV}^2 [X, Y] \le \mathrm{Var} [X] \cdot \mathrm{Var} [Y] \\
 > \end{alignedat}
 > $$
 >
@@ -89,7 +101,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{Var} [X] &= \mathrm{Cov} [X, X] \\
+> \mathrm{Var} [X] &= \mathrm{CoV} [X, X] \\
 >                  &= \mathrm{Exp} [X]^2 - \mathrm{Exp}^2 [X] \\
 > \end{alignedat}
 > $$
