@@ -51,7 +51,7 @@ Resources:
 > ### 复数恒等式
 
 > $$
-> \begin{array}{l|l|l}
+> \begin{array}{ll|l}
 > \fbox{0}\; & \imath = - \dfrac{1}{\imath} \\
 > \fbox{1}\; & e^{\imath x} = \cos x + \imath \sin x                   & e^{\imath \pi} + 1 = 0 \\
 > \fbox{2}\; & (\cos x + \imath \sin x)^r = \cos r x + \imath \sin r x & (\cos x + \imath \sin x)^n = \cos n x + \imath \sin n x \\

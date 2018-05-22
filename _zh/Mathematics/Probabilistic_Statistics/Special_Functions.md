@@ -17,13 +17,13 @@ Resources:
 > $$
 >
 
-> ### $\Gamma (\langle t > 0 \rangle)$ 函数
+> ### $\Gamma (\langle u > 0 \rangle)$ 函数
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\quad & \Gamma (t) = \int_0^{+\infty} x^{t - 1} e^{- x} \mathrm{d} x \\
-> \fbox{2}\quad & \Gamma (t) = \lim_{+\infty} \dfrac{n^t \cdot n !}{\prod\limits_0^n (t + n)} \\
-> \fbox{3}\quad & \Gamma (t) = \dfrac{1}{t} \prod_1^{+\infty} \dfrac{\left( 1 + \dfrac{1}{n} \right)^t}{1 + \dfrac{t}{n}} \\
+> \fbox{1}\quad & \Gamma (u) = \int_0^{+\infty} x^{u - 1} e^{- x} \mathrm{d} x \\
+> \fbox{2}\quad & \Gamma (u) = \lim_{+\infty} \dfrac{n^u \cdot n !}{\prod\limits_0^n (u + n)} \\
+> \fbox{3}\quad & \Gamma (u) = \dfrac{1}{u} \prod_1^{+\infty} \dfrac{\left( 1 + \dfrac{1}{n} \right)^u}{1 + \dfrac{u}{n}} \\
 > \end{alignedat}
 > $$
 >
@@ -34,9 +34,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\quad & \Gamma (t) \ge 0, \Gamma (1) = 1 \\
-> \fbox{2}\quad & \Gamma (t + 1) = t \Gamma (t) \\
-> \fbox{3}\quad & \ln \Gamma \left( \dfrac{t_p}{p} + \dfrac{t_q}{q} \right) \le \dfrac{1}{p} \ln \Gamma (t_p) + \dfrac{1}{q} \ln \Gamma (t_q) &&\quad\Leftarrow\quad \dfrac{1}{p} + \dfrac{1}{q} = 1 \\
+> \fbox{1}\quad & \Gamma (u) \ge 0, \Gamma (1) = 1 \\
+> \fbox{2}\quad & \Gamma (u + 1) = u \Gamma (u) \\
+> \fbox{3}\quad & \ln \Gamma \left( \dfrac{u_p}{p} + \dfrac{u_q}{q} \right) \le \dfrac{1}{p} \ln \Gamma (u_p) + \dfrac{1}{q} \ln \Gamma (u_q) &&\quad\Leftarrow\quad \dfrac{1}{p} + \dfrac{1}{q} = 1 \\
 > \end{alignedat}
 > $$
 >
@@ -45,24 +45,24 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\quad & \Gamma (t + 1) = \prod_0^n (t - n) \cdot \Gamma (t - n)                                                           &&\quad\Rightarrow\quad \Gamma (n + 1) = n ! \\
-> \fbox{2}\quad & \Gamma (t + 1) = \sqrt{2 \pi t} \left( \dfrac{t}{e} \right)^t e^{\frac{\langle 0 < \theta (t) < 1 \rangle}{12 t}} \\
-> \fbox{2}\quad & \Gamma (t) \cdot \Gamma (1 - t) = \dfrac{\pi}{\sin (t \pi)}                                                       &&\quad\Rightarrow\quad \Gamma \left( \dfrac{1}{2} \right) = \sqrt{\pi} \\
-> \fbox{3}\quad & \Gamma (2 t) = \dfrac{2^{2 t - 1}}{\sqrt{\pi}} \Gamma \left( t + \dfrac{1}{2} \right) \Gamma (t) \\
+> \fbox{1}\quad & \Gamma (u + 1) = \prod_0^n (u - n) \cdot \Gamma (u - n)                                                           &&\quad\Rightarrow\quad \Gamma (n + 1) = n ! \\
+> \fbox{2}\quad & \Gamma (u + 1) = \sqrt{2 \pi u} \left( \dfrac{u}{e} \right)^u e^{\frac{\langle 0 < \theta (u) < 1 \rangle}{12 u}} \\
+> \fbox{2}\quad & \Gamma (u) \cdot \Gamma (1 - u) = \dfrac{\pi}{\sin (u \pi)}                                                       &&\quad\Rightarrow\quad \Gamma \left( \dfrac{1}{2} \right) = \sqrt{\pi} \\
+> \fbox{3}\quad & \Gamma (2 u) = \dfrac{2^{2 u - 1}}{\sqrt{\pi}} \Gamma \left( u + \dfrac{1}{2} \right) \Gamma (u) \\
 > \end{alignedat}
 > $$
 >
 
-> ### $\Beta (\langle t > 0, s > 0 \rangle)$ 函数
+> ### $\Beta (\langle u > 0, v > 0 \rangle)$ 函数
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\quad & \Beta (t, s) = \int_0^1 x^{t - 1} (1 - x)^{s - 1} \mathrm{d} x \\
-> \fbox{2}\quad & \Beta (t, s) = \dfrac{\Gamma (t) \cdot \Gamma (s)}{\Gamma (t + s)} \\
-> \fbox{3}\quad & \Beta (t, s) \xlongequal{y = \frac{x}{1 - x}} \int_0^{+\infty} \dfrac{y^{t - 1}}{(1 + y)^{t + s}} \mathrm{d} y \\
-> \fbox{4}\quad & \Beta (t, s) \xlongequal{z = \frac{1}{y}} \int_0^1 \dfrac{y^{t - 1} + y^{s - 1}}{(1 + y)^{t + s}} \mathrm{d} y \\
-> \fbox{5}\quad & \Beta (t, s) \xlongequal{x = \sin^2 \theta} 2 \int_0^\frac{\pi}{2} \sin^{2 t - 1} \theta \cos^{2 s - 1} \theta \mathrm{d} \theta \\
-> \fbox{6}\quad & \Beta (t, s) \xlongequal{x = \cos^2 \theta} 2 \int_0^\frac{\pi}{2} \cos ^{2 t - 1} \theta \sin^{2 s - 1} \theta \mathrm{d} \theta \\
+> \fbox{1}\quad & \Beta (u, v) = \int_0^1 x^{u - 1} (1 - x)^{v - 1} \mathrm{d} x \\
+> \fbox{2}\quad & \Beta (u, v) = \dfrac{\Gamma (u) \cdot \Gamma (v)}{\Gamma (u + v)} \\
+> \fbox{3}\quad & \Beta (u, v) \xlongequal{y = \frac{x}{1 - x}} \int_0^{+\infty} \dfrac{y^{u - 1}}{(1 + y)^{u + v}} \mathrm{d} y \\
+> \fbox{4}\quad & \Beta (u, v) \xlongequal{z = \frac{1}{y}} \int_0^1 \dfrac{y^{u - 1} + y^{v - 1}}{(1 + y)^{u + v}} \mathrm{d} y \\
+> \fbox{5}\quad & \Beta (u, v) \xlongequal{x = \sin^2 \theta} 2 \int_0^\frac{\pi}{2} \sin^{2 u - 1} \theta \cos^{2 v - 1} \theta \mathrm{d} \theta \\
+> \fbox{6}\quad & \Beta (u, v) \xlongequal{x = \cos^2 \theta} 2 \int_0^\frac{\pi}{2} \cos ^{2 u - 1} \theta \sin^{2 v - 1} \theta \mathrm{d} \theta \\
 > \end{alignedat}
 > $$
 >
@@ -71,13 +71,13 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\quad & \Beta (1, s) = \dfrac{1}{s} \\
-> \fbox{2}\quad & \Beta (t, s) = \Beta (s, t) \\
-> \fbox{3}\quad & \Beta (t, t) \xlongequal{\frac{1}{2} - x = \frac{1}{2} \sqrt{y}} \dfrac{1}{2^{2 t - 1}} \Beta \left( \dfrac{1}{2}, t \right) \\
-> \fbox{4}\quad & \Beta (t, 1 - t) = \dfrac{\pi}{\sin \pi t}  \\
-> \fbox{5}\quad & \Beta (t, s + 1) = \dfrac{s}{t + s} \Beta (t, s) \\
-> \fbox{6}\quad & \Beta (t, n) = \dfrac{(n - 1) !}{\prod\limits_1^{n} (t + n - 1)} \\
-> \fbox{7}\quad & \Beta (t + 1, s + 1) = \dfrac{t \cdot s}{(t + s + 1) \cdot (t + s)} \Beta (t, s) \\
+> \fbox{1}\quad & \Beta (1, v) = \dfrac{1}{v} \\
+> \fbox{2}\quad & \Beta (u, v) = \Beta (v, u) \\
+> \fbox{3}\quad & \Beta (u, u) \xlongequal{\frac{1}{2} - x = \frac{1}{2} \sqrt{y}} \dfrac{1}{2^{2 u - 1}} \Beta \left( \dfrac{1}{2}, u \right) \\
+> \fbox{4}\quad & \Beta (u, 1 - u) = \dfrac{\pi}{\sin \pi u}  \\
+> \fbox{5}\quad & \Beta (u, v + 1) = \dfrac{v}{u + v} \Beta (u, v) \\
+> \fbox{6}\quad & \Beta (u, n) = \dfrac{(n - 1) !}{\prod\limits_1^{n} (u + n - 1)} \\
+> \fbox{7}\quad & \Beta (u + 1, v + 1) = \dfrac{u \cdot v}{(u + v + 1) \cdot (u + v)} \Beta (u, v) \\
 > \end{alignedat}
 > $$
 >

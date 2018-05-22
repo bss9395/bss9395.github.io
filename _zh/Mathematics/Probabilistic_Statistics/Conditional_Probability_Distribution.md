@@ -72,7 +72,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \forall x_1, \cdots, x_m;\;  J (x_1, \cdots, x_m) &= \prod_1^m M_{X_m} (x_m) \\
+> \forall x_1, \cdots, x_m;\;  J (x_1, \cdots, x_m) &= M_{X_1} (x_1) \cdots M_{X_m} (x_m) \\
 > \end{alignedat}
 > $$
 >
@@ -81,7 +81,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \forall x_1, \cdots, x_m;\; p (x_1, \cdots, x_m) = \prod_1^m p_{X_m} (x_m) \\
+> \forall x_1, \cdots, x_m;\; p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
 > \end{alignedat}
 > $$
 >
@@ -90,7 +90,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> p_{X_1, \cdots, X_m} (x_1, \cdots, x_m \mid x_{m + 1}, \cdots, x_n) &= \dfrac{p (x_1, \cdots, x_m, x_{m + 1}, \cdots, x_n)}{p_{X_{m + 1, \cdots, X_n}} (x_{m + 1}, \cdots, x_n)} \\
+> p_{X_1, \cdots, X_m} (x_1, \cdots, x_m \mid x_{m + 1}, \cdots, x_n) &= \dfrac{p (x_1, \cdots, x_m, x_{m + 1}, \cdots, x_n)}{p_{X_{m + 1}, \cdots, X_n} (x_{m + 1}, \cdots, x_n)} \\
 >                                                      p_X (x \mid y) &= \dfrac{p (x, y)}{p_Y (y)} \\
 > \end{alignedat}
 > $$

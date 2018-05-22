@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     统计特性
-Revised:   2018-05-21 22:56:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-22 21:37:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -55,7 +55,7 @@ Resources:
 > \fbox{2}\quad & \mathrm{Exp} [c \cdot X + d] = c \cdot \mathrm{E} [X] + d \\
 > \fbox{3}\quad & \mathrm{Exp} [X - \mathrm{Exp} [X]]^h = \sum_{i = 0}^h {h \choose i} (- \mathrm{Exp} [X])^{h - i} \cdot \mathrm{Exp} [X]^i \\
 > \fbox{4}\quad & \mathrm{Exp} [f_1 (X_1) + \cdots + f_m (X_m)] = \mathrm{Exp} [f (X_1)] + \cdots + \mathrm{Exp} [f_m (X_m)] \\
-> \fbox{5}\quad & \mathrm{Exp} [f_1 (X_1) \cdots f_m (X_m)] = \mathrm{Exp} [f_1 (X)] \cdots \mathrm{Exp} [f_m (X_m)] &&\;\Leftarrow\; p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
+> \fbox{5}\quad & \mathrm{Exp} [f_1 (X_1) \cdots f_m (X_m)] = \mathrm{Exp} [f_1 (X_1)] \cdots \mathrm{Exp} [f_m (X_m)] &&\;\Leftarrow\; p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
 > \end{alignedat}
 > $$
 >
@@ -68,6 +68,15 @@ Resources:
 > \mathrm{MGF} [t \cdot (X - \mathrm{Exp} [X])] &= e^{- t \cdot \mathrm{Exp} [X]} \cdot \mathrm{Exp} [e^{t \cdot X}] \\
 >                            \mathrm{Exp} [X]^h &= \lim_{t \to 0} \dfrac{\mathrm{d}^h}{\mathrm{d} t^h} \mathrm{MGF} [t \cdot X] \\
 >         \mathrm{Exp} [X - \mathrm{Exp} [X]]^h &= \lim_{t \to 0} \dfrac{\mathrm{d}^h}{\mathrm{d} t^h} \mathrm{MGF} [t \cdot (X - \mathrm{Exp} [X])] \\
+> \end{alignedat}
+> $$
+>
+
+> ### 矩母函数的性质
+
+> $$
+> \begin{alignedat}{3}
+> \mathrm{MGF} \left[ t \cdot [ f_1 (X_1) + \cdots + f_m (X_m) ] \right] &= \mathrm{MGF} [t \cdot f_1 (X_1)] \cdots \mathrm{MGF} [t \cdot f_m (X_m)] \quad\Leftarrow\quad p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
 > \end{alignedat}
 > $$
 >
@@ -90,8 +99,8 @@ Resources:
 > \fbox{1}\quad & \mathrm{CoV} [c, Y] = 0 \\
 > \fbox{2}\quad & \mathrm{CoV} [X, Y] = \mathrm{CoV} [Y, X] \\
 > \fbox{3}\quad & \mathrm{CoV} [c X, Y] = c \cdot \mathrm{CoV} [X, Y] \\
-> \fbox{4}\quad & \mathrm{CoV} \left[ \sum_1^n X_n, \sum_1^m Y_m \right] = \sum_1^n \sum_1^m \mathrm{CoV} [X_n, Y_m] \\
-> \fbox{5}\quad & p (x, y) = p_X (x) \cdot p_Y (y) \quad\Rightarrow\quad \mathrm{CoV} [X, Y] = 0 \\
+> \fbox{4}\quad & \mathrm{CoV} \left[ \sum_1^n f_n (X_n), \sum_1^m g_m (Y_m) \right] = \sum_1^n \sum_1^m \mathrm{CoV} [f_n (X_n), g_m (Y_m)] \\
+> \fbox{5}\quad & p (x, y) = p_X (x) \cdot p_Y (y) \quad\Rightarrow\quad \mathrm{CoV} [f (X), g (Y)] = 0 \\
 > \fbox{6}\quad & \mathrm{CoV}^2 [X, Y] \le \mathrm{Var} [X] \cdot \mathrm{Var} [Y] \\
 > \end{alignedat}
 > $$
@@ -115,8 +124,8 @@ Resources:
 > \fbox{2}\quad & \mathrm{Var} [c \cdot X + d] = c^2 \cdot \mathrm{Var} [X] \\
 > \fbox{3}\quad & \mathrm{Var} [X] + \mathrm{Exp}^2 [X] = \mathrm{Exp} [X]^2 = 0 \implies \mathrm{Exp} [X] = 0 \;\and\; \mathrm{Var} [X] = 0 \\
 > \fbox{4}\quad & \mathrm{Var} [X] = 0 \iff P (X = \mathrm{Exp} [X]) = 1  \\
-> \fbox{5}\quad & \mathrm{Var} \left[ \sum_1^n X_n \right] = \sum_1^n \mathrm{Var} [X_n] + 2 \sum_{i = 1}^n \sum_{j = 1}^{i - 1} \mathrm{CoV} (X_i, X_j) \\
-> \fbox{6}\quad & \mathrm{Var} \left[ \sum_1^n X_n \right] = \sum_1^n \mathrm{Var} [X_n] \quad\Leftarrow\quad p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
+> \fbox{5}\quad & \mathrm{Var} \left[ \sum_1^n f_n (X_n) \right] = \sum_1^n \mathrm{Var} [f_n (X_n)] + 2 \sum_{i = 1}^n \sum_{j = 1}^{i - 1} \mathrm{CoV} [f_i (X_i), f_j (X_j)] \\
+> \fbox{6}\quad & \mathrm{Var} \left[ \sum_1^n f_n (X_n) \right] = \sum_1^n \mathrm{Var} [f_n (X_n)] \quad\Leftarrow\quad p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
 > \end{alignedat}
 > $$
 >
