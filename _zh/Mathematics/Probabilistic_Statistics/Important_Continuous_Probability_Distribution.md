@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要连续概率分布
-Revised:   2018-05-23 00:02:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-23 01:12:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -61,7 +61,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 >       y &= C (x) \quad\Rightarrow\quad y \in [0, 1] \\
-> p_C (y) &=  p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} C (x)} \right| \\
+> p_C (y) &= p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} C (x)} \right| \\
 >         &= p (x) \cdot \dfrac{1}{p (x)} \\
 >         &= 1 \\
 > \end{alignedat}
@@ -89,11 +89,11 @@ Resources:
 > $$
 > \begin{array}{l|l|l}
 > \hline
-> \mathrm{SD} [U] = 1                   & \mathrm{Exp} [U]^1 = 0 \\
-> \mathrm{Coe} [U] = \mathcal{Undef.}   & \mathrm{Exp} [U]^2 = 1 \\
-> \mathrm{Var} [U] = 1                  & \mathrm{Exp} [U - \mathrm{Exp} [U]]^2 = 1 \\ 
-> \mathrm{Skew} [U] = 0                 & \mathrm{Exp} [U - \mathrm{Exp} [U]]^3 = 0 \\ 
-> \mathrm{Kurt} [U] = 0                 & \mathrm{Exp} [U - \mathrm{Exp} [U]]^4 = 3 \\    
+> \mathrm{SD} [U] = 1                 & \mathrm{Exp} [U]^1 = 0 \\
+> \mathrm{Coe} [U] = \mathcal{Undef.} & \mathrm{Exp} [U]^2 = 1 \\
+> \mathrm{Var} [U] = 1                & \mathrm{Exp} [U - \mathrm{Exp} [U]]^2 = 1 \\ 
+> \mathrm{Skew} [U] = 0               & \mathrm{Exp} [U - \mathrm{Exp} [U]]^3 = 0 \\ 
+> \mathrm{Kurt} [U] = 0               & \mathrm{Exp} [U - \mathrm{Exp} [U]]^4 = 3 \\    
 > \hline
 > \end{array}
 > $$
@@ -179,11 +179,10 @@ Resources:
 > \begin{alignedat}{3}
 >                                                     p_{e^X} (y) &= p (\ln y) \cdot \left| \dfrac{\mathrm{d}}{\mathrm{d} y} \ln y \right| \quad\Leftarrow\quad y \in (0, +\infty) \\
 >                                                                 &= \dfrac{1}{\sqrt{2 \pi} \sigma y} e^{- \frac{(\ln y - \mu)^2}{2 \sigma^2}} \\
->                                                                                                                     C_{e^X} (y) &=  \\
-> \mathrm{Exp} [e^{t \cdot Y}] &= \int_0^{+\infty} e^{t \cdot y} \dfrac{1}{\sqrt{2 \pi} \sigma y} e^{-\frac{(\ln y - \mu)^2}{2 \sigma^2}} \mathrm{d} y \\
->                                                        \\\\         
+>                                                     C_{e^X} (y) &= P (X \le \ln y) \\
+>                                                                 &= \dfrac{1}{2} \left[ 1 + \mathrm{E_{rr}} \left( \dfrac{\ln y - \mu}{\sqrt{2} \sigma} \right) \right] \\      
 >                    \mathrm{Exp} [\mathrm{LN} (\mu, \sigma^2)]^h &= \int_{-\infty}^{+\infty} (e^x)^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
->                                                                 &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \cdot \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{[x - (\mu + \sigma^2 h)]^2}{2 \sigma^2}} \mathrm{d} x \\
+>                                                                 &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{[x - (\mu + \sigma^2 h)]^2}{2 \sigma^2}} \mathrm{d} x \\
 >                                                                 &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \\
 > \mathrm{Exp} [\mathrm{LN} (\mu, \sigma^2) - \mathrm{Exp} [Y]]^h &= \mathrm{Exp} \left[ Y - e^{\mu + \frac{\sigma^2}{2}} \right]^h \\
 > \end{alignedat}
@@ -193,10 +192,11 @@ Resources:
 > $$
 > \begin{array}{l|l|l}
 > \hline
-> \mathrm{SD} [Y] = e^{\mu + \frac{\sigma^2}{2}} \sqrt{e^{\sigma^2} - 1}       & \mathrm{Exp} [Y]^1 = e^{\mu + \frac{\sigma^2}{2}}     & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^1 = 0 \\
-> \mathrm{Var} [Y] = e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1)                   & \mathrm{Exp} [Y]^2 = e^{2 \mu + 2 \sigma^2}           & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^2 = e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1) \\
-> \mathrm{Skew} [Y] = (e^{\sigma^2} + 2) \sqrt{e^{\sigma^2} - 1}               & \mathrm{Exp} [Y]^3 = e^{3 \mu + \frac{9 \sigma^2}{2}} & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^3 = e^{3 \mu + \frac{3 \sigma^2}{2}} (e^{\sigma^2} - 1)^2 (e^{\sigma^2} + 2) \\
-> \mathrm{Kurt} [Y] = e^{4 \sigma^2} + 2 e^{3 \sigma^2} + 3 e^{2 \sigma^2} - 6 & \mathrm{Exp} [Y]^4 = e^{4 \mu + 8 \sigma^2}           & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^4 = e^{4 \mu + 2 \sigma^2} (e^{\sigma^2} - 1)^2 (e^{4 \sigma^2} + 2 e^{3 \sigma^3} + 3 e^{\sigma^2} - 3) \\
+> \mathrm{SD} [Y] = e^{\mu + \frac{\sigma^2}{2}} \sqrt{e^{\sigma^2} - 1}       & \mathrm{Exp} [Y]^1 = e^{\mu + \frac{\sigma^2}{2}} \\
+> \mathrm{Coe} [Y] = \sqrt{e^{\sigma^2} - 1}                                   & \mathrm{Exp} [Y]^2 = e^{2 \mu + 2 \sigma^2} \\
+> \mathrm{Var} [Y] = e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1)                   & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^2 = e^{2 \mu + \sigma^2} (e^{\sigma^2} - 1) \\ 
+> \mathrm{Skew} [Y] = (e^{\sigma^2} + 2) \sqrt{e^{\sigma^2} - 1}               & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^3 = e^{3 \mu + \frac{3 \sigma^2}{2}} (e^{\sigma^2} - 1)^2 (e^{\sigma^2} + 2) \\ 
+> \mathrm{Kurt} [Y] = e^{4 \sigma^2} + 2 e^{3 \sigma^2} + 3 e^{2 \sigma^2} - 6 & \mathrm{Exp} [Y - \mathrm{Exp} [Y]]^4 = e^{4 \mu + 2 \sigma^2} (e^{\sigma^2} - 1)^2 (e^{4 \sigma^2} + 2 e^{3 \sigma^3} + 3 e^{\sigma^2} - 3) \\
 > \hline
 > \end{array}
 > $$
@@ -219,6 +219,7 @@ Resources:
 >                                                              &= \dfrac{1}{\lambda^h \Gamma (u)} \int_0^{+\infty} (\lambda x - u)^{h - 1} \mathrm{d} [- (\lambda x)^u e^{- \lambda x}] \\
 >                                                              &= \dfrac{(h - 1) \cdot \Gamma (u + 1)}{\lambda^h \cdot \Gamma (u)} \dfrac{\lambda}{\Gamma (u + 1)} \int_0^{+\infty} (\lambda x - u)^{h - 2} (\lambda x)^{u} e^{- \lambda x} \mathrm{d} x \\
 >                                                              &= \dfrac{(h - 1) u}{\lambda^h} \mathrm{Exp} [\lambda \cdot \mathrm{Ga} (u + 1, \lambda) - u]^{h - 2} \\
+>                                                              &= \dfrac{(h - 1) u}{\lambda^2} \mathrm{Exp} [\mathrm{Ga} (u + 1, \lambda) - \mathrm{Exp} [X]]^{h - 2} \\
 > \end{alignedat}
 > $$
 >
@@ -348,6 +349,7 @@ Resources:
 >                                                        &= \dfrac{1}{(u + v)^h \cdot \mathrm{\Beta} (u, v)} \int _0^1 [(u + v) x - u]^{h - 1} \mathrm{d} [- x^u (1 - x)^v] \\
 >                                                        &= \dfrac{(h - 1) \cdot \Beta (u + 1, v + 1)}{(u + v)^{h - 1} \cdot \Beta (u, v)} \dfrac{1}{\Beta (u + 1, v + 1)} \int_0^1 [(u + v) x - u]^{h - 2} x^u (1 - x)^v \mathrm{d} x \\
 >                                                        &= \dfrac{(h - 1) u v}{(u + v)^h (u + v + 1)} \mathrm{Exp} [(u + v) \cdot \mathrm{\Beta} (u + 1, v + 1) - u]^{h - 2} \\
+>                                                        &= \dfrac{(h - 1) u v}{(u + v)^2 (u + v + 1)} \mathrm{Exp} \left[ \Beta (u + 1, v + 1) - \dfrac{u}{u + v} \right]^{h - 2} \\
 > \end{alignedat}
 > $$
 >
