@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     特殊符号
-Revised:   2018-05-01 21:12:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-23 21:12:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -34,13 +34,23 @@ Resources:
 > $$
 >
 
+> ### 多维和积符号
+
+> $$
+> \begin{alignedat}{3}
+>                               \sum_{(x_1, \cdots, x_m)} &\equiv \sum_{x_1} \cdots \sum_{x_m} \\
+> \int_{(x_1, \cdots, x_m)} \mathrm{d} (x_1, \cdots, x_m) &\equiv \int_{x_1} \cdots \int_{x_m} \mathrm{d} x_1 \cdots \mathrm{d} x_m
+> \end{alignedat}
+> $$
+>
+
 > ### 渐近符号
 
 > $$
 > \begin{alignedat}{3}
 > f \mathop{=}\limits_\mathcal{B} o (g) &\iff \lim_\mathcal{B} \dfrac{f (x)}{g (x)} = 0 \\
 > f \mathop{=}\limits_\mathcal{B} O (g) &\iff \left\lvert \lim_\mathcal{B} \dfrac{f (x)}{g (x)} \right\rvert \le \mathcal{Const.} \\
-> f \mathop{\sim}\limits_\mathcal{B} g &\iff \lim_\mathcal{B} \dfrac{f (x)}{g (x)} = 1 \\ 
+>  f \mathop{\sim}\limits_\mathcal{B} g &\iff \lim_\mathcal{B} \dfrac{f (x)}{g (x)} = 1 \\ 
 > \end{alignedat}
 > $$
 >

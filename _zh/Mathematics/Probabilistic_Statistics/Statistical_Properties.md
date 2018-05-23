@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     统计特性
-Revised:   2018-05-22 21:37:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-23 21:14:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -11,18 +11,18 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                    \mathrm{Exp} [X] &= \sum_{x_i} x_i \cdot p (x_i)                               &&\quad\Leftarrow\quad \sum_{x_i} |x_i| \cdot p (x_i) \to \mathcal{Conv.} \\
->                \mathrm{Exp} [f (X)] &= \sum_{x_j} y_j \cdot P [f (X) = y_j] \\
->                                     &= \sum_{x_j} f (x_j) \sum_{x_i : f (x_i) = f (x_j)} p (x_i) \\
->                                     &= \sum_{x_i} p (x_i) \sum_{x_j : f (x_j) = f (x_i)}  f (x_j) \\
->                                     &= \sum_{x_i} f (x_i) \cdot p (x_i)                           &&\quad\Leftarrow\quad \sum_{x_i} |f (x_i)| \cdot p (x_i) \to \mathcal{Conv.} \\
->                  \mathrm{Exp} [X]^h &= \sum_{x_i} x_i^h \cdot p (x_i)                             &&\quad\Leftarrow\quad f (X) = X^h \\
+>                    \mathrm{Exp} [X] &= \sum_{x} x \cdot p (x)                                         &&\quad\Leftarrow\quad \sum_{x} |x| \cdot p (x) \to \mathcal{Conv.} \\
+>                \mathrm{Exp} [f (X)] &= \sum_{(x)_j} (y)_j \cdot P [f (X) = (y)_j] \\
+>                                     &= \sum_{(x)_j} f (x)_j \sum_{(x)_i : f (x)_i = f (x)_j} p (x)_i \\
+>                                     &= \sum_{(x)_i} p (x)_i \sum_{(x)_j : f (x)_j = f (x)_i}  f (x)_j \\
+>                                     &= \sum_{x} f (x) \cdot p (x)                                     &&\quad\Leftarrow\quad \sum_{x} |f (x)| \cdot p (x) \to \mathcal{Conv.} \\
+>                  \mathrm{Exp} [X]^h &= \sum_{x} x^h \cdot p (x)                                       &&\quad\Leftarrow\quad f (X) = X^h \\
 > \end{alignedat} \\
 > \begin{alignedat}{3}
-> \mathrm{Exp} [f (X_1, \cdots, X_m)] &= \sum_{(x_1, \cdots, x_m)_j} y_j \cdot P [f (X_1, \cdots, X_m) = y_j] \\
->                                     &= \sum_{(x_1, \cdots, x_m)_j} [f (x_1, \cdots, x_m)]_j \mathop{\sum \cdots \sum}_{(x_1, \cdots, x_m)_i : [f (x_1, \cdots, x_m)]_i = [f (x_1, \cdots, x_m)]_j} [p (x_1, \cdots, x_m)]_i \\
->                                     &= \sum_{(x_1, \cdots, x_m)_i} [p (x_1, \cdots, x_m)]_i \mathop{\sum \cdots \sum}_{(x_1, \cdots, x_m)_j : [f (x_1, \cdots, x_m)]_j = [f (x_1, \cdots, x_m)]_i} [f (x_1, \cdots, x_m)]_j \\
->                                     &= \mathop{\sum \cdots \sum}_{(x_1, \cdots, x_m)} f (x_1, \cdots, x_m) \cdot p (x_1, \cdots, x_m) \\
+> \mathrm{Exp} [f (X_1, \cdots, X_m)] &= \sum_{(x_1, \cdots, x_m)_j} (y)_j \cdot P [f (X_1, \cdots, X_m) = (y)_j] \\
+>                                     &= \sum_{(x_1, \cdots, x_m)_j} f (x_1, \cdots, x_m)_j \sum_{(x_1, \cdots, x_m)_i : f (x_1, \cdots, x_m)_i = f (x_1, \cdots, x_m)_j} p (x_1, \cdots, x_m)_i \\
+>                                     &= \sum_{(x_1, \cdots, x_m)_i} p (x_1, \cdots, x_m)_i \sum_{(x_1, \cdots, x_m)_j : f (x_1, \cdots, x_m)_j = f (x_1, \cdots, x_m)_i} f (x_1, \cdots, x_m)_j \\
+>                                     &= \sum_{x_1} \cdots \sum_{x_m} f (x_1, \cdots, x_m) \cdot p (x_1, \cdots, x_m) \\
 > \end{alignedat}
 > $$
 >
@@ -40,9 +40,9 @@ Resources:
 > \end{alignedat} \\
 > \begin{alignedat}{3}
 > \mathrm{Exp} [f (X_1, \cdots, X_m)] &= \int_0^{+\infty} P [f (X_1, \cdots, X_m) \ge y] \mathrm{d} y - \int_0^{+\infty} P [f (X_1, \cdots, X_m) \lt - y] \mathrm{d} y \\
->                                     &= \int_0^{+\infty} \mathop{\int \cdots \int}\limits_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \ge y} p (x_1, \cdots, x_m) \mathrm{d} x_1\cdots \mathrm{d} x_m \mathrm{d} y - \int_0^{+\infty} \mathop{\int \cdots \int}\limits_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \lt y} p (x_1, \cdots, x_m) \mathrm{d} x_1 \cdots \mathrm{d} x_m \mathrm{d} y \\
->                                     &= \mathop{\int \cdots \int}\limits_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \ge 0} p (x_1, \cdots, x_m) \int_0^{f (x_1, \cdots, x_m)} \mathrm{d} y \mathrm{d} x_1 \cdots \mathrm{d} x_m - \mathop{\int \cdots \int}\limits_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \lt 0} p (x_1, \cdots, x_m) \int_0^{- f (x_1, \cdots, x_m)} \mathrm{d} y \mathrm{d} x_1 \cdots \mathrm{d} x_m \\
->                                     &= \mathop{\int \cdots \int}_{(x_1, \cdots, x_m)} f (x_1, \cdots, x_m) p (x_1, \cdots, x_m) \mathrm{d} x_1 \cdots \mathrm{d} x_m \\
+>                                     &= \int_0^{+\infty} \int_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \ge y} p (x_1, \cdots, x_m) \mathrm{d} (x_1, \cdots, x_m) \mathrm{d} y - \int_0^{+\infty} \int_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \lt y} p (x_1, \cdots, x_m) \mathrm{d} (x_1, \cdots, x_m) \mathrm{d} y \\
+>                                     &= \int_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \ge 0} p (x_1, \cdots, x_m) \int_0^{f (x_1, \cdots, x_m)} \mathrm{d} y \mathrm{d} (x_1, \cdots, x_m) - \int_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \lt 0} p (x_1, \cdots, x_m) \int_0^{- f (x_1, \cdots, x_m)} \mathrm{d} y \mathrm{d} (x_1, \cdots, x_m) \\
+>                                     &= \int_{x_1} \cdots \int_{x_m} f (x_1, \cdots, x_m) p (x_1, \cdots, x_m) \mathrm{d} x_1 \cdots \mathrm{d} x_m \\
 > \end{alignedat}
 > $$
 >

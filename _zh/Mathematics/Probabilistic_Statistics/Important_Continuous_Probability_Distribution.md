@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要连续概率分布
-Revised:   2018-05-23 01:12:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-23 17:47:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -44,14 +44,15 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad && X_1 \mapsto \mathrm{CU} (\alpha, \beta) \quad&\land\quad X_2 \mapsto \mathrm{CU} (\alpha, \beta) \\
-> \Uparrow\quad &&                                        p (z) &= \int_{-\infty}^{+\infty} p_{X_1} (x) \cdot p_{X_2} (z - x) \mathrm{d} x \\
->               &&                                              &= \int_\alpha^\beta \dfrac{1}{\beta - \alpha} \cdot p_{X_2} (z - x) \mathrm{d} x \\
->               &&                                              &\xlongequal{t = z - x} \dfrac{1}{\beta - \alpha} \int_{z - \beta}^{z - \alpha} p_{X_2} (t) \mathrm{d} t \\
->               &&                                     \fbox{1} &\xlongequal{z - \alpha \in [\alpha, \beta]} \dfrac{1}{(\beta - \alpha)^2} \int_{\alpha}^{z - \alpha} \mathrm{d} t \\
->               &&                                              &= \dfrac{z - 2 \alpha}{(\beta - \alpha)^2} \quad\Leftarrow\quad z \in [2 \alpha, \alpha + \beta] \\
->               &&                                     \fbox{2} &\xlongequal{z - \beta \in [\alpha, \beta]} \dfrac{1}{(\beta - \alpha)^2} \int_{z - \beta}^\beta \mathrm{d} t \\
->               &&                                              &= \dfrac{2 \beta - z}{(\beta - \alpha)^2} \quad\Leftarrow\quad z \in [\alpha + \beta, 2 \beta] \\
+> \Uparrow\quad   && X_1 \mapsto \mathrm{CU} (\alpha, \beta) \quad&\land\quad X_2 \mapsto \mathrm{CU} (\alpha, \beta) \\
+> \Downarrow\quad &&       \mathrm{Exp} [e^{t \cdot (X_1 + X_2)}] &= \dfrac{e^{\beta^2 t^2} - 2 e^{(\beta + \alpha) t} + e^{\alpha^2 t^2}}{(\beta - \alpha)^2 t^2} \\
+> \Uparrow\quad   &&                                        p (z) &= \int_{-\infty}^{+\infty} p_{X_1} (x) \cdot p_{X_2} (z - x) \mathrm{d} x \\
+>                 &&                                              &= \int_\alpha^\beta \dfrac{1}{\beta - \alpha} \cdot p_{X_2} (z - x) \mathrm{d} x \\
+>                 &&                                              &\xlongequal{t = z - x} \dfrac{1}{\beta - \alpha} \int_{z - \beta}^{z - \alpha} p_{X_2} (t) \mathrm{d} t \\
+> \Downarrow\quad &&                                     \fbox{1} &\xlongequal{z - \alpha \in [\alpha, \beta]} \dfrac{1}{(\beta - \alpha)^2} \int_{\alpha}^{z - \alpha} \mathrm{d} t \\
+>                 &&                                              &= \dfrac{z - 2 \alpha}{(\beta - \alpha)^2} \quad\Leftarrow\quad z \in [2 \alpha, \alpha + \beta] \\
+> \Downarrow\quad &&                                     \fbox{2} &\xlongequal{z - \beta \in [\alpha, \beta]} \dfrac{1}{(\beta - \alpha)^2} \int_{z - \beta}^\beta \mathrm{d} t \\
+>                 &&                                              &= \dfrac{2 \beta - z}{(\beta - \alpha)^2} \quad\Leftarrow\quad z \in [\alpha + \beta, 2 \beta] \\
 > \end{alignedat}
 > $$
 >
@@ -151,6 +152,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \Uparrow\quad           &&                  X_1 \mapsto \mathrm{No} (\mu_1, \sigma_1^2) \quad&\land\quad X_2 \mapsto \mathrm{No} (\mu_2, \sigma_2^2) \\
+> \Downarrow\quad         &&                            \mathrm{Exp} [e^{t \cdot (X_1 + X_2)}] &= e^{\frac{(\sigma_1^2 + \sigma_2^2) t^2}{2} + (\mu_1 + \mu_2) t} \\
 > \Uparrow\quad           &&                                                             p (z) &= \int_{-\infty}^{+\infty} p_{X_1} (x) \cdot p_{X_2} (z - x) \mathrm{d} x \\
 >                         &&                                                                   &= \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi} \sigma_1} e^{- \frac{(x - \mu_1)^2}{2 \sigma_1^2}} \cdot \dfrac{1}{\sqrt{2 \pi} \sigma_2} e^{- \frac{(z - x - \mu_2)^2}{2 \sigma_2^2}} \mathrm{d} x \\
 >                         &&                                                                   &= \dfrac{1}{\sqrt{2 \pi (\sigma_1^2 + \sigma_2^2)}} e^{- \frac{(z - \mu_1 - \mu_2)^2}{2 (\sigma_1^2 + \sigma_2^2)}} \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi}} \sqrt{\dfrac{\sigma_1^2 + \sigma_2^2}{\sigma_1^2 \sigma_2^2}} e^{- \frac{\sigma_1^2 + \sigma_2^2}{2 \sigma_1^2 \sigma_2^2} \left[ x - \frac{\sigma_2^2 \mu_1 + \sigma_1^2 (z - \mu_2)}{\sigma_2^2 + \sigma_2^2} \right]^2} \mathrm{d} x \\
@@ -181,6 +183,9 @@ Resources:
 >                                                                 &= \dfrac{1}{\sqrt{2 \pi} \sigma y} e^{- \frac{(\ln y - \mu)^2}{2 \sigma^2}} \\
 >                                                     C_{e^X} (y) &= P (X \le \ln y) \\
 >                                                                 &= \dfrac{1}{2} \left[ 1 + \mathrm{E_{rr}} \left( \dfrac{\ln y - \mu}{\sqrt{2} \sigma} \right) \right] \\      
+>                                    \mathrm{Exp} [e^{t \cdot y}] &= \int_{-\infty}^{+\infty} e^{t \cdot e^x} \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
+>                                                                 &= \dfrac{1}{\sqrt{2 \pi} \sigma} \int_{-\infty}^{+\infty} e^{t \cdot e^x - \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
+>                                                                 &\to +\infty \quad\Leftarrow\quad \lim_{+\infty} t \cdot e^x - \dfrac{(x - \mu)^2}{2 \sigma^2} \to +\infty \\
 >                    \mathrm{Exp} [\mathrm{LN} (\mu, \sigma^2)]^h &= \int_{-\infty}^{+\infty} (e^x)^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
 >                                                                 &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{[x - (\mu + \sigma^2 h)]^2}{2 \sigma^2}} \mathrm{d} x \\
 >                                                                 &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \\
@@ -242,7 +247,8 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \Uparrow\quad           &&   X_1 \mapsto \mathrm{Ga} (u_1, \lambda) \quad&\land\quad X_2 \mapsto \mathrm{Ga} (u_2, \lambda) \\
-> \Downarrow\quad         &&                                         p (z) &= \dfrac{\lambda^2}{\Gamma (u_1) \Gamma(u_2)} \int_0^z (\lambda x)^{u_1 - 1} e^{- \lambda x} \cdot [\lambda (z - x)]^{u_2 - 1} e^{- \lambda (z - x)} \mathrm{d} x \\
+> \Downarrow\quad         &&        \mathrm{Exp} [e^{t \cdot (X_1 + X_2)}] &= \left(\dfrac{\lambda}{\lambda - t}\right)^{u_1 + u_2} \\
+> \Uparrow\quad           &&                                         p (z) &= \dfrac{\lambda^2}{\Gamma (u_1) \Gamma(u_2)} \int_0^z (\lambda x)^{u_1 - 1} e^{- \lambda x} \cdot [\lambda (z - x)]^{u_2 - 1} e^{- \lambda (z - x)} \mathrm{d} x \\
 >                         &&                                               &\xlongequal{y = \frac{x}{z}} \dfrac{\lambda^{u_1 + u_2} e^{- \lambda z}}{\Gamma (u_1) \Gamma (u_2)} z^{u_1 + u_2 - 1} \int_0^1 y^{u_1 - 1} (1 - y)^{u_2 - 1} \mathrm{d} y \\
 >                         &&                                               &= \dfrac{\lambda \Beta(u_1, u_2)}{\Gamma (u_1) \Gamma (u_2)} (\lambda z)^{u_1 + u_2 - 1} e^{- \lambda z} \\
 >                         &&                                               &= \dfrac{\lambda}{\Gamma (u_1 + u_2)} (\lambda z)^{u_1 + u_2 - 1} e^{- \lambda z} \\
@@ -374,7 +380,7 @@ Resources:
 >                                       p (x) &= \dfrac{1}{\pi} \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
 >                                       C (x) &= \dfrac{1}{\pi} \left[ \arctan \left( \dfrac{x - \mu}{\lambda} \right) + \dfrac{\pi}{2} \right] \\
 > \mathrm{Exp} |\mathrm{AT} (\mu, \lambda)^h| &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} |x^h| \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \mathrm{d} x \\
->                                             &\to +\infty \\
+>                                             &\to +\infty \quad\Leftarrow\quad \lim_{+\infty} x^h \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} = \lambda x^{\langle h - 2 \lt 1 \rangle} \\
 > \end{alignedat}
 > $$
 >

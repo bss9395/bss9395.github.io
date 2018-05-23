@@ -68,13 +68,14 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad           &&                                     X_1 &\mapsto \mathrm{Bn} (n, p) \quad\land\quad X_2 \mapsto \mathrm{Bn} (m, p) \\
-> \Uparrow\quad           &&                               P (X = k) &= \sum_{\max (0, k - m)}^{\min (n, k)} P (X_1 = i) \cdot P (X_2 = k - i) \\
->                         &&                                         &= \sum_{\max (0, k - m)}^{\min (n, k)} {n \choose i} p^i (1 - p)^{n - i} \cdot {m \choose k - i} p^{k - i} (1 - p)^{m - (k - i)} \\
->                         &&                                         &= p^k (1 - p)^{n + m - k} \sum_{\max (0, k - m)}^{\min (n, k)} {n \choose i} {m \choose k - i} \\
->                         &&                                         &= {n + m \choose k} p^k (1 - p)^{n + m - k} \\
-> \fbox{1}\Downarrow\quad && \mathrm{Bn} (n, p) * \mathrm{Bn} (m, p) &= \mathrm{Bn} (n + m, p) \\
-> \fbox{2}\Downarrow\quad &&                  [\mathrm{Bn} (n, p)]^h &= \mathrm{Bn} (h n, p) \\
+> \Uparrow\quad           &&                                         X_1 &\mapsto \mathrm{Bn} (n_1, p) \quad\land\quad X_2 \mapsto \mathrm{Bn} (n_2, p) \\
+> \Downarrow\quad         &&      \mathrm{Exp} [e^{t \cdot (X_1 + X_2)}] &= (p e^t + 1 - p)^{n_1 + n_2} \\
+> \Uparrow\quad           &&                                   P (X = k) &= \sum_{\max (0, k - n_2)}^{\min (n_1, k)} P (X_1 = i) \cdot P (X_2 = k - i) \\
+>                         &&                                             &= \sum_{\max (0, k - n_2)}^{\min (n_1, k)} {n_1 \choose i} p^i (1 - p)^{n_1 - i} \cdot {n_2 \choose k - i} p^{k - i} (1 - p)^{n_2 - (k - i)} \\
+>                         &&                                             &= p^k (1 - p)^{n_1 + n_2 - k} \sum_{\max (0, k - n_2)}^{\min (n_1, k)} {n_1 \choose i} {n_2 \choose k - i} \\
+>                         &&                                             &= {n_1 + n_2 \choose k} p^k (1 - p)^{n_1 + n_2 - k} \\
+> \fbox{1}\Downarrow\quad && \mathrm{Bn} (n_1, p) * \mathrm{Bn} (n_2, p) &= \mathrm{Bn} (n_1 + n_2, p) \\
+> \fbox{2}\Downarrow\quad &&                      [\mathrm{Bn} (n, p)]^h &= \mathrm{Bn} (h n, p) \\
 > \end{alignedat}
 > $$
 >
@@ -173,6 +174,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \Uparrow\quad           &&                                               X_1 &\mapsto \mathrm{St} (\lambda_1) \quad\land\quad X_2 \mapsto \mathrm{St} (\lambda_2)  \\
+> \Downarrow\quad         &&             \mathrm{Exp} [e^{t \cdot (X_1+ X_2)}] &= e^{(\lambda_1 + \lambda_2) \cdot (e^t - 1)} \\
 > \Uparrow\quad           &&                                         P (X = k) &= \sum_{i = 0}^{k} P (X_1 = i) \cdot P (X_2 = k - i) \\
 >                         &&                                                   &= \sum_{i = 0}^k \left[ \dfrac{\lambda_1^i}{i !} e^{- \lambda_1} \right] \cdot \left[ \dfrac{\lambda_2^{k - i}}{(k - i) !} e^{- \lambda_2} \right] \\
 >                         &&                                                   &= \dfrac{(\lambda_1 + \lambda_2)^k}{k !} e^{- (\lambda_1 + \lambda_2)} \sum_{i = 0}^k \dfrac{k !}{i ! (k - i) !} \left( \dfrac{\lambda_1}{\lambda_1 + \lambda_2} \right)^i \left( \dfrac{\lambda_2}{\lambda_1 + \lambda_2} \right)^{k - i} \\
