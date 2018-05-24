@@ -185,7 +185,7 @@ Resources:
 >                                                                 &= \dfrac{1}{2} \left[ 1 + \mathrm{E_{rr}} \left( \dfrac{\ln y - \mu}{\sqrt{2} \sigma} \right) \right] \\      
 >                                    \mathrm{Exp} [e^{t \cdot y}] &= \int_{-\infty}^{+\infty} e^{t \cdot e^x} \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
 >                                                                 &= \dfrac{1}{\sqrt{2 \pi} \sigma} \int_{-\infty}^{+\infty} e^{t \cdot e^x - \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
->                                                                 &\to +\infty \quad\Leftarrow\quad \lim_{+\infty} t \cdot e^x - \dfrac{(x - \mu)^2}{2 \sigma^2} \to +\infty \\
+>                                                                 &\to +\infty \quad\Leftarrow\quad \lim_{+\infty} t \cdot e^x - \dfrac{(x - \mu)^2}{2 \sigma^2} \sim t \cdot e^x \\
 >                    \mathrm{Exp} [\mathrm{LN} (\mu, \sigma^2)]^h &= \int_{-\infty}^{+\infty} (e^x)^h \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \mathrm{d} x \\
 >                                                                 &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \int_{-\infty}^{+\infty} \dfrac{1}{\sqrt{2 \pi} \sigma} e^{- \frac{[x - (\mu + \sigma^2 h)]^2}{2 \sigma^2}} \mathrm{d} x \\
 >                                                                 &= e^{\mu h + \frac{\sigma^2 h^2}{2}} \\
@@ -380,7 +380,7 @@ Resources:
 >                                       p (x) &= \dfrac{1}{\pi} \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
 >                                       C (x) &= \dfrac{1}{\pi} \left[ \arctan \left( \dfrac{x - \mu}{\lambda} \right) + \dfrac{\pi}{2} \right] \\
 > \mathrm{Exp} |\mathrm{AT} (\mu, \lambda)^h| &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} |x^h| \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \mathrm{d} x \\
->                                             &\to +\infty \quad\Leftarrow\quad \lim_{+\infty} x^h \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} = \lambda x^{\langle h - 2 \lt 1 \rangle} \\
+>                                             &\to +\infty \quad\Leftarrow\quad \lim_{+\infty} x^h \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \sim \lambda x^{h - 2} \\
 > \end{alignedat}
 > $$
 >

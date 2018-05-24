@@ -205,7 +205,7 @@ Resources:
 > $$
 >
 
-> ### 均方差与线性相关系数
+> ### 均方误差与线性相关系数
 
 > $$
 > \begin{alignedat}{3}
@@ -221,13 +221,13 @@ Resources:
 >                                                                c0 &= \dfrac{\mathrm{CoV} [X, Y]}{\mathrm{Var} [X]} = \mathrm{Corr} [X, Y] \cdot \dfrac{\mathrm{SD} [Y]}{\mathrm{SD} [X]} \\
 >                                                                d0 &= \mathrm{Exp} [Y] - \mathrm{Exp} [X] \cdot \dfrac{\mathrm{CoV} [X, Y]}{\mathrm{Var} [X]} \\
 >                                                                \end{alignedat}\right. \\
-> \Downarrow\quad         &&                             \min_{c0, d0} e &= \mathrm{Var} [Y - (c0 \cdot X + d0)] + \mathrm{Exp}^2 [Y - (c0 \cdot X + d0)] \\
->                         &&                                             &= \mathrm{Var} [Y - c0 \cdot X] \\
+> \Downarrow\quad         &&                                      \min e &= \mathrm{Var} [Y - (c0 \cdot X + d0)] + \mathrm{Exp}^2 [Y - (c0 \cdot X + d0)] \\
+>                         &&                                             &= \mathrm{Var} [Y - c0 \cdot X] + \left[ \dfrac{1}{2} \dfrac{\partial e}{\partial d} \right]^2 \\
 >                         &&                                             &= \mathrm{Var} [Y] - c0^2 \cdot \mathrm{Var} [X] - 2 c0 \cdot \mathrm{CoV} [X, Y] \\
 >                         &&                                             &= \mathrm{Var} [Y] \cdot \left( 1 - \dfrac{\mathrm{CoV}^2 [X, Y]}{\mathrm{Var} [X] \cdot \mathrm{Var} [Y]} \right) \\
-> \Downarrow\quad         &&                             \min_{c0, d0} e &= \mathrm{Var} [Y] \cdot (1 - \mathrm{Corr}^2 [X, Y]) \\
-> \fbox{1}\Downarrow\quad &&                      |\mathrm{Corr} [X, Y]| &\le 1 \\
-> \fbox{2}\Downarrow\quad &&                      |\mathrm{Corr} [X, Y]| &= 1 \iff Y = \pm \dfrac{\mathrm{SD} [Y]}{\mathrm{SD} [X]} \cdot X + \mathrm{Exp} [Y] \mp \mathrm{Exp} [X] \cdot \dfrac{\mathrm{SD} [Y]}{\mathrm{SD} [X]} \\
+> \Downarrow\quad         &&                                      \min e &= \mathrm{Var} [Y] \cdot (1 - \mathrm{Corr}^2 [X, Y]) \\
+> \fbox{1}\Downarrow\quad &&                      |\mathrm{Corr} [X, Y]| &\le 1 \iff Y \xlongequal{\min e} \mathrm{Corr} [X, Y] \cdot \dfrac{\mathrm{SD} [Y]}{\mathrm{SD} [X]} \cdot X+ \mathrm{Exp} [Y] - \mathrm{Exp} [X] \cdot \mathrm{Corr} [X, Y] \cdot \dfrac{\mathrm{SD} [Y]}{\mathrm{SD} [X]} \\
+> \fbox{2}\Downarrow\quad &&                      |\mathrm{Corr} [X, Y]| &= 1 \iff Y \xlongequal{e = 0} \pm \dfrac{\mathrm{SD} [Y]}{\mathrm{SD} [X]} \cdot X + \mathrm{Exp} [Y] \mp \mathrm{Exp} [X] \cdot \dfrac{\mathrm{SD} [Y]}{\mathrm{SD} [X]} \\
 > \end{alignedat}
 > $$
 >

@@ -90,8 +90,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> p_{X_1, \cdots, X_m} (x_1, \cdots, x_m \mid x_{m + 1}, \cdots, x_n) &= \dfrac{p (x_1, \cdots, x_m, x_{m + 1}, \cdots, x_n)}{p_{X_{m + 1}, \cdots, X_n} (x_{m + 1}, \cdots, x_n)} \\
->                                                      p_X (x \mid y) &= \dfrac{p (x, y)}{p_Y (y)} \\
+> p_{X_1, \cdots, X_m} (x_1, \cdots, x_m \mid y_1, \cdots, y_n) &= \dfrac{p (x_1, \cdots, x_m, y_1, \cdots, y_n)}{p_{Y_1, \cdots, Y_n} (y_1, \cdots, y_n)} \\
+>                                                p_X (x \mid y) &= \dfrac{p (x, y)}{p_Y (y)} \\
 > \end{alignedat}
 > $$
 >
