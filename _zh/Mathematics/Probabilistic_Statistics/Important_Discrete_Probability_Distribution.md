@@ -240,13 +240,13 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                                                 P (X = k) &= \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \quad\Leftarrow\quad k \in \lbrace \max (0, n - N + K), \cdots, \min (K, n) \rbrace \\
->                                                           &= \dfrac{{n \choose k} {N - n \choose K - k}}{{N \choose K}} \\
->                    \mathrm{Exp} [\mathrm{HG} (N, K, n)]^h &= \sum_{k = \max (0, n - N + K)}^{\min (K, n)} k^h \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \\
->                                                           &= \dfrac{n K}{N} \sum_{k = \max (1, n - N + K)}^{\min (K, n)} k^{h - 1} \dfrac{{K - 1 \choose k - 1} {N - K \choose n - k}}{N - 1 \choose n - 1} \\
->                                                           &\xlongequal{l = k - 1} \dfrac{n K}{N} \sum_{l = \max (0, n - 1 - N + K)}^{\min (K - 1, n - 1)} (l +1)^{h - 1} \dfrac{{K - 1 \choose l} {N - K \choose n - 1 - l}}{{N - 1 \choose n - 1}} \\
+>                                                 P (X = k) &= \dfrac{ {K \choose k} {N - K \choose n - k}}{ {N \choose n}} \quad\Leftarrow\quad k \in \lbrace \max (0, n - N + K), \cdots, \min (K, n) \rbrace \\
+>                                                           &= \dfrac{ {n \choose k} {N - n \choose K - k}}{ {N \choose K}} \\
+>                    \mathrm{Exp} [\mathrm{HG} (N, K, n)]^h &= \sum_{k = \max (0, n - N + K)}^{\min (K, n)} k^h \dfrac{ {K \choose k} {N - K \choose n - k}}{ N \choose n}} \\
+>                                                           &= \dfrac{n K}{N} \sum_{k = \max (1, n - N + K)}^{\min (K, n)} k^{h - 1} \dfrac{ {K - 1 \choose k - 1} {N - K \choose n - k}}{N - 1 \choose n - 1} \\
+>                                                           &\xlongequal{l = k - 1} \dfrac{n K}{N} \sum_{l = \max (0, n - 1 - N + K)}^{\min (K - 1, n - 1)} (l +1)^{h - 1} \dfrac{ {K - 1 \choose l} {N - K \choose n - 1 - l}}{ {N - 1 \choose n - 1}} \\
 >                                                           &= \dfrac{n K}{N} \cdot \mathrm{Exp} [\mathrm{HG} (N - 1, K - 1, n - 1) + 1]^{h - 1} \\
-> \mathrm{Exp} [\mathrm{HG} (N, K, n) - \mathrm{Exp} [X]]^h &= \sum_{k = \max (0, n - N + K)}^{\min (K, n)} \left( k - \dfrac{n K}{N} \right)^h \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} \\
+> \mathrm{Exp} [\mathrm{HG} (N, K, n) - \mathrm{Exp} [X]]^h &= \sum_{k = \max (0, n - N + K)}^{\min (K, n)} \left( k - \dfrac{n K}{N} \right)^h \dfrac{ {K \choose k} {N - K \choose n - k}}{ {N \choose n}} \\
 >                                                           &= \mathrm{Exp} [X] \cdot \left\lbrace \mathrm{Exp} \left[ \mathrm{HG} (N - 1, K - 1, n - 1) + 1 - \mathrm{Exp} [X] \right]^{h - 1} - \mathrm{Exp} \left[ \mathrm{HG} (N, K, n) - \mathrm{Exp} [X] \right]^{h - 1} \right\rbrace \\
 > \end{alignedat}
 > $$
@@ -269,10 +269,10 @@ Resources:
 > \begin{alignedat}{3}
 > \fbox{1}\Uparrow\quad &&                                                                               p &= \lim_{k \le n \ll N} \dfrac{K}{N} = \lim_{k \le n \ll N} \dfrac{K - k + 1}{N - k + 1} \\
 > \fbox{2}\Uparrow\quad &&                                                                           1 - p &= \lim_{k \le n \ll N} \dfrac{N - K}{N} = \lim_{k \le n \ll N} \dfrac{(N - K) - (n - k) + 1}{(N - k) - (n - k) + 1}  \\
-> \Downarrow\quad       && \lim_{k \le n \ll N} \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} &= \lim_{k \le n \ll N} \dfrac{n !}{k ! (n - k) !} \dfrac{\frac{K !}{(K - k) !}}{\frac{N !}{(N - k) !}} \dfrac{\frac{(N - K) !}{[(N - K) - (n - k)] !}}{\frac{(N - k) !}{(N - n) !}} \\
+> \Downarrow\quad       && \lim_{k \le n \ll N} \dfrac{ {K \choose k} {N - K \choose n - k}}{ {N \choose n}} &= \lim_{k \le n \ll N} \dfrac{n !}{k ! (n - k) !} \dfrac{\frac{K !}{(K - k) !}}{\frac{N !}{(N - k) !}} \dfrac{\frac{(N - K) !}{[(N - K) - (n - k)] !}}{\frac{(N - k) !}{(N - n) !}} \\
 >                       &&                                                                                 &= \lim_{k \le n \ll N} {n \choose k} \dfrac{K (K - 1) \cdots (K - k + 1)}{N (N - 1) \cdots (N - k + 1)} \dfrac{(N - K) [(N - K) - 1] \cdots [(N - K) - (n - k) + 1]}{(N - k) [(N - k) - 1] \cdots [(N - k) - (n - k) + 1]} \\
 >                       &&                                                                                 &= \lim_{k \le n \ll N} {n \choose k} \left( \dfrac{K}{N} \right)^k \left( \dfrac{N - K}{N} \right)^{n - k} \\
-> \Downarrow\quad       &&                      \dfrac{{K \choose k} {N - K \choose n - k}}{{N \choose n}} &\approx {n \choose k} p^k (1 - p)^{n - k} \\
+> \Downarrow\quad       &&                      \dfrac{ {K \choose k} {N - K \choose n - k}}{ {N \choose n}} &\approx {n \choose k} p^k (1 - p)^{n - k} \\
 > \end{alignedat}
 > $$
 >
@@ -281,14 +281,14 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                                                 P (X = k) &= \dfrac{{N \choose n - 1} {K - N \choose k - n}}{{K \choose k - 1}} \dfrac{N - n + 1}{K - k + 1} \quad\Leftarrow\quad k \in [\max (1, n), \cdots, \min (K, K - N + n)] \\
->                                                           &= \dfrac{{k - 1 \choose n - 1} {K - k \choose N - n}}{{K \choose N}} \\
->                                             p (X - n = l) &= \dfrac{{n + l -1 \choose l} {K - l - n \choose K - l - N}}{K \choose N} \\
->                    \mathrm{Exp} [\mathrm{NH} (N, K, n)]^h &= \sum_{k = \max (1, n)}^{\min (K, K - N + n)} k^h \dfrac{{k - 1 \choose n - 1} {K - k \choose N - n}}{{K \choose N}} \\
->                                                           &= n \sum_{k = \max (1, n)}^{\min (K, K - N + n)} k^{h - 1} \dfrac{{k \choose n} {K - k \choose N - n}}{{K \choose N}} \\
->                                                           &\xlongequal{k = l - 1} \dfrac{n (K + 1)}{N + 1} \sum_{l = \max (1, n + 1)}^{\min (K + 1, K + 1 - N + n)} (l - 1)^{h - 1} \dfrac{{l - 1 \choose n} {K + 1 - l \choose N - n}}{{K + 1 \choose N + 1}} \\
+>                                                 P (X = k) &= \dfrac{ {N \choose n - 1} {K - N \choose k - n}}{ {K \choose k - 1}} \dfrac{N - n + 1}{K - k + 1} \quad\Leftarrow\quad k \in [\max (1, n), \cdots, \min (K, K - N + n)] \\
+>                                                           &= \dfrac{ {k - 1 \choose n - 1} {K - k \choose N - n}}{ {K \choose N}} \\
+>                                             p (X - n = l) &= \dfrac{ {n + l -1 \choose l} {K - l - n \choose K - l - N}}{K \choose N} \\
+>                    \mathrm{Exp} [\mathrm{NH} (N, K, n)]^h &= \sum_{k = \max (1, n)}^{\min (K, K - N + n)} k^h \dfrac{ {k - 1 \choose n - 1} {K - k \choose N - n}}{ {K \choose N}} \\
+>                                                           &= n \sum_{k = \max (1, n)}^{\min (K, K - N + n)} k^{h - 1} \dfrac{ {k \choose n} {K - k \choose N - n}}{ {K \choose N}} \\
+>                                                           &\xlongequal{k = l - 1} \dfrac{n (K + 1)}{N + 1} \sum_{l = \max (1, n + 1)}^{\min (K + 1, K + 1 - N + n)} (l - 1)^{h - 1} \dfrac{ {l - 1 \choose n} {K + 1 - l \choose N - n}}{ {K + 1 \choose N + 1}} \\
 >                                                           &= \dfrac{n (K + 1)}{N + 1} \cdot \mathrm{Exp} [\mathrm{NH} (N + 1, K + 1, n + 1) - 1]^{h - 1} \\
-> \mathrm{Exp} [\mathrm{NH} (N, K, n) - \mathrm{Exp} [X]]^h &= \sum_{k = \max (1, n)}^{\min (K, K - N + n)} \left[ k - \dfrac{n (K + 1)}{N + 1} \right]^h \dfrac{{k - 1 \choose n - 1} {K - k \choose N - n}}{{K \choose N}} \\
+> \mathrm{Exp} [\mathrm{NH} (N, K, n) - \mathrm{Exp} [X]]^h &= \sum_{k = \max (1, n)}^{\min (K, K - N + n)} \left[ k - \dfrac{n (K + 1)}{N + 1} \right]^h \dfrac{ {k - 1 \choose n - 1} {K - k \choose N - n}}{ {K \choose N}} \\
 >                                                           &= \mathrm{Exp} [X] \cdot \left\lbrace \mathrm{Exp} \left[ \mathrm{NH} (N + 1, K + 1, n + 1) - 1 - \mathrm{Exp} [X] \right]^{h - 1} - \mathrm{Exp} [\mathrm{NH} (N, K, n) - \mathrm{Exp} [X]]^{h - 1} \right\rbrace \\
 > \end{alignedat}
 > $$
