@@ -24,7 +24,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> P (X_1 = k_1, \cdots, X_m = k_m) &= \dfrac{{N_1 \choose k_1} \cdots {N_m \choose k_m}}{{N_1 + \cdots + N_m \choose n}} \quad\Leftarrow\quad n = \sum_1^m k_m \\
+> P (X_1 = k_1, \cdots, X_m = k_m) &= \dfrac{ {N_1 \choose k_1} \cdots {N_m \choose k_m}}{ {N_1 + \cdots + N_m \choose n}} \quad\Leftarrow\quad n = \sum_1^m k_m \\
 > \end{alignedat}
 > $$
 >
