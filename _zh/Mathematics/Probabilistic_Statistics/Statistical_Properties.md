@@ -140,20 +140,6 @@ Resources:
 > $$
 >
 
-> ### 偏差概率
-
-> $$
-> \begin{alignedat}{3}
-> \Uparrow\quad   && P (|X - \mathrm{Exp} [X]| \ge \varepsilon) &= \mathop{\left\langle \sum \int \right\rangle}\limits_{|x_i - \mathrm{Exp} [X]| \ge \varepsilon} p (x_i) \\
->                 &&                                            &\le \mathop{\left\langle \sum \int \right\rangle}\limits_{|x_i - \mathrm{Exp} [X]| \ge \varepsilon} \dfrac{(x_i - \mathrm{Exp} [X])^2}{\varepsilon^2} p (x_i) \\
->                 &&                                            &\le {\left\langle \sum \int \right\rangle} \dfrac{(x_i - \mathrm{Exp} [X])^2}{\varepsilon^2} p (x_i) \\
->                 &&                                            &= \dfrac{\mathrm{Var} [X]}{\varepsilon^2} \\
-> \Downarrow\quad && P (|X - \mathrm{Exp} [X]| \lt \varepsilon) &= 1 - P (|X - \mathrm{Exp} [X]| \ge \varepsilon) \\
->                 &&                                            &\ge 1 - \dfrac{\mathrm{Var} [X]}{\varepsilon^2} \\
-> \end{alignedat}
-> $$
->
-
 > ### 分位数 $\mathrm{Quan_{tile}}$
 
 > $$
