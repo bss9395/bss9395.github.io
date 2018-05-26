@@ -11,12 +11,12 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \lbrace \varphi_k \rbrace &= \lbrace 1, \cos x, \sin x, \cdots, \cos k x, \sin k x, \cdots \rbrace \\
->              0 < m, 0 < n &\implies \left\lbrace\begin{alignedat}{3}
->                                     & \int_{- \pi}^\pi e^{\imath m x} \cdot e^{- \imath n x} \mathrm{d} x = 2 \pi \cdot \delta^{m n} \\
->                                     & \int_{- \pi}^\pi \sin m x \cdot \sin n x \mathrm{d} x = \int_{- \pi}^\pi \cos m x \cdot \cos n x \mathrm{d} x = \pi \cdot \delta^{m n} \\
->                                     & \int_{- \pi}^\pi \sin m x \cdot \cos n x \mathrm{d} x = \int_{- \pi}^\pi \cos m x \cdot \sin n x \mathrm{d} x = 0 \\
->                                     \end{alignedat}\right. \\
+>              & \lbrace 1, \cos x, \sin x, \cdots, \cos k x, \sin k x, \cdots \rbrace \\
+> 0 < m, 0 < n &\implies \left\lbrace\begin{alignedat}{3}
+>                        & \int_{- \pi}^\pi e^{\imath m x} \cdot e^{- \imath n x} \mathrm{d} x = 2 \pi \cdot \delta^{m n} \\
+>                        & \int_{- \pi}^\pi \sin m x \cdot \sin n x \mathrm{d} x = \int_{- \pi}^\pi \cos m x \cdot \cos n x \mathrm{d} x = \pi \cdot \delta^{m n} \\
+>                        & \int_{- \pi}^\pi \sin m x \cdot \cos n x \mathrm{d} x = \int_{- \pi}^\pi \cos m x \cdot \sin n x \mathrm{d} x = 0 \\
+>                        \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
 >
@@ -100,15 +100,15 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\;           &&       f (x) &= \dfrac{a_0}{2} + \sum_1^{+\infty} (a_n \cos n x + b_n \sin n x) \\
->                      &&             &= \dfrac{a_0}{2} + \sum_1^{+\infty} \left( a_n \dfrac{e^{\imath n x} + e^{- \imath n x}}{2} + b_n \dfrac{e^{\imath n x} - e^{- \imath n x}}{2 \imath} \right) \\
->                      &&             &= \dfrac{a_0}{2} + \sum_1^{+\infty} \left( \dfrac{a_n - \imath b_n}{2} e^{\imath n x} + \dfrac{a_n + \imath b_n}{2} e^{- \imath n x} \right) \\
->                      &&             &= \sum_{-\infty}^{+\infty} c_n e^{\imath n x} \\
-> \Downarrow\;         &&         c_0 &= \dfrac{a_0}{2} = \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) \mathrm{d} x = \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) e^{\imath 0 x} \mathrm{d} x \\
-> \Downarrow\;         &&         c_n &= \dfrac{a_n - \imath b_n}{2} = \dfrac{1}{2 \pi} \left[ \int_{- \pi}^\pi f (x) \cos n x \mathrm{d} x - \imath \int_{- \pi}^\pi f (x) \sin n x \mathrm{d} x \right] = \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) e^{- \imath n x} \mathrm{d} x \\
-> \Downarrow\;         &&     c_{- n} &= \dfrac{a_n + \imath b_n}{2} = \dfrac{1}{2 \pi} \left[ \int_{- \pi}^\pi f (x) \cos n x \mathrm{d} x + \imath \int_{- \pi}^\pi f (x) \sin n x \mathrm{d} x  \right] = \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) e^{+ \imath n x} \mathrm{d} x \\
-> \fbox{1}\Downarrow\; && \hat{f} (n) &= \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) e^{- \imath n x} \mathrm{d} x \\
-> \fbox{2}\Downarrow\; &&       f (x) &= \sum_{-\infty}^{+\infty} \hat{f} (n) e^{\imath n x} \\ 
+> \Uparrow\;           &&                         f (x) &= \dfrac{a_0}{2} + \sum_1^{+\infty} (a_n \cos n x + b_n \sin n x) \\
+>                      &&                               &= \dfrac{a_0}{2} + \sum_1^{+\infty} \left( a_n \dfrac{e^{\imath n x} + e^{- \imath n x}}{2} + b_n \dfrac{e^{\imath n x} - e^{- \imath n x}}{2 \imath} \right) \\
+>                      &&                               &= \dfrac{a_0}{2} + \sum_1^{+\infty} \left( \dfrac{a_n - \imath b_n}{2} e^{\imath n x} + \dfrac{a_n + \imath b_n}{2} e^{- \imath n x} \right) \\
+>                      &&                               &= \sum_{-\infty}^{+\infty} c_n e^{\imath n x} \\
+> \Downarrow\;         &&                           c_0 &= \dfrac{a_0}{2} = \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) \mathrm{d} x = \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) e^{\imath 0 x} \mathrm{d} x \\
+> \Downarrow\;         && c_{+ \langle n \gt 0 \rangle} &= \dfrac{a_n - \imath b_n}{2} = \dfrac{1}{2 \pi} \left[ \int_{- \pi}^\pi f (x) \cos n x \mathrm{d} x - \imath \int_{- \pi}^\pi f (x) \sin n x \mathrm{d} x \right] = \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) e^{- \imath n x} \mathrm{d} x \\
+> \Downarrow\;         && c_{- \langle n \gt 0 \rangle} &= \dfrac{a_n + \imath b_n}{2} = \dfrac{1}{2 \pi} \left[ \int_{- \pi}^\pi f (x) \cos n x \mathrm{d} x + \imath \int_{- \pi}^\pi f (x) \sin n x \mathrm{d} x  \right] = \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) e^{+ \imath n x} \mathrm{d} x \\
+> \fbox{1}\Downarrow\; &&                   \hat{f} (n) &= \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) e^{- \imath n x} \mathrm{d} x \\
+> \fbox{2}\Downarrow\; &&                         f (x) &= \sum_{-\infty}^{+\infty} \hat{f} (n) e^{\imath n x} \\ 
 > \end{alignedat}
 > $$
 >

@@ -13,8 +13,8 @@ Resources:
 > \begin{alignedat}{3}
 > f (\langle -\infty < x < +\infty \rangle) &= \int_0^{+\infty} [a (u) \cdot \cos u x + b (u) \cdot \sin u x] \mathrm{d} u 
 > &&\;\Leftarrow\; \left\lbrace\begin{alignedat}{3}
->                  a (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (x) \cdot \cos u x \mathrm{d} x \\
->                  b (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (x) \cdot \sin u x \mathrm{d} x \\
+>                  a (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (t) \cdot \cos u x \mathrm{d} t \\
+>                  b (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (t) \cdot \sin u x \mathrm{d} t \\
 >                  \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
@@ -26,13 +26,13 @@ Resources:
 > \begin{alignedat}{3}
 > f (\langle -\infty < x < +\infty) &\xlongequal{f (x) = f (- x)} \int_0^{+\infty} a (u) \cdot \cos u x \mathrm{d} u 
 > &&\;\Leftarrow\; \left\lbrace\begin{alignedat}{3}
->                      a (u) &= \dfrac{2}{\pi} \int_0^{+\infty} f (x) \cdot \cos u x \mathrm{d} x \\
->                  0 = b (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (x) \cdot \sin u x \mathrm{d} x \\
+>                      a (u) &= \dfrac{2}{\pi} \int_0^{+\infty} f (t) \cdot \cos u t \mathrm{d} t \\
+>                  0 = b (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (t) \cdot \sin u t \mathrm{d} t \\
 >                  \end{alignedat}\right. \\
 > f (\langle -\infty < x < +\infty) &\xlongequal{f (x) = - f (- x)} \int_0^{+\infty} b (u) \cdot \sin u x \mathrm{d} u 
 > &&\;\Leftarrow\; \left\lbrace\begin{alignedat}{3}
->                  0 = a (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (x) \cdot \cos u x \mathrm{d} x \\
->                      b (u) &= \dfrac{2}{\pi} \int_0^{+\infty} f (x) \cdot \sin u x \mathrm{d} x \\
+>                  0 = a (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (t) \cdot \cos u t \mathrm{d} t \\
+>                      b (u) &= \dfrac{2}{\pi} \int_0^{+\infty} f (t) \cdot \sin u t \mathrm{d} t \\
 >                  \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
@@ -64,7 +64,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\;           &&       f (x) &= \dfrac{1}{\pi} \int_0^{+\infty} \mathrm{d} u \int_{-\infty}^{+\infty} f (t) \cos u (x - t) \mathrm{d} t \\
+> \Uparrow\;           &&       f (x) &= \int_0^{+\infty} [a (u) \cdot \cos u x + b (u) \cdot \sin u x] \mathrm{d} u \\
+>                      &&             &= \dfrac{1}{\pi} \int_0^{+\infty} \mathrm{d} u \int_{-\infty}^{+\infty} f (t) \cos u (x - t) \mathrm{d} t \\
 >                      &&             &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm{d} u \int_{-\infty}^{+\infty} f (t) \cos u (x - t) \mathrm{d} t \\
 > \Uparrow\;           &&           0 &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm{d} u \int_{-\infty}^{+\infty} f (t) \sin u (x - t) \mathrm{d} t \\
 > \Downarrow\;         &&       f (x) &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm{d} u \int_{-\infty}^{+\infty} f (t) \cos u (x - t) \mathrm{d} t + \imath \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm{d} u \int_{-\infty}^{+\infty} f (t) \sin u (x - t) \mathrm{d} t \\
@@ -80,10 +81,10 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\; && (f * g) (t) &= \dfrac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} f (\tau) \cdot g (t - \tau) \mathrm{d} \tau \\
+> \Uparrow\;   &&           (f * g) (t) &= \dfrac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} f (\tau) \cdot g (t - \tau) \mathrm{d} \tau \\
 > \Downarrow\; && \widehat{(f * g)} (x) &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \left( \int_{-\infty}^{+\infty} f (\tau) \cdot g (t - \tau) \mathrm{d} \tau \right) e^{- \imath x t} \mathrm{d} t \\
-> && &\xlongequal{u = t - \tau} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} f (\tau) e^{- \imath x \tau} \mathrm{d} \tau \int_{-\infty}^{+\infty} g (u) e^{- \imath x u} \mathrm{d} u \\
-> && &= \hat{f} (x) \cdot \hat{g} (x) \\
+>              &&                       &\xlongequal{u = t - \tau} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} f (\tau) e^{- \imath x \tau} \mathrm{d} \tau \int_{-\infty}^{+\infty} g (u) e^{- \imath x u} \mathrm{d} u \\
+>              &&                       &= \hat{f} (x) \cdot \hat{g} (x) \\
 > \end{alignedat}
 > $$
 >

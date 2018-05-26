@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     特征函数
-Revised:   2018-05-26 23:56:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-27 01:56:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -23,7 +23,10 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{Exp} \left[ e^{t \cdot [ f_1 (X_1) + \cdots + f_m (X_m)]} \right] &= \mathrm{Exp} [e^{t \cdot f_1 (X_1)}] \cdots \mathrm{Exp} [e^{t \cdot f_m (X_m)}] \quad\Leftarrow\quad p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
+> \fbox{1}\quad & \mathrm{Exp} [e^{0 \cdot X}] = 1 \\
+> \fbox{2}\quad & |\mathrm{Exp} [e^{t \cdot X}]| \le \mathrm{Exp} [|e^{t \cdot X}|] \\
+> \fbox{3}\quad & \mathrm{Exp} [e^{t \cdot (c X + d)}] = \mathrm{Exp} [e^{t \cdot c X}] \cdot e^{t \cdot d} \\
+> \fbox{4}\quad & \mathrm{Exp} \left[ e^{t \cdot [ f_1 (X_1) + \cdots + f_m (X_m)]} \right] &= \mathrm{Exp} [e^{t \cdot f_1 (X_1)}] \cdots \mathrm{Exp} [e^{t \cdot f_m (X_m)}] \quad\Leftarrow\quad p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
 > \end{alignedat}
 > $$
 >
@@ -32,8 +35,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->        e^{\imath \cdot X} &= \cos X + \imath \sin X              \;&&\Rightarrow\; |e^{\imath \cdot X}| = 1  \\
->   \mathrm{CF} [t \cdot X] &= \mathrm{Exp} [e^{\imath t \cdot X}] \;&&\Leftarrow\; \mathrm{Exp} [|e^{\imath t \cdot X}|] = 1 \\
+>      e^{\imath \cdot X} &= \cos X + \imath \sin X              \;&&\Rightarrow\; |e^{\imath \cdot X}| = 1  \\
+> \mathrm{CF} [t \cdot X] &= \mathrm{Exp} [e^{\imath t \cdot X}] = \mathrm{MGF} [i t \cdot X] \;&&\Leftarrow\; \mathrm{Exp} [|e^{\imath t \cdot X}|] = 1 \\
 > \end{alignedat}
 > $$
 >
@@ -42,10 +45,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\quad & \mathrm{Exp} [e^{\imath 0 \cdot X}] = 1 \\
-> \fbox{2}\quad & |\mathrm{Exp} [e^{\imath t \cdot X}]| \le \mathrm{Exp} [|e^{\imath t \cdot X}|] = 1 \\
-> \fbox{3}\quad & \mathrm{Exp} [e^{- \imath t \cdot X}] = \mathrm{Exp} [\overline{e^{\imath t \cdot X}}] = \overline{\mathrm{Exp} [e^{\imath t \cdot X}]} \\
-> \fbox{4}\quad & \mathrm{Exp} [e^{\imath t \cdot (c X + d)}] = \mathrm{Exp} [e^{\imath t \cdot c X}] \cdot e^{\imath t \cdot  d} \\
+> \fbox{1}\quad & \mathrm{Exp} [|e^{\imath t \cdot X}|] = 1 \\
+> \fbox{2}\quad & \mathrm{Exp} [e^{- \imath t \cdot X}] = \mathrm{Exp} [\overline{e^{\imath t \cdot X}}] = \overline{\mathrm{Exp} [e^{\imath t \cdot X}]} \\
 > \end{alignedat}
 > $$
 >
