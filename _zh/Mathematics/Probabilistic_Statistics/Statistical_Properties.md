@@ -7,7 +7,7 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 离散期望值 $\mathrm{Exp_{ectation}}$
+> ### 离散期望 $\mathrm{Exp_{ectation}}$
 
 > $$
 > \begin{alignedat}{3}
@@ -27,7 +27,7 @@ Resources:
 > $$
 >
 
-> ### 连续期望值 $\mathrm{Exp_{ectation}}$
+> ### 连续期望 $\mathrm{Exp_{ectation}}$
 
 > $$
 > \begin{alignedat}{3}
@@ -47,7 +47,7 @@ Resources:
 > $$
 >
 
-> ### 期望值的性质
+> ### 期望的性质
 
 > $$
 > \begin{alignedat}{3}
@@ -56,27 +56,6 @@ Resources:
 > \fbox{3}\quad & \mathrm{Exp} [X - \mathrm{Exp} [X]]^h = \sum_{i = 0}^h {h \choose i} (- \mathrm{Exp} [X])^{h - i} \cdot \mathrm{Exp} [X]^i \\
 > \fbox{4}\quad & \mathrm{Exp} [f_1 (X_1) + \cdots + f_m (X_m)] = \mathrm{Exp} [f (X_1)] + \cdots + \mathrm{Exp} [f_m (X_m)] \\
 > \fbox{5}\quad & \mathrm{Exp} [f_1 (X_1) \cdots f_m (X_m)] = \mathrm{Exp} [f_1 (X_1)] \cdots \mathrm{Exp} [f_m (X_m)] &&\;\Leftarrow\; p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
-> \end{alignedat}
-> $$
->
-
-> ### 矩母函数 $\mathrm{M_{oment} G_{enerating} F_{unction}}$
-
-> $$
-> \begin{alignedat}{3}
->                      \mathrm{MGF} [t \cdot X] &= \mathrm{Exp} [e^{t \cdot X}] \\
-> \mathrm{MGF} [t \cdot (X - \mathrm{Exp} [X])] &= e^{- t \cdot \mathrm{Exp} [X]} \cdot \mathrm{Exp} [e^{t \cdot X}] \\
->                            \mathrm{Exp} [X]^h &= \lim_{t \to 0} \dfrac{\mathrm{d}^h}{\mathrm{d} t^h} \mathrm{MGF} [t \cdot X] \\
->         \mathrm{Exp} [X - \mathrm{Exp} [X]]^h &= \lim_{t \to 0} \dfrac{\mathrm{d}^h}{\mathrm{d} t^h} \mathrm{MGF} [t \cdot (X - \mathrm{Exp} [X])] \\
-> \end{alignedat}
-> $$
->
-
-> ### 矩母函数的性质
-
-> $$
-> \begin{alignedat}{3}
-> \mathrm{MGF} \left[ t \cdot [ f_1 (X_1) + \cdots + f_m (X_m) ] \right] &= \mathrm{MGF} [t \cdot f_1 (X_1)] \cdots \mathrm{MGF} [t \cdot f_m (X_m)] \quad\Leftarrow\quad p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
 > \end{alignedat}
 > $$
 >

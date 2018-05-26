@@ -2,10 +2,35 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要离散概率分布
-Revised:   2018-05-22 09:03:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-26 22:52:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
+
+> ### 退化分布 $X \mapsto \mathrm{De_{generate}} (\alpha)$
+
+> $$
+> \begin{alignedat}{3}
+>                                   P ( X = \alpha) &= 1 \\
+>                      \mathrm{Exp} [e^{t \cdot X}] &= e^{t \cdot \alpha} \\
+> \mathrm{Exp} [e^{t \cdot (X - \mathrm{Exp} [X])}] &= e^{t \cdot \alpha} \cdot e^{- t \cdot \alpha} \\
+>             \mathrm{Exp} [\mathrm{De} [\alpha]]^h &= \alpha^h \\
+> \end{alignedat}
+> $$
+>
+
+> $$
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{SD} [X] = 0                  & \mathrm{Exp} [X]^1 = \alpha \\
+> \mathrm{Coe} [X] = 0                 & \mathrm{Exp} [X]^2 = \alpha^2 \\
+> \mathrm{Var} [X] = 0                 & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = 0 \\
+> \mathrm{Skew} [X] = \mathcal{Undef.} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 0 \\
+> \mathrm{Kurt} [X] = \mathcal{Undef.} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = 0 \\
+> \hline
+> \end{array}
+> $$
+>
 
 > ### 离散均匀分布 $X \mapsto \mathrm{D_{iscrete} U_{niform}} (\alpha, \beta)$ 
 
