@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     重要不等式
-Revised:   2018-05-05 16:39:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-29 20:56:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -20,9 +20,18 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\;   & \left\lVert \sum^m {^m v_m} \right\rVert \le \sum^m \lVert {^m v_m} \rVert \\
-> \Downarrow\; & \left\lvert \sum^m {^1 v_m} \right\rvert \mathop{\le}\limits_{\langle {^1 v_m} \lesseqgtr 0 \rangle} \sum^m \lvert {^1 v_m} \rvert \\
-> \Downarrow\; & \left| \int f (x) \mathrm{d} x \right| \mathop{\le}_{\langle f (x) \lesseqgtr 0 \rangle} \int |f (x)| \mathrm{d} x \\
+> & \left\lVert \sum_1^m {^m v_m} \right\rVert \le \sum_1^m \lVert {^m v_m} \rVert \\
+> & \left\lvert \sum_1^m {^1 v_m} \right\rvert \mathop{\le}\limits_{\langle {^1 v_m} \lesseqgtr 0 \rangle} \sum_1^m \lvert {^1 v_m} \rvert \\
+> & \left| \int_x f (x) \mathrm{d} x \right| \mathop{\le}_{\langle f (x) \lesseqgtr 0 \rangle} \int_x |f (x)| \mathrm{d} x \\
+> \end{alignedat}
+> $$
+>
+
+> ### 复数不等式
+
+> $$
+> \begin{alignedat}{3}
+> |e^{\imath x} - 1| \le |x|
 > \end{alignedat}
 > $$
 >
@@ -68,8 +77,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{5}
-> \Uparrow\;   && \sum\limits^n \langle \lambda_n \gt 0 \rangle = 1 &\implies f \left( \sum\limits^n \lambda_n x_n \right) \mathop{\le}\limits_{\langle f' (x) \equiv \mathrm{Const.} \rangle} \sum\limits^n \lambda_n f (x_n) \\
-> \Downarrow\; &&                                       \mu_n \gt 0 &\implies f \left( \dfrac{\sum\limits^n \mu_n x_n}{\sum\limits^n \mu_n} \right) \mathop{\le}\limits_{\langle f' (x) \equiv \mathrm{Const.} \rangle} \dfrac{\sum\limits^n \mu_n f (x_n)}{\sum\limits^n \mu_n} &&\;\Leftarrow\; \lambda_n &= \dfrac{\mu_n}{\sum\limits^n \mu_n} \\
+> \Uparrow\;   && \sum_1^n \langle \lambda_n \gt 0 \rangle = 1 &\implies f \left( \sum_1^n \lambda_n x_n \right) \mathop{\le}\limits_{\langle f' (x) \equiv \mathrm{Const.} \rangle} \sum_1^n \lambda_n f (x_n) \\
+> \Downarrow\; &&                                  \mu_n \gt 0 &\implies f \left( \dfrac{\sum\limits_1^n \mu_n x_n}{\sum\limits_1^n \mu_n} \right) \mathop{\le}\limits_{\langle f' (x) \equiv \mathrm{Const.} \rangle} \dfrac{\sum\limits_1^n \mu_n f (x_n)}{\sum\limits_1^n \mu_n} &&\;\Leftarrow\; \lambda_n &= \dfrac{\mu_n}{\sum\limits_1^n \mu_n} \\
 > \end{alignedat}
 > $$
 >
@@ -78,7 +87,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \sum^n \langle \lambda_n \gt 0 \rangle = 1 \implies \prod^n x_n^{\lambda_n} \mathop{\le}\limits_{\langle x_n \equiv x \rangle} \sum^n \lambda_n x_n \\
+> \sum_1^n \langle \lambda_n \gt 0 \rangle = 1 \implies \prod_1^n x_n^{\lambda_n} \mathop{\le}\limits_{\langle x_n \equiv x \rangle} \sum_1^n \lambda_n x_n \\
 > \end{alignedat}
 > $$
 >
@@ -89,10 +98,10 @@ Resources:
 > \begin{alignedat}{3}
 > x \gt 0 \implies H_n \le G_n \mathop{\le}\limits_{\langle x_n \equiv x \rangle} A_n \le Q_n &&\;\Leftarrow\;
 > \left\lbrace\begin{alignedat}{3}
-> H_n &= \dfrac{n}{\sum\limits^n \dfrac{1}{x_n}}       &&= \dfrac{n}{\dfrac{1}{x_1} + \dfrac{1}{x_2} + \cdots + \dfrac{1}{x_n}} \\
-> G_n &= \left( \prod\limits^n x_n \right)^\frac{1}{n} &&= \left( x_1 x_2 \cdots x_n \right)^\frac{1}{n} \\
-> A_n &= \dfrac{\sum\limits^n x_n}{n}                  &&= \dfrac{x_1 + x_2 + \cdots + x_n}{n} \\
-> Q_n &= \sqrt{\dfrac{\sum\limits^n x_n^2}{n}}         &&= \sqrt{\dfrac{x_1^2 + x_2^2 + \cdots + x_n^2}{n}} \\
+> H_n &= \dfrac{n}{\sum\limits_1^n \dfrac{1}{x_n}}       &&= \dfrac{n}{\dfrac{1}{x_1} + \dfrac{1}{x_2} + \cdots + \dfrac{1}{x_n}} \\
+> G_n &= \left( \prod\limits_1^n x_n \right)^\frac{1}{n} &&= \left( x_1 x_2 \cdots x_n \right)^\frac{1}{n} \\
+> A_n &= \dfrac{\sum\limits_1^n x_n}{n}                  &&= \dfrac{x_1 + x_2 + \cdots + x_n}{n} \\
+> Q_n &= \sqrt{\dfrac{\sum\limits_1^n x_n^2}{n}}         &&= \sqrt{\dfrac{x_1^2 + x_2^2 + \cdots + x_n^2}{n}} \\
 > \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
@@ -121,8 +130,8 @@ Resources:
 >                    u_n, v_n &\ge 0 \\
 > \dfrac{1}{p} + \dfrac{1}{q} &= 1 \\
 > \end{aligned}\right. \implies \left\lbrace\begin{alignedat}{3}
->                               \sum^n u_n v_n &\mathop{\le}\limits_{\left\langle u_n^p \equiv \lambda v_n^q \right\rangle} \left( \sum^n u_n^p \right)^\frac{1}{p} \left( \sum^n v_n^q \right)^\frac{1}{q} &&\;\Leftarrow\; p &\gt 1 \\
->                               \sum^n u_n v_n &\mathop{\ge}\limits_{\left\langle u_n^p \equiv \lambda v_n^q \right\rangle} \left( \sum^n u_n^p \right)^\frac{1}{p} \left( \sum^n v_n^q \right)^\frac{1}{q} &&\;\Leftarrow\; p &\lt 1 \\
+>                               \sum_1^n u_n v_n &\mathop{\le}\limits_{\left\langle u_n^p \equiv \lambda v_n^q \right\rangle} \left( \sum_1^n u_n^p \right)^\frac{1}{p} \left( \sum_1^n v_n^q \right)^\frac{1}{q} &&\;\Leftarrow\; p &\gt 1 \\
+>                               \sum_1^n u_n v_n &\mathop{\ge}\limits_{\left\langle u_n^p \equiv \lambda v_n^q \right\rangle} \left( \sum_1^n u_n^p \right)^\frac{1}{p} \left( \sum_1^n v_n^q \right)^\frac{1}{q} &&\;\Leftarrow\; p &\lt 1 \\
 >                               \end{alignedat}\right.  \\
 > \end{alignedat}
 > $$
@@ -133,19 +142,19 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > u_n, v_n \ge 0 \implies \left\lbrace\begin{alignedat}{3}
->                         \left[ \sum^n (u_n + v_n)^p \right]^\frac{1}{p} &\mathop{\le}\limits_{\langle u_n \equiv \lambda v_n \rangle} \left( \sum^n u_n^p \right)^\frac{1}{p} + \left( \sum^n v_n^p \right)^\frac{1}{p} &&\;\Leftarrow\; p &> 1 \\
->                         \left[ \sum^n (u_n + v_n)^p \right]^\frac{1}{p} &\mathop{\ge}\limits_{\langle u_n \equiv \lambda v_n \rangle} \left( \sum^n u_n^p \right)^\frac{1}{p} + \left( \sum^n v_n^p \right)^\frac{1}{p} &&\;\Leftarrow\; p &\lt 1 \\
+>                         \left[ \sum_1^n (u_n + v_n)^p \right]^\frac{1}{p} &\mathop{\le}\limits_{\langle u_n \equiv \lambda v_n \rangle} \left( \sum_1^n u_n^p \right)^\frac{1}{p} + \left( \sum_1^n v_n^p \right)^\frac{1}{p} &&\;\Leftarrow\; p &> 1 \\
+>                         \left[ \sum_1^n (u_n + v_n)^p \right]^\frac{1}{p} &\mathop{\ge}\limits_{\langle u_n \equiv \lambda v_n \rangle} \left( \sum_1^n u_n^p \right)^\frac{1}{p} + \left( \sum_1^n v_n^p \right)^\frac{1}{p} &&\;\Leftarrow\; p &\lt 1 \\
 >                         \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
 >
 
-> ### 偏差概率不等式
+> ### 概率不等式
 
 > $$
-> \begin{array}{l|ll}
-> P (|X - E (X)| \ge \varepsilon) \le \dfrac{\mathrm{Var} (X)}{\varepsilon^2}     & P (|X - E (X)| \gt \varepsilon) \lt \dfrac{\mathrm{Var} (X)}{\varepsilon^2} \\
-> P (|X - E (X)| \lt \varepsilon) \ge 1 - \dfrac{\mathrm{Var} (X)}{\varepsilon^2} & P (|X - E (X)| \le \varepsilon) \gt 1 - \dfrac{\mathrm{Var} (X)}{\varepsilon^2} \\
-> \end{array}
+> \begin{alignedat}{3}
+> P (|X| \ge \varepsilon) &\le \dfrac{\mathrm{Exp} [X]^2}{\varepsilon^2} \\
+> P (|X| \lt \varepsilon) &\ge 1 - \dfrac{\mathrm{Var} [X]^2}{\varepsilon^2} \\
+> \end{alignedat}
 > $$
 >

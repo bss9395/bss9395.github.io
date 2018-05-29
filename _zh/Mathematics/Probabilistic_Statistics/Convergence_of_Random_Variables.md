@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     随机变量的收敛性
-Revised:   2018-05-29 01:35:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-29 16:45:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -45,16 +45,26 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad           & \lbrace X \le x \rbrace \iff \lbrace X \le x, Y \le y \rbrace \;\lor\; \lbrace X \le x, Y \ge y \rbrace \\
-> \Downarrow\quad         & \lbrace X \le x \rbrace \implies \lbrace Y \le y \rbrace \;\lor\; \lbrace Y - X \ge y - x \rbrace \\
-> \fbox{1}\Downarrow\quad & \mathcal{True} \equiv \neg \lbrace X \le x \rbrace \;\lor\; \lbrace Y \le y_+ \rbrace \;\lor\; \lbrace Y - X \ge y_+ - x \rbrace &\;&\Leftarrow\; y_+ - x \ge \varepsilon \\
-> \Downarrow\quad         & P [X \le x] \le P [Y \le y_+] + P [|Y - X| \ge \varepsilon] \\
-> \Downarrow\quad         & P [X \le x] \le \liminf P [Y \le y_+] \\
-> \fbox{2}\Downarrow\quad & \mathcal{True} \equiv \neg \lbrace Y \le y_- \rbrace \;\lor\; \lbrace X \le x \rbrace \;\lor\; \lbrace X - Y \ge x - y_- \rbrace &\;&\Leftarrow\; x - y_- \ge \varepsilon \\
-> \Downarrow\quad         & P [Y \le y_-] - P [|X - Y| \ge \varepsilon] \le P [X \le x] \\
-> \Downarrow\quad         & \limsup P [Y \le y_-] \le P [X \le x] \\
-> \fbox{3}\Downarrow\quad & \limsup P [Y \le y_-] \le P [X \le x] \le \liminf P [Y \le y_+]                                                                  &\;&\Leftarrow\; \lim P [|X - Y| \lt \varepsilon] = 1 \\
-> \Downarrow\quad         & \lim_{n \to +\infty} C_n (x) \mathop{\longrightarrow}^{\mathcal{Weak}} C (x)
+> \Uparrow\quad           & \lbrace X \le x \rbrace \iff \lbrace X \le x, X_n \le x_n \rbrace \;\lor\; \lbrace X \le x, X_n \ge x_n \rbrace \\
+> \Downarrow\quad         & \lbrace X \le x \rbrace \implies \lbrace X_n \le x_n \rbrace \;\lor\; \lbrace X_n - X \ge x_n - x \rbrace \\
+> \fbox{1}\Downarrow\quad & \mathcal{True} \equiv \neg \lbrace X \le x \rbrace \;\lor\; \lbrace X_n \le x_{n+} \rbrace \;\lor\; \lbrace X_n - X \ge x_{n+} - x \rbrace &\;&\Leftarrow\; x_{n+} - x \ge \varepsilon \\
+> \Downarrow\quad         & P [X \le x] \le P [X_n \le x_{n+}] + P [|X_n - X| \ge \varepsilon] \\
+> \Downarrow\quad         & P [X \le x] \le \liminf P [X \le x_{n+}] \\
+> \fbox{2}\Downarrow\quad & \mathcal{True} \equiv \neg \lbrace X_n \le x_{n-} \rbrace \;\lor\; \lbrace X \le x \rbrace \;\lor\; \lbrace X - X_n \ge x - x_{n-} \rbrace &\;&\Leftarrow\; x - x_{n-} \ge \varepsilon \\
+> \Downarrow\quad         & P [X_n \le x_{n-}] - P [|X - X_n| \ge \varepsilon] \le P [X \le x] \\
+> \Downarrow\quad         & \limsup P [X_n \le x_{n-}] \le P [X \le x] \\
+> \fbox{3}\Downarrow\quad & \limsup P [X_n \le x_{n-}] \le P [X \le x] \le \liminf P [X_n \le x_{n+}]                                                                  &\;&\Leftarrow\; \lim P [|X - X_n| \lt \varepsilon] = 1 \\
+> \Downarrow\quad         & \forall x \in \mathcal{Conti.}; \lim_{n \to +\infty} P [X_n \le x] = P [X \le x] \\
+> \Downarrow\quad         & \lim_{n \to +\infty} C_n (x) \mathop{\longrightarrow}^{\mathcal{Weak}} C (x) \\
+> \end{alignedat}
+> $$
+>
+
+> ### 依概率收敛与依分布收敛的等效性
+
+> $$
+> \begin{alignedat}{3}
+> \lim_{n \to +\infty} X_n \mathop{\longrightarrow}^{\mathcal{Prob.}} \alpha \iff \lim_{n \to +\infty} C_n (x) \mathop{\longrightarrow}_{P [X = \alpha] = 1}^{\mathcal{Weak}} C (x) \\
 > \end{alignedat}
 > $$
 >

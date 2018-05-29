@@ -11,9 +11,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad           && P [|X| \ge \varepsilon] &= \mathop{\left\langle \sum \int \right\rangle}_{|x| \ge \varepsilon} p (x) \\
->                         &&                         &\le \mathop{\left\langle \sum \int \right\rangle}_{|x| \ge \varepsilon} \dfrac{x^2 \cdot p (x)}{\varepsilon^2} \\
->                         &&                         &\le \dfrac{1}{\varepsilon^2} \mathop{\left\langle \sum \int \right\rangle}_{x} x^2 \cdot p (x) \\
+> \Uparrow\quad           && P [|X| \ge \varepsilon] &= \mathop{\left\langle \sum \int \mathrm{d} x \right\rangle}_{|x| \ge \varepsilon} p (x) \\
+>                         &&                         &\le \mathop{\left\langle \sum \int \mathrm{d} x \right\rangle}_{|x| \ge \varepsilon} \dfrac{x^2 \cdot p (x)}{\varepsilon^2} \\
+>                         &&                         &\le \dfrac{1}{\varepsilon^2} \mathop{\left\langle \sum \int \mathrm{d} x \right\rangle}_{x} x^2 \cdot p (x) \\
 > \fbox{1}\Downarrow\quad && P [|X| \ge \varepsilon] &\le \dfrac{\mathrm{Exp} [X]^2}{\varepsilon^2} \\
 > \fbox{2}\Downarrow\quad && P [|X| \lt \varepsilon] &\ge 1 - \dfrac{\mathrm{Exp} [X]^2}{\varepsilon^2} \\
 > \end{alignedat}
