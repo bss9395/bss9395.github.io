@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     特征函数
-Revised:   2018-05-29 20:01:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-30 23:16:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -70,9 +70,26 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \sum_{i = 1}^n \sum_{j = 1}^n \mathrm{Exp} [e^{\imath (t_i - t_j) \cdot X}] z_i \overline{z_j} &= \mathop{\left\langle \sum \int \mathrm{d} x \right\rangle}_{x} p (x) \sum_{i = 1}^n z_i e^{\imath t_i \cdot X} \sum_{j = 1}^n \overline{z_j} e^{- \imath t_j \cdot X} \\
->                                                                                                &= \mathop{\left\langle \sum \int \mathrm{d} x \right\rangle}_{x} p (x) \left[ \sum_{i = 1}^n z_i e^{\imath t_i \cdot X} \right]^2 \\
+> \sum_{i = 1}^n \sum_{j = 1}^n \mathrm{Exp} [e^{\imath (t_i - t_j) \cdot X}] z_i \overline{z_j} &= \int_x \mathrm{d} C (x) \sum_{i = 1}^n z_i e^{\imath t_i \cdot X} \sum_{j = 1}^n \overline{z_j} e^{- \imath t_j \cdot X} \\
+>                                                                                                &= \int_x \mathrm{d} C (x) \left[ \sum_{i = 1}^n z_i e^{\imath t_i \cdot X} \right]^2 \\
 >                                                                                                &\ge 0 \\
 > \end{alignedat}
 > $$
 >
+
+> ### 反演公式
+
+> $$
+> \begin{alignedat}{3}
+> \Uparrow\quad && \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \int_x \dfrac{e^{\imath t \cdot (x - \alpha)} - e^{\imath t \cdot (x - \beta)}}{\imath t} \mathrm{d} C (x) \mathrm{d} t \\
+> && &= \dfrac{1}{2 \pi} \int_x \int_0^{+\infty} \dfrac{e^{\imath t \cdot (x - \alpha)} - e^{- \imath t \cdot (x - \alpha)}}{\imath t} - \dfrac{e^{\imath t \cdot (x - \beta)} - e^{- \imath t \cdot (x - \beta)}}{\imath t} \mathrm{d} t \mathrm{d} C (x) \\
+> && &= \dfrac{1}{\pi} \int_x \int_0^{+\infty} \dfrac{\sin (x - \alpha) t}{t} - \dfrac{\sin (x - \beta) t}{t} \mathrm{d} t \mathrm{d} C (x) \\
+> && &= \left[ \dfrac{1}{2} \int_{x = \alpha} + \int_{\alpha \lt x \lt \beta} + \dfrac{1}{2} \int_{x = \beta} \right] \mathrm{d} C (x) \\
+> && &= \dfrac{C (\alpha) - C (\alpha^-)}{2} + C (\beta^-) - C (\alpha) + \dfrac{C (\beta) - C (\beta^-)}{2} \\
+> && &= \dfrac{C (\beta) + C (\beta^-)}{2} - \dfrac{C (\alpha) + C (\alpha^-)}{2} \\
+>\Downarrow\quad && \alpha, \beta \in \mathcal{Conti.} \implies C (\beta) - C (\alpha) &= \dfrac{1}{2} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
+> \end{alignedat}
+> $$
+>
+
+

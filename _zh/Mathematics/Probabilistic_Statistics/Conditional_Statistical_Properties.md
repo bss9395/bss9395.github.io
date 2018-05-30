@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     条件统计特性
-Revised:   2018-05-24 22:11:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-30 20:35:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -63,6 +63,28 @@ Resources:
 >                                                                          &= \int_{(x_1, \cdots, x_m)} f (x_1, \cdots, x_m) \cdot \int_{(y_1, \cdots, y_n)} p (x_1, \cdots, x_m, y_1, \cdots, y_n) \mathrm{d} (y_1, \cdots, y_n) \mathrm{d} (x_1, \cdots, x_m) \\
 >                                                                          &= \int_{x_1} \cdots \int_{x_m} f (x_1, \cdots, x_m) \cdot p_{X_1, \cdots, X_m} (x_1, \cdots, x_m) \mathrm{d} x_1 \cdots \mathrm{d} x_m \\
 >                                                                          &= \mathrm{Exp} [f (X_1, \cdots, X_m)] \\
+> \end{alignedat}
+> $$
+>
+
+> ### 条件综合期望
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\Uparrow\quad & \sum_x p_X (x \mid y_1, \cdots, y_n) = \sum_x C (x \mid y_1, \cdots, y_n) - C (x^- \mid y_1, \cdots, y_n) \\
+> \fbox{2}\Uparrow\quad & \int_x p_X (x \mid y_1, \cdots, y_n) \mathrm{d} x = \int_x \dfrac{\mathrm{d} C (x \mid y_1, \cdots, y_n)}{\mathrm{d} x} \mathrm{d} x \\
+> \Downarrow\quad       &\mathrm{Exp} [X \mid Y_1, \cdots, Y_n] = \int_x x \cdot \mathrm{d} C (x \mid y_1, \cdots, y_n) \\
+> \end{alignedat}
+> $$
+>
+
+> ### 条件综合再期望
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\Uparrow\quad & \sum_{(y_1, \cdots, y_n)} p_{Y_1, \cdots, Y_n} (y_1, \cdots, y_n) = \sum_{(y_1, \cdots, y_n)} J (y_1, \cdots, y_n) - J (y_1^-, \cdots, y_n^-) \\
+> \fbox{2}\Uparrow\quad & \int_{(y_1, \cdots, y_n)} p_{Y_1, \cdots, Y_n} (y_1, \cdots, y_n) \mathrm{d} (y_1, \cdots, y_n) = \int_{(y_1, \cdots, y_n)} \dfrac{\partial J (y_1, \cdots, y_n)}{\partial y_1 \cdots \partial y_n} \mathrm{d} (y_1, \cdots, y_n) \\
+> \Downarrow\quad       & \mathrm{Exp} [\mathrm{Exp} [X \mid Y_1, \cdots, Y_n]] = \int_{(y_1, \cdots, y_n)} \mathrm{Exp} [X \mid Y_1 = y_1, \cdots, Y_n = y_n] \mathrm{d} J (y_1, \cdots, y_n) \\
 > \end{alignedat}
 > $$
 >

@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     统计特性
-Revised:   2018-05-23 21:14:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-30 20:29:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -43,6 +43,17 @@ Resources:
 >                                     &= \int_0^{+\infty} \int_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \ge y} p (x_1, \cdots, x_m) \mathrm{d} (x_1, \cdots, x_m) \mathrm{d} y - \int_0^{+\infty} \int_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \lt y} p (x_1, \cdots, x_m) \mathrm{d} (x_1, \cdots, x_m) \mathrm{d} y \\
 >                                     &= \int_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \ge 0} p (x_1, \cdots, x_m) \int_0^{f (x_1, \cdots, x_m)} \mathrm{d} y \mathrm{d} (x_1, \cdots, x_m) - \int_{(x_1, \cdots, x_m) : f (x_1, \cdots, x_m) \lt 0} p (x_1, \cdots, x_m) \int_0^{- f (x_1, \cdots, x_m)} \mathrm{d} y \mathrm{d} (x_1, \cdots, x_m) \\
 >                                     &= \int_{x_1} \cdots \int_{x_m} f (x_1, \cdots, x_m) p (x_1, \cdots, x_m) \mathrm{d} x_1 \cdots \mathrm{d} x_m \\
+> \end{alignedat}
+> $$
+>
+
+> ### 综合期望 $\mathrm{Exp_{ectation}}$
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\Uparrow\quad & \sum_x p (x) = \sum_x C (x) - C (x^-) \\
+> \fbox{2}\Uparrow\quad & \int_x p (x) \mathrm{d} x = \int_x \dfrac{\mathrm{d} C (x)}{\mathrm{d} x} \mathrm{d} x \\
+> \Downarrow\quad       & \mathrm{Exp} [X] = \int_x x \cdot \mathrm{d} C (x) \\
 > \end{alignedat}
 > $$
 >

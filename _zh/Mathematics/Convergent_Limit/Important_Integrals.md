@@ -60,15 +60,15 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\; & \int_0^{+\infty} \sin x^2 \mathrm{d} x \xlongequal{t = x^2} \int_0^{+\infty} \cos x^2 \mathrm{d} x \xlongequal{t = x^2} \dfrac{1}{2} \sqrt{\dfrac{\pi}{2}} \\
+> \fbox{1}\; & \int_0^{+\infty} \sin x^2 \mathrm{d} x = \int_0^{+\infty} \cos x^2 \mathrm{d} x = \dfrac{1}{2} \sqrt{\dfrac{\pi}{2}} \\
 > \fbox{2}\; & \int_0^\pi \ln (1 - 2 r \cos x + r^2) \mathrm{d} x \xlongequal[\langle \lvert r \rvert < 1 \rangle]{t = \tan \frac{x}{2}} 0 \\
 > \fbox{3}\; & \int_{- \pi}^\pi \dfrac{1 - r^2}{1 - 2 r \cdot \cos x + r^2} \mathrm{d} x \xlongequal[\langle 0 \lt r \lt 1 \rangle]{t = \tan \frac{x}{2}} 2 \pi \\
 > \fbox{4}\; & \int_0^\pi \dfrac{\sin \left( n + \dfrac{1}{2} \right) x}{\sin \dfrac{x}{2}} \mathrm{d} x \xlongequal{\sum\limits_1^n \cos n x} \pi \\
-> \fbox{5}\; & \int_0^{+\infty} \dfrac{\sin \lambda x}{x} \mathrm{d} x = \left\lbrace\begin{alignedat}{3}
->                                                                        + \dfrac{\pi}{2} &\;\Leftarrow\; \lambda \gt 0 \\
->                                                                        0                &\;\Leftarrow\; \lambda = 0 \\
->                                                                        - \dfrac{\pi}{2} &\;\Leftarrow\; \lambda \lt 0 \\
->                                                                        \end{alignedat}\right. \\
+> \fbox{5}\; & \int_0^{+\infty} \dfrac{\sin \lambda x}{x} \mathrm{d} x \xlongequal{\int_0^{+\infty} e^{- t x } \frac{\sin x}{x} \mathrm{d} x} \left\lbrace\begin{alignedat}{3}
+>                                                                                                                                             + \dfrac{\pi}{2} &\;\Leftarrow\; \lambda \gt 0 \\
+>                                                                                                                                             0                &\;\Leftarrow\; \lambda = 0 \\
+>                                                                                                                                             - \dfrac{\pi}{2} &\;\Leftarrow\; \lambda \lt 0 \\
+>                                                                                                                                             \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
 >
