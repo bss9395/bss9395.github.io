@@ -81,15 +81,23 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad && \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \int_x \dfrac{e^{\imath t \cdot (x - \alpha)} - e^{\imath t \cdot (x - \beta)}}{\imath t} \mathrm{d} C (x) \mathrm{d} t \\
-> && &= \dfrac{1}{2 \pi} \int_x \int_0^{+\infty} \dfrac{e^{\imath t \cdot (x - \alpha)} - e^{- \imath t \cdot (x - \alpha)}}{\imath t} - \dfrac{e^{\imath t \cdot (x - \beta)} - e^{- \imath t \cdot (x - \beta)}}{\imath t} \mathrm{d} t \mathrm{d} C (x) \\
-> && &= \dfrac{1}{\pi} \int_x \int_0^{+\infty} \dfrac{\sin (x - \alpha) t}{t} - \dfrac{\sin (x - \beta) t}{t} \mathrm{d} t \mathrm{d} C (x) \\
-> && &= \left[ \dfrac{1}{2} \int_{x = \alpha} + \int_{\alpha \lt x \lt \beta} + \dfrac{1}{2} \int_{x = \beta} \right] \mathrm{d} C (x) \\
-> && &= \dfrac{C (\alpha) - C (\alpha^-)}{2} + C (\beta^-) - C (\alpha) + \dfrac{C (\beta) - C (\beta^-)}{2} \\
-> && &= \dfrac{C (\beta) + C (\beta^-)}{2} - \dfrac{C (\alpha) + C (\alpha^-)}{2} \\
->\Downarrow\quad && \alpha, \beta \in \mathcal{Conti.} \implies C (\beta) - C (\alpha) &= \dfrac{1}{2} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
+> \Uparrow\quad   && \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \int_x \dfrac{e^{\imath t \cdot (x - \alpha)} - e^{\imath t \cdot (x - \beta)}}{\imath t} \mathrm{d} C (x) \mathrm{d} t \\
+>                 &&                                                                                                                                                                       &= \dfrac{1}{2 \pi} \int_x \int_0^{+\infty} \dfrac{e^{\imath t \cdot (x - \alpha)} - e^{- \imath t \cdot (x - \alpha)}}{\imath t} - \dfrac{e^{\imath t \cdot (x - \beta)} - e^{- \imath t \cdot (x - \beta)}}{\imath t} \mathrm{d} t \mathrm{d} C (x) \\
+>                 &&                                                                                                                                                                       &= \dfrac{1}{\pi} \int_x \int_0^{+\infty} \dfrac{\sin (x - \alpha) t}{t} - \dfrac{\sin (x - \beta) t}{t} \mathrm{d} t \mathrm{d} C (x) \\
+>                 &&                                                                                                                                                                       &= \left[ \dfrac{1}{2} \int_{x = \alpha} + \int_{\alpha \lt x \lt \beta} + \dfrac{1}{2} \int_{x = \beta} \right] \mathrm{d} C (x) \\
+>                 &&                                                                                                                                                                       &= \dfrac{C (\alpha) - C (\alpha^-)}{2} + C (\beta^-) - C (\alpha) + \dfrac{C (\beta) - C (\beta^-)}{2} \\
+> \Downarrow\quad &&                                                                                             \dfrac{C (\beta) + C (\beta^-)}{2} - \dfrac{C (\alpha) + C (\alpha^-)}{2} &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
+> \Downarrow\quad &&                                                                                                    \alpha, \beta \in \mathcal{Conti.} \implies C (\beta) - C (\alpha) &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
 > \end{alignedat}
 > $$
 >
 
+> ### 特征函数唯一决定分布函数
 
+> $$
+> \begin{alignedat}{3}
+> \Uparrow\quad   & \beta \in \mathcal{Conti.} \implies C (\beta) = \lim_{\alpha \to -\infty} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
+> \Downarrow\quad & C (x) = \lim_{\beta \to x^+} C (\beta) \\
+> \end{alignedat}
+> $$
+>
