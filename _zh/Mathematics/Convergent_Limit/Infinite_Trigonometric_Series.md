@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     无穷三角级数
-Revised:   2018-04-30 20:16:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-31 21:26:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -100,15 +100,14 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\;           &&                         f (x) &= \dfrac{a_0}{2} + \sum_1^{+\infty} (a_n \cos n x + b_n \sin n x) \\
->                      &&                               &= \dfrac{a_0}{2} + \sum_1^{+\infty} \left( a_n \dfrac{e^{\imath n x} + e^{- \imath n x}}{2} + b_n \dfrac{e^{\imath n x} - e^{- \imath n x}}{2 \imath} \right) \\
->                      &&                               &= \dfrac{a_0}{2} + \sum_1^{+\infty} \left( \dfrac{a_n - \imath b_n}{2} e^{\imath n x} + \dfrac{a_n + \imath b_n}{2} e^{- \imath n x} \right) \\
->                      &&                               &= \sum_{-\infty}^{+\infty} c_n e^{\imath n x} \\
-> \Downarrow\;         &&                           c_0 &= \dfrac{a_0}{2} = \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) \mathrm{d} x = \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) e^{\imath 0 x} \mathrm{d} x \\
-> \Downarrow\;         && c_{+ \langle n \gt 0 \rangle} &= \dfrac{a_n - \imath b_n}{2} = \dfrac{1}{2 \pi} \left[ \int_{- \pi}^\pi f (x) \cos n x \mathrm{d} x - \imath \int_{- \pi}^\pi f (x) \sin n x \mathrm{d} x \right] = \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) e^{- \imath n x} \mathrm{d} x \\
-> \Downarrow\;         && c_{- \langle n \gt 0 \rangle} &= \dfrac{a_n + \imath b_n}{2} = \dfrac{1}{2 \pi} \left[ \int_{- \pi}^\pi f (x) \cos n x \mathrm{d} x + \imath \int_{- \pi}^\pi f (x) \sin n x \mathrm{d} x  \right] = \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) e^{+ \imath n x} \mathrm{d} x \\
-> \fbox{1}\Downarrow\; &&                   \hat{f} (n) &= \dfrac{1}{2 \pi} \int_{- \pi}^\pi f (x) e^{- \imath n x} \mathrm{d} x \\
-> \fbox{2}\Downarrow\; &&                         f (x) &= \sum_{-\infty}^{+\infty} \hat{f} (n) e^{\imath n x} \\ 
+> \Uparrow\;           &&       f (x) &= \dfrac{a_0}{2} + \sum_1^{+\infty} (a_n \cos n x + b_n \sin n x) \\
+>                      &&             &= \dfrac{a_0}{2} + \sum_1^{+\infty} \left( a_n \dfrac{e^{\imath n x} + e^{- \imath n x}}{2} + b_n \dfrac{e^{\imath n x} - e^{- \imath n x}}{2 \imath} \right) \\
+>                      &&             &= \dfrac{a_0}{2} + \sum_1^{+\infty} \left( \dfrac{a_n - \imath b_n}{2} e^{\imath n x} + \dfrac{a_n + \imath b_n}{2} e^{- \imath n x} \right) \\
+>                      &&             &= \dfrac{a_0}{2} e^{\imath 0 x} + \sum_1^{+\infty} \dfrac{a_n - \imath b_n}{2} e^{\imath n x} + \sum_{-\infty}^{- 1} \dfrac{a_{- n} + \imath b_{- n}}{2} e^{\imath n x} \\
+>                      &&             &= \dfrac{1}{\sqrt{2 \pi}} \sum_{-\infty}^{+\infty} e^{\imath n x} \dfrac{1}{\sqrt{2 \pi}} \int_{- \pi}^{\pi} f (x) e^{- \imath n x} \mathrm{d} x \\
+> \fbox{1}\Downarrow\; && \hat{f} (n) &= \dfrac{1}{\sqrt{2 \pi}} \int_{- \pi}^\pi f (x) e^{- \imath n x} \mathrm{d} x \\
+> \fbox{2}\Downarrow\; &&       f (x) &= \dfrac{1}{\sqrt{2 \pi}} \sum_{-\infty}^{+\infty} \hat{f} (n) e^{\imath n x} \\ 
 > \end{alignedat}
 > $$
 >
+

@@ -45,15 +45,15 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad           & \lbrace X \le x \rbrace \iff \lbrace X \le x, X_n \le x_n \rbrace \;\lor\; \lbrace X \le x, X_n \ge x_n \rbrace \\
-> \Downarrow\quad         & \lbrace X \le x \rbrace \implies \lbrace X_n \le x_n \rbrace \;\lor\; \lbrace X_n - X \ge x_n - x \rbrace \\
-> \fbox{1}\Downarrow\quad & \mathcal{True} \equiv \neg \lbrace X \le x \rbrace \;\lor\; \lbrace X_n \le x_{n+} \rbrace \;\lor\; \lbrace X_n - X \ge x_{n+} - x \rbrace &\;&\Leftarrow\; x_{n+} - x \ge \varepsilon \\
-> \Downarrow\quad         & P [X \le x] \le P [X_n \le x_{n+}] + P [|X_n - X| \ge \varepsilon] \\
-> \Downarrow\quad         & P [X \le x] \le \liminf P [X \le x_{n+}] \\
-> \fbox{2}\Downarrow\quad & \mathcal{True} \equiv \neg \lbrace X_n \le x_{n-} \rbrace \;\lor\; \lbrace X \le x \rbrace \;\lor\; \lbrace X - X_n \ge x - x_{n-} \rbrace &\;&\Leftarrow\; x - x_{n-} \ge \varepsilon \\
-> \Downarrow\quad         & P [X_n \le x_{n-}] - P [|X - X_n| \ge \varepsilon] \le P [X \le x] \\
-> \Downarrow\quad         & \limsup P [X_n \le x_{n-}] \le P [X \le x] \\
-> \fbox{3}\Downarrow\quad & \limsup P [X_n \le x_{n-}] \le P [X \le x] \le \liminf P [X_n \le x_{n+}]                                                                  &\;&\Leftarrow\; \lim P [|X - X_n| \lt \varepsilon] = 1 \\
+> \Uparrow\quad           & \lbrace X \le x \rbrace \iff \lbrace X \le x, X_n \le x' \rbrace \;\lor\; \lbrace X \le x, X_n \ge x' \rbrace \\
+> \Downarrow\quad         & \lbrace X \le x \rbrace \implies \lbrace X_n \le x' \rbrace \;\lor\; \lbrace X_n - X \ge x' - x \rbrace \\
+> \fbox{1}\Downarrow\quad & \mathcal{True} \equiv \neg \lbrace X \le x \rbrace \;\lor\; \lbrace X_n \le x^+ \rbrace \;\lor\; \lbrace X_n - X \ge x^+ - x \rbrace &\;&\Leftarrow\; x^+ - x \ge \varepsilon \\
+> \Downarrow\quad         & P [X \le x] \le P [X_n \le x^+] + P [|X_n - X| \ge \varepsilon] \\
+> \Downarrow\quad         & P [X \le x] \le \lim_{n \to +\infty} \inf_{x^+} P [X_n \le x^+] \\
+> \fbox{2}\Downarrow\quad & \mathcal{True} \equiv \neg \lbrace X_n \le x^- \rbrace \;\lor\; \lbrace X \le x \rbrace \;\lor\; \lbrace X - X_n \ge x - x^- \rbrace &\;&\Leftarrow\; x - x^- \ge \varepsilon \\
+> \Downarrow\quad         & P [X_n \le x^-] - P [|X - X_n| \ge \varepsilon] \le P [X \le x] \\
+> \Downarrow\quad         & \lim_{n \to +\infty} \sup_{x^-} P [X_n \le x^-] \le P [X \le x] \\
+> \fbox{3}\Downarrow\quad & \lim_{n \to +\infty} \sup_{x^-} P [X_n \le x^-] \le P [X \le x] \le \lim_{n \to +\infty} \inf_{x^+} P [X_n \le x^+]                                                                  &\;&\Leftarrow\; \lim P [|X - X_n| \lt \varepsilon] = 1 \\
 > \Downarrow\quad         & \forall x \in \mathcal{Conti.}; \lim_{n \to +\infty} P [X_n \le x] = P [X \le x] \\
 > \Downarrow\quad         & \lim_{n \to +\infty} C_n (x) \mathop{\longrightarrow}^{\mathcal{Weak}} C (x) \\
 > \end{alignedat}

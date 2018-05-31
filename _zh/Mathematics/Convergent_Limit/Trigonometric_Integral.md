@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     收敛极限
 Title:     三角积分
-Revised:   2018-04-30 20:16:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-05-31 21:17:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -13,8 +13,8 @@ Resources:
 > \begin{alignedat}{3}
 > f (\langle -\infty < x < +\infty \rangle) &= \int_0^{+\infty} [a (u) \cdot \cos u x + b (u) \cdot \sin u x] \mathrm{d} u 
 > &&\;\Leftarrow\; \left\lbrace\begin{alignedat}{3}
->                  a (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (t) \cdot \cos u x \mathrm{d} t \\
->                  b (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (t) \cdot \sin u x \mathrm{d} t \\
+>                  a (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (x) \cdot \cos u x \mathrm{d} x \\
+>                  b (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (x) \cdot \sin u x \mathrm{d} x \\
 >                  \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
@@ -26,13 +26,13 @@ Resources:
 > \begin{alignedat}{3}
 > f (\langle -\infty < x < +\infty) &\xlongequal{f (x) = f (- x)} \int_0^{+\infty} a (u) \cdot \cos u x \mathrm{d} u 
 > &&\;\Leftarrow\; \left\lbrace\begin{alignedat}{3}
->                      a (u) &= \dfrac{2}{\pi} \int_0^{+\infty} f (t) \cdot \cos u t \mathrm{d} t \\
->                  0 = b (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (t) \cdot \sin u t \mathrm{d} t \\
+>                      a (u) &= \dfrac{2}{\pi} \int_0^{+\infty} f (x) \cdot \cos u x \mathrm{d} x \\
+>                  0 = b (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (x) \cdot \sin u x \mathrm{d} x \\
 >                  \end{alignedat}\right. \\
 > f (\langle -\infty < x < +\infty) &\xlongequal{f (x) = - f (- x)} \int_0^{+\infty} b (u) \cdot \sin u x \mathrm{d} u 
 > &&\;\Leftarrow\; \left\lbrace\begin{alignedat}{3}
->                  0 = a (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (t) \cdot \cos u t \mathrm{d} t \\
->                      b (u) &= \dfrac{2}{\pi} \int_0^{+\infty} f (t) \cdot \sin u t \mathrm{d} t \\
+>                  0 = a (u) &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} f (x) \cdot \cos u x \mathrm{d} x \\
+>                      b (u) &= \dfrac{2}{\pi} \int_0^{+\infty} f (x) \cdot \sin u x \mathrm{d} x \\
 >                  \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
@@ -65,13 +65,11 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \Uparrow\;           &&       f (x) &= \int_0^{+\infty} [a (u) \cdot \cos u x + b (u) \cdot \sin u x] \mathrm{d} u \\
->                      &&             &= \dfrac{1}{\pi} \int_0^{+\infty} \mathrm{d} u \int_{-\infty}^{+\infty} f (t) \cos u (x - t) \mathrm{d} t \\
->                      &&             &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm{d} u \int_{-\infty}^{+\infty} f (t) \cos u (x - t) \mathrm{d} t \\
-> \Uparrow\;           &&           0 &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm{d} u \int_{-\infty}^{+\infty} f (t) \sin u (x - t) \mathrm{d} t \\
-> \Downarrow\;         &&       f (x) &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm{d} u \int_{-\infty}^{+\infty} f (t) \cos u (x - t) \mathrm{d} t + \imath \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm{d} u \int_{-\infty}^{+\infty} f (t) \sin u (x - t) \mathrm{d} t \\
->                      &&             &=\dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm{d} u \int_{-\infty}^{+\infty} f (t) e^{\imath u (x - t)} \mathrm{d} t \\
->                      &&             &=\dfrac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} e^{\imath u x} \mathrm{d} u \cdot \dfrac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} f (t) e^{- \imath u t} \mathrm{d} t \\
-> \fbox{1}\Downarrow\; && \hat{f} (u) &= \dfrac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} f (t) e^{- \imath u t} \mathrm{d} t \\
+>                      &&             &= \int_0^{+\infty} \left[ a (u) \dfrac{e^{\imath u x} + e^{- \imath u x}}{2} + b (u) \dfrac{e^{\imath u x} - e^{- \imath ux}}{2 \imath} \right] \mathrm{d} u \\
+>                      &&             &= \int_0^{+\infty} \left[ \dfrac{a (u) - \imath b (u)}{2} e^{\imath u x} + \dfrac{a (u) + \imath b (u)}{2} e^{- \imath u x} \right] \mathrm{d} u \\
+>                      &&             &= \int_{-\infty}^{+\infty} \dfrac{a (u) - \imath b (u)}{2} e^{\imath u x} \mathrm{d} u + \int_{-\infty}^0 \dfrac{a (- u) + \imath b (- u)}{2} e^{\imath u x} \mathrm{d} u \\
+>                      &&             &= \dfrac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} e^{\imath u x} \mathrm{d} u \dfrac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} f (x) e^{- \imath u x} \mathrm{d} x \\
+> \fbox{1}\Downarrow\; && \hat{f} (u) &= \dfrac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} f (x) e^{- \imath u x} \mathrm{d} x \\
 > \fbox{2}\Downarrow\; &&       f (x) &= \dfrac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} \hat{f} (u) e^{\imath u x} \mathrm{d} u \\
 > \end{alignedat}
 > $$
@@ -88,3 +86,4 @@ Resources:
 > \end{alignedat}
 > $$
 >
+

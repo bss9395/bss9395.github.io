@@ -267,7 +267,7 @@ Resources:
 > \begin{alignedat}{3}
 >                                                 P (X = k) &= \dfrac{ {K \choose k} {N - K \choose n - k}}{ {N \choose n}} \quad\Leftarrow\quad k \in \lbrace \max (0, n - N + K), \cdots, \min (K, n) \rbrace \\
 >                                                           &= \dfrac{ {n \choose k} {N - n \choose K - k}}{ {N \choose K}} \\
->                    \mathrm{Exp} [\mathrm{HG} (N, K, n)]^h &= \sum_{k = \max (0, n - N + K)}^{\min (K, n)} k^h \dfrac{ {K \choose k} {N - K \choose n - k}}{ N \choose n}} \\
+>                    \mathrm{Exp} [\mathrm{HG} (N, K, n)]^h &= \sum_{k = \max (0, n - N + K)}^{\min (K, n)} k^h \dfrac{ {K \choose k} {N - K \choose n - k}}{ N \choose n} \\
 >                                                           &= \dfrac{n K}{N} \sum_{k = \max (1, n - N + K)}^{\min (K, n)} k^{h - 1} \dfrac{ {K - 1 \choose k - 1} {N - K \choose n - k}}{N - 1 \choose n - 1} \\
 >                                                           &\xlongequal{l = k - 1} \dfrac{n K}{N} \sum_{l = \max (0, n - 1 - N + K)}^{\min (K - 1, n - 1)} (l +1)^{h - 1} \dfrac{ {K - 1 \choose l} {N - K \choose n - 1 - l}}{ {N - 1 \choose n - 1}} \\
 >                                                           &= \dfrac{n K}{N} \cdot \mathrm{Exp} [\mathrm{HG} (N - 1, K - 1, n - 1) + 1]^{h - 1} \\

@@ -377,10 +377,12 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                                       p (x) &= \dfrac{1}{\pi} \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
->                                       C (x) &= \dfrac{1}{\pi} \left[ \arctan \left( \dfrac{x - \mu}{\lambda} \right) + \dfrac{\pi}{2} \right] \\
-> \mathrm{Exp} |\mathrm{AT} (\mu, \lambda)^h| &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} |x^h| \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \mathrm{d} x \\
->                                             &\to +\infty \quad\Leftarrow\quad \lim_{+\infty} x^h \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \sim \lambda x^{h - 2} \\
+>                                         p (x) &= \dfrac{1}{\pi} \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
+>                                         C (x) &= \dfrac{1}{\pi} \left[ \arctan \left( \dfrac{x - \mu}{\lambda} \right) + \dfrac{\pi}{2} \right] \\
+>           \mathrm{Exp} [e^{\imath t \cdot X}] &= \int_{-\infty}^{+\infty} e^{\imath t \cdot x} \dfrac{1}{\pi} \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \mathrm{d} x \\
+>                                               &= e^{\imath \mu t - \lambda |t|} \\
+> \mathrm{Exp} [|\mathrm{AT} (\mu, \lambda)^h|] &= \dfrac{1}{\pi} \int_{-\infty}^{+\infty} |x^h| \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \mathrm{d} x \\
+>                                               &\to +\infty \quad\Leftarrow\quad \lim_{+\infty} x^h \dfrac{\lambda}{\lambda^2 + (x - \mu)^2} \sim \lambda x^{h - 2} \\
 > \end{alignedat}
 > $$
 >
