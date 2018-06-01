@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     随机变量的收敛性
-Revised:   2018-05-29 16:45:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-06-01 18:56:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -36,7 +36,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \lim_{n \to +\infty} C_n (x) \mathop{\longrightarrow}^{\mathcal{Weak}} C (x) \iff \forall x \in \mathcal{Conti.}; \lim_{n \to +\infty} P [X_n \le x] = P [X \le x] \\
+> \lim_{n \to +\infty} C (X_n) \mathop{\longrightarrow}^{\mathcal{Weak}} C (X) \iff \forall x \in \mathcal{Conti.}; \lim_{n \to +\infty} P [X_n \le x] = P [X \le x] \\
 > \end{alignedat}
 > $$
 >
@@ -55,16 +55,21 @@ Resources:
 > \Downarrow\quad         & \lim_{n \to +\infty} \sup_{x^-} P [X_n \le x^-] \le P [X \le x] \\
 > \fbox{3}\Downarrow\quad & \lim_{n \to +\infty} \sup_{x^-} P [X_n \le x^-] \le P [X \le x] \le \lim_{n \to +\infty} \inf_{x^+} P [X_n \le x^+]                                                                  &\;&\Leftarrow\; \lim P [|X - X_n| \lt \varepsilon] = 1 \\
 > \Downarrow\quad         & \forall x \in \mathcal{Conti.}; \lim_{n \to +\infty} P [X_n \le x] = P [X \le x] \\
-> \Downarrow\quad         & \lim_{n \to +\infty} C_n (x) \mathop{\longrightarrow}^{\mathcal{Weak}} C (x) \\
+> \Downarrow\quad         & \lim_{n \to +\infty} C (X_n) \mathop{\longrightarrow}^{\mathcal{Weak}} C (X) \\
 > \end{alignedat}
 > $$
 >
 
-> ### 依概率收敛与依分布收敛的等效性
+> ### 依概率收敛与依分布收敛的退化等价性
 
 > $$
 > \begin{alignedat}{3}
-> \lim_{n \to +\infty} X_n \mathop{\longrightarrow}^{\mathcal{Prob.}} \alpha \iff \lim_{n \to +\infty} C_n (x) \mathop{\longrightarrow}_{P [X = \alpha] = 1}^{\mathcal{Weak}} C (x) \\
+> \Uparrow\quad   &&                                         P [|X_n - \alpha| \ge \varepsilon] &= P [X_n \ge \alpha + \varepsilon] + P [ X_n \le \alpha - \varepsilon] \\
+>                 &&                                                                            &\le P \left[ X_n \gt \alpha + \dfrac{\varepsilon}{2} \right] + P [X_n \le \alpha - \varepsilon] \\
+>                 &&                                                                            &= 1 - P \left[ X_n \le \alpha + \dfrac{\varepsilon}{2} \right] + P [X_n \le \alpha - \varepsilon] \\
+> \Downarrow\quad &&                                     P [|X_n - \alpha| \ge \varepsilon] = 0 &\impliedby \lim_{n \to +\infty} C (X_n) \mathop{\longrightarrow}^{\mathcal{Weak}} C (X \equiv \alpha) \\
+> \Downarrow\quad && \lim_{n \to +\infty} X_n \mathop{\longrightarrow}^{\mathcal{Prob.}} \alpha &\iff \lim_{n \to +\infty} C (X_n) \mathop{\longrightarrow}^{\mathcal{Weak}} C (X \equiv \alpha) \\
 > \end{alignedat}
 > $$
 >
+

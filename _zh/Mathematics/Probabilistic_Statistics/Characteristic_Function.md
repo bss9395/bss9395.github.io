@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     特征函数
-Revised:   2018-05-30 23:16:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-06-01 22:36:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -27,6 +27,7 @@ Resources:
 > \fbox{2}\quad & |\mathrm{Exp} [e^{t \cdot X}]| \le \mathrm{Exp} [|e^{t \cdot X}|] \\
 > \fbox{3}\quad & \mathrm{Exp} [e^{t \cdot (c X + d)}] = \mathrm{Exp} [e^{t \cdot c X}] \cdot e^{t \cdot d} \\
 > \fbox{4}\quad & \mathrm{Exp} \left[ e^{t \cdot [ f_1 (X_1) + \cdots + f_m (X_m)]} \right] = \mathrm{Exp} [e^{t \cdot f_1 (X_1)}] \cdots \mathrm{Exp} [e^{t \cdot f_m (X_m)}] \quad\Leftarrow\quad p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
+> \fbox{5}\quad & \mathrm{Exp} [e^{t \cdot X}] = 1 + \mathrm{Exp} [X] \cdot t + o (t) \\
 > \end{alignedat}
 > $$
 >
@@ -82,12 +83,12 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 >         \Uparrow\quad   && \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \int_x \dfrac{e^{\imath t \cdot (x - \alpha)} - e^{\imath t \cdot (x - \beta)}}{\imath t} \mathrm{d} C (x) \mathrm{d} t \\
->                         &&                                                                                                                                                                       &= \dfrac{1}{2 \pi} \int_x \int_0^{+\infty} \dfrac{e^{\imath t \cdot (x - \alpha)} - e^{- \imath t \cdot (x - \alpha)}}{\imath t} - \dfrac{e^{\imath t \cdot (x - \beta)} - e^{- \imath t \cdot (x - \beta)}}{\imath t} \mathrm{d} t \mathrm{d} C (x) \\
->                         &&                                                                                                                                                                       &= \dfrac{1}{\pi} \int_x \int_0^{+\infty} \dfrac{\sin (x - \alpha) t}{t} - \dfrac{\sin (x - \beta) t}{t} \mathrm{d} t \mathrm{d} C (x) \\
+>                         &&                                                                                                                                                                       &= \dfrac{1}{2 \pi} \int_x \int_0^{+\infty} \left[ \dfrac{e^{\imath t \cdot (x - \alpha)} - e^{- \imath t \cdot (x - \alpha)}}{\imath t} - \dfrac{e^{\imath t \cdot (x - \beta)} - e^{- \imath t \cdot (x - \beta)}}{\imath t} \right] \mathrm{d} t \mathrm{d} C (x) \\
+>                         &&                                                                                                                                                                       &= \dfrac{1}{\pi} \int_x \int_0^{+\infty} \left[ \dfrac{\sin (x - \alpha) t}{t} - \dfrac{\sin (x - \beta) t}{t} \right] \mathrm{d} t \mathrm{d} C (x) \\
 >                         &&                                                                                                                                                                       &= \left[ \dfrac{1}{2} \int_{x = \alpha} + \int_{\alpha \lt x \lt \beta} + \dfrac{1}{2} \int_{x = \beta} \right] \mathrm{d} C (x) \\
 >                         &&                                                                                                                                                                       &= \dfrac{C (\alpha) - C (\alpha^-)}{2} + C (\beta^-) - C (\alpha) + \dfrac{C (\beta) - C (\beta^-)}{2} \\
 > \fbox{1}\Downarrow\quad &&                                                                                             \dfrac{C (\beta) + C (\beta^-)}{2} - \dfrac{C (\alpha) + C (\alpha^-)}{2} &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
-> \fbox{2}\Downarrow\quad &&                                                                                                    \alpha, \beta \in \mathcal{Conti.} \implies C (\beta) - C (\alpha) &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
+> \fbox{2}\Downarrow\quad &&                                                                                                  \alpha, \beta \in \mathcal{Conti.^-} \implies C (\beta) - C (\alpha) &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
 > \end{alignedat}
 > $$
 >
@@ -96,22 +97,23 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\Downarrow\quad & \dfrac{C (\beta) + C (\beta^-)}{2} = \lim_{\alpha \to -\infty} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
-> \fbox{2}\Downarrow\quad & \beta \in \mathcal{Conti.} \implies C (\beta) =  \lim_{\alpha \to -\infty} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
+> \fbox{1}\quad &&                                           \dfrac{C (\beta) + C (\beta^-)}{2} &= \lim_{\alpha \to -\infty} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
+> \fbox{2}\quad &&                              \beta \in \mathcal{Conti.^-} \implies C (\beta) &= \lim_{\alpha \to -\infty} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot \beta}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
+> \fbox{3}\quad &&                        \beta \not\in \mathcal{Conti.^-} \implies C (\beta^-) &= \lim_{u \to \beta^-} \lim_{\alpha \to -\infty} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot u}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
+> \fbox{4}\quad && \lim_{n \to +\infty} C (X_n) \mathop{\longrightarrow}^{\mathcal{Weak}} C (X) &\iff \mathrm{Exp} [e^{\imath t \cdot X}] \\
 > \end{alignedat}
 > $$
 >
 
-> ### 特征函数与密度函数的三角积分变换
+> ### 特征函数与连续密度函数
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad           &&                               p (x) &= \dfrac{\mathrm{d}}{\mathrm{d} x^+} C (x^+) \\
->                         &&                                     &= \dfrac{\mathrm{d}}{\mathrm{d} x^+} \lim_{\alpha \to -\infty} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot x}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
->                         &&                                     &= \lim_{\alpha \to -\infty} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{\mathrm{d}}{\mathrm{d} x^+} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot x}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
+> \Uparrow\quad           &&                               p (x) &= \dfrac{\mathrm{d}}{\mathrm{d} x} C (x) \\
+>                         &&                                     &= \dfrac{\mathrm{d}}{\mathrm{d} x} \lim_{\alpha \to -\infty} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot x}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
+>                         &&                                     &= \lim_{\alpha \to -\infty} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot x}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
 > \fbox{1}\Downarrow\quad &&                               p (x) &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} e^{- \imath t \cdot x} \cdot \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
 > \fbox{2}\Downarrow\quad && \mathrm{Exp} [e^{\imath t \cdot X}] &= \int_{-\infty}^{+\infty} e^{\imath t \cdot x} \cdot p (x) \mathrm{d} x \\
 > \end{alignedat}
 > $$
 >
-

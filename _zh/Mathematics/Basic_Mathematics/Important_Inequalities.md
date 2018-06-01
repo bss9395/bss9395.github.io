@@ -152,9 +152,10 @@ Resources:
 > ### 概率不等式
 
 > $$
-> \begin{alignedat}{3}
-> P (|X| \ge \varepsilon) &\le \dfrac{\mathrm{Exp} [X]^2}{\varepsilon^2} \\
-> P (|X| \lt \varepsilon) &\ge 1 - \dfrac{\mathrm{Var} [X]^2}{\varepsilon^2} \\
-> \end{alignedat}
+> h \in \mathbb{N^+} \implies
+> \left\lbrace\begin{alignedat}{3}
+> P (|X| \ge \varepsilon) &\le \dfrac{\mathrm{Exp} [|X|]^h}{\varepsilon^h} \\
+> P (|X| \lt \varepsilon) &\ge 1 - \dfrac{\mathrm{Var} [|X|]^h}{\varepsilon^h} \\
+> \end{alignedat}\right. \\
 > $$
 >
