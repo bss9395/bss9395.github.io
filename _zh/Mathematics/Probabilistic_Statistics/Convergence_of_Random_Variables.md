@@ -13,8 +13,8 @@ Resources:
 > \begin{alignedat}{3}
 > \lim_{n \to +\infty} X_n \mathop{\longrightarrow}^{\mathcal{Prob.}} X \iff 
 > \left\lbrace\begin{alignedat}{3}
-> & \lim_{n \to +\infty} P [|X_n - X| \ge \varepsilon] = 0 \\
-> & \lim_{n \to +\infty} P [|X_n - X| \lt \varepsilon] = 1 \\
+> \lim_{n \to +\infty} P [|X_n - X| \ge \varepsilon] &= 0 \\
+> \lim_{n \to +\infty} P [|X_n - X| \lt \varepsilon] &= 1 \\
 > \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
@@ -27,7 +27,7 @@ Resources:
 > \Uparrow\quad           & \lbrace |X_n - X| \lt \varepsilon_X \rbrace \;\land\; \lbrace |Y_n - Y| \lt \varepsilon_Y \rbrace \mathop{\implies}^{f \in \mathcal{Conti.}} \lbrace |f (X_n, Y_n) - f (X, Y)| \lt \varepsilon \rbrace \\
 > \Downarrow\quad         & \mathcal{True} \equiv \lbrace |X_n - X| \ge \varepsilon_X \rbrace \;\lor\; \lbrace |Y_n - Y| \ge \varepsilon_Y \rbrace \;\lor\; \lbrace |f (X_n, Y_n) - f (X, Y)| \lt \varepsilon \rbrace \\
 > \Downarrow\quad         & 1 \le P [|X_n - X| \ge \varepsilon_X] + P [|Y_n - Y| \ge \varepsilon_Y] + P [|f (X_n, Y_n) - f (X, Y)| \lt \varepsilon] \\
-> \Uparrow\quad           & \lim_{n \to +\infty} P [|X_n - X| \lt \varepsilon_X] = 1 \;\land\; \lim_{n \to +\infty} P [|Y_n - Y| \lt \varepsilon_Y] = 1 \\
+> \Uparrow\quad           & \lim_{n \to +\infty} P [|X_n - X| \ge \varepsilon_X] = 0 \;\land\; \lim_{n \to +\infty} P [|Y_n - Y| \ge \varepsilon_Y] = 1 \\
 > \Downarrow\quad         & \lim_{n \to +\infty} P [|f (X_n, Y_n) - f (X, Y)| \lt \varepsilon] = 1 \\
 > \fbox{1}\Downarrow\quad & \lim_{n \to +\infty} f (X_n, Y_n) \mathop{\longrightarrow}^{\mathcal{Prob.}} f (X, Y) \\
 > \fbox{2}\Downarrow\quad & \lim_{n \to +\infty} (X_n \pm Y_n) \mathop{\longrightarrow}^{\mathcal{Prob.}} X \pm Y \\
