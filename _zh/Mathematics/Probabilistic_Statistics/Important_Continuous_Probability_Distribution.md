@@ -303,10 +303,10 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad   &&                  P (X \gt t) &= 1 - C (x) \\
+> \Uparrow\quad   &&                  P [X \gt t] &= 1 - C (x) \\
 >                 &&                              &= e^{- \lambda t} \\
-> \Downarrow\quad && P (x \gt t + s \mid X \gt t) &= e^{- \lambda s} \\
-> \Downarrow\quad && P (x \gt t + s \mid X \gt t) &= P (X \gt s) \\
+> \Downarrow\quad && P [x \gt t + s \mid X \gt t] &= e^{- \lambda s} \\
+> \Downarrow\quad && P [x \gt t + s \mid X \gt t] &= P (X \gt s) \\
 > \end{alignedat}
 > $$
 >

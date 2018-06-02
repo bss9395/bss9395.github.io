@@ -9,20 +9,20 @@ Resources:
 
 > ### 初等幂级数
 
-> | **$$f (x)$$** | **(-R, +R)** | **$$f (0) + \sum\limits_1^{+\infty}  \dfrac{f^{(n)} (x)}{n !} x^n + O (x^{n + 1})$$** | **$$f^{(n)} (x)$$** |
+> | **$$f (x)$$** | **(-R, +R)** | **$$f (0) + \sum\limits_1^n  \dfrac{f^{(n)} (x)}{n !} x^n + O (x^{n + 1})$$** | **$$f^{(n)} (x)$$** |
 > | :------------------- | :--------------------------------------- | :--------------------------------------- | :--------------------------------------- |
-> | $(1 + x)^P$          | $$(-1, +1) \Leftarrow P \in (-\infty, -1];$$ $$(-1, +1] \Leftarrow P \in (-1, 0);$$ $$[-1, +1] \Leftarrow P \in (0, +\infty);$$ | $$1 + \sum\limits_1^{+ \infty} \mathcal{C}_P^n x^n + O (x^{n + 1})$$ | $$\mathcal{P}_P^n (1 + x)^{P - n}$$ |
-> | $$\dfrac{1}{1 - x}$$ | $$(-1, +1)$$ | $$1 + \sum\limits_1^{+ \infty} x^n + O (x^{n + 1})$$ | $$n ! (1 + x)^{- n - 1}$$       |
-> | $$E^x$$              | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{\ln^n E}{n !} x^n + O (x^{n + 1})$$ | $$E^x \ln^n E$$                          |
-> | $$e^x$$             | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{1}{n !} x^n + O (x^{n + 1})$$ | $$e^x$$                                  |
-> | $$\log_L (1 + x)$$   | $$(-1, +1]$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{(- 1)^{n - 1}}{n \ln L} x^n + O (x^{n + 1})$$ | $$\dfrac{(- 1)^{n - 1} (n - 1) !}{(1 + x)^n \ln L}$$ |
-> | $$\ln (1 + x)$$      | $$(-1, +1]$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{(- 1)^{n - 1}}{n} x^n + O (x^{n + 1})$$ | $$\dfrac{(- 1)^{n - 1} (n - 1) !}{(1 + x)^n}$$ |
-> | $\sin x$             | $$(-\infty, +\infty)$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{(- 1)^n}{(2 n + 1) !} x^{2 n + 1} + O (x^{2 n + 3})$$ | $$\sin \left( x + n \dfrac{\pi}{2} \right)$$ |
-> | $$\cos x$$           | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{(- 1)^n}{(2 n) !} x^{2 n} + O (x^{2 n + 2})$$ | $$\cos \left( x + n \dfrac{\pi}{2} \right)$$ |
-> | $$\arcsin x$$        | $$[-1, -1]$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{(2 n) !}{4^n (n !)^2 (2 n + 1)} x^{2 n + 1} + O (x^{2 n + 3})$$ |                                          |
-> | $$\arctan x$$        | $$[-1, +1]$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{(- 1)^n}{2 n + 1} x^{2 n + 1} + O (x^{2 n + 3})$$ |                                          |
-> | $$\sinh x$$         | $$(-\infty, +\infty)$$ | $$0 + \sum\limits_1^{+ \infty} \dfrac{1}{(2 n + 1) !} x^{2 n + 1} + O (x^{2 n + 3})$$ | $$\dfrac{e^x + (-1)^{n - 1} e^{- x}}{2}$$ |
-> | $$\cosh x$$          | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^{+ \infty} \dfrac{1}{(2 n) !} x^{2 n} + O (x^{2 n + 2})$$ | $$\dfrac{e^x + (- 1)^n e^{- x}}{2}$$     |
+> | $(1 + x)^P$          | $$(-1, +1) \Leftarrow P \in (-\infty, -1];$$ $$(-1, +1] \Leftarrow P \in (-1, 0);$$ $$[-1, +1] \Leftarrow P \in (0, +\infty);$$ | $$1 + \sum\limits_1^n \mathcal{C}_P^n x^n + O (x^{n + 1})$$ | $$\mathcal{P}_P^n (1 + x)^{P - n}$$ |
+> | $$\dfrac{1}{1 - x}$$ | $$(-1, +1)$$ | $$1 + \sum\limits_1^n x^n + O (x^{n + 1})$$ | $$n ! (1 + x)^{- n - 1}$$       |
+> | $$E^x$$              | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^n \dfrac{\ln^n E}{n !} x^n + O (x^{n + 1})$$ | $$E^x \ln^n E$$                          |
+> | $$e^x$$             | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^n \dfrac{1}{n !} x^n + O (x^{n + 1})$$ | $$e^x$$                                  |
+> | $$\log_L (1 + x)$$   | $$(-1, +1]$$ | $$0 + \sum\limits_1^n \dfrac{(- 1)^{n - 1}}{n \ln L} x^n + O (x^{n + 1})$$ | $$\dfrac{(- 1)^{n - 1} (n - 1) !}{(1 + x)^n \ln L}$$ |
+> | $$\ln (1 + x)$$      | $$(-1, +1]$$ | $$0 + \sum\limits_1^n \dfrac{(- 1)^{n - 1}}{n} x^n + O (x^{n + 1})$$ | $$\dfrac{(- 1)^{n - 1} (n - 1) !}{(1 + x)^n}$$ |
+> | $\sin x$             | $$(-\infty, +\infty)$$ | $$0 + \sum\limits_1^n \dfrac{(- 1)^n}{(2 n + 1) !} x^{2 n + 1} + O (x^{2 n + 3})$$ | $$\sin \left( x + n \dfrac{\pi}{2} \right)$$ |
+> | $$\cos x$$           | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^n \dfrac{(- 1)^n}{(2 n) !} x^{2 n} + O (x^{2 n + 2})$$ | $$\cos \left( x + n \dfrac{\pi}{2} \right)$$ |
+> | $$\arcsin x$$        | $$[-1, -1]$$ | $$0 + \sum\limits_1^n \dfrac{(2 n) !}{4^n (n !)^2 (2 n + 1)} x^{2 n + 1} + O (x^{2 n + 3})$$ |                                          |
+> | $$\arctan x$$        | $$[-1, +1]$$ | $$0 + \sum\limits_1^n \dfrac{(- 1)^n}{2 n + 1} x^{2 n + 1} + O (x^{2 n + 3})$$ |                                          |
+> | $$\sinh x$$         | $$(-\infty, +\infty)$$ | $$0 + \sum\limits_1^n \dfrac{1}{(2 n + 1) !} x^{2 n + 1} + O (x^{2 n + 3})$$ | $$\dfrac{e^x + (-1)^{n - 1} e^{- x}}{2}$$ |
+> | $$\cosh x$$          | $$(-\infty, +\infty)$$ | $$1 + \sum\limits_1^n \dfrac{1}{(2 n) !} x^{2 n} + O (x^{2 n + 2})$$ | $$\dfrac{e^x + (- 1)^n e^{- x}}{2}$$     |
 > 
 
 > ### 初等三角级数

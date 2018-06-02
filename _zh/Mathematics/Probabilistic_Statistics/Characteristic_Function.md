@@ -27,7 +27,6 @@ Resources:
 > \fbox{2}\quad & |\mathrm{Exp} [e^{t \cdot X}]| \le \mathrm{Exp} [|e^{t \cdot X}|] \\
 > \fbox{3}\quad & \mathrm{Exp} [e^{t \cdot (c X + d)}] = \mathrm{Exp} [e^{t \cdot c X}] \cdot e^{t \cdot d} \\
 > \fbox{4}\quad & \mathrm{Exp} \left[ e^{t \cdot [ f_1 (X_1) + \cdots + f_m (X_m)]} \right] = \mathrm{Exp} [e^{t \cdot f_1 (X_1)}] \cdots \mathrm{Exp} [e^{t \cdot f_m (X_m)}] \quad\Leftarrow\quad p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
-> \fbox{5}\quad & \mathrm{Exp} [e^{t \cdot X}] = 1 + \mathrm{Exp} [X] \cdot t + o (t) \\
 > \end{alignedat}
 > $$
 >

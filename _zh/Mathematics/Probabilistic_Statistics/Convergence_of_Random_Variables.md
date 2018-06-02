@@ -11,7 +11,11 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \lim_{n \to +\infty} X_n \mathop{\longrightarrow}^{\mathcal{Prob.}} X \iff \lim_{n \to +\infty} P [|X_n - X| \lt \varepsilon] = 1 \\
+> \lim_{n \to +\infty} X_n \mathop{\longrightarrow}^{\mathcal{Prob.}} X \iff 
+> \left\lbrace\begin{alignedat}{3}
+> & \lim_{n \to +\infty} P [|X_n - X| \ge \varepsilon] = 0 \\
+> & \lim_{n \to +\infty} P [|X_n - X| \lt \varepsilon] = 1 \\
+> \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
 >

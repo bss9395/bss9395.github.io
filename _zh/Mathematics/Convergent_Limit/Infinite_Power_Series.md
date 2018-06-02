@@ -26,7 +26,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \fbox{1}\; & \sum_0^{+\infty} s_n x^n \in \mathcal{Conti.}                                                                                                                &&\;\Rightarrow\; R = \varlimsup_{+\infty} \dfrac{1}{\sqrt[n]{\lvert s_n \rvert}} \\
-> \fbox{2}\; & \int_0^x \left( \sum_0^{+\infty} s_n x^n \right) \mathrm{d} x = \sum_0^{+\infty} \int^x s_n x^n \mathrm{d} x = \sum_0^{+\infty} \dfrac{s_n}{n + 1} x^{n + 1} &&\;\Rightarrow\; R = \varlimsup_{+\infty} \sqrt[n]{\dfrac{n + 1}{s_n}} = \varlimsup_{+\infty} \dfrac{1}{\sqrt[n]{s_n}} \\
+> \fbox{2}\; & \int_0^x \left( \sum_0^{+\infty} s_n x^n \right) \mathrm{d} x = \sum_0^{+\infty} \int_0^x s_n x^n \mathrm{d} x = \sum_0^{+\infty} \dfrac{s_n}{n + 1} x^{n + 1} &&\;\Rightarrow\; R = \varlimsup_{+\infty} \sqrt[n]{\dfrac{n + 1}{s_n}} = \varlimsup_{+\infty} \dfrac{1}{\sqrt[n]{s_n}} \\
 > \fbox{3}\; & \left( \sum_0^{+\infty} s_n x^n \right)^{(k)} = \sum_0^{+\infty} (s_n x^n)^{(k)} = \sum_k^{+\infty} \dfrac{n !}{k !} s_n x^{(n - k)}                         &&\;\Rightarrow\; R = \varlimsup_{+\infty} \sqrt[n]{\dfrac{k !}{n ! s_n}} \\
 > \fbox{4}\; & \sum_0^{+\infty} s_n \langle \pm R \rangle^n \to \mathcal{Conv.} \;\Rightarrow\; \sum_0^{+\infty} s_n x^n \rightrightarrows \mathcal{Conv.}                  &&\;\Rightarrow\; \sum_0^{+\infty} s_n \langle \pm R \rangle^n = \lim_{\pm R} \sum_0^{+\infty} s_n x^n = \sum_0^{+\infty} \lim_{\pm R} s_n x^n \\
 > \fbox{5}\; & \lim_{\pm R} \sum_0^{+\infty} s_n \to S \;\land\; s_n \ge 0                                                                                                  &&\;\Rightarrow\; \sum_0^{+\infty} s_n \langle \pm R \rangle^n = S \\
@@ -71,7 +71,7 @@ Resources:
 > \begin{alignedat}{3}
 > \Uparrow\;             & f (x) = f (x_0) + \sum_1^n \dfrac{f^{(n)} (x_0)}{n !} (x - x_0)^n + R_n (x - x_0) \\
 > \fbox{1}\Updownarrow\; & 0 = \lim_{+\infty} R_n (x - x_0) = \lim_{+\infty} \left[ f (x) - \sum_0^n \dfrac{f^{(n)} (x_0)}{n !} (x - x_0)^n \right] \\
-> \fbox{2}\Uparrow\;     & \lvert f^{n} (x) \rvert \le M \quad\Rightarrow\quad \lvert R_n (x - x_0) \rvert = \left\lvert \dfrac{f^{(n + 1)} (\xi)}{( n + 1) !} (x - x_0)^{(n + 1)} \right\rvert \le \dfrac{M}{(n + 1) !} R^{(n + 1)} \to 0 \\
+> \fbox{2}\Uparrow\;     & \forall n; \lvert f^{(n)} (x) \rvert \le M \quad\Rightarrow\quad \lvert R_n (x - x_0) \rvert = \left\lvert \dfrac{f^{(n + 1)} (\xi)}{(n + 1) !} (x - x_0)^{n + 1} \right\rvert \le \dfrac{M}{(n + 1) !} R^{n + 1} \to 0 \\
 > \Downarrow\;           & f (x) = f (x_0) + \sum_1^{+\infty} \dfrac{f^{(n)} (x_0)}{n !} (x - x_0)^n \\
 > \end{alignedat}
 > $$
