@@ -35,8 +35,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\quad && \lim_{n \to +\infty} P \left[ \middle| \dfrac{1}{n} \sum_1^n X_n - p_n \middle| \ge \varepsilon \right] &= 0 \\
-> \fbox{2}\quad && \lim_{n \to +\infty} P \left[ \middle| \dfrac{1}{n} \sum_1^n X_n - p_n \middle| \lt \varepsilon \right] &= 1 \\
+> \fbox{1}\quad && \lim_{n \to +\infty} P \left[ \middle| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \middle| \ge \varepsilon \right] &= 0 \\
+> \fbox{2}\quad && \lim_{n \to +\infty} P \left[ \middle| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \middle| \lt \varepsilon \right] &= 1 \\
 > \end{alignedat}
 > $$
 >
@@ -59,13 +59,23 @@ Resources:
 > \begin{alignedat}{3}
 > \Uparrow\quad   && \lim_{n \to +\infty} \mathrm{Exp} \left[ e^{\imath t \cdot \frac{1}{n} \sum\limits_{i = 1}^n X_i} \right] &= \lim_{n \to +\infty} \prod_{i = 1}^n \mathrm{Exp} [e^{\imath t \cdot \frac{1}{n} X_i}] \quad\Leftarrow\quad p (x_1, \cdots, x_n) = p_{X_1} (x_1) \cdots p_{X_n} (x_n) \\
 >                 &&                                                                                                           &= \lim_{n \to +\infty} \mathrm{Exp}^n [e^{\imath t \cdot \frac{1}{n} X'}] \quad\Leftarrow\quad X_1, \cdots, X_n \mapsto X' \\
->                 &&                                                                                                           &\xlongequal{\frac{\mathrm{d}^h}{\mathrm{d} t^h} e^{\imath t \cdot \frac{1}{n} X'}} \lim_{n \to +\infty} \left[ 1 + \dfrac{\imath t \cdot \mathrm{Exp} [X']}{n} + \dfrac{o (\imath t) \cdot \mathrm{Exp} [X']}{n} \right]^n \\
+>                 &&                                                                                                           &\xlongequal{\frac{\mathrm{d}^h}{\mathrm{d} x^h} e^x} \lim_{n \to +\infty} \left[ 1 + \dfrac{\imath t \cdot \mathrm{Exp} [X']}{n} + \dfrac{o (\imath t) \cdot \mathrm{Exp} [X']}{n} \right]^n \\
 >                 &&                                                                                                           &= e^{(\imath t + o (\imath t)) \cdot \mathrm{Exp} [X']} \\
 >                 &&                                                                                                           &= \mathrm{Exp} [e^{\imath t \cdot \mathrm{Exp} [X']}] \\
 > \Downarrow\quad &&                                           \lim_{n \to +\infty} C \left( \dfrac{1}{n} \sum_1^n X_n \right) &\mathop{\longrightarrow}^{\mathcal{Weak}} C (X \equiv \mathrm{Exp} [X']) \iff \lim_{n \to +\infty} \dfrac{1}{n} \sum_1^n X_n \mathop{\longrightarrow}^{\mathcal{Prob.}} \mathrm{Exp} [X'] \\
-> \fbox{1}\Downarrow\quad &&                                                                                    \lim_{n \to +\infty} P & \left[ \left| \dfrac{1}{n} \sum_1^n X_n - \mathrm{Exp} [X'] \right| \ge \varepsilon \right] = 0 \\
-> \fbox{2}\Downarrow\quad &&                                                                                    \lim_{n \to +\infty} P & \left[ \left| \dfrac{1}{n} \sum_1^n X_n - \mathrm{Exp} [X'] \right| \lt \varepsilon \right] = 1 \\
+> \fbox{1}\Downarrow\quad &&                                                                                    \lim_{n \to +\infty} P & \left[ \left| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \right| \ge \varepsilon \right] = 0 \\
+> \fbox{2}\Downarrow\quad &&                                                                                    \lim_{n \to +\infty} P & \left[ \left| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \right| \lt \varepsilon \right] = 1 \\
 > \end{alignedat}
 > $$
 >
+
+$$
+\begin{alignedat}{3}
+\ln \mathrm{Exp} \left[ e^{\imath t \cdot \frac{1}{n} \sum\limits_{i = 1}^n X_i} \right] &= \ln \prod_{i = 1}^n \mathrm{Exp} [e^{\imath t \cdot \frac{1}{n} X_i}] \\
+&= \sum_{i = 1}^n \ln \left[ 1 + \dfrac{(\imath t + o(\imath t)) \cdot \mathrm{Exp} [X_i]}{n} \right] \\
+&= \sum_{i = 1}^n \dfrac{(\imath t + o (\imath t)) \cdot \mathrm{Exp} [X_i]}{n} + \dfrac{o (\imath t + o (\imath t)) \cdot \mathrm{Exp} [X_i]}{n} \\
+&= (\imath t + o (\imath t)) \cdot  \mathrm{Exp} [X'] \\
+
+\end{alignedat}
+$$
 

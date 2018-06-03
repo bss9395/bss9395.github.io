@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     特征函数
-Revised:   2018-06-01 22:36:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-06-03 22:32:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -113,6 +113,46 @@ Resources:
 >                         &&                                     &= \lim_{\alpha \to -\infty} \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} \dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{e^{- \imath t \cdot \alpha} - e^{- \imath t \cdot x}}{\imath t} \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
 > \fbox{1}\Downarrow\quad &&                               p (x) &= \dfrac{1}{2 \pi} \int_{-\infty}^{+\infty} e^{- \imath t \cdot x} \cdot \mathrm{Exp} [e^{\imath t \cdot X}] \mathrm{d} t \\
 > \fbox{2}\Downarrow\quad && \mathrm{Exp} [e^{\imath t \cdot X}] &= \int_{-\infty}^{+\infty} e^{\imath t \cdot x} \cdot p (x) \mathrm{d} x \\
+> \end{alignedat}
+> $$
+>
+
+> ### 多维矩母函数 $\mathrm{M_{oment} G_{enerating} F_{unction}}$
+
+> $$
+> \begin{alignedat}{3}
+> \mathrm{MGF} [t_1 \cdot X_1 + \cdots + t_m \cdot X_m] &= \mathrm{Exp} [e^{t_1 \cdot X_1 + \cdots + t_m \cdot X_m}] \\
+>             \mathrm{Exp} [X_1^{h_1} \cdots X_m^{h_m}] &= \lim_{(t_1, \cdots, t_m) \to (0, \cdots, 0)} \dfrac{\partial^{h_1 + \cdots + h_m}}{\partial t_1^{h_1} \cdots \partial t_m^{h_m}} \mathrm{MGF} [t_1 \cdot X_1 + \cdots + t_m \cdot X_m] \\
+> \end{alignedat}
+> $$
+>
+
+> ### 多维矩母函数的性质
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\quad & \mathrm{Exp} [e^{0 \cdot X_1 + \cdots + 0 \cdot X_m}] = 1 \\
+> \fbox{2}\quad & |\mathrm{Exp} [e^{t_1 \cdot X_1 + \cdots + t_m \cdot X_m}]| \le \mathrm{Exp} [|e^{t_1 \cdot X_1 + \cdots + t_m \cdot X_m}|] \\
+> \end{alignedat}
+> $$
+>
+
+> ### 多维特征函数 $\mathrm{C_{haracteristic} F_{unction}}$
+
+> $$
+> \begin{alignedat}{3}
+>   \mathrm{CF} [t_1 \cdot X_1 + \cdots + t_m \cdot X_m] &= \mathrm{Exp} [e^{\imath (t_1 \cdot X_1 + \cdots + t_m \cdot X_m)}] = \mathrm{MGF} [\imath (t_1 \cdot X_1 + \cdots + t_m \cdot X_m)] \;\Leftarrow\; \mathrm{Exp} [|e^{\imath (t_1 \cdot X_1 + \cdots + t_m \cdot X_m)}|] = 1 \\
+> \mathrm{CF} [\cdots + \cancel{t_i \cdot X_i} + \cdots] &= \mathrm{CF} [\cdots + 0 \cdot X_i + \cdots] \\
+> \end{alignedat}
+> $$
+>
+
+> ### 多维特征函数的性质
+
+> $$
+> \begin{alignedat}{3}
+> \fbox{1}\quad & \mathrm{Exp} [|e^{\imath (t_1 \cdot X_1 + \cdots + t_m \cdot X_m)}|] = 1 \\
+> \fbox{2}\quad & \mathrm{Exp} [e^{- \imath (t_1 \cdot X_1 + \cdots + t_m \cdot X_m)}] = \mathrm{Exp} [\overline{e^{\imath (t_1 \cdot X_1 + \cdots + t_m \cdot X_m)}}] = \overline{\mathrm{Exp} [e^{\imath (t_1 \cdot X_1 + \cdots + t_m \cdot X_m)}]} \\
 > \end{alignedat}
 > $$
 >

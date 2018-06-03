@@ -83,7 +83,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \fbox{1}\Uparrow\quad & \sum_{(y_1, \cdots, y_n)} p_{Y_1, \cdots, Y_n} (y_1, \cdots, y_n) = \sum_{(y_1, \cdots, y_n)} J (y_1, \cdots, y_n) - J (y_1^-, \cdots, y_n^-) \\
-> \fbox{2}\Uparrow\quad & \int_{(y_1, \cdots, y_n)} p_{Y_1, \cdots, Y_n} (y_1, \cdots, y_n) \mathrm{d} (y_1, \cdots, y_n) = \int_{(y_1, \cdots, y_n)} \dfrac{\partial J (y_1, \cdots, y_n)}{\partial y_1 \cdots \partial y_n} \mathrm{d} (y_1, \cdots, y_n) \\
+> \fbox{2}\Uparrow\quad & \int_{(y_1, \cdots, y_n)} p_{Y_1, \cdots, Y_n} (y_1, \cdots, y_n) \mathrm{d} (y_1, \cdots, y_n) = \int_{(y_1, \cdots, y_n)} \dfrac{\partial^n J (y_1, \cdots, y_n)}{\partial y_1 \cdots \partial y_n} \mathrm{d} (y_1, \cdots, y_n) \\
 > \Downarrow\quad       & \mathrm{Exp} [\mathrm{Exp} [X \mid Y_1, \cdots, Y_n]] = \int_{(y_1, \cdots, y_n)} \mathrm{Exp} [X \mid Y_1 = y_1, \cdots, Y_n = y_n] \mathrm{d} J (y_1, \cdots, y_n) \\
 > \end{alignedat}
 > $$
