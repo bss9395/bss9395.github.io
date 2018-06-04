@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     大数定律
-Revised:   2018-06-05 01:55:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-06-05 04:54:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -67,14 +67,14 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad           && \lim_{n \to +\infty} \mathrm{Exp} \left[ e^{\imath t \cdot \frac{1}{n} \sum\limits_{i = 1}^n X_i} \right] &= \lim_{n \to +\infty} \prod_{i = 1}^n \mathrm{Exp} [e^{\imath t \cdot \frac{1}{n} X_i}] \quad\Leftarrow\quad p (x_1, \cdots, x_n) = p_{X_1} (x_1) \cdots p_{X_n} (x_n) \\
->                         &&                                                                                                           &= \lim_{n \to +\infty} \mathrm{Exp}^n [e^{\imath t \cdot \frac{1}{n} X'}] \quad\Leftarrow\quad X_1, \cdots, X_n \mapsto X' \\
->                         &&                                                                                                           &\xlongequal{\frac{\mathrm{d}^h}{\mathrm{d} x^h} e^x} \lim_{n \to +\infty} \left[ 1 + \dfrac{\imath t \cdot \mathrm{Exp} [X']}{n} + \dfrac{o (\imath t) \cdot \mathrm{Exp} [X']}{n} \right]^n \\
->                         &&                                                                                                           &= e^{(\imath t + o (\imath t)) \cdot \mathrm{Exp} [X']} \\
->                         &&                                                                                                           &= \mathrm{Exp} [e^{\imath t \cdot \mathrm{Exp} [X']}] \\
-> \Downarrow\quad         &&                                                           \lim_{n \to +\infty} P \left[ X_n \le x \right] &\xlongequal[X \equiv \mathrm{Exp} \lbrack X' \rbrack]{\forall x \in \mathcal{Conti.}} P [X \le x] \\
-> \fbox{1}\Downarrow\quad &&                                                                                    \lim_{n \to +\infty} P & \left[ \left| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \right| \ge \varepsilon \right] = 0 \\
-> \fbox{2}\Downarrow\quad &&                                                                                    \lim_{n \to +\infty} P & \left[ \left| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \right| \lt \varepsilon \right] = 1 \\
+> \Uparrow\quad           && \ln \lim_{n \to +\infty} \mathrm{Exp} \left[ e^{\imath t \cdot \frac{1}{n} \sum\limits_{i = 1}^n X_i} \right] &= \lim_{n \to +\infty} \ln \prod_{i = 1}^n \mathrm{Exp} [e^{\imath t \cdot \frac{1}{n} X_i}] \quad\Leftarrow\quad p (x_1, \cdots, x_n) = p_{X_1} (x_1) \cdots p_{X_n} (x_n) \\
+>                         &&                                                                                                               &= \lim_{n \to +\infty} \sum_{i = 1}^n \ln \left[ 1 + \dfrac{\imath t \cdot \mathrm{Exp} [X_i]}{n} + \dfrac{o (\imath t) \cdot \mathrm{Exp} [X_i]}{n} \right] \\
+>                         &&                                                                                                               &\xlongequal{\ln (1 + x) = x + o (x)} (\imath t + o (\imath t)) \cdot \lim_{n \to +\infty} \sum_{i = 1}^n \dfrac{\mathrm{Exp} [X_i]}{n} \\
+>                         &&                                                                                                               &\xlongequal{x = x + o (x)} \imath t \cdot \mathrm{Exp} [X'] \quad\Leftarrow\quad X_1, \cdots, X_n \mapsto X' \\
+> \Downarrow\quad         &&     \lim_{n \to +\infty} \mathrm{Exp} \left[ e^{\imath t \cdot \frac{1}{n} \sum\limits_{i = 1}^n X_i} \right] &= e^{\imath t \cdot \mathrm{Exp} [X']} \\
+> \Downarrow\quad         &&                                         \lim_{n \to +\infty} P \left[ \dfrac{1}{n} \sum_1^n X_n \le x \right] &\xlongequal[X \equiv \mathrm{Exp} \lbrack X' \rbrack]{\forall x \in \mathcal{Conti.}} P [X \le x] \\
+> \fbox{1}\Downarrow\quad &&                                                                                        \lim_{n \to +\infty} P & \left[ \left| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \right| \ge \varepsilon \right] = 0 \\
+> \fbox{2}\Downarrow\quad &&                                                                                        \lim_{n \to +\infty} P & \left[ \left| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \right| \lt \varepsilon \right] = 1 \\
 > \end{alignedat}
 > $$
 >
@@ -95,4 +95,3 @@ Resources:
 > \end{alignedat}
 > $$
 >
-
