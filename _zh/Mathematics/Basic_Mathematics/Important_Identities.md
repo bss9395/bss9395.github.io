@@ -73,8 +73,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\quad &&   \int_0^{+\infty} P (Y \ge y) \mathrm{d} y &= \int_0^{+\infty} x \cdot p_Y (x) \mathrm{d} x \\
-> \fbox{2}\quad && \int_0^{+\infty} P (Y \lt - y) \mathrm{d} y &= - \int_{-\infty}^0 x \cdot p_Y (x) \mathrm{d} x \\
+> \fbox{1}\quad &&   \int_0^{+\infty} P [Y \ge y] \mathrm{d} y &= \int_0^{+\infty} x \cdot p [x] \mathrm{d} x \\
+> \fbox{2}\quad && \int_0^{+\infty} P [Y \lt - y] \mathrm{d} y &= - \int_{-\infty}^0 x \cdot p [x] \mathrm{d} x \\
 > \end{alignedat}
 > $$
 >

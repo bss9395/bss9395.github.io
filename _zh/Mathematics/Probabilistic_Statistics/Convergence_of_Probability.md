@@ -10,14 +10,10 @@ Resources:
 > ### 依随机变量收敛
 
 > $$
-> \left\lbrace\begin{alignedat}{3}
+> \begin{alignedat}{3}
 > P \left[ \lim_{n \to +\infty} |X_n - X| \ge \varepsilon \right] &= 0 \\
 > P \left[ \lim_{n \to +\infty} |X_n - X| \lt \varepsilon \right] &= 1 \\
-> \end{alignedat}\right. 
-> \iff \left\lbrace\begin{alignedat}{3}
-> P \left[ \bigcap_{N = 1}^{+\infty} \bigcup_{n = N}^{+\infty} (|X_n - X| \ge \varepsilon) \right] &= 0 \\
-> P \left[ \bigcup_{N = 1}^{+\infty} \bigcap_{n = N}^{+\infty} (|X_n - X| \lt \varepsilon) \right] &= 1 \\
-> \end{alignedat}\right.
+> \end{alignedat}
 > $$
 >
 
@@ -55,7 +51,7 @@ Resources:
 > $$
 >
 
-> ### 依期望收敛
+> ### 依多方收敛
 
 > $$
 > \begin{alignedat}{3}
@@ -68,10 +64,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad   && P \left[ \lim_{n \to +\infty} |X_n - X| \ge \varepsilon \right] &= P \left[ \bigcap_{N = 1}^{+\infty} \bigcup_{n = N}^{+\infty} (|X_n - X| \ge \varepsilon) \right] \\
->                 &&                                                                 &= \lim_{N \to +\infty} P \left[ \bigcup_{n = N}^{+\infty} (|X_n - X| \ge \varepsilon) \right] \\
->                 &&                                                                 &\ge \lim_{N \to +\infty} P \left[ |X_N - X| \ge \varepsilon \right] \\
-> \Downarrow\quad && P \left[ \lim_{n \to +\infty} |X_n - X| \ge \varepsilon \right] &= 0 \implies \lim_{N \to +\infty} P [|X_N - X| \ge \varepsilon] = 0 \\
+> \Uparrow\quad   && P \left[ \lim_{n \to +\infty} |X_n - X| \ge \varepsilon \right] &= P \left[ \lim_{N \to +\infty} \bigcup_{n = N}^{+\infty} (|X_n - X| \ge \varepsilon) \right] \\
+>                 &&                                                                 &\ge \lim_{n \to +\infty} P \left[ |X_n - X| \ge \varepsilon \right] \\
+> \Downarrow\quad && P \left[ \lim_{n \to +\infty} |X_n - X| \ge \varepsilon \right] &= 0 \implies \lim_{n \to +\infty} P [|X_n - X| \ge \varepsilon] = 0 \\
 > \end{alignedat}
 > $$
 >
@@ -107,7 +102,7 @@ Resources:
 > $$
 >
 
-> ### 依概率收敛弱于依期望收敛
+> ### 依概率收敛弱于依多方收敛
 
 > $$
 > \begin{alignedat}{3}
@@ -116,3 +111,4 @@ Resources:
 > \end{alignedat}
 > $$
 >
+
