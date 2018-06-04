@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     公理化概率
-Revised:   2018-06-04 05:07:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-06-05 03:01:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -40,14 +40,16 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \fbox{1}\quad & E_n \supseteq E_{n + 1} \implies \lim\limits_{+\infty} E_n = \bigcap\limits^{+\infty} E_n \\
-> \fbox{2}\quad & E_n \subseteq E_{n + 1} \implies \lim\limits_{+\infty} E_n = \bigcup\limits^{+\infty} E_n \\
-> \fbox{3}\quad & \bigcup_{n = N}^{+\infty} E_n \supseteq \bigcup_{n = N + 1}^{+\infty} E_n \\
-> \fbox{4}\quad & \bigcap_{n = N}^{+\infty} E_n \subseteq \bigcap_{n = N  + 1}^{+\infty} E_n \\
-> \fbox{5}\quad & \bigcap_{N = 1}^{+\infty} \bigcup_{n = N}^{+\infty} E_n = \lim_{N \to +\infty} \bigcup_{n = N}^{+\infty} E_n \\
-> \fbox{6}\quad & \bigcup_{N = 1}^{+\infty} \bigcap_{n = N}^{+\infty} E_n = \lim_{N \to +\infty} \bigcap_{n = N}^{+\infty} E_n \\
-> \fbox{7}\quad & \bigcap_{N = 1}^{+\infty} \bigcup_{n = N}^{+\infty} \overline{E_n} = \overline{\bigcup_{N = 1}^{+\infty} \bigcap_{n = N}^{+\infty} E_n} \\
-> \fbox{8}\quad & \bigcup_{N = 1}^{+\infty} \bigcap_{n = N}^{+\infty} \overline{E_n} = \overline{\bigcap_{N = 1}^{+\infty} \bigcup_{n = N}^{+\infty} E_n} \\
+> \fbox{01}\quad & E_n \supseteq E_{n + 1} \implies \lim\limits_{+\infty} E_n = \bigcap\limits^{+\infty} E_n \\
+> \fbox{02}\quad & E_n \subseteq E_{n + 1} \implies \lim\limits_{+\infty} E_n = \bigcup\limits^{+\infty} E_n \\
+> \fbox{03}\quad & \bigcup_{n = N}^{+\infty} E_n \supseteq \bigcup_{n = N + 1}^{+\infty} E_n \\
+> \fbox{04}\quad & \bigcap_{n = N}^{+\infty} E_n \subseteq \bigcap_{n = N  + 1}^{+\infty} E_n \\
+> \fbox{05}\quad & \bigcap_{N = 1}^{+\infty} \bigcup_{n = N}^{+\infty} E_n = \lim_{N \to +\infty} \bigcup_{n = N}^{+\infty} E_n \\
+> \fbox{06}\quad & \bigcup_{N = 1}^{+\infty} \bigcap_{n = N}^{+\infty} E_n = \lim_{N \to +\infty} \bigcap_{n = N}^{+\infty} E_n \\
+> \fbox{07}\quad & \bigcap_{N = 1}^{+\infty} \bigcup_{n = N}^{+\infty} \overline{E_n} = \overline{\bigcup_{N = 1}^{+\infty} \bigcap_{n = N}^{+\infty} E_n} \\
+> \fbox{08}\quad & \bigcup_{N = 1}^{+\infty} \bigcap_{n = N}^{+\infty} \overline{E_n} = \overline{\bigcap_{N = 1}^{+\infty} \bigcup_{n = N}^{+\infty} E_n} \\
+> \fbox{09}\quad & \forall \varepsilon \gt 0; \exists N \in \mathbb{N}; \forall n \ge N; |E_n - E| \lt \varepsilon \iff \bigcap_{M = 1}^{+\infty} \bigcup_{N = 1}^{+\infty} \bigcap_{n = N}^{+\infty} \left( |E_n - E| \lt \dfrac{1}{M} \right) \\
+> \fbox{10}\quad & \exist \varepsilon \gt 0; \forall N \in \mathbb{N}; \exists n \ge N; |E_n - E| \ge \varepsilon \iff \bigcup_{M = 1}^{+\infty} \bigcap_{N = 1}^{+\infty} \bigcup_{n = N}^{+\infty} \left( |E_n - E| \ge \dfrac{1}{M} \right) \\
 > \end{alignedat}
 > $$
 >

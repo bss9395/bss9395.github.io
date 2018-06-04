@@ -45,8 +45,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> P \left[ \lim_{n \to +\infty} \middle| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \middle| \ge \varepsilon \right] = 0 \\
-> P \left[ \lim_{n \to +\infty} \middle| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \middle| \lt \varepsilon \right] = 1 \\
+> P \left[ \lim_{n \to +\infty} \middle| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \middle| \ge \varepsilon \right] &= 0 \\
+> P \left[ \lim_{n \to +\infty} \middle| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \middle| \lt \varepsilon \right] &= 1 \\
 > \end{alignedat}
 > $$
 >
@@ -72,7 +72,7 @@ Resources:
 >                         &&                                                                                                           &\xlongequal{\frac{\mathrm{d}^h}{\mathrm{d} x^h} e^x} \lim_{n \to +\infty} \left[ 1 + \dfrac{\imath t \cdot \mathrm{Exp} [X']}{n} + \dfrac{o (\imath t) \cdot \mathrm{Exp} [X']}{n} \right]^n \\
 >                         &&                                                                                                           &= e^{(\imath t + o (\imath t)) \cdot \mathrm{Exp} [X']} \\
 >                         &&                                                                                                           &= \mathrm{Exp} [e^{\imath t \cdot \mathrm{Exp} [X']}] \\
-> \Downarrow\quad         &&                                           \lim_{n \to +\infty} C \left( \dfrac{1}{n} \sum_1^n X_n \right) &\mathop{\longrightarrow}^{\mathcal{Weak}} C (X \equiv \mathrm{Exp} [X']) \iff \lim_{n \to +\infty} \dfrac{1}{n} \sum_1^n X_n \mathop{\longrightarrow}^{\mathcal{Prob.}} \mathrm{Exp} [X'] \\
+> \Downarrow\quad         &&                                                           \lim_{n \to +\infty} P \left[ X_n \le x \right] &\xlongequal[X \equiv \mathrm{Exp} \lbrack X' \rbrack]{\forall x \in \mathcal{Conti.}} P [X \le x] \\
 > \fbox{1}\Downarrow\quad &&                                                                                    \lim_{n \to +\infty} P & \left[ \left| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \right| \ge \varepsilon \right] = 0 \\
 > \fbox{2}\Downarrow\quad &&                                                                                    \lim_{n \to +\infty} P & \left[ \left| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \right| \lt \varepsilon \right] = 1 \\
 > \end{alignedat}
@@ -83,13 +83,13 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \Uparrow\quad           && P \left[ \lim_{n \to +\infty} \middle| \dfrac{1}{n} \sum_{i = 1}^{n} (X_i - \mathrm{Exp} [X_i]) \middle| \ge \varepsilon \right] &= \lim_{N \to +\infty} P \left[ \bigcup_{n = N}^{+\infty} \middle( \middle| \dfrac{1}{n} \sum_{i = 1}^n (X_i - \mathrm{Exp} [X_i]) \middle| \ge \varepsilon \middle) \right] \\
+> \Uparrow\quad           && P \left[ \lim_{n \to +\infty} \middle| \dfrac{1}{n} \sum_{i = 1}^{n} (X_i - \mathrm{Exp} [X_i]) \middle| \ge \varepsilon \right] &= P \left[ \lim_{N \to +\infty} \bigcup_{n = N}^{+\infty} \middle( \middle| \dfrac{1}{n} \sum_{i = 1}^n (X_i - \mathrm{Exp} [X_i]) \middle| \ge \varepsilon \middle) \right] \\
 >                         &&                                                                                                                                  &\le \lim_{N \to +\infty} P \left[ \sup_{n \ge N} \middle| \dfrac{1}{n} \sum_{i = 1}^n (X_i - \mathrm{Exp} [X_i]) \middle| \ge \varepsilon \right] \\
 >                         &&                                                                                                                                  &\le \lim_{N \to +\infty} \sup_{n \ge N} \dfrac{1}{n^2 \varepsilon^2} \mathrm{Var} \left[ \sum_{i = 1}^n X_i \right] \\
 >                         &&                                                                                                                                  &= \lim_{N \to +\infty} \sup_{n \ge N} \dfrac{1}{n^2 \varepsilon^2} \sum_{i = 1}^n \mathrm{Var} [X_i] \quad\Leftarrow\quad p (x_1, \cdots, x_n) = p_{X_1} (x_1) \cdots p_{X_n} (x_n) \\
->                         &&                                                                                                                                  &\le \lim_{N \to +\infty} \dfrac{1}{N^2 \varepsilon^2} \sum_{i = 1}^N \mathrm{Var} [X_i] + \lim_{N \to +\infty} \sum_{i = N + 1}^n \dfrac{\mathrm{Var} [X_i]}{i^2 \varepsilon^2} \\
->                         &&                                                                                                                                  &\le \lim_{N \to +\infty} \dfrac{\max \mathrm{Var} [X_i]}{N \varepsilon^2} + \lim_{N \to +\infty} \sum_{i = N + 1}^{+\infty} \dfrac{\mathrm{Var} [X_i]}{i^2 \varepsilon^2} \\
-> \Uparrow\quad           && \sum_1^{+\infty} \dfrac{\mathrm{Var} [X_n]}{n^2} \le M &\implies \lim_{N \to +\infty} \sum_{i = N + 1}^{+\infty} \dfrac{\mathrm{Var} [X_i]}{i^2} \to 0 \\
+>                         &&                                                                                                                                  &\le \lim_{N \to +\infty} \dfrac{1}{N^2 \varepsilon^2} \sum_{i = 1}^N \mathrm{Var} [X_i] + \lim_{N \to +\infty} \sup_{n \ge N} \sum_{i = N + 1}^n \dfrac{\mathrm{Var} [X_i]}{i^2 \varepsilon^2} \\
+>                         &&                                                                                                                                  &\le \lim_{N \to +\infty} \dfrac{\max (\mathrm{Var} [X_i])}{N \varepsilon^2} + \lim_{N \to +\infty} \sum_{i = N + 1}^{+\infty} \dfrac{\mathrm{Var} [X_i]}{i^2 \varepsilon^2} \\
+> \Uparrow\quad           &&                                                                           \sum_1^{+\infty} \dfrac{\mathrm{Var} [X_n]}{n^2} \le M &\implies \lim_{N \to +\infty} \sum_{i = N + 1}^{+\infty} \dfrac{\mathrm{Var} [X_i]}{i^2} \to 0 \\
 > \fbox{1}\Downarrow\quad && P \left[ \lim_{n \to +\infty} \middle| \dfrac{1}{n} \sum_{i = 1}^{n} (X_i - \mathrm{Exp} [X_i]) \middle| \ge \varepsilon \right] &= 0 \\
 > \fbox{2}\Downarrow\quad && P \left[ \lim_{n \to +\infty} \middle| \dfrac{1}{n} \sum_{i = 1}^{n} (X_i - \mathrm{Exp} [X_i]) \middle| \lt \varepsilon \right] &= 1 \\
 > \end{alignedat}

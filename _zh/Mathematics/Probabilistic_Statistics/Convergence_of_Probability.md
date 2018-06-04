@@ -65,7 +65,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > \Uparrow\quad   && P \left[ \lim_{n \to +\infty} |X_n - X| \ge \varepsilon \right] &= P \left[ \lim_{N \to +\infty} \bigcup_{n = N}^{+\infty} (|X_n - X| \ge \varepsilon) \right] \\
->                 &&                                                                 &\ge \lim_{n \to +\infty} P \left[ |X_n - X| \ge \varepsilon \right] \\
+>                 &&                                                                 &\ge \lim_{N \to +\infty} P \left[ |X_N - X| \ge \varepsilon \right] \\
 > \Downarrow\quad && P \left[ \lim_{n \to +\infty} |X_n - X| \ge \varepsilon \right] &= 0 \implies \lim_{n \to +\infty} P [|X_n - X| \ge \varepsilon] = 0 \\
 > \end{alignedat}
 > $$
@@ -96,8 +96,8 @@ Resources:
 > \Uparrow\quad   &&                      P [|X_n - \alpha| \ge \varepsilon] &= P [X_n \ge \alpha + \varepsilon] + P [ X_n \le \alpha - \varepsilon] \\
 >                 &&                                                         &\le P \left[ X_n \gt \alpha + \dfrac{\varepsilon}{2} \right] + P [X_n \le \alpha - \varepsilon] \\
 >                 &&                                                         &= 1 - P \left[ X_n \le \alpha + \dfrac{\varepsilon}{2} \right] + P [X_n \le \alpha - \varepsilon] \\
-> \Downarrow\quad && \lim_{n \to +\infty} P [|X_n - \alpha| \ge \varepsilon] &= 0 \impliedby \lim_{n \to +\infty} P [X_n \le x] \xlongequal{\forall x \in \mathcal{Conti.}} P [X \le x] \\
-> \Downarrow\quad && \lim_{n \to +\infty} P [|X_n - \alpha| \ge \varepsilon] &= 0 \iff \lim_{n \to +\infty} P [X_n \le x] \xlongequal{\forall x \in \mathcal{Conti.}} P [X \le x] \\
+> \Downarrow\quad && \lim_{n \to +\infty} P [|X_n - \alpha| \ge \varepsilon] &= 0 \impliedby \lim_{n \to +\infty} P [X_n \le x] \xlongequal[X \equiv \alpha]{\forall x \in \mathcal{Conti.}} P [X \le x] \\
+> \Downarrow\quad && \lim_{n \to +\infty} P [|X_n - \alpha| \ge \varepsilon] &= 0 \iff \lim_{n \to +\infty} P [X_n \le x] \xlongequal[X \equiv \alpha]{\forall x \in \mathcal{Conti.}} P [X \le x] \\
 > \end{alignedat}
 > $$
 >
