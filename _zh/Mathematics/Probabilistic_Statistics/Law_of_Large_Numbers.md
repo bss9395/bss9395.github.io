@@ -70,7 +70,7 @@ Resources:
 > \Uparrow\quad           &&    \ln \lim_{n \to +\infty} \mathrm{Exp} \left[ e^{t \cdot \frac{1}{n} \sum_1^n X_n} \right] &= \lim_{n \to +\infty} \ln \prod_{i = 1}^n \mathrm{Exp} \left[ e^{t \cdot \frac{1}{n} X_i} \right] \quad\Leftarrow\quad p (x_1, \cdots, x_n) = p_{X_1} (x_1) \cdots p_{X_n} (x_n) \\
 >                         &&                                                                                              &\xlongequal{e^x = 1 + e^{\theta \cdot x} \cdot x} \lim_{n \to +\infty} \sum_{i = 1}^n \ln \mathrm{Exp} \left[ 1 + e^\frac{\theta_{i 1} t \cdot X_i}{n} \cdot \dfrac{t \cdot X_i}{n} \right] \\
 >                         &&                                                                                              &\xlongequal{\ln (1 + x) = \frac{x}{1 + \theta \cdot x}} \lim_{n \to +\infty} \sum_{i = 1}^n \dfrac{\mathrm{Exp} \left[ e^{\frac{\theta_{i 1} t \cdot X_i}{n}} \cdot \frac{t \cdot X_i}{n} \right]}{1 + \theta_{i 2} \cdot \mathrm{Exp} \left[ e^{\frac{\theta_{i 1} t \cdot X_i}{n}} \cdot \frac{t \cdot X_i}{n} \right]} \\
-> \Uparrow\quad           &&                                         \lim_{n \to +\infty} \dfrac{X_i}{n} \to 0 \quad\quad &= t \cdot \lim_{n \to +\infty} \dfrac{1}{n} \sum_1^n \mathrm{Exp} [X_n] \\
+> \Uparrow\quad           &&                               \lim_{n \to +\infty} \dfrac{\mathrm{Exp} [X_i]}{n} \to 0 \quad &= t \cdot \lim_{n \to +\infty} \dfrac{1}{n} \sum_1^n \mathrm{Exp} [X_n] \\
 > \Downarrow\quad         && \lim_{n \to +\infty} \mathrm{Exp} \left[ e^{\imath t \cdot \frac{1}{n} \sum_1^n X_n} \right] &= e^{\imath t \cdot \lim\limits_{n \to +\infty} \frac{1}{n} \sum_1^n \mathrm{Exp} [X_n]} \\
 >                         &&                                                                                              &= \mathrm{Exp} \left[ e^{\imath t \cdot \lim\limits_{n \to +\infty} \frac{1}{n} \sum_1^n \mathrm{Exp} [X_n]} \right] \\
 > \Downarrow\quad         &&                        \lim_{n \to +\infty} P \left[ \dfrac{1}{n} \sum_1^n X_n \le x \right] &\xlongequal[X \equiv \lim\limits_{n \to +\infty} \frac{1}{n} \sum_1^n \mathrm{Exp} \lbrack X_n \rbrack]{\forall x \in \mathcal{Conti.}} P [X \le x] \\
@@ -96,19 +96,4 @@ Resources:
 > \end{alignedat}
 > $$
 >
-
-$$
-\begin{alignedat}{3}
-\Uparrow\quad           &&    \ln \lim_{n \to +\infty} \mathrm{Exp} \left[ e^{t \cdot \frac{1}{n} \sum_1^n X_n} \right] &= \lim_{n \to +\infty} \ln \prod_{i = 1}^n \mathrm{Exp} \left[ e^{t \cdot \frac{1}{n} X_i} \right] \quad\Leftarrow\quad p (x_1, \cdots, x_n) = p_{X_1} (x_1) \cdots p_{X_n} (x_n) \\
-                        &&                                                                                              &\xlongequal{e^x = 1 + x \cdot e^{\theta \cdot x}} \lim_{n \to +\infty} \sum_{i = 1}^n \ln \mathrm{Exp} \left[ 1 + \dfrac{t \cdot X_i}{n} e^\frac{\theta_{i 1} t \cdot X_i}{n} \right] \\
-                        &&                                                                                              &\xlongequal{\ln (1 + x) = \frac{x}{1 + \theta \cdot x}} \lim_{n \to +\infty} \sum_{i = 1}^n \dfrac{\mathrm{Exp} \left[ \frac{t \cdot X_i}{n} \cdot e^{\frac{\theta_{i 1} t \cdot X_i}{n}} \right]}{1 + \theta_{i 2} \cdot \mathrm{Exp} \left[ \frac{t \cdot X_i}{n} \cdot e^{\frac{\theta_{i 1} t \cdot X_i}{n}} \right]} \\
-                        &&                                                                                              &= t \cdot \lim_{n \to +\infty} \sum_{i = 1}^n \dfrac{\mathrm{Exp} \left[ X_i \cdot e^\frac{{\theta_{i 1} t \cdot X_i}}{n} \right]}{n + \theta_{i 2} t \cdot \mathrm{Exp} \left[ X_i \cdot e^\frac{{\theta_{i 1} t \cdot X_i}}{n} \right]} \\
-                        &&                                                                                              &\to t \cdot \lim_{n \to +\infty} \dfrac{1}{n} \sum_1^n \mathrm{Exp} [X_n] \\
-\Downarrow\quad         && \lim_{n \to +\infty} \mathrm{Exp} \left[ e^{\imath t \cdot \frac{1}{n} \sum_1^n X_n} \right] &\to e^{\imath t \cdot \lim\limits_{n \to +\infty} \frac{1}{n} \sum_1^n \mathrm{Exp} [X_n]} \\
-                        &&                                                                                              &= \mathrm{Exp} \left[ e^{\imath t \cdot \lim\limits_{n \to +\infty} \frac{1}{n} \sum_1^n \mathrm{Exp} [X_n]} \right] \\
-\Downarrow\quad         &&                        \lim_{n \to +\infty} P \left[ \dfrac{1}{n} \sum_1^n X_n \le x \right] &\xlongequal[X \equiv \lim\limits_{n \to +\infty} \frac{1}{n} \sum_1^n \mathrm{Exp} \lbrack X_n \rbrack]{\forall x \in \mathcal{Conti.}} P [X \le x] \\
-\fbox{1}\Downarrow\quad &&                                                                       \lim_{n \to +\infty} P & \left[ \left| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \right| \ge \varepsilon \right] = 0 \\
-\fbox{2}\Downarrow\quad &&                                                                       \lim_{n \to +\infty} P & \left[ \left| \dfrac{1}{n} \sum_1^n (X_n - \mathrm{Exp} [X_n]) \right| \lt \varepsilon \right] = 1 \\
-\end{alignedat}
-$$
 
