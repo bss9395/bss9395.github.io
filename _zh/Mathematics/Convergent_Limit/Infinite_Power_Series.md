@@ -29,8 +29,8 @@ Resources:
 > \fbox{2}\; & \int_0^x \left( \sum_0^{+\infty} s_n x^n \right) \mathrm{d} x = \sum_0^{+\infty} \int_0^x s_n x^n \mathrm{d} x = \sum_0^{+\infty} \dfrac{s_n}{n + 1} x^{n + 1} &&\;\Rightarrow\; R = \varlimsup_{+\infty} \sqrt[n]{\dfrac{n + 1}{s_n}} = \varlimsup_{+\infty} \dfrac{1}{\sqrt[n]{s_n}} \\
 > \fbox{3}\; & \left( \sum_0^{+\infty} s_n x^n \right)^{(k)} = \sum_0^{+\infty} (s_n x^n)^{(k)} = \sum_k^{+\infty} \dfrac{n !}{k !} s_n x^{(n - k)}                         &&\;\Rightarrow\; R = \varlimsup_{+\infty} \sqrt[n]{\dfrac{k !}{n ! s_n}} \\
 > \fbox{4}\; & \sum_0^{+\infty} s_n \langle \pm R \rangle^n \to \mathcal{Conv.} \;\Rightarrow\; \sum_0^{+\infty} s_n x^n \rightrightarrows \mathcal{Conv.}                  &&\;\Rightarrow\; \sum_0^{+\infty} s_n \langle \pm R \rangle^n = \lim_{\pm R} \sum_0^{+\infty} s_n x^n = \sum_0^{+\infty} \lim_{\pm R} s_n x^n \\
-> \fbox{5}\; & \lim_{\pm R} \sum_0^{+\infty} s_n \to S \;\land\; s_n \ge 0                                                                                                  &&\;\Rightarrow\; \sum_0^{+\infty} s_n \langle \pm R \rangle^n = S \\
-> \fbox{6}\; & \lim_{\pm R} \sum_0^{+\infty} s_n \to S \;\land\; s_n = o \left( \dfrac{1}{n} \right)                                                                        &&\;\Rightarrow\; \sum_0^{+\infty} s_n \langle \pm R \rangle^n = S \\
+> \fbox{5}\; & \lim_{\pm R} \sum_0^{+\infty} s_n x^n \to S \;\land\; s_n \ge 0                                                                                                  &&\;\Rightarrow\; \sum_0^{+\infty} s_n \langle \pm R \rangle^n = S \\
+> \fbox{6}\; & \lim_{\pm R} \sum_0^{+\infty} s_n x^n \to S \;\land\; s_n = o \left( \dfrac{1}{n} \right)                                                                        &&\;\Rightarrow\; \sum_0^{+\infty} s_n \langle \pm R \rangle^n = S \\
 > \end{alignedat}
 > $$
 >
