@@ -137,12 +137,13 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->       X &\mapsto \mathrm{No} (\mu, \sigma^2) \\
-> p_U (u) &\xlongequal{u = \frac{x - \mu}{\sigma}} p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} u} \right| \\
->         &= \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{u^2}{2}} \quad\Leftarrow\quad \dfrac{\mathrm{d} x}{\mathrm{d} u} = \left. 1 \middle/ \dfrac{\mathrm{d} u}{\mathrm{d} x} \right. = \sigma \\
-> p_Y (y) &\xlongequal{y = c \cdot x + d} p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} y} \right| \\
->         &= \dfrac{1}{\sqrt{2 \pi} |c \cdot \sigma|} e^{- \frac{[y - (c \cdot \mu + d)]^2}{2 (c \cdot \sigma)^2}} \quad\Leftarrow\quad \dfrac{\mathrm{d} x}{\mathrm{d} y} = \left. 1 \middle/ \dfrac{\mathrm{d} y}{\mathrm{d} x} \right. = \dfrac{1}{c} \\
->       Y &\mapsto \mathrm{No} (c \cdot \mu + d, c^2 \cdot \sigma^2) \\
+>               &&       X &\mapsto \mathrm{No} (\mu, \sigma^2) \\
+> \fbox{1}\quad && p_U (u) &\xlongequal{u = \frac{x - \mu}{\sigma}} p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} u} \right| \\
+>               &&         &= \dfrac{1}{\sqrt{2 \pi}} e^{- \frac{u^2}{2}} \quad\Leftarrow\quad \dfrac{\mathrm{d} x}{\mathrm{d} u} = \left. 1 \middle/ \dfrac{\mathrm{d} u}{\mathrm{d} x} \right. = \sigma \\
+>               &&       U &\mapsto \mathrm{No} (0, 1^2) \\
+> \fbox{2}\quad && p_Y (y) &\xlongequal{y = c \cdot x + d} p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} y} \right| \\
+>               &&         &= \dfrac{1}{\sqrt{2 \pi} |c \cdot \sigma|} e^{- \frac{[y - (c \cdot \mu + d)]^2}{2 (c \cdot \sigma)^2}} \quad\Leftarrow\quad \dfrac{\mathrm{d} x}{\mathrm{d} y} = \left. 1 \middle/ \dfrac{\mathrm{d} y}{\mathrm{d} x} \right. = \dfrac{1}{c} \\
+>               &&       Y &\mapsto \mathrm{No} (c \cdot \mu + d, c^2 \cdot \sigma^2) \\
 > \end{alignedat}
 > $$
 >

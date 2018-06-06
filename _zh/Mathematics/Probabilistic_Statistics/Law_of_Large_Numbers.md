@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     大数定律
-Revised:   2018-06-06 02:54:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-06-07 00:30:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -70,8 +70,8 @@ Resources:
 > \Uparrow\quad           && \ln \lim_{n \to +\infty} \mathrm{Exp} \left[ e^{\imath t \cdot \frac{1}{n} \sum_1^n X_n} \right] &= \lim_{n \to +\infty} \ln \prod_{i = 1}^n \mathrm{Exp} \left[ e^{\imath t \cdot \frac{1}{n} X_i} \right] \quad\Leftarrow\quad p (x_1, \cdots, x_n) = p_{X_1} (x_1) \cdots p_{X_n} (x_n) \\
 >                         &&                                                                                                  &\xlongequal{e^x = 1 + e^{\theta \cdot x} \cdot x} \lim_{n \to +\infty} \sum_{i = 1}^n \ln \mathrm{Exp} \left[ 1 + e^\frac{\theta_{i 1} \imath t \cdot X_i}{n} \cdot \dfrac{\imath t \cdot X_i}{n} \right] \\
 >                         &&                                                                                                  &\xlongequal{\ln (1 + x) = \frac{x}{1 + \theta \cdot x}} \lim_{n \to +\infty} \sum_{i = 1}^n \dfrac{\mathrm{Exp} \left[ e^{\frac{\theta_{i 1} \imath t \cdot X_i}{n}} \cdot \frac{\imath t \cdot X_i}{n} \right]}{1 + \theta_{i 2} \cdot \mathrm{Exp} \left[ e^{\frac{\theta_{i 1} \imath t \cdot X_i}{n}} \cdot \frac{\imath t \cdot X_i}{n} \right]} \\
-> \fbox{1}\Uparrow\quad   &&                                               \lim_{n \to +\infty} \sup_i \dfrac{|X_i|}{n} \to 0 &\implies \lim_{n \to +\infty} \theta_{i 1} \rightrightarrows 0 \\
-> \fbox{2}\Uparrow\quad   &&                                \lim_{n \to +\infty} \sup_i \dfrac{|\mathrm{Exp} [X_i]|}{n} \to 0 &\implies \lim_{n \to +\infty} \theta_{i 2} \rightrightarrows 0 \\
+> \fbox{1}\Uparrow\quad   &&      P \left[ \lim_{n \to +\infty} \sup_{i \le n} \dfrac{|X_i|}{n} \ge \varepsilon \right] \to 0 &\iff P \left[ \lim_{n \to +\infty} |\theta_{i 1}| \ge varepsilon \right] \rightrightarrows 0 \\
+> \fbox{2}\Uparrow\quad   &&                        \lim_{n \to +\infty} \sup_{i \le n} \dfrac{|\mathrm{Exp} [X_i]|}{n} \to 0 &\iff \lim_{n \to +\infty} \theta_{i 2} \rightrightarrows 0 \\
 > \Downarrow\quad         && \ln \lim_{n \to +\infty} \mathrm{Exp} \left[ e^{\imath t \cdot \frac{1}{n} \sum_1^n X_n} \right] &= \imath t \cdot \lim_{n \to +\infty} \dfrac{1}{n} \sum_1^n \mathrm{Exp} [X_n] \\
 > \Downarrow\quad         &&     \lim_{n \to +\infty} \mathrm{Exp} \left[ e^{\imath t \cdot \frac{1}{n} \sum_1^n X_n} \right] &= e^{\imath t \cdot \lim\limits_{n \to +\infty} \frac{1}{n} \sum_1^n \mathrm{Exp} [X_n]} \\
 >                         &&                                                                                                  &= \mathrm{Exp} \left[ e^{\imath t \cdot \lim\limits_{n \to +\infty} \frac{1}{n} \sum_1^n \mathrm{Exp} [X_n]} \right] \\

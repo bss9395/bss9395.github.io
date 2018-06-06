@@ -11,8 +11,10 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{Err_{or}} (x) &= \dfrac{1}{\sqrt{\pi}} \int_{- x}^x e^{- x^2} \mathrm{d} x \\
-> &= \dfrac{2}{\sqrt{\pi}} \int_0^x e^{- x^2} \mathrm{d} x \\
+>                           \mathrm{Err_{or}} (x) &= \dfrac{1}{\sqrt{\pi}} \int_{- x}^x e^{- x^2} \mathrm{d} x \\
+>                                                 &= \dfrac{2}{\sqrt{\pi}} \int_0^x e^{- x^2} \mathrm{d} x \\
+>                                        \Phi (u) &= \dfrac{1}{2} \left[ 1 + \mathrm{Err} \left( \dfrac{u}{\sqrt{2}} \right) \right] \\
+> \mathrm{Err} \left( \dfrac{u}{\sqrt{2}} \right) &= 2 \Phi (u) - 1 \\
 > \end{alignedat}
 > $$
 >
