@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     基础数学
 Title:     特殊符号
-Revised:   2018-05-30 20:00:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-06-08 20:25:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -117,14 +117,14 @@ Resources:
 > $$
 >
 
-> ### $\chi_C$符号
+> ### $\Chi$符号
 
 > $$
 > \begin{alignedat}{3}
-> \chi_C (x) = \left\lbrace\begin{alignedat}{3}
->                 0 &\quad\Leftarrow\quad x \notin C \\
->                 1 &\quad\Leftarrow\quad x \in C \\
->                 \end{alignedat}\right. \\
+> \Chi [\mathcal{Test\;} x] = \left\lbrace\begin{alignedat}{3}
+>                             0 &\quad\Leftarrow\quad \mathcal{Test\;} x = \mathcal{False} \\
+>                             1 &\quad\Leftarrow\quad \mathcal{Test\;} x = \mathcal{True} \\
+>                             \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
 >

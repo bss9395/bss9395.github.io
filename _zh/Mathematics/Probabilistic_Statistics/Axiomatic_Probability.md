@@ -67,7 +67,7 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> P [E] &= \lim_{+\infty} \dfrac{T_{rial} (E)}{T_{rial} (\Omega)} \\
+> P [E] &= \lim_{+\infty} \left\langle f_{requency} (E) =   \dfrac{T_{rial} (E)}{T_{rial} (\Omega)} \right\rangle \\
 > \end{alignedat}
 > $$
 >

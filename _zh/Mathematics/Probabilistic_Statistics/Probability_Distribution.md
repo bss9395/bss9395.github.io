@@ -7,33 +7,33 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-> ### 累积概率分布
+> ### 累积概率分布 $C_{umulative} P_{robability} D_{istribution}$
 
 > $$
 > \begin{array}{l|l|l}
->                                 & P [X \lt \beta] = C (\beta^-)           & P [\alpha \lt X \lt \beta] = C (\beta^-) - C (\alpha) \\
->                                 & P [X \le \beta] = C (\beta)             & P [\alpha \lt X \le \beta] = C (\beta) - C (\alpha) \\
-> C_{umulative} (x) = P [X \le x] & P [X = \beta] = C (\beta) - C (\beta^-) & \\
->                                 & P [X \ge \beta] = 1 - C (\beta^-)       & P [\alpha \le X \lt \beta] = C (\beta^-) - C (\alpha^-) \\
->                                 & P [X \gt \beta] = 1 - C (\beta)         & P [\alpha \le X \le \beta] = C (\beta) - C (\alpha^-) \\
+>                     & P [X \lt \beta] = C (\beta^-)           & P [\alpha \lt X \lt \beta] = C (\beta^-) - C (\alpha) \\
+>                     & P [X \le \beta] = C (\beta)             & P [\alpha \lt X \le \beta] = C (\beta) - C (\alpha) \\
+> C (x) = P [X \le x] & P [X = \beta] = C (\beta) - C (\beta^-) & \\
+>                     & P [X \ge \beta] = 1 - C (\beta^-)       & P [\alpha \le X \lt \beta] = C (\beta^-) - C (\alpha^-) \\
+>                     & P [X \gt \beta] = 1 - C (\beta)         & P [\alpha \le X \le \beta] = C (\beta) - C (\alpha^-) \\
 > \end{array}
 > $$
 >
 
-> ### 联合概率分布
+> ### 联合概率分布 $J_{oint} P_{robability} D_{istribution}$
 
 > $$
 > \begin{alignedat}{3}
-> J_{oint} (\cdots, x_i, \cdots) = P [\cdots, X_i \le x_i, \cdots] \\
+> J (\cdots, x_i, \cdots) = P [\cdots, X_i \le x_i, \cdots] \\
 > \end{alignedat}
 > $$
 >
 
-> ### 边际概率分布
+> ### 边际概率分布 $M_{arginal} P_{robability} D_{istribution}$
 
 > $$
 > \begin{alignedat}{3}
-> {M_{arginal}}_{X_i} (x_i) = J (+\infty, \cdots, x_i, \cdots, +\infty) \\
+> M_{X_i} (x_i) = J (+\infty, \cdots, x_i, \cdots, +\infty) \\
 > \end{alignedat}
 > $$
 >

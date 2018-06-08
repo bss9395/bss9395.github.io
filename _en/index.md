@@ -32,3 +32,4 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > 01. TRIALs and ERRORs.
 > 01. What is rational is real, and what is real is rational.
 > 01. You win some, you lose some.
+> 01. ~~Too young, too simple, sometimes naive. ~~
