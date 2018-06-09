@@ -77,7 +77,7 @@ Resources:
 > \hline
 > \mathrm{Exp} [X]^1 = \mu_X      & \mathrm{Exp} [Y]^1 = \mu_Y      & \mathrm{Exp} [X Y]^1 = \rho \sigma_X \sigma_Y + \mu_X \mu_Y \\
 > \mathrm{Var} [X]^1 = \sigma_X^2 & \mathrm{Var} [Y]^1 = \sigma_Y^2 & \mathrm{CoV} [X, Y]^1 = \rho \sigma_X \sigma_Y \\
-> \mathrm{SD} [X] = \sigma_X      & \mathrm{SD} [Y] = \sigma_Y      & \mathrm{Cor} [X, Y] = \rho \\
+> \mathrm{SD} [X] = \sigma_X      & \mathrm{SD} [Y] = \sigma_Y      & \mathrm{Corr} [X, Y] = \rho \\
 > \hline
 > \end{array}
 > $$

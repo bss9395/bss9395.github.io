@@ -117,14 +117,14 @@ Resources:
 > $$
 >
 
-> ### $\Chi$符号
+> ### $\Iota$符号
 
 > $$
 > \begin{alignedat}{3}
-> \Chi [\mathcal{Test\;} x] = \left\lbrace\begin{alignedat}{3}
->                             0 &\quad\Leftarrow\quad \mathcal{Test\;} x = \mathcal{False} \\
->                             1 &\quad\Leftarrow\quad \mathcal{Test\;} x = \mathcal{True} \\
->                             \end{alignedat}\right. \\
+> \Iota [\mathcal{Test\;} x] = \left\lbrace\begin{alignedat}{3}
+>                              0 &\quad\Leftarrow\quad \mathcal{Test\;} x = \mathcal{False} \\
+>                              1 &\quad\Leftarrow\quad \mathcal{Test\;} x = \mathcal{True} \\
+>                              \end{alignedat}\right. \\
 > \end{alignedat}
 > $$
 >

@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     特殊函数
-Revised:   2018-05-08 17:59:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-06-09 23:28:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -83,3 +83,26 @@ Resources:
 > \end{alignedat}
 > $$
 >
+
+> ### $\Rho$ 函数
+
+> $$
+> \begin{alignedat}{3}
+> \Rho (p, i, n) &= \dfrac{1}{\Beta (i, n - i + 1)} \int_0^p t^{i - 1} \cdot (1 - t)^{n - i} \mathrm{d} t \\
+>                &= \dfrac{n !}{(i - 1) ! (n - i) !} \int_0^p t^{i - 1} \cdot (1 - t)^{n - i} \mathrm{d} t \\
+> \end{alignedat}
+> $$
+>
+
+> ### $\Rho$ 函数的性质
+
+> $$
+> \begin{alignedat}{3}
+> \Rho (p, n, n) &= {n \choose n} p^n (1 - p)^0 \\
+> \Rho (p, i, n) &= {n \choose i} p^i \cdot (1 - p)^{n - i} + \dfrac{1}{\Beta (i + 1, n - i)} \int_0^p t^i \cdot (1 - t)^{n - i - 1} \mathrm{d} t \\
+>                &= {n \choose i} p^i \cdot (1 - p)^{n - i} + \Rho (p, i + 1, n) \\
+>                &= \sum_{j = i}^n {n \choose j} p^j \cdot (1 - p)^{n - j} \\
+> \end{alignedat}
+> $$
+>
+
