@@ -12,8 +12,8 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > P (X_1 = k_1, \cdots, X_m = k_m) &= \dfrac{n !}{k_1 ! \cdots k_m !} p_1^{k_1} \cdots p_m^{k_m} \quad\Leftarrow\quad n = \sum_1^m k_m \\
->                    M_{X_1} (x_1) &= \sum_{k_2, \cdots, k_m} \dfrac{n !}{k_1 ! \cdots k_m !} p_1^{k_1} \cdots p_m^{k_m} \\
->                                  &= \dfrac{n !}{k_1 ! (n - k_1) !} p_1^{k_1} \sum_{k2, \cdots, k_m} \dfrac{(n - k_1) !}{k_2 ! \cdots k_m !} p_2^{k_2} \cdots p_m^{k_m} \\
+>                    M_{X_1} (x_1) &= \sum_{(k_2, \cdots, k_m)} \dfrac{n !}{k_1 ! \cdots k_m !} p_1^{k_1} \cdots p_m^{k_m} \\
+>                                  &= \dfrac{n !}{k_1 ! (n - k_1) !} p_1^{k_1} \sum_{(k_2, \cdots, k_m)} \dfrac{(n - k_1) !}{k_2 ! \cdots k_m !} p_2^{k_2} \cdots p_m^{k_m} \\
 >                                  &= \dfrac{n !}{k_1 ! (n - k_1) !} p_1^{k_1} (p_2 + \cdots + p_m)^{n - k_1} \\
 >                                  &= \dfrac{n !}{k_1 ! (n - k_1) !} p_1^{k_1} (1 - p_1)^{n - k_1} \\
 > \end{alignedat}
