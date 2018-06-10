@@ -7,11 +7,22 @@ Authors:   璀璨星辰
 Resources:
 ---
 
+> ### 样本
+
+> $$
+> \begin{alignedat}{3}
+>              X &\mapsto C (x) \\
+>                &\Downarrow\; \text{Choose} \\
+> \chi_1, \cdots &, \chi_i, \cdots, \chi_n \\
+> \end{alignedat}
+> $$
+>
+
 > ### 统计量 $S_{tatistic}$
 
 > $$
 > \begin{alignedat}{3}
-> S &= S [x_1, \cdots, x_n] \quad\Leftarrow\quad p (x_1, \cdots, x_n) = p_{x_1} (x_1) \cdots p_{x_n} (x_n) \\
+> S &= S [\chi_1, \cdots, \chi_n] \quad\Leftarrow\quad p (\chi_1, \cdots, \chi_n) = p_X (\chi_1) \cdots p_X (\chi_n) \\
 > \end{alignedat}
 > $$
 >
@@ -20,9 +31,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \overline{x} &\xlongequal{\mathcal{Ungrouped}} \dfrac{x_1 + \cdots + x_n}{n} = \dfrac{1}{n} \sum_{i = 1}^n x_i \\
-> \overline{x} &\xlongequal{\mathcal{Grouped}} \dfrac{\overline{x_1} \cdot f_1 + \cdots + \overline{x_n} \cdot f_n}{n} = \dfrac{1}{n} \sum_{i = 1}^n \overline{x_i} \cdot f_i \\
-> \overline{x} &\sim  \mathrm{No} \left( \mu, \dfrac{\sigma^2}{n} \right) \\
+> \overline{\chi} &\xlongequal{\mathcal{Ungrouped}} \dfrac{\chi_1 + \cdots + \chi_n}{n} = \dfrac{1}{n} \sum_{i = 1}^n \chi_i \\
+> \overline{\chi} &\xlongequal{\mathcal{Grouped}} \dfrac{\overline{\chi_1} \cdot f_1 + \cdots + \overline{\chi_n} \cdot f_n}{n} = \dfrac{1}{n} \sum_{i = 1}^n \overline{\chi_i} \cdot f_i \\
 > \end{alignedat}
 > $$
 >
@@ -31,10 +41,10 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->         s^2 &\xlongequal{\mathcal{Ungrouped}} \dfrac{1}{n} \sum_{i = 1}^n (x_i - \overline{x})^2 \\
->         s^2 &\xlongequal{\mathcal{Grouped}} \dfrac{1}{n} \sum_{i = 1}^n (\overline{x_i} - \overline{x})^2 \cdot f_i \\
-> \tilde{s}^2 &\xlongequal{\mathcal{Ungrouped}} \dfrac{1}{n - 1} \sum_{i = 1}^n (x_i - \overline{x})^2 = \dfrac{1}{n - 1} \left[ \sum_{ i = 1}^n x_i^2 - n \cdot \overline{x} \right] \\
-> \tilde{s}^2 &\xlongequal{\mathcal{Grouped}} \dfrac{1}{n - 1} \sum_{i = 1}^n (\overline{x_i} - \overline{x})^2 \cdot f_i = \dfrac{1}{n - 1} \left[ \sum_{i = 1}^n \overline{x_i}^2 \cdot f_i - n \cdot \overline{x} \right] \\
+>         s^2 &\xlongequal{\mathcal{Ungrouped}} \dfrac{1}{n} \sum_{i = 1}^n (\chi_i - \overline{\chi})^2 \\
+>         s^2 &\xlongequal{\mathcal{Grouped}} \dfrac{1}{n} \sum_{i = 1}^n (\overline{\chi_i} - \overline{\chi})^2 \cdot f_i \\
+> \tilde{s}^2 &\xlongequal{\mathcal{Ungrouped}} \dfrac{1}{n - 1} \sum_{i = 1}^n (\chi_i - \overline{\chi})^2 = \dfrac{1}{n - 1} \left[ \sum_{ i = 1}^n \chi_i^2 - n \cdot \overline{\chi} \right] \\
+> \tilde{s}^2 &\xlongequal{\mathcal{Grouped}} \dfrac{1}{n - 1} \sum_{i = 1}^n (\overline{\chi_i} - \overline{\chi})^2 \cdot f_i = \dfrac{1}{n - 1} \left[ \sum_{i = 1}^n \overline{\chi_i}^2 \cdot f_i - n \cdot \overline{\chi} \right] \\
 > \end{alignedat}
 > $$
 >
@@ -43,8 +53,9 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{Exp} [\overline{x}] &= \mathrm{Exp} \left[ \dfrac{1}{n} \sum_{i = 1}^n x_i \right] = \overline{x} \\
-> \mathrm{Var} [\overline{x}] &= \mathrm{Var} \left[ \dfrac{1}{n} \sum_{i = 1}^n x_i \right] = \dfrac{s^2}{n} = \dfrac{n - 1}{n^2} \tilde{s}^2 \\
+> \mathrm{Exp} [\overline{\chi}] &= \mathrm{Exp} \left[ \dfrac{1}{n} \sum_{i = 1}^n \chi_i \right] = \overline{\chi} \\
+> \mathrm{Var} [\overline{\chi}] &= \mathrm{Var} \left[ \dfrac{1}{n} \sum_{i = 1}^n \chi_i \right] = \dfrac{s^2}{n} = \dfrac{n - 1}{n^2} \tilde{s}^2 \\
+>                \overline{\chi} &\sim  \mathrm{No} \left( \overline{\chi}, \dfrac{s^2}{n} \right) \\
 > \end{alignedat}
 > $$
 >
@@ -53,8 +64,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{Skew} &\xlongequal{\mathcal{Ungrouped}} \dfrac{\dfrac{1}{n} \sum\limits_{i = 1}^n (x_i - \overline{x})^3}{\left[ \dfrac{1}{n} \sum\limits_{i = 1}^n (x_i - \overline{x})^2 \right]^\frac{3}{2}} \\
-> \mathrm{Skew} &\xlongequal{\mathcal{Grouped}} \dfrac{\dfrac{1}{n} \sum\limits_{i = 1}^n (\overline{x_i} - \overline{x})^3 \cdot f_i}{\left[ \dfrac{1}{n} \sum\limits_{i = 1}^n (\overline{x_i} - \overline{x})^2 \cdot f_i \right]^\frac{3}{2}}
+> \mathrm{Skew} &\xlongequal{\mathcal{Ungrouped}} \dfrac{\dfrac{1}{n} \sum\limits_{i = 1}^n (\chi_i - \overline{\chi})^3}{\left[ \dfrac{1}{n} \sum\limits_{i = 1}^n (\chi_i - \overline{\chi})^2 \right]^\frac{3}{2}} \\
+> \mathrm{Skew} &\xlongequal{\mathcal{Grouped}} \dfrac{\dfrac{1}{n} \sum\limits_{i = 1}^n (\overline{\chi_i} - \overline{\chi})^3 \cdot f_i}{\left[ \dfrac{1}{n} \sum\limits_{i = 1}^n (\overline{\chi_i} - \overline{\chi})^2 \cdot f_i \right]^\frac{3}{2}}
 > \end{alignedat}
 > $$
 >
@@ -63,8 +74,8 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> \mathrm{Kurt} &\xlongequal{\mathcal{Ungrouped}} \dfrac{\dfrac{1}{n} \sum\limits_{i = 1}^n (x_i - \overline{x})^4}{\left[ \dfrac{1}{n} \sum\limits_{i = 1}^n (x_i - \overline{x})^2 \right]^2} - 3 \\
-> \mathrm{Kurt} &\xlongequal{\mathcal{Grouped}} \dfrac{\dfrac{1}{n} \sum\limits_{i = 1}^n (\overline{x_i} - \overline{x})^4 \cdot f_i}{\left[ \dfrac{1}{n} \sum\limits_{i = 1}^n (\overline{x_i} - \overline{x})^2 \cdot f_i \right]^2} - 3 \\
+> \mathrm{Kurt} &\xlongequal{\mathcal{Ungrouped}} \dfrac{\dfrac{1}{n} \sum\limits_{i = 1}^n (\chi_i - \overline{\chi})^4}{\left[ \dfrac{1}{n} \sum\limits_{i = 1}^n (\chi_i - \overline{\chi})^2 \right]^2} - 3 \\
+> \mathrm{Kurt} &\xlongequal{\mathcal{Grouped}} \dfrac{\dfrac{1}{n} \sum\limits_{i = 1}^n (\overline{\chi_i} - \overline{\chi})^4 \cdot f_i}{\left[ \dfrac{1}{n} \sum\limits_{i = 1}^n (\overline{\chi_i} - \overline{\chi})^2 \cdot f_i \right]^2} - 3 \\
 > \end{alignedat}
 > $$
 >

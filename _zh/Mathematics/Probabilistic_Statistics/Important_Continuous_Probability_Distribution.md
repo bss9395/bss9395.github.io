@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     概率统计
 Title:     重要连续概率分布
-Revised:   2018-05-23 17:47:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Revised:   2018-06-10 23:30:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -212,18 +212,18 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                                                        p (x) &= \dfrac{\lambda}{\Gamma (u)} (\lambda x)^{u - 1} e^{- \lambda x} \quad\Leftarrow\quad x \in [0, +\infty) \\
->                                                        C (x) &= \dfrac{\lambda}{\Gamma (u)} \int_0^x (\lambda x)^{u - 1} e^{- \lambda x} \mathrm{d} x \\
->                                 \mathrm{Exp} [e^{t \cdot X}] &= \dfrac{\lambda}{\Gamma (u)} \int_0^{+\infty} e^{t \cdot x} (\lambda x)^{u - 1} e^{- \lambda x} \mathrm{d} x \\
->                                                              &= \left(\dfrac{\lambda}{\lambda - t}\right)^u \dfrac{\lambda - t}{\Gamma (u)} \int_0^{+\infty} [(\lambda - t) x]^{u - 1} e^{- (\lambda - t) x} \mathrm{d} x \\
+>                                                        p (x) &= \dfrac{\lambda^u}{\Gamma (u)} x^{u - 1} e^{- \lambda x} \quad\Leftarrow\quad x \in [0, +\infty) \\
+>                                                        C (x) &= \dfrac{\lambda^u}{\Gamma (u)} \int_0^x x^{u - 1} e^{- \lambda x} \mathrm{d} x \\
+>                                 \mathrm{Exp} [e^{t \cdot X}] &= \dfrac{\lambda^u}{\Gamma (u)} \int_0^{+\infty} e^{t \cdot x} x^{u - 1} e^{- \lambda x} \mathrm{d} x \\
+>                                                              &= \left(\dfrac{\lambda}{\lambda - t}\right)^u \dfrac{(\lambda - t)^u}{\Gamma (u)} \int_0^{+\infty} x^{u - 1} e^{- (\lambda - t) x} \mathrm{d} x \\
 >                                                              &= \left(\dfrac{\lambda}{\lambda - t}\right)^u \\
 >            \mathrm{Exp} [e^{t \cdot (X - \mathrm{Exp} [X])}] &= \left(\dfrac{\lambda}{\lambda - t}\right)^u \cdot e^{- \frac{u}{\lambda} t} \\
->                    \mathrm{Exp} [\mathrm{Ga} (u, \lambda)]^h &= \dfrac{\lambda}{\Gamma (u)} \int_0^{+\infty} x^h (\lambda x)^{u - 1} e^{- \lambda x} \mathrm{d} x \\
+>                    \mathrm{Exp} [\mathrm{Ga} (u, \lambda)]^h &= \dfrac{\lambda^u}{\Gamma (u)} \int_0^{+\infty} x^h x^{u - 1} e^{- \lambda x} \mathrm{d} x \\
 >                                                              &\xlongequal{y = \lambda x} \dfrac{1}{\lambda^h \Gamma (u)} \int_0^{+\infty} y^{u + h - 1} e^{- y} \mathrm{d} y \\
 >                                                              &= \dfrac{\Gamma (u + h)}{\lambda^h \Gamma (u)} \\
-> \mathrm{Exp} [\mathrm{Ga} (u, \lambda) - \mathrm{Exp} [X]]^h &= \dfrac{\lambda}{\Gamma (u)} \int_0^{+\infty} \left( x - \dfrac{u}{\lambda} \right)^h (\lambda x)^{u - 1} e^{- \lambda x} \mathrm{d} x \\
+> \mathrm{Exp} [\mathrm{Ga} (u, \lambda) - \mathrm{Exp} [X]]^h &= \dfrac{\lambda^u}{\Gamma (u)} \int_0^{+\infty} \left( x - \dfrac{u}{\lambda} \right)^h x^{u - 1} e^{- \lambda x} \mathrm{d} x \\
 >                                                              &= \dfrac{1}{\lambda^h \Gamma (u)} \int_0^{+\infty} (\lambda x - u)^{h - 1} \mathrm{d} [- (\lambda x)^u e^{- \lambda x}] \\
->                                                              &= \dfrac{(h - 1) \cdot \Gamma (u + 1)}{\lambda^h \cdot \Gamma (u)} \dfrac{\lambda}{\Gamma (u + 1)} \int_0^{+\infty} (\lambda x - u)^{h - 2} (\lambda x)^{u} e^{- \lambda x} \mathrm{d} x \\
+>                                                              &= \dfrac{(h - 1) \cdot \Gamma (u + 1)}{\lambda^h \cdot \Gamma (u)} \dfrac{\lambda^u}{\Gamma (u + 1)} \int_0^{+\infty} (\lambda x - u)^{h - 2} x^u e^{- \lambda x} \mathrm{d} x \\
 >                                                              &= \dfrac{(h - 1) u}{\lambda^h} \mathrm{Exp} [\lambda \cdot \mathrm{Ga} (u + 1, \lambda) - u]^{h - 2} \\
 >                                                              &= \dfrac{(h - 1) u}{\lambda^2} \mathrm{Exp} [\mathrm{Ga} (u + 1, \lambda) - \mathrm{Exp} [X]]^{h - 2} \\
 > \end{alignedat}
@@ -312,20 +312,6 @@ Resources:
 > $$
 >
 
-> ### $\chi^2$ 分布 $X \mapsto \mathrm{Ch_i} (n) = \mathrm{Ga} (\frac{n}{2}, \frac{1}{2})$
-
-> $$
-> \begin{alignedat}{3}
->                                               p (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \quad\Leftarrow\quad x \in [0, +\infty) \\
->                                               C (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} \int_0^x x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \quad\Leftarrow\quad x \in [0, +\infty) \mathrm{d} x \\
->                        \mathrm{Exp} [e^{t \cdot X}] &= \left( \dfrac{1}{1 - 2 t} \right)^\frac{n}{2} \\
->   \mathrm{Exp} [e^{t \cdot (X - \mathrm{Exp} [X])}] &= \left( \dfrac{1}{1 - 2 t} \right)^\frac{n}{2} \cdot e^{- n t} \\
->                    \mathrm{Exp} [\mathrm{Ch} (n)]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) \right]^h \\
-> \mathrm{Exp} [\mathrm{Ch} (n) - \mathrm{Exp} [X]]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) - \mathrm{Exp} [X] \right]^h \\
-> \end{alignedat}
-> $$
->
-
 > $$
 > \begin{array}{l|l|l}
 > \hline
@@ -388,3 +374,41 @@ Resources:
 > $$
 >
 
+> ### $\chi^2$ 分布 $X \mapsto \mathrm{Ch_i} (n) = \mathrm{Ga} (\frac{n}{2}, \frac{1}{2})$
+
+> $$
+> \begin{alignedat}{3}
+>                                                   U &\mapsto \mathrm{No} (0, 1^2) \\
+>                                                 U^2 &\mapsto \mathrm{Ga} \left( \dfrac{1}{2}, \dfrac{1}{2} \right) \\
+>                     U_1^2 + \cdots + U_n^2 = \chi^2 &\mapsto \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) \\
+>                                               p (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \quad\Leftarrow\quad x \in [0, +\infty) \\
+>                                               C (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} \int_0^x x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \quad\Leftarrow\quad x \in [0, +\infty) \mathrm{d} x \\
+>                        \mathrm{Exp} [e^{t \cdot X}] &= \left( \dfrac{1}{1 - 2 t} \right)^\frac{n}{2} \\
+>   \mathrm{Exp} [e^{t \cdot (X - \mathrm{Exp} [X])}] &= \left( \dfrac{1}{1 - 2 t} \right)^\frac{n}{2} \cdot e^{- n t} \\
+>                    \mathrm{Exp} [\mathrm{Ch} (n)]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) \right]^h \\
+> \mathrm{Exp} [\mathrm{Ch} (n) - \mathrm{Exp} [X]]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) - \mathrm{Exp} [X] \right]^h \\
+> \end{alignedat}
+> $$
+>
+
+> $$
+> \begin{array}{l|l|l}
+> \hline
+> \mathrm{SD} [X] = \sqrt{2 n}            & \mathrm{Exp} [X]^1 = n \\
+> \mathrm{Coe} [X] = \sqrt{\dfrac{2}{n}}  & \mathrm{Exp} [X]^2 = n (n + 2) \\               
+> \mathrm{Var} [X] = 2 n                  & \mathrm{Exp} [X - \mathrm{Exp} [X]]^2 = 2 n \\ 
+> \mathrm{Skew} [X] = \sqrt{\dfrac{8}{n}} & \mathrm{Exp} [X - \mathrm{Exp} [X]]^3 = 8 n \\
+> \mathrm{Kurt} [X] = \dfrac{12}{n}       & \mathrm{Exp} [X - \mathrm{Exp} [X]]^4 = 12 n (n + 4) \\    
+> \hline
+> \end{array}
+> $$
+>
+
+> ### $F$ 分布 $X \mapsto F (m, n)$
+
+> $$
+> \begin{alignedat}{3}
+>
+> \end{alignedat}
+> $$
+>

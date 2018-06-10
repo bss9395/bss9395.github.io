@@ -130,13 +130,14 @@ Resources:
 > $$
 >
 
-> ### 分位数 $\mathrm{Quan_{tile}}$
+> ### 分位数 $\mathrm{Q_{uantile}}$
 
 > $$
 > \begin{alignedat}{3}
-> & \mathrm{Quan} [_q X] = x \iff C (x) = q \\
-> & \mathrm{Quan} [^q X] = x \iff 1 - C (x) = q \\
-> & \mathrm{Quan} [_q X] = \mathrm{Qua} [^{1 - q} X] \\
+> {_Q X} &= x \iff C (x) = Q \\
+> {^Q X} &= x \iff 1 - C (x) = Q \\
+> {_Q X} &= {^{1 - Q} X} \\
+> {^Q X} &= {_{1 - Q} X} \\
 > \end{alignedat}
 > $$
 >
