@@ -77,10 +77,10 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
-> p (\cdots, x_i, \cdots) &= \dfrac{P [\cdots, x_i \le X_i \lt x_i + \partial x_i, \cdots]}{\partial x_i} = \dfrac{\partial J (\cdots, x_i, \cdots)}{\partial x_i} \\
->           p_{X_i} (x_i) &= \dfrac{P [+\infty, \cdots, x_i \le X_i \lt x_i + \partial x_i, \cdots, +\infty]}{\partial x_i} = \dfrac{\partial J (+\infty, \cdots, x_i, \cdots, +\infty)}{\partial x_i} \\
->  p_f (y_1, \cdots, y_m) &= \dfrac{P [y_1 \le f_1 (X_1, \cdots, X_m) \lt y_1 + \partial y_1, \cdots, y_m \le f_m (X_1, \cdots, X_m) \lt y_m + \partial y_m]}{\partial y_1 \cdots \partial y_m} = p (x_1, \cdots, x_m) \cdot \left| \dfrac{\partial (x_1, \cdots, x_m)}{\partial (y_1, \cdots, y_m)} \right| \\
->                 p_f (y) &= \dfrac{P [y \le f (X) \lt y + \mathrm{d} y]}{\mathrm{d} y} = p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} y} \right| \\
+> p (\cdots, x_i, \cdots) &= \dfrac{P [\cdots, x_i \le X_i \le x_i + \partial x_i, \cdots]}{\partial x_i} = \dfrac{\partial J (\cdots, x_i, \cdots)}{\partial x_i} \\
+>           p_{X_i} (x_i) &= \dfrac{P [+\infty, \cdots, x_i \le X_i \le x_i + \partial x_i, \cdots, +\infty]}{\partial x_i} = \dfrac{\partial J (+\infty, \cdots, x_i, \cdots, +\infty)}{\partial x_i} \\
+>  p_f (y_1, \cdots, y_m) &= \dfrac{P [y_1 \le f_1 (X_1, \cdots, X_m) \le y_1 + \partial y_1, \cdots, y_m \le f_m (X_1, \cdots, X_m) \lt y_m + \partial y_m]}{\partial y_1 \cdots \partial y_m} = p (x_1, \cdots, x_m) \cdot \left| \dfrac{\partial (x_1, \cdots, x_m)}{\partial (y_1, \cdots, y_m)} \right| \\
+>                 p_f (y) &= \dfrac{P [y \le f (X) \le y + \mathrm{d} y]}{\mathrm{d} y} = p (x) \cdot \left| \dfrac{\mathrm{d} x}{\mathrm{d} y} \right| \\
 > \end{alignedat}
 > $$
 >
