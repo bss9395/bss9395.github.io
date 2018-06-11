@@ -374,19 +374,21 @@ Resources:
 > $$
 >
 
-> ### $\Chi^2$ 分布 $X \mapsto \Chi^2 (n) = \mathrm{Ga} (\frac{n}{2}, \frac{1}{2})$
+> ### $\Chi^2$ 分布 $X \mapsto \mathrm{Ch_i} (n) = \mathrm{Ga} (\frac{n}{2}, \frac{1}{2})$
 
 > $$
 > \begin{alignedat}{3}
->                                                 U &\mapsto \mathrm{No} (0, 1^2) \\
->                                               U^2 &\mapsto \mathrm{Ga} \left( \dfrac{1}{2}, \dfrac{1}{2} \right) \\
->                            U_1^2 + \cdots + U_n^2 &\mapsto \Chi^2 (n) = \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) \\
->                                             p (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \quad\Leftarrow\quad x \in [0, +\infty) \\
->                                             C (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} \int_0^x x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \mathrm{d} x \\
->                      \mathrm{Exp} [e^{t \cdot X}] &= \left( \dfrac{1}{1 - 2 t} \right)^\frac{n}{2} \\
-> \mathrm{Exp} [e^{t \cdot (X - \mathrm{Exp} [X])}] &= \left( \dfrac{1}{1 - 2 t} \right)^\frac{n}{2} \cdot e^{- n t} \\
->                       \mathrm{Exp} [\Chi^2 (n)]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) \right]^h \\
->    \mathrm{Exp} [\Chi^2 (n) - \mathrm{Exp} [X]]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) - \mathrm{Exp} [X] \right]^h \\
+>                                                      U &\mapsto \mathrm{No} (0, 1^2) \\
+>                                            p_{U^2} (x) &= p_U (\sqrt{x}) \cdot 2 \left| \dfrac{1}{2 \sqrt{x}} \right| \\
+>                                                        &= \dfrac{1}{\sqrt{2 \pi x}} e^{- \frac{x}{2}} \\
+>                                                    U^2 &\mapsto \mathrm{Ga} \left( \dfrac{1}{2}, \dfrac{1}{2} \right) \\
+>                                 U_1^2 + \cdots + U_n^2 &\mapsto \Chi^2 (n) = \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) \\
+>                                                  p (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \quad\Leftarrow\quad x \in [0, +\infty) \\
+>                                                  C (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} \int_0^x x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \mathrm{d} x \\
+>                           \mathrm{Exp} [e^{t \cdot X}] &= \left( \dfrac{1}{1 - 2 t} \right)^\frac{n}{2} \\
+>      \mathrm{Exp} [e^{t \cdot (X - \mathrm{Exp} [X])}] &= \left( \dfrac{1}{1 - 2 t} \right)^\frac{n}{2} \cdot e^{- n t} \\
+>                       \mathrm{Exp} [\mathrm{Ch} (n)]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) \right]^h \\
+>    \mathrm{Exp} [\mathrm{Ch} (n) - \mathrm{Exp} [X]]^h &= \mathrm{Exp} \left[ \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) - \mathrm{Exp} [X] \right]^h \\
 > \end{alignedat}
 > $$
 >
@@ -404,31 +406,31 @@ Resources:
 > $$
 >
 
-> ### $\Xi$ 分布 $X \mapsto \Xi (n, m)$
+> ### $\Xi$ 分布 $X \mapsto \mathrm{Xi} (n, m)$
 
 > $$
 > \begin{alignedat}{3}
-> \dfrac{m \cdot \Chi^2 (n)}{n \cdot \Chi^2 (m)} &\mapsto \mathrm{Fi} (n, m) \\
->          p_{\frac{\Chi^2 (n)}{\Chi^2 (m)}} (x) &= \int_0^{+\infty} p_{\Chi^2 (n)} (t) \cdot p_{\Chi^2 (m)} \left( \dfrac{t}{x} \right) \cdot \left| \dfrac{t}{x^2} \right| \mathrm{d} t \\
->                                                &= \dfrac{1}{2^{\frac{n + m}{2}} \Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \int_0^{+\infty} \dfrac{t^{\frac{n + m}{2} - 1}}{x^{\frac{m}{2} + 1}} e^{- \frac{t}{2} (1 + \frac{1}{x})} \mathrm{d} t \\
->                                                &\xlongequal[t = \frac{2 x}{1 + x} s]{s = \frac{t}{2} (1 + \frac{1}{x})} \dfrac{1}{\Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \dfrac{x^{\frac{n}{2} - 1}}{(1 + x)^{\frac{n + m}{2}}} \int_0^{+\infty} s^{\frac{n + m}{2} - 1} e^{- s} \mathrm{d} s \\
->                                                &= \dfrac{\Gamma (\frac{n + m}{2})}{\Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \dfrac{x^{\frac{n}{2} - 1}}{(1 + x)^{\frac{n + m}{2}}} \\
->                                          p (x) &= p_{\frac{\Chi^2 (n)}{\Chi^2 (m)}} \left( \dfrac{n}{m} x \right) \cdot \left| \dfrac{n}{m} \right| \\
->                                                &= \dfrac{\Gamma (\frac{n + m}{2}) \cdot (\frac{n}{m})^\frac{n}{2}}{\Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \dfrac{x^{\frac{n}{2} - 1}}{(1 + \frac{n}{m} x)^{\frac{n + m}{2}}} \quad\Leftarrow\quad x \in [0, +\infty) \\
->                                          C (x) &= \dfrac{\Gamma (\frac{n + m}{2}) \cdot (\frac{n}{m})^\frac{n}{2}}{\Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \int_0^x \dfrac{x^{\frac{n}{2} - 1}}{(1 + \frac{n}{m} x)^{\frac{n + m}{2}}} \mathrm{d} x \\
+> \dfrac{\frac{\mathrm{Ch} (n)}{n}}{\frac{\mathrm{Ch} (m)}{m}} &\mapsto \mathrm{Xi} (n, m) \\
+>              p_{\frac{\mathrm{Ch} (n)}{\mathrm{Ch} (m)}} (x) &= \int_0^{+\infty} p_{\mathrm{Ch} (n)} (t) \cdot p_{\mathrm{Ch} (m)} \left( \dfrac{t}{x} \right) \cdot \left| \dfrac{t}{x^2} \right| \mathrm{d} t \\
+>                                                              &= \dfrac{1}{2^{\frac{n + m}{2}} \Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \int_0^{+\infty} \dfrac{t^{\frac{n + m}{2} - 1}}{x^{\frac{m}{2} + 1}} e^{- \frac{t}{2} (1 + \frac{1}{x})} \mathrm{d} t \\
+>                                                              &\xlongequal[t = \frac{2 x}{1 + x} s]{s = \frac{t}{2} (1 + \frac{1}{x})} \dfrac{1}{\Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \dfrac{x^{\frac{n}{2} - 1}}{(1 + x)^{\frac{n + m}{2}}} \int_0^{+\infty} s^{\frac{n + m}{2} - 1} e^{- s} \mathrm{d} s \\
+>                                                              &= \dfrac{\Gamma (\frac{n + m}{2})}{\Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \dfrac{x^{\frac{n}{2} - 1}}{(1 + x)^{\frac{n + m}{2}}} \\
+>                                                        p (x) &= p_{\frac{\mathrm{Ch} (n)}{\mathrm{Ch} (m)}} \left( \dfrac{n}{m} x \right) \cdot \left| \dfrac{n}{m} \right| \\
+>                                                              &= \dfrac{\Gamma (\frac{n + m}{2}) \cdot (\frac{n}{m})^\frac{n}{2}}{\Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \dfrac{x^{\frac{n}{2} - 1}}{(1 + \frac{n}{m} x)^{\frac{n + m}{2}}} \quad\Leftarrow\quad x \in [0, +\infty) \\
+>                                                        C (x) &= \dfrac{\Gamma (\frac{n + m}{2}) \cdot (\frac{n}{m})^\frac{n}{2}}{\Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \int_0^x \dfrac{x^{\frac{n}{2} - 1}}{(1 + \frac{n}{m} x)^{\frac{n + m}{2}}} \mathrm{d} x \\
 > \end{alignedat}
 > $$
 >
 
-> ### $\Lambda$ 分布 $X \mapsto \Lambda (m)$
+> ### $\Lambda$ 分布 $X \mapsto \mathrm{La_{mbda}} (m)$
 
 > $$
 > \begin{alignedat}{3}
-> \dfrac{\mathrm{No} (0, 1^2)}{\sqrt{\frac{\Chi^2 (m)}{m}}} &\mapsto \Lambda (m) \\
->                                             \Lambda^2 (m) &\mapsto \Xi (1, m) \\
->                                                     p (x) &= p_{\Xi (1, m)} (x^2) \cdot \dfrac{1}{2} \left| 2 x \right| \\
->                                                           &= \dfrac{\Gamma (\frac{1 + m}{2})}{\sqrt{m \pi} \cdot \Gamma (\frac{m}{2})} \left( 1 + \frac{x^2}{m} \right)^{- \frac{1 + m}{2}} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
->                                                     C (x) &= \dfrac{\Gamma (\frac{1 + m}{2})}{\sqrt{m \pi} \cdot \Gamma (\frac{m}{2})} \int_{-\infty}^x \left( 1 + \frac{x^2}{m} \right)^{- \frac{1 + m}{2}} \mathrm{d} x \\
+> \dfrac{\mathrm{No} (0, 1^2)}{\sqrt{\frac{\mathrm{Ch} (m)}{m}}} &\mapsto \mathrm{La} (m) \\
+>                                              \mathrm{La}^2 (m) &\mapsto \mathrm{Xi} (1, m) \\
+>                                                          p (x) &= p_{\mathrm{Xi} (1, m)} (x^2) \cdot \dfrac{1}{2} \left| 2 x \right| \\
+>                                                                &= \dfrac{\Gamma (\frac{1 + m}{2})}{\sqrt{m \pi} \cdot \Gamma (\frac{m}{2})} \left( 1 + \frac{x^2}{m} \right)^{- \frac{1 + m}{2}} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
+>                                                          C (x) &= \dfrac{\Gamma (\frac{1 + m}{2})}{\sqrt{m \pi} \cdot \Gamma (\frac{m}{2})} \int_{-\infty}^x \left( 1 + \frac{x^2}{m} \right)^{- \frac{1 + m}{2}} \mathrm{d} x \\
 > \end{alignedat}
 > $$
 >

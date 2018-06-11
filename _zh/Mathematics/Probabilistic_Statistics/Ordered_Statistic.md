@@ -25,7 +25,7 @@ Resources:
 > $$
 > \begin{alignedat}{3}
 > EC_n (x) &= \dfrac{\sup\limits_{\chi_{\langle i \rangle} \le x} i}{n} = \dfrac{1}{n} \sum_{i = 1}^n \Iota [\chi_i \le x] \quad&&\Leftarrow\quad \Iota [\chi_{i} \le x] \mapsto \mathrm{Tw} (P [\chi_i \le x]) = \mathrm{Tw} (C (x)) \\
->    0 = P & \left[ \lim_{n \to +\infty} \sup_x \middle| EC_n (x) - C (x) \middle| \ge \varepsilon \right]                      &&= P \left[ \lim_{n \to +\infty} \sup_x \middle| \dfrac{1}{n} \sum_{i = 1}^n (\Iota [\chi_i \le x] - \mathrm{Exp} [\mathrm{Tw} (C (x))]) \middle| \ge \varepsilon \right] \\
+>    0 = P & \left[ \lim_{n \to +\infty} \sup_x \middle| EC_n (x) - C (x) \middle| \ge \varepsilon \right]                      &&= P \left[ \lim_{n \to +\infty} \sup_x \middle| \dfrac{1}{n} \sum_{i = 1}^n (\Iota [\chi_i \le x] - \mathrm{Exp} [\Iota [\chi_i \le x]]) \middle| \ge \varepsilon \right] \\
 > \end{alignedat}
 > $$
 >
@@ -95,7 +95,7 @@ Resources:
 > $$
 >
 
-> ### 次序样本分位数 $\mathrm{Q_{uantile}}$
+> ### 次序样本的分位数 $\mathrm{Q_{uantile}}$
 
 > $$
 > \begin{alignedat}{3}
