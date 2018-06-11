@@ -115,7 +115,7 @@ Resources:
 > \fbox{3}\quad & \mathrm{Var} [X] + \mathrm{Exp}^2 [X] = \mathrm{Exp} [X]^2 = 0 \implies \mathrm{Exp} [X] = 0 \;\and\; \mathrm{Var} [X] = 0 \\
 > \fbox{4}\quad & \mathrm{Var} [X] = 0 \iff P (X = \mathrm{Exp} [X]) = 1  \\
 > \fbox{5}\quad & \mathrm{Var} \left[ \sum_1^n f_n (X_n) \right] = \sum_1^n \mathrm{Var} [f_n (X_n)] + 2 \sum_{i = 1}^n \sum_{j = 1}^{i - 1} \mathrm{CoV} [f_i (X_i), f_j (X_j)] \\
-> \fbox{6}\quad & \mathrm{Var} \left[ \sum_1^n f_n (X_n) \right] = \sum_1^n \mathrm{Var} [f_n (X_n)] \quad\Leftarrow\quad p (x_1, \cdots, x_m) = p_{X_1} (x_1) \cdots p_{X_m} (x_m) \\
+> \fbox{6}\quad & \mathrm{Var} \left[ \sum_1^n f_n (X_n) \right] = \sum_1^n \mathrm{Var} [f_n (X_n)] \quad\Leftarrow\quad p (x_1, \cdots, x_n) = p_{X_1} (x_1) \cdots p_{X_n} (x_n) \\
 > \end{alignedat}
 > $$
 >

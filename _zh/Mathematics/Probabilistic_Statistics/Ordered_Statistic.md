@@ -101,8 +101,6 @@ Resources:
 > \begin{alignedat}{3}
 > {_\frac{1}{2} \chi} &:= \dfrac{\chi_{\langle\lceil \frac{n}{2} \rceil\rangle} + \chi_{\langle\lfloor \frac{n + 1}{2} \rfloor\rangle}}{2} \\
 > {_Q \chi} &:= \dfrac{\chi_{\langle\lceil n \cdot Q \rceil\rangle} + \chi_{\langle\lfloor (n + 1) \cdot Q \rfloor\rangle}}{2} \\
->
->
 > \end{alignedat}
 > $$
 >
