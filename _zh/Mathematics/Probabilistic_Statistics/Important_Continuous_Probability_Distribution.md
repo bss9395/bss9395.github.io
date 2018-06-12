@@ -382,7 +382,7 @@ Resources:
 >                                            p_{U^2} (x) &= p_U (\sqrt{x}) \cdot 2 \left| \dfrac{1}{2 \sqrt{x}} \right| \\
 >                                                        &= \dfrac{1}{\sqrt{2 \pi x}} e^{- \frac{x}{2}} \\
 >                                                    U^2 &\mapsto \mathrm{Ga} \left( \dfrac{1}{2}, \dfrac{1}{2} \right) \\
->                                 U_1^2 + \cdots + U_n^2 &\mapsto \Chi^2 (n) = \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) \\
+>                                 U_1^2 + \cdots + U_n^2 &\mapsto \mathrm{Ch} (n) = \mathrm{Ga} \left( \dfrac{n}{2}, \dfrac{1}{2} \right) \\
 >                                                  p (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \quad\Leftarrow\quad x \in [0, +\infty) \\
 >                                                  C (x) &= \dfrac{1}{2^\frac{n}{2} \Gamma (\frac{n}{2})} \int_0^x x^{\frac{n}{2} - 1} e^{- \frac{x}{2}} \mathrm{d} x \\
 >                           \mathrm{Exp} [e^{t \cdot X}] &= \left( \dfrac{1}{1 - 2 t} \right)^\frac{n}{2} \\
@@ -406,31 +406,31 @@ Resources:
 > $$
 >
 
-> ### $\Xi$ 分布 $X \mapsto \mathrm{Xi} (n, m)$
+> ### $\Xi$ 分布 $X \mapsto \mathrm{Xi} (m, n)$
 
 > $$
 > \begin{alignedat}{3}
-> \dfrac{\frac{\mathrm{Ch} (n)}{n}}{\frac{\mathrm{Ch} (m)}{m}} &\mapsto \mathrm{Xi} (n, m) \\
->              p_{\frac{\mathrm{Ch} (n)}{\mathrm{Ch} (m)}} (x) &= \int_0^{+\infty} p_{\mathrm{Ch} (n)} (t) \cdot p_{\mathrm{Ch} (m)} \left( \dfrac{t}{x} \right) \cdot \left| \dfrac{t}{x^2} \right| \mathrm{d} t \\
->                                                              &= \dfrac{1}{2^{\frac{n + m}{2}} \Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \int_0^{+\infty} \dfrac{t^{\frac{n + m}{2} - 1}}{x^{\frac{m}{2} + 1}} e^{- \frac{t}{2} (1 + \frac{1}{x})} \mathrm{d} t \\
->                                                              &\xlongequal[t = \frac{2 x}{1 + x} s]{s = \frac{t}{2} (1 + \frac{1}{x})} \dfrac{1}{\Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \dfrac{x^{\frac{n}{2} - 1}}{(1 + x)^{\frac{n + m}{2}}} \int_0^{+\infty} s^{\frac{n + m}{2} - 1} e^{- s} \mathrm{d} s \\
->                                                              &= \dfrac{\Gamma (\frac{n + m}{2})}{\Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \dfrac{x^{\frac{n}{2} - 1}}{(1 + x)^{\frac{n + m}{2}}} \\
->                                                        p (x) &= p_{\frac{\mathrm{Ch} (n)}{\mathrm{Ch} (m)}} \left( \dfrac{n}{m} x \right) \cdot \left| \dfrac{n}{m} \right| \\
->                                                              &= \dfrac{\Gamma (\frac{n + m}{2}) \cdot (\frac{n}{m})^\frac{n}{2}}{\Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \dfrac{x^{\frac{n}{2} - 1}}{(1 + \frac{n}{m} x)^{\frac{n + m}{2}}} \quad\Leftarrow\quad x \in [0, +\infty) \\
->                                                        C (x) &= \dfrac{\Gamma (\frac{n + m}{2}) \cdot (\frac{n}{m})^\frac{n}{2}}{\Gamma (\frac{n}{2}) \Gamma (\frac{m}{2})} \int_0^x \dfrac{x^{\frac{n}{2} - 1}}{(1 + \frac{n}{m} x)^{\frac{n + m}{2}}} \mathrm{d} x \\
+> \dfrac{\frac{U_1^2 + \cdots + U_m^2}{m}}{\frac{V_1^2 + \cdots + V_n^2}{n}} &\mapsto \dfrac{\frac{\mathrm{Ch} (m)}{m}}{\frac{\mathrm{Ch} (n)}{n}} = \mathrm{Xi} (m, n) \\
+>                            p_{\frac{\mathrm{Ch} (m)}{\mathrm{Ch} (n)}} (x) &= \int_0^{+\infty} p_{\mathrm{Ch} (m)} (t) \cdot p_{\mathrm{Ch} (n)} \left( \dfrac{t}{x} \right) \cdot \left| \dfrac{t}{x^2} \right| \mathrm{d} t \\
+>                                                                            &= \dfrac{1}{2^{\frac{m + n}{2}} \Gamma (\frac{m}{2}) \Gamma (\frac{n}{2})} \int_0^{+\infty} \dfrac{t^{\frac{m + n}{2} - 1}}{x^{\frac{n}{2} + 1}} e^{- \frac{t}{2} (1 + \frac{1}{x})} \mathrm{d} t \\
+>                                                                            &\xlongequal[t = \frac{2 x}{1 + x} s]{s = \frac{t}{2} (1 + \frac{1}{x})} \dfrac{1}{\Gamma (\frac{m}{2}) \Gamma (\frac{n}{2})} \dfrac{x^{\frac{m}{2} - 1}}{(1 + x)^{\frac{m + n}{2}}} \int_0^{+\infty} s^{\frac{m + n}{2} - 1} e^{- s} \mathrm{d} s \\
+>                                                                            &= \dfrac{\Gamma (\frac{m + n}{2})}{\Gamma (\frac{m}{2}) \Gamma (\frac{n}{2})} \dfrac{x^{\frac{m}{2} - 1}}{(1 + x)^{\frac{m + n}{2}}} \\
+>                                                                      p (x) &= p_{\frac{\mathrm{Ch} (m)}{\mathrm{Ch} (n)}} \left( \dfrac{m}{n} x \right) \cdot \left| \dfrac{m}{n} \right| \\
+>                                                                            &= \dfrac{\Gamma (\frac{m + n}{2}) \cdot (\frac{m}{n})^\frac{m}{2}}{\Gamma (\frac{m}{2}) \Gamma (\frac{n}{2})} \dfrac{x^{\frac{m}{2} - 1}}{(1 + \frac{m}{n} x)^{\frac{m + n}{2}}} \quad\Leftarrow\quad x \in [0, +\infty) \\
+>                                                                      C (x) &= \dfrac{\Gamma (\frac{m + n}{2}) \cdot (\frac{m}{n})^\frac{m}{2}}{\Gamma (\frac{m}{2}) \Gamma (\frac{n}{2})} \int_0^x \dfrac{x^{\frac{m}{2} - 1}}{(1 + \frac{m}{n} x)^{\frac{m + n}{2}}} \mathrm{d} x \\
 > \end{alignedat}
 > $$
 >
 
-> ### $\Lambda$ 分布 $X \mapsto \mathrm{La_{mbda}} (m)$
+> ### $\Delta$ 分布 $X \mapsto \mathrm{De_{lta}} (n)​$
 
 > $$
 > \begin{alignedat}{3}
-> \dfrac{\mathrm{No} (0, 1^2)}{\sqrt{\frac{\mathrm{Ch} (m)}{m}}} &\mapsto \mathrm{La} (m) \\
->                                              \mathrm{La}^2 (m) &\mapsto \mathrm{Xi} (1, m) \\
->                                                          p (x) &= p_{\mathrm{Xi} (1, m)} (x^2) \cdot \dfrac{1}{2} \left| 2 x \right| \\
->                                                                &= \dfrac{\Gamma (\frac{1 + m}{2})}{\sqrt{m \pi} \cdot \Gamma (\frac{m}{2})} \left( 1 + \frac{x^2}{m} \right)^{- \frac{1 + m}{2}} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
->                                                          C (x) &= \dfrac{\Gamma (\frac{1 + m}{2})}{\sqrt{m \pi} \cdot \Gamma (\frac{m}{2})} \int_{-\infty}^x \left( 1 + \frac{x^2}{m} \right)^{- \frac{1 + m}{2}} \mathrm{d} x \\
+> \dfrac{U}{\sqrt{\frac{V_1^2 + \cdot + V_n^2}{n}}} &\mapsto \dfrac{\mathrm{No} (0, 1^2)}{\sqrt{\frac{\mathrm{Ch} (n)}{n}}} = \mathrm{De} (n) \\
+>                                 \mathrm{De}^2 (n) &\mapsto \mathrm{Xi} (1, n) \\
+>                                             p (x) &= p_{\mathrm{Xi} (1, n)} (x^2) \cdot \dfrac{1}{2} \left| 2 x \right| \\
+>                                                   &= \dfrac{\Gamma (\frac{1 + n}{2})}{\sqrt{n \pi} \cdot \Gamma (\frac{n}{2})} \left( 1 + \frac{x^2}{n} \right)^{- \frac{1 + n}{2}} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
+>                                             C (x) &= \dfrac{\Gamma (\frac{1 + n}{2})}{\sqrt{n \pi} \cdot \Gamma (\frac{n}{2})} \int_{-\infty}^x \left( 1 + \frac{x^2}{n} \right)^{- \frac{1 + n}{2}} \mathrm{d} x \\
 > \end{alignedat}
 > $$
 >

@@ -1,8 +1,8 @@
 ---
 layout:    zh_post
 Topic:     概率统计
-Title:     正态分布
-Revised:   2018-06-12 22:58:00 +08 @ 中国-新疆-乌鲁木齐 +06
+Title:     特殊分布
+Revised:   2018-06-12 17:34:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
 Resources:
 ---
@@ -80,7 +80,24 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
+>                                                                                                                 X &\mapsto \mathrm{No} (\mu_X, \sigma_X^2) \\
+>                                                                                                                 Y &\mapsto \mathrm{No} (\mu_Y, \sigma_Y^2) \\
+>                                                         \sum_{i = 1}^n \dfrac{(X_i - \overline{X})^2}{\sigma_X^2} &\mapsto \mathrm{Ch} (n - 1) \\
+>                                                         \sum_{i = 1}^m \dfrac{(Y_i - \overline{Y})^2}{\sigma_Y^2} &\mapsto \mathrm{Ch} (m - 1) \\
+> \dfrac{m \sigma_Y^2}{n \sigma_X^2} \cdot \dfrac{\sum_1^n (X_i - \overline{X})^2}{\sum_1^m (Y_i - \overline{Y})^2} &\mapsto \mathrm{Xi} (n - 1, m - 1) \\
+> \end{alignedat}
+> $$
 >
+
+> ### 正态分布与 $\Delta$ 分布
+
+> $$
+> \begin{alignedat}{3}
+>                                                                   X &\mapsto \mathrm{No} (\mu, \sigma^2) \\
+>                                                        \overline{X} &\mapsto \mathrm{No} \left( \mu, \dfrac{\sigma^2}{n} \right) \\
+>                       \dfrac{\sqrt{n} (\overline{X} - \mu)}{\sigma} &\mapsto \mathrm{No} (0, 1^2) \\
+>             \sum_{i = 1}^n \dfrac{(X_i - \overline{X})^2}{\sigma^2} &\mapsto \mathrm{Ch} (n - 1) \\
+> \dfrac{n \cdot\overline{X}}{\sqrt{\sum_1^n (X_i - \overline{X})^2}} &\mapsto \mathrm{De} (n - 1) \\
 > \end{alignedat}
 > $$
 >

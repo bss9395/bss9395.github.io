@@ -54,21 +54,22 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->                                                        \mathrm{Exp} [X] &= \mu \\
->                                                        \mathrm{Var} [X] &= \sigma^2 \\
->                                          \mathrm{Exp} [\overline{\chi}] &= \mathrm{Exp} \left[ \dfrac{1}{n} \sum_{i = 1}^n \chi_i \right] \\
->                                                                         &= \mu \\
->                                          \mathrm{Var} [\overline{\chi}] &= \mathrm{Var} \left[ \dfrac{1}{n} \sum_{i = 1}^n \chi_i \right] \\
->                                                                         &= \dfrac{\sigma^2}{n} \\
->                                                         \overline{\chi} &\sim \mathrm{No} \left( \mu, \dfrac{\sigma^2}{n} \right) \\
->                                                 \mathrm{Exp} [\chi_i]^2 &= \mathrm{Var} [\chi_i] + \mathrm{Exp}^2 [\chi_i] \\
->                                                                         &= \sigma^2 + \mu^2 \\
->                                        \mathrm{Exp} [\overline{\chi}]^2 &= \mathrm{Var} [\overline{\chi}] + \mathrm{Exp}^2 [\overline{\chi}] \\
->                                                                         &= \dfrac{\sigma^2}{n} + \mu^2 \\
-> \mathrm{Exp} \left[ \sum_{i = 1}^n (\chi_i - \overline{\chi})^2 \right] &= \mathrm{Exp} \left[ \sum_{i = 1}^n \chi_i^2 - n \cdot \overline{\chi}^2 \right] \\
->                                                                         &= \sum_{i = 1}^n \mathrm{Exp} [\chi_i]^2 - n \cdot \mathrm{Exp} [\overline{\chi}]^2 \\
->                                                                         &= n \cdot (\sigma^2 + \mu^2) - n \cdot \left( \dfrac{\sigma^2}{n} + \mu^2 \right) \\
->                                                                         &= (n - 1) \cdot \sigma^2 \\
+>                 \mathrm{Exp} [X] &= \mu \\
+>                 \mathrm{Var} [X] &= \sigma^2 \\
+>   \mathrm{Exp} [\overline{\chi}] &= \mathrm{Exp} \left[ \dfrac{1}{n} \sum_{i = 1}^n \chi_i \right] \\
+>                                  &= \mu \\
+>   \mathrm{Var} [\overline{\chi}] &= \mathrm{Var} \left[ \dfrac{1}{n} \sum_{i = 1}^n \chi_i \right] \\
+>                                  &= \dfrac{\sigma^2}{n} \\
+>                  \overline{\chi} &\sim \mathrm{No} \left( \mu, \dfrac{\sigma^2}{n} \right) \\
+>          \mathrm{Exp} [\chi_i]^2 &= \mathrm{Var} [\chi_i] + \mathrm{Exp}^2 [\chi_i] \\
+>                                  &= \sigma^2 + \mu^2 \\
+> \mathrm{Exp} [\overline{\chi}]^2 &= \mathrm{Var} [\overline{\chi}] + \mathrm{Exp}^2 [\overline{\chi}] \\
+>                                  &= \dfrac{\sigma^2}{n} + \mu^2 \\
+>       \mathrm{Exp} [\tilde{s}^2] &= \mathrm{Exp} \left[ \dfrac{\sum_1^n (\chi_n - \overline{\chi})^2}{n - 1} \right] \\
+>                                  &= \dfrac{1}{n - 1} \mathrm{Exp} \left[ \sum_{i = 1}^n \chi_i^2 - n \cdot \overline{\chi}^2 \right] \\
+>                                  &= \dfrac{1}{n - 1} \left[ \sum_{i = 1}^n \mathrm{Exp} [\chi_i]^2 - n \cdot \mathrm{Exp} [\overline{\chi}]^2 \right] \\
+>                                  &= \dfrac{1}{n - 1} \left[ n \cdot (\sigma^2 + \mu^2) - n \cdot \left( \dfrac{\sigma^2}{n} + \mu^2 \right) \right] \\
+>                                  &= \sigma^2 \\
 > \end{alignedat}
 > $$
 >
