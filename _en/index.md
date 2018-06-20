@@ -32,8 +32,9 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > 01. You win some, you lose some.
 > 01. ~~Too young, too simple, sometimes naive. ~~
 
-> ### You are the Only One
+> ### There is No One like You
 
 > 01. [I] Love to be loved. 
-> 01. Anywhere you are, I am near; Anywhere you go, I'll be there; Anytime you whisper my name, you'll see.
+> 01. Anywhere you are, I am near; Anywhere you go, I will be there; Anytime you whisper my name, you will see.
+> 01. I just wanna thank you, for being a friend. Together we made it, together we stand.
 > 01. If I didn't meet you, I wouldn't like you; If I didn't like you, I wouldn't love you; If I didn't love you, I wouldn't miss you; But I did, I do, and I will.
