@@ -35,3 +35,16 @@ Resources:
 > \end{alignedat}
 > $$
 >
+
+> ### 后验估计
+
+> $$
+> \begin{alignedat}{3}
+>       P [\theta \mid X] &= \dfrac{P [X \mid \theta] \cdot P [\theta]}{P [X]} \\
+>                         &= \dfrac{P [X \mid \theta] \cdot P [\theta]}{\int_\theta P [X \mid \theta] \cdot P [\theta] \mathrm{d} \theta} \\
+> \widehat{\theta} \mid X &= \mathrm{Exp} [\theta \mid X] \\
+>                         &= \int_\theta \theta \cdot P [\theta \mid X] \mathrm{d} \theta \\
+> \end{alignedat}
+> $$
+>
+
