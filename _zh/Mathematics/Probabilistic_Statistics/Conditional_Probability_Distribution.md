@@ -35,7 +35,7 @@ Resources:
 > \Downarrow\quad         & P (A) = P \left( \bigcup (A B_n) \right) = \sum P (A B_n) \\
 > \fbox{1}\Downarrow\quad & P (A) = \sum P (B_n) \cdot P (A | B_n) \\
 > \fbox{2}\Downarrow\quad & P (A) = P (B) \cdot P (A | B) + P (\overline{B}) \cdot P (A | \overline{B}) \\
-> \fbox{3}\Downarrow\quad & P (B_n | A) = \dfrac{P (B_n) \cdot P (A | B_n)}{\sum P (B_n) \cdot P (A | B_n)} \\
+> \fbox{3}\Downarrow\quad & P (B_i | A) = \dfrac{P (B_i) \cdot P (A | B_i)}{\sum_1^n P (B_n) \cdot P (A | B_n)} \\
 > \end{alignedat}
 > $$
 >
