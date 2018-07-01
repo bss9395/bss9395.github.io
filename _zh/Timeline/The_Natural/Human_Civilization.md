@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     人类文明
-Revised:   2018-06-28 03:29:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-07-02 04:29:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources:
 ---
