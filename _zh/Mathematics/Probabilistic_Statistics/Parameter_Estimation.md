@@ -11,11 +11,11 @@ Resources:
 
 > $$
 > \begin{alignedat}{3}
->     \mathrm{MLE} [X \mid \theta] &= P [\chi_1, \cdots, \chi_n \mid \theta] \\
+>     \mathrm{MLE} [X \mid \Theta] &= P [\chi_1, \cdots, \chi_n \mid \theta] \\
 >                                  &= P [\chi_1 \mid \theta] \cdots P [\chi_n \mid \theta] \\
-> \mathrm{MLE} [f (X) \mid \theta] &= \mathrm{MLE} [X \mid \theta] \\ 
->                 \widehat{\theta} &\impliedby \max_{(\chi_1, \cdots \chi_n)} \mathrm{MLE} [X \mid \theta] \\
->                                  &\iff \max_{(\chi_1, \cdots, \chi_n)} \ln \mathrm{MLE} [X \mid \theta] \\
+> \mathrm{MLE} [f (X) \mid \Theta] &= \mathrm{MLE} [X \mid \Theta] \\ 
+>                 \widehat{\theta} &\impliedby \max_{(\chi_1, \cdots \chi_n)} \mathrm{MLE} [X \mid \Theta] \\
+>                                  &\iff \max_{(\chi_1, \cdots, \chi_n)} \ln \mathrm{MLE} [X \mid \Theta] \\
 > \end{alignedat}
 > $$
 >
@@ -36,14 +36,14 @@ Resources:
 > $$
 >
 
-> ### 后验估计
+> ### 后验概率估计
 
 > $$
 > \begin{alignedat}{3}
->       P [\theta \mid X] &= \dfrac{P [X \mid \theta] \cdot P [\theta]}{P [X]} \\
->                         &= \dfrac{P [X \mid \theta] \cdot P [\theta]}{\int_\theta P [X \mid \theta] \cdot P [\theta] \mathrm{d} \theta} \\
-> \widehat{\theta} \mid X &= \mathrm{Exp} [\theta \mid X] \\
->                         &= \int_\theta \theta \cdot P [\theta \mid X] \mathrm{d} \theta \\
+>       P [\Theta \mid X] &= \dfrac{P [X \mid \Theta] \cdot P [\Theta]}{P [X]} \\
+>                         &= \dfrac{P [X \mid \Theta] \cdot P [\Theta]}{\int_\Theta P [X \mid \Theta] \cdot P [\Theta] \mathrm{d} \Theta} \\
+> \widehat{\theta} \mid X &= \mathrm{Exp} [\Theta \mid X] \\
+>                         &= \int_\Theta \Theta \cdot P [\Theta \mid X] \mathrm{d} \Theta \\
 > \end{alignedat}
 > $$
 >
