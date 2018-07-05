@@ -9,5 +9,5 @@ Resources:
 
 > ### Microsoft PowerPoint
 
-> [Microsoft PowerPoint Template](sources/PowerPoint_Slide_Master.pptx)
+> [Microsoft PowerPoint Template for Scientific Report](sources/PowerPoint_Slide_Master.pptx)
 
