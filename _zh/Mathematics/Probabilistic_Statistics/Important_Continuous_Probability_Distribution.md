@@ -422,15 +422,16 @@ Resources:
 > $$
 >
 
-> ### $\Delta$ 分布 $X \mapsto \mathrm{De_{lta}} (n)​$
+> ### $\Delta$ 分布 $X \mapsto \mathrm{De_{lta}} (n)$
 
 > $$
 > \begin{alignedat}{3}
-> \dfrac{U}{\sqrt{\frac{V_1^2 + \cdot + V_n^2}{n}}} &\mapsto \dfrac{\mathrm{No} (0, 1^2)}{\sqrt{\frac{\mathrm{Ch} (n)}{n}}} = \mathrm{De} (n) \\
->                                 \mathrm{De}^2 (n) &\mapsto \mathrm{Xi} (1, n) \\
->                                             p (x) &= p_{\mathrm{Xi} (1, n)} (x^2) \cdot \dfrac{1}{2} \left| 2 x \right| \\
->                                                   &= \dfrac{\Gamma (\frac{1 + n}{2})}{\sqrt{n \pi} \cdot \Gamma (\frac{n}{2})} \left( 1 + \frac{x^2}{n} \right)^{- \frac{1 + n}{2}} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
->                                             C (x) &= \dfrac{\Gamma (\frac{1 + n}{2})}{\sqrt{n \pi} \cdot \Gamma (\frac{n}{2})} \int_{-\infty}^x \left( 1 + \frac{x^2}{n} \right)^{- \frac{1 + n}{2}} \mathrm{d} x \\
+> \dfrac{U}{\sqrt{\frac{V_1^2 + \cdots + V_n^2}{n}}} &\mapsto \dfrac{\mathrm{No} (0, 1^2)}{\sqrt{\frac{\mathrm{Ch} (n)}{n}}} = \mathrm{De} (n) \\
+>                                  \mathrm{De}^2 (n) &\mapsto \mathrm{Xi} (1, n) \\
+>                                              p (x) &= p_{\mathrm{Xi} (1, n)} (x^2) \cdot \dfrac{1}{2} \left| 2 x \right| \\
+>                                                    &= \dfrac{\Gamma (\frac{1 + n}{2})}{\sqrt{n \pi} \cdot \Gamma (\frac{n}{2})} \left( 1 + \frac{x^2}{n} \right)^{- \frac{1 + n}{2}} \quad\Leftarrow\quad x \in (-\infty, +\infty) \\
+>                                              C (x) &= \dfrac{\Gamma (\frac{1 + n}{2})}{\sqrt{n \pi} \cdot \Gamma (\frac{n}{2})} \int_{-\infty}^x \left( 1 + \frac{x^2}{n} \right)^{- \frac{1 + n}{2}} \mathrm{d} x \\
 > \end{alignedat}
 > $$
 >
+
