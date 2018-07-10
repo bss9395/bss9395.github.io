@@ -24,8 +24,6 @@ html {
 }
 body {
 	max-width: 80%;
-	padding-bottom: 0.5em;
-	padding-top: 0.5em;
 }
 main {
 	-moz-column-count: 2;
@@ -40,11 +38,7 @@ div {
 p {
 	margin-top: 1em;
 }
-table {
-	margin-bottom: 1em;
-}
 blockquote {
-	margin-bottom: 1em;
 	margin-top: 1em;
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -113,7 +107,6 @@ header {
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	margin-bottom: 1em;
 	margin-top: 1em;
 }
 nav {
