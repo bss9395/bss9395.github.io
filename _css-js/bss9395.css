@@ -24,8 +24,8 @@ html {
 }
 body {
 	max-width: 80%;
-	padding-bottom: 0.28125em;
-	padding-top: 0.28125em;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
 }
 main {
 	-moz-column-count: 2;
@@ -38,14 +38,14 @@ div {
 	padding: 3px 1px;
 }
 p {
-	margin-top: 0.5625em;
+	margin-top: 1em;
 }
 table {
-	margin-bottom: 0.5625em;
+	margin-bottom: 1em;
 }
 blockquote {
-	margin-bottom: 0.5625em;
-	margin-top: 0.5625em;
+	margin-bottom: 1em;
+	margin-top: 1em;
 	overflow-x: auto;
 	overflow-y: hidden;
 }
@@ -57,7 +57,6 @@ blockquote>*:last-of-type {
 }
 /* code */
 code {
-	display: list-item;
 	font-style: normal;
 	font-weight: normal;
 	list-style-type: none;
@@ -98,7 +97,7 @@ svg[name=cog] {
 	display: inline;
 	left: 0.5625em;
 	position: absolute;
-	top: 0.28125em;
+	top: 0.5em;
 }
 form:hover>svg[name=cog] {
 	-moz-animation: spin 2s infinite linear;
