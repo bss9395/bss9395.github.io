@@ -7,15 +7,16 @@ Authors:   BSS9395
 Resources:
 ---
 
-> ### For Dictionaries
+> ### Dictionaries
 
+> + <http://cidian.youdao.com/>
 > + <http://www.lamost.org/astrodict/>
 > + <https://cn.bing.com/translator/>
 > + <https://en.oxforddictionaries.com/>
 > + <https://translate.google.com/>
 > + <https://www.oxfordlearnersdictionaries.com/>
 
-> ### For Encyclopedia
+> ### Encyclopedia
 
 > + <https://www.wikipedia.org/>
 
@@ -26,19 +27,19 @@ Resources:
 > + <https://www.skype.com>
 > + <https://www.whatsapp.com/>
 
-> ### For News
+> ### News
 
 > + <http://www.bbc.com/>
 > + <https://www.dw.com>
 > + <https://www.voanews.com/>
 
-> ### For Search Engines
+> ### Search Engines
 
 > + <https://cn.bing.com/>
 > + <https://www.baidu.com/>
 > + <https://www.google.com/>
 
-> ### For Social Media
+> ### Social Media
 
 > + <https://twitter.com/>
 > + <https://weibo.com>

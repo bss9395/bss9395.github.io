@@ -13,6 +13,3 @@ collections:
     output: true
   zh:
     output: true
-
-ip1: 192.30.252.153
-ip2: 192.30.252.154
