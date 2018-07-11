@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-07-10 00:26:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-07-11 23:17:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
@@ -18,6 +18,7 @@ Resources:
 
 > ### Encyclopedia
 
+> + <https://plato.stanford.edu/>
 > + <https://www.wikipedia.org/>
 
 > ### For Instant Messaging
