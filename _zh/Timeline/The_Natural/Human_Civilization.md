@@ -2,9 +2,9 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     人类文明
-Revised:   2018-07-11 05:33:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-07-12 06:28:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
-Resources: https://github.com/bss9395/The_Natural/issues
+Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
 
 1543年，天文学家及神父尼古丁·哥白尼，在临终前发表了《天体运行论》，主张抛弃以地球为宇宙中心的地心说，而建立以太阳为宇宙中心的日心说。在当时看来，日心说思想过于超前，以致于在其发表的半个世纪后，经由焦尔达诺·布鲁诺和伽利略·伽利莱的公开支持和宣传，最终引起了天主教会的极度恐慌，日心说被宣判为异端邪说，受到天主教会的极力打压。
