@@ -24,6 +24,7 @@ html {
 }
 body {
 	max-width: 80%;
+	margin-bottom: 1em;
 }
 main {
 	-moz-column-count: 2;
