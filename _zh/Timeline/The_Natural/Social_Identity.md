@@ -4,7 +4,7 @@ Topic:     顺其自然
 Title:     社会认同
 Revised:   2018-05-26 03:39:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
-Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
+Resources:
 ---
 
 数学问题的解答过程，大致会经历3个思维阶段。

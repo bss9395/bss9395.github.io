@@ -21,7 +21,7 @@ Resources:
 > + <https://plato.stanford.edu/>
 > + <https://www.wikipedia.org/>
 
-> ### Instant Messaging
+> ### For Instant Messaging
 
 > + <https://im.qq.com/>
 > + <https://weixin.qq.com/>
@@ -33,11 +33,6 @@ Resources:
 > + <http://www.bbc.com/>
 > + <https://www.dw.com>
 > + <https://www.voanews.com/>
-
-> ### Politics
-
-> + <http://www.un.org/>
-> + <https://www.amnesty.org/>
 
 > ### Search Engines
 
