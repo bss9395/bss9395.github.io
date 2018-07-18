@@ -4,7 +4,7 @@ Topic:     顺其自然
 Title:     这个世界
 Revised:   2018-05-20 04:44:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
-Resources:
+Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
 
 ```

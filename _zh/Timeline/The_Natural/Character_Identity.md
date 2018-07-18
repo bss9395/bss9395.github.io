@@ -4,7 +4,7 @@ Topic:     顺其自然
 Title:     性格认同
 Revised:   2018-06-09 04:02:00 +08 @ 中国-新疆-乌鲁木齐 +06
 Authors:   璀璨星辰
-Resources:
+Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
 
 我爱的人和爱我的人，不可辜负。

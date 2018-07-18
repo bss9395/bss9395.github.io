@@ -4,7 +4,7 @@ Topic:     顺其自然
 Title:     愿一切安好
 Revised:   2018-07-05 15:02:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
-Resources:
+Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
 
 我很担心会辜负大家的期望，也很努力在前进了，不过事无巨细，每一步都需要细心论证，反正不会那么快得到结论。
