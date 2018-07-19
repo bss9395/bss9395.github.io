@@ -9,5 +9,5 @@ Resources: Microsoft_PowerPoint_Template_for_Scientific_Report,resources/PowerPo
 
 > ### Microsoft PowerPoint Template for Scientific Report
 
-> ![width:960px;](figures/PowerPoint_Slide_Master_for_Windows.svg)
+> ![max-width:960px;](figures/PowerPoint_Slide_Master_for_Windows.svg)
 

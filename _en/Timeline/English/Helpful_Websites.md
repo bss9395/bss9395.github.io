@@ -2,52 +2,59 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-07-11 23:17:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-07-19 21:57:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
 
 > ### Dictionaries
 
-> + <http://cidian.youdao.com/>
-> + <http://www.lamost.org/astrodict/>
-> + <https://cn.bing.com/translator/>
-> + <https://en.oxforddictionaries.com/>
-> + <https://translate.google.com/>
-> + <https://www.oxfordlearnersdictionaries.com/>
+> | *Bing Microsoft Translator*     | <https://cn.bing.com/translator/>             |
+> | :------------------------------ | :-------------------------------------------- |
+> | *Google Translate*              | <https://translate.google.com/>               |
+> | *Oxford Dictionaries*           | <https://en.oxforddictionaries.com/>          |
+> | *Oxford Learner's Dictionaries* | <https://www.oxfordlearnersdictionaries.com/> |
+> | *天文学名词*                    | <http://www.lamost.org/astrodict/>            |
+> | *有道词典*                      | <http://dict.youdao.com/>                     |
 
 > ### Encyclopedia
 
-> + <https://plato.stanford.edu/>
-> + <https://www.wikipedia.org/>
+> | *Standford Encyclopedia of Philosophy* | <https://plato.stanford.edu/> |
+> | :------------------------------------- | :---------------------------- |
+> | *Wikipedia*                            | <https://www.wikipedia.org/>  |
 
 > ### Instant Messaging
 
-> + <https://im.qq.com/>
-> + <https://weixin.qq.com/>
-> + <https://www.skype.com>
-> + <https://www.whatsapp.com/>
+> | *QQ*       | <https://im.qq.com/>        |
+> | :--------- | :-------------------------- |
+> | *Skype*    | <https://www.skype.com>     |
+> | *Whatsapp* | <https://www.whatsapp.com/> |
+> | *微微相信* | <https://weixin.qq.com/>    |
 
 > ### News
 
-> + <http://www.bbc.com/>
-> + <https://www.dw.com>
-> + <https://www.voanews.com/>
+> | *Deutsche Welle*                       | <https://www.dw.com>       |
+> | :------------------------------------- | :------------------------- |
+> | *The British Broadcasting Corporation* | <http://www.bbc.com/>      |
+> | *Voice of America*                     | <https://www.voanews.com/> |
 
 > ### Politics
 
-> + <http://www.un.org/>
-> + <https://www.amnesty.org/>
+> | *Amnesty*        | <https://www.amnesty.org/> |
+> | :--------------- | :------------------------- |
+> | *United Nations* | <http://www.un.org/>       |
 
 > ### Search Engines
 
-> + <https://cn.bing.com/>
-> + <https://www.baidu.com/>
-> + <https://www.google.com/>
+> | *Bing*   | <https://cn.bing.com/>    |
+> | :------- | :------------------------ |
+> | *Google* | <https://www.google.com/> |
+> | *百度*   | <https://www.baidu.com/>  |
 
 > ### Social Media
 
-> + <https://twitter.com/>
-> + <https://weibo.com>
-> + <https://www.facebook.com/>
-> + <https://www.youtube.com/>
+> | *Facebook* | <https://www.facebook.com/> |
+> | :--------- | :-------------------------- |
+> | *Twitter*  | <https://twitter.com/>      |
+> | *YouTube*  | <https://www.youtube.com/>  |
+> | *微博*     | <https://weibo.com>         |
