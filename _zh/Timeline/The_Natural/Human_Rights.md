@@ -9,11 +9,11 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues; 《Universal_
 
 > ### 《世界人权宣言》
 
-> ![width:210cm;](resources/《世界人权宣言》.svg)
+> ![width:210mm;](figures/《世界人权宣言》.svg)
 
 --------------------------------------------------------------------------------
 
 > ### 《Universal Declaration of Human Rights》
 
-> ![width:210cm;](resources/Universal_Declaration_of_Human_Rights.svg)
+> ![width:210mm;](figures/Universal_Declaration_of_Human_Rights.svg)
 

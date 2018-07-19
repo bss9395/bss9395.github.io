@@ -2,12 +2,12 @@
 layout:    en_post
 Topic:     English
 Title:     Presentation
-Revised:   2018-06-19 21:22:00 +08 @ China-Xinjiang-Urumqi +06
+Revised:   2018-07-19 08:22:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
-Resources:
+Resources: Microsoft_PowerPoint_Template_for_Scientific_Report,resources/PowerPoint_Slide_Master.pptx;
 ---
 
-> ### Microsoft PowerPoint
+> ### Microsoft PowerPoint Template for Scientific Report
 
-> [Microsoft PowerPoint Template for Scientific Report](sources/PowerPoint_Slide_Master.pptx)
+> ![width:960px;](figures/PowerPoint_Slide_Master.svg)
 
