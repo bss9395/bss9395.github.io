@@ -1,6 +1,5 @@
 * {
 	background-color: inherit;
-	border: none;
 	box-sizing: border-box;
 	font-family: consolas;
 	font-size: 1em;
@@ -32,6 +31,9 @@ main {
 	-ms-column-count: 2;
 	-webkit-column-count: 2;
 	column-count: 2;
+}
+iframe {
+	border: none;
 }
 /* blockquote */
 div {
