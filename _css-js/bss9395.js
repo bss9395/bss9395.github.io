@@ -8,6 +8,7 @@ window.onload = function () {
 			if (imgs[i].src.endsWith('.pdf')) {
 				var a = document.createElement("a");
 				a.href = imgs[i].src;
+				a.innerHTML = imgs[i].src.substring(imgs[i].src.lastIndexOf('/') + 1);
 				var obj = document.createElement("object");
 				obj.type = "application/pdf";
 				obj.data = imgs[i].src;
