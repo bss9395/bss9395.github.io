@@ -6,10 +6,14 @@ window.onload = function () {
 		var imgs = document.querySelectorAll('img');
 		for (var i = 0; i < imgs.length; i++) {
 			if (imgs[i].src.endsWith('.pdf')) {
-				var iframe = document.createElement("iframe");
-				iframe.src = imgs[i].src;
-				iframe.style = imgs[i].alt;
-				imgs[i].parentNode.parentNode.replaceChild(iframe, imgs[i].parentNode);
+				var a = document.createElement("a");
+				a.href = imgs[i].src;
+				var obj = document.createElement("object");
+				obj.type = "application/pdf";
+				obj.data = imgs[i].src;
+				obj.style = imgs[i].alt;
+				obj.appendChild(a);
+				imgs[i].parentNode.parentNode.replaceChild(obj, imgs[i].parentNode);
 			} else {
 				imgs[i].style = imgs[i].alt;
 			}

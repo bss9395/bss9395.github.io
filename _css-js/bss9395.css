@@ -32,9 +32,6 @@ main {
 	-webkit-column-count: 2;
 	column-count: 2;
 }
-iframe {
-	border: none;
-}
 /* blockquote */
 div {
 	padding: 3px 1px;
