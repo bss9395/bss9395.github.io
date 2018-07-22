@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-07-21 02:40:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-07-22 23:48:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
@@ -27,13 +27,13 @@ Resources:
 
 > | *QQ*       | <https://im.qq.com/>        |
 > | :--------- | :-------------------------- |
-> | *Skype*    | <https://www.skype.com>     |
+> | *Skype*    | <https://www.skype.com/>    |
 > | *Whatsapp* | <https://www.whatsapp.com/> |
 > | *微微相信* | <https://weixin.qq.com/>    |
 
 > ### News
 
-> | *Deutsche Welle*                       | <https://www.dw.com>       |
+> | *Deutsche Welle*                       | <https://www.dw.com/>      |
 > | :------------------------------------- | :------------------------- |
 > | *Financial Times*                      | <https://www.ft.com/>      |
 > | *The British Broadcasting Corporation* | <http://www.bbc.com/>      |
@@ -42,13 +42,14 @@ Resources:
 > | *Time*                                 | <http://time.com/>         |
 > | *Voice of America*                     | <https://www.voanews.com/> |
 > |                                        |                            |
-> |                                        |                            |
 
 > ### Politics
 
-> | *Amnesty*        | <https://www.amnesty.org/> |
-> | :--------------- | :------------------------- |
-> | *United Nations* | <http://www.un.org/>       |
+> | *Amnesty*            | <https://www.amnesty.org/>  |
+> | :------------------- | :-------------------------- |
+> | *Human Rights Watch* | <https://www.hrw.org/>      |
+> | *United Nations*     | <http://www.un.org/>        |
+> | 中国人权             | <https://www.hrichina.org/> |
 
 > ### Search Engines
 
@@ -63,4 +64,4 @@ Resources:
 > | :--------- | :-------------------------- |
 > | *Twitter*  | <https://twitter.com/>      |
 > | *YouTube*  | <https://www.youtube.com/>  |
-> | *微博*     | <https://weibo.com>         |
+> | *微博*     | <https://weibo.com/>        |
