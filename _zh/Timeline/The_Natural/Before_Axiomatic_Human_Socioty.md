@@ -4,7 +4,7 @@ Topic:     顺其自然
 Title:     公理化人类社会之前
 Revised:   2018-07-23 08:33:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
-Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
+Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Perceptions_Index_2017,resources/CPI_2017_Full_Data_Set.xlsx
 ---
 
 ```
@@ -37,4 +37,4 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 ### 腐败问题
 
-> ![width:100%;](resources/CPI_2017_Global_Map_and_Country_Results.pdf)
+> ![width:100%;height:80vh;](resources/CPI_2017_Global_Map_and_Country_Results.pdf)
