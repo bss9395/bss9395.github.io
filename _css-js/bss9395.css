@@ -33,6 +33,9 @@ main {
 	column-count: 2;
 }
 /* blockquote */
+br {
+	margin-top: 1em;
+}
 div {
 	padding: 3px 1px;
 }
@@ -40,6 +43,7 @@ p {
 	margin-top: 1em;
 }
 blockquote {
+	margin-bottom: 1em;
 	margin-top: 1em;
 	overflow-x: auto;
 	overflow-y: hidden;

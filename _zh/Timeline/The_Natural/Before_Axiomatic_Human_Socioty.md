@@ -37,4 +37,4 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Pe
 
 ### 腐败问题
 
-> ![width:100%;height:80vh;](resources/CPI_2017_Global_Map_and_Country_Results.pdf)
+![width:100%;height:80vh;](resources/CPI_2017_Global_Map_and_Country_Results.pdf)

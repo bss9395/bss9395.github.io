@@ -1,7 +1,7 @@
 ---
 layout:    zh_post
 Topic:     顺其自然
-Title:     中国时事
+Title:     中国热点问题
 Revised:   2018-07-23 00:42:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
@@ -27,6 +27,6 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ————《权力是靠不住的：美国政治文化探析》
 ```
 
-> ### 假疫苗
+### 假疫苗
 
-> ![max-width:210mm;](figures/cnda.cfda.gov.cnWS04CL2050329592.svg)
+![max-width:210mm;](figures/[cnda.cfda.gov.cn]WS04CL2050329592.html.svg)

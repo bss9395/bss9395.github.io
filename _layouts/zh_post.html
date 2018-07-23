@@ -12,6 +12,7 @@ layout: head
 <mark>作者: {{ page.Authors }}</mark>
 <mark>资源: <mark>{% for Resource in Resources %}{% assign Res = Resource | split:',' %}<a href="{{ Res.last }}">{{ Res.first }}</a>{% endfor %}</mark></mark>
 </blockquote>
+
 {{ content }}
 </article>
 </body>
