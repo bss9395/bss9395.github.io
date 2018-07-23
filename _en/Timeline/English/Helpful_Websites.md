@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-07-22 23:48:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-07-23 06:48:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
@@ -45,11 +45,12 @@ Resources:
 
 > ### Politics
 
-> | *Amnesty*            | <https://www.amnesty.org/>  |
-> | :------------------- | :-------------------------- |
-> | *Human Rights Watch* | <https://www.hrw.org/>      |
-> | *United Nations*     | <http://www.un.org/>        |
-> | 中国人权             | <https://www.hrichina.org/> |
+> | *Amnesty*                    | <https://www.amnesty.org/>      |
+> | :--------------------------- | :------------------------------ |
+> | *Human Rights Watch*         | <https://www.hrw.org/>          |
+> | *Transparency International* | <https://www.transparency.org/> |
+> | *United Nations*             | <http://www.un.org/>            |
+> | *中国人权*                   | <https://www.hrichina.org/>     |
 
 > ### Search Engines
 
