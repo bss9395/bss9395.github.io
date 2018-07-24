@@ -29,4 +29,12 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 ### 假疫苗
 
+```
+印度人把假药做成真药，
+中国人把真药做成假药，
+卖印度真药的被抓了，
+卖中国假药的发财了，
+真是个很不好笑的笑话！
+```
+
 ![max-width:210mm;](figures/[cnda.cfda.gov.cn]WS04CL2050329592.html.svg)
