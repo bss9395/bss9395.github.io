@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-07-26 06:48:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-07-27 00:48:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
@@ -42,6 +42,7 @@ Resources:
 > | *Time*                                 | <http://time.com/>               |
 > | *Voice of America*                     | <https://www.voanews.com/>       |
 > | *中国数字时代*                         | <https://chinadigitaltimes.net/> |
+> | *大纪元*                               | <http://www.epochtimes.com/>     |
 
 > ### Politics
 
