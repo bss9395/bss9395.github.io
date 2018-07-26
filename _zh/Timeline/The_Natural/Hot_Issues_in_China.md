@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     中国热点问题
-Revised:   2018-07-23 00:42:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-07-27 00:10:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -37,4 +37,10 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 真是个很不好笑的笑话！
 ```
 
-![max-width:210mm;](figures/[cnda.cfda.gov.cn]WS04CL2050329592.html.svg)
+![width:210mm;](figures/[cnda.cfda.gov.cn][WS04CL2050329592].html.svg)
+
+---
+
+### P2P借贷爆雷
+
+![width:210mm;](figures/[www.ftchinese.com][story][001078603].html.svg)
