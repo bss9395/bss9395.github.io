@@ -41,7 +41,7 @@ Resources:
 > | *The Wall Street Journal*              | <https://www.wsj.com/>           |
 > | *Time*                                 | <http://time.com/>               |
 > | *Voice of America*                     | <https://www.voanews.com/>       |
-> | *中国数字时代*                         | <https://chinadigitaltimes.net/> |
+> | *中国的数字，数字的时代*               | <https://chinadigitaltimes.net/> |
 > | *大纪元*                               | <http://www.epochtimes.com/>     |
 
 > ### Politics

@@ -56,4 +56,4 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 
 
-**今天调整作息，可能晚点有更新。 2018年07月26日。**
+**再等等。**
