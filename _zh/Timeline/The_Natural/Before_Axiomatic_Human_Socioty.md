@@ -2,9 +2,9 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会之前
-Revised:   2018-07-23 08:33:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-07-28 03:40:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
-Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Perceptions_Index_2017,resources/CPI_2017_Full_Data_Set.xlsx
+Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Perceptions_Index_2017,resources/CPI_2017_Full_Data_Set.xlsx; 《国际特赦2017-2018年度报告》,resources/《国际特赦2017-2018年度报告》.pdf;《国际宗教自由报告》,resources/《国际宗教自由报告2018--中国》.pdf;
 ---
 
 ```
@@ -19,7 +19,15 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Pe
 
 ### 案例一  人权保障
 
-中国是一个没有人权可言的国家，中国社会形同一个巨型监狱，在这个监狱中，有一位监狱长，有几乎与囚犯人数同样多的监狱卒，还有一群流氓地痞，剩下的全是吃瓜群众。
+```
+中国是一个没有人权可言的国家，
+中国社会形同一个巨型监狱，
+在这个监狱中，
+有一位监狱长，
+有几乎与囚犯人数同样多的监狱卒，
+还有一群流氓地痞，
+剩下的全是吃瓜群众。
+```
 
 --------------------------------------------------------------------------------
 
@@ -37,4 +45,10 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Pe
 
 ### 腐败问题
 
-![width:100%;height:80vh;](resources/CPI_2017_Global_Map_and_Country_Results.pdf)
+![width:100%;height:80vh;](figures/CPI_2017_Global_Map_and_Country_Results.pdf)
+
+--------------------------------------------------------------------------------
+
+### 宗教信仰
+
+![max-width:100%;](figures/International_Religious_Freedom_Report_2018--China.svg)

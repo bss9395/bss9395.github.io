@@ -27,6 +27,8 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ————《权力是靠不住的：美国政治文化探析》
 ```
 
+--------------------------------------------------------------------------------
+
 ### 假疫苗
 
 ```
@@ -37,10 +39,10 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 真是个很不好笑的笑话！
 ```
 
-![width:210mm;](figures/[cnda.cfda.gov.cn][WS04CL2050329592].html.svg)
+![width:210mm;](figures/cnda.cfda.gov.cn;WS04CL2050329592.html.svg)
 
----
+--------------------------------------------------------------------------------
 
 ### P2P借贷爆雷
 
-![width:210mm;](figures/[www.ftchinese.com][story][001078603].html.svg)
+![width:210mm;](figures/www.ftchinese.com;story;001078603.html.svg)
