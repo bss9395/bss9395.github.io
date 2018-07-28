@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     待解决问题
-Revised:   2018-07-28 10:44:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-07-28 11:29:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -15,8 +15,16 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 ### 问题 1 食品供应
 
-### 问题 2 房地产
+### 问题 2 能源供应
 
-### 问题 3 城市化程度
+### 问题 3 征税情况
 
-### 问题 4 贫困人口
+### 问题 4 房地产
+
+### 问题 5 城市化程度/工业化程度
+
+### 问题 6 政府组织结构及职能
+
+### 问题 7 市场经济化程度
+
+### 问题 8 贫困人口分布
