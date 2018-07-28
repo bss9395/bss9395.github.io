@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-07-28 01:33:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-07-28 13:36:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
@@ -67,4 +67,16 @@ Resources:
 > | :--------- | :-------------------------- |
 > | *Twitter*  | <https://twitter.com/>      |
 > | *YouTube*  | <https://www.youtube.com/>  |
-> | *微博*     | <https://weibo.com/>        |
+> | *微微博情* | <https://weibo.com/>        |
+
+> ### The Great Firewall
+
+> | *Lantern*        | <https://getlantern.org/>                      |
+> | :--------------- | :--------------------------------------------- |
+> | *Psiphon*        | <https://psiphon.ca/>                          |
+> | *Shadowsocks*    | <https://shadowsocks.org/>                     |
+> | *Tor*            | <https://www.torproject.org/>                  |
+> | *无界浏览*       | <http://www.wujieliulan.com/>                  |
+> | *自由门*         | <http://dongtaiwang.com/>                      |
+> | *萤火虫 Firefly* | <https://github.com/yinghuocho/firefly-proxy/> |
+> |                  |                                                |
