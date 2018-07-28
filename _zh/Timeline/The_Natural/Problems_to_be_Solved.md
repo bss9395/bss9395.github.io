@@ -9,6 +9,8 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 我想知道中国的几个关键方面的状况，但我的能力不够，所以我希望大家合力提供答案。
 
+本话题的互动页面在这，请点击`New Issue`提交反馈，<https://github.com/bss9395/The_Natural/issues>。
+
 --------------------------------------------------------------------------------
 
 ### 问题 1 食品供应
