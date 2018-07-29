@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会之前
-Revised:   2018-07-28 03:40:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-07-29 13:25:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Perceptions_Index_2017,resources/CPI_2017_Full_Data_Set.xlsx; 《国际特赦2017-2018年度报告》,resources/《国际特赦2017-2018年度报告》.pdf;《国际宗教自由报告》,resources/《国际宗教自由报告2018--中国》.pdf;
 ---
@@ -40,6 +40,8 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Pe
 言论审查：审查对象包括（但不限于）西方式民主、六四事件、毛主义、极左派、共产主义、战争、法轮功、民族分裂、腐败、警察暴力、无政府主义、八卦新闻、财富差距、食品安全、色情作品、反映这类问题的新闻源、未经登记的宗教内容，以及其他网站。
 
 使用/购买/开发翻墙软件也属于违法行为。
+
+![width:100%;height:80vh;](resources/chinadigitaltimes.net;space;阅后即焚：GFW的前世今生，一部GFW之父方滨兴的发家史.html.pdf)
 
 --------------------------------------------------------------------------------
 
