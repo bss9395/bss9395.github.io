@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会之前
-Revised:   2018-07-29 13:25:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-07-30 13:35:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Perceptions_Index_2017,resources/CPI_2017_Full_Data_Set.xlsx; 《国际特赦2017-2018年度报告》,resources/《国际特赦2017-2018年度报告》.pdf;《国际宗教自由报告》,resources/《国际宗教自由报告2018--中国》.pdf;
 ---
@@ -28,6 +28,8 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Pe
 还有一群流氓地痞，
 剩下的全是吃瓜群众。
 ```
+
+![width:100%; height:80vh;](resources/cn.nytimes.com;opinion;20180108;china-military-economic-power;dual;.pdf)
 
 --------------------------------------------------------------------------------
 
