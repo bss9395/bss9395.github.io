@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-07-28 13:36:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-07-31 11:00:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
@@ -19,9 +19,10 @@ Resources:
 
 > ### Encyclopedia
 
-> | *Standford Encyclopedia of Philosophy* | <https://plato.stanford.edu/> |
-> | :------------------------------------- | :---------------------------- |
-> | *Wikipedia*                            | <https://www.wikipedia.org/>  |
+> | *Ancient History Encyclopedia*        | <https://www.ancient.eu/>     |
+> | :------------------------------------ | :---------------------------- |
+> | *Stanford Encyclopedia of Philosophy* | <https://plato.stanford.edu/> |
+> | *Wikipedia*                           | <https://www.wikipedia.org/>  |
 
 > ### Instant Messaging
 
@@ -79,4 +80,3 @@ Resources:
 > | *无界浏览*       | <http://www.wujieliulan.com/>                  |
 > | *自由门*         | <http://dongtaiwang.com/>                      |
 > | *萤火虫 Firefly* | <https://github.com/yinghuocho/firefly-proxy/> |
-> |                  |                                                |
