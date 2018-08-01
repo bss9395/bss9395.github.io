@@ -24,6 +24,7 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > 01. LESS is MORE.
 > 01. No pain, no gain.
 > 01. Nothing ventured, nothing gained.
+> 01. People come and go, that is life.
 > 01. Simple living.
 > 01. Standing on shoulders of giants.
 > 01. This plan does not gone to plan.
