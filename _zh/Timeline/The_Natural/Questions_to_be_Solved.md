@@ -33,4 +33,4 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 ### 问题 10 警察/军队组织结构及职能
 
-### 问题 11 监狱种类及分布
+### 问题 11 监狱/精神病院种类及分布
