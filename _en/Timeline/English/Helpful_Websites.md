@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-08-03 15:25:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-08-06 14:25:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
@@ -23,6 +23,7 @@ Resources:
 > | :------------------------------------ | :---------------------------- |
 > | *Stanford Encyclopedia of Philosophy* | <https://plato.stanford.edu/> |
 > | *Wikipedia*                           | <https://www.wikipedia.org/>  |
+> | *世界数字图书馆*                      | <https://www.wdl.org/>        |
 > | *趣历史*                              | <http://www.qulishi.com/>     |
 
 > ### Instant Messaging
