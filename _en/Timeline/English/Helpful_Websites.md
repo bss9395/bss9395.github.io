@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-08-06 14:25:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-08-06 19:17:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
@@ -56,6 +56,7 @@ Resources:
 > | *United Nations*                                             | <http://www.un.org/>            |
 > | *United States Commission on International Religious Freedom* | <http://www.uscirf.gov/>        |
 > | *中国人权*                                                   | <https://www.hrichina.org/>     |
+> | *维权网*                                                     | <http://wqw2010.blogspot.com/>  |
 
 > ### Search Engines
 
