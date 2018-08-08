@@ -4,6 +4,12 @@ Title:  璀璨星辰的空间
 Back:   mailto:brilliantstarrysky9395@gmail.com
 ---
 
+> ### 佳士声援团
+
+> <https://gongrentuanjie.github.io/>
+> <https://github.com/gongrentuanjie>
+> 我不知道未来会怎样，但我希望能保存种子。
+
 > ### 警示录
 
 > 01. ~~再坚持一下，你就被清理了。~~
@@ -134,6 +140,7 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > 01. 成也萧何，败也萧何。
 > 01. 成者为王，败者为寇。
 > 01. 或百步而后止，或五十步而后止；以五十步笑百步，则何如？
+> 01. 打一枪，换一个地方。
 > 01. 打蛇打七寸，死尾不死头。
 > 01. 指点江山，激扬文字，粪土当年万户侯。
 > 01. 攻无不克，战无不胜。
