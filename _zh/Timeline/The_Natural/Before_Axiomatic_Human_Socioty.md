@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会之前
-Revised:   2018-07-30 13:35:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-08-11 14:04:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Perceptions_Index_2017,resources/CPI_2017_Full_Data_Set.xlsx; 《国际特赦2017-2018年度报告》,resources/《国际特赦2017-2018年度报告》.pdf;《国际宗教自由报告》,resources/《国际宗教自由报告2018--中国》.pdf;
 ---
@@ -17,7 +17,7 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Pe
 
 --------------------------------------------------------------------------------
 
-### 案例一  人权保障
+### 人权保障
 
 ```
 中国是一个没有人权可言的国家，
@@ -31,9 +31,13 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Pe
 
 ![width:100%; height:80vh;](resources/cn.nytimes.com;opinion;20180108;china-military-economic-power;dual;.pdf)
 
+联合国消除种族歧视委员会称有“可靠情报”，证明中国在新疆的“反极端主义中心”秘密囚禁百万维吾尔族人。
+
+<https://www.bbc.com/zhongwen/simp/chinese-news-45153897/>
+
 --------------------------------------------------------------------------------
 
-### 案例二  言论自由
+### 言论自由
 
 防火长城：也称中国防火墙或中国国家防火墙，指中华人民共和国政府在其管辖因特网内部建立的多套网络审查系统的总称，包括相关行政审查系统。
 
@@ -56,3 +60,13 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Pe
 ### 宗教信仰
 
 ![max-width:100%;](figures/International_Religious_Freedom_Report_2018--China.svg)
+
+--------------------------------------------------------------------------------
+
+### 中国征税
+
+中国人民的税收负担重。
+
+<http://www.iqiyi.com/w_19rrmx02v9.html>
+
+--------------------------------------------------------------------------------
