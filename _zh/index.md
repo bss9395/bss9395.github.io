@@ -4,12 +4,6 @@ Title:  璀璨星辰的空间
 Back:   mailto:brilliantstarrysky9395@gmail.com
 ---
 
-> ### 佳士声援团
-
-> <https://gongrentuanjie.github.io/>
-> <https://github.com/gongrentuanjie>
-> 我不知道未来会怎样，但我希望能保存种子。
-
 > ### 警示录
 
 > 01. ~~再坚持一下，你就被清理了。~~
