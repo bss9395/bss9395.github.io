@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     中国热点问题
-Revised:   2018-08-15 14:51:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-08-15 15:46:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -124,3 +124,14 @@ P2P投资者到北京抗议示威受阻，大量警力周一封锁北京金融�
 深圳佳士工运声援团有人“被架走”，引发新一波维权抗争
 
 <https://www.voachinese.com/a/Latest-Rally-By-Shenzhen-Jiashi-Jasic-20180813/4525974.html>
+
+--------------------------------------------------------------------------------
+
+### 新闻不自由
+
+《南华早报》会变成北京的宣传工具吗？
+
+<https://cn.nytimes.com/china/20180402/south-china-morning-post-hong-kong-alibaba/>
+
+--------------------------------------------------------------------------------
+

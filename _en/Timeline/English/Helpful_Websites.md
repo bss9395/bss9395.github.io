@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-08-06 19:17:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-08-15 15:26:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
@@ -52,6 +52,7 @@ Resources:
 > | *Amnesty*                                                    | <https://www.amnesty.org/>      |
 > | :----------------------------------------------------------- | :------------------------------ |
 > | *Human Rights Watch*                                         | <https://www.hrw.org/>          |
+> | *Reporters Without Borders*                                  | <https://rsf.org/>              |
 > | *Transparency International*                                 | <https://www.transparency.org/> |
 > | *United Nations*                                             | <http://www.un.org/>            |
 > | *United States Commission on International Religious Freedom* | <http://www.uscirf.gov/>        |

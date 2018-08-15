@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会之前
-Revised:   2018-08-11 14:04:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-08-15 15:35:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Perceptions_Index_2017,resources/CPI_2017_Full_Data_Set.xlsx; 《国际特赦2017-2018年度报告》,resources/《国际特赦2017-2018年度报告》.pdf;《国际宗教自由报告》,resources/《国际宗教自由报告2018--中国》.pdf;
 ---
@@ -56,6 +56,12 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Pe
 ### 宗教信仰
 
 ![max-width:100%;](figures/International_Religious_Freedom_Report_2018--China.svg)
+
+--------------------------------------------------------------------------------
+
+### 新闻自由
+
+![width:100%;height:80vh;](figures/Freedom_of_the_Press_Worldwide_2018.pdf)
 
 --------------------------------------------------------------------------------
 
