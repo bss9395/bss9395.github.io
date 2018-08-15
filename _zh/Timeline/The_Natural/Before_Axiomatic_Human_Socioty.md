@@ -31,10 +31,6 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Pe
 
 ![width:100%; height:80vh;](resources/cn.nytimes.com;opinion;20180108;china-military-economic-power;dual;.pdf)
 
-联合国消除种族歧视委员会称有“可靠情报”，证明中国在新疆的“反极端主义中心”秘密囚禁百万维吾尔族人。
-
-<https://www.bbc.com/zhongwen/simp/chinese-news-45153897/>
-
 --------------------------------------------------------------------------------
 
 ### 言论自由
