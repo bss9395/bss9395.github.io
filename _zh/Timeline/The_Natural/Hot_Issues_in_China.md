@@ -27,6 +27,8 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ————《权力是靠不住的：美国政治文化探析》
 ```
 
+<http://news.bbc.co.uk/chinese/simp/hi/newsid_7060000/newsid_7069400/7069409.stm>
+
 --------------------------------------------------------------------------------
 
 ### 新疆再教育营
