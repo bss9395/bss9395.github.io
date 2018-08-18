@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-08-15 18:50:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-08-18 17:20:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
@@ -21,6 +21,7 @@ Resources:
 
 > | *Ancient History Encyclopedia*        | <https://www.ancient.eu/>     |
 > | :------------------------------------ | :---------------------------- |
+> | *Marxists Internet Archive*           | <https://www.marxists.org/>   |
 > | *Stanford Encyclopedia of Philosophy* | <https://plato.stanford.edu/> |
 > | *Wikipedia*                           | <https://www.wikipedia.org/>  |
 > | *世界数字图书馆*                      | <https://www.wdl.org/>        |
@@ -58,6 +59,7 @@ Resources:
 > | *United Nations*                                             | <http://www.un.org/>            |
 > | *United States Commission on International Religious Freedom* | <http://www.uscirf.gov/>        |
 > | *中国人权*                                                   | <https://www.hrichina.org/>     |
+> | *华夏文库*                                                   | <http://hxwk.org/>              |
 > | *维权网*                                                     | <http://wqw2010.blogspot.com/>  |
 
 > ### Search Engines
