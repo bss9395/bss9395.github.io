@@ -147,3 +147,6 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 苏格拉底出生于伯里克利统治的雅典黄金时期，
 
 苏格拉底之死>柏拉图的理想国和理念
+
+
+**晚点更新**
