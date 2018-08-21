@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     中国热点问题
-Revised:   2018-08-15 15:46:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-08-22 00:18:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -134,6 +134,34 @@ P2P投资者到北京抗议示威受阻，大量警力周一封锁北京金融�
 《南华早报》会变成北京的宣传工具吗？
 
 <https://cn.nytimes.com/china/20180402/south-china-morning-post-hong-kong-alibaba/>
+
+--------------------------------------------------------------------------------
+
+### 大撒币
+
+习近平大撒币与中国政治
+
+<https://www.voachinese.com/a/news-throwing-money-around-and-chinese-politics-20180731/4507220.html>
+
+习近平接任中共最高领导人，一共六年，给他送出去的人民币是4万亿，六年也就是2000天，平均每天给他送出去20个亿。
+
+<https://twitter.com/sifan198964/status/1023944135382728704/>
+
+--------------------------------------------------------------------------------
+
+### 非洲
+
+非洲联盟总部惊爆中国网络窃取资料疑云
+
+<https://www.bbc.com/zhongwen/simp/world-42867642/>
+
+非洲联盟某些官员指责中国在五年期间每晚侵入其总部的计算机系统并下载机密数据。中国否认，非盟拒绝置评。
+
+<http://www.ftchinese.com/story/001076137/>
+
+法广 | 中国/非洲: 中国无偿援建非盟新总部大楼遭国际舆论质疑
+
+<https://chinadigitaltimes.net/chinese/2012/02/%E6%B3%95%E5%B9%BF-%E4%B8%AD%E5%9B%BD%E9%9D%9E%E6%B4%B2-%E4%B8%AD%E5%9B%BD%E6%97%A0%E5%81%BF%E6%8F%B4%E5%BB%BA%E9%9D%9E%E7%9B%9F%E6%96%B0%E6%80%BB%E9%83%A8%E5%A4%A7%E6%A5%BC%E9%81%AD%E5%9B%BD/>
 
 --------------------------------------------------------------------------------
 
