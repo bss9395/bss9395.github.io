@@ -5,7 +5,7 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 ---
 
 ```
-股市和房地产，
+金融和房地产，
 最后两根稻草。
 如果一切顺利！
 ```
