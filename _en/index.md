@@ -12,6 +12,7 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > 01. All of your hard work will pay off one day.
 > 01. All roads lead to Rome.
 > 01. Better late than never.
+> 01. Don't be evil.
 > 01. Don't judge a book by its cover.
 > 01. Don’t count your chickens before they are hatched.
 > 01. Extraordinary claims require extraordinary proof.
