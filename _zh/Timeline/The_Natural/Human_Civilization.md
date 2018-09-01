@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     人类文明
-Revised:   2018-08-31 00:02:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-09-02 00:57:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -197,6 +197,8 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 ------
 
-罗马城邦》罗马共和国》罗马帝国
+罗马王政时代》罗马共和国》罗马帝国
 
-**晚点更新**
+罗马法/欧陆法系，罗马扩张/税收/奴隶
+
+**想好怎么写了**
