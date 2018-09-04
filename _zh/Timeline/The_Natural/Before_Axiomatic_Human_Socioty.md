@@ -73,4 +73,3 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues; Corruption_Pe
 
 --------------------------------------------------------------------------------
 
-### 
