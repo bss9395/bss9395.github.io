@@ -22,6 +22,7 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > 01. However bad life may seem, there is always something you can do and succeed at. Where there is life, there is hope.
 > 01. It is easier to make enemies than friends.
 > 01. Justice delayed is justice denied.
+> 01. Justice must not only be done, but must be seen to be done.
 > 01. LESS is MORE.
 > 01. No pain, no gain.
 > 01. Nothing ventured, nothing gained.
