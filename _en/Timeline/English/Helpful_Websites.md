@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-08-18 17:20:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-09-08 16:10:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
@@ -40,6 +40,7 @@ Resources:
 > | *Deutsche Welle*                       | <https://www.dw.com/>            |
 > | :------------------------------------- | :------------------------------- |
 > | *Financial Times*                      | <https://www.ft.com/>            |
+> | *Reuters*                              | <https://www.reuters.com/>       |
 > | *The British Broadcasting Corporation* | <http://www.bbc.com/>            |
 > | *The New York Times*                   | <https://www.nytimes.com/>       |
 > | *The Wall Street Journal*              | <https://www.wsj.com/>           |
