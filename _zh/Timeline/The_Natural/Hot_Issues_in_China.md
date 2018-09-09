@@ -37,7 +37,7 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 --------------------------------------------------------------------------------
 
-### 中国脑控
+### 中共式脑控
 
 ![width:100%; height:80vh;](resources/chinadigitaltimes.net;chinese;2018;09;正午故事-我决定了你能看到什么;.pdf)
 
