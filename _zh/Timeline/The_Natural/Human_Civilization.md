@@ -225,4 +225,7 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 中世纪
 
+西欧的封建制度（庄园制度）
+
+**还没想好怎么写**
 **还没想好怎么写**
