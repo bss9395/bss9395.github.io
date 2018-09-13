@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     中国热点问题
-Revised:   2018-09-08 17:39:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-09-13 12:51:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -244,6 +244,14 @@ P2P投资者到北京抗议示威受阻，大量警力周一封锁北京金融�
 <https://twitter.com/jcweb11/status/1035717529820229634/>
 
 <http://www.ntdtv.com/xtr/gb/2005/03/20/a26594.html.-%E3%80%90%E9%80%8F%E8%A7%86%E4%B8%AD%E5%9B%BD%E3%80%91%E8%BE%9B%E7%81%8F%E5%B9%B4%E8%B0%88%E3%80%9D%E4%B9%9D%E8%AF%84%E5%85%B1%E4%BA%A7%E5%85%9A%E3%80%9E.html>
+
+--------------------------------------------------------------------------------
+
+### 中国式选举
+
+中国宪法允许独立候选人参加地方选举。但对于尝试让自己名字出现在选票上的独立人士来说，这是一种无用的尝试。
+
+<https://www.bbc.com/zhongwen/simp/china/2016/11/161117_china_elections_independent_candidates/>
 
 --------------------------------------------------------------------------------
 
