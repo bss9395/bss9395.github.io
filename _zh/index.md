@@ -4,6 +4,8 @@ Title:  璀璨星辰的空间
 Back:   mailto:brilliantstarrysky9395@gmail.com
 ---
 
+**人不能一生都活在虚构世界里，总有一天要逃脱出来。**
+
 ```
 金融和房地产，
 最后两根稻草。
