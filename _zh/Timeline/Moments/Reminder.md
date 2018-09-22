@@ -1,7 +1,7 @@
 ---
 layout:    zh_post
 Topic:     朋友圈
-Title:     日常提醒
+Title:     提醒
 Revised:   2018-09-12 12:07:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources:
