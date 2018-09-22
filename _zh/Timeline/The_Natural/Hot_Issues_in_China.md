@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     中国热点问题
-Revised:   2018-09-19 13:22:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-09-22 14:12:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -322,3 +322,5 @@ The Intercept 可以证实，谷歌为中国开发的审查版搜索引擎将用
 如何建造一座戒备森严的监狱？ 
 
 <https://chinadigitaltimes.net/chinese/2018/09/%e3%80%90cdtv%e3%80%91%e5%9b%9e%e5%bd%a2%e9%92%88%ef%bc%9a%e5%a6%82%e4%bd%95%e5%bb%ba%e9%80%a0%e4%b8%80%e5%ba%a7%e6%88%92%e5%a4%87%e6%a3%ae%e4%b8%a5%e7%9a%84%e7%9b%91%e7%8b%b1%ef%bc%9f/>
+
+--------------------------------------------------------------------------------
