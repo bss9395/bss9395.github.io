@@ -243,7 +243,9 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 --------
 
-**还没有思绪**
+异端审判 》 黑死病 》 文艺复兴 》 宗教改革 
+
+》 中国
 
 --------
 
@@ -288,8 +290,6 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 两次世界大战伤亡人数
 
 放血疗法，疫苗?
-
-牛顿
 
 --------
 
