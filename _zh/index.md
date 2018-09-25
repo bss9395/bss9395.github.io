@@ -4,6 +4,8 @@ Title:  璀璨星辰的空间
 Back:   mailto:brilliantstarrysky9395@gmail.com
 ---
 
+**重在参与，胜利有望。**
+
 ```
 金融和房地产，
 最后两根稻草。

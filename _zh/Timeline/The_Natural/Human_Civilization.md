@@ -243,7 +243,7 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 --------
 
-**材料还没有看完，今天中秋节，夜晚打算去海边。**
+**睡觉前更新，可能很晚。**
 
 异端审判 》 黑死病 》 文艺复兴 》 宗教改革 
 
