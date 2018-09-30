@@ -23,6 +23,7 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > 我，
 > 志愿退出中国共产党，
 > 不论未来如何。
+> 
 > # 中国共产党 == chiNAZI
 > # 中国共产党员 == chiNAZIST
 > # 中国特色社会主义 == chiNAZISM
