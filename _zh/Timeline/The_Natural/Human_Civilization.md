@@ -249,7 +249,7 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 --------
 
-**今天应该不更新。。。**
+**材料还没看完。。。**
 
 --------
 
