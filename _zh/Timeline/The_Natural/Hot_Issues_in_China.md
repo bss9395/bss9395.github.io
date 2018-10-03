@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     中国热点问题
-Revised:   2018-10-03 13:19:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-10-03 20:26:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -46,6 +46,10 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 “不存在这种东西”：中国否认在新疆建再教育营
 
 <https://cn.nytimes.com/china/20180814/china-xinjiang-un/>
+
+新疆铁路停售火车车票的消息引发各界关注。最新有消息说，新疆当局自9月26日起，通过列车全面转移在押的新疆少数民族，转移人员高达二、三十万。
+
+<http://www.epochtimes.com/gb/18/10/1/n10754449.htm?
 
 --------------------------------------------------------------------------------
 
