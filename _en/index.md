@@ -20,6 +20,7 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > 01. Fool me once, shame on you; Fool me twice, shame on me.
 > 01. Give me some sunshine, give me some rain, give me another chance, I wanna grow up once again.
 > 01. However bad life may seem, there is always something you can do and succeed at. Where there is life, there is hope.
+> 01. In my end is my beginning. 
 > 01. It is easier to make enemies than friends.
 > 01. Justice delayed is justice denied.
 > 01. Justice must not only be done, but must be seen to be done.
