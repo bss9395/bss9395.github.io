@@ -251,7 +251,7 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 --------
 
-**正在整理中。。。**
+**正在整理中。。。可能睡觉前会更新吧。。。**
 
 赎罪券，马丁·路德，路德派，
 
