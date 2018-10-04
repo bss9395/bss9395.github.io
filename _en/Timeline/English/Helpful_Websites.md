@@ -77,14 +77,3 @@ Resources:
 > | *Twitter*  | <https://twitter.com/>      |
 > | *YouTube*  | <https://www.youtube.com/>  |
 > | *微微博情* | <https://weibo.com/>        |
-
-> ### The Great Firewall
-
-> | *Lantern*        | <https://getlantern.org/>                      |
-> | :--------------- | :--------------------------------------------- |
-> | *Psiphon*        | <https://psiphon.ca/>                          |
-> | *Shadowsocks*    | <https://shadowsocks.org/>                     |
-> | *Tor*            | <https://www.torproject.org/>                  |
-> | *无界浏览*       | <http://www.wujieliulan.com/>                  |
-> | *自由门*         | <http://dongtaiwang.com/>                      |
-> | *萤火虫 Firefly* | <https://github.com/yinghuocho/firefly-proxy/> |
