@@ -269,8 +269,6 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 --------
 
-西欧    宗教改革 
-
 中国    隋朝，大运河 》 唐朝，印刷术，纸币，市舶司 》 宋朝，妇女缠足 》 元朝，游牧民族，大帝国，四等人制 
 
 西欧    科学革命，启蒙运动
