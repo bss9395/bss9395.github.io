@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     English
 Title:     Helpful Websites
-Revised:   2018-09-08 16:10:00 +08 @ China-Guangdong-Zhanjiang +08
+Revised:   2018-10-16 14:08:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
 Resources:
 ---
@@ -37,17 +37,20 @@ Resources:
 
 > ### News
 
-> | *Deutsche Welle*                       | <https://www.dw.com/>            |
-> | :------------------------------------- | :------------------------------- |
-> | *Financial Times*                      | <https://www.ft.com/>            |
-> | *Reuters*                              | <https://www.reuters.com/>       |
-> | *The British Broadcasting Corporation* | <http://www.bbc.com/>            |
-> | *The New York Times*                   | <https://www.nytimes.com/>       |
-> | *The Wall Street Journal*              | <https://www.wsj.com/>           |
-> | *Time*                                 | <http://time.com/>               |
-> | *Voice of America*                     | <https://www.voanews.com/>       |
-> | *中国的数字，数字的时代*               | <https://chinadigitaltimes.net/> |
-> | *大纪元*                               | <http://www.epochtimes.com/>     |
+> | *BBC News*                | <https://www.bbc.com/news/>      |
+> | :------------------------ | :------------------------------- |
+> | *CNN*                     | <https://www.cnn.com/>           |
+> | *DW*                      | <https://www.dw.com/>            |
+> | *Financial Times*         | <https://www.ft.com/>            |
+> | *Fox News*                | <https://www.foxnews.com/>       |
+> | *NBC News*                | <https://www.nbcnews.com/>       |
+> | *Reuters*                 | <https://www.reuters.com/>       |
+> | *The New York Times*      | <https://www.nytimes.com/>       |
+> | *The Wall Street Journal* | <https://www.wsj.com/>           |
+> | *Time*                    | <http://time.com/>               |
+> | *VOA News*                | <https://www.voanews.com/>       |
+> | *中国数字的时代*          | <https://chinadigitaltimes.net/> |
+> | *大紀元*                  | <http://www.epochtimes.com/>     |
 
 > ### Politics
 
