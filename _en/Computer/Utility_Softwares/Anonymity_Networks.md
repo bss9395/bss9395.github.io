@@ -18,11 +18,3 @@ Resources:
 > | *自由门*         | <http://dongtaiwang.com/>                      |
 > | *萤火虫 Firefly* | <https://github.com/yinghuocho/firefly-proxy/> |
 
-> ### Direct Download
-
-|                  | **For Windows**                        | **For Android**                                    | **For macOS**                | **For iOS**                                                  |
-| :--------------- | :------------------------------------- | :------------------------------------------------- | :--------------------------- | :----------------------------------------------------------- |
-| *萤火虫 Firefly* | [yhc.exe](resources/yhc.exe)           | [yhc.apk](resources/yhc.apk)                       | [yhc.dmg](resources/yhc.dmg) | [MudHorse Proxy](https://itunes.apple.com/us/app/mudhorse-proxy/id1260125306) |
-| *Psiphon*        | [psiphon3.exe](resources/psiphon3.exe) | [PsiphonAndroid.apk](resources/PsiphonAndroid.apk) |                              | [Psiphon](https://itunes.apple.com/us/app/psiphon/id1276263909?ls=1&mt=8) |
-|                  |                                        |                                                    |                              |                                                              |
-
