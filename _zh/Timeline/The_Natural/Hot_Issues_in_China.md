@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     中国热点问题
-Revised:   2018-10-27 22:42:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-11-01 17:18:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -422,5 +422,17 @@ The Intercept 可以证实，谷歌为中国开发的审查版搜索引擎将用
 中国户籍改革的根本触及政治制度
 
 <https://www.bbc.com/zhongwen/simp/china/2015/02/150216_china_hukou/>
+
+--------------------------------------------------------------------------------
+
+### 中国的计划生育
+
+今年以来，有关全面废除计划生育的传闻和呼吁不断，因此对中国人口政策的讨论也持续不断。近日，数名中国学者关于设立生育基金制度和征收“丁克税”的建议再次引发舆论抨击和网络热议。
+
+<https://www.bbc.com/zhongwen/simp/chinese-news-45232507/>
+
+杨建利：由惨无人道的“百日无孩”看中国的计划生育灾难——写在“全面二孩政策”实施一周年之际
+
+<https://www.hrichina.org/chs/zhong-guo-ren-quan-shuang-zhou-kan/yang-jian-li-you-can-wu-ren-dao-de-bai-ri-wu-hai-kan-zhong-guo-de/>
 
 --------------------------------------------------------------------------------
