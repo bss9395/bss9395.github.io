@@ -9,11 +9,11 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 ### Twitter
 
-| **头像**                                                     | **账号**                                                  | **注册** | **简介**                 |
-| :----------------------------------------------------------- | :-------------------------------------------------------- | :------- | ------------------------ |
-| ![max-width:128px;](figures/Twitter/海风快报@5xyxh.jpg)      | [海风快报@5xyxh](https://twitter.com/5xyxh)               | 2018-04  | 美国新高地新闻通讯社主办 |
-| ![max-width:128px;](figures/Twitter/财经真相@caijingxiang.jpg) | [财经真相@caijingxiang](https://twitter.com/caijingxiang) | 2014-11  |                          |
-|                                                              |                                                           |          |                          |
+| **头像**                                                     | **账号**                                                     | **注册** | **地址** | **简介**                                                     |
+| :----------------------------------------------------------- | :----------------------------------------------------------- | :------- | -------- | ------------------------------------------------------------ |
+| ![max-width:128px;](figures/Twitter/海风快报@5xyxh.jpg)      | [海风快报@5xyxh](https://twitter.com/5xyxh)                  | 2018-04  | 美国     | 美国新高地新闻通讯社主办                                     |
+| ![max-width:128px;](figures/Twitter/财经真相@caijingxiang.jpg) | [财经真相@caijingxiang](https://twitter.com/caijingxiang)    | 2014-11  |          |                                                              |
+| ![max-width:128px;](figures/Twitter/川普中文同步推@Trump_Chinese.jpg) | [川普中文同步推@Trump_Chinese](https://twitter.com/Trump_Chinese) | 2018-09  | 美国     | 跟上美国总统川普的推特步伐，向全球华人及时展示美国总统川普的推文更新，了解川普推特治国理念！ |
 
 ### 微博
 
