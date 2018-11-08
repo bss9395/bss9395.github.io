@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     中国热点问题
-Revised:   2018-11-01 17:18:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-11-08 14:13:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -434,5 +434,13 @@ The Intercept 可以证实，谷歌为中国开发的审查版搜索引擎将用
 杨建利：由惨无人道的“百日无孩”看中国的计划生育灾难——写在“全面二孩政策”实施一周年之际
 
 <https://www.hrichina.org/chs/zhong-guo-ren-quan-shuang-zhou-kan/yang-jian-li-you-can-wu-ren-dao-de-bai-ri-wu-hai-kan-zhong-guo-de/>
+
+--------------------------------------------------------------------------------
+
+### 中国的新警察法
+
+王岩 | 新《警察法》来袭 普通群众要注意！
+
+<https://chinadigitaltimes.net/chinese/2018/11/王岩-新《警察法》来袭-普通群众要注意！/>
 
 --------------------------------------------------------------------------------
