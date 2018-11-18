@@ -1,13 +1,13 @@
 ---
 layout:    en_post
-Topic:     Visualization Tool
-Title:     Anonymity Networks
+Topic:     Utility Softwares
+Title:     Anonymity Network
 Revised:   2018-10-05 02:35:00 +08 @ China-Guangdong-Zhanjiang +08
 Authors:   BSS9395
-Resources: 
+Resources:
 ---
 
-> ### Original Resources
+> ### For Free
 
 > | *Lantern*        | <https://getlantern.org/>                      |
 > | :--------------- | :--------------------------------------------- |
