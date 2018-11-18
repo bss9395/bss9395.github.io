@@ -9,6 +9,6 @@ Resources:
 
 > ### For Free
 
-> | *Typora*       | <https://typora.io/>           |
-> | :------------- | :----------------------------- |
 > | *Sublime Text* | <https://www.sublimetext.com/> |
+> | :------------- | :----------------------------- |
+> | *Typora*       | <https://typora.io/>           |

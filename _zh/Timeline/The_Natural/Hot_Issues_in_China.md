@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     中国热点问题
-Revised:   2018-11-16 22:36:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-11-18 20:43:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -468,5 +468,17 @@ The Intercept 可以证实，谷歌为中国开发的审查版搜索引擎将用
 ### 中国的法制
 
 <https://zh.amnesty.org/more-resources/blog/china-criminal-procedure-law-revised-impact/>
+
+--------------------------------------------------------------------------------
+
+### 魏则西事件
+
+<https://zh.wikipedia.org/wiki/魏则西事件/>
+
+<https://www.bbc.com/zhongwen/simp/china/2016/05/160503_ana_weizexi_responsibility/>
+
+<https://zh.wikipedia.org/wiki/莆田系/>
+
+<https://www.bbc.com/zhongwen/simp/china/2016/05/160513_putian_hospitals_dark_secrets/>
 
 --------------------------------------------------------------------------------
