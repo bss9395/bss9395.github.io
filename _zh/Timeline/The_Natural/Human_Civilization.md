@@ -357,7 +357,7 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 ---------
 
-中国  鸦片战争，太平天国
+中国  鸦片战争，太平天国，洋务运动，义和团，维新运动，辛亥革命
 
 西欧  地理大发现，科学革命，启蒙运动
 
