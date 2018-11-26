@@ -319,6 +319,8 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 -------
 
+**睡觉前更新。。。**
+
 思路：
 
 顺治年间：剃发易服，禁海令
@@ -329,7 +331,6 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 乾隆年间：尼布楚条约，一口通商，马嘎尔尼访华，考据学兴起，和珅
 
-**材料还没看完。。。睡觉前应该不会更新吧。。。**
 
 -------
 
