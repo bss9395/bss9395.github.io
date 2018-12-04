@@ -50,7 +50,7 @@ Resources:
 > | *The New York Times*      | <https://www.nytimes.com/>       |
 > | *The Wall Street Journal* | <https://www.wsj.com/>           |
 > | *Time*                    | <http://time.com/>               |
-> | *VOA News*                | <https://www.voanews.com/>       |
+> | *VOA News*                | **<https://www.voanews.com/>**   |
 > | *中国的数字时代*          | <https://chinadigitaltimes.net/> |
 > | *品葱*                    | <https://www.pin-cong.com/>      |
 > | *大紀元*                  | <http://www.epochtimes.com/>     |
