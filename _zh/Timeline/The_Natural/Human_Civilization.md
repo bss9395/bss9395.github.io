@@ -333,6 +333,7 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 
 -------
 
+**不知道睡觉前会不会更新，身为中国人对中国的历史了解得更多，中国之外的历史就成了片段。。。**
 
 材料：
 
