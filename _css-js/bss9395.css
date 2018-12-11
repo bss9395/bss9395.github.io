@@ -56,10 +56,12 @@ blockquote>*:last-of-type {
 }
 /* code */
 code {
+	display: inline-block;
 	font-style: normal;
 	font-weight: normal;
 	list-style-type: none;
 	list-style-position: outside;
+	vertical-align: middle;
 	white-space: pre;
 }
 em {
@@ -150,7 +152,7 @@ h6 {
 /* img */
 img {
 	max-width: 100%;
-	vertical-align: bottom;
+	vertical-align: middle;
 }
 /* list */
 dl {

@@ -22,7 +22,7 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > ### **严正声明**
 
 > ```
-> 我，
+> 我，黄志贵，
 > 志愿退出中国共产党，
 > 不论未来如何。
 >
