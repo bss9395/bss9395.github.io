@@ -13,7 +13,7 @@ Resources:
 
 ### 关于我
 
-![max-width:128px;max-height:128px;](figures/bss9395/Me-with-Ellyn_2012_GuangZhou.jpg)
+![max-width:128px;](figures/bss9395/Me-with-Ellyn_2013_GuangZhou.jpg)
 ```
 姓名：黄志贵
 拼音：Huáng ZhìGuì
@@ -21,7 +21,8 @@ Resources:
 民族：汉族
 宗教：无信仰
 理想：天文学家
-生日：1993年09月05日
+农历：一九九三年七月十九日
+公历：1993年09月05日（处女座）
 身份：440882199308051156
 籍贯：中华人民共和国广东省湛江市海康县（今雷州市）
 本科：广东工业大学计算机学院计算机科学与技术专业2016届
