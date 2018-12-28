@@ -54,18 +54,3 @@ Resources:
 > \end{array}
 > $$
 >
-
-> ### 连续性命题的等价性
-
-> $$
-> \begin{alignedat}{3}
-> \fbox{1}\quad && & s_n \le M \implies \exists! \sup \lbrace s_n \rbrace \\
-> \fbox{2}\quad && & \mathop{s_n \le s_m}\limits_{(n \lt m)} \implies \exists! \lim s_n \\
-> \fbox{3}\quad && & \mathop{ {\LARGE\supset} [s_n, t_n]}\limits_{\lvert t_n - s_n \rvert \to 0} \implies \exists! r \in \bigcap \lbrace[s_n, t_n] \rbrace \\
-> \fbox{4}\quad && & [s, t] \subset \bigcup \lbrace (s_n, t_n) \rbrace \implies [s, t] \subset \bigcup^{\exists N} \lbrace (s_n, t_n) \rbrace \\
-> \fbox{5}\quad && & \lvert s_{+ \infty} \rvert \le M \implies \exists \lim s_n \\
-> \fbox{6}\quad && & \lvert s_n \rvert \le M \implies \exists \lim s_{n_i} \\
-> \fbox{7}\quad && & \lvert s_{n \ge N} - s_{n + m} \rvert \le \varepsilon \implies \exists! \lim s_n \\
-> \end{alignedat}
-> $$
->

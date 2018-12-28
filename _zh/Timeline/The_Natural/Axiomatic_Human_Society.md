@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会
-Revised:   2018-12-27 00:23:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-12-29 06:05:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources:
 ---
@@ -105,7 +105,51 @@ Resources:
 
 #### 实数公理系统
 
-**材料没看完。。。前半夜浪费太多时间了。如果清晨没有更新，那明天就会更新。**
+**材料**
+
+1 加法群公理
+
+$$
+\begin{array}{lll}
+1_+ & 0 + x = x \\
+2_+ & x + (-x) = 0 \\
+3_+ & x + (y + z) = (x + y) + z \\
+4_+ & x + y = y + z \\
+\end{array}
+$$
+
+2 乘法域公理
+
+$$
+\begin{array}{lll}
+1_\times     & x \times 1 = x \\
+2_\times     & x \times x^{-1} = 1 \\
+3_\times     & x \times (y \times z) = (x \times y) \times z \\
+4_\times     & x \times y = y \times x \\
+5_{+ \times} & (x + y) \times z = x \times z + y \times z \\
+\end{array}
+$$
+
+3 线性序公理
+
+$$
+\begin{array}{lll}
+1_\le          & x \le x \\
+2_\le          & (x \le y) \land (y \le x) \implies (x = y) \\
+3_\le          & (x \le y) \land (y \le z) \implies (x \le z) \\
+4_\le          & (x \le y) \lor (y \le x) \\
+5_{\le +}      & (x \le y) \implies (x + z) \le (y + z) \\
+6_{\le \times} & (0 \le x) \land (0 \le y) \implies (0 \le x \times y) \\
+\end{array}
+$$
+
+4 连续性公理
+
+$$
+\begin{array}{ll}
+1_r & x \le y \implies x \le r \le y \\
+\end{array}
+$$
 
 --------------------------------------------------------------------------------
 
