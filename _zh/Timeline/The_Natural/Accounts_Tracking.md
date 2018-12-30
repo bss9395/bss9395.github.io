@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     账号追踪
-Revised:   2018-12-29 03:41:00 +08 @ 中国-广东-湛江 +08
+Revised:   2018-12-30 22:11:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -12,6 +12,7 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 | **头像**                                                     | **账号**                                                     | **注册**    | **地址**          | **简介**                                                     | **网站**                                                     |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :---------- | :---------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | ![width:128px;](figures/bss9395/Twitter/Hu Ping胡平@HuPing1.jpg) | [Hu Ping胡平@HuPing1](https://twitter.com/HuPing1)           | 2010-05     | 美国，纽约        | 生于北京，长于四川，现居美国。66年高中毕业，文革时在自办小报转载遇罗克文章；69年下乡于攀枝花市郊区；73年返回成都。78年考取北大西方哲学史研究生。79年民主墙运动中发表论言论自由。80年参加竞选，当选为海淀区人民代表。87年赴美。曾任中国民联主席（88-91），先后主持中国之春与北京之春杂志，是中国人权执行理事。 | [huping.net](http://huping.net/)                             |
+| ![width:128px;](figures/bss9395/Twitter/Lu,Dong 基督徒陸東@lu_dong1955.jpg) | [Lu,Dong 基督徒陸東@lu_dong1955](https://twitter.com/lu_dong1955) | **2017-05** | New York, USA     | 昔我失喪，今被尋回；昔日眼瞎變成火眼金睛。自2007年1月起，任紐約瑞山律師樓案件經理，分管投資移民，中國企業在美設立分公司，理工科碩士以上人才移民綠卡獨家解決方案。 電話（212）431﹣1100 地址： 401 Broadway, Room 806, New York, NY 10013 |                                                              |
 | ![width:128px;](figures/bss9395/Twitter/Real 辛灏年@XHaonian.jpg) | [Real 辛灏年@XHaonian](https://twitter.com/XHaonian/)        | 2017-06     |                   | a scholar                                                    |                                                              |
 | ![width:128px;](figures/bss9395/Twitter/Vlog心声@2018xinsheng.jpg) | [Vlog心声@2018xinsheng](https://twitter.com/2018xinsheng/)   | 2018-04     | shanghai          | 我叫劉大聖(刘大圣)，普通刚毕业大学生。YouTube频道:Vlog心声。苏州科技大学毕业，今年10月赴美旅游。我只是我，保持独立性，想啥说啥。视频日记我连续做了大半年/视频日记，记录人生/ Yahoo邮箱liu1109895772@yahoo.com感谢支持关心[http://paypal.me/likefreedom ](https://www.paypal.me/likefreedom/) | [Vlog心声 -- YouTube](https://www.youtube.com/channel/UCaPc9GRK9FoSyqM_c7-fDgw/) |
 | ![width:128px;](figures/bss9395/Twitter/何頻@nyhopin.jpg)    | [何頻@nyhopin](https://twitter.com/nyhopin/)                 | 2017-05     | New York, USA     | 何频： 我們不是在叢林中遊戲，而是試圖建立媒體價值生態系統。 推特菜鳥（2017年3月24日），明镜老人（1991年1月1日） | [明鏡火拍 -- YouTube](https://www.youtube.com/channel/UCdKyM0XmuvQrD0o5TNhUtkQ/) |
