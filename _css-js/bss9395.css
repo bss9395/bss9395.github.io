@@ -24,7 +24,6 @@ html {
 }
 body {
 	max-width: 80%;
-	margin-bottom: 1em;
 }
 main {
 	-moz-column-count: 2;
@@ -34,16 +33,16 @@ main {
 }
 /* blockquote */
 br {
-	margin-top: 1em;
+    margin-bottom: 0.5em;
+	margin-top: 0.5em;
 }
 div {
-	padding: 3px 1px;
+    margin-top: 1em;
 }
 p {
 	margin-top: 1em;
 }
 blockquote {
-	margin-bottom: 1em;
 	margin-top: 1em;
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -61,7 +60,8 @@ code {
 	font-weight: normal;
 	list-style-type: none;
 	list-style-position: outside;
-	vertical-align: middle;
+	margin-top: 1em;
+	vertical-align: bottom;
 	white-space: pre;
 }
 em {
@@ -78,11 +78,6 @@ strong>em {
 	color: #FF9800;
 	font-style: normal;
 	font-weight: normal;
-}
-pre {
-	border-left-style: solid;
-	border-left-width: 0.5625em;
-	border-color: #FFC107;
 }
 /* form */
 form {
@@ -130,34 +125,45 @@ h1 {
 	text-align: left;
 }
 h2 {
+    color: #2196F3;
 	display: inline-block;
 	font-size: 1.1em;
+	margin-top:1.1em;
 }
 h3 {
 	color: #2196F3;
 	font-size: 1.1em;
+	margin-top:1.1em;
 }
 h4 {
 	color: #42A5F5;
 	font-size: 1em;
+	margin-top:1em;
 }
 h5 {
 	color: #64B5F6;
 	font-size: 1em;
+	margin-top:1em;
 }
 h6 {
 	color: #90CAF9;
 	font-size: 1em;
+	margin-top:1em;
 }
 /* img */
 img {
+	display: inline-block;
 	max-width: 100%;
-	vertical-align: middle;
+	vertical-align: bottom;
 }
 /* list */
+li {
+    white-space: pre;
+}
 dl {
 	list-style-position: outside;
 	list-style-type: none;
+	margin-top: 1em;
 }
 dt {
 	color: #4CAF50;
@@ -169,11 +175,13 @@ dd>* {
 ol {
 	list-style-position: outside;
 	list-style-type: decimal-leading-zero;
+	margin-top: 1em;
 	padding-left: 2.25em;
 }
 ul {
 	list-style-position: outside;
 	list-style-type: circle;
+	margin-top: 1em;
 	padding-left: 1.125em;
 }
 /* mark */
