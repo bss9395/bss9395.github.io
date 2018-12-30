@@ -160,7 +160,7 @@ $$
 1_≤     & x ≤ x &          &       &        &               & \text{满足自反性} \\
 2_≤     & x ≤ y &\text{and}& y ≤ x &\implies& x = y         & \text{满足反对称性} \\
 3_≤     & x ≤ y &\text{and}& y ≤ z &\implies& x ≤ z         & \text{满足传递性} \\
-4_≤     & x ≤ y &\text{xor}& y ≤ x &        &               & \text{满足排中律} \\
+4_≤     & x ≤ y &\text{xor}& y ≤ x &        &               & \text{满足线性序} \\
 5_{≤ +} &       &          & x ≤ y &\implies& x + z ≤ y + z & \text{满足可加性} \\
 6_{≤ ×} & 0 ≤ x &\text{and}& 0 ≤ y &\implies& 0 ≤ x × y     & \text{满足可乘性} \\
 \end{array}
@@ -169,7 +169,7 @@ $$
 连续性公理
 $$
 \begin{array}{llll|l}
-1_r & x ≤ y &\implies& x ≤ r ≤ y & \text{存在实数r} \\
+1_r & x ≤ y &\implies& x ≤ r ≤ y & \text{存在实数 r} \\
 \end{array}
 $$
 
