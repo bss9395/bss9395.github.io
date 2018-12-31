@@ -56,8 +56,13 @@ blockquote>*:last-of-type {
 /* code */
 code {
     display: inline-block;
-    vertical-align: bottom;
     white-space: pre;
+}
+pre {
+    border-left-style: solid;
+    border-left-width: 0.5625em;
+    border-color: #FFC107;
+    padding-left: 0.5625em;
 }
 em {
     color: #8BC34A;
@@ -149,7 +154,6 @@ h6 {
 img {
     display: inline-block;
     max-width: 100%;
-    vertical-align: bottom;
 }
 /* list */
 li {
