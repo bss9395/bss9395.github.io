@@ -57,9 +57,9 @@ code {
     white-space: pre;
 }
 pre {
+    border-color: #FFC107;
     border-left-style: solid;
     border-left-width: 0.5625em;
-    border-color: #FFC107;
     padding-left: 0.5625em;
 }
 em {
@@ -123,7 +123,7 @@ h1 {
     text-align: left;
 }
 h2 {
-    color: #2196F3;
+    color: #1E88E5;
     display: inline-block;
     font-size: 1.1em;
     margin-top:1.1em;
@@ -154,13 +154,9 @@ img {
     max-width: 100%;
 }
 /* list */
-li {
-    white-space: pre-wrap;
-}
 dl {
     list-style-position: outside;
     list-style-type: none;
-    margin-top: 1em;
 }
 dt {
     color: #4CAF50;
@@ -172,14 +168,15 @@ dd>* {
 ol {
     list-style-position: outside;
     list-style-type: decimal-leading-zero;
-    margin-top: 1em;
     padding-left: 2.25em;
 }
 ul {
     list-style-position: outside;
     list-style-type: circle;
-    margin-top: 1em;
     padding-left: 1.125em;
+}
+li {
+    white-space: pre-wrap;
 }
 /* mark */
 dd>mark {
