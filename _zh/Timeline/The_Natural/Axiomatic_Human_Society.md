@@ -39,8 +39,7 @@ Resources:
 ### 关于作者
 
 ![width:256px;](figures/bss9395/Me-with-Ellyn_2013_GuangZhou.jpg)
-```
-姓名：黄志贵
+``姓名：黄志贵
 拼音：Huáng ZhìGuì
 性别：男
 民族：汉族
@@ -55,7 +54,7 @@ Resources:
 党派：原中国共产党党员
 手机: +86-13611464445（广州移动）
 电邮：brilliantstarrysky9395@gmail.com
-```
+``
 
 ### 公理化人类社会之框架
 
