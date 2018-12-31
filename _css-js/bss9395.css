@@ -6,7 +6,7 @@
     font-style: normal;
     font-weight: normal;
     margin: auto;
-    padding: 0;
+    padding: 0px;
 }
 /* a */
 a {
@@ -33,17 +33,15 @@ main {
     column-count: 2;
 }
 /* blockquote */
-br, hr {
+hr {
     margin-bottom: 0.5em;
     margin-top: 0.5em;
 }
-div {
-    margin-top: 1em;
-}
-p {
+div, p {
     margin-top: 1em;
 }
 blockquote {
+    margin-top: 1em;
     overflow-x: auto;
     overflow-y: hidden;
 }
