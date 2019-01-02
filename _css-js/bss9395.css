@@ -37,7 +37,7 @@ hr {
     margin-bottom: 0.5em;
     margin-top: 0.5em;
 }
-div, p {
+p {
     margin-top: 1em;
 }
 blockquote {
@@ -45,18 +45,22 @@ blockquote {
     overflow-x: auto;
     overflow-y: hidden;
 }
-blockquote>*:first-of-type {
+blockquote>*:first-of-type, div>*:first-of-type {
     margin-top: 0px;
 }
-blockquote>*:last-of-type {
+blockquote>*:last-of-type, div>*:first-of-type {
     margin-bottom: 0px;
 }
 /* code */
 code {
     display: inline-block;
-    white-space: pre;
+    white-space: pre-wrap;
 }
-pre {
+div, pre {
+    display: inline-block;
+    margin-top: 1em;
+}
+pre>code.language-NOTICE {
     border-color: #FFC107;
     border-left-style: solid;
     border-left-width: 0.5625em;
@@ -111,6 +115,7 @@ header {
 }
 nav {
     display: inline-block;
+    font-size: 1.1em;
     white-space: pre;
 }
 h1 {
@@ -120,11 +125,9 @@ h1 {
     flex-shrink: 0;
     font-size: 1.2em;
     order: 0;
-    text-align: left;
 }
 h2 {
     color: #1E88E5;
-    display: inline-block;
     font-size: 1.1em;
     margin-top:1.1em;
 }
