@@ -54,17 +54,21 @@ blockquote>*:last-of-type, div>*:first-of-type {
 /* code */
 code {
     display: inline-block;
-    white-space: pre-wrap;
+    white-space: pre;
 }
-div, pre {
-    display: inline-block;
-    margin-top: 1em;
+pre>code {
+    padding-right: 0.5625em;
+    white-space: pre-wrap;
 }
 pre>code.language-NOTICE {
     border-color: #FFC107;
     border-left-style: solid;
     border-left-width: 0.5625em;
     padding-left: 0.5625em;
+}
+pre, div {
+    display: inline-block;
+    margin-top: 1em;
 }
 em {
     color: #8BC34A;
@@ -129,27 +133,27 @@ h1 {
 h2 {
     color: #1E88E5;
     font-size: 1.1em;
-    margin-top:1.1em;
+    margin-top: 1.1em;
 }
 h3 {
     color: #2196F3;
     font-size: 1.1em;
-    margin-top:1.1em;
+    margin-top: 1.1em;
 }
 h4 {
     color: #42A5F5;
     font-size: 1em;
-    margin-top:1em;
+    margin-top: 1em;
 }
 h5 {
     color: #64B5F6;
     font-size: 1em;
-    margin-top:1em;
+    margin-top: 1em;
 }
 h6 {
     color: #90CAF9;
     font-size: 1em;
-    margin-top:1em;
+    margin-top: 1em;
 }
 /* img */
 img {
@@ -160,6 +164,7 @@ img {
 dl {
     list-style-position: outside;
     list-style-type: none;
+    margin-top: 1em;
 }
 dt {
     color: #4CAF50;
@@ -171,11 +176,13 @@ dd>* {
 ol {
     list-style-position: outside;
     list-style-type: decimal-leading-zero;
+    margin-top: 1em;
     padding-left: 2.25em;
 }
 ul {
     list-style-position: outside;
     list-style-type: circle;
+    margin-top: 1em;
     padding-left: 1.125em;
 }
 li {
@@ -202,6 +209,7 @@ blockquote:hover>mark, blockquote>mark:first-child, blockquote>mark>mark>a {
 table {
     border-collapse: collapse;
     display: inline-table;
+    margin-top: 1em;
     vertical-align: top;
 }
 tr:hover {
@@ -216,19 +224,19 @@ th, td {
     padding-right: 0.5625em;
     padding-top: 1px;
 }
-th>strong {
+table em, table strong {
     white-space: nowrap;
 }
 @keyframes spin {
 0% {
-    -moz-transform:rotate(0deg);
-    -ms-transform:rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
 }
 100% {
     -moz-transform: rotate(360deg);
-    -ms-transform:rotate(360deg);
+    -ms-transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
 }
