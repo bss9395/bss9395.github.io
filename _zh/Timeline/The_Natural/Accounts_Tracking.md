@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     账号追踪
-Revised:   2018-12-30 22:11:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-01-03 21:11:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -15,6 +15,7 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 | ![width:128px;](figures/bss9395/Twitter/Lu,Dong 基督徒陸東@lu_dong1955.jpg) | [Lu,Dong 基督徒陸東@lu_dong1955](https://twitter.com/lu_dong1955) | **2017-05** | New York, USA     | 昔我失喪，今被尋回；昔日眼瞎變成火眼金睛。自2007年1月起，任紐約瑞山律師樓案件經理，分管投資移民，中國企業在美設立分公司，理工科碩士以上人才移民綠卡獨家解決方案。 電話（212）431﹣1100 地址： 401 Broadway, Room 806, New York, NY 10013 |                                                              |
 | ![width:128px;](figures/bss9395/Twitter/Real 辛灏年@XHaonian.jpg) | [Real 辛灏年@XHaonian](https://twitter.com/XHaonian/)        | 2017-06     |                   | a scholar                                                    |                                                              |
 | ![width:128px;](figures/bss9395/Twitter/Vlog心声@2018xinsheng.jpg) | [Vlog心声@2018xinsheng](https://twitter.com/2018xinsheng/)   | 2018-04     | shanghai          | 我叫劉大聖(刘大圣)，普通刚毕业大学生。YouTube频道:Vlog心声。苏州科技大学毕业，今年10月赴美旅游。我只是我，保持独立性，想啥说啥。视频日记我连续做了大半年/视频日记，记录人生/ Yahoo邮箱liu1109895772@yahoo.com感谢支持关心[http://paypal.me/likefreedom ](https://www.paypal.me/likefreedom/) | [Vlog心声 -- YouTube](https://www.youtube.com/channel/UCaPc9GRK9FoSyqM_c7-fDgw/) |
+| ![width:128px;](figures/bss9395/Twitter/中国新闻中心 ChinaNewsCenter.com.png) | [中国新闻中心 ChinaNewsCenter.com@1dpwcom](https://twitter.com/1dpwcom) | 2009-12     | United States     | 热门新闻转推评论。请举报假新闻。希望能够FO back. 定期UNFO没有FO的账号。FO我一般FO back。一些推是本站论坛成员发布，不代表本站观点。ifb[http://chinanewscenter.com ](https://t.co/YuE16HXOx5) | [bbs.chinanewscenter.com](http://bbs.chinanewscenter.com/)   |
 | ![width:128px;](figures/bss9395/Twitter/何頻@nyhopin.jpg)    | [何頻@nyhopin](https://twitter.com/nyhopin/)                 | 2017-05     | New York, USA     | 何频： 我們不是在叢林中遊戲，而是試圖建立媒體價值生態系統。 推特菜鳥（2017年3月24日），明镜老人（1991年1月1日） | [明鏡火拍 -- YouTube](https://www.youtube.com/channel/UCdKyM0XmuvQrD0o5TNhUtkQ/) |
 | ![width:128px;](figures/bss9395/Twitter/何频@china2356.jpg)  | [何频@china2356](https://twitter.com/china2356/)             | 2018-01     |                   |                                                              |                                                              |
 | ![width:128px;](figures/bss9395/Twitter/北美吹哥@brother_chui.jpg) | [北美吹哥@brother_chui](https://twitter.com/brother_chui/)   | 2017-04     | California, USA   | 不要听他说了什么和说了多少！ 要看他做了什么和结果如何！      |                                                              |
