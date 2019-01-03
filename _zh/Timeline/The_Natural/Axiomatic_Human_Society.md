@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会
-Revised:   2019-01-0３ 05:56:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-01-04 02:00:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources:
 ---
@@ -70,11 +70,11 @@ Resources:
 
 本公理化人类社会满足以下框架性特征：
 
-01. 社会信用评价系统，完全无政府状态；
-02. 社会公理取代法律，灵活性优于法律；
-03. 社会契约取代经济，适用性广于经济；
-04. 社会角色取代职业，专门性弱于职业；
-05. 。。。
+1. 社会信用评价系统，完全无政府状态；
+2. 社会公理取代法律，灵活性优于法律；
+3. 社会契约取代经济，适用性广于经济；
+4. 社会角色取代职业，专门性弱于职业；
+5. 。。。
 
 ### 公理系统
 
@@ -127,27 +127,37 @@ Resources:
 
 #### 命题逻辑公理系统
 
-**稍后更新**
+８种命题联结词的运算表：
 
-５种常用命题逻辑公理，从左到右命题联结词的优先级由高到低：
+|                   |      | **否定**（基本） | **合取**（基本） | **析取**（基本） |  **蕴涵**（常用）  |       **等价**（常用）        |   **与非**（电路）    |   **或非**（电路）   |        **异或**（电路）         |
+| :---------------: | :--: | :--------------: | :--------------: | :--------------: | :----------------: | :---------------------------: | :-------------------: | :------------------: | :-----------------------------: |
+|       条件        | 条件 |      非$P$       |     $P$且$Q$     |     $P$或$Q$     |     若$P$则$Q$     |          $P$仅当$Q$           |     $P$与$Q$的非      |     $P$或$Q$的非     |          $P$不间或$Q$           |
+|        $P$        | $Q$  |   *$\lnot P$*    |  *$P \land Q$*   |   *$P \lor Q$*   |    *$P \to Q$*     |    *$P \leftrightarrow Q$*    |   *$P \uparrow Q$*    |  *$P \downarrow Q$*  |         *$P \oplus Q$*          |
+|        假         |  假  |        真        |        假        |        假        |         真         |              真               |          真           |          真          |               假                |
+|        假         |  真  |        真        |        假        |        真        |         真         |              假               |          真           |          假          |               真                |
+|        真         |  假  |        假        |        假        |        真        |         假         |              假               |          真           |          假          |               真                |
+|        真         |  真  |        假        |        真        |        真        |         真         |              真               |          假           |          假          |               假                |
+| *$\lnot \lnot P$* |      |                  |  *$Q \land P$*   |   *$Q \lor P$*   | *$\lnot P \lor Q$* | *$(P \to Q) \land (Q \to P)$* | *$\lnot (P \land Q)$* | *$\lnot (P \lor Q)$* | *$\lnot (P \leftrightarrow Q)$* |
 
-|      条件       | 条件 |  **否定**  |   **合取**    |   **析取**   |     **蕴涵**      |           **等价**            |
-| :-------------: | :--: | :--------: | :-----------: | :----------: | :---------------: | :---------------------------: |
-|       $P$       | $Q$  | *$\neg P$* | *$P \land Q$* | *$P \lor Q$* |    *$P \to Q$*    |    *$P \leftrightarrow Q$*    |
-|       假        |  假  |     真     |      假       |      假      |        真         |              真               |
-|       假        |  真  |     真     |      假       |      真      |        真         |              假               |
-|       真        |  假  |     假     |      假       |      真      |        假         |              假               |
-|       真        |  真  |     假     |      真       |      真      |        真         |              真               |
-| *$\neg \neg P$* |      |            | *$Q \land P$* | *$Q \lor P$* | *$\neg P \lor Q$* | *$(P \to Q) \land (Q \to P)$* |
+５种常用命题逻辑公理：
 
-５种基本命题演绎逻辑：
+| 01 否定公理 | // 命题$\lnot P$为真当且仅当命题$P$为假                      |
+| :---------- | :----------------------------------------------------------- |
+| 02 合取公理 | // 命题$P \land Q$为真当且仅当命题$P$为真而且命题$Q$为真     |
+| 03 析取公理 | // 命题$P \lor Q$为真当且仅当命题$P$为真或者命题$Q$为真      |
+| 04 蕴涵公理 | // 命题$P \to Q$为假当且仅当命题$P$为真同时命题$Q$为假       |
+| 05 等价公理 | // 命题$P \leftrightarrow Q$为真当且仅当命题$P$和命题$Q$同时为真假 |
 
+
+
+
+５种常用命题演绎逻辑：
 $$
 \begin{array}{rcl}
-P &\iff& \neg \neg P \\
+P &\iff& \lnot \lnot P \\
 P \land Q &\iff& Q \land P \\
 P \lor Q &\iff& Q \lor P \\
-P \to Q             &\iff& \neg P \lor Q \\
+P \to Q             &\iff& \lnot P \lor Q \\
 P \leftrightarrow Q &\iff& (P \to Q) \land (Q \to P) \\
 \end{array}
 $$
@@ -159,13 +169,13 @@ $$
 P &\implies& P \lor Q \\
 P \land Q &\implies& P \\
 P \land (P \to Q) &\implies& Q \\
-\neg Q \land (P \to Q) &\implies& \neg P \\
-\neg P \land (P \lor Q) &\implies& Q \\
+\lnot Q \land (P \to Q) &\implies& \lnot P \\
+\lnot P \land (P \lor Q) &\implies& Q \\
 (P \to Q) \land (Q \to R) &\implies& P \to R \\
 (P \leftrightarrow Q) \land (Q \leftrightarrow R) &\implies& P \leftrightarrow Q \\
 (P \lor R) \land (P \to Q) \land (R \to S) &\implies& Q \lor S \\
-(P \to Q) \land (\neg P \to Q) &\implies& Q \\
-(\neg Q \lor \neg S) \land (P \to Q) \land (R \to S) &\implies& \neg P \lor \neg R \\
+(P \to Q) \land (\lnot P \to Q) &\implies& Q \\
+(\lnot Q \lor \lnot S) \land (P \to Q) \land (R \to S) &\implies& \lnot P \lor \lnot R \\
 \end{array}
 $$
 
@@ -243,16 +253,16 @@ $$
 \end{array} \\ \hline
 \text{线性序公理} &
 \begin{array}{llclcl|l}
-Ⅲ_≤     & x ≤ x &          &       &              &               & \text{满足自反性} \\
-Ⅲ_≤     & x ≤ y &\text{and}& y ≤ x &\text{implies}& x = y         & \text{满足反对称} \\
-Ⅲ_≤     & x ≤ y &\text{and}& y ≤ z &\text{implies}& x ≤ z         & \text{满足传递性} \\
-Ⅲ_≤     & x ≤ y &\text{xor}& y ≤ x &              &               & \text{满足线性序} \\
-Ⅲ_{≤ +} &       &          & x ≤ y &\text{implies}& x + z ≤ y + z & \text{满足可加性} \\
-Ⅲ_{≤ ×} & 0 ≤ x &\text{and}& 0 ≤ y &\text{implies}& 0 ≤ x × y     & \text{满足可乘性} \\
+Ⅲ_≤     & x ≤ x &      &       &        &               & \text{满足自反性} \\
+Ⅲ_≤     & x ≤ y &\and  & y ≤ x &\implies& x = y         & \text{满足反对称} \\
+Ⅲ_≤     & x ≤ y &\and  & y ≤ z &\implies& x ≤ z         & \text{满足传递性} \\
+Ⅲ_≤     & x ≤ y &\oplus& y ≤ x &        &               & \text{满足线性序} \\
+Ⅲ_{≤ +} &       &      & x ≤ y &\implies& x + z ≤ y + z & \text{满足可加性} \\
+Ⅲ_{≤ ×} & 0 ≤ x &\land & 0 ≤ y &\implies& 0 ≤ x × y     & \text{满足可乘性} \\
 \end{array} \\ \hline
 \text{连续性公理} &
 \begin{array}{llcl|l}
-Ⅳ_r & x ≤ y &\text{implies}& x ≤ r ≤ y & \text{存在实数 r} \\
+Ⅳ_r & x ≤ y &\implies& x ≤ r ≤ y & \text{存在实数 r} \\
 \end{array} \\ \hline
 \end{array}
 $$
