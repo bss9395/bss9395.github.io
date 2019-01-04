@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会
-Revised:   2019-01-04 05:51:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-01-05 07:02:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources:
 ---
@@ -156,7 +156,7 @@ Resources:
 
 为有效区分并准确无误重现各种语义，在命题逻辑公理系统中，使用兼或联结词表达兼或语义，使用异或联结词表达在逻辑电路中更为常见的异或语义，使用蕴涵联结词表达蕴涵语义，并认为当前项命题为假时，其后项命题的真假性无关紧要，整个蕴涵语义中的善意推断始终为真。
 
-命题逻辑公理系统8种命题逻辑联结词的运算表：
+8种命题逻辑联结词的运算表：
 
 |                   |        |  （基本）   |   （基本）    |   （基本）   |      （常用）      |           （常用）            |       （电路）        |       （电路）       |            （电路）             |
 | :---------------: | :----: | :---------: | :-----------: | :----------: | :----------------: | :---------------------------: | :-------------------: | :------------------: | :-----------------------------: |
@@ -169,9 +169,11 @@ Resources:
 |        假         |   假   |     真      |      假       |      假      |         真         |              真               |          真           |          真          |               假                |
 | *$\lnot \lnot P$* |        |             | *$Q \land P$* | *$Q \lor P$* | *$\lnot P \lor Q$* | *$(P \to Q) \land (Q \to P)$* | *$\lnot (P \land Q)$* | *$\lnot (P \lor Q)$* | *$\lnot (P \leftrightarrow Q)$* |
 
-对于这8种命题逻辑联结词，根据语义分析可以很容易得到相对应的等值替代表达形式。
+对于这8种命题逻辑联结词，根据语义分析可得到相对应的等值替代表达形式，若将 $\lbrace \lnot, \land , \lor \rbrace$ 作为基本命题逻辑联结词，则可将 $\lbrace \to, \leftrightarrow \rbrace$ 这两种常用命题逻辑联结词，以及 $\lbrace \uparrow, \downarrow, \oplus \rbrace$ 这三种电路命题逻辑联结词，由 $\lbrace \lnot, \land , \lor \rbrace$ 等值替代。因此在人们日常的逻辑推理体系中， $\lbrace \lnot, \land , \lor \rbrace$ 可构成一个命题逻辑联结词完备集，这个结论十分直观但并不唯一。因为 $\lbrace \lnot, \land, \lor, \to \rbrace$ 和 $\lbrace \lnot, \land, \lor, \to, \leftrightarrow \rbrace$ 都是命题逻辑联结词完备集。
 
-8条命题逻辑公理：
+
+
+相对应于8种命题逻辑联结词，可确定8条命题逻辑公理：
 
 | **01 （基本）否定公理** | // 否定命题 $\lnot P$ 为假当且仅当命题 $P$ 为真。            |
 | :---------------------- | :----------------------------------------------------------- |
@@ -183,7 +185,7 @@ Resources:
 | 07 （重要）或非公理     | // 或非命题 $P \downarrow Q$ 为假当且仅当命题 $P$ 为真兼或命题 $Q$ 为真。 |
 | 08 （重要）异或公理     | // 异或命题 $P \oplus Q$ 为真当且仅当命题 $P$ 和命题 $Q$ 真假性相反。 |
 
-24个重要双向命题演绎逻辑：
+同样根据命题逻辑联结词的运算表，可验证24个重要双向命题演绎逻辑：
 
 $$
 \begin{array}{crcl}
@@ -230,18 +232,42 @@ $$
 \end{array}
 $$
 
+注意到
+
+$$
+\begin{array}{crcl|l}
+\hline
+\fbox{14} & P \land Q &\iff& \lnot(\lnot P \lor \lnot Q)  & \lbrace \lnot, \lor \rbrace \text{ 可等值替代 } \lbrace \land \rbrace \\
+\fbox{15} & P \lor Q  &\iff& \lnot (\lnot P \land \lnot Q) & \lbrace \lnot, \land \rbrace \text{ 可等值替代 } \lbrace \lor \rbrace \\
+\hline
+\fbox{20} & P \uparrow P   &\iff& \lnot P & \lbrace \uparrow \rbrace \text{ 可互相等值替代 } \lbrace \lnot \rbrace \\
+\fbox{21} & P \downarrow P &\iff& \lnot P & \lbrace \downarrow \rbrace \text{ 可互相等值替代 } \lbrace \lnot \rbrace \\
+\hline
+\fbox{20} & \lnot (P \uparrow Q)   &\iff& P \land Q & \lbrace \uparrow \rbrace \text{ 可等值替代 } \lbrace \land \rbrace \\
+\fbox{21} & \lnot (P \downarrow Q) &\iff& P \lor Q  & \lbrace \downarrow \rbrace \text{ 可等值替代 } \lbrace \or \rbrace \\
+\hline
+\end{array}
+$$
+
+所以 $\lbrace \lnot, \land \rbrace$ 和 $\lbrace \lnot, \lor \rbrace$ 是命题逻辑联结词完备集；
+同理 $\lbrace \uparrow \rbrace$ 和 $\lbrace \downarrow \rbrace$ 是命题逻辑联结词完备集。
+
+
+
+
 10个重要单项命题演绎逻辑：
+
 $$
 \begin{array}{crcl}
-\fbox{01} & P &\implies& P \lor Q \\
-\fbox{02} & P \land Q &\implies& P \\
-\fbox{05} & \lnot P \land (P \lor Q) &\implies& Q \\
-\fbox{03} & P \land (P \to Q) &\implies& Q \\
-\fbox{04} & \lnot Q \land (P \to Q) &\implies& \lnot P \\
-\fbox{06} & (P \to Q) \land (Q \to R) &\implies& P \to R \\
-\fbox{07} & (P \leftrightarrow Q) \land (Q \leftrightarrow R) &\implies& P \leftrightarrow R \\
-\fbox{08} & (P \lor R) \land (P \to Q) \land (R \to S) &\implies& Q \lor S \\
-\fbox{09} & (P \to Q) \land (\lnot P \to Q) &\implies& Q \\
+\fbox{01} & P                                                      &\implies& P \lor Q \\
+\fbox{02} & P \land Q                                              &\implies& P \\
+\fbox{03} & \lnot P \land (P \lor Q)                               &\implies& Q \\
+\fbox{04} & P \land (P \to Q)                                      &\implies& Q \\
+\fbox{05} & \lnot Q \land (P \to Q)                                &\implies& \lnot P \\
+\fbox{06} & (P \to Q) \land (Q \to R)                              &\implies& P \to R \\
+\fbox{07} & (P \leftrightarrow Q) \land (Q \leftrightarrow R)      &\implies& P \leftrightarrow R \\
+\fbox{08} & (P \lor R) \land (P \to Q) \land (R \to S)             &\implies& Q \lor S \\
+\fbox{09} & (P \to Q) \land (\lnot P \to Q)                        &\implies& Q \\
 \fbox{10} & (\lnot Q \lor \lnot S) \land (P \to Q) \land (R \to S) &\implies& \lnot P \lor \lnot R \\
 \end{array}
 $$
