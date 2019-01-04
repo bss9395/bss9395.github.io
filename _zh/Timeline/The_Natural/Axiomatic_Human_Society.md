@@ -120,8 +120,7 @@ Resources:
 // 「弱完备性」要求公理系统不能删减或拆分旧公理，「强完备性」要求公理系统不能增加或整合新公理，此即意味着公理系统自身不需要借助外部来运作。
 ```
 
-任何一个足够严谨的公理系统都不该断然凭空臆造，实际上人们通常在总结大量已有经验知识的基础上，将至关重要但并非准确无疑的现象归纳整理成公理，再逐步补充缺失之处，最终加工成完整的公理系统。公理系统的弱自洽性与弱独立性是相当基本的要求，若采用步步为营的构建方法，弱完备性也不难满足。根据后验主义中正确概率极大便可当作真理这一观点，若公理系统始终从未出现而且极有可能不会出现矛盾，则可认为该公理系统满足强自洽性，除非悖论被发现。若公理系统不满足强独立性，则存在被其余公理推导出的公理。为检验公理系统的强独立性，一种有效方法是构造新公理系统，
-将强独立性可疑的公理取相悖形式代入，但保持其余公理不变。若新公理系统仍然满足强自洽性，则原可疑公理满足强独立性。公理系统的强完备性往往难以检验更难以满足，因此必要时可将强完备性人为当作公理之一，以确保在所有可考虑的结论都满足强自洽性和强独立性的情形下，人为忽略那些未知的情况。
+任何一个足够严谨的公理系统都不该断然凭空臆造，实际上人们通常在总结大量已有经验知识的基础上，将至关重要但并非准确无疑的现象归纳整理成公理，再逐步补充缺失之处，最终加工成完整的公理系统。公理系统的弱自洽性与弱独立性是相当基本的要求，若采用步步为营的构建方法，弱完备性也不难满足。根据后验主义中正确概率极大便可当作真理这一观点，若公理系统始终从未出现而且极有可能不会出现矛盾，则可认为该公理系统满足强自洽性，除非悖论被发现。若公理系统不满足强独立性，则存在被其余公理推导出的公理。为检验公理系统的强独立性，一种有效方法是构造新公理系统，将强独立性可疑的公理取相悖形式代入，但保持其余公理不变。若新公理系统仍然满足强自洽性，则原可疑公理满足强独立性。公理系统的强完备性往往难以检验更难以满足，因此必要时可将强完备性人为当作公理之一，以确保在所有可考虑的结论都满足强自洽性和强独立性的情形下，人为忽略那些未知的情况。
 
 现代数学各个分支与物理学等学科的终极目标，也许就是在寻找尽可能简洁且完备的公理系统，这些公理系统能准确无误推导出所有重要定理，同时还可清晰表明公理系统中各类公理的含义。
 
@@ -154,9 +153,9 @@ Resources:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 
-为有效区分并准确无误重现各种语义，在命题逻辑公理系统中，使用兼或联结词表达兼或语义，使用异或联结词表达在逻辑电路中更为常见的异或语义，使用蕴涵联结词表达蕴涵语义，并认为当前项命题为假时，其后项命题的真假性无关紧要，整个蕴涵语义中的善意推断始终为真。
+为有效区分并准确无误重现各种语义，在命题逻辑公理系统中，使用兼或联结词表达兼或语义，使用异或联结词表达在逻辑电路中更为常见的异或语义，使用蕴涵联结词表达蕴涵语义，并认为在前项命题为假时，其后项命题的真假性无关紧要，整个蕴涵语义中根据善意推断始终为真。
 
-8种命题逻辑联结词的运算表：
+根据人们在日常生活中的逻辑思维方式，可得到8种命题逻辑联结词的运算表：
 
 |                   |        |  （基本）   |   （基本）    |   （基本）   |      （常用）      |           （常用）            |       （电路）        |       （电路）       |            （电路）             |
 | :---------------: | :----: | :---------: | :-----------: | :----------: | :----------------: | :---------------------------: | :-------------------: | :------------------: | :-----------------------------: |
@@ -169,11 +168,7 @@ Resources:
 |        假         |   假   |     真      |      假       |      假      |         真         |              真               |          真           |          真          |               假                |
 | *$\lnot \lnot P$* |        |             | *$Q \land P$* | *$Q \lor P$* | *$\lnot P \lor Q$* | *$(P \to Q) \land (Q \to P)$* | *$\lnot (P \land Q)$* | *$\lnot (P \lor Q)$* | *$\lnot (P \leftrightarrow Q)$* |
 
-对于这8种命题逻辑联结词，根据语义分析可得到相对应的等值替代表达形式，若将 $\lbrace \lnot, \land , \lor \rbrace$ 作为基本命题逻辑联结词，则可将 $\lbrace \to, \leftrightarrow \rbrace$ 这两种常用命题逻辑联结词，以及 $\lbrace \uparrow, \downarrow, \oplus \rbrace$ 这三种电路命题逻辑联结词，由 $\lbrace \lnot, \land , \lor \rbrace$ 等值替代。因此在人们日常的逻辑推理体系中， $\lbrace \lnot, \land , \lor \rbrace$ 可构成一个命题逻辑联结词完备集，这个结论十分直观但并不唯一。因为 $\lbrace \lnot, \land, \lor, \to \rbrace$ 和 $\lbrace \lnot, \land, \lor, \to, \leftrightarrow \rbrace$ 都是命题逻辑联结词完备集。
-
-
-
-相对应于8种命题逻辑联结词，可确定8条命题逻辑公理：
+根据语义分析不难得到这8种命题逻辑联结词的等值替代形式，由此可归纳整理成8条命题逻辑公理：
 
 | **01 （基本）否定公理** | // 否定命题 $\lnot P$ 为假当且仅当命题 $P$ 为真。            |
 | :---------------------- | :----------------------------------------------------------- |
@@ -185,7 +180,7 @@ Resources:
 | 07 （重要）或非公理     | // 或非命题 $P \downarrow Q$ 为假当且仅当命题 $P$ 为真兼或命题 $Q$ 为真。 |
 | 08 （重要）异或公理     | // 异或命题 $P \oplus Q$ 为真当且仅当命题 $P$ 和命题 $Q$ 真假性相反。 |
 
-同样根据命题逻辑联结词的运算表，可验证24个重要双向命题演绎逻辑：
+借助于命题逻辑联结词的运算表，可进一步验证27个重要的双向命题演绎逻辑：
 
 $$
 \begin{array}{crcl}
@@ -232,31 +227,36 @@ $$
 \end{array}
 $$
 
-注意到
+现在来考察命题逻辑公理系统的完备性，注意到：
 
 $$
 \begin{array}{crcl|l}
 \hline
-\fbox{14} & P \land Q &\iff& \lnot(\lnot P \lor \lnot Q)  & \lbrace \lnot, \lor \rbrace \text{ 可等值替代 } \lbrace \land \rbrace \\
+\fbox{14} & P \land Q &\iff& \lnot(\lnot P \lor \lnot Q)   & \lbrace \lnot, \lor \rbrace \text{ 可等值替代 } \lbrace \land \rbrace \\
 \fbox{15} & P \lor Q  &\iff& \lnot (\lnot P \land \lnot Q) & \lbrace \lnot, \land \rbrace \text{ 可等值替代 } \lbrace \lor \rbrace \\
+\hline
+\fbox{16} & P \to Q             &\iff& \lnot P \lor Q            & \lbrace \lnot, \lor \rbrace \text{ 可等值替代 } \lbrace \to \rbrace \\
+\fbox{17} & P \leftrightarrow Q &\iff& (P \to Q) \land (Q \to P) & \lbrace \to, \land \rbrace \text{ 可等值替代 } \lbrace \leftrightarrow \rbrace \\
 \hline
 \fbox{20} & P \uparrow P   &\iff& \lnot P & \lbrace \uparrow \rbrace \text{ 可互相等值替代 } \lbrace \lnot \rbrace \\
 \fbox{21} & P \downarrow P &\iff& \lnot P & \lbrace \downarrow \rbrace \text{ 可互相等值替代 } \lbrace \lnot \rbrace \\
 \hline
-\fbox{20} & \lnot (P \uparrow Q)   &\iff& P \land Q & \lbrace \uparrow \rbrace \text{ 可等值替代 } \lbrace \land \rbrace \\
-\fbox{21} & \lnot (P \downarrow Q) &\iff& P \lor Q  & \lbrace \downarrow \rbrace \text{ 可等值替代 } \lbrace \or \rbrace \\
+\fbox{20} & \lnot (P \uparrow Q)   &\iff& P \land Q & \lbrace \lnot, \uparrow \rbrace \text{ 可等值替代 } \lbrace \land \rbrace \\
+\fbox{21} & \lnot (P \downarrow Q) &\iff& P \lor Q  & \lbrace \lnot, \downarrow \rbrace \text{ 可等值替代 } \lbrace \or \rbrace \\
 \hline
 \end{array}
 $$
+
+若将 $\lbrace \lnot, \land , \lor \rbrace$ 作为基本命题逻辑联结词，则可将 $\lbrace \to, \leftrightarrow \rbrace$ 这两种常用命题逻辑联结词，以及 $\lbrace \uparrow, \downarrow, \oplus \rbrace$ 这三种电路命题逻辑联结词，由 $\lbrace \lnot, \land , \lor \rbrace$ 等值替代。因此在人们日常的逻辑推理体系中， $\lbrace \lnot, \land , \lor \rbrace$ 可构成一个命题逻辑联结词完备集，这个结论十分直观但并不唯一。
+
+因为 $\lbrace \lnot, \land, \lor, \to \rbrace$ 和 $\lbrace \lnot, \land, \lor, \to, \leftrightarrow \rbrace$ 都是命题逻辑联结词完备集。
 
 所以 $\lbrace \lnot, \land \rbrace$ 和 $\lbrace \lnot, \lor \rbrace$ 是命题逻辑联结词完备集；
 同理 $\lbrace \uparrow \rbrace$ 和 $\lbrace \downarrow \rbrace$ 是命题逻辑联结词完备集。
 
 
 
-
-10个重要单项命题演绎逻辑：
-
+10个重要的单项命题演绎逻辑：
 $$
 \begin{array}{crcl}
 \fbox{01} & P                                                      &\implies& P \lor Q \\
