@@ -154,14 +154,14 @@ Resources:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 
-**稍后更新。。。**
+为有效区分并准确无误重现各种语义，在命题逻辑公理系统中，使用兼或联结词表达兼或语义，使用异或联结词表达在逻辑电路中更为常见的异或语义，使用蕴涵联结词表达蕴涵语义，并认为当前项命题为假时，其后项命题的真假性无关紧要，整个蕴涵语义中的善意推断始终为真。
 
-８种命题联结词的运算表：
+命题逻辑公理系统8种命题逻辑联结词的运算表：
 
 |                   |        |  （基本）   |   （基本）    |   （基本）   |      （常用）      |           （常用）            |       （电路）        |       （电路）       |            （电路）             |
 | :---------------: | :----: | :---------: | :-----------: | :----------: | :----------------: | :---------------------------: | :-------------------: | :------------------: | :-----------------------------: |
 |                   |        |  **否定**   |   **合取**    |   **析取**   |      **蕴涵**      |           **等价**            |       **与非**        |       **或非**       |            **异或**             |
-|      `条件`       | `条件` |   非 $P$    |  $P$ 且 $Q$   |  $P$ 或 $Q$  |   若 $P$ 则 $Q$    |         $P$ 仅当 $Q$          |    $P$ 与 $Q$ 的非    |   $P$ 或 $Q$ 的非    |          $P$不兼或 $Q$          |
+|      `条件`       | `条件` |   非 $P$    | $P$ 并且 $Q$  | $P$ 兼或 $Q$ |   若 $P$ 则 $Q$    |         $P$ 仅当 $Q$          |    $P$ 与 $Q$ 的非    |   $P$ 或 $Q$ 的非    |         $P$ 不兼或 $Q$          |
 |        $P$        |  $Q$   | *$\lnot P$* | *$P \land Q$* | *$P \lor Q$* |    *$P \to Q$*     |    *$P \leftrightarrow Q$*    |   *$P \uparrow Q$*    |  *$P \downarrow Q$*  |         *$P \oplus Q$*          |
 |        真         |   真   |     假      |      真       |      真      |         真         |              真               |          假           |          假          |               假                |
 |        真         |   假   |     假      |      假       |      真      |         假         |              假               |          真           |          假          |               真                |
@@ -169,57 +169,80 @@ Resources:
 |        假         |   假   |     真      |      假       |      假      |         真         |              真               |          真           |          真          |               假                |
 | *$\lnot \lnot P$* |        |             | *$Q \land P$* | *$Q \lor P$* | *$\lnot P \lor Q$* | *$(P \to Q) \land (Q \to P)$* | *$\lnot (P \land Q)$* | *$\lnot (P \lor Q)$* | *$\lnot (P \leftrightarrow Q)$* |
 
-８条命题逻辑公理：
+对于这8种命题逻辑联结词，根据语义分析可以很容易得到相对应的等值替代表达形式。
 
-| **01 （基本）否定公理** | // 命题 $\lnot P$ 为假当且仅当命题 $P$ 为真。                |
+8条命题逻辑公理：
+
+| **01 （基本）否定公理** | // 否定命题 $\lnot P$ 为假当且仅当命题 $P$ 为真。            |
 | :---------------------- | :----------------------------------------------------------- |
-| **02 （基本）合取公理** | // 命题 $P \land Q$ 为真当且仅当命题 $P$ 为真并且命题 $Q$ 为真。 |
-| **03 （基本）析取公理** | // 命题 $P \lor Q$ 为真当且仅当命题 $P$ 为真兼或命题 $Q$ 为真。 |
-| *04 （常用）蕴涵公理*   | // 命题 $P \to Q$ 为假当且仅当命题 $P$ 为真同时命题 $Q$ 为假。 |
-| *05 （常用）等价公理*   | // 命题 $P \leftrightarrow Q$ 为真当且仅当命题 $P$ 和命题 $Q$ 真假性相同。 |
-| 06 （重要）与非公理     | // 命题 $P \uparrow Q$ 为假当且仅当命题 $P$ 为真并且命题 $Q$ 为真。 |
-| 07 （重要）或非公理     | // 命题 $P \downarrow Q$ 为假当且仅当命题 $P$ 为真兼或命题 $Q$ 为真。 |
-| 08 （重要）异或公理     | // 命题 $P \oplus Q$ 为真当且仅当命题 $P$ 和命题 $Q$ 真假性相反。 |
+| **02 （基本）合取公理** | // 合取命题 $P \land Q$ 为真当且仅当命题 $P$ 为真并且命题 $Q$ 为真。 |
+| **03 （基本）析取公理** | // 析取命题 $P \lor Q$ 为真当且仅当命题 $P$ 为真兼或命题 $Q$ 为真。 |
+| *04 （常用）蕴涵公理*   | // 蕴涵命题 $P \to Q$ 为假当且仅当命题 $P$ 为真同时命题 $Q$ 为假。 |
+| *05 （常用）等价公理*   | // 等价命题 $P \leftrightarrow Q$ 为真当且仅当命题 $P$ 和命题 $Q$ 真假性相同。 |
+| 06 （重要）与非公理     | // 与非命题 $P \uparrow Q$ 为假当且仅当命题 $P$ 为真并且命题 $Q$ 为真。 |
+| 07 （重要）或非公理     | // 或非命题 $P \downarrow Q$ 为假当且仅当命题 $P$ 为真兼或命题 $Q$ 为真。 |
+| 08 （重要）异或公理     | // 异或命题 $P \oplus Q$ 为真当且仅当命题 $P$ 和命题 $Q$ 真假性相反。 |
 
-些许双向命题演绎逻辑：
+24个重要双向命题演绎逻辑：
 
 $$
-\begin{array}{lll} \hline
-\text{３个基本演绎逻辑} &
-\begin{array}{rcl}
-P         &\iff& \lnot \lnot P \\
-P \land Q &\iff& Q \land P \\
-P \lor Q  &\iff& Q \lor P \\
-\end{array} \\ \hline
-\text{２个常用演绎逻辑} &
-\begin{array}{rcl}
-P \to Q             &\iff& \lnot P \lor Q \\
-P \leftrightarrow Q &\iff& (P \to Q) \land (Q \to P) \\
-\end{array} \\ \hline
-\text{３个重要演绎逻辑} &
-\begin{array}{rcl}
-P \uparrow Q   &\iff& \lnot (P \land Q) \\
-P \downarrow Q &\iff& \lnot (P \lor Q) \\
-P \oplus Q     &\iff& \lnot (P \leftrightarrow Q) \\
-\end{array} \\
+\begin{array}{crcl}
+\hline
+\fbox{01} & 0 &\iff& P \land 0 \\
+\fbox{02} & 1 &\iff& P \lor 1 \\
+\fbox{03} & 0 &\iff& P \land \lnot P \\
+\fbox{04} & 1 &\iff& P \lor \lnot P \\
+\hline
+\fbox{05} & P &\iff& \lnot \lnot P \\
+\fbox{06} & P &\iff& P \land 1 \\
+\fbox{07} & P &\iff& P \lor 0 \\
+\fbox{08} & P &\iff& P \land P \\
+\fbox{09} & P &\iff& P \lor P \\
+\fbox{10} & P &\iff& P \land (P \lor Q) \\
+\fbox{11} & P &\iff& P \lor (P \land Q) \\
+\hline
+\fbox{12} & P \land Q         &\iff& Q \land P \\
+\fbox{13} & P \lor Q          &\iff& Q \lor P \\
+\fbox{14} & \lnot (P \land Q) &\iff& \lnot P \lor \lnot Q \\
+\fbox{15} & \lnot (P \lor Q)  &\iff& \lnot P \land \lnot Q \\
+\hline
+\end{array}
+$$
+$$
+\begin{array}{crcl}
+\hline
+\fbox{16} & P \to Q             &\iff& \lnot P \lor Q \\
+\fbox{17} & P \to Q             &\iff& \lnot Q \to \lnot P \\
+\fbox{18} & P \leftrightarrow Q &\iff& (P \to Q) \land (Q \to P) \\
+\fbox{19} & P \leftrightarrow Q &\iff& \lnot Q \leftrightarrow \lnot P \\
+\hline
+\fbox{20} & P \uparrow Q   &\iff& \lnot (P \land Q) \\
+\fbox{21} & P \downarrow Q &\iff& \lnot (P \lor Q) \\
+\fbox{22} & P \oplus Q     &\iff& \lnot (P \leftrightarrow Q) \\
+\hline
+\fbox{23} & (P \land Q) \land R &\iff& P \land (Q \land R) \\
+\fbox{24} & (P \lor Q) \lor R   &\iff& P \lor (Q \lor R) \\
+\fbox{25} & (P \land Q) \lor R  &\iff& (P \land Q) \lor (P \land R) \\
+\fbox{26} & (P \lor Q) \land R  &\iff& (P \lor Q) \land (P \lor R) \\
+\hline
+\fbox{27} & (P \to Q) \land (P \to \lnot Q) &\iff& \lnot P \\
 \hline
 \end{array}
 $$
 
-些许重要单项命题演绎逻辑：
-
+10个重要单项命题演绎逻辑：
 $$
-\begin{array}{rcl}
-P &\implies& P \lor Q \\
-P \land Q &\implies& P \\
-P \land (P \to Q) &\implies& Q \\
-\lnot Q \land (P \to Q) &\implies& \lnot P \\
-\lnot P \land (P \lor Q) &\implies& Q \\
-(P \to Q) \land (Q \to R) &\implies& P \to R \\
-(P \leftrightarrow Q) \land (Q \leftrightarrow R) &\implies& P \leftrightarrow Q \\
-(P \lor R) \land (P \to Q) \land (R \to S) &\implies& Q \lor S \\
-(P \to Q) \land (\lnot P \to Q) &\implies& Q \\
-(\lnot Q \lor \lnot S) \land (P \to Q) \land (R \to S) &\implies& \lnot P \lor \lnot R \\
+\begin{array}{crcl}
+\fbox{01} & P &\implies& P \lor Q \\
+\fbox{02} & P \land Q &\implies& P \\
+\fbox{05} & \lnot P \land (P \lor Q) &\implies& Q \\
+\fbox{03} & P \land (P \to Q) &\implies& Q \\
+\fbox{04} & \lnot Q \land (P \to Q) &\implies& \lnot P \\
+\fbox{06} & (P \to Q) \land (Q \to R) &\implies& P \to R \\
+\fbox{07} & (P \leftrightarrow Q) \land (Q \leftrightarrow R) &\implies& P \leftrightarrow R \\
+\fbox{08} & (P \lor R) \land (P \to Q) \land (R \to S) &\implies& Q \lor S \\
+\fbox{09} & (P \to Q) \land (\lnot P \to Q) &\implies& Q \\
+\fbox{10} & (\lnot Q \lor \lnot S) \land (P \to Q) \land (R \to S) &\implies& \lnot P \lor \lnot R \\
 \end{array}
 $$
 
