@@ -240,8 +240,9 @@ $$
 \fbox{16} & P \to Q             &\iff& \lnot P \lor Q            & \lbrace \lnot, \lor \rbrace \text{ 可等值替代 } \lbrace \to \rbrace \\
 \fbox{17} & P \leftrightarrow Q &\iff& (P \to Q) \land (Q \to P) & \lbrace \to, \land \rbrace \text{ 可等值替代 } \lbrace \leftrightarrow \rbrace \\
 \hline
-\fbox{20} & P \uparrow P   &\iff& \lnot P & \lbrace \uparrow \rbrace \text{ 可互相等值替代 } \lbrace \lnot \rbrace \\
-\fbox{21} & P \downarrow P &\iff& \lnot P & \lbrace \downarrow \rbrace \text{ 可互相等值替代 } \lbrace \lnot \rbrace \\
+\fbox{20} & P \uparrow P   &\iff& \lnot P                     & \lbrace \lnot \rbrace \text{ 可互相等值替代 } \lbrace \uparrow \rbrace \\
+\fbox{21} & P \downarrow P &\iff& \lnot P                     & \lbrace \lnot \rbrace \text{ 可互相等值替代 } \lbrace \downarrow \rbrace \\
+\fbox{22} & P \oplus Q     &\iff& \lnot (P \leftrightarrow Q) & \lbrace \lnot, \leftrightarrow \rbrace \text{ 可等值替代 } \lbrace \oplus \rbrace \\
 \hline
 \fbox{20} & \lnot (P \uparrow Q)   &\iff& P \land Q & \lbrace \lnot, \uparrow \rbrace \text{ 可等值替代 } \lbrace \land \rbrace \\
 \fbox{21} & \lnot (P \downarrow Q) &\iff& P \lor Q  & \lbrace \lnot, \downarrow \rbrace \text{ 可等值替代 } \lbrace \or \rbrace \\
