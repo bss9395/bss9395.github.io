@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会
-Revised:   2019-01-06 02:21:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-01-06 05:45:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources:
 ---
@@ -182,7 +182,7 @@ Resources:
 | 07 （重要）或非公理     | // 或非命题 $P \downarrow Q$ 为假当且仅当命题 $P$ 为真兼或命题 $Q$ 为真。 |
 | 08 （重要）异或公理     | // 异或命题 $P \oplus Q$ 为真当且仅当命题 $P$ 和命题 $Q$ 真假性相反。 |
 
-借助于命题逻辑联结词的运算表，可进一步验证27个重要的双向命题演绎逻辑：
+借助于命题逻辑联结词的运算表，可进一步验证29个可等值替代的双向命题演绎逻辑：
 
 $$
 \begin{array}{crcl}
@@ -211,7 +211,7 @@ $$
 \begin{array}{crcl|l}
 \hline
 \fbox{16} & P \to Q             &\iff& \lnot P \lor Q \\
-\fbox{17} & P \to Q             &\iff& \lnot Q \to \lnot P & \text{逆否论证} \\
+\fbox{17} & P \to Q             &\iff& \lnot Q \to \lnot P             & \text{逆否法} \\
 \fbox{18} & P \leftrightarrow Q &\iff& (P \to Q) \land (Q \to P) \\
 \fbox{19} & P \leftrightarrow Q &\iff& \lnot Q \leftrightarrow \lnot P \\
 \hline
@@ -224,7 +224,9 @@ $$
 \fbox{25} & (P \land Q) \lor R  &\iff& (P \land Q) \lor (P \land R) \\
 \fbox{26} & (P \lor Q) \land R  &\iff& (P \lor Q) \land (P \lor R) \\
 \hline
-\fbox{27} & (P \to Q) \land (P \to \lnot Q) &\iff& \lnot P & \text{归谬论} \\
+\fbox{27} & (P \to Q) \land (P \to \lnot Q)       &\iff& \lnot P                                       & \text{归谬法} \\
+\fbox{28} & P1 \land P2 \land \dots \to Q         &\iff& \lnot (P1 \land P2 \land \dots \land \lnot Q) & \text{反证法} \\
+\fbox{29} & P1 \land P2 \land \dots \to (Q \to R) &\iff& P1 \land P2 \land \dots \land Q \to R         & \text{附加法} \\
 \hline
 \end{array}
 $$
@@ -250,32 +252,65 @@ $$
 \end{array}
 $$
 
-在通常情形下，若将 $\lbrace \lnot, \land, \lor \rbrace$ 作为基本命题逻辑联结词，则可等值替代 $\lbrace \to, \leftrightarrow \rbrace$ 这两种常用命题逻辑联结词，以及 $\lbrace \uparrow, \downarrow, \oplus \rbrace$ 这三种电路命题逻辑联结词。因此对于人们日常的逻辑思维来说，$\lbrace \lnot, \land, \lor \rbrace$ / $\lbrace \lnot, \land, \lor, \to \rbrace$ / $\lbrace \lnot, \land, \lor, \to, \leftrightarrow \rbrace$ 都可完全表达所有命题逻辑，但都不满足公理系统基本性质之一的强独立性。因为 $\lbrace \lnot, \land \rbrace$ 不可自我等值替代但可等值替代 $\lbrace \lor \rbrace$，而且 $\lbrace \lnot, \lor \rbrace$ 不可自我等值替代但可等值替代 $\lbrace \land \rbrace$，所以 $\lbrace \lnot, \land \rbrace$ / $\lbrace \lnot, \lor \rbrace$ 均满足公理系统基本性质中的强独立性和强完备性，﹛否定公理，合取公理﹜/﹛否定公理，析取公理﹜均可构成命题逻辑公理系统。按照类似的论证方法， $\lbrace \uparrow \rbrace$ / $\lbrace \downarrow \rbrace$ 均满足公理系统基本性质的强独立性和强完备性，﹛与非公理﹜/﹛或非公理﹜均可构成命题逻辑公理系统。同理 $\lbrace \land, \lor \rbrace$  满足公理系统基本性质之一的强独立性，但不满足强完备性，﹛合取公理，析取公理﹜不可构成命题逻辑公理系统。
+在通常情形下，若将 $\lbrace \lnot, \land, \lor \rbrace$ 作为基本命题逻辑联结词，则可等值替代 $\lbrace \to, \leftrightarrow \rbrace$ 这两种常用命题逻辑联结词，以及 $\lbrace \uparrow, \downarrow, \oplus \rbrace$ 这三种电路命题逻辑联结词。因此对于人们日常的逻辑思维来说，$\lbrace \lnot, \land, \lor \rbrace$ / $\lbrace \lnot, \land, \lor, \to \rbrace$ / $\lbrace \lnot, \land, \lor, \to, \leftrightarrow \rbrace$ 都可完全表达所有命题逻辑，但都不满足公理系统的强独立性。因为 $\lbrace \lnot, \land \rbrace$ 不可自我等值替代但可等值替代 $\lbrace \lor \rbrace$，而且 $\lbrace \lnot, \lor \rbrace$ 不可自我等值替代但可等值替代 $\lbrace \land \rbrace$，所以 $\lbrace \lnot, \land \rbrace$ / $\lbrace \lnot, \lor \rbrace$ 均满足公理系统的强独立性和强完备性，﹛否定公理，合取公理﹜/﹛否定公理，析取公理﹜均可构成命题逻辑公理系统。按照类似的论证方法， $\lbrace \uparrow \rbrace$ / $\lbrace \downarrow \rbrace$ 均满足公理系统基本性质的强独立性和强完备性，﹛与非公理﹜/﹛或非公理﹜均可构成命题逻辑公理系统。同理 $\lbrace \land, \lor \rbrace$  满足公理系统的强独立性，但不满足公理系统的强完备性，﹛合取公理，析取公理﹜不可构成命题逻辑公理系统。
 
+在命题逻辑体系中，类似于蕴涵联结词，具有以下形式的单向演绎逻辑：
 
+```
+前提条件：P1，P2，P3，···
+有效推论：Q
+演绎逻辑：P1 ∧ P2 ∧ P3 ∧ ··· ⇒ Q
+单项演绎逻辑 P1 ∧ P2 ∧ P3 ∧ ··· ⇒ Q 正确，当且仅当 P1 ∧ P2 ∧ P3 ∧ ··· → Q 为真
+```
 
+借助于可等值替代的双向命题演绎逻辑，可进一步验证10个不可等值替代的单项命题演绎逻辑：
 
-
-
-
-
-10个重要的单项命题演绎逻辑：
 $$
-\begin{array}{crcl}
+\begin{array}{crcl|l}
+\hline
 \fbox{01} & P                                                      &\implies& P \lor Q \\
 \fbox{02} & P \land Q                                              &\implies& P \\
 \fbox{03} & \lnot P \land (P \lor Q)                               &\implies& Q \\
 \fbox{04} & P \land (P \to Q)                                      &\implies& Q \\
 \fbox{05} & \lnot Q \land (P \to Q)                                &\implies& \lnot P \\
-\fbox{06} & (P \to Q) \land (Q \to R)                              &\implies& P \to R \\
-\fbox{07} & (P \leftrightarrow Q) \land (Q \leftrightarrow R)      &\implies& P \leftrightarrow R \\
+\fbox{06} & (P \to Q) \land (Q \to R)                              &\implies& P \to R              & \text{演绎推断} \\
+\fbox{07} & (P \leftrightarrow Q) \land (Q \leftrightarrow R)      &\implies& P \leftrightarrow R  & \text{等值推断} \\
 \fbox{08} & (P \lor R) \land (P \to Q) \land (R \to S)             &\implies& Q \lor S \\
-\fbox{09} & (P \to Q) \land (\lnot P \to Q)                        &\implies& Q \\
-\fbox{10} & (\lnot Q \lor \lnot S) \land (P \to Q) \land (R \to S) &\implies& \lnot P \lor \lnot R \\
+\fbox{09} & (\lnot P \to Q) \land (P \to Q)                        &\implies& Q \\
+\fbox{10} & (\lnot Q \lor \lnot S) \land (P \to Q) \land (R \to S) &\implies& \lnot P \lor \lnot R & \text{非难推断} \\
+\hline
 \end{array}
 $$
 
+命题逻辑具有局限性并不能包罗万象，因而还有比命题逻辑更复杂的谓词逻辑，命题逻辑仅仅是谓词逻辑的特殊形式。但即便如此，在日常生活的许多情形下命题逻辑仍然适用。
+
+```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// 一个典型的演绎推断
+⑥ (P → Q) ∧ (Q → R) ⇒ P → R
+命题 P：我还活着；
+命题 Q：咱俩结婚；
+命题 R：宝宝出生。
+大前提：若我还活着，则咱俩结婚；
+小前提：若咱俩结婚，则宝宝出生；
+=>推论：若我还活着，则宝宝出生。
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// 一个典型的非难推断
+⑩ (¬Q ∨ ¬R) ∧ (P → Q) ∧ (P → R) ⇒ ¬P
+命题 P：口头承诺有效；
+命题 Q：政治体制改革；
+命题 R：经济体制改革；
+前提 S：
+前提一：若口头承诺有效，则政治体制改革；
+前提二：若口头承诺有效，则经济体制改革；
+前提三：政治体制未改革且经济体制未改革；
+=>推论：口头承诺无效。
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
+
 #### 欧几里德公理系统
+
+
 
 ```
 些许基本定义：
