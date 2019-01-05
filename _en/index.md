@@ -47,3 +47,4 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > 01. I don't care who you are, where you are from, what you did, as long as you love me.
 > 01. I just wanna thank you, for being a friend. Together we made it, together we stand.
 > 01. If I didn't meet you, I wouldn't like you; If I didn't like you, I wouldn't love you; If I didn't love you, I wouldn't miss you; But I did, I do, and I will.
+> 01. That's one small step for [a] man, one giant leap for mankind.
