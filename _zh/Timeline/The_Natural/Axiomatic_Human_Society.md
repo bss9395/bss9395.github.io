@@ -206,10 +206,10 @@ $$
 \end{array}
 $$
 $$
-\begin{array}{crcl}
+\begin{array}{crcl|l}
 \hline
 \fbox{16} & P \to Q             &\iff& \lnot P \lor Q \\
-\fbox{17} & P \to Q             &\iff& \lnot Q \to \lnot P \\
+\fbox{17} & P \to Q             &\iff& \lnot Q \to \lnot P & \text{逆否论证} \\
 \fbox{18} & P \leftrightarrow Q &\iff& (P \to Q) \land (Q \to P) \\
 \fbox{19} & P \leftrightarrow Q &\iff& \lnot Q \leftrightarrow \lnot P \\
 \hline
@@ -222,12 +222,12 @@ $$
 \fbox{25} & (P \land Q) \lor R  &\iff& (P \land Q) \lor (P \land R) \\
 \fbox{26} & (P \lor Q) \land R  &\iff& (P \lor Q) \land (P \lor R) \\
 \hline
-\fbox{27} & (P \to Q) \land (P \to \lnot Q) &\iff& \lnot P \\
+\fbox{27} & (P \to Q) \land (P \to \lnot Q) &\iff& \lnot P & \text{归谬论} \\
 \hline
 \end{array}
 $$
 
-现在来考察命题逻辑公理系统的完备性，注意到：
+现在我们来考察命题逻辑公理系统的独立性与完备性，注意到：
 
 $$
 \begin{array}{crcl|l}
