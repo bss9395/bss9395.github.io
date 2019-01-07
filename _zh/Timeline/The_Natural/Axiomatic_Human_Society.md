@@ -309,7 +309,9 @@ $$
 
 #### 欧几里德公理系统
 
-被誉为几何学之父的古希腊数学家欧几里得（约公元前300年~约公元前265年）生平不详，著有人类文明史上最负盛名的数学教科书《几何原本》13卷，这是世界上最早的公理化数学著作，据称在世界范围内流传甚广仅次于基督教的《圣经》。
+被誉为几何学之父的古希腊数学家欧几里得（约公元前300年~约公元前265年）生平不详，著有人类文明史上最负盛名的数学教科书《几何原本》十三卷，这是世界上最早的公理化数学著作，据称在世界范围内流传甚广仅次于基督教的《圣经》。
+
+《
 
 5条公设，5条公理，119个定义，465个命题，数学公理体系。
 
@@ -345,25 +347,28 @@ $$
 欧几里得几何，三角形的内角和等于180度；通过直线外一点恰好有一条平行线；
 双曲几何，三角形的内角和大于180度；通过直线外一点存在无限多条平行线；
 
-|                        **三维立体图**                        | **正多面体** | **面数** | **边数** | **点数** | **平面展开图**                                               |
-| :----------------------------------------------------------: | :----------: | :------: | :------: | :------: | :----------------------------------------------------------- |
-| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATH_is_FUN.svg) |   正四面体   |    4     |    6     |    4     | ![width:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net@MATH_is_FUN.svg) |
-| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATH_is_FUN.svg) |   正六面体   |    6     |    12    |    8     | ![width: 128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net@MATH_is_FUN.svg) |
-| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATH_is_FUN.svg) |   正八面体   |    8     |    12    |    6     | ![width: 128px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net@MATH_is_FUN.svg) |
-| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATH_is_FUN.svg) |  正十二面体  |    12    |    30    |    20    | ![width:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net@MATH_is_FUN.svg) |
-| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATH_is_FUN.svg) |  正二十面体  |    20    |    30    |    12    | ![width:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net@MATH_is_FUN.svg) |
+|                        **三维立体图**                        | **正多面体** | **对偶正多面体** | **构成面** | **面数** | **边数** | **点数** | **平面展开图**                                               |
+| :----------------------------------------------------------: | :----------: | ---------------- | :--------: | :------: | :------: | :------: | :----------------------------------------------------------- |
+| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATH_is_FUN.svg) |  *正四面体*  | `正四面体`       | `正三边形` |    4     |    6     |    4     | ![width:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net@MATH_is_FUN.svg) |
+| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATH_is_FUN.svg) |  *正六面体*  | `正八面体`       | `正四边形` |    6     |    12    |    8     | ![width: 128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net@MATH_is_FUN.svg) |
+| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATH_is_FUN.svg) |  *正八面体*  | `正四面体`       | `正三边形` |    8     |    12    |    6     | ![width: 128px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net@MATH_is_FUN.svg) |
+| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATH_is_FUN.svg) | *正十二面体* | `正二十面体`     | `正五边形` |    12    |    30    |    20    | ![width:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net@MATH_is_FUN.svg) |
+| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATH_is_FUN.svg) | *正二十面体* | `正十二面体`     | `正三边形` |    20    |    30    |    12    | ![width:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net@MATH_is_FUN.svg) |
 
 
 
 欧几里得公理系统所构造出来的几何空间，被称为欧几里得几何空间。
 
-有且仅有5种正多面体。
+![height:128px;](figures/Axiomatic_Human_Society/Regular_Polygon.png)
 
-下面的几何讨论和欧几里得在几何原本中给出的证明非常相似：
+欧几里得在《几何原本》的最后一卷给出5种正多面体的构造方法，正多面体有且仅有5种。
 
-多面体的每个顶点至少在三个面上。
+```
+命题：正多面体至多有5种。
+已知：正三边形每个角均为60°，正四边形每个角均为90°，正五边形每个角均为108°。
+证明：多面体的每个顶点至少关联三个面，由关联面
 
-这些相交的面处的角（也就是顶点发出的角）的和必须小于 360°。
+相交面处的角（也就是顶点发出的角）之和必须小于 360°。
 
 正多面体的顶点发出的角是相等的，所以这个角必须小于 360°/3 = 120°。
 
@@ -375,8 +380,8 @@ $$
 
 正五边形：每个角是 108°，所以正多面体每个顶点发出的角数目小于 360°/108° = 10/3，也就是每个顶点只能在三个面上，这对应于正十二面体。
 
-
 欧几里德的体系还是有缺陷的。这些缺陷直到1899年德国数学家希尔伯特的在其《几何基础》出版时得到了完善。在这部名著中，希尔伯特成功地建立了欧几里德几何的完整、严谨的公理体系，即所谓的希尔伯特公理体系。这一体系的建立使欧氏几何成为一个逻辑结构非常完善而严谨的几何体系。也标志着欧氏几何完善工作的终结。
+```
 
 #### 实数公理系统
 
