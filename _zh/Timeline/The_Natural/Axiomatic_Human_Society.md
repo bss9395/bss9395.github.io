@@ -212,21 +212,22 @@ $$
 \hline
 \fbox{16} & P \to Q             &\iff& \lnot P \lor Q \\
 \fbox{17} & P \to Q             &\iff& \lnot Q \to \lnot P             & \text{逆否法} \\
-\fbox{18} & P \leftrightarrow Q &\iff& (P \to Q) \land (Q \to P) \\
+\fbox{18} & P \leftrightarrow Q &\iff& Q \leftrightarrow P \\
 \fbox{19} & P \leftrightarrow Q &\iff& \lnot Q \leftrightarrow \lnot P \\
+\fbox{20} & P \leftrightarrow Q &\iff& (P \to Q) \land (Q \to P) \\
 \hline
-\fbox{20} & P \uparrow Q   &\iff& \lnot (P \land Q) \\
-\fbox{21} & P \downarrow Q &\iff& \lnot (P \lor Q) \\
-\fbox{22} & P \oplus Q     &\iff& \lnot (P \leftrightarrow Q) \\
+\fbox{21} & P \uparrow Q   &\iff& \lnot (P \land Q) \\
+\fbox{22} & P \downarrow Q &\iff& \lnot (P \lor Q) \\
+\fbox{23} & P \oplus Q     &\iff& \lnot (P \leftrightarrow Q) \\
 \hline
-\fbox{23} & (P \land Q) \land R &\iff& P \land (Q \land R) \\
-\fbox{24} & (P \lor Q) \lor R   &\iff& P \lor (Q \lor R) \\
-\fbox{25} & (P \land Q) \lor R  &\iff& (P \land Q) \lor (P \land R) \\
-\fbox{26} & (P \lor Q) \land R  &\iff& (P \lor Q) \land (P \lor R) \\
+\fbox{24} & (P \land Q) \land R &\iff& P \land (Q \land R) \\
+\fbox{25} & (P \lor Q) \lor R   &\iff& P \lor (Q \lor R) \\
+\fbox{26} & (P \land Q) \lor R  &\iff& (P \land Q) \lor (P \land R) \\
+\fbox{27} & (P \lor Q) \land R  &\iff& (P \lor Q) \land (P \lor R) \\
 \hline
-\fbox{27} & (P \to Q) \land (P \to \lnot Q)       &\iff& \lnot P                                       & \text{归谬法} \\
-\fbox{28} & P1 \land P2 \land \dots \to Q         &\iff& \lnot (P1 \land P2 \land \dots \land \lnot Q) & \text{反证法} \\
-\fbox{29} & P1 \land P2 \land \dots \to (Q \to R) &\iff& P1 \land P2 \land \dots \land Q \to R         & \text{附加法} \\
+\fbox{28} & (P \to Q) \land (P \to \lnot Q)       &\iff& \lnot P                                       & \text{归谬法} \\
+\fbox{29} & P1 \land P2 \land \dots \to Q         &\iff& \lnot (P1 \land P2 \land \dots \land \lnot Q) & \text{反证法} \\
+\fbox{30} & P1 \land P2 \land \dots \to (Q \to R) &\iff& P1 \land P2 \land \dots \land Q \to R         & \text{附加法} \\
 \hline
 \end{array}
 $$
@@ -240,14 +241,14 @@ $$
 \fbox{15} & P \lor Q  &\iff& \lnot (\lnot P \land \lnot Q) & \lbrace \lnot, \land \rbrace \text{ 可等值替代 } \lbrace \lor \rbrace \\
 \hline
 \fbox{16} & P \to Q             &\iff& \lnot P \lor Q            & \lbrace \lnot, \lor \rbrace \text{ 可等值替代 } \lbrace \to \rbrace \\
-\fbox{17} & P \leftrightarrow Q &\iff& (P \to Q) \land (Q \to P) & \lbrace \to, \land \rbrace \text{ 可等值替代 } \lbrace \leftrightarrow \rbrace \\
+\fbox{20} & P \leftrightarrow Q &\iff& (P \to Q) \land (Q \to P) & \lbrace \to, \land \rbrace \text{ 可等值替代 } \lbrace \leftrightarrow \rbrace \\
 \hline
-\fbox{20} & P \uparrow P   &\iff& \lnot P                     & \lbrace \lnot \rbrace \text{ 可互相等值替代 } \lbrace \uparrow \rbrace \\
-\fbox{21} & P \downarrow P &\iff& \lnot P                     & \lbrace \lnot \rbrace \text{ 可互相等值替代 } \lbrace \downarrow \rbrace \\
-\fbox{22} & P \oplus Q     &\iff& \lnot (P \leftrightarrow Q) & \lbrace \lnot, \leftrightarrow \rbrace \text{ 可等值替代 } \lbrace \oplus \rbrace \\
+\fbox{21} & P \uparrow P   &\iff& \lnot P                     & \lbrace \lnot \rbrace \text{ 可互相等值替代 } \lbrace \uparrow \rbrace \\
+\fbox{22} & P \downarrow P &\iff& \lnot P                     & \lbrace \lnot \rbrace \text{ 可互相等值替代 } \lbrace \downarrow \rbrace \\
+\fbox{23} & P \oplus Q     &\iff& \lnot (P \leftrightarrow Q) & \lbrace \lnot, \leftrightarrow \rbrace \text{ 可等值替代 } \lbrace \oplus \rbrace \\
 \hline
-\fbox{20} & \lnot (P \uparrow Q)   &\iff& P \land Q & \lbrace \lnot, \uparrow \rbrace \text{ 可等值替代 } \lbrace \land \rbrace \\
-\fbox{21} & \lnot (P \downarrow Q) &\iff& P \lor Q  & \lbrace \lnot, \downarrow \rbrace \text{ 可等值替代 } \lbrace \or \rbrace \\
+\fbox{21} & \lnot (P \uparrow Q)   &\iff& P \land Q & \lbrace \lnot, \uparrow \rbrace \text{ 可等值替代 } \lbrace \land \rbrace \\
+\fbox{22} & \lnot (P \downarrow Q) &\iff& P \lor Q  & \lbrace \lnot, \downarrow \rbrace \text{ 可等值替代 } \lbrace \or \rbrace \\
 \hline
 \end{array}
 $$
@@ -309,9 +310,17 @@ $$
 
 #### 欧几里德公理系统
 
-被誉为几何学之父的古希腊数学家欧几里得（约公元前300年~约公元前265年）生平不详，著有人类文明史上最负盛名的数学教科书《几何原本》十三卷，这是世界上最早的公理化数学著作，据称在世界范围内流传甚广仅次于基督教的《圣经》。
+被誉为几何学之父的古希腊数学家欧几里得（古希腊语：Ευκλειδης）生平不详，约生活在公元前330年至公元前275年，著有人类文明史上最负盛名的数学教科书《几何原本》十三卷，这是世界上最早的公理化数学著作，同时也是西方现存最古老的科学著作，据称在全球范围内流传甚广仅次于基督教经典的《圣经》。
 
-《
+《几何原本》从少量自明的定义/公理出发，利用逻辑推理的方法，推演整个几何体系，选取少量的原始概念和不需证明的命题，作为定义/公设或公理，使它们成为整个体系的出发点和逻辑依据，然后运用逻辑推理证明其它命题。
+
+《几何原本》对世界数学的贡献主要是：确立了数学的基本方法学。
+
+1. 建立了公理演绎体系，即用公理/公设和定义的推证方法；
+2. 将逻辑证明系统地引入数学，确立了逻辑学的基本方法；
+3. 创造了几何证明的方法：分析法、综合法及归谬法；
+
+重要命题I.47是著名的勾股定理。
 
 5条公设，5条公理，119个定义，465个命题，数学公理体系。
 
@@ -343,29 +352,56 @@ $$
 05 两条直线与同一直线相交，若同侧内角之和小于平角，则这两条直线在该侧相交。
 ```
 
+
+
+```
+命题Ⅰ31：过直线外一点可作一条直线。
+已知：A为给定点，BC为给定直线。
+假设：
+证明：在BC上
+```
+
+```
+命题I32：如果延长三角形中的一边，则得到的外角等于二内对角的和，而且三角形的三个内角的和等于180°。
+已知：
+假设：
+证明：
+
+```
+
+
+
+欧几里得的不完美催生了新的几何学，第5公设不同于其它9条公设/公理，言语迟钝，仿佛有些力不从心的样子。形式上也不像公设，倒有点像命题。因此，自《几何原本》诞生后，就有无数数学家研究这条公设，并试图找出证明这条公设的方法。都归于失败。
+
+到了19世纪，波尔约合罗巴切夫斯基分别发表了一套与第5公设相反的几何体系，从而证明了第5公设确实是一条公设，不能证明或否定，非欧几何学出现。全新的观念。
+
+
+
+
+
 椭圆几何，三角形的内角和小于180度；通过直线外一点没有平行线；
 欧几里得几何，三角形的内角和等于180度；通过直线外一点恰好有一条平行线；
 双曲几何，三角形的内角和大于180度；通过直线外一点存在无限多条平行线；
 
-|                        **三维立体图**                        | **正多面体** | **对偶正多面体** | **构成面** | **面数** | **边数** | **点数** | **平面展开图**                                               |
-| :----------------------------------------------------------: | :----------: | ---------------- | :--------: | :------: | :------: | :------: | :----------------------------------------------------------- |
-| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATH_is_FUN.svg) |  *正四面体*  | `正四面体`       | `正三边形` |    4     |    6     |    4     | ![width:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net@MATH_is_FUN.svg) |
-| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATH_is_FUN.svg) |  *正六面体*  | `正八面体`       | `正四边形` |    6     |    12    |    8     | ![width: 128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net@MATH_is_FUN.svg) |
-| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATH_is_FUN.svg) |  *正八面体*  | `正四面体`       | `正三边形` |    8     |    12    |    6     | ![width: 128px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net@MATH_is_FUN.svg) |
-| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATH_is_FUN.svg) | *正十二面体* | `正二十面体`     | `正五边形` |    12    |    30    |    20    | ![width:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net@MATH_is_FUN.svg) |
-| ![width:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATH_is_FUN.svg) | *正二十面体* | `正十二面体`     | `正三边形` |    20    |    30    |    12    | ![width:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net@MATH_is_FUN.svg) |
+| **正多面体** |                        **三维立体图**                        | **对偶正多面体** | **构成面** | **顶点角之和** | **面数** | **边数** | **点数** | **平面展开图**                                               |
+| :----------: | :----------------------------------------------------------: | ---------------- | :--------: | :------------: | :------: | :------: | :------: | :----------------------------------------------------------- |
+|  *正四面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×3      |    4     |    6     |    4     | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net@MATHisFUN.svg) |
+|  *正六面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATHisFUN.svg) | `正八面体`       | `正四边形` |     90°×3      |    6     |    12    |    8     | ![height: 128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net@MATHisFUN.svg) |
+|  *正八面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×4      |    8     |    12    |    6     | ![height: 128px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net@MATHisFUN.svg) |
+| *正十二面体* | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATHisFUN.svg) | `正二十面体`     | `正五边形` |     108°×3     |    12    |    30    |    20    | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net@MATHisFUN.svg) |
+| *正二十面体* | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATHisFUN.svg) | `正十二面体`     | `正三边形` |     60°×5      |    20    |    30    |    12    | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net@MATHisFUN.svg) |
 
 
 
 欧几里得公理系统所构造出来的几何空间，被称为欧几里得几何空间。
 
-![height:128px;](figures/Axiomatic_Human_Society/Regular_Polygon.png)
+欧几里得在《几何原本》的末卷给出5种正多面体的构造方法，正多面体有且仅有5种。
 
-欧几里得在《几何原本》的最后一卷给出5种正多面体的构造方法，正多面体有且仅有5种。
+![height:128px;](figures/Axiomatic_Human_Society/Regular_Polygon.png)
 
 ```
 命题：正多面体至多有5种。
-已知：正三边形每个角均为60°，正四边形每个角均为90°，正五边形每个角均为108°。
+已知：正三边形每个内角均为60°，正四边形每个内角均为90°，正五边形每个内角均为108°，正六边形每个内角均为120°。
 证明：多面体的每个顶点至少关联三个面，由关联面
 
 相交面处的角（也就是顶点发出的角）之和必须小于 360°。
@@ -379,9 +415,13 @@ $$
 正方形：每个角是 90°，所以正多面体每个顶点发出的角数目小于 360°/90° = 4，也就是每个顶点只能在三个面上，这对应于正方体；
 
 正五边形：每个角是 108°，所以正多面体每个顶点发出的角数目小于 360°/108° = 10/3，也就是每个顶点只能在三个面上，这对应于正十二面体。
-
-欧几里德的体系还是有缺陷的。这些缺陷直到1899年德国数学家希尔伯特的在其《几何基础》出版时得到了完善。在这部名著中，希尔伯特成功地建立了欧几里德几何的完整、严谨的公理体系，即所谓的希尔伯特公理体系。这一体系的建立使欧氏几何成为一个逻辑结构非常完善而严谨的几何体系。也标志着欧氏几何完善工作的终结。
 ```
+
+欧几里德的体系还是有缺陷的。这些缺陷直到1899年德国数学家希尔伯特在其《几何基础》出版时得到了完善。在这部名著中，希尔伯特成功地建立了欧几里德几何的完整、严谨的公理体系，即所谓的希尔伯特公理体系。这一体系的建立使欧氏几何成为一个逻辑结构非常完善而严谨的几何体系。也标志着欧氏几何完善工作的终结。
+
+斯宾诺莎的伦理学和就是按这种模式阐述的，牛顿的《自然哲学的数学原理》也同样如此。
+
+
 
 #### 实数公理系统
 
