@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会
-Revised:   2019-01-07 06:34:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-01-08 06:02:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources:
 ---
@@ -248,7 +248,7 @@ $$
 \fbox{23} & P \oplus Q     &\iff& \lnot (P \leftrightarrow Q) & \lbrace \lnot, \leftrightarrow \rbrace \text{ 可等值替代 } \lbrace \oplus \rbrace \\
 \hline
 \fbox{21} & \lnot (P \uparrow Q)   &\iff& P \land Q & \lbrace \lnot, \uparrow \rbrace \text{ 可等值替代 } \lbrace \land \rbrace \\
-\fbox{22} & \lnot (P \downarrow Q) &\iff& P \lor Q  & \lbrace \lnot, \downarrow \rbrace \text{ 可等值替代 } \lbrace \or \rbrace \\
+\fbox{22} & \lnot (P \downarrow Q) &\iff& P \lor Q  & \lbrace \lnot, \downarrow \rbrace \text{ 可等值替代 } \lbrace \lor \rbrace \\
 \hline
 \end{array}
 $$
@@ -258,9 +258,9 @@ $$
 在命题逻辑体系中，类似于蕴涵联结词，具有以下形式的单向演绎逻辑：
 
 ```
-前提条件：P1，P2，···
-有效推论：Q
-演绎逻辑：P1 ∧ P2 ∧ ··· ⇒ Q
+前提条件 P1，P2，···
+有效推论 Q
+演绎逻辑 P1 ∧ P2 ∧ ··· ⇒ Q
 演绎逻辑 P1 ∧ P2 ∧ ··· ⇒ Q 正确，当且仅当 P1 ∧ P2 ∧ ··· → Q 为真
 ```
 
@@ -326,7 +326,6 @@ $$
 
 ```
 些许基本定义：
-
 01 点除自身外再无其它部分。
 02 线具有长度无宽度无高度。
 03 面具有长度与宽度无高度。
@@ -335,7 +334,6 @@ $$
 ```
 ```
 一般公理共５条：
-
 01 与同量相等的量彼此相等。
 02 等量加等量，其和仍相等。
 03 等量减等量，其差仍相等。
@@ -344,7 +342,6 @@ $$
 ```
 ```
 平面公设共５条：
-
 01 过任意两点可作一条直线。
 02 线段可无限延伸成为直线。
 03 固定线段一端可作一个圆。
@@ -352,21 +349,38 @@ $$
 05 两条直线与同一直线相交，若同侧内角之和小于平角，则这两条直线在该侧相交。
 ```
 
-
-
 ```
-命题Ⅰ31：过直线外一点可作一条直线。
-已知：A为给定点，BC为给定直线。
-假设：
-证明：在BC上
+些许重要命题：
+命题Ⅰ.13：一条直线和另一条直线所交成的角，或者是两个直角，或者它们的和等于两个直角。
+命题Ⅰ.27：如果一直线和两直线相交所成的内错角彼此相等，则这两直线互相平行。
+命题Ⅰ.29：一条直线与两条平行直线相交，则所成的内错角相等，同位角相等，且同旁内角之和等于二直角之和。
+命题Ⅰ.31：过直线外一点可作一条直线。
+命题Ⅰ.32：如果延长三角形中的一边，则得到的外角等于二内对角之和，而且三角形的三个内角之和等于180°。
 ```
 
-```
-命题I32：如果延长三角形中的一边，则得到的外角等于二内对角的和，而且三角形的三个内角的和等于180°。
-已知：
-假设：
-证明：
 
+![height:128px;](figures/Axiomatic_Human_Society/Ⅰ.31.png)
+```
+命题Ⅰ.31：过直线外一点可作一条直线。
+已知条件：A为给定点，BC为给定直线。
+详细证明⬇⬇
+在直线BC上任意取一点D，连接AD，作角∠EAD=角∠ADC，直线AF是直线EA的延长线。
+∵ 内错角∠EAD=内错角∠ADC。
+∴ 直线EAF∥直线BC。【命题Ⅰ.27】
+```
+
+![height:128px;](figures/Axiomatic_Human_Society/Ⅰ.32.png)
+```
+命题Ⅰ.32：如果延长三角形中的一边，则得到的外角等于二内对角之和，而且三角形的三个内角之和等于180°。
+已知条件：三角形△ABC，延长其一边BC至D。
+详细证明⬇⬇
+过点C作平行于直线AB的直线CE。【命题Ⅰ.31】
+∵ 直线AB∥直线CE。
+∴ 角∠BAC=角∠ACE，而且角∠ABC=角∠ECD。【命题Ⅰ.29】
+∵ 角∠ACD=角∠ACE+角∠ECD。
+∴ 角∠ACD=角∠BAC+角∠ABC。
+∵ 角∠BAC+角∠ACD=180°。【命题Ⅰ.13】
+∴ 角∠BAC+角∠BAC+角∠ABC=180°。
 ```
 
 
@@ -385,11 +399,11 @@ $$
 
 | **正多面体** |                        **三维立体图**                        | **对偶正多面体** | **构成面** | **顶点角之和** | **面数** | **边数** | **点数** | **平面展开图**                                               |
 | :----------: | :----------------------------------------------------------: | ---------------- | :--------: | :------------: | :------: | :------: | :------: | :----------------------------------------------------------- |
-|  *正四面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×3      |    4     |    6     |    4     | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net@MATHisFUN.svg) |
-|  *正六面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATHisFUN.svg) | `正八面体`       | `正四边形` |     90°×3      |    6     |    12    |    8     | ![height: 128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net@MATHisFUN.svg) |
-|  *正八面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×4      |    8     |    12    |    6     | ![height: 128px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net@MATHisFUN.svg) |
-| *正十二面体* | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATHisFUN.svg) | `正二十面体`     | `正五边形` |     108°×3     |    12    |    30    |    20    | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net@MATHisFUN.svg) |
-| *正二十面体* | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATHisFUN.svg) | `正十二面体`     | `正三边形` |     60°×5      |    20    |    30    |    12    | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net@MATHisFUN.svg) |
+|  *正四面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×3      |    4     |    6     |    4     | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net.svg) |
+|  *正六面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATHisFUN.svg) | `正八面体`       | `正四边形` |     90°×3      |    6     |    12    |    8     | ![height: 128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net.svg) |
+|  *正八面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×4      |    8     |    12    |    6     | ![height: 128px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net.svg) |
+| *正十二面体* | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATHisFUN.svg) | `正二十面体`     | `正五边形` |     108°×3     |    12    |    30    |    20    | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net.svg) |
+| *正二十面体* | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATHisFUN.svg) | `正十二面体`     | `正三边形` |     60°×5      |    20    |    30    |    12    | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net.svg) |
 
 
 
