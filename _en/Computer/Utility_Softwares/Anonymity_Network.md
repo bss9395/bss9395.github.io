@@ -9,9 +9,9 @@ Resources:
 
 > ### For Free
 
-> | **Lantern**      | <https://getlantern.org/>                      |
+> | ***Lantern***    | <https://getlantern.org/>                      |
 > | :--------------- | :--------------------------------------------- |
-> | **Psiphon**      | <https://psiphon.ca/>                          |
+> | ***Psiphon***    | <https://psiphon.ca/>                          |
 > | *Shadowsocks*    | <https://shadowsocks.org/>                     |
 > | *Tor*            | <https://www.torproject.org/>                  |
 > | *无界浏览*       | <http://www.wujieliulan.com/>                  |
