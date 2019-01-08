@@ -41,7 +41,8 @@ Resources:
 ### 关于作者
 
 ![width:300px;](figures/bss9395/Me-with-Ellyn_2013_GuangZhou.jpg "20岁的我和Ellyn在广州")
-``` @_@ 蓝色是生死恋
+```
+@_@ 蓝色是生死恋
 姓名：黄志贵
 拼音：Huáng ZhìGuì
 性别：男
