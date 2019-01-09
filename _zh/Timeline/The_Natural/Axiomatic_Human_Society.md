@@ -40,7 +40,7 @@ Resources:
 
 ### 关于作者
 
-![width:300px;](figures/bss9395/Me-with-Ellyn_2013_GuangZhou.jpg "20岁的我和Ellyn在广州")
+![width:256px;](figures/bss9395/Me-with-Ellyn_2013_GuangZhou.jpg "20岁的我和Ellyn在广州")
 `` @_@ 蓝色是生死恋
 姓名：黄志贵
 拼音：Huáng ZhìGuì
@@ -157,7 +157,7 @@ Resources:
 
 根据人们在日常生活中的逻辑思维方式，可得到8种命题逻辑联结词的运算表：
 
-|                   |        |  （基本）   |   （基本）    |   （基本）   |      （常用）      |           （常用）            |       （电路）        |       （电路）       |            （电路）             |
+|                   |        |   [基本]    |    [基本]     |    [基本]    |       [常用]       |            [常用]             |        [电路]         |        [电路]        |             [电路]              |
 | :---------------: | :----: | :---------: | :-----------: | :----------: | :----------------: | :---------------------------: | :-------------------: | :------------------: | :-----------------------------: |
 |                   |        |  **否定**   |   **合取**    |   **析取**   |      **蕴涵**      |           **等价**            |       **与非**        |       **或非**       |            **异或**             |
 |      `条件`       | `条件` |   非 $P$    | $P$ 并且 $Q$  | $P$ 兼或 $Q$ |   若 $P$ 则 $Q$    |         $P$ 仅当 $Q$          |    $P$ 与 $Q$ 的非    |   $P$ 或 $Q$ 的非    |         $P$ 不兼或 $Q$          |
@@ -172,15 +172,15 @@ Resources:
 
 相对应8种命题逻辑联结词的运算表，可归纳整理成8条命题逻辑公理：
 
-| **01 （基本）否定公理** | // 否定命题 $\lnot P$ 为假当且仅当命题 $P$ 为真。            |
-| :---------------------- | :----------------------------------------------------------- |
-| **02 （基本）合取公理** | // 合取命题 $P \land Q$ 为真当且仅当命题 $P$ 为真并且命题 $Q$ 为真。 |
-| **03 （基本）析取公理** | // 析取命题 $P \lor Q$ 为真当且仅当命题 $P$ 为真兼或命题 $Q$ 为真。 |
-| *04 （常用）蕴涵公理*   | // 蕴涵命题 $P \to Q$ 为假当且仅当命题 $P$ 为真同时命题 $Q$ 为假。 |
-| *05 （常用）等价公理*   | // 等价命题 $P \leftrightarrow Q$ 为真当且仅当命题 $P$ 和命题 $Q$ 真假性相同。 |
-| 06 （重要）与非公理     | // 与非命题 $P \uparrow Q$ 为假当且仅当命题 $P$ 为真并且命题 $Q$ 为真。 |
-| 07 （重要）或非公理     | // 或非命题 $P \downarrow Q$ 为假当且仅当命题 $P$ 为真兼或命题 $Q$ 为真。 |
-| 08 （重要）异或公理     | // 异或命题 $P \oplus Q$ 为真当且仅当命题 $P$ 和命题 $Q$ 真假性相反。 |
+| **01 [基本]否定公理** | // 否定命题 $\lnot P$ 为假当且仅当命题 $P$ 为真。            |
+| :-------------------- | :----------------------------------------------------------- |
+| **02 [基本]合取公理** | // 合取命题 $P \land Q$ 为真当且仅当命题 $P$ 为真并且命题 $Q$ 为真。 |
+| **03 [基本]析取公理** | // 析取命题 $P \lor Q$ 为真当且仅当命题 $P$ 为真兼或命题 $Q$ 为真。 |
+| *04 [常用]蕴涵公理*   | // 蕴涵命题 $P \to Q$ 为假当且仅当命题 $P$ 为真同时命题 $Q$ 为假。 |
+| *05 [常用]等价公理*   | // 等价命题 $P \leftrightarrow Q$ 为真当且仅当命题 $P$ 和命题 $Q$ 真假性相同。 |
+| 06 [重要]与非公理     | // 与非命题 $P \uparrow Q$ 为假当且仅当命题 $P$ 为真并且命题 $Q$ 为真。 |
+| 07 [重要]或非公理     | // 或非命题 $P \downarrow Q$ 为假当且仅当命题 $P$ 为真兼或命题 $Q$ 为真。 |
+| 08 [重要]异或公理     | // 异或命题 $P \oplus Q$ 为真当且仅当命题 $P$ 和命题 $Q$ 真假性相反。 |
 
 借助于命题逻辑联结词的运算表，可进一步验证29个可等值替代的双向命题演绎逻辑：
 
@@ -350,8 +350,8 @@ $$
 命题Ⅰ47：在直角三角形中，斜边上正方形的面积等于两直角边上正方形的面积之和。【中国称勾股定理，西方称毕达哥拉斯定理】
 ```
 
-![height:128px;](figures/Axiomatic_Human_Society/Ⅰ31.png)
-![height:128px;](figures/Axiomatic_Human_Society/Ⅰ32.png)
+![height:96px;](figures/Axiomatic_Human_Society/Ⅰ31.png)
+![height:96px;](figures/Axiomatic_Human_Society/Ⅰ32.png)
 
 ```
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -384,15 +384,15 @@ $$
 
 | **正多面体** |                        **三维立体图**                        | **对偶正多面体** | **构成面** | **顶点角之和** | **面数** | **边数** | **点数** | **平面展开图**                                               |
 | :----------: | :----------------------------------------------------------: | ---------------- | :--------: | :------------: | :------: | :------: | :------: | :----------------------------------------------------------- |
-|  *正四面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×3      |    4     |    6     |    4     | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net.svg) |
-|  *正六面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATHisFUN.svg) | `正八面体`       | `正四边形` |     90°×3      |    6     |    12    |    8     | ![height: 128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net.svg) |
-|  *正八面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×4      |    8     |    12    |    6     | ![height: 128px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net.svg) |
-| *正十二面体* | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATHisFUN.svg) | `正二十面体`     | `正五边形` |     108°×3     |    12    |    30    |    20    | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net.svg) |
-| *正二十面体* | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATHisFUN.svg) | `正十二面体`     | `正三边形` |     60°×5      |    20    |    30    |    12    | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net.svg) |
+|  *正四面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×3      |    4     |    6     |    4     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net.svg) |
+|  *正六面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATHisFUN.svg) | `正八面体`       | `正四边形` |     90°×3      |    6     |    12    |    8     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net.svg) |
+|  *正八面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×4      |    8     |    12    |    6     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net.svg) |
+| *正十二面体* | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATHisFUN.svg) | `正二十面体`     | `正五边形` |     108°×3     |    12    |    30    |    20    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net.svg) |
+| *正二十面体* | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATHisFUN.svg) | `正十二面体`     | `正三边形` |     60°×5      |    20    |    30    |    12    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net.svg) |
 
 《几何原本》的结尾处给出有且仅有5种正多面体的证明。
 
-![height:128px;](figures/Axiomatic_Human_Society/Regular_Polygon.png)
+![height:96px;](figures/Axiomatic_Human_Society/Regular_Polygon.png)
 
 ```
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
