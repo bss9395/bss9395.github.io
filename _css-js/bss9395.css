@@ -53,6 +53,8 @@ blockquote>*:last-of-type, div>*:first-of-type {
 }
 /* code */
 code {
+    font-style: normal;
+    font-weight: normal;
     display: inline-block;
     white-space: pre;
 }
