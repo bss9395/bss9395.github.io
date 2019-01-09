@@ -350,8 +350,8 @@ $$
 命题Ⅰ47：在直角三角形中，斜边上正方形的面积等于两直角边上正方形的面积之和。【中国称勾股定理，西方称毕达哥拉斯定理】
 ```
 
-![height:96px;](figures/Axiomatic_Human_Society/Ⅰ31.png)
-![height:96px;](figures/Axiomatic_Human_Society/Ⅰ32.png)
+![height:128px;](figures/Axiomatic_Human_Society/Ⅰ31.png)
+![height:128px;](figures/Axiomatic_Human_Society/Ⅰ32.png)
 
 ```
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -384,15 +384,15 @@ $$
 
 | **正多面体** |                        **三维立体图**                        | **对偶正多面体** | **构成面** | **顶点角之和** | **面数** | **边数** | **点数** | **平面展开图**                                               |
 | :----------: | :----------------------------------------------------------: | ---------------- | :--------: | :------------: | :------: | :------: | :------: | :----------------------------------------------------------- |
-|  *正四面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×3      |    4     |    6     |    4     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net.svg) |
-|  *正六面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATHisFUN.svg) | `正八面体`       | `正四边形` |     90°×3      |    6     |    12    |    8     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net.svg) |
-|  *正八面体*  | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×4      |    8     |    12    |    6     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net.svg) |
-| *正十二面体* | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATHisFUN.svg) | `正二十面体`     | `正五边形` |     108°×3     |    12    |    30    |    20    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net.svg) |
-| *正二十面体* | ![height:128px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATHisFUN.svg) | `正十二面体`     | `正三边形` |     60°×5      |    20    |    30    |    12    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net.svg) |
+|  *正四面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×3      |    4     |    6     |    4     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net.svg) |
+|  *正六面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATHisFUN.svg) | `正八面体`       | `正四边形` |     90°×3      |    6     |    12    |    8     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net.svg) |
+|  *正八面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×4      |    8     |    12    |    6     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net.svg) |
+| *正十二面体* | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATHisFUN.svg) | `正二十面体`     | `正五边形` |     108°×3     |    12    |    30    |    20    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net.svg) |
+| *正二十面体* | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATHisFUN.svg) | `正十二面体`     | `正三边形` |     60°×5      |    20    |    30    |    12    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net.svg) |
 
 《几何原本》的结尾处给出有且仅有5种正多面体的证明。
 
-![height:96px;](figures/Axiomatic_Human_Society/Regular_Polygon.png)
+![height:128px;](figures/Axiomatic_Human_Society/Regular_Polygon.png)
 
 ```
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
