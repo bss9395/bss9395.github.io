@@ -385,13 +385,13 @@ $$
 
 欧几里得公理系统所构造出来的几何空间，被称为欧几里得几何空间，这就是人们依据日常经验所感觉存在的几何空间。《几何原本》在末卷给出欧几里得空间中5种正多面体的构造性证明，这5种正多面体以其高度完美的空间对称性，因此成为西方众多哲学流派的思想源泉。
 
-| **正多面体** |                        **三维立体图**                        | **对偶正多面体** | **构成面** | **顶点角之和** | **面数** | **边数** | **点数** | **平面展开图**                                               |
-| :----------: | :----------------------------------------------------------: | ---------------- | :--------: | :------------: | :------: | :------: | :------: | :----------------------------------------------------------- |
-|  *正四面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×3      |    4     |    6     |    4     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net.svg) |
-|  *正六面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATHisFUN.svg) | `正八面体`       | `正四边形` |     90°×3      |    6     |    12    |    8     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net.svg) |
-|  *正八面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATHisFUN.svg) | `正四面体`       | `正三边形` |     60°×4      |    8     |    12    |    6     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net.svg) |
-| *正十二面体* | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATHisFUN.svg) | `正二十面体`     | `正五边形` |     108°×3     |    12    |    30    |    20    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net.svg) |
-| *正二十面体* | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATHisFUN.svg) | `正十二面体`     | `正三边形` |     60°×5      |    20    |    30    |    12    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net.svg) |
+| **正多面体** |                        **三维立体图**                        |                        **三维结构图**                        | **对偶正多面体** | **构成面** | **顶点角之和** | **面数** | **边数** | **点数** | **平面展开图**                                               |
+| :----------: | :----------------------------------------------------------: | :----------------------------------------------------------: | ---------------- | :--------: | :------------: | :------: | :------: | :------: | ------------------------------------------------------------ |
+|  *正四面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net.svg) | `正四面体`       | `正三边形` |     60°×3      |    4     |    6     |    4     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Plane.svg) |
+|  *正六面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net.svg) | `正八面体`       | `正四边形` |     90°×3      |    6     |    12    |    8     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Plane.svg) |
+|  *正八面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net.svg) | `正四面体`       | `正三边形` |     60°×4      |    8     |    12    |    6     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Plane.svg) |
+| *正十二面体* | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net.svg) | `正二十面体`     | `正五边形` |     108°×3     |    12    |    30    |    20    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Plane.svg) |
+| *正二十面体* | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net.svg) | `正十二面体`     | `正三边形` |     60°×5      |    20    |    30    |    12    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Plane.svg) |
 
 除此之外，《几何原本》在结尾处还给出正多面体不多于5种的证明，因而在欧几里得空间中，有且仅有5种正多面体。
 
