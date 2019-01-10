@@ -15,6 +15,7 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > 01. Don't be evil.
 > 01. Don't judge a book by its cover.
 > 01. Don’t count your chickens before they are hatched.
+> 01. Every time I fire a linguist, the performance of the speech recognizer goes up.
 > 01. Extraordinary claims require extraordinary proof.
 > 01. Follow my heart, lead my life.
 > 01. Fool me once, shame on you; Fool me twice, shame on me.
