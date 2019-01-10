@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会
-Revised:   2019-01-11 00:17:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-01-11 00:52:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources:
 ---
@@ -423,14 +423,14 @@ $$
 
 到了19世纪，波尔约合罗巴切夫斯基分别发表了一套与第5公设相反的几何体系，从而证明了第5公设确实是一条公设，不能证明或否定，非欧几何学出现。全新的观念。
 
-| ![height:96px;](figures/Axiomatic_Human_Society/Ellipsoid.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Plane.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Hyperboloid.svg) |
-| :----------------------------------------------------------: | :--------------------------------------------------------: | :----------------------------------------------------------: |
-|                                                              |                                                            | ![height:96px;](figures/Axiomatic_Human_Society/Right_Angle_in_Hyperbolic_Geometry.svg) |
-|                         **椭圆几何**                         |                        **平直几何**                        |                         **双曲几何**                         |
-|                         `[黎曼几何]`                         |                      `[欧几里得几何]`                      |                     `[罗巴切夫斯基几何]`                     |
-|                         曲率为正常数                         |                          曲率为零                          |                         曲率为负常数                         |
-|                  `三角形的内角之和小于180°`                  |                 `三角形的内角之和等于180°`                 |                  `三角形的内角之和大于180°`                  |
-|                 `过直线外一点不存在平行直线`                 |             `过直线外一点有且仅有一条平行直线`             |                过直线外一点有至少两条平行直线                |
+| ![height:96px;](figures/Axiomatic_Human_Society/Ellipsoid.svg) |  ![height:96px;](figures/Axiomatic_Human_Society/Plane.svg)  | ![height:96px;](figures/Axiomatic_Human_Society/Hyperboloid.svg) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![height:96px;](figures/Axiomatic_Human_Society/Right_Angle_in_Elliptic_Geometry.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Right_Angle_in_Flat_Geometry.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Right_Angle_in_Hyperbolic_Geometry.svg) |
+|                         **椭圆几何**                         |                         **平直几何**                         |                         **双曲几何**                         |
+|                         `[黎曼几何]`                         |                       `[欧几里得几何]`                       |                     `[罗巴切夫斯基几何]`                     |
+|                         曲率为正常数                         |                           曲率为零                           |                         曲率为负常数                         |
+|                  `三角形的内角之和小于180°`                  |                  `三角形的内角之和等于180°`                  |                  `三角形的内角之和大于180°`                  |
+|                 `过直线外一点不存在平行直线`                 |              `过直线外一点有且仅有一条平行直线`              |                过直线外一点有至少两条平行直线                |
 
 以现代数学的视角来看，欧几里得公理系统，直到1899年，德国大数学家希尔伯特在其著作《几何基础》中，
 
