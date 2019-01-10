@@ -385,24 +385,26 @@ $$
 
 欧几里得公理系统所构造出来的几何空间，被称为欧几里得几何空间，这就是人们依据日常经验所感觉存在的几何空间。《几何原本》在末卷给出欧几里得空间中5种正多面体的构造性证明，这5种正多面体以其高度完美的空间对称性，因此成为西方众多哲学流派的思想源泉。
 
+正四面体与自身对偶，正六面体与正八面体对偶，正十二面体与正二十面体对偶。
+
 | **正多面体** |                        **三维立体图**                        |                        **三维结构图**                        | **对偶正多面体** | **构成面** | **顶点角之和** | **面数** | **边数** | **点数** | **平面展开图**                                               |
-| :----------: | :----------------------------------------------------------: | :----------------------------------------------------------: | ---------------- | :--------: | :------------: | :------: | :------: | :------: | ------------------------------------------------------------ |
-|  *正四面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net.svg) | `正四面体`       | `正三边形` |     60°×3      |    4     |    6     |    4     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Plane.svg) |
-|  *正六面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net.svg) | `正八面体`       | `正四边形` |     90°×3      |    6     |    12    |    8     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Plane.svg) |
-|  *正八面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net.svg) | `正四面体`       | `正三边形` |     60°×4      |    8     |    12    |    6     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Plane.svg) |
-| *正十二面体* | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net.svg) | `正二十面体`     | `正五边形` |     108°×3     |    12    |    30    |    20    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Plane.svg) |
-| *正二十面体* | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net.svg) | `正十二面体`     | `正三边形` |     60°×5      |    20    |    30    |    12    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Plane.svg) |
+| :----------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :--------------: | :--------: | :------------: | :------: | :------: | :------: | ------------------------------------------------------------ |
+|  *正四面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Net.svg) |    `正四面体`    | `正三边形` |     60°×3      |    4     |    6     |    4     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Tetrahedron_Plane.svg) |
+|  *正六面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Net.svg) |    `正八面体`    | `正四边形` |     90°×3      |    6     |    12    |    8     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Hexahedron_Plane.svg) |
+|  *正八面体*  | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Net.svg) |    `正六面体`    | `正三边形` |     60°×4      |    8     |    12    |    6     | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Octahedron_Plane.svg) |
+| *正十二面体* | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Net.svg) |   `正二十面体`   | `正五边形` |     108°×3     |    12    |    30    |    20    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Dodecahedron_Plane.svg) |
+| *正二十面体* | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron@MATHisFUN.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Net.svg) |   `正十二面体`   | `正三边形` |     60°×5      |    20    |    30    |    12    | ![height:96px;](figures/Axiomatic_Human_Society/Regular_Icosahedron_Plane.svg) |
 
 除此之外，《几何原本》在结尾处还给出正多面体不多于5种的证明，因而在欧几里得空间中，有且仅有5种正多面体。
 
-![height:128px;](figures/Axiomatic_Human_Society/Regular_Polygon.png)
+![height:128px;](figures/Axiomatic_Human_Society/Regular_Polygon.svg)
 
 ```
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 命题：有且仅有5种正多面体。
 证明⬇
 ∵ 任何多面体每个顶点关联面数至少为3，每个顶点关联的平面角之和必须小于360°，正多面体的每个平面角均相等；
-∴ 正多面体的平面角小于360°÷3=120°。
+∴ 正多面体的每个平面角均小于360°÷3=120°。
 ∵ 正六边形每个内角均为120°，更多边正多边形每个内角均大于120°；
 ∴ 不存在以正六边形或者更多边正多边形为构成面的正多面体。
 ∵ 正三边形每个内角均为60°；
@@ -421,14 +423,13 @@ $$
 
 到了19世纪，波尔约合罗巴切夫斯基分别发表了一套与第5公设相反的几何体系，从而证明了第5公设确实是一条公设，不能证明或否定，非欧几何学出现。全新的观念。
 
-| ![height:96px;](figures/Axiomatic_Human_Society/Hyperboloid_of_One_Sheet.svg) |                                    |                              |
-| :----------------------------------------------------------: | :--------------------------------: | :--------------------------: |
-|                         **双曲几何**                         |          **欧几里得几何**          |         **椭圆几何**         |
-|                     `[罗巴切夫斯基几何]`                     |            `[平直几何]`            |         `[黎曼几何]`         |
-|                         曲率为负常数                         |              曲率为零              |         曲率为正常数         |
-|                  `三角形的内角之和大于180°`                  |     `三角形的内角之和等于180°`     |  `三角形的内角之和小于180°`  |
-|                 过直线外一点有无数条平行直线                 | `过直线外一点有且仅有一条平行直线` | `过直线外一点不存在平行直线` |
-|                                                              |                                    |                              |
+| ![height:96px;](figures/Axiomatic_Human_Society/Ellipsoid.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Plane.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Hyperboloid.svg) |
+| :----------------------------------------------------------: | :--------------------------------------------------------: | :----------------------------------------------------------: |
+|                         **椭圆几何**                         |                        **平直几何**                        |                         **双曲几何**                         |
+|                         `[黎曼几何]`                         |                      `[欧几里得几何]`                      |                     `[罗巴切夫斯基几何]`                     |
+|                         曲率为正常数                         |                          曲率为零                          |                         曲率为负常数                         |
+|                  `三角形的内角之和小于180°`                  |                 `三角形的内角之和等于180°`                 |                  `三角形的内角之和大于180°`                  |
+|                 `过直线外一点不存在平行直线`                 |             `过直线外一点有且仅有一条平行直线`             |                过直线外一点有至少两条平行直线                |
 
 以现代数学的视角来看，欧几里得公理系统，直到1899年，德国大数学家希尔伯特在其著作《几何基础》中，
 
