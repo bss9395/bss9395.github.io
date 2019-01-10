@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会
-Revised:   2019-01-10 00:13:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-01-11 00:17:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources:
 ---
@@ -425,6 +425,7 @@ $$
 
 | ![height:96px;](figures/Axiomatic_Human_Society/Ellipsoid.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Plane.svg) | ![height:96px;](figures/Axiomatic_Human_Society/Hyperboloid.svg) |
 | :----------------------------------------------------------: | :--------------------------------------------------------: | :----------------------------------------------------------: |
+|                                                              |                                                            | ![height:96px;](figures/Axiomatic_Human_Society/Right_Angle_in_Hyperbolic_Geometry.svg) |
 |                         **椭圆几何**                         |                        **平直几何**                        |                         **双曲几何**                         |
 |                         `[黎曼几何]`                         |                      `[欧几里得几何]`                      |                     `[罗巴切夫斯基几何]`                     |
 |                         曲率为正常数                         |                          曲率为零                          |                         曲率为负常数                         |
