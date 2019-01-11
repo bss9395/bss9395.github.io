@@ -58,6 +58,9 @@ code {
     display: inline-block;
     white-space: pre;
 }
+div {
+    margin-top: 1em;
+}
 pre {
     display: inline-block;
     margin-top: 1em;
