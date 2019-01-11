@@ -58,19 +58,27 @@ code {
     display: inline-block;
     white-space: pre;
 }
+pre {
+    display: inline-block;
+    margin-top: 1em;
+}
 pre>code {
-    padding-right: 0.5625em;
     white-space: pre-wrap;
 }
 pre>code.language-NOTICE {
     border-color: #FFC107;
     border-left-style: solid;
-    border-left-width: 0.5625em;
-    padding-left: 0.5625em;
+    border-left-width: 6px;
+    padding-left: 0.5em;
 }
-pre, div {
+section {
+    border-color: #FFC107;
+    border-left-style: solid;
+    border-left-width: 3px;
     display: inline-block;
     margin-top: 1em;
+    padding-left: 0.5em;
+    white-space: pre-wrap;
 }
 em {
     color: #8BC34A;
