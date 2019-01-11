@@ -28,7 +28,7 @@ window.onload = function () {
         for (var i = 0; i < maths.length; i++) {
             var section = document.createElement('section');
             section.innerHTML = maths[i].innerHTML;
-            maths[i].parentNode.parentNode.replaceWith(section);   
+            maths[i].parentNode.parentNode.parentNode.replaceWith(section);   
             MathJax.Hub.Queue(['Typeset', MathJax.Hub, section]);
         }
     }

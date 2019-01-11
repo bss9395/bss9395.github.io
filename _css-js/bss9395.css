@@ -45,10 +45,10 @@ blockquote {
     overflow-x: auto;
     overflow-y: hidden;
 }
-blockquote>*:first-of-type, div>*:first-of-type {
+blockquote>*:first-of-type {
     margin-top: 0px;
 }
-blockquote>*:last-of-type, div>*:first-of-type {
+blockquote>*:last-of-type{
     margin-bottom: 0px;
 }
 /* code */
@@ -58,21 +58,17 @@ code {
     display: inline-block;
     white-space: pre;
 }
-div {
-    margin-top: 1em;
-}
 pre {
-    display: inline-block;
     margin-top: 1em;
-}
-pre>code {
-    white-space: pre-wrap;
+	overflow-x: auto;
+    overflow-y: hidden;
 }
 pre>code.language-NOTICE {
     border-color: #FFC107;
-    border-left-style: solid;
-    border-left-width: 6px;
+    border-style: solid;
+    border-width: 3px;
     padding-left: 0.5em;
+	padding-right: 0.5em;
 }
 section {
     border-color: #FFC107;
@@ -199,11 +195,11 @@ ul {
     padding-left: 1.125em;
 }
 li {
-    white-space: pre-wrap;
+    white-space: nowrap;
 }
 /* mark */
 dd>mark {
-    white-space: pre-wrap;
+    white-space: nowrap;
 }
 blockquote>mark {
     display: none;
@@ -238,7 +234,7 @@ th, td {
     padding-top: 1px;
 }
 table em, table strong {
-    white-space: nowrap;
+    white-space: pre;
 }
 @keyframes spin {
 0% {
