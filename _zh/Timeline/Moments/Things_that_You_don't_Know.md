@@ -25,7 +25,9 @@ Resources:
 
 --------------------------------------------------------------------------------
 
-I do have a feel on her, she is so brilliant and so impressive, there is no one like her.
+I do have a feel on her, a feel that is beyond words.
+
+She is so brilliant and so impressive, there is no one like her.
 
 I can't explain why, and I think vice versa.
 
