@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     朋友圈
 Title:     你不知道的事
-Revised:   2019-01-13 00:19:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-01-13 22:28:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources:
 ---
@@ -22,5 +22,13 @@ Resources:
 她的闺蜜比她更没有什么好说的的的。。。
 
 于2019年01月13日 00:19 +08 在湛江 +08
+
+--------------------------------------------------------------------------------
+
+I do have a feel on her, she is so brilliant and so impressive, there is no one like her.
+
+I can't explain why, and I think vice versa.
+
+于2019年01月13日 22:27 +08 在湛江 +08
 
 --------------------------------------------------------------------------------
