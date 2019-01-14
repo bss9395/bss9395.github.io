@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     账号追踪
-Revised:   2019-01-07 23:34:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-01-15 01:18:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -26,6 +26,8 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 | ![width:128px;](figures/bss9395/Twitter/曹山石@caolei1.jpg)  | [曹山石@caolei1](https://twitter.com/caolei1)                | 2011-05     |                   | Email：caolei214@sina.com                                    |                                                              |
 | ![width:128px;](figures/bss9395/Twitter/李方@lifang072.jpg)  | [李方@lifang072](https://twitter.com/lifang072/)             | 2013-02     | Helsinki, Finland | 一个志愿者，民主的中国是我最大梦想。                         |                                                              |
 | ![width:128px;](figures/bss9395/Twitter/流離@jtcg1988.jpg)   | [流離@jtcg1988](https://twitter.com/jtcg1988)                | 2017-06     | U.S.A             | Speak not because it is safe, but because it is right. 說話並不是因為它是安全的，而是因為它是正確的。 |                                                              |
+| ![width:128px;](figures/bss9395/Twitter/盛雪 SHENG Xue@ShengXue_ca.jpg) | [盛雪 SHENG Xue@ShengXue_ca](https://twitter.com/ShengXue_ca) | 2010-02     | 加拿大            | 在权力、权威、信仰、国界、种族、性别、职业、金钱和人际关系等一切社会性标志面前的自由人。 | [blog.boxun.com/hero/shengxue/](https://blog.boxun.com/hero/shengxue/) |
+| ![width:128px;](figures/bss9395/Twitter/盛雪@Sheng_Xue_ca.jpeg) | [盛雪@Sheng_Xue_ca](https://twitter.com/Sheng_Xue_ca)        | 2014-04     | 加拿大            | 在权力、权威、信仰、国界、种族、性别、职业等一切社会性标志面前的自由人。 | [blog.boxun.com/hero/shengxue/](https://blog.boxun.com/hero/shengxue/) |
 | ![width:128px;](figures/bss9395/Twitter/财经真相@caijingxiang.jpg) | [财经真相@caijingxiang](https://twitter.com/caijingxiang/)   | 2014-11     |                   |                                                              |                                                              |
 | ![width:128px;](figures/bss9395/Twitter/闾丘露薇@roseluqiu.gif) | [闾丘露薇@roseluqiu](https://twitter.com/roseluqiu/)         | 2008-07     | Hong Kong         | Luwei Rose Luqiu, a former journalist , now an academic      | [roseluqiu.com](https://www.roseluqiu.com/)                  |
 | ![width:128px;](figures/bss9395/Twitter/🐲千户锦衣卫🐲@Superxiajun.jpg) | [🐲千户锦衣卫🐲@Superxiajun](https://twitter.com/Superxiajun/) | **2017-05** | 🐲 Georgia, USA 🐲  | 蟒袍飞鱼服、无翅乌纱帽 ，金边虎皮靴、玲珑绣春刀，赫赫锦衣卫、威武震满朝！ 五毛统统拉黑！ |                                                              |
