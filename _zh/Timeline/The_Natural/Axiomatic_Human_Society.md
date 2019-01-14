@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     公理化人类社会
-Revised:   2019-01-14 04:02:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-01-17 07:42:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources:
 ---
@@ -578,29 +578,36 @@ $推论：要么x < y，要么x = y，要么x > y。$
 $推论：(x ≤ y) \land (y < z) \implies x < z。$
 $推论：(x < y) \land (y ≤ z) \implies x < z。$
 $推论：(x < y) \land (y < z) \implies x < z。$
-$证明：(x < y) \land (y < z) \iff (x ≤ y) \land (x ≠ y) \land (y ≤ z) \land (y ≠ z) \implies (x ≤ z)；若x = z，则(x < y) \land (y < x)，矛盾；(x ≤ z) \land (x ≠ z) \implies x < z。$
+$证明：(x < y) \land (y < z) \implies [(x ≤ y) \land (y ≤ z)] \land (x ≠ y) \land (y ≠ z) \implies x ≤ z \implies (x < z) \lor (x = z) \implies (x < z) \lor [(x < y) \land (y < x)] \implies (x < z) \lor 0 \implies (x < z)。$
 
-$推论：(x < y) \implies x + z < y + z。$
 $推论：(x ≤ y) \land (z ≤ w) \implies x + z ≤ y + w。$
 $推论：(x ≤ y) \land (z < w) \implies x + z < y + w。$
-$证明：(x ≤ y) \land (z < w) \implies (x - y ≤ 0) \land (0 < w - z) \implies x - y < w - z \implies x + z < y + w。$
+$推论：(x < y) \land (z < w) \implies x + z < y + w。$
+$证明：(x < y) \land (z < w) \implies (x - y < 0) \land (0 < w - z) \implies x - y < w - z \implies (x - y) + y < (w - z) + y \implies x + z = (w + y - z) + z \implies x + z < y + w。$
 
+$推论：0 < x \implies -x < 0。$
+$证明：0 < x \implies 0 - x < x - x \implies -x < 0。$
+
+$推论：(0 ≤ x) \land (0 < y) \implies 0 < x × y。$
 $推论：(0 < x) \land (0 < y) \implies 0 < x × y。$
+$推论：(x ≤ 0) \land (y < 0) \implies 0 < x × y。$
 $推论：(x < 0) \land (y < 0) \implies 0 < x × y。$
+$推论：(0 ≤ x) \land (y ≤ 0) \implies x × y ≤ 0。$
+$推论：(0 ≤ x) \land (y < 0) \implies x × y < 0。$
 $推论：(0 < x) \land (y < 0) \implies x × y < 0。$
-$证明：(0 < x) \land (0 < y) \implies (0 ≤ x) \land (0 ≤ y) \implies 0 ≤ x × y；若x × y = 0，则x = 0 \lor y = 0，矛盾；(0 ≤ x × y) \land (x × y ≠ 0) \implies 0 < x × y。$
-$证明：(x < 0) \land (y < 0) \implies (0 < -x) \land (0 < -y) \implies 0 < (-x) × (-y) = x × y。$
+$证明：(0 < x) \land (y < 0) \implies [(x ≠ 0) \land (y ≠ 0)] \land [(0 ≤ x) \land (0 ≤ -y)] \implies (x × y ≠ 0) \land [0 ≤ x × (-y) = x × y × (-1) = -(x × y)] \implies (x × y ≠ 0) \land (x × y ≤ 0) \implies (x × y < 0)。$
 
+$推论：(x ≤ y) \land (0 ≤ z) \implies x × z ≤ y × z。$
+$推论：(x ≤ y) \land (0 < z) \implies x × z < y × z。$
+$推论：(x < y) \land (0 ≤ z) \implies x × z < y × z。$
 $推论：(x < y) \land (0 < z) \implies x × z < y × z。$
 $推论：(x < y) \land (z < 0) \implies y × z < x × z。$
-$证明：(x < y) \land (0 < z) \implies (0 < y - x) \land (0 < z) \implies 0 < (y - x) × z = y × z - x × z \implies x × z < y × z。$
+$证明：(x < y) \land (z < 0) \implies (x - y < 0) \land (z < 0) \implies 0 < (x - y) × z = x × z - y × z \implies 0 + y × z < (x × z - y × z) + y × z \implies y × z < x × z。$
 
 $推论：0 < 1。$
-$推论：0 < x \implies -x < 0。$
 $推论：0 < x \implies 0 < x^{-1}。$
 $推论：0 < x < y \implies 0 < y^{-1} < x^{-1}。$
 $反证：若1 < 0，则(1 < 0) \land (1 < 0) \implies 0 < 1 × 1 \implies 0 < 1，矛盾。$
-$证明：0 < x \implies 0 - x < x - x \implies -x < 0。$
 $反证：若x^{-1} < 0，则(0 < x) \land (x^{-1} < 0) \implies x × x^{-1} < 0 \implies 1 < 0，矛盾。$
 $证明：0 < x < y \implies (0 < y - x) \land (0 < x^{-1}) \land (0 < y^{-1}) \implies [0 < (y - x) × x^{-1}] \land (0 < y^{-1}) \implies (0 < x^{-1} × y - 1) \land (0 < y^{-1}) \implies 0 < (x^{-1} × y - 1) × y^{-1} \implies 0 < x^{-1} - y^{-1} \implies y^{-1} < x^{-1}。$
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
