@@ -495,7 +495,7 @@ $例子：有理数1 < 无理数\sqrt{2} < 有理数2。直线上点的坐标并
 | *加法*               | `对正整数运算封闭。`                                         | $1 + 1 = 2$               | $\mathbb{Z}^+ + \mathbb{Z}^+ \mapsto \mathbb{Z}^+$ |
 | *减法*               | `对正整数运算不封闭，引入零，扩充成自然数，再引入负整数，扩充成整数。` | $2 - 5 = -3$              | $\mathbb{Z} - \mathbb{Z} \mapsto \mathbb{Z}$       |
 | *乘法*               | `对整数运算封闭。`                                           | $2 × (-3) = -6$           | $\mathbb{Z} × \mathbb{Z} \mapsto \mathbb{Z}$       |
-| *除法（除数不为零）* | `对整数运算不封闭，引入有理数，扩充成有理数。`               | $2 ÷ 3 = \dfrac{2}{3}$    | $\mathbb{Q} ÷ \mathbb{Q} \mapsto \mathbb{Q}$       |
+| *除法（除数不为零）* | `对整数运算不封闭，引入分数，扩充成有理数。`                 | $2 ÷ 3 = \dfrac{2}{3}$    | $\mathbb{Q} ÷ \mathbb{Q} \mapsto \mathbb{Q}$       |
 | *开方*               | `对正有理数运算不封闭，引入无理数，扩充成实数。`             | $\sqrt{2} ≠ \dfrac{p}{q}$ | $\mathbb{R}^n \mapsto \mathbb{R}$                  |
 | *开方*               | `对负实数运算不封闭，引入虚数，扩充成复数。`                 | $\sqrt{-1} = \imath$      | $\mathbb{C}^n \mapsto \mathbb{C}$                  |
 
