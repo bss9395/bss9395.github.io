@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     账号追踪
-Revised:   2019-01-15 01:18:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-01-21 21:51:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -30,6 +30,7 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 | ![width:128px;](figures/bss9395/Twitter/盛雪@Sheng_Xue_ca.jpeg) | [盛雪@Sheng_Xue_ca](https://twitter.com/Sheng_Xue_ca)        | 2014-04     | 加拿大            | 在权力、权威、信仰、国界、种族、性别、职业等一切社会性标志面前的自由人。 | [blog.boxun.com/hero/shengxue/](https://blog.boxun.com/hero/shengxue/) |
 | ![width:128px;](figures/bss9395/Twitter/财经真相@caijingxiang.jpg) | [财经真相@caijingxiang](https://twitter.com/caijingxiang/)   | 2014-11     |                   |                                                              |                                                              |
 | ![width:128px;](figures/bss9395/Twitter/闾丘露薇@roseluqiu.gif) | [闾丘露薇@roseluqiu](https://twitter.com/roseluqiu/)         | 2008-07     | Hong Kong         | Luwei Rose Luqiu, a former journalist , now an academic      | [roseluqiu.com](https://www.roseluqiu.com/)                  |
+| ![width:128px;](figures/bss9395/Twitter/韩连潮.jpg)          | [@lianchaohan](https://twitter.com/lianchaohan)              | 2013-06     |                   | “如果不在意功劳归谁，那么你就可以做无数有益之事。” —里根 “There is no limit to the amount of good you can do if you don't care who gets the credit.” — Reagan |                                                              |
 | ![width:128px;](figures/bss9395/Twitter/🐲千户锦衣卫🐲@Superxiajun.jpg) | [🐲千户锦衣卫🐲@Superxiajun](https://twitter.com/Superxiajun/) | **2017-05** | 🐲 Georgia, USA 🐲  | 蟒袍飞鱼服、无翅乌纱帽 ，金边虎皮靴、玲珑绣春刀，赫赫锦衣卫、威武震满朝！ 五毛统统拉黑！ |                                                              |
 
 ### 微博
