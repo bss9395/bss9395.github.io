@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     账号追踪
-Revised:   2019-01-25 06:58:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-01-28 13:17:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -30,6 +30,7 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 | ![width:128px;](figures/bss9395/Twitter/盛雪 SHENG Xue@ShengXue_ca.jpg) | [盛雪 SHENG Xue@ShengXue_ca](https://twitter.com/ShengXue_ca) | 2010-02     | 加拿大            | 在权力、权威、信仰、国界、种族、性别、职业、金钱和人际关系等一切社会性标志面前的自由人。 | [blog.boxun.com/hero/shengxue/](https://blog.boxun.com/hero/shengxue/) |
 | ![width:128px;](figures/bss9395/Twitter/盛雪@Sheng_Xue_ca.jpeg) | [盛雪@Sheng_Xue_ca](https://twitter.com/Sheng_Xue_ca)        | 2014-04     | 加拿大            | 在权力、权威、信仰、国界、种族、性别、职业等一切社会性标志面前的自由人。 | [blog.boxun.com/hero/shengxue/](https://blog.boxun.com/hero/shengxue/) |
 | ![width:128px;](figures/bss9395/Twitter/财经真相@caijingxiang.jpg) | [财经真相@caijingxiang](https://twitter.com/caijingxiang/)   | 2014-11     |                   |                                                              |                                                              |
+| ![width:128px;](figures/bss9395/Twitter/路德@ding_gang.jpg)  | [路德@ding_gang](https://twitter.com/ding_gang)              | 2014-09     | Nevada, USA       | 路德访谈—真实、接地气、热点！替普通人发声！刺穿黑暗！ 欢迎订阅“路德访谈”“路德社”油管频道。 | [路德社 - YouTube](https://www.youtube.com/channel/UCm3Ysfy0iXhGbIDTNNwLqbQ) |
 | ![width:128px;](figures/bss9395/Twitter/闾丘露薇@roseluqiu.gif) | [闾丘露薇@roseluqiu](https://twitter.com/roseluqiu/)         | 2008-07     | Hong Kong         | Luwei Rose Luqiu, a former journalist , now an academic      | [roseluqiu.com](https://www.roseluqiu.com/)                  |
 | ![width:128px;](figures/bss9395/Twitter/韩连潮.jpg)          | [@lianchaohan](https://twitter.com/lianchaohan)              | 2013-06     |                   | “如果不在意功劳归谁，那么你就可以做无数有益之事。” —里根 “There is no limit to the amount of good you can do if you don't care who gets the credit.” — Reagan |                                                              |
 | ![width:128px;](figures/bss9395/Twitter/🐲千户锦衣卫🐲@Superxiajun.jpg) | [🐲千户锦衣卫🐲@Superxiajun](https://twitter.com/Superxiajun/) | **2017-05** | 🐲 Georgia, USA 🐲  | 蟒袍飞鱼服、无翅乌纱帽 ，金边虎皮靴、玲珑绣春刀，赫赫锦衣卫、威武震满朝！ 五毛统统拉黑！ |                                                              |
