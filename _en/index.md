@@ -35,6 +35,7 @@ Back:   mailto:brilliantstarrysky9395@gmail.com
 > 01. Time will tell.
 > 01. To be, or not to be, that is the question.
 > 01. TRIALs and ERRORs.
+> 01. We are not final because we are infallible, but we are infallible only because we are final.
 > 01. What is rational is real, and what is real is rational.
 > 01. You win some, you lose some.
 > 01. ~~Too young, too simple, sometimes naive. ~~

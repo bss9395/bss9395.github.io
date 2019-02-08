@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     中国热点问题
-Revised:   2019-01-13 01:57:00 +08 @ 中国-广东-湛江 +08
+Revised:   2019-02-08 21:38:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
@@ -581,5 +581,17 @@ The Intercept 可以证实，谷歌为中国开发的审查版搜索引擎将用
 <http://www.weijingsheng.org/report/report2019/report2019-01/WeiJS190106onXiJPonTaiwanA1179-W807.htm>
 
 ![width:210mm;](resources/www.weijingsheng.org$report$report2019$report2019-01$WeiJS190106onXiJPonTaiwanA1179-W807.htm.pdf)
+
+--------------------------------------------------------------------------------
+
+### 中国的党委书记
+
+《中华工商时报》发表调查报告说，全国国有企业、集体企业和私营企业里共有党委书记960万个，如果按一正二副计算，全国共有正副书记4890万个，这相当于一个欧洲大国了，全靠老百姓养着。中纪委原副书记刘锡荣说，中国百姓再怎么勤劳，也难养这么多的官员呀！两套班子，说穿了就是要两倍的税收。
+
+<https://twitter.com/wukongtuwen/status/944209112320983040/>
+
+<https://www.aboluowang.com/2017/0822/981848.html>
+
+<http://politics.people.com.cn/GB/30178/5316277.html>
 
 --------------------------------------------------------------------------------
