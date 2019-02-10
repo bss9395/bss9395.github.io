@@ -7,6 +7,14 @@ Authors:   璀璨星辰
 Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 ---
 
+``` NOTICE
+本篇文档中的案例，都是从书本中原文摘录下来的，为保证内容完整，我没有改动一个字。
+有一些内容与观点，非常不利于美国政府，我个人并不乐意将这部分内容删除。
+历史是不可以逆转的累积沉淀，人类的历史是经过一步步试错，才呈现出今天这个模样。
+但是为了更好的未来，就需要人们将过去引以为戒，指责与诋毁无济于事。
+如果这些案例早早就被人们知道是反面的，它们也就不会发生了。
+```
+
 ###
 
 ——摘录自《社会心理学（第三版）》ISBN:978-7-5184-1058-3，Thomas Gilovich/Dacher Keltner/Serena Chen/Richard E.Nisbett
