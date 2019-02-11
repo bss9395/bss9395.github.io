@@ -15,7 +15,9 @@ Resources: Feedback,https://github.com/bss9395/The_Natural/issues;
 如果这些案例早早就被人们知道是反面的，它们也就不会发生了。
 ```
 
-###
+--------------------------------------------------------------------------------
+
+### 情境的力量
 
 ——摘录自《社会心理学（第三版）》ISBN:978-7-5184-1058-3，Thomas Gilovich/Dacher Keltner/Serena Chen/Richard E.Nisbett
 
