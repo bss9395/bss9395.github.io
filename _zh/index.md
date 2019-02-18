@@ -4,8 +4,6 @@ Title:  璀璨星辰的空间
 Back:   mailto:brilliantstarrysky9395@gmail.com
 ---
 
-**斯坦福监狱角色扮演实验**
-
 **重在参与，胜利有望。**
 
 **中国，早已经进入锦衣卫时代。**
