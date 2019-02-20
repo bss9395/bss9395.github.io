@@ -602,4 +602,10 @@ The Intercept 可以证实，谷歌为中国开发的审查版搜索引擎将用
 
 <https://www.bbc.com/zhongwen/simp/china/2016/01/160114_china_cfps_report/>
 
+<http://www.ftchinese.com/story/001065766/ce?ccode=LanguageSwitch&archive/>
+
+<https://www.dajiyuan.eu/新闻/国际新闻/两岸三地/60699-大陆贫富差距为世界之最-恐造成社会动荡.html>
+
+<http://finance.jrj.com.cn/2018/08/28171025014494.shtml>
+
 --------------------------------------------------------------------------------
