@@ -8,8 +8,6 @@ Resources:
 ---
 
 ***原谅我这一生放荡不羁爱自由。***
-***Forgive me for being so unrestrained to love freedom in this life.***
-
 ***写得有点乱，因为没有人经历过公理化社会。***
 
 ``` NOTICE
