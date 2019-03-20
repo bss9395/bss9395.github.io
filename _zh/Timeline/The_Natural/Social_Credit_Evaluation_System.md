@@ -7,7 +7,7 @@ Authors:   璀璨星辰
 Resources:
 ---
 
-### 区块链的核心原理
+### 区块链的核心概念
 
 ![max-width:480px;](figures/Axiomatic_Human_Society/Bitcoin.png)
 
