@@ -10,24 +10,24 @@ compound=true;
 
 subgraph cluster_contact1 {
 graph[label="社会契约", labelloc="t"];
-contact1_timestamp[label="时间戳"];
-contact1[shape="record", label="<r1> 多个契约ID|<r2> 多个实时信用|<r3> 契约的内容|<r4> ..."];
+contact1_timestamp[label="区块时间戳"];
+contact1[shape="record", label="<r0> 达成时间|<r1> 多个契约ID|<r2> 多个实时信用|<r3> 契约内容|<r4> ..."];
 }
 
 subgraph cluster_evaluation1 {
 graph[label="信用评价", labelloc="t"];
-evaluation1_timestamp[label="时间戳"];
-evaluation1[shape="record", label="<r1> 单个评分ID|<r2> 评分分数|<r3> 评分的解释|<r4> ..."];
+evaluation1_timestamp[label="区块时间戳"];
+evaluation1[shape="record", label="<r0> 达成时间|<r1> 单个评分ID|<r2> 单个评分分数|<r3> 评分解释|<r4> ..."];
 }
 
 subgraph cluster_evaluation2 {
 graph[label="信用评价", labelloc="t"];
-evaluation2_timestamp[label="时间戳"];
-evaluation2[shape="record", label="<r1> 单个评分ID|<r2> 评分分数|<r3> 评分的解释|<r4> ..."];
+evaluation2_timestamp[label="区块时间戳"];
+evaluation2[shape="record", label="<r0> 达成时间|<r1> 单个评分ID|<r2> 单个评分分数|<r3> 评分解释|<r4> ..."];
 }
 
 hashtail1[shape="none", label=""];
-hashhead1[shape="record", label="<r0> 实体的ID|<r1> 实时信用|<r2> 时间戳|<r3> 哈希链长度|<r4> ..."];
+hashhead1[shape="record", label="<r0> ID|<r1> 实时信用|<r2> 哈希链时间戳|<r3> 哈希链长度|<r4> ..."];
 
 evaluation1_timestamp->hashtail1[label="哈希", ltail=cluster_evaluation1];
 contact1_timestamp->evaluation1_timestamp[label="哈希", ltail=cluster_contact1];
