@@ -5,7 +5,7 @@ graph[rankdir="LR", splines="spline"];
 node[fontname="Consola", shape="box", fontsize="10"];
 edge[fontname="Consola", fontsize="10"];
 
-graph[label="哈希链中信用评价的双轮循环验证机制"];
+graph[label="（非对称密钥非重叠签名）\n哈希链中信用评价区块的双轮循环验证机制"];
 
 nm[shape="doublecircle", label="主节点", fixedsize=true];
 na[shape="doublecircle", label="从节点", fixedsize=true];

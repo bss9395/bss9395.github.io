@@ -5,28 +5,30 @@ graph[rankdir="LR", splines="spline"];
 node[fontname="Consola", shape="box", fontsize="10"];
 edge[fontname="Consola", fontsize="10"];
 
-graph[label="哈希链中社会契约的双轮循环验证机制"];
+graph[label="（非对称密钥非重叠签名）\n哈希链中社会契约区块的双轮循环验证机制"];
 
 nm1[shape="doublecircle", label="ID1\n主节点", fixedsize=true];
 na1[shape="doublecircle", label="ID1\n从节点", fixedsize=true];
-
 nm2[shape="doublecircle", label="ID2\n主节点", fixedsize=true];
 na2[shape="doublecircle", label="ID2\n从节点", fixedsize=true];
-
 nm3[shape="doublecircle", label="ID3\n主节点", fixedsize=true];
 na3[shape="doublecircle", label="ID3\n从节点", fixedsize=true];
 
-nm1->nm1[style="filled", color="green"];
-na1->na1[style="filled", color="green"];
-nm2->nm2[style="filled", color="green"];
-na2->na2[style="filled", color="green"];
-nm3->nm3[style="filled", color="green"];
-na3->na3[style="filled", color="green"];
+nm1->nm1[style="filled", color="red", label="确认社会契约", fontcolor="red"];
+nm2->nm2[style="filled", color="red", label="确认社会契约", fontcolor="red"];
+nm3->nm3[style="filled", color="red", label="确认社会契约", fontcolor="red"];
 
-nm1->na1[style="dashed", color="green:red", label="多重签名", fontcolor="red"];
-na1->nm2[style="filled", color="green:red", label="多重签名", fontcolor="red"];
-nm2->na2[style="dashed", color="green:red", label="多重签名", fontcolor="red"];
-na2->nm3[style="filled", color="green:red", label="多重签名", fontcolor="red"];
-nm3->na3[style="dashed", color="green:red", label="多重签名", fontcolor="red"];
-na3->nm1[style="filled", color="green:red", label="多重签名", fontcolor="red"];
+nm1->nm1[style="filled", color="green", label="验证所有签名", fontcolor="green"];
+na1->na1[style="filled", color="green", label="验证所有签名", fontcolor="green"];
+nm2->nm2[style="filled", color="green", label="验证所有签名", fontcolor="green"];
+na2->na2[style="filled", color="green", label="验证所有签名", fontcolor="green"];
+nm3->nm3[style="filled", color="green", label="验证所有签名", fontcolor="green"];
+na3->na3[style="filled", color="green", label="验证所有签名", fontcolor="green"];
+
+nm1->na1[style="dashed", color="green:red", label="多重数字签名", fontcolor="red"];
+na1->nm2[style="filled", color="green:red", label="数字签名", fontcolor="red"];
+nm2->na2[style="dashed", color="green:red", label="多重数字签名", fontcolor="red"];
+na2->nm3[style="filled", color="green:red", label="数字签名", fontcolor="red"];
+nm3->na3[style="dashed", color="green:red", label="多重数字签名", fontcolor="red"];
+na3->nm1[style="filled", color="green:red", label="数字签名", fontcolor="red"];
 }

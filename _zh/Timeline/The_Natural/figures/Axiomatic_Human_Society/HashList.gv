@@ -11,19 +11,19 @@ compound=true;
 subgraph cluster_contact1 {
 graph[label="社会契约", labelloc="t"];
 contact1_timestamp[label="时间戳"];
-contact1[shape="record", label="<r1> 多个契约ID|<r2> 实时信用|<r3> 契约内容|<r4> ..."];
+contact1[shape="record", label="<r1> 多个契约ID|<r2> 多个实时信用|<r3> 契约的内容|<r4> ..."];
 }
 
 subgraph cluster_evaluation1 {
 graph[label="信用评价", labelloc="t"];
 evaluation1_timestamp[label="时间戳"];
-evaluation1[shape="record", label="<r1> 单个评分ID|<r2> 评分分数|<r3> 解释评分|<r4> ..."];
+evaluation1[shape="record", label="<r1> 单个评分ID|<r2> 评分分数|<r3> 评分的解释|<r4> ..."];
 }
 
 subgraph cluster_evaluation2 {
 graph[label="信用评价", labelloc="t"];
 evaluation2_timestamp[label="时间戳"];
-evaluation2[shape="record", label="<r1> 单个评分ID|<r2> 评分分数|<r3> 解释评分|<r4> ..."];
+evaluation2[shape="record", label="<r1> 单个评分ID|<r2> 评分分数|<r3> 评分的解释|<r4> ..."];
 }
 
 hashtail1[shape="none", label=""];
