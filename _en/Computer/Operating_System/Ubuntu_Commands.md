@@ -68,6 +68,7 @@ Resources:
 > | *`cp`*       |      | Copy files and directories.                                  |
 > | *`crontab`*  |      | Maintain crontab files for individual users (Vixie Cron).    |
 > | *`csplit`*   |      | Split a file into sections determined by context lines.      |
+> | *`curl`* | | Transfer a URL. |
 > | *`cut`*      |      | Remove sections from each line of files.                     |
 > | *`cvs`*      |      | Concurrent Versions System.                                  |
 
@@ -85,6 +86,7 @@ Resources:
 > | *`dirs`*     |                  | Display directory stack.                             |
 > | *`disown`*   |                  | Remove jobs from current shell.                      |
 > | *`display`*  |                  | Displays an image or image sequence on any X server. |
+> | *`dos2unix`* | | DOS/Mac to Unix and vice versa text file format converter. |
 > | *`dpkg`*     | `-i -r` `-L -S`    | Package manager for Debian.                          |
 > | *`dss1`*     |                  | Message digests.                                     |
 > | *`du`*       |                  | Estimate file space usage.                           |
@@ -144,12 +146,14 @@ Resources:
 
 > ### H h
 
-> | *`halt`*    |      | Halt, power-off or reboot the machine.   |
-> | :---------- | :--- | :--------------------------------------- |
-> | *`hash`*    |      | Remember or display program locations.   |
-> | *`head`*    |      | Output the first part of files.          |
+> | *`halt`*    |      | Halt, power-off or reboot the machine.      |
+> | :---------- | :--- | :------------------------------------------ |
+> | *`hash`*    |      | Remember or display program locations.      |
+> | *`head`*    |      | Output the first part of files.             |
 > | *`help`*    |      | Display information about builtin commands. |
-> | *`history`* |      | Display or manipulate the history list.  |
+> | *`hexdump`* |      | ASCII, decimal, hexadecimal, octal dump.    |
+> | *`history`* |      | Display or manipulate the history list.     |
+> | *`htop`*    |      |                                             |
 
 > ### I i
 
@@ -161,6 +165,7 @@ Resources:
 > | *`ifconfig`* | `-a` | Configure a network interface.                    |
 > | *`ijoin`*    |      | Interactive spelling checking.                    |
 > | *`info`*     |      | Read info documents.                              |
+> | *`init`*     |      |                                                   |
 > | *`ispell`*   |      | Interactive spelling checking.                    |
 
 > ### J j
@@ -199,6 +204,7 @@ Resources:
 > | *`lprm`*     |                          | Cancel print jobs.                                 |
 > | *`lpstat`*   | `-a -s`                  | Print cups status information.                     |
 > | *`ls`*       | `-a -d -h -l -r -t` `-F` | List directory contents.                           |
+> | *`lsof`*     |                          | List open files.                                   |
 
 > ### M m
 
@@ -215,6 +221,7 @@ Resources:
 > | *`mkdir`*    | `-p` | Make directories.                                            |
 > | *`more`*     |      | File perusal filter for crt viewing.                         |
 > | *`mount`*    |      | Mount a filesystem.                                          |
+> | *`mpstat`*   |      | Report processors related statistics.                        |
 > | *`muchlist`* |      | Interactive spelling checking.                               |
 > | *`mv`*       |      | Move (rename) files.                                         |
 
@@ -242,8 +249,10 @@ Resources:
 > | *`paste`*    |            | Merge lines of files.                                        |
 > | *`pause`*    |            | Wait for signal.                                             |
 > | *`perl`*     |            | The Perl 5 language interpreter.                             |
+> | *`pidstat`*  |            | Report statistics for Linux tasks.                           |
 > | *`ping6`*    |            | Send ICMP ECHO_REQUEST to network hosts.                     |
 > | *`ping`*     |            | Send ICMP ECHO_REQUEST to network hosts.                     |
+> | *`pmap`*     |            | Report memory map of a process.                              |
 > | *`popd`*     |            | Remove directories from stack.                               |
 > | *`poweroff`* |            | Halt, power-off or reboot the machine.                       |
 > | *`pr`*       |            | Convert text files for printing.                             |
@@ -302,6 +311,7 @@ Resources:
 > | *`shift`*      |         | Shift positional parameters.                                 |
 > | *`shopt`*      |         | Set and unset shell options.                                 |
 > | *`sleep`*      |         | Delay for a specified amount of time.                        |
+> | *`snap`*       |         | Tool to interact with snaps.                                 |
 > | *`sort`*       |         | Sort lines of text files.                                    |
 > | *`source`*     |         | Execute commands from a file in the current shell.           |
 > | *`split`*      |         | Split a file into pieces.                                    |
@@ -339,13 +349,14 @@ Resources:
 
 > ### U u
 
-> | *`ulimit`*   | `-n` | Modify shell resource limits.                                |
+> | *`ulimit`*   | `-n` | Get and set user limits.                                     |
 > | :----------- | :--- | :----------------------------------------------------------- |
 > | *`umask`*    |      | Display or set file mode mask.                               |
 > | *`umount`*   |      | Unmount file systems.                                        |
 > | *`unalias`*  |      | Remove each NAME from the list of defined aliases.           |
 > | *`uname`*    |      | Print system information.                                    |
 > | *`unexpand`* |      | Convert spaces to tabs.                                      |
+> | *`unix2dos`* |      | DOS/Mac to Unix and vice versa text file format converter.   |
 > | *`unset`*    |      | Unset values and attributes of shell variables and functions. |
 > | *`updatedb`* |      | Update a database for mlocate.                               |
 > | *`uptime`*   |      | Tell how long the system has been running.                   |
