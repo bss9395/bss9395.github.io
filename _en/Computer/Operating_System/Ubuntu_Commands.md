@@ -127,8 +127,9 @@ Resources:
 
 > ### G g
 
-> | *`geany`*         |           | A small and lightweight IDE.                        |
+> | *`gcc`*           |           | GNU project C and C++ compiler.                     |
 > | :---------------- | :-------- | :-------------------------------------------------- |
+> | *`geany`*         |           | A small and lightweight IDE.                        |
 > | *`gedit`*         |           | Text editor for the GNOME Desktop.                  |
 > | *`getopt`*        |           | Parse command options (enhanced).                   |
 > | *`getopts`*       |           | Parse option arguments.                             |
