@@ -210,22 +210,23 @@ Resources:
 
 > ### M m
 
-> | *`make`*     |      | GNU make utility to maintain groups of programs.             |
-> | :----------- | :--- | :----------------------------------------------------------- |
-> | *`man`*      |      | An interface to the on-line reference manuals.               |
-> | *`mapfile`*  |      | Read lines from the standard input into an indexed array variable. |
-> | *`mawk`*     |      | Pattern scanning and text processing language.               |
-> | *`md2`*      |      | Message digests.                                             |
-> | *`md4`*      |      | Message digests.                                             |
-> | *`md5`*      |      | Message digests.                                             |
-> | *`md5sum`*   |      | Compute and check MD5 message digest.                        |
-> | *`mdc2`*     |      | Message digests.                                             |
-> | *`mkdir`*    | `-p` | Make directories.                                            |
-> | *`more`*     |      | File perusal filter for crt viewing.                         |
-> | *`mount`*    |      | Mount a filesystem.                                          |
-> | *`mpstat`*   |      | Report processors related statistics.                        |
-> | *`muchlist`* |      | Interactive spelling checking.                               |
-> | *`mv`*       |      | Move (rename) files.                                         |
+> | *`make`*         |      | GNU make utility to maintain groups of programs.             |
+> | :--------------- | :--- | :----------------------------------------------------------- |
+> | *`man`*          |      | An interface to the on-line reference manuals.               |
+> | *`mapfile`*      |      | Read lines from the standard input into an indexed array variable. |
+> | *`mawk`*         |      | Pattern scanning and text processing language.               |
+> | *`md2`*          |      | Message digests.                                             |
+> | *`md4`*          |      | Message digests.                                             |
+> | *`md5`*          |      | Message digests.                                             |
+> | *`md5sum`*       |      | Compute and check MD5 message digest.                        |
+> | *`mdc2`*         |      | Message digests.                                             |
+> | *`mkdir`*        | `-p` | Make directories.                                            |
+> | *`mmap, munmap`* |      | Map or unmap files or devices into memory.                   |
+> | *`more`*         |      | File perusal filter for crt viewing.                         |
+> | *`mount`*        |      | Mount a filesystem.                                          |
+> | *`mpstat`*       |      | Report processors related statistics.                        |
+> | *`muchlist`*     |      | Interactive spelling checking.                               |
+> | *`mv`*           |      | Move (rename) files.                                         |
 
 > ### N n
 
@@ -351,8 +352,9 @@ Resources:
 
 > ### U u
 
-> | *`ulimit`*   | `-n` | Get and set user limits.                                     |
+> | *`ulink`*    |      | Call the unlink function to remove the specified file.       |
 > | :----------- | :--- | :----------------------------------------------------------- |
+> | *`ulimit`*   | `-n` | Get and set user limits.                                     |
 > | *`umask`*    | `-S` | Display or set file mode mask.                               |
 > | *`umount`*   |      | Unmount file systems.                                        |
 > | *`unalias`*  |      | Remove each NAME from the list of defined aliases.           |
