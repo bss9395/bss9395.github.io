@@ -197,6 +197,7 @@ Resources:
 > | *`link`*     |                          | Call the link function to create a link to a file. |
 > | *`ln`*       | `-s`                     | Make links between files.                          |
 > | *`local`*    |                          | Define local variables.                            |
+> | *`locale`*   |                          | Get locale-specific information.                   |
 > | *`locate`*   |                          | Find files by name.                                |
 > | *`logout`*   |                          | Exit a login shell.                                |
 > | *`lp`*       |                          | Print files.                                       |
@@ -352,7 +353,7 @@ Resources:
 
 > | *`ulimit`*   | `-n` | Get and set user limits.                                     |
 > | :----------- | :--- | :----------------------------------------------------------- |
-> | *`umask`*    |      | Display or set file mode mask.                               |
+> | *`umask`*    | `-S` | Display or set file mode mask.                               |
 > | *`umount`*   |      | Unmount file systems.                                        |
 > | *`unalias`*  |      | Remove each NAME from the list of defined aliases.           |
 > | *`uname`*    |      | Print system information.                                    |
