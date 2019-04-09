@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     Operating System
 Title:     Ubuntu Commands
-Revised:   2018-03-16 23:04:00 +08 @ China-Xinjiang-Urumqi +06
+Revised:   2018-04-08 21:38:00 +08 @ China-Guangdong-ShenZhen +08
 Authors:   BSS9395
 Resources: 
 ---
@@ -17,6 +17,7 @@ Resources:
 
 > | *`a2ps`*     | `-o` `-L` | Format files for printing on a PostScript printer.      |
 > | :----------- | :-------- | :------------------------------------------------------ |
+> | *`access`*   |           | Check user's permissions for a file.                    |
 > | *`addgroup`* |           | Add a user or group to the system.                      |
 > | *`adduser`*  |           | Add a user or group to the system.                      |
 > | *`alias`*    |           | Define or display aliases.                              |
@@ -212,7 +213,7 @@ Resources:
 
 > | *`make`*         |      | GNU make utility to maintain groups of programs.             |
 > | :--------------- | :--- | :----------------------------------------------------------- |
-> | *`man`*          |      | An interface to the on-line reference manuals.               |
+> | *`man`*          | `1`  | An interface to the on-line reference manuals.               |
 > | *`mapfile`*      |      | Read lines from the standard input into an indexed array variable. |
 > | *`mawk`*         |      | Pattern scanning and text processing language.               |
 > | *`md2`*          |      | Message digests.                                             |
@@ -247,30 +248,31 @@ Resources:
 
 > ### P p
 
-> | *`passwd`*   |            | Change user password.                                        |
-> | :----------- | :--------- | :----------------------------------------------------------- |
-> | *`paste`*    |            | Merge lines of files.                                        |
-> | *`pause`*    |            | Wait for signal.                                             |
-> | *`perl`*     |            | The Perl 5 language interpreter.                             |
-> | *`pidstat`*  |            | Report statistics for Linux tasks.                           |
-> | *`ping6`*    |            | Send ICMP ECHO_REQUEST to network hosts.                     |
-> | *`ping`*     |            | Send ICMP ECHO_REQUEST to network hosts.                     |
-> | *`pmap`*     |            | Report memory map of a process.                              |
-> | *`popd`*     |            | Remove directories from stack.                               |
-> | *`poweroff`* |            | Halt, power-off or reboot the machine.                       |
-> | *`pr`*       |            | Convert text files for printing.                             |
-> | *`printenv`* |            | Print all or part of environment.                            |
-> | *`printf`*   |            | Formats and prints ARGUMENTS under control of the FORMAT.    |
-> | *`ps2pdf12`* |            | Convert PostScript to PDF 1.2 (Acrobat 3-and-later compati‐ble) using ghostscript. |
-> | *`ps2pdf13`* |            | Convert PostScript to PDF 1.3 (Acrobat 4-and-later  compati‐ble) using ghostscript. |
-> | *`ps2pdf14`* |            | Convert PostScript to PDF 1.4 (Acrobat 5-and-later compati‐ble) using ghostscript. |
-> | *`ps2pdf`*   |            | Convert PostScript to PDF using ghostscript.                 |
-> | *`ps`*       | `-a -u -x` | Report a snapshot of the current processes.                  |
-> | *`pstree`*   |            | Display a tree of processes.                                 |
-> | *`pushd`*    |            | Add directories to stack.                                    |
-> | *`putty`*    |            | GUI SSH, Telnet and Rlogin client for X.                     |
-> | *`pwd`*      |            | Print the name of the current working directory.             |
-> | *`python`*   |            | An interpreted, interactive, object-oriented programming language. |
+> | *`passwd`*   |               | Change user password.                                        |
+> | :----------- | :------------ | :----------------------------------------------------------- |
+> | *`paste`*    |               | Merge lines of files.                                        |
+> | *`pause`*    |               | Wait for signal.                                             |
+> | *`perl`*     |               | The Perl 5 language interpreter.                             |
+> | *`pgrep`*    |               | Look  up  or signal processes based on name and other attributes. |
+> | *`pidstat`*  |               | Report statistics for Linux tasks.                           |
+> | *`ping6`*    |               | Send ICMP ECHO_REQUEST to network hosts.                     |
+> | *`ping`*     |               | Send ICMP ECHO_REQUEST to network hosts.                     |
+> | *`pmap`*     |               | Report memory map of a process.                              |
+> | *`popd`*     |               | Remove directories from stack.                               |
+> | *`poweroff`* |               | Halt, power-off or reboot the machine.                       |
+> | *`pr`*       |               | Convert text files for printing.                             |
+> | *`printenv`* |               | Print all or part of environment.                            |
+> | *`printf`*   |               | Formats and prints ARGUMENTS under control of the FORMAT.    |
+> | *`ps2pdf12`* |               | Convert PostScript to PDF 1.2 (Acrobat 3-and-later compati‐ble) using ghostscript. |
+> | *`ps2pdf13`* |               | Convert PostScript to PDF 1.3 (Acrobat 4-and-later  compati‐ble) using ghostscript. |
+> | *`ps2pdf14`* |               | Convert PostScript to PDF 1.4 (Acrobat 5-and-later compati‐ble) using ghostscript. |
+> | *`ps2pdf`*   |               | Convert PostScript to PDF using ghostscript.                 |
+> | *`ps`*       | `-a -u -x -j` | Report a snapshot of the current processes.                  |
+> | *`pstree`*   |               | Display a tree of processes.                                 |
+> | *`pushd`*    |               | Add directories to stack.                                    |
+> | *`putty`*    |               | GUI SSH, Telnet and Rlogin client for X.                     |
+> | *`pwd`*      |               | Print the name of the current working directory.             |
+> | *`python`*   |               | An interpreted, interactive, object-oriented programming language. |
 
 > ### Q q
 
@@ -292,6 +294,7 @@ Resources:
 > | *`ripemd160`* |      | Message digests.                                             |
 > | *`rm`*        |      | Remove files or directories.                                 |
 > | *`rmdir`*     |      | Remove empty directories.                                    |
+> | *`rpm`*       |      | RPM Package Manager。                                        |
 > | *`ruby`*      |      | Interpreted object-oriented scripting language.              |
 
 > ### S s
@@ -303,6 +306,8 @@ Resources:
 > | *`service`*    |         | Run a System V init script.                                  |
 > | *`set`*        |         | Set or unset values of shell options and positional parameters. |
 > | *`setenv`*     |         | Change or add an environment variable.                       |
+> | *`setsid`*     |         | Run a program in a new session.                              |
+> | *`setuid`*     |         | Run a command with a different uid.                          |
 > | *`sftp`*       |         | Secure file transfer program.                                |
 > | *`sha1`*       |         | Message digests.                                             |
 > | *`sha224`*     |         | Message digests.                                             |
