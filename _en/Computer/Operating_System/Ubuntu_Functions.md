@@ -15,15 +15,13 @@ Resources:
 |           |                                |
 |           |                                |
 
-
-
 ### A a
 
-|      |      |      |
-| :--- | :--- | :--- |
-|      |      |      |
-|      |      |      |
-|      |      |      |
+| *`asctime`* | Transform date and time to broken-down time  or ASCII. |
+| :---------- | :----------------------------------------------------- |
+|             |                                                        |
+|             |                                                        |
+|             |                                                        |
 
 ### B b
 
@@ -35,11 +33,11 @@ Resources:
 
 ### C c
 
-| *`chdir`* | Change working directory.        |
-| :-------- | :------------------------------- |
-| *`close`* | Close a file descriptor.         |
-| *`creat`* | Open and possibly create a file. |
-|           |                                  |
+| *`chdir`* | Change working directory.                              |
+| :-------- | :----------------------------------------------------- |
+| *`close`* | Close a file descriptor.                               |
+| *`creat`* | Open and possibly create a file.                       |
+| *`ctime`* | Transform date and time to broken-down time  or ASCII. |
 
 ### D d
 
@@ -59,23 +57,29 @@ Resources:
 
 ### F f
 
-| *`fchdir`*  | Change working directory.         |
-| :---------- | :-------------------------------- |
-| *`fstat`*   | Get file status.                  |
-| *`fstatat`* | Get file status.                  |
-| *`fork`*    | Create a child process.           |
-| *`fputc`*   | Output of characters and strings. |
-| *`fputs`*   | Output of characters and strings. |
-| *`fprintf`* | Formatted output conversion.      |
-|             |                                   |
+| *`fchdir`*  | Change working directory.                                    |
+| :---------- | :----------------------------------------------------------- |
+| *`fstat`*   | Get file status.                                             |
+| *`fstatat`* | Get file status.                                             |
+| *`fork`*    | Create a child process.                                      |
+| *`fputc`*   | Output of characters and strings.                            |
+| *`fputs`*   | Output of characters and strings.                            |
+| *`fprintf`* | Formatted output conversion.                                 |
+| *`ftok`*    | Convert  a pathname and a project identifier to a System V IPC key. |
+| *`fgets`*   | Input of characters and strings.                             |
+| *`fgetc`*   | Input of characters and strings.                             |
+|             |                                                              |
+|             |                                                              |
 
 ### G g
 
-|      |      |      |
-| :--- | :--- | :--- |
-|      |      |      |
-|      |      |      |
-|      |      |      |
+| *`getc`*     | Input of characters and strings. |
+| :----------- | :------------------------------- |
+| *`getchar`*  | Input of characters and strings. |
+| *`getline`*  | Delimited string input.          |
+| *`getdelim`* | Delimited string input.          |
+|              |                                  |
+|              |                                  |
 
 ### H h
 
@@ -119,11 +123,11 @@ Resources:
 
 ### M m
 
-|      |      |      |
-| :--- | :--- | :--- |
-|      |      |      |
-|      |      |      |
-|      |      |      |
+| *`msgctl`* | System V message control operations.     |
+| :--------- | :--------------------------------------- |
+| *`msgget`* | Get a System V message queue identifier. |
+| *`msgrcv`* | System V message queue operations.       |
+| *`msgsnd`* | System V message queue operations        |
 
 ### N n
 
@@ -143,14 +147,26 @@ Resources:
 
 ### P p
 
-| *`perror`*  | Print a system error message.     |
-| :---------- | :-------------------------------- |
-| *`putc`*    | Output of characters and strings. |
-| *`putchar`* | Output of characters and strings. |
-| *`puts`*    | Output of characters and strings. |
-| *`printf`*  | Formatted output conversion.      |
-| *`pipe`*    | Create pipe.                      |
-| *`pipe2`*   | Create pipe.                      |
+| *`perror`*                      | Print a system error message.                                |
+| :------------------------------ | :----------------------------------------------------------- |
+| *`putc`*                        | Output of characters and strings.                            |
+| *`putchar`*                     | Output of characters and strings.                            |
+| *`puts`*                        | Output of characters and strings.                            |
+| *`printf`*                      | Formatted output conversion.                                 |
+| *`pipe`*                        | Create pipe.                                                 |
+| *`pipe2`*                       | Create pipe.                                                 |
+| *`pthread_create`*              | Create a new thread.                                         |
+| *`pthread_join`*                | Join with a terminated thread.                               |
+| *`pthread_attr_init`*           | Initialize  and  destroy thread attributes object.           |
+| *`pthread_getattr_np`*          | Get attributes of created thread.                            |
+| *`pthread_attr_destroy`*        | Initialize  and  destroy thread attributes object.           |
+| *`pthread_attr_setdetachstate`* | Set/get  detach  state attribute in thread attributes object. |
+| *`pthread_attr_getdetachstate`* | Set/get  detach  state attribute in thread attributes object. |
+| *`pthread_exit`*                | Terminate calling thread.                                    |
+| *`pthread_detach`*              | Detach a thread.                                             |
+| *`pthread_self`*                | Obtain ID of the calling thread.                             |
+| *`pthread_getattr_np`*          | Get attributes of created thread.                            |
+|                                 |                                                              |
 
 ### Q q
 
@@ -184,6 +200,9 @@ Resources:
 | *`snprintf`*    | Formatted output conversion.                     |
 | *`sigpending`*  | Examine pending signals.                         |
 | *`sigismember`* | POSIX signal set operations                      |
+| *`strcmp`*      | Compare two strings.                             |
+| *`strncmp`*     | Compare two strings.                             |
+|                 |                                                  |
 
 ### T t
 
@@ -198,7 +217,7 @@ Resources:
 | *`usleep`* | Suspend execution for microsecond intervals. |
 | :--------- | :------------------------------------------- |
 | *`umask`*  | Set file mode creation mask.                 |
-|            |                                              |
+| *`ungetc`* | Input of characters and strings.             |
 |            |                                              |
 
 ### V v
