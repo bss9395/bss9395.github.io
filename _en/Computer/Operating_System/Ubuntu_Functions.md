@@ -33,11 +33,15 @@ Resources:
 
 ### C c
 
-| *`chdir`* | Change working directory.                              |
-| :-------- | :----------------------------------------------------- |
-| *`close`* | Close a file descriptor.                               |
-| *`creat`* | Open and possibly create a file.                       |
-| *`ctime`* | Transform date and time to broken-down time  or ASCII. |
+| *`chdir`*         | Change working directory.                              |
+| :---------------- | :----------------------------------------------------- |
+| *`close`*         | Close a file descriptor.                               |
+| *`creat`*         | Open and possibly create a file.                       |
+| *`ctime`*         | Transform date and time to broken-down time  or ASCII. |
+| *`clock_getres`*  | Clock and time functions.                              |
+| *`clock_gettime`* | Clock and time functions.                              |
+| *`clock_settime`* | Clock and time functions.                              |
+|                   |                                                        |
 
 ### D d
 
@@ -68,18 +72,18 @@ Resources:
 | *`ftok`*    | Convert  a pathname and a project identifier to a System V IPC key. |
 | *`fgets`*   | Input of characters and strings.                             |
 | *`fgetc`*   | Input of characters and strings.                             |
-|             |                                                              |
+| *`ftime`*   | Return date and time.                                        |
 |             |                                                              |
 
 ### G g
 
-| *`getc`*     | Input of characters and strings. |
-| :----------- | :------------------------------- |
-| *`getchar`*  | Input of characters and strings. |
-| *`getline`*  | Delimited string input.          |
-| *`getdelim`* | Delimited string input.          |
-|              |                                  |
-|              |                                  |
+| *`getc`*         | Input of characters and strings. |
+| :--------------- | :------------------------------- |
+| *`getchar`*      | Input of characters and strings. |
+| *`getline`*      | Delimited string input.          |
+| *`getdelim`*     | Delimited string input.          |
+| *`gettimeofday`* | Get / set time.                  |
+|                  |                                  |
 
 ### H h
 
@@ -165,8 +169,13 @@ Resources:
 | *`pthread_exit`*                | Terminate calling thread.                                    |
 | *`pthread_detach`*              | Detach a thread.                                             |
 | *`pthread_self`*                | Obtain ID of the calling thread.                             |
+| *`perror`*                      | Print a system error message.                                |
 | *`pthread_getattr_np`*          | Get attributes of created thread.                            |
-|                                 |                                                              |
+| *`pthread_kill`*                | Send a signal to a thread.                                   |
+| *`pthread_cancel`*              | Send a cancellation request to a thread.                     |
+| *`pthread_testcancel`*          | Request delivery of any pending cancellation request.        |
+| *`pthread_cleanup_push`*        | Push and pop thread cancellation clean-up handlers.          |
+| *`pthread_cleanup_pop`*         | Push and pop thread cancellation clean-up handlers.          |
 
 ### Q q
 
@@ -186,23 +195,26 @@ Resources:
 
 ### S s
 
-| *`setsid`*      | Creates a session and sets the process group ID. |
-| :-------------- | :----------------------------------------------- |
-| *`setuid`*      | Set user identity.                               |
-| *`signal`*      | ANSI C signal handling.                          |
-| *`sigaction`*   | Examine and change a signal action.              |
-| *`sigemptyset`* | POSIX signal set operations.                     |
-| *`sigprocmask`* | examine and change blocked signals.              |
-| *`sleep`*       | Sleep for a specified number of seconds.         |
-| *`stat`*        | Get file status.                                 |
-| *`strlen`*      | Calculate the length of a string.                |
-| *`sprintf`*     | Formatted output conversion.                     |
-| *`snprintf`*    | Formatted output conversion.                     |
-| *`sigpending`*  | Examine pending signals.                         |
-| *`sigismember`* | POSIX signal set operations                      |
-| *`strcmp`*      | Compare two strings.                             |
-| *`strncmp`*     | Compare two strings.                             |
-|                 |                                                  |
+| *`setsid`*                 | Creates a session and sets the process group ID. |
+| :------------------------- | :----------------------------------------------- |
+| *`setuid`*                 | Set user identity.                               |
+| *`signal`*                 | ANSI C signal handling.                          |
+| *`sigaction`*              | Examine and change a signal action.              |
+| *`sigemptyset`*            | POSIX signal set operations.                     |
+| *`sigprocmask`*            | examine and change blocked signals.              |
+| *`sleep`*                  | Sleep for a specified number of seconds.         |
+| *`stat`*                   | Get file status.                                 |
+| *`strlen`*                 | Calculate the length of a string.                |
+| *`sprintf`*                | Formatted output conversion.                     |
+| *`snprintf`*               | Formatted output conversion.                     |
+| *`sigpending`*             | Examine pending signals.                         |
+| *`sigismember`*            | POSIX signal set operations                      |
+| *`strcmp`*                 | Compare two strings.                             |
+| *`strncmp`*                | Compare two strings.                             |
+| *`strerror`*               | Return string describing error number.           |
+| *`sched_get_priority_min`* | Get static priority range.                       |
+| *`sched_get_priority_max`* | Get static priority range.                       |
+| *`settimeofday`*           | Get / set time.                                  |
 
 ### T t
 
