@@ -4,7 +4,7 @@ Topic:     Operating System
 Title:     Ubuntu Commands
 Revised:   2018-04-08 21:38:00 +08 @ China-Guangdong-ShenZhen +08
 Authors:   BSS9395
-Resources: 
+Resources:
 ---
 
 > ### Special Commands
@@ -25,6 +25,7 @@ Resources:
 > | *`apt-get`*  |           | APT package handling utility -- command-line interface. |
 > | *`apt`*      |           | Command-line interface.                                 |
 > | *`aptitude`* |           | High-level interface to the package manager.            |
+> | *`ar`*       |           | Create, modify, and extract from archives.              |
 > | *`aspell`*   |           | Interactive spell checker.                              |
 
 > ### B b
@@ -128,7 +129,7 @@ Resources:
 
 > ### G g
 
-> | *`gcc`*           |           | GNU project C and C++ compiler.                     |
+> | *`gcc`*           | `-L -l`   | GNU project C and C++ compiler.                     |
 > | :---------------- | :-------- | :-------------------------------------------------- |
 > | *`geany`*         |           | A small and lightweight IDE.                        |
 > | *`gedit`*         |           | Text editor for the GNOME Desktop.                  |
@@ -231,14 +232,14 @@ Resources:
 
 > ### N n
 
-> | *`nano`*     |            | Nano's ANOther editor, an enhanced free Pico clone.          |
-> | :----------- | :--------- | :----------------------------------------------------------- |
-> | *`netstat`*  | `-e -i -r` | Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships. |
-> | *`newgrp`*   |            | Log in to a new group.                                       |
-> | *`nice`*     |            | Run a program with modified scheduling priority.             |
-> | *`nl`*       |            | Number lines of files.                                       |
-> | *`nroff`*    |            | Emulate nroff command with groff.                            |
-> | *`nslookup`* |            | Query Internet name servers interactively.                   |
+> | *`nano`*     |                           | Nano's ANOther editor, an enhanced free Pico clone.          |
+> | :----------- | :------------------------ | :----------------------------------------------------------- |
+> | *`netstat`*  | `-a -e -i -l -p -r -t -u` | Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships. |
+> | *`newgrp`*   |                           | Log in to a new group.                                       |
+> | *`nice`*     |                           | Run a program with modified scheduling priority.             |
+> | *`nl`*       |                           | Number lines of files.                                       |
+> | *`nroff`*    |                           | Emulate nroff command with groff.                            |
+> | *`nslookup`* |                           | Query Internet name servers interactively.                   |
 
 > ### O o
 
@@ -357,9 +358,9 @@ Resources:
 
 > ### U u
 
-> | *`ulink`*    |      | Call the unlink function to remove the specified file.       |
-> | :----------- | :--- | :----------------------------------------------------------- |
 > | *`ulimit`*   | `-n` | Get and set user limits.                                     |
+> | :----------- | :--- | :----------------------------------------------------------- |
+> | *`ulink`*    |      | Call the unlink function to remove the specified file.       |
 > | *`umask`*    | `-S` | Display or set file mode mask.                               |
 > | *`umount`*   |      | Unmount file systems.                                        |
 > | *`unalias`*  |      | Remove each NAME from the list of defined aliases.           |
