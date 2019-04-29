@@ -84,10 +84,12 @@ Resources:
 > | *`df`*       |                  | Report file system disk space usage.                 |
 > | *`dgst`*     |                  | Message digests.                                     |
 > | *`diff`*     | `-a -r -u` `-N` | Compare files line by line.                          |
+> | *`diff3`* |  | Compare three files line by line. |
 > | *`dig`* | `+answer +noall +nocmd +nocomments +nostats` | DNS lookup utility. |
 > | *`dirs`*     |                  | Display directory stack.                             |
 > | *`disown`*   |                  | Remove jobs from current shell.                      |
 > | *`display`*  |                  | Displays an image or image sequence on any X server. |
+> | *`docx2txt`* | | Convert Microsoft OOXML files to plain text. |
 > | *`dos2unix`* | | DOS/Mac to Unix and vice versa text file format converter. |
 > | *`dpkg`*     | `-i -r` `-L -S`    | Package manager for Debian.                          |
 > | *`dss1`*     |                  | Message digests.                                     |
@@ -104,48 +106,50 @@ Resources:
 > | *`eval`*     |      | Execute arguments as a shell command.                        |
 > | *`evince`*   |      | GNOME document viewer.                                       |
 > | *`exec`*     |      | Replace the shell with the given command.                    |
+> | *`exiftool`* |      | Read and write meta information in files.                    |
 > | *`exit`*     |      | Exit the shell.                                              |
 > | *`expand`*   |      | Convert tabs to spaces.                                      |
 > | *`export`*   |      | Set export attribute for shell variables.                    |
 
 > ### F f
 
-> | *`factor`*    |                                               | Factor numbers.                                       |
-> | :------------ | :-------------------------------------------- | :---------------------------------------------------- |
-> | *`fc`*        |                                               | Display or execute commands from the history list.    |
-> | *`fchdir`*    |                                               | Change working directory.                             |
-> | *`fg`*        |                                               | Move job to the foreground.                           |
-> | *`fgrep`*     |                                               | Print lines matching a pattern.                       |
-> | *`file`*      |                                               | Determine file type.                                  |
-> | *`find`*      | `-delete -exec -maxdepth -name -print0 -type` | Search for files in a directory hierarchy.            |
-> | *`findaffix`* |                                               | Interactive spelling checking.                        |
-> | *`finger`*    |                                               | User information lookup program.                      |
-> | *`firefox`*   |                                               | A free and open source web browser from Mozilla.      |
-> | *`fmt`*       | `-c -p -w`                                    | Simple optimal text formatter.                        |
-> | *`fold`*      | `-s -w`                                       | Wrap each input line to fit in specified width.       |
-> | *`for`*       |                                               | Execute commands for each member in a list.           |
-> | *`free`*      |                                               | Display amount of free and used memory in the system. |
-> | *`ftp`*       |                                               | Internet file transfer program.                       |
+> | *`factor`*    |                                                      | Factor numbers.                                       |
+> | :------------ | :--------------------------------------------------- | :---------------------------------------------------- |
+> | *`fc`*        |                                                      | Display or execute commands from the history list.    |
+> | *`fchdir`*    |                                                      | Change working directory.                             |
+> | *`fg`*        |                                                      | Move job to the foreground.                           |
+> | *`fgrep`*     |                                                      | Print lines matching a pattern.                       |
+> | *`file`*      |                                                      | Determine file type.                                  |
+> | *`find`*      | `-delete -exec -maxdepth -name -print -print0 -type` | Search for files in a directory hierarchy.            |
+> | *`findaffix`* |                                                      | Interactive spelling checking.                        |
+> | *`finger`*    |                                                      | User information lookup program.                      |
+> | *`firefox`*   |                                                      | A free and open source web browser from Mozilla.      |
+> | *`fmt`*       | `-c -p -w`                                           | Simple optimal text formatter.                        |
+> | *`fold`*      | `-s -w`                                              | Wrap each input line to fit in specified width.       |
+> | *`for`*       |                                                      | Execute commands for each member in a list.           |
+> | *`free`*      |                                                      | Display amount of free and used memory in the system. |
+> | *`ftp`*       |                                                      | Internet file transfer program.                       |
 
 > ### G g
 
-> | *`gcc`*           | `-L -l`   | GNU project C and C++ compiler.                     |
-> | :---------------- | :-------- | :-------------------------------------------------- |
-> | *`geany`*         |           | A small and lightweight IDE.                        |
-> | *`gedit`*         |           | Text editor for the GNOME Desktop.                  |
-> | *`getopt`*        |           | Parse command options (enhanced).                   |
-> | *`getopts`*       |           | Parse option arguments.                             |
-> | *`git`*           |           | The stupid content tracker.                         |
-> | *`google-chrome`* |           | The web browser from Google.                        |
-> | *`gpasswd`*       |           | Administer /etc/group and /etc/gshadow.             |
-> | *`grep`*          |           | Print lines matching a pattern.                     |
-> | *`groff`*         | `-mandoc` | Front-end for the groff document formatting system. |
-> | *`groupadd`*      |           | Create a new group.                                 |
-> | *`groupmod`*      |           | Modify a group definition on the system.            |
-> | *`groups`*        |           | Print the groups a user is in.                      |
-> | *`gunzip`*        |           | Compress or expand files.                           |
-> | *`gv`*            |           | Postscript and PDF viewer.                          |
-> | *`gzip`*          |           | Compress or expand files.                           |
+> | *`gcc`*           | `-L -l`                                                      | GNU project C and C++ compiler.                     |
+> | :---------------- | :----------------------------------------------------------- | :-------------------------------------------------- |
+> | *`geany`*         |                                                              | A small and lightweight IDE.                        |
+> | *`gedit`*         |                                                              | Text editor for the GNOME Desktop.                  |
+> | *`getopt`*        |                                                              | Parse command options (enhanced).                   |
+> | *`getopts`*       |                                                              | Parse option arguments.                             |
+> | *`git`*           |                                                              | The stupid content tracker.                         |
+> | *`google-chrome`* |                                                              | The web browser from Google.                        |
+> | *`gpasswd`*       |                                                              | Administer /etc/group and /etc/gshadow.             |
+> | *`gpg`*           | `--armor --delete-key --delete-secret-keys --detach-sign --gen-key --list-keys --list-secret-keys` | OpenPGP encryption and signing tool.                |
+> | *`grep`*          |                                                              | Print lines matching a pattern.                     |
+> | *`groff`*         | `-mandoc`                                                    | Front-end for the groff document formatting system. |
+> | *`groupadd`*      |                                                              | Create a new group.                                 |
+> | *`groupmod`*      |                                                              | Modify a group definition on the system.            |
+> | *`groups`*        |                                                              | Print the groups a user is in.                      |
+> | *`gunzip`*        |                                                              | Compress or expand files.                           |
+> | *`gv`*            |                                                              | Postscript and PDF viewer.                          |
+> | *`gzip`*          |                                                              | Compress or expand files.                           |
 
 > ### H h
 
@@ -300,40 +304,45 @@ Resources:
 
 > ### S s
 
-> | *`scp`*        | `-P`    | Secure copy (remote file copy program).                      |
-> | :------------- | :------ | :----------------------------------------------------------- |
-> | *`sdiff`*      |         | Side-by-side merge of file differences.                      |
-> | *`sed`*        | `-f`    | Stream editor for filtering and transforming text.           |
-> | *`service`*    |         | Run a System V init script.                                  |
-> | *`set`*        |         | Set or unset values of shell options and positional parameters. |
-> | *`setenv`*     |         | Change or add an environment variable.                       |
-> | *`setsid`*     |         | Run a program in a new session.                              |
-> | *`setuid`*     |         | Run a command with a different uid.                          |
-> | *`sftp`*       |         | Secure file transfer program.                                |
-> | *`sha1`*       |         | Message digests.                                             |
-> | *`sha224`*     |         | Message digests.                                             |
-> | *`sha256`*     |         | Message digests.                                             |
-> | *`sha384`*     |         | Message digests.                                             |
-> | *`sha512`*     |         | Message digests.                                             |
-> | *`sha`*        |         | Message digests.                                             |
-> | *`shadow`*     |         | Shadowed password file.                                      |
-> | *`shift`*      |         | Shift positional parameters.                                 |
-> | *`shopt`*      |         | Set and unset shell options.                                 |
-> | *`sleep`*      |         | Delay for a specified amount of time.                        |
-> | *`snap`*       |         | Tool to interact with snaps.                                 |
-> | *`sort`*       |         | Sort lines of text files.                                    |
-> | *`source`*     |         | Execute commands from a file in the current shell.           |
-> | *`split`*      |         | Split a file into pieces.                                    |
-> | *`ss`*         |         | Another utility to investigate sockets.                      |
-> | *`ssh-keygen`* |         | Authentication key generation, management and conversion.    |
-> | *`ssh`*        | `-X -Y` | OpenSSH SSH client (remote login program).                   |
-> | *`sshd`*       |         | OpenSSH SSH daemon.                                          |
-> | *`stat`*       |         | Display file or file system status.                          |
-> | *`sudo`*       |         | Execute a command as another user.                           |
-> | *`sudoedit`*   |         | Execute a command as another user.                           |
-> | *`suspend`*    |         | Suspend shell execution.                                     |
-> | *`synaptic`*   |         | Graphical management of software packages.                   |
-> | *`systemctl`*  |         | Control the systemd system and service manager.              |
+> | *`scp`*               | `-P`    | Secure copy (remote file copy program).                      |
+> | :-------------------- | :------ | :----------------------------------------------------------- |
+> | *`sdiff`*             |         | Side-by-side merge of file differences.                      |
+> | *`sed`*               | `-f`    | Stream editor for filtering and transforming text.           |
+> | *`service`*           |         | Run a System V init script.                                  |
+> | *`set`*               |         | Set or unset values of shell options and positional parameters. |
+> | *`setenv`*            |         | Change or add an environment variable.                       |
+> | *`setsid`*            |         | Run a program in a new session.                              |
+> | *`setuid`*            |         | Run a command with a different uid.                          |
+> | *`sftp`*              |         | Secure file transfer program.                                |
+> | *`sha1`*              |         | Message digests.                                             |
+> | *`sha224`*            |         | Message digests.                                             |
+> | *`sha256`*            |         | Message digests.                                             |
+> | *`sha384`*            |         | Message digests.                                             |
+> | *`sha512`*            |         | Message digests.                                             |
+> | *`sha`*               |         | Message digests.                                             |
+> | *`shadow`*            |         | Shadowed password file.                                      |
+> | *`shift`*             |         | Shift positional parameters.                                 |
+> | *`shopt`*             |         | Set and unset shell options.                                 |
+> | *`sleep`*             |         | Delay for a specified amount of time.                        |
+> | *`snap`*              |         | Tool to interact with snaps.                                 |
+> | *`sort`*              |         | Sort lines of text files.                                    |
+> | *`source`*            |         | Execute commands from a file in the current shell.           |
+> | *`split`*             |         | Split a file into pieces.                                    |
+> | *`ss`*                |         | Another utility to investigate sockets.                      |
+> | *`ssh-keygen`*        |         | Authentication key generation, management and conversion.    |
+> | *`ssh`*               | `-X -Y` | OpenSSH SSH client (remote login program).                   |
+> | *`sshd`*              |         | OpenSSH SSH daemon.                                          |
+> | *`stat`*              |         | Display file or file system status.                          |
+> | *`sudo`*              |         | Execute a command as another user.                           |
+> | *`sudoedit`*          |         | Execute a command as another user.                           |
+> | *`suspend`*           |         | Suspend shell execution.                                     |
+> | *`synaptic`*          |         | Graphical management of software packages.                   |
+> | *`systemctl`*         |         | Control the systemd system and service manager.              |
+> | *`systemctl start`*   |         |                                                              |
+> | *`systemctl stop`*    |         |                                                              |
+> | *`systemctl restart`* |         |                                                              |
+> | *`systemctl reload`*  |         |                                                              |
+> | *`systemctl status`*  |         |                                                              |
 
 > ### T t
 
@@ -358,22 +367,24 @@ Resources:
 
 > ### U u
 
-> | *`ulimit`*   | `-n` | Get and set user limits.                                     |
-> | :----------- | :--- | :----------------------------------------------------------- |
-> | *`ulink`*    |      | Call the unlink function to remove the specified file.       |
-> | *`umask`*    | `-S` | Display or set file mode mask.                               |
-> | *`umount`*   |      | Unmount file systems.                                        |
-> | *`unalias`*  |      | Remove each NAME from the list of defined aliases.           |
-> | *`uname`*    |      | Print system information.                                    |
-> | *`unexpand`* |      | Convert spaces to tabs.                                      |
-> | *`unix2dos`* |      | DOS/Mac to Unix and vice versa text file format converter.   |
-> | *`unset`*    |      | Unset values and attributes of shell variables and functions. |
-> | *`updatedb`* |      | Update a database for mlocate.                               |
-> | *`uptime`*   |      | Tell how long the system has been running.                   |
-> | *`useradd`*  |      | Create a new user or update default new user information.    |
-> | *`userdel`*  |      | Delete a user account and related files.                     |
-> | *`usermod`*  |      | Modify a user account.                                       |
-> | *`users`*    |      | Print the user names of users currently logged in to the current host. |
+> | *`ulimit`*             | `-n`       | Get and set user limits.                                     |
+> | :--------------------- | :--------- | :----------------------------------------------------------- |
+> | *`ulink`*              |            | Call the unlink function to remove the specified file.       |
+> | *`umask`*              | `-S`       | Display or set file mode mask.                               |
+> | *`umount`*             |            | Unmount file systems.                                        |
+> | *`unalias`*            |            | Remove each NAME from the list of defined aliases.           |
+> | *`uname`*              |            | Print system information.                                    |
+> | *`unexpand`*           |            | Convert spaces to tabs.                                      |
+> | *`unix2dos`*           |            | DOS/Mac to Unix and vice versa text file format converter.   |
+> | *`unset`*              |            | Unset values and attributes of shell variables and functions. |
+> | *`updatedb`*           |            | Update a database for mlocate.                               |
+> | *`uptime`*             |            | Tell how long the system has been running.                   |
+> | *`useradd`*            |            | Create a new user or update default new user information.    |
+> | *`userdel`*            |            | Delete a user account and related files.                     |
+> | *`usermod`*            |            | Modify a user account.                                       |
+> | *`users`*              |            | Print the user names of users currently logged in to the current host. |
+> | *`update-alternative`* | `--config` | Maintain symbolic links determining default commands.        |
+> |                        |            |                                                              |
 
 > ### V v
 
