@@ -325,7 +325,7 @@ Resources:
 > | *`shopt`*             |         | Set and unset shell options.                                 |
 > | *`sleep`*             |         | Delay for a specified amount of time.                        |
 > | *`snap`*              |         | Tool to interact with snaps.                                 |
-> | *`sort`*              |         | Sort lines of text files.                                    |
+> | *`sort`*              | `-k -n` | Sort lines of text files.                                    |
 > | *`source`*            |         | Execute commands from a file in the current shell.           |
 > | *`split`*             |         | Split a file into pieces.                                    |
 > | *`ss`*                |         | Another utility to investigate sockets.                      |
