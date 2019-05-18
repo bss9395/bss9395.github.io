@@ -23,6 +23,7 @@ Resources:
 > | *`alias`*    |           | Define or display aliases.                              |
 > | *`apropos`*  |           | Search the manual page names and descriptions.          |
 > | *`apt-get`*  |           | APT package handling utility -- command-line interface. |
+> | *`apt-key`*  |           | APT key management utility.                             |
 > | *`apt`*      |           | Command-line interface.                                 |
 > | *`aptitude`* |           | High-level interface to the package manager.            |
 > | *`ar`*       |           | Create, modify, and extract from archives.              |
