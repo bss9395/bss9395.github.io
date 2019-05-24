@@ -15,19 +15,21 @@ Resources:
 
 > ### A a
 
-> | *`a2ps`*     | `-o` `-L` | Format files for printing on a PostScript printer.      |
-> | :----------- | :-------- | :------------------------------------------------------ |
-> | *`access`*   |           | Check user's permissions for a file.                    |
-> | *`addgroup`* |           | Add a user or group to the system.                      |
-> | *`adduser`*  |           | Add a user or group to the system.                      |
-> | *`alias`*    |           | Define or display aliases.                              |
-> | *`apropos`*  |           | Search the manual page names and descriptions.          |
-> | *`apt-get`*  |           | APT package handling utility -- command-line interface. |
-> | *`apt-key`*  |           | APT key management utility.                             |
-> | *`apt`*      |           | Command-line interface.                                 |
-> | *`aptitude`* |           | High-level interface to the package manager.            |
-> | *`ar`*       |           | Create, modify, and extract from archives.              |
-> | *`aspell`*   |           | Interactive spell checker.                              |
+> | *`a2ps`*     | `-o` `-L`  | Format files for printing on a PostScript printer.      |
+> | :----------- | :--------- | :------------------------------------------------------ |
+> | *`access`*   |            | Check user's permissions for a file.                    |
+> | *`addgroup`* |            | Add a user or group to the system.                      |
+> | *`adduser`*  |            | Add a user or group to the system.                      |
+> | *`alias`*    |            | Define or display aliases.                              |
+> | *`apropos`*  |            | Search the manual page names and descriptions.          |
+> | *`apt-get`*  |            | APT package handling utility -- command-line interface. |
+> | *`apt-key`*  |            | APT key management utility.                             |
+> | *`apt`*      |            | Command-line interface.                                 |
+> | *`aptitude`* |            | High-level interface to the package manager.            |
+> | *`ar`*       |            | Create, modify, and extract from archives.              |
+> | *`aspell`*   |            | Interactive spell checker.                              |
+> | *`at`*       | `-f -l -r` | Queue, examine or delete jobs for later execution.      |
+> | *`atrm`*     |            | Queue, examine or delete jobs for later execution.      |
 
 > ### B b
 
@@ -49,7 +51,7 @@ Resources:
 > | *`caller`*   |      | Return the context of the current subroutine call.           |
 > | :----------- | :-------- | :------------------------------------------------------ |
 > | *`cancel`*   |      | Cancel jobs.                                                 |
-> | *`cat`*      |      | Concatenate files and print on the standard output.          |
+> | *`cat`*      | `-v` | Concatenate files and print on the standard output.          |
 > | *`cd`*       |      | Change the shell working directory.                          |
 > | *`chage`*    |      | Change user password expiry information.                     |
 > | *`chdir`*    |      | Change working directory.                                    |
@@ -69,6 +71,7 @@ Resources:
 > | *`continue`* |      | Resume for, while, or until loops.                           |
 > | *`coproc`*   |      | Create a coprocess named NAME.                               |
 > | *`cp`*       |      | Copy files and directories.                                  |
+> | *`cron`* | | Daemon to execute scheduled commands (Vixie Cron). |
 > | *`crontab`*  |      | Maintain crontab files for individual users (Vixie Cron).    |
 > | *`csplit`*   |      | Split a file into sections determined by context lines.      |
 > | *`curl`* | | Transfer a URL. |
@@ -94,28 +97,29 @@ Resources:
 > | *`dos2unix`* | | DOS/Mac to Unix and vice versa text file format converter. |
 > | *`dpkg`*     | `-i -r` `-L -S`    | Package manager for Debian.                          |
 > | *`dss1`*     |                  | Message digests.                                     |
-> | *`du`*       |                  | Estimate file space usage.                           |
+> | *`du`*       | `-h -s` | Estimate file space usage.                           |
 
 > ### E e
 
-> | *`echo`*     |      | Write arguments to the standard output.                      |
-> | :----------- | :--- | :----------------------------------------------------------- |
-> | *`egrep`*    |      | Print lines matching a pattern.                              |
-> | *`enable`*   |      | Enable and disable shell builtins.                           |
-> | *`enscript`* |      | Convert text files to PostScript, HTML, RTF, ANSI, and overstrikes. |
-> | *`env`*      |      | Run a program in a modified environment.                     |
-> | *`eval`*     |      | Execute arguments as a shell command.                        |
-> | *`evince`*   |      | GNOME document viewer.                                       |
-> | *`exec`*     |      | Replace the shell with the given command.                    |
-> | *`exiftool`* |      | Read and write meta information in files.                    |
-> | *`exit`*     |      | Exit the shell.                                              |
-> | *`expand`*   |      | Convert tabs to spaces.                                      |
-> | *`export`*   |      | Set export attribute for shell variables.                    |
+> | *`echo`*     | `-e -n` | Write arguments to the standard output.                      |
+> | :----------- | :------ | :----------------------------------------------------------- |
+> | *`egrep`*    |         | Print lines matching a pattern.                              |
+> | *`enable`*   |         | Enable and disable shell builtins.                           |
+> | *`enscript`* |         | Convert text files to PostScript, HTML, RTF, ANSI, and overstrikes. |
+> | *`env`*      |         | Run a program in a modified environment.                     |
+> | *`eval`*     |         | Execute arguments as a shell command.                        |
+> | *`evince`*   |         | GNOME document viewer.                                       |
+> | *`exec`*     |         | Replace the shell with the given command.                    |
+> | *`exiftool`* |         | Read and write meta information in files.                    |
+> | *`exit`*     |         | Exit the shell.                                              |
+> | *`expand`*   |         | Convert tabs to spaces.                                      |
+> | *`export`*   |         | Set export attribute for shell variables.                    |
 
 > ### F f
 
 > | *`factor`*    |                                                      | Factor numbers.                                       |
 > | :------------ | :--------------------------------------------------- | :---------------------------------------------------- |
+> | *`false`*     |                                                      | Do nothing, unsuccessfully.                           |
 > | *`fc`*        |                                                      | Display or execute commands from the history list.    |
 > | *`fchdir`*    |                                                      | Change working directory.                             |
 > | *`fg`*        |                                                      | Move job to the foreground.                           |
@@ -143,7 +147,7 @@ Resources:
 > | *`google-chrome`* |                                                              | The web browser from Google.                        |
 > | *`gpasswd`*       |                                                              | Administer /etc/group and /etc/gshadow.             |
 > | *`gpg`*           | `--armor --delete-key --delete-secret-keys --detach-sign --gen-key --list-keys --list-secret-keys` | OpenPGP encryption and signing tool.                |
-> | *`grep`*          |                                                              | Print lines matching a pattern.                     |
+> | *`grep`*          | `-v`                                                         | Print lines matching a pattern.                     |
 > | *`groff`*         | `-mandoc`                                                    | Front-end for the groff document formatting system. |
 > | *`groupadd`*      |                                                              | Create a new group.                                 |
 > | *`groupmod`*      |                                                              | Modify a group definition on the system.            |
@@ -243,6 +247,7 @@ Resources:
 > | *`newgrp`*   |                           | Log in to a new group.                                       |
 > | *`nice`*     |                           | Run a program with modified scheduling priority.             |
 > | *`nl`*       |                           | Number lines of files.                                       |
+> | *`nohup`*    |                           | Run a command immune to hangups, with output to a non-tty.   |
 > | *`nroff`*    |                           | Emulate nroff command with groff.                            |
 > | *`nslookup`* |                           | Query Internet name servers interactively.                   |
 
@@ -288,20 +293,20 @@ Resources:
 
 > ### R r
 
-> | *`read`*      | `-p` | Read a line from the standard input and split it into fields. |
-> | :------------ | :--- | :----------------------------------------------------------- |
-> | *`readarray`* |      | Read lines from a file into an array variable.               |
-> | *`readonly`*  |      | Mark shell variables as unchangeable.                        |
-> | *`reboot`*    |      |                                                              |
-> | *`reboot`*    |      | Halt, power-off or reboot the machine.                       |
-> | *`renice`*    |      | Alter priority of running processes.                         |
-> | *`return`*    |      | Return from a shell function.                                |
-> | *`rgrep`*     |      | Print lines matching a pattern.                              |
-> | *`ripemd160`* |      | Message digests.                                             |
-> | *`rm`*        |      | Remove files or directories.                                 |
-> | *`rmdir`*     |      | Remove empty directories.                                    |
-> | *`rpm`*       |      | RPM Package Manager。                                        |
-> | *`ruby`*      |      | Interpreted object-oriented scripting language.              |
+> | *`read`*      | `-d -n -p -r -s -t -u` | Read a line from the standard input and split it into fields. |
+> | :------------ | :--------------------- | :----------------------------------------------------------- |
+> | *`readarray`* |                        | Read lines from a file into an array variable.               |
+> | *`readonly`*  |                        | Mark shell variables as unchangeable.                        |
+> | *`reboot`*    |                        |                                                              |
+> | *`reboot`*    |                        | Halt, power-off or reboot the machine.                       |
+> | *`renice`*    |                        | Alter priority of running processes.                         |
+> | *`return`*    |                        | Return from a shell function.                                |
+> | *`rgrep`*     |                        | Print lines matching a pattern.                              |
+> | *`ripemd160`* |                        | Message digests.                                             |
+> | *`rm`*        |                        | Remove files or directories.                                 |
+> | *`rmdir`*     |                        | Remove empty directories.                                    |
+> | *`rpm`*       |                        | RPM Package Manager。                                        |
+> | *`ruby`*      |                        | Interpreted object-oriented scripting language.              |
 
 > ### S s
 
@@ -350,6 +355,7 @@ Resources:
 > | *`tail`*       |                     | Output the last part of files.                               |
 > | :------------- | :------------------ | :----------------------------------------------------------- |
 > | *`tar`*        | `-c -f -v -x -z -C` | The gnu version of the tar archiving utility.                |
+> | *`tee`*        | `-a`                | Read from standard input and write to standard output and files. |
 > | *`telnet`*     |                     | User interface to the TELNET protocol.                       |
 > | *`test`*       |                     | Evaluate conditional expression.                             |
 > | *`time`*       |                     | Report time consumed by pipeline's execution.                |
@@ -362,6 +368,7 @@ Resources:
 > | *`traceroute`* |                     | Print the route packets trace to network host.               |
 > | *`trap`*       |                     | Trap signals and other events.                               |
 > | *`troff`*      |                     | The troff processor of the groff text formatting system.     |
+> | *`true`*       |                     | Do nothing, successfully.                                    |
 > | *`tryaffix`*   |                     | Interactive spelling checking.                               |
 > | *`type`*       |                     | Display information about command type.                      |
 > | *`typeset`*    |                     | Set variable values and attributes.                          |
@@ -378,6 +385,7 @@ Resources:
 > | *`unexpand`*           |            | Convert spaces to tabs.                                      |
 > | *`unix2dos`*           |            | DOS/Mac to Unix and vice versa text file format converter.   |
 > | *`unset`*              |            | Unset values and attributes of shell variables and functions. |
+> | *`until`*              |            | Execute commands as long as a test does not succeed.         |
 > | *`updatedb`*           |            | Update a database for mlocate.                               |
 > | *`uptime`*             |            | Tell how long the system has been running.                   |
 > | *`useradd`*            |            | Create a new user or update default new user information.    |
