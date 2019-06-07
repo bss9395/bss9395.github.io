@@ -36,6 +36,7 @@ Resources:
 > | *`basename`*     |      | Strip directory and suffix from filenames. |
 > | :----------- | :-------- | :------------------------------------------------------ |
 > | *`bash`*         |      | GNU Bourne-Again SHell.                    |
+> | *`bc`* | | An arbitrary precision calculator language. |
 > | *`bg`*           |      | Move jobs to the background.               |
 > | *`bind`*         |      | Set Readline key bindings and variables.   |
 > | *`break`*        |      | Exit for, while, or until loops.           |
@@ -75,7 +76,7 @@ Resources:
 > | *`crontab`*  |      | Maintain crontab files for individual users (Vixie Cron).    |
 > | *`csplit`*   |      | Split a file into sections determined by context lines.      |
 > | *`curl`* | | Transfer a URL. |
-> | *`cut`*      |      | Remove sections from each line of files.                     |
+> | *`cut`*      | `-c -f` | Remove sections from each line of files.                     |
 > | *`cvs`*      |      | Concurrent Versions System.                                  |
 
 > ### D d
@@ -221,23 +222,26 @@ Resources:
 
 > ### M m
 
-> | *`make`*         |      | GNU make utility to maintain groups of programs.             |
-> | :--------------- | :--- | :----------------------------------------------------------- |
-> | *`man`*          | `1`  | An interface to the on-line reference manuals.               |
-> | *`mapfile`*      |      | Read lines from the standard input into an indexed array variable. |
-> | *`mawk`*         |      | Pattern scanning and text processing language.               |
-> | *`md2`*          |      | Message digests.                                             |
-> | *`md4`*          |      | Message digests.                                             |
-> | *`md5`*          |      | Message digests.                                             |
-> | *`md5sum`*       |      | Compute and check MD5 message digest.                        |
-> | *`mdc2`*         |      | Message digests.                                             |
-> | *`mkdir`*        | `-p` | Make directories.                                            |
-> | *`mmap, munmap`* |      | Map or unmap files or devices into memory.                   |
-> | *`more`*         |      | File perusal filter for crt viewing.                         |
-> | *`mount`*        |      | Mount a filesystem.                                          |
-> | *`mpstat`*       |      | Report processors related statistics.                        |
-> | *`muchlist`*     |      | Interactive spelling checking.                               |
-> | *`mv`*           |      | Move (rename) files.                                         |
+> | *`make`*     |      | GNU make utility to maintain groups of programs.             |
+> | :----------- | :--- | :----------------------------------------------------------- |
+> | *`man`*      | `1`  | An interface to the on-line reference manuals.               |
+> | *`mapfile`*  |      | Read lines from the standard input into an indexed array variable. |
+> | *`mawk`*     |      | Pattern scanning and text processing language.               |
+> | *`md2`*      |      | Message digests.                                             |
+> | *`md4`*      |      | Message digests.                                             |
+> | *`md5`*      |      | Message digests.                                             |
+> | *`md5sum`*   |      | Compute and check MD5 message digest.                        |
+> | *`mdc2`*     |      | Message digests.                                             |
+> | *`mkdir`*    | `-p` | Make directories.                                            |
+> | *`mkfifo`*   |      | Make FIFOs (named pipes).                                    |
+> | *`mktemp`*   |      | Create a temporary file or directory.                        |
+> | *`mmap`*     |      | Map or unmap files or devices into memory.                   |
+> | *`munmap`*   |      | Map or unmap files or devices into memory.                   |
+> | *`more`*     |      | File perusal filter for crt viewing.                         |
+> | *`mount`*    |      | Mount a filesystem.                                          |
+> | *`mpstat`*   |      | Report processors related statistics.                        |
+> | *`muchlist`* |      | Interactive spelling checking.                               |
+> | *`mv`*       |      | Move (rename) files.                                         |
 
 > ### N n
 
@@ -338,7 +342,8 @@ Resources:
 > | *`ssh-keygen`*        |         | Authentication key generation, management and conversion.    |
 > | *`ssh`*               | `-X -Y` | OpenSSH SSH client (remote login program).                   |
 > | *`sshd`*              |         | OpenSSH SSH daemon.                                          |
-> | *`stat`*              |         | Display file or file system status.                          |
+> | *`stat`*              | `-c`    | Display file or file system status.                          |
+> | *`strings`*           |         | Print the strings of printable characters in files.          |
 > | *`sudo`*              |         | Execute a command as another user.                           |
 > | *`sudoedit`*          |         | Execute a command as another user.                           |
 > | *`suspend`*           |         | Suspend shell execution.                                     |
@@ -352,7 +357,7 @@ Resources:
 
 > ### T t
 
-> | *`tail`*       |                     | Output the last part of files.                               |
+> | *`tail`*       | `-n`                | Output the last part of files.                               |
 > | :------------- | :------------------ | :----------------------------------------------------------- |
 > | *`tar`*        | `-c -f -v -x -z -C` | The gnu version of the tar archiving utility.                |
 > | *`tee`*        | `-a`                | Read from standard input and write to standard output and files. |
