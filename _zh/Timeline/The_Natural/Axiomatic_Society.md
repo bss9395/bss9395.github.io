@@ -1,7 +1,7 @@
 ---
 layout:    zh_post
 Topic:     顺其自然
-Title:     公理化人类社会
+Title:     公理化社会
 Revised:   2019-05-05 22:00:00 +08 @ 中国-广东-湛江 +08
 Authors:   璀璨星辰
 Resources:
