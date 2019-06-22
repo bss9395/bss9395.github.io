@@ -2,7 +2,7 @@
 layout:    zh_post
 Topic:     顺其自然
 Title:     经济社会与契约社会中人们的选择
-Revised:   2019-06-23 00:12:00 +08 @ 中国-广东-深圳 +08
+Revised:   2019-06-22 00:12:00 +08 @ 中国-广东-深圳 +08
 Authors:   璀璨星辰
 Resources:
 ---
