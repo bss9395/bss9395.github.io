@@ -34,13 +34,25 @@ using std::queue;
 using std::exp2;
 using std::log2;
 
+#include <memory>
+using std::uninitialized_fill_n;
+
+/*
+0:      0
+		|
+1:	    1
+	   / \
+2:	  2   3
+	 / \ / \
+3:  4  5 6  7
+*/
+
 template<typename T>
 class ArrayTree {
 	static ostream *__os;
 public:
 	// 1 <= depth
 	// 2^(depth-1) <= size < 2^depth
-	// 2^(depth-1)-1 <= size-1 < 2^depth-1
 	ArrayTree(long depth = 0) {
 		if (0 <= depth) {
 			_depth = depth;
@@ -50,6 +62,7 @@ public:
 		}
 		throw logic_error("ArrayTree(long): depth should >= 0.");
 	}
+	// { Null, "1", "2", "3", Null, "5", "6", Null }
 	ArrayTree(initializer_list<T> il) {
 		long size = il.size() - 1;
 		_depth = long((size <= 0) ? 0 : log2(size) + 1);
@@ -73,6 +86,10 @@ public:
 	}
 	~ArrayTree() {
 		_reset();
+	}
+public:
+	auto operator[](long index) -> T & {
+		return _elements[index];
 	}
 public:
 	auto empty() const -> bool {
@@ -153,7 +170,8 @@ protected:
 		}
 	}
 	auto _levelOrder(long node) -> void {
-		if (node < _capacity && _elements[node] != _elements[0]) {
+		const T Null = _elements[0];
+		if (node < _capacity && _elements[node] != Null) {
 			queue<long> level;
 			level.push(node);
 
@@ -162,10 +180,10 @@ protected:
 				level.pop();
 
 				_visit(node);
-				if (_left(node) < _capacity && _elements[_left(node)] != _elements[0]) {
+				if (_left(node) < _capacity && _elements[_left(node)] != Null) {
 					level.push(_left(node));
 				}
-				if (_right(node) < _capacity && _elements[_right(node)] != _elements[0]) {
+				if (_right(node) < _capacity && _elements[_right(node)] != Null) {
 					level.push(_right(node));
 				}
 			}
@@ -178,22 +196,24 @@ protected:
 		_elements = new T[_capacity]();
 	}
 protected:
+	bool _first;
+protected:
 	long _depth;
 	long _capacity;
 	T *_elements;
-
-	bool _first;
 };
 
 template<typename T>
 ostream *ArrayTree<T>::__os = &cout;
 
 template class ArrayTree<string>;
+
 #endif // ArrayTree_h
 
 #ifdef Main
+
 int main(int argc, char *argv[]) {
-	string Null = string("$");
+	const string Null = string("$");
 	ArrayTree<string> tree({ Null, "1", "2", "3", Null, "5", "6", Null });
 	if (tree.empty()) {
 		cout << "empty" << endl;
@@ -205,6 +225,5 @@ int main(int argc, char *argv[]) {
 	tree.levelOrder();
 	return 0;
 }
-#endif // Main
+#endif
 ```
-
