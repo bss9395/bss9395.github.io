@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     Data Structure
 Title:     ArrayTree
-Revised:   2018-06-27 20:38:00 +08 @ China-Guangdong-ShenZhen +08
+Revised:   2018-06-28 21:15:00 +08 @ China-Guangdong-ShenZhen +08
 Authors:   BSS9395
 Resources:
 ---
@@ -136,6 +136,18 @@ public:
 		_clear();
 		_reset();
 	}
+	auto clearNode(BinaryNode *(&node)) -> void {
+		_first = true;
+		_visit = &BinaryTree::_delete;
+
+		(*__os) << "clearTree(BinaryNode *): ";
+		_levelOrder(node);
+		node = nullptr;
+		(*__os) << endl;
+
+		height();
+		count();
+	}
 public:
 	auto empty() -> bool {
 		bool ret1 = (_depth == 0);
@@ -149,24 +161,22 @@ public:
 		return (ret1 && ret2 && ret3 && ret4);
 	}
 	auto height() -> long {
-		long height = _height(_head._right);
-		if (!(_depth == height)) {
-			throw logic_error("depth(): BinaryTree abnormal!");
-		}
-
+		_depth = _height(_head._right);
 		return _depth;
 	}
 	auto count() -> long {
 		_visit = &BinaryTree::_count;
 
-		long size = _size;
 		_size = 0;
+		//_preOrder(_head._right);
+		//_inOrder(_head._right);
+		//_postOrder(_head._right);
 		_levelOrder(_head._right);
-		if (!(_size == size)) {
-			throw logic_error("count(): BinaryTree abnormal!");
-		}
 
 		return _size;
+	}
+	auto root() -> BinaryNode *& {
+		return _head._right;
 	}
 	auto preOrder() -> void {
 		_first = true;
@@ -214,6 +224,11 @@ protected:
 	auto _count(BinaryNode *node) -> void {
 		_size++;
 	}
+	auto _delete(BinaryNode *node) -> void {
+		(*__os) << (_first ? (_first = false, "") : "<-");
+		(*__os) << node->_element;
+		delete node;
+	}
 	auto _height(BinaryNode *node) -> long {
 		if (node == nullptr) {
 			return 0;
@@ -225,22 +240,28 @@ protected:
 	}
 	auto _preOrder(BinaryNode *node) -> void {
 		if (node != nullptr) {
+			BinaryNode *left = node->_left;
+			BinaryNode *right = node->_right;
 			(this->*_visit)(node);
-			_preOrder(node->_left);
-			_preOrder(node->_right);
+			_preOrder(left);
+			_preOrder(right);
 		}
 	}
 	auto _inOrder(BinaryNode *node) -> void {
 		if (node != nullptr) {
-			_inOrder(node->_left);
+			BinaryNode *left = node->_left;
+			BinaryNode *right = node->_right;
+			_inOrder(left);
 			(this->*_visit)(node);
-			_inOrder(node->_right);
+			_inOrder(right);
 		}
 	}
 	auto _postOrder(BinaryNode *node) -> void {
 		if (node != nullptr) {
-			_postOrder(node->_left);
-			_postOrder(node->_right);
+			BinaryNode *left = node->_left;
+			BinaryNode *right = node->_right;
+			_postOrder(left);
+			_postOrder(right);
 			(this->*_visit)(node);
 		}
 	}
@@ -253,42 +274,38 @@ protected:
 				node = level.front();
 				level.pop();
 
-				(this->*_visit)(node);
 				if (node->_left != nullptr) {
 					level.push(node->_left);
 				}
 				if (node->_right != nullptr) {
 					level.push(node->_right);
 				}
+				(this->*_visit)(node);
 			}
 		}
 	}
-	auto _clear() -> void {
-		if (_head._right != nullptr) {
-			_first = true;
-
-			queue<BinaryNode *> level;
-			level.push(_head._right);
-
-			(*__os) << "[depth: " << _depth << ", size: " << _size << ", ~BinaryTree()] ";
-			BinaryNode *node;
-			while (!level.empty()) {
-				node = level.front();
-				level.pop();
-
-				if (node->_left != nullptr) {
-					level.push(node->_left);
-				}
-				if (node->_right != nullptr) {
-					level.push(node->_right);
-				}
-
-				(*__os) << (_first ? (_first = false, "") : "<-");
-				(*__os) << *node;
-				delete node;
-			}
-			(*__os) << endl;
+protected:
+	auto _checkStatus() -> void {
+		long depth = _depth;
+		if (!(_depth == depth)) {
+			throw logic_error("depth(): BinaryTree abnormal!");
 		}
+
+		long size = _size;
+		if (!(_size == size)) {
+			throw logic_error("count(): binarytree abnormal!");
+		}
+	}
+	auto _clear() -> void {
+		_first = true;
+		_visit = &BinaryTree::_delete;
+
+		(*__os) << "[depth: " << _depth << ", size: " << _size << ", ~BinaryTree()] ";
+		// _preOrder(_head._right);
+		// _inOrder(_head._right);
+		// _postOrder(_head._right);
+		_levelOrder(_head._right);
+		(*__os) << endl;
 	}
 	auto _reset() -> void {
 		_depth = 0;
@@ -319,14 +336,13 @@ int main(int argv, char *arv[]) {
 	tree.postOrder();
 	tree.levelOrder();
 
-	tree.height();
-	tree.count();
+	tree.clearNode(tree.root()->_left);
 
-	BinaryTree<string> tr2(tree);
-	tr2.preOrder();
+	BinaryTree<string> tree2(tree);
+	tree2.preOrder();
 
-	BinaryTree<string> tr3;
-	cout << tr3.empty() << endl;
+	BinaryTree<string> tree3;
+	cout << tree3.empty() << endl;
 
 	return 0;
 }
