@@ -166,7 +166,7 @@ Resources:
 > | *`help`*    |      | Display information about builtin commands. |
 > | *`hexdump`* |      | ASCII, decimal, hexadecimal, octal dump.    |
 > | *`history`* |      | Display or manipulate the history list.     |
-> | *`htop`*    |      |                                             |
+> | `htpasswd`  |      | Manage user files for basic authentication. |
 
 > ### I i
 
