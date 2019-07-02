@@ -2,7 +2,7 @@
 layout:    en_post
 Topic:     Data Structure
 Title:     ArrayTree
-Revised:   2018-06-28 21:15:00 +08 @ China-Guangdong-ShenZhen +08
+Revised:   2018-07-02 19:15:00 +08 @ China-Guangdong-ShenZhen +08
 Authors:   BSS9395
 Resources:
 ---
@@ -112,7 +112,7 @@ public:
 		delete tree[0];
 	}
 	BinaryTree(const BinaryTree &tree)
-		: _depth(tree._depth), _size(tree._size), _head(tree._head._element, nullptr, nullptr) {
+		: _depth(tree._depth), _size(tree._size), _head(tree._head) {
 
 		queue<pair<const BinaryNode *, BinaryNode *>> level;
 		level.push({ &tree._head, &_head });
@@ -136,13 +136,13 @@ public:
 		_clear();
 		_reset();
 	}
-	auto clearNode(BinaryNode *(&node)) -> void {
+	auto clearTree(BinaryNode *(&tree)) -> void {
 		_first = true;
 		_visit = &BinaryTree::_delete;
 
 		(*__os) << "clearTree(BinaryNode *): ";
-		_levelOrder(node);
-		node = nullptr;
+		_levelOrder(tree);
+		tree = nullptr;
 		(*__os) << endl;
 
 		height();
@@ -209,6 +209,26 @@ public:
 		(*__os) << "[depth: " << _depth << ", size: " << _size << ", levelOrder()] ";
 		_levelOrder(_head._right);
 		(*__os) << endl;
+	}
+	auto checkStatus() -> bool {
+		long depth = _depth;
+		_depth = _height(_head._right);
+		if (!(_depth == depth)) {
+			throw logic_error("depth(): BinaryTree abnormal!");
+		}
+
+		long size = _size;
+		_size = 0;
+		_visit = &BinaryTree::_count;
+		//_preOrder(_head._right);
+		//_inOrder(_head._right);
+		//_postOrder(_head._right);
+
+		_levelOrder(_head._right);
+		if (!(_size == size)) {
+			throw logic_error("count(): binarytree abnormal!");
+		}
+		return true;
 	}
 protected:
 	auto _left(long parent) const -> long {
@@ -285,17 +305,6 @@ protected:
 		}
 	}
 protected:
-	auto _checkStatus() -> void {
-		long depth = _depth;
-		if (!(_depth == depth)) {
-			throw logic_error("depth(): BinaryTree abnormal!");
-		}
-
-		long size = _size;
-		if (!(_size == size)) {
-			throw logic_error("count(): binarytree abnormal!");
-		}
-	}
 	auto _clear() -> void {
 		_first = true;
 		_visit = &BinaryTree::_delete;
@@ -336,10 +345,11 @@ int main(int argv, char *arv[]) {
 	tree.postOrder();
 	tree.levelOrder();
 
-	tree.clearNode(tree.root()->_left);
+	tree.clearTree(tree.root()->_left);
 
 	BinaryTree<string> tree2(tree);
 	tree2.preOrder();
+	cout << tree2.checkStatus() << endl;
 
 	BinaryTree<string> tree3;
 	cout << tree3.empty() << endl;
