@@ -138,8 +138,9 @@ Resources:
 
 > ### G g
 
-> | *`gcc`*           | `-L -l`                                                      | GNU project C and C++ compiler.                     |
+> | *`gcc`*           | `-g -L -l`                                                   | GNU project C and C++ compiler.                     |
 > | :---------------- | :----------------------------------------------------------- | :-------------------------------------------------- |
+> | `gdb`             |                                                              | The GNU Debugger.                                   |
 > | *`geany`*         |                                                              | A small and lightweight IDE.                        |
 > | *`gedit`*         |                                                              | Text editor for the GNOME Desktop.                  |
 > | *`getopt`*        |                                                              | Parse command options (enhanced).                   |
