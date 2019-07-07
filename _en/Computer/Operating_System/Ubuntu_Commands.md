@@ -81,7 +81,7 @@ Resources:
 
 > ### D d
 
-> | *`date`*     |                  | Print or set the system date and time.               |
+> | *`date`*     | `+%Y-%m-%d | Print or set the system date and time.               |
 > | :----------- | :--------------- | :--------------------------------------------------- |
 > | *`declare`*  |                  | Set variable values and attributes.                  |
 > | *`delgroup`* |                  | Remove a user or group from the system.              |
@@ -115,6 +115,7 @@ Resources:
 > | *`exit`*     |         | Exit the shell.                                              |
 > | *`expand`*   |         | Convert tabs to spaces.                                      |
 > | *`export`*   |         | Set export attribute for shell variables.                    |
+> | `expr`       |         | Evaluate expressions.                                        |
 
 > ### F f
 
@@ -373,6 +374,7 @@ Resources:
 > | *`tracepath`*  |                     | Traces path to a network host discovering MTU along this path. |
 > | *`traceroute`* |                     | Print the route packets trace to network host.               |
 > | *`trap`*       |                     | Trap signals and other events.                               |
+> | `tree`         |                     | List contents of directories in a tree-like format.          |
 > | *`troff`*      |                     | The troff processor of the groff text formatting system.     |
 > | *`true`*       |                     | Do nothing, successfully.                                    |
 > | *`tryaffix`*   |                     | Interactive spelling checking.                               |
