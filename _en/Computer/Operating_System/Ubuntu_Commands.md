@@ -396,8 +396,8 @@ Resources:
 > | *`until`*              |            | Execute commands as long as a test does not succeed.         |
 > | *`updatedb`*           |            | Update a database for mlocate.                               |
 > | *`uptime`*             |            | Tell how long the system has been running.                   |
-> | *`useradd`*            |            | Create a new user or update default new user information.    |
-> | *`userdel`*            |            | Delete a user account and related files.                     |
+> | *`useradd`*            | `-c -m`    | Create a new user or update default new user information.    |
+> | *`userdel`*            | `-r`       | Delete a user account and related files.                     |
 > | *`usermod`*            |            | Modify a user account.                                       |
 > | *`users`*              |            | Print the user names of users currently logged in to the current host. |
 > | *`update-alternative`* | `--config` | Maintain symbolic links determining default commands.        |
