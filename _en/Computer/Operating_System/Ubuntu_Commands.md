@@ -22,7 +22,7 @@ Resources:
 > | *`adduser`*  |            | Add a user or group to the system.                      |
 > | *`alias`*    |            | Define or display aliases.                              |
 > | *`apropos`*  |            | Search the manual page names and descriptions.          |
-> | *`apt-get`*  |            | APT package handling utility -- command-line interface. |
+> | *`apt-get`*  | `-f`       | APT package handling utility -- command-line interface. |
 > | *`apt-key`*  |            | APT key management utility.                             |
 > | *`apt`*      |            | Command-line interface.                                 |
 > | *`aptitude`* |            | High-level interface to the package manager.            |
@@ -204,6 +204,7 @@ Resources:
 > | :----------- | :----------------------- | :------------------------------------------------- |
 > | *`lastb`*    |                          | Show a listing of last logged in users.            |
 > | *`ld`*       |                          | The GNU linker.                                    |
+> | `ldd`        |                          | Print shared object dependencies.                  |
 > | *`ldconfig`* |                          | Configure dynamic linker run-time bindings.        |
 > | *`less`*     |                          | Opposite of more.                                  |
 > | *`let`*      |                          | Evaluate arithmetic expressions.                   |
@@ -396,7 +397,7 @@ Resources:
 > | *`until`*              |            | Execute commands as long as a test does not succeed.         |
 > | *`updatedb`*           |            | Update a database for mlocate.                               |
 > | *`uptime`*             |            | Tell how long the system has been running.                   |
-> | *`useradd`*            | `-c -m`    | Create a new user or update default new user information.    |
+> | *`useradd`*            | `-c -m -s` | Create a new user or update default new user information.    |
 > | *`userdel`*            | `-r`       | Delete a user account and related files.                     |
 > | *`usermod`*            |            | Modify a user account.                                       |
 > | *`users`*              |            | Print the user names of users currently logged in to the current host. |
