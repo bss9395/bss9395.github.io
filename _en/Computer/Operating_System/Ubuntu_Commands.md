@@ -336,6 +336,7 @@ Resources:
 > | *`shadow`*            |         | Shadowed password file.                                      |
 > | *`shift`*             |         | Shift positional parameters.                                 |
 > | *`shopt`*             |         | Set and unset shell options.                                 |
+> | *`size`*              |         | List section sizes and total size.                           |
 > | *`sleep`*             |         | Delay for a specified amount of time.                        |
 > | *`snap`*              |         | Tool to interact with snaps.                                 |
 > | *`sort`*              | `-k -n` | Sort lines of text files.                                    |
