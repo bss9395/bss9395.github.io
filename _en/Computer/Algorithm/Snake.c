@@ -172,7 +172,7 @@ void initialize() {
 double _distanceHW(Element dst, Element ori, bool check) {
 	if (check) {
 		if (!_checkStatus(ori)) {
-			return INFINITE;
+			return INFINITY;
 		}
 	}
 
@@ -199,7 +199,7 @@ void automatic() {
 	}
 
 	snake.direction = dir;
-	if (snake.distance[dir] == INFINITE) {
+	if (snake.distance[dir] == INFINITY) {
 		status.ongoing = false;
 	}
 
