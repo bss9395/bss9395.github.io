@@ -1,7 +1,8 @@
 /* Snake.c
-Platform: Windows
-Author:   BSS9395
-Update:   2019-07-27T20:00:00
+Algorithm: Shortest Path Algorithm
+Platform:  Windows
+Author:    BSS9395
+Update:    2019-07-27T20:00:00
 */
 
 #include <stdbool.h>
@@ -51,14 +52,14 @@ typedef struct {
 typedef struct {
 	int h;
 	int w;
-} Element;
+} Position;
 
 typedef struct {
 	char rep_head;
 	char rep_body;
 	int size;
 	int head;
-	Element body[HEIGHT * WIDTH / 2];
+	Position body[HEIGHT * WIDTH];
 	Direction direction;
 	int dh[ALLWARD];
 	int dw[ALLWARD];
@@ -67,7 +68,7 @@ typedef struct {
 
 typedef struct {
 	char rep_food;
-	Element body;
+	Position body;
 } Food;
 
 Status status;
@@ -86,8 +87,8 @@ int _iter(int index, int incr, int size) {
 	return (index + incr + size) % size;
 }
 
-bool _checkStatus(Element forward) {
-	Element tail = snake.body[_iter(snake.head, -1, snake.size)];
+bool _checkStatus(Position forward) {
+	Position tail = snake.body[_iter(snake.head, -1, snake.size)];
 	bool con1 = (scene.map[forward.h][forward.w] == scene.rep_background);
 	bool con2 = (scene.map[forward.h][forward.w] == food.rep_food);
 	bool con3 = (forward.h == tail.h) && (forward.w == tail.w);
@@ -95,6 +96,18 @@ bool _checkStatus(Element forward) {
 		return true;
 	}
 	return false;
+}
+
+double _distanceHW(Position dst, Position ori, bool check) {
+	if (check) {
+		if (!_checkStatus(ori)) {
+			return INFINITY;
+		}
+	}
+
+	double dh = dst.h - ori.h;
+	double dw = dst.w - ori.w;
+	return fabs(dh) + fabs(dw);
 }
 
 void gen_food() {
@@ -105,16 +118,16 @@ void gen_food() {
 }
 
 void initialize() {
+	srand((unsigned)time(NULL));
+
 	/* hide cursor */
 	CONSOLE_CURSOR_INFO  cci;
 	cci.dwSize = sizeof(cci);
 	cci.bVisible = FALSE;
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cci);
 
-	srand((unsigned)time(NULL));
-
 	/* init status */
-	status.speed = CLOCKS_PER_SEC / 20;
+	status.speed = CLOCKS_PER_SEC / 50;
 
 	/* generate scene */
 	scene.rep_border = '+';
@@ -144,9 +157,9 @@ void initialize() {
 	snake.body[2].h = HEIGHT / 2; snake.body[2].w = WIDTH / 2 + 2;
 	snake.direction = LEFTWARD;
 
-	Element *beg = &snake.body[0];
-	Element *end = &snake.body[snake.size];
-	for (Element *it = beg; it < end; ++it) {
+	Position *beg = &snake.body[0];
+	Position *end = &snake.body[snake.size];
+	for (Position *it = beg; it < end; ++it) {
 		if (it == beg) {
 			scene.map[it->h][it->w] = snake.rep_head;
 		}
@@ -169,21 +182,12 @@ void initialize() {
 	}
 }
 
-double _distanceHW(Element dst, Element ori, bool check) {
-	if (check) {
-		if (!_checkStatus(ori)) {
-			return INFINITY;
-		}
-	}
-
-	double dh = dst.h - ori.h;
-	double dw = dst.w - ori.w;
-	return fabs(dh) + fabs(dw);
-}
-
+/* Shortest Path Algorithm */
 void automatic() {
-	Element head = snake.body[snake.head];
-	Element forward;
+	Position head = snake.body[snake.head];
+	Position forward;
+
+	/* calculate forward distance */
 	snake.distance[PAUSE] = _distanceHW(food.body, head, false);
 	for (Direction it = UPWARD; it < ALLWARD; it = (Direction)(it + 1)) {
 		forward.h = head.h + snake.dh[it];
@@ -191,24 +195,26 @@ void automatic() {
 		snake.distance[it] = _distanceHW(food.body, forward, true);
 	}
 
-	Direction dir = UPWARD;
-	for (Direction it = (Direction)(dir + 1); it < ALLWARD; it = (Direction)(it + 1)) {
+	/* chose minimum distance */
+	Direction dir = snake.direction;
+	Direction it = dir;
+	while (it = (it - 1 + 1) % (ALLWARD - 1) + 1, it != dir) {
 		if (snake.distance[it] < snake.distance[dir]) {
 			dir = it;
 		}
 	}
 
+	/* check status */
 	snake.direction = dir;
 	if (snake.distance[dir] == INFINITY) {
 		status.ongoing = false;
 	}
 
+	/* print info */
 	_gotoHW(HEIGHT, 0);
-	char buf[BUFSIZ] = { '\0' };
-	printf(" PAUSE      UP   RIGHT    DOWN    LEFT    \n");
+	printf("   PAUSE      UP   RIGHT    DOWN    LEFT\n");
 	for (int i = 0; i < ALLWARD; ++i) {
-		sprintf(buf, "%6.2lf", snake.distance[i]);
-		printf("%6.6s  ", buf);
+		fprintf(stdout, "%8.2lf", snake.distance[i]);
 	}
 }
 
@@ -250,7 +256,8 @@ void manual() {
 		}
 	}
 
-	Element head = snake.body[snake.head];
+	/* check status */
+	Position head = snake.body[snake.head];
 	head.h += snake.dh[snake.direction];
 	head.w += snake.dw[snake.direction];
 	if (!_checkStatus(head)) {
@@ -259,9 +266,9 @@ void manual() {
 }
 
 void move_with_eat() {
-	Element head = snake.body[snake.head];
+	Position head = snake.body[snake.head];
 	int back = _iter(snake.head, -1, snake.size);
-	Element tail = snake.body[back];
+	Position tail = snake.body[back];
 
 	/* move */
 	scene.map[head.h][head.w] = snake.rep_body;
@@ -311,17 +318,18 @@ void play() {
 int main(int argc, char *argv[]) {
 	char buf[BUFSIZ] = { '\0' };
 	do {
+		system("cls");
+
 		status.ongoing = true;
 		status.replay = true;
 
-		system("cls");
 		initialize();
 		play();
 
 		printf("replay(Y/N)? ");
 		fflush(stdin);
 		fgets(buf, BUFSIZ, stdin);
-		if (!(buf[0] == 'Y' || buf[0] == 'y')) {
+		if (!(buf[0] == 'y' || buf[0] == 'Y')) {
 			status.replay = false;
 		}
 	} while (status.replay);
