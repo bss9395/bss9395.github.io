@@ -28,14 +28,27 @@ typedef enum {
 	WIDTH = 60
 } MAP;
 
+//typedef enum {
+//	PAUSE = 0,
+//	UPWARD = 1,
+//	RIGHTWARD = 2,
+//	DOWNWARD = 3,
+//	LEFTWARD = 4,
+//	ALLWARD = 5
+//} Direction;
+//const int dh[ALLWARD] = { 00, -1, 00, +1, 00 };
+//const int dw[ALLWARD] = { 00, 00, +1, 00, -1 };
+
 typedef enum {
 	PAUSE = 0,
-	UPWARD = 1,
-	RIGHTWARD = 2,
+	LEFTWARD = 1,
+	UPWARD = 2,
 	DOWNWARD = 3,
-	LEFTWARD = 4,
+	RIGHTWARD = 4,
 	ALLWARD = 5
 } Direction;
+const int dh[ALLWARD] = { 00, 00, -1, +1, 00 };
+const int dw[ALLWARD] = { 00, -1, 00, 00, +1 };
 
 typedef struct {
 	int speed;
@@ -127,7 +140,7 @@ void initialize() {
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cci);
 
 	/* init status */
-	status.speed = CLOCKS_PER_SEC / 50;
+	status.speed = CLOCKS_PER_SEC / 100;
 
 	/* generate scene */
 	scene.rep_border = '+';
@@ -147,8 +160,8 @@ void initialize() {
 	/* generate snake */
 	snake.rep_head = '@';
 	snake.rep_body = '*';
-	int dh[ALLWARD] = { 00, -1, 00, +1, 00 };  memcpy(snake.dh, dh, ALLWARD * sizeof(*dh));
-	int dw[ALLWARD] = { 00, 00, +1, 00, -1 };  memcpy(snake.dw, dw, ALLWARD * sizeof(*dw));
+	memcpy(snake.dh, dh, ALLWARD * sizeof(*dh));
+	memcpy(snake.dw, dw, ALLWARD * sizeof(*dw));
 
 	snake.size = 3;
 	snake.head = 0;
@@ -189,16 +202,19 @@ void automatic() {
 
 	/* calculate forward distance */
 	snake.distance[PAUSE] = _distanceHW(food.body, head, false);
-	for (Direction it = UPWARD; it < ALLWARD; it = (Direction)(it + 1)) {
+	for (Direction it = PAUSE + 1; it < ALLWARD; it = (Direction)(it + 1)) {
 		forward.h = head.h + snake.dh[it];
 		forward.w = head.w + snake.dw[it];
 		snake.distance[it] = _distanceHW(food.body, forward, true);
 	}
 
 	/* chose minimum distance */
+	/* chose shortest path */
 	Direction dir = snake.direction;
-	Direction it = dir;
-	while (it = (it - 1 + 1) % (ALLWARD - 1) + 1, it != dir) {
+	Direction end = dir;
+	Direction it = end;
+	int dt = (rand() % 2 ? -1 : +1);
+	while (it = (it - 1 + dt + ALLWARD - 1) % (ALLWARD - 1) + 1, it != end) {
 		if (snake.distance[it] < snake.distance[dir]) {
 			dir = it;
 		}
@@ -212,7 +228,8 @@ void automatic() {
 
 	/* print info */
 	_gotoHW(HEIGHT, 0);
-	printf("   PAUSE      UP   RIGHT    DOWN    LEFT\n");
+	printf("     LEN   PAUSE      UP   RIGHT    DOWN    LEFT\n");
+	fprintf(stdout, "%8d", snake.size);
 	for (int i = 0; i < ALLWARD; ++i) {
 		fprintf(stdout, "%8.2lf", snake.distance[i]);
 	}
