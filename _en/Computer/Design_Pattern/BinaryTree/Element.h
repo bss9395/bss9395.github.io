@@ -1,7 +1,7 @@
 /* Element.h
-Design: Decoupling
+Design: decoupling
 Author: BSS9395
-Update: 2019-08-09T23:34
+Update: 2019-08-10T21:13
 */
 
 #ifndef Element_h
@@ -16,27 +16,23 @@ Update: 2019-08-09T23:34
 #include <stdlib.h>
 
 typedef struct Element {
-	void(*destroy)(struct Element *self);
+	void(*destruct)(struct Element *self);
+	const char *(*represent)(struct Element *self);
 
 	char *key;
 	char *value;
 } Element;
 
-inline CP compareElement(void *lhs, void *rhs) {
-	int cp = strcmp(((Element *)lhs)->key, ((Element *)rhs)->key);
-	if (0 < cp) {
-		return GT;
-	}
-	else if (0 == cp) {
-		return EQ;
-	}
-	return LT;
-}
-
-inline void destroyElement(Element *element) {
+inline void destructElement(Element *element) {
 	free(element->key);
 	free(element->value);
 	free(element);
+}
+
+inline const char *representElement(Element *element) {
+	static char rep[BUFSIZ] = { '\0' };
+	sprintf(rep, "<%p, %0.6s, %0.6s>", element, element->key, element->value);
+	return rep;
 }
 
 inline Element *makeElement(char *key, char *value) {
@@ -44,24 +40,23 @@ inline Element *makeElement(char *key, char *value) {
 	element->key = (char *)malloc((strlen(key) + 1) * sizeof(char));
 	element->value = (char *)malloc((strlen(value) + 1) * sizeof(char));
 
-	element->destroy = destroyElement;
+	element->destruct = destructElement;
+	element->represent = representElement;
 	strcpy(element->key, key);
 	strcpy(element->value, value);
 
 	return element;
 }
 
-inline void printElement(FILE *out, void *ele, ...) {
-	if (ele) {
-		Element *element = (Element *)ele;
-		fprintf(out, "<%0.6s, %0.6s>", element->key, element->value);
-		return;
+inline CP compareElement(void *lhs, void *rhs) {
+	int cp = strcmp(((Element *)lhs)->key, ((Element *)rhs)->key);
+	if (cp < 0) {
+		return LT;
 	}
-
-	va_list args;
-	va_start(args, ele);
-	vfprintf(out, va_arg(args, const char *), args);
-	va_end(args);
+	else if (cp > 0) {
+		return GT;
+	}
+	return EQ;
 }
 
 #endif // Element_h
