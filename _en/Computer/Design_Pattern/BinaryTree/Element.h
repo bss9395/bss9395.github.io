@@ -16,7 +16,8 @@ Update: 2019-08-10T21:13
 #include <stdlib.h>
 
 typedef struct Element {
-	Class cls;
+	void(*destruct)(struct Element *self);
+	const char *(*represent)(struct Element *self);
 
 	char *key;
 	char *value;
@@ -39,8 +40,8 @@ inline Element *makeElement(char *key, char *value) {
 	element->key = (char *)malloc((strlen(key) + 1) * sizeof(char));
 	element->value = (char *)malloc((strlen(value) + 1) * sizeof(char));
 
-	element->cls.destruct = destructElement;
-	element->cls.represent = representElement;
+	element->destruct = destructElement;
+	element->represent = representElement;
 	strcpy(element->key, key);
 	strcpy(element->value, value);
 

@@ -12,7 +12,8 @@ Update: 2019-08-10T21:13
 #include <stdlib.h>
 
 typedef struct BinaryNode {
-	Class cls;
+	void(*destruct)(struct BinaryNode *self);
+	const char *(*represent)(struct BinaryNode *self);
 
 	void *element;
 	struct BinaryNode *left;
@@ -20,7 +21,8 @@ typedef struct BinaryNode {
 } BinaryNode;
 
 typedef struct BinaryTree {
-	Class cls;
+	void(*destruct)(struct BinaryTree *self);
+	const char *(*represent)(struct BinaryTree *self);
 
 	struct BinaryNode head;
 	long size;
@@ -45,8 +47,8 @@ inline const char *representNode(BinaryNode *node) {
 
 inline BinaryNode *makeNode(void *element, BinaryNode *left, BinaryNode *right) {
 	BinaryNode *node = (BinaryNode *)malloc(sizeof(BinaryNode));
-	node->cls.destruct = destructNode;
-	node->cls.represent = representNode;
+	node->destruct = destructNode;
+	node->represent = representNode;
 
 	node->element = element;
 	node->left = left;
@@ -85,8 +87,8 @@ inline const char *representTree(BinaryTree *tree) {
 
 inline BinaryTree *makeTree() {
 	BinaryTree *tree = (BinaryTree *)malloc(sizeof(BinaryTree));
-	tree->cls.destruct = destructTree;
-	tree->cls.represent = representTree;
+	tree->destruct = destructTree;
+	tree->represent = representTree;
 
 	tree->head.element = NULL;
 	tree->head.left = NULL;
