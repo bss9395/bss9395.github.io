@@ -12,8 +12,7 @@ Update: 2019-08-10T21:13
 #include <stdlib.h>
 
 typedef struct BinaryNode {
-	void(*destruct)(struct BinaryNode *self);
-	const char *(*represent)(struct BinaryNode *self);
+	Class cls;
 
 	void *element;
 	struct BinaryNode *left;
@@ -21,8 +20,7 @@ typedef struct BinaryNode {
 } BinaryNode;
 
 typedef struct BinaryTree {
-	void(*destruct)(struct BinaryTree *self);
-	const char *(*represent)(struct BinaryTree *self);
+	Class cls;
 
 	struct BinaryNode head;
 	long size;
@@ -34,21 +32,25 @@ typedef struct BinaryTree {
 } BinaryTree;
 
 
-inline void destructNode(BinaryNode *node) {
+void destructNode(void *_node) {
+	BinaryNode *node = (BinaryNode *)_node;
+
 	destruct(node->element);
 	free(node);
 }
 
-inline const char *representNode(BinaryNode *node) {
-	static char buf[BUFSIZ] = { '\0' };
-	sprintf(buf, "%p", node);
-	return buf;
+const char *representNode(void *_node) {
+	BinaryNode *node = (BinaryNode *)_node;
+
+	static char rep[BUFSIZ] = { '\0' };
+	sprintf(rep, "%p", node);
+	return rep;
 }
 
-inline BinaryNode *makeNode(void *element, BinaryNode *left, BinaryNode *right) {
+BinaryNode *makeNode(void *element, BinaryNode *left, BinaryNode *right) {
 	BinaryNode *node = (BinaryNode *)malloc(sizeof(BinaryNode));
-	node->destruct = destructNode;
-	node->represent = representNode;
+	node->cls.destruct = destructNode;
+	node->cls.represent = representNode;
 
 	node->element = element;
 	node->left = left;
@@ -57,16 +59,18 @@ inline BinaryNode *makeNode(void *element, BinaryNode *left, BinaryNode *right) 
 	return node;
 }
 
-inline void inOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, BinaryNode *node));
-inline void preOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, BinaryNode *node));
-inline void postOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, BinaryNode *node));
+void inOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, BinaryNode *node));
+void preOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, BinaryNode *node));
+void postOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, BinaryNode *node));
 
-inline void _deleteNode(BinaryTree *tree, BinaryNode *node) {
+void _deleteNode(BinaryTree *tree, BinaryNode *node) {
 	destruct(node);
 	tree->size--;
 }
 
-inline void destructTree(BinaryTree *tree) {
+void destructTree(void *_tree) {
+	BinaryTree *tree = (BinaryTree *)_tree;
+
 	inOrderTraverse(tree, _deleteNode);
 
 	bool con1 = (tree->size == 0);
@@ -79,16 +83,18 @@ inline void destructTree(BinaryTree *tree) {
 	free(tree);
 }
 
-inline const char *representTree(BinaryTree *tree) {
-	static char buf[BUFSIZ] = { '\0' };
-	sprintf(buf, "%p", tree);
-	return buf;
+const char *representTree(void *_tree) {
+	BinaryTree *tree = (BinaryTree *)_tree;
+
+	static char rep[BUFSIZ] = { '\0' };
+	sprintf(rep, "%p", tree);
+	return rep;
 }
 
-inline BinaryTree *makeTree() {
+BinaryTree *makeTree() {
 	BinaryTree *tree = (BinaryTree *)malloc(sizeof(BinaryTree));
-	tree->destruct = destructTree;
-	tree->represent = representTree;
+	tree->cls.destruct = destructTree;
+	tree->cls.represent = representTree;
 
 	tree->head.element = NULL;
 	tree->head.left = NULL;
@@ -103,7 +109,7 @@ inline BinaryTree *makeTree() {
 	return tree;
 }
 
-inline void _insertElement(BinaryTree *tree, void *element, BinaryNode **node) {
+void _insertElement(BinaryTree *tree, void *element, BinaryNode **node) {
 	if (*node == NULL) {
 		(*node) = makeNode(element, NULL, NULL);
 		tree->size++;
@@ -119,7 +125,7 @@ inline void _insertElement(BinaryTree *tree, void *element, BinaryNode **node) {
 	}
 }
 
-inline void insertElement(BinaryTree *tree, void *element, CP(*compare)(void *lhs, void *rhs)) {
+void insertElement(BinaryTree *tree, void *element, CP(*compare)(void *lhs, void *rhs)) {
 	if (compare != NULL) {
 		tree->compare = compare;
 	}
@@ -127,7 +133,7 @@ inline void insertElement(BinaryTree *tree, void *element, CP(*compare)(void *lh
 	_insertElement(tree, element, &(tree->head.right));
 }
 
-inline void _inOrderTraverse(BinaryTree *tree, BinaryNode *node) {
+void _inOrderTraverse(BinaryTree *tree, BinaryNode *node) {
 	if (node == NULL) {
 		return;
 	}
@@ -140,7 +146,7 @@ inline void _inOrderTraverse(BinaryTree *tree, BinaryNode *node) {
 	_inOrderTraverse(tree, right);
 }
 
-inline void inOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, BinaryNode *node)) {
+void inOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, BinaryNode *node)) {
 	if (visit != NULL) {
 		tree->visit = visit;
 	}
@@ -148,7 +154,7 @@ inline void inOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, Bin
 	_inOrderTraverse(tree, tree->head.right);
 }
 
-inline void _preOrderTraverse(BinaryTree *tree, BinaryNode *node) {
+void _preOrderTraverse(BinaryTree *tree, BinaryNode *node) {
 	if (node == NULL) {
 		return;
 	}
@@ -161,7 +167,7 @@ inline void _preOrderTraverse(BinaryTree *tree, BinaryNode *node) {
 	_preOrderTraverse(tree, right);
 }
 
-inline void preOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, BinaryNode *node)) {
+void preOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, BinaryNode *node)) {
 	if (visit != NULL) {
 		tree->visit = visit;
 	}
@@ -169,7 +175,7 @@ inline void preOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, Bi
 	_preOrderTraverse(tree, tree->head.right);
 }
 
-inline void _postOrderTraverse(BinaryTree *tree, BinaryNode *node) {
+void _postOrderTraverse(BinaryTree *tree, BinaryNode *node) {
 	if (node == NULL) {
 		return;
 	}
@@ -182,7 +188,7 @@ inline void _postOrderTraverse(BinaryTree *tree, BinaryNode *node) {
 	tree->visit(tree, node);
 }
 
-inline void postOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, BinaryNode *node)) {
+void postOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, BinaryNode *node)) {
 	if (visit != NULL) {
 		tree->visit = visit;
 	}
@@ -190,11 +196,11 @@ inline void postOrderTraverse(BinaryTree *tree, void(*visit)(BinaryTree *tree, B
 	_postOrderTraverse(tree, tree->head.right);
 }
 
-inline void _printNode(BinaryTree *tree, BinaryNode *node) {
+void _printNode(BinaryTree *tree, BinaryNode *node) {
 	print(tree->out, node->element);
 }
 
-inline void printTree(BinaryTree *tree, FILE *out) {
+void printTree(BinaryTree *tree, FILE *out) {
 	if (out != NULL) {
 		tree->out = out;
 	}

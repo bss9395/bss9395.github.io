@@ -16,15 +16,15 @@ typedef struct {
 } Class;
 
 
-inline void destruct(void *cls) {
+  void destruct(void *cls) {
 	((Class *)cls)->destruct(cls);
 }
 
-inline const char *represent(void *cls) {
+  const char *represent(void *cls) {
 	return ((Class *)cls)->represent(cls);
 }
 
-inline void print(FILE *out, void *element, ...) {
+  void print(FILE *out, void *element, ...) {
 	if (element) {
 		fprintf(out, represent(element));
 		return;
@@ -47,7 +47,7 @@ typedef enum {
 	DES = GT
 } CP;
 
-inline CP compare(void *lhs, void *rhs) {
+  CP compare(void *lhs, void *rhs) {
 	if (lhs < rhs) {
 		return LT;
 	}
