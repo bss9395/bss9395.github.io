@@ -1,13 +1,8 @@
----
-layout:    en_post
-Topic:     Data Structure
-Title:     BalanceTree
-Revised:   2018-07-02 19:15:00 +08 @ China-Guangdong-ShenZhen +08
-Authors:   BSS9395
-Resources:
----
+/* BalanceTree.cpp
+Author: BSS9395
+Update: 2018-07-02T19:15:00 +08
+*/
 
-``` c++
 #ifndef BalanceTree_h
 #define BalanceTree_h
 
@@ -454,4 +449,3 @@ ostream *BalanceTree<T>::__os = &cout;
 template class BalanceTree<string>;
 
 #endif // BalanceTree_h
-```

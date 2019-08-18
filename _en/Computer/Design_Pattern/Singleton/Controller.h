@@ -34,7 +34,7 @@ private:
 	}
 
 public:
-	static Controller &getController(Television *television = nullptr;) {
+	static Controller &getController(Television *television = nullptr) {
 		static Controller controller(television);
 		return controller;
 	}

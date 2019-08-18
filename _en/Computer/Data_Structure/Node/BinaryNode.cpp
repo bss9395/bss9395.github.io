@@ -1,13 +1,8 @@
----
-layout:    en_post
-Topic:     Data Structure
-Title:     BinaryNode
-Revised:   2018-06-27 20:41:00 +08 @ China-Guangdong-ShenZhen +08
-Authors:   BSS9395
-Resources:
----
+/* BinaryNode.cpp
+Author: BSS9395
+Update: 2018-06-27T20:41:00 +08
+*/
 
-``` c++
 #ifndef BinaryNode_h
 #define BinaryNode_h
 
@@ -67,4 +62,3 @@ public:
 template class BinaryNode<string>;
 
 #endif // BinaryNode_h
-```

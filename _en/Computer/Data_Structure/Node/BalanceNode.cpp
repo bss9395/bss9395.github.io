@@ -1,13 +1,8 @@
----
-layout:    en_post
-Topic:     Data Structure
-Title:     BalanceNode
-Revised:   2018-07-02 19:16:00 +08 @ China-Guangdong-ShenZhen +08
-Authors:   BSS9395
-Resources:
----
+/* BalanceNode.cpp
+Author: BSS9395
+Update: 2018-07-02T19:16:00 +08
+*/
 
-``` c++
 #ifndef BalanceNode_h
 #define BalanceNode_h
 
@@ -74,4 +69,3 @@ public:
 template class BalanceNode<string>;
 
 #endif // BalanceNode_h
-```

@@ -1,13 +1,8 @@
----
-layout:    en_post
-Topic:     Data Structure
-Title:     ListNode
-Revised:   2018-06-24 22:09:00 +08 @ China-Guangdong-ShenZhen +08
-Authors:   BSS9395
-Resources:
----
+/* ListNode.cpp
+Author: BSS9395
+Update: 2018-06-24T22:09:00 +08
+*/
 
-``` c++
 #ifndef ListNode_h
 #define ListNode_h
 
@@ -57,4 +52,3 @@ public:
 
 template class ListNode<string>;
 #endif //ListNode_h
-```

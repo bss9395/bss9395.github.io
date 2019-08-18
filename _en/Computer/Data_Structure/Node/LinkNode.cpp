@@ -1,13 +1,8 @@
----
-layout:    en_post
-Topic:     Data Structure
-Title:     LinkNode
-Revised:   2018-06-24 22:08:00 +08 @ China-Guangdong-ShenZhen +08
-Authors:   BSS9395
-Resources:
----
+/* LinkNode.cpp
+Author: BSS9395
+Update: 2018-06-24T22:08:00 +08
+*/
 
-``` c++
 #ifndef LinkNode_h
 #define LinkNode_h
 
@@ -56,4 +51,3 @@ public:
 
 template class LinkNode<string>;
 #endif // LinkNode
-```

@@ -1,13 +1,8 @@
----
-layout:    en_post
-Topic:     Data Structure
-Title:     LinkedQueue
-Revised:   2018-06-24 21:57:00 +08 @ China-Guangdong-ShenZhen +08
-Authors:   BSS9395
-Resources:
----
+/* LinkedQueue.cpp
+Author: BSS9395
+Update: 2018-06-24T21:57:00 +08
+*/
 
-``` c++
 #ifndef LinkedQueue_h
 #define LinkedQueue_h
 
@@ -156,4 +151,3 @@ ostream *LinkedQueue<T>::__os = &cout;
 
 template class LinkedQueue<string>;
 #endif // LinkedQueue_h
-```

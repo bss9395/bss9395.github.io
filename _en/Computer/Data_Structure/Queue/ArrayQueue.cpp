@@ -1,13 +1,8 @@
----
-layout:    en_post
-Topic:     Data Structure
-Title:     ArrayQueue
-Revised:   2018-06-24 21:49:00 +08 @ China-Guangdong-ShenZhen +08
-Authors:   BSS9395
-Resources:
----
+/* ArrayQueue.cpp
+Author: BSS9395
+Update: 2018-06-24T21:49:00 +08
+*/
 
-``` c++
 #ifndef ArrayQueue_h
 #define ArrayQueue_h
 
@@ -224,4 +219,3 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 #endif
-```

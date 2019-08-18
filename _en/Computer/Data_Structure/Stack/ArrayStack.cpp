@@ -1,13 +1,8 @@
----
-layout:    en_post
-Topic:     Data Structure
-Title:     ArrayStack
-Revised:   2018-06-24 21:53:00 +08 @ China-Guangdong-ShenZhen +08
-Authors:   BSS9395
-Resources:
----
+/* ArrayStack.cpp
+Author: BSS9395
+Update: 2018-06-24T21:53:00 +08
+*/
 
-``` c++
 #ifndef ArrayStack_h
 #define ArrayStack_h
 
@@ -206,5 +201,4 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 #endif
-```
 

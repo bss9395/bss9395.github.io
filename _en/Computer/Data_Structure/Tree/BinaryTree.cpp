@@ -1,13 +1,8 @@
----
-layout:    en_post
-Topic:     Data Structure
-Title:     ArrayTree
-Revised:   2018-07-02 19:15:00 +08 @ China-Guangdong-ShenZhen +08
-Authors:   BSS9395
-Resources:
----
+/* BinaryTree.cpp
+Author: BSS9395
+Update: 2018-07-02T19:15:00 +08
+*/
 
-``` c++
 #ifndef BinaryTree_h
 #define BinaryTree_h
 
@@ -357,4 +352,3 @@ int main(int argv, char *arv[]) {
 	return 0;
 }
 #endif
-```

@@ -1,13 +1,8 @@
----
-layout:    en_post
-Topic:     Data Structure
-Title:     LinkedStack
-Revised:   2018-06-24 22:07:00 +08 @ China-Guangdong-ShenZhen +08
-Authors:   BSS9395
-Resources:
----
+/* LinkedStack.cpp
+Author: BSS9395
+Update: 2018-06-24T22:07:00 +08
+*/
 
-``` c++
 #ifndef LinkedStack_h
 #define LinkedStack_h
 
@@ -159,4 +154,3 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 #endif
-```

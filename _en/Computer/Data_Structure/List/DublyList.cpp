@@ -1,13 +1,8 @@
----
-layout:    en_post
-Topic:     Data Structure
-Title:     DublyList
-Revised:   2018-06-24 22:13:00 +08 @ China-Guangdong-ShenZhen +08
-Authors:   BSS9395
-Resources:
----
+/* DublyList.cpp
+Author: BSS9395
+Update: 2018-06-24T22:13:00 +08
+*/
 
-``` c++
 #ifndef DublyList_h
 #define DublyList_h
 
@@ -213,7 +208,7 @@ public:
 		return *this;
 	}
 	auto operator++(int) -> DublyListPtr {
-		auto &ret = *this;
+		auto ret = *this;
 		_ptr = _ptr->_next;
 		return ret;
 	}
@@ -222,7 +217,7 @@ public:
 		return *this;
 	}
 	auto operator--(int) -> DublyListPtr {
-		auto &ret = *this;
+		auto ret = *this;
 		_ptr = _ptr->_prev;
 		return ret;
 	}
@@ -261,4 +256,3 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 #endif
-```
