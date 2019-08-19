@@ -1,7 +1,7 @@
 /* Helper.h
 Design: decoupling
 Author: BSS9395
-Update: 2019-08-10T21:13
+Update: 2019-08-10T21:13 +08
 */
 
 #ifndef Helper_h
@@ -16,15 +16,15 @@ typedef struct {
 } Class;
 
 
-  void destruct(void *cls) {
+void destruct(void *cls) {
 	((Class *)cls)->destruct(cls);
 }
 
-  const char *represent(void *cls) {
+const char *represent(void *cls) {
 	return ((Class *)cls)->represent(cls);
 }
 
-  void print(FILE *out, void *element, ...) {
+void print(FILE *out, void *element, ...) {
 	if (element) {
 		fprintf(out, represent(element));
 		return;
@@ -47,7 +47,7 @@ typedef enum {
 	DES = GT
 } CP;
 
-  CP compare(void *lhs, void *rhs) {
+CP compare(void *lhs, void *rhs) {
 	if (lhs < rhs) {
 		return LT;
 	}
