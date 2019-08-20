@@ -1,7 +1,7 @@
 /* Derived.h
 Design: Polymorphism
 Authro: BSS9395
-Update: 2019-08-20T01:22 +08
+Update: 2019-08-20T19:13 +08
 */
 
 #ifndef Derived_h
@@ -15,6 +15,7 @@ typedef struct _DerivedType DerivedType;
 typedef struct _DerivedFunction DerivedFunction;
 
 struct _DerivedFunction {
+	long size;
 	Derived(*construct)(void);
 	void(*destruct)(Derived *);
 
@@ -38,11 +39,12 @@ inline Derived *newDerived(void);
 
 inline Derived mkDerived(void) {
 	static DerivedFunction derivedFunction = {
-		mkDerived, deDerived, setInfo, getInfo
+		sizeof(DerivedType), mkDerived, deDerived, setInfo, getInfo
 	};
 	static DerivedType derivedType = { &derivedFunction };
 
 	derivedType.super = mkSuper();
+
 	derivedType._Info = NULL;
 
 	fprintf(stderr, "void mkDerived(Derived *);\n");
@@ -60,15 +62,18 @@ inline void deDerived(Derived *self) {
 }
 
 inline void setInfo(Derived *self, const char *info) {
+	self = offset(self, sizeof(Derived));
 	fprintf(stderr, "void setInfo(Derived *, const char *);\n");
 
 	if (NULL != self->_Info) {
 		free(self->_Info);
 	}
+	self->_Info = (char *)malloc((strlen(info) + 1) * sizeof(char));
 	strcpy(self->_Info, info);
 }
 
 inline const char *getInfo(Derived *self) {
+	self = offset(self, sizeof(Derived));
 	fprintf(stderr, "const char *getInfo(Derived *);\n");
 
 	return self->_Info;
@@ -79,7 +84,7 @@ inline Derived *newDerived(void) {
 
 	Derived *derived = (Derived *)malloc(sizeof(Derived));
 	*derived = mkDerived();
-	return  derived;
+	return derived;
 }
 
 #endif // Derived_h

@@ -1,7 +1,7 @@
 /* Main.c
 Design: Polymorphism
 Authro: BSS9395
-Update: 2019-08-20T01:22 +08
+Update: 2019-08-20T19:13 +08
 */
 
 #include "Super.h"
@@ -16,28 +16,22 @@ int main() {
 
 	fprintf(stdout, "----------------------------------------\n");
 
-	Super super = mkSuper();
-	destruct(&super);
-
-	fprintf(stdout, "----------------------------------------\n");
-
 	Derived derived = mkDerived();
 	destruct(&derived);
 
 	fprintf(stdout, "----------------------------------------\n");
 
-	Super *pSuper = newSuper();
-	destroy(pSuper);
+	Super *pSuper = (Super *)newDerived();
 
-	fprintf(stdout, "----------------------------------------\n");
+	setID(pSuper, "SuperID");
+	fprintf(stdout, "%s\n", getID(pSuper));
 
-	Derived *pDerived = newDerived();
+	Derived *pDerived = (Derived *)pSuper;
+
+	setInfo(pDerived, "SuperInfo");
+	fprintf(stdout, "%s\n", getInfo(pDerived));
+
 	destroy(pDerived);
-
-	fprintf(stdout, "----------------------------------------\n");
-
-	Super *p = (Super *)newDerived();
-	destroy(p);
 
 	fprintf(stdout, "----------------------------------------\n");
 

@@ -1,7 +1,7 @@
 /* Super.h
 Design: Polymorphism
 Authro: BSS9395
-Update: 2019-08-20T01:22 +08
+Update: 2019-08-20T19:13 +08
 */
 
 #ifndef Super_h
@@ -14,6 +14,7 @@ typedef struct _SuperType SuperType;
 typedef struct _SuperFunction SuperFunction;
 
 struct _SuperFunction {
+	long size;
 	Super(*mkSuper)(void);
 	void(*destruct)(Super *);
 
@@ -36,7 +37,7 @@ inline Super *newSuper(void);
 
 inline Super mkSuper(void) {
 	static SuperFunction superFunction = {
-		mkSuper, deSuper, setID, getID
+		sizeof(SuperType), mkSuper, deSuper, setID, getID
 	};
 	static SuperType superType = { &superFunction };
 
@@ -56,6 +57,7 @@ inline void deSuper(Super *self) {
 }
 
 inline void setID(Super *self, const char *ID) {
+	self = offset(self, sizeof(Super));
 	fprintf(stderr, "void setID(Super *, const char *);\n");
 
 	if (NULL != self->_ID) {
@@ -67,6 +69,7 @@ inline void setID(Super *self, const char *ID) {
 }
 
 inline const char *getID(Super *self) {
+	self = offset(self, sizeof(Super));
 	fprintf(stderr, "const char *getID(Super *);\n");
 
 	return self->_ID;

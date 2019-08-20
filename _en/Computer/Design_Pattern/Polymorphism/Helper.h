@@ -1,7 +1,7 @@
 /* Helper.h
 Design: Polymorphism
 Authro: BSS9395
-Update: 2019-08-20T01:22 +08
+Update: 2019-08-20T19:13 +08
 */
 
 #ifndef Helper_h
@@ -17,6 +17,7 @@ typedef struct _BaseType BaseType;
 typedef struct _BaseFunction BaseFunction;
 
 struct _BaseFunction {
+	long size;
 	Base(*construct)(void);
 	void(*destruct)(void *);
 	const char *(*represent)(void *);
@@ -40,6 +41,13 @@ inline void destroy(void *self) {
 	destruct(self);
 	free(self);
 	fprintf(stderr, "void destroy(void *);\n");
+}
+
+inline void *offset(void *self, size_t size) {
+	Base *base = (Base *)self;
+	ptrdiff_t diff = base->function->size - size;
+
+	return (void *)((size_t)self + diff);
 }
 
 #endif // Helper_h
