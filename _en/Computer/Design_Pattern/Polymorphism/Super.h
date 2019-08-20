@@ -11,11 +11,10 @@ Update: 2019-08-20T19:13 +08
 
 typedef struct _SuperType Super;
 typedef struct _SuperType SuperType;
-typedef struct _SuperFunction SuperFunction;
+typedef struct _SuperVirtual SuperVirtual;
 
-struct _SuperFunction {
+struct _SuperVirtual {
 	long size;
-	Super(*mkSuper)(void);
 	void(*destruct)(Super *);
 
 	void(*setID)(Super *, const char *);
@@ -23,23 +22,23 @@ struct _SuperFunction {
 };
 
 struct _SuperType {
-	SuperFunction *function;
+	SuperVirtual *virtual;
 
 	char *_ID;
 };
 
 inline Super mkSuper(void);
 inline void deSuper(Super *self);
-inline void setID(Super *self, const char *ID);
-inline const char *getID(Super *self);
+inline void Super_setID(Super *self, const char *ID);
+inline const char *Super_getID(Super *self);
 inline Super *newSuper(void);
 
 
 inline Super mkSuper(void) {
-	static SuperFunction superFunction = {
-		sizeof(SuperType), mkSuper, deSuper, setID, getID
+	static SuperVirtual superVirtual = {
+		sizeof(SuperType), deSuper, Super_setID, Super_getID
 	};
-	static SuperType superType = { &superFunction };
+	static SuperType superType = { &superVirtual };
 
 	superType._ID = NULL;
 
@@ -56,8 +55,7 @@ inline void deSuper(Super *self) {
 	}
 }
 
-inline void setID(Super *self, const char *ID) {
-	self = offset(self, sizeof(Super));
+inline void Super_setID(Super *self, const char *ID) {
 	fprintf(stderr, "void setID(Super *, const char *);\n");
 
 	if (NULL != self->_ID) {
@@ -68,8 +66,7 @@ inline void setID(Super *self, const char *ID) {
 	strcpy(self->_ID, ID);
 }
 
-inline const char *getID(Super *self) {
-	self = offset(self, sizeof(Super));
+inline const char *Super_getID(Super *self) {
 	fprintf(stderr, "const char *getID(Super *);\n");
 
 	return self->_ID;

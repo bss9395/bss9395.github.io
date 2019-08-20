@@ -14,17 +14,16 @@ Update: 2019-08-20T19:13 +08
 
 typedef struct _BaseType Base;
 typedef struct _BaseType BaseType;
-typedef struct _BaseFunction BaseFunction;
+typedef struct _BaseVirtual BaseVirtual;
 
-struct _BaseFunction {
+struct _BaseVirtual {
 	long size;
-	Base(*construct)(void);
 	void(*destruct)(void *);
 	const char *(*represent)(void *);
 };
 
 struct _BaseType {
-	BaseFunction *function;
+	BaseVirtual *virtual;
 };
 
 inline void destruct(void *self);
@@ -33,7 +32,7 @@ inline void destroy(void *self);
 
 inline void destruct(void *self) {
 	Base *base = (Base *)self;
-	base->function->destruct(base);
+	base->virtual->destruct(base);
 	// fprintf(stderr, "void destruct(void *);\n");
 }
 
@@ -45,7 +44,7 @@ inline void destroy(void *self) {
 
 inline void *offset(void *self, size_t size) {
 	Base *base = (Base *)self;
-	ptrdiff_t diff = base->function->size - size;
+	ptrdiff_t diff = base->virtual->size - size;
 
 	return (void *)((size_t)self + diff);
 }

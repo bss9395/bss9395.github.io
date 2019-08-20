@@ -23,8 +23,8 @@ int main() {
 
 	Super *pSuper = (Super *)newDerived();
 
-	setID(pSuper, "SuperID");
-	fprintf(stdout, "%s\n", getID(pSuper));
+	pSuper->virtual->setID(pSuper, "SuperID");
+	fprintf(stdout, "%s\n", pSuper->virtual->getID(pSuper));
 
 	Derived *pDerived = (Derived *)pSuper;
 
