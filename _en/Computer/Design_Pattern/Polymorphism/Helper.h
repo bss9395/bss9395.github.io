@@ -1,7 +1,7 @@
 /* Helper.h
 Design: Polymorphism
 Authro: BSS9395
-Update: 2019-08-20T19:13 +08
+Update: 2019-08-20T21:26 +08 @ ShenZhen +08
 */
 
 #ifndef Helper_h
@@ -9,25 +9,25 @@ Update: 2019-08-20T19:13 +08
 
 #include <stdbool.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 
 typedef struct _BaseType Base;
 typedef struct _BaseType BaseType;
-typedef struct _BaseVirtual BaseVirtual;
+typedef struct _BaseFunction BaseFunction;
 
-struct _BaseVirtual {
+struct _BaseFunction {
 	long size;
 	void(*destruct)(void *);
 	const char *(*represent)(void *);
 };
 
 struct _BaseType {
-	BaseVirtual *virtual;
+	BaseFunction *virtual;
 };
 
-inline void destruct(void *self);
-inline void destroy(void *self);
+void destruct(void *self);
+void destroy(void *self);
+void *offset(void *self, size_t size);
 
 
 inline void destruct(void *self) {
