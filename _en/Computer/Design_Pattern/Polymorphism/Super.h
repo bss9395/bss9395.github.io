@@ -1,34 +1,32 @@
 /* Super.h
-Design: Polymorphism
-Authro: BSS9395
-Update: 2019-08-20T21:26 +08 @ ShenZhen +08
+Design: Polymorphism with Single Inheritance
+Author: BSS9395
+Update: 2019-08-22T01:58 +08 @ ShenZhen +08
 */
 
 #ifndef Super_h
 #define Super_h
 
-#include "Helper.h"
+typedef struct _SuperType_     Super;
+typedef struct _SuperType_     SuperType;
+typedef struct _SuperFunction_ SuperFunction;
 
-typedef struct _SuperType Super;
-typedef struct _SuperType SuperType;
-typedef struct _SuperFunction SuperFunction;
+struct _SuperFunction_ {
+	size_t derived_offset;
+	void(*virtual_destruct)(Super *);
 
-struct _SuperFunction {
-	long size;
-	void(*destruct)(Super *);
 	void(*virtual_setID)(Super *, const char *);
 	const char *(*virtual_getID)(Super *);
 
-
+	void(*readMe)(Super *);
 };
 
-struct _SuperType {
+struct _SuperType_ {
 	SuperFunction *function;
-
 	char *_ID;
 };
 
-Super mkSuper(void);
+Super makeSuper(void);
 Super *newSuper(void);
 
 #endif // Super_h

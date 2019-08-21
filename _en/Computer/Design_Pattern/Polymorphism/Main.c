@@ -1,50 +1,87 @@
 /* Main.c
-Design: Polymorphism
-Authro: BSS9395
-Update: 2019-08-20T21:26 +08 @ ShenZhen +08
+Design: Polymorphism with Single Inheritance
+Author: BSS9395
+Update: 2019-08-22T01:58 +08 @ ShenZhen +08
 */
 
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#include "Helper.h"
 #include "Super.h"
 #include "Derived.h"
+#include "Boy.h"
+#include "Girl.h"
 
-#include <stdio.h>
+/* Class Inheritance
 
-int main() {
+readMe --   Super   (_ID)   -- virtual_setID
+			  |             \
+showMe --  Derived  (_Desc)  - virtual_getID
+			 / \
+leadMe -- Boy  Girl (_Info) -- seeYou
 
-	fprintf(stdout, "sizeof(Super) = %ld\n", sizeof(Super));
-	fprintf(stdout, "sizeof(Derived) = %ld\n", sizeof(Derived));
+*/
 
-	fprintf(stdout, "----------------------------------------\n");
 
-	Derived derived = mkDerived();
-	destruct(&derived);
+int main(int argc, char *argv[]) {
 
-	fprintf(stdout, "----------------------------------------\n");
+	printf("sizeof(Super)   = %ld\n", sizeof(Super));
+	printf("sizeof(Derived) = %ld\n", sizeof(Derived));
+	printf("sizeof(Boy)     = %ld\n", sizeof(Boy));
+	printf("sizeof(Girl)    = %ld\n", sizeof(Girl));
 
-	Super *pSuper = (Super *)newDerived();
+	printf("----------------------------------------\n");
 
-	fprintf(stdout, "----------------------------------------\n");
+	Boy boy = makeBoy();
+	//boy.function->virtual_destruct(&boy);
+	destruct(&boy);
 
-	pSuper->function->virtual_setID(pSuper, "SuperID");
-	fprintf(stdout, "%s\n", pSuper->function->virtual_getID(pSuper));
+	printf("----------------------------------------\n");
 
-	fprintf(stdout, "----------------------------------------\n");
+	Derived *pDerived = (Derived *)newBoy();
 
-	Derived *pDerived = (Derived *)pSuper;
+	printf("----------------------------------------\n");
 
-	pDerived->function->setInfo(pDerived, "SuperInfo");
-	fprintf(stdout, "%s\n", pDerived->function->getInfo(pDerived));
+	pDerived->function->virtual_setID(pDerived, "ID");
+	printf("%s\n", pDerived->function->virtual_getID(pDerived));
 
-	fprintf(stdout, "----------------------------------------\n");
+	printf("----------------------------------------\n");
 
-	pDerived->function->setInfo(pDerived, "DerivedInfo");
-	fprintf(stdout, "%s\n", pDerived->function->getInfo(pDerived));
+	Super *pSuper = (Super *)pDerived;
+	pSuper->function->readMe(pSuper);
 
-	fprintf(stdout, "----------------------------------------\n");
+	pDerived->function->showMe(pDerived);
+
+	Boy *pBoy = (Boy *)pDerived;
+	pBoy->function->leadMe(pBoy);
+
+	printf("----------------------------------------\n");
 
 	destroy(pDerived);
 
-	fprintf(stdout, "----------------------------------------\n");
+	printf("----------------------------------------\n");
+
+	Girl girl = makeGirl();
+
+	printf("----------------------------------------\n");
+
+	girl.function->seeYou(&girl);
+	girl.derived.function->showMe((Derived *)&girl);
+	girl.derived.super.function->readMe((Super *)&girl);
+
+	printf("----------------------------------------\n");
+
+	girl.function->virtual_setID(&girl, "ID");
+	printf("%s\n", girl.function->virtual_getID(&girl));
+
+	printf("----------------------------------------\n");
+
+	destruct(&girl);
+
+	printf("----------------------------------------\n");
 
 	return 0;
 }
