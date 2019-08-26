@@ -15,10 +15,10 @@ typedef struct _DerivedFunction_ DerivedFunction;
 
 struct _DerivedFunction_ {
 	size_t derived_offset;
-	void(*virtual_destruct)(Derived *);
+	void(*virtual_destruct)(bool, Derived *);
 
-	void(*virtual_setID)(Derived *, const char *);
-	const char *(*virtual_getID)(Derived *);
+	void(*virtual_setID)(bool, Derived *, const char *);
+	const char *(*virtual_getID)(bool, Derived *);
 
 	void(*showMe)(Derived *);
 };

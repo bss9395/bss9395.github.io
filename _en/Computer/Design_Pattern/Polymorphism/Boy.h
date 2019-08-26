@@ -15,10 +15,10 @@ typedef struct _BoyFunction_ BoyFunction;
 
 struct _BoyFunction_ {
 	size_t derived_offset;
-	void(*virtual_destruct)(Boy *);
+	void(*virtual_destruct)(bool, Boy *);
 
-	void(*virtual_setID)(Boy *, const char *);
-	const char *(*virtual_getID)(Boy *);
+	void(*virtual_setID)(bool, Boy *, const char *);
+	const char *(*virtual_getID)(bool, Boy *);
 
 	void(*leadMe)(Boy *);
 };

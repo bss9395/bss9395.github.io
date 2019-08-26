@@ -13,10 +13,10 @@ typedef struct _SuperFunction_ SuperFunction;
 
 struct _SuperFunction_ {
 	size_t derived_offset;
-	void(*virtual_destruct)(Super *);
+	void(*virtual_destruct)(bool, Super *);
 
-	void(*virtual_setID)(Super *, const char *);
-	const char *(*virtual_getID)(Super *);
+	void(*virtual_setID)(bool, Super *, const char *);
+	const char *(*virtual_getID)(bool, Super *);
 
 	void(*readMe)(Super *);
 };

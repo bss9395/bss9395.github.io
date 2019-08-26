@@ -9,9 +9,9 @@ Update: 2019-08-22T01:58 +08 @ ShenZhen +08
 
 Girl makeGirl(void);
 Girl *newGirl(void);
-static void Girl_destruct(Girl *self);
-static void Girl_setID(Girl *self, const char *Desc);
-static const char *Girl_getID(Girl *self);
+static void Girl_destruct(bool virtual_, Girl *self);
+static void Girl_setID(bool virtual_, Girl *self, const char *Desc);
+static const char *Girl_getID(bool virtual_, Girl *self);
 static void seeYou(Girl *self);
 
 Girl makeGirl(void) {
@@ -43,60 +43,51 @@ Girl *newGirl(void) {
 	return girl;
 }
 
-static void Girl_destruct(Girl *self) {
-	static bool virtual_ = true;
+static void Girl_destruct(bool virtual_, Girl *self) {
 	if (virtual_) {
 		if (0 != self->function->derived_offset) {
-			virtual_ = false;
 			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			((ClassFunction *)type->function)->virtual_destruct(self);
+			((ClassFunction *)type->function)->virtual_destruct(true, self);
 			return;
 		}
 	}
-	virtual_ = true;
 
-	fprintf(stderr, "void Girl_destruct(Girl *);\n");
+	fprintf(stderr, "void Girl_destruct(bool, Girl *);\n");
 
 	free(self->_info);
 	self->_info = NULL;
 	return;
 }
 
-static void Girl_setID(Girl *self, const char *ID) {
-	static bool virtual_ = true;
+static void Girl_setID(bool virtual_, Girl *self, const char *ID) {
 	if (virtual_) {
 		if (0 != self->function->derived_offset) {
-			virtual_ = false;
 			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			((GirlFunction *)type->function)->virtual_setID(self, ID);
+			((GirlFunction *)type->function)->virtual_setID(true, self, ID);
 			return;
 		}
 	}
-	virtual_ = true;
 
-	fprintf(stderr, "void Girl_setID(Girl *, const char *);\n");
+	fprintf(stderr, "void Girl_setID(bool, Girl *, const char *);\n");
 
 	/* inherit virtual function for Derived */
-	self->derived.function->virtual_setID((Derived *)self, ID);
+	self->derived.function->virtual_setID(false, (Derived *)self, ID);
 	return;
 }
 
-static const char *Girl_getID(Girl *self) {
-	static bool virtual_ = true;
+static const char *Girl_getID(bool virtual_, Girl *self) {
 	if (virtual_) {
 		if (0 != self->function->derived_offset) {
-			virtual_ = false;
 			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			const char *ret = ((GirlFunction *)type->function)->virtual_getID(self);
+			const char *ret = ((GirlFunction *)type->function)->virtual_getID(true, self);
 			return ret;
 		}
 	}
-	virtual_ = true;
 
-	fprintf(stderr, "const char *Girl_getID(Girl *);\n");
+	fprintf(stderr, "const char *Girl_getID(bool, Girl *);\n");
 
 	/* inherit virtual function from Derived */
-	const char *ret = self->derived.function->virtual_getID((Derived *)self);
+	const char *ret = self->derived.function->virtual_getID(false, (Derived *)self);
 	return ret;
 }
 

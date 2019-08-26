@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 	printf("----------------------------------------\n");
 
 	Boy boy = makeBoy();
-	//boy.function->virtual_destruct(&boy);
+	// boy.function->virtual_destruct(false, &boy);
 	destruct(&boy);
 
 	printf("----------------------------------------\n");
@@ -45,8 +45,8 @@ int main(int argc, char *argv[]) {
 
 	printf("----------------------------------------\n");
 
-	pDerived->function->virtual_setID(pDerived, "ID");
-	printf("%s\n", pDerived->function->virtual_getID(pDerived));
+	pDerived->function->virtual_setID(true, pDerived, "ID");
+	printf("%s\n", pDerived->function->virtual_getID(true, pDerived));
 
 	printf("----------------------------------------\n");
 
@@ -74,8 +74,8 @@ int main(int argc, char *argv[]) {
 
 	printf("----------------------------------------\n");
 
-	girl.function->virtual_setID(&girl, "ID");
-	printf("%s\n", girl.function->virtual_getID(&girl));
+	girl.function->virtual_setID(true, &girl, "ID");
+	printf("%s\n", girl.function->virtual_getID(true, &girl));
 
 	printf("----------------------------------------\n");
 

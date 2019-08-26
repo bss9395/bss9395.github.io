@@ -19,7 +19,7 @@ typedef struct _ClassFunction_ ClassFunction;
 
 struct _ClassFunction_ {
 	size_t derived_offset;
-	void(*virtual_destruct)(void *);
+	void(*virtual_destruct)(bool, void *);
 };
 
 struct _ClassType_ {
@@ -32,7 +32,7 @@ static void destroy(void *self);
 
 static void destruct(void *self) {
 	Class *type = (Class *)self;
-	type->function->virtual_destruct(self);
+	type->function->virtual_destruct(true, self);
 
 	// fprintf(stderr, "void destruct(void *);\n");
 	return;

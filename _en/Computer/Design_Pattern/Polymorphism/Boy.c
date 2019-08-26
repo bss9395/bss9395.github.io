@@ -9,9 +9,9 @@ Update: 2019-08-22T01:58 +08 @ ShenZhen +08
 
 Boy makeBoy(void);
 Boy *newBoy(void);
-static void Boy_destruct(Boy *self);
-static void Boy_setID(Boy *self, const char *ID);
-static const char *Boy_getID(Boy *self);
+static void Boy_destruct(bool virtual_, Boy *self);
+static void Boy_setID(bool virtual_, Boy *self, const char *ID);
+static const char *Boy_getID(bool virtual_, Boy *self);
 static void leadMe(Boy *self);
 
 Boy makeBoy(void) {
@@ -43,37 +43,31 @@ Boy *newBoy(void) {
 	return boy;
 }
 
-static void Boy_destruct(Boy *self) {
-	static bool virtual_ = true;
+static void Boy_destruct(bool virtual_, Boy *self) {
 	if (virtual_) {
 		if (0 != self->function->derived_offset) {
-			virtual_ = false;
 			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			((ClassFunction *)type->function)->virtual_destruct(self);
+			((ClassFunction *)type->function)->virtual_destruct(true, self);
 		}
 	}
-	virtual_ = true;
 
-	fprintf(stderr, "void Boy_destruct(Boy *);\n");
+	fprintf(stderr, "void Boy_destruct(bool, Boy *);\n");
 
 	free(self->_info);
 	self->_info = NULL;
 	return;
 }
 
-static void Boy_setID(Boy *self, const char *ID) {
-	static bool virtual_ = true;
+static void Boy_setID(bool virtual_, Boy *self, const char *ID) {
 	if (virtual_) {
 		if (0 != self->function->derived_offset) {
-			virtual_ = false;
 			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			((BoyFunction *)type->function)->virtual_setID(self, ID);
+			((BoyFunction *)type->function)->virtual_setID(true, self, ID);
 			return;
 		}
 	}
-	virtual_ = true;
 
-	fprintf(stderr, "void Boy_setID(Boy *, const char *);\n");
+	fprintf(stderr, "void Boy_setID(bool, Boy *, const char *);\n");
 
 	/* override virtual function */
 	free(self->derived.super._ID);
@@ -85,19 +79,16 @@ static void Boy_setID(Boy *self, const char *ID) {
 	return;
 }
 
-static const char *Boy_getID(Boy *self) {
-	static bool virtual_ = true;
+static const char *Boy_getID(bool virtual_, Boy *self) {
 	if (virtual_) {
 		if (0 != self->function->derived_offset) {
-			virtual_ = false;
 			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			const char *ret = ((BoyFunction *)type->function)->virtual_getID(self);
+			const char *ret = ((BoyFunction *)type->function)->virtual_getID(true, self);
 			return ret;
 		}
 	}
-	virtual_ = true;
 
-	fprintf(stderr, "const char *Boy_getID(Boy *);\n");
+	fprintf(stderr, "const char *Boy_getID(bool, Boy *);\n");
 
 	/* override virtual function */
 	return self->derived.super._ID;
