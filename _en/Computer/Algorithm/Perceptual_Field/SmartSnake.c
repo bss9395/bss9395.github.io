@@ -1,117 +1,11 @@
 /* SmartSnake.c
-Algorithm: Shortest Path with Longest Path
+Algorithm: Perceptual Field
 Platform:  Windows
 Author:    BSS9395
 Update:    2019-08-03T20:54:00
 */
 
-#ifndef Snake_h
-#define Snake_h
-
-#include <Windows.h>
-#include <conio.h>
-
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
-#include <time.h>
-#include <math.h>
-
-typedef enum {
-	ESC = 27,
-	LEFT = 75,
-	RIGHT = 77,
-	UP = 72,
-	DOWN = 80,
-	ARROW = 224
-} KEY;
-
-typedef enum {
-	HEIGHT = 10,
-	WIDTH = 15
-} MAP;
-
-typedef enum {
-	PAUSE = 0,
-	LEFTWARD = 1,
-	UPWARD = 2,
-	DOWNWARD = 3,
-	RIGHTWARD = 4,
-	ALLWARD = 5
-} Direction;
-
-typedef struct {
-	int h;
-	int w;
-} Position;
-
-typedef struct {
-	char rep_border;
-	char rep_background;
-	char map[HEIGHT][WIDTH];
-} Scene;
-
-typedef struct {
-	char rep_head;
-	char rep_body;
-	char rep_tail;
-	int size;
-	int head;
-	Position body[HEIGHT * WIDTH];
-	Direction direction;
-	double field[HEIGHT][WIDTH];
-} Snake;
-
-typedef struct {
-	char rep_body;
-	Position body;
-} Food;
-
-typedef struct {
-	const char *log_file;
-	long speed;
-	bool ongoing;
-	int steps;
-	Position points[3];
-} Status;
-
-typedef Position E;
-typedef struct {
-	int head;
-	int tail;
-	E container[HEIGHT * WIDTH];
-} Queue;
-
-inline void _init(Queue *self) {
-	self->head = 0;
-	self->tail = self->head;
-}
-
-inline bool _empty(Queue *self) {
-	return (self->head == self->tail);
-}
-
-inline void _push(Queue *self, E e) {
-	self->container[self->tail] = e;
-	self->tail++;
-}
-
-inline E _pop(Queue *self) {
-	E ret = self->container[self->head];
-	self->head++;
-	return ret;
-}
-
-#endif // Snake_h
-
-
-const char *DIRECTION[ALLWARD] = { "PAUSE", "LEFT", "UP","DOWN", "RIGHT" };
-int dd = +1;
-int dh[ALLWARD] = { 00, 00, -1, +1, 00 };
-int dw[ALLWARD] = { 00, -1, 00, 00, +1 };
-
-Queue _queue;
-Queue *queue = &_queue;
+#include "SmartSnake.h"
 
 Scene  scene;
 Snake  snake;
