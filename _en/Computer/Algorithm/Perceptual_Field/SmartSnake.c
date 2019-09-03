@@ -209,7 +209,7 @@ void automate() {
 	/* choose shortest path */
 	_update_field(snake.field, food.body);
 	if (snake.field[tail.h][tail.w] < INFINITY) {
-		while (it = (Direction)((it - 1 + dt + ALLWARD - 1) % (ALLWARD - 1) + 1), it != end) {
+		while (it = (Direction)((it + dt + ALLWARD) % ALLWARD), it != end) {
 			if (snake.field[head.h + dh[it]][head.w + dw[it]] < snake.field[head.h + dh[dir]][head.w + dw[dir]]) {
 				dir = it;
 			}
@@ -220,7 +220,7 @@ void automate() {
 		/* go after tail */
 		/* choose longest path */
 		_update_field(snake.field, tail);
-		while (it = (Direction)((it - 1 + dt + ALLWARD - 1) % (ALLWARD - 1) + 1), it != end) {
+		while (it = (Direction)((it + dt + ALLWARD) % ALLWARD), it != end) {
 			if (INFINITY <= snake.field[head.h + dh[dir]][head.w + dw[dir]]) {
 				dir = it;
 			}
@@ -232,12 +232,8 @@ void automate() {
 		}
 	}
 
-	/* check status */
-	snake.direction = dir;
-	if (INFINITY <= snake.field[head.h + dh[dir]][head.w + dw[dir]]) {
-		status.ongoing = false;
-		return;
-	}
+	/* manually change direction at any time */
+	manual();
 }
 
 void move_with_eat() {
