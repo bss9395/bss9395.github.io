@@ -190,8 +190,6 @@ private:
 
 public:
 	void manual() {
-		_speed = CLOCKS_PER_SEC / 2;
-
 		/* for printing info only */
 		Position tail = _body.back();
 		_updateField(_food._body);
@@ -253,8 +251,6 @@ public:
 	}
 
 	void automate() {
-		_speed = CLOCKS_PER_SEC / 20;
-
 		Position head = _body.front();
 		Position tail = _body.back();
 
@@ -490,22 +486,26 @@ public:
 		cout << endl;
 	}
 
-	bool status() {
-		return _snake._status;
-	}
-
 	void manual() {
-		_snake.printInfo();
-		Sleep(_snake._speed);
-		_snake.manual();
-		_snake.move_with_eat();
+		_snake._speed = CLOCKS_PER_SEC / 2;
+		do {
+			_snake.printInfo();
+			Sleep(_snake._speed);
+			_snake.manual();
+			_snake.move_with_eat();
+		} while (_snake._status);
+		clog << "game over!" << endl;
 	}
 
 	void automate() {
-		_snake.printInfo();
-		Sleep(_snake._speed);
-		_snake.automate();
-		_snake.move_with_eat();
+		_snake._speed = CLOCKS_PER_SEC / 20;
+		do {
+			_snake.printInfo();
+			Sleep(_snake._speed);
+			_snake.automate();
+			_snake.move_with_eat();
+		} while (_snake._status);
+		clog << "game over!" << endl;
 	}
 
 protected:
@@ -517,11 +517,8 @@ protected:
 int main() {
 	Game &game = Game::getGame();
 	game.initialize();
-
-	do {
-		//game.manual();
-		game.automate();
-	} while (game.status());
+	//game.manual();
+	game.automate();
 
 	system("pause");
 	return 0;
