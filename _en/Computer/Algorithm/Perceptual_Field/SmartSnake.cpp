@@ -1,7 +1,8 @@
 /* SmartSnake.cpp
 Algorithm: Perceptual Field
-Author: BSS9395
-Update: 2019-09-04T01:16 +08 @ ShenZhen +08
+Platform:  Windows
+Author:    BSS9395
+Update:    2019-09-04T01:16 +08 @ ShenZhen +08
 */
 
 #include <Windows.h>
@@ -14,6 +15,10 @@ Update: 2019-09-04T01:16 +08 @ ShenZhen +08
 #include <queue>
 #include <deque>
 #include <ctime>
+
+#ifndef INFINITY
+#define INFINITY   ((float)(1e+300 * 1e+300))
+#endif
 
 using namespace std;
 
@@ -138,11 +143,11 @@ public:
 		RIGHTWARD = 4,
 		ALLWARD = 5
 	};
-	const char *DIRECTION[ALLWARD] = { "STOP", "LEFT", "UP", "DOWN", "RIGHT" };
 
 	const int dD = +1;
 	const int dH[ALLWARD] = { 000, 000, -dD, +dD, 000 };
 	const int dW[ALLWARD] = { 000, -dD, 000, 000, +dD };
+	const char *DIRECTION[ALLWARD] = { "STOP", "LEFT", "UP", "DOWN", "RIGHT" };
 
 	const char _rep_head = '@';
 	const char _rep_body = '*';
@@ -288,7 +293,7 @@ public:
 		}
 		_direction = dir;
 
-		/* manually change direction at any time */
+		/* manually change direction */
 		manual();
 	}
 
