@@ -13,6 +13,7 @@ Update:    2019-09-04T10:48:00 +08 @ ShenZhen +08
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdio.h>
 #include <string.h>
 #include <time.h>
 #include <math.h>
@@ -292,8 +293,6 @@ void printInfo() {
 }
 
 void manual() {
-	snake.speed = CLOCKS_PER_SEC / 2;
-
 	/* for printing info only */
 	int back = _iter(snake.head, -1, snake.size);
 	Position tail = snake.body[back];
@@ -353,11 +352,11 @@ void manual() {
 	if (!_checkPosition(ahead)) {
 		snake.status = DEAD;
 	}
+
+	snake.speed = CLOCKS_PER_SEC / 2;
 }
 
 void automate() {
-	snake.speed = CLOCKS_PER_SEC / 20;
-
 	Position head = snake.body[snake.head];
 	Position tail = snake.body[_iter(snake.head, -1, snake.size)];
 
@@ -397,6 +396,8 @@ void automate() {
 
 	/* manually change direction */
 	manual();
+
+	snake.speed = CLOCKS_PER_SEC / 20;
 }
 
 void move_with_eat() {
