@@ -19,7 +19,7 @@ void signal_handler(int sig) {
 		printf("SIGQUIT == %d\n", sig);
 		break;
 	default:
-		printf("unknown signal %d.\n", sig);
+		printf("unknown signal %d\n", sig);
 	}
 }
 
