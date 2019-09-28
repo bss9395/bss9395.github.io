@@ -16,7 +16,7 @@ ORI = $(wildcard $(SRC)/*.c)
 CC       = gcc
 CXX      = g++
 CPPFLAGS = -I$(INC)
-LDFLAGS  = -L.
+LDFLAGS  = -L. -pthread
 CFLAGS   = $(CPPFLAGS) $(LDFLAGS) -Wall -Werror -g
 
 ################################################################################

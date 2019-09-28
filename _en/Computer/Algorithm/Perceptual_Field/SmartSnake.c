@@ -281,8 +281,8 @@ void printInfo() {
 	fprintf(stderr, "  TIME""  STEP""   LEN""   DIR"" PAUSE""  LEFT""    UP""  DOWN"" RIGHT""\n");
 	_gotoHW(HEIGHT + 1, WIDTH + 2);
 	fprintf(stderr, "%6.2lf", (double)clock() / CLOCKS_PER_SEC);
-	fprintf(stderr, "%6.0d", snake.steps);
-	fprintf(stderr, "%6.0d", snake.size);
+	fprintf(stderr, "%6d", snake.steps);
+	fprintf(stderr, "%6d", snake.size);
 	fprintf(stderr, "%6.6s", DIRECTION[snake.direction]);
 	fprintf(stderr, "%6.0lf", dD + snake.field[head.h + dH[snake.direction]][head.w + dW[snake.direction]]);
 	for (Direction dir = (Direction)(STOP + 1); dir < ALLWARD; dir = (Direction)(dir + 1)) {
