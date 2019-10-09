@@ -27,14 +27,13 @@ void *producer(void *args) {
         }
 
         buffer[(r + w) % N] = w + 1;
+        w += 1;
 
         printf("producer%lu: ", (unsigned long)args);
         for(int i = 0; i < N; ++i) {
         	printf("%ld", buffer[i]);
         }
         printf("\n");
-
-        w++;
 
         pthread_mutex_unlock(&mutex);
         pthread_cond_broadcast(&not_empty);
@@ -58,17 +57,14 @@ void *consumer(void *args) {
         }
 
         buffer[r] = 0;
+        r = (r + 1) % N;
+        w -= 1;
 
         printf("consumer%lu: ", (unsigned long)args);
         for(int i = 0; i < N; ++i) {
         	printf("%ld", buffer[i]);
         }
         printf("\n");
-
-        if(++r, r == N) {
-        	r = 0;
-        }
-        w--;
 
         pthread_mutex_unlock(&mutex);
         pthread_cond_broadcast(&not_full);

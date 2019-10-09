@@ -15,6 +15,7 @@ int waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options);
 void wait_child(int signo) {
     pid_t pid;
     int status;
+	// while(pid = wait(status), 0 < pid) {
     while(pid = waitpid(-1, &status, WNOHANG), 0 < pid) {
         if(WIFEXITED(status)) {
             fprintf(stdout, "exit status: %d\n", WEXITSTATUS(status));
