@@ -6,32 +6,44 @@
 # Makefile
 
 INC = inc
+LNK = inc/lnk
+OUT = out
+OBJ = out/obj
 SRC = src
-OBJ = obj
-BIN = bin
-ORI = $(wildcard $(SRC)/*.c)
+DST = ~/bin
+
+CSRC = $(wildcard $(SRC)/*.c)
+COBJ = $(CSRC:$(SRC)/%.c=$(OBJ)/%.o)
+COUT = $(OUT)/Main.out
 
 ################################################################################
 
 CC       = gcc
 CXX      = g++
-CPPFLAGS = -I$(INC)
+CPPFLAGS = -I$(INC) -I$(LNK)
 LDFLAGS  = -L. -pthread
-CFLAGS   = $(CPPFLAGS) $(LDFLAGS) -Wall -Werror -g
+CFLAGS   = $(CPPFLAGS) $(LDFLAGS) -Wall -Werror -g -std=c99
 
 ################################################################################
 
-.PHONY: all clean install
+.PHONY: all test clean install uninstall
 
-all:$(ORI:$(SRC)/%.c=$(OBJ)/%.o)
-	gcc -o $(BIN)/Main.out $^
+all:$(COBJ)
+	gcc -o $(COUT) $(CFLAGS)    $^
 
-$(OBJ)/%.o: $(SRC)/%.c
-	gcc -o $@ $(CFLAGS) -c $<
+$(COBJ):$(OBJ)/%.o:$(SRC)/%.c
+	gcc -o $@      $(CFLAGS) -c $<
+
+test:
+	$(COUT)
 
 clean:
-	rm $(OBJ)/*
-	rm $(BIN)/*
+	rm $(COBJ)
+	rm $(COUT)
 
 install:
-	cp $(BIN)/* ~/bin/
+	mkdir -p $(DST)
+	cp $(COUT) $(DST)
+
+uninstall:
+	rm $(COUT:$(OUT)/%=$(DST)/%)
