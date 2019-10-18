@@ -20,8 +20,8 @@ COUT = $(OUT)/Main.out
 
 CC       = gcc
 CXX      = g++
-CPPFLAGS = -I$(INC) -I$(LNK)
-LDFLAGS  = -L. -pthread
+CPPFLAGS = -I$(INC) -L. -L$(LNK)
+LDFLAGS  = -pthread
 CFLAGS   = $(CPPFLAGS) $(LDFLAGS) -Wall -Werror -g -std=c99
 
 ################################################################################
@@ -29,10 +29,10 @@ CFLAGS   = $(CPPFLAGS) $(LDFLAGS) -Wall -Werror -g -std=c99
 .PHONY: all test clean install uninstall
 
 all:$(COBJ)
-	gcc -o $(COUT) $(CFLAGS)    $^
+	gcc $(CFLAGS)    $^ -o $(COUT)
 
 $(COBJ):$(OBJ)/%.o:$(SRC)/%.c
-	gcc -o $@      $(CFLAGS) -c $<
+	gcc $(CFLAGS) -c $< -o $@
 
 test:
 	$(COUT)
