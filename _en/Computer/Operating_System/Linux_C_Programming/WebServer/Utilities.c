@@ -183,11 +183,7 @@ void parseUri(char *uri, char *root, char *path) {
     char *slash = strchr(uri, '/');
 
     if(uri != slash) {
-        while(uri != slash){
-            root[0] = uri[0];
-            uri += 1;
-        }
-        root[0] = '\0';
+        sprintf(root, "%.*s", slash - uri, uri);
     }
     if(root[0] == '\0') {
         sprintf(root, "%s", getenv("HOME"));
