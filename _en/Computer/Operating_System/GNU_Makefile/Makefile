@@ -1,6 +1,6 @@
 # Makefile
 # Author: BSS9395
-# Update: 2019-11-04T22:10 +08 @ ShenZhen +08
+# Update: 2019-11-05T00:23 +08 @ ShenZhen +08
 # Design: GNU Makefile
 
 ################################################################################
@@ -9,7 +9,7 @@ INCLUDE := Makefile src inc lib lib64
 EXCLUDE := .git**
 
 INC := inc
-LIB := lib64
+LIB := lib lib64
 SRC := src
 LNK := lnk
 OUT := out
@@ -54,24 +54,23 @@ vpath %     $(LIB)
 all: $(COUT)
 #	echo $(COUT) $(CLNK) $(CLNKS)
 
-CMAIN  = $(@F).o               $(@F).so               $(@F).a
-CMAIN += $(*F).o               $(*F).so               $(*F).a
-CMAIN += $(@F).c.o             $(@F).c.so             $(@F).c.a
-CMAIN += $(*F).c.o             $(*F).c.so             $(*F).c.a
-CMAIN += $(@F).cpp.o           $(@F).cpp.so           $(@F).cpp.a
-CMAIN += $(*F).cpp.o           $(*F).cpp.so           $(*F).cpp.a
+CMAIN  = $(@F).o               $(@F).so                  $(@F).a
+CMAIN += $(@F).c.o             $(@F).c.so                $(@F).c.a
+CMAIN += $(@F).cpp.o           $(@F).cpp.so              $(@F).cpp.a
+CMAIN += $(*F).o            lib$(*F).so               lib$(*F).a
+CMAIN += $(*F).c.o          lib$(*F).c.so             lib$(*F).c.a
+CMAIN += $(*F).cpp.o        lib$(*F).cpp.so           lib$(*F).cpp.a
 
-CXTRS  = $(COUT:%=%.o)         $(COUT:%=%.so)         $(COUT:%=%.a)
-CXTRS += $(COUT:%.out=%.o)     $(COUT:%.out=%.so)     $(COUT:%.out=%.a)
-CXTRS += $(COUT:%=%.c.o)       $(COUT:%=%.c.so)       $(COUT:%=%.c.a)
-CXTRS += $(COUT:%.out=%.c.o)   $(COUT:%.out=%.c.so)   $(COUT:%.out=%.c.a)
-CXTRS += $(COUT:%=%.cpp.o)     $(COUT:%=%.cpp.so)     $(COUT:%=%.cpp.a)
-CXTRS += $(COUT:%.out=%.cpp.o) $(COUT:%.out=%.cpp.so) $(COUT:%.out=%.cpp.a)
+CXTRS  = $(COUT:%=%.o)         $(COUT:%=lib%.so)         $(COUT:%=lib%.a)
+CXTRS += $(COUT:%=%.c.o)       $(COUT:%=lib%.c.so)       $(COUT:%=lib%.c.a)
+CXTRS += $(COUT:%=%.cpp.o)     $(COUT:%=lib%.cpp.so)     $(COUT:%=lib%.cpp.a)
+CXTRS += $(COUT:%.out=%.o)     $(COUT:%.out=lib%.so)     $(COUT:%.out=lib%.a)
+CXTRS += $(COUT:%.out=%.c.o)   $(COUT:%.out=lib%.c.so)   $(COUT:%.out=lib%.c.a)
+CXTRS += $(COUT:%.out=%.cpp.o) $(COUT:%.out=lib%.cpp.so) $(COUT:%.out=lib%.cpp.a)
 
 $(COUT): $(CLNK)
-	$(if $(findstring .c.      ,$(filter $(CMAIN),$(CLNK))), $(GCC) -o $@ $(filter $(CMAIN),$(CLNK)) $(filter-out $(CXTRS),$(CLNK)) $(CLNKS),)
-	$(if $(findstring     .cpp.,$(filter $(CMAIN),$(CLNK))), $(GPP) -o $@ $(filter $(CMAIN),$(CLNK)) $(filter-out $(CXTRS),$(CLNK)) $(CLNKS),)
-	$(if $(findstring .c. .cpp.,$(filter $(CMAIN),$(CLNK))),,$(GXX) -o $@ $(filter $(CMAIN),$(CLNK)) $(filter-out $(CXTRS),$(CLNK)) $(CLNKS) )
+	$(GXX) -o $@ $(filter $(CMAIN),$(CLNK)) $(filter-out $(CXTRS),$(CLNK)) $(CFLAGS)
+#	$(GXX) -o $@ $(filter $(CMAIN),$(CLNK)) $(filter-out $(CXTRS),$(CLNK)) $(CLNKS)
 
 %.o %.c.o   : %.c
 	$(GCC) -c -o $@ $< $(CFLAGS)
