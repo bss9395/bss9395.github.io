@@ -1,6 +1,6 @@
 # Makefile
 # Author: BSS9395
-# Update: 2019-11-05T00:23 +08 @ ShenZhen +08
+# Update: 2019-11-04T20:28 +08 @ ShenZhen +08
 # Design: GNU Makefile
 
 ################################################################################
@@ -9,7 +9,7 @@ INCLUDE := Makefile src inc lib lib64
 EXCLUDE := .git**
 
 INC := inc
-LIB := lib lib64
+LIB := lib64
 SRC := src
 LNK := lnk
 OUT := out
@@ -23,7 +23,7 @@ DIR := ~/Mine
 CSRC := $(shell find $(SRC) -maxdepth 1 -type f \( -false -or -name "*.c" -or -name "*.cpp" \) -printf "%P ")
 CLNK := $(filter-out $(CSRC),$(CSRC:%.c=%.c.o) $(CSRC:%.cpp=%.cpp.o))
 CLIB := #libcrypto.so.10 libssl.so.10
-COUT := Main.out
+COUT := Logger.out
 
 ################################################################################
 
@@ -31,10 +31,10 @@ LIBRARY_PATH    := #
 LD_LIBRARY_PATH := #
 
 GCC      := gcc -m64 -std=c99
-GPP      := g++ -m64 -std=c++14
+GPP      := g++ -m64 -std=c++11
 GXX      := $(if $(findstring .cpp,$(CSRC)),$(GPP),$(GCC))
 CPPFLAGS := $(INC:%=-I%) $(LIB:%=-L%)
-LDFLAGS  := -lpthread
+LDFLAGS  := -lpthread -lzinx
 CFLAGS   := $(CPPFLAGS) $(LDFLAGS) -Wall # -Werror # -ggdb -g
 CLNKS    := $(if $(findstring .o,$(CLNK)),$(CFLAGS),)
 
@@ -89,6 +89,8 @@ lib%.a  lib%.cpp.a : %.cpp
 
 run: $(COUT)
 	export LD_LIBRARY_PATH=.:lib:lib64; $(COUT:%=./%;)
+# 	cat file.log
+#	export LD_LIBRARY_PATH=.:lib64; ./Logger.out
 
 stop: $(COUT)
 	killall $(COUT)
@@ -136,13 +138,16 @@ sync: get put
 tree:
 	tree -L 2
 
+grep-%:
+	grep --color -R $* $(SRC)
+
 subl:
-	sed -i 's/\xe2\x80\x8b//g' $(shell find src -maxdepth 1 -name "*.c" -printf "%p\n")
-	subl $(shell find src -maxdepth 1 -name "*.c" -printf "%p\n")
+	sed -i 's/\xe2\x80\x8b//g' $(shell find src -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
+	subl $(shell find src -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
 
 vim:
-	sed -i 's/\xe2\x80\x8b//g' $(shell find src -maxdepth 1 -name "*.c" -printf "%p\n")
-	vim  $(shell find src -maxdepth 1 -name "*.c" -printf "%p\n")
+	sed -i 's/\xe2\x80\x8b//g' $(shell find src -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
+	vim  $(shell find src -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
 
 diffuse:
 	diffuse src/Main.c src/old/Main.c
