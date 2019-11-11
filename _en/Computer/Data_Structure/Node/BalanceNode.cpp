@@ -21,16 +21,16 @@ class BalanceNode {
 		os << node._element;
 		return os;
 	}
-	friend auto operator<(const BalanceNode &lhs, const BalanceNode &rhs) {
+	friend auto operator<(const BalanceNode &lhs, const BalanceNode &rhs) -> bool {
 		return (lhs._element < rhs._element);
 	}
-	friend auto operator==(const BalanceNode &lhs, const BalanceNode &rhs) {
+	friend auto operator==(const BalanceNode &lhs, const BalanceNode &rhs) -> bool {
 		return (lhs._element == rhs._element);
 	}
-	friend auto operator!=(const BalanceNode &lhs, const BalanceNode &rhs) {
+	friend auto operator!=(const BalanceNode &lhs, const BalanceNode &rhs) -> bool {
 		return !operator==(lhs, rhs);
 	}
-	friend auto operator>(const BalanceNode &lhs, const BalanceNode &rhs) {
+	friend auto operator>(const BalanceNode &lhs, const BalanceNode &rhs) -> bool {
 		return (lhs._element > rhs._element);
 	}
 public:
@@ -42,7 +42,7 @@ public:
 		: _element(node._element), _balance(node._balance), _left(node._left), _right(node._right) {
 
 	}
-	auto operator=(const BalanceNode &node) {
+	auto operator=(const BalanceNode &node) -> bool {
 		if (this != &node) {
 			_clear();
 			_element = node._element;

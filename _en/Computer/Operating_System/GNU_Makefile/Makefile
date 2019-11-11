@@ -20,10 +20,10 @@ DST := ~/bin
 RMT := $(shell echo $$(cat ~/.ssh/known_hosts  | head -n 1) | cut -d ' ' -f 1)
 DIR := ~/Mine
 
-CSRC := $(shell find $(SRC) -maxdepth 1 -type f \( -false -or -name "*.c" -or -name "*.cpp" \) -printf "%P ")
-CLNK := $(filter-out $(CSRC),$(CSRC:%.c=%.c.o) $(CSRC:%.cpp=%.cpp.o))
+CSRC := $(shell find $(SRC) -maxdepth 1 -type f \( -false -or -name "*.c" -or -name "*.cpp" -or -name "*.cc" \) -printf "%P ")
+CLNK := $(filter-out $(CSRC),$(CSRC:%.c=%.c.o) $(CSRC:%.cpp=%.cpp.o) $(CSRC:%.cc=%.cc.o))
 CLIB := #libcrypto.so.10 libssl.so.10
-COUT := Logger.out
+COUT := abc.out
 
 ################################################################################
 
@@ -34,7 +34,7 @@ GCC      := gcc -m64 -std=c99
 GPP      := g++ -m64 -std=c++11
 GXX      := $(if $(findstring .cpp,$(CSRC)),$(GPP),$(GCC))
 CPPFLAGS := $(INC:%=-I%) $(LIB:%=-L%)
-LDFLAGS  := -lpthread -lzinx
+LDFLAGS  := -lpthread -lprotobuf
 CFLAGS   := $(CPPFLAGS) $(LDFLAGS) -Wall # -Werror # -ggdb -g
 CLNKS    := $(if $(findstring .o,$(CLNK)),$(CFLAGS),)
 
@@ -44,6 +44,7 @@ vpath %.h   $(INC)
 vpath %.hpp $(INC)
 vpath %.c   $(SRC)
 vpath %.cpp $(SRC)
+vpath %.cc  $(SRC)
 vpath %.so  $(LIB)
 vpath %.a   $(LIB)
 vpath %.o   $(LIB)
@@ -57,16 +58,20 @@ all: $(COUT)
 CMAIN  = $(@F).o               $(@F).so                  $(@F).a
 CMAIN += $(@F).c.o             $(@F).c.so                $(@F).c.a
 CMAIN += $(@F).cpp.o           $(@F).cpp.so              $(@F).cpp.a
+CMAIN += $(@F).cc.o            $(@F).cc.so               $(@F).cc.a
 CMAIN += $(*F).o            lib$(*F).so               lib$(*F).a
 CMAIN += $(*F).c.o          lib$(*F).c.so             lib$(*F).c.a
 CMAIN += $(*F).cpp.o        lib$(*F).cpp.so           lib$(*F).cpp.a
+CMAIN += $(*F).cc.o         lib$(*F).cc.so            lib$(*F).cc.a
 
 CXTRS  = $(COUT:%=%.o)         $(COUT:%=lib%.so)         $(COUT:%=lib%.a)
 CXTRS += $(COUT:%=%.c.o)       $(COUT:%=lib%.c.so)       $(COUT:%=lib%.c.a)
 CXTRS += $(COUT:%=%.cpp.o)     $(COUT:%=lib%.cpp.so)     $(COUT:%=lib%.cpp.a)
+CXTRS += $(COUT:%=%.cc.o)      $(COUT:%=lib%.cc.so)      $(COUT:%=lib%.cc.a)
 CXTRS += $(COUT:%.out=%.o)     $(COUT:%.out=lib%.so)     $(COUT:%.out=lib%.a)
 CXTRS += $(COUT:%.out=%.c.o)   $(COUT:%.out=lib%.c.so)   $(COUT:%.out=lib%.c.a)
 CXTRS += $(COUT:%.out=%.cpp.o) $(COUT:%.out=lib%.cpp.so) $(COUT:%.out=lib%.cpp.a)
+CXTRS += $(COUT:%.out=%.cc.o)  $(COUT:%.out=lib%.cc.so)  $(COUT:%.out=lib%.cc.a)
 
 $(COUT): $(CLNK)
 	$(GXX) -o $@ $(filter $(CMAIN),$(CLNK)) $(filter-out $(CXTRS),$(CLNK)) $(CFLAGS)
@@ -76,21 +81,25 @@ $(COUT): $(CLNK)
 	$(GCC) -c -o $@ $< $(CFLAGS)
 %.o %.cpp.o : %.cpp
 	$(GPP) -c -o $@ $< $(CFLAGS)
+%.o %.cc.o  : %.cc
+	$(GPP) -c -o $@ $< $(CFLAGS)
 
 lib%.so lib%.c.so   : %.c
 	$(GCC) -shared -fPIC -o $@ $< $(CFLAGS)
 lib%.so lib%.cpp.so : %.cpp
+	$(GPP) -shared -fPIC -o $@ $< $(CFLAGS)
+lib%.so lib%.cc.so  : %.cc
 	$(GPP) -shared -fPIC -o $@ $< $(CFLAGS)
 
 lib%.a  lib%.c.a   : %.c
 	$(GCC) -static -c -o $@ $< $(CFLAGS)
 lib%.a  lib%.cpp.a : %.cpp
 	$(GPP) -static -c -o $@ $< $(CFLAGS)
+lib%.a  lib%.cc.a  : %.cc
+	$(GPP) -static -c -o $@ $< $(CFLAGS)
 
 run: $(COUT)
 	export LD_LIBRARY_PATH=.:lib:lib64; $(COUT:%=./%;)
-# 	cat file.log
-#	export LD_LIBRARY_PATH=.:lib64; ./Logger.out
 
 stop: $(COUT)
 	killall $(COUT)
@@ -157,3 +166,12 @@ git:
 
 mysql:
 	mysql -uqwe -p1234567 -h$(HST) -Dmysql
+
+ifconfig:
+	sudo ifconfig ens33 inet 192.168.93.95
+	sudo systemctl stop iptables
+	sudo systemctl stop firewalld
+	ifconfig ens33
+
+protobuf:
+	cd $(SRC); protoc --cpp_out=. *.proto
