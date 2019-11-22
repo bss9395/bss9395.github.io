@@ -8,22 +8,23 @@
 INCLUDE := Makefile src inc lib lib64
 EXCLUDE := .git**
 
+PWD := $(shell pwd)
 INC := inc
 LIB := lib64
 SRC := src
 LNK := lnk
 OUT := out
 
-USR := bss9395
+USR := $(shell whoami)
 HST := $(shell echo $$(ifconfig | grep 'inet ' | head -n 1) | cut -d ' ' -f 2)
 DST := ~/bin
-RMT := $(shell echo $$(cat ~/.ssh/known_hosts  | head -n 1) | cut -d ' ' -f 1)
+RMT := $(shell echo $$(cat ~/.ssh/known_hosts  | tail -n 1) | cut -d ' ' -f 1)
 DIR := ~/Mine
 
 CSRC := $(shell find $(SRC) -maxdepth 1 -type f \( -false -or -name "*.c" -or -name "*.cpp" -or -name "*.cc" \) -printf "%P ")
 CLNK := $(filter-out $(CSRC),$(CSRC:%.c=%.c.o) $(CSRC:%.cpp=%.cpp.o) $(CSRC:%.cc=%.cc.o))
 CLIB := #libcrypto.so.10 libssl.so.10
-COUT := abc.out
+COUT := Main.out
 
 ################################################################################
 
@@ -34,7 +35,7 @@ GCC      := gcc -m64 -std=c99
 GPP      := g++ -m64 -std=c++11
 GXX      := $(if $(findstring .cpp,$(CSRC)),$(GPP),$(GCC))
 CPPFLAGS := $(INC:%=-I%) $(LIB:%=-L%)
-LDFLAGS  := -lpthread -lprotobuf
+LDFLAGS  := -lpthread #-lprotobuf
 CFLAGS   := $(CPPFLAGS) $(LDFLAGS) -Wall # -Werror # -ggdb -g
 CLNKS    := $(if $(findstring .o,$(CLNK)),$(CFLAGS),)
 
@@ -99,7 +100,10 @@ lib%.a  lib%.cc.a  : %.cc
 	$(GPP) -static -c -o $@ $< $(CFLAGS)
 
 run: $(COUT)
-	export LD_LIBRARY_PATH=.:lib:lib64; $(COUT:%=./%;)
+	export LD_LIBRARY_PATH=$(PWD):$(PWD)/$(LIB); export PATH=$(PWD); cd $(SRC); $(COUT)
+
+run-%: $(COUT)
+	export LD_LIBRARY_PATH=$(PWD):$(PWD)/$(LIB); export PATH=$(PWD); cd $(SRC); $(COUT) $*
 
 stop: $(COUT)
 	killall $(COUT)
@@ -137,7 +141,7 @@ put: $(CLIB)
 
 	mkdir -p out/lnk; cp -r $(INCLUDE) $(OUT); rsync -arL $^ $(OUT)/lnk/;
 
-	@printf "$(shell whoami)@$(HST):./ ---> $(USR)@$(RMT):$(DIR)\n"
+	@printf "$(USR)@$(HST):$(PWD) ---> $(USR)@$(RMT):$(DIR)\n"
 	@rsync -varLz -e ssh --delete $(EXCLUDE:%=--exclude "%") $(OUT)/ $(USR)@$(RMT):$(DIR)/
 
 sync: get put
@@ -151,12 +155,12 @@ grep-%:
 	grep --color -R $* $(SRC)
 
 subl:
-	sed -i 's/\xe2\x80\x8b//g' $(shell find src -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
-	subl $(shell find src -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
+	sed -i 's/\xe2\x80\x8b//g' $(shell find $(SRC) -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
+	subl $(shell find $(SRC) -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
 
 vim:
-	sed -i 's/\xe2\x80\x8b//g' $(shell find src -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
-	vim  $(shell find src -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
+	sed -i 's/\xe2\x80\x8b//g' $(shell find $(SRC) -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
+	vim  $(shell find $(SRC) -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
 
 diffuse:
 	diffuse src/Main.c src/old/Main.c
@@ -168,10 +172,20 @@ mysql:
 	mysql -uqwe -p1234567 -h$(HST) -Dmysql
 
 ifconfig:
-	sudo ifconfig ens33 inet 192.168.93.95
+	sudo ifconfig ens33 inet 192.168.100.100
 	sudo systemctl stop iptables
 	sudo systemctl stop firewalld
 	ifconfig ens33
 
 protobuf:
 	cd $(SRC); protoc --cpp_out=. *.proto
+
+ps:
+	ps aux | grep $(COUT) --color
+
+kill-%:
+	kill $*
+	ps aux | grep $(COUT) --color
+
+valgrind: $(COUT)
+	valgrind --log-file=valgrind.log --leak-check=full --show-reachable=yes --leak-resolution=low $(COUT:%=./%)

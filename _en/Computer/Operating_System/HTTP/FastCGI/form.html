@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>提交表单</title>
+</head>
+<body>
+    <form method="post" action="http://192.168.12.128/echo">
+    <p><label>name : <input type="text"  name="name"  placeholder="name"  autofocus="autofocus"></label></p>
+    <p><label>tel  : <input type="tel"   name="phone" placeholder="phone" required="required">  </label></p>
+    <p><label>email: <input type="email" name="email" placeholder="email">                      </label></p>
+    <p><label>date : <input type="date"  name="date"  placeholder="date">                       </label></p>
+
+    <p><label for="sex">gender:
+        <input type="radio" name="sex" value="female" checked="checked">female
+        <input type="radio" name="sex" value="male">male
+    </label></p>
+
+    <p><label for="class">class:
+    <select name="class">
+        <option value="1"         >Java</option>
+        <option value="2"         >Python</option>
+        <option value="3" selected>C++</option>
+        <option value="4"         >HTML5</option>
+        <option value="5"         >Qt</option>
+    </select>
+    </label></p>
+
+    <p><label><input type="checkbox" name="rule" required>Good Good Study, Day Day Up!</label></p>
+    <p><button class="mybtn">Submit by HAND.</button></p>
+    </form>
+
+</body>
+</html>
