@@ -5,25 +5,31 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef void* EType;
-
 static const struct {
-	void* Null;
-	void* Long;
-	void* Double;
-	void* String;
-} TYPE = { "Null", "Long", "Double", "String" };
-#define Null TYPE.Null 
-#define Long TYPE.Long
-#define Double TYPE.Double
-#define String TYPE.String
+	EType Null;
+	EType Bool;
+	EType Long;
+	EType Double;
+	EType Array;
+	EType String;
+	EType EType;
+	EType AType;
+} ETYPE = { "Null", "Bool", "Long", "Double", "Array", "String", "EType", "AType" };
+static EType* ATYPE = (EType*)&ETYPE;
 
 int main(int argc, char* argv[]) {
-	EType type = String;
+	EType type1 = ETYPE.String;
+	printf("%ld, %s\n", (long)type1, (char*)type1);
 
-	printf("%ld\n", (long)type);
-	printf("%s\n", (char*)type);
+	EType type2 = "String";
+	printf("%ld, %s\n", (long)type2, (char*)type2);
+
+	for (int i = 0; i < sizeof(ETYPE) / sizeof(EType); ++i) {
+		printf("%ld, %s\n", (long)ATYPE[i], (char*)ATYPE[i]);
+	}
 
 	return 0;
 }
