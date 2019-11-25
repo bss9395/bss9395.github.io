@@ -5,7 +5,6 @@
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 
 typedef void* EType;
 static const struct {
@@ -17,7 +16,7 @@ static const struct {
 	EType String;
 	EType EType;
 	EType AType;
-} ETYPE = { "Null", "Bool", "Long", "Double", "Array", "String", "EType", "AType" };
+} ETYPE = { (EType)"Null", (EType)"Bool", (EType)"Long", (EType)"Double", (EType)"Array", (EType)"String", (EType)"EType", (EType)"AType" };
 static EType* ATYPE = (EType*)&ETYPE;
 
 int main(int argc, char* argv[]) {

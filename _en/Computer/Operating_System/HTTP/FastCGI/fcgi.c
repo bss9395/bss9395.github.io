@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
                "\r\n");
 
         long CONTENT_LENGTH = (long)getEnv("CONTENT_LENGTH", Type.Long);
-        getLine(buf, stdin, CONTENT_LENGTH, '\n');
+        getLine(buf, stdin, CONTENT_LENGTH, EOF);
 
         char *post[2] = { buf, NULL };
         printLines("form method=post", post);
