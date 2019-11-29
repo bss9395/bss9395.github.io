@@ -1,32 +1,32 @@
-#include "fcgi_stdio.h"
-
 #include <unistd.h>
-#include <stdlib.h>
+#include "fcgi_stdio.h"
 
 extern char **environ;
 
+typedef void* EType;
 static const struct {
-    const int Long;
-    const int String;
-} Type = { 0, 1 };
+    EType Null;
+    EType Long;
+    EType String;
+} TYPE = { (EType)"Null", (EType)"Long", (EType)"String" };
 
-void *getEnv(char *env, int type) {
+void *getEnv(const char *env, EType type) {
     void *ret = NULL;
 
-    if(type == Type.Long) {
+    if(type == TYPE.Long) {
         char *ptr = getenv(env);
         if(ptr) {
             ret = (void *)strtol(ptr, NULL, 10);
         }
     }
-    else if(type == Type.String) {
+    else if(type == TYPE.String) {
         ret = getenv(env);
     }
 
     return ret;
 }
 
-static void printLines(char *label, char *lines[]) {
+static void printLines(const char *label, char *lines[]) {
     printf("<h3>%s</h3>\n", label);
     printf("<pre>\n");
     while(lines[0] != NULL) {
@@ -36,22 +36,23 @@ static void printLines(char *label, char *lines[]) {
     printf("</pre>\n\n");
 }
 
+
 static long getLine(char *buf, FILE *file, long length, char del) {
     if(!buf) {
         buf = (char *)malloc(sizeof(char) * length);
     }
 
-    long ret = 0;
-    while(ret < length && !feof(file)) {
-        buf[ret] = fgetc(file);
-        if(buf[ret] == del) {
+    long len = 0;
+    while(len < length && !feof(file)) {
+        buf[len] = fgetc(file);
+        if(buf[len] == del) {
             break;
         }
-        ret += 1;
+        len += 1;
     }
-    buf[ret] = '\0';
+    buf[len] = '\0';
 
-    return ret;
+    return len;
 }
 
 static char buf[BUFSIZ] = "01234567890";
@@ -59,16 +60,21 @@ static char buf[BUFSIZ] = "01234567890";
 int main(int argc, char *argv[]) {
     char **context = environ;
 
-    while(0 <= FCGI_Accept()) {
+    for(long count = 0; 0 <= FCGI_Accept(); count += 1) {
         printf(""
                "Status: 200 OK\r\n"
                "Content-Type: text/html\r\n"
                "\r\n");
+        printf(""
+               "<title>FastCGI echo</title>"
+               "<h3>FastCGI echo</h3>"
+               "request count = %ld, process ID = %ld",
+               count, getpid());
 
-        long CONTENT_LENGTH = (long)getEnv("CONTENT_LENGTH", Type.Long);
+        long CONTENT_LENGTH = (long)getEnv("CONTENT_LENGTH", TYPE.Long);
         getLine(buf, stdin, CONTENT_LENGTH, EOF);
 
-        char *post[2] = { buf, NULL };
+        char *post[2] = { buf, NULL};
         printLines("form method=post", post);
         printLines("initial environ", context);
         printLines("request environ", environ);

@@ -5,13 +5,13 @@
 
 ################################################################################
 
-INCLUDE = Makefile src inc lib lib64
-EXCLUDE = .git**
-
 NET = 192.168.12
 HST = $(shell echo $$(sudo ifconfig) | grep -o "$(NET).[0-9]*" | tail -n 1)
 RMT = $(shell echo $$(sudo nmap -sP "$(NET).0/24") | grep -o "$(NET).[0-9]*" | grep -v "$(HST) " | tail -n 1)
 MAP = hosts.nmap
+
+INCLUDE = .git** $(MAP) Makefile inc lib lib64 src
+EXCLUDE = .git** $(MAP)
 
 ################################################################################
 
@@ -27,7 +27,7 @@ DST := ~/bin
 CSRC := $(shell find $(SRC) -maxdepth 1 -type f \( -false -or -name "*.c" -or -name "*.cpp" -or -name "*.cc" \) -printf "%P ")
 CLNK := $(filter-out $(CSRC),$(CSRC:%.c=%.c.o) $(CSRC:%.cpp=%.cpp.o) $(CSRC:%.cc=%.cc.o))
 CLIB := #libcrypto.so.10 libssl.so.10
-COUT := odbc.out fcgi.out Main.out
+COUT := Main.out
 
 ################################################################################
 
@@ -121,9 +121,9 @@ clean:
 	@find ./ -maxdepth 1 \( -false $(COUT:%=-or -name %) \) -printf "rm -r %p\n" -exec rm -r {} +
 
 purge: clean
-	@find ./            -maxdepth 1 \( ! -name "Makefile" ! -name ".git*" \) ! -type d -printf "rm -r %p\n" -exec rm -r {} +
-	@find $(dir $(OUT)) -maxdepth 1 \(   -name $(notdir $(OUT))           \)           -printf "rm -r %p\n" -exec rm -r {} +
-	@find ./            -maxdepth 1 \(   -name $(notdir $(LNK))           \)           -printf "rm -r %p\n" -exec rm -r {} +
+	@find ./            -maxdepth 1 \( $(INCLUDE:%=! -name "%") \) ! -type d -printf "rm -r %p\n" -exec rm -r {} +
+	@find $(dir $(OUT)) -maxdepth 1 \( -name $(notdir $(OUT))   \)           -printf "rm -r %p\n" -exec rm -r {} +
+	@find ./            -maxdepth 1 \( -name $(notdir $(LNK))   \)           -printf "rm -r %p\n" -exec rm -r {} +
 
 install: $(COUT)
 	@find ./ -maxdepth 1 \( -false $(CLNK:%=-or -name %) \) -exec rsync -varL {} $(LNK)/ \;
@@ -206,6 +206,5 @@ dump: $(CLIB) $(MAP)
 
 $(MAP):
 	truncate -s 0  $(MAP)
-	echo $(USR) >> $(MAP)
 	echo $(HST) >> $(MAP)
 	echo $(RMT) >> $(MAP)
