@@ -44,9 +44,6 @@ decltype(auto) getPtr(Ts* ...ts);
 template<const long I, typename ...Ts>
 decltype(auto) getPtr(const AutoPtr<Ts...>& ptr);
 
-#endif // AutoPtr_hpp
-
-
 #ifndef AutoPtr_cpp
 #define AutoPtr_cpp
 
@@ -274,6 +271,7 @@ public:
 		*(_ptrs[I]._count) -= 1;
 		if (*(_ptrs[I]._count) <= 0) {
 			delete (B*)(_ptrs[I]._base);
+			delete _ptrs[I]._count;
 		}
 		deleted<I + 1, Bs...>();
 	}
@@ -317,6 +315,8 @@ decltype(auto) getPtr(const AutoPtr<Ts...>& ptr) {
 	cerr << __FUNCTION__ << ": " << typeid(Type).name() << "#" << endl;
 	return AutoPtr<Type>(ptr._ptrs[I]._base, ptr._ptrs[I]._count);
 }
+
+#endif // AutoPtr_hpp
 
 ////////////////////////////////////////////////////////////////////////////////
 
