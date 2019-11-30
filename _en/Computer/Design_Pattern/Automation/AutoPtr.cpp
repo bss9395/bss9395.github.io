@@ -44,24 +44,7 @@ decltype(auto) getPtr(Ts* ...ts);
 template<const long I, typename ...Ts>
 decltype(auto) getPtr(const AutoPtr<Ts...>& ptr);
 
-#ifndef AutoPtr_cpp
-#define AutoPtr_cpp
-
-void freed(long num, ...) {
-	fprintf(stderr, "%s\n", __FUNCTION__);
-	va_list args;
-	va_start(args, num);
-	for (long i = 0; i != num; ++i) {
-		void* ptr = va_arg(args, void*);
-		if (ptr == NULL) {
-			break;
-		}
-		free(ptr);
-	}
-	va_end(args);
-}
-
-#endif // AutoPtr_cpp
+////////////////////////////////////////////////////////////////////////////////
 
 template<typename T>
 void deleted(T* t) {
@@ -317,6 +300,25 @@ decltype(auto) getPtr(const AutoPtr<Ts...>& ptr) {
 }
 
 #endif // AutoPtr_hpp
+
+#ifndef AutoPtr_cpp
+#define AutoPtr_cpp
+
+void freed(long num, ...) {
+	fprintf(stderr, "%s\n", __FUNCTION__);
+	va_list args;
+	va_start(args, num);
+	for (long i = 0; i != num; ++i) {
+		void* ptr = va_arg(args, void*);
+		if (ptr == NULL) {
+			break;
+		}
+		free(ptr);
+	}
+	va_end(args);
+}
+
+#endif // AutoPtr_cpp
 
 ////////////////////////////////////////////////////////////////////////////////
 
