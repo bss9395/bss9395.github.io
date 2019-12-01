@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 
-typedef void* EType;
+typedef const void* EType;
 static const struct {
 	EType Null;
 	EType Bool;

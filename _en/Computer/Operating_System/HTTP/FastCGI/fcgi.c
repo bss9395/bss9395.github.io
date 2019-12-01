@@ -3,7 +3,7 @@
 
 extern char **environ;
 
-typedef void* EType;
+typedef const void* EType;
 static const struct {
     EType Null;
     EType Long;
