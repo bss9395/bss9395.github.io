@@ -32,12 +32,11 @@ void freed(const long num, ...);
 template<typename T>                 void deleted(T* pointer);
 template<typename T, typename ...Ts> void deleted(T* pointer, Ts*...pointers);
 
-template<typename ...>                              class Pointer;
-template<>                                          class Pointer<char>;
-template<typename T>                                class Pointer<T>;
-template<typename T, typename ...Ts>                class Pointer<T, Ts...>;
-template<typename ...Ts>                            decltype(auto) getPointer(const Ts*...pointers);
-template<const long I, typename T1, typename ...Ts> decltype(auto) getPointer(const Pointer<T1, Ts...>& pointer);
+template<typename ...>               class Pointer;
+template<>                           class Pointer<char>;
+template<typename T>                 class Pointer<T>;
+template<typename T, typename ...Ts> class Pointer<T, Ts...>;
+template<typename ...Ts>             decltype(auto) getPointer(const Ts*...pointers);
 
 template<typename ...>               class Assembly;
 template<typename T>                 class Assembly<T>;
@@ -334,20 +333,6 @@ template<typename ...Ts>
 decltype(auto) getPointer(const Ts*...pointers) {
 	cerr << __FUNCTION__ << "(const Ts*...pointers)" << endl;
 	return Pointer<Ts...>(pointers...);
-}
-
-//template<const long I, typename T1, typename ...Ts>
-//decltype(auto) getPointer(const Pointer<T1, Ts...>& pointer) {
-//	cerr << __FUNCTION__ << "(const Pointer<Ts...>& pointer)" << "#";
-//	cerr << typeid(pointer).name() << endl;
-//	return pointer.at<I>();
-//}
-
-template<const long I, typename T, typename ...Ts>
-decltype(auto) getPointer(const Pointer<T, Ts...>& pointer) {
-	cerr << __FUNCTION__ << "(const Pointer<Ts...>& pointer)" << endl;
-	typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
-	return Pointer<Base>((Base*)(pointer._pointers[I]._pointer), pointer._pointers[I]._count, pointer._pointers[I]._length);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
