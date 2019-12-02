@@ -8,18 +8,18 @@ static const struct {
     EType Null;
     EType Long;
     EType String;
-} TYPE = { (EType)"Null", (EType)"Long", (EType)"String" };
+} ETYPE = { (EType)"Null", (EType)"Long", (EType)"String" };
 
 void *getEnv(const char *env, EType type) {
     void *ret = NULL;
 
-    if(type == TYPE.Long) {
+    if(type == ETYPE.Long) {
         char *ptr = getenv(env);
         if(ptr) {
             ret = (void *)strtol(ptr, NULL, 10);
         }
     }
-    else if(type == TYPE.String) {
+    else if(type == ETYPE.String) {
         ret = getenv(env);
     }
 
@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
                "request count = %ld, process ID = %ld",
                count, getpid());
 
-        long CONTENT_LENGTH = (long)getEnv("CONTENT_LENGTH", TYPE.Long);
+        long CONTENT_LENGTH = (long)getEnv("CONTENT_LENGTH", ETYPE.Long);
         getLine(buf, stdin, CONTENT_LENGTH, EOF);
 
         char *post[2] = { buf, NULL};
