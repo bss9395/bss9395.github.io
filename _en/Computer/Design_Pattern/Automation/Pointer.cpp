@@ -1,0 +1,510 @@
+/* Pointer.cpp
+* Author: BSS9395
+* Update: 2019-12-02T15:28:00+08@ShenZhen
+* Design: Automation
+*/
+
+#ifndef Pointer_hpp
+#define Pointer_hpp
+
+#ifndef _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
+
+#include <stdio.h>
+#include <string.h>
+#include <stdarg.h>
+#include <iostream>
+#include <string>
+#include <typeinfo>
+
+using std::cout;
+using std::cerr;
+using std::endl;
+using std::string;
+
+void freed(const long num, ...);
+
+template<typename T>                 void deleted(T* pointer);
+template<typename T, typename ...Ts> void deleted(T* pointer, Ts*...pointers);
+
+template<typename ...>                              class Pointer;
+template<>                                          class Pointer<char>;
+template<typename T>                                class Pointer<T>;
+template<typename T, typename ...Ts>                class Pointer<T, Ts...>;
+template<typename ...Ts>                            decltype(auto) getPointer(const Ts*...pointers);
+template<const long I, typename T1, typename ...Ts> decltype(auto) getPointer(const Pointer<T1, Ts...>& pointer);
+
+template<typename ...>               class Assembly;
+template<typename T>                 class Assembly<T>;
+template<typename T, typename ...Ts> class Assembly<T, Ts...>;
+
+////////////////////////////////////////////////////////////////////////////////
+
+template<typename T>
+void deleted(T* pointer) {
+	cout << __FUNCTION__ << endl;
+	delete pointer;
+}
+
+template<typename T, typename ...Ts>
+void deleted(T* pointer, Ts*...pointers) {
+	deleted(pointer);
+	deleted(pointers...);
+}
+
+template<typename ...>
+class Pointer;
+
+template<>
+class Pointer<> {
+public:
+	typedef class Pointer<> Type;
+
+public:
+	Pointer() = delete;
+	Pointer(const Pointer&) = delete;
+	Pointer& operator=(const Pointer&) = delete;
+	virtual ~Pointer() = delete;
+
+public:
+	template<const long I, typename ...Bs>
+	struct GetBase;
+
+	template<typename B, typename ...Bs>
+	struct GetBase<0, B, Bs...> {
+		typedef B Base;
+		static const long _OFFSET = 0;
+	};
+
+	template<const long I, typename B, typename ...Bs>
+	struct GetBase<I, B, Bs...> {
+		typedef typename GetBase<I - 1, Bs...>::Base Base;
+		static const long _OFFSET = sizeof(B) + GetBase<I - 1, Bs...>::_OFFSET;
+	};
+};
+
+template<>
+class Pointer<char> {
+public:
+	typedef class Pointer<char> Type;
+	static const long _ARGC = 1;
+	static const long _SIZE = sizeof(char);
+
+public:
+	Pointer(char* pointer)
+		:_pointer(pointer), _count(new long(1)), _length(1) {
+		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+	}
+
+	Pointer(char* pointer, long* count, long length)
+		: _pointer(pointer), _count(count), _length(length) {
+		*_count += 1;
+		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+	}
+
+	Pointer(const Pointer& pointer) {
+		_pointer = pointer._pointer;
+		_count = pointer._count;
+		_length = pointer._length;
+		*_count += 1;
+		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+	}
+
+	Pointer& operator=(const Pointer& pointer) {
+		if (this != &pointer) {
+			this ->~Pointer();
+			_pointer = pointer._pointer;
+			_count = pointer._count;
+			_length = pointer._length;
+			*_count += 1;
+		}
+		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		return *this;
+	}
+
+	virtual ~Pointer() {
+		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		*_count -= 1;
+		if (*_count <= 0) {
+			_length <= 1 ? delete _pointer : delete[] _pointer;
+			delete _count;
+		}
+	}
+
+public:
+	template<const long I = 0>
+	Pointer<char> setLength(const long length = 2) {
+		cerr << __FUNCTION__ << endl;
+		_length = length;
+		return *this;
+	}
+
+	template<const long I = 0>
+	Pointer<char>& at() const {
+		cerr << __FUNCTION__ << endl;
+		return *this;
+	}
+
+public:
+	operator char* () {
+		cerr << __FUNCTION__ << endl;
+		return _pointer;
+	}
+
+public:
+	char* _pointer;
+	long* _count;
+	long _length;
+};
+
+template<typename T>
+class Pointer<T> {
+public:
+	typedef class Pointer<T> Type;
+	static const long _ARGC = 1;
+	static const long _SIZE = sizeof(T);
+
+public:
+	Pointer(T* pointer)
+		:_pointer(pointer), _count(new long(1)), _length(1) {
+		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+	}
+
+	Pointer(T* pointer, long* count, long length)
+		: _pointer(pointer), _count(count), _length(length) {
+		*_count += 1;
+		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+	}
+
+	Pointer(const Pointer& pointer) {
+		_pointer = pointer._pointer;
+		_count = pointer._count;
+		_length = pointer._length;
+		*_count += 1;
+		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+	}
+
+	Pointer& operator=(const Pointer& pointer) {
+		if (this != &pointer) {
+			this->~Pointer();
+			_pointer = pointer._pointer;
+			_count = pointer._count;
+			_length = pointer._length;
+			*_count += 1;
+		}
+		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		return *this;
+	}
+
+	virtual ~Pointer() {
+		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		*_count -= 1;
+		if (*_count <= 0) {
+			_length <= 1 ? delete _pointer : delete[] _pointer;
+			delete _count;
+		}
+	}
+
+public:
+	template<const long I = 0>
+	Pointer<T>& setLength(const long length = 2) {
+		cerr << __FUNCTION__ << endl;
+		_length = length;
+		return *this;
+	}
+
+	template<const long I = 0>
+	Pointer<T>& at() const {
+		cerr << __FUNCTION__ << endl;
+		return *this;
+	}
+
+public:
+	T& operator*() {
+		return *_pointer;
+	}
+
+	T* operator->() {
+		return &(*_pointer);
+	}
+
+public:
+	T* _pointer;
+	long* _count;
+	long _length;
+};
+
+template<typename T, typename ...Ts>
+class Pointer<T, Ts...> {
+public:
+	typedef class Pointer<T, Ts...> Type;
+	static const long _ARGC = 1 + sizeof...(Ts);
+	static const long _SIZE = sizeof(T) + Pointer<Ts...>::_SIZE;
+
+public:
+	Pointer(T* pointer, Ts*...pointers)
+		:_pointers{ { pointer, new long(1), 1 }, { pointers, new long(1), 1 }... }, _count(new long(1)) {
+		cerr << __FUNCTION__ << " " << *_count << endl;
+	}
+
+	Pointer(const Pointer& pointer) {
+		memcpy(_pointers, pointer._pointers, sizeof(_pointers));
+		_count = pointer._count;
+		for (long i = 0; i < _ARGC; ++i) {
+			*(_pointers[i]._count) += 1;
+		}
+		*_count += 1;
+		cerr << __FUNCTION__ << " " << *_count << endl;
+	}
+
+	Pointer& operator=(const Pointer& pointer) {
+		if (this != &pointer) {
+			this->~Pointer();
+			memcpy(_pointers, pointer._pointers, sizeof(_pointers));
+			_count = pointer._count;
+			for (long i = 0; i < _ARGC; ++i) {
+				*(_pointers[i]._count) += 1;
+			}
+			*_count += 1;
+		}
+		cerr << __FUNCTION__ << " " << *_count << endl;
+		return *this;
+	}
+
+	virtual ~Pointer() {
+		cerr << __FUNCTION__ << " " << *_count << "#";
+		long i = 0;
+		long argc[] = {
+			(deleted<T>(i), i += 1), (deleted<Ts>(i), i += 1)...
+		};
+		if (sizeof(argc) / sizeof(*argc) != _ARGC) {
+			cerr << "\033[33m" << __FUNCTION__ << " " << *_count << "#" << "sizeof(argc) != _ARGC" << "\033[0m" << endl;
+		}
+
+		*_count -= 1;
+		if (*_count <= 0) {
+			delete _count;
+		}
+	}
+
+protected:
+	template<typename B>
+	void deleted(const long i) {
+		cerr << *_pointers[i]._count << ":" << _pointers[i]._length << ":" << *(B*)(_pointers[i]._pointer) << " ";
+		if (i == _ARGC - 1) {
+			cerr << endl;
+		}
+		*(_pointers[i]._count) -= 1;
+		if (*(_pointers[i]._count) <= 0) {
+			_pointers[i]._length <= 1 ? delete (B*)(_pointers[i]._pointer) : delete[](B*)(_pointers[i]._pointer);
+			delete _pointers[i]._count;
+		}
+	}
+
+public:
+	template<const long I>
+	decltype(auto) setLength(const long length = 2) {
+		_pointers[I]._length = length;
+		cerr << __FUNCTION__ << endl;
+		return *this;
+	}
+
+	template<const long I>
+	decltype(auto) at() const {
+		typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
+		cerr << __FUNCTION__ << "<" << I << ">()#" << typeid(Base).name() << endl;
+		return Pointer<Base>((Base*)(_pointers[I]._pointer), _pointers[I]._count, _pointers[I]._length);
+	}
+
+public:
+	struct {
+		void* _pointer;
+		long* _count;
+		long _length;
+	} _pointers[_ARGC];
+	long* _count;
+};
+
+template<typename ...Ts>
+decltype(auto) getPointer(const Ts*...pointers) {
+	cerr << __FUNCTION__ << "(const Ts*...pointers)" << endl;
+	return Pointer<Ts...>(pointers...);
+}
+
+template<const long I, typename T1, typename ...Ts>
+decltype(auto) getPointer(const Pointer<T1, Ts...>& pointer) {
+	cerr << __FUNCTION__ << "(const Pointer<Ts...>& pointer)" << "#";
+	cerr << typeid(pointer).name() << endl;
+	return pointer.at<I>();
+}
+
+//template<const long I, typename T, typename ...Ts>
+//decltype(auto) getPointer(const Pointer<T, Ts...>& pointer) {
+//	cerr << __FUNCTION__ << "(const Pointer<Ts...>& pointer)" << endl;
+//	typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
+//	return Pointer<Base>((Base*)(pointer._pointers[I]._pointer), pointer._pointers[I]._count, pointer._pointers[I]._length);
+//}
+
+////////////////////////////////////////////////////////////////////////////////
+
+template<typename ...>
+class Assembly;
+
+template<typename T>
+class Assembly<T> {
+public:
+	typedef class Assembly<T> Type;
+	static const long _ARGC = 1;
+	static const long _SIZE = sizeof(T);
+
+public:
+	Assembly(const T& element)
+		:_element(element) {
+		cerr << __FUNCTION__ << endl;
+	}
+
+	Assembly(const Assembly& assembly) {
+		_element = assembly._element;
+		cerr << __FUNCTION__ << endl;
+	}
+
+	Assembly& operator=(const Assembly& assembly) {
+		if (this != &assembly) {
+			this->~Assembly();
+			_element = assembly._element;
+		}
+		cerr << __FUNCTION__ << endl;
+		return *this;
+	}
+
+	virtual ~Assembly() {
+		cerr << __FUNCTION__ << endl;
+	}
+
+public:
+	template<const long I = 0>
+	T& at() {
+		cerr << __FUNCTION__ << endl;
+		return _element;
+	}
+
+public:
+	T _element;
+};
+
+/* PLEASE
+* Es is NOT eX, emplace is Not inplace, assembly is NOT ass.
+*/
+template<typename T, typename ...Ts>
+class Assembly<T, Ts...> {
+public:
+	typedef class Assembly<T, Ts...> Type;
+	static const long _ARGC = 1 + sizeof...(Ts);
+	static const long _SIZE = sizeof(T) + Assembly<Ts...>::_SIZE;
+
+public:
+	Assembly(const T& element, const Ts& ...elements)
+		: _pointer(_elements), _pointers{
+			(_pointer + 0),
+			(emplace(element, _pointer), _pointer += sizeof(T)),
+			(emplace(elements, _pointer), _pointer += sizeof(Ts))
+			...
+	}{
+		cerr << endl;
+		cerr << __FUNCTION__ << endl;
+	}
+
+	Assembly(const Assembly& assembly) {
+		memcpy(_elements, assembly._elements, sizeof(_elements));
+		memcpy(_pointers, assembly._pointers, sizeof(_pointers));
+		cerr << __FUNCTION__ << endl;
+	}
+
+	Assembly& operator=(const Assembly& assembly) {
+		if (this != &assembly) {
+			this->~Assembly();
+			memcpy(_elements, assembly._elements, sizeof(_elements));
+			memcpy(_pointers, assembly._pointers, sizeof(_pointers));
+		}
+		cerr << __FUNCTION__ << endl;
+		return *this;
+	}
+
+	virtual ~Assembly() {
+		cerr << __FUNCTION__ << endl;
+	}
+
+protected:
+	template<typename E>
+	void emplace(const E& e, char* pointer) {
+		if (pointer == _elements) {
+			cerr << __FUNCTION__ << "#";
+		}
+		cerr << e << " ";
+		*((E*)pointer) = e;
+	}
+
+public:
+	template<const long I>
+	decltype(auto) at() {
+		cerr << __FUNCTION__ << endl;
+		typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
+		return *((Base*)_pointers[I]);
+	}
+
+public:
+	char* _pointer;
+	char _elements[_SIZE];
+	void* _pointers[_ARGC + 1];
+};
+
+#endif // Pointer_hpp
+
+#ifndef Pointer_cpp
+#define Pointer_cpp
+
+void freed(const long num, ...) {
+	fprintf(stderr, "%s\n", __FUNCTION__);
+	va_list(args);
+	va_start(args, num);
+	for (long i = 0; i != num; ++i) {
+		void* ptr = va_arg(args, void*);
+		if (ptr == NULL) {
+			break;
+		}
+		free(ptr);
+	}
+	va_end(args);
+}
+
+#endif // Pointer_cpp
+
+////////////////////////////////////////////////////////////////////////////////
+
+decltype(auto) testPointer() {
+	long* l = new long(11);
+	char* s = new char[12]{ "str" };
+	Pointer<long, double, char> ptr(l, new double(11.12), s);
+	ptr.setLength<2>(12);
+	return ptr.at<2>();
+}
+
+decltype(auto) testAssembly() {
+	Assembly<long, double, const char*> assembly(11, 12, "ass");
+	return assembly.at<1>();
+}
+
+int main(int argc, char* argv[]) {
+	//auto str = testPointer();
+	//cout << str << endl;
+
+	auto ass = testAssembly();
+	cout << ass << endl;
+
+	return 0;
+}
