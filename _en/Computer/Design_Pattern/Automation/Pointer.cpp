@@ -36,8 +36,8 @@ template<typename ...>               class Pointer;
 template<>                           class Pointer<char>;
 template<typename T>                 class Pointer<T>;
 template<typename T, typename ...Ts> class Pointer<T, Ts...>;
-template<typename T>                 decltype(auto) getPointer(const T* pointer, long length);
-template<typename ...Ts>             decltype(auto) getPointer(const Ts*...pointers);
+template<typename T>                 decltype(auto) getPointer(T* pointer, long length = 1);
+template<typename T, typename ...Ts> decltype(auto) getPointer(T* pointer, Ts*...pointers);
 
 template<typename ...>               class Assembly;
 template<typename T>                 class Assembly<T>;
@@ -98,13 +98,13 @@ public:
 public:
 	Pointer(char* pointer, long length = 1)
 		:_pointer(pointer), _count(new long(1)), _length(length) {
-		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		//cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
 	Pointer(char* pointer, long* count, long length)
 		: _pointer(pointer), _count(count), _length(length) {
 		*_count += 1;
-		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		//cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
 	Pointer(const Pointer& pointer) {
@@ -112,7 +112,7 @@ public:
 		_count = pointer._count;
 		_length = pointer._length;
 		*_count += 1;
-		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		//cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
 	Pointer& operator=(const Pointer& pointer) {
@@ -123,12 +123,12 @@ public:
 			_length = pointer._length;
 			*_count += 1;
 		}
-		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		//cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 		return *this;
 	}
 
 	virtual ~Pointer() {
-		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		//cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 		*_count -= 1;
 		if (*_count <= 0) {
 			_length <= 1 ? delete _pointer : delete[] _pointer;
@@ -139,20 +139,20 @@ public:
 public:
 	template<const long I = 0>
 	Pointer<char> setLength(const long length = 2) {
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 		_length = length;
 		return *this;
 	}
 
 	template<const long I = 0>
 	Pointer<char> at() const {
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 		return *this;
 	}
 
 public:
 	operator char* () {
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 		return _pointer;
 	}
 
@@ -172,13 +172,13 @@ public:
 public:
 	Pointer(T* pointer, long length = 1)
 		:_pointer(pointer), _count(new long(1)), _length(length) {
-		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		//cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
 	Pointer(T* pointer, long* count, long length)
 		: _pointer(pointer), _count(count), _length(length) {
 		*_count += 1;
-		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		//cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
 	Pointer(const Pointer& pointer) {
@@ -186,7 +186,7 @@ public:
 		_count = pointer._count;
 		_length = pointer._length;
 		*_count += 1;
-		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		//cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
 	Pointer& operator=(const Pointer& pointer) {
@@ -197,12 +197,12 @@ public:
 			_length = pointer._length;
 			*_count += 1;
 		}
-		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		//cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 		return *this;
 	}
 
 	virtual ~Pointer() {
-		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		//cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 		*_count -= 1;
 		if (*_count <= 0) {
 			_length <= 1 ? delete _pointer : delete[] _pointer;
@@ -213,14 +213,14 @@ public:
 public:
 	template<const long I = 0>
 	Pointer<T>& setLength(const long length = 2) {
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 		_length = length;
 		return *this;
 	}
 
 	template<const long I = 0>
 	Pointer<T> at() const {
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 		return *this;
 	}
 
@@ -249,7 +249,7 @@ public:
 public:
 	Pointer(T* pointer, Ts*...pointers)
 		:_pointers{ { pointer, new long(1), 1 }, { pointers, new long(1), 1 }... }, _count(new long(1)) {
-		cerr << __FUNCTION__ << " " << *_count << endl;
+		//cerr << __FUNCTION__ << " " << *_count << endl;
 	}
 
 	Pointer(const Pointer& pointer) {
@@ -259,7 +259,7 @@ public:
 			*(_pointers[i]._count) += 1;
 		}
 		*_count += 1;
-		cerr << __FUNCTION__ << " " << *_count << endl;
+		//cerr << __FUNCTION__ << " " << *_count << endl;
 	}
 
 	Pointer& operator=(const Pointer& pointer) {
@@ -272,18 +272,18 @@ public:
 			}
 			*_count += 1;
 		}
-		cerr << __FUNCTION__ << " " << *_count << endl;
+		//cerr << __FUNCTION__ << " " << *_count << endl;
 		return *this;
 	}
 
 	virtual ~Pointer() {
-		cerr << __FUNCTION__ << " " << *_count << "#";
+		//cerr << __FUNCTION__ << " " << *_count << "#";
 		long i = 0;
 		long argc[] = {
 			(deleted<T>(i), i += 1), (deleted<Ts>(i), i += 1)...
 		};
 		if (sizeof(argc) / sizeof(*argc) != _ARGC) {
-			cerr << "\033[33m" << __FUNCTION__ << " " << *_count << "#" << "sizeof(argc) != _ARGC" << "\033[0m" << endl;
+			//cerr << "\033[33m" << __FUNCTION__ << " " << *_count << "#" << "sizeof(argc) != _ARGC" << "\033[0m" << endl;
 		}
 
 		*_count -= 1;
@@ -295,9 +295,9 @@ public:
 protected:
 	template<typename B>
 	void deleted(const long i) {
-		cerr << *_pointers[i]._count << ":" << _pointers[i]._length << ":" << *(B*)(_pointers[i]._pointer) << " ";
+		//cerr << *_pointers[i]._count << ":" << _pointers[i]._length << ":" << *(B*)(_pointers[i]._pointer) << " ";
 		if (i == _ARGC - 1) {
-			cerr << endl;
+			//cerr << endl;
 		}
 		*(_pointers[i]._count) -= 1;
 		if (*(_pointers[i]._count) <= 0) {
@@ -310,14 +310,14 @@ public:
 	template<const long I>
 	decltype(auto) setLength(const long length = 2) {
 		_pointers[I]._length = length;
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 		return *this;
 	}
 
 	template<const long I>
 	decltype(auto) at() const {
 		typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
-		cerr << __FUNCTION__ << "<" << I << ">()#" << typeid(Base).name() << endl;
+		//cerr << __FUNCTION__ << "<" << I << ">()#" << typeid(Base).name() << endl;
 		return Pointer<Base>((Base*)(_pointers[I]._pointer), _pointers[I]._count, _pointers[I]._length);
 	}
 
@@ -331,15 +331,15 @@ public:
 };
 
 template<typename T>
-decltype(auto) getPointer(const T* pointer, long length = 1) {
-	cerr << __FUNCTION__ << "(const T* pointer)" << endl;
+decltype(auto) getPointer(T* pointer, long length) {
+	//cerr << __FUNCTION__ << "(const T* pointer)" << endl;
 	return Pointer<T>(pointer, length);
 }
 
-template<typename ...Ts>
-decltype(auto) getPointer(const Ts*...pointers) {
-	cerr << __FUNCTION__ << "(const Ts*...pointers)" << endl;
-	return Pointer<Ts...>(pointers...);
+template<typename T, typename ...Ts>
+decltype(auto) getPointer(T* pointer, Ts*...pointers) {
+	//cerr << __FUNCTION__ << "(const Ts*...pointers)" << endl;
+	return Pointer<T, Ts...>(pointer, pointers...);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -357,12 +357,12 @@ public:
 public:
 	Assembly(const T& element)
 		:_element(element) {
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 	}
 
 	Assembly(const Assembly& assembly) {
 		_element = assembly._element;
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 	}
 
 	Assembly& operator=(const Assembly& assembly) {
@@ -370,18 +370,18 @@ public:
 			this->~Assembly();
 			_element = assembly._element;
 		}
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 		return *this;
 	}
 
 	virtual ~Assembly() {
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 	}
 
 public:
 	template<const long I = 0>
 	T at() {
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 		return _element;
 	}
 
@@ -407,14 +407,14 @@ public:
 			(emplace(elements, _pointer), _pointer += sizeof(Ts))
 			...
 	}{
-		cerr << endl;
-		cerr << __FUNCTION__ << endl;
+		//cerr << endl;
+		//cerr << __FUNCTION__ << endl;
 	}
 
 	Assembly(const Assembly& assembly) {
 		memcpy(_elements, assembly._elements, sizeof(_elements));
 		memcpy(_pointers, assembly._pointers, sizeof(_pointers));
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 	}
 
 	Assembly& operator=(const Assembly& assembly) {
@@ -423,28 +423,28 @@ public:
 			memcpy(_elements, assembly._elements, sizeof(_elements));
 			memcpy(_pointers, assembly._pointers, sizeof(_pointers));
 		}
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 		return *this;
 	}
 
 	virtual ~Assembly() {
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 	}
 
 protected:
 	template<typename E>
 	void emplace(const E& e, char* pointer) {
 		if (pointer == _elements) {
-			cerr << __FUNCTION__ << "#";
+			//cerr << __FUNCTION__ << "#";
 		}
-		cerr << e << " ";
+		//cerr << e << " ";
 		*((E*)pointer) = e;
 	}
 
 public:
 	template<const long I>
 	decltype(auto) at() {
-		cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << endl;
 		typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
 		return *((Base*)_pointers[I]);
 	}
