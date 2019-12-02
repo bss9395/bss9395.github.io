@@ -95,8 +95,8 @@ public:
 	static const long _SIZE = sizeof(char);
 
 public:
-	Pointer(char* pointer)
-		:_pointer(pointer), _count(new long(1)), _length(1) {
+	Pointer(char* pointer, long length = 1)
+		:_pointer(pointer), _count(new long(1)), _length(length) {
 		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
@@ -169,8 +169,8 @@ public:
 	static const long _SIZE = sizeof(T);
 
 public:
-	Pointer(T* pointer)
-		:_pointer(pointer), _count(new long(1)), _length(1) {
+	Pointer(T* pointer, long length = 1)
+		:_pointer(pointer), _count(new long(1)), _length(length) {
 		cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
