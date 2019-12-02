@@ -145,7 +145,7 @@ public:
 	}
 
 	template<const long I = 0>
-	Pointer<char>& at() const {
+	Pointer<char> at() const {
 		cerr << __FUNCTION__ << endl;
 		return *this;
 	}
@@ -219,7 +219,7 @@ public:
 	}
 
 	template<const long I = 0>
-	Pointer<T>& at() const {
+	Pointer<T> at() const {
 		cerr << __FUNCTION__ << endl;
 		return *this;
 	}
@@ -336,19 +336,19 @@ decltype(auto) getPointer(const Ts*...pointers) {
 	return Pointer<Ts...>(pointers...);
 }
 
-template<const long I, typename T1, typename ...Ts>
-decltype(auto) getPointer(const Pointer<T1, Ts...>& pointer) {
-	cerr << __FUNCTION__ << "(const Pointer<Ts...>& pointer)" << "#";
-	cerr << typeid(pointer).name() << endl;
-	return pointer.at<I>();
-}
-
-//template<const long I, typename T, typename ...Ts>
-//decltype(auto) getPointer(const Pointer<T, Ts...>& pointer) {
-//	cerr << __FUNCTION__ << "(const Pointer<Ts...>& pointer)" << endl;
-//	typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
-//	return Pointer<Base>((Base*)(pointer._pointers[I]._pointer), pointer._pointers[I]._count, pointer._pointers[I]._length);
+//template<const long I, typename T1, typename ...Ts>
+//decltype(auto) getPointer(const Pointer<T1, Ts...>& pointer) {
+//	cerr << __FUNCTION__ << "(const Pointer<Ts...>& pointer)" << "#";
+//	cerr << typeid(pointer).name() << endl;
+//	return pointer.at<I>();
 //}
+
+template<const long I, typename T, typename ...Ts>
+decltype(auto) getPointer(const Pointer<T, Ts...>& pointer) {
+	cerr << __FUNCTION__ << "(const Pointer<Ts...>& pointer)" << endl;
+	typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
+	return Pointer<Base>((Base*)(pointer._pointers[I]._pointer), pointer._pointers[I]._count, pointer._pointers[I]._length);
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -388,7 +388,7 @@ public:
 
 public:
 	template<const long I = 0>
-	T& at() {
+	T at() {
 		cerr << __FUNCTION__ << endl;
 		return _element;
 	}
@@ -470,7 +470,7 @@ public:
 
 void freed(const long num, ...) {
 	fprintf(stderr, "%s\n", __FUNCTION__);
-	va_list(args);
+	va_list args;
 	va_start(args, num);
 	for (long i = 0; i != num; ++i) {
 		void* ptr = va_arg(args, void*);
@@ -488,7 +488,7 @@ void freed(const long num, ...) {
 
 decltype(auto) testPointer() {
 	long* l = new long(11);
-	char* s = new char[12]{ "str" };
+	char* s = new char[12]{ 'a', 'b', 'c' };
 	Pointer<long, double, char> ptr(l, new double(11.12), s);
 	ptr.setLength<2>(12);
 	return ptr.at<2>();
