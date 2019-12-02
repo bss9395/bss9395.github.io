@@ -36,6 +36,7 @@ template<typename ...>               class Pointer;
 template<>                           class Pointer<char>;
 template<typename T>                 class Pointer<T>;
 template<typename T, typename ...Ts> class Pointer<T, Ts...>;
+template<typename T>                 decltype(auto) getPointer(const T* pointer, long length);
 template<typename ...Ts>             decltype(auto) getPointer(const Ts*...pointers);
 
 template<typename ...>               class Assembly;
@@ -328,6 +329,12 @@ public:
 	} _pointers[_ARGC];
 	long* _count;
 };
+
+template<typename T>
+decltype(auto) getPointer(const T* pointer, long length = 1) {
+	cerr << __FUNCTION__ << "(const T* pointer)" << endl;
+	return Pointer<T>(pointer, length);
+}
 
 template<typename ...Ts>
 decltype(auto) getPointer(const Ts*...pointers) {
