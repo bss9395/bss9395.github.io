@@ -390,7 +390,7 @@ public:
 };
 
 /* PLEASE
-* Es is NOT eX, emplace is Not inplace, assembly is NOT ass.
+* Es is NOT eX, emplace is Not inplace, assembly is NOT ass, B b is NOT Baby.
 */
 template<typename T, typename ...Ts>
 class Assembly<T, Ts...> {
