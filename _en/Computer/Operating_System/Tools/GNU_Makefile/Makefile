@@ -6,11 +6,11 @@
 ################################################################################
 
 NET = 192.168.12
-HST = $(shell echo $$(sudo ifconfig) | grep -o "$(NET).[0-9]*" | tail -n 1)
-RMT = $(shell echo $$(sudo nmap -sP "$(NET).0/24") | grep -o "$(NET).[0-9]*" | grep -v "$(HST) " | tail -n 1)
+HST = $(shell echo $$(sudo ifconfig)               | grep -o "$(NET).[0-9]*" | grep -v "$(NET).255" | head -n 1)
+RMT = $(shell echo $$(sudo nmap -sP "$(NET).0/24") | grep -o "$(NET).[0-9]*" | grep -v "$(HST) "    | tail -n 1)
 MAP = hosts.nmap
 
-INCLUDE = .git** $(MAP) Makefile inc lib lib64 src
+INCLUDE = .git** $(MAP) Makefile inc lib lib64 src Dockerfile **.sh
 EXCLUDE = .git** $(MAP)
 
 ################################################################################
@@ -19,7 +19,7 @@ USR := $(shell whoami)
 PWD := $(shell pwd)
 INC := inc
 LIB := lib64
-SRC := src
+SRC := Game
 LNK := lnk
 OUT := out
 DST := ~/bin
@@ -27,7 +27,7 @@ DST := ~/bin
 CSRC := $(shell find $(SRC) -maxdepth 1 -type f \( -false -or -name "*.c" -or -name "*.cpp" -or -name "*.cc" \) -printf "%P ")
 CLNK := $(filter-out $(CSRC),$(CSRC:%.c=%.c.o) $(CSRC:%.cpp=%.cpp.o) $(CSRC:%.cc=%.cc.o))
 CLIB := #libcrypto.so.10 libssl.so.10
-COUT := Main.out
+COUT := Game.out
 
 ################################################################################
 
@@ -35,10 +35,10 @@ LIBRARY_PATH    := #
 LD_LIBRARY_PATH := #
 
 GCC      := gcc -m64 -std=c99
-GPP      := g++ -m64 -std=c++11
+GPP      := g++ -m64 -std=c++14
 GXX      := $(if $(findstring .cpp,$(CSRC)),$(GPP),$(GCC))
 CPPFLAGS := $(INC:%=-I%) $(LIB:%=-L%)
-LDFLAGS  := -lpthread -lprotobuf -lfcgi -lmysqlcppconn
+LDFLAGS  := -lpthread -lprotobuf # -lfcgi -lmysqlcppconn
 CFLAGS   := $(CPPFLAGS) $(LDFLAGS) -Wall # -Werror # -ggdb -g
 CLNKS    := $(if $(findstring .o,$(CLNK)),$(CFLAGS),)
 
@@ -173,9 +173,6 @@ diffuse:
 git:
 	smerge
 
-mysql:
-	mysql -uabc -p1234567 -h$(HST) -Dmysql
-
 ifconfig:
 	sudo ifconfig ens33 inet 192.168.100.100
 	sudo systemctl stop iptables
@@ -193,7 +190,7 @@ kill-%:
 	ps aux | grep $(COUT) --color
 
 valgrind: $(COUT)
-	valgrind --log-file=valgrind.log --leak-check=full --show-reachable=yes --leak-resolution=low $(COUT:%=./%)
+	valgrind --leak-check=full --show-reachable=yes --leak-resolution=low $(COUT:%=./%) | tee log-file.valgrind
 
 docker: Dockerfile
 	docker build -t ubuntu .
@@ -208,3 +205,26 @@ $(MAP):
 	truncate -s 0  $(MAP)
 	echo $(HST) >> $(MAP)
 	echo $(RMT) >> $(MAP)
+
+vpath %.sql src/old
+mysql:
+	mysql -uabc -p1234567 -h$(HST) -Dgame
+mysql-sql: sql.sql
+	mysql -uabc -p1234567 -h$(HST) -Dgame < $^
+
+
+netstat:
+	sudo netstat -ltnp
+
+fcgi-Login:
+	-killall Login.out
+	sleep 1
+	spawn-fcgi -n -p 5566 -- Login.out
+
+fcgi-Register:
+	-killall Register.out
+	sleep 1
+	spawn-fcgi -n -p 6677 -- Register.out
+
+fcgi:
+	sudo nginx -s reload
