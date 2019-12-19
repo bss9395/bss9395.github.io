@@ -19,7 +19,7 @@ USR := $(shell whoami)
 PWD := $(shell pwd)
 INC := inc
 LIB := lib64
-SRC := Game
+SRC := src
 LNK := lnk
 OUT := out
 DST := ~/bin
@@ -159,12 +159,14 @@ tree-%:
 grep-%:
 	grep --color -n $* -R $(SRC) $(INC)
 
+sed:
+	sed -i 's/\r//g'           $(shell find $(SRC) -maxdepth 1 -type f -printf "%p\n")
+	sed -i 's/\xe2\x80\x8b//g' $(shell find $(SRC) -maxdepth 1 -type f -printf "%p\n")
+
 subl:
-	sed -i 's/\xe2\x80\x8b//g' $(shell find $(SRC) -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
 	subl $(shell find $(SRC) -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
 
 vim:
-	sed -i 's/\xe2\x80\x8b//g' $(shell find $(SRC) -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
 	vim  $(shell find $(SRC) -maxdepth 1 \( -name "*.c" -or -name "*.cpp" \) -printf "%p\n")
 
 diffuse:
