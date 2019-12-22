@@ -11,6 +11,9 @@ class default_random_engine;
 using namespace std;
 
 int main(int argc, char *argv[]) {
+	default_random_engine engine0((unsigned)time(NULL));
+	cout << "random number 0: " << engine0() << endl;
+
 	long seed1 = (long)chrono::system_clock::now().time_since_epoch().count();
 	default_random_engine engine1(seed1);
 	cout << "random number 1: " << engine1() << endl;
