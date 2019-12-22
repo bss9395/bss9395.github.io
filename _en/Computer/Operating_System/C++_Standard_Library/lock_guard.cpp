@@ -1,7 +1,6 @@
 #if 0
 #include <mutex>
-template <class Mutex>
-class lock_guard;
+template <class Mutex> class lock_guard;
 #endif 
 
 #include <iostream>
@@ -10,6 +9,7 @@ class lock_guard;
 #include <mutex>
 
 using std::cout;
+using std::cerr;
 using std::endl;
 using std::exception;
 using std::thread;
@@ -17,57 +17,44 @@ using std::mutex;
 using std::lock_guard;
 
 class Singleton {
-	class Garbo {
-	public:
-		~Garbo() {
-			if (Singleton::singleton != nullptr)
-			{
-				delete Singleton::singleton;
-			}
-		}
-	};
-	static Garbo garbo;
-	static Singleton *singleton;
-	static mutex mtx;
+	static Singleton *_singleton;
+	static mutex _mtx;
 
 private:
 	Singleton() {
-		cout << "Singleton constructor" << endl;
+		cout << __FUNCTION__ << endl;
 	}
+
 	~Singleton() {
-		cout << "Singleton destructor" << endl;
+		cout << __FUNCTION__ << endl;
 	}
+
 	Singleton(const Singleton&) = delete;
 	void operator=(const Singleton&) = delete;
 	void operator=(Singleton&&) = delete;
 
 public:
 	static Singleton *GetInstace() {
-		if (singleton == nullptr) {
-			lock_guard<mutex> guard(mtx);
-			if (singleton == nullptr) {
-				singleton = new Singleton;
-				throw new exception;
+		if (_singleton == nullptr) {
+			lock_guard<mutex> lock(_mtx);
+			if (_singleton == nullptr) {
+				static Singleton singleton;
+				_singleton = &singleton;
 			}
 		}
-		return singleton;
-	}
-
-	void print(int i) {
-		cout << i << '#' << endl;
+		return _singleton;
 	}
 };
 
-Singleton::Garbo Singleton::garbo;
-Singleton *Singleton::singleton = nullptr;
-mutex Singleton::mtx;
+Singleton *Singleton::_singleton = nullptr;
+mutex Singleton::_mtx;
 
 void func(int i) {
 	try {
-		Singleton::GetInstace()->print(i);
+		Singleton::GetInstace();
 	}
 	catch (...) {
-		cout << "catch exception" << endl;
+		cout << "exception..." << endl;
 	}
 }
 
