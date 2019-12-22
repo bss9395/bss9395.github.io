@@ -20,7 +20,7 @@ class Singleton {
 	static Singleton *_singleton;
 	static mutex _mtx;
 
-private:
+public:
 	Singleton() {
 		cout << __FUNCTION__ << endl;
 	}
@@ -46,7 +46,8 @@ public:
 	}
 };
 
-Singleton *Singleton::_singleton = nullptr;
+Singleton singleton;
+Singleton *Singleton::_singleton = &singleton;
 mutex Singleton::_mtx;
 
 void func(int i) {
