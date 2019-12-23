@@ -31,7 +31,7 @@ void monitoring(bool daemon){
     checkError(log_fd < 0, __FILE__, __LINE__, __FUNCTION__, "open");
 
     int stdout_fd = dup2(log_fd, STDOUT_FILENO);
-    checkError(stdout < 0, __FILE__, __LINE__, __FUNCTION__, "dup2");
+    checkError(stdout_fd < 0, __FILE__, __LINE__, __FUNCTION__, "dup2");
 
     if(daemon) {
         pid_t pid = fork();
@@ -73,9 +73,14 @@ int main(int argc, char *argv[]) {
 
     monitoring(daemon);
 
+    int i = 0;
     while(true){
         sleep(1);
         fprintf(stderr, "%s: getpid = %d, getppid = %d\n", __FUNCTION__, getpid(), getppid());
+        i += 1;
+        if(i == 5) {
+            exit(EXIT_FAILURE);
+        }
     }
 
     return 0;
