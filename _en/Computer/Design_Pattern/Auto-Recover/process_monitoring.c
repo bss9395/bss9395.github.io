@@ -1,7 +1,7 @@
 /* process_monitoring.c
 * Author: BSS9395
 * Update: 2019-12-23T17:55:00+08@ShenZhen
-* Design: Monitoring
+* Design: Auto-Recover
 */
 
 #ifndef _GNU_SOURCE
@@ -21,7 +21,7 @@ void checkError(bool failed, const char *file, long line, const char *func, cons
     if(failed) {
         fprintf(stderr, "\e[33m""%s==%ld==%s==[%d]%s""\e[0m", file, line, func, errno, msg);
         if(errno) {
-            exit(EXIT_FAILURE);
+            exit(errno);
         }
     }
 }
