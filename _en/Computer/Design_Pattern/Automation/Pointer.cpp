@@ -99,6 +99,11 @@ class Pointer<char> {
 		return false;
 	}
 
+	friend bool operator!=(const Pointer &lhs, const Pointer &rhs) {
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._length << endl;
+		return !operator==(lhs, rhs);
+	}
+
 public:
 	typedef class Pointer<char> Type;
 	static const long _ARGC = 1;
@@ -183,6 +188,11 @@ class Pointer<T> {
 			return true;
 		}
 		return false;
+	}
+
+	friend bool operator!=(const Pointer &lhs, const Pointer &rhs) {
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._length << endl;
+		return !operator==(lhs, rhs);
 	}
 
 public:
@@ -277,6 +287,11 @@ class Pointer<T, Ts...> {
 			return true;
 		}
 		return false;
+	}
+
+	friend bool operator!=(const Pointer &lhs, const Pointer &rhs) {
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointers << " " << *rhs._count << endl;
+		return !operator==(lhs, rhs);
 	}
 
 public:
