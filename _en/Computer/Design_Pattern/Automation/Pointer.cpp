@@ -27,6 +27,7 @@ using std::cerr;
 using std::endl;
 using std::string;
 
+void checkError(bool failed, const string &file, const long &line, const string &function, const string &message);
 void freed(const long num, ...);
 
 template<typename T>                 void deleted(T* pointer);
@@ -140,7 +141,9 @@ public:
 		*_count -= 1;
 		if (*_count <= 0) {
 			_length <= 1 ? delete _pointer : delete[] _pointer;
+			_pointer = nullptr;
 			delete _count;
+			_count = nullptr;
 		}
 	}
 
@@ -161,6 +164,8 @@ public:
 public:
 	operator char* () {
 		// cerr << __FUNCTION__ << endl;
+		errno = (_pointer == nullptr);
+		checkError(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
 		return _pointer;
 	}
 
@@ -246,11 +251,15 @@ public:
 public:
 	T& operator*() {
 		// cerr << __FUNCTION__ << endl;
+		errno = (_pointer == nullptr);
+		checkError(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
 		return *_pointer;
 	}
 
 	T* operator->() {
-		// cerr << __FUNCTION__ << endl;
+		//cerr << __FUNCTION__ << " " << _pointer << " " << *_count << " " << _length << endl;
+		errno = (_pointer == nullptr);
+		checkError(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
 		return &(*_pointer);
 	}
 
@@ -331,7 +340,9 @@ protected:
 		*(_pointers[i]._count) -= 1;
 		if (*(_pointers[i]._count) <= 0) {
 			_pointers[i]._length <= 1 ? delete (B*)(_pointers[i]._pointer) : delete[](B*)(_pointers[i]._pointer);
+			_pointers[i]._pointer = nullptr;
 			delete _pointers[i]._count;
+			_pointers[i]._count = nullptr;
 		}
 	}
 
@@ -488,6 +499,15 @@ public:
 
 #ifndef Pointer_cpp
 #define Pointer_cpp
+
+void checkError(bool failed, const string &file, const long &line, const string &function, const string &message) {
+	if (failed) {
+		cerr << "\33[33m" << file << "##" << line << "##" << function << "##[" << errno << "]" << message << "\33[0m" << endl;
+		if (errno) {
+			throw errno;
+		}
+	}
+}
 
 void freed(const long num, ...) {
 	fprintf(stderr, "%s\n", __FUNCTION__);
