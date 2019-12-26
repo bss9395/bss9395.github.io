@@ -1,4 +1,4 @@
-/* Pointer.cpp
+/*Pointer.cpp
 * Author: BSS9395
 * Update: 2019-12-02T15:28:00+08@ShenZhen
 * Design: Automation
@@ -18,27 +18,65 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
-#include <iostream>
-#include <string>
-#include <typeinfo>
+using ::fprintf;
+using ::free;
 
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <exception>
+#include <typeinfo>
 using std::cout;
 using std::cerr;
+using std::ends;
 using std::endl;
 using std::string;
+using std::fstream;
+using std::stringstream;
+using std::exception;
 
-void checkError(bool failed, const string &file, const long &line, const string &function, const string &message);
-void freed(const long num, ...);
+////////////////////////////////////////////////////////////////////////////////
 
-template<typename T>                 void deleted(T* pointer);
-template<typename T, typename ...Ts> void deleted(T* pointer, Ts*...pointers);
+typedef const char *Anomaly;
+typedef const char *State;
+typedef unsigned Mode;
+namespace EType {
+	static const Anomaly Info = "Info";
+	static const Anomaly Error = "Error";
+	static const Anomaly Fatal = "Fatal";
+
+	static const State None = "None";
+	static const State Initialize = "Initialize";
+	static const State Terminate = "Terminate";
+	static const State Read = "Read";
+	static const State Write = "Write";
+	static const State Connect = "Connect";
+	static const State Disconnect = "Disconnect";
+
+	static const Mode In = (1U << 0);
+	static const Mode Out = (1U << 1);
+	static const Mode Append = (1U << 2);
+	static const Mode Block = (1U << 3);
+	static const Mode Nonblock = (1U << 4);
+};
+
+////////////////////////////////////////////////////////////////////////////////
+
+void Check(bool failed, const string &file, const long line, const string &function, const string &message);
+void Freed(const long num, ...);
+
+template<typename T>                 void Deleted(T *pointer);
+template<typename T, typename ...Ts> void Deleted(T *pointer, Ts *...pointers);
+
+template<typename Msg, typename Sln> class Exception;
 
 template<typename ...>               class Pointer;
 template<>                           class Pointer<char>;
 template<typename T>                 class Pointer<T>;
 template<typename T, typename ...Ts> class Pointer<T, Ts...>;
-template<typename T>                 decltype(auto) getPointer(T* pointer, long length = 1);
-template<typename T, typename ...Ts> decltype(auto) getPointer(T* pointer, Ts*...pointers);
+template<typename T>                 decltype(auto) GetPointer(T *pointer, long length = 1);
+template<typename T, typename ...Ts> decltype(auto) GetPointer(T *pointer, Ts *...pointers);
 
 template<typename ...>               class Assembly;
 template<typename T>                 class Assembly<T>;
@@ -47,16 +85,103 @@ template<typename T, typename ...Ts> class Assembly<T, Ts...>;
 ////////////////////////////////////////////////////////////////////////////////
 
 template<typename T>
-void deleted(T* pointer) {
-	cout << __FUNCTION__ << endl;
+void Deleted(T *pointer) {
+	// cout << __FUNCTION__ << endl;
 	delete pointer;
 }
 
 template<typename T, typename ...Ts>
-void deleted(T* pointer, Ts*...pointers) {
-	deleted(pointer);
-	deleted(pointers...);
+void Deleted(T *pointer, Ts*...pointers) {
+	Deleted(pointer);
+	Deleted(pointers...);
 }
+
+template<typename Msg, typename Sln>
+class Exception
+	: public exception {
+public:
+	typedef Msg MsgType;
+	typedef Sln SlnType;
+
+public:
+	Exception(bool failed, const string file, const long line, const string function, const Anomaly anomaly = EType::Info, const Msg message = Msg(), const Sln solution = Sln())
+		: _failed(failed), _file(file), _line(line), _function(function), _anomaly(anomaly), _message(message), _solution(solution) {
+		_errorID = errno;
+		errno = 0;
+		// cerr << __FUNCTION__ << endl;
+	}
+
+	Exception(const Exception &exception) {
+		_failed = exception._failed;
+		_file = exception._file;
+		_line = exception._line;
+		_function = exception._function;
+		_errorID = exception._errorID;
+		_anomaly = exception._anomaly;
+		_message = exception._message;
+		_solution = exception._solution;
+		// cerr << __FUNCTION__ << endl;
+	}
+
+	Exception &operator=(const Exception &exception) {
+		if (this != &exception) {
+			this->~Exception();
+			_failed = exception._failed;
+			_file = exception._file;
+			_line = exception._line;
+			_function = exception._function;
+			_errorID = exception._errorID;
+			_anomaly = exception._anomaly;
+			_message = exception._message;
+			_solution = exception._solution;
+		}
+		// cerr << __FUNCTION__ << endl;
+		return *this;
+	}
+
+	virtual ~Exception() {
+		// cerr << __FUNCTION__ << endl;
+	}
+
+public:
+	virtual int check() {
+		if (_failed) {
+			cerr << what() << endl;
+			if (errno != 0 || _anomaly != EType::Info) {
+				throw *this;
+			}
+		}
+		return _errorID;
+	}
+
+	virtual const char *what() {
+		stringstream ss;
+		ss << "\33[33m";
+		ss << _file << "##" << _line << "##" << _function;
+		if (_errorID) {
+			ss << "##[" << _errorID << "]" << strerror(_errorID) << endl;
+		}
+		ss << "##[" << _anomaly << "]" << _message;
+		ss << "\33[0m" << ends;
+		return ss.str();
+	}
+
+	virtual const char *how() {
+		stringstream ss;
+		ss << _solution << ends;
+		return ss.str();
+	}
+
+public:
+	bool _failed;
+	string _file;
+	long _line;
+	string _function;
+	long _errorID;
+	Anomaly _anomaly;
+	Msg _message;
+	Sln _solution;
+};
 
 template<typename ...>
 class Pointer;
@@ -69,7 +194,7 @@ public:
 public:
 	Pointer() = delete;
 	Pointer(const Pointer&) = delete;
-	Pointer& operator=(const Pointer&) = delete;
+	Pointer &operator=(const Pointer&) = delete;
 	virtual ~Pointer() = delete;
 
 public:
@@ -110,18 +235,18 @@ public:
 	static const long _SIZE = sizeof(char);
 
 public:
-	Pointer(char* pointer, long length = 1)
+	Pointer(char *pointer, long length = 1)
 		:_pointer(pointer), _count(new long(1)), _length(length) {
 		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
-	Pointer(char* pointer, long* count, long length)
+	Pointer(char *pointer, long *count, long length)
 		: _pointer(pointer), _count(count), _length(length) {
 		*_count += 1;
 		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
-	Pointer(const Pointer& pointer) {
+	Pointer(const Pointer &pointer) {
 		_pointer = pointer._pointer;
 		_count = pointer._count;
 		_length = pointer._length;
@@ -129,7 +254,7 @@ public:
 		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
-	Pointer& operator=(const Pointer& pointer) {
+	Pointer &operator=(const Pointer &pointer) {
 		if (this != &pointer) {
 			this->~Pointer();
 			_pointer = pointer._pointer;
@@ -167,16 +292,16 @@ public:
 	}
 
 public:
-	operator char* () {
+	operator char *() {
 		// cerr << __FUNCTION__ << endl;
 		errno = (_pointer == nullptr);
-		checkError(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
+		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
 		return _pointer;
 	}
 
 public:
-	char* _pointer;
-	long* _count;
+	char *_pointer;
+	long *_count;
 	long _length;
 };
 
@@ -201,18 +326,18 @@ public:
 	static const long _SIZE = sizeof(T);
 
 public:
-	Pointer(T* pointer, long length = 1)
+	Pointer(T *pointer, long length = 1)
 		:_pointer(pointer), _count(new long(1)), _length(length) {
 		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
-	Pointer(T* pointer, long* count, long length)
+	Pointer(T *pointer, long *count, long length)
 		: _pointer(pointer), _count(count), _length(length) {
 		*_count += 1;
 		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
-	Pointer(const Pointer& pointer) {
+	Pointer(const Pointer &pointer) {
 		_pointer = pointer._pointer;
 		_count = pointer._count;
 		_length = pointer._length;
@@ -220,7 +345,7 @@ public:
 		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
 	}
 
-	Pointer& operator=(const Pointer& pointer) {
+	Pointer &operator=(const Pointer &pointer) {
 		if (this != &pointer) {
 			this->~Pointer();
 			_pointer = pointer._pointer;
@@ -246,7 +371,7 @@ public:
 
 public:
 	template<const long I = 0>
-	Pointer<T>& setLength(const long length = 2) {
+	Pointer<T> &setLength(const long length = 2) {
 		// cerr << __FUNCTION__ << endl;
 		_length = length;
 		return *this;
@@ -259,23 +384,23 @@ public:
 	}
 
 public:
-	T& operator*() {
+	T &operator*() {
 		// cerr << __FUNCTION__ << endl;
 		errno = (_pointer == nullptr);
-		checkError(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
+		check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
 		return *_pointer;
 	}
 
-	T* operator->() {
+	T *operator->() {
 		//cerr << __FUNCTION__ << " " << _pointer << " " << *_count << " " << _length << endl;
 		errno = (_pointer == nullptr);
-		checkError(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
+		check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
 		return &(*_pointer);
 	}
 
 public:
-	T* _pointer;
-	long* _count;
+	T *_pointer;
+	long *_count;
 	long _length;
 };
 
@@ -300,12 +425,12 @@ public:
 	static const long _SIZE = sizeof(T) + Pointer<Ts...>::_SIZE;
 
 public:
-	Pointer(T* pointer, Ts*...pointers)
+	Pointer(T *pointer, Ts*...pointers)
 		:_pointers{ { pointer, new long(1), 1 }, { pointers, new long(1), 1 }... }, _count(new long(1)) {
 		// cerr << __FUNCTION__ << " " << *_count << endl;
 	}
 
-	Pointer(const Pointer& pointer) {
+	Pointer(const Pointer &pointer) {
 		memcpy(_pointers, pointer._pointers, sizeof(_pointers));
 		_count = pointer._count;
 		for (long i = 0; i < _ARGC; ++i) {
@@ -315,7 +440,7 @@ public:
 		// cerr << __FUNCTION__ << " " << *_count << endl;
 	}
 
-	Pointer& operator=(const Pointer& pointer) {
+	Pointer &operator=(const Pointer &pointer) {
 		if (this != &pointer) {
 			this->~Pointer();
 			memcpy(_pointers, pointer._pointers, sizeof(_pointers));
@@ -378,21 +503,21 @@ public:
 
 public:
 	struct {
-		void* _pointer;
-		long* _count;
+		void *_pointer;
+		long *_count;
 		long _length;
 	} _pointers[_ARGC];
-	long* _count;
+	long *_count;
 };
 
 template<typename T>
-decltype(auto) getPointer(T* pointer, long length) {
-	// cerr << __FUNCTION__ << "(const T* pointer)" << endl;
+decltype(auto) GetPointer(T *pointer, long length) {
+	// cerr << __FUNCTION__ << "(const T *pointer)" << endl;
 	return Pointer<T>(pointer, length);
 }
 
 template<typename T, typename ...Ts>
-decltype(auto) getPointer(T* pointer, Ts*...pointers) {
+decltype(auto) GetPointer(T *pointer, Ts*...pointers) {
 	// cerr << __FUNCTION__ << "(const Ts*...pointers)" << endl;
 	return Pointer<T, Ts...>(pointer, pointers...);
 }
@@ -410,17 +535,17 @@ public:
 	static const long _SIZE = sizeof(T);
 
 public:
-	Assembly(const T& element)
+	Assembly(const T &element)
 		:_element(element) {
 		// cerr << __FUNCTION__ << endl;
 	}
 
-	Assembly(const Assembly& assembly) {
+	Assembly(const Assembly &assembly) {
 		_element = assembly._element;
 		// cerr << __FUNCTION__ << endl;
 	}
 
-	Assembly& operator=(const Assembly& assembly) {
+	Assembly &operator=(const Assembly &assembly) {
 		if (this != &assembly) {
 			this->~Assembly();
 			_element = assembly._element;
@@ -444,7 +569,7 @@ public:
 	T _element;
 };
 
-/* PLEASE
+/*PLEASE
 * Es is NOT eX, emplace is Not inplace, assembly is NOT ass, B b is NOT Baby.
 */
 template<typename T, typename ...Ts>
@@ -455,7 +580,7 @@ public:
 	static const long _SIZE = sizeof(T) + Assembly<Ts...>::_SIZE;
 
 public:
-	Assembly(const T& element, const Ts& ...elements)
+	Assembly(const T &element, const Ts &...elements)
 		: _pointer(_elements), _pointers{
 			(_pointer + 0),
 			(emplace(element, _pointer), _pointer += sizeof(T)),
@@ -466,13 +591,13 @@ public:
 		// cerr << __FUNCTION__ << endl;
 	}
 
-	Assembly(const Assembly& assembly) {
+	Assembly(const Assembly &assembly) {
 		memcpy(_elements, assembly._elements, sizeof(_elements));
 		memcpy(_pointers, assembly._pointers, sizeof(_pointers));
 		// cerr << __FUNCTION__ << endl;
 	}
 
-	Assembly& operator=(const Assembly& assembly) {
+	Assembly &operator=(const Assembly &assembly) {
 		if (this != &assembly) {
 			this->~Assembly();
 			memcpy(_elements, assembly._elements, sizeof(_elements));
@@ -488,7 +613,7 @@ public:
 
 protected:
 	template<typename E>
-	void emplace(const E& e, char* pointer) {
+	void emplace(const E &e, char *pointer) {
 		if (pointer == _elements) {
 			// cerr << __FUNCTION__ << "#";
 		}
@@ -505,9 +630,9 @@ public:
 	}
 
 public:
-	char* _pointer;
+	char *_pointer;
 	char _elements[_SIZE];
-	void* _pointers[_ARGC + 1];
+	void *_pointers[_ARGC + 1];
 };
 
 #endif // Pointer_hpp
@@ -515,7 +640,8 @@ public:
 #ifndef Pointer_cpp
 #define Pointer_cpp
 
-void checkError(bool failed, const string &file, const long &line, const string &function, const string &message) {
+void Check(bool failed, const string &file, const long line, const string &function, const string &message) {
+	// cerr << __FUNCTION__ << endl;
 	if (failed) {
 		cerr << "\33[33m" << file << "##" << line << "##" << function << "##[" << errno << "]" << message << "\33[0m" << endl;
 		if (errno) {
@@ -524,12 +650,12 @@ void checkError(bool failed, const string &file, const long &line, const string 
 	}
 }
 
-void freed(const long num, ...) {
+void Freed(const long num, ...) {
 	fprintf(stderr, "%s\n", __FUNCTION__);
 	va_list args;
 	va_start(args, num);
 	for (long i = 0; i != num; ++i) {
-		void* ptr = va_arg(args, void*);
+		void *ptr = va_arg(args, void*);
 		if (ptr == NULL) {
 			break;
 		}
@@ -543,8 +669,8 @@ void freed(const long num, ...) {
 ////////////////////////////////////////////////////////////////////////////////
 
 decltype(auto) testPointer() {
-	long* l = new long(11);
-	char* s = new char[12]{ 'a', 'b', 'c' };
+	long *l = new long(11);
+	char *s = new char[12]{ 'a', 'b', 'c' };
 	Pointer<long, double, char> ptr(l, new double(11.12), s);
 	ptr.setLength<2>(12);
 	return ptr.at<2>();
@@ -555,7 +681,7 @@ decltype(auto) testAssembly() {
 	return assembly.at<1>();
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
 	//auto str = testPointer();
 	//cout << str << endl;
 
