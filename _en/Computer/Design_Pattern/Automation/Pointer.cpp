@@ -41,26 +41,10 @@ using std::exception;
 ////////////////////////////////////////////////////////////////////////////////
 
 typedef const char *Anomaly;
-typedef const char *State;
-typedef unsigned Mode;
 namespace EType {
 	static const Anomaly Info = "Info";
 	static const Anomaly Error = "Error";
 	static const Anomaly Fatal = "Fatal";
-
-	static const State None = "None";
-	static const State Initialize = "Initialize";
-	static const State Terminate = "Terminate";
-	static const State Read = "Read";
-	static const State Write = "Write";
-	static const State Connect = "Connect";
-	static const State Disconnect = "Disconnect";
-
-	static const Mode In = (1U << 0);
-	static const Mode Out = (1U << 1);
-	static const Mode Append = (1U << 2);
-	static const Mode Block = (1U << 3);
-	static const Mode Nonblock = (1U << 4);
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -71,7 +55,7 @@ void Freed(const long num, ...);
 template<typename T>                 void Deleted(T *pointer);
 template<typename T, typename ...Ts> void Deleted(T *pointer, Ts *...pointers);
 
-template<typename Msg, typename Sln> class Exception;
+template<typename Msg = string, typename Sln = string> class Exception;
 
 template<typename ...>               class Pointer;
 template<>                           class Pointer<char>;
@@ -106,9 +90,8 @@ public:
 	typedef Sln SlnType;
 
 public:
-	Exception(bool failed, const string file, const long line, const string function, const Anomaly anomaly = EType::Info, const Msg message = Msg(), const Sln solution = Sln())
-		: _failed(failed), _file(file), _line(line), _function(function), _anomaly(anomaly), _message(message), _solution(solution) {
-		_errorID = errno;
+	Exception(bool failed, const string file, const long line, const string function, const Msg message = Msg(), const Anomaly anomaly = EType::Info, const Sln solution = Sln())
+		: _failed(failed), _file(file), _line(line), _function(function), _errorID(errno), _anomaly(anomaly), _message(message), _solution(solution) {
 		errno = 0;
 		// cerr << __FUNCTION__ << endl;
 	}
@@ -149,14 +132,14 @@ public:
 	virtual int check() {
 		if (_failed) {
 			cerr << what() << endl;
-			if (errno != 0 || _anomaly != EType::Info) {
+			if (!(_errorID == 0 || _anomaly == EType::Info)) {
 				throw *this;
 			}
 		}
 		return _errorID;
 	}
 
-	virtual const char *what() {
+	virtual string what() {
 		stringstream ss;
 		ss << "\33[33m";
 		ss << _file << "##" << _line << "##" << _function;
@@ -168,7 +151,7 @@ public:
 		return ss.str();
 	}
 
-	virtual const char *how() {
+	virtual string how() {
 		stringstream ss;
 		ss << _solution << ends;
 		return ss.str();
@@ -670,6 +653,8 @@ void Freed(const long num, ...) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+#define Main
+#ifdef Main
 decltype(auto) testPointer() {
 	long *l = new long(11);
 	char *s = new char[12]{ 'a', 'b', 'c' };
@@ -687,8 +672,13 @@ int main(int argc, char *argv[]) {
 	//auto str = testPointer();
 	//cout << str << endl;
 
-	auto ass = testAssembly();
-	cout << ass << endl;
+	//auto ass = testAssembly();
+	//cout << ass << endl;
+
+	//throw Exception<>(true, __FILE__, __LINE__, __FUNCTION__, "test");
+	Exception<>(true, __FILE__, __LINE__, __FUNCTION__, "test").check();
 
 	return 0;
 }
+
+#endif // Main
