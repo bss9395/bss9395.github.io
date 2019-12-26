@@ -5,6 +5,9 @@ int timerfd_settime(int fd, int flags, const struct itimerspec *new_value, struc
 int timerfd_gettime(int fd, struct itimerspec *curr_value);
 #endif
 
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+
 #include <sys/timerfd.h>
 #include <unistd.h>
 
@@ -41,3 +44,5 @@ int main(int argc, char *argv[]) {
 	close(fd);
 	return 0;
 }
+
+#endif // _GNU_SOURCE
