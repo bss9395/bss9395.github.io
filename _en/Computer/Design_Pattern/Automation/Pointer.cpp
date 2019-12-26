@@ -1,6 +1,6 @@
 /*Pointer.cpp
 * Author: BSS9395
-* Update: 2019-12-02T15:28:00+08@ShenZhen
+* Update: 2019-12-27T04:07:00+08@ShenZhen
 * Design: Automation
 */
 
@@ -15,9 +15,11 @@
 #define _GNU_SOURCE
 #endif
 
+#include <stdbool.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
-#include <stdarg.h>
+#include <stdlib.h>
 using ::fprintf;
 using ::free;
 
