@@ -1,6 +1,6 @@
 /*Pointer.cpp
 * Author: BSS9395
-* Update: 2019-12-27T04:07:00+08@ShenZhen
+* Update: 2019-12-27T15:57:00+08@ShenZhen
 * Design: Automation
 */
 
@@ -40,22 +40,28 @@ using std::exception;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-typedef const char *Anomaly;
+typedef const char *Tag;
+typedef const char *Level;
 namespace EType {
-	static const Anomaly Info = "Info";
-	static const Anomaly Error = "Error";
-	static const Anomaly Fatal = "Fatal";
+	static const Tag Beta = "Beta";
+	static const Tag Debug = "Debug";
+	static const Tag Release = "Release";
+
+	static const Level Info = "Info";
+	static const Level Incomplete = "Incomplete";
+	static const Level Warn = "Warn";
+	static const Level Error = "Error";
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void Check(bool failed, const string &file, const long line, const string &function, const string &message);
-void Freed(const long num, ...);
+template<typename Msg = string>        int Check(bool failed, const string &file, const long &line, const string &function, const Msg &message);
+template<typename Msg, typename Sln> class Anomaly;
+typedef class Anomaly<string, string>      Exception;
 
+template<typename N = long>          void Freed(const N num, ...);
 template<typename T>                 void Deleted(T *pointer);
 template<typename T, typename ...Ts> void Deleted(T *pointer, Ts *...pointers);
-
-template<typename Msg = string, typename Sln = string> class Exception;
 
 template<typename ...>               class Pointer;
 template<>                           class Pointer<char>;
@@ -70,61 +76,62 @@ template<typename T, typename ...Ts> class Assembly<T, Ts...>;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-template<typename T>
-void Deleted(T *pointer) {
-	// cout << __FUNCTION__ << endl;
-	delete pointer;
-}
-
-template<typename T, typename ...Ts>
-void Deleted(T *pointer, Ts*...pointers) {
-	Deleted(pointer);
-	Deleted(pointers...);
+template<typename Msg>
+int Check(bool failed, const string &file, const long &line, const string &function, const Msg &message) {
+	// cerr << __FUNCTION__ << endl;
+	if (failed) {
+		cerr << "\33[33m" << file << "##" << line << "##" << function << "##" << message << "\33[0m" << endl;
+		if (errno) {
+			cerr << "[" << errno << "]" << strerror(errno) << endl;
+			throw errno;
+		}
+	}
+	return errno;
 }
 
 template<typename Msg, typename Sln>
-class Exception
+class Anomaly
 	: public exception {
 public:
 	typedef Msg MsgType;
 	typedef Sln SlnType;
 
 public:
-	Exception(bool failed, const string file, const long line, const string function, const Msg message = Msg(), const Anomaly anomaly = EType::Info, const Sln solution = Sln())
-		: _failed(failed), _file(file), _line(line), _function(function), _errorID(errno), _anomaly(anomaly), _message(message), _solution(solution) {
+	Anomaly(bool failed, const string &file, const long &line, const string &function, const Level &level = EType::Info, const Msg &message = Msg(), const Sln &solution = Sln())
+		: _failed(failed), _file(file), _line(line), _function(function), _errorID(errno), _level(level), _message(message), _solution(solution) {
 		errno = 0;
 		// cerr << __FUNCTION__ << endl;
 	}
 
-	Exception(const Exception &exception) {
-		_failed = exception._failed;
-		_file = exception._file;
-		_line = exception._line;
-		_function = exception._function;
-		_errorID = exception._errorID;
-		_anomaly = exception._anomaly;
-		_message = exception._message;
-		_solution = exception._solution;
+	Anomaly(const Anomaly &anomaly) {
+		_failed = anomaly._failed;
+		_file = anomaly._file;
+		_line = anomaly._line;
+		_function = anomaly._function;
+		_errorID = anomaly._errorID;
+		_level = anomaly._level;
+		_message = anomaly._message;
+		_solution = anomaly._solution;
 		// cerr << __FUNCTION__ << endl;
 	}
 
-	Exception &operator=(const Exception &exception) {
-		if (this != &exception) {
-			this->~Exception();
-			_failed = exception._failed;
-			_file = exception._file;
-			_line = exception._line;
-			_function = exception._function;
-			_errorID = exception._errorID;
-			_anomaly = exception._anomaly;
-			_message = exception._message;
-			_solution = exception._solution;
+	Anomaly &operator=(const Anomaly &anomaly) {
+		if (this != &anomaly) {
+			this->~Anomaly();
+			_failed = anomaly._failed;
+			_file = anomaly._file;
+			_line = anomaly._line;
+			_function = anomaly._function;
+			_errorID = anomaly._errorID;
+			_level = anomaly._level;
+			_message = anomaly._message;
+			_solution = anomaly._solution;
 		}
 		// cerr << __FUNCTION__ << endl;
 		return *this;
 	}
 
-	virtual ~Exception() {
+	virtual ~Anomaly() {
 		// cerr << __FUNCTION__ << endl;
 	}
 
@@ -132,7 +139,7 @@ public:
 	virtual int check() {
 		if (_failed) {
 			cerr << what() << endl;
-			if (!(_errorID == 0 || _anomaly == EType::Info)) {
+			if (!(_errorID == 0 || _level == EType::Info)) {
 				throw *this;
 			}
 		}
@@ -141,13 +148,10 @@ public:
 
 	virtual string what() {
 		stringstream ss;
-		ss << "\33[33m";
-		ss << _file << "##" << _line << "##" << _function;
+		ss << "\33[33m" << _file << "##" << _line << "##" << _function << "##[" << _level << "]" << _message << "\33[0m" << ends;
 		if (_errorID) {
-			ss << "##[" << _errorID << "]" << strerror(_errorID) << endl;
+			ss << endl << "[" << _errorID << "]" << strerror(_errorID) << ends;
 		}
-		ss << "##[" << _anomaly << "]" << _message;
-		ss << "\33[0m" << ends;
 		return ss.str();
 	}
 
@@ -163,10 +167,39 @@ public:
 	long _line;
 	string _function;
 	long _errorID;
-	Anomaly _anomaly;
+	Level _level;
 	Msg _message;
 	Sln _solution;
 };
+
+////////////////////////////////////////////////////////////////////////////////
+
+template<typename N>
+void Freed(const N num, ...) {
+	fprintf(stderr, "%s\n", __FUNCTION__);
+	va_list args;
+	va_start(args, num);
+	for (N i = 0; i != num; ++i) {
+		void *ptr = va_arg(args, void*);
+		if (ptr == NULL) {
+			break;
+		}
+		free(ptr);
+	}
+	va_end(args);
+}
+
+template<typename T>
+void Deleted(T *pointer) {
+	// cout << __FUNCTION__ << endl;
+	delete pointer;
+}
+
+template<typename T, typename ...Ts>
+void Deleted(T *pointer, Ts*...pointers) {
+	Deleted(pointer);
+	Deleted(pointers...);
+}
 
 template<typename ...>
 class Pointer;
@@ -279,7 +312,6 @@ public:
 public:
 	operator char *() {
 		// cerr << __FUNCTION__ << endl;
-		errno = (_pointer == nullptr);
 		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
 		return _pointer;
 	}
@@ -371,15 +403,13 @@ public:
 public:
 	T &operator*() {
 		// cerr << __FUNCTION__ << endl;
-		errno = (_pointer == nullptr);
-		check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
+		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
 		return *_pointer;
 	}
 
 	T *operator->() {
 		//cerr << __FUNCTION__ << " " << _pointer << " " << *_count << " " << _length << endl;
-		errno = (_pointer == nullptr);
-		check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
+		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
 		return &(*_pointer);
 	}
 
@@ -503,7 +533,7 @@ decltype(auto) GetPointer(T *pointer, long length) {
 
 template<typename T, typename ...Ts>
 decltype(auto) GetPointer(T *pointer, Ts*...pointers) {
-	// cerr << __FUNCTION__ << "(const Ts*...pointers)" << endl;
+	// cerr << __FUNCTION__ << "(const Ts *...pointers)" << endl;
 	return Pointer<T, Ts...>(pointer, pointers...);
 }
 
@@ -622,40 +652,11 @@ public:
 
 #endif // Pointer_hpp
 
-#ifndef Pointer_cpp
-#define Pointer_cpp
-
-void Check(bool failed, const string &file, const long line, const string &function, const string &message) {
-	// cerr << __FUNCTION__ << endl;
-	if (failed) {
-		cerr << "\33[33m" << file << "##" << line << "##" << function << "##[" << errno << "]" << message << "\33[0m" << endl;
-		if (errno) {
-			throw errno;
-		}
-	}
-}
-
-void Freed(const long num, ...) {
-	fprintf(stderr, "%s\n", __FUNCTION__);
-	va_list args;
-	va_start(args, num);
-	for (long i = 0; i != num; ++i) {
-		void *ptr = va_arg(args, void*);
-		if (ptr == NULL) {
-			break;
-		}
-		free(ptr);
-	}
-	va_end(args);
-}
-
-#endif // Pointer_cpp
-
 ////////////////////////////////////////////////////////////////////////////////
 
 #define Main
 #ifdef Main
-decltype(auto) testPointer() {
+decltype(auto) TestPointer() {
 	long *l = new long(11);
 	char *s = new char[12]{ 'a', 'b', 'c' };
 	Pointer<long, double, char> ptr(l, new double(11.12), s);
@@ -663,20 +664,29 @@ decltype(auto) testPointer() {
 	return ptr.at<2>();
 }
 
-decltype(auto) testAssembly() {
+decltype(auto) TestAssembly() {
 	Assembly<long, double, const char*> assembly(11, 12, "ass");
 	return assembly.at<1>();
 }
 
+void TestAnomaly() {
+	auto anomaly = Anomaly<string, string>(true, __FILE__, __LINE__, __FUNCTION__, EType::Info, "An abnomal exception.", "Leave me alone.");
+	anomaly.check();
+	cerr << anomaly.what() << endl;
+	cerr << anomaly.how() << endl;
+
+	Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incomplete, "To be implemented.", "Pick up me later.").check();
+	// throw Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incomplete, "To be implemented.", "Pick up me later.");
+}
+
 int main(int argc, char *argv[]) {
-	//auto str = testPointer();
-	//cout << str << endl;
+	// auto str = TestPointer();
+	// cout << str << endl;
 
-	//auto ass = testAssembly();
-	//cout << ass << endl;
+	// auto ass = TestAssembly();
+	// cout << ass << endl;
 
-	//throw Exception<>(true, __FILE__, __LINE__, __FUNCTION__, "test");
-	Exception<>(true, __FILE__, __LINE__, __FUNCTION__, "test").check();
+	TestAnomaly();
 
 	return 0;
 }
