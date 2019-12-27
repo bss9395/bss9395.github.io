@@ -47,10 +47,11 @@ namespace EType {
 	static const Tag Debug = "Debug";
 	static const Tag Release = "Release";
 
-	static const Level Info = "Info";
-	static const Level Incomplete = "Incomplete";
-	static const Level Warn = "Warn";
+	static const Level Information = "Information";
+	static const Level Incompleted = "Incompleted";
+	static const Level Warning = "Warning";
 	static const Level Error = "Error";
+	static const Level Fatal = "Fatal";
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +98,7 @@ public:
 	typedef Sln SlnType;
 
 public:
-	Anomaly(bool failed, const string &file, const long &line, const string &function, const Level &level = EType::Info, const Msg &message = Msg(), const Sln &solution = Sln())
+	Anomaly(bool failed, const string &file, const long &line, const string &function, const Level &level = EType::Information, const Msg &message = Msg(), const Sln &solution = Sln())
 		: _failed(failed), _file(file), _line(line), _function(function), _errorID(errno), _level(level), _message(message), _solution(solution) {
 		errno = 0;
 		// cerr << __FUNCTION__ << endl;
@@ -137,9 +138,10 @@ public:
 
 public:
 	virtual int check() {
+		// cerr << __FUNCTION__ << endl;
 		if (_failed) {
 			cerr << what() << endl;
-			if (!(_errorID == 0 || _level == EType::Info)) {
+			if (!(_errorID == 0 && _level == EType::Information)) {
 				throw *this;
 			}
 		}
@@ -147,6 +149,7 @@ public:
 	}
 
 	virtual string what() {
+		// cerr << __FUNCTION__ << endl;
 		stringstream ss;
 		ss << "\33[33m" << _file << "##" << _line << "##" << _function << "##[" << _level << "]" << _message << "\33[0m" << ends;
 		if (_errorID) {
@@ -156,6 +159,7 @@ public:
 	}
 
 	virtual string how() {
+		// cerr << __FUNCTION__ << endl;
 		stringstream ss;
 		ss << _solution << ends;
 		return ss.str();
@@ -166,7 +170,7 @@ public:
 	string _file;
 	long _line;
 	string _function;
-	long _errorID;
+	int _errorID;
 	Level _level;
 	Msg _message;
 	Sln _solution;
@@ -670,13 +674,13 @@ decltype(auto) TestAssembly() {
 }
 
 void TestAnomaly() {
-	auto anomaly = Anomaly<string, string>(true, __FILE__, __LINE__, __FUNCTION__, EType::Info, "An abnomal exception.", "Leave me alone.");
+	auto anomaly = Anomaly<string, string>(true, __FILE__, __LINE__, __FUNCTION__, EType::Information, "An abnomal exception.", "Leave me alone.");
 	anomaly.check();
 	cerr << anomaly.what() << endl;
 	cerr << anomaly.how() << endl;
 
-	Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incomplete, "To be implemented.", "Pick up me later.").check();
-	// throw Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incomplete, "To be implemented.", "Pick up me later.");
+	Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incompleted, "To be implemented.", "Pick up me later.").check();
+	// throw Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incompleted, "To be implemented.", "Pick up me later.");
 }
 
 int main(int argc, char *argv[]) {
