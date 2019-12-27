@@ -92,7 +92,7 @@ Kernel GetKernel() {
 }
 
 static PollFD _fds[_POLLFD_MAX];
-static IOHook _handlers[_POLLFD_MAX];
+static IOHook _ios[_POLLFD_MAX];
 static long _fds_num;
 static UpdateHook _updates[_UPDATE_MAX];
 static long _updates_num;
@@ -138,7 +138,7 @@ static int addIOHook(int fd, const IOHook ioHook, const Mode mode) {
 		errno = -1, Check(idx == _fds_num && _fds_num >= _POLLFD_MAX, __FILE__, __LINE__, __FUNCTION__, message);
 		if (i != _fds_num && _fds_num < _POLLFD_MAX) {
 			// fprintf(stderr, "%s##idx = %ld\n", __FUNCTION__, idx);
-			_handlers[idx] = ioHook;
+			_ios[idx] = ioHook;
 			_fds[idx].events = inout;
 			_fds[idx].fd = fd;
 			_fds_num += 1;
@@ -166,7 +166,7 @@ static int delIOHook(int fd, const IOHook ioHook, const Mode mode) {
 				_fds[i].fd = -1;
 				ret += 1;
 			}
-			else if (ioHook == _handlers[i]) {
+			else if (ioHook == _ios[i]) {
 				_fds[i].events &= (short)~inout;
 				if (0 == _fds[i].events) {
 					// fprintf(stderr, "%s##%s\n", __FUNCTION__, "0 == _fds[i].events");
@@ -204,11 +204,11 @@ static void run() {
 
 			if (0 != (_fds[i].revents & POLLIN)) {
 				// fprintf(stderr, "%s##%s\n", __FUNCTION__, "POLLIN");
-				(*_handlers[i])(_fds[i].fd);
+				(*_ios[i])(_fds[i].fd);
 			}
 			else if (0 != (_fds[i].revents & POLLOUT)) {
 				// fprintf(stderr, "%s##%s\n", __FUNCTION__, "POLLOUT");
-				(*_handlers[i])(_fds[i].fd);
+				(*_ios[i])(_fds[i].fd);
 			}
 			else if (0 != (_fds[i].revents & POLLRDHUP)) {
 				// "Stream socket peer closed connection, or shut down writing half of connection."
