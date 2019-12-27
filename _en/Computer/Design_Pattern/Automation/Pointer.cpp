@@ -46,6 +46,7 @@ namespace EType {
 	static const Tag Beta = "Beta";
 	static const Tag Debug = "Debug";
 	static const Tag Release = "Release";
+	static const Tag Stable = "Stable";
 
 	static const Level Information = "Information";
 	static const Level Incompleted = "Incompleted";
