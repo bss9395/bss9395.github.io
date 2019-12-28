@@ -51,6 +51,7 @@ namespace EType {
 
 	static const Level Information = "Information";
 	static const Level Incompleted = "Incompleted";
+	static const Level Obsolete = "Obsolete";
 	static const Level Warning = "Warning";
 	static const Level Error = "Error";
 	static const Level Fatal = "Fatal";
@@ -58,8 +59,8 @@ namespace EType {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-template<typename Msg = string>        int Check(bool failed, const string &file, const long &line, const string &function, const int &error, const Msg &message);
-template<typename Msg, typename Sln> class Anomaly;
+template<typename Rep = string>        int Check(bool failed, const string &file, const long &line, const string &function, const int &error, const Rep &report);
+template<typename Rep, typename Sln> class Anomaly;
 typedef class Anomaly<string, string>      Exception;
 
 template<typename N = long>          void Freed(const N num, ...);
@@ -79,11 +80,11 @@ template<typename T, typename ...Ts> class Assembly<T, Ts...>;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-template<typename Msg>
-int Check(bool failed, const string &file, const long &line, const string &function, const int &error, const Msg &message) {
+template<typename Rep>
+int Check(bool failed, const string &file, const long &line, const string &function, const int &error, const Rep &report) {
 	// cerr << __FUNCTION__ << endl;
 	if (failed) {
-		cerr << "\33[33m" << file << "##" << line << "##" << function << "##[" << error << "]" << message << "\33[0m" << endl;
+		cerr << file << "##" << line << "##" << function << "##[" << error << "]" << report << endl;
 		if (!(0 == errno && 0 == error)) {
 			cerr << "[" << errno << "]" << strerror(errno) << endl;
 			throw errno;
@@ -93,21 +94,19 @@ int Check(bool failed, const string &file, const long &line, const string &funct
 	return 0;
 }
 
-template<typename Msg, typename Sln>
+template<typename Rep, typename Sln>
 class Anomaly
 	: public exception {
 public:
-	typedef Msg MsgType;
-	typedef Sln SlnType;
-
 	friend ostream &operator<<(ostream &os, const Anomaly &anomaly) {
-		os << anomaly.what() << flush;
+		cerr << __FUNCTION__ << endl;
+		os << anomaly.issue() << flush;
 		return os;
 	}
 
 public:
-	Anomaly(bool failed, const string &file, const long &line, const string &function, const Level &level = EType::Information, const Msg &message = Msg(), const Sln &solution = Sln())
-		: _failed(failed), _file(file), _line(line), _function(function), _errorID(errno), _level(level), _message(message), _solution(solution) {
+	Anomaly(bool failed, const string &file, const long &line, const string &function, const Level &level = EType::Information, const Rep &report = Rep(), const Sln &solution = Sln())
+		: _failed(failed), _file(file), _line(line), _function(function), _errorID(errno), _level(level), _report(report), _solution(solution) {
 		errno = 0;
 		// cerr << __FUNCTION__ << endl;
 	}
@@ -119,7 +118,7 @@ public:
 		_function = anomaly._function;
 		_errorID = anomaly._errorID;
 		_level = anomaly._level;
-		_message = anomaly._message;
+		_report = anomaly._report;
 		_solution = anomaly._solution;
 		// cerr << __FUNCTION__ << endl;
 	}
@@ -133,7 +132,7 @@ public:
 			_function = anomaly._function;
 			_errorID = anomaly._errorID;
 			_level = anomaly._level;
-			_message = anomaly._message;
+			_report = anomaly._report;
 			_solution = anomaly._solution;
 		}
 		// cerr << __FUNCTION__ << endl;
@@ -148,7 +147,7 @@ public:
 	virtual int check() const {
 		// cerr << __FUNCTION__ << endl;
 		if (_failed) {
-			cerr << what() << endl;
+			cerr << issue() << endl;
 			if (!(_errorID == 0 && _level == EType::Information)) {
 				throw *this;
 			}
@@ -156,21 +155,32 @@ public:
 		return _errorID;
 	}
 
-	virtual string what() const {
+	virtual const char *what() const noexcept {
+		// cerr << __FUNCTION__ << endl;
+		cerr << "Obsolete function what(), Use issue() Instead." << endl;
+		static char buf[1024] = "0123456789";
+		snprintf(buf, sizeof(buf), "%s", issue().c_str());
+		return buf;
+	}
+
+	virtual string issue() const noexcept {
 		// cerr << __FUNCTION__ << endl;
 		stringstream ss;
-		ss << "\33[33m" << _file << "##" << _line << "##" << _function << "##[" << _level << "]" << _message << "\33[0m" << flush;
+		ss << _file << "##" << _line << "##" << _function << "##[" << _level << "]" << _report << flush;
 		if (_errorID) {
 			ss << endl << "[" << _errorID << "]" << strerror(_errorID) << flush;
 		}
 		return ss.str();
 	}
 
-	virtual string how() const {
+	virtual Rep &report() {
 		// cerr << __FUNCTION__ << endl;
-		stringstream ss;
-		ss << _solution << flush;
-		return ss.str();
+		return _report;
+	}
+
+	virtual Sln &solution() {
+		// cerr << __FUNCTION__ << endl;
+		return _solution;
 	}
 
 public:
@@ -180,7 +190,7 @@ public:
 	string _function;
 	int _errorID;
 	Level _level;
-	Msg _message;
+	Rep _report;
 	Sln _solution;
 };
 
@@ -684,8 +694,9 @@ decltype(auto) TestAssembly() {
 void TestAnomaly() {
 	auto anomaly = Anomaly<string, string>(true, __FILE__, __LINE__, __FUNCTION__, EType::Information, "An abnomal exception.", "Leave me alone.");
 	anomaly.check();
-	cerr << anomaly.what() << endl;
-	cerr << anomaly.how() << endl;
+	cerr << anomaly.issue() << endl;
+	cerr << anomaly.report() << endl;
+	cerr << anomaly.solution() << endl;
 
 	Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incompleted, "To be implemented.", "Pick up me later.").check();
 	// throw Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incompleted, "To be implemented.", "Pick up me later.");
