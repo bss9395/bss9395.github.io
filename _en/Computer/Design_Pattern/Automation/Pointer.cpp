@@ -82,7 +82,7 @@ template<typename Msg>
 int Check(bool failed, const string &file, const long &line, const string &function, const int &error, const Msg &message) {
 	// cerr << __FUNCTION__ << endl;
 	if (failed) {
-		cerr << "\33[33m" << file << "##" << line << "##" << function << "##[" error << "]" << message << "\33[0m" << endl;
+		cerr << "\33[33m" << file << "##" << line << "##" << function << "##[" << error << "]" << message << "\33[0m" << endl;
 		if (!(0 == errno && 0 == error)) {
 			cerr << "[" << errno << "]" << strerror(errno) << endl;
 			throw errno;
@@ -318,7 +318,7 @@ public:
 public:
 	operator char *() {
 		// cerr << __FUNCTION__ << endl;
-		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
+		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, errno, "_pointer == nullptr");
 		return _pointer;
 	}
 
