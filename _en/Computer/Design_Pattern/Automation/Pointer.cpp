@@ -31,9 +31,10 @@ using ::free;
 #include <typeinfo>
 using std::cout;
 using std::cerr;
-using std::ends;
+using std::flush;
 using std::endl;
 using std::string;
+using std::ostream;
 using std::fstream;
 using std::stringstream;
 using std::exception;
@@ -99,6 +100,11 @@ public:
 	typedef Msg MsgType;
 	typedef Sln SlnType;
 
+	friend ostream &operator<<(ostream &os, const Anomaly &anomaly) {
+		os << anomaly.what() << flush;
+		return os;
+	}
+
 public:
 	Anomaly(bool failed, const string &file, const long &line, const string &function, const Level &level = EType::Information, const Msg &message = Msg(), const Sln &solution = Sln())
 		: _failed(failed), _file(file), _line(line), _function(function), _errorID(errno), _level(level), _message(message), _solution(solution) {
@@ -139,7 +145,7 @@ public:
 	}
 
 public:
-	virtual int check() {
+	virtual int check() const {
 		// cerr << __FUNCTION__ << endl;
 		if (_failed) {
 			cerr << what() << endl;
@@ -150,20 +156,20 @@ public:
 		return _errorID;
 	}
 
-	virtual string what() {
+	virtual string what() const {
 		// cerr << __FUNCTION__ << endl;
 		stringstream ss;
-		ss << "\33[33m" << _file << "##" << _line << "##" << _function << "##[" << _level << "]" << _message << "\33[0m" << ends;
+		ss << "\33[33m" << _file << "##" << _line << "##" << _function << "##[" << _level << "]" << _message << "\33[0m" << flush;
 		if (_errorID) {
-			ss << endl << "[" << _errorID << "]" << strerror(_errorID) << ends;
+			ss << endl << "[" << _errorID << "]" << strerror(_errorID) << flush;
 		}
 		return ss.str();
 	}
 
-	virtual string how() {
+	virtual string how() const {
 		// cerr << __FUNCTION__ << endl;
 		stringstream ss;
-		ss << _solution << ends;
+		ss << _solution << flush;
 		return ss.str();
 	}
 
