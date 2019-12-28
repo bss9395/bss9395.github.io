@@ -43,9 +43,9 @@ using std::exception;
 typedef const char *Tag;
 typedef const char *Level;
 namespace EType {
-	static const Tag Beta = "Beta";
 	static const Tag Debug = "Debug";
 	static const Tag Release = "Release";
+	static const Tag Beta = "Beta";
 	static const Tag Stable = "Stable";
 
 	static const Level Information = "Information";
@@ -57,7 +57,7 @@ namespace EType {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-template<typename Msg = string>        int Check(bool failed, const string &file, const long &line, const string &function, const Msg &message);
+template<typename Msg = string>        int Check(bool failed, const string &file, const long &line, const string &function, const int &error, const Msg &message);
 template<typename Msg, typename Sln> class Anomaly;
 typedef class Anomaly<string, string>      Exception;
 
@@ -79,16 +79,17 @@ template<typename T, typename ...Ts> class Assembly<T, Ts...>;
 ////////////////////////////////////////////////////////////////////////////////
 
 template<typename Msg>
-int Check(bool failed, const string &file, const long &line, const string &function, const Msg &message) {
+int Check(bool failed, const string &file, const long &line, const string &function, const int &error, const Msg &message) {
 	// cerr << __FUNCTION__ << endl;
 	if (failed) {
-		cerr << "\33[33m" << file << "##" << line << "##" << function << "##" << message << "\33[0m" << endl;
-		if (errno) {
+		cerr << "\33[33m" << file << "##" << line << "##" << function << "##[" error << "]" << message << "\33[0m" << endl;
+		if (!(0 == errno && 0 == error)) {
 			cerr << "[" << errno << "]" << strerror(errno) << endl;
 			throw errno;
 		}
 	}
-	return errno;
+	errno = 0;
+	return 0;
 }
 
 template<typename Msg, typename Sln>
@@ -659,7 +660,7 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#define Main
+//#define Main
 #ifdef Main
 decltype(auto) TestPointer() {
 	long *l = new long(11);

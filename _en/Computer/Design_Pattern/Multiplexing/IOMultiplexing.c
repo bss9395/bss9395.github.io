@@ -65,10 +65,11 @@ Kernel GetKernel();
 #ifndef Kernel_c
 #define Kernel_c
 
-int Check(bool failed, const char *file, const long line, const char *function, const char *message) {
+int Check(bool failed, const char *file, const long line, const char *function, const int error, const char *message) {
 	if (failed) {
-		fprintf(stderr, "\33[33m""%s##%ld##%s##[%d]%s\n""\33[0m", file, line, function, errno, message);
-		if (0 != errno) {
+		fprintf(stderr, "\33[33m""%s##%ld##%s##[%d]%s\n""\33[0m", file, line, function, error, message);
+		if (!(0 == errno && 0 == error)) {
+			fprintf(stderr, "[%d]%s\n", errno, strerror(errno));
 			exit(errno);
 		}
 	}
