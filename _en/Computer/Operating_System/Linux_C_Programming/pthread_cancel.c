@@ -26,7 +26,6 @@ int main(int argc, char *argv[]) {
     printf("ret = %d, retval = %p\n", ret, retval);
     if(ret) {
         printf("error\n");
-
     }
     else {
         printf("sucess\n");
