@@ -423,11 +423,17 @@ public:
 	}
 
 public:
-	T &operator*() {
+	operator T *() {
 		// cerr << __FUNCTION__ << endl;
-		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
-		return *_pointer;
+		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, errno, "_pointer == nullptr");
+		return _pointer;
 	}
+
+	//T &operator*() {
+	//	// cerr << __FUNCTION__ << endl;
+	//	Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
+	//	return *_pointer;
+	//}
 
 	T *operator->() {
 		//cerr << __FUNCTION__ << " " << _pointer << " " << *_count << " " << _size << endl;
