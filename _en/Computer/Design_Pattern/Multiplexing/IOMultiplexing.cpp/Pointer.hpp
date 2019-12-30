@@ -1,7 +1,7 @@
 /*Pointer.cpp
 * Author: BSS9395
 * Update: 2019-12-27T15:57:00+08@ShenZhen
-* Design: Automation
+* Design: Multiplexing
 */
 
 #ifndef Pointer_hpp

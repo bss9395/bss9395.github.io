@@ -1,3 +1,9 @@
+/*Config.hpp
+* Author: BSS9395
+* Update: 2019-12-30T15:47:00+08@ShenZhen
+* Design: Multiplexing
+*/
+
 #ifndef Config_hpp
 #define Config_hpp
 

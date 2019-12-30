@@ -1,3 +1,9 @@
+/*Kernel.hpp
+* Author: BSS9395
+* Update: 2019-12-30T15:47:00+08@ShenZhen
+* Design: Multiplexing
+*/
+
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
