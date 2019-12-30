@@ -71,7 +71,7 @@ template<typename ...>               class Pointer;
 template<>                           class Pointer<char>;
 template<typename T>                 class Pointer<T>;
 template<typename T, typename ...Ts> class Pointer<T, Ts...>;
-template<typename T>                 decltype(auto) GetPointer(T *pointer, long length = 1);
+template<typename T>                 decltype(auto) GetPointer(T *pointer, long size = 1);
 template<typename T, typename ...Ts> decltype(auto) GetPointer(T *pointer, Ts *...pointers);
 
 template<typename ...>               class Assembly;
@@ -257,7 +257,7 @@ public:
 template<>
 class Pointer<char> {
 	friend bool operator==(const Pointer &lhs, const Pointer &rhs) {
-		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._length << endl;
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._size << endl;
 		if (lhs._pointer == rhs._pointer) {
 			return true;
 		}
@@ -265,7 +265,7 @@ class Pointer<char> {
 	}
 
 	friend bool operator!=(const Pointer &lhs, const Pointer &rhs) {
-		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._length << endl;
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._size << endl;
 		return !operator==(lhs, rhs);
 	}
 
@@ -275,23 +275,23 @@ public:
 	static const long _SIZE = sizeof(char);
 
 public:
-	Pointer(char *pointer, long length = 1)
-		:_pointer(pointer), _count(new long(1)), _length(length) {
-		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+	Pointer(char *pointer, long size = 1)
+		:_pointer(pointer), _count(new long(1)), _size(size) {
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 	}
 
-	Pointer(char *pointer, long *count, long length)
-		: _pointer(pointer), _count(count), _length(length) {
+	Pointer(char *pointer, long *count, long size)
+		: _pointer(pointer), _count(count), _size(size) {
 		*_count += 1;
-		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 	}
 
 	Pointer(const Pointer &pointer) {
 		_pointer = pointer._pointer;
 		_count = pointer._count;
-		_length = pointer._length;
+		_size = pointer._size;
 		*_count += 1;
-		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 	}
 
 	Pointer &operator=(const Pointer &pointer) {
@@ -299,18 +299,18 @@ public:
 			this->~Pointer();
 			_pointer = pointer._pointer;
 			_count = pointer._count;
-			_length = pointer._length;
+			_size = pointer._size;
 			*_count += 1;
 		}
-		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 		return *this;
 	}
 
 	virtual ~Pointer() {
-		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 		*_count -= 1;
 		if (*_count <= 0) {
-			_length <= 1 ? delete _pointer : delete[] _pointer;
+			_size <= 1 ? delete _pointer : delete[] _pointer;
 			_pointer = nullptr;
 			delete _count;
 			_count = nullptr;
@@ -319,9 +319,9 @@ public:
 
 public:
 	template<const long I = 0>
-	Pointer<char> setLength(const long length = 2) {
+	Pointer<char> setLength(const long size = 2) {
 		// cerr << __FUNCTION__ << endl;
-		_length = length;
+		_size = size;
 		return *this;
 	}
 
@@ -341,13 +341,13 @@ public:
 public:
 	char *_pointer;
 	long *_count;
-	long _length;
+	long _size;
 };
 
 template<typename T>
 class Pointer<T> {
 	friend bool operator==(const Pointer &lhs, const Pointer &rhs) {
-		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._length << endl;
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._size << endl;
 		if (lhs._pointer == rhs._pointer) {
 			return true;
 		}
@@ -355,7 +355,7 @@ class Pointer<T> {
 	}
 
 	friend bool operator!=(const Pointer &lhs, const Pointer &rhs) {
-		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._length << endl;
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._size << endl;
 		return !operator==(lhs, rhs);
 	}
 
@@ -365,23 +365,23 @@ public:
 	static const long _SIZE = sizeof(T);
 
 public:
-	Pointer(T *pointer, long length = 1)
-		:_pointer(pointer), _count(new long(1)), _length(length) {
-		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+	Pointer(T *pointer, long size = 1)
+		:_pointer(pointer), _count(new long(1)), _size(size) {
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 	}
 
-	Pointer(T *pointer, long *count, long length)
-		: _pointer(pointer), _count(count), _length(length) {
+	Pointer(T *pointer, long *count, long size)
+		: _pointer(pointer), _count(count), _size(size) {
 		*_count += 1;
-		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 	}
 
 	Pointer(const Pointer &pointer) {
 		_pointer = pointer._pointer;
 		_count = pointer._count;
-		_length = pointer._length;
+		_size = pointer._size;
 		*_count += 1;
-		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 	}
 
 	Pointer &operator=(const Pointer &pointer) {
@@ -389,30 +389,30 @@ public:
 			this->~Pointer();
 			_pointer = pointer._pointer;
 			_count = pointer._count;
-			_length = pointer._length;
+			_size = pointer._size;
 			*_count += 1;
 		}
-		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 		return *this;
 	}
 
 	virtual ~Pointer() {
-		// cerr << __FUNCTION__ << " " << *_count << " " << _length << endl;
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 		*_count -= 1;
 		if (*_count <= 0) {
-			_length <= 1 ? delete _pointer : delete[] _pointer;
+			_size <= 1 ? delete _pointer : delete[] _pointer;
 			_pointer = nullptr;
 			delete _count;
 			_count = nullptr;
-			_length = 0;
+			_size = 0;
 		}
 	}
 
 public:
 	template<const long I = 0>
-	Pointer<T> &setLength(const long length = 2) {
+	Pointer<T> &setLength(const long size = 2) {
 		// cerr << __FUNCTION__ << endl;
-		_length = length;
+		_size = size;
 		return *this;
 	}
 
@@ -430,7 +430,7 @@ public:
 	}
 
 	T *operator->() {
-		//cerr << __FUNCTION__ << " " << _pointer << " " << *_count << " " << _length << endl;
+		//cerr << __FUNCTION__ << " " << _pointer << " " << *_count << " " << _size << endl;
 		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
 		return &(*_pointer);
 	}
@@ -438,7 +438,7 @@ public:
 public:
 	T *_pointer;
 	long *_count;
-	long _length;
+	long _size;
 };
 
 template<typename T, typename ...Ts>
@@ -510,13 +510,13 @@ public:
 protected:
 	template<typename B>
 	void deleted(const long i) {
-		// cerr << *_pointers[i]._count << ":" << _pointers[i]._length << ":" << *(B*)(_pointers[i]._pointer) << " ";
+		// cerr << *_pointers[i]._count << ":" << _pointers[i]._size << ":" << *(B*)(_pointers[i]._pointer) << " ";
 		if (i == _ARGC - 1) {
 			// cerr << endl;
 		}
 		*(_pointers[i]._count) -= 1;
 		if (*(_pointers[i]._count) <= 0) {
-			_pointers[i]._length <= 1 ? delete (B*)(_pointers[i]._pointer) : delete[](B*)(_pointers[i]._pointer);
+			_pointers[i]._size <= 1 ? delete (B*)(_pointers[i]._pointer) : delete[](B*)(_pointers[i]._pointer);
 			_pointers[i]._pointer = nullptr;
 			delete _pointers[i]._count;
 			_pointers[i]._count = nullptr;
@@ -525,8 +525,8 @@ protected:
 
 public:
 	template<const long I>
-	decltype(auto) setLength(const long length = 2) {
-		_pointers[I]._length = length;
+	decltype(auto) setLength(const long size = 2) {
+		_pointers[I]._size = size;
 		// cerr << __FUNCTION__ << endl;
 		return *this;
 	}
@@ -535,22 +535,22 @@ public:
 	decltype(auto) at() const {
 		typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
 		// cerr << __FUNCTION__ << "<" << I << ">()#" << typeid(Base).name() << endl;
-		return Pointer<Base>((Base*)(_pointers[I]._pointer), _pointers[I]._count, _pointers[I]._length);
+		return Pointer<Base>((Base*)(_pointers[I]._pointer), _pointers[I]._count, _pointers[I]._size);
 	}
 
 public:
 	struct {
 		void *_pointer;
 		long *_count;
-		long _length;
+		long _size;
 	} _pointers[_ARGC];
 	long *_count;
 };
 
 template<typename T>
-decltype(auto) GetPointer(T *pointer, long length) {
+decltype(auto) GetPointer(T *pointer, long size) {
 	// cerr << __FUNCTION__ << "(const T *pointer)" << endl;
-	return Pointer<T>(pointer, length);
+	return Pointer<T>(pointer, size);
 }
 
 template<typename T, typename ...Ts>

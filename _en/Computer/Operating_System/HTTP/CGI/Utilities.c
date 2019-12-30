@@ -1,201 +1,717 @@
-/* Utilities.c
-Author: BSS9395
-Update: 2019-11-03T22:24 +08 @ ShenZhen +08
-Design: HTTP Server
+/*Pointer.cpp
+* Author: BSS9395
+* Update: 2019-12-27T15:57:00+08@ShenZhen
+* Design: Automation
 */
 
-#define _GNU_SOURCE
+#ifndef Pointer_hpp
+#define Pointer_hpp
 
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <signal.h>
-#include <pthread.h>
-#include <dirent.h>
+#ifndef _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
+
 #include <stdbool.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <errno.h>
-#include <ctype.h>
+using ::fprintf;
+using ::free;
 
-int   checkError(char *msg, bool failed);
-bool  checkInitialWord(char *text, char *word, long len);
-long  getLine(int sock_fd, char *buf, long size);
-char *getMimeType(char *filename);
-int   HexDigitToDec(char c);
-void  UriEncode(char *uri, char *path);
-void  UriDecode(char *uri, char *path);
-void  parseUri(char *uri, char *root, char *path);
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <exception>
+#include <typeinfo>
+using std::cout;
+using std::cerr;
+using std::flush;
+using std::endl;
+using std::string;
+using std::ostream;
+using std::fstream;
+using std::stringstream;
+using std::exception;
 
-#ifndef Utilities_c
-#define Utilities_c
+////////////////////////////////////////////////////////////////////////////////
 
-int checkError(char *msg, bool failed) {
-    if(failed) {
-        perror(msg);
-        return errno;
-    }
+typedef const char *Tag;
+typedef const char *Level;
+namespace EType {
+	static const Tag Debug = "Debug";
+	static const Tag Release = "Release";
+	static const Tag Beta = "Beta";
+	static const Tag Stable = "Stable";
 
-    return 0;
+	static const Level Information = "Information";
+	static const Level Incompleted = "Incompleted";
+	static const Level Obsolete = "Obsolete";
+	static const Level Warning = "Warning";
+	static const Level Error = "Error";
+	static const Level Fatal = "Fatal";
+};
+
+////////////////////////////////////////////////////////////////////////////////
+
+template<typename Rep = string>        int Check(bool failed, const string &file, const long &line, const string &function, const int &error, const Rep &report);
+template<typename Rep, typename Sln> class Anomaly;
+typedef class Anomaly<string, string>      Exception;
+
+template<typename N = long>          void Freed(const N num, ...);
+template<typename T>                 void Deleted(T *pointer);
+template<typename T, typename ...Ts> void Deleted(T *pointer, Ts *...pointers);
+
+template<typename ...>               class Pointer;
+template<>                           class Pointer<char>;
+template<typename T>                 class Pointer<T>;
+template<typename T, typename ...Ts> class Pointer<T, Ts...>;
+template<typename T>                 decltype(auto) GetPointer(T *pointer, long size = 1);
+template<typename T, typename ...Ts> decltype(auto) GetPointer(T *pointer, Ts *...pointers);
+
+template<typename ...>               class Assembly;
+template<typename T>                 class Assembly<T>;
+template<typename T, typename ...Ts> class Assembly<T, Ts...>;
+
+////////////////////////////////////////////////////////////////////////////////
+
+template<typename Rep>
+int Check(bool failed, const string &file, const long &line, const string &function, const int &error, const Rep &report) {
+	// cerr << __FUNCTION__ << endl;
+	if (failed) {
+		cerr << file << "##" << line << "##" << function << "##[" << error << "]" << report << endl;
+		if (!(0 == errno && 0 == error)) {
+			cerr << "[" << errno << "]" << strerror(errno) << endl;
+			throw errno;
+		}
+	}
+	errno = 0;
+	return 0;
 }
 
-bool checkInitialWord(char *text, char *word, long len) {
-    long i = 0;
-    for(; i < len && text[i] != '\0' && word[i] != '\0'; ++i) {
-        if(toupper(*text) != toupper(*word)){
-            return false;
-        }
-    }
-    return (i == len);
+template<typename Rep, typename Sln>
+class Anomaly
+	: public exception {
+public:
+	friend ostream &operator<<(ostream &os, const Anomaly &anomaly) {
+		cerr << __FUNCTION__ << endl;
+		os << anomaly.issue() << flush;
+		return os;
+	}
+
+public:
+	Anomaly(bool failed, const string &file, const long &line, const string &function, const Level &level = EType::Information, const Rep &report = Rep(), const Sln &solution = Sln())
+		: _failed(failed), _file(file), _line(line), _function(function), _errorID(errno), _level(level), _report(report), _solution(solution) {
+		errno = 0;
+		// cerr << __FUNCTION__ << endl;
+	}
+
+	Anomaly(const Anomaly &anomaly) {
+		_failed = anomaly._failed;
+		_file = anomaly._file;
+		_line = anomaly._line;
+		_function = anomaly._function;
+		_errorID = anomaly._errorID;
+		_level = anomaly._level;
+		_report = anomaly._report;
+		_solution = anomaly._solution;
+		// cerr << __FUNCTION__ << endl;
+	}
+
+	Anomaly &operator=(const Anomaly &anomaly) {
+		if (this != &anomaly) {
+			this->~Anomaly();
+			_failed = anomaly._failed;
+			_file = anomaly._file;
+			_line = anomaly._line;
+			_function = anomaly._function;
+			_errorID = anomaly._errorID;
+			_level = anomaly._level;
+			_report = anomaly._report;
+			_solution = anomaly._solution;
+		}
+		// cerr << __FUNCTION__ << endl;
+		return *this;
+	}
+
+	virtual ~Anomaly() {
+		// cerr << __FUNCTION__ << endl;
+	}
+
+public:
+	virtual int check() const {
+		// cerr << __FUNCTION__ << endl;
+		if (_failed) {
+			cerr << issue() << endl;
+			if (!(_errorID == 0 && _level == EType::Information)) {
+				throw *this;
+			}
+		}
+		return _errorID;
+	}
+
+	virtual const char *what() const noexcept {
+		// cerr << __FUNCTION__ << endl;
+		cerr << "Obsolete function what(), Use issue() Instead." << endl;
+		static char buf[1024] = "0123456789";
+		snprintf(buf, sizeof(buf), "%s", issue().c_str());
+		return buf;
+	}
+
+	virtual string issue() const noexcept {
+		// cerr << __FUNCTION__ << endl;
+		stringstream ss;
+		ss << _file << "##" << _line << "##" << _function << "##[" << _level << "]" << _report << flush;
+		if (_errorID) {
+			ss << endl << "[" << _errorID << "]" << strerror(_errorID) << flush;
+		}
+		return ss.str();
+	}
+
+	virtual Rep &report() {
+		// cerr << __FUNCTION__ << endl;
+		return _report;
+	}
+
+	virtual Sln &solution() {
+		// cerr << __FUNCTION__ << endl;
+		return _solution;
+	}
+
+public:
+	bool _failed;
+	string _file;
+	long _line;
+	string _function;
+	int _errorID;
+	Level _level;
+	Rep _report;
+	Sln _solution;
+};
+
+////////////////////////////////////////////////////////////////////////////////
+
+template<typename N>
+void Freed(const N num, ...) {
+	fprintf(stderr, "%s\n", __FUNCTION__);
+	va_list args;
+	va_start(args, num);
+	for (N i = 0; i != num; ++i) {
+		void *ptr = va_arg(args, void*);
+		if (ptr == NULL) {
+			break;
+		}
+		free(ptr);
+	}
+	va_end(args);
 }
 
-long getLine(int sock_fd, char *buf, long size) {
-    long len = 0;
-    while(len < size - 1 && 1 == recv(sock_fd, &buf[len], 1, 0)) {
-        if(buf[len] == '\n' || buf[len] == '\0') {
-            if(0 < len && buf[len - 1] == '\r') {
-                len = len - 1;
-            }
-            break;
-        }
-        len += 1;
-    }
-    buf[len] = '\0';
-    return len;
+template<typename T>
+void Deleted(T *pointer) {
+	// cout << __FUNCTION__ << endl;
+	delete pointer;
 }
 
-char *getMimeType(char *filename) {
-    char *ret = NULL;
-    char *dot = strrchr(filename, '.');
-
-    if(NULL == dot) {
-        ret = "text/plain";
-    }
-    else if(0 == strcmp(dot, ".html") || 0 == strcmp(dot, ".htm")) {
-        ret = "text/html; charset=utf-8";
-    }
-    else if(0 == strcmp(dot, ".jpeg") || 0 == strcmp(dot, ".jpg")) {
-        ret = "image/jpeg";
-    }
-    else if(0 == strcmp(dot, ".gif")) {
-        ret = "image/gif";
-    }
-    else if(0 == strcmp(dot, ".png")) {
-        ret = "image/png";
-    }
-    else if(0 == strcmp(dot, ".css")) {
-        ret = "text/css; charset=utf-8";
-    }
-    else if(0 == strcmp(dot, ".au")) {
-        ret = "audio/basic";
-    }
-    else if(0 == strcmp(dot, ".wav")) {
-        ret = "audio/wav";
-    }
-    else if(0 == strcmp(dot, ".midi") || 0 == strcmp(dot, ".mid")) {
-        ret = "audio/midi";
-    }
-    else if(0 == strcmp(dot, ".mp3")) {
-        ret = "audio/mpeg";
-    }
-    else if(0 == strcmp(dot, ".avi")) {
-        ret = "video/x-msvideo";
-    }
-    else if(0 == strcmp(dot, ".mov") || 0 == strcmp(dot, ".qt")) {
-        ret = "video/quicktime";
-    }
-    else if(0 == strcmp(dot, ".mpeg") || 0 == strcmp(dot, ".mpe")) {
-        ret = "video/mpeg";
-    }
-    else if(0 == strcmp(dot, ".vrml") || 0 == strcmp(dot, ".wrl")) {
-    	ret = "model/vrml";
-    }
-    else if(0 == strcmp(dot, ".ogg")) {
-        ret = "application/ogg";
-    }
-    else if(0 == strcmp(dot, ".pac")) {
-        ret = "application/x-ns-proxy-autoconfig";
-    } else {
-    	ret = "text/plain";
-    }
-
-    return ret;
+template<typename T, typename ...Ts>
+void Deleted(T *pointer, Ts*...pointers) {
+	Deleted(pointer);
+	Deleted(pointers...);
 }
 
-int HexDigitToDec(char c) {
-    int ret = 0;
-    if('0' <= c && c <= '9') {
-        ret = c - '0';
-    }
-    else if('a' <= c && c <= 'f') {
-        ret = c - 'a' + 10;
-    }
-    else if('A' <= c && c <= 'F') {
-        ret = c - 'A' + 10;
-    }
-    return ret;
+template<typename ...>
+class Pointer;
+
+template<>
+class Pointer<> {
+public:
+	typedef class Pointer<> Type;
+
+public:
+	Pointer() = delete;
+	Pointer(const Pointer&) = delete;
+	Pointer &operator=(const Pointer&) = delete;
+	virtual ~Pointer() = delete;
+
+public:
+	template<const long I, typename ...Bs>
+	struct GetBase;
+
+	template<typename B, typename ...Bs>
+	struct GetBase<0, B, Bs...> {
+		typedef B Base;
+		static const long _OFFSET = 0;
+	};
+
+	template<const long I, typename B, typename ...Bs>
+	struct GetBase<I, B, Bs...> {
+		typedef typename GetBase<I - 1, Bs...>::Base Base;
+		static const long _OFFSET = sizeof(B) + GetBase<I - 1, Bs...>::_OFFSET;
+	};
+};
+
+template<>
+class Pointer<char> {
+	friend bool operator==(const Pointer &lhs, const Pointer &rhs) {
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._size << endl;
+		if (lhs._pointer == rhs._pointer) {
+			return true;
+		}
+		return false;
+	}
+
+	friend bool operator!=(const Pointer &lhs, const Pointer &rhs) {
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._size << endl;
+		return !operator==(lhs, rhs);
+	}
+
+public:
+	typedef class Pointer<char> Type;
+	static const long _ARGC = 1;
+	static const long _SIZE = sizeof(char);
+
+public:
+	Pointer(char *pointer, long size = 1)
+		:_pointer(pointer), _count(new long(1)), _size(size) {
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
+	}
+
+	Pointer(char *pointer, long *count, long size)
+		: _pointer(pointer), _count(count), _size(size) {
+		*_count += 1;
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
+	}
+
+	Pointer(const Pointer &pointer) {
+		_pointer = pointer._pointer;
+		_count = pointer._count;
+		_size = pointer._size;
+		*_count += 1;
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
+	}
+
+	Pointer &operator=(const Pointer &pointer) {
+		if (this != &pointer) {
+			this->~Pointer();
+			_pointer = pointer._pointer;
+			_count = pointer._count;
+			_size = pointer._size;
+			*_count += 1;
+		}
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
+		return *this;
+	}
+
+	virtual ~Pointer() {
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
+		*_count -= 1;
+		if (*_count <= 0) {
+			_size <= 1 ? delete _pointer : delete[] _pointer;
+			_pointer = nullptr;
+			delete _count;
+			_count = nullptr;
+		}
+	}
+
+public:
+	template<const long I = 0>
+	Pointer<char> setLength(const long size = 2) {
+		// cerr << __FUNCTION__ << endl;
+		_size = size;
+		return *this;
+	}
+
+	template<const long I = 0>
+	Pointer<char> at() const {
+		// cerr << __FUNCTION__ << endl;
+		return *this;
+	}
+
+public:
+	operator char *() {
+		// cerr << __FUNCTION__ << endl;
+		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, errno, "_pointer == nullptr");
+		return _pointer;
+	}
+
+public:
+	char *_pointer;
+	long *_count;
+	long _size;
+};
+
+template<typename T>
+class Pointer<T> {
+	friend bool operator==(const Pointer &lhs, const Pointer &rhs) {
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._size << endl;
+		if (lhs._pointer == rhs._pointer) {
+			return true;
+		}
+		return false;
+	}
+
+	friend bool operator!=(const Pointer &lhs, const Pointer &rhs) {
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._size << endl;
+		return !operator==(lhs, rhs);
+	}
+
+public:
+	typedef class Pointer<T> Type;
+	static const long _ARGC = 1;
+	static const long _SIZE = sizeof(T);
+
+public:
+	Pointer(T *pointer, long size = 1)
+		:_pointer(pointer), _count(new long(1)), _size(size) {
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
+	}
+
+	Pointer(T *pointer, long *count, long size)
+		: _pointer(pointer), _count(count), _size(size) {
+		*_count += 1;
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
+	}
+
+	Pointer(const Pointer &pointer) {
+		_pointer = pointer._pointer;
+		_count = pointer._count;
+		_size = pointer._size;
+		*_count += 1;
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
+	}
+
+	Pointer &operator=(const Pointer &pointer) {
+		if (this != &pointer) {
+			this->~Pointer();
+			_pointer = pointer._pointer;
+			_count = pointer._count;
+			_size = pointer._size;
+			*_count += 1;
+		}
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
+		return *this;
+	}
+
+	virtual ~Pointer() {
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
+		*_count -= 1;
+		if (*_count <= 0) {
+			_size <= 1 ? delete _pointer : delete[] _pointer;
+			_pointer = nullptr;
+			delete _count;
+			_count = nullptr;
+			_size = 0;
+		}
+	}
+
+public:
+	template<const long I = 0>
+	Pointer<T> &setLength(const long size = 2) {
+		// cerr << __FUNCTION__ << endl;
+		_size = size;
+		return *this;
+	}
+
+	template<const long I = 0>
+	Pointer<T> at() const {
+		// cerr << __FUNCTION__ << endl;
+		return *this;
+	}
+
+public:
+	T &operator*() {
+		// cerr << __FUNCTION__ << endl;
+		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
+		return *_pointer;
+	}
+
+	T *operator->() {
+		//cerr << __FUNCTION__ << " " << _pointer << " " << *_count << " " << _size << endl;
+		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, "_pointer == nullptr");
+		return &(*_pointer);
+	}
+
+public:
+	T *_pointer;
+	long *_count;
+	long _size;
+};
+
+template<typename T, typename ...Ts>
+class Pointer<T, Ts...> {
+	friend bool operator==(const Pointer &lhs, const Pointer &rhs) {
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointers << " " << *rhs._count << endl;
+		if (lhs._count == rhs._count) {
+			return true;
+		}
+		return false;
+	}
+
+	friend bool operator!=(const Pointer &lhs, const Pointer &rhs) {
+		// cerr << __FUNCTION__ << " rhs: " << rhs._pointers << " " << *rhs._count << endl;
+		return !operator==(lhs, rhs);
+	}
+
+public:
+	typedef class Pointer<T, Ts...> Type;
+	static const long _ARGC = 1 + sizeof...(Ts);
+	static const long _SIZE = sizeof(T) + Pointer<Ts...>::_SIZE;
+
+public:
+	Pointer(T *pointer, Ts*...pointers)
+		:_pointers{ { pointer, new long(1), 1 }, { pointers, new long(1), 1 }... }, _count(new long(1)) {
+		// cerr << __FUNCTION__ << " " << *_count << endl;
+	}
+
+	Pointer(const Pointer &pointer) {
+		memcpy(_pointers, pointer._pointers, sizeof(_pointers));
+		_count = pointer._count;
+		for (long i = 0; i < _ARGC; ++i) {
+			*(_pointers[i]._count) += 1;
+		}
+		*_count += 1;
+		// cerr << __FUNCTION__ << " " << *_count << endl;
+	}
+
+	Pointer &operator=(const Pointer &pointer) {
+		if (this != &pointer) {
+			this->~Pointer();
+			memcpy(_pointers, pointer._pointers, sizeof(_pointers));
+			_count = pointer._count;
+			for (long i = 0; i < _ARGC; ++i) {
+				*(_pointers[i]._count) += 1;
+			}
+			*_count += 1;
+		}
+		// cerr << __FUNCTION__ << " " << *_count << endl;
+		return *this;
+	}
+
+	virtual ~Pointer() {
+		// cerr << __FUNCTION__ << " " << *_count << "#";
+		long i = 0;
+		long argc[] = {
+			(deleted<T>(i), i += 1), (deleted<Ts>(i), i += 1)...
+		};
+		if (sizeof(argc) / sizeof(*argc) != _ARGC) {
+			// cerr << "\033[33m" << __FUNCTION__ << " " << *_count << "#" << "sizeof(argc) != _ARGC" << "\033[0m" << endl;
+		}
+
+		*_count -= 1;
+		if (*_count <= 0) {
+			delete _count;
+		}
+	}
+
+protected:
+	template<typename B>
+	void deleted(const long i) {
+		// cerr << *_pointers[i]._count << ":" << _pointers[i]._size << ":" << *(B*)(_pointers[i]._pointer) << " ";
+		if (i == _ARGC - 1) {
+			// cerr << endl;
+		}
+		*(_pointers[i]._count) -= 1;
+		if (*(_pointers[i]._count) <= 0) {
+			_pointers[i]._size <= 1 ? delete (B*)(_pointers[i]._pointer) : delete[](B*)(_pointers[i]._pointer);
+			_pointers[i]._pointer = nullptr;
+			delete _pointers[i]._count;
+			_pointers[i]._count = nullptr;
+		}
+	}
+
+public:
+	template<const long I>
+	decltype(auto) setLength(const long size = 2) {
+		_pointers[I]._size = size;
+		// cerr << __FUNCTION__ << endl;
+		return *this;
+	}
+
+	template<const long I>
+	decltype(auto) at() const {
+		typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
+		// cerr << __FUNCTION__ << "<" << I << ">()#" << typeid(Base).name() << endl;
+		return Pointer<Base>((Base*)(_pointers[I]._pointer), _pointers[I]._count, _pointers[I]._size);
+	}
+
+public:
+	struct {
+		void *_pointer;
+		long *_count;
+		long _size;
+	} _pointers[_ARGC];
+	long *_count;
+};
+
+template<typename T>
+decltype(auto) GetPointer(T *pointer, long size) {
+	// cerr << __FUNCTION__ << "(const T *pointer)" << endl;
+	return Pointer<T>(pointer, size);
 }
 
-void UriEncode(char *uri, char *path) {
-    if(uri == path) {
-        fprintf(stderr, "\e[33mwarning: UriEncode: uri == path\e[0m\n");
-    }
-
-    static char unreserverd[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~";
-    static char reserved[]    = "!*'();:@&=+$,/?#[]";
-
-    while(path[0] != '\0') {
-        if(NULL != strchr(unreserverd, path[0]) || NULL != strchr(reserved, path[0])) {
-            uri[0] = path[0];
-            uri += 1;
-            path += 1;
-        }
-        else {
-        	sprintf(uri, "%%%02x", path[0] & 0xff);
-            uri += 3;
-            path += 1;
-        }
-    }
-    uri[0] = '\0';
+template<typename T, typename ...Ts>
+decltype(auto) GetPointer(T *pointer, Ts*...pointers) {
+	// cerr << __FUNCTION__ << "(const Ts *...pointers)" << endl;
+	return Pointer<T, Ts...>(pointer, pointers...);
 }
 
-void UriDecode(char *uri, char *path) {
-    while(uri[0] != '\0') {
-        if(uri[0] == '%' && isxdigit(uri[1]) && isxdigit(uri[2])) {
-            path[0] = HexDigitToDec(uri[1]) * 16 + HexDigitToDec(uri[2]);
-            path += 1;
-            uri += 3;
-        }
-        else {
-            path[0] = uri[0];
-            path += 1;
-            uri += 1;
-        }
-    }
-    path[0] = '\0';
+////////////////////////////////////////////////////////////////////////////////
+
+template<typename ...>
+class Assembly;
+
+template<typename T>
+class Assembly<T> {
+public:
+	typedef class Assembly<T> Type;
+	static const long _ARGC = 1;
+	static const long _SIZE = sizeof(T);
+
+public:
+	Assembly(const T &element)
+		:_element(element) {
+		// cerr << __FUNCTION__ << endl;
+	}
+
+	Assembly(const Assembly &assembly) {
+		_element = assembly._element;
+		// cerr << __FUNCTION__ << endl;
+	}
+
+	Assembly &operator=(const Assembly &assembly) {
+		if (this != &assembly) {
+			this->~Assembly();
+			_element = assembly._element;
+		}
+		// cerr << __FUNCTION__ << endl;
+		return *this;
+	}
+
+	virtual ~Assembly() {
+		// cerr << __FUNCTION__ << endl;
+	}
+
+public:
+	template<const long I = 0>
+	T at() {
+		// cerr << __FUNCTION__ << endl;
+		return _element;
+	}
+
+public:
+	T _element;
+};
+
+/*PLEASE
+* Es is NOT eX, emplace is Not inplace, assembly is NOT ass, B b is NOT Baby.
+*/
+template<typename T, typename ...Ts>
+class Assembly<T, Ts...> {
+public:
+	typedef class Assembly<T, Ts...> Type;
+	static const long _ARGC = 1 + sizeof...(Ts);
+	static const long _SIZE = sizeof(T) + Assembly<Ts...>::_SIZE;
+
+public:
+	Assembly(const T &element, const Ts &...elements)
+		: _pointer(_elements), _pointers{
+			(_pointer + 0),
+			(emplace(element, _pointer), _pointer += sizeof(T)),
+			(emplace(elements, _pointer), _pointer += sizeof(Ts))
+			...
+	}{
+		// cerr << endl;
+		// cerr << __FUNCTION__ << endl;
+	}
+
+	Assembly(const Assembly &assembly) {
+		memcpy(_elements, assembly._elements, sizeof(_elements));
+		memcpy(_pointers, assembly._pointers, sizeof(_pointers));
+		// cerr << __FUNCTION__ << endl;
+	}
+
+	Assembly &operator=(const Assembly &assembly) {
+		if (this != &assembly) {
+			this->~Assembly();
+			memcpy(_elements, assembly._elements, sizeof(_elements));
+			memcpy(_pointers, assembly._pointers, sizeof(_pointers));
+		}
+		// cerr << __FUNCTION__ << endl;
+		return *this;
+	}
+
+	virtual ~Assembly() {
+		// cerr << __FUNCTION__ << endl;
+	}
+
+protected:
+	template<typename E>
+	void emplace(const E &e, char *pointer) {
+		if (pointer == _elements) {
+			// cerr << __FUNCTION__ << "#";
+		}
+		// cerr << e << " ";
+		*((E*)pointer) = e;
+	}
+
+public:
+	template<const long I>
+	decltype(auto) at() {
+		// cerr << __FUNCTION__ << endl;
+		typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
+		return *((Base*)_pointers[I]);
+	}
+
+public:
+	char *_pointer;
+	char _elements[_SIZE];
+	void *_pointers[_ARGC + 1];
+};
+
+#endif // Pointer_hpp
+
+////////////////////////////////////////////////////////////////////////////////
+
+//#define Main
+#ifdef Main
+decltype(auto) TestPointer() {
+	long *l = new long(11);
+	char *s = new char[12]{ 'a', 'b', 'c' };
+	Pointer<long, double, char> ptr(l, new double(11.12), s);
+	ptr.setLength<2>(12);
+	return ptr.at<2>();
 }
 
-void parseUri(char *uri, char *root, char *path) {
-    char *slash = strchr(uri, '/');
-
-    if(uri != slash) {
-        sprintf(root, "%.*s", slash - uri, uri);
-    }
-    if(root[0] == '\0') {
-        sprintf(root, "%s", getenv("HOME"));
-    }
-
-    UriDecode(slash + 1, path);
-    if(path[0] == '\0') {
-        sprintf(path, "%s", ".");
-    }
-
-// printf("\e[33m%s\e[0m\n", root);
-// printf("\e[33m%s\e[0m\n", path);
+decltype(auto) TestAssembly() {
+	Assembly<long, double, const char*> assembly(11, 12, "ass");
+	return assembly.at<1>();
 }
 
-#endif // Utilities_c
+void TestAnomaly() {
+	auto anomaly = Anomaly<string, string>(true, __FILE__, __LINE__, __FUNCTION__, EType::Information, "An abnomal exception.", "Leave me alone.");
+	anomaly.check();
+	cerr << anomaly.issue() << endl;
+	cerr << anomaly.report() << endl;
+	cerr << anomaly.solution() << endl;
+
+	Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incompleted, "To be implemented.", "Pick up me later.").check();
+	// throw Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incompleted, "To be implemented.", "Pick up me later.");
+}
+
+int main(int argc, char *argv[]) {
+	// auto str = TestPointer();
+	// cout << str << endl;
+
+	// auto ass = TestAssembly();
+	// cout << ass << endl;
+
+	TestAnomaly();
+
+	return 0;
+}
+
+#endif // Main
