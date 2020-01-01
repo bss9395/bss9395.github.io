@@ -1,6 +1,6 @@
 /*Pointer.cpp
 * Author: BSS9395
-* Update: 2019-12-27T15:57:00+08@ShenZhen
+* Update: 2020-01-01T16:39:00+08@ShenZhen
 * Design: Automation
 */
 
@@ -28,6 +28,7 @@ using ::free;
 #include <sstream>
 #include <string>
 #include <exception>
+#include <functional>
 #include <typeinfo>
 using std::cout;
 using std::cerr;
@@ -38,16 +39,22 @@ using std::ostream;
 using std::fstream;
 using std::stringstream;
 using std::exception;
+using std::function;
 
 ////////////////////////////////////////////////////////////////////////////////
 
 typedef const char *Tag;
+typedef const char *Method;
 typedef const char *Level;
+
 namespace EType {
 	static const Tag Debug = "Debug";
 	static const Tag Release = "Release";
 	static const Tag Beta = "Beta";
 	static const Tag Stable = "Stable";
+
+	static const Method Free = "Free";
+	static const Method Delete = "Delete";
 
 	static const Level Information = "Information";
 	static const Level Incompleted = "Incompleted";
@@ -63,9 +70,7 @@ template<typename Rep = string>        int Check(bool failed, const string &file
 template<typename Rep, typename Sln> class Anomaly;
 typedef class Anomaly<string, string>      Exception;
 
-template<typename N = long>          void Freed(const N num, ...);
-template<typename T>                 void Deleted(T *pointer);
-template<typename T, typename ...Ts> void Deleted(T *pointer, Ts *...pointers);
+class Cleanup;
 
 template<typename ...>               class Pointer;
 template<>                           class Pointer<char>;
@@ -93,6 +98,8 @@ int Check(bool failed, const string &file, const long &line, const string &funct
 	errno = 0;
 	return 0;
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 template<typename Rep, typename Sln>
 class Anomaly
@@ -196,32 +203,65 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////
 
-template<typename N>
-void Freed(const N num, ...) {
-	fprintf(stderr, "%s\n", __FUNCTION__);
-	va_list args;
-	va_start(args, num);
-	for (N i = 0; i != num; ++i) {
-		void *ptr = va_arg(args, void*);
-		if (ptr == NULL) {
-			break;
-		}
+class Cleanup {
+	typedef function<void(void)> Function;
+
+public:
+	template<typename Func, typename ...Args>
+	Cleanup(Func func, Args ...args) {
+		cerr << __FUNCTION__ << "(Func func, Args ...args)" << endl;
+		auto lamb = [func, args...]() -> void {
+			func(args...);
+		};
+		_function = lamb;
+	}
+
+	template<typename T, typename ...Ts>
+	Cleanup(Method method, T *t, Ts *...ts) {
+		cerr << __FUNCTION__ << "(Method method, T *t, Ts *...ts)" << endl;
+		auto lamb = [method, t, ts...]() -> void {
+			if (method == EType::Delete) {
+				Cleanup::Deleted(t, ts...);
+			}
+			else if (method == EType::Free) {
+				Cleanup::Freed(t, ts...);
+			}
+		};
+		_function = lamb;
+	}
+
+	template<typename Ptr>
+	static void Deleted(Ptr *ptr) {
+		delete ptr;
+	}
+
+	template<typename Ptr, typename ...Ptrs>
+	static void Deleted(Ptr *ptr, Ptrs *...ptrs) {
+		Deleted(ptr);
+		Deleted(ptrs...);
+	}
+
+	template<typename Ptr>
+	static void Freed(Ptr *ptr) {
 		free(ptr);
 	}
-	va_end(args);
-}
 
-template<typename T>
-void Deleted(T *pointer) {
-	// cout << __FUNCTION__ << endl;
-	delete pointer;
-}
+	template<typename Ptr, typename ...Ptrs>
+	static void Freed(Ptr *ptr, Ptrs *...ptrs) {
+		Freed(ptr);
+		Freed(ptrs...);
+	}
 
-template<typename T, typename ...Ts>
-void Deleted(T *pointer, Ts*...pointers) {
-	Deleted(pointer);
-	Deleted(pointers...);
-}
+	virtual ~Cleanup() {
+		cerr << __FUNCTION__ << endl;
+		_function();
+	}
+
+public:
+	Function _function;
+};
+
+////////////////////////////////////////////////////////////////////////////////
 
 template<typename ...>
 class Pointer;
@@ -676,8 +716,33 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////
 
-//#define Main
+#define Main
 #ifdef Main
+void TestAnomaly() {
+	auto anomaly = Anomaly<string, string>(true, __FILE__, __LINE__, __FUNCTION__, EType::Information, "An abnomal exception.", "Leave me alone.");
+	anomaly.check();
+	cerr << anomaly.issue() << endl;
+	cerr << anomaly.report() << endl;
+	cerr << anomaly.solution() << endl;
+
+	Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incompleted, "To be implemented.", "Pick up me later.").check();
+	// throw Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incompleted, "To be implemented.", "Pick up me later.");
+}
+
+void TestCleanup() {
+	char *ptr = new char[10];
+	auto lamb = [](char *ptr) -> long {
+		delete[] ptr;
+		return 1;
+	};
+	Cleanup clean_lamb(lamb, ptr);
+
+	long *l = new long(12);
+	double *d = new double(23.0);
+	Cleanup clean_ptr(EType::Delete, l, d);
+}
+
+
 decltype(auto) TestPointer() {
 	long *l = new long(11);
 	char *s = new char[12]{ 'a', 'b', 'c' };
@@ -691,25 +756,17 @@ decltype(auto) TestAssembly() {
 	return assembly.at<1>();
 }
 
-void TestAnomaly() {
-	auto anomaly = Anomaly<string, string>(true, __FILE__, __LINE__, __FUNCTION__, EType::Information, "An abnomal exception.", "Leave me alone.");
-	anomaly.check();
-	cerr << anomaly.issue() << endl;
-	cerr << anomaly.report() << endl;
-	cerr << anomaly.solution() << endl;
-
-	Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incompleted, "To be implemented.", "Pick up me later.").check();
-	// throw Exception(true, __FILE__, __LINE__, __FUNCTION__, EType::Incompleted, "To be implemented.", "Pick up me later.");
-}
 
 int main(int argc, char *argv[]) {
+	// TestAnomaly();
+
+	TestCleanup();
+
 	// auto str = TestPointer();
 	// cout << str << endl;
 
 	// auto ass = TestAssembly();
 	// cout << ass << endl;
-
-	TestAnomaly();
 
 	return 0;
 }
