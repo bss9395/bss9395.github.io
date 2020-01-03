@@ -1,8 +1,8 @@
 /* SmartSnake.c
-Algorithm: Perceptual Field
-Platform:  Windows
 Author:    BSS9395
 Update:    2019-09-04T10:48:00 +08 @ ShenZhen +08
+Algorithm: Perceptual_Field
+Platform:  Windows
 */
 
 #ifndef SmartSnake_h
