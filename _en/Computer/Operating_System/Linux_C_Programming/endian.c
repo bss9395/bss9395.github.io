@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-    unsigned num = 0x80000000;
+    unsigned num = 0x87654321;
     char *ptr = (char *)&num;
 
     fprintf(stderr, "sizeof(unsigned) = %ld\n", sizeof(unsigned));
@@ -16,8 +16,8 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "big endian\n");
     }
 
-	printf("ptr[%d] = %#x\n", 0, ptr[0]);
-	printf("ptr[%d] = %#x\n", sizeof(unsigned) - 1, (unsigned char)ptr[sizeof(unsigned) - 1]);
+    printf("ptr[%d] = %#x\n", 0, ptr[0]);
+    printf("ptr[%d] = %#x\n", sizeof(unsigned) - 1, (unsigned char)ptr[sizeof(unsigned) - 1]);
 
     return 0;
 }

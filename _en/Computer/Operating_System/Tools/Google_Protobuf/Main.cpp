@@ -1,4 +1,4 @@
-#if
+#if 0
 g++ Main.cpp pb.pb.cc -lprotobuf
 #endif
 
