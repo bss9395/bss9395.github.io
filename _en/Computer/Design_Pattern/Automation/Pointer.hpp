@@ -1,4 +1,4 @@
-/*Pointer.cpp
+/*Pointer.hpp
 * Author: BSS9395
 * Update: 2020-01-01T16:39:00+08@ShenZhen
 * Design: Automation
@@ -278,19 +278,19 @@ public:
 	virtual ~Pointer() = delete;
 
 public:
-	template<const long I, typename ...Bs>
-	struct GetBase;
+	template<const long I, typename ...Ts>
+	struct GetType;
 
-	template<typename B, typename ...Bs>
-	struct GetBase<0, B, Bs...> {
-		typedef B Base;
+	template<typename T, typename ...Ts>
+	struct GetType<0, T, Ts...> {
+		typedef T Type;
 		static const long _OFFSET = 0;
 	};
 
-	template<const long I, typename B, typename ...Bs>
-	struct GetBase<I, B, Bs...> {
-		typedef typename GetBase<I - 1, Bs...>::Base Base;
-		static const long _OFFSET = sizeof(B) + GetBase<I - 1, Bs...>::_OFFSET;
+	template<const long I, typename T, typename ...Ts>
+	struct GetType<I, T, Ts...> {
+		typedef typename GetType<I - 1, Ts...>::Type Type;
+		static const long _OFFSET = sizeof(T) + GetType<I - 1, Ts...>::_OFFSET;
 	};
 };
 
@@ -573,7 +573,7 @@ public:
 
 	template<const long I>
 	decltype(auto) at() const {
-		typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
+		typedef typename Pointer<>::GetType<I, T, Ts...>::Type Base;
 		// cerr << __FUNCTION__ << "<" << I << ">()#" << typeid(Base).name() << endl;
 		return Pointer<Base>((Base*)(_pointers[I]._pointer), _pointers[I]._count, _pointers[I]._size);
 	}
@@ -702,7 +702,7 @@ public:
 	template<const long I>
 	decltype(auto) at() {
 		// cerr << __FUNCTION__ << endl;
-		typedef typename Pointer<>::GetBase<I, T, Ts...>::Base Base;
+		typedef typename Pointer<>::GetType<I, T, Ts...>::Type Base;
 		return *((Base*)_pointers[I]);
 	}
 
