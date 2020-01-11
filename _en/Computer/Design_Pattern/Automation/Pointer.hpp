@@ -315,6 +315,11 @@ public:
 	static const long _SIZE = sizeof(char);
 
 public:
+	Pointer(nullptr_t null = nullptr)
+		: _pointer(nullptr), _count(new long(0)), _size(0) {
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
+	}
+
 	Pointer(char *pointer, long size = 1)
 		:_pointer(pointer), _count(new long(1)), _size(size) {
 		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
@@ -405,8 +410,13 @@ public:
 	static const long _SIZE = sizeof(T);
 
 public:
+	Pointer(nullptr_t null = nullptr)
+		: _pointer(nullptr), _count(new long(0)), _size(0) {
+		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
+	}
+
 	Pointer(T *pointer, long size = 1)
-		:_pointer(pointer), _count(new long(1)), _size(size) {
+		: _pointer(pointer), _count(new long(1)), _size(size) {
 		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 	}
 
@@ -503,7 +513,7 @@ public:
 
 public:
 	Pointer(T *pointer, Ts*...pointers)
-		:_pointers{ { pointer, new long(1), 1 }, { pointers, new long(1), 1 }... }, _count(new long(1)) {
+		: _pointers{ { pointer, new long(1), 1 }, { pointers, new long(1), 1 }... }, _count(new long(1)) {
 		// cerr << __FUNCTION__ << " " << *_count << endl;
 	}
 
@@ -716,7 +726,7 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#define Main
+// #define Main
 #ifdef Main
 void TestAnomaly() {
 	auto anomaly = Anomaly<string, string>(true, __FILE__, __LINE__, __FUNCTION__, EType::Information, "An abnomal exception.", "Leave me alone.");
