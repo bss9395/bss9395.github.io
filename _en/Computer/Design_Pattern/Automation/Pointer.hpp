@@ -1,6 +1,6 @@
 /*Pointer.hpp
 * Author: BSS9395
-* Update: 2020-01-01T16:39:00+08@ShenZhen
+* Update: 2020-01-12T01:03:00+08@ShenZhen
 * Design: Automation
 */
 
@@ -73,7 +73,6 @@ typedef class Anomaly<string, string>      Exception;
 class Cleanup;
 
 template<typename ...>               class Pointer;
-template<>                           class Pointer<char>;
 template<typename T>                 class Pointer<T>;
 template<typename T, typename ...Ts> class Pointer<T, Ts...>;
 template<typename T>                 decltype(auto) GetPointer(T *pointer, long size = 1);
@@ -295,132 +294,14 @@ public:
 	};
 };
 
-template<>
-class Pointer<char> {
-	friend bool operator==(const Pointer &lhs, const Pointer &rhs) {
-		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._size << endl;
-		if (lhs._pointer == rhs._pointer) {
-			return true;
-		}
-		return false;
-	}
-
-	friend bool operator!=(const Pointer &lhs, const Pointer &rhs) {
-		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._size << endl;
-		return !operator==(lhs, rhs);
-	}
-
-public:
-	typedef class Pointer<char> Type;
-	static const long _ARGC = 1;
-
-public:
-	Pointer(nullptr_t null = nullptr)
-		: _pointer(nullptr), _count(new long(0)), _size(0) {
-		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
-	}
-
-	Pointer(char *pointer, long size = 1)
-		:_pointer(pointer), _count(new long(1)), _size(size) {
-		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
-	}
-
-	Pointer(char *pointer, long *count, long size)
-		: _pointer(pointer), _count(count), _size(size) {
-		*_count += 1;
-		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
-	}
-
-	Pointer(const Pointer &pointer) {
-		_pointer = pointer._pointer;
-		_count = pointer._count;
-		_size = pointer._size;
-		*_count += 1;
-		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
-	}
-
-	Pointer &operator=(const Pointer &pointer) {
-		if (this != &pointer) {
-			this->~Pointer();
-			_pointer = pointer._pointer;
-			_count = pointer._count;
-			_size = pointer._size;
-			*_count += 1;
-		}
-		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
-		return *this;
-	}
-
-	virtual ~Pointer() {
-		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
-		*_count -= 1;
-		if (*_count <= 0) {
-			_size <= 1 ? delete _pointer : delete[] _pointer;
-			_pointer = nullptr;
-			delete _count;
-			_count = nullptr;
-		}
-	}
-
-public:
-	template<const long I = 0>
-	Pointer<char> setLength(const long size = 2) {
-		// cerr << __FUNCTION__ << endl;
-		_size = size;
-		return *this;
-	}
-
-	template<const long I = 0>
-	Pointer<char> at() const {
-		// cerr << __FUNCTION__ << endl;
-		return *this;
-	}
-
-public:
-	operator char *() const {
-		// cerr << __FUNCTION__ << endl;
-		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, errno, "_pointer == nullptr");
-		return (char *)_pointer;
-	}
-
-	operator void *() const {
-		// cerr << __FUNCTION__ << endl;
-		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, errno, "_pointer == nullptr");
-		return (void *)_pointer;
-	}
-
-public:
-	char *_pointer;
-	long *_count;
-	long _size;
-};
-
 template<typename T>
 class Pointer<T> {
-	friend bool operator==(const Pointer &lhs, const Pointer &rhs) {
-		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._size << endl;
-		if (lhs._pointer == rhs._pointer) {
-			return true;
-		}
-		return false;
-	}
-
-	friend bool operator!=(const Pointer &lhs, const Pointer &rhs) {
-		// cerr << __FUNCTION__ << " rhs: " << rhs._pointer << " " << *rhs._count << " " << rhs._size << endl;
-		return !operator==(lhs, rhs);
-	}
-
 public:
 	typedef class Pointer<T> Type;
 	static const long _ARGC = 1;
 
 public:
-	Pointer(nullptr_t null = nullptr)
-		: _pointer(nullptr), _count(new long(0)), _size(0) {
-		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
-	}
-
-	Pointer(T *pointer, long size = 1)
+	Pointer(T *pointer = nullptr, long size = 1)
 		: _pointer(pointer), _count(new long(1)), _size(size) {
 		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 	}
@@ -490,10 +371,9 @@ public:
 		return &(*_pointer);
 	}
 
-	operator void *() const {
+	operator T *() const {
 		// cerr << __FUNCTION__ << endl;
-		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, errno, "_pointer == nullptr");
-		return (void *)_pointer;
+		return (T *)_pointer;
 	}
 
 public:
