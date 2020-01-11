@@ -377,10 +377,10 @@ public:
 	}
 
 public:
-	operator char *() {
+	operator char *() const {
 		// cerr << __FUNCTION__ << endl;
 		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, errno, "_pointer == nullptr");
-		return _pointer;
+		return (char *)_pointer;
 	}
 
 public:
@@ -473,13 +473,13 @@ public:
 	}
 
 public:
-	T &operator*() {
+	T &operator*() const {
 		// cerr << __FUNCTION__ << endl;
 		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, errno, "_pointer == nullptr");
 		return *_pointer;
 	}
 
-	T *operator->() {
+	T *operator->() const {
 		//cerr << __FUNCTION__ << " " << _pointer << " " << *_count << " " << _size << endl;
 		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, errno, "_pointer == nullptr");
 		return &(*_pointer);
@@ -726,7 +726,7 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// #define Main
+#define Main
 #ifdef Main
 void TestAnomaly() {
 	auto anomaly = Anomaly<string, string>(true, __FILE__, __LINE__, __FUNCTION__, EType::Information, "An abnomal exception.", "Leave me alone.");
