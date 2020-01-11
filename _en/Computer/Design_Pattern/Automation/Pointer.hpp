@@ -270,6 +270,7 @@ template<>
 class Pointer<> {
 public:
 	typedef class Pointer<> Type;
+	static const long _ARGC = 0;
 
 public:
 	Pointer() = delete;
@@ -312,7 +313,6 @@ class Pointer<char> {
 public:
 	typedef class Pointer<char> Type;
 	static const long _ARGC = 1;
-	static const long _SIZE = sizeof(char);
 
 public:
 	Pointer(nullptr_t null = nullptr)
@@ -413,7 +413,6 @@ class Pointer<T> {
 public:
 	typedef class Pointer<T> Type;
 	static const long _ARGC = 1;
-	static const long _SIZE = sizeof(T);
 
 public:
 	Pointer(nullptr_t null = nullptr)
@@ -521,7 +520,6 @@ class Pointer<T, Ts...> {
 public:
 	typedef class Pointer<T, Ts...> Type;
 	static const long _ARGC = 1 + sizeof...(Ts);
-	static const long _SIZE = sizeof(T) + Pointer<Ts...>::_SIZE;
 
 public:
 	Pointer(T *pointer, Ts*...pointers)
