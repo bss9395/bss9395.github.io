@@ -361,6 +361,11 @@ public:
 		return (long)(_address + _size - _pointer);
 	}
 
+	long offset() {
+		cerr << __FUNCTION__ << endl;
+		return (long)(_pointer - _address);
+	}
+
 	template<const long I = 0>
 	Pointer<T> at() const {
 		// cerr << __FUNCTION__ << endl;
