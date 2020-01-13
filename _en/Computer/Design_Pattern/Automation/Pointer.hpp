@@ -348,12 +348,17 @@ public:
 	}
 
 public:
-	long size(const long &length = 0) {
+	long capacity(const long &size = 0) {
 		// cerr << __FUNCTION__ << endl;
-		if (1 <= length) {
-			_size = length;
+		if (1 <= size) {
+			_size = size;
 		}
 		return _size;
+	}
+
+	long size() {
+		// cerr << __FUNCTION__ << endl;
+		return (long)(_address + _size - _pointer);
 	}
 
 	template<const long I = 0>
@@ -485,12 +490,19 @@ protected:
 	}
 
 public:
-	long size(const long &length = 0, const long &index = 0) {
+	long capacity(const long &size = 0, const long &index = 0) {
 		// cerr << __FUNCTION__ << endl;
-		if (1 <= length) {
-			_pointers[index]._size = length;
+		if (1 <= size) {
+			_pointers[index]._size = size;
 		}
+		Check(!(0 <= index && index < _ARGC), __FILE__, __LINE__, __FUNCTION__, errno, "(!(0 <= index && index < _ARGC))");
 		return _pointers[index]._size;
+	}
+
+	long size(const long &index = 0) {
+		// cerr << __FUNCTION__ << endl;
+		Check(!(0 <= index && index < _ARGC), __FILE__, __LINE__, __FUNCTION__, errno, "(!(0 <= index && index < _ARGC))");
+		return (long)(_pointers[index]._address + _pointers[index]._size - _pointers[index]._pointer);
 	}
 
 	template<const long I>
