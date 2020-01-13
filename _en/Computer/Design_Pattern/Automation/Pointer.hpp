@@ -405,7 +405,7 @@ public:
 
 	T &operator[](int index) {
 		// cerr << __FUNCTION__ << endl;
-		long idx = _pointer + incr - _address;
+		long idx = _pointer + index - _address;
 		Check(_pointer == nullptr || !(0 <= idx && idx < _size), __FILE__, __LINE__, __FUNCTION__, errno, "(_pointer == nullptr || !(0 <= idx && idx < _size))");
 		return _pointer[index];
 	}
@@ -422,9 +422,10 @@ public:
 		return &(*_pointer);
 	}
 
-	operator T *() const {
-		// cerr << __FUNCTION__ << endl;
-		return (T *)_pointer;
+	template<typename P>
+	operator P*() const {
+		//cerr << __FUNCTION__ << endl;
+		return (P *)_pointer;
 	}
 
 public:
