@@ -422,6 +422,11 @@ public:
 		return &(*_pointer);
 	}
 
+	operator T *() const {
+		//cerr << __FUNCTION__ << endl;
+		return (T *)_pointer;
+	}
+
 	template<typename P>
 	operator P*() const {
 		//cerr << __FUNCTION__ << endl;
