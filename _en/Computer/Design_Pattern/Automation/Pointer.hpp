@@ -312,22 +312,28 @@ public:
 		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 	}
 
-	Pointer(const Pointer &pointer) {
-		_address = pointer._address;
-		_pointer = pointer._pointer;
+	template<typename Ptr>
+	Pointer(const Pointer<Ptr> &pointer) {
+		_address = (T *)pointer._address;
+		_pointer = (T *)pointer._pointer;
 		_count = pointer._count;
-		_size = pointer._size;
+
+		Check(0 != pointer._size * sizeof(Ptr) % sizeof(T), __FILE__, __LINE__, __FUNCTION__, errno, "(0 != pointer._size * sizeof(Ptr) % sizeof(T))");
+		_size = pointer._size * sizeof(Ptr) / sizeof(T);
 		*_count += 1;
 		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 	}
 
-	Pointer &operator=(const Pointer &pointer) {
+	template<typename Ptr>
+	Pointer &operator=(const Pointer<Ptr> &pointer) {
 		if (this != &pointer) {
 			this->~Pointer();
-			_address = pointer._address;
-			_pointer = pointer._pointer;
+			_address = (T *)pointer._address;
+			_pointer = (T *)pointer._pointer;
 			_count = pointer._count;
-			_size = pointer._size;
+
+			Check(0 != pointer._size * sizeof(Ptr) % sizeof(T), __FILE__, __LINE__, __FUNCTION__, errno, "(0 != pointer._size * sizeof(Ptr) % sizeof(T))");
+			_size = pointer._size * sizeof(Ptr) / sizeof(T);
 			*_count += 1;
 		}
 		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
@@ -356,7 +362,7 @@ public:
 		return _size;
 	}
 
-	long size() {
+	long length() {
 		// cerr << __FUNCTION__ << endl;
 		return (long)(_address + _size - _pointer);
 	}
@@ -499,7 +505,7 @@ public:
 		return _pointers[index]._size;
 	}
 
-	long size(const long &index = 0) {
+	long length(const long &index = 0) {
 		// cerr << __FUNCTION__ << endl;
 		Check(!(0 <= index && index < _ARGC), __FILE__, __LINE__, __FUNCTION__, errno, "(!(0 <= index && index < _ARGC))");
 		return (long)(_pointers[index]._address + _pointers[index]._size - _pointers[index]._pointer);
