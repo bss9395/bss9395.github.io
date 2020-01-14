@@ -386,7 +386,7 @@ public:
 		// cerr << __FUNCTION__ << endl;
 		long idx = (long)(_pointer + incr - _address);
 		Check(_pointer == nullptr || !(0 <= idx && idx <= _size), __FILE__, __LINE__, __FUNCTION__, errno, "(_pointer == nullptr || !(0 <= idx && idx < _size))");
-		return Pointer<T>(_address, _pointer + incr, _count, _size);
+		return Pointer<T>(_address, _size, _pointer + incr, _count);
 	}
 
 	Pointer<T> &operator-=(int decr) {
@@ -401,7 +401,7 @@ public:
 		// cerr << __FUNCTION__ << endl;
 		long idx = (long)(_pointer - decr - _address);
 		Check(_pointer == nullptr || !(0 <= idx && idx <= _size), __FILE__, __LINE__, __FUNCTION__, errno, "(_pointer == nullptr || !(0 <= idx && idx < _size))");
-		return Pointer<T>(_address, _pointer - decr, _count, _size);
+		return Pointer<T>(_address, _size, _pointer - decr, _count);
 	}
 
 	T &operator[](int index) {
@@ -418,6 +418,7 @@ public:
 	}
 
 	T *operator->() const {
+		cerr << __FUNCTION__ << endl;
 		//cerr << __FUNCTION__ << " " << _pointer << " " << *_count << " " << _size << endl;
 		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, errno, "_pointer == nullptr");
 		return &(*_pointer);
