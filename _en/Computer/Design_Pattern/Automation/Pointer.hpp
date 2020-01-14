@@ -44,17 +44,18 @@ using std::function;
 ////////////////////////////////////////////////////////////////////////////////
 
 typedef const char *Tag;
-typedef const char *Method;
+typedef const char *Origin;
 typedef const char *Level;
-
 namespace EType {
 	static const Tag Debug = "Debug";
 	static const Tag Release = "Release";
 	static const Tag Beta = "Beta";
 	static const Tag Stable = "Stable";
 
-	static const Method Free = "Free";
-	static const Method Delete = "Delete";
+	static const Origin CHeap = "CHeap";
+	static const Origin Cstack = "CStack";
+	static const Origin CppHeap = "CppHeap";
+	static const Origin CppStack = "CppStack";
 
 	static const Level Information = "Information";
 	static const Level Incompleted = "Incompleted";
@@ -75,7 +76,7 @@ class Cleanup;
 template<typename ...>               class Pointer;
 template<typename T>                 class Pointer<T>;
 template<typename T, typename ...Ts> class Pointer<T, Ts...>;
-template<typename T>                 decltype(auto) GetPointer(T *pointer, long size = 1);
+template<typename T>                 decltype(auto) GetPointer(T *pointer, const long &size = 1);
 template<typename T, typename ...Ts> decltype(auto) GetPointer(T *pointer, Ts *...pointers);
 
 template<typename ...>               class Assembly;
@@ -105,7 +106,7 @@ class Anomaly
 	: public exception {
 public:
 	friend ostream &operator<<(ostream &os, const Anomaly &anomaly) {
-		cerr << __FUNCTION__ << endl;
+		// cerr << __FUNCTION__ << endl;
 		os << anomaly.issue() << flush;
 		return os;
 	}
@@ -216,13 +217,13 @@ public:
 	}
 
 	template<typename T, typename ...Ts>
-	Cleanup(Method method, T *t, Ts *...ts) {
+	Cleanup(Origin origin, T *t, Ts *...ts) {
 		cerr << __FUNCTION__ << "(Method method, T *t, Ts *...ts)" << endl;
-		auto lamb = [method, t, ts...]() -> void {
-			if (method == EType::Delete) {
+		auto lamb = [origin, t, ts...]() -> void {
+			if (origin == EType::CppHeap) {
 				Cleanup::Deleted(t, ts...);
 			}
-			else if (method == EType::Free) {
+			else if (origin == EType::CHeap) {
 				Cleanup::Freed(t, ts...);
 			}
 		};
@@ -301,14 +302,12 @@ public:
 	static const long _ARGC = 1;
 
 public:
-	Pointer(T *address = nullptr, long size = 1)
-		: _address(address), _pointer(address), _count(new int(1)), _size(size) {
-		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
-	}
-
-	Pointer(T *address, T *pointer, int *count, long size)
-		: _address(address), _pointer(pointer), _count(count), _size(size) {
-		*_count += 1;
+	Pointer(T *address = nullptr, long size = 1, T *pointer = nullptr, int *count = new int(0))
+		: _address(address), _pointer(address), _count(count), _size(size) {
+		if (size < 1 && pointer == nullptr) {
+			_address = nullptr;
+		}
+		*count += 1;
 		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
 	}
 
@@ -336,14 +335,16 @@ public:
 
 	virtual ~Pointer() {
 		// cerr << __FUNCTION__ << " " << *_count << " " << _size << endl;
-		*_count -= 1;
-		if (*_count <= 0) {
-			_size <= 1 ? delete _address : delete[] _address;
-			delete _count;
-			_address = nullptr;
-			_pointer = nullptr;
-			_count = nullptr;
-			_size = 0;
+		if (_address != nullptr) {
+			*_count -= 1;
+			if (*_count <= 0) {
+				_size <= 1 ? delete _address : delete[] _address;
+				delete _count;
+				_address = nullptr;
+				_pointer = nullptr;
+				_count = nullptr;
+				_size = 0;
+			}
 		}
 	}
 
@@ -375,7 +376,7 @@ public:
 public:
 	Pointer<T> &operator+=(int incr) {
 		// cerr << __FUNCTION__ << endl;
-		long idx = _pointer + incr - _address;
+		long idx = (long)(_pointer + incr - _address);
 		Check(_pointer == nullptr || !(0 <= idx && idx <= _size), __FILE__, __LINE__, __FUNCTION__, errno, "(_pointer == nullptr || !(0 <= idx && idx < _size))");
 		_pointer += incr;
 		return *this;
@@ -383,14 +384,14 @@ public:
 
 	Pointer<T> operator+(int incr) const {
 		// cerr << __FUNCTION__ << endl;
-		long idx = _pointer + incr - _address;
+		long idx = (long)(_pointer + incr - _address);
 		Check(_pointer == nullptr || !(0 <= idx && idx <= _size), __FILE__, __LINE__, __FUNCTION__, errno, "(_pointer == nullptr || !(0 <= idx && idx < _size))");
 		return Pointer<T>(_address, _pointer + incr, _count, _size);
 	}
 
 	Pointer<T> &operator-=(int decr) {
 		// cerr << __FUNCTION__ << endl;
-		long idx = _pointer - decr - _address;
+		long idx = (long)(_pointer - decr - _address);
 		Check(_pointer == nullptr || !(0 <= idx && idx <= _size), __FILE__, __LINE__, __FUNCTION__, errno, "(_pointer == nullptr || !(0 <= idx && idx < _size))");
 		_pointer -= decr;
 		return *this;
@@ -398,7 +399,7 @@ public:
 
 	Pointer<T> operator-(int decr) const {
 		// cerr << __FUNCTION__ << endl;
-		long idx = _pointer - decr - _address;
+		long idx = (long)(_pointer - decr - _address);
 		Check(_pointer == nullptr || !(0 <= idx && idx <= _size), __FILE__, __LINE__, __FUNCTION__, errno, "(_pointer == nullptr || !(0 <= idx && idx < _size))");
 		return Pointer<T>(_address, _pointer - decr, _count, _size);
 	}
@@ -500,14 +501,16 @@ protected:
 		if (i == _ARGC - 1) {
 			// cerr << endl;
 		}
-		*(_pointers[i]._count) -= 1;
-		if (*(_pointers[i]._count) <= 0) {
-			_pointers[i]._size <= 1 ? delete (T *)(_pointers[i]._address) : delete[](T *)(_pointers[i]._address);
-			delete _pointers[i]._count;
-			_pointers[i]._address = nullptr;
-			_pointers[i]._pointer = nullptr;
-			_pointers[i]._count = nullptr;
-			_pointers[i]._size = 0;
+		if (_pointers[i]._address != nullptr) {
+			*(_pointers[i]._count) -= 1;
+			if (*(_pointers[i]._count) <= 0) {
+				_pointers[i]._size <= 1 ? delete (T *)(_pointers[i]._address) : delete[](T *)(_pointers[i]._address);
+				delete _pointers[i]._count;
+				_pointers[i]._address = nullptr;
+				_pointers[i]._pointer = nullptr;
+				_pointers[i]._count = nullptr;
+				_pointers[i]._size = 0;
+			}
 		}
 	}
 
@@ -531,7 +534,7 @@ public:
 	decltype(auto) at() const {
 		typedef typename Pointer<>::GetType<I, T, Ts...>::Type Base;
 		// cerr << __FUNCTION__ << "<" << I << ">()#" << typeid(Base).name() << endl;
-		return Pointer<Base>((Base*)(_pointers[I]._address), (Base*)(_pointers[I]._pointer), _pointers[I]._count, _pointers[I]._size);
+		return Pointer<Base>((Base*)(_pointers[I]._address), _pointers[I]._size, (Base*)(_pointers[I]._pointer), _pointers[I]._count);
 	}
 
 public:
@@ -545,7 +548,7 @@ public:
 };
 
 template<typename T>
-decltype(auto) GetPointer(T *pointer, const long &size = 1) {
+decltype(auto) GetPointer(T *pointer, const long &size) {
 	// cerr << __FUNCTION__ << "(const T *pointer)" << endl;
 	return Pointer<T>(pointer, size);
 }
