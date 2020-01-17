@@ -1,4 +1,4 @@
-/*Acended_Nth.cpp
+/*Ordered_Nth.cpp
 * Author: BSS9395
 * Update: 2020-01-17T00:07:00+08@ShenZhen+08
 * Algorithm: Insertion_Sort
