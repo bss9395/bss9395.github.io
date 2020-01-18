@@ -22,30 +22,30 @@ long long Fibonacci_by_Recursion(long long sequence[], int n) {
 	return sequence[n];
 }
 
-
 long long Fibonacci_by_Circulation(long long sequence[], int n) {
-	sequence[0] = 1;
-	sequence[1] = 1;
+	int i = 0;
+	while (true) {
+		if (i >= n) {
+			break;
+		}
 
-	long long fib0 = sequence[0];
-	long long fib1 = sequence[1];
-	long long fibi = fib0 + fib1;
-	for (int i = 2; i <= n; i += 1) {
-		fibi = fib0 + fib1;
-		sequence[i] = fibi;
-		fib0 = fib1;
-		fib1 = fibi;
-	}
+		if (i <= 0) {
+			sequence[0] = 1;
+		}
+		else if (i == 1) {
+			sequence[1] = 1;
+		}
+		else {
+			sequence[i] = sequence[i - 1] + sequence[i - 2];
+		}
 
-	if (n < 0) {
-		n = 0;
+		i += 1;
 	}
 	return sequence[n];
 }
 
-
 int main(int argc, char *argv[]) {
-	long long sequence[50];
+	long long sequence[50] = { 0 };
 	Fibonacci_by_Circulation(sequence, 11);
 
 	for (int i = 0; i < 10; i += 1) {
