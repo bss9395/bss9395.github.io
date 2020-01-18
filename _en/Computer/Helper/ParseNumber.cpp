@@ -14,8 +14,6 @@ double ParseNumber(char *&data, double base = 10.0) {
 	int sign = +1;
 	double value = 0.0;
 
-
-
 	if (data[0] == '(') {
 		data += 1;
 		value = ParseNumber(data, base);
@@ -76,24 +74,24 @@ double ParseNumber(char *&data, double base = 10.0) {
 		data += 1;
 		if (2.0 <= base && base <= +10.0) {
 			char range = (char)('0' + base);
-			double factor = base;
+			double factor = 1 / base;
 			while ('0' <= data[0] && data[0] < range) {
-				value = value + (data[0] - '0') / factor;
+				value = value + (data[0] - '0') * factor;
 				data += 1;
 				factor *= factor;
 			}
 		}
 		else if (10.0 < base && base <= 36.0) {
-			double factor = base;
+			double factor = 1 / base;
 			while (true) {
 				if ('0' <= data[0] && data[0] <= '9') {
-					value = value + (data[0] - '0') / factor;
+					value = value + (data[0] - '0') * factor;
 				}
 				else if ('a' <= data[0] && data[0] <= 'z') {
-					value = value + (data[0] - 'a') / factor;
+					value = value + (data[0] - 'a') * factor;
 				}
 				else if ('A' <= data[0] && data[0] <= 'Z') {
-					value = value + (data[0] - 'A') / factor;
+					value = value + (data[0] - 'A') * factor;
 				}
 				else {
 					break;
