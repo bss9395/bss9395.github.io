@@ -218,7 +218,7 @@ class Cleanup {
 public:
 	template<typename Func, typename ...Args>
 	Cleanup(Func func, Args ...args) {
-		cerr << __FUNCTION__ << "(Func func, Args ...args)" << endl;
+		// cerr << __FUNCTION__ << "(Func func, Args ...args)" << endl;
 		auto lamb = [func, args...]() -> void {
 			func(args...);
 		};
@@ -227,7 +227,7 @@ public:
 
 	template<typename T, typename ...Ts>
 	Cleanup(Origin origin, T *t, Ts *...ts) {
-		cerr << __FUNCTION__ << "(Method method, T *t, Ts *...ts)" << endl;
+		// cerr << __FUNCTION__ << "(Method method, T *t, Ts *...ts)" << endl;
 		auto lamb = [origin, t, ts...]() -> void {
 			if (origin == EType::CppHeap) {
 				Cleanup::Deleted(t, ts...);
@@ -360,20 +360,44 @@ public:
 public:
 	int capacity(const int &size = 0) {
 		// cerr << __FUNCTION__ << endl;
-		if (1 <= size) {
+		if (size == 1) {
+			if (_size > 1) {
+				T *address = new T{ _address[0] };
+				delete[] _address;
+				_address = address;
+				_pointer = _address;
+			}
+			_size = size;
+		}
+		else if (size > 1) {
+			if (_size < size) {
+				T *address = new T[size];
+				for (int i = 0; i < _size; i += 1) {
+					address[i] = _address[i];
+				}
+				_size <= 1 ? delete _address : delete[] _address;
+				_pointer = address + (_pointer - _address);
+				_address = address;
+			}
 			_size = size;
 		}
 		return _size;
 	}
 
-	int length() {
+	int size() {
 		// cerr << __FUNCTION__ << endl;
 		return (int)(_address + _size - _pointer);
 	}
 
 	int offset() {
-		cerr << __FUNCTION__ << endl;
+		// cerr << __FUNCTION__ << endl;
 		return (int)(_pointer - _address);
+	}
+
+	Pointer<T> &reset() {
+		// cerr << __FUNCTION__ << endl;
+		_pointer = _address;
+		return *this;
 	}
 
 	template<const int I = 0>
@@ -416,7 +440,20 @@ public:
 	T &operator[](int index) {
 		// cerr << __FUNCTION__ << endl;
 		int idx = _pointer + index - _address;
-		Check(_pointer == nullptr || !(0 <= idx && idx < _size), __FILE__, __LINE__, __FUNCTION__, errno, "(_pointer == nullptr || !(0 <= idx && idx < _size))");
+
+		Check(_pointer == nullptr || !(0 <= idx), __FILE__, __LINE__, __FUNCTION__, errno, "(_pointer == nullptr || !(0 <= idx))");
+		if (idx >= _size) {
+			int size = _size * 2;
+			T *address = new T[size];
+			for (int i = 0; i < _size; i += 1) {
+				address[i] = _address[i];
+			}
+			_size <= 1 ? delete _address : delete[] _address;
+			_pointer = address + (_pointer - _address);
+			_address = address;
+			_size = size;
+		}
+
 		return _pointer[index];
 	}
 
@@ -427,8 +464,7 @@ public:
 	}
 
 	T *operator->() const {
-		cerr << __FUNCTION__ << endl;
-		//cerr << __FUNCTION__ << " " << _pointer << " " << *_count << " " << _size << endl;
+		// cerr << __FUNCTION__ << endl;
 		Check(_pointer == nullptr, __FILE__, __LINE__, __FUNCTION__, errno, "_pointer == nullptr");
 		return &(*_pointer);
 	}
