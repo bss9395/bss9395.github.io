@@ -14,6 +14,12 @@ void swap(Type &x, Type &y) {
 	x = x - y;
 }
 
+void swap(int &x, int &y) {
+	x = x ^ y;
+	y = x ^ y;
+	x = x ^ y;
+}
+
 int main(int argc, char *argv[]) {
 	int a = 3;
 	int b = 4;
