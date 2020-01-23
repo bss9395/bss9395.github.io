@@ -189,6 +189,8 @@ public:
 		return (int)(data - ret);
 	}
 
+
+
 	static Pointer<char> ReadFile(FILE *file) {
 		fseek(file, 0, SEEK_END);
 		int length = ftell(file);
@@ -288,6 +290,6 @@ int main(int argc, char *argv[]) {
 	testReadLine();
 
 	return 0;
-}
+	}
 
 #endif // Main

@@ -52,12 +52,12 @@ namespace EType {
 	static const TypeID _BIT = 1U << 15;
 	static const TypeID _INT = _BIT | (1U << 14);
 	static const TypeID _RAT = _BIT | (1U << 13);
-	static const TypeID _INT8 = _INT | 8U;
-	static const TypeID _INT16 = _INT | 16U;
-	static const TypeID _INT32 = _INT | 32U;
-	static const TypeID _INT64 = _INT | 64U;
-	static const TypeID _RAT32 = _RAT | 32U;
-	static const TypeID _RAT64 = _RAT | 64U;
+	static const TypeID _INT8 = _INT | 1U;
+	static const TypeID _INT16 = _INT | 2U;
+	static const TypeID _INT32 = _INT | 4U;
+	static const TypeID _INT64 = _INT | 8U;
+	static const TypeID _RAT32 = _RAT | 4U;
+	static const TypeID _RAT64 = _RAT | 8U;
 	// static const TypeID _RAT64 = 64U;
 	static const TypeID _RAWSTR = _BIT | 1U;
 	static const TypeID _STRING = _BIT | 2U;
@@ -68,6 +68,7 @@ namespace EType {
 	static const Operation _REMOVE = (1U << 3);
 	static const Operation _PURIFY = (1U << 4);
 	static const Operation _DESCRIPT = (1U << 5);
+	static const Operation _STRAIGHT = (1U << 6);
 }
 
 
@@ -175,60 +176,60 @@ public:
 		return ret;
 	}
 
-	int format_with_description(char *buffer) {
+	int format(char *buffer, const Operation &opera) {
 		// cerr << __FUNCTION__ << endl;
 		char *ret = buffer;
-		for (Element *iter = this; iter->_next != nullptr; iter = iter->_next) {
-			Element &element = *(iter->_next);
+		for (Element *iter = this->_next; iter != nullptr; iter = iter->_next) {
+			if (opera == EType::_DESCRIPT) {
+				Define define = ((iter->_type << 16) | iter->_size);
+				buffer += sprintf(buffer, "%*.*x#", 8, 8, define);
+			}
 
-			Define define = ((element._type << 16) | element._size);
-			buffer += sprintf(buffer, "%*.*x#", 8, 8, define);
-
-			if (element._type == EType::_INT8) {
-				int8 *numbers = (int8 *)element._value;
-				for (int i = 0, len = element._size / sizeof(int8); i < len; i += 1) {
+			if (iter->_type == EType::_INT8) {
+				int8 *numbers = (int8 *)iter->_value;
+				for (int i = 0, len = iter->_size / sizeof(int8); i < len; i += 1) {
 					buffer += sprintf(buffer, (i == 0 ? "%lld" : ", %lld"), (long long)numbers[i]);
 				}
 			}
-			else if (element._type == EType::_INT16) {
-				int16 *numbers = (int16 *)element._value;
-				for (int i = 0, len = element._size / sizeof(int16); i < len; i += 1) {
+			else if (iter->_type == EType::_INT16) {
+				int16 *numbers = (int16 *)iter->_value;
+				for (int i = 0, len = iter->_size / sizeof(int16); i < len; i += 1) {
 					buffer += sprintf(buffer, (i == 0 ? "%lld" : ", %lld"), (long long)numbers[i]);
 				}
 			}
-			else if (element._type == EType::_INT32) {
-				int32 *numbers = (int32 *)element._value;
-				for (int i = 0, len = element._size / sizeof(int32); i < len; i += 1) {
+			else if (iter->_type == EType::_INT32) {
+				int32 *numbers = (int32 *)iter->_value;
+				for (int i = 0, len = iter->_size / sizeof(int32); i < len; i += 1) {
 					buffer += sprintf(buffer, (i == 0 ? "%lld" : ", %lld"), (long long)numbers[i]);
 				}
 			}
-			else if (element._type == EType::_INT64) {
-				int64 *numbers = (int64 *)element._value;
-				for (int i = 0, len = element._size / sizeof(int64); i < len; i += 1) {
+			else if (iter->_type == EType::_INT64) {
+				int64 *numbers = (int64 *)iter->_value;
+				for (int i = 0, len = iter->_size / sizeof(int64); i < len; i += 1) {
 					buffer += sprintf(buffer, (i == 0 ? "%lld" : ", %lld"), (long long)numbers[i]);
 				}
 			}
-			else if (element._type == EType::_RAT32) {
-				rat32 *numbers = (rat32 *)element._value;
-				for (int i = 0, len = element._size / sizeof(rat32); i < len; i += 1) {
+			else if (iter->_type == EType::_RAT32) {
+				rat32 *numbers = (rat32 *)iter->_value;
+				for (int i = 0, len = iter->_size / sizeof(rat32); i < len; i += 1) {
 					buffer += sprintf(buffer, (i == 0 ? "%lf" : ", %lf"), (double)numbers[i]);
 				}
 			}
-			else if (element._type == EType::_RAT64) {
-				rat64 *numbers = (rat64 *)element._value;
-				for (int i = 0, len = element._size / sizeof(rat64); i < len; i += 1) {
+			else if (iter->_type == EType::_RAT64) {
+				rat64 *numbers = (rat64 *)iter->_value;
+				for (int i = 0, len = iter->_size / sizeof(rat64); i < len; i += 1) {
 					buffer += sprintf(buffer, (i == 0 ? "%lf" : ", %lf"), (double)numbers[i]);
 				}
 			}
-			else if (element._type == EType::_RAWSTR) {
-				char *ptr = (char *)element._value;
-				int len = element._size;
+			else if (iter->_type == EType::_RAWSTR) {
+				char *ptr = (char *)iter->_value;
+				int len = iter->_size;
 				memcpy(buffer, ptr, len);
 				buffer += len;
 			}
 			else {
-				char *ptr = (char *)element._value;
-				int len = element._size;
+				char *ptr = (char *)iter->_value;
+				int len = iter->_size;
 				memcpy(buffer, ptr, len);
 				buffer += len;
 			}
@@ -238,57 +239,85 @@ public:
 		return (int)(buffer - ret);
 	}
 
-	int embark_with_description(char *data) {
+	int embark(char *data, const Operation &opera) {
 		char *ret = data;
 
 		Element *iter = this;
 		while (true) {
-			Define define;
-			data += Sequence::ParseNumber(data, &define, 16.0);
-			if (data[0] != '#') {
-				throw '#';
-			}
-			data += 1;
+			if (opera == EType::_DESCRIPT) {
+				Define define;
+				data += Sequence::ParseNumber(data, &define, 16.0);
+				if (data[0] != '#') {
+					throw '#';
+				}
+				data += 1;
 
-			TypeID type = (TypeID)(define >> 16);
-			SizeID size = (SizeID)define;
-			char *value = new char[size];
-			iter->_next = new Element(type, size, value, nullptr);
-			iter = iter->_next;
+				TypeID type = (TypeID)(define >> 16);
+				SizeID size = (SizeID)define;
+				char *value = new char[size];
+				iter->_next = new Element(type, size, value, nullptr);
+				iter = iter->_next;
 
-			if (type == EType::_INT8) {
-				int8 *numbers = (int8 *)value;
-				data += Sequence::ParseNumberArray(data, numbers);
+				if (type == EType::_INT8) {
+					int8 *numbers = (int8 *)value;
+					data += Sequence::ParseNumberArray(data, numbers);
+				}
+				else if (type == EType::_INT16) {
+					int16 *numbers = (int16 *)value;
+					data += Sequence::ParseNumberArray(data, numbers);
+				}
+				else if (type == EType::_INT32) {
+					int32 *numbers = (int32 *)value;
+					data += Sequence::ParseNumberArray(data, numbers);
+				}
+				else if (type == EType::_INT64) {
+					int64 *numbers = (int64 *)value;
+					data += Sequence::ParseNumberArray(data, numbers);
+				}
+				else if (type == EType::_RAT32) {
+					rat32 *numbers = (rat32 *)value;
+					data += Sequence::ParseNumberArray(data, numbers);
+				}
+				else if (type == EType::_RAT64) {
+					rat64 *numbers = (rat64 *)value;
+					data += Sequence::ParseNumberArray(data, numbers);
+				}
+				else if (type == EType::_RAWSTR) {
+					char *ptr = (char *)value;
+					memcpy(ptr, data, (SizeID)define);
+					data += (SizeID)define;
+				}
+				else {
+					char *ptr = (char *)value;
+					memcpy(ptr, data, (SizeID)define);
+					data += (SizeID)define;
+				}
 			}
-			else if (type == EType::_INT16) {
-				int16 *numbers = (int16 *)value;
-				data += Sequence::ParseNumberArray(data, numbers);
-			}
-			else if (type == EType::_INT32) {
-				int32 *numbers = (int32 *)value;
-				data += Sequence::ParseNumberArray(data, numbers);
-			}
-			else if (type == EType::_INT64) {
-				int64 *numbers = (int64 *)value;
-				data += Sequence::ParseNumberArray(data, numbers);
-			}
-			else if (type == EType::_RAT32) {
-				rat32 *numbers = (rat32 *)value;
-				data += Sequence::ParseNumberArray(data, numbers);
-			}
-			else if (type == EType::_RAT64) {
-				rat64 *numbers = (rat64 *)value;
-				data += Sequence::ParseNumberArray(data, numbers);
-			}
-			else if (type == EType::_RAWSTR) {
-				char *ptr = (char *)value;
-				memcpy(ptr, data, (SizeID)define);
-				data += (SizeID)define;
-			}
-			else {
-				char *ptr = (char *)value;
-				memcpy(ptr, data, (SizeID)define);
-				data += (SizeID)define;
+			else if (opera == EType::_STRAIGHT) {
+				int cnt = 1;
+				int len = 0;
+				while (data[len] != ';') {
+					if (data[len] == ',') {
+						cnt += 1;
+					}
+					len += 1;
+				}
+
+				if ('0' <= data[0] && data[0] <= '9') {
+					rat64 *numbers = new rat64[cnt];
+					iter->_next = new Element(EType::_RAT64, (SizeID)(sizeof(rat64) * cnt), (char *)numbers, nullptr);
+					iter = iter->_next;
+
+					data += Sequence::ParseNumberArray(data, numbers, 10.0);
+				}
+				else {
+					char *ptr = new char[len];
+					iter->_next = new Element(EType::_RAWSTR, (SizeID)len, ptr, nullptr);
+					iter = iter->_next;
+
+					memcpy(ptr, data, len);
+					data += len;
+				}
 			}
 
 			if (data[0] != ';') {
@@ -396,16 +425,18 @@ public:
 	int backpack(char *buffer, const Operation &opera = EType::_DESCRIPT) {
 		// cerr << __FUNCTION__ << endl;
 		char *ret = buffer;
-		if (opera == EType::_DESCRIPT) {
-			for (Notation *iter = this->_next; iter != nullptr; iter = iter->_next) {
+		for (Notation *iter = this->_next; iter != nullptr; iter = iter->_next) {
+			if (opera == EType::_DESCRIPT) {
 				Define define = ((EType::_STRING << 16) | (SizeID)iter->_key.size());
-				buffer += sprintf(buffer, "%*.*x#%s; ", 8, 8, define, iter->_key.c_str());
-				buffer += iter->_values.format_with_description(buffer);
-				buffer += sprintf(buffer, "\n");
+				buffer += sprintf(buffer, "%*.*x#", 8, 8, define);
 			}
-			buffer[0] = '\0';
-			buffer += 1;
+
+			buffer += sprintf(buffer, "%s; ", iter->_key.c_str());
+			buffer += iter->_values.format(buffer, opera);
+			buffer += sprintf(buffer, "\n");
 		}
+		buffer[0] = '\0';
+		buffer += 1;
 
 		return (int)(buffer - ret);
 	}
@@ -413,13 +444,13 @@ public:
 	int assemble(char *data, const Operation &opera = EType::_DESCRIPT) {
 		// cerr << __FUNCTION__ << endl;
 		char *ret = data;
-		if (opera == EType::_DESCRIPT) {
-			Notation *iter = this;
-			while (true) {
-				while (data[0] == '\n' || data[0] == ' ' || data[0] == '\t' || data[0] == '\v' || data[0] == '\f' || data[0] == '\r') {
-					data += 1;
-				}
+		Notation *iter = this;
+		while (true) {
+			while (data[0] == '\n' || data[0] == ' ' || data[0] == '\t' || data[0] == '\v' || data[0] == '\f' || data[0] == '\r') {
+				data += 1;
+			}
 
+			if (opera == EType::_DESCRIPT) {
 				Define define;
 				data += Sequence::ParseNumber(data, &define, 16.0);
 				if (data[0] != '#') {
@@ -431,26 +462,37 @@ public:
 				iter = iter->_next;
 				iter->_key.assign(data, (SizeID)define);
 				data += (SizeID)define;
-				if (data[0] != ';') {
-					throw ';';
-				}
-				data += 1;
-
-				while (data[0] == ' ' || data[0] == '\t' || data[0] == '\v' || data[0] == '\f' || data[0] == '\r') {
-					data += 1;
+			}
+			else if (opera == EType::_STRAIGHT) {
+				int len = 0;
+				while (data[len] != ';') {
+					len += 1;
 				}
 
-				data += iter->_values.embark_with_description(data);
+				iter->_next = new Notation();
+				iter = iter->_next;
+				iter->_key.assign(data, len);
+				data += len;
+			}
 
+			if (data[0] != ';') {
+				throw ';';
+			}
+			data += 1;
 
-				if (data[0] == '\n' && data[1] == '\0' || data[0] == '\0') {
-					break;
-				}
-				else if (data[0] != '\n') {
-					throw '\n';
-				}
+			while (data[0] == ' ' || data[0] == '\t' || data[0] == '\v' || data[0] == '\f' || data[0] == '\r') {
 				data += 1;
 			}
+
+			data += iter->_values.embark(data, opera);
+
+			if (data[0] == '\n' && data[1] == '\0' || data[0] == '\0') {
+				break;
+			}
+			else if (data[0] != '\n') {
+				throw '\n';
+			}
+			data += 1;
 		}
 
 		return (int)(data - ret);
@@ -465,15 +507,11 @@ public:
 			Check(file == NULL, __FILE__, __LINE__, __FUNCTION__, errno, "fopen");
 			auto cleanup = Cleanup(fclose, file);
 
-			char *buffer = new char[1024 * 8];
-			Pointer<char> autoptr(buffer, 1024 * 8);
+			Pointer<char> buffer(new char[1024 * 8], 1024 * 8);
+			int len = backpack(buffer, opera);
 
-			if (opera == EType::_DESCRIPT) {
-				int len = backpack(buffer, opera);
-				// fprintf(file, "[%-*.*s#%-*x]\n", 10, 10, "Arithmetic", 10, (unsigned int)ret);
-				fwrite(buffer, sizeof(char), len, file);
-				ret += 1;
-			}
+			fwrite(buffer, sizeof(char), len, file);
+			ret += 1;
 		}
 		catch (char ch) {
 			cerr << __FUNCTION__ << "#" << ch << endl;
@@ -490,17 +528,9 @@ public:
 			Check(file == NULL, __FILE__, __LINE__, __FUNCTION__, errno, "fopen");
 			auto cleanup = Cleanup(fclose, file);
 
-			Pointer<char> autoptr = Sequence::ReadFile(file);
-			char *data = autoptr;
-			if (opera == EType::_DESCRIPT) {
-				//while (data[0] != '\n') {
-				//	data += 1;
-				//}
-				//data += 1;
-
-				assemble(data, opera);
-				ret += 1;
-			}
+			Pointer<char> data = Sequence::ReadFile(file);
+			assemble(data, opera);
+			ret += 1;
 		}
 		catch (char ch) {
 			cerr << __FUNCTION__ << "#" << ch << endl;
@@ -549,16 +579,29 @@ void testAttach() {
 }
 
 void testLoadDumpFile() {
+	Notation note;
+	note.loadFile("note.dat");
+	note.dumpFile("note.txt");
+}
+
+void testNotationWithoutDescription() {
+	Notation note;
+	note.attach("key1", "value1", EType::_RAWSTR, 6);
+	double numbers[] = { 12.34, 56.78, 90.12 };
+	note.attach("key2", &numbers, (EType::_RAT | sizeof(double)), sizeof(numbers));
+	note.dumpFile("straight.dat", EType::_STRAIGHT);
+
 	Notation nota;
-	nota.loadFile("note.dat");
-	nota.dumpFile("note.txt");
+	nota.loadFile("straight.dat", EType::_STRAIGHT);
+	nota.dumpFile("straight.tmp", EType::_STRAIGHT);
 }
 
 int main(int argc, char *argv[]) {
 	// testAssemble();
 	// testBackpack();
 	// testAttach();
-	testLoadDumpFile();
+	// testLoadDumpFile();
+	testNotationWithoutDescription();
 
 	return 0;
 }
