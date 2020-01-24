@@ -30,10 +30,10 @@ public:
 	static char *Streamline(char *data, int size) {
 		Endian endian = Sequence::Endianness();
 		if (endian != EType::Cyberspace) {
-			for (int i = 0, len = size / 2; i < len; i += 1) {
-				data[i] = data[i] ^ data[size - 1 - i];
-				data[size - 1 - i] = data[i] ^ data[size - 1 - i];
-				data[i] = data[i] ^ data[size - 1 - i];
+			for (char *back = data + size - 1; data < back; data += 1, back -= 1) {
+				data[0] = data[0] ^ back[0];
+				back[0] = data[0] ^ back[0];
+				data[0] = data[0] ^ back[0];
 			}
 		}
 		return data;
@@ -96,6 +96,9 @@ public:
 				data += 1;
 				base = 16;
 			}
+		}
+		else if (!('0' <= data[0] && data[0] <= '9' || 'a' <= data[0] && data[0] <= 'z' || 'A' <= data[0] && data[0] <= 'Z')) {
+			return 0;
 		}
 
 		if (2.0 <= base && base <= 10.0) {
@@ -189,7 +192,84 @@ public:
 		return (int)(data - ret);
 	}
 
+	template<typename Value>
+	static int printNumber(char *buffer, Value *number, double base = 10.0, double precision = 8.0) {
+		char *ret = buffer;
 
+		double rational = *number;
+		if (rational < 0) {
+			buffer[0] = '-';
+			buffer += 1;
+
+			rational *= -1;
+		}
+
+		unsigned long long integer = (unsigned long long)rational;
+		rational -= integer;
+
+		if (base == 2.0) {
+			buffer[0] = '0';
+			buffer[1] = 'b';
+			buffer += 2;
+		}
+		else if (base == 8.0) {
+			buffer[0] = '0';
+			buffer[1] = 'o';
+			buffer += 2;
+		}
+		else if (base == 16.0) {
+			buffer[0] = '0';
+			buffer[1] = 'x';
+			buffer += 2;
+		}
+
+		char *fore = buffer;
+		int factor = (int)base;
+		char ch = '\0';
+		while (integer) {
+			ch = (char)(integer % factor);
+			buffer[0] = ch < 10 ? ch + '0' : ch + 'A' - 10;
+			buffer += 1;
+			integer = integer / factor;
+		}
+
+		for (char *back = buffer - 1; fore < back; fore += 1, back -= 1) {
+			fore[0] = fore[0] ^ back[0];
+			back[0] = fore[0] ^ back[0];
+			fore[0] = fore[0] ^ back[0];
+		}
+
+		if (rational != 0.0) {
+			buffer[0] = '.';
+			buffer += 1;
+
+			rational += 0.5 * pow(1 / base, precision);
+			while (rational *= base, precision -= 1, rational >= 1 && precision >= 0) {
+				ch = (char)rational;
+				buffer[0] = ch < 10 ? ch + '0' : ch + 'A' - 10;
+				buffer += 1;
+				rational -= ch;
+			}
+		}
+
+		return (int)(buffer - ret);
+	}
+
+	template<typename Value>
+	static int printNumberArray(char *buffer, Value *numbers, int count, double base = 10.0, double precision = 8.0) {
+		char *ret = buffer;
+		while (count > 0) {
+			if (ret != buffer) {
+				buffer[0] = ',';
+				buffer[1] = ' ';
+				buffer += 2;
+			}
+			buffer += Sequence::printNumber(buffer, numbers, base, precision);
+			numbers += 1;
+			count -= 1;
+		}
+		return (int)(buffer - ret);
+	}
 
 	static Pointer<char> ReadFile(FILE *file) {
 		fseek(file, 0, SEEK_END);
@@ -264,7 +344,7 @@ void testSkips() {
 	char data[] = "01234""\0""6789#";
 	int len = Sequence::Skip(data, sizeof(data) / sizeof(data[0]), "\0""0123456789", 12);
 	fprintf(stderr, "%d\n", len);
-}
+			}
 
 void testUntil() {
 	char data[] = "01234""\0""6789#";
@@ -290,6 +370,6 @@ int main(int argc, char *argv[]) {
 	testReadLine();
 
 	return 0;
-	}
+}
 
 #endif // Main

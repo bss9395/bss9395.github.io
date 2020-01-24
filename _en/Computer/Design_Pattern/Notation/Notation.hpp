@@ -72,15 +72,15 @@ namespace EType {
 }
 
 
-class Element {
+class Record {
 public:
-	Element(const TypeID &type = TypeID(), const SizeID &size = SizeID(), char *value = nullptr, const Pointer<Element> &next = nullptr)
+	Record(const TypeID &type = TypeID(), const SizeID &size = SizeID(), char *value = nullptr, const Pointer<Record> &next = nullptr)
 		: _value(value), _type(type), _size(size), _next(next) {
 		// cerr << __FUNCTION__ << endl;
 	}
 
 	template<typename Value>
-	Element(const Value *value, const TypeID &type = EType::_RAWSTR, const SizeID &size = sizeof(Value), const Pointer<Element> &next = nullptr)
+	Record(const Value *value, const TypeID &type = EType::_RAWSTR, const SizeID &size = sizeof(Value), const Pointer<Record> &next = nullptr)
 		: _value(new char[size]), _type(type), _size(size), _next(next) {
 
 		// cerr << *(double *)value;
@@ -89,7 +89,7 @@ public:
 		// cerr << __FUNCTION__ << "#" << "Value" << endl;
 	}
 
-	virtual ~Element() {
+	virtual ~Record() {
 		// cerr << __FUNCTION__ << endl;
 		delete[] _value;
 		// _value = nullptr;
@@ -100,7 +100,7 @@ public:
 	int pushup(const Value *value, const TypeID &type, const SizeID &size) {
 		// cerr << __FUNCTION__ << endl;
 		int ret = 0;
-		_next = new Element(value, type, size, _next);
+		_next = new Record(value, type, size, _next);
 		ret += 1;
 		return ret;
 	}
@@ -109,11 +109,11 @@ public:
 	int append(const Value *value, const TypeID &type, const SizeID &size) {
 		// cerr << __FUNCTION__ << endl;
 		int ret = 0;
-		Element *iter = this;
+		Record *iter = this;
 		while (iter->_next != nullptr) {
 			iter = iter->_next;
 		}
-		iter->_next = new Element(value, type, size, nullptr);
+		iter->_next = new Record(value, type, size, nullptr);
 		ret += 1;
 		return ret;
 	}
@@ -122,7 +122,7 @@ public:
 	int occupy(const Value *value, const TypeID &type, const SizeID &size) {
 		// cerr << __FUNCTION__ << endl;
 		int ret = 0;
-		_next = new Element(value, type, size, nullptr);
+		_next = new Record(value, type, size, nullptr);
 		ret += 1;
 		return ret;
 	}
@@ -131,15 +131,15 @@ public:
 	int remove(const Value *value, const TypeID &type, const SizeID &size) {
 		// cerr << __FUNCTION__ << endl;
 		int ret = 0;
-		Element *iter = this;
+		Record *iter = this;
 		while (iter->_next != nullptr) {
-			Element &element = *(iter->_next);
-			bool cond1 = (type == element._type && size == element._size);
-			bool cond2 = (type == EType::_RAWSTR && size >= element._size);
+			Record &record = *(iter->_next);
+			bool cond1 = (type == record._type && size == record._size);
+			bool cond2 = (type == EType::_RAWSTR && size >= record._size);
 			if (cond1 || cond2) {
-				if (0 == memcmp(value, element._value, element._size)) {
+				if (0 == memcmp(value, record._value, record._size)) {
 					iter->_next = iter->_next->_next;
-					_size -= element._size;
+					_size -= record._size;
 					ret += 1;
 					continue;
 				}
@@ -153,7 +153,7 @@ public:
 	int obtain(Value *value, TypeID *type, SizeID *size, const int &index = 0) {
 		// cerr << __FUNCTION__ << endl;
 		int ret = 0;
-		Element *iter = this;
+		Record *iter = this;
 		int idx = 0;
 		while (iter->_next != nullptr && idx < index) {
 			iter = iter->_next;
@@ -161,15 +161,15 @@ public:
 		}
 
 		if (iter->_next != nullptr && idx == index) {
-			Element &element = *(iter->_next);
-			bool cond1 = (*type == element._type && *size == element._size);
-			bool cond2 = (*type == EType::_RAWSTR && *size >= element._size);
+			Record &record = *(iter->_next);
+			bool cond1 = (*type == record._type && *size == record._size);
+			bool cond2 = (*type == EType::_RAWSTR && *size >= record._size);
 			if (cond1 || cond2) {
-				memcpy(value, element._value, element._size);
+				memcpy(value, record._value, record._size);
 			}
 
-			*type = element._type;
-			*size = element._size;
+			*type = record._type;
+			*size = record._size;
 			ret += 1;
 		}
 
@@ -179,7 +179,7 @@ public:
 	int format(char *buffer, const Operation &opera) {
 		// cerr << __FUNCTION__ << endl;
 		char *ret = buffer;
-		for (Element *iter = this->_next; iter != nullptr; iter = iter->_next) {
+		for (Record *iter = this->_next; iter != nullptr; iter = iter->_next) {
 			if (opera == EType::_DESCRIPT) {
 				Define define = ((iter->_type << 16) | iter->_size);
 				buffer += sprintf(buffer, "%*.*x#", 8, 8, define);
@@ -187,39 +187,27 @@ public:
 
 			if (iter->_type == EType::_INT8) {
 				int8 *numbers = (int8 *)iter->_value;
-				for (int i = 0, len = iter->_size / sizeof(int8); i < len; i += 1) {
-					buffer += sprintf(buffer, (i == 0 ? "%lld" : ", %lld"), (long long)numbers[i]);
-				}
+				buffer += Sequence::printNumberArray(buffer, numbers, iter->_size / sizeof(int8), 10.0);
 			}
 			else if (iter->_type == EType::_INT16) {
 				int16 *numbers = (int16 *)iter->_value;
-				for (int i = 0, len = iter->_size / sizeof(int16); i < len; i += 1) {
-					buffer += sprintf(buffer, (i == 0 ? "%lld" : ", %lld"), (long long)numbers[i]);
-				}
+				buffer += Sequence::printNumberArray(buffer, numbers, iter->_size / sizeof(int16), 10.0);
 			}
 			else if (iter->_type == EType::_INT32) {
 				int32 *numbers = (int32 *)iter->_value;
-				for (int i = 0, len = iter->_size / sizeof(int32); i < len; i += 1) {
-					buffer += sprintf(buffer, (i == 0 ? "%lld" : ", %lld"), (long long)numbers[i]);
-				}
+				buffer += Sequence::printNumberArray(buffer, numbers, iter->_size / sizeof(int32), 10.0);
 			}
 			else if (iter->_type == EType::_INT64) {
 				int64 *numbers = (int64 *)iter->_value;
-				for (int i = 0, len = iter->_size / sizeof(int64); i < len; i += 1) {
-					buffer += sprintf(buffer, (i == 0 ? "%lld" : ", %lld"), (long long)numbers[i]);
-				}
+				buffer += Sequence::printNumberArray(buffer, numbers, iter->_size / sizeof(int64), 10.0);
 			}
 			else if (iter->_type == EType::_RAT32) {
 				rat32 *numbers = (rat32 *)iter->_value;
-				for (int i = 0, len = iter->_size / sizeof(rat32); i < len; i += 1) {
-					buffer += sprintf(buffer, (i == 0 ? "%lf" : ", %lf"), (double)numbers[i]);
-				}
+				buffer += Sequence::printNumberArray(buffer, numbers, iter->_size / sizeof(rat32), 10.0);
 			}
 			else if (iter->_type == EType::_RAT64) {
 				rat64 *numbers = (rat64 *)iter->_value;
-				for (int i = 0, len = iter->_size / sizeof(rat64); i < len; i += 1) {
-					buffer += sprintf(buffer, (i == 0 ? "%lf" : ", %lf"), (double)numbers[i]);
-				}
+				buffer += Sequence::printNumberArray(buffer, numbers, iter->_size / sizeof(rat64), 10.0);
 			}
 			else if (iter->_type == EType::_RAWSTR) {
 				char *ptr = (char *)iter->_value;
@@ -242,7 +230,7 @@ public:
 	int embark(char *data, const Operation &opera) {
 		char *ret = data;
 
-		Element *iter = this;
+		Record *iter = this;
 		while (true) {
 			if (opera == EType::_DESCRIPT) {
 				Define define;
@@ -255,7 +243,7 @@ public:
 				TypeID type = (TypeID)(define >> 16);
 				SizeID size = (SizeID)define;
 				char *value = new char[size];
-				iter->_next = new Element(type, size, value, nullptr);
+				iter->_next = new Record(type, size, value, nullptr);
 				iter = iter->_next;
 
 				if (type == EType::_INT8) {
@@ -305,14 +293,14 @@ public:
 
 				if ('0' <= data[0] && data[0] <= '9') {
 					rat64 *numbers = new rat64[cnt];
-					iter->_next = new Element(EType::_RAT64, (SizeID)(sizeof(rat64) * cnt), (char *)numbers, nullptr);
+					iter->_next = new Record(EType::_RAT64, (SizeID)(sizeof(rat64) * cnt), (char *)numbers, nullptr);
 					iter = iter->_next;
 
 					data += Sequence::ParseNumberArray(data, numbers, 10.0);
 				}
 				else {
 					char *ptr = new char[len];
-					iter->_next = new Element(EType::_RAWSTR, (SizeID)len, ptr, nullptr);
+					iter->_next = new Record(EType::_RAWSTR, (SizeID)len, ptr, nullptr);
 					iter = iter->_next;
 
 					memcpy(ptr, data, len);
@@ -341,12 +329,12 @@ public:
 	char *_value;
 	TypeID _type;
 	SizeID _size;
-	Pointer<Element> _next;
+	Pointer<Record> _next;
 };
 
 class Notation {
 public:
-	Notation(const string &key = string(), const Element &values = Element(), const Pointer<Notation> &next = nullptr)
+	Notation(const string &key = string(), const Record &values = Record(), const Pointer<Notation> &next = nullptr)
 		: _key(key), _values(values), _next(next) {
 		// cerr << __FUNCTION__ << endl;
 	}
@@ -366,18 +354,18 @@ public:
 			iter = iter->_next;
 		}
 		if (iter->_next == nullptr) {
-			iter->_next = new Notation(key, Element(), nullptr);
+			iter->_next = new Notation(key, Record(), nullptr);
 		}
 
-		Element &element = iter->_next->_values;
+		Record &record = iter->_next->_values;
 		if (opera == EType::_PUSHUP) {
-			ret += element.pushup(value, type, size);
+			ret += record.pushup(value, type, size);
 		}
 		else if (opera == EType::_APPEND) {
-			ret += element.append(value, type, size);
+			ret += record.append(value, type, size);
 		}
 		else if (opera == EType::_OCCUPY) {
-			ret += element.occupy(value, type, size);
+			ret += record.occupy(value, type, size);
 		}
 		return ret;
 	}
@@ -393,9 +381,9 @@ public:
 		}
 
 		if (iter->_next != nullptr) {
-			Element &element = iter->_next->_values;
+			Record &record = iter->_next->_values;
 			if (opera == EType::_REMOVE) {
-				ret += element.remove(value, type, size);
+				ret += record.remove(value, type, size);
 			}
 			else if (opera == EType::_PURIFY) {
 				iter->_next = iter->_next->_next;
@@ -416,8 +404,8 @@ public:
 		}
 
 		if (iter->_next != nullptr) {
-			Element &element = iter->_next->_values;
-			ret += element.obtain(value, type, size, index);
+			Record &record = iter->_next->_values;
+			ret += record.obtain(value, type, size, index);
 		}
 		return ret;
 	}
@@ -540,7 +528,7 @@ public:
 
 public:
 	string _key;
-	Element _values;
+	Record _values;
 	Pointer<Notation> _next;
 };
 
