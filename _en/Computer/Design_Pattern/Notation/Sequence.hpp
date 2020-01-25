@@ -271,6 +271,60 @@ public:
 		return (int)(buffer - ret);
 	}
 
+	static int ParseRawBuf(char *data, char *buffer) {
+		char *ret = data;
+		while (data[0] != ';' && data[1] != ';') {
+			if ('0' <= data[0] && data[0] <= '9') {
+				buffer[0] = (data[0] - '0' + 0) << 4;
+			}
+			else if ('a' <= data[0] && data[0] <= 'z') {
+				buffer[0] = (data[0] - 'a' + 10) << 4;
+			}
+			else if ('A' <= data[0] && data[0] <= 'Z') {
+				buffer[0] = (data[0] - 'A' + 10) << 4;
+			}
+			else {
+				break;
+			}
+
+			if ('0' <= data[1] && data[1] <= '9') {
+				buffer[0] |= (data[1] - '0' + 0);
+			}
+			else if ('a' <= data[1] && data[1] <= 'z') {
+				buffer[0] |= (data[1] - 'a' + 10);
+			}
+			else if ('A' <= data[1] && data[1] <= 'Z') {
+				buffer[0] |= (data[1] - 'A' + 10);
+			}
+			else {
+				break;
+			}
+
+			buffer += 1;
+			data += 2;
+		}
+		return (int)(data - ret);
+	}
+
+	static int printRawBuf(char *buffer, int size, char *data) {
+		char *ret = buffer;
+
+		unsigned char ch = '\0';
+		while (size > 0) {
+			ch = (buffer[0] >> 4) & 0x0F;
+			data[0] = ch < 10 ? ch + '0' : ch + 'A' - 10;
+
+			ch = (buffer[0] >> 0) & 0x0F;
+			data[1] = ch < 10 ? ch + '0' : ch + 'A' - 10;
+
+			buffer += 1;
+			data += 2;
+			size -= 1;
+		}
+
+		return (int)(buffer - ret);
+	}
+
 	static Pointer<char> ReadFile(FILE *file) {
 		fseek(file, 0, SEEK_END);
 		int length = ftell(file);
@@ -344,7 +398,7 @@ void testSkips() {
 	char data[] = "01234""\0""6789#";
 	int len = Sequence::Skip(data, sizeof(data) / sizeof(data[0]), "\0""0123456789", 12);
 	fprintf(stderr, "%d\n", len);
-			}
+}
 
 void testUntil() {
 	char data[] = "01234""\0""6789#";
@@ -363,11 +417,24 @@ void testReadLine() {
 	}
 }
 
+void testParsePrintRawBuf() {
+	char buffer[128] = { '\0' };
+	unsigned int a = 0x87654321;
+	printRawBuf((char *)&a, 4, buffer);
+	fprintf(stderr, "%s\n", buffer);
+
+	char data[128] = "21436587; ";
+	unsigned int b = 0;
+	ParseRawBuf(data, (char *)&b);
+	fprintf(stderr, "a = %u, b = %u\n", a, b);
+}
+
 int main(int argc, char *argv[]) {
 	// testStreanline();
 	// testSkips();
 	// testUntil();
-	testReadLine();
+	// testReadLine();
+	testParsePrintRawBuf();
 
 	return 0;
 }
