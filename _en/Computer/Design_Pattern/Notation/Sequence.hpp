@@ -70,6 +70,21 @@ public:
 
 	template<typename Value>
 	static int ParseNumber(char *data, Value *number, double base = 10.0) {
+		static const char PHD = '?';
+		static const char MAP[128] = {
+			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+			'A', 'B', 'C', 'D', 'E', 'F', PHD, PHD, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,   0,   1,
+			  2,   3,   4,   5,   6,   7,   8,   9, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD,  10,  11,  12,  13,  14,
+			 15, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD,  10,  11,  12,
+			 13,  14,  15, PHD, PHD, PHD, PHD, PHD, PHD, PHD
+		};
+
 		char *ret = data;
 		int sign = +1;
 		double value = 0;
