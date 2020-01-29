@@ -70,24 +70,25 @@ public:
 
 	template<typename Value>
 	static int ParseNumber(char *data, Value *number, double base = 10.0) {
-		static const char PHD = '?';
-		static const char MAP[128] = {
-			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-			'A', 'B', 'C', 'D', 'E', 'F', PHD, PHD, PHD, PHD,
-			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,   0,   1,
-			  2,   3,   4,   5,   6,   7,   8,   9, PHD, PHD,
-			PHD, PHD, PHD, PHD, PHD,  10,  11,  12,  13,  14,
-			 15, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-			PHD, PHD, PHD, PHD, PHD, PHD, PHD,  10,  11,  12,
-			 13,  14,  15, PHD, PHD, PHD, PHD, PHD, PHD, PHD
+		static char PHD = '?';
+		static char MAP[128] = {
+			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,	PHD, PHD, '*', '+', PHD, '-', '.', '/',
+			  0,   1,	2,   3,   4,   5,   6,   7,   8,   9, PHD, PHD,	PHD, PHD, PHD, PHD,
+			PHD,  10,  11,  12,  13,  14,  15, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, '^', PHD,
+			PHD,  10,  11,  12,  13,  14,  15, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD
 		};
+
+		if (MAP[data[0]] == PHD) {
+			return data;
+		}
 
 		char *ret = data;
 		int sign = +1;
-		double value = 0;
+		double value = 0.0;
 
 		if (data[0] == '+') {
 			data += 1;
@@ -97,89 +98,50 @@ public:
 			data += 1;
 			sign = -1;
 		}
-		else if (data[0] == '0') {
+
+		if (data[0] == '0') {
 			data += 1;
 			if (data[0] == 'b' || data[0] == 'B') {
 				data += 1;
-				base = 2;
+				base = 2.0;
 			}
 			else if (data[0] == 'o' || data[0] == 'O') {
 				data += 1;
-				base = 8;
+				base = 8.0;
 			}
 			else if (data[0] == 'x' || data[0] == 'X') {
 				data += 1;
-				base = 16;
+				base = 16.0;
 			}
-		}
-		else if (!('0' <= data[0] && data[0] <= '9' || 'a' <= data[0] && data[0] <= 'z' || 'A' <= data[0] && data[0] <= 'Z')) {
-			return 0;
+			else {
+				base = 10.0;
+			}
 		}
 
-		if (2.0 <= base && base <= 10.0) {
-			char range = (char)('0' + base);
-			while ('0' <= data[0] && data[0] < range) {
-				value = value * base + (data[0] - '0');
-				data += 1;
-			}
+		while (MAP[data[0]] != PHD && '0' <= data[0] && data[0] <= 'z') {
+			value = value * base + (int)MAP[data[0]];
+			data += 1;
 		}
-		else if (10.0 < base && base <= 36.0) {
-			while (true) {
-				if ('0' <= data[0] && data[0] <= '9') {
-					value = value * base + (data[0] - '0' + 0);
-				}
-				else if ('a' <= data[0] && data[0] <= 'z') {
-					value = value * base + (data[0] - 'a' + 10);
-				}
-				else if ('A' <= data[0] && data[0] <= 'Z') {
-					value = value * base + (data[0] - 'A' + 10);
-				}
-				else {
-					break;
-				}
-				data += 1;
-			}
-		}
+
 		if (data[0] == '.') {
 			data += 1;
-			if (2.0 <= base && base <= +10.0) {
-				char range = (char)('0' + base);
-				double factor = 1 / base;
-				while ('0' <= data[0] && data[0] < range) {
-					value = value + (data[0] - '0') * factor;
-					data += 1;
-					factor *= factor;
-				}
-			}
-			else if (10.0 < base && base <= 36.0) {
-				double factor = 1 / base;
-				while (true) {
-					if ('0' <= data[0] && data[0] <= '9') {
-						value = value + (data[0] - '0' + 0) * factor;
-					}
-					else if ('a' <= data[0] && data[0] <= 'z') {
-						value = value + (data[0] - 'a' + 10) * factor;
-					}
-					else if ('A' <= data[0] && data[0] <= 'Z') {
-						value = value + (data[0] - 'A' + 10) * factor;
-					}
-					else {
-						break;
-					}
-					factor *= factor;
-				}
+			double factor = 1 / base;
+			while (MAP[data[0]] != PHD && '0' <= data[0] && data[0] <= 'z') {
+				value = value + (int)MAP[data[0]] * factor;
+				data += 1;
+				factor *= factor;
 			}
 		}
 
-		if ((data[0] == 'e' || data[0] == 'E') && base == 10.0) {
+		if (base == 10.0 && (data[0] == 'e' || data[0] == 'E')) {
 			data += 1;
-			double expo = 0;
+			double expo = 0.0;
 			data += ParseNumber(data, &expo, 10.0);
 			value = value * pow(10, expo);
 		}
-		else if (data[0] == '^' && base == 10.0) {
+		else if (base == 10.0 && data[0] == '^') {
 			data += 1;
-			double expo = 0;
+			double expo = 0.0;
 			data += ParseNumber(data, &expo, 10.0);
 			value = pow(value, expo);
 		}
