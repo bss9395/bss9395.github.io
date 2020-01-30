@@ -68,29 +68,33 @@ public:
 		return ret;
 	}
 
+	static char PHD = '?';
+	static char SYM[128] = {
+		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+		PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+		' ', PHD, PHD, PHD, PHD, PHD, PHD, PHD,	'(', ')', '*', '+', PHD, '-', '.', '/',
+		  0,   1,	2,   3,   4,   5,   6,   7,   8,   9, PHD, PHD,	PHD, PHD, PHD, PHD,
+		PHD,  10,  11,  12,  13,  14,  15, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+		PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, '^', PHD,
+		PHD,  10,  11,  12,  13,  14,  15, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+		PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD
+	};
+
 	template<typename Value>
-	static int ParseNumber(char *data, Value *number, double base = 10.0) {
-		static char PHD = '?';
-		static char MAP[128] = {
-			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
-			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,	PHD, PHD, '*', '+', PHD, '-', '.', '/',
-			  0,   1,	2,   3,   4,   5,   6,   7,   8,   9, PHD, PHD,	PHD, PHD, PHD, PHD,
-			PHD,  10,  11,  12,  13,  14,  15, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, '^', PHD,
-			PHD,  10,  11,  12,  13,  14,  15, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD
-		};
-
-		if (MAP[data[0]] == PHD) {
-			return data;
-		}
-
-		char *ret = data;
-		int sign = +1;
+	static int ParseNumber(const char *data, Value *number, double base = 10.0) {
+		const char *ret = data;
+		char sign = +1;
 		double value = 0.0;
 
-		if (data[0] == '+') {
+		if (data[0] == '(') {
+			data += 1;
+			data += ParseNumber(data, &value, base);
+			if (data[0] != ')') {
+				throw ')';
+			}
+			data += 1;
+		}
+		else if (data[0] == '+') {
 			data += 1;
 			sign = +1;
 		}
@@ -113,36 +117,27 @@ public:
 				data += 1;
 				base = 16.0;
 			}
-			else {
-				base = 10.0;
-			}
 		}
 
-		while (MAP[data[0]] != PHD && '0' <= data[0] && data[0] <= 'z') {
-			value = value * base + (int)MAP[data[0]];
+		char num = 0;
+		while (num = SYM[data[0]], 0 <= num && num <= base) {
 			data += 1;
+			value = value * base + num;
 		}
-
 		if (data[0] == '.') {
 			data += 1;
-			double factor = 1 / base;
-			while (MAP[data[0]] != PHD && '0' <= data[0] && data[0] <= 'z') {
-				value = value + (int)MAP[data[0]] * factor;
+			double fact = 1 / base;
+			while (num = SYM[data[0]], 0 <= num && num <= base) {
 				data += 1;
-				factor *= factor;
+				value = value + num * fact;
+				fact *= fact;
 			}
 		}
 
-		if (base == 10.0 && (data[0] == 'e' || data[0] == 'E')) {
+		if (data[0] == '^') {
 			data += 1;
 			double expo = 0.0;
-			data += ParseNumber(data, &expo, 10.0);
-			value = value * pow(10, expo);
-		}
-		else if (base == 10.0 && data[0] == '^') {
-			data += 1;
-			double expo = 0.0;
-			data += ParseNumber(data, &expo, 10.0);
+			data += ParseNumber(data, &expo, base);
 			value = pow(value, expo);
 		}
 
@@ -168,6 +163,53 @@ public:
 
 		return (int)(data - ret);
 	}
+
+	template<typename Value>
+	int ParseTerm(const char *data, Value *number, double base = 10.0) {
+		const char *ret = data;
+		double lhs = 0.0;
+		double rhs = 0.0;
+
+		data += ParseNumber(data, &lhs);
+		for (char op = data[0]; op == '*' || op == '/'; op = data[0]) {
+			data += 1;
+			data += ParseNumber(data, &rhs, base);
+			if (op == '*') {
+				lhs *= rhs;
+			}
+			else if (op == '/') {
+				lhs /= rhs;
+			}
+		}
+
+		*number = (Value)lhs;
+		return (int)(data - ret);
+	}
+
+	template<typename Value>
+	int ParseExpression(const char *data, Value *number, double base = 10.0) {
+		const char *ret = data;
+		double lhs = 0.0;
+		double rhs = 0.0;
+
+		data += ParseTerm(data, &lhs);
+		for (char op = data[0]; op == '+' || op == '-'; op = data[0]) {
+			data += 1;
+			data += ParseTerm(data, &rhs);
+			if (op == '+') {
+				lhs += rhs;
+			}
+			else if (op == '-') {
+				lhs -= rhs;
+			}
+		}
+
+		*number = (Value)lhs;
+		return (int)(data - ret);
+	}
+
+
+
 
 	template<typename Value>
 	static int printNumber(char *buffer, Value *number, double base = 10.0, double precision = 8.0) {
