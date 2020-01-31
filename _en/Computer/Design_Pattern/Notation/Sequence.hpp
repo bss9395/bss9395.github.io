@@ -405,6 +405,93 @@ public:
 		line.reset();
 		return ret;
 	}
+
+	unsigned char *Base64_Encode(const unsigned char data[], int length) {
+		static const unsigned char BASE64_MAP[64] = {
+			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+			'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+			'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+			'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
+			'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+			'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+			'w', 'x', 'y', 'z', '0', '1', '2', '3',
+			'4', '5', '6', '7', '8', '9', '+', '/',
+		};
+
+		typedef unsigned char Code[4];
+		typedef unsigned char Data[3];
+
+		int len = (length + 2) / 3 * 4;
+		unsigned char *ret = (unsigned char *)malloc(sizeof(unsigned char) * len + 1);
+
+		Code *cod = (Code *)ret;
+		Data *dat = (Data *)data;
+		Data *end = dat + length / 3;
+		for (; dat < end; cod += 1, dat += 1) {
+			(*cod)[0] = BASE64_MAP[0x3F & ((*dat)[0] >> 2)];
+			(*cod)[1] = BASE64_MAP[0x3F & ((*dat)[0] << 4 | (*dat)[1] >> 4)];
+			(*cod)[2] = BASE64_MAP[0x3F & ((*dat)[1] << 2 | (*dat)[2] >> 6)];
+			(*cod)[3] = BASE64_MAP[0x3F & ((*dat)[2] << 0)];
+		}
+
+		if (length % 3 == 1) {
+			(*cod)[0] = BASE64_MAP[0x3F & ((*dat)[0] >> 2)];
+			(*cod)[1] = BASE64_MAP[0x3F & ((*dat)[0] << 4)];
+			(*cod)[2] = '=';
+			(*cod)[3] = '=';
+		}
+		else if (length % 3 == 2) {
+			(*cod)[0] = BASE64_MAP[0x3F & ((*dat)[0] >> 2)];
+			(*cod)[1] = BASE64_MAP[0x3F & ((*dat)[0] << 4 | (*dat)[1] >> 4)];
+			(*cod)[2] = BASE64_MAP[0x3F & ((*dat)[1] << 2)];
+			(*cod)[3] = '=';
+		}
+
+		ret[len] = '\0';
+		return ret;
+	}
+
+	unsigned char *Base64_Decode(const unsigned char code[], int length) {
+		static const unsigned char PHD = '?';
+		static const unsigned char BASE64_INV[128] = {
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,  62, PHD, PHD, PHD,  63,
+			 52,  53,  54,  55,  56,  57,  58,  59,	 60,  61, PHD, PHD, PHD, PHD, PHD, PHD,
+			PHD,   0,	1,   2,   3,   4,   5,   6,	  7,   8,   9,  10,  11,  12,  13,  14,
+			 15,  16,  17,  18,  19,  20,  21,  22,	 23,  24,  25, PHD, PHD, PHD, PHD, PHD,
+			PHD,  26,  27,  28,  29,  30,  31,  32,	 33,  34,  35,  36,  37,  38,  39,  40,
+			 41,  42,  43,  44,  45,  46,  47,  48,	 49,  50,  51, PHD, PHD, PHD, PHD, PHD
+		};
+
+		typedef unsigned char Data[3];
+		typedef unsigned char Code[4];
+
+		// Check(length % 4 != 0, __FILE__, __LINE__, __FUNCTION__, errno, "length % 4 != 0");
+		int len = length / 4 * 3;
+		len -= ((code[length - 2] == '=') ? 2 : ((code[length - 1] == '=') ? 1 : 0));
+		unsigned char *ret = (unsigned char *)malloc(sizeof(unsigned char) * len + 1);
+
+		Data *dat = (Data *)ret;
+		Code *cod = (Code *)code;
+		Code *end = cod + length / 4;
+		for (; cod < end; dat += 1, cod += 1) {
+			(*dat)[0] = BASE64_INV[(*cod)[0]] << 2 | BASE64_INV[(*cod)[1]] >> 4;
+			(*dat)[1] = BASE64_INV[(*cod)[1]] << 4 | BASE64_INV[(*cod)[2]] >> 2;
+			(*dat)[2] = BASE64_INV[(*cod)[2]] << 6 | BASE64_INV[(*cod)[3]] >> 0;
+		}
+
+		if (code[length - 2] == '=') {
+			(*dat)[0] = BASE64_INV[(*cod)[0]] << 2 | BASE64_INV[(*cod)[1]] >> 4;
+		}
+		else if (code[length - 1] == '=') {
+			(*dat)[0] = BASE64_INV[(*cod)[0]] << 2 | BASE64_INV[(*cod)[1]] >> 4;
+			(*dat)[1] = BASE64_INV[(*cod)[1]] << 4 | BASE64_INV[(*cod)[2]] >> 2;
+		}
+
+		ret[len] = '\0';
+		return ret;
+	}
 };
 
 
