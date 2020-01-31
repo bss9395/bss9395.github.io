@@ -86,9 +86,13 @@ public:
 		char sign = +1;
 		double value = 0.0;
 
+		while (data[0] == ' ') {
+			data += 1;
+		}
+
 		if (data[0] == '(') {
 			data += 1;
-			data += ParseNumber(data, &value, base);
+			data += ParseExpression(data, &value, base);
 			if (data[0] != ')') {
 				throw ')';
 			}
