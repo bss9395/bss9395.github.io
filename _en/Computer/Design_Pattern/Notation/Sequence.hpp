@@ -512,7 +512,7 @@ public:
 			static unsigned long long post = 1;
 			post = prep + post;
 			prep = post - prep;
-			return (unsigned long long)(time(NULL) * length + post % 93257);
+			return (unsigned long long)(time(NULL) * length + post % 2357);
 		};
 
 		srand((unsigned)Seed());
