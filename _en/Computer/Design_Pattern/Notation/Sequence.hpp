@@ -507,19 +507,19 @@ public:
 		'!', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/', ':',
 		';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '{', '|', '}', '~'
 		};
-		static auto Seed = [](unsigned hint) -> unsigned {
+		static auto Seed = [&length]() -> unsigned long long {
 			static unsigned long long prep = 0;
 			static unsigned long long post = 1;
 			post = prep + post;
 			prep = post - prep;
-			return (unsigned)(time(NULL) * hint + post % 9395);
+			return (unsigned long long)(time(NULL) * length + post % 93257);
 		};
 
-		srand(Seed(length));
+		srand((unsigned)Seed());
 
 		char *ret = (char *)malloc(sizeof(char) * length + 1);
 		for (int i = 0; i < length; i += 1) {
-			ret[i] = SYM[rand() % sizeof(SYM)];
+			ret[i] = SYM[(rand() + Seed()) % sizeof(SYM)];
 		}
 
 		ret[length] = '\0';
