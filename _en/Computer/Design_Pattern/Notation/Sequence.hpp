@@ -1,9 +1,11 @@
 /*Sequence.hpp
 * Author: BSS9395
-* Update: 2020-01-23T20:36:00+08@ShenZhen+08
+* Update: 2020-02-01T01:58:00+08@ZhanJiang+08
 * Design: Notation
 */
 
+#include <stdlib.h>
+#include <time.h>
 #include "Pointer.hpp"
 
 typedef const char *Endian;
@@ -68,20 +70,22 @@ public:
 		return ret;
 	}
 
-	static char PHD = '?';
-	static char SYM[128] = {
-		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
-		PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-		' ', PHD, PHD, PHD, PHD, PHD, PHD, PHD,	'(', ')', '*', '+', PHD, '-', '.', '/',
-		  0,   1,	2,   3,   4,   5,   6,   7,   8,   9, PHD, PHD,	PHD, PHD, PHD, PHD,
-		PHD,  10,  11,  12,  13,  14,  15, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-		PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, '^', PHD,
-		PHD,  10,  11,  12,  13,  14,  15, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-		PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD
-	};
+
 
 	template<typename Value>
 	static int ParseNumber(const char *data, Value *number, double base = 10.0) {
+		static const char PHD = '?';
+		static const char SYM[128] = {
+			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+			' ', PHD, PHD, PHD, PHD, PHD, PHD, PHD,	'(', ')', '*', '+', PHD, '-', '.', '/',
+			  0,   1,	2,   3,   4,   5,   6,   7,   8,   9, PHD, PHD,	PHD, PHD, PHD, PHD,
+			PHD,  10,  11,  12,  13,  14,  15, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, '^', PHD,
+			PHD,  10,  11,  12,  13,  14,  15, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+			PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD
+		};
+
 		const char *ret = data;
 		char sign = +1;
 		double value = 0.0;
@@ -490,6 +494,35 @@ public:
 		}
 
 		ret[len] = '\0';
+		return ret;
+	}
+
+	char *RandomString(int length = 16) {
+		static const unsigned char SYM[90] = {
+		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+		'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',	'I', 'J', 'K', 'L', 'M',
+		'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+		'0', '1', '2', '3',	'4', '5', '6', '7', '8', '9',
+		'!', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/', ':',
+		';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '{', '|', '}', '~'
+		};
+		static auto Seed = [](unsigned hint) -> unsigned {
+			static unsigned long long prep = 0;
+			static unsigned long long post = 1;
+			post = prep + post;
+			prep = post - prep;
+			return (unsigned)(time(NULL) * hint + post % 9395);
+		};
+
+		srand(Seed(length));
+
+		char *ret = (char *)malloc(sizeof(char) * length + 1);
+		for (int i = 0; i < length; i += 1) {
+			ret[i] = SYM[rand() % sizeof(SYM)];
+		}
+
+		ret[length] = '\0';
 		return ret;
 	}
 };
