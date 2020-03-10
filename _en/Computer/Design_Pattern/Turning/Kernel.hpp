@@ -80,7 +80,7 @@ For BSD formats and when the stat keyword is used, additional characters may be 
 #include <string.h>
 #include <ctype.h>
 #include <time.h>
-	using ::memset;
+using ::memset;
 using ::toupper;
 using ::clock;
 
