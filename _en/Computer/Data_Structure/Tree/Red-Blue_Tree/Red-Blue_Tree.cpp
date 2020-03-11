@@ -398,7 +398,6 @@ public:
 				parent = _stack[_top];
 				if ((*parent)->_color == EType::_Red) {
 					_top -= 1;
-
 					grand = _stack[_top];
 					if ((*parent)->_left == (*tree)) {
 						if ((*grand)->_left == (*parent)) {
@@ -448,6 +447,9 @@ public:
 					(*grand)->_color = EType::_Red;
 					(*grand)->_left->_color = (*grand)->_right->_color = EType::_Blue;
 					tree = grand;
+				}
+				else {
+					break;
 				}
 			}
 		}
@@ -777,8 +779,15 @@ int main(int argc, char *argv[]) {
 	tree.insert("4");
 	tree.insert("1");
 	tree.insert("5");
+	tree.insert("3");
+	tree.insert("2");
+	tree.insert("7");
+	tree.insert("6");
+	tree.insert("8");
+	tree.insert("0");
 
 	tree.preOrder();
+
 	return 0;
 }
 #endif // Main
