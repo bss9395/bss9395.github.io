@@ -206,17 +206,13 @@ using std::endl;
 using std::string;
 
 typedef const char *Color;
-typedef unsigned Flip;
+typedef const char *Flip;
 namespace EType {
 	Color _Red = "Red";
 	Color _Blue = "Blue";
 
-	Flip _Hit = 1U << 1;
-	Flip _Miss = 1U << 2;
-	Flip _Left = 1U << 3;
-	Flip _Right = 1U << 4;
-	Flip _Deal = 1U << 5;
-	Flip _Recur = _Left | _Right;
+	Flip _Hit = "Hit";
+	Flip _Miss = "Miss";
 }
 
 template<typename Value>
@@ -393,16 +389,16 @@ public:
 		Node **parent = nullptr;
 		Node **grand = nullptr;
 
-		if (tree == nullptr) {
+		if ((*tree) == nullptr) {
 			(*tree) = node;
 			flip = EType::_Hit;
 
-			_top -= 1;
-			while (_top >= 1) {
+			while (_top > 1) {
 				_top -= 1;
 				parent = _stack[_top];
 				if ((*parent)->_color == EType::_Red) {
 					_top -= 1;
+
 					grand = _stack[_top];
 					if ((*parent)->_left == (*tree)) {
 						if ((*grand)->_left == (*parent)) {
@@ -427,12 +423,12 @@ public:
 					}
 					else {
 						/* (*parent)->_right == (*tree) */
-						if ((*grand)->_right == parent) {
+						if ((*grand)->_right == (*parent)) {
 							if ((*grand)->_left == nullptr || (*grand)->_left->_color == EType::_Blue) {
 								/* case 1: side rotate */
 								_left_rotate(*grand);
 								(*grand)->_color = EType::_Blue;
-								(*grand)->_left = EType::_Red;
+								(*grand)->_left->_color = EType::_Red;
 								break;
 							}
 						}
@@ -468,7 +464,7 @@ public:
 		Node node = Node(value);
 		Node **tree = _search_node(node);
 
-		if (tree != nullptr) {
+		if ((*tree) != nullptr) {
 			flip = EType::_Hit;
 
 			Node *wipe = (*tree);
@@ -516,8 +512,8 @@ public:
 	void _preOrder(Node *tree) {
 		if (tree != nullptr) {
 			_visit(tree);
-			_visit(tree->_left);
-			_visit(tree->_right);
+			_preOrder(tree->_left);
+			_preOrder(tree->_right);
 		}
 	}
 
@@ -554,7 +550,7 @@ public:
 	}
 
 	Node **_search_node(const Node &node) {
-		int capacity = (int)log2(_count) + 5; /* (int)log2(_count) + 1 + 2 + 2; // according to property 5 */
+		int capacity = (int)log2(_count + 1) + 3; /* according to property 5 */
 		if (_capacity < capacity) {
 			delete _stack;
 			_capacity = 2 * capacity;
@@ -562,7 +558,6 @@ public:
 		}
 		_top = 0;
 
-		Node **hit = nullptr;
 		Node **tree = &_head._right;
 		while ((*tree) != nullptr) {
 			_stack[_top] = tree;
@@ -574,87 +569,97 @@ public:
 				tree = &(*tree)->_right;
 			}
 			else {
-				hit = tree;
 				break;
 			}
 		}
 
-		return hit;
+		return tree;
 	}
 
 	// obsolete function, only for teaching.
-	Flip _insert_node_recursion(Node *&tree, Node *node) {
-		Flip flip = EType::_Miss;
+	enum Hint {
+		_Miss = 1U << 1,
+		_Hit = 1U << 2,
+		_Left = 1U << 3,
+		_Right = 1U << 4,
+		_Deal = 1U << 5,
+		_Recur = _Left | _Right,
+
+		_Red = 1U << 6,
+		_Blue = 1U << 7
+	};
+	Hint _insert_node_recursion(Node *&tree, Node *node) {
+		Hint flip = Hint::_Miss;
 		if (tree == nullptr) {
 			tree = node;
 			_count += 1;
-			flip = EType::_Hit;
+			flip = Hint::_Hit;
 		}
 		else if (node->_value < tree->_value) {
 			flip = _insert_node(tree->_left, node);
-			if (flip == EType::_Hit) {
-				if (tree->_color == EType::_Red) {
-					flip = EType::_Left;
+			if (flip == Hint::_Hit) {
+				if (tree->_color == Hint::_Red) {
+					flip = Hint::_Left;
 				}
 				else {
-					flip = EType::_Deal;
+					flip = Hint::_Deal;
 				}
 			}
-			else if (flip & EType::_Recur) {
-				if (tree->_right == nullptr || tree->_right->_color == EType::_Blue) {
-					if (flip == EType::_Left) {
+			else if (flip & Hint::_Recur) {
+				if (tree->_right == nullptr || tree->_right->_color == Hint::_Blue) {
+					if (flip == Hint::_Left) {
 						_right_rotate(tree);
 					}
 					else {
-						/* if (flip == EType::_Right) */
+						/* if (flip == Hint::_Right) */
 						_left_right_rotate(tree);
 					}
-					tree->_color = EType::_Blue;
-					tree->_left->_color = tree->_right->_color = EType::_Red;
-					flip = EType::_Deal;
+					tree->_color = Hint::_Blue;
+					tree->_left->_color = tree->_right->_color = Hint::_Red;
+					flip = ET::_Deal;
 				}
 				else {
-					/* if (tree->_right != nullptr && tree->_right ->_color == EType::_Red) */
-					tree->_color = EType::_Red;
-					tree->_left->_color = tree->_right->_color = EType::_Blue;
-					flip = EType::_Hit;
+					/* if (tree->_right != nullptr && tree->_right ->_color == Hint::_Red) */
+					tree->_color = Hint::_Red;
+					tree->_left->_color = tree->_right->_color = Hint::_Blue;
+					flip = ET::_Hit;
 				}
 			}
 		}
 		else if (tree->_value < node->_value) {
 			flip = _insert_node(tree->_right, node);
-			if (flip == EType::_Hit) {
-				if (tree->_color == EType::_Red) {
-					flip = EType::_Right;
+			if (flip == Hint::_Hit) {
+				if (tree->_color == Hint::_Red) {
+					flip = Hint::_Right;
 				}
 				else {
-					flip = EType::_Deal;
+					flip = Hint::_Deal;
 				}
 			}
-			else if (flip & EType::_Recur) {
-				if (tree->_left == nullptr || tree->_left->_color == EType::_Blue) {
-					if (flip == EType::_Right) {
+			else if (flip & Hint::_Recur) {
+				if (tree->_left == nullptr || tree->_left->_color == Hint::_Blue) {
+					if (flip == Hint::_Right) {
 						_left_rotate(tree);
 					}
 					else {
-						/* if (flip == EType::_Left) */
+						/* if (flip == Hint::_Left) */
 						_right_left_rotate(tree);
 					}
-					tree->_color = EType::_Blue;
-					tree->_left->_color = tree->_right->_color = EType::_Red;
-					flip = EType::_Deal;
+					tree->_color = Hint::_Blue;
+					tree->_left->_color = tree->_right->_color = Hint::_Red;
+					flip = ET::_Deal;
 				}
 				else {
-					/* (*tree)->_right != nullptr && (*tree)->_right->_color == EType::_Red) */
-					tree->_color = EType::_Red;
-					tree->_left->_color = tree->_right->_color = EType::_Blue;
-					flip = EType::_Hit;
+					/* (*tree)->_right != nullptr && (*tree)->_right->_color == Hint::_Red) */
+					tree->_color = Hint::_Red;
+					tree->_left->_color = tree->_right->_color = Hint::_Blue;
+					flip = Hint::_Hit;
 				}
 			}
 		}
 		else {
 			delete node;
-			flip = EType::_Miss;
+			flip = Hint::_Miss;
 		}
 
 		return flip;
@@ -771,8 +776,9 @@ int main(int argc, char *argv[]) {
 	tree.insert("9");
 	tree.insert("4");
 	tree.insert("1");
-	tree.insert("");
+	tree.insert("5");
 
+	tree.preOrder();
 	return 0;
 }
 #endif // Main
