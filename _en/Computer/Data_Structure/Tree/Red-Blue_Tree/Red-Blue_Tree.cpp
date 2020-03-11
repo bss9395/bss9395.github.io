@@ -173,17 +173,17 @@ Nil Nil Nil Nil      Nil Nil      |  Nil Nil Nil Nil      Nil Nil
 --------------------------------------------------------------------------------
 [recursively]
 case 6: left Blu/right Blu is to be deleted, ¦Á/¦Â/¦Ã/¦Ä must be a Nil node, or a Red Node with two Nil child nodes.
-	  Blu                                   Red                    Red
+	  Blu                                   Red                    Blu      (Red changes its color to Blue)
 	  / \                                   / \                    / \
-	Blu Red        left_rotate=>          Blu Blu    =>          Blu Blu
+	Blu Red        left_rotate=>          Blu Blu    =>          Red Blu    (top Blu changes its color to Red)
    / |   | \                             / |   | \              / |   | \
 Nil Nil Blu Blu                       Blu Blu  ¦Ã  ¦Ä        [Blu] Blu  ¦Ã  ¦Ä  (now left Blu is like a Blu to be deleted)
 	   / |   | \                     / |   | \              / |   | \
 	  ¦Á  ¦Â   ¦Ã  ¦Ä                 Nil Nil  ¦Á  ¦Â          Nil Nil  ¦Á  ¦Â
 
-		Blu                            Red                    Red
+		Blu                            Red                    Blu            (Red changes its color to Blue)
 		/ \                            / \                    / \
-	  Red Blu      right_rotate=>    Blu Blu          =>    Blu Blu
+	  Red Blu      right_rotate=>    Blu Blu          =>    Blu Red          (top Blu changes its color to Red)
 	 / |   | \                      / |   | \              / |   | \
   Blu Blu Nil Nil                  ¦Ä  ¦Ã  Blu Blu          ¦Ä  ¦Ã  Blu [Blu]    (now right Blu is like a Blu to be deleted)
  / |   | \                              / |   | \              / |   | \
@@ -309,9 +309,9 @@ public:
 		return tree;
 	}
 
-	Flip attach(const Value &value = Value()) {
+	Flip attach(const Value &value = Value(), Color color = EType::_Red) {
 		Flip flip = EType::_Miss;
-		Node *node = new Node(value);
+		Node *node = new Node(value, color);
 		Node **tree = &_head._right;
 		while ((*tree) != nullptr) {
 			if (node->_value < (*tree)->_value) {
