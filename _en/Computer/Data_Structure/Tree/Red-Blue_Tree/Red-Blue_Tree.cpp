@@ -307,7 +307,6 @@ public:
 		}
 
 		return tree;
-
 	}
 
 	Flip attach(const Value &value = Value()) {
@@ -323,6 +322,7 @@ public:
 			}
 			else {
 				flip = EType::_Hit;
+				delete node;
 				break;
 			}
 		}
@@ -332,9 +332,7 @@ public:
 			_count += 1;
 			flip = EType::_Deal;
 		}
-		else {
-			delete node;
-		}
+
 		return flip;
 	}
 
@@ -388,11 +386,19 @@ public:
 
 	Flip insert(const Value &value = Value()) {
 		Node *node = new Node(value, EType::_Red);
-		return _insert(_head._right, node);
+		return _insert_node(_head._right, node);
 	}
 
-	Flip _remove(const Value &value = Value()) {
+	Flip remove(const Value &value = Value()) {
 		Flip flip = EType::_Miss;
+		int capacity = (int)log2(_count) + 5; /* (int)log2(_count) + 1 + 2 + 2; */
+		if (_capacity < capacity) {
+			delete _stack;
+			_capacity = capacity;
+			_stack = new Element[_capacity];
+		}
+		_top = 0;
+
 		Node node = Node(value);
 		Node **tree = &_head._right;
 		while ((*tree) != nullptr) {
@@ -411,23 +417,16 @@ public:
 		}
 
 		if (flip == EType::_Hit) {
-			// int capacity = (int)(2 * log2(_count + 1)) + 5;
-			int capacity = (int)log2(_count) + 5; /* (int)log2(_count) + 1 + 2 + 2; */
-			if (_capacity < capacity) {
-				delete _stack;
-				_capacity = capacity;
-				_stack = new Element[_capacity];
-			}
-			_top = 0;
-
 			Node *wipe = (*tree);
 			if ((*tree)->_left == nullptr) {
-				tree = &(*tree)->_right;
-				_removed_node(*tree);
+				Color color = (*tree)->_color;
+				(*tree) = (*tree)->_right;
+				_removed_node(color, *tree);
 			}
 			else if ((*tree)->_right == nullptr) {
-				tree = &(*tree)->_left;
-				_removed_node(*tree);
+				Color color = (*tree)->_color;
+				(*tree) = (*tree)->_left;
+				_removed_node(color, *tree);
 			}
 			else {
 				/* replace with succesor node */
@@ -439,14 +438,13 @@ public:
 				}
 
 				Node *take = (*refer);
-				(*refer) = (*refer)->_right;
 				Color color = take->_color;
+				(*refer) = (*refer)->_right;
 				take->_color = (*tree)->_color;
 				take->_left = (*tree)->_left;
 				take->_right = (*tree)->_right;
 				(*tree) = take;
-
-				_removed_node(*refer);
+				_removed_node(color, *refer);
 			}
 
 			delete wipe;
@@ -502,7 +500,8 @@ public:
 		tree->_right = node;
 	}
 
-	Flip _insert(Node *&tree, Node *node) {
+	// implementing by stack, may be better.
+	Flip _insert_node(Node *&tree, Node *node) {
 		Flip flip = EType::_Miss;
 		if (tree == nullptr) {
 			tree = node;
@@ -510,7 +509,7 @@ public:
 			flip = EType::_Hit;
 		}
 		else if (node->_value < tree->_value) {
-			flip = _insert(tree->_left, node);
+			flip = _insert_node(tree->_left, node);
 			if (flip == EType::_Hit) {
 				if (tree->_color == EType::_Red) {
 					flip = EType::_Left;
@@ -541,7 +540,7 @@ public:
 			}
 		}
 		else if (tree->_value < node->_value) {
-			flip = _insert(tree->_right, node);
+			flip = _insert_node(tree->_right, node);
 			if (flip == EType::_Hit) {
 				if (tree->_color == EType::_Red) {
 					flip = EType::_Right;
@@ -579,8 +578,18 @@ public:
 		return flip;
 	}
 
-	void _removed_node(Node *node) {
-		if (node != nullptr || node->_color == EType::_Blue) {
+	void _removed_node(Color color, Node *node) {
+		/* take is already replaced by node */
+		if (color == EType::_Red) {
+			/* case 01: take->_color == EType::_Red */
+			// no operations
+		}
+		else if (node != nullptr) {
+			/* case 02: take->_color == EType::_Blue && node->_color == EType::_Red */
+			node->_color = EType::_Blue;
+		}
+		else {
+			/* 4 cases: take->_color == EType::_Blue && node == nullptr */
 			_top -= 1;
 			while (_top >= 1) {
 				_top -= 1;
@@ -589,22 +598,22 @@ public:
 					Node *sibling = parent->_right;
 					if (sibling->_color == EType::_Blue) {
 						if (sibling->_right != nullptr && sibling->_right->_color == EType::_Red) {
-							/* case 3: sibling->_right->_color == EType::_Red */
+							/* case 03: sibling->_right->_color == EType::_Red */
 							_left_rotate(parent);
 							parent->_color = parent->_left->_color;
 							parent->_left->_color = parent->_right->_color = EType::_Blue;
 							break;
 						}
 						else if (sibling->_left != nullptr && sibling->_left->_color == EType::_Red) {
-							/* case 4: sibling->_left->_color == EType::_Red */
+							/* case 04: sibling->_left->_color == EType::_Red */
 							_right_left_rotate(parent);
 							parent->_color = parent->_left->_color;
 							parent->_left->_color = EType::_Blue;
 							break;
 						}
 						else {
-							/* case 5: (sibling->_left == nullptr && sibling->_right == nullptr) */
-							/* || (sibling->_left->_color == EType::_Blue && sibling->_right->_color == EType::_Blue) */
+							/* case 05: (sibling->_left == nullptr && sibling->_right == nullptr) */
+							/*       || (sibling->_left->_color == EType::_Blue && sibling->_right->_color == EType::_Blue) */
 							sibling->_color = EType::_Red;
 							if (parent->_color == EType::_Red) {
 								parent->_color = EType::_Blue;
@@ -613,9 +622,10 @@ public:
 						}
 					}
 					else {
-						/* case 6: sibling->_color == EType::_Red */
+						/* case 06: sibling->_color == EType::_Red */
 						_left_rotate(parent);
-						parent->_color = EType::_Red;
+						parent->_color = EType::_Blue;
+						parent->_left->_color = EType::_Red;
 						_stack[_top + 0] = &parent;
 						_stack[_top + 1] = &parent->_left;
 						_top += 2;
@@ -626,22 +636,22 @@ public:
 					Node *sibling = parent->_left;
 					if (sibling->_color == EType::_Blue) {
 						if (sibling->_right->_color == EType::_Red) {
-							/* case 3: sibling->_right->_color == EType::_Red */
+							/* case 03: sibling->_right->_color == EType::_Red */
 							_right_rotate(parent);
 							parent->_color = parent->_right->_color;
 							parent->_left->_color = parent->_right->_color = EType::_Blue;
 							break;
 						}
 						else if (sibling->_left->_color == EType::_Red) {
-							/* case 4: sibling->_left->_color == EType::_Red */
+							/* case 04: sibling->_left->_color == EType::_Red */
 							_left_right_rotate(parent);
 							parent->_color = parent->_right->_color;
 							parent->_right->_color = EType::_Blue;
 							break;
 						}
 						else {
-							/* case 5: (sibling->_left == nullptr && sibling->_right == nullptr) */
-							/* || (sibling->_left->_color == EType::_Blue && sibling->_right->_color == EType::_Blue) */
+							/* case 05: (sibling->_left == nullptr && sibling->_right == nullptr) */
+							/*       || (sibling->_left->_color == EType::_Blue && sibling->_right->_color == EType::_Blue) */
 							sibling->_color = EType::_Red;
 							if (parent->_color == EType::_Red) {
 								parent->_color = EType::_Blue;
@@ -650,18 +660,16 @@ public:
 						}
 					}
 					else {
-						/* case 6: sibling->_color == EType::_Red */
+						/* case 06: sibling->_color == EType::_Red */
 						_right_rotate(parent);
-						parent->_color = EType::_Red;
+						parent->_color = EType::_Blue;
+						parent->_right->_color = EType::_Red;
 						_stack[_top + 0] = &parent;
 						_stack[_top + 1] = &parent->_right;
 						_top += 2;
 					}
 				}
 			}
-		}
-		else { /* case 2: node->_color == EType::_Red */
-			node->_color = EType::_Blue;
 		}
 	}
 
