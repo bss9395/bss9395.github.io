@@ -1,6 +1,6 @@
 /*Red-Blue_Tree.cpp
 * Author: BSS9395
-* Update: 2010-03-10T18:57:00+08@China-Guangdong-Zhanjiang+08
+* Update: 2010-03-11T17:06:00+08@China-Guangdong-Zhanjiang+08
 * Structure: Red-Blue_Tree
 */
 
@@ -309,6 +309,7 @@ public:
 		return tree;
 	}
 
+	/* for testing */
 	Flip attach(const Value &value = Value(), Color color = EType::_Red) {
 		Flip flip = EType::_Miss;
 		Node *node = new Node(value, color);
@@ -336,6 +337,7 @@ public:
 		return flip;
 	}
 
+	/* for testing */
 	Flip detach(const Value &value = Value()) {
 		Flip flip = EType::_Miss;
 		Node node = Node(value);
@@ -385,38 +387,90 @@ public:
 	}
 
 	Flip insert(const Value &value = Value()) {
-		Node *node = new Node(value, EType::_Red);
-		return _insert_node(_head._right, node);
+		Flip flip = EType::_Miss;
+		Node *node = new Node(value);
+		Node **tree = _search_node(*node);
+		Node **parent = nullptr;
+		Node **grand = nullptr;
+
+		if (tree == nullptr) {
+			(*tree) = node;
+			flip = EType::_Hit;
+
+			_top -= 1;
+			while (_top >= 1) {
+				_top -= 1;
+				parent = _stack[_top];
+				if ((*parent)->_color == EType::_Red) {
+					_top -= 1;
+					grand = _stack[_top];
+					if ((*parent)->_left == (*tree)) {
+						if ((*grand)->_left == (*parent)) {
+							if ((*grand)->_right == nullptr || (*grand)->_right->_color == EType::_Blue) {
+								/* case 1: side rotate */
+								_right_rotate(*grand);
+								(*grand)->_color = EType::_Blue;
+								(*grand)->_right->_color = EType::_Red;
+								break;
+							}
+						}
+						else {
+							/* (*grand)->_right == (*parent) */
+							if ((*grand)->_left == nullptr || (*grand)->_left->_color == EType::_Blue) {
+								/* case 2: zigzag rotate */
+								_right_left_rotate(*grand);
+								(*grand)->_color = EType::_Blue;
+								(*grand)->_left->_color = EType::_Red;
+								break;
+							}
+						}
+					}
+					else {
+						/* (*parent)->_right == (*tree) */
+						if ((*grand)->_right == parent) {
+							if ((*grand)->_left == nullptr || (*grand)->_left->_color == EType::_Blue) {
+								/* case 1: side rotate */
+								_left_rotate(*grand);
+								(*grand)->_color = EType::_Blue;
+								(*grand)->_left = EType::_Red;
+								break;
+							}
+						}
+						else {
+							/* (*grand)->_left == (*parent) */
+							if ((*grand)->_right == nullptr || (*grand)->_right->_color == EType::_Blue) {
+								/* case 2: zigzag rotate */
+								_left_right_rotate(*grand);
+								(*grand)->_color = EType::_Blue;
+								(*grand)->_right->_color = EType::_Red;
+								break;
+							}
+						}
+					}
+					/* (*grand)->_left->_color == EType::_Red && (*grand)->_right->_color == EType::_Red */
+					/* case 3: flip color */
+					(*grand)->_color = EType::_Red;
+					(*grand)->_left->_color = (*grand)->_right->_color = EType::_Blue;
+					tree = grand;
+				}
+			}
+		}
+		else {
+			delete node;
+			flip = EType::_Miss;
+		}
+
+		return flip;
 	}
 
 	Flip remove(const Value &value = Value()) {
 		Flip flip = EType::_Miss;
-		int capacity = (int)log2(_count) + 5; /* (int)log2(_count) + 1 + 2 + 2; */
-		if (_capacity < capacity) {
-			delete _stack;
-			_capacity = capacity;
-			_stack = new Element[_capacity];
-		}
-		_top = 0;
-
 		Node node = Node(value);
-		Node **tree = &_head._right;
-		while ((*tree) != nullptr) {
-			_stack[_top] = tree;
-			_top += 1;
-			if (node._value < (*tree)->_value) {
-				tree = &(*tree)->_left;
-			}
-			else if ((*tree)->_value < node._value) {
-				tree = &(*tree)->_right;
-			}
-			else {
-				flip = EType::_Hit;
-				break;
-			}
-		}
+		Node **tree = _search_node(node);
 
-		if (flip == EType::_Hit) {
+		if (tree != nullptr) {
+			flip = EType::_Hit;
+
 			Node *wipe = (*tree);
 			if ((*tree)->_left == nullptr) {
 				Color color = (*tree)->_color;
@@ -449,7 +503,6 @@ public:
 
 			delete wipe;
 			_count -= 1;
-			flip = EType::_Deal;
 		}
 
 		return flip;
@@ -500,8 +553,37 @@ public:
 		tree->_right = node;
 	}
 
-	// implementing by stack, may be better.
-	Flip _insert_node(Node *&tree, Node *node) {
+	Node **_search_node(const Node &node) {
+		int capacity = (int)log2(_count) + 5; /* (int)log2(_count) + 1 + 2 + 2; // according to property 5 */
+		if (_capacity < capacity) {
+			delete _stack;
+			_capacity = 2 * capacity;
+			_stack = new Element[_capacity];
+		}
+		_top = 0;
+
+		Node **hit = nullptr;
+		Node **tree = &_head._right;
+		while ((*tree) != nullptr) {
+			_stack[_top] = tree;
+			_top += 1;
+			if (node._value < (*tree)->_value) {
+				tree = &(*tree)->_left;
+			}
+			else if ((*tree)->_value < node._value) {
+				tree = &(*tree)->_right;
+			}
+			else {
+				hit = tree;
+				break;
+			}
+		}
+
+		return hit;
+	}
+
+	// obsolete function, only for teaching.
+	Flip _insert_node_recursion(Node *&tree, Node *node) {
 		Flip flip = EType::_Miss;
 		if (tree == nullptr) {
 			tree = node;
@@ -563,7 +645,7 @@ public:
 					flip = EType::_Deal;
 				}
 				else {
-					/* if (tree->_right != nullptr && tree->_right ->_color == EType::_Red) */
+					/* (*tree)->_right != nullptr && (*tree)->_right->_color == EType::_Red) */
 					tree->_color = EType::_Red;
 					tree->_left->_color = tree->_right->_color = EType::_Blue;
 					flip = EType::_Hit;
