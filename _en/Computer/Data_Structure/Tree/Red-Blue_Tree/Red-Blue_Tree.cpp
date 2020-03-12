@@ -19,30 +19,11 @@
 5. Every path from a given node to any of its descendant Nil nodes goes through the same number of black nodes.
 */
 
-/* insert_node: 3 cases as total, other cases are impossible, think about inserting a Red node every time, all Nil nodes have color Blue.
+/* insert_node: a total of 3 cases, other cases are impossible, all Nil nodes have color Blue.
 note that a node to be inserted then to be adjusted must have a Red parent node, and property 5 must be mantained.
 --------------------------------------------------------------------------------
-[recursively]
-case 1£ºbottom Red is to be inserted, Blu must be a Blue node or a Root node, right Red must be a Nil node, or a Red node with Nil child nodes, or a Red node(case 1, recursively) with child nodes.
-	   Blu             [Red]   (Blu changes its color to Red, then propagates upwards)
-	   / \              / \
-	 Red Red  =>      Blu Blu  (left Red and right Red both change their color to Blue)
-	 / \              / \
-   Red Nil          Red Nil    (property 5 must be maintained after inserting a Red node)
-   / \              / \
-Nil Nil           Nil Nil
 
-  Blu             [Red]       (Blu changes its color to Red, then propagates upwards)
-  / \              / \
-Red Red      =>  Blu Blu      (left Red and right Red both change their color to Blue)
-	/ \              / \
-  Nil Red          Nil Red    (property 5 must be maintained after inserting a Red node)
-	  / \              / \
-	Nil Nil          Nil Nil
-
---------------------------------------------------------------------------------
-
-case 2: bottom Red is to be inserted, top Blu must be a Blue node or a Root node, bottom Blu must be a Nil node, or a Blue node(case 1, recursively) with child nodes.
+case 1: bottom Red is to be inserted, top Blu must be a Blue node or a Root node, bottom Blu must be a Nil node, or a Blue node(case 1, recursively) with child nodes.
 	   Blu                          Red                  Blu        (upper Red changes its color to Blue)
 	   / \                          / \                  / \
 	 Red Blu  right_rotate=>      Red Blu      =>      Red Red      (top Blu changes its color to Red)
@@ -61,7 +42,7 @@ Blu Red      left_rotate=>      Blu Red      =>      Red Red      (top Blu chang
 
 --------------------------------------------------------------------------------
 
-case 3: bottom Red is to be inserted, top Blu must be a Blue node or a Root node, bottom Blu must be a Nil node, or a Blue node(case 1, recursively) with child nodes.
+case 2: bottom Red is to be inserted, top Blu must be a Blue node or a Root node, bottom Blu must be a Nil node, or a Blue node(case 1, recursively) with child nodes.
 	Blu                         Blu                          Red                  Blu        (upper Red changes its color to Blue)
 	/ \                         / \                          / \                  / \
   Red Blu  left_rotate=>      Red Blu  right_rotate=>      Red Blu      =>      Red Red      (top Blu changes its color to Red)
@@ -79,9 +60,28 @@ Blu Red    right_rotate=>  Blu Red      left_rotate=>      Blu Red      =>      
 Nil Nil                        Nil Nil
 
 --------------------------------------------------------------------------------
+[recursively]
+case 3£ºbottom Red is to be inserted, Blu must be a Blue node or a Root node, right Red must be a Nil node, or a Red node with Nil child nodes, or a Red node(case 1, recursively) with child nodes.
+	   Blu             [Red]   (Blu changes its color to Red, then propagates upwards)
+	   / \              / \
+	 Red Red  =>      Blu Blu  (left Red and right Red both change their color to Blue)
+	 / \              / \
+   Red Nil          Red Nil    (property 5 must be maintained after inserting a Red node)
+   / \              / \
+Nil Nil           Nil Nil
+
+  Blu             [Red]       (Blu changes its color to Red, then propagates upwards)
+  / \              / \
+Red Red      =>  Blu Blu      (left Red and right Red both change their color to Blue)
+	/ \              / \
+  Nil Red          Nil Red    (property 5 must be maintained after inserting a Red node)
+	  / \              / \
+	Nil Nil          Nil Nil
+
+--------------------------------------------------------------------------------
 */
 
-/* remove_node: 6 cases as total, other cases are impossible, think about inserting a Red node every time, all Nil nodes have color Blue.
+/* remove_node: a total of 6 cases, other cases are impossible, all Nil nodes have color Blue.
 note that a node to be deleted must have one/two Nil child node(s), and property 5 must be mantained.
 --------------------------------------------------------------------------------
 
@@ -100,7 +100,7 @@ Nil Nil
 
 --------------------------------------------------------------------------------
 
-case 2: left Blu/right Blu is to be deleted, ¦Á has unknown color A.
+case 2: left Blu/right Blu is to be deleted, ¦Á has unknown color A, ¦Â must be a Blu node with no/one/two Red child nodes, or a Red with two Blue nodes.
 	   ¦Á             ¦Á
 	  / \           / \
 	Blu  ¦Â  =>    Blu  ¦Â  (Red replaces left Blu, then changes its color to Blue)
@@ -172,7 +172,7 @@ Nil Nil Nil Nil      Nil Nil      |  Nil Nil Nil Nil      Nil Nil
 
 --------------------------------------------------------------------------------
 [recursively]
-case 6: left Blu/right Blu is to be deleted, ¦Á/¦Â/¦Ã/¦Ä must be a Nil node, or a Red Node with two Nil child nodes.
+case 6: left Blu/right Blu is to be deleted, top Blu must be a Blue node, or a Root node, ¦Á/¦Â/¦Ã/¦Ä must be a Nil node, or a Red Node with two Nil child nodes.
 	  Blu                                   Red                    Blu      (Red changes its color to Blue)
 	  / \                                   / \                    / \
 	Blu Red        left_rotate=>          Blu Blu    =>          Red Blu    (top Blu changes its color to Red)
@@ -668,7 +668,7 @@ public:
 	}
 
 	void _removed_node(Color color, Node *node) {
-		/* take is already replaced by node */
+		/* [node] is the child of [take], [take] is already replaced by [node] */
 		if (color == EType::_Red) {
 			/* case 01: take->_color == EType::_Red */
 			// no operations
@@ -713,7 +713,7 @@ public:
 					else {
 						/* case 06: sibling->_color == EType::_Red */
 						_left_rotate(parent);
-						parent->_color = EType::_Blue;
+						parent->_color = parent->_left->_color;
 						parent->_left->_color = EType::_Red;
 						_stack[_top + 0] = &parent;
 						_stack[_top + 1] = &parent->_left;
@@ -724,14 +724,14 @@ public:
 					/* parent->_right == node */
 					Node *sibling = parent->_left;
 					if (sibling->_color == EType::_Blue) {
-						if (sibling->_right->_color == EType::_Red) {
+						if (sibling->_left != nullptr && sibling->_left->_color == EType::_Red) {
 							/* case 03: sibling->_right->_color == EType::_Red */
 							_right_rotate(parent);
 							parent->_color = parent->_right->_color;
 							parent->_left->_color = parent->_right->_color = EType::_Blue;
 							break;
 						}
-						else if (sibling->_left->_color == EType::_Red) {
+						else if (sibling->_right != nullptr && sibling->_right->_color == EType::_Red) {
 							/* case 04: sibling->_left->_color == EType::_Red */
 							_left_right_rotate(parent);
 							parent->_color = parent->_right->_color;
@@ -751,7 +751,7 @@ public:
 					else {
 						/* case 06: sibling->_color == EType::_Red */
 						_right_rotate(parent);
-						parent->_color = EType::_Blue;
+						parent->_color = parent->_right->_color;
 						parent->_right->_color = EType::_Red;
 						_stack[_top + 0] = &parent;
 						_stack[_top + 1] = &parent->_right;
@@ -785,6 +785,17 @@ int main(int argc, char *argv[]) {
 	tree.insert("6");
 	tree.insert("8");
 	tree.insert("0");
+
+	tree.remove("0");
+	tree.remove("6");
+	tree.remove("8");
+	tree.remove("1");
+	tree.remove("2");
+	tree.remove("3");
+	tree.remove("9");
+	tree.remove("4");
+	tree.remove("5");
+	tree.remove("7");
 
 	tree.preOrder();
 
