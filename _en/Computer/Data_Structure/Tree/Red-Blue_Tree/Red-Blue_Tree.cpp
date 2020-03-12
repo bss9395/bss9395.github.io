@@ -193,9 +193,11 @@ Nil Nil Blu Blu                       Blu Blu  ¦Ã  ¦Ä        [Blu] Blu  ¦Ã  ¦Ä  
 */
 
 #include <math.h>
+using ::pow;
 using ::log2;
 
 #include <iostream>
+#include <string>
 #include <string>
 #include <queue>
 #include <stack>
@@ -553,8 +555,9 @@ public:
 	}
 
 	Node **_search_node(const Node &node) {
-		if (_power < 2 * (_count + 1)) {
+		if (_power < (_count + 1)) {
 			_level += 5;
+			_power = (int)pow(2, _level - 2);
 			delete _stack;
 			_stack = new Element[_level];
 		}
