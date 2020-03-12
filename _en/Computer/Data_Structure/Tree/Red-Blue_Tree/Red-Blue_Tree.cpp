@@ -1,6 +1,6 @@
 /*Red-Blue_Tree.cpp
 * Author: BSS9395
-* Update: 2010-03-11T17:06:00+08@China-Guangdong-Zhanjiang+08
+* Update: 2010-03-13T02:35:00+08@China-Guangdong-Zhanjiang+08
 * Structure: Red-Blue_Tree
 */
 
@@ -236,14 +236,15 @@ public:
 
 template<typename Value>
 class Tree {
-	typedef Node<Value> **Element;
 	typedef Node<Value> Node;
+	typedef Node **Element;
 
 public:
 	Tree(const Node &head = Node())
 		: _head(head), _count(0) {
-		_capacity = 5;
-		_stack = new Element[_capacity];
+		_level = 5; /* according to property 5: _level < log2(_count + 1) + 2 */
+		_power = 8; /* 2^(_level - 2) < (_count + 1) == _power */
+		_stack = new Element[_level];
 		_top = 0;
 		// cerr << __FUNCTION__ << endl;
 	}
@@ -552,11 +553,10 @@ public:
 	}
 
 	Node **_search_node(const Node &node) {
-		int capacity = (int)log2(_count + 1) + 3; /* according to property 5 */
-		if (_capacity < capacity) {
+		if (_power < 2 * (_count + 1)) {
+			_level += 5;
 			delete _stack;
-			_capacity = 2 * capacity;
-			_stack = new Element[_capacity];
+			_stack = new Element[_level];
 		}
 		_top = 0;
 
@@ -766,8 +766,9 @@ public:
 	Node _head;
 	int _count;
 
+	int _level;
+	int _power;
 	Element *_stack;
-	int _capacity;
 	int _top;
 };
 
