@@ -244,8 +244,8 @@ class Tree {
 public:
 	Tree(const Node &head = Node())
 		: _head(head), _count(0) {
-		_level = 5; /* according to property 5: _level < log2(_count + 1) + 2 */
-		_power = 8; /* 2^(_level - 2) < (_count + 1) == _power */
+		_level = 5; /* according to property 5: _level <= log2(_count + 1) + 2 */
+		_power = 8; /* 2^(_level - 2) <= (_count + 1) == _power */
 		_stack = new Element[_level];
 		_top = 0;
 		// cerr << __FUNCTION__ << endl;
