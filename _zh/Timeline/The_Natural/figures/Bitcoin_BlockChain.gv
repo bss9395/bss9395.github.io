@@ -1,9 +1,9 @@
 
 digraph{
     node[shape="record"];
-    graph[rankdir="TB", splines="polyline"];
+    graph[pagedir="TL", rankdir="TB", splines="polyline"];
     graph[compound="true", clusterrank="global", newrank="true"];
-    graph[label="Bitcoin BlockChain"];
+    graph[label="Bitcoin Core\nBitcoin BlockChain"];
 
     subgraph cluster33 {
         graph[label="Bitcoin Wallet", labelloc="b", labeljust="l"];
@@ -13,20 +13,20 @@ digraph{
         
             subgraph cluster31 {
                 graph[label="Block Head", labelloc="t", labeljust="l", style="solid"];
-                Block3_Head[label="{{<r0>Timestamp|<r1>Link}|{<r2>Nonce|<r3>Transactions_Root|<r4>Previous_Hash}}", shape="record"];
+                Block3_Head[label="{{<r0>Timestamp|<r1>Difficulty|<r2>Link}|{<r3>Nonce|<r4>Transactions_Root|<r5>Previous_Hash}}", shape="record"];
             } 
 
             subgraph cluster32 {
                 graph[label="Block Body", labelloc="t", labeljust="l", style="solid"];
                 Block3_Body[label="{{<r0>Hash01|<r1>Hash23}|{<r2>Hash0|<r3>Hash1|<r4>Hash2|<r5>Hash3}}"];
-                Transaction3_0[label="{Output\nAddress0\n(Bonus\n+Fees)\n(Owner 4's\nPublic Key)}|"];
-                Transaction3_1[label="{<r0>Output\nAddress1|<r1>Output\nAddress2}|{<r2>Input\nAddress1}"];
-                Transaction3_2[label="Transaction2"];
-                Transaction3_3[label="Transaction3"];
+                Transaction3_0[label="{Payee's\nAddress\n(Bonus\n+Fees)}|"];
+                Transaction3_1[label="{<r0>Payee's\nAddress\n(8 BTC)|<r1>Payer's\nAddress\n(2 BTC)}|{<r2>Owner 3's\nPublic Key\n(Payer's\nAddress)\n(10 BTC)}"];
+                Transaction3_2[label="{[Output]|[Output]}|{[Input]}"];
+                Transaction3_3[label="[Transaction]"];
             }
         
-            Block3_Head:r3:s->Block3_Body:r0:n[arrowhead="inv", style="dotted"];
-            Block3_Head:r3:s->Block3_Body:r1:n[arrowhead="inv", style="dotted"];
+            Block3_Head:r4:s->Block3_Body:r0:n[arrowhead="inv", style="dotted"];
+            Block3_Head:r4:s->Block3_Body:r1:n[arrowhead="inv", style="dotted"];
             Block3_Body:r2:s->Transaction3_0:n[arrowhead="inv", style="dotted"];
             Block3_Body:r3:s->Transaction3_1:n[arrowhead="inv", style="dotted"];
             Block3_Body:r4:s->Transaction3_2:n[arrowhead="inv", style="dotted"];
@@ -35,6 +35,7 @@ digraph{
 
         Signature3[label="Owner 3's Private Key"];
         Transaction3_1:r2:s->Signature3:n[dir="back", style="dotted", label="Sign"];
+        Transaction3_1:r2:e->Transaction3_1:r2:se[label="Verify", style="dotted"];
     }
 
     subgraph cluster2 {
@@ -42,20 +43,20 @@ digraph{
         
         subgraph cluster21 {
             graph[label="Block Head", labelloc="t", labeljust="l", style="solid"];
-            Block2_Head[label="{{<r0>Timestamp|<r1>Link}|{<r2>Nonce|<r3>Transactions_Root|<r4>Previous_Hash}}", shape="record"];
+            Block2_Head[label="{{<r0>Timestamp|<r1>Difficulty|<r2>Link}|{<r3>Nonce|<r4>Transactions_Root|<r5>Previous_Hash}}", shape="record"];
         } 
 
         subgraph cluster22 {
             graph[label="Block Body", labelloc="t", labeljust="l", style="solid"];
             Block2_Body[label="{{<r0>Hash01|<r1>Hash23}|{<r2>Hash0|<r3>Hash1|<r4>Hash2|<r5>Hash3}}"];
-            Transaction2_0[label="{Output\nAddress0\n(Bonus\n+Fees)}|"];
-            Transaction2_1[label="Transaction1"];
-            Transaction2_2[label="{<r0>Output\nAddress1|<r1>Output\nAddress2\n(Owner 3's\nPublic Key)}|{<r2>Input\nAddress1}"];
-            Transaction2_3[label="Transaction3"];
+            Transaction2_0[label="{Payee's\nAddress\n(Bonus\n+Fees)}|"];
+            Transaction2_1[label="{<r0>Payee's\nAddress\n(10 BTC)|<r1>Payer's\nAddress\n(2 BTC)}|{<r2>Owner 2's\nPublic Key\n(Payer's\nAddress)\n(12 BTC)}"];
+            Transaction2_2[label="[Transaction]"];
+            Transaction2_3[label="[Transaction]"];
         }    
         
-        Block2_Head:r3:s->Block2_Body:r0:n[arrowhead="inv", style="dotted"];
-        Block2_Head:r3:s->Block2_Body:r1:n[arrowhead="inv", style="dotted"];
+        Block2_Head:r4:s->Block2_Body:r0:n[arrowhead="inv", style="dotted"];
+        Block2_Head:r4:s->Block2_Body:r1:n[arrowhead="inv", style="dotted"];
         Block2_Body:r2:s->Transaction2_0:n[arrowhead="inv", style="dotted"];
         Block2_Body:r3:s->Transaction2_1:n[arrowhead="inv", style="dotted"];
         Block2_Body:r4:s->Transaction2_2:n[arrowhead="inv", style="dotted"];
@@ -65,7 +66,8 @@ digraph{
     subgraph cluster23 {
         graph[label="Bitcoin Wallet", labelloc="b", labeljust="l"];
         Signature2[label="Owner 2's Private Key"];
-        Transaction2_2:r2:s->Signature2:n[dir="back", style="dotted", label="Sign"];
+        Transaction2_1:r2:s->Signature2:n[dir="back", style="dotted", label="Sign"];
+        Transaction2_1:r2:e->Transaction2_1:r2:se[label="Verify", style="dotted"];
     }
 
     subgraph cluster1 {
@@ -73,20 +75,20 @@ digraph{
         
         subgraph cluster11 {
             graph[label="Block Head", labelloc="t", labeljust="l", style="solid"];
-            Block1_Head[label="{{<r0>Timestamp|<r1>Link}|{<r2>Nonce|<r3>Transactions_Root|<r4>Previous_Hash}}", shape="record"];
+            Block1_Head[label="{{<r0>Timestamp|<r1>Difficulty|<r2>Link}|{<r3>Nonce|<r4>Transactions_Root|<r5>Previous_Hash}}", shape="record"];
         } 
 
         subgraph cluster12 {
             graph[label="Block Body", labelloc="t", labeljust="l", style="solid"];
             Block1_Body[label="{{<r0>Hash01|<r1>Hash23}|{<r2>Hash0|<r3>Hash1|<r4>Hash2|<r5>Hash3}}"];
-            Transaction1_0[label="{Output\nAddress0\n(Bonus\n+Fees)}|"];
-            Transaction1_1[label="{<r0>Output\nAddress1\n(Owner 2's\nPublic Key)|<r1>Output\nAddress2}|{<r2>Input\nAddress1}"];
-            Transaction1_2[label="Transaction2"];
-            Transaction1_3[label="Transaction3"];
+            Transaction1_0[label="{Payee's\nAddress\n(Bonus\n+Fees)}|"];
+            Transaction1_1[label="[Transaction]"];
+            Transaction1_2[label="{<r0>Payee's\nAddress\n(13 BTC)|<r1>Payer's\nAddress\n(12 BTC)}|{<r2>Owner 1's\nPublic Key\n(Payer's\nAddress)\n(25 BTC)}"];
+            Transaction1_3[label="[Transaction]"];
         }    
         
-        Block1_Head:r3:s->Block1_Body:r0:n[arrowhead="inv", style="dotted"];
-        Block1_Head:r3:s->Block1_Body:r1:n[arrowhead="inv", style="dotted"];
+        Block1_Head:r4:s->Block1_Body:r0:n[arrowhead="inv", style="dotted"];
+        Block1_Head:r4:s->Block1_Body:r1:n[arrowhead="inv", style="dotted"];
         Block1_Body:r2:s->Transaction1_0:n[arrowhead="inv", style="dotted"];
         Block1_Body:r3:s->Transaction1_1:n[arrowhead="inv", style="dotted"];
         Block1_Body:r4:s->Transaction1_2:n[arrowhead="inv", style="dotted"];
@@ -96,7 +98,8 @@ digraph{
     subgraph cluster13 {
         graph[label="Bitcoin Wallet", labelloc="b", labeljust="l"];
         Signature1[label="Owner 1's Private Key"];
-        Transaction1_1:r2:s->Signature1:n[dir="back", style="dotted", label="Sign"];
+        Transaction1_2:r2:s->Signature1:n[dir="back", style="dotted", label="Sign"];
+        Transaction1_2:r2:e->Transaction1_2:r2:se[label="Verify", style="dotted"];
     }
 
     Block0_Head[style="invis"];
@@ -106,14 +109,14 @@ digraph{
     {rank="same"; Block1_Body; Block2_Body;}
     {rank="same"; Transaction1_0; Transaction1_1; Transaction1_2; Transaction1_3; Transaction2_0; Transaction2_1; Transaction2_2; Transaction2_3; Block0_Transaction}
 
-    Block3_Head:r2:se->Block2_Head[constraint="false", lhead="cluster21"];
-    Block3_Head:r4:ne->Block2_Head[constraint="false", lhead="cluster21", arrowhead="inv", style="dotted"];
-    Block2_Head:r2:se->Block1_Head[constraint="false", lhead="cluster11"];
-    Block2_Head:r4:ne->Block1_Head[constraint="false", lhead="cluster11", arrowhead="inv", style="dotted"];
-    Block1_Head:r2:se->Block0_Head[constraint="false"];
-    Block1_Head:r4:ne->Block0_Head[constraint="false", arrowhead="inv", style="dotted"];
+    Block3_Head:r4:ne->Block2_Head[constraint="false", lhead="cluster21"];
+    Block3_Head:r5:ne->Block2_Head[constraint="false", lhead="cluster21", arrowhead="inv", style="dotted"];
+    Block2_Head:r4:ne->Block1_Head[constraint="false", lhead="cluster11"];
+    Block2_Head:r5:ne->Block1_Head[constraint="false", lhead="cluster11", arrowhead="inv", style="dotted"];
+    Block1_Head:r4:ne->Block0_Head[constraint="false"];
+    Block1_Head:r5:ne->Block0_Head[constraint="false", arrowhead="inv", style="dotted"];
 
-    Transaction3_1:r2:ne->Transaction2_2:r1:nw[constraint="false", dir="back", style="dotted", label="Verify"];
-    Transaction2_2:r2:ne->Transaction1_1:r0:nw[constraint="false", dir="back", style="dotted", label="Verify"];
-    Transaction1_1:r2:ne->Block0_Transaction:nw[constraint="false", dir="back", style="dotted", label="Verify"];
+    Transaction3_1:r2:ne->Transaction2_1:r0:w[constraint="false", dir="back"];
+    Transaction2_1:r2:ne->Transaction1_2:r1:w[constraint="false", dir="back"];
+    Transaction1_2:r2:ne->Block0_Transaction:w[constraint="false", dir="back"];
 }
