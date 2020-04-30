@@ -1,0 +1,88 @@
+digraph G {
+    node[shape="record"]; 
+    graph[pagedir="TL", rankdir="LR", splines="line"];
+    graph[compound="true", clusterrank="global", newrank="true"];
+    graph[label="Bitcoin BlockChain Fork"];
+
+    subgraph cluster2 {
+        graph[label="Hard Fork"];
+      
+        subgraph cluster2_1 {
+            graph[label="Node 2 (upgraded)", style="rounded", fontcolor="red"];
+
+            block2_6u[label="Block 6u\n(upgraded)", color="red", fontcolor="red"];
+            block2_5ou[label="{[refuse]\nobselete\nblock|[accept]\nupgraded\nblock}", color="red", fontcolor="red"];
+            block2_4u[label="Block 4u\n(upgraded)", color="red", fontcolor="red"];
+        }
+
+        subgraph cluster2_2 {
+            graph[label="Node 3 (obsolete)", style="rounded", labelloc="b"];
+
+            block2_5uo[label="{[refuse]\nupgraded\nblock|[accept]\nobsolete\nblock}"];
+            block2_4o[label="Block 4o\n(obsolete)"];
+        }
+
+        block2_3o[label="Block 3o\n(obsolete)"];
+        block2_2o[label="Block 2o\n(obsolete)"];
+        block2_1o[label="Block 1o\n(obsolete)"];
+        block2_0o[label="Block *a\n(obsolete)"];
+
+        block2_1[shape="point", style="invis"];
+        block2_2[shape="point", style="invis"];
+        block2_3[style="invis"];
+        block2_4[style="invis"];
+        block2_5[style="invis"];
+
+
+        block2_6u->block2_5ou[color="red"];
+        block2_5ou->block2_4u[color="red"];
+        block2_4u->block2_3o[color="red"];
+        block2_3o->block2_2o;
+        block2_2o->block2_1o;
+
+        block2_1->block2_2[arrowhead="none", style="dashed", color="blue", minlen="2", label="cannot merge", fontcolor="blue"];
+        block2_2->block2_4[arrowhead="none", style="dashed", color="blue"];
+        block2_2->block2_3o[style="invis"];
+
+        block2_3->block2_5uo[style="invis"];
+        block2_5uo->block2_4o;
+        block2_4o->block2_3o;
+        block2_4o->block2_4[style="invis"];
+        block2_4->block2_0o[style="invis"];
+        block2_0o->block2_1o[style="dotted"];
+        block2_0o->block2_5[style="invis"];
+    }
+
+    subgraph cluster1 {
+        graph[label="Soft Fork"];
+
+        subgraph cluster1_1 {
+            graph[label="Node 1 (obsolete)", style="rounded", labelloc="b"];
+
+            block1_6u[label="Block 6u\n(upgraded)", color="red", fontcolor="red"];
+            block1_5uo[label="{[accept]\nupgraded\nblock|[accept]\nobsolete\nblock}"];
+            block1_4u[label="Block 4u\n(upgraded)", color="red", fontcolor="red"];
+            block1_5ou[label="{[accept]\nobsolete\nblock|[accept]\nupgraded\nblock}", color="red", fontcolor="red"];
+            block1_4o[label="Block 4o\n(obsolete)"];
+        }
+
+        block1_3o[label="Block 3o\n(obsolete)"];
+        block1_2o[label="Block 2o\n(obsolete)"];
+        block1_1o[label="Block 1o\n(obsolete)"];
+        block1_0o[label="Block *o\n(obsolete)"];
+
+        block1_1[style="invis"];
+
+
+        block1_6u->block1_5uo[color="red"];
+        block1_5uo->block1_4u;
+        block1_4u->block1_3o[color="red"];
+        block1_3o->block1_2o;
+        block1_2o->block1_1o;
+
+        block1_5ou->block1_4o[color="red"];
+        block1_4o->block1_3o[style="dotted"];
+        block1_0o->block1_1o[style="dotted"];
+        block1_0o->block1_1[style="invis"];
+    }
+}
