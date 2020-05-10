@@ -10,13 +10,16 @@ void func(double d1, double d2) {
 }
 
 
-void Default(double val, char *def) {
+void Default(double val, char *def1, char *def2) {
 	char del = ':';
-	if (def != NULL) {
-		del = *def;
+	if (def1 != NULL) {
+		del = *def1;
+	}
+	if (def2 == NULL) {
+		def2 = &del;
 	}
 
-	printf("%lf, %c\n", val, del);
+	printf("%lf, %c, %c\n", val, del, *def2);
 }
 
 
@@ -26,7 +29,9 @@ int main(int argc, char* argv[]) {
 	FUNC(, 3.0);
 	FUNC(2.0, 3.0);
 
-	Default(12.23, NULL);
+	char ch = '#';
+	Default(12.23, NULL, NULL);
+	Default(23.34, &ch, &ch);
 
 	return 0;
 }
