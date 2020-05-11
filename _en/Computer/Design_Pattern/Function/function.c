@@ -32,9 +32,10 @@ Ret function(In in, InOut *io, Out *out) {
 		in = (In) { 111, "ffn" };
 		*io = (InOut) { "ffo" };
 		*out = (Out) { 222, "fft" };
+
+		ret += 1;
 	}
 
-	ret += 1;
 	return ret;
 }
 
