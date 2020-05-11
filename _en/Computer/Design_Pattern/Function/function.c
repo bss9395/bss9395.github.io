@@ -1,3 +1,9 @@
+/* function.c
+Author: BSS9395
+Update: 2020-05-11T11:00:00@China-Guangdong-Zhanjiang
+Design: Function Paramters Pattern
+*/
+
 #include <stdio.h>
 #include <stdarg.h>
 

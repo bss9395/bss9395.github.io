@@ -1,3 +1,9 @@
+/* default.c
+Author: BSS9395
+Update: 2020-05-10T20:00:00@China-Guangdong-Zhanjiang
+Design: C Function Default Parameters
+*/
+
 #include <stdio.h>  
 #include <stdarg.h>
 
