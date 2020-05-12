@@ -1,33 +1,32 @@
 /* Association.c
 * Author: BSS9395
-* Update: 2019-11-23T20:32:00+08@ShenZhen
+* Update: 2020-05-12T13:10:00+08@SChina-Guangdong-Zhanjiang+08
 * Design: Association
 */
 
 #include <stdio.h>
 
-typedef const void* EType;
+typedef const char* Type;
 static const struct {
-	EType Null;
-	EType Bool;
-	EType Long;
-	EType Double;
-	EType Array;
-	EType String;
-	EType EType;
-	EType AType;
-} ETYPE = { (EType)"Null", (EType)"Bool", (EType)"Long", (EType)"Double", (EType)"Array", (EType)"String", (EType)"EType", (EType)"AType" };
-static EType* ATYPE = (EType*)&ETYPE;
+	const Type _Null;
+	const Type _Boole;
+	const Type _Long;
+	const Type _Double;
+	const Type _String;
+} EType = { "Null", "Boole", "Long", "Double", "String" };
+static const Type *AType = (Type *)&EType;
 
 int main(int argc, char* argv[]) {
-	EType type1 = ETYPE.String;
-	printf("%ld, %s\n", (long)type1, (char*)type1);
+	Type type = EType._Null;
+	fprintf(stderr, "%X: %s""\n", type, type);
 
-	EType type2 = "String";
-	printf("%ld, %s\n", (long)type2, (char*)type2);
+	type = EType._Boole;
+	fprintf(stderr, "%X: %s""\n", type, type);
 
-	for (int i = 0; i < sizeof(ETYPE) / sizeof(EType); ++i) {
-		printf("%ld, %s\n", (long)ATYPE[i], (char*)ATYPE[i]);
+	fprintf(stderr, "------------------""\n");
+
+	for (int i = 0; i < sizeof(EType) / sizeof(Type); ++i) {
+		printf("%X: %s""\n", AType[i], AType[i]);
 	}
 
 	return 0;
