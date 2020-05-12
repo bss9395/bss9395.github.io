@@ -132,7 +132,7 @@ int ip4_port(char *address, char *ip4, unsigned short *port) {
 
         if (inet_addr(ip4) == INADDR_NONE) {
             char chk[128];
-            sprintf(chk, gethostbyname("_")->h_addr_list[0]);
+            sprintf(chk, "%s", gethostbyname("_")->h_addr_list[0]);
             struct hostent host = *gethostbyname(ip4);
             if (check(0 == strncmp(chk, host.h_addr_list[0], host.h_length), __FILE__, __LINE__, __FUNCTION__, errno, "gethostbyname")) {
                 cleanup();
