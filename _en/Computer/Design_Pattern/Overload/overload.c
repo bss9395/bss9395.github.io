@@ -57,7 +57,7 @@ Ret Override(Type type, Para para, int i, double d, char *s) {
 		fprintf(stderr, "%lf""\n", pd);
 	}
 	else if (type == EType._String) {
-		char *ps = para;
+		char *ps = *(char **)para;
 		fprintf(stderr, "%s""\n", ps);
 	}
 
@@ -70,12 +70,15 @@ int main(int argc, char *argv[]) {
 		.d = 12.23
 	};
 
-	Overload(load, 10, 20.0, "str1");
+	Overload(load, 1, 2.0, "str");
 
 	////////////////////////////////////////
 
+	double d = 23.34;
+	Override(EType._Double, &d, 1, 2.0, "str");
+
 	char *s = "abc";
-	Override(EType._String, s, 30, 40.0, "str2");
+	Override(EType._String, &s, 1, 2.0, "str");
 
 	return 0;
 }
