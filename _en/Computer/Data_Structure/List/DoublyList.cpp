@@ -1,6 +1,6 @@
 /* DoublyList.cpp
 Author: BSS9395
-Update: 2020-05-17T00:00:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-15T00:00:00+08@China-Guangdong-Zhanjiang+08
 Design: Doubly Linked List
 */
 
@@ -17,7 +17,7 @@ using std::string;
 typedef long iptr;
 
 
-bool Checkout(bool failed, const string &file, const iptr &line, const string &function, const iptr &error, const string &report) {
+bool Checkout(const bool &failed, const string &file, const iptr &line, const string &function, const iptr &error, const string &report) {
 	if (failed) {
 		cerr << "[" << file << ":" << line << ":" << function << "]" << error << "#" << report;
 		if (!(errno == 0 && error == 0)) {
@@ -31,7 +31,7 @@ bool Checkout(bool failed, const string &file, const iptr &line, const string &f
 	return failed;
 }
 
-template<typename T>
+template<typename Type>
 class Node {
 	friend bool operator<(const Node &lhs, const Node &rhs) {
 		// cerr << __FUNCTION__ << endl;
@@ -49,7 +49,7 @@ class Node {
 	}
 
 public:
-	Node(const T &data = T())
+	Node(const Type &data = Type())
 		: _data(data), _next(nullptr), _prev(nullptr) {
 		// cerr << __FUNCTION__ << endl;
 	}
@@ -59,15 +59,24 @@ public:
 	}
 
 public:
-	T _data;
+	Type _data;
 	Node *_prev;
 	Node *_next;
 };
 
 
-template<typename T>
+template<typename Type>
 class DoublyList {
-	typedef class Node<T> Node;
+	typedef class Node<Type> Node;
+	typedef iptr(*Visit)(Node *node);
+
+public:
+	static iptr Print(Node *node) {
+		iptr ret = 0;
+		cout << " => " << *node;
+		ret += 1;
+		return ret;
+	}
 
 public:
 	DoublyList()
@@ -96,23 +105,23 @@ public:
 	}
 
 public:
-	void Traverse(ostream &os = cout, Node *node = nullptr) {
+	iptr Traverse(const Visit &visit, Node *node = nullptr) {
 		// cerr << __FUNCTION__ << endl;
+		iptr ret = 0;
 
 		if (node == nullptr) {
 			node = _head._next;
 		}
 
-		iptr size = 0;
 		while (node != &_head) {
-			os << " => " << *node;
-			size += 1;
+			ret += visit(node);
 
 			node = node->_next;
 		}
-		os << endl;
+		cout << endl;
 
-		Checkout(_size != size, __FILE__, __LINE__, __FUNCTION__, errno, "_size != size");
+		Checkout(_size != ret, __FILE__, __LINE__, __FUNCTION__, errno, "_size != size");
+		return ret;
 	}
 
 public:
@@ -180,7 +189,7 @@ int main(int argc, char *argv[]) {
 	list.Attach(node1);
 	list.Attach(node2, -1);
 
-	list.Traverse();
+	list.Traverse(DoublyList<string>::Print);
 
 	return 0;
 }
