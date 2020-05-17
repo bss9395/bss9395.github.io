@@ -1,6 +1,6 @@
 /* DoublyList.cpp
 Author: BSS9395
-Update: 2020-05-17T17:27:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-17T23:36:00+08@China-Guangdong-Zhanjiang+08
 Design: Doubly Linked List
 */
 
@@ -20,6 +20,7 @@ Design: Doubly Linked List
  0   1   2   3   4   5   6
 -6  -5  -4  -3  -2  -1   0
 */
+
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
@@ -42,13 +43,41 @@ static const struct {
 	Level _Fatal;
 } ELevel = { "Info", "ToDo", "Warn", "Error", "Fatal" };
 
-bool Checkout(const bool &failed, const string &file, const iptr &line, const string &function, const Level &level, const string &report) {
+
+const char **Extract(const char *lite, const char deli[], iptr *lines) {
+	static const char *split[32];
+	*lines = 0;
+
+	iptr i = 0;
+	while (lite[0] != '\0') {
+		split[*lines] = &lite[0];
+		*lines += 1;
+		do {
+			lite += 1;
+			i = 0;
+			while (deli[i] != '\0' && lite[0] != deli[i]) {
+				i += 1;
+			}
+			if (lite[0] == deli[i]) {
+				break;
+			}
+		} while (lite[0] != '\0');
+	}
+	split[*lines] = NULL;
+
+	return split;
+}
+
+
+bool Checkout(const bool &failed, const char *file, const iptr &line, const char *function, const Level &level, const string &report) {
 	// cerr << __FUNCTION__ << endl;
 	if (failed) {
-		cerr << "[" << file << "==" << line << "==" << function << "]" << endl;
-		cerr << "##" << level << "##" << report;
+		iptr lines = 0;
+		cerr << "[" << (Extract(file, "/\\.", &lines)[lines - 2] + 1) << "; " << line;
+		cerr << "; " << (Extract(function, ":", &lines)[lines - 1] + 1) << "]";
+		cerr << "; " << level << "; " << report;
 		if (!(errno == 0 && level == ELevel._Info)) {
-			cerr << "##" << strerror(errno);
+			cerr << "; " << strerror(errno);
 			throw level;
 		}
 		cerr << endl;
@@ -134,7 +163,7 @@ public:
 			size += 1;
 		}
 
-		Checkout(_size != size, __FILE__, __LINE__, __FUNCTION__, ELevel._Fatal, "_size != size");
+		Checkout(_size != size, __FILE__, __LINE__, __FUNCTION__, ELevel._Fatal, "(_size != size)");
 	}
 
 public:
@@ -153,7 +182,7 @@ public:
 		}
 		cout << endl;
 
-		Checkout(_size != ret, __FILE__, __LINE__, __FUNCTION__, ELevel._Fatal, "_size != size");
+		Checkout(_size != ret, __FILE__, __LINE__, __FUNCTION__, ELevel._Fatal, "(_size != size)");
 		return ret;
 	}
 
@@ -185,7 +214,7 @@ public:
 	iptr Detach(Node **node, iptr index = 1) {
 		iptr ret = 0;
 
-		if (!Checkout(_size <= 0 || index == 0, __FILE__, __LINE__, __FUNCTION__, ELevel._Info, "_size <= 0 || index == 0")) {
+		if (!Checkout(_size <= 0 || index == 0, __FILE__, __LINE__, __FUNCTION__, ELevel._Info, "(_size <= 0 || index == 0)")) {
 			Node *knot = &_head;
 			index = (index > 0) ? ((index - 1) % _size + 1) : ((index + 1) % _size - 1);
 			while (index > 0) {
@@ -314,11 +343,13 @@ int main(int argc, char *argv[]) {
 	list.Attach(node3, -1);
 
 	Node<string> *node;
-	list.Detach(&node, 2);
+	list.Detach(&node, 0);
 
 	list.Traverse(DoublyList<string>::Print);
 
-	////////////////////////////////////////
+
+	fprintf(stderr, "\n""========================================""\n");
+
 
 	DoublyList<string>::Iterator beg = list.Beg();
 	DoublyList<string>::Iterator end = list.End();
@@ -326,6 +357,15 @@ int main(int argc, char *argv[]) {
 		cerr << " => " << *beg;
 		beg += 1;
 	}
+
+
+	fprintf(stderr, "\n""========================================""\n");
+
+
+	char data[128] = "/abc/def.txt";
+	iptr lines = 0;
+	fprintf(stderr, "lines = %d""\n""extract = %s""\n""lines = %d""\n",
+		lines, Extract(data, "/\\.", &lines)[lines - 2] + 1, lines);
 
 	return 0;
 }
