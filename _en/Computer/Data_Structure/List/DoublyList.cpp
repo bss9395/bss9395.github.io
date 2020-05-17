@@ -73,14 +73,13 @@ bool Checkout(const bool &failed, const char *file, const iptr &line, const char
 	// cerr << __FUNCTION__ << endl;
 	if (failed) {
 		iptr lines = 0;
-		cerr << "[" << (Extract(file, "/\\.", &lines)[lines - 2] + 1) << "; " << line;
-		cerr << "; " << (Extract(function, ":", &lines)[lines - 1] + 1) << "]";
-		cerr << "; " << level << "; " << report;
+		fprintf(stderr, "[%s; %d; %s] %s; %s; "
+			, (Extract(file, "/\\.", &lines)[lines - 2] + 1), line, (Extract(function, ":", &lines)[lines - 1] + 1), level, report.c_str());
 		if (!(errno == 0 && level == ELevel._Info)) {
-			cerr << "; " << strerror(errno);
+			fprintf(stderr, "%s; ", strerror(errno));
 			throw level;
 		}
-		cerr << endl;
+		fprintf(stderr, "\n");
 	}
 
 	errno = 0;
