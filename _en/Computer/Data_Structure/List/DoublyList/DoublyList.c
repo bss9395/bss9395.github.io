@@ -4,24 +4,6 @@ Update: 2020-05-18T21:36:00+08@China-Guangdong-Zhanjiang+08
 Design: Doubly Linked List
 */
 
-/*
- 0   1   2   3   4   5   6
--6	-5	-4	-3	-2  -1   0
- +---+---+---+---+---+---+
- | D | o | u | b | l | y |
- +---+---+---+---+---+---+
-   1   2   3   4   5   6
-  -6  -5  -4  -3  -2  -1
-
-
- 0   1   2   3   4   5   6
--6	-5	-4	-3	-2  -1   0
- +---+---+---+---+---+---+
- | P | y | t | h | o | n |
- +---+---+---+---+---+---+
- 0   1   2   3   4   5   6
--6  -5  -4  -3  -2  -1   0
-*/
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <errno.h>
@@ -50,7 +32,7 @@ struct _Function {
 };
 
 struct _Node {
-	const char *_data;
+	Data _data;
 	Node *_prev;
 	Node *_next;
 };
@@ -197,6 +179,19 @@ static iptr Traverse(DoublyList *list, Visit visit, Node *node) {
 	return ret;
 }
 
+Node *NewNode(Data data) {
+	Node *node = (Node *)malloc(sizeof(Node));
+	node->_prev = NULL;
+	node->_next = NULL;
+	node->_data = data;
+	return node;
+}
+
+void DeleteNode(Node *node) {
+	free(node);
+	return;
+}
+
 DoublyList MakeList() {
 	// fprintf(stderr, "%s""\n", __FUNCTION__);
 
@@ -229,7 +224,7 @@ void DestroyList(DoublyList *list) {
 		node = curr;
 		curr = curr->_next;
 
-		free(node);
+		DeleteNode(node);
 		size += 1;
 	}
 
@@ -243,13 +238,9 @@ void DestroyList(DoublyList *list) {
 int main(int argc, char *argv[]) {
 	DoublyList list = MakeList();
 
-	Node *node1 = malloc(sizeof(Node));
-	Node *node2 = malloc(sizeof(Node));
-	Node *node3 = malloc(sizeof(Node));
-
-	node1->_data = "node1";
-	node2->_data = "node2";
-	node3->_data = "node3";
+	Node *node1 = NewNode("node1");
+	Node *node2 = NewNode("node2");
+	Node *node3 = NewNode("node3");
 
 	Attach(&list, node1, 0);
 	Attach(&list, node2, -1);
