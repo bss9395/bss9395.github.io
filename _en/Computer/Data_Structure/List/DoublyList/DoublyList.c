@@ -1,6 +1,6 @@
 /* DoublyList.c
 Author: BSS9395
-Update: 2020-05-19T11:20:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-18T21:36:00+08@China-Guangdong-Zhanjiang+08
 Design: Doubly Linked List
 */
 
@@ -160,38 +160,8 @@ static iptr Detach(DoublyList *list, Node **node, iptr index) {
 		}
 
 		*node = knot;
-		knot->_prev->_next = knot->_next;
-		knot->_next->_prev = knot->_prev;
-
-		list->_size -= 1;
-		ret += 1;
-	}
-
-	return ret;
-}
-
-/* Another Acceptable Design Pattern */
-/* The Count starts at 1 */
-static iptr Detach_1(DoublyList *list, Node **node, iptr index) {
-	// fprintf(stderr, "%s""\n", __FUNCTION__);
-
-	iptr ret = 0;
-
-	if (!Check(list->_size <= 0 || index == 0, __FILE__, __LINE__, __FUNCTION__, ELevel._Info, "(list->_size <= 0 || index == 0)")) {
-		Node *knot = &list->_head;
-		index = (index > 0) ? ((index - 1) % list->_size + 1) : ((index + 1) % list->_size - 1);
-		while (index > 0) {
-			knot = knot->_next;
-			index -= 1;
-		}
-		while (index < 0) {
-			knot = knot->_prev;
-			index += 1;
-		}
-
-		*node = knot;
-		knot->_prev->_next = knot->_next;
-		knot->_next->_prev = knot->_prev;
+		knot->_next = knot->_next->_next;
+		knot->_next->_prev = knot;
 
 		list->_size -= 1;
 		ret += 1;
