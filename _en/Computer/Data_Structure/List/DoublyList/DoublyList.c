@@ -1,6 +1,6 @@
 /* DoublyList.c
 Author: BSS9395
-Update: 2020-05-18T21:36:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-19T18:58:00+08@China-Guangdong-Zhanjiang+08
 Design: Doubly Linked List
 */
 
@@ -36,19 +36,11 @@ typedef char *Data;
 typedef struct _Node Node;
 typedef struct _DoublyList DoublyList;
 typedef struct _Function Function;
-typedef iptr(*Visit)(DoublyList *list, Node *node);
 
-DoublyList MakeList();
-void DestroyList(DoublyList *list);
+DoublyList MakeList(Function *function);
+void DestructList(DoublyList *list);
 
 ////////////////////////////////////////
-
-struct _Function {
-	iptr(*_Attach)(DoublyList *list, Node *node, iptr index);
-	iptr(*_Detach)(DoublyList *list, Node **node, iptr index);
-	iptr(*_Print)(DoublyList *list, Node *node);
-	iptr(*_Traverse)(DoublyList *list, Visit visit, Node *node);
-};
 
 struct _Node {
 	Data _data;
@@ -57,9 +49,16 @@ struct _Node {
 };
 
 struct _DoublyList {
-	Function *_function;
 	Node _head;
 	iptr _size;
+};
+
+typedef iptr(*Visit)(DoublyList *list, Node *node);
+struct _Function {
+	iptr(*Attach)(DoublyList *list, Node *node, iptr index);
+	iptr(*Detach)(DoublyList *list, Node **node, iptr index);
+	iptr(*Print)(DoublyList *list, Node *node);
+	iptr(*Traverse)(DoublyList *list, Visit visit, Node *node);
 };
 
 
@@ -211,17 +210,19 @@ void DeleteNode(Node *node) {
 	return;
 }
 
-DoublyList MakeList() {
+DoublyList MakeList(Function *function) {
 	// fprintf(stderr, "%s""\n", __FUNCTION__);
 
-	static Function function = {
-		._Attach = Attach,
-		._Detach = Detach,
-		._Print = Print,
-		._Traverse = Traverse
+	static Function func = {
+		.Attach = Attach,
+		.Detach = Detach,
+		.Print = Print,
+		.Traverse = Traverse
 	};
+
+	*function = func;
+
 	static DoublyList list = {
-		._function = &function,
 		._head._data = "Head",
 		._size = 0
 	};
@@ -233,7 +234,7 @@ DoublyList MakeList() {
 	return list;
 }
 
-void DestroyList(DoublyList *list) {
+void DestructList(DoublyList *list) {
 	// fprintf(stderr, "%s""\n", __FUNCTION__);
 
 	iptr size = 0;
@@ -251,23 +252,25 @@ void DestroyList(DoublyList *list) {
 	return;
 }
 
+////////////////////////////////////////
 
 #ifndef Main
 
 int main(int argc, char *argv[]) {
-	DoublyList list = MakeList();
+	Function function;
+	DoublyList list = MakeList(&function);
 
 	Node *node0 = NewNode("node0");
 	Node *node1 = NewNode("node1");
 	Node *node2 = NewNode("node2");
 
-	Attach(&list, node0, 0);
-	Attach(&list, node1, -1);
-	Attach(&list, node2, -1);
+	function.Attach(&list, node0, 0);
+	function.Attach(&list, node1, -1);
+	function.Attach(&list, node2, -1);
 
-	Traverse(&list, list._function->_Print, NULL);
+	function.Traverse(&list, function.Print, NULL);
 
-	DestroyList(&list);
+	DestructList(&list);
 	return 0;
 }
 
