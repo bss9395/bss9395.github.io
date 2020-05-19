@@ -4,16 +4,8 @@ Update: 2020-05-17T23:36:00+08@China-Guangdong-Zhanjiang+08
 Design: Doubly Linked List
 */
 
-/*
- 0   1   2   3   4   5   6
--6	-5	-4	-3	-2  -1   0
- +---+---+---+---+---+---+
- | D | o | u | b | l | y |
- +---+---+---+---+---+---+
-   1   2   3   4   5   6
-  -6  -5  -4  -3  -2  -1
-
-
+/* Right Handed Rotation
+[The Count Starts at 0]
  0   1   2   3   4   5   6
 -6	-5	-4	-3	-2  -1   0
  +---+---+---+---+---+---+
@@ -21,6 +13,15 @@ Design: Doubly Linked List
  +---+---+---+---+---+---+
  0   1   2   3   4   5   6
 -6  -5  -4  -3  -2  -1   0
+
+[Another Acceptable Design Pattern]
+ 0   1   2   3   4   5   6
+-6	-5	-4	-3	-2  -1   0
+ +---+---+---+---+---+---+
+ | D | o | u | b | l | y |
+ +---+---+---+---+---+---+
+   1   2   3   4   5   6
+  -6  -5  -4  -3  -2  -1
 */
 
 
@@ -76,7 +77,8 @@ bool Checkout(const bool &failed, const char *file, const iptr &line, const char
 	if (failed) {
 		iptr lines = 0;
 		fprintf(stderr, "[%s; %d; %s] %s; %s; "
-			, (Extract(file, "/\\.", &lines)[lines - 2] + 1), line, (Extract(function, ":", &lines)[lines - 1] + 1), level, report.c_str());
+			, (Extract(file, "/\\.", &lines)[lines - 2] + 1), line, (Extract(function, ":", &lines)[lines - 1] + 1)
+			, level, report.c_str());
 		if (!(errno == 0 && level == ELevel._Info)) {
 			fprintf(stderr, "%s; ", strerror(errno));
 			throw level;
@@ -212,7 +214,37 @@ public:
 		return ret;
 	}
 
-	iptr Detach(Node **node, iptr index = 1) {
+	iptr Detach(Node **node, iptr index = 0) {
+		// cerr << __FUNCTION__ << endl;
+
+		iptr ret = 0;
+
+		if (false == Checkout(_size <= 0, __FILE__, __LINE__, __FUNCTION__, ELevel._Info, "(_size <= 0)")) {
+			Node *knot = &_head;
+
+			index = (index >= 0) ? (index % _size) : (index % (_size + 1) - 1);
+			while (index > 0) {
+				knot = knot->_next;
+				index -= 1;
+			}
+			while (index < 0) {
+				knot = knot->_prev;
+				index += 1;
+			}
+
+			*node = knot->_next;
+			knot->_next = knot->_next->_next;
+			knot->_next->_prev = knot;
+
+			_size -= 1;
+			ret += 1;
+		}
+		return ret;
+	}
+
+	/* Another Acceptable Design Pattern */
+	/* The Count starts at 1 */
+	iptr Detach_1(Node **node, iptr index = 1) {
 		iptr ret = 0;
 
 		if (!Checkout(_size <= 0 || index == 0, __FILE__, __LINE__, __FUNCTION__, ELevel._Info, "(_size <= 0 || index == 0)")) {
@@ -335,16 +367,16 @@ public:
 int main(int argc, char *argv[]) {
 	DoublyList<string> list;
 
+	Node<string> *node0 = new Node<string>("node0");
 	Node<string> *node1 = new Node<string>("node1");
 	Node<string> *node2 = new Node<string>("node2");
-	Node<string> *node3 = new Node<string>("node3");
 
-	list.Attach(node1);
+	list.Attach(node0, 0);
+	list.Attach(node1, -1);
 	list.Attach(node2, -1);
-	list.Attach(node3, -1);
 
 	Node<string> *node;
-	list.Detach(&node, 0);
+	list.Detach(&node, -1);
 
 	list.Traverse(DoublyList<string>::Print);
 

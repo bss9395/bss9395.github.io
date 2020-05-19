@@ -1,9 +1,28 @@
 /* DoublyList.c
 Author: BSS9395
-Update: 2020-05-18T21:36:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-19T11:20:00+08@China-Guangdong-Zhanjiang+08
 Design: Doubly Linked List
 */
 
+/* Right Handed Rotation
+[The Count Starts at 0]
+ 0   1   2   3   4   5   6
+-6	-5	-4	-3	-2  -1   0
+ +---+---+---+---+---+---+
+ | P | y | t | h | o | n |
+ +---+---+---+---+---+---+
+ 0   1   2   3   4   5   6
+-6  -5  -4  -3  -2  -1   0
+
+[Another Acceptable Design Pattern]
+ 0   1   2   3   4   5   6
+-6	-5	-4	-3	-2  -1   0
+ +---+---+---+---+---+---+
+ | D | o | u | b | l | y |
+ +---+---+---+---+---+---+
+   1   2   3   4   5   6
+  -6  -5  -4  -3  -2  -1
+*/
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <errno.h>
@@ -128,6 +147,36 @@ static iptr Detach(DoublyList *list, Node **node, iptr index) {
 
 	iptr ret = 0;
 
+	if (false == Check(list->_size <= 0, __FILE__, __LINE__, __FUNCTION__, ELevel._Info, "(list->_size <= 0)")) {
+		Node *knot = &list->_head;
+		index = (index >= 0) ? (index % list->_size) : (index % (list->_size + 1) - 1);
+		while (index > 0) {
+			knot = knot->_next;
+			index -= 1;
+		}
+		while (index < 0) {
+			knot = knot->_prev;
+			index += 1;
+		}
+
+		*node = knot;
+		knot->_prev->_next = knot->_next;
+		knot->_next->_prev = knot->_prev;
+
+		list->_size -= 1;
+		ret += 1;
+	}
+
+	return ret;
+}
+
+/* Another Acceptable Design Pattern */
+/* The Count starts at 1 */
+static iptr Detach_1(DoublyList *list, Node **node, iptr index) {
+	// fprintf(stderr, "%s""\n", __FUNCTION__);
+
+	iptr ret = 0;
+
 	if (!Check(list->_size <= 0 || index == 0, __FILE__, __LINE__, __FUNCTION__, ELevel._Info, "(list->_size <= 0 || index == 0)")) {
 		Node *knot = &list->_head;
 		index = (index > 0) ? ((index - 1) % list->_size + 1) : ((index + 1) % list->_size - 1);
@@ -238,13 +287,13 @@ void DestroyList(DoublyList *list) {
 int main(int argc, char *argv[]) {
 	DoublyList list = MakeList();
 
+	Node *node0 = NewNode("node0");
 	Node *node1 = NewNode("node1");
 	Node *node2 = NewNode("node2");
-	Node *node3 = NewNode("node3");
 
-	Attach(&list, node1, 0);
+	Attach(&list, node0, 0);
+	Attach(&list, node1, -1);
 	Attach(&list, node2, -1);
-	Attach(&list, node3, -1);
 
 	Traverse(&list, list._function->_Print, NULL);
 
