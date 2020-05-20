@@ -36,7 +36,9 @@ static Node _head;
 static iptr _size;
 static Type _type;
 static List *CreateList(Type type);
+static void DestructList(List *list);
 static Node *NewNode(void *data, iptr size);
+static void DeleteNode(Node *node);
 
 #endif // List_h
 
@@ -131,12 +133,27 @@ static List *CreateList(Type type) {
 	return &list;
 }
 
+static void DestructList(List *list) {
+	Node *curr = _head._next;
+	Node *node;
+	while (curr != NULL) {
+		node = curr;
+		curr = curr->_next;
+		DeleteNode(node);
+	}
+}
+
 static Node *NewNode(void *data, iptr size) {
 	Node *node = (Node *)malloc(sizeof(Node));
 	node->_data = (void *)malloc(size);
 	memcpy(node->_data, data, size);
 	node->_next = NULL;
 	return node;
+}
+
+static void DeleteNode(Node *node) {
+	free(node->_data);
+	free(node);
 }
 
 #endif // List_c

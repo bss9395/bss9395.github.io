@@ -16,6 +16,7 @@ int main(int argc, char *argv[]) {
 	Node *node1 = NewNode(str, 4);
 	list1->Attach(node1, 0);
 	list1->Traverse();
+	DestructList(list1);
 
 
 	List *list2 = CreateList(EType._Integer);
@@ -23,6 +24,7 @@ int main(int argc, char *argv[]) {
 	Node *node2 = NewNode(&in, sizeof(int));
 	list2->Attach(node2, 0);
 	list2->Traverse();
+	DestructList(list2);
 
 
 	List *another = Another();
@@ -30,6 +32,7 @@ int main(int argc, char *argv[]) {
 	Node *node4 = NewNode(&dou, sizeof(double));
 	another->Attach(node4, 1);
 	another->Traverse();
+	DestructList(another);
 
 	return 0;
 }
