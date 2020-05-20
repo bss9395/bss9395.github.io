@@ -37,7 +37,7 @@ typedef struct _Node Node;
 typedef struct _DoublyList DoublyList;
 typedef struct _Function Function;
 
-DoublyList MakeList(Function *function);
+Function *MakeList(DoublyList *list);
 void DestructList(DoublyList *list);
 
 ////////////////////////////////////////
@@ -210,28 +210,27 @@ void DeleteNode(Node *node) {
 	return;
 }
 
-DoublyList MakeList(Function *function) {
+Function *MakeList(DoublyList *list) {
 	// fprintf(stderr, "%s""\n", __FUNCTION__);
 
-	static Function func = {
+	static DoublyList _list = {
+		._head._data = "Head",
+		._size = 0
+	};
+
+	_list._head._prev = &_list._head;
+	_list._head._next = &_list._head;
+	_list._size = 0;
+	*list = _list;
+
+	static Function function = {
 		.Attach = Attach,
 		.Detach = Detach,
 		.Print = Print,
 		.Traverse = Traverse
 	};
 
-	*function = func;
-
-	static DoublyList list = {
-		._head._data = "Head",
-		._size = 0
-	};
-
-	list._head._prev = &list._head;
-	list._head._next = &list._head;
-	list._size = 0;
-
-	return list;
+	return &function;
 }
 
 void DestructList(DoublyList *list) {
@@ -257,18 +256,18 @@ void DestructList(DoublyList *list) {
 #ifndef Main
 
 int main(int argc, char *argv[]) {
-	Function function;
-	DoublyList list = MakeList(&function);
+	DoublyList list;
+	Function *function = MakeList(&list);
 
 	Node *node0 = NewNode("node0");
 	Node *node1 = NewNode("node1");
 	Node *node2 = NewNode("node2");
 
-	function.Attach(&list, node0, 0);
-	function.Attach(&list, node1, -1);
-	function.Attach(&list, node2, -1);
+	function->Attach(&list, node0, 0);
+	function->Attach(&list, node1, -1);
+	function->Attach(&list, node2, -1);
 
-	function.Traverse(&list, function.Print, NULL);
+	function->Traverse(&list, function->Print, NULL);
 
 	DestructList(&list);
 	return 0;
