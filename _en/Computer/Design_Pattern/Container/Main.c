@@ -1,10 +1,9 @@
 /* Main.c
 Author: BSS9395
-Update: 2020-05-20T15:21:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-20T16:34:00+08@China-Guangdong-Zhanjiang+08
 Design: Container
 */
 
-#define List_c
 #include "List.c"
 
 List *Another();
@@ -12,16 +11,25 @@ List *Another();
 
 int main(int argc, char *argv[]) {
 
-	List *list = CreateList();
-	Node *node1 = NewNode("node1_in_main");
-	list->Attach(node1, 0);
-	list->Traverse();
+	List *list1 = CreateList(EType._String);
+	char *str = "Str";
+	Node *node1 = NewNode(str, 4);
+	list1->Attach(node1, 0);
+	list1->Traverse();
+
+
+	List *list2 = CreateList(EType._Integer);
+	int in = 2;
+	Node *node2 = NewNode(&in, sizeof(int));
+	list2->Attach(node2, 0);
+	list2->Traverse();
 
 
 	List *another = Another();
-	Node *node3 = NewNode("node3_in_Another");
-	another->Attach(node3, 1);
-	list->Traverse();
+	double dou = 4.0;
+	Node *node4 = NewNode(&dou, sizeof(double));
+	another->Attach(node4, 1);
+	another->Traverse();
 
 	return 0;
 }

@@ -1,6 +1,6 @@
 /* List.c
 Author: BSS9395
-Update: 2020-05-20T15:21:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-20T16:34:00+08@China-Guangdong-Zhanjiang+08
 Design: Container
 */
 
@@ -14,10 +14,15 @@ Design: Container
 #include <string.h>
 
 typedef long iptr;
-typedef char *Data;
+typedef const char *Type;
+static const struct {
+	Type _Integer;
+	Type _Double;
+	Type _String;
+} EType = { "Integer", "Double", "String" };
 
 typedef struct _Node {
-	Data _data;
+	void *_data;
 	struct _Node *_next;
 } Node;
 
@@ -29,10 +34,12 @@ typedef struct _List {
 
 static Node _head;
 static iptr _size;
-List *CreateList();
-Node *NewNode(Data data);
+static Type _type;
+static List *CreateList(Type type);
+static Node *NewNode(void *data, iptr size);
 
 #endif // List_h
+
 
 #ifndef List_c
 #define List_c
@@ -76,15 +83,41 @@ static iptr Detach(Node **node, iptr index) {
 }
 
 static void Traverse() {
-	Node *curr = _head._next;
-	while (curr != NULL) {
-		fprintf(stderr, " => %s", curr->_data);
-		curr = curr->_next;
+	fprintf(stderr, "[&_head = %p, _type = %s]", &_head, _type);
+
+	const char *format = "";
+	if (_type == EType._Integer) {
+		format = " => %d ";
+
+		Node *curr = _head._next;
+		while (curr != NULL) {
+			fprintf(stderr, format, *(int *)(curr->_data));
+			curr = curr->_next;
+		}
 	}
+	else if (_type == EType._Double) {
+		format = " => %lf ";
+
+		Node *curr = _head._next;
+		while (curr != NULL) {
+			fprintf(stderr, format, *(double *)(curr->_data));
+			curr = curr->_next;
+		}
+	}
+	else if (_type == EType._String) {
+		format = " => %s ";
+
+		Node *curr = _head._next;
+		while (curr != NULL) {
+			fprintf(stderr, format, (char *)(curr->_data));
+			curr = curr->_next;
+		}
+	}
+
 	fprintf(stderr, "\n");
 }
 
-List *CreateList() {
+static List *CreateList(Type type) {
 	static List list = {
 		.Attach = Attach,
 		.Detach = Detach,
@@ -93,13 +126,15 @@ List *CreateList() {
 
 	_head._data = "Head";
 	_head._next = NULL;
+	_type = type;
 
 	return &list;
 }
 
-Node *NewNode(Data data) {
+static Node *NewNode(void *data, iptr size) {
 	Node *node = (Node *)malloc(sizeof(Node));
-	node->_data = data;
+	node->_data = (void *)malloc(size);
+	memcpy(node->_data, data, size);
 	node->_next = NULL;
 	return node;
 }
