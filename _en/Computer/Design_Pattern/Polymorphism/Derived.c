@@ -1,103 +1,125 @@
-/* Derived.c
-Design: Polymorphism with Single Inheritance
-Author: BSS9395
-Update: 2019-08-22T01:58 +08 @ ShenZhen +08
-*/
 
-#include "Helper.h"
-#include "Derived.h"
+#ifndef Derived_h
+#define Derived_h
 
-Derived makeDerived(void);
-Derived *newDerived(void);
-static void Derived_destruct(bool virtual_, Derived *self);
-static void Derived_setID(bool virtual_, Derived *self, const char *ID);
-static const char *Derived_getID(bool virtual_, Derived *self);
-static void showMe(Derived *self);
+#define Super_c
+#include "Super.c"
 
-Derived makeDerived(void) {
-	static DerivedFunction derivedFunction = {
-		.derived_offset = 0,
-		.virtual_destruct = Derived_destruct,
-		.virtual_setID = Derived_setID,
-		.virtual_getID = Derived_getID,
-		.showMe = showMe
+typedef struct _Derived_ Derived;
+
+struct _Derived_ {
+	Super _super_;
+	iptr _offset_;
+
+	void(*Virtual_Destruct)(Derived *self);
+	iptr(*Virtual_SetID)(Derived *self, char *id);
+	char *(*Virtual_GetID)(Derived *self);
+	iptr(*ShowMe)(Derived *self);
+
+	char *_desc;
+};
+
+Derived MakeDerived();
+Derived *NewDerived();
+
+#endif // Derived_h
+
+#ifndef Derived_c
+#define Derived_c
+
+static void Virtual_Destruct(Derived *self);
+static iptr Virtual_SetID(Derived *self, char *id);
+static char *Virtual_GetID(Derived *self);
+static iptr ShowMe(Derived *self);
+
+Derived MakeDerived() {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	static Derived derived = {
+		._offset_ = 0,
+		.Virtual_Destruct = Virtual_Destruct,
+		.Virtual_SetID = Virtual_SetID,
+		.Virtual_GetID = Virtual_GetID,
+		.ShowMe = ShowMe
 	};
-	static DerivedType derivedType = {
-		.function = &derivedFunction
-	};
+	derived._super_ = MakeSuper();
+	derived._super_._offset_ = offsetof(Derived, _offset_);
 
-	derivedType.super = makeSuper();
-	derivedType.super.function->derived_offset = offsetof(DerivedType, function);
+	const char *desc = "Show Me Your Passionate Love.";
+	derived._desc = (char *)malloc(strlen(desc) + 1);
+	memcpy(derived._desc, desc, strlen(desc) + 1);
 
-	derivedType._desc = NULL;
-
-	fprintf(stderr, "Derived makeDerived(void);\n");
-	return derivedType;
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	return derived;
 }
 
-Derived *newDerived(void) {
-	fprintf(stderr, "Derived *newDerived(void);\n");
+Derived *NewDerived() {
+	Derived *derived = (Derived *)malloc(sizeof(Derived));
+	*derived = MakeDerived();
 
-	DerivedType *derivedType = (DerivedType *)malloc(sizeof(DerivedType));
-	*derivedType = makeDerived();
-	return derivedType;
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	return derived;
 }
 
-static void Derived_destruct(bool virtual_, Derived *self) {
-	if (virtual_) {
-		if (0 != self->function->derived_offset) {
-			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			((ClassFunction *)type->function)->virtual_destruct(true, self);
-		}
-	}
 
-	fprintf(stderr, "void Derived_destruct(bool, Derived *);\n");
+static void Virtual_Destruct(Derived *self) {
+	fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
 
 	free(self->_desc);
-	self->_desc = NULL;
-	return;
 }
 
-static void Derived_setID(bool virtual_, Derived *self, const char *ID) {
-	if (virtual_) {
-		if (0 != self->function->derived_offset) {
-			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			((DerivedFunction *)type->function)->virtual_setID(true, self, ID);
-			return;
-		}
+static iptr Virtual_SetID(Derived *self, char *id) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	iptr ret = 0;
+
+	if (0 != self->_offset_) {
+		Super *jump = (Super *)self;
+		do {
+			jump = (Super *)((iptr)self + jump->_offset_);
+		} while (0 != jump->_offset_);
+
+		ret += jump->Virtual_SetID((void *)self, id);
+	}
+	else {
+		Super *data = (Super *)self;
+		free(data->_id);
+		const char *addID = "#Derived";
+		data->_id = (char *)malloc(strlen(id) + strlen(addID) + 1);
+		strcpy(data->_id, id);
+		strcat(data->_id, addID);
+		ret += 1;
 	}
 
-	fprintf(stderr, "void Derived_setID(bool, Derived *, const char *);\n");
-
-	/* override virtual function */
-	free(self->super._ID);
-
-	const char *addID = " Derived ";
-	self->super._ID = (char *)malloc((strlen(ID) + strlen(addID) + 1) * sizeof(char));
-	strcpy(self->super._ID, ID);
-	strcat(self->super._ID, addID);
-	return;
+	return ret;
 }
 
-static const char *Derived_getID(bool virtual_, Derived *self) {
-	if (virtual_) {
-		if (0 != self->function->derived_offset) {
-			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			const char *ret = ((DerivedFunction *)type->function)->virtual_getID(true, self);
-			return ret;
-		}
+static char *Virtual_GetID(Derived *self) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+
+	char *ret = NULL;
+	if (0 != self->_offset_) {
+		Super *jump = (Super *)self;
+		do {
+			jump = (Super *)((iptr)self + jump->_offset_);
+		} while (0 != jump->_offset_);
+		ret = jump->Virtual_GetID((void *)self);
+	}
+	else {
+		Super *data = (Super *)self;
+		ret = data->_id;
 	}
 
-	fprintf(stderr, "const char *Derived_getID(bool, Derived *);\n");
-
-	/* override virtual function */
-	return self->super._ID;
+	return ret;
 }
 
-static void showMe(Derived *self) {
-	fprintf(stdout,
-		"Show me your passionate love."
-		"\n"
-	);
-	return;
+static iptr ShowMe(Derived *self) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	iptr ret = 0;
+
+	fprintf(stdout, "%s""\n", self->_desc);
+	ret += 1;
+
+	return ret;
 }
+
+
+#endif // Derived_c

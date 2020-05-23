@@ -1,103 +1,123 @@
-/* Boy.c
-Design: Polymorphism with Single Inheritance
-Author: BSS9395
-Update: 2019-08-22T01:58 +08 @ ShenZhen +08
-*/
 
-#include "Helper.h"
-#include "Boy.h"
+#ifndef Boy_h
+#define Boy_h
 
-Boy makeBoy(void);
-Boy *newBoy(void);
-static void Boy_destruct(bool virtual_, Boy *self);
-static void Boy_setID(bool virtual_, Boy *self, const char *ID);
-static const char *Boy_getID(bool virtual_, Boy *self);
-static void leadMe(Boy *self);
+#define Derived_c
+#include "Derived.c"
 
-Boy makeBoy(void) {
-	static BoyFunction boyFunction = {
-		.derived_offset = 0,
-		.virtual_destruct = Boy_destruct,
-		.virtual_setID = Boy_setID,
-		.virtual_getID = Boy_getID,
-		.leadMe = leadMe
+typedef struct _Boy_ Boy;
+
+struct _Boy_ {
+	Derived _derived_;
+	iptr _offset_;
+
+	void(*Virtual_Destruct)(Boy *self);
+	iptr(*Virtual_SetID)(Boy *self, char *id);
+	char *(*Virtual_GetID)(Boy *self);
+	iptr(*LeadMe)(Boy *self);
+
+	char *_desc;
+};
+
+Boy MakeBoy();
+Boy *NewBoy();
+
+
+#endif // Boy_h
+
+#ifndef Boy_c
+#define Boy_c
+
+static void Virtual_Destruct(Boy *self);
+static iptr Virtual_SetID(Boy *self, char *id);
+static char *Virtual_GetID(Boy *self);
+static iptr LeadMe(Boy *self);
+
+Boy MakeBoy() {
+	static Boy boy = {
+		._offset_ = 0,
+		.Virtual_Destruct = Virtual_Destruct,
+		.Virtual_SetID = Virtual_SetID,
+		.Virtual_GetID = Virtual_GetID,
+		.LeadMe = LeadMe
 	};
-	static BoyType boyType = {
-		.function = &boyFunction
-	};
 
-	boyType.derived = makeDerived();
-	boyType.derived.function->derived_offset = offsetof(BoyType, function);
+	boy._derived_ = MakeDerived();
+	boy._derived_._offset_ = offsetof(Boy, _offset_);
 
-	boyType._info = NULL;
+	const char *desc = "Lead Me to Your World.";
+	boy._desc = (char *)malloc(strlen(desc) + 1);
+	memcpy(boy._desc, desc, strlen(desc) + 1);
 
-	fprintf(stderr, "Boy makeBoy(void);\n");
-	return boyType;
-}
-
-Boy *newBoy(void) {
-	fprintf(stderr, "Boy *newBoy(void);\n");
-
-	Boy *boy = (Boy *)malloc(sizeof(Boy));
-	*boy = makeBoy();
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
 	return boy;
 }
 
-static void Boy_destruct(bool virtual_, Boy *self) {
-	if (virtual_) {
-		if (0 != self->function->derived_offset) {
-			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			((ClassFunction *)type->function)->virtual_destruct(true, self);
-		}
+Boy *NewBoy() {
+	Boy *boy = (Boy *)malloc(sizeof(Boy));
+	*boy = MakeBoy();
+
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	return boy;
+}
+
+static void Virtual_Destruct(Boy *self) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	free(self->_desc);
+}
+
+static iptr Virtual_SetID(Boy *self, char *id) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	iptr ret = 0;
+
+	if (0 != self->_offset_) {
+		Super *jump = (Super *)self;
+		do {
+			jump = (Super *)((iptr)self + jump->_offset_);
+		} while (0 != jump->_offset_);
+
+		ret += jump->Virtual_SetID((void *)self, id);
 	}
-
-	fprintf(stderr, "void Boy_destruct(bool, Boy *);\n");
-
-	free(self->_info);
-	self->_info = NULL;
-	return;
-}
-
-static void Boy_setID(bool virtual_, Boy *self, const char *ID) {
-	if (virtual_) {
-		if (0 != self->function->derived_offset) {
-			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			((BoyFunction *)type->function)->virtual_setID(true, self, ID);
-			return;
-		}
+	else {
+		Super *data = (Super *)self;
+		free(data->_id);
+		const char *addID = "#Boy";
+		data->_id = (char *)malloc(strlen(id) + strlen(addID) + 1);
+		strcpy(data->_id, id);
+		strcat(data->_id, addID);
+		ret += 1;
 	}
-
-	fprintf(stderr, "void Boy_setID(bool, Boy *, const char *);\n");
-
-	/* override virtual function */
-	free(self->derived.super._ID);
-
-	const char *addID = " Boy ";
-	self->derived.super._ID = (char *)malloc((strlen(ID) + strlen(addID) + 1) * sizeof(char));
-	strcpy(self->derived.super._ID, ID);
-	strcat(self->derived.super._ID, addID);
-	return;
+	return ret;
 }
 
-static const char *Boy_getID(bool virtual_, Boy *self) {
-	if (virtual_) {
-		if (0 != self->function->derived_offset) {
-			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			const char *ret = ((BoyFunction *)type->function)->virtual_getID(true, self);
-			return ret;
-		}
+static char *Virtual_GetID(Boy *self) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	char *ret = NULL;
+	if (0 != self->_offset_) {
+		Super *jump = (Super *)self;
+		do {
+			jump = (Super *)((iptr)self + jump->_offset_);
+		} while (0 != jump->_offset_);
+
+		ret = jump->Virtual_GetID(self);
 	}
-
-	fprintf(stderr, "const char *Boy_getID(bool, Boy *);\n");
-
-	/* override virtual function */
-	return self->derived.super._ID;
+	else {
+		Super *data = (Super *)self;
+		ret = data->_id;
+	}
+	return ret;
 }
 
-static void leadMe(Boy *self) {
-	fprintf(stdout,
-		"Lead me to your world."
-		"\n"
-	);
-	return;
+static iptr LeadMe(Boy *self) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	iptr ret = 0;
+
+	fprintf(stdout, "%s""\n", self->_desc);
+	ret += 1;
+
+	return ret;
 }
+
+
+#endif // Boy_c
+

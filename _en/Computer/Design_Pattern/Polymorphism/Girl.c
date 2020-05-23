@@ -1,101 +1,121 @@
-/* Girl.c
-Design: Polymorphism with Single Inheritance
-Author: BSS9395
-Update: 2019-08-22T01:58 +08 @ ShenZhen +08
-*/
 
-#include "Helper.h"
-#include "Girl.h"
+#ifndef Girl_h
+#define Gril_h
 
-Girl makeGirl(void);
-Girl *newGirl(void);
-static void Girl_destruct(bool virtual_, Girl *self);
-static void Girl_setID(bool virtual_, Girl *self, const char *Desc);
-static const char *Girl_getID(bool virtual_, Girl *self);
-static void seeYou(Girl *self);
+#define Derived_c
+#include "Derived.c"
 
-Girl makeGirl(void) {
-	static GirlFunction girlFunction = {
-		.derived_offset = 0,
-		.virtual_destruct = Girl_destruct,
-		.virtual_setID = Girl_setID,
-		.virtual_getID = Girl_getID,
-		.seeYou = seeYou
+typedef struct _Girl_ Girl;
+
+struct _Girl_ {
+	Derived _derived_;
+	iptr _offset_;
+
+	void(*Virtual_Destruct)(Girl *self);
+	iptr(*Virtual_SetID)(Girl *self, char *id);
+	char *(*Virtual_GetID)(Girl *self);
+	iptr(*SeeYou)(Girl *self);
+
+	char *_desc;
+};
+
+Girl MakeGirl();
+Girl *NewGirl();
+
+#endif // Girl_h
+
+#ifndef Girl_c
+#define Girl_c
+
+static void Virtual_Destruct(Girl *self);
+static iptr Virtual_SetID(Girl *self, char *id);
+static char *Virtual_GetID(Girl *self);
+static iptr SeeYou(Girl *self);
+
+Girl MakeGirl() {
+	static Girl girl = {
+		._offset_ = 0,
+		.Virtual_Destruct = Virtual_Destruct,
+		.Virtual_SetID = Virtual_SetID,
+		.Virtual_GetID = Virtual_GetID,
+		.SeeYou = SeeYou
 	};
-	static GirlType girlType = {
-		.function = &girlFunction
-	};
 
-	girlType.derived = makeDerived();
-	girlType.derived.function->derived_offset = offsetof(GirlType, function);
+	girl._derived_ = MakeDerived();
+	girl._derived_._offset_ = offsetof(Girl, _offset_);
 
-	girlType._info = NULL;
+	const char *desc = "See You in Near Future.";
+	girl._desc = (char *)malloc(strlen(desc) + 1);
+	memcpy(girl._desc, desc, strlen(desc) + 1);
 
-	fprintf(stderr, "Girl makeGirl(void);\n");
-	return girlType;
-}
-
-Girl *newGirl(void) {
-	fprintf(stderr, "Girl *newGirl(void);\n");
-
-	Girl *girl = (Girl *)malloc(sizeof(Girl));
-	*girl = makeGirl();
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
 	return girl;
 }
 
-static void Girl_destruct(bool virtual_, Girl *self) {
-	if (virtual_) {
-		if (0 != self->function->derived_offset) {
-			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			((ClassFunction *)type->function)->virtual_destruct(true, self);
-			return;
-		}
-	}
+Girl *NewGirl() {
+	Girl *girl = (Girl *)malloc(sizeof(Girl));
+	*girl = MakeGirl();
 
-	fprintf(stderr, "void Girl_destruct(bool, Girl *);\n");
-
-	free(self->_info);
-	self->_info = NULL;
-	return;
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	return girl;
 }
 
-static void Girl_setID(bool virtual_, Girl *self, const char *ID) {
-	if (virtual_) {
-		if (0 != self->function->derived_offset) {
-			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			((GirlFunction *)type->function)->virtual_setID(true, self, ID);
-			return;
-		}
-	}
-
-	fprintf(stderr, "void Girl_setID(bool, Girl *, const char *);\n");
-
-	/* inherit virtual function for Derived */
-	self->derived.function->virtual_setID(false, (Derived *)self, ID);
-	return;
+static void Virtual_Destruct(Girl *self) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	free(self->_desc);
 }
 
-static const char *Girl_getID(bool virtual_, Girl *self) {
-	if (virtual_) {
-		if (0 != self->function->derived_offset) {
-			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			const char *ret = ((GirlFunction *)type->function)->virtual_getID(true, self);
-			return ret;
-		}
+static iptr Virtual_SetID(Girl *self, char *id) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	iptr ret = 0;
+
+	if (0 != self->_offset_) {
+		Super *jump = (Super *)self;
+		do {
+			jump = (Super *)((iptr)self + jump->_offset_);
+		} while (0 != jump->_offset_);
+
+		ret += jump->Virtual_SetID(self, id);
 	}
-
-	fprintf(stderr, "const char *Girl_getID(bool, Girl *);\n");
-
-	/* inherit virtual function from Derived */
-	const char *ret = self->derived.function->virtual_getID(false, (Derived *)self);
+	else {
+		Super *data = (Super *)self;
+		free(data->_id);
+		const char *addID = "#Girl";
+		data->_id = (char *)malloc(strlen(addID) + 1);
+		strcpy(data->_id, id);
+		strcat(data->_id, addID);
+		ret += 1;
+	}
 	return ret;
 }
 
-static void seeYou(Girl *self) {
-	fprintf(stdout,
-		"See you in near future."
-		"\n"
-	);
+static char *Virtual_GetID(Girl *self) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	char *ret = NULL;
+	if (0 != self->_offset_) {
+		Super *jump = (Super *)self;
+		do {
+			jump = (Super *)((iptr)self + jump->_offset_);
+		} while (0 != jump->_offset_);
 
-	return;
+		ret = jump->Virtual_GetID(self);
+	}
+	else {
+		Super *data = (Super *)self;
+		ret = data->_id;
+	}
+	return ret;
 }
+
+static iptr SeeYou(Girl *self) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	iptr ret = 0;
+
+	fprintf(stdout, "%s""\n", self->_desc);
+	ret += 1;
+
+	return ret;
+}
+
+
+#endif // Girl_c

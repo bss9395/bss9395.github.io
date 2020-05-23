@@ -1,49 +1,38 @@
-/* Helper.h
-Design: Polymorphism with Single Inheritance
-Author: BSS9395
-Update: 2019-08-22T01:58 +08 @ ShenZhen +08
-*/
 
 #ifndef Helper_h
 #define Helper_h
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdbool.h>
-#include <stddef.h>
+#include <errno.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
-typedef struct _ClassType_     Class;
-typedef struct _ClassType_     ClassType;
-typedef struct _ClassFunction_ ClassFunction;
+typedef long iptr;
 
-struct _ClassFunction_ {
-	size_t derived_offset;
-	void(*virtual_destruct)(bool, void *);
-};
+typedef struct {
+	iptr _offset_;
+	void(*Virtual_Destruct)(void *self);
+} Class;
 
-struct _ClassType_ {
-	ClassFunction *function;
-};
+static void Destruct(void *self) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
 
-static void destruct(void *self);
-static void destroy(void *self);
-
-
-static void destruct(void *self) {
-	Class *type = (Class *)self;
-	type->function->virtual_destruct(true, self);
-
-	// fprintf(stderr, "void destruct(void *);\n");
-	return;
+	Class *jump = (Class *)self;
+	while (0 != jump->_offset_) {
+		jump->Virtual_Destruct(self);
+		jump = (Class *)((iptr)self + jump->_offset_);
+	}
+	jump->Virtual_Destruct(self);
 }
 
-static void destroy(void *self) {
-	destruct(self);
+static void Destroy(void *self) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	Destruct(self);
 	free(self);
-
-	fprintf(stderr, "void destroy(void *);\n");
-	return;
 }
+
 
 #endif // Helper_h

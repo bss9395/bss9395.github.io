@@ -1,101 +1,126 @@
-/* Super.c
-Design: Polymorphism with Single Inheritance
-Author: BSS9395
-Update: 2019-08-22T01:58 +08 @ ShenZhen +08
-*/
+#ifndef Super_h
+#define Super_h
 
 #include "Helper.h"
-#include "Super.h"
 
-Super makeSuper(void);
-Super *newSuper(void);
-static void Super_destruct(bool virtual_, Super *self);
-static void Super_setID(bool virtual_, Super *self, const char *ID);
-static const char *Super_getID(bool virtual_, Super *self);
-static void readMe(Super *self);
 
-Super makeSuper(void) {
-	static SuperFunction superFunction = {
-		.derived_offset = 0,
-		.virtual_destruct = Super_destruct,
-		.virtual_setID = Super_setID,
-		.virtual_getID = Super_getID,
-		.readMe = readMe
+typedef struct _Super_ Super;
+
+struct _Super_ {
+	iptr _offset_;
+
+	void(*Virtual_Destruct)(Super *self);
+	iptr(*Virtual_SetID)(Super *self, char *id);
+	char *(*Virtual_GetID)(Super *self);
+	iptr(*ReadMe)(Super *self);
+
+	char *_id;
+	char *_desc;
+};
+
+
+Super MakeSuper();
+Super *NewSuper();
+
+#endif // Super_h
+
+#ifndef Super_c
+#define Super_c
+
+static void Virtual_Destruct(Super *self);
+static iptr Virtual_SetID(Super *self, char *id);
+static char *Virtual_GetID(Super *self);
+static iptr ReadMe(Super *self);
+
+
+Super MakeSuper() {
+	static Super super = {
+		._offset_ = 0,
+		.Virtual_Destruct = Virtual_Destruct,
+		.Virtual_SetID = Virtual_SetID,
+		.Virtual_GetID = Virtual_GetID,
+		.ReadMe = ReadMe,
 	};
-	static SuperType superType = {
-		.function = &superFunction
-	};
 
-	superType._ID = NULL;
+	super._id = NULL;
 
-	fprintf(stderr, "Super makeSuper(void);\n");
-	return superType;
-}
+	const char *desc = "Read Me and My Life.";
+	super._desc = (char *)malloc(strlen(desc) + 1);
+	memcpy(super._desc, desc, strlen(desc) + 1);
 
-Super *newSuper(void) {
-	fprintf(stderr, "Super *newSuper(void);\n");
-
-	Super *super = (Super *)malloc(sizeof(Super));
-	*super = makeSuper();
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
 	return super;
 }
 
-/* virtual function */
-static void Super_destruct(bool virtual_, Super *self) {
-	if (virtual_) {
-		if (0 != self->function->derived_offset) {
-			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			((ClassFunction *)type->function)->virtual_destruct(true, self);
-		}
+Super *NewSuper() {
+	Super *super = (Super *)malloc(sizeof(Super));
+	*super = MakeSuper();
+
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	return super;
+}
+
+static void Virtual_Destruct(Super *self) {
+	fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+
+	free(self->_id);
+	free(self->_desc);
+}
+
+static iptr Virtual_SetID(Super *self, char *id) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	iptr ret = 0;
+
+	if (0 != self->_offset_) {
+		Super *jump = (Super *)self;
+		do {
+			jump = (Super *)((iptr)self + jump->_offset_);
+		} while (0 != jump->_offset_);
+
+		ret += jump->Virtual_SetID((void *)self, id);
+	}
+	else {
+		Super *data = (Super *)self;
+		free(data->_id);
+		const char *addID = "#Super";
+		data->_id = (char *)malloc(strlen(id) + strlen(addID) + 1);
+		strcpy(data->_id, id);
+		strcat(data->_id, addID);
+		ret += 1;
 	}
 
-	fprintf(stderr, "void Super_destruct(bool, Super *);\n");
-
-	free(self->_ID);
-	self->_ID = NULL;
-	return;
+	return ret;
 }
 
-/* virtual function */
-static void Super_setID(bool virtual_, Super *self, const char *ID) {
-	if (virtual_) {
-		if (0 != self->function->derived_offset) {
-			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			((SuperFunction *)type->function)->virtual_setID(true, self, ID);
-			return;
-		}
+
+static char *Virtual_GetID(Super *self) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+
+	char *ret = NULL;
+	if (0 != self->_offset_) {
+		Super *jump = (Super *)self;
+		do {
+			jump = (Super *)((iptr)self + jump->_offset_);
+		} while (0 != jump->_offset_);
+
+		ret = jump->Virtual_GetID((void *)self);
+	}
+	else {
+		Super *data = (Super *)self;
+		ret = data->_id;
 	}
 
-	fprintf(stderr, "void Super_setID(bool, Super *, const char *);\n");
-
-	free(self->_ID);
-
-	const char *addID = " Super ";
-	self->_ID = (char *)malloc((strlen(ID) + strlen(addID) + 1) * sizeof(char));
-	strcpy(self->_ID, ID);
-	strcat(self->_ID, addID);
-	return;
+	return ret;
 }
 
-/* virtual function */
-static const char *Super_getID(bool virtual_, Super *self) {
-	if (virtual_) {
-		if (0 != self->function->derived_offset) {
-			Class *type = (Class *)((size_t)self + self->function->derived_offset);
-			const char *ret = ((SuperFunction *)type->function)->virtual_getID(true, self);
-			return ret;
-		}
-	}
+static iptr ReadMe(Super *self) {
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	iptr ret = 0;
 
-	fprintf(stderr, "void Super_getID(bool, Super *);\n");
+	fprintf(stdout, "%s""\n", self->_desc);
+	ret += 1;
 
-	return self->_ID;
+	return ret;
 }
 
-static void readMe(Super *self) {
-	fprintf(stdout,
-		"Read me and my life."
-		"\n"
-	);
-	return;
-}
+#endif // Super_c

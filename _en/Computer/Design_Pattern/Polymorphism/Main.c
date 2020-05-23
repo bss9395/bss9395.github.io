@@ -1,87 +1,72 @@
 /* Main.c
-Design: Polymorphism with Single Inheritance
 Author: BSS9395
-Update: 2019-08-22T01:58 +08 @ ShenZhen +08
+Update: 2020-05-23T23:53:00+08@China-Guangdong-Zhanjiang+08
+Design: Polymorphism
 */
-
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-#include "Helper.h"
-#include "Super.h"
-#include "Derived.h"
-#include "Boy.h"
-#include "Girl.h"
 
 /* Class Inheritance
-
-readMe --   Super   (_ID)   -- virtual_setID
-			  |             \
-showMe --  Derived  (_Desc)  - virtual_getID
+ReadMe --   Super   -- Virtual_SetID
+			  |     \
+ShowMe --  Derived   - Virtual_GetID
 			 / \
-leadMe -- Boy  Girl (_Info) -- seeYou
-
+LeadMe -- Boy  Girl -- SeeYou
 */
+
+/* Struct Boy
++---------------------------------------------+ Super
+| _offset_ = offsetof(Derived, _offset_) = 28 |
+| Virtual_Destruct                            |
+| ...                                         |
+| _id   = "ID"                                |
+| _desc = "Read Me and My Life."              |
++---------------------------------------------+ Derived
+| _offset_ = offsetof(Boy, _offset_) = 52     |
+| Virtual_Destruct                            |
+| ...                                         |
+| _desc = "Show Me Your Passionate Love."     |
++---------------------------------------------+ Boy
+| _offset_ = 0                                |
+| Virtual_Destruct                            |
+| ...                                         |
+| _desc = "Lead Me to Your World."            |
++---------------------------------------------+
+*/
+
+#define Super_c
+#include "Super.c"
+
+#define Derived_c
+#include "Derived.c"
+
+#define Boy_c
+#include "Boy.c"
+
+#define Girl_c
+#include "Girl.c"
 
 
 int main(int argc, char *argv[]) {
+	fprintf(stderr, "sizeof(Super)   = %ld\n", sizeof(Super));
+	fprintf(stderr, "sizeof(Derived) = %ld\n", sizeof(Derived));
+	fprintf(stderr, "sizeof(Boy)     = %ld\n", sizeof(Boy));
+	fprintf(stderr, "sizeof(Girl)    = %ld\n", sizeof(Girl));
 
-	printf("sizeof(Super)   = %ld\n", sizeof(Super));
-	printf("sizeof(Derived) = %ld\n", sizeof(Derived));
-	printf("sizeof(Boy)     = %ld\n", sizeof(Boy));
-	printf("sizeof(Girl)    = %ld\n", sizeof(Girl));
+	fprintf(stderr, "\n""----------------------------------------""\n");
 
-	printf("----------------------------------------\n");
+	Boy boy = MakeBoy();
+	fprintf(stderr, "_super_   _offset_ = %ld""\n", boy._derived_._super_._offset_);
+	fprintf(stderr, "_derived_ _offset_ = %ld""\n", boy._derived_._offset_);
+	fprintf(stderr, "_boy_     _offset_ = %ld""\n", boy._offset_);
 
-	Boy boy = makeBoy();
-	// boy.function->virtual_destruct(false, &boy);
-	destruct(&boy);
+	fprintf(stderr, "\n""----------------------------------------""\n");
 
-	printf("----------------------------------------\n");
+	Super *super = (Super *)NewBoy();
+	super->Virtual_SetID(super, "ID");
 
-	Derived *pDerived = (Derived *)newBoy();
+	char *id = super->Virtual_GetID(super);
+	fprintf(stderr, "%s""\n", id);
 
-	printf("----------------------------------------\n");
-
-	pDerived->function->virtual_setID(true, pDerived, "ID");
-	printf("%s\n", pDerived->function->virtual_getID(true, pDerived));
-
-	printf("----------------------------------------\n");
-
-	Super *pSuper = (Super *)pDerived;
-	pSuper->function->readMe(pSuper);
-
-	pDerived->function->showMe(pDerived);
-
-	Boy *pBoy = (Boy *)pDerived;
-	pBoy->function->leadMe(pBoy);
-
-	printf("----------------------------------------\n");
-
-	destroy(pDerived);
-
-	printf("----------------------------------------\n");
-
-	Girl girl = makeGirl();
-
-	printf("----------------------------------------\n");
-
-	girl.function->seeYou(&girl);
-	girl.derived.function->showMe((Derived *)&girl);
-	girl.derived.super.function->readMe((Super *)&girl);
-
-	printf("----------------------------------------\n");
-
-	girl.function->virtual_setID(true, &girl, "ID");
-	printf("%s\n", girl.function->virtual_getID(true, &girl));
-
-	printf("----------------------------------------\n");
-
-	destruct(&girl);
-
-	printf("----------------------------------------\n");
+	Destruct(super);
 
 	return 0;
 }
