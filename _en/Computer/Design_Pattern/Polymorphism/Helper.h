@@ -17,11 +17,12 @@ typedef struct {
 	void(*Virtual_Destruct)(void *self);
 } Class;
 
-inline void *Jump(Class *self) {
-	do {
-		self = (Class *)((iptr)self + self->_offset_);
-	} while (0 != self->_offset_);
-	return self;
+inline void *Jump(Class *self, iptr start) {
+	Class *jump = (Class *)((iptr)self + start);
+	while (0 != jump->_offset_) {
+		jump = (Class *)((iptr)self + jump->_offset_);
+	}
+	return jump;
 }
 
 inline void Destruct(void *self) {

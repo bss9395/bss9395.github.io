@@ -70,7 +70,7 @@ static iptr Virtual_SetID(Girl *self, char *id) {
 	iptr ret = 0;
 	Super *jump = (Super *)self;
 	if (0 != self->_offset_) {
-		jump = Jump((void *)self);
+		jump = Jump((void *)self, self->_offset_);
 		jump->Virtual_SetID((void *)self, id);
 	}
 	else {
@@ -89,7 +89,7 @@ static char *Virtual_GetID(Girl *self) {
 	char *ret = NULL;
 	Super *jump = (Super *)self;
 	if (0 != self->_offset_) {
-		jump = Jump((void *)self);
+		jump = Jump((void *)self, self->_offset_);
 		ret = jump->Virtual_GetID((void *)self);
 	}
 	else {
