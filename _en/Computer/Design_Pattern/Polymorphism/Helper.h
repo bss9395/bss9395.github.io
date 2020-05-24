@@ -17,7 +17,14 @@ typedef struct {
 	void(*Virtual_Destruct)(void *self);
 } Class;
 
-static void Destruct(void *self) {
+inline void *Jump(Class *self) {
+	do {
+		self = (Class *)((iptr)self + self->_offset_);
+	} while (0 != self->_offset_);
+	return self;
+}
+
+inline void Destruct(void *self) {
 	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
 
 	Class *jump = (Class *)self;
@@ -28,7 +35,7 @@ static void Destruct(void *self) {
 	jump->Virtual_Destruct(self);
 }
 
-static void Destroy(void *self) {
+inline void Destroy(void *self) {
 	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
 	Destruct(self);
 	free(self);

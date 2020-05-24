@@ -1,6 +1,6 @@
 /* Main.c
 Author: BSS9395
-Update: 2020-05-23T23:53:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-25T00:32:00+08@China-Guangdong-Zhanjiang+08
 Design: Polymorphism
 */
 
@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
 	char *id = super->Virtual_GetID(super);
 	fprintf(stderr, "%s""\n", id);
 
-	Destruct(super);
+	Destroy(super);
 
 	return 0;
 }

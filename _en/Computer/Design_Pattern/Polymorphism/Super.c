@@ -61,7 +61,7 @@ Super *NewSuper() {
 }
 
 static void Virtual_Destruct(Super *self) {
-	fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
+	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
 
 	free(self->_id);
 	free(self->_desc);
@@ -70,22 +70,17 @@ static void Virtual_Destruct(Super *self) {
 static iptr Virtual_SetID(Super *self, char *id) {
 	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
 	iptr ret = 0;
-
+	Super *jump = (Super *)self;
 	if (0 != self->_offset_) {
-		Super *jump = (Super *)self;
-		do {
-			jump = (Super *)((iptr)self + jump->_offset_);
-		} while (0 != jump->_offset_);
-
-		ret += jump->Virtual_SetID((void *)self, id);
+		jump = Jump((void *)self);
+		jump->Virtual_SetID((void *)self, id);
 	}
 	else {
-		Super *data = (Super *)self;
-		free(data->_id);
+		free(jump->_id);
 		const char *addID = "#Super";
-		data->_id = (char *)malloc(strlen(id) + strlen(addID) + 1);
-		strcpy(data->_id, id);
-		strcat(data->_id, addID);
+		jump->_id = (char *)malloc(strlen(id) + strlen(addID) + 1);
+		strcpy(jump->_id, id);
+		strcat(jump->_id, addID);
 		ret += 1;
 	}
 
@@ -97,17 +92,13 @@ static char *Virtual_GetID(Super *self) {
 	// fprintf(stderr, "[%s: %d: %s]""\n", __FILE__, __LINE__, __FUNCTION__);
 
 	char *ret = NULL;
+	Super *jump = (Super *)self;
 	if (0 != self->_offset_) {
-		Super *jump = (Super *)self;
-		do {
-			jump = (Super *)((iptr)self + jump->_offset_);
-		} while (0 != jump->_offset_);
-
+		jump = Jump((void *)self);
 		ret = jump->Virtual_GetID((void *)self);
 	}
 	else {
-		Super *data = (Super *)self;
-		ret = data->_id;
+		ret = jump->_id;
 	}
 
 	return ret;
