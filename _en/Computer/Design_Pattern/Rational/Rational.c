@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-05-28T17:47:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-29T03:14:00+08@China-Guangdong-Zhanjiang+08
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -13,14 +13,29 @@ Update: 2020-05-28T17:47:00+08@China-Guangdong-Zhanjiang+08
 #include <ctype.h>
 #include <math.h>
 
-typedef unsigned char  uchar;
-typedef unsigned short ushort;
-typedef unsigned int   uint;
-
 #define Calloc  calloc
 #define Realloc realloc
 #define Memset  memset
 #define Log2    log2
+
+////////////////////////////////////////
+
+typedef long iptr;
+typedef unsigned char  uchar;
+typedef unsigned short ushort;
+typedef unsigned int   uint;
+
+typedef ushort unit;
+typedef uint   dual;
+typedef struct {
+	iptr _sign : 1;
+	iptr _expo : (sizeof(iptr) * 8 - 1);
+	unit *_lsu;
+} Integer;
+
+iptr Parse(Integer **integer, const uchar *data, int base);
+Integer *Add(const Integer *lhs, const Integer *rhs);
+Integer *Sub(const Integer *lhs, const Integer *rhs);
 
 ////////////////////////////////////////
 
@@ -48,18 +63,13 @@ const struct {
 	._String = "String",
 };
 
-typedef long iptr;
-typedef ushort unit;
-typedef uint   dual;
-typedef struct {
-	iptr _expo;
-	unit *_lsu;
-} Integer;
-
 struct {
 	const double _Epsilon;
 	const uchar _Space[7];
 	const uchar _Digit[256];
+
+	int _Plus;
+	int _Minus;
 
 	const uint _Base;
 	const uint _Mask;
@@ -88,9 +98,8 @@ struct {
 		'?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?',
 	},
 
-	//._Base = 0x10000U,
-	//._Mask = 0xFFFFU,
-	//._Shift = 16U,
+	._Plus = 0,
+	._Minus = 1,
 
 	._Base = (1U << (sizeof(unit) * 8)),
 	._Mask = (1U << (sizeof(unit) * 8)) - 1,
@@ -98,6 +107,10 @@ struct {
 };
 
 ////////////////////////////////////////
+
+inline iptr Absolute(iptr value) {
+	return (value < 0 ? -value : value);
+}
 
 inline bool Check(const bool failed, const uchar *function, const Level level, const uchar *record, const uchar *extra) {
 	if (failed) {
@@ -127,7 +140,7 @@ inline iptr Skip(const uchar *data, const uchar space[]) {
 
 /* Representation of Integer
 Unit  Representation
-== B_{EXPO - 1} * BASE^{EXPO - 1} + B_{EXPO - 2} * BASE^{EXPO - 2} + ... + B_{1} * BASE^{1} + B_{0} * BASE^{0}  // BASE == 2^(16 - 1)
+== B_{EXPO - 1} * BASE^{EXPO - 1} + B_{EXPO - 2} * BASE^{EXPO - 2} + ... + B_{1} * BASE^{1} + B_{0} * BASE^{0}  // BASE == 2^{16}
 == b_{expo - 1} * base^(expo - 1) + b_{expo - 2} * base^(expo - 2) + ... + b_{1} * base^(1) + B_{0} * base^(0)  // base == 10 or 2 or 8 or 16 ...
 Digit Representation
 
@@ -148,23 +161,23 @@ Digit Representation
 == ((Q * BASE + R) * base + b_{n - 2}) / BASE
 ==                   (Q * BASE * base) / BASE + Carry
 ==                                   Q * base + Carry
-											   // recursively forward
+											   // accumulate recursively
 */
-iptr Parse(Integer *inte, const uchar *data, int base) {
+iptr Parse(Integer **integer, const uchar *data, int base) {
 	if (Check(!(2 <= base && base <= 16), __FUNCTION__, EType._Error, "!(2 <= base && base <= 36)", NULL)) {
 		return 0;
 	}
 	const uchar *ret = data;
 	data += Skip(data, EData._Space);
 
-	char sign = +1;
+	char _sign = EData._Plus;
 	if (data[0] == '+') {
 		data += 1;
-		sign = +1;
+		_sign = EData._Plus;
 	}
 	else if (data[0] == '-') {
 		data += 1;
-		sign = -1;
+		_sign = EData._Minus;
 	}
 
 	if (data[0] == '0') {
@@ -226,28 +239,146 @@ iptr Parse(Integer *inte, const uchar *data, int base) {
 			}
 		}
 	}
-	inte->_expo = sign * _expo;
-	inte->_lsu = _lsu;
+	*integer = (Integer *)Calloc(1, sizeof(Integer));
+	(*integer)->_sign = _sign;
+	(*integer)->_expo = _expo;
+	(*integer)->_lsu = _lsu;
 
 	return (iptr)(data - ret);
 }
 
+/*
+Abs(lhs->_expo) >= Abs(rhs->_expo)
+			  B_{EXPO - 1} * BASE^{EXPO - 1} + ... + B_{1} * BASE^{1} + B_{0} * BASE^{0}
++             C_{EXPO - 1} * BASE^{EXPO - 1} + ... + c_{1} * base^{1} + C_{0} * BASE^{0}            // yield Carry
+=  ... + (B_{1} + C_{1} + Carry_{1}) * BASE^{1} + (B_{0} + C_{0} + Carry_{0}) * BASE^{0}            // accumulate recursively
+ + Carry_{EXPO} * BASE^{EXPO} + (B_{EXPO - 1} + C_{EXPO - 1} + Carry_{EXPO - 1}) * BASE^{EXPO - 1}
+*/
+Integer *Add(const Integer *lhs, const Integer *rhs) {
+	// lhs and rhs have opposite signs
+	if ((lhs->_sign ^ rhs->_sign) < 0) {
+		return Sub(lhs, rhs);
+	}
+	Integer *ret = (Integer *)Calloc(1, sizeof(Integer));
 
+	if (lhs->_expo < rhs->_expo) {
+		const Integer *swap = lhs; lhs = rhs; rhs = swap;
+	}
+	unit *_lsu = (unit *)Calloc(lhs->_expo + 1, sizeof(unit));
+
+	dual carry = 0;
+	iptr i = 0;
+	for (; i < rhs->_expo; i += 1) {
+		carry = lhs->_lsu[i] + rhs->_lsu[i] + carry;
+		_lsu[i] = (unit)(carry & EData._Mask);
+		carry >>= EData._Shift;
+	}
+	for (; i < lhs->_expo; i += 1) {
+		carry = lhs->_lsu[i] + carry;
+		_lsu[i] = (unit)(carry & EData._Mask);
+		carry >>= EData._Shift;
+	}
+	if (carry != 0) {
+		_lsu[i] = carry;
+		i += 1;
+	}
+
+	ret->_sign = (lhs->_sign < 0 ? EData._Minus : EData._Plus);
+	ret->_expo = i;
+	ret->_lsu = _lsu;
+	return ret;
+}
+
+/*
+Abs(lhs->_expo) >= Abs(rhs->_expo)
+							  B_{EXPO - 1} * BASE^{EXPO - 1} + ... + B_{1} * BASE^{1} + B_{0} * BASE^{0}
+-                             C_{EXPO - 1} * BASE^{EXPO - 1} + ... + C_{1} * BASE^{1} + C_{0} * BASE^{0}            // yield Borrow
+=  ... + (B_{1} - C_{1} - Borrow_{1} + BASE)%BASE * BASE^{1} + (B_{0} - C_{0} - Borrow_{0} + BASE)%BASE * BASE^{0}  // attenuate recursively
+ + (B_{EXPO - 1} - C_{EXPO - 1} - Borrow_{EXPO - 1} + BASE)%BASE * BASE^{EXPO - 1}
+*/
+Integer *Sub(const Integer *lhs, const Integer *rhs) {
+	// lhs and rhs have same signs
+	if ((lhs->_sign ^ rhs->_sign) > 0) {
+		return Add(lhs, rhs);
+	}
+	Integer *ret = (Integer *)Calloc(1, sizeof(Integer));
+
+	if (lhs->_expo < rhs->_expo) {
+		const Integer *swap = lhs; lhs = rhs;	rhs = swap;
+	}
+	iptr _expo = lhs->_expo;
+	if (lhs->_expo == rhs->_expo) {
+		while (0 < _expo && lhs->_lsu[_expo - 1] == rhs->_lsu[_expo - 1]) {
+			_expo -= 1;
+		}
+		if (_expo <= 0) {
+			ret->_expo = 1;
+			ret->_lsu[0] = (unit)0U;
+			return ret;
+		}
+		else if (lhs->_lsu[_expo - 1] < rhs->_lsu[_expo - 1]) {
+			Integer *swap = lhs; lhs = rhs;	rhs = swap;
+		}
+	}
+	unit *_lsu = (unit *)Calloc(_expo, sizeof(unit));
+
+	dual borrow = 0;
+	iptr i = 0;
+	for (; i < rhs->_expo; i += 1) {
+		borrow = lhs->_lsu[i] - rhs->_lsu[i] - borrow;
+		_lsu[i] = borrow & EData._Mask;
+		borrow >>= EData._Shift;
+		borrow &= 1U;             // borrow 1 from higher unit
+	}
+	for (; i < _expo; i += 1) {
+		borrow = lhs->_lsu[i] - borrow;
+		_lsu[i] = borrow & EData._Mask;
+		borrow >>= EData._Shift;
+		borrow &= 1U;             // borrow 1 from higher unit
+	}
+
+	ret->_sign = (lhs->_sign < 0 ? EData._Minus : EData._Plus);
+	ret->_expo = i;
+	ret->_lsu = _lsu;
+	return ret;
+}
 
 ////////////////////////////////////////
 
-int main(int argc, uchar *argv[]) {
-
-	Integer inte;
+void Test_Integer() {
+	Integer *inte;
 	Parse(&inte, "-2,5_6", 10);
 	Parse(&inte, "131072", 10);
+	Parse(&inte, "0x0000", 10);
 
-	fprintf(stderr, "%ld; ", inte._expo);
-	iptr _expo = inte._expo < 0 ? -inte._expo : inte._expo;
+	fprintf(stderr, "[%d, %ld] ", inte->_sign, inte->_expo);
+	iptr _expo = inte->_expo;
 	for (_expo -= 1; 0 <= _expo; _expo -= 1) {
-		fprintf(stderr, "%d ", inte._lsu[_expo]);
+		fprintf(stderr, "%d ", inte->_lsu[_expo]);
 	}
 	fprintf(stderr, "\n");
+}
+
+void TestAdd() {
+	Integer *inte1;
+	Integer *inte2;
+	Parse(&inte1, "-128", 10);
+	Parse(&inte2, "256", 10);
+
+	Integer *inte3 = Add(inte1, inte2);
+
+	fprintf(stderr, "[%d, %ld] ", inte3->_sign, inte3->_expo);
+	iptr _expo = inte3->_expo;
+	for (_expo -= 1; 0 <= _expo; _expo -= 1) {
+		fprintf(stderr, "%d ", inte3->_lsu[_expo]);
+	}
+	fprintf(stderr, "\n");
+}
+
+int main(int argc, uchar *argv[]) {
+
+	// TestInteger();
+	TestAdd();
 
 	return 0;
 }
