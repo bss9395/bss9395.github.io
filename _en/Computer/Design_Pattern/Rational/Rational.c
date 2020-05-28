@@ -17,18 +17,10 @@ typedef unsigned char  uchar;
 typedef unsigned short ushort;
 typedef unsigned int   uint;
 
-typedef void *(*CALLOC)(size_t _Count, size_t _Size);
-typedef void *(*READLLOC)(void *_Block, size_t _Size);
-typedef double(*LOG)(double x);
-struct {
-	CALLOC Calloc;
-	READLLOC Realloc;
-	LOG Log2;
-} CStd = {
-	.Calloc = calloc,
-	.Realloc = realloc,
-	.Log2 = log2,
-};
+#define Calloc  calloc
+#define Realloc realloc
+#define Memset  memset
+#define Log2    log2
 
 ////////////////////////////////////////
 
@@ -96,9 +88,13 @@ struct {
 		'?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?',
 	},
 
-	._Base = (1U << (sizeof(unit) * 8 - 1)),
-	._Mask = (1U << (sizeof(unit) * 8 - 1)) - 1,
-	._Shift = sizeof(unit) * 8 - 1,
+	//._Base = 0x10000U,
+	//._Mask = 0xFFFFU,
+	//._Shift = 16U,
+
+	._Base = (1U << (sizeof(unit) * 8)),
+	._Mask = (1U << (sizeof(unit) * 8)) - 1,
+	._Shift = sizeof(unit) * 8,
 };
 
 ////////////////////////////////////////
@@ -204,11 +200,11 @@ iptr Parse(Integer *inte, const uchar *data, int base) {
 	}
 
 	if (EData._Log2_Base[base] <= EData._Epsilon) {
-		EData._Log2_Base[base] = CStd.Log2(base + EData._Epsilon) / CStd.Log2(EData._Base);
+		EData._Log2_Base[base] = Log2(base + EData._Epsilon) / Log2(EData._Base);
 	}
 
 	iptr _expo = (iptr)(expo * EData._Log2_Base[base]) + 1;
-	unit *_lsu = (unit *)CStd.Calloc(_expo, sizeof(unit));
+	unit *_lsu = (unit *)Calloc(_expo, sizeof(unit));
 	_expo = 1;
 	dual carry = 0;
 	while (data < digit) {
@@ -243,10 +239,15 @@ iptr Parse(Integer *inte, const uchar *data, int base) {
 int main(int argc, uchar *argv[]) {
 
 	Integer inte;
-	Parse(&inte, "-2163200", 10);
+	Parse(&inte, "-2,5_6", 10);
+	Parse(&inte, "131072", 10);
 
-	fprintf(stderr, "%ld, %d, %d \n", inte._expo, inte._lsu[0], inte._lsu[1]);
-
+	fprintf(stderr, "%ld; ", inte._expo);
+	iptr _expo = inte._expo < 0 ? -inte._expo : inte._expo;
+	for (_expo -= 1; 0 <= _expo; _expo -= 1) {
+		fprintf(stderr, "%d ", inte._lsu[_expo]);
+	}
+	fprintf(stderr, "\n");
 
 	return 0;
 }
