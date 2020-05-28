@@ -104,7 +104,7 @@ static bool Check(const bool failed, const char *file, const iptr line, const ch
 		iptr lines = 0;
 		fprintf(stderr, "[%s; %d; %s] %s; %s; "
 			, (Extract(file, "/\\.", &lines)[lines - 2] + 1), line, (Extract(function, ":", &lines)[lines - 1]), level, report);
-		if (!(errno == 0 && level == ELevel._Info)) {
+		if (errno != 0 && level == ELevel._Info) {
 			fprintf(stderr, "%s; ", strerror(errno));
 			exit((iptr)level);
 		}
