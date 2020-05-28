@@ -1,7 +1,6 @@
 /* Rational.c
 Author: BSS9395
 Update: 2020-05-28T17:47:00+08@China-Guangdong-Zhanjiang+08
-Design: Rational Number
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -53,7 +52,7 @@ const struct {
 	._Fatal = "Fatal",
 
 	._Integer = "Integer",
-	._Float = "Float",
+	._Rational = "Rational",
 	._String = "String",
 };
 
@@ -141,8 +140,8 @@ Digit Representation
 */
 
 /*
-=>     b_{n - 1} % BASE = R
-=>     b_{n - 1} / BASE = Q
+	   b_{n - 1} % BASE = R
+	   b_{n - 1} / BASE = Q
 => b_{n - 1} = Q * BASE + R
 											   // b_{n - 2} is to be dealed with
 =>      (b_{n - 1} * base + b_{n - 2}) % BASE
@@ -151,8 +150,9 @@ Digit Representation
 											   // yield Carry
 =>      (b_{n - 1} * base + b_{n - 2}) / BASE
 == ((Q * BASE + R) * base + b_{n - 2}) / BASE
-==    (Q * BASE * base + Carry * BASE) / BASE
-==            Q * base + Carry
+==                   (Q * BASE * base) / BASE + Carry
+==                                   Q * base + Carry
+											   // recursively forward
 */
 iptr Parse(Integer *inte, const uchar *data, int base) {
 	if (Check(!(2 <= base && base <= 16), __FUNCTION__, EType._Error, "!(2 <= base && base <= 36)", NULL)) {
@@ -216,13 +216,13 @@ iptr Parse(Integer *inte, const uchar *data, int base) {
 			data += 1;
 		}
 		else {
-			carry = EData._Digit[data[0]];            // fetch b_{n - 2}
+			carry = EData._Digit[data[0]];             // fetch b_{n - 2}
 			data += 1;
 
 			for (iptr i = 0; i < _expo; i += 1) {
 				carry = _lsu[i] * base + carry;        // yield (divisor)
 				_lsu[i] = (unit)(carry & EData._Mask); // yield (divisor % BASE)
-				carry >>= EData._Shift;               // yield (divisor / BASE)
+				carry >>= EData._Shift;                // yield (divisor / BASE)
 			}
 			if (carry != 0) {
 				_lsu[_expo] = carry;
