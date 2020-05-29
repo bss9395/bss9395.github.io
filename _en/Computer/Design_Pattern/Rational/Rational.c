@@ -49,15 +49,16 @@ typedef int16_t   int16;
 typedef int32_t   int32;
 typedef int64_t   int64;
 typedef intptr_t  iptr;
-typedef uint8_t   uint08;
-typedef uint16_t  uint16;
-typedef uint32_t  uint32;
-typedef uint64_t  uint64;
+typedef uint8_t   unt08;
+typedef uint16_t  unt16;
+typedef uint32_t  unt32;
+typedef uint64_t  unt64;
+typedef uintptr_t uptr;
 
-typedef uint08  unit;
+typedef unt08  unit;
 // typedef uint16  unit;
-typedef uint32  dual;
-typedef uint64  quad;
+typedef unt32  dual;
+typedef unt64  quad;
 
 typedef struct {
 	char _sign;
@@ -73,14 +74,14 @@ typedef struct {
 	unit *_lsu_denomi;
 } Rational;
 
-iptr Parse(Integer *integer, const uint08 *data, int base);
+iptr Parse(Integer *integer, const unt08 *data, int base);
 Integer Add(Integer lhs, Integer rhs);
 Integer Sub(Integer lhs, Integer rhs);
 
 ////////////////////////////////////////
 
-typedef const uint08 *Level;
-typedef const uint08 *Type;
+typedef const unt08 *Level;
+typedef const unt08 *Type;
 const struct {
 	Level _Info;
 	Level _ToDo;
@@ -105,8 +106,8 @@ const struct {
 
 struct {
 	const double _Epsilon;
-	const uint08 _Space[7];
-	const uint08 _Digit[256];
+	const unt08 _Space[7];
+	const unt08 _Digit[256];
 
 	const unit _Base;
 	const unit _Mask;
@@ -142,7 +143,7 @@ struct {
 
 ////////////////////////////////////////
 
-inline bool Check(const bool failed, const uint08 *function, const Level level, const uint08 *record, const uint08 *extra) {
+inline bool Check(const bool failed, const unt08 *function, const Level level, const unt08 *record, const unt08 *extra) {
 	if (failed) {
 		fprintf(stderr, "[%s#%s] %s%s; ""\n", function, level, record, extra == NULL ? "" : extra);
 	}
@@ -151,8 +152,8 @@ inline bool Check(const bool failed, const uint08 *function, const Level level, 
 	return failed;
 }
 
-inline iptr Skip(const uint08 *data, const uint08 space[]) {
-	const uint08 *ret = data;
+inline iptr Skip(const unt08 *data, const unt08 space[]) {
+	const unt08 *ret = data;
 	for (int i = 0; data[0] != '\0'; data += 1) {
 		i = 0;
 		while (space[i] != '\0' && data[0] != space[i]) {
@@ -183,11 +184,11 @@ inline iptr Skip(const uint08 *data, const uint08 space[]) {
 ==                                   Q * base + Carry
 											   // accumulate recursively
 */
-iptr Parse(Integer *integer, const uint08 *data, int base) {
+iptr Parse(Integer *integer, const unt08 *data, int base) {
 	if (Check(!(2 <= base && base <= 16), __FUNCTION__, EType._Error, "!(2 <= base && base <= 36)", NULL)) {
 		return 0;
 	}
-	const uint08 *ret = data;
+	const unt08 *ret = data;
 	data += Skip(data, EData._Space);
 
 	char _sign = +1;
@@ -218,7 +219,7 @@ iptr Parse(Integer *integer, const uint08 *data, int base) {
 	data += Skip(data, "0_,");
 
 	iptr expo = 0;
-	const uint08 *digit = data;
+	const unt08 *digit = data;
 	while (digit[0] != '\0') {
 		if (EData._Digit[digit[0]] <= base) {
 			digit += 1;
@@ -510,7 +511,7 @@ void TestMul() {
 	fprintf(stderr, "\n");
 }
 
-int main(int argc, uint08 *argv[]) {
+int main(int argc, char *argv[]) {
 
 	// TestInteger();
 	// TestAdd();
