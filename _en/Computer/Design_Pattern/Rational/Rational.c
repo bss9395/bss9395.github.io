@@ -1,7 +1,20 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-05-29T03:14:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-29T14:50:00+08@China-Guangdong-Zhanjiang+08
 */
+
+/* Integer Range
+   BASE = 2^{16}     = 2^{2^{4}}
+   EXPO = 2^{29} - 1 = 2^{sizeof(iptr) * 8 - 3} - 1
+
+   1 * BASE^{EXPO} - 1
+== 1 * (2^{16})^{2^{29} - 1} - 1
+== (2^{2^{4} * 2^{29}}) / (2^{16}) - 1
+== (2^{2^{33}}) / (2^{16}) - 1
+== (2^{2^{4 + sizeof(iptr) * 8 - 3} - 1
+*/
+
+////////////////////////////////////////
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <errno.h>
@@ -28,14 +41,14 @@ typedef unsigned int   uint;
 typedef ushort unit;
 typedef uint   dual;
 typedef struct {
-	iptr _sign : 1;
-	iptr _expo : (sizeof(iptr) * 8 - 1);
+	iptr _sign : 2;
+	iptr _expo : (sizeof(iptr) * 8 - 2);
 	unit *_lsu;
 } Integer;
 
-iptr Parse(Integer **integer, const uchar *data, int base);
-Integer *Add(const Integer *lhs, const Integer *rhs);
-Integer *Sub(const Integer *lhs, const Integer *rhs);
+iptr Parse(Integer *integer, const uchar *data, int base);
+Integer Add(Integer lhs, Integer rhs);
+Integer Sub(Integer lhs, Integer rhs);
 
 ////////////////////////////////////////
 
@@ -68,9 +81,6 @@ struct {
 	const uchar _Space[7];
 	const uchar _Digit[256];
 
-	int _Plus;
-	int _Minus;
-
 	const uint _Base;
 	const uint _Mask;
 	const uint _Shift;
@@ -97,9 +107,6 @@ struct {
 		'?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?',
 		'?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?',
 	},
-
-	._Plus = 0,
-	._Minus = 1,
 
 	._Base = (1U << (sizeof(unit) * 8)),
 	._Mask = (1U << (sizeof(unit) * 8)) - 1,
@@ -163,21 +170,21 @@ Digit Representation
 ==                                   Q * base + Carry
 											   // accumulate recursively
 */
-iptr Parse(Integer **integer, const uchar *data, int base) {
+iptr Parse(Integer *integer, const uchar *data, int base) {
 	if (Check(!(2 <= base && base <= 16), __FUNCTION__, EType._Error, "!(2 <= base && base <= 36)", NULL)) {
 		return 0;
 	}
 	const uchar *ret = data;
 	data += Skip(data, EData._Space);
 
-	char _sign = EData._Plus;
+	char _sign = +1;
 	if (data[0] == '+') {
 		data += 1;
-		_sign = EData._Plus;
+		_sign = -1;
 	}
 	else if (data[0] == '-') {
 		data += 1;
-		_sign = EData._Minus;
+		_sign = -1;
 	}
 
 	if (data[0] == '0') {
@@ -239,12 +246,16 @@ iptr Parse(Integer **integer, const uchar *data, int base) {
 			}
 		}
 	}
-	*integer = (Integer *)Calloc(1, sizeof(Integer));
-	(*integer)->_sign = _sign;
-	(*integer)->_expo = _expo;
-	(*integer)->_lsu = _lsu;
+	integer->_sign = _sign;
+	integer->_expo = _expo;
+	integer->_lsu = _lsu;
 
 	return (iptr)(data - ret);
+}
+
+Integer Neg(Integer integer) {
+	integer._sign = ~integer._sign;
+	return integer;
 }
 
 /*
@@ -254,27 +265,35 @@ Abs(lhs->_expo) >= Abs(rhs->_expo)
 =  ... + (B_{1} + C_{1} + Carry_{1}) * BASE^{1} + (B_{0} + C_{0} + Carry_{0}) * BASE^{0}            // accumulate recursively
  + Carry_{EXPO} * BASE^{EXPO} + (B_{EXPO - 1} + C_{EXPO - 1} + Carry_{EXPO - 1}) * BASE^{EXPO - 1}
 */
-Integer *Add(const Integer *lhs, const Integer *rhs) {
+Integer Add(Integer lhs, Integer rhs) {
 	// lhs and rhs have opposite signs
-	if ((lhs->_sign ^ rhs->_sign) < 0) {
-		return Sub(lhs, rhs);
+	if ((lhs._sign ^ rhs._sign) < 0) {
+		/*
+				(+)   (-)    (+)   (  + )
+		case 1: lhs + rhs == lhs - (-rhs)
+		case 2: lhs + rhs == lhs - (-rhs)
+				(-)   (+)    (-)   (  - )
+		*/
+		return Sub(lhs, Neg(rhs));
 	}
-	Integer *ret = (Integer *)Calloc(1, sizeof(Integer));
+	Integer ret;
+	int _sign = lhs._sign;
 
-	if (lhs->_expo < rhs->_expo) {
-		const Integer *swap = lhs; lhs = rhs; rhs = swap;
+	if (lhs._expo < rhs._expo) {
+		Integer swap = lhs; lhs = rhs; rhs = swap;
+		_sign *= +1;
 	}
-	unit *_lsu = (unit *)Calloc(lhs->_expo + 1, sizeof(unit));
+	unit *_lsu = (unit *)Calloc(lhs._expo + 1, sizeof(unit));
 
 	dual carry = 0;
 	iptr i = 0;
-	for (; i < rhs->_expo; i += 1) {
-		carry = lhs->_lsu[i] + rhs->_lsu[i] + carry;
+	for (; i < rhs._expo; i += 1) {
+		carry = lhs._lsu[i] + rhs._lsu[i] + carry;
 		_lsu[i] = (unit)(carry & EData._Mask);
 		carry >>= EData._Shift;
 	}
-	for (; i < lhs->_expo; i += 1) {
-		carry = lhs->_lsu[i] + carry;
+	for (; i < lhs._expo; i += 1) {
+		carry = lhs._lsu[i] + carry;
 		_lsu[i] = (unit)(carry & EData._Mask);
 		carry >>= EData._Shift;
 	}
@@ -283,9 +302,9 @@ Integer *Add(const Integer *lhs, const Integer *rhs) {
 		i += 1;
 	}
 
-	ret->_sign = (lhs->_sign < 0 ? EData._Minus : EData._Plus);
-	ret->_expo = i;
-	ret->_lsu = _lsu;
+	ret._sign = _sign;
+	ret._expo = i;
+	ret._lsu = _lsu;
 	return ret;
 }
 
@@ -296,81 +315,93 @@ Abs(lhs->_expo) >= Abs(rhs->_expo)
 =  ... + (B_{1} - C_{1} - Borrow_{1} + BASE)%BASE * BASE^{1} + (B_{0} - C_{0} - Borrow_{0} + BASE)%BASE * BASE^{0}  // attenuate recursively
  + (B_{EXPO - 1} - C_{EXPO - 1} - Borrow_{EXPO - 1} + BASE)%BASE * BASE^{EXPO - 1}
 */
-Integer *Sub(const Integer *lhs, const Integer *rhs) {
-	// lhs and rhs have same signs
-	if ((lhs->_sign ^ rhs->_sign) > 0) {
-		return Add(lhs, rhs);
+Integer Sub(Integer lhs, Integer rhs) {
+	// lhs and rhs have opposite signs
+	if ((lhs._sign ^ rhs._sign) < 0) {
+		/*
+				(+)   (-)    (+)   (  + )
+		case 3: lhs - rhs == lhs + (-rhs)
+		case 4: lhs - rhs == lhs + (-rhs)
+				(-)   (+)    (-)   (  - )
+		*/
+		return Add(lhs, Neg(rhs));
 	}
-	Integer *ret = (Integer *)Calloc(1, sizeof(Integer));
+	Integer ret;
+	int _sign = lhs._sign;
 
-	if (lhs->_expo < rhs->_expo) {
-		const Integer *swap = lhs; lhs = rhs;	rhs = swap;
+	if (lhs._expo < rhs._expo) {
+		Integer swap = lhs; lhs = rhs;	rhs = swap;
+		_sign *= -1;
 	}
-	iptr _expo = lhs->_expo;
-	if (lhs->_expo == rhs->_expo) {
-		while (0 < _expo && lhs->_lsu[_expo - 1] == rhs->_lsu[_expo - 1]) {
+	iptr _expo = lhs._expo;
+	if (lhs._expo == rhs._expo) {
+		while (0 < _expo && lhs._lsu[_expo - 1] == rhs._lsu[_expo - 1]) {
 			_expo -= 1;
 		}
 		if (_expo <= 0) {
-			ret->_expo = 1;
-			ret->_lsu[0] = (unit)0U;
+			ret._sign = +1;
+			ret._expo = 1;
+			ret._lsu = (unit *)Calloc(1, sizeof(unit));
+			ret._lsu[0] = (unit)0U;
 			return ret;
 		}
-		else if (lhs->_lsu[_expo - 1] < rhs->_lsu[_expo - 1]) {
-			Integer *swap = lhs; lhs = rhs;	rhs = swap;
+		else if (lhs._lsu[_expo - 1] < rhs._lsu[_expo - 1]) {
+			Integer swap = lhs; lhs = rhs;	rhs = swap;
+			_sign *= -1;
 		}
 	}
 	unit *_lsu = (unit *)Calloc(_expo, sizeof(unit));
 
 	dual borrow = 0;
 	iptr i = 0;
-	for (; i < rhs->_expo; i += 1) {
-		borrow = lhs->_lsu[i] - rhs->_lsu[i] - borrow;
+	for (; i < rhs._expo; i += 1) {
+		borrow = lhs._lsu[i] - rhs._lsu[i] - borrow;
 		_lsu[i] = borrow & EData._Mask;
 		borrow >>= EData._Shift;
 		borrow &= 1U;             // borrow 1 from higher unit
 	}
 	for (; i < _expo; i += 1) {
-		borrow = lhs->_lsu[i] - borrow;
+		borrow = lhs._lsu[i] - borrow;
 		_lsu[i] = borrow & EData._Mask;
 		borrow >>= EData._Shift;
 		borrow &= 1U;             // borrow 1 from higher unit
 	}
 
-	ret->_sign = (lhs->_sign < 0 ? EData._Minus : EData._Plus);
-	ret->_expo = i;
-	ret->_lsu = _lsu;
+	ret._sign = _sign;
+	ret._expo = i;
+	ret._lsu = _lsu;
 	return ret;
 }
 
 ////////////////////////////////////////
 
 void Test_Integer() {
-	Integer *inte;
+	Integer inte;
 	Parse(&inte, "-2,5_6", 10);
 	Parse(&inte, "131072", 10);
 	Parse(&inte, "0x0000", 10);
 
-	fprintf(stderr, "[%d, %ld] ", inte->_sign, inte->_expo);
-	iptr _expo = inte->_expo;
+	fprintf(stderr, "[%d, %ld] ", inte._sign, inte._expo);
+	iptr _expo = inte._expo;
 	for (_expo -= 1; 0 <= _expo; _expo -= 1) {
-		fprintf(stderr, "%d ", inte->_lsu[_expo]);
+		fprintf(stderr, "%d ", inte._lsu[_expo]);
 	}
 	fprintf(stderr, "\n");
 }
 
 void TestAdd() {
-	Integer *inte1;
-	Integer *inte2;
+	Integer inte1;
+	Integer inte2;
 	Parse(&inte1, "-128", 10);
-	Parse(&inte2, "256", 10);
+	Parse(&inte2, "-256", 10);
 
-	Integer *inte3 = Add(inte1, inte2);
+	// Integer inte3 = Add(inte1, inte2);
+	Integer inte3 = Sub(inte1, inte2);
 
-	fprintf(stderr, "[%d, %ld] ", inte3->_sign, inte3->_expo);
-	iptr _expo = inte3->_expo;
+	fprintf(stderr, "[%d, %ld] ", inte3._sign, inte3._expo);
+	iptr _expo = inte3._expo;
 	for (_expo -= 1; 0 <= _expo; _expo -= 1) {
-		fprintf(stderr, "%d ", inte3->_lsu[_expo]);
+		fprintf(stderr, "%d ", inte3._lsu[_expo]);
 	}
 	fprintf(stderr, "\n");
 }
