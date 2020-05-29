@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-05-29T18:34:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-29T22:25:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
 */
 
@@ -43,7 +43,7 @@ typedef uchar  unit;
 // typedef ushort unit;
 typedef uint   dual;
 typedef struct {
-	iptr _sign : 2;
+	char _sign : 2;
 	iptr _expo : (sizeof(iptr) * 8 - 2);
 	unit *_lsu;
 } Integer;
@@ -117,10 +117,6 @@ struct {
 
 ////////////////////////////////////////
 
-inline iptr Absolute(iptr value) {
-	return (value < 0 ? -value : value);
-}
-
 inline bool Check(const bool failed, const uchar *function, const Level level, const uchar *record, const uchar *extra) {
 	if (failed) {
 		fprintf(stderr, "[%s#%s] %s%s; ""\n", function, level, record, extra == NULL ? "" : extra);
@@ -161,7 +157,7 @@ Digit Representation
 	   b_{n - 1} % BASE = R
 	   b_{n - 1} / BASE = Q
 => b_{n - 1} = Q * BASE + R
-											   // b_{n - 2} is to be dealed with
+											   // b_{n - 2} is now to be dealed with
 =>      (b_{n - 1} * base + b_{n - 2}) % BASE
 == ((Q * BASE + R) * base + b_{n - 2}) % BASE
 ==              (R * base + b_{n - 2}) % BASE
@@ -224,9 +220,9 @@ iptr Parse(Integer *integer, const uchar *data, int base) {
 	if (EData._Log2_Base[base] <= EData._Epsilon) {
 		EData._Log2_Base[base] = Log2(base + EData._Epsilon) / Log2(EData._Base);
 	}
-
 	iptr _expo = (iptr)(expo * EData._Log2_Base[base]) + 1;
 	unit *_lsu = (unit *)Calloc(_expo, sizeof(unit));
+
 	_expo = 1;
 	dual carry = 0;
 	while (data < digit) {
@@ -248,10 +244,10 @@ iptr Parse(Integer *integer, const uchar *data, int base) {
 			}
 		}
 	}
+
 	integer->_sign = _sign;
 	integer->_expo = _expo;
 	integer->_lsu = _lsu;
-
 	return (iptr)(data - ret);
 }
 
@@ -260,12 +256,11 @@ Integer Neg(Integer integer) {
 	return integer;
 }
 
-/*
-Abs(lhs->_expo) >= Abs(rhs->_expo)
-			  B_{EXPO - 1} * BASE^{EXPO - 1} + ... + B_{1} * BASE^{1} + B_{0} * BASE^{0}
-+             C_{EXPO - 1} * BASE^{EXPO - 1} + ... + c_{1} * base^{1} + C_{0} * BASE^{0}            // yield Carry
-=  ... + (B_{1} + C_{1} + Carry_{1}) * BASE^{1} + (B_{0} + C_{0} + Carry_{0}) * BASE^{0}            // accumulate recursively
- + Carry_{EXPO} * BASE^{EXPO} + (B_{EXPO - 1} + C_{EXPO - 1} + Carry_{EXPO - 1}) * BASE^{EXPO - 1}
+/* Abs(lhs->_expo) >= Abs(rhs->_expo)
+  *BASE^{EXPO}			     *BASE^{EXPO - 1}                                       *BASE^{1}                           *BASE^{0}
+								 B_{EXPO - 1} +                          ... +          B_{1}                               B_{0}
++                                C_{EXPO - 1} +                          ... +          C_{1}                             + C_{0}                     // yield Carry
+= Carry_{EXPO} + (B_{EXPO - 1} + C_{EXPO - 1} + Carry_{EXPO - 1})%BASE + ... + (B_{1} + C_{1} + Carry_{1})%BASE  + (B_{0} + C_{0} + Carry_{0}) %BASE  // accumulate recursively
 */
 Integer Add(Integer lhs, Integer rhs) {
 	// lhs and rhs have opposite signs
@@ -278,44 +273,41 @@ Integer Add(Integer lhs, Integer rhs) {
 		*/
 		return Sub(lhs, Neg(rhs));
 	}
+
 	Integer ret;
-	int _sign = lhs._sign;
+	char _sign = lhs._sign;
 
 	if (lhs._expo < rhs._expo) {
 		Integer swap = lhs; lhs = rhs; rhs = swap;
 		_sign *= +1;
 	}
-	unit *_lsu = (unit *)Calloc(lhs._expo + 1, sizeof(unit));
+	iptr _expo = lhs._expo + 1;
+	unit *_lsu = (unit *)Calloc(_expo, sizeof(unit));
 
 	dual carry = 0;
-	iptr i = 0;
-	for (; i < rhs._expo; i += 1) {
+	for (iptr i = 0; i < rhs._expo; i += 1) {
 		carry = lhs._lsu[i] + rhs._lsu[i] + carry;
 		_lsu[i] = (unit)(carry & EData._Mask);
 		carry >>= EData._Shift;
 	}
-	for (; i < lhs._expo; i += 1) {
-		carry = lhs._lsu[i] + carry;
-		_lsu[i] = (unit)(carry & EData._Mask);
+	for (iptr j = rhs._expo; j < lhs._expo; j += 1) {
+		carry = lhs._lsu[j] + carry;
+		_lsu[j] = (unit)(carry & EData._Mask);
 		carry >>= EData._Shift;
 	}
-	if (carry != 0) {
-		_lsu[i] = carry;
-		i += 1;
-	}
+	_lsu[lhs._expo] = (unit)(carry);
 
 	ret._sign = _sign;
-	ret._expo = i;
+	ret._expo = (carry != 0 ? _expo + 1 : _expo);
 	ret._lsu = _lsu;
 	return ret;
 }
 
-/*
-Abs(lhs->_expo) >= Abs(rhs->_expo)
-							  B_{EXPO - 1} * BASE^{EXPO - 1} + ... + B_{1} * BASE^{1} + B_{0} * BASE^{0}
--                             C_{EXPO - 1} * BASE^{EXPO - 1} + ... + C_{1} * BASE^{1} + C_{0} * BASE^{0}            // yield Borrow
-=  ... + (B_{1} - C_{1} - Borrow_{1} + BASE)%BASE * BASE^{1} + (B_{0} - C_{0} - Borrow_{0} + BASE)%BASE * BASE^{0}  // attenuate recursively
- + (B_{EXPO - 1} - C_{EXPO - 1} - Borrow_{EXPO - 1} + BASE)%BASE * BASE^{EXPO - 1}
+/* Abs(lhs->_expo) >= Abs(rhs->_expo)
+			  *BASE^{EXPO - 1}                                        *BASE^{1}                            *BASE^{0}
+				  B_{EXPO - 1} +                           ... +          B_{1}                                B_{0}
+-                 C_{EXPO - 1} +                           ... +          C_{1}                              + C_{0}                      // yield Borrow
+= (B_{EXPO - 1} + C_{EXPO - 1} + Borrow_{EXPO - 1})%BASE + ... + (B_{1} + C_{1} + Borrow_{1})%BASE  + (B_{0} + C_{0} + Borrow_{0}) %BASE  // attenuate recursively
 */
 Integer Sub(Integer lhs, Integer rhs) {
 	// lhs and rhs have opposite signs
@@ -328,14 +320,16 @@ Integer Sub(Integer lhs, Integer rhs) {
 		*/
 		return Add(lhs, Neg(rhs));
 	}
+
 	Integer ret;
-	int _sign = lhs._sign;
+	char _sign = lhs._sign;
 
 	if (lhs._expo < rhs._expo) {
 		Integer swap = lhs; lhs = rhs;	rhs = swap;
 		_sign *= -1;
 	}
 	iptr _expo = lhs._expo;
+
 	if (lhs._expo == rhs._expo) {
 		while (0 < _expo && lhs._lsu[_expo - 1] == rhs._lsu[_expo - 1]) {
 			_expo -= 1;
@@ -377,19 +371,19 @@ Integer Sub(Integer lhs, Integer rhs) {
 
 
 /*
-																	 B_{EXPO-1}*BASE^{EXPO-1} + ... + B_{1}*BASE^{1}       + B_{0}*BASE^{0}
-×                                                                    C_{EXPO-1}*BASE^{EXPO-1} + ... + C_{1}*BASE^{1}       + C_{0}*BASE^{0}
+   *BASE^{2*EXPO-1}    *BASE^{EXPO+1}                  *BASE^{EXPO}		     *BASE^{EXPO-1}		           *BASE^{1}		        *BASE^{0}
+																				 B_{EXPO-1}     + ... +        B_{1}        +           B_{0}
+×                                                                                C_{EXPO-1}     + ... +        C_{1}        +           C_{0}
 ==
-++                                                      Carry_{0}     (B_{0}*C_{EXPO-1})%BASE ...（B_{0}*C_{1})%BASE     (B_{0}*C_{0})%BASE
-++  				        Carry_{1}     (B_{1}*C_{EXPO-1})%BASE ...      (B_{1}*C_{1})%BASE     (B_{1}*C_{0})%BASE
+++                                                        Carry_{0}     (B_{0} * C_{EXPO-1})%BASE ...（B_{0} * C_{1})%BASE     (B_{0} * C_{0})%BASE
+++  				        Carry_{1}     (B_{1} * C_{EXPO-1})%BASE ...      (B_{1} * C_{1})%BASE     (B_{1} * C_{0})%BASE
 ++				    ...
-++   Carry_{EXPO-1}     (B_{EXPO-1}*C_{EXPO-1})%BASE ... (B_{EXPO-1}*C_{1})%BASE   (B_{EXPO-1}*C_{0})%BASE
-|| *BASE^{2*EXPO-1}    *BASE^{EXPO+1}                *BASE^{EXPO}		       *BASE^{EXPO-1}		       *BASE^{1}		      *BASE^{0}
+++ Carry_{EXPO - 1}     (B_{EXPO - 1} * C_{EXPO - 1})%BASE ... (B_{EXPO - 1} * C_{1})%BASE    (B_{EXPO-1} * C_{0})%BASE
+
 */
 Integer Mul(Integer lhs, Integer rhs) {
 	Integer ret;
-
-	int _sign = lhs._sign * rhs._sign;
+	char _sign = lhs._sign * rhs._sign;
 	iptr _expo = lhs._expo + rhs._expo;
 	unit *_lsu = (unit *)Calloc(_expo, sizeof(unit));
 
@@ -399,15 +393,38 @@ Integer Mul(Integer lhs, Integer rhs) {
 	>= _lsu[i + 1] + lhs._lsu[i] * rhs._lsu[j] + Carry
 	*/
 	dual carry = 0;
-	for (iptr i = 0; i < lhs._expo; i += 1) {
-		carry = 0;
-		for (iptr j = 0; j < rhs._expo; j += 1) {
-			carry = _lsu[i + j] + lhs._lsu[i] * rhs._lsu[j] + carry;
-			_lsu[i + j] = (unit)(carry & EData._Mask);
+	if (lhs._lsu == rhs._lsu) {
+		/* Θ(n) = EXPO^2 -> Θ(n) = EXPO * (EXPO + 1) / 2
+		   Square(Sum_{i = 0, j = 0}^{EXPO - 1} B_{i, j} * BASE^{i + j})
+		== Sum_{i = 0}^{EXPO - 1} B_{i}^2 * BASE^{2 * i}
+		  + Sum_{i = 0}^{EXPO - 1} Sum_{j = i + 1}^{EXPO - 1} (2 * B_{i}) * B_{j} * BASE^{i + j}
+		*/
+		dual twice = 0;
+		for (iptr i = 0; i < rhs._expo; i += 1) {
+			carry = _lsu[i + i] + rhs._lsu[i] * rhs._lsu[i];
+			_lsu[i + i] = (unit)(carry & EData._Mask);
 			carry >>= EData._Shift;
 
+			twice = 2 * rhs._lsu[i];
+			for (iptr j = i + 1; j < rhs._expo; j += 1) {
+				carry = _lsu[i + j] + twice * rhs._lsu[j] + carry;
+				_lsu[i + j] = (unit)(carry & EData._Mask);
+				carry >>= EData._Shift;
+			}
+			_lsu[i + rhs._expo] = (unit)(carry);
 		}
-		_lsu[i + rhs._expo] = carry;
+	}
+	else {
+		for (iptr i = 0; i < lhs._expo; i += 1) {
+			carry = 0;
+			for (iptr j = 0; j < rhs._expo; j += 1) {
+				carry = _lsu[i + j] + lhs._lsu[i] * rhs._lsu[j] + carry;
+				_lsu[i + j] = (unit)(carry & EData._Mask);
+				carry >>= EData._Shift;
+
+			}
+			_lsu[i + rhs._expo] = (unit)(carry);
+		}
 	}
 
 	ret._sign = _sign;
@@ -455,7 +472,8 @@ void TestMul() {
 	Parse(&inte1, "-256", 10);
 	Parse(&inte2, "+256", 10);
 
-	Integer inte3 = Mul(inte1, inte2);
+	// Integer inte3 = Mul(inte1, inte2);
+	Integer inte3 = Mul(inte1, inte1);
 
 	fprintf(stderr, "[%d, %ld] ", inte3._sign, inte3._expo);
 	iptr _expo = inte3._expo;
