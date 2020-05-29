@@ -1,13 +1,14 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-05-29T14:50:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-29T18:34:00+08@China-Guangdong-Zhanjiang+08
+Design: Rational Number
 */
 
 /* Integer Range
    BASE = 2^{16}     = 2^{2^{4}}
    EXPO = 2^{29} - 1 = 2^{sizeof(iptr) * 8 - 3} - 1
 
-   1 * BASE^{EXPO} - 1
+±  1 * BASE^{EXPO} - 1
 == 1 * (2^{16})^{2^{29} - 1} - 1
 == (2^{2^{4} * 2^{29}}) / (2^{16}) - 1
 == (2^{2^{33}}) / (2^{16}) - 1
@@ -38,7 +39,8 @@ typedef unsigned char  uchar;
 typedef unsigned short ushort;
 typedef unsigned int   uint;
 
-typedef ushort unit;
+typedef uchar  unit;
+// typedef ushort unit;
 typedef uint   dual;
 typedef struct {
 	iptr _sign : 2;
@@ -180,7 +182,7 @@ iptr Parse(Integer *integer, const uchar *data, int base) {
 	char _sign = +1;
 	if (data[0] == '+') {
 		data += 1;
-		_sign = -1;
+		_sign = +1;
 	}
 	else if (data[0] == '-') {
 		data += 1;
@@ -254,7 +256,7 @@ iptr Parse(Integer *integer, const uchar *data, int base) {
 }
 
 Integer Neg(Integer integer) {
-	integer._sign = ~integer._sign;
+	integer._sign *= -1;
 	return integer;
 }
 
@@ -356,19 +358,62 @@ Integer Sub(Integer lhs, Integer rhs) {
 	iptr i = 0;
 	for (; i < rhs._expo; i += 1) {
 		borrow = lhs._lsu[i] - rhs._lsu[i] - borrow;
-		_lsu[i] = borrow & EData._Mask;
+		_lsu[i] = (unit)(borrow & EData._Mask);
 		borrow >>= EData._Shift;
 		borrow &= 1U;             // borrow 1 from higher unit
 	}
 	for (; i < _expo; i += 1) {
 		borrow = lhs._lsu[i] - borrow;
-		_lsu[i] = borrow & EData._Mask;
+		_lsu[i] = (unit)(borrow & EData._Mask);
 		borrow >>= EData._Shift;
 		borrow &= 1U;             // borrow 1 from higher unit
 	}
 
 	ret._sign = _sign;
 	ret._expo = i;
+	ret._lsu = _lsu;
+	return ret;
+}
+
+
+/*
+									 B_{EXPO-1}*BASE^{EXPO-1} + ... + B_{1}*BASE^{1} + B_{0}*BASE^{0}
+×                                    C_{EXPO-1}*BASE^{EXPO-1} + ... + C_{1}*BASE^{1} + C_{0}*BASE^{0}
+==
+
+|| *BASE^{2*EXPO-1}    *BASE^{EXPO+1}                *BASE^{EXPO}		       *BASE^{EXPO-1}		       *BASE^{1}		      *BASE^{0}
+++                                                      Carry_{0}     (B_{0}*C_{EXPO-1})%BASE ...（B_{0}*C_{1})%BASE     (B_{0}*C_{0})%BASE
+++  				        Carry_{1}     (B_{1}*C_{EXPO-1})%BASE ...      (B_{1}*C_{1})%BASE     (B_{1}*C_{0})%BASE
+++				    ...
+++   Carry_{EXPO-1}     (B_{EXPO-1}*C_{EXPO-1})%BASE ... (B_{EXPO-1}*C_{1})%BASE   (B_{EXPO-1}*C_{0})%BASE
+==
+*/
+Integer Mul(Integer lhs, Integer rhs) {
+	Integer ret;
+
+	int _sign = lhs._sign * rhs._sign;
+	iptr _expo = lhs._expo + rhs._expo;
+	unit *_lsu = (unit *)Calloc(_expo, sizeof(unit));
+
+	/* constraint assurance
+	BASE * BASE - 1                                          // Dual Unit
+	==  (BASE - 1) +  (BASE - 1) * (BASE - 1)  + (BASE - 1)
+	>= _lsu[i + 1] + lhs._lsu[i] * rhs._lsu[j] + Carry
+	*/
+	dual carry = 0;
+	for (iptr i = 0; i < lhs._expo; i += 1) {
+		carry = 0;
+		for (iptr j = 0; j < rhs._expo; j += 1) {
+			carry = _lsu[i + j] + lhs._lsu[i] * rhs._lsu[j] + carry;
+			_lsu[i + j] = (unit)(carry & EData._Mask);
+			carry >>= EData._Shift;
+
+		}
+		_lsu[i + rhs._expo] = carry;
+	}
+
+	ret._sign = _sign;
+	ret._expo = (carry != 0 ? _expo : _expo - 1);
 	ret._lsu = _lsu;
 	return ret;
 }
@@ -406,10 +451,27 @@ void TestAdd() {
 	fprintf(stderr, "\n");
 }
 
+void TestMul() {
+	Integer inte1;
+	Integer inte2;
+	Parse(&inte1, "-256", 10);
+	Parse(&inte2, "+256", 10);
+
+	Integer inte3 = Mul(inte1, inte2);
+
+	fprintf(stderr, "[%d, %ld] ", inte3._sign, inte3._expo);
+	iptr _expo = inte3._expo;
+	for (_expo -= 1; 0 <= _expo; _expo -= 1) {
+		fprintf(stderr, "%d ", inte3._lsu[_expo]);
+	}
+	fprintf(stderr, "\n");
+}
+
 int main(int argc, uchar *argv[]) {
 
 	// TestInteger();
-	TestAdd();
+	// TestAdd();
+	TestMul();
 
 	return 0;
 }
