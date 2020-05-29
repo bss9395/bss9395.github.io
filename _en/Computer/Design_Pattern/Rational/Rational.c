@@ -34,6 +34,16 @@ Design: Rational Number
 
 ////////////////////////////////////////
 
+/* Representation of Integer
+Unit  Representation
+== B_{EXPO - 1} * BASE^{EXPO - 1} + B_{EXPO - 2} * BASE^{EXPO - 2} + ... + B_{1} * BASE^{1} + B_{0} * BASE^{0}  // BASE == 2^{16}
+== b_{expo - 1} * base^(expo - 1) + b_{expo - 2} * base^(expo - 2) + ... + b_{1} * base^(1) + B_{0} * base^(0)  // base == 10 or 2 or 8 or 16 ...
+Digit Representation
+
+=> 1 * BASE^EXPO >= 1 * base^expo                    // Boundary Condition
+=> EXPO >= Ceil(expo * Log2(base) / Log2(BASE)) + 1  // Absolute Assurance
+*/
+
 typedef long iptr;
 typedef unsigned char  uchar;
 typedef unsigned short ushort;
@@ -142,16 +152,6 @@ inline iptr Skip(const uchar *data, const uchar space[]) {
 }
 
 ////////////////////////////////////////
-
-/* Representation of Integer
-Unit  Representation
-== B_{EXPO - 1} * BASE^{EXPO - 1} + B_{EXPO - 2} * BASE^{EXPO - 2} + ... + B_{1} * BASE^{1} + B_{0} * BASE^{0}  // BASE == 2^{16}
-== b_{expo - 1} * base^(expo - 1) + b_{expo - 2} * base^(expo - 2) + ... + b_{1} * base^(1) + B_{0} * base^(0)  // base == 10 or 2 or 8 or 16 ...
-Digit Representation
-
-=> 1 * BASE^EXPO >= 1 * base^expo                    // Boundary Condition
-=> EXPO >= Ceil(expo * Log2(base) / Log2(BASE)) + 1  // Absolute Assurance
-*/
 
 /*
 	   b_{n - 1} % BASE = R
@@ -379,8 +379,8 @@ Integer Sub(Integer lhs, Integer rhs) {
 ++  				        Carry_{1}     (B_{1} * C_{EXPO-1})%BASE ...      (B_{1} * C_{1})%BASE     (B_{1} * C_{0})%BASE
 ++				    ...
 ++ Carry_{EXPO - 1}     (B_{EXPO - 1} * C_{EXPO - 1})%BASE ... (B_{EXPO - 1} * C_{1})%BASE    (B_{EXPO-1} * C_{0})%BASE
-
 */
+
 Integer Mul(Integer lhs, Integer rhs) {
 	Integer ret;
 	char _sign = lhs._sign * rhs._sign;
