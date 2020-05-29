@@ -19,6 +19,7 @@ Design: Rational Number
 #define _CRT_SECURE_NO_WARNINGS
 #include <errno.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <float.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,14 +44,20 @@ Digit Representation
 => EXPO >= Ceil(expo * Log2(base) / Log2(BASE)) + 1  // Absolute Assurance
 */
 
-typedef long iptr;
-typedef unsigned char  uchar;
-typedef unsigned short ushort;
-typedef unsigned int   uint;
+typedef int8_t    int08;
+typedef int16_t   int16;
+typedef int32_t   int32;
+typedef int64_t   int64;
+typedef intptr_t  iptr;
+typedef uint8_t   uint08;
+typedef uint16_t  uint16;
+typedef uint32_t  uint32;
+typedef uint64_t  uint64;
 
-typedef uchar  unit;
-// typedef ushort unit;
-typedef uint   dual;
+typedef uint08  unit;
+// typedef uint16  unit;
+typedef uint32  dual;
+typedef uint64  quad;
 
 typedef struct {
 	char _sign;
@@ -66,14 +73,14 @@ typedef struct {
 	unit *_lsu_denomi;
 } Rational;
 
-iptr Parse(Integer *integer, const uchar *data, int base);
+iptr Parse(Integer *integer, const uint08 *data, int base);
 Integer Add(Integer lhs, Integer rhs);
 Integer Sub(Integer lhs, Integer rhs);
 
 ////////////////////////////////////////
 
-typedef const uchar *Level;
-typedef const uchar *Type;
+typedef const uint08 *Level;
+typedef const uint08 *Type;
 const struct {
 	Level _Info;
 	Level _ToDo;
@@ -98,12 +105,12 @@ const struct {
 
 struct {
 	const double _Epsilon;
-	const uchar _Space[7];
-	const uchar _Digit[256];
+	const uint08 _Space[7];
+	const uint08 _Digit[256];
 
-	const uint _Base;
-	const uint _Mask;
-	const uint _Shift;
+	const unit _Base;
+	const unit _Mask;
+	const unit _Shift;
 	double _Log2_Base[16 + 1];
 } EData = {
 	._Epsilon = 1e-27,
@@ -135,7 +142,7 @@ struct {
 
 ////////////////////////////////////////
 
-inline bool Check(const bool failed, const uchar *function, const Level level, const uchar *record, const uchar *extra) {
+inline bool Check(const bool failed, const uint08 *function, const Level level, const uint08 *record, const uint08 *extra) {
 	if (failed) {
 		fprintf(stderr, "[%s#%s] %s%s; ""\n", function, level, record, extra == NULL ? "" : extra);
 	}
@@ -144,8 +151,8 @@ inline bool Check(const bool failed, const uchar *function, const Level level, c
 	return failed;
 }
 
-inline iptr Skip(const uchar *data, const uchar space[]) {
-	const uchar *ret = data;
+inline iptr Skip(const uint08 *data, const uint08 space[]) {
+	const uint08 *ret = data;
 	for (int i = 0; data[0] != '\0'; data += 1) {
 		i = 0;
 		while (space[i] != '\0' && data[0] != space[i]) {
@@ -176,11 +183,11 @@ inline iptr Skip(const uchar *data, const uchar space[]) {
 ==                                   Q * base + Carry
 											   // accumulate recursively
 */
-iptr Parse(Integer *integer, const uchar *data, int base) {
+iptr Parse(Integer *integer, const uint08 *data, int base) {
 	if (Check(!(2 <= base && base <= 16), __FUNCTION__, EType._Error, "!(2 <= base && base <= 36)", NULL)) {
 		return 0;
 	}
-	const uchar *ret = data;
+	const uint08 *ret = data;
 	data += Skip(data, EData._Space);
 
 	char _sign = +1;
@@ -211,7 +218,7 @@ iptr Parse(Integer *integer, const uchar *data, int base) {
 	data += Skip(data, "0_,");
 
 	iptr expo = 0;
-	const uchar *digit = data;
+	const uint08 *digit = data;
 	while (digit[0] != '\0') {
 		if (EData._Digit[digit[0]] <= base) {
 			digit += 1;
@@ -333,7 +340,7 @@ Integer Sub(Integer lhs, Integer rhs) {
 	char _sign = lhs._sign;
 
 	if (lhs._expo < rhs._expo) {
-		Integer swap = lhs; lhs = rhs;	rhs = swap;
+		Integer swap = lhs; lhs = rhs; rhs = swap;
 		_sign *= -1;
 	}
 	iptr _expo = lhs._expo;
@@ -350,7 +357,7 @@ Integer Sub(Integer lhs, Integer rhs) {
 			return ret;
 		}
 		else if (lhs._lsu[_expo - 1] < rhs._lsu[_expo - 1]) {
-			Integer swap = lhs; lhs = rhs;	rhs = swap;
+			Integer swap = lhs; lhs = rhs; rhs = swap;
 			_sign *= -1;
 		}
 	}
@@ -445,12 +452,12 @@ Integer Mul(Integer lhs, Integer rhs) {
 /*
 
 */
-Rational DivMode(Integer lhs, Integer rhs) {
-	Rational ret;
+Integer DivMod(Integer *rema, Integer lhs, Integer rhs) {
+	Integer quot;
 
 
 
-	return ret;
+	return quot;
 }
 
 ////////////////////////////////////////
@@ -503,7 +510,7 @@ void TestMul() {
 	fprintf(stderr, "\n");
 }
 
-int main(int argc, uchar *argv[]) {
+int main(int argc, uint08 *argv[]) {
 
 	// TestInteger();
 	// TestAdd();
