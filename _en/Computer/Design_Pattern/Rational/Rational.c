@@ -6,13 +6,12 @@ Design: Rational Number
 
 /* Integer Range
    BASE = 2^{16}     = 2^{2^{4}}
-   EXPO = 2^{29} - 1 = 2^{sizeof(iptr) * 8 - 3} - 1
+   EXPO = 2^{32} - 1 = 2^{sizeof(iptr) * 8} - 1
 
 ±  1 * BASE^{EXPO} - 1
-== 1 * (2^{16})^{2^{29} - 1} - 1
-== (2^{2^{4} * 2^{29}}) / (2^{16}) - 1
-== (2^{2^{33}}) / (2^{16}) - 1
-== (2^{2^{4 + sizeof(iptr) * 8 - 3} - 1
+== (2^{16})^{2^{32} - 1} - 1
+== 2^{2^{4} * 2^{32} - 16} - 1
+== 2^{2^{36} - 16} - 1
 */
 
 ////////////////////////////////////////
@@ -52,11 +51,20 @@ typedef unsigned int   uint;
 typedef uchar  unit;
 // typedef ushort unit;
 typedef uint   dual;
+
 typedef struct {
-	char _sign : 2;
-	iptr _expo : (sizeof(iptr) * 8 - 2);
+	char _sign;
+	iptr _expo;
 	unit *_lsu;
 } Integer;
+
+typedef struct {
+	char _sign;
+	iptr _expo_numera;
+	unit *_lsu_numera;
+	iptr _expo_denomi;
+	unit *_lsu_denomi;
+} Rational;
 
 iptr Parse(Integer *integer, const uchar *data, int base);
 Integer Add(Integer lhs, Integer rhs);
@@ -430,6 +438,18 @@ Integer Mul(Integer lhs, Integer rhs) {
 	ret._sign = _sign;
 	ret._expo = (carry != 0 ? _expo : _expo - 1);
 	ret._lsu = _lsu;
+	return ret;
+}
+
+
+/*
+
+*/
+Rational DivMode(Integer lhs, Integer rhs) {
+	Rational ret;
+
+
+
 	return ret;
 }
 
