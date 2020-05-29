@@ -377,16 +377,14 @@ Integer Sub(Integer lhs, Integer rhs) {
 
 
 /*
-									 B_{EXPO-1}*BASE^{EXPO-1} + ... + B_{1}*BASE^{1} + B_{0}*BASE^{0}
-×                                    C_{EXPO-1}*BASE^{EXPO-1} + ... + C_{1}*BASE^{1} + C_{0}*BASE^{0}
+																	 B_{EXPO-1}*BASE^{EXPO-1} + ... + B_{1}*BASE^{1}       + B_{0}*BASE^{0}
+×                                                                    C_{EXPO-1}*BASE^{EXPO-1} + ... + C_{1}*BASE^{1}       + C_{0}*BASE^{0}
 ==
-
-|| *BASE^{2*EXPO-1}    *BASE^{EXPO+1}                *BASE^{EXPO}		       *BASE^{EXPO-1}		       *BASE^{1}		      *BASE^{0}
 ++                                                      Carry_{0}     (B_{0}*C_{EXPO-1})%BASE ...（B_{0}*C_{1})%BASE     (B_{0}*C_{0})%BASE
 ++  				        Carry_{1}     (B_{1}*C_{EXPO-1})%BASE ...      (B_{1}*C_{1})%BASE     (B_{1}*C_{0})%BASE
 ++				    ...
 ++   Carry_{EXPO-1}     (B_{EXPO-1}*C_{EXPO-1})%BASE ... (B_{EXPO-1}*C_{1})%BASE   (B_{EXPO-1}*C_{0})%BASE
-==
+|| *BASE^{2*EXPO-1}    *BASE^{EXPO+1}                *BASE^{EXPO}		       *BASE^{EXPO-1}		       *BASE^{1}		      *BASE^{0}
 */
 Integer Mul(Integer lhs, Integer rhs) {
 	Integer ret;
