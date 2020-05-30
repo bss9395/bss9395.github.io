@@ -44,44 +44,44 @@ Digit Representation
 => EXPO >= Ceil(expo * Log2(base) / Log2(BASE)) + 1  // Absolute Assurance
 */
 
-typedef int8_t    int08;
-typedef int16_t   int16;
-typedef int32_t   int32;
-typedef int64_t   int64;
+typedef int8_t    in08;
+typedef int16_t   in16;
+typedef int32_t   in32;
+typedef int64_t   in64;
 typedef intptr_t  iptr;
-typedef uint8_t   unt08;
-typedef uint16_t  unt16;
-typedef uint32_t  unt32;
-typedef uint64_t  unt64;
+typedef uint8_t   ui08;
+typedef uint16_t  ui16;
+typedef uint32_t  ui32;
+typedef uint64_t  ui64;
 typedef uintptr_t uptr;
 
-typedef unt08  unit;
+typedef ui08  unit;
 // typedef uint16  unit;
-typedef unt32  dual;
-typedef unt64  quad;
+typedef ui32  dual;
+typedef ui64  quad;
 
 typedef struct {
-	char _sign;
+	in08 _sign;
 	iptr _expo;
 	unit *_lsu;
 } Integer;
 
 typedef struct {
-	char _sign;
-	iptr _expo_numera;
-	unit *_lsu_numera;
-	iptr _expo_denomi;
-	unit *_lsu_denomi;
+	in08 _sign;
+	iptr _expo_nume;
+	unit *_lsu_nume;
+	iptr _expo_deno;
+	unit *_lsu_deno;
 } Rational;
 
-iptr Parse(Integer *integer, const unt08 *data, int base);
+iptr Parse(Integer *integer, const ui08 *data, in08 base);
 Integer Add(Integer lhs, Integer rhs);
 Integer Sub(Integer lhs, Integer rhs);
 
 ////////////////////////////////////////
 
-typedef const unt08 *Level;
-typedef const unt08 *Type;
+typedef const ui08 *Level;
+typedef const ui08 *Type;
 const struct {
 	Level _Info;
 	Level _ToDo;
@@ -106,12 +106,12 @@ const struct {
 
 struct {
 	const double _Epsilon;
-	const unt08 _Space[7];
-	const unt08 _Digit[256];
+	const ui08 _Space[7];
+	const ui08 _Digit[256];
 
-	const unit _Base;
-	const unit _Mask;
-	const unit _Shift;
+	const dual _Base;
+	const dual _Mask;
+	const dual _Shift;
 	double _Log2_Base[16 + 1];
 } EData = {
 	._Epsilon = 1e-27,
@@ -119,8 +119,8 @@ struct {
 	._Digit = {
 		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
 		'?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?',
-		' ', '!', '?', '?', '?', '%', '&', '?',	'(', ')', '*', '+', '?', '-', '.', '/',
-		  0,   1,	2,   3,   4,   5,   6,   7,   8,   9, '?', '?',	'?', '?', '?', '?',
+		' ', '!', '?', '?', '?', '%', '&', '?', '(', ')', '*', '+', '?', '-', '.', '/',
+		  0,   1,   2,   3,   4,   5,   6,   7,   8,   9, '?', '?', '?', '?', '?', '?',
 		'?',  10,  11,  12,  13,  14,  15, '?', '?', '?', '?', '?', '?', '?', '?', '?',
 		'?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '^', '_',
 		'?',  10,  11,  12,  13,  14,  15, '?', '?', '?', '?', '?', '?', '?', '?', '?',
@@ -143,18 +143,18 @@ struct {
 
 ////////////////////////////////////////
 
-inline bool Check(const bool failed, const unt08 *function, const Level level, const unt08 *record, const unt08 *extra) {
+bool Check(const bool failed, const ui08 *function, const Level level, const ui08 *record, const char *extra) {
 	if (failed) {
-		fprintf(stderr, "[%s#%s] %s%s; ""\n", function, level, record, extra == NULL ? "" : extra);
+		fprintf(stderr, "[%s#%s] %s%s; ""\n", function, level, record, (extra == NULL ? (const char *)"" : extra));
 	}
 
 	errno = 0;
 	return failed;
 }
 
-inline iptr Skip(const unt08 *data, const unt08 space[]) {
-	const unt08 *ret = data;
-	for (int i = 0; data[0] != '\0'; data += 1) {
+iptr Skip(const ui08 *data, const ui08 space[]) {
+	const ui08 *ret = data;
+	for (in08 i = 0; data[0] != '\0'; data += 1) {
 		i = 0;
 		while (space[i] != '\0' && data[0] != space[i]) {
 			i += 1;
@@ -184,14 +184,14 @@ inline iptr Skip(const unt08 *data, const unt08 space[]) {
 ==                                   Q * base + Carry
 											   // accumulate recursively
 */
-iptr Parse(Integer *integer, const unt08 *data, int base) {
+iptr Parse(Integer *integer, const ui08 *data, in08 base) {
 	if (Check(!(2 <= base && base <= 16), __FUNCTION__, EType._Error, "!(2 <= base && base <= 36)", NULL)) {
 		return 0;
 	}
-	const unt08 *ret = data;
+	const ui08 *ret = data;
 	data += Skip(data, EData._Space);
 
-	char _sign = +1;
+	in08 _sign = +1;
 	if (data[0] == '+') {
 		data += 1;
 		_sign = +1;
@@ -219,7 +219,7 @@ iptr Parse(Integer *integer, const unt08 *data, int base) {
 	data += Skip(data, "0_,");
 
 	iptr expo = 0;
-	const unt08 *digit = data;
+	const ui08 *digit = data;
 	while (digit[0] != '\0') {
 		if (EData._Digit[digit[0]] <= base) {
 			digit += 1;
@@ -273,7 +273,7 @@ Integer Neg(Integer integer) {
 }
 
 /* Abs(lhs->_expo) >= Abs(rhs->_expo)
-  *BASE^{EXPO}			     *BASE^{EXPO - 1}                                       *BASE^{1}                           *BASE^{0}
+  *BASE^{EXPO}               *BASE^{EXPO - 1}                                       *BASE^{1}                           *BASE^{0}
 								 B_{EXPO - 1} +                          ... +          B_{1}                               B_{0}
 +                                C_{EXPO - 1} +                          ... +          C_{1}                             + C_{0}                     // yield Carry
 = Carry_{EXPO} + (B_{EXPO - 1} + C_{EXPO - 1} + Carry_{EXPO - 1})%BASE + ... + (B_{1} + C_{1} + Carry_{1})%BASE  + (B_{0} + C_{0} + Carry_{0}) %BASE  // accumulate recursively
@@ -291,7 +291,7 @@ Integer Add(Integer lhs, Integer rhs) {
 	}
 
 	Integer ret;
-	char _sign = lhs._sign;
+	in08 _sign = lhs._sign;
 
 	if (lhs._expo < rhs._expo) {
 		Integer swap = lhs; lhs = rhs; rhs = swap;
@@ -338,7 +338,7 @@ Integer Sub(Integer lhs, Integer rhs) {
 	}
 
 	Integer ret;
-	char _sign = lhs._sign;
+	in08 _sign = lhs._sign;
 
 	if (lhs._expo < rhs._expo) {
 		Integer swap = lhs; lhs = rhs; rhs = swap;
@@ -387,23 +387,23 @@ Integer Sub(Integer lhs, Integer rhs) {
 
 
 /*
-   *BASE^{2*EXPO-1}    *BASE^{EXPO+1}                  *BASE^{EXPO}		     *BASE^{EXPO-1}		           *BASE^{1}		        *BASE^{0}
+   *BASE^{2*EXPO-1}    *BASE^{EXPO+1}                  *BASE^{EXPO}          *BASE^{EXPO-1}                *BASE^{1}                *BASE^{0}
 																				 B_{EXPO-1}     + ... +        B_{1}        +           B_{0}
 ×                                                                                C_{EXPO-1}     + ... +        C_{1}        +           C_{0}
 ==
 ++                                                        Carry_{0}     (B_{0} * C_{EXPO-1})%BASE ...（B_{0} * C_{1})%BASE     (B_{0} * C_{0})%BASE
-++  				        Carry_{1}     (B_{1} * C_{EXPO-1})%BASE ...      (B_{1} * C_{1})%BASE     (B_{1} * C_{0})%BASE
-++				    ...
+++                          Carry_{1}     (B_{1} * C_{EXPO-1})%BASE ...      (B_{1} * C_{1})%BASE     (B_{1} * C_{0})%BASE
+++                  ...
 ++ Carry_{EXPO - 1}     (B_{EXPO - 1} * C_{EXPO - 1})%BASE ... (B_{EXPO - 1} * C_{1})%BASE    (B_{EXPO-1} * C_{0})%BASE
 */
 
 Integer Mul(Integer lhs, Integer rhs) {
 	Integer ret;
-	char _sign = lhs._sign * rhs._sign;
+	in08 _sign = lhs._sign * rhs._sign;
 	iptr _expo = lhs._expo + rhs._expo;
 	unit *_lsu = (unit *)Calloc(_expo, sizeof(unit));
 
-	/* constraint assurance
+	/* constrain08 assurance
 	BASE * BASE - 1                                          // Dual Unit
 	==  (BASE - 1) +  (BASE - 1) * (BASE - 1)  + (BASE - 1)
 	>= _lsu[i + 1] + lhs._lsu[i] * rhs._lsu[j] + Carry
@@ -453,13 +453,13 @@ Integer Mul(Integer lhs, Integer rhs) {
 /*
 
 */
-Integer DivMod(Integer *rema, Integer lhs, Integer rhs) {
-	Integer quot;
-
-
-
-	return quot;
-}
+//Integer DivMod(Integer *rema, Integer lhs, Integer rhs) {
+//  Integer quot;
+//
+//
+//
+//  return quot;
+//}
 
 ////////////////////////////////////////
 
@@ -469,7 +469,7 @@ void Test_Integer() {
 	Parse(&inte, "131072", 10);
 	Parse(&inte, "0x0000", 10);
 
-	fprintf(stderr, "[%d, %ld] ", inte._sign, inte._expo);
+	fprintf(stderr, "[%d, %lld] ", inte._sign, inte._expo);
 	iptr _expo = inte._expo;
 	for (_expo -= 1; 0 <= _expo; _expo -= 1) {
 		fprintf(stderr, "%d ", inte._lsu[_expo]);
@@ -486,7 +486,7 @@ void TestAdd() {
 	// Integer inte3 = Add(inte1, inte2);
 	Integer inte3 = Sub(inte1, inte2);
 
-	fprintf(stderr, "[%d, %ld] ", inte3._sign, inte3._expo);
+	fprintf(stderr, "[%d, %lld] ", inte3._sign, inte3._expo);
 	iptr _expo = inte3._expo;
 	for (_expo -= 1; 0 <= _expo; _expo -= 1) {
 		fprintf(stderr, "%d ", inte3._lsu[_expo]);
@@ -503,7 +503,7 @@ void TestMul() {
 	// Integer inte3 = Mul(inte1, inte2);
 	Integer inte3 = Mul(inte1, inte1);
 
-	fprintf(stderr, "[%d, %ld] ", inte3._sign, inte3._expo);
+	fprintf(stderr, "[%d, %lld] ", inte3._sign, inte3._expo);
 	iptr _expo = inte3._expo;
 	for (_expo -= 1; 0 <= _expo; _expo -= 1) {
 		fprintf(stderr, "%d ", inte3._lsu[_expo]);
@@ -511,7 +511,7 @@ void TestMul() {
 	fprintf(stderr, "\n");
 }
 
-int main(int argc, char *argv[]) {
+iptr main(iptr argc, ui08 *argv[]) {
 
 	// TestInteger();
 	// TestAdd();
