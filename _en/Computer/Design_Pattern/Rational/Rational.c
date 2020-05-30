@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-05-29T22:25:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-05-31T01:30:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
 */
 
@@ -170,19 +170,19 @@ iptr Skip(const ui08 *data, const ui08 space[]) {
 ////////////////////////////////////////
 
 /*
-	   b_{n - 1} % BASE = R
-	   b_{n - 1} / BASE = Q
-=> b_{n - 1} = Q * BASE + R
-											   // b_{n - 2} is now to be dealed with
-=>      (b_{n - 1} * base + b_{n - 2}) % BASE
-== ((Q * BASE + R) * base + b_{n - 2}) % BASE
-==              (R * base + b_{n - 2}) % BASE
-											   // yield Carry
-=>      (b_{n - 1} * base + b_{n - 2}) / BASE
-== ((Q * BASE + R) * base + b_{n - 2}) / BASE
-==                   (Q * BASE * base) / BASE + Carry
-==                                   Q * base + Carry
-											   // accumulate recursively
+	   b_{expo - 1} % BASE = R
+	   b_{expo - 1} / BASE = Q
+=> b_{expo - 1} = Q * BASE + R
+												  // b_{expo - 2} is now to be dealed with
+=>   (b_{expo - 1} * base + b_{expo - 2}) % BASE
+== ((Q * BASE + R) * base + b_{expo - 2}) % BASE
+==              (R * base + b_{expo - 2}) % BASE
+												  // yield Carry
+=>   (b_{expo - 1} * base + b_{expo - 2}) / BASE
+== ((Q * BASE + R) * base + b_{expo - 2}) / BASE
+==                      (Q * BASE * base) / BASE + Carry
+==                                      Q * base + Carry
+												  // accumulate recursively
 */
 iptr Parse(Integer *integer, const ui08 *data, in08 base) {
 	if (Check(!(2 <= base && base <= 16), __FUNCTION__, EType._Error, "!(2 <= base && base <= 36)", NULL)) {
@@ -272,7 +272,7 @@ Integer Neg(Integer integer) {
 	return integer;
 }
 
-/* Abs(lhs->_expo) >= Abs(rhs->_expo)
+/* Assume [lhs._expo >= rhs._expo]
   *BASE^{EXPO}               *BASE^{EXPO - 1}                                       *BASE^{1}                           *BASE^{0}
 								 B_{EXPO - 1} +                          ... +          B_{1}                               B_{0}
 +                                C_{EXPO - 1} +                          ... +          C_{1}                             + C_{0}                     // yield Carry
@@ -319,7 +319,7 @@ Integer Add(Integer lhs, Integer rhs) {
 	return ret;
 }
 
-/* Abs(lhs->_expo) >= Abs(rhs->_expo)
+/* Assume [lhs._expo >= rhs._expo]
 			  *BASE^{EXPO - 1}                                        *BASE^{1}                            *BASE^{0}
 				  B_{EXPO - 1} +                           ... +          B_{1}                                B_{0}
 -                 C_{EXPO - 1} +                           ... +          C_{1}                              + C_{0}                      // yield Borrow
@@ -387,26 +387,25 @@ Integer Sub(Integer lhs, Integer rhs) {
 
 
 /*
-   *BASE^{2*EXPO-1}    *BASE^{EXPO+1}                  *BASE^{EXPO}          *BASE^{EXPO-1}                *BASE^{1}                *BASE^{0}
-																				 B_{EXPO-1}     + ... +        B_{1}        +           B_{0}
-×                                                                                C_{EXPO-1}     + ... +        C_{1}        +           C_{0}
+   *BASE^{2*EXPO-1} ... *BASE^{EXPO+1}                  *BASE^{EXPO}          *BASE^{EXPO-1}                *BASE^{1}                *BASE^{0}
+																				  B_{EXPO-1}     + ... +        B_{1}        +           B_{0}
+×                                                                                 C_{EXPO-1}     + ... +        C_{1}        +           C_{0}
 ==
-++                                                        Carry_{0}     (B_{0} * C_{EXPO-1})%BASE ...（B_{0} * C_{1})%BASE     (B_{0} * C_{0})%BASE
-++                          Carry_{1}     (B_{1} * C_{EXPO-1})%BASE ...      (B_{1} * C_{1})%BASE     (B_{1} * C_{0})%BASE
+++                                                         Carry_{0}     (B_{0} * C_{EXPO-1})%BASE ...（B_{0} * C_{1})%BASE     (B_{0} * C_{0})%BASE
+++                           Carry_{1}     (B_{1} * C_{EXPO-1})%BASE ...      (B_{1} * C_{1})%BASE     (B_{1} * C_{0})%BASE
 ++                  ...
 ++ Carry_{EXPO - 1}     (B_{EXPO - 1} * C_{EXPO - 1})%BASE ... (B_{EXPO - 1} * C_{1})%BASE    (B_{EXPO-1} * C_{0})%BASE
 */
-
 Integer Mul(Integer lhs, Integer rhs) {
 	Integer ret;
 	in08 _sign = lhs._sign * rhs._sign;
 	iptr _expo = lhs._expo + rhs._expo;
 	unit *_lsu = (unit *)Calloc(_expo, sizeof(unit));
 
-	/* constrain08 assurance
+	/* constraint assurance
 	BASE * BASE - 1                                          // Dual Unit
-	==  (BASE - 1) +  (BASE - 1) * (BASE - 1)  + (BASE - 1)
-	>= _lsu[i + 1] + lhs._lsu[i] * rhs._lsu[j] + Carry
+	==  (BASE - 1) +  (BASE - 1) * (BASE - 1)  + (BASE - 1)  // Unit
+	>= _lsu[i + 1] + lhs._lsu[i] * rhs._lsu[j] + Carry       // Unit
 	*/
 	dual carry = 0;
 	if (lhs._lsu == rhs._lsu) {
@@ -449,17 +448,42 @@ Integer Mul(Integer lhs, Integer rhs) {
 	return ret;
 }
 
+/*Assume [lhs._expo >= rhs._expo]
+Step 1:  [B_8 > 0] and [C_5 > 0]
+		 *BASE^8  *BASE^7  *BASE^6  *BASE^5         |  *BASE^4  *BASE^3  *BASE^2  *BASE^1  *BASE^0
+  quad	   B_8      B_7      B_6      B_5           |    B_4      B_3      B_2      B_1      B_0
+÷ quad		        C_5      C_4      C_3           |                      C_2      C_1      C_0
+==quad  				     Q_3      Q_{Discard}  // [Q_3 >= 0]
 
-/*
+	B_8*BASE^8 + B_7*BASE^7 + B_6*BASE^6 + B_5*BASE^5
+>= (C_5*BASE^5 + C_4*BASE^4 + C_3*BASE^3) * (Q_3*BASE^3 + Q_{Discard}*BASE^2)
+==  C_5*Q_3*BASE^8 + (C_4*Q_3 + C_5*Q_{Discard})*BASE^7 + (C_3*Q_3 + C_4*Q_{Discard})*BASE^6 + C_3*Q_{Discard}*BASE^5
+>=  C_5*Q_3*BASE^8 + C_4*Q_3*BASE^7 + C_3*Q_3*BASE^6
 
+Step 2: Leave Out Q_{Discard}
+  quad     B_8      B_7      B_6  |      B_5      B_4      B_3      B_2      B_1      B_0
+- quad C_5*Q_3  C_4*Q_3  C_3*Q_3  |  C_2*Q_3  C_1*Q_3  C_0*Q_3
+==quad                           SUB
+
+Step 3:
+Case 0: [Q_3 == 0] => [Q ==                    Q_{Tail}]  // Dividend Shift One Unit
+Case 1: [SUB  > 0] => [Q ==       Q_3*BASE^3 + Q_{Tail}]  // Absolute Assurance
+Case 2: [SUB  < 0] => [Q == (Q_3 - 1)*BASE^3 + Q_{Tail}]  // Absolute Assurance
+Case 3: [sub == 0] => [Q ==       Q_3*BASE^3]             // Absolute Assurance
 */
-//Integer DivMod(Integer *rema, Integer lhs, Integer rhs) {
-//  Integer quot;
-//
-//
-//
-//  return quot;
-//}
+Integer DivMod(Integer *rema, Integer lhs, Integer rhs) {
+	Integer quot;
+	in08 _sign = lhs._sign * rhs._sign;
+	iptr _expo_quot = lhs._expo - rhs._expo + 1;
+	unit *_lsu_quot = (unit *)Calloc(_expo_quot, sizeof(unit));
+	iptr _expo_rema = rhs._expo;
+	unit *_lsu_rema = (unit *)Calloc(_expo_rema, sizeof(unit));
+
+
+
+
+	return quot;
+}
 
 ////////////////////////////////////////
 
