@@ -450,10 +450,10 @@ Integer Mul(Integer lhs, Integer rhs) {
 
 /*Assume [lhs._expo >= rhs._expo]
 Step 1:  [B_8 > 0] and [C_5 > 0]
-		 *BASE^8  *BASE^7  *BASE^6  *BASE^5         |  *BASE^4  *BASE^3  *BASE^2  *BASE^1  *BASE^0
-  quad	   B_8      B_7      B_6      B_5           |    B_4      B_3      B_2      B_1      B_0
-÷ quad		        C_5      C_4      C_3           |                      C_2      C_1      C_0
-==quad  				     Q_3      Q_{Discard}  // [Q_3 >= 0]
+		*BASE^8  *BASE^7  *BASE^6  *BASE^5         |  *BASE^4  *BASE^3  *BASE^2  *BASE^1  *BASE^0
+  quad	  B_8      B_7      B_6      B_5           |    B_4      B_3      B_2      B_1      B_0
+÷ quad		       C_5      C_4      C_3           |                      C_2      C_1      C_0
+==quad  				    Q_3      Q_{Discard}  // [Q_3 >= 0]
 
 	B_8*BASE^8 + B_7*BASE^7 + B_6*BASE^6 + B_5*BASE^5
 >= (C_5*BASE^5 + C_4*BASE^4 + C_3*BASE^3) * (Q_3*BASE^3 + Q_{Discard}*BASE^2)
@@ -461,9 +461,9 @@ Step 1:  [B_8 > 0] and [C_5 > 0]
 >=  C_5*Q_3*BASE^8 + C_4*Q_3*BASE^7 + C_3*Q_3*BASE^6
 
 Step 2: Leave Out Q_{Discard}
-  quad     B_8      B_7      B_6  |      B_5      B_4      B_3      B_2      B_1      B_0
-- quad C_5*Q_3  C_4*Q_3  C_3*Q_3  |  C_2*Q_3  C_1*Q_3  C_0*Q_3
-==quad                           SUB
+		  B_8      B_7      B_6  |      B_5      B_4      B_3      B_2      B_1      B_0
+-     C_5*Q_3  C_4*Q_3  C_3*Q_3  |  C_2*Q_3  C_1*Q_3  C_0*Q_3
+==                              SUB
 
 Step 3:
 Case 0: [Q_3 == 0] => [Q ==                    Q_{Tail}]  // Dividend Shift One Unit
