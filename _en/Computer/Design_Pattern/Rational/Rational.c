@@ -91,7 +91,7 @@ Integer *Nega(Integer *nega, Integer inte);
 Integer *Addi(Integer *summ, Integer lhop, Integer rhop);
 Integer *Subt(Integer *diff, Integer lhop, Integer rhop);
 Integer *Mult(Integer *Prod, Integer lhop, Integer rhop);
-Integer *DiviRema(Integer *quot, Integer *Rema, Integer lhop, Integer rhop);
+Integer *DiviRema(Integer *quot, Integer **Rema, Integer lhop, Integer rhop);
 
 ////////////////////////////////////////
 
@@ -194,7 +194,8 @@ Integer BeInteger() {
 
 Integer *ReInteger(Integer *inte, iptr expo) {
 	if (inte == NULL) {
-		inte = (Integer *)Calloc(expo, sizeof(unit));
+		inte = (Integer *)Calloc(1, sizeof(Integer));
+		inte->_lsu = (unit *)Calloc(expo, sizeof(unit));
 		inte->_expo = expo;
 	}
 	else if (inte->_expo < expo) {
@@ -488,6 +489,10 @@ Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 ++ Carry_{EXPO - 1}     (B_{EXPO - 1} * C_{EXPO - 1})%BASE ... (B_{EXPO - 1} * C_{1})%BASE    (B_{EXPO-1} * C_{0})%BASE
 */
 Integer *Mult(Integer *prod, Integer lhop, Integer rhop) {
+	if (Check(prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu, __FUNCTION__, EType._Fatal, "prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
 	in08 _sign = lhop._sign * rhop._sign;
 	iptr _expo = lhop._expo + rhop._expo;
 
@@ -581,12 +586,12 @@ lhs  rhs  quot  rema  modu  Round  Floor  |  Rema  Modu  Ceil  Edge
  10  -12     0    10    -2      0     -1  |    10    -2     0    -1
 -10  -12     0   -10   -10      0      0  |     2     2     1     1
 */
-Integer *DiviRema(Integer *quot, Integer *rema, Integer lhop, Integer rhop) {
+Integer *DiviRema(Integer *quot, Integer **rema, Integer lhop, Integer rhop) {
 	// [|rhs| != 0]
 	if (Check(rhop._expo == 1 && rhop._lsu[0] == 0, __FUNCTION__, EType._Error, "|rhs| == 0, ", "rhs._expo == 1 && rhs._lsu[0] == 0")) {
 		return quot;
 	}
-	Integer *_rema = rema;
+	Integer *_rema = *rema;
 
 
 	if (lhop._expo < rhop._expo) {
@@ -594,15 +599,15 @@ Integer *DiviRema(Integer *quot, Integer *rema, Integer lhop, Integer rhop) {
 		   quot = 0
 		   rema = lhop
 		*/
+		quot = ReInteger(quot, 1);
 		quot->_sign = +1;
 		quot->_expo = 1;
-		quot = ReInteger(quot, quot->_expo);
 		quot->_lsu[0] = (unit)0U;
 
-		rema->_sign = lhop._sign;
-		rema->_expo = lhop._expo;
-		rema = ReInteger(quot, rema->_expo);
-		Memcpy(rema->_lsu, lhop._lsu, lhop._expo);
+		(*rema) = ReInteger((*rema), lhop._expo);
+		(*rema)->_sign = lhop._sign;
+		(*rema)->_expo = lhop._expo;
+		Memcpy((*rema)->_lsu, lhop._lsu, lhop._expo);
 		return quot;
 	}
 	else if (lhop._expo == rhop._expo) {
@@ -615,15 +620,15 @@ Integer *DiviRema(Integer *quot, Integer *rema, Integer lhop, Integer rhop) {
 			   quot = lhop._sign * rhs._sign
 			   rema = 0
 			*/
+			quot = ReInteger(quot, 1);
 			quot->_sign = lhop._sign * rhop._sign;
 			quot->_expo = 1;
-			quot = ReInteger(quot, quot->_expo);
 			quot->_lsu[1] = (unit)1U;
 
-			rema->_sign = +1;
-			rema->_expo = 1;
-			rema = ReInteger(rema, rema->_expo);
-			rema->_lsu[0] = (unit)0U;
+			(*rema) = ReInteger((*rema), lhop._expo);
+			(*rema)->_sign = +1;
+			(*rema)->_expo = 1;
+			(*rema)->_lsu[0] = (unit)0U;
 			return quot;
 		}
 		else if (lhop._lsu[_expo - 1] < rhop._lsu[_expo - 1]) {
@@ -631,15 +636,15 @@ Integer *DiviRema(Integer *quot, Integer *rema, Integer lhop, Integer rhop) {
 			   quot = 0
 			   rema = lhs
 			*/
+			quot = ReInteger(quot, 1);
 			quot->_sign = +1;
 			quot->_expo = 1;
-			quot = ReInteger(quot, quot->_expo);
 			quot->_lsu[0] = (unit)0U;
 
-			rema->_sign = lhop._sign;
-			rema->_expo = lhop._expo;
-			rema = ReInteger(rema, rema->_expo);
-			Memcpy(rema->_lsu, lhop._lsu, (size_t)rema->_lsu);
+			(*rema) = ReInteger((*rema), lhop._expo);
+			(*rema)->_sign = lhop._sign;
+			(*rema)->_expo = lhop._expo;
+			Memcpy((*rema)->_lsu, lhop._lsu, (size_t)(*rema)->_lsu);
 			return quot;
 		}
 		else {
@@ -647,61 +652,62 @@ Integer *DiviRema(Integer *quot, Integer *rema, Integer lhop, Integer rhop) {
 			   quot = lhop._lsu[0] / rhop._lsu[0]
 			   rema = lhop - rhop * quot
 			*/
+			quot = ReInteger(quot, 1);
 			quot->_sign = lhop._sign * rhop._sign;
 			quot->_expo = 1;
 			quot = ReInteger(quot, quot->_expo);
 			quot->_lsu[0] = (unit)(lhop._lsu[lhop._expo - 1] / rhop._lsu[rhop._expo - 1]);
 
-			rema = Subt(rema, rhop, *Mult(rema, rhop, *quot));
+			(*rema) = Subt((*rema), rhop, *Mult((*rema), rhop, *quot));
 			return quot;
 		}
 	}
 
 	/* Case 5: |lhs| > |rhs|
 	*/
-	if (rhop._expo == 1) {
-		in08 _sign_quot = lhop._sign * rhop._sign;
-		iptr _expo_quot = lhop._expo - rhop._expo + 1;
-		quot = ReInteger(quot, _expo_quot);
-		unit *_lsu_quot = quot->_lsu;
-		quot->_lsu += _expo_quot - 1;
+	//if (rhop._expo == 1) {
+	//	in08 _sign_quot = lhop._sign * rhop._sign;
+	//	iptr _expo_quot = lhop._expo - rhop._expo + 1;
+	//	quot = ReInteger(quot, _expo_quot);
+	//	unit *_lsu_quot = quot->_lsu;
+	//	quot->_lsu += _expo_quot - 1;
 
-		in08 _sign_rema = lhop._sign;
-		iptr _expo_rema = lhop._expo;
-		rema = ReInteger(rema, _expo_rema);
-		memcpy(rema->_lsu, lhop._lsu, lhop._expo);
-		unit *_lsu_rema = rema->_lsu;
-		rema->_lsu += _expo_rema - 1;
+	//	in08 _sign_rema = lhop._sign;
+	//	iptr _expo_rema = lhop._expo;
+	//	rema = ReInteger(rema, _expo_rema);
+	//	memcpy(rema->_lsu, lhop._lsu, lhop._expo);
+	//	unit *_lsu_rema = rema->_lsu;
+	//	rema->_lsu += _expo_rema - 1;
 
-		if (rema->_lsu[0] < rhop._lsu[0]) {
-			_expo_quot -= 1;
-			_lsu_quot -= 1;
-		}
-		rema->_lsu -= 1;
+	//	if (rema->_lsu[0] < rhop._lsu[0]) {
+	//		_expo_quot -= 1;
+	//		_lsu_quot -= 1;
+	//	}
+	//	rema->_lsu -= 1;
 
-		rhop._sign = +1;
-		quot->_sign = +1;
-		quot->_expo = 1;
-		Integer *prod = NULL;
-		while (_lsu_rema <= rema->_lsu) {
-			quot->_lsu[0] = (unit)(*(dual *)rema->_lsu / rhop._lsu[0]);
-			if (quot->_lsu[0] != 0) {
-				prod = Mult(prod, rhop, *quot);
-				rema->_expo = 2;
-				rema = Subt(rema, *rema, *prod);
-			}
-			rema->_lsu -= 1;
-			quot->_lsu -= 1;
-		}
+	//	rhop._sign = +1;
+	//	quot->_sign = +1;
+	//	quot->_expo = 1;
+	//	Integer *prod = NULL;
+	//	while (_lsu_rema <= rema->_lsu) {
+	//		quot->_lsu[0] = (unit)(*(dual *)rema->_lsu / rhop._lsu[0]);
+	//		if (quot->_lsu[0] != 0) {
+	//			prod = Mult(prod, rhop, *quot);
+	//			rema->_expo = 2;
+	//			rema = Subt(rema, *rema, *prod);
+	//		}
+	//		rema->_lsu -= 1;
+	//		quot->_lsu -= 1;
+	//	}
 
 
-		quot->_sign = _sign_quot;
-		quot->_expo = _expo_quot;
-		quot->_lsu = _lsu_quot;
+	//	quot->_sign = _sign_quot;
+	//	quot->_expo = _expo_quot;
+	//	quot->_lsu = _lsu_quot;
 
-		rema->_sign = _sign_rema;
+	//	rema->_sign = _sign_rema;
 
-	}
+	//}
 
 	return quot;
 }
@@ -711,28 +717,32 @@ Integer *DiviRema(Integer *quot, Integer *rema, Integer lhop, Integer rhop) {
 void TestDiviRema() {
 	Integer lhs = BeInteger();
 	Integer *rhs = ReInteger(NULL, 1);
-	Parse(&lhs, "3298534883329", 10); // 3*256*256*256*256*256 + 1
-	Parse(rhs, "230", 10);  // 14341456014 + 108
+	//Parse(&lhs, "3298534883329", 10); // 3*256*256*256*256*256 + 1
+	//Parse(rhs, "230", 10);  // 14341456014 + 108
+	Parse(&lhs, "234", 10);  // 0, 234
+	Parse(rhs, "356", 10);   // 1, 100
 
 	Integer *rema = ReInteger(NULL, 1);
-	Integer *quot = DiviRema(NULL, rema, lhs, *rhs);
+	Integer *quot = DiviRema(NULL, &rema, lhs, *rhs);
 
 	fprintf(stderr, "%d, %lld ""\n", quot->_sign, quot->_expo);
 	iptr _expo_quot = quot->_expo;
 	for (; 0 < _expo_quot; _expo_quot -= 1) {
-		fprintf(stderr, "%d ", quot->_lsu[_expo_quot]);
+		fprintf(stderr, "%d ", quot->_lsu[_expo_quot - 1]);
 	}
 	fprintf(stderr, "\n");
 
 	fprintf(stderr, "%d, %lld ""\n", rema->_sign, rema->_expo);
 	iptr _expo_rema = rema->_expo;
 	for (; 0 < _expo_rema; _expo_rema -= 1) {
-		fprintf(stderr, "%d ", rema->_lsu[_expo_rema]);
+		fprintf(stderr, "%d ", rema->_lsu[_expo_rema - 1]);
 	}
 	fprintf(stderr, "\n");
 
 	DeInteger(&lhs);
 	DeInteger(rhs);
+	DeInteger(rema);
+	DeInteger(quot);
 }
 
 iptr main(iptr argc, ui08 *argv[]) {
@@ -741,7 +751,7 @@ iptr main(iptr argc, ui08 *argv[]) {
 	// TestInteger();
 	// TestAddi();
 	// TestMult();
-	// TestDiviRema();
+	TestDiviRema();
 
 	CleanUp();
 	return 0;
@@ -755,8 +765,8 @@ void Test_Integer() {
 
 	fprintf(stderr, "[%d, %lld] ", inte->_sign, inte->_expo);
 	iptr _expo = inte->_expo;
-	for (_expo -= 1; 0 <= _expo; _expo -= 1) {
-		fprintf(stderr, "%d ", inte->_lsu[_expo]);
+	for (; 0 <= _expo; _expo -= 1) {
+		fprintf(stderr, "%d ", inte->_lsu[_expo - 1]);
 	}
 	fprintf(stderr, "\n");
 
@@ -774,8 +784,8 @@ void TestAdd() {
 
 	fprintf(stderr, "[%d, %lld] ", ret->_sign, ret->_expo);
 	iptr _expo = ret->_expo;
-	for (_expo -= 1; 0 <= _expo; _expo -= 1) {
-		fprintf(stderr, "%d ", ret->_lsu[_expo]);
+	for (; 0 <= _expo; _expo -= 1) {
+		fprintf(stderr, "%d ", ret->_lsu[_expo - 1]);
 	}
 	fprintf(stderr, "\n");
 
@@ -794,8 +804,8 @@ void TestMul() {
 
 	fprintf(stderr, "[%d, %lld] ", ret->_sign, ret->_expo);
 	iptr _expo = ret->_expo;
-	for (_expo -= 1; 0 <= _expo; _expo -= 1) {
-		fprintf(stderr, "%d ", ret->_lsu[_expo]);
+	for (; 0 <= _expo; _expo -= 1) {
+		fprintf(stderr, "%d ", ret->_lsu[_expo - 1]);
 	}
 	fprintf(stderr, "\n");
 
