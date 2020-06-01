@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-06-02T01:30:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-06-02T01:42:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
 */
 
@@ -686,22 +686,30 @@ Integer *DiviRema(Integer *quot, Integer *lhop_rema, Integer rhop) {
 			if (_lhop[3] == 0) {
 				*(dual *)_quot = (dual)(*(quad *)_lhop / _rhop);
 				if (_quot[1] != 0) {
-					carry = 0;
-					for (iptr i = 0; i < rhop._expo; i += 1) {
-						carry = rhop._lsu[i] * _quot[1] + carry;
-						prod[i] = (unit)(carry &EData._Mask);
-						carry >>= EData._Shift;
-					}
-					prod[rhop._expo] = (unit)(carry);
-					expo = (carry == 0 ? rhop._expo : rhop._expo - 1);
-
 					borrow = 0;
-					for (iptr i = 0; i < expo; i += 1) {
-						borrow = _rema[i] - prod[i] - borrow;
+					for (iptr i = 0; i < rhop._expo; i += 1) {
+						borrow = _rema[i] - borrow - rhop._lsu[i] * _quot[i];
 						_rema[i] = (unit)(borrow & EData._Mask);
 						borrow >>= EData._Shift;
 						borrow &= 1U;
 					}
+
+					//carry = 0;
+					//for (iptr i = 0; i < rhop._expo; i += 1) {
+					//	carry = rhop._lsu[i] * _quot[1] + carry;
+					//	prod[i] = (unit)(carry &EData._Mask);
+					//	carry >>= EData._Shift;
+					//}
+					//prod[rhop._expo] = (unit)(carry);
+					//expo = (carry == 0 ? rhop._expo : rhop._expo - 1);
+
+					//borrow = 0;
+					//for (iptr i = 0; i < expo; i += 1) {
+					//	borrow = _rema[i] - prod[i] - borrow;
+					//	_rema[i] = (unit)(borrow & EData._Mask);
+					//	borrow >>= EData._Shift;
+					//	borrow &= 1U;
+					//}
 
 					// SUB < 0
 					if (borrow == 1U) {
