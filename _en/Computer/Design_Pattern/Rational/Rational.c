@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-06-01T03:27:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-06-01T12:24:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
 */
 
@@ -465,7 +465,7 @@ Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 		borrow >>= EData._Shift;
 		borrow &= 1U;             // borrow 1 from higher unit
 	}
-	for (iptr j = 0; j < _expo; j += 1) {
+	for (iptr j = rhop._expo; j < _expo; j += 1) {
 		borrow = lhop._lsu[j] - borrow;
 		_lsu[j] = (unit)(borrow & EData._Mask);
 		borrow >>= EData._Shift;
@@ -473,7 +473,7 @@ Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 	}
 
 	diff->_sign = _sign;
-	diff->_expo = _expo;
+	diff->_expo = (_lsu[_expo - 1] == 0 ? _expo - 1 : _expo);
 	return diff;
 }
 
@@ -665,49 +665,53 @@ Integer *DiviRema(Integer *quot, Integer **rema, Integer lhop, Integer rhop) {
 
 	/* Case 5: |lhs| > |rhs|
 	*/
-	//if (rhop._expo == 1) {
-	//	in08 _sign_quot = lhop._sign * rhop._sign;
-	//	iptr _expo_quot = lhop._expo - rhop._expo + 1;
-	//	quot = ReInteger(quot, _expo_quot);
-	//	unit *_lsu_quot = quot->_lsu;
-	//	quot->_lsu += _expo_quot - 1;
+	if (rhop._expo == 1) {
+		in08 _sign_quot = lhop._sign * rhop._sign;
+		iptr _expo_quot = lhop._expo - rhop._expo + 1;
+		quot = ReInteger(quot, _expo_quot);
+		unit *_lsu_quot = quot->_lsu;
+		quot->_lsu += _expo_quot - 1;
 
-	//	in08 _sign_rema = lhop._sign;
-	//	iptr _expo_rema = lhop._expo;
-	//	rema = ReInteger(rema, _expo_rema);
-	//	memcpy(rema->_lsu, lhop._lsu, lhop._expo);
-	//	unit *_lsu_rema = rema->_lsu;
-	//	rema->_lsu += _expo_rema - 1;
+		in08 _sign_rema = lhop._sign;
+		iptr _expo_rema = lhop._expo;
+		(*rema) = ReInteger((*rema), _expo_rema);
+		memcpy((*rema)->_lsu, lhop._lsu, lhop._expo);
+		unit *_lsu_rema = (*rema)->_lsu;
+		(*rema)->_lsu += _expo_rema - 1;
 
-	//	if (rema->_lsu[0] < rhop._lsu[0]) {
-	//		_expo_quot -= 1;
-	//		_lsu_quot -= 1;
-	//	}
-	//	rema->_lsu -= 1;
+		if ((*rema)->_lsu[0] < rhop._lsu[0]) {
+			_expo_quot -= 1;
+			quot->_lsu -= 1;
+		}
+		(*rema)->_lsu -= 1;
 
-	//	rhop._sign = +1;
-	//	quot->_sign = +1;
-	//	quot->_expo = 1;
-	//	Integer *prod = NULL;
-	//	while (_lsu_rema <= rema->_lsu) {
-	//		quot->_lsu[0] = (unit)(*(dual *)rema->_lsu / rhop._lsu[0]);
-	//		if (quot->_lsu[0] != 0) {
-	//			prod = Mult(prod, rhop, *quot);
-	//			rema->_expo = 2;
-	//			rema = Subt(rema, *rema, *prod);
-	//		}
-	//		rema->_lsu -= 1;
-	//		quot->_lsu -= 1;
-	//	}
+		rhop._sign = +1;
+		quot->_sign = +1;
+		quot->_expo = 1;
+		(*rema)->_sign = +1;
+
+		Integer *prod = ReInteger(NULL, rhop._expo + _expo_quot + 1);
+		prod->_sign = +1;
+		while (_lsu_rema <= (*rema)->_lsu) {
+			quot->_lsu[0] = (unit)(*(dual *)(*rema)->_lsu / rhop._lsu[0]);
+			if (quot->_lsu[0] != 0) {
+				prod = Mult(prod, rhop, *quot);
+				(*rema)->_expo = 2;
+				(*rema) = Subt((*rema), (**rema), *prod);
+			}
+			(*rema)->_lsu -= 1;
+			quot->_lsu -= 1;
+		}
 
 
-	//	quot->_sign = _sign_quot;
-	//	quot->_expo = _expo_quot;
-	//	quot->_lsu = _lsu_quot;
-
-	//	rema->_sign = _sign_rema;
-
-	//}
+		quot->_sign = _sign_quot;
+		quot->_expo = _expo_quot;
+		quot->_lsu = _lsu_quot;
+		(*rema)->_sign = _sign_rema;
+		(*rema)->_expo = _expo_rema;
+		(*rema)->_lsu = _lsu_rema;
+		DeInteger(prod);
+	}
 
 	return quot;
 }
@@ -719,8 +723,8 @@ void TestDiviRema() {
 	Integer *rhs = ReInteger(NULL, 1);
 	//Parse(&lhs, "3298534883329", 10); // 3*256*256*256*256*256 + 1
 	//Parse(rhs, "230", 10);  // 14341456014 + 108
-	Parse(&lhs, "234", 10);  // 0, 234
-	Parse(rhs, "356", 10);   // 1, 100
+	Parse(&lhs, "356", 10);  // 1, 100
+	Parse(rhs, "234", 10);   // 0, 234
 
 	Integer *rema = ReInteger(NULL, 1);
 	Integer *quot = DiviRema(NULL, &rema, lhs, *rhs);
