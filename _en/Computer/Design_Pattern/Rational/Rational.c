@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-06-01T18:00:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-06-02T01:30:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
 */
 
@@ -18,7 +18,7 @@ Design: Rational Number
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <errno.h>
-#include <stdbool.h>
+// #include <stdbool.h>
 #include <stdint.h>
 #include <float.h>
 #include <stdio.h>
@@ -38,6 +38,8 @@ typedef uint32_t  ui32;
 typedef uint64_t  ui64;
 typedef uintptr_t uptr;
 
+#define true    1
+#define false   0
 #define Log2    log2
 #define Memset  memset
 #define Memcpy  memcpy
@@ -60,6 +62,7 @@ typedef ui08  unit;
 typedef ui16  dual;
 typedef ui32  quad;
 
+typedef in08  bool;
 //typedef ui16  unit;
 //typedef ui32  dual;
 //typedef ui64  quad;
@@ -85,7 +88,7 @@ Integer *Nega(Integer *nega, Integer inte);
 Integer *Addi(Integer *summ, Integer lhop, Integer rhop);
 Integer *Subt(Integer *diff, Integer lhop, Integer rhop);
 Integer *Mult(Integer *Prod, Integer lhop, Integer rhop);
-Integer *DiviRema(Integer *quot, Integer **Rema, Integer lhop, Integer rhop);
+Integer *DiviRema(Integer *quot, Integer *lhop_rema, Integer rhop);
 
 ////////////////////////////////////////
 
@@ -154,7 +157,7 @@ struct {
 
 bool Check(const bool failed, const ui08 *function, const Level level, const ui08 *record, const ui08 *extra) {
 	if (failed) {
-		fprintf(stderr, "[%s#%s] %s%s; ""\n", function, level, record, (extra == NULL ? (const char *)"" : extra));
+		fprintf(stderr, "[%s#%s] %s%s; ""\n", function, level, record, extra == NULL ? (const ui08 *)"" : extra);
 	}
 
 	errno = 0;
@@ -588,213 +591,146 @@ lhs  rhs  quot  rema  modu  Round  Floor  |  Rema  Modu  Ceil  Edge
  10  -12     0    10    -2      0     -1  |    10    -2     0    -1
 -10  -12     0   -10   -10      0      0  |     2     2     1     1
 */
-
-
-/*Assume [lhs._expo >= rhs._expo]
-Step 1:  [B_8 > 0] and [C_5 > 0]
-		*BASE^8  *BASE^7  *BASE^6  *BASE^5         |  *BASE^4  *BASE^3  *BASE^2  *BASE^1  *BASE^0
-  (quad)  B_8      B_7      B_6      B_5           |    B_4      B_3      B_2      B_1      B_0
-÷ (quad)                    C_5      C_4           |             C_3      C_2      C_1      C_0
-==(quad)           Q_3      Q_2      Q_{Discard}  // if Q_3 == 0 then Q_2 > 0
-
-	B_8*BASE^8 + B_7*BASE^7 + B_6*BASE^6 + B_5*BASE^5
->= (C_5*BASE^5 + C_4*BASE^4) * (Q_3*BASE^3 + Q_2*BASE^2 + Q_{Discard}*BASE^1)
-== (C_5*Q_3)*BASE^8 + (C_4*Q_3 + C_5*Q_2)*BASE^7 + (C_4*Q_2 + C_5*Q_{Discard})*BASE^6 + (C_4*Q_{Discard})*BASE^5
->= (C_5*Q_3)*BASE^8 + (C_4*Q_3 + C_5*Q_2)*BASE^7 + (C_4*Q_2)*BASE^6
->= (C_5*Q_3)*BASE^8 + (C_4*Q_3 + C_5*Q_2)*BASE^7
-
-
-Step 2: Leave Out Q_{Discard}, or Q_{Discard} == 0
-		  B_8      B_7  |      B_6      B_5      B_4      B_3      B_2      B_1      B_0
--     C_5*Q_3  C_4*Q_3  |  C_3*Q_3  C_2*Q_3  C_1*Q_3  C_0*Q_3            // Don't Forget Carry
--              C_5*Q_2  |  C_4*Q_2  C_3*Q_2  C_2*Q_2  C_1*Q_2  C_0*Q_2
-==                     SUB
-
-
-Step 3:
-Case 1: [SUB  > 0] => [Q == Q_3*BASE^3 +       Q_2*BASE^2 + Q_{Tail}]  // Absolute Assurance
-Case 2: [SUB  < 0] => [Q == Q_3*BASE^3 + (Q_2 - 1)*BASE^2 + Q_{Tail}]  // Absolute Assurance
-Case 3: [sub == 0] => [Q == Q_3*BASE^3 +       Q_2*BASE^2           ]  // Absolute Assurance
-*/
-Integer *DiviRema(Integer *quot, Integer **rema, Integer lhop, Integer rhop) {
-	// [|rhs| != 0]
-	if (Check(rhop._expo == 1 && rhop._lsu[0] == 0, __FUNCTION__, EType._Error, "|rhs| == 0, ", "rhs._expo == 1 && rhs._lsu[0] == 0")) {
+Integer *DiviRema(Integer *quot, Integer *lhop_rema, Integer rhop) {
+	// divisor must not be 0, |rhop| != 0
+	if (Check(rhop._expo == 1 && rhop._lsu[0] == 0, __FUNCTION__, EType._Error, "[|rhop| == 0]", "rhop._expo == 1 && rhop._lsu[0] == 0")) {
 		return quot;
 	}
 
-	//if (lhop._expo < rhop._expo) {
-	//	/* Case 1: [lhop._expo < rhop._expo]
-	//	   quot = 0
-	//	   rema = lhop
-	//	*/
-	//	quot = ReInteger(quot, 1);
-	//	quot->_sign = +1;
-	//	quot->_expo = 1;
-	//	quot->_lsu[0] = (unit)0U;
+	if (lhop_rema->_expo < rhop._expo) {
+		/* Case 1: |lhop| < |rhop|
+				   quot = 0; rema = lhop;
+		*/
+		quot = ReInteger(quot, 1);
+		quot->_sign = +1;
+		quot->_expo = 1;
+		quot->_lsu[0] = (unit)0U;
+		return quot;
+	}
 
-	//	(*rema) = ReInteger((*rema), lhop._expo);
-	//	(*rema)->_sign = lhop._sign;
-	//	(*rema)->_expo = lhop._expo;
-	//	Memcpy((*rema)->_lsu, lhop._lsu, lhop._expo);
-	//	return quot;
-	//}
-	//else if (lhop._expo == rhop._expo) {
-	//	iptr _expo = rhop._expo;
-	//	while (0 < _expo && lhop._lsu[_expo - 1] == rhop._lsu[_expo - 1]) {
-	//		_expo -= 1;
-	//	}
-	//	if (_expo <= 0) {
-	//		/* Case 2: [lhop._expo == rhop._expo] and [|lhs| == |rhs|]
-	//		   quot = lhop._sign * rhs._sign
-	//		   rema = 0
-	//		*/
-	//		quot = ReInteger(quot, 1);
-	//		quot->_sign = lhop._sign * rhop._sign;
-	//		quot->_expo = 1;
-	//		quot->_lsu[1] = (unit)1U;
+	in08 _sign_quot = lhop_rema->_sign * rhop._sign;
+	iptr _expo_quot = lhop_rema->_expo - rhop._expo + 1;
+	quot = ReInteger(quot, _expo_quot);
+	if (lhop_rema->_expo <= 4) {
+		// Case 2: [lhop_rema->_expo <= 4] and [rhop_rema->_expo <= 4]
+		in08 shift_lhop = (4 - lhop_rema->_expo) * 8;
+		quad _lhop = *(quad *)lhop_rema->_lsu;
+		_lhop <<= shift_lhop; _lhop >>= shift_lhop;
 
-	//		(*rema) = ReInteger((*rema), lhop._expo);
-	//		(*rema)->_sign = +1;
-	//		(*rema)->_expo = 1;
-	//		(*rema)->_lsu[0] = (unit)0U;
-	//		return quot;
-	//	}
-	//	else if (lhop._lsu[_expo - 1] < rhop._lsu[_expo - 1]) {
-	//		/* Case 3: [lhs._expo == rhs._expo] and [|lhs| < |rhs|]
-	//		   quot = 0
-	//		   rema = lhs
-	//		*/
-	//		quot = ReInteger(quot, 1);
-	//		quot->_sign = +1;
-	//		quot->_expo = 1;
-	//		quot->_lsu[0] = (unit)0U;
+		in08 shift_rhop = (4 - rhop._expo) * 8;
+		quad _rhop = *(quad *)rhop._lsu;
+		_rhop <<= shift_rhop; _rhop >>= shift_rhop;
 
-	//		(*rema) = ReInteger((*rema), lhop._expo);
-	//		(*rema)->_sign = lhop._sign;
-	//		(*rema)->_expo = lhop._expo;
-	//		Memcpy((*rema)->_lsu, lhop._lsu, (size_t)(*rema)->_lsu);
-	//		return quot;
-	//	}
-	//	else {
-	//		/* Case 4: [lhop._expo == rhop._expo] and [|lhop| > |rhop|]
-	//		   quot = lhop._lsu[0] / rhop._lsu[0]
-	//		   rema = lhop - rhop * quot
-	//		*/
-	//		quot = ReInteger(quot, 1);
-	//		quot->_sign = lhop._sign * rhop._sign;
-	//		quot->_expo = 1;
-	//		quot = ReInteger(quot, quot->_expo);
-	//		quot->_lsu[0] = (unit)(lhop._lsu[lhop._expo - 1] / rhop._lsu[rhop._expo - 1]);
-
-	//		(*rema) = Subt((*rema), rhop, *Mult((*rema), rhop, *quot));
-	//		return quot;
-	//	}
-	//}
-
-	/* Case 5: |lhs| > |rhs|
-	*/
-	//if (rhop._expo == 1) {
-	//	in08 _sign_quot = lhop._sign * rhop._sign;
-	//	iptr _expo_quot = lhop._expo - rhop._expo + 1;
-	//	quot = ReInteger(quot, _expo_quot);
-	//	unit *_lsu_quot = quot->_lsu;
-	//	quot->_lsu += _expo_quot - 1;
-
-	//	in08 _sign_rema = lhop._sign;
-	//	iptr _expo_rema = lhop._expo;
-	//	(*rema) = ReInteger((*rema), _expo_rema);
-	//	memcpy((*rema)->_lsu, lhop._lsu, lhop._expo);
-	//	unit *_lsu_rema = (*rema)->_lsu;
-	//	(*rema)->_lsu += _expo_rema - 1;
-
-	//	if ((*rema)->_lsu[0] < rhop._lsu[0]) {
-	//		_expo_quot -= 1;
-	//		quot->_lsu -= 1;
-	//	}
-	//	(*rema)->_lsu -= 1;
-
-	//	rhop._sign = +1;
-	//	quot->_sign = +1;
-	//	quot->_expo = 1;
-	//	(*rema)->_sign = +1;
-
-	//	Integer *prod = ReInteger(NULL, rhop._expo + _expo_quot + 1);
-	//	prod->_sign = +1;
-	//	while (_lsu_rema <= (*rema)->_lsu) {
-	//		quot->_lsu[0] = (unit)(*(dual *)(*rema)->_lsu / rhop._lsu[0]);
-	//		if (quot->_lsu[0] != 0) {
-	//			prod = Mult(prod, rhop, *quot);
-	//			(*rema)->_expo = 2;
-	//			(*rema) = Subt((*rema), (**rema), *prod);
-	//		}
-	//		(*rema)->_lsu -= 1;
-	//		quot->_lsu -= 1;
-	//	}
-
-
-	//	quot->_sign = _sign_quot;
-	//	quot->_expo = _expo_quot;
-	//	quot->_lsu = _lsu_quot;
-	//	(*rema)->_sign = _sign_rema;
-	//	(*rema)->_expo = _expo_rema;
-	//	(*rema)->_lsu = _lsu_rema;
-	//	DeInteger(prod);
-	//}
-
-
-	if (lhop._expo <= 4) {
-		in08 _sign_quot = lhop._sign * rhop._sign;
-		iptr _expo_quot = lhop._expo - rhop._expo + 1;
-		quot = ReInteger(quot, _expo_quot);
-
-		in08 _sign_rema = lhop._sign;
-		iptr _expo_rema = lhop._expo;
-		(*rema) = ReInteger((*rema), _expo_rema);
-
-		iptr shift_lhop = (4 - lhop._expo) * 8;
-		iptr shift_rhop = (4 - rhop._expo) * 8;
-		quad dividend = *((quad *)lhop._lsu);
-		quad divisor = *((quad *)rhop._lsu);
-		dividend <<= shift_lhop; dividend >>= shift_lhop;
-		divisor <<= shift_rhop; divisor >>= shift_rhop;
-
-		quad _quot = dividend / divisor;
-		quad _rema = dividend - divisor * _quot;
-
-		*((quad *)quot->_lsu) = _quot;
-		*((quad *)(*rema)->_lsu) = _rema;
+		quad _quot = (quad)(_lhop / _rhop);
+		*(quad *)lhop_rema->_lsu = (quad)(_lhop - _rhop * _quot);
+		*(quad *)quot->_lsu = (quad)_quot;
 
 		quot->_sign = _sign_quot;
 		quot->_expo = (quot->_lsu[_expo_quot - 1] == 0 ? _expo_quot - 1 : _expo_quot);
 
-		_expo_rema = 0;
-		while (_rema != 0) {
-			_rema >>= EData._Shift;
-			_expo_rema += 1;
+		iptr _expo_rema = 4;
+		while (0 < _expo_rema && lhop_rema->_lsu[_expo_rema - 1] == 0) {
+			_expo_rema -= 1;
 		}
-		(*rema)->_sign = _sign_rema;
-		(*rema)->_expo = _expo_rema;
+		lhop_rema->_expo = (_expo_rema <= 0 ? 1 : _expo_rema);
+
 		return quot;
 	}
-	//else {
-	//	in08 _sign_quot = lhop._sign * rhop._sign;
-	//	iptr _expo_quot = lhop._expo - rhop._expo + 1;
-	//	quot = ReInteger(quot, _expo_quot);
-	//	unit *_lsu_quot = quot->_lsu;
+	else if (rhop._expo <= 2) {
+		// Case 3: [lhop_rema->_expo > 4] and [rhop._expo <= 2]
+		unit *_lhop = lhop_rema->_lsu + lhop_rema->_expo - 2;
 
-	//	in08 _sign_rema = lhop._sign;
-	//	iptr _expo_quot = lhop._expo;
-	//	Integer *_rema = ReInteger((*rema), _expo_quot);
-	//	unit *_lsu_rema = _rema->_lsu;
+		in08 shift_rhop = (2 - rhop._expo) * 8;
+		dual _rhop = *(dual *)rhop._lsu;
+		_rhop <<= shift_rhop; _rhop >>= shift_rhop;
 
-	//	Memcpy(_rema->_lsu, lhop._lsu, lhop._expo);
-	//	_rema->_sign = +1;
-	//	_rema->_lsu += _rema->_expo - 1;
-	//	quot->_sign = +1;
-	//	quot->_lsu += quot->_expo - 1;
-	//	Integer *prod = ReInteger(NULL, sizeof(dual) + rhop._expo);
-	//}
+		unit *_quot = quot->_lsu + _expo_quot - 2;
 
+		dual prod = 0;
+		while (lhop_rema->_lsu <= _lhop) {
+			*(unit *)_quot = (unit)(*(dual *)_lhop / _rhop);
+			if (_quot[0] != 0) {
+				prod = _rhop * _quot[0];
+				*(dual *)_lhop -= prod;
+			}
+			_lhop -= 1;
+			_quot -= 1;
+		}
+
+		quot->_sign = _sign_quot;
+		quot->_expo = _expo_quot - 1;
+
+		iptr _expo_rema = 2;
+		while (0 < _expo_rema && lhop_rema->_lsu[_expo_rema - 1] == 0) {
+			_expo_rema -= 1;
+		}
+		lhop_rema->_expo = (_expo_rema <= 0 ? 1 : _expo_rema);
+
+		return quot;
+	}
+	else {
+		// Case 4: [lhop_rema->_expo > 4] and [rhop._expo > 2]
+		unit *_lhop = lhop_rema->_lsu + lhop_rema->_expo - 4;
+
+		quad _rhop = *(quad *)(rhop._lsu + rhop._expo - 3);
+		_rhop <<= EData._Shift; _rhop >>= EData._Shift;
+
+		unit *_quot = quot->_lsu + _expo_quot - 2;
+
+		unit *_rema = lhop_rema->_lsu + lhop_rema->_expo - (rhop._expo + 1);
+		unit *prod = (unit *)Malloc((rhop._expo + 1) * sizeof(unit));
+		dual carry = 0;
+		dual borrow = 0;
+		iptr expo = 0;
+		while (lhop_rema->_lsu <= _lhop) {
+			if (_lhop[3] == 0) {
+				*(dual *)_quot = (dual)(*(quad *)_lhop / _rhop);
+				if (_quot[1] != 0) {
+					carry = 0;
+					for (iptr i = 0; i < rhop._expo; i += 1) {
+						carry = rhop._lsu[i] * _quot[1] + carry;
+						prod[i] = (unit)(carry &EData._Mask);
+						carry >>= EData._Shift;
+					}
+					prod[rhop._expo] = (unit)(carry);
+					expo = (carry == 0 ? rhop._expo : rhop._expo - 1);
+
+					borrow = 0;
+					for (iptr i = 0; i < expo; i += 1) {
+						borrow = _rema[i] - prod[i] - borrow;
+						_rema[i] = (unit)(borrow & EData._Mask);
+						borrow >>= EData._Shift;
+						borrow &= 1U;
+					}
+
+					// SUB < 0
+					if (borrow == 1U) {
+						_quot[1] -= 1;
+						carry = 0;
+						for (iptr i = 0; i < expo; i += 1) {
+							carry = _rema[i] + rhop._lsu[i] + carry;
+							_rema[i] = (unit)(carry &EData._Mask);
+							carry >>= EData._Shift;
+						}
+					}
+				}
+			}
+			_lhop -= 1;
+			_quot -= 1;
+			_rema -= 1;
+		}
+
+		quot->_sign = _sign_quot;
+		quot->_expo = (quot->_lsu[_expo_quot - 1] == 0 ? _expo_quot - 1 : _expo_quot);
+
+		iptr _expo_rema = rhop._expo;
+		while (0 < expo && lhop_rema->_lsu[_expo_rema - 1] == 0) {
+			_expo_rema -= 1;
+		}
+		lhop_rema->_expo = (_expo_rema == 0 ? 1 : _expo_rema);
+
+		return quot;
+	}
 
 	return quot;
 }
@@ -802,34 +738,34 @@ Integer *DiviRema(Integer *quot, Integer **rema, Integer lhop, Integer rhop) {
 ////////////////////////////////////////
 
 void TestDiviRema() {
-	Integer lhs = BeInteger();
-	Integer *rhs = ReInteger(NULL, 1);
+	Integer lhop_rema = BeInteger();
+	Integer *rhop = ReInteger(NULL, 1);
 	//Parse(&lhs, "3298534883329", 10); // 3*256*256*256*256*256 + 1
-	//Parse(rhs, "230", 10);  // 14341456014 + 108
-	Parse(&lhs, "356", 10);  // 1, 100
-	Parse(rhs, "234", 10);   // 0, 234
+	//Parse(rhs, "230", 10);            // 14341456014 + 108
+	Parse(&lhop_rema, "356", 10);       // 1, 122           23, 0, 0 == 23*256*256
+	Parse(rhop, "234", 10);             // 0, 234
 
-	Integer *rema = ReInteger(NULL, 1);
-	Integer *quot = DiviRema(NULL, &rema, lhs, *rhs);
+	Integer *quot = ReInteger(NULL, 5);
+	quot = DiviRema(NULL, &lhop_rema, *rhop);
 
-	fprintf(stderr, "%d, %lld ""\n", quot->_sign, quot->_expo);
+	fprintf(stderr, "%d, %ld ""\n", quot->_sign, quot->_expo);
 	iptr _expo_quot = quot->_expo;
 	for (; 0 < _expo_quot; _expo_quot -= 1) {
 		fprintf(stderr, "%d ", quot->_lsu[_expo_quot - 1]);
 	}
 	fprintf(stderr, "\n");
 
-	fprintf(stderr, "%d, %lld ""\n", rema->_sign, rema->_expo);
-	iptr _expo_rema = rema->_expo;
+	fprintf(stderr, "%d, %ld ""\n", lhop_rema._sign, lhop_rema._expo);
+	iptr _expo_rema = lhop_rema._expo;
 	for (; 0 < _expo_rema; _expo_rema -= 1) {
-		fprintf(stderr, "%d ", rema->_lsu[_expo_rema - 1]);
+		fprintf(stderr, "%d ", lhop_rema._lsu[_expo_rema - 1]);
 	}
 	fprintf(stderr, "\n");
 
-	DeInteger(&lhs);
-	DeInteger(rhs);
-	DeInteger(rema);
-	DeInteger(quot);
+	//DeInteger(&lhs);
+	//DeInteger(rhs);
+	//DeInteger(rema);
+	//DeInteger(quot);
 }
 
 iptr main(iptr argc, ui08 *argv[]) {
@@ -850,7 +786,7 @@ void Test_Integer() {
 	Parse(inte, "131072", 10);
 	Parse(inte, "0x0000", 10);
 
-	fprintf(stderr, "[%d, %lld] ", inte->_sign, inte->_expo);
+	fprintf(stderr, "[%d, %ld] ", inte->_sign, inte->_expo);
 	iptr _expo = inte->_expo;
 	for (; 0 <= _expo; _expo -= 1) {
 		fprintf(stderr, "%d ", inte->_lsu[_expo - 1]);
@@ -869,7 +805,7 @@ void TestAdd() {
 	// Integer *ret = Add(NULL, *lhs, *rhs);
 	Integer *ret = Subt(NULL, lhs, rhs);
 
-	fprintf(stderr, "[%d, %lld] ", ret->_sign, ret->_expo);
+	fprintf(stderr, "[%d, %ld] ", ret->_sign, ret->_expo);
 	iptr _expo = ret->_expo;
 	for (; 0 <= _expo; _expo -= 1) {
 		fprintf(stderr, "%d ", ret->_lsu[_expo - 1]);
@@ -889,7 +825,7 @@ void TestMul() {
 	Parse(rhs, "+256", 10);
 	Integer *ret = Mult(NULL, *lhs, *rhs);
 
-	fprintf(stderr, "[%d, %lld] ", ret->_sign, ret->_expo);
+	fprintf(stderr, "[%d, %ld] ", ret->_sign, ret->_expo);
 	iptr _expo = ret->_expo;
 	for (; 0 <= _expo; _expo -= 1) {
 		fprintf(stderr, "%d ", ret->_lsu[_expo - 1]);
