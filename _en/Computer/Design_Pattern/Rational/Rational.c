@@ -437,39 +437,44 @@ Integer *Tran(Integer *tran, Integer inte, iptr bits) {
 		iptr lhs = (bits + rhs) - ESpace._Bits * units;
 		iptr _expo = (lhs == 0 ? inte._expo + units - 1 : inte._expo + units);
 		tran = ReInteger(tran, _expo);
+		tran->_expo = _expo;
 
 		Memset(tran, 0, _expo * sizeof(unit));
-		unit *_msu_inte = inte._lsu + inte._expo - 1;
-		unit *_msu_tran = tran->_lsu + tran->_expo - 1;
+
 		if (lhs > rhs) {
 			iptr off = lhs - rhs;
 			iptr inv = ESpace._Bits - off;
+			unit *_msu_inte = inte._lsu + inte._expo - 1;
+			unit *_msu_tran = tran->_lsu + tran->_expo - 1;
 
-			_msu_tran[0] = _msu_inte[0] << off;
+			_msu_tran[0] |= (_msu_inte[0] << off);
 			_msu_inte -= 1;
 			while (inte._lsu <= _msu_inte) {
-				_msu_tran[0] |= _msu_inte[0] >> inv;
+				_msu_tran[0] |= (_msu_inte[0] >> inv);
 				_msu_tran -= 1;
+				_msu_tran[0] |= (_msu_inte[0] << off);
 				_msu_inte -= 1;
 			}
-			_msu_tran[0] |= _msu_inte[1] << off;
 		}
 		else if (lhs < rhs) {
 			iptr off = rhs - lhs;
 			iptr inv = ESpace._Bits - off;
 
-			_msu_tran[0] = _msu_inte[0] >> off;
-			_msu_inte -= 1;
-			while (inte._lsu <= _msu_inte) {
-				_msu_tran[0] |= _msu_inte[0] << inv;
-				_msu_tran -= 1;
-				_msu_inte -= 1;
+			unit *_lsu_inte = inte._lsu;
+			unit *_msu_inte = inte._lsu + inte._expo - 1;
+			unit *_lsu_tran = tran->_lsu + units;
+			_lsu_tran[0] |= (_lsu_inte[0] >> off);
+			_lsu_tran += 1;
+			while (_lsu_inte < _msu_inte) {
+				_lsu_tran[0] |= (_lsu_inte[0] << inv);
+				_lsu_inte += 1;
+				_lsu_tran[0] |= (_lsu_inte[0] >> off);
+				_lsu_tran += 1;
 			}
-			_msu_tran[0] |= _msu_inte[1] >> off;
 		}
 	}
 	else if (bits < 0) {
-		bits = -bits;
+		bits = -1 * bits;
 		iptr units = bits / ESpace._Bits;
 		iptr off = bits - ESpace._Bits * units;
 		iptr inv = ESpace._Bits - off;
@@ -481,8 +486,9 @@ Integer *Tran(Integer *tran, Integer inte, iptr bits) {
 		_lsu_tran[0] = _lsu_inte[0] >> off;
 		_lsu_inte += 1;
 		while (_lsu_inte <= _msu_inte) {
-			_lsu_tran[0] |= _lsu_inte[0] << inv;
+			_lsu_tran[0] |= (_lsu_inte[0] << inv);
 			_lsu_tran += 1;
+			_lsu_tran[0] |= (_lsu_inte[0] >> off);
 			_lsu_inte += 1;
 		}
 	}
