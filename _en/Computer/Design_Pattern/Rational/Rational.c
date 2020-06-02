@@ -1,7 +1,18 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-06-02T17:04:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-06-03T00:53:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
+*/
+
+/* Representation of Integer
+Unit  Representation
+== B_{EXPO - 1} * BASE^{EXPO - 1} + B_{EXPO - 2} * BASE^{EXPO - 2} + ... + B_{1} * BASE^{1} + B_{0} * BASE^{0}  // BASE == 2^{16}
+== b_{expo - 1} * base^(expo - 1) + b_{expo - 2} * base^(expo - 2) + ... + b_{1} * base^(1) + B_{0} * base^(0)  // base <= 16
+Digit Representation
+
+=> 1 * BASE^EXPO >= 1 * base^expo                                                         // Boundary Condition
+=> Floor(expo * Log2(base) / Log2(BASE)) <= EXPO <= Ceil(expo * Log2(base) / Log2(BASE))
+=> EXPO <= Floor(expo * Log2(base) / Log2(BASE)) + 1                                      // Absolute Assurance
 */
 
 /* Integer Range
@@ -18,7 +29,7 @@ Design: Rational Number
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <errno.h>
-// #include <stdbool.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <float.h>
 #include <stdio.h>
@@ -27,7 +38,6 @@ Design: Rational Number
 #include <ctype.h>
 #include <math.h>
 
-typedef int8_t    bool;
 typedef int8_t    in08;
 typedef int16_t   in16;
 typedef int32_t   in32;
@@ -49,40 +59,33 @@ typedef uintptr_t uptr;
 
 ////////////////////////////////////////
 
-/* Representation of Integer
-Unit  Representation
-== B_{EXPO - 1} * BASE^{EXPO - 1} + B_{EXPO - 2} * BASE^{EXPO - 2} + ... + B_{1} * BASE^{1} + B_{0} * BASE^{0}  // BASE == 2^{16}
-== b_{expo - 1} * base^(expo - 1) + b_{expo - 2} * base^(expo - 2) + ... + b_{1} * base^(1) + B_{0} * base^(0)  // base == 10 or 2 or 8 or 16 ...
-Digit Representation
-
-=> 1 * BASE^EXPO >= 1 * base^expo                                                         // Boundary Condition
-=> Floor(expo * Log2(base) / Log2(BASE)) <= EXPO <= Ceil(expo * Log2(base) / Log2(BASE))  // Absolute Assurance
-=> EXPO <= Floor(expo * Log2(base) / Log2(BASE)) + 1                                      // Allocate Enough Space
-*/
-
 typedef ui08  unit;
 typedef ui16  dual;
 typedef ui32  quad;
-
-
 //typedef ui16  unit;
 //typedef ui32  dual;
 //typedef ui64  quad;
 
 typedef struct {
 	in08 _sign : 2;
-	bool _make : 2;
+	in08 _make : 2;
 	iptr _expo;
 	unit *_lsu;
 } Integer;
 
 typedef struct {
-	in08 _sign;
+	in08 _sign : 2;
+	in08 _make : 2;
 	iptr _expo_nume;
 	unit *_lsu_nume;
 	iptr _expo_deno;
 	unit *_lsu_deno;
 } Rational;
+
+typedef struct {
+	Integer _inte;
+	Rational _frac;
+} Fraction;
 
 iptr Parse(Integer *inte, const ui08 *data, ui08 base);
 Integer *Abso(Integer *abso, Integer inte);
@@ -96,45 +99,53 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop);
 
 typedef const ui08 *Level;
 typedef const ui08 *Type;
-const struct {
-	Level _Info;
-	Level _ToDo;
-	Level _Warn;
-	Level _Error;
-	Level _Fatal;
-
-	Type _Integer;
-	Type _Rational;
-	Type _String;
-} EType = {
-	._Info = "Info",
-	._ToDo = "ToDo",
-	._Warn = "Warn",
-	._Error = "Error",
-	._Fatal = "Fatal",
-
-	._Integer = "Integer",
-	._Rational = "Rational",
-	._String = "String",
-};
-
+typedef const ui08 *Shift;
 struct {
+	const Level _Info;
+	const Level _ToDo;
+	const Level _Warn;
+	const Level _Error;
+	const Level _Fatal;
+
+	const Type _String;
+	const Type _Integer;
+	const Type _Rational;
+	const Type _Fraction;
+
+	const Shift _Left;
+	const Shift _Center;
+	const Shift _Right;
+
 	const double _Epsilon;
 	const ui08 _Space[7];
 	const ui08 _Digit[256];
 
 	const dual _Base;
 	const dual _Mask;
-	const dual _Shift;
+	const dual _Bits;
 	double _Log2_Base[16 + 1];
-} EData = {
+} ESpace = {
+	._Info = "Info",
+	._ToDo = "ToDo",
+	._Warn = "Warn",
+	._Error = "Error",
+	._Fatal = "Fatal",
+
+	._String = "String",
+	._Integer = "Integer",
+	._Rational = "Rational",
+	._Fraction = "Fraction",
+	._Left = "Left",
+	._Center = "Center",
+	._Right = "Right",
+
 	._Epsilon = 1e-27,
 	._Space = " \t\n\v\f\r",
 	._Digit = {
 		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
 		'?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?',
 		' ', '!', '?', '?', '?', '%', '&', '?', '(', ')', '*', '+', '?', '-', '.', '/',
-		  0,   1,   2,   3,   4,   5,   6,   7,   8,   9, '?', '?', '?', '?', '?', '?',
+			0,   1,   2,   3,   4,   5,   6,   7,   8,   9, '?', '?', '?', '?', '?', '?',
 		'?',  10,  11,  12,  13,  14,  15, '?', '?', '?', '?', '?', '?', '?', '?', '?',
 		'?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '^', '_',
 		'?',  10,  11,  12,  13,  14,  15, '?', '?', '?', '?', '?', '?', '?', '?', '?',
@@ -152,36 +163,22 @@ struct {
 
 	._Base = (1U << (sizeof(unit) * 8)),
 	._Mask = (1U << (sizeof(unit) * 8)) - 1,
-	._Shift = sizeof(unit) * 8,
+	._Bits = sizeof(unit) * 8,
 	._Log2_Base = {
 		0.0, 0.0,
 	},
 };
 
-////////////////////////////////////////
-
-bool Check(const bool failed, const ui08 *function, const Level level, const ui08 *record, const ui08 *extra) {
-	if (failed) {
-		fprintf(stderr, "[%s#%s] %s%s; ""\n", function, level, record, extra == NULL ? (const ui08 *)"" : extra);
+iptr StartUp() {
+	for (in08 base = 2; base <= 16; base += 1) {
+		ESpace._Log2_Base[base] = Log2(base + ESpace._Epsilon) / Log2(ESpace._Base);
 	}
-
-	errno = 0;
-	return failed;
+	return 0;
 }
 
-iptr Skip(const ui08 *data, const ui08 space[]) {
-	const ui08 *ret = data;
-	for (in08 i = 0; data[0] != '\0'; data += 1) {
-		i = 0;
-		while (space[i] != '\0' && data[0] != space[i]) {
-			i += 1;
-		}
-		if (space[i] == '\0') {
-			break;
-		}
-	}
-
-	return (iptr)(data - ret);
+iptr CleanUp() {
+	iptr ret = 0;
+	return ret;
 }
 
 Integer BeInteger() {
@@ -208,6 +205,12 @@ Integer *ReInteger(Integer *inte, iptr expo) {
 		inte->_expo = expo;
 		inte->_lsu = (unit *)Realloc(inte->_lsu, expo * sizeof(unit));
 	}
+	else if (expo <= 0) {
+		Integer *repl = (Integer *)Malloc(1 * sizeof(Integer));
+		Memcpy(repl, inte, sizeof(Integer));
+		Memcpy(repl->_lsu, inte->_lsu, inte->_expo);
+		inte = repl;
+	}
 	return inte;
 }
 
@@ -224,16 +227,29 @@ Integer *DeInteger(Integer *inte) {
 	return inte;
 }
 
-iptr StartUp() {
-	for (in08 base = 2; base <= 16; base += 1) {
-		EData._Log2_Base[base] = Log2(base + EData._Epsilon) / Log2(EData._Base);
+////////////////////////////////////////
+
+bool Check(bool failed, const ui08 *function, Level level, const ui08 *record, const ui08 *extra) {
+	if (failed) {
+		fprintf(stderr, "[%s#%s] %s%s; ""\n", function, level, record, extra == NULL ? (const ui08 *)"" : extra);
 	}
-	return 0;
+
+	errno = 0;
+	return failed;
 }
 
-iptr CleanUp() {
-	iptr ret = 0;
-	return ret;
+iptr Skip(const ui08 *data, const ui08 space[]) {
+	const ui08 *ret = data;
+	for (in08 i = 0; data[0] != '\0'; data += 1) {
+		i = 0;
+		while (space[i] != '\0' && data[0] != space[i]) {
+			i += 1;
+		}
+		if (space[i] == '\0') {
+			break;
+		}
+	}
+	return (iptr)(data - ret);
 }
 
 ////////////////////////////////////////
@@ -254,11 +270,11 @@ iptr CleanUp() {
 ==                                      Q * base +  Carry  // accumulate recursively
 */
 iptr Parse(Integer *inte, const ui08 *data, ui08 base) {
-	if (Check(inte == NULL || !(2 <= base && base <= 16), __FUNCTION__, EType._Error, "inte == NULL || !(2 <= base && base <= 36)", NULL)) {
+	if (Check(inte == NULL || !(2 <= base && base <= 16), __FUNCTION__, ESpace._Error, "inte == NULL || !(2 <= base && base <= 36)", NULL)) {
 		return 0;
 	}
 	const ui08 *ret = data;
-	data += Skip(data, EData._Space);
+	data += Skip(data, ESpace._Space);
 
 	in08 _sign = +1;
 	if (data[0] == '+') {
@@ -290,7 +306,7 @@ iptr Parse(Integer *inte, const ui08 *data, ui08 base) {
 	iptr expo = 0;
 	const ui08 *digit = data;
 	while (digit[0] != '\0') {
-		if (EData._Digit[digit[0]] <= base) {
+		if (ESpace._Digit[digit[0]] <= base) {
 			digit += 1;
 			expo += 1;
 		}
@@ -302,10 +318,10 @@ iptr Parse(Integer *inte, const ui08 *data, ui08 base) {
 		}
 	}
 
-	iptr _expo = (iptr)(expo * EData._Log2_Base[base]) + 1;
+	iptr _expo = (iptr)(expo * ESpace._Log2_Base[base]) + 1;
 	inte = ReInteger(inte, _expo);
 
-	Memset(inte->_lsu, 0, _expo);
+	Memset(inte->_lsu, 0, _expo * sizeof(unit));
 	dual carry = 0;
 	_expo = 1;
 	while (data < digit) {
@@ -313,13 +329,13 @@ iptr Parse(Integer *inte, const ui08 *data, ui08 base) {
 			data += 1;
 		}
 		else {
-			carry = EData._Digit[data[0]];                   // fetch b_{n - 2}
+			carry = ESpace._Digit[data[0]];                   // fetch b_{n - 2}
 			data += 1;
 
 			for (iptr i = 0; i < _expo; i += 1) {
 				carry = inte->_lsu[i] * base + carry;        // yield (divisor)
-				inte->_lsu[i] = (unit)(carry & EData._Mask); // yield (divisor % BASE)
-				carry >>= EData._Shift;                      // yield (divisor / BASE)
+				inte->_lsu[i] = (unit)(carry & ESpace._Mask); // yield (divisor % BASE)
+				carry >>= ESpace._Bits;                      // yield (divisor / BASE)
 			}
 			inte->_lsu[_expo] = (unit)(carry);
 			if (carry != 0) {
@@ -333,8 +349,8 @@ iptr Parse(Integer *inte, const ui08 *data, ui08 base) {
 	return (iptr)(data - ret);
 }
 
-iptr Print(const Integer inte, ui08 base) {
-	if (Check(!(2 <= base && base <= 16), __FUNCTION__, EType._Error, "!(2 <= base && base <= 16)", NULL)) {
+iptr Print(Integer inte, ui08 base) {
+	if (Check(!(2 <= base && base <= 16), __FUNCTION__, ESpace._Error, "!(2 <= base && base <= 16)", NULL)) {
 		return 0;
 	}
 	iptr ret = 0;
@@ -346,37 +362,137 @@ iptr Print(const Integer inte, ui08 base) {
 	return ret;
 }
 
-/*Absolution of Integer
+/* Absolution of Integer
 */
 Integer *Abso(Integer *abso, Integer inte) {
-	if (abso->_lsu == inte._lsu) {
-		abso->_sign = +1;
+	if (abso->_lsu != inte._lsu) {
+		abso = ReInteger(&inte, 0);
 	}
-	else {
-		abso = ReInteger(abso, inte._expo);
-		abso->_sign = +1;
-		abso->_expo = inte._expo;
-		Memcpy(abso->_lsu, inte._lsu, inte._expo);
-	}
+	abso->_sign = +1;
 	return abso;
 }
 
-/*Negation of Integer
+/* Negation of Integer
 */
 Integer *Nega(Integer *nega, Integer inte) {
-	if (nega->_lsu == inte._lsu) {
-		nega->_sign *= -1;
+	if (nega->_lsu != inte._lsu) {
+		nega = ReInteger(&inte, 0);
 	}
-	else {
-		nega = ReInteger(nega, inte._expo);
-		nega->_sign = -1 * inte._sign;
-		nega->_expo = inte._expo;
-		Memcpy(nega->_lsu, inte._lsu, inte._expo);
-	}
+	nega->_sign *= -1;
 	return nega;
 }
 
-/*Addition of Integer
+/* Shift Integer
+Case 1: Shift Left, bits == +27, lhs > rhs
+		units == (bits + rhs) / ESpace._Bits == 30 / 8 == 3
+		lhs   == (bits + rhs) - ESpace._Bits * units   == 6
+		_expo == inte._expo + units == 3 + 3           == 6
+							_msu_inte         _lsu_inte
+						   +--------+--------+--------+
+						   |     1!!|!!!!!!!!|!!!!!!!!|  rhs == 3
++--------+--------+--------+--------+--------+--------+
+|  1!!!!!|!!!!!!!!|!!!!!000|00000000|00000000|00000000|  lhs == 6, off == lhs - rhs == 3, inv == ESpace._Bits - off == 5
++--------+--------+--------+--------+--------+--------+
+ _msu_tran                                    _lsu_tran
+
+Case 2: Shift Left, bits == +21, lhs < rhs
+		units == (bits + rhs) / ESpace._Bits         == 27 / 8     == 3
+		lhs   == (bits + rhs) - ESpace._Bits * units == 27 - 8 * 3 == 3
+		_expo == inte._expo + units                  == 3 + 3      == 6
+						   _msu_inte         _lsu_inte
+						   +--------+--------+--------+
+						   |  1!!!!!|!!!!!!!!|!!!!!!!!|  rhs == 6
++--------+--------+--------+--------+--------+--------+
+|     1!!|!!!!!!!!|!!!!!000|00000000|00000000|00000000|  lhs == 3, off == rhs - lhs == 3, inv == ESpace._Bits - off == 5
++--------+--------+--------+--------+--------+--------+
+_msu_tran                                    _lsu_tran
+
+Case 3: Shift Right, bits == -27
+		units == |bits| / ESpace._Bits == 27 / 8 == 3
+		_expo == inte._expo - units    == 6 - 3  == 3
+_msu_inte                                    _lsu_inte
++--------+--------+--------+--------+--------+--------+
+|  1!!!!!|!!!!!!!!|!!!!$!!!|!!!!!!!!|!!!!!!!!|!!!!!!!!|
++--------+--------+--------+--------+--------+--------+
+						   |     1!!|!!!!!!!!|!!!!!!!$|  off == |bits| - ESpace._Bits * units == 27 - 8 * 3 == 3
+						   +--------+--------+--------+
+						   _msu_tran         _lsu_tran
+*/
+Integer *Tran(Integer *tran, Integer inte, iptr bits) {
+	if (bits == 0) {
+		if (tran == NULL || tran->_lsu != inte._lsu) {
+			tran = ReInteger(&inte, 0);
+		}
+		return tran;
+	}
+
+	if (bits > 0) {
+		unit msu = inte._lsu[inte._expo - 1];
+		iptr rhs = 0;
+		while (msu != 0) {
+			msu >>= 1;
+			rhs += 1;   // rhs starts at least significant bit
+		}
+		iptr units = (bits + rhs) / ESpace._Bits;
+		iptr lhs = (bits + rhs) - ESpace._Bits * units;
+		iptr _expo = (lhs == 0 ? inte._expo + units - 1 : inte._expo + units);
+		tran = ReInteger(tran, _expo);
+
+		Memset(tran, 0, _expo * sizeof(unit));
+		unit *_msu_inte = inte._lsu + inte._expo - 1;
+		unit *_msu_tran = tran->_lsu + tran->_expo - 1;
+		if (lhs > rhs) {
+			iptr off = lhs - rhs;
+			iptr inv = ESpace._Bits - off;
+
+			_msu_tran[0] = _msu_inte[0] << off;
+			_msu_inte -= 1;
+			while (inte._lsu <= _msu_inte) {
+				_msu_tran[0] |= _msu_inte[0] >> inv;
+				_msu_tran -= 1;
+				_msu_inte -= 1;
+			}
+			_msu_tran[0] |= _msu_inte[1] << off;
+		}
+		else if (lhs < rhs) {
+			iptr off = rhs - lhs;
+			iptr inv = ESpace._Bits - off;
+
+			_msu_tran[0] = _msu_inte[0] >> off;
+			_msu_inte -= 1;
+			while (inte._lsu <= _msu_inte) {
+				_msu_tran[0] |= _msu_inte[0] << inv;
+				_msu_tran -= 1;
+				_msu_inte -= 1;
+			}
+			_msu_tran[0] |= _msu_inte[1] >> off;
+		}
+	}
+	else if (bits < 0) {
+		bits = -bits;
+		iptr units = bits / ESpace._Bits;
+		iptr off = bits - ESpace._Bits * units;
+		iptr inv = ESpace._Bits - off;
+
+		unit *_lsu_inte = inte._lsu + units;
+		unit *_msu_inte = inte._lsu + inte._expo - 1;
+		unit *_lsu_tran = tran->_lsu;
+
+		_lsu_tran[0] = _lsu_inte[0] >> off;
+		_lsu_inte += 1;
+		while (_lsu_inte <= _msu_inte) {
+			_lsu_tran[0] |= _lsu_inte[0] << inv;
+			_lsu_tran += 1;
+			_lsu_inte += 1;
+		}
+	}
+
+
+
+	return tran;
+}
+
+/* Addition of Integer
 Assume [lhs._expo >= rhs._expo]
    *BASE^{EXPO}               *BASE^{EXPO - 1}                                       *BASE^{1}                           *BASE^{0}
 								  B_{EXPO - 1} +                          ... +          B_{1}                               B_{0}
@@ -407,14 +523,14 @@ Integer *Addi(Integer *summ, Integer lhop, Integer rhop) {
 
 	dual carry = 0;
 	for (iptr i = 0; i < rhop._expo; i += 1) {
-		carry = lhop._lsu[i] + rhop._lsu[i] + carry;  // if SUMM overflows Unit, then Carry 1 to higher Unit;  
-		summ->_lsu[i] = (unit)(carry & EData._Mask);  // SUMM in Unit
-		carry >>= EData._Shift;                       // yield Carry
+		carry = lhop._lsu[i] + rhop._lsu[i] + carry;   // if SUMM overflows Unit, then Carry 1 to higher Unit;  
+		summ->_lsu[i] = (unit)(carry & ESpace._Mask);  // SUMM in Unit
+		carry >>= ESpace._Bits;                       // yield Carry
 	}
 	for (iptr j = rhop._expo; j < lhop._expo; j += 1) {
 		carry = lhop._lsu[j] + carry;
-		summ->_lsu[j] = (unit)(carry & EData._Mask);
-		carry >>= EData._Shift;
+		summ->_lsu[j] = (unit)(carry & ESpace._Mask);
+		carry >>= ESpace._Bits;
 	}
 	summ->_lsu[lhop._expo] = (unit)(carry);
 
@@ -423,7 +539,7 @@ Integer *Addi(Integer *summ, Integer lhop, Integer rhop) {
 	return summ;
 }
 
-/*Subtraction of Integer
+/* Subtraction of Integer
 Assume [|lhs| > |rhs|]
 			  *BASE^{EXPO - 1}                                        *BASE^{1}                            *BASE^{0}
 				  B_{EXPO - 1} +                           ... +          B_{1}                                B_{0}
@@ -431,14 +547,6 @@ Assume [|lhs| > |rhs|]
 = (B_{EXPO - 1} + C_{EXPO - 1} + Borrow_{EXPO - 1})%BASE + ... + (B_{1} + C_{1} + Borrow_{1})%BASE  + (B_{0} + C_{0} + Borrow_{0}) %BASE  // attenuate recursively
 */
 Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
-	if (lhop._lsu == rhop._lsu) {
-		diff = ReInteger(diff, 1);
-		diff->_sign = lhop._sign;
-		diff->_expo = 1;
-		diff->_lsu[0] = (unit)0U;
-		return diff;
-	}
-
 	// lhs and rhs have opposite signs
 	if ((lhop._sign ^ rhop._sign) < 0) {
 		/*
@@ -459,8 +567,13 @@ Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 
 	iptr _expo = lhop._expo;
 	if (lhop._expo == rhop._expo) {
-		while (0 < _expo && lhop._lsu[_expo - 1] == rhop._lsu[_expo - 1]) {
-			_expo -= 1;
+		if (lhop._lsu == rhop._lsu) {
+			_expo = 0;
+		}
+		else {
+			while (0 < _expo && lhop._lsu[_expo - 1] == rhop._lsu[_expo - 1]) {
+				_expo -= 1;
+			}
 		}
 		// [|lhs| == |rhs|]
 		if (_expo <= 0) {
@@ -481,14 +594,14 @@ Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 	dual borrow = 0;
 	for (iptr i = 0; i < rhop._expo; i += 1) {
 		borrow = lhop._lsu[i] - borrow - rhop._lsu[i];  // if DIFF underflows Unit, then Borrow 1 from higher Unit
-		diff->_lsu[i] = (unit)(borrow & EData._Mask);   // DIFF in Unit
-		borrow >>= EData._Shift;                        // yield Borrow
+		diff->_lsu[i] = (unit)(borrow & ESpace._Mask);   // DIFF in Unit
+		borrow >>= ESpace._Bits;                        // yield Borrow
 		borrow &= 1U;                                   // Borrow 1 from higher unit
 	}
 	for (iptr j = rhop._expo; j < _expo; j += 1) {
 		borrow = lhop._lsu[j] - borrow;
-		diff->_lsu[j] = (unit)(borrow & EData._Mask);
-		borrow >>= EData._Shift;
+		diff->_lsu[j] = (unit)(borrow & ESpace._Mask);
+		borrow >>= ESpace._Bits;
 		borrow &= 1U;
 	}
 
@@ -510,7 +623,7 @@ Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 */
 Integer *Mult(Integer *prod, Integer lhop, Integer rhop) {
 	// prod may overwrite lhop or rhop
-	if (Check(prod != NULL && (prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu), __FUNCTION__, EType._Fatal, "prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu", NULL)) {
+	if (Check(prod != NULL && (prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu), __FUNCTION__, ESpace._Fatal, "prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu", NULL)) {
 		exit(EXIT_FAILURE);
 	}
 
@@ -523,7 +636,7 @@ Integer *Mult(Integer *prod, Integer lhop, Integer rhop) {
 	==  (BASE - 1) +  (BASE - 1) * (BASE - 1)  + (BASE - 1)  // Unit
 	>= _lsu[i + 1] + lhs._lsu[i] * rhs._lsu[j] + Carry       // Unit
 	*/
-	Memset(prod->_lsu, 0, prod->_expo);
+	Memset(prod->_lsu, 0, prod->_expo * sizeof(unit));
 	dual carry = 0;
 	// [|lhop| == |rhop|]
 	if (lhop._lsu == rhop._lsu) {
@@ -535,26 +648,25 @@ Integer *Mult(Integer *prod, Integer lhop, Integer rhop) {
 		dual twice = 0;
 		for (iptr i = 0; i < lhop._expo; i += 1) {
 			carry = prod->_lsu[i + i] + lhop._lsu[i] * lhop._lsu[i];       // outer loop starts at P_{2 * i}*BASE^{2 * i}
-			prod->_lsu[i + i] = (unit)(carry & EData._Mask);               // PROD in Unit
-			carry >>= EData._Shift;                                        // yield Carry
+			prod->_lsu[i + i] = (unit)(carry & ESpace._Mask);              // PROD in Unit
+			carry >>= ESpace._Bits;                                       // yield Carry
 
 			twice = 2 * rhop._lsu[i];
 			for (iptr j = i + 1; j < rhop._expo; j += 1) {
 				carry = prod->_lsu[i + j] + twice * rhop._lsu[j] + carry;  // inner loop starts at P_{2 * i + 1}*BASE^{2 * i + 1}
-				prod->_lsu[i + j] = (unit)(carry & EData._Mask);
-				carry >>= EData._Shift;
+				prod->_lsu[i + j] = (unit)(carry & ESpace._Mask);
+				carry >>= ESpace._Bits;
 			}
 			prod->_lsu[i + rhop._expo] = (unit)(carry);
 		}
 	}
 	else {
-		for (iptr i = 0; i < lhop._expo; i += 1) {                                // outer loop starts at B_{0}^BASE^{0}
+		for (iptr i = 0; i < lhop._expo; i += 1) {                                // outer loop starts at B_{i}^BASE^{i}
 			carry = 0;
-			for (iptr j = 0; j < rhop._expo; j += 1) {                            // inner loop starts at C_{0}^BASE^{0}
+			for (iptr j = 0; j < rhop._expo; j += 1) {                            // inner loop starts at C_{j}^BASE^{j}
 				carry = prod->_lsu[i + j] + lhop._lsu[i] * rhop._lsu[j] + carry;  // if SUMM overflows Unit, then Carry 1 to higher Unit
-				prod->_lsu[i + j] = (unit)(carry & EData._Mask);                  // SUMM in Unit
-				carry >>= EData._Shift;                                           // yield Carry
-
+				prod->_lsu[i + j] = (unit)(carry & ESpace._Mask);                 // SUMM in Unit
+				carry >>= ESpace._Bits;                                          // yield Carry
 			}
 			prod->_lsu[i + rhop._expo] = (unit)(carry);
 		}
@@ -608,12 +720,12 @@ lhs  rhs  quot  rema  modu  Round  Floor  |  Modu  Rema  Edge  Ceil
 */
 Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 	// divisor must not be 0
-	if (Check(rhop._expo == 1 && rhop._lsu[0] == 0, __FUNCTION__, EType._Error, "[|rhop| == 0]", "rhop._expo == 1 && rhop._lsu[0] == 0")) {
+	if (Check(rhop._expo == 1 && rhop._lsu[0] == 0U, __FUNCTION__, ESpace._Error, "[|rhop| == 0]", "rhop._expo == 1 && rhop._lsu[0] == 0")) {
 		return quot;
 	}
 
 	// quot may overwrite rema_lhop or rhop
-	if (Check(quot != NULL && (quot->_lsu == rema_lhop->_lsu || quot->_lsu == rhop._lsu), __FUNCTION__, EType._Fatal, "quot->_lsu == rema_lhop->_lsu || quot->_lsu == rhop._lsu", NULL)) {
+	if (Check(quot != NULL && (quot->_lsu == rema_lhop->_lsu || quot->_lsu == rhop._lsu), __FUNCTION__, ESpace._Fatal, "quot->_lsu == rema_lhop->_lsu || quot->_lsu == rhop._lsu", NULL)) {
 		exit(EXIT_FAILURE);
 	}
 
@@ -671,7 +783,7 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 	// Case 4: [2 < rhop._expo] and [4 < rema_lhop->_expo]
 	else {
 		quad _rhop = ((quad *)(rhop._lsu + rhop._expo - 3))[0];
-		_rhop <<= EData._Shift; _rhop >>= EData._Shift;
+		_rhop <<= ESpace._Bits; _rhop >>= ESpace._Bits;
 
 		unit *_msu_lhop = rema_lhop->_lsu + rema_lhop->_expo - 4;
 		unit *_msu_quot = quot->_lsu + _expo_quot - 2;
@@ -685,8 +797,8 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 					borrow_carry = 0;
 					for (iptr i = 0; i < rhop._expo; i += 1) {
 						borrow_carry = _msu_rema[i] - borrow_carry - rhop._lsu[i] * _msu_quot[i];  // if DIFF overflows Unit, then Borrow 1 from higher Unit
-						_msu_rema[i] = (unit)(borrow_carry & EData._Mask);                         // DIFF in Unit
-						borrow_carry >>= EData._Shift;                                             // yield Borrow
+						_msu_rema[i] = (unit)(borrow_carry & ESpace._Mask);                         // DIFF in Unit
+						borrow_carry >>= ESpace._Bits;                                             // yield Borrow
 						borrow_carry &= 1U;                                                        // Borrow 1 from higher Unit
 					}
 
@@ -696,8 +808,8 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 						borrow_carry = 0;
 						for (iptr i = 0; i < rhop._expo; i += 1) {
 							borrow_carry = _msu_rema[i] + rhop._lsu[i] + borrow_carry;
-							_msu_rema[i] = (unit)(borrow_carry & EData._Mask);
-							borrow_carry >>= EData._Shift;
+							_msu_rema[i] = (unit)(borrow_carry & ESpace._Mask);
+							borrow_carry >>= ESpace._Bits;
 						}
 					}
 				}
