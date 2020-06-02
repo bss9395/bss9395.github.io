@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-06-02T01:42:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-06-02T17:04:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
 */
 
@@ -431,6 +431,14 @@ Assume [|lhs| > |rhs|]
 = (B_{EXPO - 1} + C_{EXPO - 1} + Borrow_{EXPO - 1})%BASE + ... + (B_{1} + C_{1} + Borrow_{1})%BASE  + (B_{0} + C_{0} + Borrow_{0}) %BASE  // attenuate recursively
 */
 Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
+	if (lhop._lsu == rhop._lsu) {
+		diff = ReInteger(diff, 1);
+		diff->_sign = lhop._sign;
+		diff->_expo = 1;
+		diff->_lsu[0] = (unit)0U;
+		return diff;
+	}
+
 	// lhs and rhs have opposite signs
 	if ((lhop._sign ^ rhop._sign) < 0) {
 		/*
@@ -457,7 +465,7 @@ Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 		// [|lhs| == |rhs|]
 		if (_expo <= 0) {
 			diff = ReInteger(diff, 1);
-			diff->_sign = +1;
+			diff->_sign = _sign;
 			diff->_expo = 1;
 			diff->_lsu[0] = (unit)0U;
 			return diff;
@@ -475,7 +483,7 @@ Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 		borrow = lhop._lsu[i] - borrow - rhop._lsu[i];  // if DIFF underflows Unit, then Borrow 1 from higher Unit
 		diff->_lsu[i] = (unit)(borrow & EData._Mask);   // DIFF in Unit
 		borrow >>= EData._Shift;                        // yield Borrow
-		borrow &= 1U;                                   // borrow 1 from higher unit
+		borrow &= 1U;                                   // Borrow 1 from higher unit
 	}
 	for (iptr j = rhop._expo; j < _expo; j += 1) {
 		borrow = lhop._lsu[j] - borrow;
@@ -502,7 +510,7 @@ Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 */
 Integer *Mult(Integer *prod, Integer lhop, Integer rhop) {
 	// prod may overwrite lhop or rhop
-	if (Check(prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu, __FUNCTION__, EType._Fatal, "prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu", NULL)) {
+	if (Check(prod != NULL && (prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu), __FUNCTION__, EType._Fatal, "prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu", NULL)) {
 		exit(EXIT_FAILURE);
 	}
 
@@ -599,137 +607,115 @@ lhs  rhs  quot  rema  modu  Round  Floor  |  Modu  Rema  Edge  Ceil
 -10  -12     0   -10   -10      0      0  |     2     2     1     1
 */
 Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
-	// divisor must not be 0, |rhop| != 0
+	// divisor must not be 0
 	if (Check(rhop._expo == 1 && rhop._lsu[0] == 0, __FUNCTION__, EType._Error, "[|rhop| == 0]", "rhop._expo == 1 && rhop._lsu[0] == 0")) {
 		return quot;
 	}
 
+	// quot may overwrite rema_lhop or rhop
+	if (Check(quot != NULL && (quot->_lsu == rema_lhop->_lsu || quot->_lsu == rhop._lsu), __FUNCTION__, EType._Fatal, "quot->_lsu == rema_lhop->_lsu || quot->_lsu == rhop._lsu", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+	in08 _sign_quot = rema_lhop->_sign * rhop._sign;
+
+	// Case 1: |lhop| < |rhop|
 	if (rema_lhop->_expo < rhop._expo) {
-		/* Case 1: |lhop| < |rhop|
-				   quot = 0; rema = lhop;
-		*/
 		quot = ReInteger(quot, 1);
-		quot->_sign = +1;
+		quot->_sign = _sign_quot;
 		quot->_expo = 1;
 		quot->_lsu[0] = (unit)0U;
 		return quot;
 	}
 
-	in08 _sign_quot = rema_lhop->_sign * rhop._sign;
 	iptr _expo_quot = rema_lhop->_expo - rhop._expo + 1;
 	quot = ReInteger(quot, _expo_quot);
+
+	// Case 2: [rhop._expo <= rema_lhop->_expo <= 4]
 	if (rema_lhop->_expo <= 4) {
-		// Case 2: [lhop_rema->_expo <= 4] and [rhop_rema->_expo <= 4]
+		in08 shift_rhop = (4 - rhop._expo) * 8;
+		quad _rhop = ((quad *)rhop._lsu)[0];
+		_rhop <<= shift_rhop; _rhop >>= shift_rhop;
+
 		in08 shift_lhop = (4 - rema_lhop->_expo) * 8;
-		quad _lhop = *(quad *)rema_lhop->_lsu;
+		quad _lhop = ((quad *)rema_lhop->_lsu)[0];
 		_lhop <<= shift_lhop; _lhop >>= shift_lhop;
 
-		in08 shift_rhop = (4 - rhop._expo) * 8;
-		quad _rhop = *(quad *)rhop._lsu;
-		_rhop <<= shift_rhop; _rhop >>= shift_rhop;
-
 		quad _quot = (quad)(_lhop / _rhop);
-		*(quad *)rema_lhop->_lsu = (quad)(_lhop - _rhop * _quot);
-		*(quad *)quot->_lsu = (quad)_quot;
-
-		quot->_sign = _sign_quot;
-		quot->_expo = (quot->_lsu[_expo_quot - 1] == 0 ? _expo_quot - 1 : _expo_quot);
-
-		iptr _expo_rema = 4;
-		while (0 < _expo_rema && rema_lhop->_lsu[_expo_rema - 1] == 0) {
-			_expo_rema -= 1;
+		((quad *)rema_lhop->_lsu)[0] = (quad)(_lhop - _rhop * _quot);
+		for (iptr i = 0; i < _expo_quot; i += 1) {
+			((unit *)quot->_lsu)[i] = ((unit *)&_quot)[i];
 		}
-		rema_lhop->_expo = (_expo_rema <= 0 ? 1 : _expo_rema);
-
-		return quot;
 	}
+	// Case 3: [rhop._expo <= 2] and [4 < lhop_rema->_expo]
 	else if (rhop._expo <= 2) {
-		// Case 3: [lhop_rema->_expo > 4] and [rhop._expo <= 2]
-		unit *_lhop = rema_lhop->_lsu + rema_lhop->_expo - 2;
-
 		in08 shift_rhop = (2 - rhop._expo) * 8;
-		dual _rhop = *(dual *)rhop._lsu;
+		dual _rhop = ((dual *)rhop._lsu)[0];
 		_rhop <<= shift_rhop; _rhop >>= shift_rhop;
 
-		unit *_quot = quot->_lsu + _expo_quot - 2;
+		unit *_msu_lhop = rema_lhop->_lsu + rema_lhop->_expo - rhop._expo;
+		unit *_msu_quot = quot->_lsu + _expo_quot - rhop._expo;
 
-		dual prod = 0;
-		while (rema_lhop->_lsu <= _lhop) {
-			*(unit *)_quot = (unit)(*(dual *)_lhop / _rhop);
-			if (_quot[0] != 0) {
-				prod = _rhop * _quot[0];
-				*(dual *)_lhop -= prod;
+		_msu_quot[0] = ((dual *)_msu_lhop)[0] / _rhop;
+		_msu_lhop -= 1;
+		_msu_quot -= 1;
+		while (rema_lhop->_lsu <= _msu_lhop) {
+			_msu_quot[0] = (unit)(((dual *)_msu_lhop)[0] / _rhop);
+			if (_msu_quot[0] != 0) {
+				((dual *)_msu_lhop)[0] -= _rhop * _msu_quot[0];
 			}
-			_lhop -= 1;
-			_quot -= 1;
+			_msu_lhop -= 1;
+			_msu_quot -= 1;
 		}
-
-		quot->_sign = _sign_quot;
-		quot->_expo = _expo_quot - 1;
-
-		iptr _expo_rema = 2;
-		while (0 < _expo_rema && rema_lhop->_lsu[_expo_rema - 1] == 0) {
-			_expo_rema -= 1;
-		}
-		rema_lhop->_expo = (_expo_rema <= 0 ? 1 : _expo_rema);
-
-		return quot;
 	}
+	// Case 4: [2 < rhop._expo] and [4 < rema_lhop->_expo]
 	else {
-		// Case 4: [lhop_rema->_expo > 4] and [rhop._expo > 2]
-		unit *_lhop = rema_lhop->_lsu + rema_lhop->_expo - 4;
-
-		quad _rhop = *(quad *)(rhop._lsu + rhop._expo - 3);
+		quad _rhop = ((quad *)(rhop._lsu + rhop._expo - 3))[0];
 		_rhop <<= EData._Shift; _rhop >>= EData._Shift;
 
-		unit *_quot = quot->_lsu + _expo_quot - 2;
+		unit *_msu_lhop = rema_lhop->_lsu + rema_lhop->_expo - 4;
+		unit *_msu_quot = quot->_lsu + _expo_quot - 2;
+		unit *_msu_rema = rema_lhop->_lsu + rema_lhop->_expo - (rhop._expo + 1);
 
-		unit *_rema = rema_lhop->_lsu + rema_lhop->_expo - (rhop._expo + 1);
-		unit *prod = (unit *)Malloc((rhop._expo + 1) * sizeof(unit));
-		dual carry = 0;
-		dual borrow = 0;
-		iptr expo = 0;
-		while (rema_lhop->_lsu <= _lhop) {
-			if (_lhop[3] == 0) {
-				*(dual *)_quot = (dual)(*(quad *)_lhop / _rhop);
-				if (_quot[1] != 0) {
-					borrow = 0;
+		dual borrow_carry = 0;
+		while (rema_lhop->_lsu <= _msu_lhop) {
+			if (((dual *)_msu_lhop)[1] == 0) {
+				((dual *)_msu_quot)[0] = (dual)(((quad *)_msu_lhop)[0] / _rhop);
+				if (_msu_quot[1] != 0) {
+					borrow_carry = 0;
 					for (iptr i = 0; i < rhop._expo; i += 1) {
-						borrow = _rema[i] - borrow - rhop._lsu[i] * _quot[i];
-						_rema[i] = (unit)(borrow & EData._Mask);
-						borrow >>= EData._Shift;
-						borrow &= 1U;
+						borrow_carry = _msu_rema[i] - borrow_carry - rhop._lsu[i] * _msu_quot[i];  // if DIFF overflows Unit, then Borrow 1 from higher Unit
+						_msu_rema[i] = (unit)(borrow_carry & EData._Mask);                         // DIFF in Unit
+						borrow_carry >>= EData._Shift;                                             // yield Borrow
+						borrow_carry &= 1U;                                                        // Borrow 1 from higher Unit
 					}
 
-					// SUB < 0
-					if (borrow == 1U) {
-						_quot[1] -= 1;
-						carry = 0;
-						for (iptr i = 0; i < expo; i += 1) {
-							carry = _rema[i] + rhop._lsu[i] + carry;
-							_rema[i] = (unit)(carry &EData._Mask);
-							carry >>= EData._Shift;
+					// DIFF < 0
+					if (borrow_carry == 1U) {
+						_msu_quot[1] -= 1;
+						borrow_carry = 0;
+						for (iptr i = 0; i < rhop._expo; i += 1) {
+							borrow_carry = _msu_rema[i] + rhop._lsu[i] + borrow_carry;
+							_msu_rema[i] = (unit)(borrow_carry & EData._Mask);
+							borrow_carry >>= EData._Shift;
 						}
 					}
 				}
 			}
-			_lhop -= 1;
-			_quot -= 1;
-			_rema -= 1;
+			_msu_lhop -= 1;
+			_msu_quot -= 1;
+			_msu_rema -= 1;
 		}
-
-		quot->_sign = _sign_quot;
-		quot->_expo = (quot->_lsu[_expo_quot - 1] == 0 ? _expo_quot - 1 : _expo_quot);
-
-		iptr _expo_rema = rhop._expo;
-		while (0 < expo && rema_lhop->_lsu[_expo_rema - 1] == 0) {
-			_expo_rema -= 1;
-		}
-		rema_lhop->_expo = (_expo_rema == 0 ? 1 : _expo_rema);
-
-		return quot;
 	}
 
+	quot->_sign = _sign_quot;
+	quot->_expo = (quot->_lsu[_expo_quot - 1] == 0 ? _expo_quot - 1 : _expo_quot);
+
+	iptr _expo_rema = rhop._expo;
+	while (0 < _expo_rema && rema_lhop->_lsu[_expo_rema - 1] == 0) {
+		_expo_rema -= 1;
+	}
+	rema_lhop->_expo = (_expo_rema <= 0 ? 1 : _expo_rema);  // if |rema| == 0, then rema_lhop->_expo = 1; 
 	return quot;
 }
 
