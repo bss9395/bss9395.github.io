@@ -27,6 +27,7 @@ Design: Rational Number
 #include <ctype.h>
 #include <math.h>
 
+typedef int8_t    bool;
 typedef int8_t    in08;
 typedef int16_t   in16;
 typedef int32_t   in32;
@@ -54,15 +55,16 @@ Unit  Representation
 == b_{expo - 1} * base^(expo - 1) + b_{expo - 2} * base^(expo - 2) + ... + b_{1} * base^(1) + B_{0} * base^(0)  // base == 10 or 2 or 8 or 16 ...
 Digit Representation
 
-=> 1 * BASE^EXPO >= 1 * base^expo                     // Boundary Condition
-=> EXPO >= Floor(expo * Log2(base) / Log2(BASE)) + 1  // Absolute Assurance
+=> 1 * BASE^EXPO >= 1 * base^expo                                                         // Boundary Condition
+=> Floor(expo * Log2(base) / Log2(BASE)) <= EXPO <= Ceil(expo * Log2(base) / Log2(BASE))  // Absolute Assurance
+=> EXPO <= Floor(expo * Log2(base) / Log2(BASE)) + 1                                      // Allocate Enough Space
 */
 
 typedef ui08  unit;
 typedef ui16  dual;
 typedef ui32  quad;
 
-typedef in08  bool;
+
 //typedef ui16  unit;
 //typedef ui32  dual;
 //typedef ui64  quad;
@@ -88,7 +90,7 @@ Integer *Nega(Integer *nega, Integer inte);
 Integer *Addi(Integer *summ, Integer lhop, Integer rhop);
 Integer *Subt(Integer *diff, Integer lhop, Integer rhop);
 Integer *Mult(Integer *Prod, Integer lhop, Integer rhop);
-Integer *DiviRema(Integer *quot, Integer *lhop_rema, Integer rhop);
+Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop);
 
 ////////////////////////////////////////
 
@@ -151,6 +153,9 @@ struct {
 	._Base = (1U << (sizeof(unit) * 8)),
 	._Mask = (1U << (sizeof(unit) * 8)) - 1,
 	._Shift = sizeof(unit) * 8,
+	._Log2_Base = {
+		0.0, 0.0,
+	},
 };
 
 ////////////////////////////////////////
@@ -233,20 +238,20 @@ iptr CleanUp() {
 
 ////////////////////////////////////////
 
-/*
+/*Parse Integer
 	   b_{expo - 1} % BASE = R
 	   b_{expo - 1} / BASE = Q
 => b_{expo - 1} = Q * BASE + R
-												  // b_{expo - 2} is now to be dealed with
+														   // b_{expo - 2} is now to be dealed with
 =>   (b_{expo - 1} * base + b_{expo - 2}) % BASE
 == ((Q * BASE + R) * base + b_{expo - 2}) % BASE
 ==              (R * base + b_{expo - 2}) % BASE
-												  // yield Carry
+
+				(R * base + b_{expo - 2}) / BASE == Carry  // yield Carry
 =>   (b_{expo - 1} * base + b_{expo - 2}) / BASE
 == ((Q * BASE + R) * base + b_{expo - 2}) / BASE
-==                      (Q * BASE * base) / BASE + Carry
-==                                      Q * base + Carry
-												  // accumulate recursively
+==                      (Q * BASE * base) / BASE +  Carry
+==                                      Q * base +  Carry  // accumulate recursively
 */
 iptr Parse(Integer *inte, const ui08 *data, ui08 base) {
 	if (Check(inte == NULL || !(2 <= base && base <= 16), __FUNCTION__, EType._Error, "inte == NULL || !(2 <= base && base <= 36)", NULL)) {
@@ -299,26 +304,25 @@ iptr Parse(Integer *inte, const ui08 *data, ui08 base) {
 
 	iptr _expo = (iptr)(expo * EData._Log2_Base[base]) + 1;
 	inte = ReInteger(inte, _expo);
-	Memset(inte->_lsu, 0, _expo);
 
-	unit *_lsu = inte->_lsu;
-	_expo = 1;
+	Memset(inte->_lsu, 0, _expo);
 	dual carry = 0;
+	_expo = 1;
 	while (data < digit) {
 		if (data[0] == '_' || data[0] == ',') {
 			data += 1;
 		}
 		else {
-			carry = EData._Digit[data[0]];             // fetch b_{n - 2}
+			carry = EData._Digit[data[0]];                   // fetch b_{n - 2}
 			data += 1;
 
 			for (iptr i = 0; i < _expo; i += 1) {
-				carry = _lsu[i] * base + carry;        // yield (divisor)
-				_lsu[i] = (unit)(carry & EData._Mask); // yield (divisor % BASE)
-				carry >>= EData._Shift;                // yield (divisor / BASE)
+				carry = inte->_lsu[i] * base + carry;        // yield (divisor)
+				inte->_lsu[i] = (unit)(carry & EData._Mask); // yield (divisor % BASE)
+				carry >>= EData._Shift;                      // yield (divisor / BASE)
 			}
+			inte->_lsu[_expo] = (unit)(carry);
 			if (carry != 0) {
-				_lsu[_expo] = (unit)(carry);
 				_expo += 1;
 			}
 		}
@@ -342,6 +346,8 @@ iptr Print(const Integer inte, ui08 base) {
 	return ret;
 }
 
+/*Absolution of Integer
+*/
 Integer *Abso(Integer *abso, Integer inte) {
 	if (abso->_lsu == inte._lsu) {
 		abso->_sign = +1;
@@ -355,24 +361,27 @@ Integer *Abso(Integer *abso, Integer inte) {
 	return abso;
 }
 
+/*Negation of Integer
+*/
 Integer *Nega(Integer *nega, Integer inte) {
 	if (nega->_lsu == inte._lsu) {
 		nega->_sign *= -1;
 	}
 	else {
 		nega = ReInteger(nega, inte._expo);
-		Memcpy(nega->_lsu, inte._lsu, inte._expo);
 		nega->_sign = -1 * inte._sign;
 		nega->_expo = inte._expo;
+		Memcpy(nega->_lsu, inte._lsu, inte._expo);
 	}
 	return nega;
 }
 
-/* Assume [lhs._expo >= rhs._expo]
-  *BASE^{EXPO}               *BASE^{EXPO - 1}                                       *BASE^{1}                           *BASE^{0}
-								 B_{EXPO - 1} +                          ... +          B_{1}                               B_{0}
-+                                C_{EXPO - 1} +                          ... +          C_{1}                             + C_{0}                     // yield Carry
-= Carry_{EXPO} + (B_{EXPO - 1} + C_{EXPO - 1} + Carry_{EXPO - 1})%BASE + ... + (B_{1} + C_{1} + Carry_{1})%BASE  + (B_{0} + C_{0} + Carry_{0}) %BASE  // accumulate recursively
+/*Addition of Integer
+Assume [lhs._expo >= rhs._expo]
+   *BASE^{EXPO}               *BASE^{EXPO - 1}                                       *BASE^{1}                           *BASE^{0}
+								  B_{EXPO - 1} +                          ... +          B_{1}                               B_{0}
++                                 C_{EXPO - 1} +                          ... +          C_{1}                             + C_{0}                     // yield Carry
+== Carry_{EXPO} + (B_{EXPO - 1} + C_{EXPO - 1} + Carry_{EXPO - 1})%BASE + ... + (B_{1} + C_{1} + Carry_{1})%BASE  + (B_{0} + C_{0} + Carry_{0}) %BASE  // accumulate recursively
 */
 Integer *Addi(Integer *summ, Integer lhop, Integer rhop) {
 	// lhs and rhs have opposite signs
@@ -396,26 +405,26 @@ Integer *Addi(Integer *summ, Integer lhop, Integer rhop) {
 	iptr _expo = lhop._expo + 1;
 	summ = ReInteger(summ, _expo);
 
-	unit *_lsu = summ->_lsu;
 	dual carry = 0;
 	for (iptr i = 0; i < rhop._expo; i += 1) {
-		carry = lhop._lsu[i] + rhop._lsu[i] + carry;
-		_lsu[i] = (unit)(carry & EData._Mask);
-		carry >>= EData._Shift;
+		carry = lhop._lsu[i] + rhop._lsu[i] + carry;  // if SUMM overflows Unit, then Carry 1 to higher Unit;  
+		summ->_lsu[i] = (unit)(carry & EData._Mask);  // SUMM in Unit
+		carry >>= EData._Shift;                       // yield Carry
 	}
 	for (iptr j = rhop._expo; j < lhop._expo; j += 1) {
 		carry = lhop._lsu[j] + carry;
-		_lsu[j] = (unit)(carry & EData._Mask);
+		summ->_lsu[j] = (unit)(carry & EData._Mask);
 		carry >>= EData._Shift;
 	}
-	_lsu[lhop._expo] = (unit)(carry);
+	summ->_lsu[lhop._expo] = (unit)(carry);
 
 	summ->_sign = _sign;
-	summ->_expo = (carry != 0 ? _expo + 1 : _expo);
+	summ->_expo = (summ->_lsu[_expo - 1] == 0 ? _expo - 1 : _expo);
 	return summ;
 }
 
-/* Assume [lhs._expo >= rhs._expo]
+/*Subtraction of Integer
+Assume [|lhs| > |rhs|]
 			  *BASE^{EXPO - 1}                                        *BASE^{1}                            *BASE^{0}
 				  B_{EXPO - 1} +                           ... +          B_{1}                                B_{0}
 -                 C_{EXPO - 1} +                           ... +          C_{1}                              + C_{0}                      // yield Borrow
@@ -445,43 +454,43 @@ Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 		while (0 < _expo && lhop._lsu[_expo - 1] == rhop._lsu[_expo - 1]) {
 			_expo -= 1;
 		}
+		// [|lhs| == |rhs|]
 		if (_expo <= 0) {
 			diff = ReInteger(diff, 1);
-
 			diff->_sign = +1;
 			diff->_expo = 1;
 			diff->_lsu[0] = (unit)0U;
 			return diff;
 		}
+		// [|lhs| < |rhs|]
 		else if (lhop._lsu[_expo - 1] < rhop._lsu[_expo - 1]) {
 			Integer swap = lhop; lhop = rhop; rhop = swap;
 			_sign *= -1;
 		}
 	}
 	diff = ReInteger(diff, _expo);
-	unit *_lsu = diff->_lsu;
 
 	dual borrow = 0;
 	for (iptr i = 0; i < rhop._expo; i += 1) {
-		borrow = lhop._lsu[i] - rhop._lsu[i] - borrow;  // if unit underflow then borrow 1 from higher unit
-		_lsu[i] = (unit)(borrow & EData._Mask);
-		borrow >>= EData._Shift;
+		borrow = lhop._lsu[i] - borrow - rhop._lsu[i];  // if DIFF underflows Unit, then Borrow 1 from higher Unit
+		diff->_lsu[i] = (unit)(borrow & EData._Mask);   // DIFF in Unit
+		borrow >>= EData._Shift;                        // yield Borrow
 		borrow &= 1U;                                   // borrow 1 from higher unit
 	}
 	for (iptr j = rhop._expo; j < _expo; j += 1) {
 		borrow = lhop._lsu[j] - borrow;
-		_lsu[j] = (unit)(borrow & EData._Mask);
+		diff->_lsu[j] = (unit)(borrow & EData._Mask);
 		borrow >>= EData._Shift;
-		borrow &= 1U;                                   // borrow 1 from higher unit
+		borrow &= 1U;
 	}
 
 	diff->_sign = _sign;
-	diff->_expo = (_lsu[_expo - 1] == 0 ? _expo - 1 : _expo);
+	diff->_expo = (diff->_lsu[_expo - 1] == 0 ? _expo - 1 : _expo);
 	return diff;
 }
 
 
-/*
+/* Multiplication of Integer
    *BASE^{2*EXPO-1} ... *BASE^{EXPO+1}                  *BASE^{EXPO}          *BASE^{EXPO-1}                *BASE^{1}                *BASE^{0}
 																				  B_{EXPO-1}     + ... +        B_{1}        +           B_{0}
 ×                                                                                 C_{EXPO-1}     + ... +        C_{1}        +           C_{0}
@@ -492,64 +501,64 @@ Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 ++ Carry_{EXPO - 1}     (B_{EXPO - 1} * C_{EXPO - 1})%BASE ... (B_{EXPO - 1} * C_{1})%BASE    (B_{EXPO-1} * C_{0})%BASE
 */
 Integer *Mult(Integer *prod, Integer lhop, Integer rhop) {
+	// prod may overwrite lhop or rhop
 	if (Check(prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu, __FUNCTION__, EType._Fatal, "prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu", NULL)) {
 		exit(EXIT_FAILURE);
 	}
 
 	in08 _sign = lhop._sign * rhop._sign;
 	iptr _expo = lhop._expo + rhop._expo;
-
 	prod = ReInteger(prod, _expo);
-	unit *_lsu = prod->_lsu;
 
-
-	/* constraint assurance
+	/* Constraint Assurance
 	BASE * BASE - 1                                          // Dual Unit
 	==  (BASE - 1) +  (BASE - 1) * (BASE - 1)  + (BASE - 1)  // Unit
 	>= _lsu[i + 1] + lhs._lsu[i] * rhs._lsu[j] + Carry       // Unit
 	*/
 	Memset(prod->_lsu, 0, prod->_expo);
 	dual carry = 0;
+	// [|lhop| == |rhop|]
 	if (lhop._lsu == rhop._lsu) {
-		/* Θ(n) = EXPO^2 -> Θ(n) = EXPO * (EXPO + 1) / 2
+		/* Θ(n) = EXPO^2 -->> Θ(n) = (EXPO * (EXPO + 1)) / 2
 		   Square(Sum_{i = 0, j = 0}^{EXPO - 1} B_{i, j} * BASE^{i + j})
 		== Sum_{i = 0}^{EXPO - 1} B_{i}^2 * BASE^{2 * i}
 		  + Sum_{i = 0}^{EXPO - 1} Sum_{j = i + 1}^{EXPO - 1} (2 * B_{i}) * B_{j} * BASE^{i + j}
 		*/
 		dual twice = 0;
-		for (iptr i = 0; i < rhop._expo; i += 1) {
-			carry = _lsu[i + i] + rhop._lsu[i] * rhop._lsu[i];
-			_lsu[i + i] = (unit)(carry & EData._Mask);
-			carry >>= EData._Shift;
+		for (iptr i = 0; i < lhop._expo; i += 1) {
+			carry = prod->_lsu[i + i] + lhop._lsu[i] * lhop._lsu[i];       // outer loop starts at P_{2 * i}*BASE^{2 * i}
+			prod->_lsu[i + i] = (unit)(carry & EData._Mask);               // PROD in Unit
+			carry >>= EData._Shift;                                        // yield Carry
 
 			twice = 2 * rhop._lsu[i];
 			for (iptr j = i + 1; j < rhop._expo; j += 1) {
-				carry = _lsu[i + j] + twice * rhop._lsu[j] + carry;
-				_lsu[i + j] = (unit)(carry & EData._Mask);
+				carry = prod->_lsu[i + j] + twice * rhop._lsu[j] + carry;  // inner loop starts at P_{2 * i + 1}*BASE^{2 * i + 1}
+				prod->_lsu[i + j] = (unit)(carry & EData._Mask);
 				carry >>= EData._Shift;
 			}
-			_lsu[i + rhop._expo] = (unit)(carry);
+			prod->_lsu[i + rhop._expo] = (unit)(carry);
 		}
 	}
 	else {
-		for (iptr i = 0; i < lhop._expo; i += 1) {
+		for (iptr i = 0; i < lhop._expo; i += 1) {                                // outer loop starts at B_{0}^BASE^{0}
 			carry = 0;
-			for (iptr j = 0; j < rhop._expo; j += 1) {
-				carry = _lsu[i + j] + lhop._lsu[i] * rhop._lsu[j] + carry;
-				_lsu[i + j] = (unit)(carry & EData._Mask);
-				carry >>= EData._Shift;
+			for (iptr j = 0; j < rhop._expo; j += 1) {                            // inner loop starts at C_{0}^BASE^{0}
+				carry = prod->_lsu[i + j] + lhop._lsu[i] * rhop._lsu[j] + carry;  // if SUMM overflows Unit, then Carry 1 to higher Unit
+				prod->_lsu[i + j] = (unit)(carry & EData._Mask);                  // SUMM in Unit
+				carry >>= EData._Shift;                                           // yield Carry
 
 			}
-			_lsu[i + rhop._expo] = (unit)(carry);
+			prod->_lsu[i + rhop._expo] = (unit)(carry);
 		}
 	}
 
 	prod->_sign = _sign;
-	prod->_expo = (carry != 0 ? _expo : _expo - 1);
+	prod->_expo = (prod->_lsu[_expo - 1] == 0 ? _expo - 1 : _expo);
 	return prod;
 }
 
-/*Assume [lhs._expo >= rhs._expo]
+/* Division and Remainer of Integer
+Assume [lhs._expo >= rhs._expo]
 Step 1:  [B_8 > 0] and [C_5 > 0]
 		*BASE^8  *BASE^7  *BASE^6  *BASE^5         |  *BASE^4  *BASE^3  *BASE^2  *BASE^1  *BASE^0
   (quad)  B_8      B_7      B_6      B_5           |    B_4      B_3      B_2      B_1      B_0
@@ -567,37 +576,35 @@ Step 2: Leave Out Q_{Discard}, or Q_{Discard} == 0
 ==                              SUB
 
 Step 3:
-Case 0: [Q_3 == 0] => [Q ==                    Q_{Tail}]  // Shift Dividend One Unit
-Case 1: [SUB  > 0] => [Q ==       Q_3*BASE^3 + Q_{Tail}]  // Absolute Assurance
-Case 2: [SUB  < 0] => [Q == (Q_3 - 1)*BASE^3 + Q_{Tail}]  // Absolute Assurance
+Case 0: [Q_3 == 0] => [Q ==                    Q_{Tail}]  // do shifting
+Case 1: [SUB >  0] => [Q ==       Q_3*BASE^3 + Q_{Tail}]  // Absolute Assurance
+Case 2: [SUB <  0] => [Q == (Q_3 - 1)*BASE^3 + Q_{Tail}]  // Absolute Assurance
 Case 3: [sub == 0] => [Q ==       Q_3*BASE^3           ]  // Absolute Assurance
 */
-
-
 
 /* Definition of Division
 rema = lhs - rhs * Round(lhs / rhs) = lhs - rhs * quot
 modu = lhs - rhs * Floor(lhs / rhs)
 
-			   Round Floor                |  Ceil  Edge
-lhs  rhs  quot  rema  modu  Round  Floor  |  Rema  Modu  Ceil  Edge
+			   Round Floor                |  Edge  Ceil
+lhs  rhs  quot  rema  modu  Round  Floor  |  Modu  Rema  Edge  Ceil
  12   10     1     2     2      1      1  |    -8    -8     2     2
--12   10    -1    -2     8     -1     -2  |    -2     8    -1    -2
- 12  -10    -1     2    -8     -1     -2  |     2    -8    -1    -2
+-12   10    -1    -2     8     -1     -2  |     8    -2    -2    -1
+ 12  -10    -1     2    -8     -1     -2  |    -8     2    -2    -1
 -12  -10     1    -2    -2      1      1  |     8     8     2     2
 										  |
  10   12     0    10    10      0      0  |    -2    -2     1     1
--10   12     0   -10     2      0     -1  |   -10     2     0    -1
- 10  -12     0    10    -2      0     -1  |    10    -2     0    -1
+-10   12     0   -10     2      0     -1  |     2   -10    -1     0
+ 10  -12     0    10    -2      0     -1  |    -2    10    -1     0
 -10  -12     0   -10   -10      0      0  |     2     2     1     1
 */
-Integer *DiviRema(Integer *quot, Integer *lhop_rema, Integer rhop) {
+Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 	// divisor must not be 0, |rhop| != 0
 	if (Check(rhop._expo == 1 && rhop._lsu[0] == 0, __FUNCTION__, EType._Error, "[|rhop| == 0]", "rhop._expo == 1 && rhop._lsu[0] == 0")) {
 		return quot;
 	}
 
-	if (lhop_rema->_expo < rhop._expo) {
+	if (rema_lhop->_expo < rhop._expo) {
 		/* Case 1: |lhop| < |rhop|
 				   quot = 0; rema = lhop;
 		*/
@@ -608,13 +615,13 @@ Integer *DiviRema(Integer *quot, Integer *lhop_rema, Integer rhop) {
 		return quot;
 	}
 
-	in08 _sign_quot = lhop_rema->_sign * rhop._sign;
-	iptr _expo_quot = lhop_rema->_expo - rhop._expo + 1;
+	in08 _sign_quot = rema_lhop->_sign * rhop._sign;
+	iptr _expo_quot = rema_lhop->_expo - rhop._expo + 1;
 	quot = ReInteger(quot, _expo_quot);
-	if (lhop_rema->_expo <= 4) {
+	if (rema_lhop->_expo <= 4) {
 		// Case 2: [lhop_rema->_expo <= 4] and [rhop_rema->_expo <= 4]
-		in08 shift_lhop = (4 - lhop_rema->_expo) * 8;
-		quad _lhop = *(quad *)lhop_rema->_lsu;
+		in08 shift_lhop = (4 - rema_lhop->_expo) * 8;
+		quad _lhop = *(quad *)rema_lhop->_lsu;
 		_lhop <<= shift_lhop; _lhop >>= shift_lhop;
 
 		in08 shift_rhop = (4 - rhop._expo) * 8;
@@ -622,23 +629,23 @@ Integer *DiviRema(Integer *quot, Integer *lhop_rema, Integer rhop) {
 		_rhop <<= shift_rhop; _rhop >>= shift_rhop;
 
 		quad _quot = (quad)(_lhop / _rhop);
-		*(quad *)lhop_rema->_lsu = (quad)(_lhop - _rhop * _quot);
+		*(quad *)rema_lhop->_lsu = (quad)(_lhop - _rhop * _quot);
 		*(quad *)quot->_lsu = (quad)_quot;
 
 		quot->_sign = _sign_quot;
 		quot->_expo = (quot->_lsu[_expo_quot - 1] == 0 ? _expo_quot - 1 : _expo_quot);
 
 		iptr _expo_rema = 4;
-		while (0 < _expo_rema && lhop_rema->_lsu[_expo_rema - 1] == 0) {
+		while (0 < _expo_rema && rema_lhop->_lsu[_expo_rema - 1] == 0) {
 			_expo_rema -= 1;
 		}
-		lhop_rema->_expo = (_expo_rema <= 0 ? 1 : _expo_rema);
+		rema_lhop->_expo = (_expo_rema <= 0 ? 1 : _expo_rema);
 
 		return quot;
 	}
 	else if (rhop._expo <= 2) {
 		// Case 3: [lhop_rema->_expo > 4] and [rhop._expo <= 2]
-		unit *_lhop = lhop_rema->_lsu + lhop_rema->_expo - 2;
+		unit *_lhop = rema_lhop->_lsu + rema_lhop->_expo - 2;
 
 		in08 shift_rhop = (2 - rhop._expo) * 8;
 		dual _rhop = *(dual *)rhop._lsu;
@@ -647,7 +654,7 @@ Integer *DiviRema(Integer *quot, Integer *lhop_rema, Integer rhop) {
 		unit *_quot = quot->_lsu + _expo_quot - 2;
 
 		dual prod = 0;
-		while (lhop_rema->_lsu <= _lhop) {
+		while (rema_lhop->_lsu <= _lhop) {
 			*(unit *)_quot = (unit)(*(dual *)_lhop / _rhop);
 			if (_quot[0] != 0) {
 				prod = _rhop * _quot[0];
@@ -661,28 +668,28 @@ Integer *DiviRema(Integer *quot, Integer *lhop_rema, Integer rhop) {
 		quot->_expo = _expo_quot - 1;
 
 		iptr _expo_rema = 2;
-		while (0 < _expo_rema && lhop_rema->_lsu[_expo_rema - 1] == 0) {
+		while (0 < _expo_rema && rema_lhop->_lsu[_expo_rema - 1] == 0) {
 			_expo_rema -= 1;
 		}
-		lhop_rema->_expo = (_expo_rema <= 0 ? 1 : _expo_rema);
+		rema_lhop->_expo = (_expo_rema <= 0 ? 1 : _expo_rema);
 
 		return quot;
 	}
 	else {
 		// Case 4: [lhop_rema->_expo > 4] and [rhop._expo > 2]
-		unit *_lhop = lhop_rema->_lsu + lhop_rema->_expo - 4;
+		unit *_lhop = rema_lhop->_lsu + rema_lhop->_expo - 4;
 
 		quad _rhop = *(quad *)(rhop._lsu + rhop._expo - 3);
 		_rhop <<= EData._Shift; _rhop >>= EData._Shift;
 
 		unit *_quot = quot->_lsu + _expo_quot - 2;
 
-		unit *_rema = lhop_rema->_lsu + lhop_rema->_expo - (rhop._expo + 1);
+		unit *_rema = rema_lhop->_lsu + rema_lhop->_expo - (rhop._expo + 1);
 		unit *prod = (unit *)Malloc((rhop._expo + 1) * sizeof(unit));
 		dual carry = 0;
 		dual borrow = 0;
 		iptr expo = 0;
-		while (lhop_rema->_lsu <= _lhop) {
+		while (rema_lhop->_lsu <= _lhop) {
 			if (_lhop[3] == 0) {
 				*(dual *)_quot = (dual)(*(quad *)_lhop / _rhop);
 				if (_quot[1] != 0) {
@@ -693,23 +700,6 @@ Integer *DiviRema(Integer *quot, Integer *lhop_rema, Integer rhop) {
 						borrow >>= EData._Shift;
 						borrow &= 1U;
 					}
-
-					//carry = 0;
-					//for (iptr i = 0; i < rhop._expo; i += 1) {
-					//	carry = rhop._lsu[i] * _quot[1] + carry;
-					//	prod[i] = (unit)(carry &EData._Mask);
-					//	carry >>= EData._Shift;
-					//}
-					//prod[rhop._expo] = (unit)(carry);
-					//expo = (carry == 0 ? rhop._expo : rhop._expo - 1);
-
-					//borrow = 0;
-					//for (iptr i = 0; i < expo; i += 1) {
-					//	borrow = _rema[i] - prod[i] - borrow;
-					//	_rema[i] = (unit)(borrow & EData._Mask);
-					//	borrow >>= EData._Shift;
-					//	borrow &= 1U;
-					//}
 
 					// SUB < 0
 					if (borrow == 1U) {
@@ -732,10 +722,10 @@ Integer *DiviRema(Integer *quot, Integer *lhop_rema, Integer rhop) {
 		quot->_expo = (quot->_lsu[_expo_quot - 1] == 0 ? _expo_quot - 1 : _expo_quot);
 
 		iptr _expo_rema = rhop._expo;
-		while (0 < expo && lhop_rema->_lsu[_expo_rema - 1] == 0) {
+		while (0 < expo && rema_lhop->_lsu[_expo_rema - 1] == 0) {
 			_expo_rema -= 1;
 		}
-		lhop_rema->_expo = (_expo_rema == 0 ? 1 : _expo_rema);
+		rema_lhop->_expo = (_expo_rema == 0 ? 1 : _expo_rema);
 
 		return quot;
 	}
