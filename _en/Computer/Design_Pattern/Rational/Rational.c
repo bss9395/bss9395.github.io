@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-06-03T00:53:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-06-03T14:08:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
 */
 
@@ -382,42 +382,7 @@ Integer *Nega(Integer *nega, Integer inte) {
 	return nega;
 }
 
-/* Shift Integer
-Case 1: Shift Left, bits == +27, lhs > rhs
-		units == (bits + rhs) / ESpace._Bits == 30 / 8 == 3
-		lhs   == (bits + rhs) - ESpace._Bits * units   == 6
-		_expo == inte._expo + units == 3 + 3           == 6
-							_msu_inte         _lsu_inte
-						   +--------+--------+--------+
-						   |     1!!|!!!!!!!!|!!!!!!!!|  rhs == 3
-+--------+--------+--------+--------+--------+--------+
-|  1!!!!!|!!!!!!!!|!!!!!000|00000000|00000000|00000000|  lhs == 6, off == lhs - rhs == 3, inv == ESpace._Bits - off == 5
-+--------+--------+--------+--------+--------+--------+
- _msu_tran                                    _lsu_tran
-
-Case 2: Shift Left, bits == +21, lhs < rhs
-		units == (bits + rhs) / ESpace._Bits         == 27 / 8     == 3
-		lhs   == (bits + rhs) - ESpace._Bits * units == 27 - 8 * 3 == 3
-		_expo == inte._expo + units                  == 3 + 3      == 6
-						   _msu_inte         _lsu_inte
-						   +--------+--------+--------+
-						   |  1!!!!!|!!!!!!!!|!!!!!!!!|  rhs == 6
-+--------+--------+--------+--------+--------+--------+
-|     1!!|!!!!!!!!|!!!!!000|00000000|00000000|00000000|  lhs == 3, off == rhs - lhs == 3, inv == ESpace._Bits - off == 5
-+--------+--------+--------+--------+--------+--------+
-_msu_tran                                    _lsu_tran
-
-Case 3: Shift Right, bits == -27
-		units == |bits| / ESpace._Bits == 27 / 8 == 3
-		_expo == inte._expo - units    == 6 - 3  == 3
-_msu_inte                                    _lsu_inte
-+--------+--------+--------+--------+--------+--------+
-|  1!!!!!|!!!!!!!!|!!!!$!!!|!!!!!!!!|!!!!!!!!|!!!!!!!!|
-+--------+--------+--------+--------+--------+--------+
-						   |     1!!|!!!!!!!!|!!!!!!!$|  off == |bits| - ESpace._Bits * units == 27 - 8 * 3 == 3
-						   +--------+--------+--------+
-						   _msu_tran         _lsu_tran
-*/
+// Translate Integer by bits
 Integer *Tran(Integer *tran, Integer inte, iptr bits) {
 	if (bits == 0) {
 		if (tran == NULL || tran->_lsu != inte._lsu) {
@@ -437,16 +402,27 @@ Integer *Tran(Integer *tran, Integer inte, iptr bits) {
 		iptr lhs = (bits + rhs) - ESpace._Bits * units;
 		iptr _expo = (lhs == 0 ? inte._expo + units - 1 : inte._expo + units);
 		tran = ReInteger(tran, _expo);
-		tran->_expo = _expo;
 
 		Memset(tran, 0, _expo * sizeof(unit));
 
+		/* Case 1: Shift Left, bits == +27, lhs > rhs
+				   units == (bits + rhs) / ESpace._Bits         == 30 / 8     == 3
+				   lhs   == (bits + rhs) - ESpace._Bits * units == 30 - 8 * 3 == 6
+				   _expo == inte._expo + units                  == 3 + 3      == 6
+								   _msu_inte|        _lsu_inte|
+								   +--------+--------+--------+
+								   |     1!!|!!!!!!!!|!!!!!!!!|  rhs == 3
+		6--------5--------4--------3--------2--------1--------0
+		|  1!!!!!|!!!!!!!!|!!!!!000|00000000|00000000|00000000|  lhs == 6, off == lhs - rhs == 3, inv == ESpace._Bits - off == 5
+		+--------+--------+--------+--------+--------+--------+
+		_msu_tran|                                   _lsu_tran|
+		*/
 		if (lhs > rhs) {
 			iptr off = lhs - rhs;
 			iptr inv = ESpace._Bits - off;
+
 			unit *_msu_inte = inte._lsu + inte._expo - 1;
 			unit *_msu_tran = tran->_lsu + tran->_expo - 1;
-
 			_msu_tran[0] |= (_msu_inte[0] << off);
 			_msu_inte -= 1;
 			while (inte._lsu <= _msu_inte) {
@@ -456,34 +432,60 @@ Integer *Tran(Integer *tran, Integer inte, iptr bits) {
 				_msu_inte -= 1;
 			}
 		}
+		/* Case 2: Shift Left, bits == +21, lhs < rhs
+				   units == (bits + rhs) / ESpace._Bits         == 27 / 8     == 3
+				   lhs   == (bits + rhs) - ESpace._Bits * units == 27 - 8 * 3 == 3
+				   _expo == inte._expo + units                  == 3 + 3      == 6
+								   _msu_inte|        _lsu_inte|
+								   +--------+--------+--------+
+								   |  1!!!!!|!!!!!!!!|!!!!!!!!|  rhs == 6
+		6--------5--------4--------3--------2--------1--------0
+		|     1!!|!!!!!!!!|!!!!!!!!|!!!00000|00000000|00000000|  lhs == 3, off == rhs - lhs == 3, inv == ESpace._Bits - off == 5
+		+--------+--------+--------+--------+--------+--------+
+		_msu_tran|                                   _lsu_tran|
+		*/
 		else if (lhs < rhs) {
 			iptr off = rhs - lhs;
 			iptr inv = ESpace._Bits - off;
 
 			unit *_lsu_inte = inte._lsu;
 			unit *_msu_inte = inte._lsu + inte._expo - 1;
-			unit *_lsu_tran = tran->_lsu + units;
-			_lsu_tran[0] |= (_lsu_inte[0] >> off);
-			_lsu_tran += 1;
-			while (_lsu_inte < _msu_inte) {
-				_lsu_tran[0] |= (_lsu_inte[0] << inv);
-				_lsu_inte += 1;
-				_lsu_tran[0] |= (_lsu_inte[0] >> off);
-				_lsu_tran += 1;
+			unit *_msu_tran = tran->_lsu + tran->_expo - 1;
+			while (_lsu_inte <= _msu_inte) {
+				_msu_tran[0] |= (_msu_inte[0] >> off);
+				_msu_tran -= 1;
+				_msu_tran[0] |= (_msu_inte[0] << inv);
+				_msu_inte -= 1;
 			}
 		}
+
+		tran->_sign = inte._sign;
+		tran->_expo = _expo;
 	}
 	else if (bits < 0) {
 		bits = -1 * bits;
 		iptr units = bits / ESpace._Bits;
 		iptr off = bits - ESpace._Bits * units;
 		iptr inv = ESpace._Bits - off;
+		iptr _expo = inte._expo - units;
+		tran = ReInteger(tran, _expo);
 
+		/* Case 3: Shift Right, bits == -30
+				   units == |bits| / ESpace._Bits == 30 / 8 == 3
+				   _expo == inte._expo - units    == 6 - 3  == 3
+
+		_msu_inte|                                   _lsu_inte|
+		+--------+--------+--------+--------+--------+--------+
+		|  1!!!!!|!!!!!!!!|!$!!!!!!|!!!!!!!!|!!!!!!!!|!!!!!!!!|  lhs = 6
+		6--------5--------4--------3--------2--------1--------0
+								   |        |1!!!!!!!|!!!!!!!$|  rhs = 0, off == |bits| - ESpace._Bits * units == 30 - 8 * 3 == 6
+								   +--------+--------+--------+
+								   _msu_tran|        _lsu_tran|
+		*/
 		unit *_lsu_inte = inte._lsu + units;
 		unit *_msu_inte = inte._lsu + inte._expo - 1;
 		unit *_lsu_tran = tran->_lsu;
-
-		_lsu_tran[0] = _lsu_inte[0] >> off;
+		_lsu_tran[0] = (_lsu_inte[0] >> off);
 		_lsu_inte += 1;
 		while (_lsu_inte <= _msu_inte) {
 			_lsu_tran[0] |= (_lsu_inte[0] << inv);
@@ -491,9 +493,10 @@ Integer *Tran(Integer *tran, Integer inte, iptr bits) {
 			_lsu_tran[0] |= (_lsu_inte[0] >> off);
 			_lsu_inte += 1;
 		}
+
+		tran->_sign = inte._sign;
+		tran->_expo = (tran->_lsu[_expo - 1] == 0 ? _expo - 1 : _expo);
 	}
-
-
 
 	return tran;
 }
