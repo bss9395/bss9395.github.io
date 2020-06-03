@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-06-03T14:08:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-06-03T16:12:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
 */
 
@@ -403,8 +403,6 @@ Integer *Tran(Integer *tran, Integer inte, iptr bits) {
 		iptr _expo = (lhs == 0 ? inte._expo + units - 1 : inte._expo + units);
 		tran = ReInteger(tran, _expo);
 
-		Memset(tran, 0, _expo * sizeof(unit));
-
 		/* Case 1: Shift Left, bits == +27, lhs > rhs
 				   units == (bits + rhs) / ESpace._Bits         == 30 / 8     == 3
 				   lhs   == (bits + rhs) - ESpace._Bits * units == 30 - 8 * 3 == 6
@@ -422,14 +420,18 @@ Integer *Tran(Integer *tran, Integer inte, iptr bits) {
 			iptr inv = ESpace._Bits - off;
 
 			unit *_msu_inte = inte._lsu + inte._expo - 1;
-			unit *_msu_tran = tran->_lsu + tran->_expo - 1;
-			_msu_tran[0] |= (_msu_inte[0] << off);
+			unit *_msu_tran = tran->_lsu + _expo - 1;
+			_msu_tran[0] = (_msu_inte[0] << off);
 			_msu_inte -= 1;
 			while (inte._lsu <= _msu_inte) {
 				_msu_tran[0] |= (_msu_inte[0] >> inv);
 				_msu_tran -= 1;
-				_msu_tran[0] |= (_msu_inte[0] << off);
+				_msu_tran[0] = (_msu_inte[0] << off);
 				_msu_inte -= 1;
+			}
+			while (tran->_lsu <= _msu_tran) {
+				_msu_tran[0] = (unit)0U;
+				_msu_tran -= 1;
 			}
 		}
 		/* Case 2: Shift Left, bits == +21, lhs < rhs
@@ -448,14 +450,18 @@ Integer *Tran(Integer *tran, Integer inte, iptr bits) {
 			iptr off = rhs - lhs;
 			iptr inv = ESpace._Bits - off;
 
-			unit *_lsu_inte = inte._lsu;
 			unit *_msu_inte = inte._lsu + inte._expo - 1;
-			unit *_msu_tran = tran->_lsu + tran->_expo - 1;
-			while (_lsu_inte <= _msu_inte) {
+			unit *_msu_tran = tran->_lsu + _expo - 1;
+			_msu_tran[0] = (unit)0U;
+			while (inte._lsu <= _msu_inte) {
 				_msu_tran[0] |= (_msu_inte[0] >> off);
 				_msu_tran -= 1;
-				_msu_tran[0] |= (_msu_inte[0] << inv);
+				_msu_tran[0] = (_msu_inte[0] << inv);
 				_msu_inte -= 1;
+			}
+			while (tran->_lsu <= _msu_tran) {
+				_msu_tran[0] = (unit)0U;
+				_msu_tran -= 1;
 			}
 		}
 
@@ -465,15 +471,12 @@ Integer *Tran(Integer *tran, Integer inte, iptr bits) {
 	else if (bits < 0) {
 		bits = -1 * bits;
 		iptr units = bits / ESpace._Bits;
-		iptr off = bits - ESpace._Bits * units;
-		iptr inv = ESpace._Bits - off;
 		iptr _expo = inte._expo - units;
 		tran = ReInteger(tran, _expo);
 
 		/* Case 3: Shift Right, bits == -30
 				   units == |bits| / ESpace._Bits == 30 / 8 == 3
 				   _expo == inte._expo - units    == 6 - 3  == 3
-
 		_msu_inte|                                   _lsu_inte|
 		+--------+--------+--------+--------+--------+--------+
 		|  1!!!!!|!!!!!!!!|!$!!!!!!|!!!!!!!!|!!!!!!!!|!!!!!!!!|  lhs = 6
@@ -482,6 +485,10 @@ Integer *Tran(Integer *tran, Integer inte, iptr bits) {
 								   +--------+--------+--------+
 								   _msu_tran|        _lsu_tran|
 		*/
+
+		iptr off = bits - ESpace._Bits * units;
+		iptr inv = ESpace._Bits - off;
+
 		unit *_lsu_inte = inte._lsu + units;
 		unit *_msu_inte = inte._lsu + inte._expo - 1;
 		unit *_lsu_tran = tran->_lsu;
@@ -490,7 +497,7 @@ Integer *Tran(Integer *tran, Integer inte, iptr bits) {
 		while (_lsu_inte <= _msu_inte) {
 			_lsu_tran[0] |= (_lsu_inte[0] << inv);
 			_lsu_tran += 1;
-			_lsu_tran[0] |= (_lsu_inte[0] >> off);
+			_lsu_tran[0] = (_lsu_inte[0] >> off);
 			_lsu_inte += 1;
 		}
 
@@ -873,13 +880,29 @@ void TestDiviRema() {
 	//DeInteger(quot);
 }
 
+void TestTran() {
+	Integer *lhop = ReInteger(NULL, 6);
+	Parse(lhop, "-512", 10);
+	lhop = Tran(lhop, *lhop, 7);
+	//lhop = Tran(lhop, *lhop, -2);
+
+	fprintf(stderr, "%d, %d \n", lhop->_sign, lhop->_expo);
+	iptr _expo_rema = lhop->_expo;
+	for (; 0 < _expo_rema; _expo_rema -= 1) {
+		fprintf(stderr, "%d ", lhop->_lsu[_expo_rema - 1]);
+	}
+	fprintf(stderr, "\n");
+
+}
+
 iptr main(iptr argc, ui08 *argv[]) {
 	StartUp();
 
 	// TestInteger();
 	// TestAddi();
 	// TestMult();
-	TestDiviRema();
+	// TestDiviRema();
+	TestTran();
 
 	CleanUp();
 	return 0;
