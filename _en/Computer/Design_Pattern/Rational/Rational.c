@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-06-03T16:12:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-06-03T18:43:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
 */
 
@@ -90,6 +90,7 @@ typedef struct {
 iptr Parse(Integer *inte, const ui08 *data, ui08 base);
 Integer *Abso(Integer *abso, Integer inte);
 Integer *Nega(Integer *nega, Integer inte);
+Integer *Tran(Integer *tran, Integer inte, iptr bits);
 Integer *Addi(Integer *summ, Integer lhop, Integer rhop);
 Integer *Subt(Integer *diff, Integer lhop, Integer rhop);
 Integer *Mult(Integer *Prod, Integer lhop, Integer rhop);
@@ -528,6 +529,10 @@ Integer *Addi(Integer *summ, Integer lhop, Integer rhop) {
 		return Subt(summ, lhop, rhop);
 	}
 
+	if (lhop._lsu == rhop._lsu) {
+		return Tran(summ, lhop, 1);
+	}
+
 	in08 _sign = lhop._sign;
 	if (lhop._expo < rhop._expo) {
 		Integer swap = lhop; lhop = rhop; rhop = swap;
@@ -784,13 +789,19 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 		unit *_msu_lhop = rema_lhop->_lsu + rema_lhop->_expo - rhop._expo;
 		unit *_msu_quot = quot->_lsu + _expo_quot - rhop._expo;
 
-		_msu_quot[0] = ((dual *)_msu_lhop)[0] / _rhop;
+		if (rhop._expo == 1) {
+			((unit *)_msu_quot)[0] = (unit)(_msu_lhop[0] / _rhop);
+		}
+		else if (rhop._expo == 2) {
+			((dual *)_msu_quot)[0] = (dual)(((dual *)_msu_lhop)[0] / _rhop);
+		}
+
 		_msu_lhop -= 1;
 		_msu_quot -= 1;
 		while (rema_lhop->_lsu <= _msu_lhop) {
 			_msu_quot[0] = (unit)(((dual *)_msu_lhop)[0] / _rhop);
 			if (_msu_quot[0] != 0) {
-				((dual *)_msu_lhop)[0] -= _rhop * _msu_quot[0];
+				((dual *)_msu_lhop)[0] -= (dual)(_rhop * _msu_quot[0]);
 			}
 			_msu_lhop -= 1;
 			_msu_quot -= 1;
@@ -803,16 +814,16 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 
 		unit *_msu_lhop = rema_lhop->_lsu + rema_lhop->_expo - 4;
 		unit *_msu_quot = quot->_lsu + _expo_quot - 2;
-		unit *_msu_rema = rema_lhop->_lsu + rema_lhop->_expo - (rhop._expo + 1);
+		unit *_msu_rema = rema_lhop->_lsu + rema_lhop->_expo - rhop._expo;  // Subtration Alignment
 
 		dual borrow_carry = 0;
 		while (rema_lhop->_lsu <= _msu_lhop) {
-			if (((dual *)_msu_lhop)[1] == 0) {
+			if (((dual *)_msu_lhop)[1] != (dual)0U) {
 				((dual *)_msu_quot)[0] = (dual)(((quad *)_msu_lhop)[0] / _rhop);
-				if (_msu_quot[1] != 0) {
+				if (_msu_quot[1] != (unit)0U) {
 					borrow_carry = 0;
 					for (iptr i = 0; i < rhop._expo; i += 1) {
-						borrow_carry = _msu_rema[i] - borrow_carry - rhop._lsu[i] * _msu_quot[i];  // if DIFF overflows Unit, then Borrow 1 from higher Unit
+						borrow_carry = _msu_rema[i] - borrow_carry - rhop._lsu[i] * _msu_quot[1];  // if DIFF overflows Unit, then Borrow 1 from higher Unit
 						_msu_rema[i] = (unit)(borrow_carry & ESpace._Mask);                         // DIFF in Unit
 						borrow_carry >>= ESpace._Bits;                                             // yield Borrow
 						borrow_carry &= 1U;                                                        // Borrow 1 from higher Unit
@@ -852,10 +863,12 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 void TestDiviRema() {
 	Integer lhop_rema = BeInteger();
 	Integer *rhop = ReInteger(NULL, 1);
-	//Parse(&lhs, "3298534883329", 10); // 3*256*256*256*256*256 + 1
-	//Parse(rhs, "230", 10);            // 14341456014 + 108
-	Parse(&lhop_rema, "356", 10);       // 1, 122           23, 0, 0 == 23*256*256
-	Parse(rhop, "234", 10);             // 0, 234
+	Parse(&lhop_rema, "3298534883329", 10); // [3, 0, 0, 0, 0, 1]; (3*256^{5} + 1) / 230 = 14341456014        = [3, 86, 209, 64, 142]
+	// Parse(rhop, "230", 10);                 // [230]             ; (3*256^{5} + 1) % 230 = 109                = [109]
+	Parse(rhop, "65537", 10);               // [1, 0, 1]         ; (3*256^{5} + 1) / (256^{2} + 1) = 50330880 = [2, 255, 253, 0]
+											//                   ; (3*256^{5} + 1) % (256^{2} + 1) = 769      = [3, 1]
+	//Parse(&lhop_rema, "356", 10);         // [1, 122] 
+	//Parse(rhop, "234", 10);               // [0, 234]
 
 	Integer *quot = ReInteger(NULL, 5);
 	quot = DiviRema(NULL, &lhop_rema, *rhop);
@@ -873,6 +886,13 @@ void TestDiviRema() {
 		fprintf(stderr, "%d ", lhop_rema._lsu[_expo_rema - 1]);
 	}
 	fprintf(stderr, "\n");
+
+	//fprintf(stderr, "%d, %ld ""\n", rhop->_sign, rhop->_expo);
+	//iptr _expo_rhop = rhop->_expo;
+	//for (; 0 < _expo_rhop; _expo_rhop -= 1) {
+	//	fprintf(stderr, "%d ", rhop->_lsu[_expo_rhop - 1]);
+	//}
+	//fprintf(stderr, "\n");
 
 	//DeInteger(&lhs);
 	//DeInteger(rhs);
@@ -901,8 +921,8 @@ iptr main(iptr argc, ui08 *argv[]) {
 	// TestInteger();
 	// TestAddi();
 	// TestMult();
-	// TestDiviRema();
-	TestTran();
+	TestDiviRema();
+	// TestTran();
 
 	CleanUp();
 	return 0;
