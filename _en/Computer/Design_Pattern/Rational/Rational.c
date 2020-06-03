@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-06-03T18:43:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-06-03T20:58:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
 */
 
@@ -95,6 +95,7 @@ Integer *Addi(Integer *summ, Integer lhop, Integer rhop);
 Integer *Subt(Integer *diff, Integer lhop, Integer rhop);
 Integer *Mult(Integer *Prod, Integer lhop, Integer rhop);
 Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop);
+Integer *DiviModu(Integer *quot, Integer *modu_lhop, Integer rhop);
 
 ////////////////////////////////////////
 
@@ -775,9 +776,12 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 		_lhop <<= shift_lhop; _lhop >>= shift_lhop;
 
 		quad _quot = (quad)(_lhop / _rhop);
-		((quad *)rema_lhop->_lsu)[0] = (quad)(_lhop - _rhop * _quot);
+		quad _rema = (quad)(_lhop - _rhop * _quot);
 		for (iptr i = 0; i < _expo_quot; i += 1) {
 			((unit *)quot->_lsu)[i] = ((unit *)&_quot)[i];
+		}
+		for (iptr i = 0; i < rhop._expo; i += 1) {
+			((unit *)rema_lhop->_lsu)[i] = ((unit *)&_rema)[i];
 		}
 	}
 	// Case 3: [rhop._expo <= 2] and [4 < lhop_rema->_expo]
@@ -858,6 +862,17 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 	return quot;
 }
 
+Integer *DiviModu(Integer *quot, Integer *modu_lhop, Integer rhop) {
+	in08 _sign_modu = rhop._sign;
+
+	quot = DiviRema(quot, modu_lhop, rhop);
+	if ((modu_lhop->_sign ^ rhop._sign) != 0) {
+		*(Integer *)modu_lhop = *(Integer *)Addi(modu_lhop, *modu_lhop, rhop);
+	}
+
+	return quot;
+}
+
 ////////////////////////////////////////
 
 void TestDiviRema() {
@@ -900,6 +915,29 @@ void TestDiviRema() {
 	//DeInteger(quot);
 }
 
+void TestDiviModu() {
+	Integer *modu_lhop = ReInteger(NULL, 1);
+	Integer *rhop = ReInteger(NULL, 1);
+	Parse(modu_lhop, "+12", 10);
+	Parse(rhop, "-10", 10);
+
+	Integer *quot = DiviModu(NULL, modu_lhop, *rhop);
+
+	fprintf(stderr, "%d, %d ""\n", quot->_sign, quot->_expo);
+	iptr _expo_quot = quot->_expo - 1;
+	for (; 0 <= _expo_quot; _expo_quot -= 1) {
+		fprintf(stderr, "%d ", quot->_lsu[_expo_quot]);
+	}
+	fprintf(stderr, "\n");
+
+	fprintf(stderr, "%d, %d ""\n", modu_lhop->_sign, modu_lhop->_expo);
+	iptr _expo_modu = modu_lhop->_expo - 1;
+	for (; 0 <= _expo_modu; _expo_modu -= 1) {
+		fprintf(stderr, "%d ", modu_lhop->_lsu[_expo_modu]);
+	}
+	fprintf(stderr, "\n");
+}
+
 void TestTran() {
 	Integer *lhop = ReInteger(NULL, 6);
 	Parse(lhop, "-512", 10);
@@ -921,7 +959,8 @@ iptr main(iptr argc, ui08 *argv[]) {
 	// TestInteger();
 	// TestAddi();
 	// TestMult();
-	TestDiviRema();
+	// TestDiviRema();
+	TestDiviModu();
 	// TestTran();
 
 	CleanUp();
