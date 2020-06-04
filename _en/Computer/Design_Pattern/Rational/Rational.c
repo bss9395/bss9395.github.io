@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-06-03T20:58:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-06-05T00:58:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
 */
 
@@ -10,12 +10,15 @@ Unit  Representation
 == b_{expo - 1} * base^(expo - 1) + b_{expo - 2} * base^(expo - 2) + ... + b_{1} * base^(1) + B_{0} * base^(0)  // base <= 16
 Digit Representation
 
-=> 1 * BASE^EXPO >= 1 * base^expo                                                         // Boundary Condition
-=> Floor(expo * Log2(base) / Log2(BASE)) <= EXPO <= Ceil(expo * Log2(base) / Log2(BASE))
-=> EXPO <= Floor(expo * Log2(base) / Log2(BASE)) + 1                                      // Absolute Assurance
+=> 1 * BASE^EXPO >= 1 * base^expo                                               // Boundary Condition
+=> expo * Log2(base) / Log2(BASE) <= EXPO
+=> expo * Log2(base) / Log2(BASE) <  Floor(expo * Log2(base) / Log2(BASE)) + 1  // Absolute Assurance
+
+=> expo <= EXPO * (Log2(BASE) / Log2(base)) = EXPO / (Log2(base) / Log2(BASE))
+=> Ceil(expo) <= Floor(EXPO / (Log2(BASE) * Log2(base))) + 1                    // Absolute Assurance
 */
 
-/* Integer Range
+/* Range of Integer
    BASE = 2^{16}     = 2^{2^{4}}
    EXPO = 2^{32} - 1 = 2^{sizeof(iptr) * 8} - 1
 
@@ -67,6 +70,13 @@ typedef ui32  quad;
 //typedef ui64  quad;
 
 typedef struct {
+	in08 _make : 2;
+	in08 _move : 2;
+	ui08 *_init;
+	ui08 *_head;
+} String;
+
+typedef struct {
 	in08 _sign : 2;
 	in08 _make : 2;
 	iptr _expo;
@@ -87,7 +97,7 @@ typedef struct {
 	Rational _frac;
 } Fraction;
 
-iptr Parse(Integer *inte, const ui08 *data, ui08 base);
+
 Integer *Abso(Integer *abso, Integer inte);
 Integer *Nega(Integer *nega, Integer inte);
 Integer *Tran(Integer *tran, Integer inte, iptr bits);
@@ -125,7 +135,7 @@ struct {
 	const dual _Base;
 	const dual _Mask;
 	const dual _Bits;
-	double _Log2_Base[16 + 1];
+	double _Log2_base_BASE[16 + 1];
 } ESpace = {
 	._Info = "Info",
 	._ToDo = "ToDo",
@@ -166,15 +176,16 @@ struct {
 	._Base = (1U << (sizeof(unit) * 8)),
 	._Mask = (1U << (sizeof(unit) * 8)) - 1,
 	._Bits = sizeof(unit) * 8,
-	._Log2_Base = {
+	._Log2_base_BASE = {
 		0.0, 0.0,
 	},
 };
 
 iptr StartUp() {
-	for (in08 base = 2; base <= 16; base += 1) {
-		ESpace._Log2_Base[base] = Log2(base + ESpace._Epsilon) / Log2(ESpace._Base);
+	for (iptr base = 2; base <= 16; base += 1) {
+		ESpace._Log2_base_BASE[base] = Log2(base) / Log2(ESpace._Base);
 	}
+
 	return 0;
 }
 
@@ -183,33 +194,93 @@ iptr CleanUp() {
 	return ret;
 }
 
+String BeString(ui08 *init) {
+	static String _stri = {
+		._make = true,
+		._move = false,
+		._init = NULL,
+		._head = NULL,
+	};
+	_stri._init = init;
+	_stri._head = _stri._init;
+	return _stri;
+}
+
+String *ReString(String *stri, iptr size) {
+	if (stri == NULL) {
+		stri = (String *)Malloc(1 * sizeof(String));
+		stri->_init = (ui08 *)Malloc(size * sizeof(ui08));
+		stri->_make = false;
+		stri->_move = true;
+		stri->_head = stri->_init;
+	}
+	else if ((stri->_head - stri->_init) < size) {
+		if (stri->_move == true) {
+			stri->_init = (ui08 *)Realloc(stri->_init, size * sizeof(ui08));
+		}
+		else {
+			stri->_init = (ui08 *)Malloc(size * sizeof(ui08));
+			stri->_move = true;
+		}
+		stri->_head = stri->_init;
+	}
+	else if (size <= 0) {
+		size = (iptr)strlen(stri->_head) + 1;
+		String *repl = (String *)Malloc(1 * sizeof(String));
+		repl->_init = (ui08 *)Malloc(size * sizeof(ui08));
+		repl->_make = false;
+		repl->_move = true;
+		repl->_head = repl->_init;
+		Memcpy(repl->_head, stri->_head, size);
+		stri = repl;
+	}
+	return stri;
+}
+
+String *DeString(String *stri) {
+	if (stri != NULL) {
+		if (stri->_move == true) {
+			free(stri->_init);
+			stri->_init = NULL;
+		}
+		if (stri->_make == false) {
+			free(stri);
+			stri = NULL;
+		}
+	}
+	return stri;
+}
+
 Integer BeInteger() {
-	static Integer inte = {
+	static Integer _inte = {
 		._sign = 0,
 		._make = true,
 		._expo = 1,
 		._lsu = NULL,
 	};
-	Integer ret = inte;
-	ret._lsu = (unit *)Malloc(1 * sizeof(unit));
-	return ret;
+	_inte._lsu = (unit *)Malloc(1 * sizeof(unit));
+	return _inte;
 }
 
 Integer *ReInteger(Integer *inte, iptr expo) {
 	if (inte == NULL) {
 		inte = (Integer *)Malloc(1 * sizeof(Integer));
+		inte->_lsu = (unit *)Malloc(expo * sizeof(unit));
 		inte->_sign = 0;
 		inte->_make = false;
 		inte->_expo = expo;
-		inte->_lsu = (unit *)Malloc(expo * sizeof(unit));
 	}
 	else if (inte->_expo < expo) {
-		inte->_expo = expo;
 		inte->_lsu = (unit *)Realloc(inte->_lsu, expo * sizeof(unit));
+		inte->_expo = expo;
 	}
 	else if (expo <= 0) {
+		expo = inte->_expo - expo;
 		Integer *repl = (Integer *)Malloc(1 * sizeof(Integer));
-		Memcpy(repl, inte, sizeof(Integer));
+		repl->_lsu = (unit *)Malloc(expo * sizeof(unit));
+		repl->_sign = inte->_sign;
+		repl->_make = false;
+		repl->_expo = inte->_expo;
 		Memcpy(repl->_lsu, inte->_lsu, inte->_expo);
 		inte = repl;
 	}
@@ -320,7 +391,7 @@ iptr Parse(Integer *inte, const ui08 *data, ui08 base) {
 		}
 	}
 
-	iptr _expo = (iptr)(expo * ESpace._Log2_Base[base]) + 1;
+	iptr _expo = (iptr)(expo * ESpace._Log2_base_BASE[base]) + 1;
 	inte = ReInteger(inte, _expo);
 
 	Memset(inte->_lsu, 0, _expo * sizeof(unit));
@@ -331,13 +402,13 @@ iptr Parse(Integer *inte, const ui08 *data, ui08 base) {
 			data += 1;
 		}
 		else {
-			carry = ESpace._Digit[data[0]];                   // fetch b_{n - 2}
+			carry = ESpace._Digit[data[0]];                    // fetch b_{n - 2}
 			data += 1;
 
 			for (iptr i = 0; i < _expo; i += 1) {
-				carry = inte->_lsu[i] * base + carry;        // yield (divisor)
-				inte->_lsu[i] = (unit)(carry & ESpace._Mask); // yield (divisor % BASE)
-				carry >>= ESpace._Bits;                      // yield (divisor / BASE)
+				carry = inte->_lsu[i] * base + carry;          // yield (divisor)
+				inte->_lsu[i] = (unit)(carry & ESpace._Mask);  // yield (divisor % BASE)
+				carry >>= ESpace._Bits;                        // yield (divisor / BASE)
 			}
 			inte->_lsu[_expo] = (unit)(carry);
 			if (carry != 0) {
@@ -351,18 +422,113 @@ iptr Parse(Integer *inte, const ui08 *data, ui08 base) {
 	return (iptr)(data - ret);
 }
 
-iptr Print(Integer inte, ui08 base) {
+/*
+*/
+String *Print(String *stri, Integer *rema_inte, ui08 base) {
 	if (Check(!(2 <= base && base <= 16), __FUNCTION__, ESpace._Error, "!(2 <= base && base <= 16)", NULL)) {
 		return 0;
 	}
-	iptr ret = 0;
+	iptr expo = (iptr)(rema_inte->_expo / ESpace._Log2_base_BASE[base]) + 1;
+	stri = ReString(stri, expo + 1);
+	stri->_head += expo - 1;
+	stri->_head[0] = '\0';
+	stri->_head -= 1;
 
-	//while () {
+	// base == 2^{n}
+	if ((base & (base - 1)) == 0U) {
+		unit mask = (1U << base) - 1;
+		iptr bits = 0;
+		while (mask != 0) {
+			bits += 1;
+			mask >>= 1;
+		}
 
+		unit *_lsu_inte = rema_inte->_lsu;
+		unit *_msu_inte = rema_inte->_lsu + rema_inte->_expo - 1;
+		dual _rema = _lsu_inte[0];
+		iptr shift = ESpace._Bits;
+		while (_lsu_inte <= _msu_inte) {
+			if (bits <= shift) {
+				stri->_head[0] = ESpace._Digit[_rema & mask];
+				stri->_head -= 1;
+				_rema >>= bits;
+				shift -= bits;
+			}
+			else {
+				_lsu_inte += 1;
+				_rema |= (_lsu_inte[0] << shift);
+				shift += ESpace._Bits;
+			}
+		}
+	}
+	// base != 2^{n}
+	else {
+		iptr _expo_quot = rema_inte->_expo - 1 + 1;
+		Integer *quot = ReInteger(NULL, _expo_quot);
+
+		unit _rhop = (unit)base;
+		unit *_msu_lhop = rema_inte->_lsu + rema_inte->_expo - 1;
+		unit *_lsu_lhop = rema_inte->_lsu;
+		unit *_tmp_lhop = _msu_lhop;
+		unit *_msu_quot = quot->_lsu + quot->_expo - 1;
+		unit *_tmp_quot = _msu_quot;
+		unit *_msu_rema = rema_inte->_lsu;
+		unit *_lsu_rema = rema_inte->_lsu;
+
+
+		_msu_quot[0] = (unit)(_msu_lhop[0] / _rhop);
+		_msu_lhop[0] = (unit)(_msu_lhop[0] - _rhop * _msu_quot[0]);
+		_msu_lhop -= 1;
+		_msu_quot -= 1;
+		while (_msu_quot[0] != 0) {
+			while (_lsu_lhop <= _msu_lhop) {
+				_msu_quot[0] = (unit)(((dual *)_msu_lhop)[0] / _rhop);
+				if (_msu_quot[0] != 0) {
+					((dual *)_msu_lhop)[0] -= (dual)(_rhop * _msu_quot[0]);
+				}
+				_msu_lhop -= 1;
+				_msu_quot -= 1;
+			}
+			_msu_rema[0] = _lsu_lhop[0];
+			_msu_rema += 1;
+
+			unit *swap = _tmp_lhop; _tmp_lhop = _tmp_quot; _tmp_quot = swap;
+			_lsu_lhop = _msu_quot + 1;
+			_msu_lhop = _tmp_lhop;
+			_msu_quot = _tmp_quot;
+		}
+
+		_msu_rema -= 1;
+
+		while (_lsu_rema <= _msu_rema) {
+			stri->_head[0] = ESpace._Digit[_lsu_rema[0]];
+			_msu_rema += 1;
+			stri->_head -= 1;
+		}
+
+		DeInteger(quot);
+	}
+
+
+	stri->_head[0] = (rema_inte->_sign < 0 ? '-' : '+');
+	return stri;
+}
+
+void TestPrint() {
+	Integer *inte = ReInteger(NULL, 3);
+	Parse(inte, "256", 10);
+
+	//fprintf(stderr, "%d, %d ""\n", inte->_sign, inte->_expo);
+	//iptr _expo_inte = inte->_expo;
+	//for (; 0 < _expo_inte; _expo_inte -= 1) {
+	//	fprintf(stderr, "%d ", inte->_lsu[_expo_inte - 1]);
 	//}
 
-	return ret;
+	Print(NULL, inte, 10);
+
+	DeInteger(inte);
 }
+
 
 /* Absolution of Integer
 */
@@ -519,7 +685,7 @@ Assume [lhs._expo >= rhs._expo]
 */
 Integer *Addi(Integer *summ, Integer lhop, Integer rhop) {
 	// lhs and rhs have opposite signs
-	if ((lhop._sign ^ rhop._sign) < 0) {
+	if ((lhop._sign * rhop._sign) < 0) {
 		/*
 				(+)   (-)    (+)   (  + )
 		case 1: lhs + rhs == lhs - (-rhs)
@@ -570,7 +736,7 @@ Assume [|lhs| > |rhs|]
 */
 Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 	// lhs and rhs have opposite signs
-	if ((lhop._sign ^ rhop._sign) < 0) {
+	if ((lhop._sign * rhop._sign) < 0) {
 		/*
 				(+)   (-)    (+)   (  + )
 		case 3: lhs - rhs == lhs + (-rhs)
@@ -767,14 +933,8 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 
 	// Case 2: [rhop._expo <= rema_lhop->_expo <= 4]
 	if (rema_lhop->_expo <= 4) {
-		in08 shift_rhop = (4 - rhop._expo) * 8;
-		quad _rhop = ((quad *)rhop._lsu)[0];
-		_rhop <<= shift_rhop; _rhop >>= shift_rhop;
-
-		in08 shift_lhop = (4 - rema_lhop->_expo) * 8;
-		quad _lhop = ((quad *)rema_lhop->_lsu)[0];
-		_lhop <<= shift_lhop; _lhop >>= shift_lhop;
-
+		quad _rhop = ((quad *)rhop._lsu)[0] & (quad)((1U << (rhop._expo * sizeof(unit) * 8)) - 1);
+		quad _lhop = ((quad *)rema_lhop->_lsu)[0] & (quad)((1U << (rhop._expo * sizeof(unit) * 8)) - 1);
 		quad _quot = (quad)(_lhop / _rhop);
 		quad _rema = (quad)(_lhop - _rhop * _quot);
 		for (iptr i = 0; i < _expo_quot; i += 1) {
@@ -786,20 +946,18 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 	}
 	// Case 3: [rhop._expo <= 2] and [4 < lhop_rema->_expo]
 	else if (rhop._expo <= 2) {
-		in08 shift_rhop = (2 - rhop._expo) * 8;
-		dual _rhop = ((dual *)rhop._lsu)[0];
-		_rhop <<= shift_rhop; _rhop >>= shift_rhop;
-
+		dual _rhop = ((dual *)rhop._lsu)[0] & (dual)((1U << (rhop._expo * sizeof(unit) * 8)) - 1);
 		unit *_msu_lhop = rema_lhop->_lsu + rema_lhop->_expo - rhop._expo;
 		unit *_msu_quot = quot->_lsu + _expo_quot - rhop._expo;
 
 		if (rhop._expo == 1) {
-			((unit *)_msu_quot)[0] = (unit)(_msu_lhop[0] / _rhop);
+			((unit *)_msu_quot)[0] = (unit)(((unit *)_msu_lhop)[0] / _rhop);
+			((unit *)_msu_lhop)[0] = (unit)(((unit *)_msu_lhop)[0] - _rhop * ((unit *)_msu_quot)[0]);
 		}
 		else if (rhop._expo == 2) {
 			((dual *)_msu_quot)[0] = (dual)(((dual *)_msu_lhop)[0] / _rhop);
+			((dual *)_msu_lhop)[0] = (dual)(((dual *)_msu_lhop)[0] - _rhop * ((unit *)_msu_quot)[0]);
 		}
-
 		_msu_lhop -= 1;
 		_msu_quot -= 1;
 		while (rema_lhop->_lsu <= _msu_lhop) {
@@ -828,7 +986,7 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 					borrow_carry = 0;
 					for (iptr i = 0; i < rhop._expo; i += 1) {
 						borrow_carry = _msu_rema[i] - borrow_carry - rhop._lsu[i] * _msu_quot[1];  // if DIFF overflows Unit, then Borrow 1 from higher Unit
-						_msu_rema[i] = (unit)(borrow_carry & ESpace._Mask);                         // DIFF in Unit
+						_msu_rema[i] = (unit)(borrow_carry & ESpace._Mask);                        // DIFF in Unit
 						borrow_carry >>= ESpace._Bits;                                             // yield Borrow
 						borrow_carry &= 1U;                                                        // Borrow 1 from higher Unit
 					}
@@ -866,8 +1024,9 @@ Integer *DiviModu(Integer *quot, Integer *modu_lhop, Integer rhop) {
 	in08 _sign_modu = rhop._sign;
 
 	quot = DiviRema(quot, modu_lhop, rhop);
-	if ((modu_lhop->_sign ^ rhop._sign) != 0) {
-		*(Integer *)modu_lhop = *(Integer *)Addi(modu_lhop, *modu_lhop, rhop);
+	// rema and rhop have opposite signs
+	if ((rhop._sign * modu_lhop->_sign) < 0) {
+		((Integer *)modu_lhop)[0] = ((Integer *)Addi(modu_lhop, *modu_lhop, rhop))[0];
 	}
 
 	return quot;
@@ -960,8 +1119,9 @@ iptr main(iptr argc, ui08 *argv[]) {
 	// TestAddi();
 	// TestMult();
 	// TestDiviRema();
-	TestDiviModu();
+	// TestDiviModu();
 	// TestTran();
+	TestPrint();
 
 	CleanUp();
 	return 0;
