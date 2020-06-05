@@ -1,6 +1,6 @@
 /* Rational.c
 Author: BSS9395
-Update: 2020-06-05T16:44:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-06-05T17:26:00+08@China-Guangdong-Zhanjiang+08
 Design: Rational Number
 */
 
@@ -817,6 +817,7 @@ Integer *Subt(Integer *diff, Integer lhop, Integer rhop) {
 Integer *Mult(Integer *prod, Integer lhop, Integer rhop) {
 	// prod may overwrite lhop or rhop
 	if (Check(prod != NULL && (prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu), __FUNCTION__, ESpace._Fatal, "prod->_lsu == lhop._lsu || prod->_lsu == rhop._lsu", NULL)) {
+		CleanUp();
 		exit(EXIT_FAILURE);
 	}
 
@@ -919,6 +920,7 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 
 	// quot may overwrite rema_lhop or rhop
 	if (Check(quot != NULL && (quot->_lsu == rema_lhop->_lsu || quot->_lsu == rhop._lsu), __FUNCTION__, ESpace._Fatal, "quot->_lsu == rema_lhop->_lsu || quot->_lsu == rhop._lsu", NULL)) {
+		CleanUp();
 		exit(EXIT_FAILURE);
 	}
 
@@ -1039,159 +1041,34 @@ Integer *DiviModu(Integer *quot, Integer *modu_lhop, Integer rhop) {
 
 ////////////////////////////////////////
 
-//void TestDiviRema() {
-//	Integer lhop_rema = BeInteger();
-//	Integer *rhop = ReInteger(NULL, 1);
-//	Parse(&lhop_rema, "3298534883329", 10); // [3, 0, 0, 0, 0, 1]; (3*256^{5} + 1) / 230 = 14341456014        = [3, 86, 209, 64, 142]
-//	// Parse(rhop, "230", 10);                 // [230]             ; (3*256^{5} + 1) % 230 = 109                = [109]
-//	Parse(rhop, "65537", 10);               // [1, 0, 1]         ; (3*256^{5} + 1) / (256^{2} + 1) = 50330880 = [2, 255, 253, 0]
-//											//                   ; (3*256^{5} + 1) % (256^{2} + 1) = 769      = [3, 1]
-//	//Parse(&lhop_rema, "356", 10);         // [1, 122] 
-//	//Parse(rhop, "234", 10);               // [0, 234]
-//
-//	Integer *quot = ReInteger(NULL, 5);
-//	quot = DiviRema(NULL, &lhop_rema, *rhop);
-//
-//	fprintf(stderr, "%d, %ld ""\n", quot->_sign, quot->_expo);
-//	iptr _expo_quot = quot->_expo;
-//	for (; 0 < _expo_quot; _expo_quot -= 1) {
-//		fprintf(stderr, "%d ", quot->_lsu[_expo_quot - 1]);
-//	}
-//	fprintf(stderr, "\n");
-//
-//	fprintf(stderr, "%d, %ld ""\n", lhop_rema._sign, lhop_rema._expo);
-//	iptr _expo_rema = lhop_rema._expo;
-//	for (; 0 < _expo_rema; _expo_rema -= 1) {
-//		fprintf(stderr, "%d ", lhop_rema._lsu[_expo_rema - 1]);
-//	}
-//	fprintf(stderr, "\n");
-//
-//	//fprintf(stderr, "%d, %ld ""\n", rhop->_sign, rhop->_expo);
-//	//iptr _expo_rhop = rhop->_expo;
-//	//for (; 0 < _expo_rhop; _expo_rhop -= 1) {
-//	//	fprintf(stderr, "%d ", rhop->_lsu[_expo_rhop - 1]);
-//	//}
-//	//fprintf(stderr, "\n");
-//
-//	//DeInteger(&lhs);
-//	//DeInteger(rhs);
-//	//DeInteger(rema);
-//	//DeInteger(quot);
-//}
+void TestDiviRema() {
+	// [3, 0, 0, 0, 0, 1]; (3*256^{5} + 1) / 230 = 14341456014        = [3, 86, 209, 64, 142]
+	// [1, 0, 1]         ; (3*256^{5} + 1) / (256^{2} + 1) = 50330880 = [2, 255, 253, 0]
+	//                   ; (3*256^{5} + 1) % (256^{2} + 1) = 769      = [3, 1]
+	String stri = BeString("3298534883329");
+	Integer *rema_lhop = Parse(NULL, &stri, 10);
+	stri = BeString("50330880");
+	Integer *rhop = Parse(NULL, &stri, 10);
+	Integer *quot = DiviRema(NULL, rema_lhop, *rhop);
 
-//void TestDiviModu() {
-//	Integer *modu_lhop = ReInteger(NULL, 1);
-//	Integer *rhop = ReInteger(NULL, 1);
-//	Parse(modu_lhop, "+12", 10);
-//	Parse(rhop, "-10", 10);
-//
-//	Integer *quot = DiviModu(NULL, modu_lhop, *rhop);
-//
-//	fprintf(stderr, "%d, %d ""\n", quot->_sign, quot->_expo);
-//	iptr _expo_quot = quot->_expo - 1;
-//	for (; 0 <= _expo_quot; _expo_quot -= 1) {
-//		fprintf(stderr, "%d ", quot->_lsu[_expo_quot]);
-//	}
-//	fprintf(stderr, "\n");
-//
-//	fprintf(stderr, "%d, %d ""\n", modu_lhop->_sign, modu_lhop->_expo);
-//	iptr _expo_modu = modu_lhop->_expo - 1;
-//	for (; 0 <= _expo_modu; _expo_modu -= 1) {
-//		fprintf(stderr, "%d ", modu_lhop->_lsu[_expo_modu]);
-//	}
-//	fprintf(stderr, "\n");
-//}
+	String *print_quot = Print(NULL, *quot, 10);
+	fprintf(stderr, "%s ""\n", print_quot->_head);
+	String *print_rema = Print(NULL, *rema_lhop, 10);
+	fprintf(stderr, "%s ""\n", print_rema->_head);
 
-//void TestTran() {
-//	Integer *lhop = ReInteger(NULL, 6);
-//	Parse(lhop, "-512", 10);
-//	lhop = Tran(lhop, *lhop, 7);
-//	//lhop = Tran(lhop, *lhop, -2);
-//
-
-//
-//}
-
-void TestPrint() {
-	String data = BeString("256");
-	Integer *inte = Parse(NULL, &data, 10);
-	String *stri = Print(NULL, *inte, 0);
-	fprintf(stderr, "%s ""\n", stri->_head);
-
-	DeInteger(inte);
-	DeString(&data);
-	DeString(stri);
+	DeString(&stri);
+	DeInteger(rema_lhop);
+	DeInteger(rhop);
+	DeInteger(quot);
+	DeString(print_quot);
+	DeString(print_rema);
 }
 
 iptr main(iptr argc, ui08 *argv[]) {
 	StartUp();
 
-	// TestInteger();
-	// TestAddi();
-	// TestMult();
-	// TestDiviRema();
-	// TestDiviModu();
-	// TestTran();
-	TestPrint();
+	TestDiviRema();
 
 	CleanUp();
 	return 0;
 }
-
-//void Test_Integer() {
-//	Integer *inte = ReInteger(NULL, 1);
-//	Parse(inte, "-2,5_6", 10);
-//	Parse(inte, "131072", 10);
-//	Parse(inte, "0x0000", 10);
-//
-//	fprintf(stderr, "[%d, %ld] ", inte->_sign, inte->_expo);
-//	iptr _expo = inte->_expo;
-//	for (; 0 <= _expo; _expo -= 1) {
-//		fprintf(stderr, "%d ", inte->_lsu[_expo - 1]);
-//	}
-//	fprintf(stderr, "\n");
-//
-//	DeInteger(inte);
-//}
-
-//void TestAdd() {
-//	Integer lhs = BeInteger();
-//	Integer rhs = BeInteger();
-//	Parse(&lhs, "-128", 10);
-//	Parse(&rhs, "-256", 10);
-//
-//	// Integer *ret = Add(NULL, *lhs, *rhs);
-//	Integer *ret = Subt(NULL, lhs, rhs);
-//
-//	fprintf(stderr, "[%d, %ld] ", ret->_sign, ret->_expo);
-//	iptr _expo = ret->_expo;
-//	for (; 0 <= _expo; _expo -= 1) {
-//		fprintf(stderr, "%d ", ret->_lsu[_expo - 1]);
-//	}
-//	fprintf(stderr, "\n");
-//
-//	DeInteger(&lhs);
-//	DeInteger(&rhs);
-//	DeInteger(ret);
-//}
-
-//void TestMul() {
-//	Integer *lhs = ReInteger(NULL, 1);
-//	Integer *rhs = ReInteger(NULL, 1);
-//
-//	Parse(lhs, "-256", 10);
-//	Parse(rhs, "+256", 10);
-//	Integer *ret = Mult(NULL, *lhs, *rhs);
-//
-//	fprintf(stderr, "[%d, %ld] ", ret->_sign, ret->_expo);
-//	iptr _expo = ret->_expo;
-//	for (; 0 <= _expo; _expo -= 1) {
-//		fprintf(stderr, "%d ", ret->_lsu[_expo - 1]);
-//	}
-//	fprintf(stderr, "\n");
-//
-//	DeInteger(lhs);
-//	DeInteger(rhs);
-//	DeInteger(ret);
-//}
-
