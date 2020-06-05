@@ -394,6 +394,11 @@ Integer *Parse(Integer *inte, String *data, ui08 base) {
 	iptr _expo = (iptr)(expo * ESpace._Log2_base_BASE[base]) + 1;
 	inte = ReInteger(inte, _expo);
 
+	// base == 2^{n}
+	if ((ui08)(base & (base - 1))) {
+
+	}
+
 	Memset(inte->_lsu, 0, _expo * sizeof(unit));
 	dual carry = 0;
 	_expo = 1;
