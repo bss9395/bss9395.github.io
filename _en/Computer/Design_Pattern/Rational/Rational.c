@@ -829,13 +829,13 @@ Integer *Mult(Integer *prod, Integer lhop, Integer rhop) {
 	in08 _sign = lhop._sign * rhop._sign;
 	iptr _expo = lhop._expo + rhop._expo;
 	prod = ReInteger(prod, _expo);
+	Memset(prod->_lsu, 0, _expo * sizeof(unit));
 
 	/* Constraint Assurance
 	BASE * BASE - 1                                          // Dual Unit
 	==  (BASE - 1) +  (BASE - 1) * (BASE - 1)  + (BASE - 1)  // Unit
 	>= _lsu[i + 1] + lhs._lsu[i] * rhs._lsu[j] + Carry       // Unit
 	*/
-	Memset(prod->_lsu, 0, prod->_expo * sizeof(unit));
 	dual carry = 0;
 	// [|lhop| == |rhop|]
 	if (lhop._lsu == rhop._lsu) {
@@ -942,6 +942,7 @@ Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 
 	iptr _expo_quot = rema_lhop->_expo - rhop._expo + 1;
 	quot = ReInteger(quot, _expo_quot);
+	Memset(quot->_lsu, 0, _expo_quot * sizeof(unit));
 
 	// Case 2: [rhop._expo <= rema_lhop->_expo <= 4]
 	if (rema_lhop->_expo <= 4) {
