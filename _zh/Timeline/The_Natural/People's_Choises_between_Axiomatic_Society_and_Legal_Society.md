@@ -800,6 +800,10 @@ $$
 
 ∀x∀y[Q(x) ∧ P(y)] ⇔ ∀x[Q(x)] ∧ ∀y[P(y)]
 ∀x∀y[Q(x) ∨ P(y)] ⇔ ∀x[Q(x)] ∨ ∀y[P(y)]
+∀x∃y[Q(x) ∧ P(y)] ⇔ ∀x[Q(x)] ∧ ∃y[P(y)]
+∀x∃y[Q(x) ∨ P(y)] ⇔ ∀x[Q(x)] ∨ ∃y[P(y)]
+∃x∀y[Q(x) ∧ P(y)] ⇔ ∃x[Q(x)] ∧ ∀y[P(y)]
+∃x∀y[Q(x) ∨ P(y)] ⇔ ∃x[Q(x)] ∨ ∀y[P(y)]
 ∃x∃y[Q(x) ∧ P(y)] ⇔ ∃x[Q(x)] ∧ ∃y[P(y)]
 ∃x∃y[Q(x) ∨ P(y)] ⇔ ∃x[Q(x)] ∨ ∃y[P(y)]
 
