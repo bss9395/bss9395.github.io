@@ -1,0 +1,45 @@
+digraph{
+    node[shape="plaintext", fontname="Consola", fontsize="10"];
+    edge[fontname="Consola", fontsize="10"];
+    graph[charset="utf-8", fontname="Consola", fontsize="10"];
+    graph[ranksep="0.25", pagedir="LT", rankdir="TB"];
+    graph[compound="true", clusterrank="global", newrank="true"];
+
+    subgraph cluster {
+        graph[label="Binary Predicate", style="solid"]
+
+        VxVy[label="∀x∀y[Q(x, y)]"];
+        VyVx[label="∀y∀x[Q(x, y)]"];
+        EyVx[label="∃y∀x[Q(x, y)]"];
+        Vx  [label=   "∀x[Q(x, x)]"];
+        ExVy[label="∃x∀y[Q(x, y)]"];
+        VxEy[label="∀x∃y[Q(x, y)]"];
+        Ex  [label=   "∃x[Q(x, x)]"];
+        VyEx[label="∀y∃x[Q(x, y)]"];
+        ExEy[label="∃x∃y[Q(x, y)]"];
+        EyEx[label="∃y∃x[Q(x, y)]"];
+
+        {rank="same"; VxVy;     VyVx;}
+        {rank="same"; EyVx; Vx; ExVy;}
+        {rank="same"; VxEy; Ex; VyEx;}
+        {rank="same"; ExEy;     EyEx;}
+
+        VxVy->VyVx[color="black:black", dir="both", minlen="2"];
+        VxVy->EyVx[color="black:black"];
+        VxVy->Vx  [color="black:black"];
+        VyVx->Vx  [color="black:black"];
+        VyVx->ExVy[color="black:black"];
+        EyVx->VxEy[color="black:black"];
+        Vx->VxEy  [color="black:black"];
+        EyVx->Ex  [color="black:black"];
+        Vx->Ex    [color="black:black"];
+        ExVy->Ex  [color="black:black"];
+        Vx->VyEx  [color="black:black"];
+        ExVy->VyEx[color="black:black"];
+        VxEy->ExEy[color="black:black"];
+        Ex->ExEy  [color="black:black"];
+        Ex->EyEx  [color="black:black"];
+        VyEx->EyEx[color="black:black"];
+        ExEy->EyEx[color="black:black", dir="both", minlen="2"];
+    }
+}
