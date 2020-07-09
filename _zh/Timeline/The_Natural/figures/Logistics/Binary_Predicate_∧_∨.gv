@@ -1,0 +1,27 @@
+digraph{
+    node[fontname="Consola", fontsize="10"];
+    edge[fontname="Consola", fontsize="10"];
+    graph[fontname="Consola", fontsize="10", charset="utf-8"];
+    graph[compound="true", clusterrank="global", newrank="true"];
+
+    node[shape="plaintext"];
+    edge[color="black:black"];
+    graph[pagedir="TL", rankdir="LR"];
+
+        {rank="same"; AxM[label="∀x[Q(x) ∧ P(x)]"];       AxAyM[label="∀x∀y[Q(x) ∧ P(y)]"]; AxMAy[label="∀x[Q(x)] ∧ ∀y[P(y)]"];}
+        {rank="same"; AxMEy[label="∀x[Q(x)] ∧ ∃y[P(y)]"]; AxEyM[label="∀x∃y[Q(x) ∧ P(y)]"]; ExAyM[label="∃x∀y[Q(x) ∧ P(y)]"];   ExMAy[label="∃x[Q(x)] ∧ ∀y[P(y)]"];}
+        {rank="same"; AxWAy[label="∀x[Q(x)] ∨ ∀y[P(y)]"]; AxAyW[label="∀x∀y[Q(x) ∨ P(y)]"]; ExM[label="∃x[Q(x) ∧ P(x)]"];}
+        {rank="same";                                     AxW[label="∀x[Q(x) ∨ P(x)]"];     ExEyM[label="∃x∃y[Q(x) ∧ P(y)]"];   ExMEy[label="∃x[Q(x)] ∧ ∃y[P(y)]"];}
+        {rank="same"; AxWEy[label="∀x[Q(x)] ∨ ∃y[P(y)]"]; AxEyW[label="∀x∃y[Q(x) ∨ P(y)]"]; ExAyW[label="∃x∀y[Q(x) ∨ P(y)]"];   ExWAy[label="∃x[Q(x)] ∨ ∀y[P(y)]"];}
+        {rank="same"; ExWEy[label="∃x[Q(x)] ∨ ∃y[P(y)]"]; ExEyW[label="∃x∃y[Q(x) ∨ P(y)]"]; ExW[label="∃x[Q(x) ∨ P(x)]"];}
+
+        AxM->AxAyM[dir="both", minlen=2];   AxMEy->AxEyM[dir="both", minlen=2]; AxWAy->AxAyW[dir="both", minlen=2]; AxW->ExEyM[style="invis"];          AxWEy->AxEyW[dir="both", minlen=2];   ExWEy->ExEyW[dir="both", minlen=2];
+        AxAyM->AxMAy[dir="both", minlen=2]; AxEyM->ExAyM[style="invis"];        AxAyW->ExM[style="invis"];          ExEyM->ExMEy[dir="both", minlen=2]; AxEyW->ExAyW[style="invis"]; ExEyW->ExW[dir="both", minlen=2];
+                                            ExAyM->ExMAy[dir="both", minlen=2];                                                                         ExAyW->ExWAy[dir="both", minlen=2];
+
+        AxAyM->AxEyM;                       AxEyM->AxAyW;                       AxAyW->AxW;                         AxW->AxEyW;                         AxEyW->ExEyW;
+        AxAyM->ExAyM;                       ExAyM->ExM;                         ExM->ExEyM;                         ExEyM->ExAyW;                       ExAyW->ExEyW;
+
+                                            AxEyM->ExM;                                                             AxW->ExAyW;
+                                            ExAyM->AxAyW;                                                           ExEyM->AxEyW;
+}
