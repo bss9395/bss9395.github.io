@@ -20,7 +20,8 @@ digraph{
         AxAy->EyAx;             EyAx->AxEy; AxEy->ExEy;
         AxAy->Az;               EyAx->Ez;   Ez->ExEy;
         AyAx->Az;               Az->AxEy;   Ez->EyEx;
-        AyAx->ExAy;             Az->AyEx;   AyEx->EyEx;
+        AyAx->ExAy;             Az->Ez;     AyEx->EyEx;
+                                Az->AyEx;
                                 ExAy->Ez;
                                 ExAy->AyEx;
 }
