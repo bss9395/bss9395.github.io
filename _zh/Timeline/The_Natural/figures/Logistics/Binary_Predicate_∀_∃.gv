@@ -15,13 +15,12 @@ digraph{
         {rank="same"; ExEy[label="∃x∃y[Q(x, y)]"];                           EyEx[label="∃y∃x[Q(x, y)]"];}
 
 
-        AxAy->AyAx[dir="both", minlen="2"]; ExEy->EyEx[dir="both", minlen="2"];
+        AxAy->AyAx[dir="both", minlen="2"]; AxEy->Ez;             ExEy->EyEx[dir="both", minlen="2"];
+                                            Ez->AyEx[dir="back"];
 
-        AxAy->EyAx;             EyAx->AxEy; AxEy->ExEy;
-        AxAy->Az;               EyAx->Ez;   Ez->ExEy;
-        AyAx->Az;               Az->AxEy;   Ez->EyEx;
-        AyAx->ExAy;             Az->Ez;     AyEx->EyEx;
-                                Az->AyEx;
-                                ExAy->Ez;
-                                ExAy->AyEx;
+        AxAy->EyAx;             EyAx->AxEy; Ez->ExEy;
+        AxAy->Az;               Az->AxEy;   Ez->EyEx;
+        AyAx->Az;               Az->AyEx;
+        AyAx->ExAy;             ExAy->AyEx;
+
 }
