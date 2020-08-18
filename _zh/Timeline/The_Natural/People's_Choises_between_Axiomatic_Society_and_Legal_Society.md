@@ -1730,15 +1730,13 @@ sin(θ) = (әᶥᶿ + ә⁻ᶥᶿ)/2
 
 
 
+
+
 风俗：约定俗成的一系列规范；
 准则：人为制定的一系列规范；
 
 
 作为社会行为规范的还有道德/习惯/传统/教规/纪律。。。
-
-
-
-
 
 
 社会规范
@@ -2137,3 +2135,15 @@ sin(θ) = (әᶥᶿ + ә⁻ᶥᶿ)/2
 
 
 
+```
+# 概率的定义
+[古典概率] Probability(Event) = Number(Event) / Number(Space)
+[频率概率] Probability(Event) = Trial(Event) / Trial(Space)
+[几何概率] Probability(Event) = Size(Event) / Size(Space)
+[主观概率] Probability(Event) = Confidence(Event) / Confidence(Space)
+
+# 概率的性质
+[非负性] 0 ≤ P(E)
+[规范性] 1 = P(S)
+[可加性] P(E₁⋃E₂) = P(E₁) + P(E₂) - P(E₁⋂E₂)
+```
