@@ -1727,7 +1727,7 @@ sin(θ) = (әᶥᶿ + ә⁻ᶥᶿ)/2
 
 
 
-
+今天好像吃了什么药，身体很累的感觉。
 
 
 
@@ -2136,14 +2136,45 @@ sin(θ) = (әᶥᶿ + ә⁻ᶥᶿ)/2
 
 
 ```
-# 概率的定义
-[古典概率] Probability(Event) = Number(Event) / Number(Space)
-[频率概率] Probability(Event) = Trial(Event) / Trial(Space)
-[几何概率] Probability(Event) = Size(Event) / Size(Space)
-[主观概率] Probability(Event) = Confidence(Event) / Confidence(Space)
+# 概率公理化系统
+[下确界] 0 = P(𝟘)
+[正则性] 0 ≤ P(E)
+[上确界] 1 = P(𝟙)
+[可加性] P(E∨F) = P(E) + P(F) - P(E∧F)
 
-# 概率的性质
-[非负性] 0 ≤ P(E)
-[规范性] 1 = P(S)
-[可加性] P(E₁⋃E₂) = P(E₁) + P(E₂) - P(E₁⋂E₂)
+# 概率的具体定义
+[古典概率] Probability(Event) = Number(Event) / Number(Space)  ; 古典概率 = 事件发生的样本个数 / 事件空间的样本个数
+[频率概率] Probability(Event) = Trial(Event) / Trial(Space)    ; 频率概率 = 事件发生的试验次数 / 事件空间的试验次数
+[几何概率] Probability(Event) = Size(Event) / Size(Space)      ; 几何概率 = 事件发生的范围大小 / 事件空间的范围大小
+[主观概率] Probability(Event) = Confidence(Event)              ; 主观概率 = 事件发生的主观可能性
+
+# 概率的运算性质
+[互补] P(E) + P(¬E) = 1
+[加法原理]
+[乘法原理]
+[]
+
+
+# 计数原理
+[乘法原理] 如果完成事件有k个步骤，完成第k个步骤有nₖ种方法，那么完成事件总共有N种方法。
+N = n₁ × n₂ × ⋯⋯ × nₖ
+
+[加法原理] 如果完成事件有k类途径，完成第k类途径有nₖ种方法，那么完成事件总共有N种方法。
+N = n₁ + n₂ + ⋯⋯ + nₖ
+
+[抽屉原理] 从n个有序元素中任取k个元素排成一列，末次不计取出又放回r - 1次，等同于有n + r - 1个编号抽屉待对号入屉k个元素。
+
+[有序排列] 从n个有序元素中任取k个元素排成一列，次序有先后，取出又放回0次，总共有Permutation(n, k, 0)种方法。
+Permutation(n, k, 0) = n × (n - 1) × ⋯⋯ × (n - k + 1) = n! / (n - k)!
+
+[重复排列] 从n个有序元素中任取k个元素排成一列，次序有先后，取出又放回k - 1次，总共有Permutation(n, k, k)种方法。
+Permutation(n, k, k) = n × n × ⋯⋯ × n = nᵏ
+
+[无序组合] 从n个有序元素中任取k个元素排成一列，次序无先后，取出又放回0次，总共有Combination(n, k, 0)种方法。
+Combination(n, k, 0) = Permutation(n, k) / k! = n! / (n - k )! / k!
+
+[重复组合] 从n个有序元素中任取k个元素排成一列，次序无先后，取出又放回k - 1次，总共有Combination(n, k, k)种方法。
+Combination(n, k, k) = Combination(n + k - 1, k, 0) = (n + k - 1)! / (n - 1)! / k!
 ```
+
+于2020年08月19日 02:53:00 +08 在湛江 +08
