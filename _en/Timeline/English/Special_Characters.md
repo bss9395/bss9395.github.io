@@ -143,6 +143,10 @@ Resources:
 # Mathematical Characters
 ±
 Ø
+˹
+˺
+˻
+˼
 …
 Ↄ
 ←
@@ -196,6 +200,22 @@ Resources:
 ⋯
 ⋰
 ⋱
+⌈
+⌉
+⌊
+⌋
+⌜
+⌝
+⌞
+⌟
+⎾
+⎿
+⏋
+⏌
+┌
+┐
+└
+┘
 ⨀
 ⨁
 ⨂
