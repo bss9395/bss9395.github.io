@@ -141,6 +141,7 @@ Resources:
 
 ```
 # Mathematical Characters
+=
 ¬
 ±
 Ø
@@ -195,6 +196,14 @@ Resources:
 ⇗
 ⇘
 ⇙
+⇜
+⇝
+⇞
+⇟
+⇠
+⇡
+⇢
+⇣
 ∀
 ∃
 ∄
@@ -212,6 +221,7 @@ Resources:
 ∦
 ∧
 ∨
+≈
 ≈
 ≉
 ≔
