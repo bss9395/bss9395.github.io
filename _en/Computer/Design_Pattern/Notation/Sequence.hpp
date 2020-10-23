@@ -41,7 +41,7 @@ public:
 		return data;
 	}
 
-	static int Skip(char *data, int size, const char dels[] = " \t\v\f\r\n", int sz = 8) {
+	static int Skip(char *data, int size, const char dels[] = " \t\v\f\r\n", int sz = 6) {
 		int ret = 0;
 		int i = 0;
 		do {
@@ -55,7 +55,7 @@ public:
 		return ret;
 	}
 
-	static int Until(char *data, int size, const char dels[] = " \t\v\f\r\n", int sz = 8) {
+	static int Until(char *data, int size, const char dels[] = " \t\v\f\r\n", int sz = 6) {
 		int ret = -1;
 		int i = 0;
 
