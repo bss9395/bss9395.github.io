@@ -18,7 +18,7 @@ long Read_Line(FILE *file, char *line, long size, const char ends[], long num) {
 			ch = fgetc(file);
 			if (ch == EOF) {
 				clearerr(file);
-				goto Break;
+				break;
 			}
 			for (int i = 0; i < num; i += 1) {
 				if (ch == ends[i]) {
@@ -28,11 +28,10 @@ long Read_Line(FILE *file, char *line, long size, const char ends[], long num) {
 			}
 			if (loop) {
 				ungetc(ch, file);
-				goto Break;
+				break;
 			}
 			line[len] = ch;
 		}
-	Break:
 		line[len] = '\0';
 	}
 	return len;
