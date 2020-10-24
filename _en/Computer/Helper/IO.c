@@ -10,11 +10,11 @@ Design: IO Control
 
 long Read_Line(FILE *file, char *line, long size, const char ends[], long num) {
 	long len = 0;
-	bool loop = false;
 	if (0 < size) {
 		size -= 1;
+		bool skip = false;
 		for (int ch = EOF; len < size; len += 1) {
-		Loop:
+		Skip:
 			ch = fgetc(file);
 			if (ch == EOF) {
 				clearerr(file);
@@ -22,11 +22,11 @@ long Read_Line(FILE *file, char *line, long size, const char ends[], long num) {
 			}
 			for (int i = 0; i < num; i += 1) {
 				if (ch == ends[i]) {
-					loop = true;
-					goto Loop;
+					skip = true;
+					goto Skip;
 				}
 			}
-			if (loop) {
+			if (skip) {
 				ungetc(ch, file);
 				break;
 			}
