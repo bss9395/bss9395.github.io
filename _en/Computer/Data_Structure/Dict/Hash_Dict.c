@@ -271,11 +271,30 @@ Entry *Remove_Entry(Piece *dict, char *key, bool erase) {
 		}
 	}
 
-	Piece entry = (*dict);
-	while (top -= 1, 1 <= top && stack[top]->_refs <= 1) {
-		Destroy_Block(stack[top]);
-		*(stack[top]) = entry;
+	if (top -= 1, 1 <= top && stack[top]->_refs <= 1 && dict->_refs >= 1) {
+		Piece entry = (*dict);
+		do {
+			Destroy_Block(stack[top]);
+			*(stack[top]) = entry;
+		} while (top -= 1, 1 <= top && stack[top]->_refs <= 1);
 	}
+
+	/*
+	if (top -= 1, 1 <= top && stack[top]->_refs <= 1) {
+		Piece entry;
+		dict = stack[top];
+		for (int i = 0; i < dict->_width; i += 1) {
+			if (dict->_cross[i]._refs >= 1) {
+				entry = dict->_cross[i];
+				break;
+			}
+		}
+		do {
+			Destroy_Block(stack[top]);
+			*(stack[top]) = entry;
+		} while (top -= 1, 1 <= top && stack[top]->_refs <= 1);
+	}
+	*/
 	return relax;
 }
 
