@@ -1,6 +1,6 @@
 /* Hash_Dict.c
 Author: BSS9395
-Update: 2020-10-25T23:46:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-10-26T12:34:00+08@China-Guangdong-Zhanjiang+08
 Design: Hash Dict
 */
 
@@ -75,16 +75,11 @@ Entry *Create_Entry(unsigned hash, char *key, char *value) {
 	return entry;
 }
 
-Piece Create_Block(int width, Entry *entry) {
+Piece Create_Block(int width) {
 	Piece block = *((Piece *)Zero_Data(sizeof(Piece)));
 	block._cross = (Piece *)calloc(width + 1, sizeof(Piece));
 	block._width = width;
 	block._cross[width]._refs = -9395;
-
-	if (entry != NULL) {
-		int index = entry->_hash % block._width;
-		block._cross[index]._entry = entry;
-	}
 	return block;
 }
 
@@ -105,23 +100,32 @@ int Destroy_Block(Piece *block) {
 }
 
 int Destroy_Dict(Piece *dict) {
+	if (dict->_cross == NULL) {
+		fprintf(stdout, "dict doesn't exist! ");
+		exit(EXIT_FAILURE);
+	}
+
 	int ret = 0;
 	for (int i = 0; i < dict->_width; i += 1) {
 		if (dict->_cross[i]._cross != NULL) {
-			ret += Destroy_Dict(&(dict->_cross[i]));
+			if (dict->_cross[i]._refs >= 1) {
+				ret += Destroy_Dict(&(dict->_cross[i]));
+			}
 			Destroy_Block(&(dict->_cross[i]));
 		}
-		else if (dict->_cross[i]._refs >= 1) {
+		else if (dict->_cross[i]._entry != NULL) {
 			Entry *list = dict->_cross[i]._entry;
-			Entry *relax = NULL;
-			while (list != NULL) {
-				relax = list;
+			Entry *erase = NULL;
+			do {
+				erase = list;
 				list = list->_link;
-				Destroy_Entry(relax);
+				Destroy_Entry(erase);
 				ret += 1;
-			}
+			} while (list != NULL);
 		}
 	}
+	Destroy_Block(dict);
+	(*dict) = *(Piece *)Zero_Data(sizeof(Piece));
 	return ret;
 }
 
@@ -134,32 +138,40 @@ int Destroy_Dict_By_Stack(Piece *dict) {
 	}
 	top = 0;
 
+	if (dict->_cross == NULL) {
+		fprintf(stdout, "dict doesn't exist! ");
+		exit(EXIT_FAILURE);
+	}
+
 	int ret = 0;
 	Piece *head = &(dict->_cross[0]);
 	while (true) {
 		if (head->_refs != -9395) {
 			if (head->_cross != NULL) {
-				if (size <= top) {
-					size *= 2;
-					stack = (Piece **)realloc(stack, size * sizeof(Piece *));
+				if (head->_refs >= 1) {
+					if (size <= top) {
+						size *= 2;
+						stack = (Piece **)realloc(stack, size * sizeof(Piece *));
+					}
+					stack[top] = head, top += 1;
+					head = &(dict->_cross[0]);
+					continue;
 				}
-				stack[top] = head, top += 1;
-				head = &(dict->_cross[0]);
-				continue;
+				Destroy_Block(head);
 			}
-			else if (head->_refs >= 1) {
+			else if (head->_entry != NULL) {
 				Entry *list = head->_entry;
-				Entry *relax = NULL;
-				while (list != NULL) {
-					relax = list;
+				Entry *erase = NULL;
+				do {
+					erase = list;
 					list = list->_link;
-					Destroy_Entry(relax);
+					Destroy_Entry(erase);
 					ret += 1;
-				}
+				} while (list != NULL);
 			}
 			head += 1;
 		}
-		else if (0 <= top) {
+		else if (1 <= top) {
 			head = (top -= 1, stack[top]);
 			Destroy_Block(head);
 			head += 1;
@@ -169,7 +181,45 @@ int Destroy_Dict_By_Stack(Piece *dict) {
 		}
 	}
 	Destroy_Block(dict);
+	(*dict) = *(Piece *)Zero_Data(sizeof(Piece));
 	return ret;
+}
+
+Entry *Search_Entry(Piece *dict, char *key) {
+	if (dict->_cross == NULL) {
+		fprintf(stdout, "dict doesn't exist! ");
+		exit(EXIT_FAILURE);
+	}
+
+	Entry *entry = NULL;
+	unsigned hash = Hash(key, Length(key));
+
+	Piece *block = NULL;
+	Piece *head = dict;
+	while (true) {
+		block = head;
+		head = &(head->_cross[hash % head->_width]);
+
+		if (head->_cross == NULL) {
+			if (head->_entry != NULL && head->_entry->_hash == hash) {
+				for (Entry *list = head->_entry; list != NULL; list = list->_link) {
+					if (strcmp(list->_key, key) == 0) {
+						entry = list;
+						break;
+					}
+				}
+			}
+			break;
+		}
+		else if (head->_refs <= 0) {
+			Destroy_Block(head);
+			(*head) = *(Piece *)Zero_Data(sizeof(Piece));
+			block->_refs -= 1;
+			break;
+		}
+	}
+
+	return entry;
 }
 
 /*
@@ -183,84 +233,94 @@ hash_x - hash_y = Q1 ¡Á (Width + 1)
 
 hash_x - hash_y = Q ¡Á Width ¡Á (Width + 1)
 */
-Entry **Modify_Entry(Piece *dict, char *key, char *value, bool modify) {
-	Entry **entry = NULL;
+Entry *Insert_Entry(Piece *dict, char *key, char *value, bool modify) {
+	if (dict->_cross == NULL) {
+		fprintf(stdout, "dict doesn't exist! ");
+		exit(EXIT_FAILURE);
+	}
+
+	Entry *entry = NULL;
 	unsigned hash = Hash(key, Length(key));
 
 	Piece *block = NULL;
+	Piece *head = dict;
 	while (true) {
-		block = dict;
-		int index = hash % dict->_width;
-		dict = &(dict->_cross[index]);
+		block = head;
+		head = &(head->_cross[hash % head->_width]);
 
-		if (dict->_cross == NULL) {
-			if (dict->_entry == NULL) {
-				entry = &(dict->_entry);
-				if (modify) {
-					(*entry) = Create_Entry(hash, key, value);
-					dict->_refs = 1;
-					block->_refs += 1;
-				}
+		if (head->_cross == NULL) {
+			if (head->_entry == NULL) {
+				head->_entry = Create_Entry(hash, key, value);
+				head->_refs = 1;
+				block->_refs += 1;
+				entry = head->_entry;
 			}
-			else if (dict->_entry->_hash == hash) {
-				for (entry = &(dict->_entry); (*entry) != NULL; entry = &((*entry)->_link)) {
-					if (strcmp((*entry)->_key, key) == 0) {
+			else if (head->_entry->_hash == hash) {
+				Entry **list = &(head->_entry);
+				for (; (*list) != NULL; list = &((*list)->_link)) {
+					if (strcmp((*list)->_key, key) == 0) {
 						if (modify) {
-							(*entry)->_value = New_Data((*entry)->_value, value, Length(value) + 1);
+							(*list)->_value = New_Data((*list)->_value, value, Length(value) + 1);
 						}
 						break;
 					}
 				}
-				if ((*entry) == NULL) {
-					if (modify) {
-						(*entry) = Create_Entry(hash, key, value);
-						dict->_refs += 1;
-					}
+				if ((*list) == NULL) {
+					(*list) = Create_Entry(hash, key, value);
+					head->_refs += 1;
 				}
+				entry = (*list);
 			}
-			else if (modify) {
-				(*dict) = Create_Block(dict->_width + 1, dict->_entry);
+			else {
+				Piece piece = (*head);
+				int width = block->_width + 1;
+				int index = head->_entry->_hash % width;
+				(*head) = Create_Block(width);
+				head->_cross[index] = piece;
+				head->_refs = 1;
 				continue;
 			}
 			break;
 		}
+		else if (head->_refs <= 0) {
+			Destroy_Block(head);
+			(*head) = *(Piece *)Zero_Data(sizeof(Piece));
+			head->_entry = Create_Entry(hash, key, value);
+			head->_refs = 1;
+			break;
+		}
 	}
+
 	return entry;
 }
 
 Entry *Remove_Entry(Piece *dict, char *key, bool erase) {
-	static int top = 0;
-	static int size = 8;
-	static Piece **stack = NULL;
-	if (stack == NULL) {
-		stack = (Piece **)calloc(size, sizeof(Piece *));
+	if (dict->_cross == NULL) {
+		fprintf(stdout, "dict doesn't exist! ");
+		exit(EXIT_FAILURE);
 	}
-	top = 0;
 
-	Entry *relax = NULL;
+	Entry *entry = NULL;
 	unsigned hash = Hash(key, Length(key));
 
+	Piece *block = NULL;
+	Piece *head = dict;
 	while (true) {
-		if (size <= top) {
-			size *= 2;
-			stack = (Piece **)realloc(stack, size * sizeof(Piece *));
-		}
-		stack[top] = dict, top += 1;
-		int index = hash % dict->_width;
-		dict = &(dict->_cross[index]);
+		block = head;
+		head = &(head->_cross[hash % head->_width]);
 
-		if (dict->_cross == NULL) {
-			if (dict->_entry != NULL && dict->_entry->_hash == hash) {
-				for (Entry **entry = &(dict->_entry); (*entry) != NULL; entry = &((*entry)->_link)) {
-					if (strcmp((*entry)->_key, key) == 0) {
-						relax = (*entry);
+		if (head->_cross == NULL) {
+			if (head->_entry != NULL && head->_entry->_hash == hash) {
+				for (Entry **list = &(head->_entry); (*list) != NULL; list = &((*list)->_link)) {
+					if (strcmp((*list)->_key, key) == 0) {
+						entry = (*list);
 						if (erase) {
-							(*entry) = (*entry)->_link;
-							Destroy_Entry(relax);
-							relax = NULL;
-							dict->_refs -= 1;
-							if (dict->_refs <= 0) {
-								stack[top - 1]->_refs -= 1;
+							(*list) = (*list)->_link;
+							Destroy_Entry(entry);
+							entry = NULL;
+							head->_refs -= 1;
+							if (head->_refs <= 0) {
+								block->_refs -= 1;
 							}
 						}
 						break;
@@ -269,43 +329,34 @@ Entry *Remove_Entry(Piece *dict, char *key, bool erase) {
 			}
 			break;
 		}
-	}
-
-	if (top -= 1, 1 <= top && stack[top]->_refs <= 1 && dict->_refs >= 1) {
-		Piece entry = (*dict);
-		do {
-			Destroy_Block(stack[top]);
-			*(stack[top]) = entry;
-		} while (top -= 1, 1 <= top && stack[top]->_refs <= 1);
-	}
-
-	/*
-	if (top -= 1, 1 <= top && stack[top]->_refs <= 1) {
-		Piece entry;
-		dict = stack[top];
-		for (int i = 0; i < dict->_width; i += 1) {
-			if (dict->_cross[i]._refs >= 1) {
-				entry = dict->_cross[i];
-				break;
-			}
+		else if (head->_refs <= 0) {
+			Destroy_Block(head);
+			(*head) = *(Piece *)Zero_Data(sizeof(Piece));
+			block->_refs -= 1;
+			break;
 		}
-		do {
-			Destroy_Block(stack[top]);
-			*(stack[top]) = entry;
-		} while (top -= 1, 1 <= top && stack[top]->_refs <= 1);
 	}
-	*/
-	return relax;
+
+	return entry;
 }
 
 void Print_Dict(Piece *dict) {
+	if (dict->_cross == NULL) {
+		fprintf(stdout, "dict doesn't exist! ");
+		exit(EXIT_FAILURE);
+	}
+
 	for (int i = 0; i < dict->_width; i += 1) {
 		if (dict->_cross[i]._cross != NULL) {
-			Print_Dict(&(dict->_cross[i]));
+			if (dict->_cross[i]._refs >= 1) {
+				fprintf(stdout, "(");
+				Print_Dict(&(dict->_cross[i]));
+				fprintf(stdout, "); ");
+			}
 		}
-		else if (dict->_cross[i]._refs >= 1) {
+		else if (dict->_cross[i]._entry != NULL) {
 			for (Entry *list = dict->_cross[i]._entry; list != NULL; list = list->_link) {
-				fprintf(stdout, "(%lu, %s, %s) ", list->_hash, list->_key, list->_value);
+				fprintf(stdout, "(%lu: %s: %s), ", list->_hash, list->_key, list->_value);
 			}
 		}
 	}
@@ -321,28 +372,37 @@ void Print_Dict_By_Stack(Piece *dict) {
 	}
 	top = 0;
 
+	if (dict->_cross == NULL) {
+		fprintf(stdout, "dict doesn't exist! ");
+		exit(EXIT_FAILURE);
+	}
+
 	Piece *head = &(dict->_cross[0]);
 	while (true) {
 		if (head->_refs != -9395) {
 			if (head->_cross != NULL) {
-				if (size < top) {
-					size *= 2;
-					stack = (Piece **)realloc(stack, size * sizeof(Piece *));
+				if (head->_refs >= 1) {
+					if (size <= top) {
+						size *= 2;
+						stack = (Piece **)realloc(stack, size * sizeof(Piece *));
+					}
+					stack[top] = head, top += 1;
+					head = &(dict->_cross[0]);
+					fprintf(stdout, "(");
+					continue;
 				}
-				stack[top] = head, top += 1;
-				head = &(head->_cross[0]);
-				continue;
 			}
-			else if (head->_refs >= 1) {
+			else if (head->_entry != NULL) {
 				for (Entry *list = head->_entry; list != NULL; list = list->_link) {
-					fprintf(stdout, "(%lu, %s, %s) ", list->_hash, list->_key, list->_value);
+					fprintf(stdout, "(%lu: %s: %s), ", list->_hash, list->_key, list->_value);
 				}
 			}
 			head += 1;
 		}
-		else if (0 <= top) {
+		else if (1 <= top) {
 			head = (top -= 1, stack[top]);
 			head += 1;
+			fprintf(stdout, "); ");
 		}
 		else {
 			break;
@@ -355,15 +415,19 @@ void Print_Dict_By_Stack(Piece *dict) {
 ////////////////////////////////////////////////////////////////////////////////
 
 void Test_Dict() {
-	Piece dict = Create_Block(8, NULL);
-	Modify_Entry(&dict, "key", "value", true);
+	Piece dict = Create_Block(8);
+	Insert_Entry(&dict, "key", "value", true);
+
+	Entry *entry = Search_Entry(&dict, "key");
+	if (entry != NULL) {
+		fprintf(stdout, "(%lu, %s, %s)\n", entry->_hash, entry->_key, entry->_value);
+	}
 
 	Remove_Entry(&dict, "key", true);
 
-	Entry **entry = Modify_Entry(&dict, "key", NULL, false);
-
-	if (entry != NULL && (*entry) != NULL) {
-		fprintf(stdout, "%s\n", (*entry)->_value);
+	entry = Search_Entry(&dict, "key");
+	if (entry != NULL) {
+		fprintf(stdout, "(%lu, %s, %s)\n", entry->_hash, entry->_key, entry->_value);
 	}
 
 	Destroy_Dict(&dict);
@@ -371,8 +435,8 @@ void Test_Dict() {
 }
 
 void Test_Print_Dict() {
-	Piece dict = Create_Block(8, NULL);
-	Modify_Entry(&dict, "0", "value", true);
+	Piece dict = Create_Block(8);
+	Insert_Entry(&dict, "0", "value", true);
 
 	// Print_Dict(&dict);
 	Print_Dict_By_Stack(&dict);
@@ -382,7 +446,7 @@ void Test_Print_Dict() {
 int main(int argc, char *argv[]) {
 	Test_Dict();
 
-	//Test_Print_Dict();
+	Test_Print_Dict();
 
 	return 0;
 }
