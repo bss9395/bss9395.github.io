@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-01T07:18:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-02T00:47:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -9,17 +9,27 @@ Design: Math Library
 #include <stdlib.h>
 #include <string.h>
 
-/* The Properties of Greatest Common Divisor
-gcd(lhs, rhs) = gcd(rhs, lhs)
-gcd(lhs, gcd(mid, rhs)) = gcd(gcd(lhs, mid), rhs)
+/* Greatest Common Divisor and Least Common Multiple
+GCD(lhs, rhs) = GCD(rhs, lhs)
+LCM(lhs, rhs) = LCM(rhs, lhs)
+
+GCD(lhs, mid, rhs) = GCD(GCD(lhs, mid), rhs) = GCD(lhs, GCD(mid, rhs))
+LCM(lhs, mid, rhs) = LCM(LCM(lhs, mid), rhs) = LCM(lhs, LCM(mid, rhs))
+
+GCD(lhs, LCM(mid, rhs)) = LCM(GCD(lhs, mid), GCD(lhs, rhs))
+LCM(lhs, GCD(mid, rhs)) = GCD(LCM(lhs, mid), LCM(lhs, rhs))
+
+lhs * rhs = GCD(lhs, rhs) * LCM(lhs, rhs)
+0 <= GCD(lhs, rhs) <= Min(|lhs|, |rhs|) <= Max(|lhs|, |rhs|) <= LCM(|lhs|, |rhs|) == |LCM(lhs, rhs)|
 
 # 0 <= lhs && 0 <= rhs
-gcd(lhs, lhs) = lhs                  # lhs == rhs
-gcd(lhs, rhs) = gcd(lhs - rhs, rhs)  # lhs >= rhs
-gcd(lhs, rhs) = gcd(lhs, rhs - lhs)  # lhs <= rhs
+GCD(lhs, 0) = 0                      # rhs == 0
+GCD(lhs, lhs) = lhs                  # lhs == rhs
+GCD(lhs, rhs) = GCD(lhs - rhs, rhs)  # lhs >= rhs
+GCD(lhs, rhs) = GCD(lhs, rhs - lhs)  # lhs <= rhs
 */
 
-/* Greatest Common Divisor and Least Common Multiple
+/*
 rema = lhs - rhs * quot
 lhs * rhs = gcd * lcm
 
@@ -27,48 +37,54 @@ lhs  rhs  quot  rema  gcd  lcm
  12   10     1     2    2   60
 -12   10    -1    -2    2  -60
  12  -10    -1     2    2  -60
--12  -10     1    -2   -2   60
+-12  -10     1    -2    2   60
 
  10   12     0    10    2   60
 -10   12     0   -10    2  -60
  10  -12     0    10    2  -60
--10  -12     0   -10   -2   60
+-10  -12     0   -10    2   60
 
-  0   10     0     0   10    0
- 10    0     ?     ?   10    0
-  0  -10     0     0  -10    0
--10    0     ?     ?  -10    0
+  0   10     0     0    0   10
+ 10    0     ?     ?    0   10
+  0  -10     0     0    0  -10
+-10    0     ?     ?    0  -10
+
+  0    0     ?     ?    0    0
 */
 long GCD(long x, long y) {
-	int sign = (x <= 0 && y <= 0) ? -1 : +1;
+	if (x == 0 || y == 0) {
+		return 0;
+	}
 	(x < 0) ? (x = -x) : (x);
 	(y < 0) ? (y = -y) : (y);
 
-	if (y) {
-		while ((x %= y) && (y %= x));
-	}
-	return sign * (x + y);
+	while ((x %= y) && (y %= x));
+
+	return (x + y);
 }
 
 long GCD_Classic(long x, long y) {
-	int sign = (x <= 0 && y <= 0) ? -1 : +1;
+	if (x == 0 || y == 0) {
+		return 0;
+	}
 	(x < 0) ? (x = -x) : (x);
 	(y < 0) ? (y = -y) : (y);
 
-	long gcd = x;
-	while (y) {
-		gcd = y;
-		y = x % y;
+	long gcd = y;
+	while (y = x % gcd) {
 		x = gcd;
+		gcd = y;
 	}
-	return sign * gcd;
+
+	return gcd;
 }
 
 long GCD_Recursion(long x, long y) {
 	static bool check = true;
-	static int sign = +1;
 	if (check) {
-		sign = (x <= 0 && y <= 0) ? -1 : +1;
+		if (x == 0 || y == 0) {
+			return 0;
+		}
 		(x < 0) ? (x = -x) : (x);
 		(y < 0) ? (y = -y) : (y);
 		check = false;
@@ -76,48 +92,57 @@ long GCD_Recursion(long x, long y) {
 
 	if (y == 0) {
 		check = true;
-		return sign * x;
+		return x;
 	}
 	return GCD_Recursion(y, x % y);
 }
 
 long GCD_Reduction(long x, long y) {
-	static bool check = true;
-	static int sign = +1;
-	if (check) {
-		sign = (x <= 0 && y <= 0) ? -1 : +1;
-		(x < 0) ? (x = -x) : (x);
-		(y < 0) ? (y = -y) : (y);
-		check = false;
+	if (x == 0 || y == 0) {
+		return 0;
+	}
+	(x < 0) ? (x = -x) : (x);
+	(y < 0) ? (y = -y) : (y);
+
+	while (x != y) {
+		if (x > y) {
+			x = x - y;
+		}
+		else if (x < y) {
+			y = y - x;
+		}
 	}
 
-	if (x > y) {
-		return GCD_Reduction(x - y, y);
-	}
-	else if (x < y) {
-		return GCD_Reduction(x, y - x);
-	}
-	check = true;
-	return sign * x;
+	return x;
 }
 
 long LCM(long x, long y) {
-	long gcd = GCD(x, y);
-	return ((x * y) / gcd);
+	if (x == 0 || y == 0) {
+		return (x + y);
+	}
+
+	return ((x * y) / GCD(x, y));
 }
 
 void Test_GCD_LCM() {
-#define GCD GCD_Recursion
-	fprintf(stdout, "%ld, ", GCD(12, 10));
-	fprintf(stdout, "%ld, ", GCD(12, -10));
-	fprintf(stdout, "%ld, ", GCD(-12, 10));
-	fprintf(stdout, "%ld, ", GCD(-12, -10));
+	// #define GCD GCD_Reduction
+	fprintf(stdout, "(%ld, %ld) ", GCD(12, 10), LCM(12, 10));
+	fprintf(stdout, "(%ld, %ld) ", GCD(12, -10), LCM(12, -10));
+	fprintf(stdout, "(%ld, %ld) ", GCD(-12, 10), LCM(-12, 10));
+	fprintf(stdout, "(%ld, %ld) ", GCD(-12, -10), LCM(-12, -10));
 	fprintf(stdout, "\n");
 
-	fprintf(stdout, "%ld, ", GCD(10, 12));
-	fprintf(stdout, "%ld, ", GCD(10, -12));
-	fprintf(stdout, "%ld, ", GCD(-10, 12));
-	fprintf(stdout, "%ld, ", GCD(-10, -12));
+	fprintf(stdout, "(%ld, %ld) ", GCD(10, 12), LCM(10, 12));
+	fprintf(stdout, "(%ld, %ld) ", GCD(10, -12), LCM(10, -12));
+	fprintf(stdout, "(%ld, %ld) ", GCD(-10, 12), LCM(-10, 12));
+	fprintf(stdout, "(%ld, %ld) ", GCD(-10, -12), LCM(-10, -12));
+	fprintf(stdout, "\n");
+
+	fprintf(stdout, "(%ld, %ld) ", GCD(0, 10), LCM(0, 10));
+	fprintf(stdout, "(%ld, %ld) ", GCD(10, 0), LCM(10, 0));
+	fprintf(stdout, "(%ld, %ld) ", GCD(0, -10), LCM(0, -10));
+	fprintf(stdout, "(%ld, %ld) ", GCD(-10, 0), LCM(-10, 0));
+	fprintf(stdout, "(%ld, %ld) ", GCD(0, 0), LCM(0, 0));
 	fprintf(stdout, "\n");
 }
 ////////////////////////////////////////////////////////////////////////////////
