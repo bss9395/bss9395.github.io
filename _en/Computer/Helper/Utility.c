@@ -33,7 +33,7 @@ struct {
 
 bool Check(bool failed, Level level, const ui08 *function, const ui08 *record, const ui08 *extra) {
 	if (failed) {
-		if (extra == NULL) extra = (const ui08 *)"";
+		(extra == NULL) ? extra = (const ui08 *)"" : extra;
 		fprintf(stderr, "[%s] %s: %s%s; ""\n", level, function, record, extra);
 	}
 

@@ -33,7 +33,7 @@ struct {
 
 bool Check(bool failed, Level level, const ui08 *function, const ui08 *record, const ui08 *extra) {
 	if (failed) {
-		if (extra == NULL) extra = (const ui08 *)"";
+		(extra == NULL) ? extra = (const ui08 *)"" : extra;
 		fprintf(stderr, "[%s] %s: %s%s; ""\n", level, function, record, extra);
 	}
 
@@ -65,9 +65,13 @@ lhs * rhs = GCD(lhs, rhs) * LCM(lhs, rhs)
 0 <= GCD(lhs, rhs) <= Min(|lhs|, |rhs|) <= Max(|lhs|, |rhs|) <= LCM(|lhs|, |rhs|) == |LCM(lhs, rhs)|
 
 GCD(|lhs|, 0) = 0                              # |rhs| == 0
-GCD(|lhs|, |lhs|) = |lhs|                      # |lhs| == |rhs|
+GCD(|lhs|, |lhs|) = |lhs|                      # |rhs| == |lhs|
 GCD(|lhs|, |rhs|) = GCD(|lhs| - |rhs|, |rhs|)  # |lhs| >= |rhs|
 GCD(|lhs|, |rhs|) = GCD(|lhs|, |rhs| - |lhs|)  # |lhs| <= |rhs|
+
+LCM(lhs, 0) = lhs      # rhs == 0
+LCM(lhs, lhs) = lhs    # rhs == lhs
+LCM(lhs, -lhs) = -lhs  # rhs == -lhs
 */
 
 /*
@@ -192,8 +196,8 @@ long Multiple_LCM(long inte[], long numb) {
 		exit(EXIT_FAILURE);
 	}
 
-	long mult = 1;
-	for (int i = 0; i < numb; i += 1) {
+	long mult = inte[0];
+	for (int i = 1; i < numb; i += 1) {
 		if (inte[i] != 0) {
 			mult *= inte[i];
 		}
