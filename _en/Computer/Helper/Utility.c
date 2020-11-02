@@ -4,9 +4,42 @@ Update: 2020-10-25T16:28:00+08@China-Guangdong-Zhanjiang+08
 Design: String Operation
 */
 
+#include <stdbool.h>
+#include <stdint.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+typedef int8_t    in08;
+typedef int16_t   in16;
+typedef int32_t   in32;
+typedef int64_t   in64;
+typedef intptr_t  iptr;
+typedef uint8_t   ui08;
+typedef uint16_t  ui16;
+typedef uint32_t  ui32;
+typedef uint64_t  ui64;
+typedef uintptr_t uptr;
+
+typedef const ui08 *Level;
+struct {
+	const Level _Info;
+	const Level _ToDo;
+	const Level _Warn;
+	const Level _Error;
+	const Level _Fatal;
+} ELevel;
+
+bool Check(bool failed, Level level, const ui08 *function, const ui08 *record, const ui08 *extra) {
+	if (failed) {
+		if (extra == NULL) extra = (const ui08 *)"";
+		fprintf(stderr, "[%s] %s: %s%s; ""\n", level, function, record, extra);
+	}
+
+	errno = 0;
+	return failed;
+}
 
 void Swap_Int(int *x, int *y) {
 	(*x) = (*x) + (*y);
