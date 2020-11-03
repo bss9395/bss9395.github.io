@@ -62,16 +62,16 @@ GCD(lhs, mid, rhs) = GCD(GCD(lhs, mid), rhs) = GCD(lhs, GCD(mid, rhs))
 LCM(lhs, mid, rhs) = LCM(LCM(lhs, mid), rhs) = LCM(lhs, LCM(mid, rhs))
 
 lhs * rhs = GCD(lhs, rhs) * LCM(lhs, rhs)
-0 <= GCD(lhs, rhs) <= Min(|lhs|, |rhs|) <= Max(|lhs|, |rhs|) <= LCM(|lhs|, |rhs|) == |LCM(lhs, rhs)|
+0 <= GCD(lhs, rhs) == GCD(|lhs|, |rhs|) <= Min(|lhs|, |rhs|) <= Max(|lhs|, |rhs|) <= LCM(|lhs|, |rhs|) == |LCM(lhs, rhs)|
 
 GCD(|lhs|, 0) = 0                              # |rhs| == 0
 GCD(|lhs|, |lhs|) = |lhs|                      # |rhs| == |lhs|
 GCD(|lhs|, |rhs|) = GCD(|lhs| - |rhs|, |rhs|)  # |lhs| >= |rhs|
 GCD(|lhs|, |rhs|) = GCD(|lhs|, |rhs| - |lhs|)  # |lhs| <= |rhs|
 
-LCM(lhs, 0) = lhs      # rhs == 0
-LCM(lhs, lhs) = lhs    # rhs == lhs
-LCM(lhs, -lhs) = -lhs  # rhs == -lhs
+LCM(lhs, 0) = lhs                # rhs == 0
+LCM(lhs, lhs) = lhs              # rhs == lhs
+LCM(lhs, -rhs) = -LCM(lhs, rhs)  # rhs == -lhs
 */
 
 /*
@@ -163,10 +163,8 @@ long GCD_Reduction(long lhs, long rhs) {
 
 long LCM(long lhs, long rhs) {
 	long gcd = GCD(lhs, rhs);
-	if (gcd == 0) {
-		return (lhs + rhs);
-	}
-	return ((lhs * rhs) / gcd);
+	long lcm = (gcd == 0) ? (lhs + rhs) : ((lhs * rhs) / gcd);
+	return lcm;
 }
 
 long Multiple_GCD(long inte[], long numb) {
@@ -196,17 +194,15 @@ long Multiple_LCM(long inte[], long numb) {
 	}
 
 	long gcd = Multiple_GCD(inte, numb);
-	long lcm = 0;
+	long lcm = gcd;
 	if (gcd == 0) {
-		bool init = false;
 		for (int i = 0; i < numb; i += 1) {
 			if (inte[i] != 0) {
-				init ? (lcm *= inte[i]) : (lcm = inte[i], init = true);
+				(lcm == 0) ? (lcm = inte[i]) : (lcm *= inte[i]);
 			}
 		}
 	}
 	else {
-		lcm = gcd;
 		for (int i = 0; i < numb; i += 1) {
 			lcm *= inte[i] / gcd;
 		}
