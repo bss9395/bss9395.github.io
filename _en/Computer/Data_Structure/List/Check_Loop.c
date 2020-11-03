@@ -8,8 +8,8 @@ Design: Data Traversal
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Node {
-	struct Node *_next;
+typedef struct _Node {
+	struct _Node *_next;
 	double _value;
 } Node;
 
