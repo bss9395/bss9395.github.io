@@ -170,7 +170,7 @@ long LCM(long lhs, long rhs) {
 }
 
 long Multiple_GCD(long inte[], long numb) {
-	if (Check(inte == NULL || numb < 2, ELevel._Error, __FUNCTION__, "inte == NULL || numb < 0", NULL)) {
+	if (Check(inte == NULL || numb < 2, ELevel._Error, __FUNCTION__, "inte == NULL || numb < 2", NULL)) {
 		exit(EXIT_FAILURE);
 	}
 
@@ -187,27 +187,39 @@ long Multiple_GCD(long inte[], long numb) {
 			break;
 		}
 	}
-
 	return gcd;
 }
 
 long Multiple_LCM(long inte[], long numb) {
-	if (Check(inte == NULL || numb < 2, ELevel._Error, __FUNCTION__, "inte == NULL || numb < 0", NULL)) {
+	if (Check(inte == NULL || numb < 2, ELevel._Error, __FUNCTION__, "inte == NULL || numb < 2", NULL)) {
 		exit(EXIT_FAILURE);
 	}
 
-	long mult = inte[0];
-	for (int i = 1; i < numb; i += 1) {
-		if (inte[i] != 0) {
-			mult *= inte[i];
+	long gcd = Multiple_GCD(inte, numb);
+	long lcm = 0;
+	if (gcd == 0) {
+		bool init = false;
+		for (int i = 0; i < numb; i += 1) {
+			if (inte[i] != 0) {
+				init ? (lcm *= inte[i]) : (lcm = inte[i], init = true);
+			}
 		}
 	}
-
-	long gcd = Multiple_GCD(inte, numb);
-	if (gcd == 0) {
-		return mult;
+	else {
+		lcm = gcd;
+		for (int i = 0; i < numb; i += 1) {
+			lcm *= inte[i] / gcd;
+		}
 	}
-	return (mult / gcd);
+	return lcm;
+}
+
+void Test_Multiple_GCD_LCM() {
+	long inte[] = { 6, 8, 10 };
+	long zero[] = { 0, 0, 2 };
+
+	fprintf(stdout, "%ld ""\n", Multiple_LCM(inte, sizeof(inte) / sizeof(inte[0])));
+	fprintf(stdout, "%ld ""\n", Multiple_LCM(zero, sizeof(zero) / sizeof(zero[0])));
 }
 
 void Test_GCD_LCM() {
@@ -235,7 +247,7 @@ void Test_GCD_LCM() {
 
 
 int main(int argc, char *argv[]) {
-	Test_GCD_LCM();
-
+	// Test_GCD_LCM();
+	Test_Multiple_GCD_LCM();
 	return 0;
 }
