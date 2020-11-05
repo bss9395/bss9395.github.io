@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-06T05:57:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-06T06:32:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -211,6 +211,10 @@ long Multiple_LCM(long inte[], long numb) {
 }
 
 long Extended_GCD(long lhs, long rhs, long *lhs_mul, long *rhs_mul) {
+	if (Check(lhs_mul == NULL || rhs_mul == NULL, ELevel._Error, __FUNCTION__, "lhs_mul == NULL || rhs_mul == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
 	if (lhs == 0 || rhs == 0) {
 		*lhs_mul = -rhs;
 		*rhs_mul = -lhs;
@@ -277,6 +281,10 @@ Ri = Mi ¡Á lhs + Ni ¡Á rhs
  0	 -3   -1   -3     3
 */
 long Extended_GCD_Classic(long lhs, long rhs, long *lhs_mul, long *rhs_mul) {
+	if (Check(lhs_mul == NULL || rhs_mul == NULL, ELevel._Error, __FUNCTION__, "lhs_mul == NULL || rhs_mul == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
 	if (lhs == 0 || rhs == 0) {
 		*lhs_mul = -rhs;
 		*rhs_mul = -lhs;
@@ -309,14 +317,29 @@ long Extended_GCD_Classic(long lhs, long rhs, long *lhs_mul, long *rhs_mul) {
 	return r0;
 }
 
+// Modular_Multiplicative_Inverse
+long MMI(long lhs, long rhs, long *mmi) {
+	if (Check(mmi == NULL, ELevel._Error, __FUNCTION__, "mmi == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+	long lhs_mul = 0;
+	long rhs_mul = 0;
+	long gcd = Extended_GCD(lhs, rhs, &lhs_mul, &rhs_mul);
+	if (gcd == 1) {
+		(*mmi) = lhs_mul;
+	}
+	return gcd;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
-void Test() {
+void Test_Extended_GCD() {
 	long m = 0;
 	long n = 0;
 	long gcd = 0;
 
-#define Extended_GCD Extended_GCD_Classic
+	// #define Extended_GCD Extended_GCD_Classic
 	gcd = Extended_GCD(5, 7, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, 5, n, 7, m * 5 + n * 7);
 	gcd = Extended_GCD(-5, 7, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, -5, n, 7, m * (-5) + n * 7);
 	gcd = Extended_GCD(5, -7, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, 5, n, -7, m * 5 + n * (-7));
