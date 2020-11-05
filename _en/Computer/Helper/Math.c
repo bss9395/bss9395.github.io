@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-02T20:44:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-06T05:57:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -208,6 +208,131 @@ long Multiple_LCM(long inte[], long numb) {
 		}
 	}
 	return lcm;
+}
+
+long Extended_GCD(long lhs, long rhs, long *lhs_mul, long *rhs_mul) {
+	if (lhs == 0 || rhs == 0) {
+		*lhs_mul = -rhs;
+		*rhs_mul = -lhs;
+		return 0;
+	}
+	long r0 = (lhs < 0) ? -lhs : lhs;
+	long r1 = (rhs < 0) ? -rhs : rhs;
+	long m0 = 1, m1 = 0;
+
+	long mul = m1;
+	long gcd = r1;
+	long q1 = r0 / r1;
+	while (r1 = r0 - r1 * q1) {
+		m1 = m0 - m1 * q1;
+		m0 = mul;
+		mul = m1;
+
+		r0 = gcd;
+		gcd = r1;
+		q1 = r0 / r1;
+	}
+	(*lhs_mul) = (lhs < 0) ? -mul : mul;
+	(*rhs_mul) = (gcd - (*lhs_mul) * lhs) / rhs;
+	return gcd;
+}
+
+
+/* GCD(lhs, rhs) ¡Ô GCD(rhs, lhs % rhs)
+lhs = rhs ¡Á Q + R         # lhs > rhs
+R0 = R1 ¡Á Q1 + R2
+
+R0 ¡Ô lhs  R1 ¡Ô rhs             M0 ¡Ô 1     N0 ¡Ô 0               M1 ¡Ô 0     N1 ¡Ô 1
+R2 = R0 - R1 ¡Á Q1         R0 ¡Ô M0 ¡Á lhs + N0 ¡Á rhs        R1 ¡Ô M1 ¡Á lhs + N1 ¡Á rhs
+R2 = R0 % R1    		  M2 = M0 - M1 ¡Á Q1               N2 = N0 - N1 ¡Á Q1
+
+R2 = (M0 ¡Á lhs + N0 ¡Á rhs) - (M1 ¡Á lhs + N1 ¡Á rhs) ¡Á Q1
+R2 = (M0 - M1 ¡Á Q1) ¡Á lhs + (N0 - N1 ¡Á Q1) ¡Á rhs
+R2 = M2 ¡Á lhs + N2 ¡Á rhs
+Ri = Mi ¡Á lhs + Ni ¡Á rhs
+*/
+
+/*
+ M ¡Á lhs ¡Á N ¡Á rhs <= 0
+ M ¡Á lhs + N ¡Á rhs ¡Ô GCD(lhs, rhs) ¡Ý 0
+-4 ¡Á  5  + 3 ¡Á  7  ¡Ô  1
+----------------------------------
+ 3	  5   -2    7     1
+-3	 -5   -2    7     1
+ 3	  5    2   -7     1
+-3	 -5    2   -7     1
+
+-3	  2    1    7     1
+ 3	 -2    1    7     1
+-3	  2   -1   -7     1
+ 3	 -2   -1   -7     1
+
+-rhs  0    0   rhs    0
+ 0   lhs  -lhs  0     0
+ 0    0    0    0     0
+
+ 0	  3    1    3     3
+ 0	 -3    1    3     3
+ 0	  3   -1   -3     3
+ 0	 -3   -1   -3     3
+*/
+long Extended_GCD_Classic(long lhs, long rhs, long *lhs_mul, long *rhs_mul) {
+	if (lhs == 0 || rhs == 0) {
+		*lhs_mul = -rhs;
+		*rhs_mul = -lhs;
+		return 0;
+	}
+	long r0 = (lhs < 0) ? ((*lhs_mul) = -1, -lhs) : ((*lhs_mul) = +1, lhs);
+	long r1 = (rhs < 0) ? ((*rhs_mul) = -1, -rhs) : ((*rhs_mul) = +1, rhs);
+	long m0 = 1, m1 = 0;
+	long n0 = 0, n1 = 1;
+
+	long q1 = 0;
+	long r2 = 0;
+	while (r1 != 0) {
+		q1 = r0 / r1;
+
+		r2 = r1;
+		r1 = r0 - r1 * q1;
+		r0 = r2;
+
+		r2 = m1;
+		m1 = m0 - m1 * q1;
+		m0 = r2;
+
+		r2 = n1;
+		n1 = n0 - n1 * q1;
+		n0 = r2;
+	}
+	(*lhs_mul) *= m0;
+	(*rhs_mul) *= n0;
+	return r0;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void Test() {
+	long m = 0;
+	long n = 0;
+	long gcd = 0;
+
+#define Extended_GCD Extended_GCD_Classic
+	gcd = Extended_GCD(5, 7, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, 5, n, 7, m * 5 + n * 7);
+	gcd = Extended_GCD(-5, 7, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, -5, n, 7, m * (-5) + n * 7);
+	gcd = Extended_GCD(5, -7, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, 5, n, -7, m * 5 + n * (-7));
+	gcd = Extended_GCD(-5, -7, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, -5, n, -7, m * (-5) + n * (-7));
+	fprintf(stdout, "\n");
+
+	gcd = Extended_GCD(0, 7, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, 0, n, 7, m * 0 + n * 7);
+	gcd = Extended_GCD(2, 0, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, 2, n, 0, m * 2 + n * 0);
+	gcd = Extended_GCD(0, 0, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, 0, n, 0, m * 0 + n * 0);
+	fprintf(stdout, "\n");
+
+	gcd = Extended_GCD(3, 3, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, 3, n, 3, m * 3 + n * 3);
+	gcd = Extended_GCD(-3, 3, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, -3, n, 3, m * (-3) + n * 3);
+	gcd = Extended_GCD(3, -3, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, 3, n, -3, m * 3 + n * (-3));
+	gcd = Extended_GCD(-3, -3, &m, &n), fprintf(stdout, "gcd = %ld, %ld ¡Á %ld + %ld ¡Á %ld = %ld""\n", gcd, m, -3, n, -3, m * (-3) + n * (-3));
+	fprintf(stdout, "\n");
 }
 
 void Test_Multiple_GCD_LCM() {
