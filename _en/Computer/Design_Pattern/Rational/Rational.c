@@ -12,10 +12,10 @@ Digit Representation
 
 => 1 * BASE^EXPO >= 1 * base^expo                                               // Boundary Condition
 => expo * Log2(base) / Log2(BASE) <= EXPO
-=> expo * Log2(base) / Log2(BASE) <  Floor(expo * Log2(base) / Log2(BASE)) + 1  // Absolute Assurance
+=> expo * Log2(base) / Log2(BASE) <  Under(expo * Log2(base) / Log2(BASE)) + 1  // Absolute Assurance
 
 => expo <= EXPO * (Log2(BASE) / Log2(base)) = EXPO / (Log2(base) / Log2(BASE))
-=> Ceil(expo) <= Floor(EXPO / (Log2(BASE) * Log2(base))) + 1                    // Absolute Assurance
+=> Cover(expo) <= Under(EXPO / (Log2(BASE) * Log2(base))) + 1                    // Absolute Assurance
 */
 
 /* Range of Integer
@@ -108,7 +108,14 @@ Integer *Mult(Integer *Prod, Integer lhop, Integer rhop);
 Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop);
 Integer *DiviModu(Integer *quot, Integer *modu_lhop, Integer rhop);
 
-////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// TODO
+Integer Copy(Integer inte);
+Integer Bit(Integer inte, uptr pos, bool set);
+uptr Digits(Integer inte);          // FINT: ld_l
+
+////////////////////////////////////////////////////////////////////////////////
 
 typedef const ui08 *Level;
 typedef const ui08 *Type;
@@ -902,20 +909,20 @@ Case 3: [sub == 0] => [Q ==       Q_3*BASE^3           ]  // Absolute Assurance
 */
 
 /* Definition of Division
-rema = lhs - rhs * Round(lhs / rhs) = lhs - rhs * quot
-modu = lhs - rhs * Floor(lhs / rhs)
+rema = lhs - rhs * Inner(lhs / rhs) = lhs - rhs * quot
+modu = lhs - rhs * Under(lhs / rhs)
 
-			   Round Floor                |  Edge  Ceil
-lhs  rhs  quot  rema  modu  Round  Floor  |  Modu  Rema  Edge  Ceil
- 12   10     1     2     2      1      1  |    -8    -8     2     2
--12   10    -1    -2     8     -1     -2  |     8    -2    -2    -1
- 12  -10    -1     2    -8     -1     -2  |    -8     2    -2    -1
--12  -10     1    -2    -2      1      1  |     8     8     2     2
+			   Inner Under                | Outer  Cover
+lhs  rhs  quot  rema  modu  Inner  Under  |  Modu  Rema  Outer  Cover
+ 12   10     1     2     2      1      1  |    -8    -8      2     2
+-12   10    -1    -2     8     -1     -2  |     8    -2     -2    -1
+ 12  -10    -1     2    -8     -1     -2  |    -8     2     -2    -1
+-12  -10     1    -2    -2      1      1  |     8     8      2     2
 										  |
- 10   12     0    10    10      0      0  |    -2    -2     1     1
--10   12     0   -10     2      0     -1  |     2   -10    -1     0
- 10  -12     0    10    -2      0     -1  |    -2    10    -1     0
--10  -12     0   -10   -10      0      0  |     2     2     1     1
+ 10   12     0    10    10      0      0  |    -2    -2      1     1
+-10   12     0   -10     2      0     -1  |     2   -10     -1     0
+ 10  -12     0    10    -2      0     -1  |    -2    10     -1     0
+-10  -12     0   -10   -10      0      0  |     2     2      1     1
 */
 Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 	// divisor must not be 0
