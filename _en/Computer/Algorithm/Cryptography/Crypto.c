@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-06T06:32:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-08T06:17:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -10,6 +10,9 @@ Design: Math Library
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+
+#define Sqrt sqrt
 
 typedef int8_t    in08;
 typedef int16_t   in16;
@@ -39,6 +42,52 @@ bool Check(bool failed, Level level, const ui08 *function, const ui08 *record, c
 
 	errno = 0;
 	return failed;
+}
+
+/*
+Prime  ¡Ô 1 ¡Á Prime
+Number ¡Ô Prime0^p0 ¡Á Prime1^p1 ¡Á ...
+Number ¡Ô Number0 ¡Á Number1
+Square ¡Ô Root ¡Á Root       # Number0 <= Root <= Number1
+
+6¡¤K + 0 ¡Ô 6 ¡Á K
+6¡¤K + 1 ¡Ö Prime
+6¡¤K + 2 ¡Ô 2 ¡Á (3¡¤K + 1)
+6¡¤K + 3 ¡Ô 3 ¡Á (2¡¤K + 1£©
+6¡¤K + 4 ¡Ô 2 ¡Á (3¡¤K + 2)
+6¡¤K + 5 ¡Ö Prime
+*/
+bool Check_Prime(long number) {
+	(number < 0) ? (number = -number) : number;
+	if (number <= 3) {
+		return (1 <= number);
+	}
+
+	if (number % 6 == 1 || number % 6 == 5) {
+		long root = (long)Sqrt(number);
+		for (long num = 5; num <= root; num += 6) {
+			if (number % num == 0 || number % (num + 2) == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
+
+bool Check_Prime_Classic(long number) {
+	(number < 0) ? (number = -number) : number;
+	if (number <= 3) {
+		return (1 <= number);
+	}
+
+	long root = (long)sqrt(number);
+	for (long num = 2; num <= root; num += 1) {
+		if (number % num == 0) {
+			return false;
+		}
+	}
+	return true;
 }
 
 /* Greatest Common Divisor and Least Common Multiple
@@ -334,6 +383,12 @@ long MMI(long lhs, long rhs, long *mmi) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+void Test_Check_Prime() {
+	long number = -1;
+	bool is = Check_Prime(number);
+	fprintf(stdout, "%ld %s""\n", number, is ? "is prime" : "isn't prime");
+}
+
 void Test_Extended_GCD() {
 	long m = 0;
 	long n = 0;
@@ -392,6 +447,8 @@ void Test_GCD_LCM() {
 
 int main(int argc, char *argv[]) {
 	// Test_GCD_LCM();
-	Test_Multiple_GCD_LCM();
+	// Test_Multiple_GCD_LCM();
+	Test_Check_Prime();
+
 	return 0;
 }
