@@ -122,7 +122,7 @@ double Radix_Square(double value, double preci) {
 	if (value == 0.0) {
 		return 0.0;
 	}
-	(value < 1.0) ? (preci *= value) : preci;
+	(value < 1.0) ? (preci *= value * value) : preci;
 
 	long count = 0;
 	double x0 = value;
@@ -166,7 +166,7 @@ double Radix_Tangent(double value, long expon, double preci) {
 	if (expon == 1 || value == 0.0) {
 		return sign * (inve ? 1 / value : value);
 	}
-	(value < 1.0) ? (preci *= value) : preci;
+	(value < 1.0) ? (preci *= value * value) : preci;
 
 	long count = 0;
 	double x0 = value;
@@ -211,7 +211,7 @@ double Radix_Secant(double value, long expon, double preci) {
 	if (expon == 1 || value == 0.0) {
 		return sign * (inve ? 1 / value : value);
 	}
-	(value < 1.0) ? (preci *= value) : preci;
+	(value < 1.0) ? (preci *= value * value) : preci;
 
 	long count = 0;
 	double x0 = value / 2;
@@ -263,7 +263,7 @@ double Radix_Secant_Fixed(double value, long expon, double preci) {
 	if (expon == 1 || value == 0.0) {
 		return sign * (inve ? 1 / value : value);
 	}
-	(value < 1.0) ? (preci *= value) : preci;
+	(value < 1.0) ? (preci *= value * value) : preci;
 
 	long count = 0;
 	double xx = value;
@@ -302,7 +302,7 @@ double Radix_Bisection(double value, long expon, double preci) {
 	if (expon == 1 || value == 0.0) {
 		return sign * (inve ? 1 / value : value);
 	}
-	(value < 1.0) ? (preci *= value) : preci;
+	(value < 1.0) ? (preci *= value * value) : preci;
 
 	long count = 0;
 	double x0 = 0.0;
