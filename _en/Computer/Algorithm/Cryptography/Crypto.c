@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-08T06:17:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-08T22:37:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -46,16 +46,16 @@ bool Check(bool failed, Level level, const ui08 *function, const ui08 *record, c
 
 /*
 Prime  ¡Ô 1 ¡Á Prime
-Number ¡Ô Prime0^p0 ¡Á Prime1^p1 ¡Á ...
-Number ¡Ô Number0 ¡Á Number1
-Square ¡Ô Root ¡Á Root       # Number0 <= Root <= Number1
+Number ¡Ô Prime1^exp1 ¡Á Prime2^exp2 ¡Á ...
+Number ¡Ô Number1 ¡Á Number2
+Number1 <= Root <= Number2         # Square ¡Ô Root ¡Á Root
 
-6¡¤K + 0 ¡Ô 6 ¡Á K
-6¡¤K + 1 ¡Ö Prime
+6¡¤K + 0 ¡Ô 2 ¡Á (3¡¤K)
+6¡¤K + 1 ¡Ö Pseudo Prime
 6¡¤K + 2 ¡Ô 2 ¡Á (3¡¤K + 1)
 6¡¤K + 3 ¡Ô 3 ¡Á (2¡¤K + 1£©
 6¡¤K + 4 ¡Ô 2 ¡Á (3¡¤K + 2)
-6¡¤K + 5 ¡Ö Prime
+6¡¤K + 5 ¡Ö Pseudo Prime
 */
 bool Check_Prime(long number) {
 	(number < 0) ? (number = -number) : number;
@@ -88,6 +88,41 @@ bool Check_Prime_Classic(long number) {
 		}
 	}
 	return true;
+}
+
+long Generate_Prime(long primes[], long size, long number) {
+	if (Check(primes == NULL || size <= 0 || number == 0, ELevel._Error, __FUNCTION__, "primes == NULL || size <= 0 || number == 0", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	(number < 0) ? (number = -number) : number;
+
+	long init[3] = { 1, 2, 3 };
+	long count = 3;
+	if (size <= 3 || number <= 3) {
+		count = size = (size < number) ? size : number;
+	}
+	for (int i = 0; i < count; i += 1) {
+		primes[i] = init[i];
+	}
+	if (size <= count) {
+		return count;
+	}
+
+	long pseudo = primes[count - 1];
+	long index = 1;
+	while (count < size && pseudo < number) {
+		pseudo += (pseudo % 6 != 1) ? 2 : 4;
+		for (index = 1; index < count; index += 1) {
+			if (pseudo % primes[index] == 0) {
+				break;
+			}
+		}
+		if (index >= count) {
+			primes[count] = pseudo;
+			count += 1;
+		}
+	}
+	return count;
 }
 
 /* Greatest Common Divisor and Least Common Multiple
@@ -387,6 +422,17 @@ void Test_Check_Prime() {
 	long number = -1;
 	bool is = Check_Prime(number);
 	fprintf(stdout, "%ld %s""\n", number, is ? "is prime" : "isn't prime");
+
+
+	long primes[123];
+	long size = sizeof(primes) / sizeof(primes[0]);
+	long ceil = -123;
+	long count = Generate_Prime(primes, size, ceil);
+
+	for (long i = 0; i < count; i += 1) {
+		fprintf(stdout, "%ld, ", primes[i]);
+	}
+	fprintf(stdout, "\n");
 }
 
 void Test_Extended_GCD() {
