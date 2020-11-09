@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-08T22:37:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-08T06:17:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -108,10 +108,10 @@ long Generate_Prime(long primes[], long size, long number) {
 		return count;
 	}
 
-	long pseudo = primes[count - 1];
+	long pseudo = 1;
 	long index = 1;
-	while (count < size && pseudo < number) {
-		pseudo += (pseudo % 6 != 1) ? 2 : 4;
+	int step = 4;
+	while (pseudo += step, count < size && pseudo < number) {
 		for (index = 1; index < count; index += 1) {
 			if (pseudo % primes[index] == 0) {
 				break;
@@ -121,6 +121,7 @@ long Generate_Prime(long primes[], long size, long number) {
 			primes[count] = pseudo;
 			count += 1;
 		}
+		step = (step == 4) ? 2 : 4;
 	}
 	return count;
 }
