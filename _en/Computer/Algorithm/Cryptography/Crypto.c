@@ -65,10 +65,13 @@ bool Check_Prime(long number) {
 
 	if (number % 6 == 1 || number % 6 == 5) {
 		long root = (long)Sqrt(number);
-		for (long num = 5; num <= root; num += 6) {
-			if (number % num == 0 || number % (num + 2) == 0) {
+		long pseudo = 1;
+		long step = 4;
+		while (pseudo += step, pseudo <= root) {
+			if (number % pseudo == 0) {
 				return false;
 			}
+			step = (step == 4) ? 2 : 4;
 		}
 		return true;
 	}
@@ -109,9 +112,9 @@ long Generate_Prime(long primes[], long size, long number) {
 	}
 
 	long pseudo = 1;
+	long step = 4;
 	long index = 1;
-	int step = 4;
-	while (pseudo += step, count < size && pseudo < number) {
+	while (pseudo += step, count < size && pseudo <= number) {
 		for (index = 1; index < count; index += 1) {
 			if (pseudo % primes[index] == 0) {
 				break;
