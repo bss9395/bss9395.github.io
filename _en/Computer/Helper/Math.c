@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-12T03:24:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-12T06:52:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -43,18 +43,20 @@ bool Check(bool failed, Level level, const ui08 *function, const ui08 *record, c
 /* Definition of Division
 rema = lhs - rhs * Inner(lhs / rhs) = lhs - rhs * quot
 modu = lhs - rhs * Under(lhs / rhs)
+Rema = lhs - rhs * Outer(lhs / rhs)
+Modu = lhs - rhs * Cover(lhs / rhs)
 
-			   Inner Under                | Outer  Cover
-lhs  rhs  quot  rema  modu  Inner  Under  |  Modu  Rema  Outer  Cover
- 12   10     1     2     2      1      1  |    -8    -8      2     2
--12   10    -1    -2     8     -1     -2  |     8    -2     -2    -1
- 12  -10    -1     2    -8     -1     -2  |    -8     2     -2    -1
--12  -10     1    -2    -2      1      1  |     8     8      2     2
+			   Inner Under                | Outer Cover
+lhs  rhs  quot  rema  modu  Inner  Under  |  Rema  Modu  Outer  Cover
+ 12   10     1     2     2      1      1  |    -8    -8      2      2
+-12   10    -1    -2     8     -1     -2  |     8    -2     -2     -1
+ 12  -10    -1     2    -8     -1     -2  |    -8     2     -2     -1
+-12  -10     1    -2    -2      1      1  |     8     8      2      2
 										  |
- 10   12     0    10    10      0      0  |    -2    -2      1     1
--10   12     0   -10     2      0     -1  |     2   -10     -1     0
- 10  -12     0    10    -2      0     -1  |    -2    10     -1     0
--10  -12     0   -10   -10      0      0  |     2     2      1     1
+ 10   12     0    10    10      0      0  |    -2    -2      1      1
+-10   12     0   -10     2      0     -1  |     2   -10     -1      0
+ 10  -12     0    10    -2      0     -1  |    -2    10     -1      0
+-10  -12     0   -10   -10      0      0  |     2     2      1      1
 */
 
 double Absolute(double number) {
@@ -97,41 +99,30 @@ long Under(double number) {
 	return under;
 }
 
-
 /*
-Base^(0B1011) = (((Base^1)^2)^2¡ÁBase)^¡ÁBase
+Base^(0B1011) = Base^(2^3) ¡Á Base^(2^1) ¡Á Base^(2^0)
 */
 double Power(double base, long expo) {
 	if (base == 0.0 && expo == 0) {
 		return NAN;
-	}
-	if (expo == 0) {
-		return 1.0;
 	}
 	bool inver = (expo < 0) ? (expo = -expo, true) : false;
 	if (base == 0.0) {
 		return (inver ? INFINITY : 0.0);
 	}
 
-	long bits = 0;
-	while ((expo >> bits) != 0) {
-		bits += 1;
-	}
-
 	double power = 1.0;
-	while (bits -= 1, 0 <= bits) {
-		power = power * power;
-		(((expo >> bits) & 0X01) == 0) ? power : (power *= base);
+	while (0 < expo) {
+		(expo & 0X01) ? (power *= base) : power;
+		base = base * base;
+		expo >>= 1;
 	}
-	return (inver ? 1 / power : power);
+	return power;
 }
 
 double Power_Classic(double base, long expo) {
 	if (base == 0.0 && expo == 0) {
 		return NAN;
-	}
-	if (expo == 0) {
-		return 1.0;
 	}
 	bool inver = (expo < 0) ? (expo = -expo, true) : false;
 	if (base == 0.0) {
@@ -146,21 +137,18 @@ double Power_Classic(double base, long expo) {
 }
 
 /*
-Base^(2¡ÁExpo+?) = (Base^2)^Expo ¡Á (Base^?)
+Base^(2 ¡Á Expo + ?) = (Base^2)^Expo ¡Á (Base^?)
 */
 double Power_Recursion_Entrance(double base, long expo) {
 	if (expo == 0) {
 		return 1.0;
 	}
 	double power = Power_Recursion_Entrance(base * base, expo >> 1);
-	return ((expo & 0x01) == 0) ? power : (power *= base);
+	return (expo & 0x01) ? (power *= base) : power;
 }
 double Power_Recursion(double base, long expo) {
 	if (base == 0.0 && expo == 0) {
 		return NAN;
-	}
-	if (expo == 0) {
-		return 1.0;
 	}
 	bool inver = (expo < 0) ? (expo = -expo, true) : false;
 	if (base == 0.0) {
@@ -170,6 +158,52 @@ double Power_Recursion(double base, long expo) {
 	double power = Power_Recursion_Entrance(base, expo);
 	return (inver ? 1 / power : power);
 }
+
+/*
+lhs ¡Ô M ¡Á divi + L, rhs ¡Ô N ¡Á divi + R
+(lhs + rhs) % divi = ((lhs % divi) + rhs) % divi = ((lhs % divi) + (rhs % divi)) % divi = (L + R) % divi
+(lhs - rhs) % divi = ((lhs % divi) - rhs) % divi = ((lhs % divi) - (rhs % divi)) % divi = (L - R) % divi
+(lhs ¡Á rhs) % divi = ((lhs % divi) ¡Á rhs) % divi = ((lhs % divi) ¡Á (rhs % divi)) % divi = (L ¡Á R) % divi
+(pre ¡Á (lhs ¡À rhs)) % divi = (((pre ¡Á lhs) % divi) + ((pre ¡Á rhs) % divi)) % divi
+
+[Base^(2 ¡Á Expo + ?)] % Divi = [(Base^2)^Expo ¡Á Base^?] % Divi
+[Base^(2 ¡Á Expo + ?)] % Divi = [(Base^2)^Expo ¡Á Base^?] % Divi
+
+Base^(0B1011) = Base^(2^3) ¡Á Base^(2^1) ¡Á Base^(2^0)
+*/
+long Remainder_Power(long base, long expo, long divi) {
+	if (Check(expo < 0, ELevel._Warn, __FUNCTION__, "expo < 0", NULL)) {
+		return divi;
+	}
+
+	long rema = 1;
+	while (0 < expo) {
+		(expo & 0X01) ? ((rema = rema * base) % divi) : rema;
+		base = (base * base) % divi;
+		expo >>= 1;
+	}
+	return rema;
+}
+
+/*
+Base^(0B1011) = Base^(2^3) ¡Á Base^(2^1) ¡Á Base^(2^0)
+*/
+long Remainder_Power_Recursion_Entrance(long base, long expo, long divi) {
+	if (expo == 0) {
+		return 1;
+	}
+
+	long rema = Remainder_Power_Recursion_Entrance((base * base) % divi, expo >> 1, divi);
+	return ((expo & 0X01) ? ((rema * base) % divi) : rema);
+}
+long Remainder_Power_Recursion(long base, long expo, long divi) {
+	if (Check(expo < 0, ELevel._Warn, __FUNCTION__, "expo < 0", NULL)) {
+		return divi;
+	}
+
+	return Remainder_Power_Recursion_Entrance(base, expo, divi);
+}
+
 
 double Base_Square(double number, double preci) {
 	if (Check(preci < 0, ELevel._Error, __FUNCTION__, "preci < 0", NULL)) {
@@ -427,18 +461,27 @@ void Test_Absolute_Outer_Cover_Round_Inner_Under() {
 
 
 void Test_Power() {
-	long number = 2;
+	long number = 3;
 	long expo = 3;
 	// double power = Power_Recursion(number, expo);
-	double power = Power_Fast(number, expo);
+	double power = Power(number, expo);
 	fprintf(stdout, "%lf""\n", power);
+}
+
+void Test_Remainder_Power() {
+	long base = 2;
+	long expo = 5;
+	long divi = 5;
+	// long rema = Remainder_Power_Recursion(base, expo, divi);
+	long rema = Remainder_Power(base, expo, divi);
+	fprintf(stdout, "%ld\n", rema);
 }
 
 int main(int argc, char *argv[]) {
 	// Test_Absolute_Outer_Cover_Round_Inner_Under();
 	// Test_Base();
 	Test_Power();
-
+	Test_Remainder_Power();
 
 	return 0;
 }

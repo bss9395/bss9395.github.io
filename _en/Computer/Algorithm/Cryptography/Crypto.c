@@ -50,7 +50,7 @@ Number ¡Ô Prime1^exp1 ¡Á Prime2^exp2 ¡Á ...
 Number ¡Ô Number1 ¡Á Number2
 Number1 <= Root <= Number2         # Square ¡Ô Root ¡Á Root
 
-6¡¤K + 0 ¡Ô 2 ¡Á (3¡¤K)
+6¡¤K + 0 ¡Ô 2 ¡Á (3¡¤K + 0)
 6¡¤K + 1 ¡Ö Pseudo Prime
 6¡¤K + 2 ¡Ô 2 ¡Á (3¡¤K + 1)
 6¡¤K + 3 ¡Ô 3 ¡Á (2¡¤K + 1£©
@@ -341,7 +341,7 @@ Ri = Mi ¡Á lhs + Ni ¡Á rhs
 */
 
 /*
- M ¡Á lhs ¡Á N ¡Á rhs <= 0
+ M ¡Á lhs + N ¡Á rhs <= 0
  M ¡Á lhs + N ¡Á rhs ¡Ô GCD(lhs, rhs) ¡Ý 0
 -4 ¡Á  5  + 3 ¡Á  7  ¡Ô  1
 ----------------------------------
