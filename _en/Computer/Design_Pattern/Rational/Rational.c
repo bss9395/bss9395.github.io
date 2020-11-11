@@ -918,18 +918,20 @@ Case 3: [sub == 0] => [Q ==       Q_3*BASE^3           ]  // Absolute Assurance
 /* Definition of Division
 rema = lhs - rhs * Inner(lhs / rhs) = lhs - rhs * quot
 modu = lhs - rhs * Under(lhs / rhs)
+Rema = lhs - rhs * Outer(lhs / rhs)
+Modu = lhs - rhs * Cover(lhs / rhs)
 
-			   Inner Under                | Outer  Cover
-lhs  rhs  quot  rema  modu  Inner  Under  |  Modu  Rema  Outer  Cover
- 12   10     1     2     2      1      1  |    -8    -8      2     2
--12   10    -1    -2     8     -1     -2  |     8    -2     -2    -1
- 12  -10    -1     2    -8     -1     -2  |    -8     2     -2    -1
--12  -10     1    -2    -2      1      1  |     8     8      2     2
+			   Inner Under                | Outer Cover
+lhs  rhs  quot  rema  modu  Inner  Under  |  Rema  Modu  Outer  Cover
+ 12   10     1     2     2      1      1  |    -8    -8      2      2
+-12   10    -1    -2     8     -1     -2  |     8    -2     -2     -1
+ 12  -10    -1     2    -8     -1     -2  |    -8     2     -2     -1
+-12  -10     1    -2    -2      1      1  |     8     8      2      2
 										  |
- 10   12     0    10    10      0      0  |    -2    -2      1     1
--10   12     0   -10     2      0     -1  |     2   -10     -1     0
- 10  -12     0    10    -2      0     -1  |    -2    10     -1     0
--10  -12     0   -10   -10      0      0  |     2     2      1     1
+ 10   12     0    10    10      0      0  |    -2    -2      1      1
+-10   12     0   -10     2      0     -1  |     2   -10     -1      0
+ 10  -12     0    10    -2      0     -1  |    -2    10     -1      0
+-10  -12     0   -10   -10      0      0  |     2     2      1      1
 */
 Integer *DiviRema(Integer *quot, Integer *rema_lhop, Integer rhop) {
 	// divisor must not be 0
