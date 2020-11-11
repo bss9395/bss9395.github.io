@@ -208,26 +208,23 @@ long GCD_Classic(long lhs, long rhs) {
 		lhs = gcd;
 		gcd = rhs;
 	}
-
 	return gcd;
 }
 
-long GCD_Recursion(long lhs, long rhs) {
-	static bool check = true;
-	if (check) {
-		if (lhs == 0 || rhs == 0) {
-			return 0;
-		}
-		(lhs < 0) ? (lhs = -lhs) : (lhs);
-		(rhs < 0) ? (rhs = -rhs) : (rhs);
-		check = false;
-	}
-
+long GCD_Recursion_Entrance(long lhs, long rhs) {
 	if (rhs == 0) {
-		check = true;
 		return lhs;
 	}
-	return GCD_Recursion(rhs, lhs % rhs);
+	return GCD_Recursion_Entrance(rhs, lhs % rhs);
+}
+long GCD_Recursion(long lhs, long rhs) {
+	if (lhs == 0 || rhs == 0) {
+		return 0;
+	}
+	(lhs < 0) ? (lhs = -lhs) : (lhs);
+	(rhs < 0) ? (rhs = -rhs) : (rhs);
+
+	return GCD_Recursion_Entrance(lhs, rhs);
 }
 
 long GCD_Reduction(long lhs, long rhs) {
@@ -245,7 +242,6 @@ long GCD_Reduction(long lhs, long rhs) {
 			rhs = rhs - lhs;
 		}
 	}
-
 	return rhs;
 }
 

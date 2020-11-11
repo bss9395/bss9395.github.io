@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-08T01:08:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-12T03:24:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -57,86 +57,145 @@ lhs  rhs  quot  rema  modu  Inner  Under  |  Modu  Rema  Outer  Cover
 -10  -12     0   -10   -10      0      0  |     2     2      1     1
 */
 
-double Absolute(double value) {
-	return ((value < 0) ? -value : value);
+double Absolute(double number) {
+	return ((number < 0) ? -number : number);
 }
 
-long Outer(double value) {
-	long outer = (long)value;
+long Outer(double number) {
+	long outer = (long)number;
 	if (outer < 0) {
-		return (outer == value) ? outer : (outer - 1);
+		return (outer == number) ? outer : (outer - 1);
 	}
-	return (outer == value) ? outer : (outer + 1);
+	return (outer == number) ? outer : (outer + 1);
 }
 
-long Cover(double value) {
-	long over = (long)value;
+long Cover(double number) {
+	long over = (long)number;
 	if (over < 0) {
 		return over;
 	}
-	return (over == value) ? over : (over + 1);
+	return (over == number) ? over : (over + 1);
 }
 
-long Round(double value) {
-	long round = (long)value;
+long Round(double number) {
+	long round = (long)number;
 	if (round < 0) {
-		return (value <= round - 0.50) ? (round - 1) : round;
+		return (number <= round - 0.50) ? (round - 1) : round;
 	}
-	return (round + 0.50 <= value) ? (round + 1) : round;
+	return (round + 0.50 <= number) ? (round + 1) : round;
 }
 
-long Inner(double value) {
-	return (long)value;
+long Inner(double number) {
+	return (long)number;
 }
 
-long Under(double value) {
-	long under = (long)value;
+long Under(double number) {
+	long under = (long)number;
 	if (under < 0) {
-		return (under == value) ? under : (under - 1);
+		return (under == number) ? under : (under - 1);
 	}
 	return under;
 }
 
-#define Power Power_Classic
-double Power_Classic(double value, long expon) {
-	bool inve = (expon < 0) ? (expon = -expon, true) : false;
-	in08 sign = (value < 0.0) ? (value = -value, -1) : +1;
-	if (expon == 1 || value == 0.0) {
-		return sign * (inve ? 1 / value : value);
+
+/*
+Base^(0B1011) = (((Base^1)^2)^2〜Base)^〜Base
+*/
+double Power(double base, long expo) {
+	if (base == 0.0 && expo == 0) {
+		return NAN;
+	}
+	if (expo == 0) {
+		return 1.0;
+	}
+	bool inver = (expo < 0) ? (expo = -expo, true) : false;
+	if (base == 0.0) {
+		return (inver ? INFINITY : 0.0);
 	}
 
-	double power = 1;
-	for (long i = 0; i < expon; i += 1) {
-		power *= value;
+	long bits = 0;
+	while ((expo >> bits) != 0) {
+		bits += 1;
 	}
-	return sign * (inve ? 1 / power : power);
+
+	double power = 1.0;
+	while (bits -= 1, 0 <= bits) {
+		power = power * power;
+		(((expo >> bits) & 0X01) == 0) ? power : (power *= base);
+	}
+	return (inver ? 1 / power : power);
 }
 
-double Radix_Square(double value, double preci) {
+double Power_Classic(double base, long expo) {
+	if (base == 0.0 && expo == 0) {
+		return NAN;
+	}
+	if (expo == 0) {
+		return 1.0;
+	}
+	bool inver = (expo < 0) ? (expo = -expo, true) : false;
+	if (base == 0.0) {
+		return (inver ? INFINITY : 0.0);
+	}
+
+	double power = 1.0;
+	for (long i = 0; i < expo; i += 1) {
+		power *= base;
+	}
+	return (inver ? 1 / power : power);
+}
+
+/*
+Base^(2〜Expo+?) = (Base^2)^Expo 〜 (Base^?)
+*/
+double Power_Recursion_Entrance(double base, long expo) {
+	if (expo == 0) {
+		return 1.0;
+	}
+	double power = Power_Recursion_Entrance(base * base, expo >> 1);
+	return ((expo & 0x01) == 0) ? power : (power *= base);
+}
+double Power_Recursion(double base, long expo) {
+	if (base == 0.0 && expo == 0) {
+		return NAN;
+	}
+	if (expo == 0) {
+		return 1.0;
+	}
+	bool inver = (expo < 0) ? (expo = -expo, true) : false;
+	if (base == 0.0) {
+		return (inver ? INFINITY : 0.0);
+	}
+
+	double power = Power_Recursion_Entrance(base, expo);
+	return (inver ? 1 / power : power);
+}
+
+double Base_Square(double number, double preci) {
 	if (Check(preci < 0, ELevel._Error, __FUNCTION__, "preci < 0", NULL)) {
 		exit(EXIT_FAILURE);
 	}
-	if (Check(value < 0, ELevel._Info, __FUNCTION__, "complex number", NULL)) {
+	if (Check(number < 0, ELevel._Info, __FUNCTION__, "complex number", NULL)) {
 		return NAN;
 	}
-	if (value == 0.0) {
+	if (number == 0.0) {
 		return 0.0;
 	}
-	(value < 1.0) ? (preci *= value * value) : preci;
+	(number < 1.0) ? (preci *= number * number) : preci;
 
 	long count = 0;
-	double x0 = value;
-	double x1 = 0.50 * (x0 + value / x0);
+	double x0 = number;
+	double x1 = 0.50 * (x0 + number / x0);
 	while (preci < Absolute(x1 - x0)) {
 		x0 = x1;
-		x1 = 0.50 * (x0 + value / x0);
+		x1 = 0.50 * (x0 + number / x0);
 		count += 1;
 	}
 	fprintf(stdout, "%ld\n", count);
 	return x1;
 }
 
-/* Radix_Tangent
+/* Base_Tangent
  F(X) 「 F(Xn) + F'(Xn)，(X - Xn)
 	X = Xn - F(Xn)/F'(Xn)       # F(X) 《 0
  Xn+1 = Xn - F(Xn)/F'(Xn)
@@ -151,36 +210,36 @@ F'(X) = exp，X^(exp - 1)
   val = X^2
  Xn+1 = 1/2，(Xn + val/Xn)
 */
-double Radix_Tangent(double value, long expon, double preci) {
+double Base_Tangent(double number, long expon, double preci) {
 	if (Check(preci < 0, ELevel._Error, __FUNCTION__, "preci < 0", NULL)) {
 		exit(EXIT_FAILURE);
-	}
-	if (Check(value < 0 && expon % 2 == 0, ELevel._Info, __FUNCTION__, "complex number", NULL)) {
-		return NAN;
 	}
 	if (expon == 0) {
 		return NAN;
 	}
-	bool inve = (expon < 0) ? (expon = -expon, true) : false;
-	in08 sign = (value < 0.0) ? (value = -value, -1) : +1;
-	if (expon == 1 || value == 0.0) {
-		return sign * (inve ? 1 / value : value);
+	if (Check(number < 0 && (expon & 0X01) == 0, ELevel._Info, __FUNCTION__, "complex number", NULL)) {
+		return NAN;
 	}
-	(value < 1.0) ? (preci *= value * value) : preci;
+	bool inve = (expon < 0) ? (expon = -expon, true) : false;
+	char sign = (number < 0.0) ? (number = -number, -1) : +1;
+	if (expon == 1 || number == 0.0) {
+		return sign * (inve ? 1 / number : number);
+	}
+	(number < 1.0) ? (preci *= number * number) : preci;
 
 	long count = 0;
-	double x0 = value;
-	double x1 = ((expon - 1) * x0 + value / Power(x0, expon - 1)) / expon;
+	double x0 = number;
+	double x1 = ((expon - 1) * x0 + number / Power(x0, expon - 1)) / expon;
 	while (preci < Absolute(x1 - x0)) {
 		x0 = x1;
-		x1 = ((expon - 1) * x0 + value / Power(x0, expon - 1)) / expon;
+		x1 = ((expon - 1) * x0 + number / Power(x0, expon - 1)) / expon;
 		count += 1;
 	}
 	fprintf(stdout, "%ld\n", count);
 	return sign * (inve ? 1 / x1 : x1);
 }
 
-/* Radix_Secant
+/* Base_Secant
   F(X) 「 F(Xn) + F'(Xn)，(X - Xn)
 	 X 「 Xn - F(Xn)/F'(Xn)       # F(X) 《 0
   Xn+1 = Xn - F(Xn)/F'(Xn)
@@ -196,35 +255,35 @@ F'(Xn) 「 [F(Xn) - F(Xn-1)]/(Xn - Xn-1)
   Xn+1 = Xn - (Xn - Xn-1)，(Xn^2 - val)/(Xn^2 - Xn-1^2)
   Xn+1 = (Xn，Xn-1 + val)/(Xn + Xn-1)
 */
-double Radix_Secant(double value, long expon, double preci) {
+double Base_Secant(double number, long expon, double preci) {
 	if (Check(preci < 0, ELevel._Error, __FUNCTION__, "preci < 0", NULL)) {
 		exit(EXIT_FAILURE);
-	}
-	if (Check(value < 0 && expon % 2 == 0, ELevel._Info, __FUNCTION__, "complex number", NULL)) {
-		return NAN;
 	}
 	if (expon == 0) {
 		return NAN;
 	}
-	bool inve = (expon < 0) ? (expon = -expon, true) : false;
-	in08 sign = (value < 0.0) ? (value = -value, -1) : +1;
-	if (expon == 1 || value == 0.0) {
-		return sign * (inve ? 1 / value : value);
+	if (Check(number < 0 && (expon & 0X01) == 0, ELevel._Info, __FUNCTION__, "complex number", NULL)) {
+		return NAN;
 	}
-	(value < 1.0) ? (preci *= value * value) : preci;
+	bool inve = (expon < 0) ? (expon = -expon, true) : false;
+	char sign = (number < 0.0) ? (number = -number, -1) : +1;
+	if (expon == 1 || number == 0.0) {
+		return sign * (inve ? 1 / number : number);
+	}
+	(number < 1.0) ? (preci *= number * number) : preci;
 
 	long count = 0;
-	double x0 = value / 2;
-	double x1 = value;
+	double x0 = number / 2;
+	double x1 = number;
 	double p0 = Power(x0, expon);
 	double p1 = Power(x1, expon);
-	double x2 = x1 - (x1 - x0) * (p1 - value) / (p1 - p0);
+	double x2 = x1 - (x1 - x0) * (p1 - number) / (p1 - p0);
 	while (preci < Absolute(x2 - x0) || preci < Absolute(x2 - x1)) {
 		x0 = x1;
 		x1 = x2;
 		p0 = p1;
 		p1 = Power(x1, expon);
-		x2 = x1 - (x1 - x0) * (p1 - value) / (p1 - p0);
+		x2 = x1 - (x1 - x0) * (p1 - number) / (p1 - p0);
 		count += 1;
 	}
 	fprintf(stdout, "%ld\n", count);
@@ -232,7 +291,7 @@ double Radix_Secant(double value, long expon, double preci) {
 }
 
 
-/* Radix_Secant_Fixed
+/* Base_Secant_Fixed
   F(X) 「 F(Xn) + F'(Xn)，(X - Xn)
 	 X 「 Xn - F(Xn)/F'(Xn)       # F(X) 《 0
   Xn+1 = Xn - F(Xn)/F'(Xn)
@@ -248,33 +307,33 @@ F'(Xn) 「 [F(Xn) - F(XX)]/(Xn - XX)
   Xn+1 = Xn - (Xn - XX)，(Xn^2 - val)/(Xn^2 - XX^2)
   Xn+1 = (Xn，XX + val)/(Xn + XX)
 */
-double Radix_Secant_Fixed(double value, long expon, double preci) {
+double Base_Secant_Fixed(double number, long expon, double preci) {
 	if (Check(preci < 0, ELevel._Error, __FUNCTION__, "preci < 0", NULL)) {
 		exit(EXIT_FAILURE);
-	}
-	if (Check(value < 0 && expon % 2 == 0, ELevel._Info, __FUNCTION__, "complex number", NULL)) {
-		return NAN;
 	}
 	if (expon == 0) {
 		return NAN;
 	}
-	bool inve = (expon < 0) ? (expon = -expon, true) : false;
-	in08 sign = (value < 0.0) ? (value = -value, -1) : +1;
-	if (expon == 1 || value == 0.0) {
-		return sign * (inve ? 1 / value : value);
+	if (Check(number < 0 && (expon & 0X01) == 0, ELevel._Info, __FUNCTION__, "complex number", NULL)) {
+		return NAN;
 	}
-	(value < 1.0) ? (preci *= value * value) : preci;
+	bool inve = (expon < 0) ? (expon = -expon, true) : false;
+	char sign = (number < 0.0) ? (number = -number, -1) : +1;
+	if (expon == 1 || number == 0.0) {
+		return sign * (inve ? 1 / number : number);
+	}
+	(number < 1.0) ? (preci *= number * number) : preci;
 
 	long count = 0;
-	double xx = value;
+	double xx = number;
 	double px = Power(xx, expon);
 	double x0 = 0.0;
 	double p0 = Power(x0, expon);
-	double x1 = x0 - (x0 - xx) * (p0 - value) / (p0 - px);
+	double x1 = x0 - (x0 - xx) * (p0 - number) / (p0 - px);
 	while (preci < Absolute(x1 - x0)) {
 		x0 = x1;
 		p0 = Power(x0, expon);
-		x1 = x0 - (x0 - xx) * (p0 - value) / (p0 - px);
+		x1 = x0 - (x0 - xx) * (p0 - number) / (p0 - px);
 		count += 1;
 	}
 
@@ -283,33 +342,33 @@ double Radix_Secant_Fixed(double value, long expon, double preci) {
 }
 
 
-/* Radix_Bisection
+/* Base_Bisection
  val = X^2
 Xn+1 = (Xn-1 + Xn)/2
 */
-double Radix_Bisection(double value, long expon, double preci) {
+double Base_Bisection(double number, long expon, double preci) {
 	if (Check(preci < 0, ELevel._Error, __FUNCTION__, "preci < 0", NULL)) {
 		exit(EXIT_FAILURE);
-	}
-	if (Check(value < 0 && expon % 2 == 0, ELevel._Info, __FUNCTION__, "complex number", NULL)) {
-		return NAN;
 	}
 	if (expon == 0) {
 		return NAN;
 	}
-	bool inve = (expon < 0) ? (expon = -expon, true) : false;
-	in08 sign = (value < 0.0) ? (value = -value, -1) : +1;
-	if (expon == 1 || value == 0.0) {
-		return sign * (inve ? 1 / value : value);
+	if (Check(number < 0 && (expon & 0X01) == 0, ELevel._Info, __FUNCTION__, "complex number", NULL)) {
+		return NAN;
 	}
-	(value < 1.0) ? (preci *= value * value) : preci;
+	bool inve = (expon < 0) ? (expon = -expon, true) : false;
+	char sign = (number < 0.0) ? (number = -number, -1) : +1;
+	if (expon == 1 || number == 0.0) {
+		return sign * (inve ? 1 / number : number);
+	}
+	(number < 1.0) ? (preci *= number * number) : preci;
 
 	long count = 0;
 	double x0 = 0.0;
-	double x1 = value;
+	double x1 = number;
 	double x2 = (x0 + x1) / 2;
 	while (preci < Absolute(x1 - x0)) {
-		if (value <= Power(x2, expon)) {
+		if (number <= Power(x2, expon)) {
 			x1 = x2;
 		}
 		else {
@@ -322,27 +381,29 @@ double Radix_Bisection(double value, long expon, double preci) {
 	return sign * (inve ? 1 / x2 : x2);
 }
 
-void Test_Radix() {
-	double value = -1001;
+////////////////////////////////////////////////////////////////////////////////
+
+void Test_Base() {
+	double number = -1001;
 	long expon = -3;
 	double preci = 0.00005;
 	double root = 0;
 
-	root = Radix_Tangent(value, expon, preci);
-	fprintf(stdout, "root = %.10lf, diff = %.10lf""\n", root, Power(root, expon) - value);
+	root = Base_Tangent(number, expon, preci);
+	fprintf(stdout, "root = %.10lf, diff = %.10lf""\n", root, Power(root, expon) - number);
 
-	root = Radix_Secant(value, expon, preci);
-	fprintf(stdout, "root = %.10lf, diff = %.10lf""\n", root, Power(root, expon) - value);
+	root = Base_Secant(number, expon, preci);
+	fprintf(stdout, "root = %.10lf, diff = %.10lf""\n", root, Power(root, expon) - number);
 
-	root = Radix_Secant_Fixed(value, expon, preci);
-	fprintf(stdout, "root = %.10lf, diff = %.10lf""\n", root, Power(root, expon) - value);
+	root = Base_Secant_Fixed(number, expon, preci);
+	fprintf(stdout, "root = %.10lf, diff = %.10lf""\n", root, Power(root, expon) - number);
 
-	root = Radix_Bisection(value, expon, preci);
-	fprintf(stdout, "root = %.10lf, diff = %.10lf""\n", root, Power(root, expon) - value);
+	root = Base_Bisection(number, expon, preci);
+	fprintf(stdout, "root = %.10lf, diff = %.10lf""\n", root, Power(root, expon) - number);
 }
 
 
-void Test_Abso_Outer_Cover_Round_Inner_Under() {
+void Test_Absolute_Outer_Cover_Round_Inner_Under() {
 	fprintf(stdout, "%lf\n", Absolute(1.50));
 	fprintf(stdout, "%lf\n", Absolute(-1.50));
 
@@ -364,10 +425,20 @@ void Test_Abso_Outer_Cover_Round_Inner_Under() {
 	fprintf(stdout, "%ld\n", Under(-1.49));
 }
 
+
+void Test_Power() {
+	long number = 2;
+	long expo = 3;
+	// double power = Power_Recursion(number, expo);
+	double power = Power_Fast(number, expo);
+	fprintf(stdout, "%lf""\n", power);
+}
+
 int main(int argc, char *argv[]) {
-	// Test_Abso_Outer_Cover_Round_Inner_Under();
-	Test_Radix();
+	// Test_Absolute_Outer_Cover_Round_Inner_Under();
+	// Test_Base();
+	Test_Power();
+
 
 	return 0;
 }
-
