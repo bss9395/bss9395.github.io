@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-08T06:17:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-13T07:10:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -93,8 +93,8 @@ bool Check_Prime_Classic(long number) {
 	return true;
 }
 
-long Generate_Prime(long primes[], long size, long number) {
-	if (Check(primes == NULL || size <= 0 || number == 0, ELevel._Error, __FUNCTION__, "primes == NULL || size <= 0 || number == 0", NULL)) {
+long Generate_Prime(long prime[], long size, long number) {
+	if (Check(prime == NULL || size <= 0 || number == 0, ELevel._Error, __FUNCTION__, "prime == NULL || size <= 0 || number == 0", NULL)) {
 		exit(EXIT_FAILURE);
 	}
 	(number < 0) ? (number = -number) : number;
@@ -105,7 +105,7 @@ long Generate_Prime(long primes[], long size, long number) {
 		count = size = (size < number) ? size : number;
 	}
 	for (int i = 0; i < count; i += 1) {
-		primes[i] = init[i];
+		prime[i] = init[i];
 	}
 	if (size <= count) {
 		return count;
@@ -116,12 +116,12 @@ long Generate_Prime(long primes[], long size, long number) {
 	long index = 1;
 	while (pseudo += step, count < size && pseudo <= number) {
 		for (index = 1; index < count; index += 1) {
-			if (pseudo % primes[index] == 0) {
+			if (pseudo % prime[index] == 0) {
 				break;
 			}
 		}
 		if (index >= count) {
-			primes[count] = pseudo;
+			prime[count] = pseudo;
 			count += 1;
 		}
 		step = (step == 4) ? 2 : 4;
@@ -416,6 +416,59 @@ long MMI(long lhs, long rhs, long *mmi) {
 	return gcd;
 }
 
+long Factorization_Classic(long integer, long prime[], long expon[], long size) {
+	if (Check(size < 3, ELevel._Error, __FUNCTION__, "size < 3", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+	prime[0] = 1;
+	expon[0] = 1;
+	long count = 1;
+
+	if ((integer & 0X01) == 0) {
+		prime[count] = 2;
+		expon[count] = 1;
+		while (integer >>= 1, (integer & 0X01) == 0) {
+			expon[count] += 1;
+		}
+		count += 1;
+	}
+	if (integer % 3 == 0) {
+		prime[count] = 3;
+		expon[count] = 1;
+		while (integer /= 3, (integer % 3) == 0) {
+			expon[count] += 1;
+		}
+		count += 1;
+	}
+	if (integer <= 1) {
+		return count;
+	}
+
+	long root = (long)Sqrt(integer);
+	Check(size <= root * 2 / 3, ELevel._Warn, __FUNCTION__, "size <= root * 2 / 3", NULL);
+
+	long pseudo = 1;
+	long step = 4;
+	while (pseudo += step, pseudo <= integer && pseudo <= root) {
+		if (integer % pseudo == 0) {
+			prime[count] = pseudo;
+			expon[count] = 1;
+			while (integer /= pseudo, integer % pseudo == 0) {
+				expon[count] += 1;
+			}
+			count += 1;
+		}
+		step = (step == 4) ? 2 : 4;
+	}
+	if (1 < integer) {
+		prime[count] = integer;
+		expon[count] = 1;
+		count += 1;
+	}
+	return count;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 void Test_Check_Prime() {
@@ -424,13 +477,13 @@ void Test_Check_Prime() {
 	fprintf(stdout, "%ld %s""\n", number, is ? "is prime" : "isn't prime");
 
 
-	long primes[123];
-	long size = sizeof(primes) / sizeof(primes[0]);
+	long prime[123];
+	long size = sizeof(prime) / sizeof(prime[0]);
 	long ceil = -123;
-	long count = Generate_Prime(primes, size, ceil);
+	long count = Generate_Prime(prime, size, ceil);
 
 	for (long i = 0; i < count; i += 1) {
-		fprintf(stdout, "%ld, ", primes[i]);
+		fprintf(stdout, "%ld, ", prime[i]);
 	}
 	fprintf(stdout, "\n");
 }
@@ -488,13 +541,26 @@ void Test_GCD_LCM() {
 	fprintf(stdout, "(%ld, %ld) ", GCD(0, 0), LCM(0, 0));
 	fprintf(stdout, "\n");
 }
-////////////////////////////////////////////////////////////////////////////////
 
+void Test_Factorization() {
+	long integer = 60;
+	long prime[10];
+	long expon[10];
+
+	long count = Factorization_Classic(integer, prime, expon, 10);
+	for (long i = 0; i < count; i += 1) {
+		fprintf(stdout, "(%ld, %ld) ", prime[i], expon[i]);
+	}
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char *argv[]) {
 	// Test_GCD_LCM();
 	// Test_Multiple_GCD_LCM();
-	Test_Check_Prime();
+	// Test_Check_Prime();
+	Test_Factorization();
 
 	return 0;
 }
