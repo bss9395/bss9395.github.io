@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-13T17:17:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-14T02:09:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -551,6 +551,83 @@ long Factorization(long integer, long prime[], long expon[], long size) {
 	return count;
 }
 
+/*
+  Pri^Exp
+= Pri ¡Á [Pri^{Exp-1}]
+
+  MPC(Pri^Exp)
+= Pri^Exp - Pri^{Exp-1}
+= Pri^{Exp-1} ¡Á (Pri - 1)
+
+  MPC(Pri1 ¡Á Pri2)
+= Pri1 ¡Á Pri2 - Pri1 - Pri2 + 1
+= (Pri1 - 1) ¡Á (Pri2 - 1)
+= MPC(Pri1) ¡Á MPC(Pri2)
+
+  MPC(Pri1^Exp1 ¡Á Pri2^Exp2)
+= Pri1^Exp1 ¡Á Pri2^Exp2 - Pri1^{Exp1-1} ¡Á Pri2^Exp2 - Pri1^Exp1 ¡Á Pri2^{Exp2-1} + Pri1^{Exp1-1} ¡Á Pri2^{Exp2-1}
+= [Pri1^{Exp1-1} ¡Á Pri2^{Exp2-1}] ¡Á [Pri1 ¡Á Pri2 - Pri1 - Pri2 + 1]
+= [Pri1^{Exp1-1} ¡Á Pri2^{Exp2-1}] ¡Á [(Pri1 - 1) ¡Á (Pri2 - 1)]
+= [Pri1^{Exp1-1} ¡Á (Pri1 - 1)] ¡Á [Pri2^{Exp2-1} ¡Á (Pri2 - 1)]
+= MPC(Pri1^Exp1) ¡Á MPC(Pri2^Exp2)
+
+  MPC(Pri1^Exp1 ¡Á Pri2^Exp2 ¡Á Pri3^Exp3)
+= Pri1^Exp1 ¡Á Pri2^Exp2 ¡Á Pri3^Exp3
+  - Pri1^{Exp1-1} ¡Á Pri2^Exp2 ¡Á Pri3^Exp3 - Pri1^Exp1 ¡Á Pri2^{Exp2-1} ¡Á Pri3^Exp3 - Pri1^Exp1 ¡Á Pri2^Exp2 ¡Á Pri3^{Exp3-1}
+  + Pri1^{Exp1-1} ¡Á Pri2^{Exp2-1} ¡Á Pri3^Exp3 + Pri1^Exp1 ¡Á Pri2^{Exp2-1} ¡Á Pri3^{Exp3-1} + Pri1^{Exp1-1} ¡Á Pri2^Exp2 ¡Á Pri3^{Exp3-1}
+  - Pri1^{Exp1-1} ¡Á Pri2^{Exp2-1} ¡Á Pri3^{Exp3-1}
+= [Pril^{Exp1-1} ¡Á Pril2^{Exp2-1} ¡Á Pri3^{Exp3-1}]
+  ¡Á [Pri1 ¡Á Pri2 ¡Á Pri3 - Pri1 ¡Á Pri2 - Pri2 ¡Á Pri3 - Pri3 ¡Á Pri1 + Pri1 + Pri2 + Pri3 - 1]
+= [Pril^{Exp1-1} ¡Á Pril2^{Exp2-1} ¡Á Pri3^{Exp3-1}] ¡Á [(Pri1 - 1) ¡Á (Pri2 - 1) ¡Á (Pri3 - 1)]
+= [Pri1^{Exp1-1} ¡Á (Pri1 - 1)] ¡Á [Pri2^{Exp2-1} ¡Á (Pri2 - 1)] ¡Á [Pri3^{Exp3-1} ¡Á (Pri3 - 1)]
+= MPC(Pri1^Exp1) ¡Á MPC(Pri2^Exp2) ¡Á MPC(Pri3^Exp3)
+
+  MPC(Pri1^Exp1 ¡Á Pri2^Exp2 ¡Á ... ¡Á PriN^ExpN)
+= MPC(Pri1^Exp1) ¡Á MPC(Pri2^EXP2) ¡Á ... ¡Á MPC(PriN^ExpN)
+= ¡Ç[Pri^{Exp-1} ¡Á (Pri - 1)]
+= ¡Ç[Pri^Exp ¡Á (Pri - 1)/Pri]
+= [Pri1^Exp1 ¡Á Pri2^Exp2 ¡Á ... ¡Á PriN^ExpN] ¡Á ¡Ç[1 - 1/Pri]
+*/
+long Mutual_Prime_Counting(long integer) {
+	if (integer == 0) {
+		return 0;
+	}
+	(integer < 0) ? (integer = -integer) : integer;
+
+	double mpc = integer;
+	if (integer % 2 == 0) {
+		mpc = mpc * (2 - 1) / 2;
+		while (integer /= 2, integer % 2 == 0);
+	}
+	if (integer % 3 == 0) {
+		mpc = mpc * (3 - 1) / 3;
+		while (integer /= 3, integer % 3 == 0);
+	}
+	if (integer <= 1) {
+		return (long)mpc;
+	}
+
+	long root = (long)Sqrt(integer);
+	long pseudo = 1;
+	long step = 4;
+	while (pseudo += step, pseudo <= integer && pseudo <= root) {
+		if (integer % pseudo == 0) {
+			mpc = mpc * (pseudo - 1) / pseudo;
+			while (integer /= pseudo, integer % pseudo == 0);
+		}
+	}
+	if (1 < integer) {
+		mpc = mpc * (integer - 1) / integer;
+	}
+	return (long)mpc;
+}
+
+void Test_Mutual_Prime_Counting() {
+	long integer = 12;
+	long mpc = Mutual_Prime_Counting(integer);
+	fprintf(stdout, "%ld\n", mpc);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 void Test_Check_Prime() {
@@ -652,7 +729,8 @@ int main(int argc, char *argv[]) {
 	// Test_Multiple_GCD_LCM();
 	// Test_Check_Prime();
 	// Test_Factorization();
-	Test_Remainder_Power();
+	// Test_Remainder_Power();
+	Test_Mutual_Prime_Counting();
 
 	return 0;
 }
