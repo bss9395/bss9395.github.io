@@ -416,12 +416,15 @@ long MMI(long lhs, long rhs, long *mmi) {
 	return gcd;
 }
 
-long Factorization_Classic(long integer, long prime[], long expon[], long size) {
-	if (Check(size < 3, ELevel._Error, __FUNCTION__, "size < 3", NULL)) {
+long Factorization(long integer, long prime[], long expon[], long size) {
+	if (Check(prime == NULL || expon == NULL || size < 3, ELevel._Error, __FUNCTION__, "prime == NULL || expon == NULL || size < 3", NULL)) {
 		exit(EXIT_FAILURE);
 	}
+	if (integer == 0) {
+		return 0;
+	}
 
-	prime[0] = 1;
+	(integer < 0) ? (prime[0] = -1, integer = -integer) : (prime[0] = +1, integer);
 	expon[0] = 1;
 	long count = 1;
 
@@ -446,7 +449,7 @@ long Factorization_Classic(long integer, long prime[], long expon[], long size) 
 	}
 
 	long root = (long)Sqrt(integer);
-	Check(size <= root * 2 / 3, ELevel._Warn, __FUNCTION__, "size <= root * 2 / 3", NULL);
+	Check(size < root * 2 / 3 + 1, ELevel._Warn, __FUNCTION__, "size < root * 2 / 3 + 1", NULL);
 
 	long pseudo = 1;
 	long step = 4;
@@ -543,11 +546,11 @@ void Test_GCD_LCM() {
 }
 
 void Test_Factorization() {
-	long integer = 60;
+	long integer = -60;
 	long prime[10];
 	long expon[10];
 
-	long count = Factorization_Classic(integer, prime, expon, 10);
+	long count = Factorization(integer, prime, expon, 10);
 	for (long i = 0; i < count; i += 1) {
 		fprintf(stdout, "(%ld, %ld) ", prime[i], expon[i]);
 	}
