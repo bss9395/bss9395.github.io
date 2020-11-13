@@ -453,7 +453,7 @@ long Remainder_Power(long base, long expo, long divi) {
 	if (inver) {
 		long mmi = 0;
 		MMI(rema, divi, &mmi);
-		return mmi;
+		return (mmi == divi) ? divi : (mmi % divi);
 	}
 	return rema;
 }
@@ -490,7 +490,7 @@ long Remainder_Power_Recursion(long base, long expo, long divi) {
 	if (inver) {
 		long mmi = 0;
 		MMI(rema, divi, &mmi);
-		return mmi;
+		return (mmi == divi) ? divi : (mmi % divi);
 	}
 	return rema;
 }
