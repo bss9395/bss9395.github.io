@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-13T07:10:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-13T17:17:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -410,10 +410,89 @@ long MMI(long lhs, long rhs, long *mmi) {
 	long lhs_mul = 0;
 	long rhs_mul = 0;
 	long gcd = Extended_GCD(lhs, rhs, &lhs_mul, &rhs_mul);
-	if (gcd == 1) {
-		(*mmi) = lhs_mul;
-	}
+	(*mmi) = (gcd == 1) ? lhs_mul : rhs;
 	return gcd;
+}
+
+/*
+lhs ¡Ô M ¡Á divi + L, rhs ¡Ô N ¡Á divi + R
+(lhs + rhs) % divi = ((lhs % divi) + rhs) % divi = ((lhs % divi) + (rhs % divi)) % divi = (L + R) % divi
+(lhs - rhs) % divi = ((lhs % divi) - rhs) % divi = ((lhs % divi) - (rhs % divi)) % divi = (L - R) % divi
+(lhs ¡Á rhs) % divi = ((lhs % divi) ¡Á rhs) % divi = ((lhs % divi) ¡Á (rhs % divi)) % divi = (L ¡Á R) % divi
+(pre ¡Á (lhs ¡À rhs)) % divi = (((pre ¡Á lhs) % divi) + ((pre ¡Á rhs) % divi)) % divi
+
+[Base^(2 ¡Á Expo + ?)] % Divi = [(Base^2)^Expo ¡Á Base^?] % Divi
+[Base^(2 ¡Á Expo + ?)] % Divi = [(Base^2)^Expo ¡Á Base^?] % Divi
+
+Base^(0B1011) = Base^(2^3) ¡Á Base^(2^1) ¡Á Base^(2^0)
+*/
+long Remainder_Power(long base, long expo, long divi) {
+	if (Check(divi == 0, ELevel._Error, __FUNCTION__, "divi == 0", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (base == 0 && expo == 0) {
+		// return NAN;
+		return divi;
+	}
+	if (expo == 0) {
+		return (1 % divi);
+	}
+	bool inver = (expo < 0) ? (expo = -expo, true) : false;
+	if (base == 0) {
+		// return (inver ? INFINITY : 0);
+		return (inver ? divi : 0);
+	}
+
+	long rema = 1;
+	while (0 < expo) {
+		(expo & 0X01) ? ((rema = rema * base) % divi) : rema;
+		base = (base * base) % divi;
+		expo >>= 1;
+	}
+
+	if (inver) {
+		long mmi = 0;
+		MMI(rema, divi, &mmi);
+		return mmi;
+	}
+	return rema;
+}
+
+/*
+Base^(0B1011) = Base^(2^3) ¡Á Base^(2^1) ¡Á Base^(2^0)
+*/
+long Remainder_Power_Recursion_Entrance(long base, long expo, long divi) {
+	if (expo == 0) {
+		return 1;
+	}
+
+	long rema = Remainder_Power_Recursion_Entrance((base * base) % divi, expo >> 1, divi);
+	return ((expo & 0X01) ? ((rema * base) % divi) : rema);
+}
+long Remainder_Power_Recursion(long base, long expo, long divi) {
+	if (Check(divi == 0, ELevel._Error, __FUNCTION__, "divi == 0", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (base == 0 && expo == 0) {
+		// return NAN;
+		return divi;
+	}
+	if (expo == 0) {
+		return (1 % divi);
+	}
+	bool inver = (expo < 0) ? (expo = -expo, true) : false;
+	if (base == 0) {
+		// return (inver ? INFINITY : 0);
+		return (inver ? divi : 0);
+	}
+
+	long rema = Remainder_Power_Recursion_Entrance(base, expo, divi);
+	if (inver) {
+		long mmi = 0;
+		MMI(rema, divi, &mmi);
+		return mmi;
+	}
+	return rema;
 }
 
 long Factorization(long integer, long prime[], long expon[], long size) {
@@ -557,13 +636,23 @@ void Test_Factorization() {
 
 }
 
+void Test_Remainder_Power() {
+	long base = 2;
+	long expo = -5;
+	long divi = 5;
+	// long rema = Remainder_Power_Recursion(base, expo, divi);
+	long rema = Remainder_Power(base, expo, divi);
+	fprintf(stdout, "%ld\n", rema);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char *argv[]) {
 	// Test_GCD_LCM();
 	// Test_Multiple_GCD_LCM();
 	// Test_Check_Prime();
-	Test_Factorization();
+	// Test_Factorization();
+	Test_Remainder_Power();
 
 	return 0;
 }
