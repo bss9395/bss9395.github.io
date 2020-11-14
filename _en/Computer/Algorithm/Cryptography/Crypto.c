@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-14T02:09:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-15T03:42:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -104,7 +104,7 @@ long Generate_Prime(long prime[], long size, long number) {
 	if (size <= 3 || number <= 3) {
 		count = size = (size < number) ? size : number;
 	}
-	for (int i = 0; i < count; i += 1) {
+	for (long i = 0; i < count; i += 1) {
 		prime[i] = init[i];
 	}
 	if (size <= count) {
@@ -256,14 +256,14 @@ long Multiple_GCD(long inte[], long numb) {
 		exit(EXIT_FAILURE);
 	}
 
-	for (int i = 0; i < numb; i += 1) {
+	for (long i = 0; i < numb; i += 1) {
 		if (inte[i] == 0) {
 			return 0;
 		}
 	}
 
 	long gcd = inte[0];
-	for (int i = 1; i < numb; i += 1) {
+	for (long i = 1; i < numb; i += 1) {
 		gcd = GCD(gcd, inte[i]);
 		if (gcd == 1) {
 			break;
@@ -280,14 +280,14 @@ long Multiple_LCM(long inte[], long numb) {
 	long gcd = Multiple_GCD(inte, numb);
 	long lcm = gcd;
 	if (gcd == 0) {
-		for (int i = 0; i < numb; i += 1) {
+		for (long i = 0; i < numb; i += 1) {
 			if (inte[i] != 0) {
 				(lcm == 0) ? (lcm = inte[i]) : (lcm *= inte[i]);
 			}
 		}
 	}
 	else {
-		for (int i = 0; i < numb; i += 1) {
+		for (long i = 0; i < numb; i += 1) {
 			lcm *= inte[i] / gcd;
 		}
 	}
@@ -399,6 +399,45 @@ long Extended_GCD_Classic(long lhs, long rhs, long *lhs_mul, long *rhs_mul) {
 	(*lhs_mul) *= m0;
 	(*rhs_mul) *= n0;
 	return r0;
+}
+
+
+long Extended_Multiple_GCD(long inte[], long mult[], long numb) {
+	if (Check(inte == NULL || mult == NULL || numb < 2, ELevel._Error, __FUNCTION__, "inte == NULL || mult == NULL || size < 0", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+
+
+	long gcd = inte[0]; mult[0] = 1;
+	long lhs_mult = 0;
+	for (long i = 1; i < numb; i += 1) {
+		gcd = Extended_GCD(gcd, inte[i], &lhs_mult, &mult[i]);
+		for (long j = 0; j < i; j += 1) {
+			mult[j] *= lhs_mult;
+		}
+	}
+	return gcd;
+}
+
+void Test_Extended_Multiple_GCD() {
+	long inte[3] = { 2, 3, 5 };
+	long mult[3] = { 0, 0, 0 };
+	long numb = 3;
+
+	long gcd = Extended_Multiple_GCD(inte, mult, numb);
+	fprintf(stdout, "%ld\n", gcd);
+
+	for (long i = 0; i < numb; i += 1) {
+		fprintf(stdout, "(%ld, %ld) ", inte[i], mult[i]);
+	}
+	fprintf(stdout, "\n");
+
+	gcd = 0;
+	for (long i = 0; i < numb; i += 1) {
+		gcd += inte[i] * mult[i];
+	}
+	fprintf(stdout, "%ld\n", gcd);
 }
 
 // Modular_Multiplicative_Inverse
@@ -730,7 +769,10 @@ int main(int argc, char *argv[]) {
 	// Test_Check_Prime();
 	// Test_Factorization();
 	// Test_Remainder_Power();
-	Test_Mutual_Prime_Counting();
+	// Test_Mutual_Prime_Counting();
+	Test_Extended_Multiple_GCD();
 
 	return 0;
 }
+
+
