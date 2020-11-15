@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-15T03:42:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-15T21:45:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -300,8 +300,7 @@ long Extended_GCD(long lhs, long rhs, long *lhs_mul, long *rhs_mul) {
 	}
 
 	if (lhs == 0 || rhs == 0) {
-		*lhs_mul = -rhs;
-		*rhs_mul = -lhs;
+		(*lhs_mul) = (*rhs_mul) = 0;
 		return 0;
 	}
 	long r0 = (lhs < 0) ? -lhs : lhs;
@@ -324,7 +323,6 @@ long Extended_GCD(long lhs, long rhs, long *lhs_mul, long *rhs_mul) {
 	(*rhs_mul) = (gcd - (*lhs_mul) * lhs) / rhs;
 	return gcd;
 }
-
 
 /* GCD(lhs, rhs) ¡Ô GCD(rhs, lhs % rhs)
 lhs = rhs ¡Á Q + R         # lhs > rhs
@@ -355,8 +353,13 @@ Ri = Mi ¡Á lhs + Ni ¡Á rhs
 -3	  2   -1   -7     1
  3	 -2   -1   -7     1
 
--rhs  0    0   rhs    0
- 0   lhs  -lhs  0     0
+ 1	  1    0    7     1
+ 0    7    1    1     1
+-1	 -1    0    7     1
+ 0    7   -1   -1     1
+
+ 0    0    0   rhs    0
+ 0   lhs   0    0     0
  0    0    0    0     0
 
  0	  3    1    3     3
@@ -370,8 +373,7 @@ long Extended_GCD_Classic(long lhs, long rhs, long *lhs_mul, long *rhs_mul) {
 	}
 
 	if (lhs == 0 || rhs == 0) {
-		*lhs_mul = -rhs;
-		*rhs_mul = -lhs;
+		(*lhs_mul) = (*rhs_mul) = 0;
 		return 0;
 	}
 	long r0 = (lhs < 0) ? ((*lhs_mul) = -1, -lhs) : ((*lhs_mul) = +1, lhs);
@@ -401,13 +403,19 @@ long Extended_GCD_Classic(long lhs, long rhs, long *lhs_mul, long *rhs_mul) {
 	return r0;
 }
 
-
 long Extended_Multiple_GCD(long inte[], long mult[], long numb) {
 	if (Check(inte == NULL || mult == NULL || numb < 2, ELevel._Error, __FUNCTION__, "inte == NULL || mult == NULL || size < 0", NULL)) {
 		exit(EXIT_FAILURE);
 	}
 
-
+	for (long i = 0; i < numb; i += 1) {
+		if (inte[i] == 0) {
+			for (long i = 0; i < numb; i += 1) {
+				mult[i] = 0;
+			}
+			return 0;
+		}
+	}
 
 	long gcd = inte[0]; mult[0] = 1;
 	long lhs_mult = 0;
@@ -416,28 +424,14 @@ long Extended_Multiple_GCD(long inte[], long mult[], long numb) {
 		for (long j = 0; j < i; j += 1) {
 			mult[j] *= lhs_mult;
 		}
+		if (gcd == 1) {
+			while (i += 1, i < numb) {
+				mult[i] = 0;
+			}
+			break;
+		}
 	}
 	return gcd;
-}
-
-void Test_Extended_Multiple_GCD() {
-	long inte[3] = { 2, 3, 5 };
-	long mult[3] = { 0, 0, 0 };
-	long numb = 3;
-
-	long gcd = Extended_Multiple_GCD(inte, mult, numb);
-	fprintf(stdout, "%ld\n", gcd);
-
-	for (long i = 0; i < numb; i += 1) {
-		fprintf(stdout, "(%ld, %ld) ", inte[i], mult[i]);
-	}
-	fprintf(stdout, "\n");
-
-	gcd = 0;
-	for (long i = 0; i < numb; i += 1) {
-		gcd += inte[i] * mult[i];
-	}
-	fprintf(stdout, "%ld\n", gcd);
 }
 
 // Modular_Multiplicative_Inverse
@@ -491,8 +485,8 @@ long Remainder_Power(long base, long expo, long divi) {
 
 	if (inver) {
 		long mmi = 0;
-		MMI(rema, divi, &mmi);
-		return (mmi == divi) ? divi : (mmi % divi);
+		long gcd = MMI(rema, divi, &mmi);
+		return (gcd == 1) ? (mmi % divi) : divi;
 	}
 	return rema;
 }
@@ -528,8 +522,8 @@ long Remainder_Power_Recursion(long base, long expo, long divi) {
 	long rema = Remainder_Power_Recursion_Entrance(base, expo, divi);
 	if (inver) {
 		long mmi = 0;
-		MMI(rema, divi, &mmi);
-		return (mmi == divi) ? divi : (mmi % divi);
+		long gcd = MMI(rema, divi, &mmi);
+		return (gcd == 1) ? (mmi % divi) : divi;
 	}
 	return rema;
 }
@@ -661,12 +655,6 @@ long Mutual_Prime_Counting(long integer) {
 	return (long)mpc;
 }
 
-void Test_Mutual_Prime_Counting() {
-	long integer = 12;
-	long mpc = Mutual_Prime_Counting(integer);
-	fprintf(stdout, "%ld\n", mpc);
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 
 void Test_Check_Prime() {
@@ -761,6 +749,32 @@ void Test_Remainder_Power() {
 	fprintf(stdout, "%ld\n", rema);
 }
 
+void Test_Mutual_Prime_Counting() {
+	long integer = 12;
+	long mpc = Mutual_Prime_Counting(integer);
+	fprintf(stdout, "%ld\n", mpc);
+}
+
+void Test_Extended_Multiple_GCD() {
+	long inte[10] = { 2, 3, 5, 7, 4 };
+	long mult[10] = { 0, 0, 0 };
+	long numb = 5;
+
+	long gcd = Extended_Multiple_GCD(inte, mult, numb);
+	fprintf(stdout, "%ld\n", gcd);
+
+	for (long i = 0; i < numb; i += 1) {
+		fprintf(stdout, "(%ld, %ld) ", inte[i], mult[i]);
+	}
+	fprintf(stdout, "\n");
+
+	gcd = 0;
+	for (long i = 0; i < numb; i += 1) {
+		gcd += inte[i] * mult[i];
+	}
+	fprintf(stdout, "%ld\n", gcd);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char *argv[]) {
@@ -770,6 +784,7 @@ int main(int argc, char *argv[]) {
 	// Test_Factorization();
 	// Test_Remainder_Power();
 	// Test_Mutual_Prime_Counting();
+	// Test_Extended_GCD();
 	Test_Extended_Multiple_GCD();
 
 	return 0;
