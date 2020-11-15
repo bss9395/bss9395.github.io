@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-15T21:45:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-16T04:15:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -137,17 +137,26 @@ k ¡Á GCD(lhs, rhs) = GCD(k ¡Á lhs, k ¡Á rhs)
 k ¡Á LCM(lhs, rhs) = LCM(k ¡Á lhs, k ¡Á rhs)
 
 GCD(lhs, LCM(mid, rhs)) = LCM(GCD(lhs, mid), GCD(lhs, rhs))
-# lhs == G¡¤L, mid == g¡¤M == G¡¤g/G¡¤M, rhs == g¡¤R == G¡¤g/G¡¤M
-# GCD(lhs, LCM(mid, rhs)) == GCD(G¡¤L, g¡¤M¡¤R) == GCD(G¡¤L, G¡¤g/G¡¤M¡¤R) == G
-# LCM(GCD(lhs, mid), GCD(lhs, rhs)) == LCM(G, G) == G
+# lhs ¡Ô G¡¤L, mid ¡Ô g¡¤M ¡Ô G¡¤g/G¡¤M, rhs ¡Ô g¡¤R ¡Ô G¡¤g/G¡¤M
+# GCD(lhs, LCM(mid, rhs)) = GCD(G¡¤L, g¡¤M¡¤R) = GCD(G¡¤L, G¡¤g/G¡¤M¡¤R) = G
+# LCM(GCD(lhs, mid), GCD(lhs, rhs)) = LCM(G, G) = G
 
 LCM(lhs, GCD(mid, rhs)) = GCD(LCM(lhs, mid), LCM(lhs, rhs))
-# lhs == g¡¤L, mid == G¡¤M == g¡¤G/g¡¤M, rhs == G¡¤R == g¡¤G/g¡¤R
-# LCM(lhs, GCD(mid, rhs)) == LCM(g¡¤L, G) == LCM(g¡¤L, g¡¤G/g) == g¡¤L¡¤G/g == L¡¤G
-# GCD(LCM(lhs, mid), LCM(lhs, rhs)) == GCD(g¡¤L¡¤G/g¡¤M, g¡¤L¡¤G/g¡¤R) == g¡¤L¡¤G/g == L¡¤G
+# lhs ¡Ô g¡¤L, mid ¡Ô G¡¤M ¡Ô g¡¤G/g¡¤M, rhs ¡Ô G¡¤R ¡Ô g¡¤G/g¡¤R
+# LCM(lhs, GCD(mid, rhs)) = LCM(g¡¤L, G) = LCM(g¡¤L, g¡¤G/g) = g¡¤L¡¤G/g = L¡¤G
+# GCD(LCM(lhs, mid), LCM(lhs, rhs)) = GCD(g¡¤L¡¤G/g¡¤M, g¡¤L¡¤G/g¡¤R) = g¡¤L¡¤G/g = L¡¤G
 
 GCD(lhs, mid, rhs) = GCD(GCD(lhs, mid), rhs) = GCD(lhs, GCD(mid, rhs))
+# lhs ¡Ô ¡Ç[Pri^ExpL], mid ¡Ô ¡Ç[Pri^ExpM], rhs ¡Ô ¡Ç[Pri^ExpR]
+# GCD(lhs, mid, rhs) = ¡Ç[Pri^{Min(ExpL, ExpM, ExpR)}]
+# GCD(GCD(lhs, mid), rhs) = GCD(¡Ç[Pri^{Min(ExpL, ExpM)}], ¡Ç[Pri^ExpR]) = ¡Ç[Pri^{Min(ExpL, ExpM, ExpR}]
+# GCD(lhs, GCD(mid, rhs)) = GCD(¡Ç[Pri^ExpL], ¡Ç[Pri^{Min(ExpM, ExpR)}]) = ¡Ç[Pri^{Min(ExpL, ExpM, ExpR}]
+
 LCM(lhs, mid, rhs) = LCM(LCM(lhs, mid), rhs) = LCM(lhs, LCM(mid, rhs))
+# lhs ¡Ô ¡Ç[Pri^ExpL], mid ¡Ô ¡Ç[Pri^ExpM], rhs ¡Ô ¡Ç[Pri^ExpR]
+# LCM(lhs, mid, rhs) = ¡Ç[Pri^{Max(ExpL, ExpM, ExpR)}]
+# LCM(LCM(lhs, mid), rhs) = LCM(¡Ç[Pri^{Max(ExpL, ExpM)}], ¡Ç[Pri^ExpR]) = ¡Ç[Pri^{Max(ExpL, ExpM, ExpR}]
+# LCM(lhs, LCM(mid, rhs)) = LCM(¡Ç[Pri^ExpL], ¡Ç[Pri^{Max(ExpM, ExpR)}]) = ¡Ç[Pri^{Max(ExpL, ExpM, ExpR}]
 
 lhs * rhs = GCD(lhs, rhs) * LCM(lhs, rhs)
 0 <= GCD(lhs, rhs) == GCD(|lhs|, |rhs|) <= Min(|lhs|, |rhs|) <= Max(|lhs|, |rhs|) <= LCM(|lhs|, |rhs|) == |LCM(lhs, rhs)|
@@ -272,6 +281,11 @@ long Multiple_GCD(long inte[], long numb) {
 	return gcd;
 }
 
+/*
+  LCM(g¡¤L, g¡¤M, g¡¤R)
+= g¡¤L¡¤M¡¤R
+= g¡¤(g¡¤L/g)¡¤(g¡¤M/g)¡¤(g¡¤R/g)
+*/
 long Multiple_LCM(long inte[], long numb) {
 	if (Check(inte == NULL || numb < 2, ELevel._Error, __FUNCTION__, "inte == NULL || numb < 2", NULL)) {
 		exit(EXIT_FAILURE);
@@ -777,6 +791,58 @@ void Test_Extended_Multiple_GCD() {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/*
+©° X ¡Ô R0 % D0 ©´
+©¦ X ¡Ô R1 % D1 ©¼ ©´
+©¦ X ¡Ô R2 % D2   ©¼
+©¦   ...
+©¸ X ¡Ô Rn % Dn
+
+  X ¡Ô M0 ¡Á D0 + R0 ©´ M0 ¡Á D0 + R0 ¡Ô M1 ¡Á D1 + R1
+  X ¡Ô M1 ¡Á D1 + R1 ©¼ M0 ¡Á D0 - M1 ¡Á D1 ¡Ô R1 - R0   # (R1 - R0) % GCD(D0, D1) ¡Ô 0
+
+  R ¡Ô M0 ¡Á D0 + R0 ¡Ô M1 ¡Á D1 + R1      # LCM(D0, D1) % D0 ¡Ô 0
+  X ¡Ô R + M ¡Á LCM(D0, D1)              # LCM(D0, D1) % D1 ¡Ô 0
+
+  X ¡Ô R % D        # D ¡Ô LCM(D0, D1)   # D ¡Ô LCM(LCM(D0, D1), D2) ¡Ô LCM(D0, D1, D2)
+*/
+long Linear_Congruence(long divi[], long rema[], long numb, long *lcm) {
+	if (Check(divi == NULL || rema == NULL || numb < 2 || lcm == NULL, ELevel._Error, __FUNCTION__, "divi == NULL || rema == NULL || numb < 2 || lcm == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+
+
+	long rema0 = rema[0];
+	long divi0 = divi[0];
+	long mult0 = 0;
+	long mult1 = 0;
+	long gcd = 0;
+	bool solu = true;
+	for (long i = 1; i < numb; i += 1) {
+		gcd = Extended_GCD(divi0, divi[i], &mult0, &mult1);
+		if ((rema[i] - rema0) % gcd != 0) {
+			solu = false;
+		}
+		else if (solu) {
+			// rema0 %= divi0;
+			rema0 = mult0 * divi0 + rema0;
+		}
+		divi0 = (divi0 * divi[i]) / gcd;
+	}
+	(*lcm) = divi0;
+	return (solu ? (rema0 % divi0) : (*lcm));
+}
+
+void Test_Linear_Congruence() {
+	long divi[] = { 3, 5, 7 };
+	long rema[] = { 2, 3, 2 };
+	long numb = 3;
+	long lcm = 0;
+	long solu = Linear_Congruence(divi, rema, numb, &lcm);
+	fprintf(stdout, "%ld, %ld\n", solu, lcm);
+}
+
 int main(int argc, char *argv[]) {
 	// Test_GCD_LCM();
 	// Test_Multiple_GCD_LCM();
@@ -785,7 +851,8 @@ int main(int argc, char *argv[]) {
 	// Test_Remainder_Power();
 	// Test_Mutual_Prime_Counting();
 	// Test_Extended_GCD();
-	Test_Extended_Multiple_GCD();
+	// Test_Extended_Multiple_GCD();
+	Test_Linear_Congruence();
 
 	return 0;
 }
