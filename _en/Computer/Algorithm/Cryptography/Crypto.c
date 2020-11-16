@@ -1,6 +1,6 @@
 /* Math.c
 Author: BSS9395
-Update: 2020-11-16T04:15:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-17T01:32:00+08@China-Guangdong-Zhanjiang+08
 Design: Math Library
 */
 
@@ -351,7 +351,6 @@ R2 = (M0 - M1 ¡Á Q1) ¡Á lhs + (N0 - N1 ¡Á Q1) ¡Á rhs
 R2 = M2 ¡Á lhs + N2 ¡Á rhs
 Ri = Mi ¡Á lhs + Ni ¡Á rhs
 */
-
 /*
  M ¡Á lhs + N ¡Á rhs <= 0
  M ¡Á lhs + N ¡Á rhs ¡Ô GCD(lhs, rhs) ¡Ý 0
@@ -459,6 +458,51 @@ long MMI(long lhs, long rhs, long *mmi) {
 	long gcd = Extended_GCD(lhs, rhs, &lhs_mul, &rhs_mul);
 	(*mmi) = (gcd == 1) ? lhs_mul : rhs;
 	return gcd;
+}
+
+/*
+©° X ¡Ô R0 % D0 ©´
+©¦ X ¡Ô R1 % D1 ©¼©´
+©¦ X ¡Ô R2 % D2  ©¼
+©¦   ...
+©¸ X ¡Ô Rn % Dn
+
+  X ¡Ô M0 ¡Á D0 + R0 ©´ M0 ¡Á D0 + R0 ¡Ô M1 ¡Á D1 + R1
+  X ¡Ô M1 ¡Á D1 + R1 ©¼ M0 ¡Á D0 - M1 ¡Á D1 ¡Ô R1 - R0     # (R1 - R0) % GCD(D0, D1) ¡Ô 0
+
+  R ¡Ô M0 ¡Á D0 + R0 ¡Ô M1 ¡Á D1 + R1      # LCM(D0, D1) % D0 ¡Ô 0
+  X ¡Ô R + M ¡Á LCM(D0, D1)              # LCM(D0, D1) % D1 ¡Ô 0
+
+  X ¡Ô R % D        # D ¡Ô LCM(D0, D1)   # D ¡Ô LCM(LCM(D0, D1), D2) ¡Ô LCM(D0, D1, D2)
+*/
+long Linear_Congruence(long divi[], long rema[], long numb, long *gene) {
+	if (Check(divi == NULL || rema == NULL || numb < 2 || gene == NULL, ELevel._Error, __FUNCTION__, "divi == NULL || rema == NULL || numb < 2 || lcm == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+	for (long i = 0; i < numb; i += 1) {
+		if (divi[i] == 0) {
+			(*gene) = 0;
+			return (*gene);
+		}
+	}
+
+	long rema0 = rema[0];
+	long divi0 = divi[0];
+	long mult0 = 0;
+	long mult1 = 0;
+	long gcd = 0;
+	for (long i = 1; i < numb; i += 1) {
+		gcd = Extended_GCD(divi0, divi[i], &mult0, &mult1);
+		if ((rema[i] - rema0) % gcd != 0) {
+			(*gene) = 0;
+			return (*gene);
+		}
+		rema0 = ((rema[i] - rema0) / gcd) * mult0 * divi0 + rema0;
+		divi0 = (divi0 * divi[i]) / gcd;
+	}
+	(*gene) = divi0;
+	return (rema0 % divi0);
 }
 
 /*
@@ -789,59 +833,21 @@ void Test_Extended_Multiple_GCD() {
 	fprintf(stdout, "%ld\n", gcd);
 }
 
-////////////////////////////////////////////////////////////////////////////////
-
-/*
-©° X ¡Ô R0 % D0 ©´
-©¦ X ¡Ô R1 % D1 ©¼ ©´
-©¦ X ¡Ô R2 % D2   ©¼
-©¦   ...
-©¸ X ¡Ô Rn % Dn
-
-  X ¡Ô M0 ¡Á D0 + R0 ©´ M0 ¡Á D0 + R0 ¡Ô M1 ¡Á D1 + R1
-  X ¡Ô M1 ¡Á D1 + R1 ©¼ M0 ¡Á D0 - M1 ¡Á D1 ¡Ô R1 - R0   # (R1 - R0) % GCD(D0, D1) ¡Ô 0
-
-  R ¡Ô M0 ¡Á D0 + R0 ¡Ô M1 ¡Á D1 + R1      # LCM(D0, D1) % D0 ¡Ô 0
-  X ¡Ô R + M ¡Á LCM(D0, D1)              # LCM(D0, D1) % D1 ¡Ô 0
-
-  X ¡Ô R % D        # D ¡Ô LCM(D0, D1)   # D ¡Ô LCM(LCM(D0, D1), D2) ¡Ô LCM(D0, D1, D2)
-*/
-long Linear_Congruence(long divi[], long rema[], long numb, long *lcm) {
-	if (Check(divi == NULL || rema == NULL || numb < 2 || lcm == NULL, ELevel._Error, __FUNCTION__, "divi == NULL || rema == NULL || numb < 2 || lcm == NULL", NULL)) {
-		exit(EXIT_FAILURE);
-	}
-
-
-
-	long rema0 = rema[0];
-	long divi0 = divi[0];
-	long mult0 = 0;
-	long mult1 = 0;
-	long gcd = 0;
-	bool solu = true;
-	for (long i = 1; i < numb; i += 1) {
-		gcd = Extended_GCD(divi0, divi[i], &mult0, &mult1);
-		if ((rema[i] - rema0) % gcd != 0) {
-			solu = false;
-		}
-		else if (solu) {
-			// rema0 %= divi0;
-			rema0 = mult0 * divi0 + rema0;
-		}
-		divi0 = (divi0 * divi[i]) / gcd;
-	}
-	(*lcm) = divi0;
-	return (solu ? (rema0 % divi0) : (*lcm));
-}
-
 void Test_Linear_Congruence() {
-	long divi[] = { 3, 5, 7 };
-	long rema[] = { 2, 3, 2 };
-	long numb = 3;
-	long lcm = 0;
-	long solu = Linear_Congruence(divi, rema, numb, &lcm);
-	fprintf(stdout, "%ld, %ld\n", solu, lcm);
+	long divi[] = { 3, 5, 7, 9 };
+	long rema[] = { 2, 3, 2, 5 };
+	long numb = sizeof(divi) / sizeof(divi[0]);
+	long gene = 0;
+	long solu = Linear_Congruence(divi, rema, numb, &gene);
+	fprintf(stdout, "%ld, %ld\n", solu, gene);
+
+	for (long i = 0; i < numb; i += 1) {
+		fprintf(stdout, "%ld, ", (solu) % divi[i]);
+	}
+	fprintf(stdout, "\n");
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char *argv[]) {
 	// Test_GCD_LCM();
