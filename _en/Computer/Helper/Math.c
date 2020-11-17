@@ -380,7 +380,7 @@ double Base_Bisection(double number, long expon, double preci) {
 Factorial(n) = n! = n ¡Á (n - 1) ¡Á ... ¡Á 1   # 0 <= n
 */
 long Factorial(long inte) {
-	if (Check(inte < 0, ELevel._ToDo, __FUNCTION__, "inte <0", NULL)) {
+	if (Check(inte < 0, ELevel._ToDo, __FUNCTION__, "inte < 0", NULL)) {
 		return 0;
 	}
 
@@ -395,7 +395,7 @@ long Factorial(long inte) {
 Permutation(m, n) = m! / (m - n)! = m ¡Á (m - 1) ¡Á ... ¡Á (m - n + 1)
 */
 long Permutation(long samp, long pick) {
-	if (Check(samp < 0 || pick < 0 || samp < pick, ELevel._Info, __FUNCTION__, "samp < 0 || pick < 0 || samp < pick", NULL)) {
+	if (samp < 0 || pick < 0 || samp < pick) {
 		return 0;
 	}
 
@@ -408,10 +408,14 @@ long Permutation(long samp, long pick) {
 
 /*
 Combination(m, n) = m! / (m - n)! / n! = [m ¡Á (m - 1) ¡Á ... ¡Á (m - n + 1)] / [n ¡Á (n - 1) ¡Á ... ¡Á 1]
+Combination(m, n) = Combination(m, m - n) = m! / n! / (m - n)!
 */
 long Combination(long samp, long pick) {
-	if (Check(samp < 0 || pick < 0 || samp < pick, ELevel._Info, __FUNCTION__, "samp < 0 || pick < 0 || samp < pick", NULL)) {
+	if (samp < 0 || pick < 0 || samp < pick) {
 		return 0;
+	}
+	if (samp / 2 < pick) {
+		pick = samp - pick;
 	}
 
 	long comb = Permutation(samp, pick) / Factorial(pick);
@@ -497,7 +501,7 @@ int main(int argc, char *argv[]) {
 	// Test_Base();
 	// Test_Power();
 	// Test_Factorial();
-	Test_Permutation();
+	// Test_Permutation();
 	Test_Combination();
 
 	return 0;
