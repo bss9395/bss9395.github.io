@@ -41,31 +41,38 @@ bool Check(bool failed, Level level, const ui08 *function, const ui08 *record, c
 	return failed;
 }
 
-void Swap_Int(int *x, int *y) {
-	(*x) = (*x) + (*y);
-	(*y) = (*x) - (*y);
-	(*x) = (*x) - (*y);
+void Swap(long *lhs, long *rhs) {
+	long temp = (*lhs);
+	(*lhs) = (*rhs);
+	(*rhs) = temp;
 	return;
 }
 
-void Swap_XOR(int *x, int *y) {
-	(*x) = (*x) ^ (*y);
-	(*y) = (*x) ^ (*y);
-	(*x) = (*x) ^ (*y);
+void Swap_Arithmetic(long *lhs, long *rhs) {
+	(*lhs) = (*lhs) + (*rhs);
+	(*rhs) = (*lhs) - (*rhs);
+	(*lhs) = (*lhs) - (*rhs);
 	return;
 }
 
-int Length(char *data) {
-	int len = -1;
-	if (data != NULL) {
-		while (len += 1, data[len] != '\0');
+void Swap_XOR(long *lhs, long *rhs) {
+	(*lhs) = (*lhs) ^ (*rhs);
+	(*rhs) = (*lhs) ^ (*rhs);
+	(*lhs) = (*lhs) ^ (*rhs);
+	return;
+}
+
+long Length(char *stri) {
+	long len = -1;
+	if (stri != NULL) {
+		while (len += 1, stri[len] != '\0');
 	}
 	return len;
 }
 
-char *Zero_Data(int size) {
+char *Zero_Data(long size) {
 	static char *zero = NULL;
-	static int full = 0;
+	static long full = 0;
 	if (full < size) {
 		free(zero);
 		zero = (char *)calloc(size, sizeof(char));
@@ -74,7 +81,7 @@ char *Zero_Data(int size) {
 	return zero;
 }
 
-char *New_Data(char *copy, char *data, int size) {
+char *New_Data(char *copy, char *data, long size) {
 	if (size < 1) {
 		return NULL;
 	}
@@ -82,13 +89,13 @@ char *New_Data(char *copy, char *data, int size) {
 	copy = (copy != NULL) ?
 		(char *)realloc(copy, size * sizeof(char)) :
 		(char *)calloc(size, sizeof(char));
-	for (int i = 0; i < size; copy[i] = data[i], i += 1);
+	for (long i = 0; i < size; copy[i] = data[i], i += 1);
 	return copy;
 }
 
-unsigned Hash(char *data, int numb) {
+unsigned Hash(char *data, long numb) {
 	unsigned hash = 9395;
-	for (int i = 0; i < numb; i += 1) {
+	for (long i = 0; i < numb; i += 1) {
 		hash = (hash << 7) | (hash >> 25);
 		hash ^= data[i];
 	}
@@ -99,8 +106,8 @@ unsigned Hash(char *data, int numb) {
 ////////////////////////////////////////////////////////////////////////////////
 
 void Test_Swap() {
-	int a = 3;
-	int b = 4;
+	long a = 3;
+	long b = 4;
 
 	Swap_Int(&a, &b);
 	fprintf(stdout, "%ld, %ld\n", a, b);
@@ -110,7 +117,7 @@ void Test_Swap() {
 }
 
 void Test_Length() {
-	int len = Length(NULL);
+	long len = Length(NULL);
 	fprintf(stdout, "%ld\n", len);
 }
 
@@ -134,8 +141,8 @@ void Test_Hash() {
 	fprintf(stdout, "%ld\n", hash);
 
 	char strs[] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	for (int i = 0; i < 62; i += 1) {
-		int hash = Hash(&strs[i], 1);
+	for (long i = 0; i < 62; i += 1) {
+		long hash = Hash(&strs[i], 1);
 		fprintf(stdout, "%lu\n", hash);
 	}
 	return;

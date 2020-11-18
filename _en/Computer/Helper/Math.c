@@ -105,6 +105,46 @@ long Under(double number) {
 	return under;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+double Mini(double lhs, double rhs) {
+	return ((lhs < rhs) ? lhs : rhs);
+}
+
+double Maxi(double lhs, double rhs) {
+	return ((lhs > rhs) ? lhs : rhs);
+}
+
+double Minimum(double value[], long numb) {
+	if (Check(value == NULL || numb <= 0, ELevel._Error, __FUNCTION__, "value == NULL || numb <= 0", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+	double min = value[0];
+	for (long i = 1; i < numb; i += 1) {
+		if (min > value[i]) {
+			min = value[i];
+		}
+	}
+	return min;
+}
+
+double Maximum(double value[], long numb) {
+	if (Check(value == NULL || numb <= 0, ELevel._Error, __FUNCTION__, "value == NULL || numb <= 0", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+	double max = value[0];
+	for (long i = 1; i < numb; i += 1) {
+		if (max < value[i]) {
+			max = value[i];
+		}
+	}
+	return max;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 /*
 Base^(0B1011) = Base^(2^3) ¡Á Base^(2^1) ¡Á Base^(2^0)
 */
@@ -375,53 +415,6 @@ double Base_Bisection(double number, long expon, double preci) {
 	return sign * (inve ? 1 / x2 : x2);
 }
 
-
-/*
-Factorial(n) = n! = n ¡Á (n - 1) ¡Á ... ¡Á 1   # 0 <= n
-*/
-long Factorial(long inte) {
-	if (Check(inte < 0, ELevel._ToDo, __FUNCTION__, "inte < 0", NULL)) {
-		return 0;
-	}
-
-	long fact = 1;
-	for (long i = 1; i <= inte; i += 1) {
-		fact *= i;
-	}
-	return fact;
-}
-
-/*
-Permutation(m, n) = m! / (m - n)! = m ¡Á (m - 1) ¡Á ... ¡Á (m - n + 1)
-*/
-long Permutation(long samp, long pick) {
-	if (samp < 0 || pick < 0 || samp < pick) {
-		return 0;
-	}
-
-	long perm = 1;
-	for (pick = samp - pick + 1; pick <= samp; pick += 1) {
-		perm *= pick;
-	}
-	return perm;
-}
-
-/*
-Combination(m, n) = m! / (m - n)! / n! = [m ¡Á (m - 1) ¡Á ... ¡Á (m - n + 1)] / [n ¡Á (n - 1) ¡Á ... ¡Á 1]
-Combination(m, n) = Combination(m, m - n) = m! / n! / (m - n)!
-*/
-long Combination(long samp, long pick) {
-	if (samp < 0 || pick < 0 || samp < pick) {
-		return 0;
-	}
-	if (samp / 2 < pick) {
-		pick = samp - pick;
-	}
-
-	long comb = Permutation(samp, pick) / Factorial(pick);
-	return comb;
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 
 void Test_Base() {
@@ -475,37 +468,13 @@ void Test_Power() {
 	fprintf(stdout, "%lf""\n", power);
 }
 
-void Test_Factorial() {
-	long fact = Factorial(3);
-	fprintf(stdout, "%ld\n", fact);
-}
-
-void Test_Permutation() {
-	long samp = 5;
-	long pick = 3;
-	long perm = Permutation(samp, pick);
-	fprintf(stdout, "%ld\n", perm);
-}
-
-void Test_Combination() {
-	long samp = 5;
-	long pick = 3;
-	long comb = Combination(samp, pick);
-	fprintf(stdout, "%ld\n", comb);
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char *argv[]) {
 	// Test_Absolute_Outer_Cover_Round_Inner_Under();
 	// Test_Base();
 	// Test_Power();
-	// Test_Factorial();
-	// Test_Permutation();
-	Test_Combination();
+	Test_Factorial();
 
 	return 0;
 }
-
-
-
