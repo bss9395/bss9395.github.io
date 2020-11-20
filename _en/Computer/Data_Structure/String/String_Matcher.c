@@ -179,13 +179,11 @@ char *Match_SubString(char *str, long len_str, char *sub, long len_sub, long bac
 	char *end_str = str + len_str;
 	long idx_sub = 0;
 	while (str < end_str && idx_sub < len_sub) {
-		if (idx_sub == -1 || str[0] == sub[idx_sub]) {
-			str += 1;
-			idx_sub += 1;
-		}
-		else {
+		while (0 <= idx_sub && str[0] != sub[idx_sub]) {
 			idx_sub = back[idx_sub];
 		}
+		str += 1;
+		idx_sub += 1;
 	}
 
 	if (heap) {
