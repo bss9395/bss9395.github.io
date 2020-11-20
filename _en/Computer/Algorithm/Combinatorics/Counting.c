@@ -148,12 +148,13 @@ long *Next_Permutation(long perm[], long samp, long pick, bool once) {
 		perm[idx] = min;
 		(idx < beg) ? (beg = idx, min = idx) : (min = beg);
 		while (idx += 1, idx < pick) {
-		Assign:
-			for (long i = beg; i < idx; i += 1) {
+			for (long i = beg; i < idx; ) {
 				if (perm[i] == min) {
 					min += 1;
-					goto Assign;
+					i = beg;
+					continue;
 				}
+				i += 1;
 			}
 			perm[idx] = min;
 			min += 1;
