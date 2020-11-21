@@ -1,6 +1,6 @@
 /* String_Matcher.c
 Author: BSS9395
-Update: 2020-11-21T05:50:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-21T22:37:00+08@China-Guangdong-Zhanjiang+08
 Design: Pattern Matcher
 */
 
@@ -112,6 +112,44 @@ char *Match_SubString_Hash_Classic(char *str, long len_str, char *sub, long len_
 				}
 			}
 		}
+	}
+	return NULL;
+}
+
+/* ! ^ ? ^ ? = !
+0 ^ 0 = 0, 0 ^ 0 = 0, 0 ^ 0 ^ 0 = 0
+0 ^ 1 = 1, 1 ^ 1 = 0, 0 ^ 1 ^ 1 = 0
+1 ^ 0 = 1, 1 ^ 0 = 1, 1 ^ 0 ^ 0 = 1
+1 ^ 1 = 0, 0 ^ 1 = 1, 1 ^ 1 ^ 1 = 1
+*/
+char *Match_SubString_Hash(char *str, long len_str, char *sub, long len_sub) {
+	if (Check(str == NULL || len_str < 0 || sub == NULL || len_sub < 0, ELevel._Error, __FUNCTION__, "str == NULL || len_str < 0 || sub == NULL || len_sub < 0", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (len_str < len_sub) {
+		return NULL;
+	}
+
+	ui64 hash_str = 0; char *ptr_str = (char *)&hash_str;
+	ui64 hash_sub = 0; char *ptr_sub = (char *)&hash_sub;
+	for (long i = 0; i < len_sub; i += 1) {
+		ptr_str[0B0111 & i] ^= str[i];
+		ptr_sub[0B0111 & i] ^= sub[i];
+	}
+
+	long idx = 0B0111 & (len_sub - 1);
+	long off = sizeof(ui64) * 8 - 8;
+	for (char *end_str = str + len_str - len_sub + 1; str < end_str; str += 1) {
+		if (hash_str == hash_sub) {
+			long i = 0;
+			for (; i < len_sub && str[i] == sub[i]; i += 1);
+			if (i >= len_sub) {
+				return str;
+			}
+		}
+		ptr_str[0] ^= str[0];
+		hash_str = (hash_str >> 8) | (hash_str << off);
+		ptr_str[idx] ^= str[len_sub];
 	}
 	return NULL;
 }
@@ -265,6 +303,16 @@ void Test_Match_SubString_Hash_Classic() {
 	fprintf(stdout, "%s\n", match);
 }
 
+void Test_Match_SubString_Hash() {
+	char *str = "Iamabigbiggirl,inabigbigworld.";
+	char *sub = "bigbiggirl";
+	long len_str = Length(str);
+	long len_sub = Length(sub);
+
+	char *match = Match_SubString_Hash(str, len_str, sub, len_sub);
+	fprintf(stdout, "%ld, %s\n", match - str, match);
+}
+
 void Test_Rollback_Index() {
 	char *sub = "bigbiggirl";
 	long len = Length(sub);
@@ -293,6 +341,7 @@ void Test_Match_SubString() {
 int main(int argc, char *argv[]) {
 	// Test_Match_SubString_Classic();
 	// Test_Match_SubString_Hash_Classic
+	Test_Match_SubString_Hash();
 	Test_Rollback_Index();
 	Test_Match_SubString();
 
