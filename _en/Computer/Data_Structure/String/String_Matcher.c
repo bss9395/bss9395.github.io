@@ -180,7 +180,7 @@ optimaze=> if Pj+1 == Pk+1 then back[j+1] = back[k+1]
 index: 0  1  2  3  4  5  6  7  8  9
 sub:   b  i  g  b  i  g  g  i  r  l
 back: -1  0  0  0  1  2  3  0  0  0
-back: -1  0  0 -1  0  0  3  0  0  0
+back: -1  0  0 -1  0  0  3  0  0  0   # Optimized
 */
 long *Generate_Rollback_Index_Classical(char *sub, long back[], long len) {
 	if (Check(sub == NULL || len < 0, ELevel._Error, __FUNCTION__, "str == NULL || len < 0", NULL)) {
@@ -210,7 +210,7 @@ long *Generate_Rollback_Index_Classical(char *sub, long back[], long len) {
 index: 0  1  2  3  4  5  6  7  8  9
 sub:   b  i  g  b  i  g  g  i  r  l
 back: -1  0  0  0  1  2  3  0  0  0
-back: -1  0  0 -1  0  0  3  0  0  0
+back: -1  0  0 -1  0  0  3  0  0  0   # Optimized
 */
 long *Generate_Rollback_Index_Classic(char *sub, long back[], long len) {
 	if (Check(sub == NULL || len < 0, ELevel._Error, __FUNCTION__, "str == NULL || len < 0", NULL)) {
@@ -238,7 +238,7 @@ long *Generate_Rollback_Index_Classic(char *sub, long back[], long len) {
 index: 0  1  2  3  4  5  6  7  8  9
 sub:   b  i  g  b  i  g  g  i  r  l
 back: -1  0  0  0  1  2  3  0  0  0
-back: -1  0  0 -1  0  0  3  0  0  0
+back: -1  0  0 -1  0  0  3  0  0  0   # Optimized
 */
 long *Generate_Rollback_Index(char *sub, long back[], long len) {
 	if (Check(sub == NULL || len < 0, ELevel._Error, __FUNCTION__, "str == NULL || len < 0", NULL)) {
@@ -284,6 +284,150 @@ char *Match_SubString(char *str, long len_str, char *sub, long back[], long len_
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/* shift index: (n - 1 - m)
+...,Si+0,...,...,Si+n,...              # Si+n ¡Ù Pn
+	P0  ,...,...,Pn
+
+...,Si+0,...,...,Si+n,...,Si+2n-m,...  # Si+n ¡Ô Pm
+		 P0 ,...,Pm  ,...,Pn
+*/
+long *Generate_Shift_Index(char *sub, long shift[], long len) {
+	if (Check(sub == NULL || len < 0, ELevel._Error, __FUNCTION__, "sub == NULL || len < 0", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+	long alpha = (1U << (sizeof(char) * 8));
+	if (shift == NULL) {
+		shift = (long *)calloc(alpha, sizeof(long));
+	}
+
+	for (long i = 0; i < alpha; i += 1) {
+		shift[i] = len;
+	}
+	for (long i = 0; i < len; i += 1) {
+		shift[sub[i]] = len - 1 - i;
+	}
+	return shift;
+}
+
+/*
+Rollback Index
+index:  0  1  2  3  4  5  6  7  8  9
+sub:    b  i  g  b  i  g  g  i  r  l
+back:  -1  0  0  0  1  2  3  0  0  0
+back:  -1  0  0 -1  0  0  3  0  0  0   # Optimized
+
+Reverse Index
+index:  0  1  2  3  4  5  6  7  8  9
+sub:    l  r  i  g  g  i  b  g  i  b
+rever:  1  2  3  4  5  6  3  4  5  ?
+rever:  1  2  3  4  5  6  3  8  9  ?   # Optimized
+*/
+long *Generate_Reverse_Index_Classic(char *sub, long rever[], long len) {
+	if (Check(sub == NULL || len < 0, ELevel._Error, __FUNCTION__, "sub == NULL || len < 0", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (rever == NULL) {
+		rever = (long *)calloc(len, sizeof(long));
+	}
+
+	long idx_str = len - 1;
+	rever[idx_str] = -1;
+	long idx_sub = idx_str - 1;
+	while (0 < idx_str) {
+		if (idx_sub < 0) {
+			idx_str -= 1;
+			rever[idx_str] = -1;
+			idx_sub = idx_str - 1;
+		}
+		else if (sub[idx_str] == sub[idx_sub]) {
+			idx_str -= 1;
+			idx_sub -= 1;
+			rever[idx_str] = idx_sub;
+		}
+		else {
+			idx_sub -= 1;
+		}
+	}
+	for (long idx = 0; idx < len; idx += 1) {
+		rever[idx] = idx - rever[idx];
+	}
+	return rever;
+}
+
+/*
+Rollback Index
+index:  0  1  2  3  4  5  6  7  8  9
+sub:    b  i  g  b  i  g  g  i  r  l
+back:  -1  0  0  0  1  2  3  0  0  0
+back:  -1  0  0 -1  0  0  3  0  0  0   # Optimized
+
+Reverse Index
+index:  0  1  2  3  4  5  6  7  8  9
+sub:    l  r  i  g  g  i  b  g  i  b
+rever:  1  2  3  4  5  6  3  4  5  ?
+rever:  1  2  3  4  5  6  3  8  9  ?   # Optimized
+*/
+long *Generate_Reverse_Index(char *sub, long rever[], long len) {
+	if (Check(sub == NULL || len < 0, ELevel._Error, __FUNCTION__, "sub == NULL || len < 0", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (rever == NULL) {
+		rever = (long *)calloc(len, sizeof(long));
+	}
+
+	long idx_str = len - 1;
+	long idx_sub = idx_str - 1;
+	rever[idx_str] = len;
+	while (0 <= idx_sub && sub[idx_str] != sub[idx_sub]) {
+		idx_sub -= 1;
+	}
+	while (0 <= idx_sub) {
+		idx_str -= 1;
+		idx_sub -= 1;
+		if (sub[idx_str] == sub[idx_sub]) {
+			rever[idx_str] = idx_str + 1;
+		}
+		else {
+			rever[idx_str] = idx_sub;
+			break;
+		}
+	}
+	while (idx_str -= 1, 0 <= idx_str) {
+		rever[idx_str] = idx_str + 1;
+	}
+	return rever;
+}
+
+char *Match_SubString_Reverse(char *str, long len_str, char *sub, long shift[], long rever[], long len_sub) {
+	if (Check(str == NULL || len_str < 0 || sub == NULL || rever == NULL || len_sub < 0, ELevel._Error, __FUNCTION__, "str == NULL || len_str < 0 || sub == NULL || back == NULL || len_sub < 0", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (len_str < len_sub) {
+		return NULL;
+	}
+
+	char *end_str = str + len_str - len_sub + 1;
+	while (str < end_str) {
+		long idx_sub = len_sub - 1;
+		if (str[idx_sub] != sub[idx_sub]) {
+			str += shift[str[idx_sub]];
+			continue;
+		}
+
+		while (0 <= idx_sub && str[idx_sub] == sub[idx_sub]) {
+			idx_sub -= 1;
+		}
+		if (idx_sub < 0) {
+			return str;
+		}
+		str += rever[idx_sub];
+	}
+	return NULL;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 void Test_Match_SubString_Classic() {
 	char str[] = "Thereisnoonelikeyou.";
 	char sub[] = "noon";
@@ -318,8 +462,8 @@ void Test_Rollback_Index() {
 	long len = Length(sub);
 	long back[100];
 
-	Generate_Rollback_Index_Classical(sub, back, len);
-	// Generate_Rollback_Index_Classic(sub, back, len);
+	// Generate_Rollback_Index_Classical(sub, back, len);
+	Generate_Rollback_Index_Classic(sub, back, len);
 	// Generate_Rollback_Index(sub, back, len);
 	for (long i = 0; i < len; i += 1) {
 		fprintf(stdout, "%ld, ", back[i]);
@@ -338,11 +482,41 @@ void Test_Match_SubString() {
 	free(back);
 }
 
+void Test_Generate_Reverse_Index() {
+	char *str = ".dlrowgibgibani,lriggibgibamaI";
+	char *sub = "lriggibgib";
+	long len_str = Length(str);
+	long len_sub = Length(sub);
+	// long *rever = Generate_Reverse_Index_Classic(sub, NULL, len_sub);
+	long *rever = Generate_Reverse_Index(sub, NULL, len_sub);
+	for (long i = 0; i < len_sub; i += 1) {
+		fprintf(stdout, "%ld, ", rever[i]);
+	}
+	fprintf(stdout, "\n");
+}
+
+void Test_Match_SubString_Reverse() {
+	// char *str = "Iamabigbiggirl,inabigbigworld.";
+	// char *sub = "bigbiggirl";
+	char *str = ".lrowgibgibani,lriggibgibamaI";
+	char *sub = "lriggibgib";
+	long len_str = Length(str);
+	long len_sub = Length(sub);
+	long *shift = Generate_Shift_Index(sub, NULL, len_sub);
+	// long *rever = Generate_Reverse_Index_Classic(sub, NULL, len_sub);
+	long *rever = Generate_Reverse_Index(sub, NULL, len_sub);
+	char *match = Match_SubString_Reverse(str, len_str, sub, shift, rever, len_sub);
+	fprintf(stdout, "%ld, %s\n", match - str, match);
+}
+
 int main(int argc, char *argv[]) {
 	// Test_Match_SubString_Classic();
 	// Test_Match_SubString_Hash_Classic
-	Test_Match_SubString_Hash();
-	Test_Rollback_Index();
+	// Test_Match_SubString_Hash();
+	// Test_Rollback_Index();
+	// Test_Match_SubString();
+
+	Test_Generate_Reverse_Index();
 	Test_Match_SubString();
 
 	return 0;
