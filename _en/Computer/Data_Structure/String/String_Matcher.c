@@ -335,6 +335,7 @@ long *Generate_Reverse_Index(char *sub, long rever[], long len) {
 	long idx_str = len - 1;
 	long idx_sub = idx_str - 1;
 	long last = idx_str;
+	rever[last] = len;
 	while (true) {
 		while (0 <= idx_sub && sub[idx_str] != sub[idx_sub]) {
 			idx_sub -= 1;
