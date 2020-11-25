@@ -1,6 +1,6 @@
 /* String_Matcher.c
 Author: BSS9395
-Update: 2020-11-21T22:37:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-26T03:53:00+08@China-Guangdong-Zhanjiang+08
 Design: Pattern Matcher
 */
 
@@ -284,30 +284,31 @@ char *Match_SubString(char *str, long len_str, char *sub, long back[], long len_
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/* shift index: (n - 1 - m)
+/* Offset index: (n - 1 - m)
 ...,Si+0,...,...,Si+n,...              # Si+n ¡Ù Pn
 	P0  ,...,...,Pn
 
 ...,Si+0,...,...,Si+n,...,Si+2n-m,...  # Si+n ¡Ô Pm
 		 P0 ,...,Pm  ,...,Pn
 */
-long *Generate_Shift_Index(char *sub, long shift[], long len) {
+long *Generate_Offset_Index(char *sub, long offset[], long len) {
 	if (Check(sub == NULL || len < 0, ELevel._Error, __FUNCTION__, "sub == NULL || len < 0", NULL)) {
 		exit(EXIT_FAILURE);
 	}
 
 	long alpha = (1U << (sizeof(char) * 8));
-	if (shift == NULL) {
-		shift = (long *)calloc(alpha, sizeof(long));
+	if (offset == NULL) {
+		offset = (long *)calloc(alpha, sizeof(long));
 	}
 
 	for (long i = 0; i < alpha; i += 1) {
-		shift[i] = len;
+		offset[i] = len;
 	}
+	len -= 1;
 	for (long i = 0; i < len; i += 1) {
-		shift[sub[i]] = len - 1 - i;
+		offset[sub[i]] = len - i;
 	}
-	return shift;
+	return offset;
 }
 
 /*
@@ -319,54 +320,9 @@ back:  -1  0  0 -1  0  0  3  0  0  0   # Optimized
 
 Reverse Index
 index:  0  1  2  3  4  5  6  7  8  9
-sub:    l  r  i  g  g  i  b  g  i  b
-rever:  1  2  3  4  5  6  3  4  5  ?
-rever:  1  2  3  4  5  6  3  8  9  ?   # Optimized
-*/
-long *Generate_Reverse_Index_Classic(char *sub, long rever[], long len) {
-	if (Check(sub == NULL || len < 0, ELevel._Error, __FUNCTION__, "sub == NULL || len < 0", NULL)) {
-		exit(EXIT_FAILURE);
-	}
-	if (rever == NULL) {
-		rever = (long *)calloc(len, sizeof(long));
-	}
-
-	long idx_str = len - 1;
-	rever[idx_str] = -1;
-	long idx_sub = idx_str - 1;
-	while (0 < idx_str) {
-		if (idx_sub < 0) {
-			idx_str -= 1;
-			rever[idx_str] = -1;
-			idx_sub = idx_str - 1;
-		}
-		else if (sub[idx_str] == sub[idx_sub]) {
-			idx_str -= 1;
-			idx_sub -= 1;
-			rever[idx_str] = idx_sub;
-		}
-		else {
-			idx_sub -= 1;
-		}
-	}
-	for (long idx = 0; idx < len; idx += 1) {
-		rever[idx] = idx - rever[idx];
-	}
-	return rever;
-}
-
-/*
-Rollback Index
-index:  0  1  2  3  4  5  6  7  8  9
-sub:    b  i  g  b  i  g  g  i  r  l
-back:  -1  0  0  0  1  2  3  0  0  0
-back:  -1  0  0 -1  0  0  3  0  0  0   # Optimized
-
-Reverse Index
-index:  0  1  2  3  4  5  6  7  8  9
-sub:    l  r  i  g  g  i  b  g  i  b
-rever:  1  2  3  4  5  6  3  4  5  ?
-rever:  1  2  3  4  5  6  3  8  9  ?   # Optimized
+sub:    l  g  i  b  g  x  b  g  i  b
+rever: -6 -5 -4 -3 -2 -1  0  1  5  ?   # Register Shift
+rever:  6  6  6  6  6  6  6  6  3  ?   # Minimum Shift: 9 - 6 = 3
 */
 long *Generate_Reverse_Index(char *sub, long rever[], long len) {
 	if (Check(sub == NULL || len < 0, ELevel._Error, __FUNCTION__, "sub == NULL || len < 0", NULL)) {
@@ -378,29 +334,34 @@ long *Generate_Reverse_Index(char *sub, long rever[], long len) {
 
 	long idx_str = len - 1;
 	long idx_sub = idx_str - 1;
-	rever[idx_str] = len;
-	while (0 <= idx_sub && sub[idx_str] != sub[idx_sub]) {
-		idx_sub -= 1;
-	}
-	while (0 <= idx_sub) {
-		idx_str -= 1;
-		idx_sub -= 1;
-		if (sub[idx_str] == sub[idx_sub]) {
-			rever[idx_str] = idx_str + 1;
+	long last = idx_str;
+	while (true) {
+		while (0 <= idx_sub && sub[idx_str] != sub[idx_sub]) {
+			idx_sub -= 1;
 		}
-		else {
-			rever[idx_str] = idx_sub;
+		while (0 <= idx_sub && sub[idx_str] == sub[idx_sub]) {
+			idx_str -= 1;
+			idx_sub -= 1;
+			if (idx_str < last) {
+				rever[idx_str] = idx_str - idx_sub;
+				last = idx_str;
+			}
+		}
+		if (idx_sub < 0) {
+			long shift = rever[last];
+			while (last -= 1, 0 <= last) {
+				rever[last] = shift;
+			}
 			break;
 		}
-	}
-	while (idx_str -= 1, 0 <= idx_str) {
-		rever[idx_str] = idx_str + 1;
+		idx_str = len - 1;
 	}
 	return rever;
 }
 
-char *Match_SubString_Reverse(char *str, long len_str, char *sub, long shift[], long rever[], long len_sub) {
-	if (Check(str == NULL || len_str < 0 || sub == NULL || rever == NULL || len_sub < 0, ELevel._Error, __FUNCTION__, "str == NULL || len_str < 0 || sub == NULL || back == NULL || len_sub < 0", NULL)) {
+char *Match_SubString_Reverse(char *str, long len_str, char *sub, long offset[], long rever[], long len_sub) {
+	if (Check(str == NULL || len_str < 0 || sub == NULL || offset == NULL || rever == NULL || len_sub < 0, ELevel._Error,
+		__FUNCTION__, "str == NULL || len_str < 0 || sub == NULL || offset == NULL || shift == NULL || len_sub < 0", NULL)) {
 		exit(EXIT_FAILURE);
 	}
 	if (len_str < len_sub) {
@@ -408,10 +369,10 @@ char *Match_SubString_Reverse(char *str, long len_str, char *sub, long shift[], 
 	}
 
 	char *end_str = str + len_str - len_sub + 1;
+	long idx_sub = len_sub - 1;
 	while (str < end_str) {
-		long idx_sub = len_sub - 1;
 		if (str[idx_sub] != sub[idx_sub]) {
-			str += shift[str[idx_sub]];
+			str += offset[str[idx_sub]];
 			continue;
 		}
 
@@ -422,6 +383,7 @@ char *Match_SubString_Reverse(char *str, long len_str, char *sub, long shift[], 
 			return str;
 		}
 		str += rever[idx_sub];
+		idx_sub = len_sub - 1;
 	}
 	return NULL;
 }
@@ -496,16 +458,18 @@ void Test_Generate_Reverse_Index() {
 }
 
 void Test_Match_SubString_Reverse() {
-	// char *str = "Iamabigbiggirl,inabigbigworld.";
-	// char *sub = "bigbiggirl";
-	char *str = ".lrowgibgibani,lriggibgibamaI";
-	char *sub = "lriggibgib";
+	char *str = ".lrowgibgibani,lgibgxbgibamaI";
+	char *sub = "lgibgxbgib";
 	long len_str = Length(str);
 	long len_sub = Length(sub);
-	long *shift = Generate_Shift_Index(sub, NULL, len_sub);
-	// long *rever = Generate_Reverse_Index_Classic(sub, NULL, len_sub);
+	long *offset = Generate_Offset_Index(sub, NULL, len_sub);
 	long *rever = Generate_Reverse_Index(sub, NULL, len_sub);
-	char *match = Match_SubString_Reverse(str, len_str, sub, shift, rever, len_sub);
+	for (long i = 0; i < len_sub; i += 1) {
+		fprintf(stdout, "%ld, ", rever[i]);
+	}
+	fprintf(stdout, "\n");
+
+	char *match = Match_SubString_Reverse(str, len_str, sub, offset, rever, len_sub);
 	fprintf(stdout, "%ld, %s\n", match - str, match);
 }
 
@@ -516,8 +480,7 @@ int main(int argc, char *argv[]) {
 	// Test_Rollback_Index();
 	// Test_Match_SubString();
 
-	Test_Generate_Reverse_Index();
-	Test_Match_SubString();
+	Test_Match_SubString_Reverse();
 
 	return 0;
 }
