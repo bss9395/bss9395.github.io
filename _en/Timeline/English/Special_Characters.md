@@ -897,6 +897,7 @@ Resources:
 
 ```
 # Subscript
+¸
 ᵢ
 ᵣ
 ᵤ
