@@ -334,28 +334,31 @@ long *Generate_Reverse_Index(char *sub, long rever[], long len) {
 
 	long idx_str = len - 1;
 	long idx_sub = idx_str - 1;
-	long last = idx_str;
-	rever[last] = len;
+	long last_str = idx_str;
+	long last_sub = idx_sub;
+	rever[last_str] = len;
 	while (true) {
 		while (0 <= idx_sub && sub[idx_str] != sub[idx_sub]) {
 			idx_sub -= 1;
 		}
+		last_sub = idx_sub;
 		while (0 <= idx_sub && sub[idx_str] == sub[idx_sub]) {
 			idx_str -= 1;
 			idx_sub -= 1;
-			if (idx_str < last) {
+			if (idx_str < last_str) {
 				rever[idx_str] = idx_str - idx_sub;
-				last = idx_str;
+				last_str = idx_str;
 			}
 		}
 		if (idx_sub < 0) {
-			long shift = rever[last];
-			while (last -= 1, 0 <= last) {
-				rever[last] = shift;
+			long shift = rever[last_str];
+			while (last_str -= 1, 0 <= last_str) {
+				rever[last_str] = shift;
 			}
 			break;
 		}
 		idx_str = len - 1;
+		idx_sub = last_sub - 1;
 	}
 	return rever;
 }
