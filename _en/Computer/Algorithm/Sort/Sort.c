@@ -1,6 +1,6 @@
 /* Sort.c
 Author: BSS9395
-Update: 2020-11-29T06:38:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-30T05:56:00+08@China-Guangdong-Zhanjiang+08
 Design: Sort Indices
 */
 
@@ -43,6 +43,30 @@ bool Check(bool failed, Level level, const ui08 *function, const ui08 *record, c
 
 	errno = 0;
 	return failed;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+typedef bool(Compare)(long *, long *);
+
+bool Less(long *lhs, long *rhs) {
+	return ((*lhs) < (*rhs));
+}
+
+bool LessEqual(long *lhs, long *rhs) {
+	return ((*lhs) <= (*rhs));
+}
+
+bool Equal(long *lhs, long *rhs) {
+	return ((*lhs) == (*rhs));
+}
+
+bool More(long *lhs, long *rhs) {
+	return ((*lhs) > (*rhs));
+}
+
+bool MoreEqual(long *lhs, long *rhs) {
+	return ((*lhs) >= (*rhs));
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -94,13 +118,17 @@ data:   1, 3, 4, 5, 7, 9, 0, 8, 2, 6
 4 th: [0, 1, 2, 3], 4, 5, 7, 9, 8, 6
 5 th: [0, 1, 2, 3, 4], 5, 7, 9, 8, 6
 */
-Index *Bubble_Sort_Ascending_LTR(Index index[], long leng) {
+Index *Bubble_Sort_LTR(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
 	bool flip = false;
 	Index swap;
-	for (long i = 0; i < leng - 1; i += 1) {
+	for (long i = 0; i < leng; i += 1) {
 		flip = false;
 		for (long j = leng - 1; i < j; j -= 1) {
-			if (index[j]._hash < index[j - 1]._hash) {
+			if (comp(&(index[j]._hash), &(index[j - 1]._hash))) {
 				flip = true;
 				swap = index[j];
 				index[j] = index[j - 1];
@@ -114,12 +142,35 @@ Index *Bubble_Sort_Ascending_LTR(Index index[], long leng) {
 	return index;
 }
 
+Index *Bubble_Sort_RTL(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
 
+	bool flip = false;
+	Index swap;
+	for (long i = 0; i < leng; i += 1) {
+		flip = false;
+		for (long j = 1; j < leng - i; j += 1) {
+			if (comp(&(index[j]._hash), &(index[j - 1]._hash))) {
+				flip = true;
+				swap = index[j];
+				index[j] = index[j - 1];
+				index[j - 1] = swap;
+			}
+		}
+		if (!flip) {
+			break;
+		}
+	}
+	return index;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void Test_Bubble_Sort_Ascending_LTR() {
-	Bubble_Sort_Ascending_LTR(_Index, _Length);
+void Test_Bubble_Sort() {
+	// Bubble_Sort_LTR(_Index, _Length, Less);
+	Bubble_Sort_RTL(_Index, _Length, Less);
 	long idx = 0;
 	for (long i = 0; i < _Length; i += 1) {
 		idx = _Index[i]._index;
@@ -132,6 +183,6 @@ int main(int argc, char *argv[]) {
 	_Length = sizeof(_Datum) / sizeof(_Datum[0]);
 	_Index = Mapping(_Datum, _Index, _Length);
 
-	Test_Bubble_Sort_Ascending_LTR();
+	Test_Bubble_Sort();
 	return 0;
 }
