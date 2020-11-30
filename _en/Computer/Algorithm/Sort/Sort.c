@@ -1,6 +1,6 @@
 /* Sort.c
 Author: BSS9395
-Update: 2020-11-30T05:56:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-30T22:03:00+08@China-Guangdong-Zhanjiang+08
 Design: Sort Indices
 */
 
@@ -108,17 +108,24 @@ Index *Mapping(Datum datum[], Index index[], long leng) {
 	return index;
 }
 
+void Print(Index index[], long leng) {
+	for (long i = 0; i < leng; i += 1) {
+		fprintf(stdout, "%ld, ", index[i]._hash);
+	}
+	fprintf(stdout, "\n");
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 /*
-data:   1, 3, 4, 5, 7, 9, 0, 8, 2, 6
-1 st: [0], 1, 3, 4, 5, 7, 9, 8, 2, 6
-2 nd: [0, 1], 3, 4, 5, 7, 9, 8, 2, 6
-3 rd: [0, 1, 2], 3, 4, 5, 7, 9, 8, 6
-4 th: [0, 1, 2, 3], 4, 5, 7, 9, 8, 6
-5 th: [0, 1, 2, 3, 4], 5, 7, 9, 8, 6
+data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
+ 1st: [0], 1, 3, 4, 5, 7, 9, 2, 8, 6
+ 2nd: [0, 1], 2, 3, 4, 5, 7, 9, 6, 8
+ 3rd: [0, 1, 2], 3, 4, 5, 6, 7, 9, 8
+ 4th: [0, 1, 2, 3], 4, 5, 6, 7, 8, 9
+ 5th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 */
-Index *Bubble_Sort_LTR(Index index[], long leng, Compare comp) {
+Index *Bubble_Sort_LTH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -126,9 +133,10 @@ Index *Bubble_Sort_LTR(Index index[], long leng, Compare comp) {
 	bool flip = false;
 	Index swap;
 	for (long i = 0; i < leng; i += 1) {
+		// Print(index, leng);
 		flip = false;
 		for (long j = leng - 1; i < j; j -= 1) {
-			if (comp(&(index[j]._hash), &(index[j - 1]._hash))) {
+			if (comp(&index[j]._hash, &index[j - 1]._hash)) {
 				flip = true;
 				swap = index[j];
 				index[j] = index[j - 1];
@@ -142,26 +150,103 @@ Index *Bubble_Sort_LTR(Index index[], long leng, Compare comp) {
 	return index;
 }
 
-Index *Bubble_Sort_RTL(Index index[], long leng, Compare comp) {
+/*
+data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
+ 1st:  1, 3, 4, 5, 7, 0, 8, 2, 6,[9]
+ 2nd:  1, 3, 4, 5, 0, 7, 2, 6,[8, 9]
+ 3rd:  1, 3, 4, 0, 5, 2, 6,[7, 8, 9]
+ 4th:  1, 3, 0, 4, 2, 5,[6, 7, 8, 9]
+ 5th:  1, 0, 3, 2, 4,[5, 6, 7, 8, 9]
+ 6th:  0, 1, 2, 3,[4, 5, 6, 7, 8, 9]
+ 7th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+*/
+Index *Bubble_Sort_HTL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
 
 	bool flip = false;
 	Index swap;
-	for (long i = 0; i < leng; i += 1) {
+	for (long i = leng - 1; 0 <= i; i -= 1) {
+		// Print(index, leng);
 		flip = false;
-		for (long j = 1; j < leng - i; j += 1) {
-			if (comp(&(index[j]._hash), &(index[j - 1]._hash))) {
+		for (long j = 0; j < i; j += 1) {
+			if (comp(&index[j + 1]._hash, &index[j]._hash)) {
 				flip = true;
-				swap = index[j];
-				index[j] = index[j - 1];
-				index[j - 1] = swap;
+				swap = index[j + 1];
+				index[j + 1] = index[j];
+				index[j] = swap;
 			}
 		}
 		if (!flip) {
 			break;
 		}
+	}
+	return index;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+/*
+data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
+ 1st: [1], 3, 4, 5, 7, 9, 0, 8, 2, 6
+ 2nd: [1, 3], 4, 5, 7, 9, 0, 8, 2, 6
+ 3rd: [1, 3, 4], 5, 7, 9, 0, 8, 2, 6
+ 4th: [1, 3, 4, 5], 7, 9, 0, 8, 2, 6
+ 5th: [1, 3, 4, 5, 7], 9, 0, 8, 2, 6
+ 6th: [1, 3, 4, 5, 7, 9], 0, 8, 2, 6
+ 7th: [0, 1, 3, 4, 5, 7, 9], 8, 2, 6
+ 8th: [0, 1, 3, 4, 5, 7, 8, 9], 2, 6
+ 9th: [0, 1, 2, 3, 4, 5, 7, 8, 9], 6
+10th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+*/
+Index *Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+	Index pick;
+	for (long i = 0; i < leng; i += 1) {
+		// Print(index, leng);
+		pick = index[i];
+		long j = i;
+		while (0 < j && comp(&pick._hash, &index[j - 1]._hash)) {
+			index[j] = index[j - 1];
+			j -= 1;
+		}
+		index[j] = pick;
+	}
+	return index;
+}
+
+/*
+data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
+ 1st:  1, 3, 4, 5, 7, 9, 0, 8, 2,[6]
+ 2nd:  1, 3, 4, 5, 7, 9, 0, 8,[2, 6]
+ 3rd:  1, 3, 4, 5, 7, 9, 0,[2, 6, 8]
+ 4th:  1, 3, 4, 5, 7, 9,[0, 2, 6, 8]
+ 5th:  1, 3, 4, 5, 7,[0, 2, 6, 8, 9]
+ 6th:  1, 3, 4, 5,[0, 2, 6, 7, 8, 9]
+ 7th:  1, 3, 4,[0, 2, 5, 6, 7, 8, 9]
+ 8th:  1, 3,[0, 2, 4, 5, 6, 7, 8, 9]
+ 9th:  1,[0, 2, 3, 4, 5, 6, 7, 8, 9]
+10th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+*/
+Index *Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+	Index pick;
+	for (long i = leng - 1; 0 <= i; i -= 1) {
+		// Print(index, leng);
+		pick = index[i];
+		long j = i;
+		while (j < leng - 1 && comp(&index[j + 1]._hash, &pick._hash)) {
+			index[j] = index[j + 1];
+			j += 1;
+		}
+		index[j] = pick;
 	}
 	return index;
 }
@@ -169,8 +254,19 @@ Index *Bubble_Sort_RTL(Index index[], long leng, Compare comp) {
 ////////////////////////////////////////////////////////////////////////////////
 
 void Test_Bubble_Sort() {
-	// Bubble_Sort_LTR(_Index, _Length, Less);
-	Bubble_Sort_RTL(_Index, _Length, Less);
+	Bubble_Sort_LTH(_Index, _Length, Less);
+	// Bubble_Sort_HTL(_Index, _Length, Less);
+	long idx = 0;
+	for (long i = 0; i < _Length; i += 1) {
+		idx = _Index[i]._index;
+		fprintf(stdout, "[%ld: %s] ", _Datum[idx]._hash, _Datum[idx]._datum);
+	}
+	fprintf(stdout, "\n");
+}
+
+void Test_Insertion_Sort() {
+	// Insertion_Sort_LTH(_Index, _Length, Less);
+	Insertion_Sort_HTL(_Index, _Length, Less);
 	long idx = 0;
 	for (long i = 0; i < _Length; i += 1) {
 		idx = _Index[i]._index;
@@ -183,6 +279,7 @@ int main(int argc, char *argv[]) {
 	_Length = sizeof(_Datum) / sizeof(_Datum[0]);
 	_Index = Mapping(_Datum, _Index, _Length);
 
-	Test_Bubble_Sort();
+	// Test_Bubble_Sort();
+	Test_Insertion_Sort();
 	return 0;
 }
