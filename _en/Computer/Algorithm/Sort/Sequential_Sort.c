@@ -1,6 +1,6 @@
 /* Sequential_Sort.c
 Author: BSS9395
-Update: 2020-12-01T04:24:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-12-01T05:30:00+08@China-Guangdong-Zhanjiang+08
 Design: Sequential Sort
 */
 
@@ -117,7 +117,7 @@ void Print(Index index[], long leng) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/*
+/* Stable
 data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
  1st: [0], 1, 3, 4, 5, 7, 9, 2, 8, 6
  2nd: [0, 1], 2, 3, 4, 5, 7, 9, 6, 8
@@ -150,7 +150,7 @@ Index *Bubble_Sort_LTH(Index index[], long leng, Compare comp) {
 	return index;
 }
 
-/*
+/* Stable
 data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
  1st:  1, 3, 4, 5, 7, 0, 8, 2, 6,[9]
  2nd:  1, 3, 4, 5, 0, 7, 2, 6,[8, 9]
@@ -187,7 +187,7 @@ Index *Bubble_Sort_HTL(Index index[], long leng, Compare comp) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/*
+/* Stable
 data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
  1st: [0], 3, 4, 5, 7, 9, 1, 8, 2, 6
  2nd: [0, 1], 4, 5, 7, 9, 3, 8, 2, 6
@@ -224,7 +224,7 @@ Index *Selection_Sort_LTH(Index index[], long leng, Compare comp) {
 	return index;
 }
 
-/*
+/* Stable
 data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
  1st:  1, 3, 4, 5, 7, 6, 0, 8, 2,[9]
  2nd:  1, 3, 4, 5, 7, 6, 0, 2,[8, 9]
@@ -261,7 +261,7 @@ Index *Selection_Sort_HTL(Index index[], long leng, Compare comp) {
 	return index;
 }
 
-/*
+/* Stable
 data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
  1st: [1], 3, 4, 5, 7, 9, 0, 8, 2, 6
  2nd: [1, 3], 4, 5, 7, 9, 0, 8, 2, 6
@@ -295,7 +295,7 @@ Index *Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
 
 
 
-/*
+/* Stable
 data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
  1st:  1, 3, 4, 5, 7, 9, 0, 8, 2,[6]
  2nd:  1, 3, 4, 5, 7, 9, 0, 8,[2, 6]
@@ -327,7 +327,7 @@ Index *Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
 	return index;
 }
 
-/*
+/* UnStable
 data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
  1st: [1], 3, 4, 5, 7, 9, 0, 8, 2, 6
  2nd: [1, 3], 4, 5, 7, 9, 0, 8, 2, 6
@@ -366,7 +366,7 @@ Index *Binary_Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
 	return index;
 }
 
-/*
+/* Unstable
 data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
  1st:  1, 3, 4, 5, 7, 9, 0, 8, 2,[6]
  2nd:  1, 3, 4, 5, 7, 9, 0, 8,[2, 6]
@@ -405,9 +405,25 @@ Index *Binary_Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
 	return index;
 }
 
+/* Unstable
+data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
+ 1st: [1], ?, ?, ?, ?, ?, ?, ?, ?, ?
+ 2nd: [1, 3], ?, ?, ?, ?, ?, ?, ?, ?
+ 3rd: [1, 3, 4], ?, ?, ?, ?, ?, ?, ?
+ 4th: [1, 3, 4, 5], ?, ?, ?, ?, ?, ?
+ 5th: [1, 3, 4, 5, 7], ?, ?, ?, ?, ?
+ 6th: [1, 3, 4, 5, 7, 9], ?, ?, ?, ?
+ 7th: [1, 3, 4, 5, 7, 9], ?, ?, ?,[0]
+ 8th: [1, 3, 4, 5, 7, 8, 9], ?, ?,[0]
+ 9th: [1, 2, 3, 4, 5, 7, 8, 9], ?,[0]
+10th: [1, 2, 3, 4, 5, 6, 7, 8, 9],[0]
+*/
 Index *Bipolar_Insertion_Sort(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
 	}
 
 	Index *polar = (Index *)calloc(leng, sizeof(Index));
@@ -415,6 +431,7 @@ Index *Bipolar_Insertion_Sort(Index index[], long leng, Compare comp) {
 	long tail = 0;
 	polar[0] = index[0];
 	for (long i = 1; i < leng; i += 1) {
+		// Print(polar, leng);
 		if (comp(&polar[tail]._hash, &index[i]._hash)) {
 			tail = tail + 1;
 			polar[tail] = index[i];
@@ -429,16 +446,12 @@ Index *Bipolar_Insertion_Sort(Index index[], long leng, Compare comp) {
 				idx = (idx + 1) % leng;
 			}
 			if (idx <= tail) {
-				for (long j = tail; idx <= j; j -= 1) {
-					polar[j + 1] = polar[j];
-				}
+				for (long j = tail; idx <= j; polar[j + 1] = polar[j], j -= 1);
 				polar[idx] = index[i];
 				tail += 1;
 			}
 			else {
-				for (long j = head; j <= idx; j += 1) {
-					polar[j - 1] = polar[j];
-				}
+				for (long j = head; j <= idx; polar[j - 1] = polar[j], j += 1);
 				polar[idx] = index[i];
 				head -= 1;
 			}
@@ -449,6 +462,35 @@ Index *Bipolar_Insertion_Sort(Index index[], long leng, Compare comp) {
 		index[i] = polar[(head + i) % leng];
 	}
 	free(polar);
+	return index;
+}
+
+/* Unstable
+data:  1 , 3 , 4 , 5 , 7 , 9 , 0 , 8 , 2 , 6
+ 1st: [1], 0 , 4 , 2 ,{6},[9], 3 , 8 , 5 ,{7}    # gap = 5
+ 2nd: [1],{0},[3],{2},[4],{7},[5],{8},[6],{9}    # gap = 2
+ 3rd: [0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9]    # gap = 1
+*/
+Index *Diminishing_Gap_Sort(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
+	}
+
+	Index pick;
+	for (long gap = leng / 2; 1 <= gap; gap = gap / 2) {
+		// Print(index, leng);
+		for (long i = gap; i < leng; i += 1) {
+			pick = index[i];
+			long j = i;
+			while (j -= gap, 0 <= j && comp(&pick._hash, &index[j]._hash)) {
+				index[j + gap] = index[j];
+			}
+			index[j + gap] = pick;
+		}
+	}
 	return index;
 }
 
@@ -513,6 +555,19 @@ void Test_Bipolar_Insertion_Sort() {
 	fprintf(stdout, "\n");
 }
 
+void Test_Diminishing_Increment_Sort() {
+	Diminishing_Gap_Sort(_Index, _Length, Less);
+	long idx = 0;
+	for (long i = 0; i < _Length; i += 1) {
+		idx = _Index[i]._index;
+		fprintf(stdout, "[%ld: %s] ", _Datum[idx]._hash, _Datum[idx]._datum);
+	}
+	fprintf(stdout, "\n");
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+
 int main(int argc, char *argv[]) {
 	_Length = sizeof(_Datum) / sizeof(_Datum[0]);
 	_Index = Mapping(_Datum, _Index, _Length);
@@ -521,6 +576,7 @@ int main(int argc, char *argv[]) {
 	// Test_Selection_Sort();
 	// Test_Insertion_Sort();
 	// Test_Binary_Insertion_Sort();
-	Test_Bipolar_Insertion_Sort();
+	// Test_Bipolar_Insertion_Sort();
+	Test_Diminishing_Increment_Sort();
 	return 0;
 }
