@@ -1,6 +1,6 @@
 /* Sort.c
 Author: BSS9395
-Update: 2020-11-30T23:05:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-11-30T23:34:00+08@China-Guangdong-Zhanjiang+08
 Design: Sort Indices
 */
 
@@ -189,6 +189,80 @@ Index *Bubble_Sort_HTL(Index index[], long leng, Compare comp) {
 
 /*
 data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
+ 1st: [0], 3, 4, 5, 7, 9, 1, 8, 2, 6
+ 2nd: [0, 1], 4, 5, 7, 9, 3, 8, 2, 6
+ 3rd: [0, 1, 2], 5, 7, 9, 3, 8, 4, 6
+ 4th: [0, 1, 2, 3], 7, 9, 5, 8, 4, 6
+ 5th: [0, 1, 2, 3, 4], 9, 5, 8, 7, 6
+ 6th: [0, 1, 2, 3, 4, 5], 9, 8, 7, 6
+ 7th: [0, 1, 2, 3, 4, 5, 6], 8, 7, 9
+ 8th: [0, 1, 2, 3, 4, 5, 6, 7], 8, 9
+ 9th: [0, 1, 2, 3, 4, 5, 6, 7, 8], 9
+10th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+*/
+Index *Selection_Sort_LTH(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+	long most = 0;
+	Index swap;
+	for (long i = 0; i < leng; i += 1) {
+		// Print(index, leng);
+		most = i;
+		for (long j = i; j < leng; j += 1) {
+			if (comp(&index[j]._hash, &index[most]._hash)) {
+				most = j;
+			}
+		}
+		if (most != i) {
+			swap = index[most];
+			index[most] = index[i];
+			index[i] = swap;
+		}
+	}
+	return index;
+}
+
+/*
+data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
+ 1st:  1, 3, 4, 5, 7, 6, 0, 8, 2,[9]
+ 2nd:  1, 3, 4, 5, 7, 6, 0, 2,[8, 9]
+ 3rd:  1, 3, 4, 5, 2, 6, 0,[7, 8, 9]
+ 4th:  1, 3, 4, 5, 2, 0,[6, 7, 8, 9]
+ 5th:  1, 3, 4, 0, 2,[5, 6, 7, 8, 9]
+ 6th:  1, 3, 2, 0,[4, 5, 6, 7, 8, 9]
+ 7th:  1, 0, 2,[3, 4, 5, 6, 7, 8, 9]
+ 8th:  1, 0,[2, 3, 4, 5, 6, 7, 8, 9]
+ 9th:  0,[1, 2, 3, 4, 5, 6, 7, 8, 9]
+10th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+*/
+Index *Selection_Sort_HTL(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+	long most = 0;
+	Index swap;
+	for (long i = leng - 1; 0 <= i; i -= 1) {
+		Print(index, leng);
+		most = i;
+		for (long j = i; 0 <= j; j -= 1) {
+			if (comp(&index[most]._hash, &index[j]._hash)) {
+				most = j;
+			}
+		}
+		if (most != i) {
+			swap = index[most];
+			index[most] = index[i];
+			index[i] = swap;
+		}
+	}
+	return index;
+}
+
+/*
+data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
  1st: [1], 3, 4, 5, 7, 9, 0, 8, 2, 6
  2nd: [1, 3], 4, 5, 7, 9, 0, 8, 2, 6
  3rd: [1, 3, 4], 5, 7, 9, 0, 8, 2, 6
@@ -347,6 +421,18 @@ void Test_Bubble_Sort() {
 	fprintf(stdout, "\n");
 }
 
+void Test_Selection_Sort() {
+	// Selection_Sort_LTH(_Index, _Length, Less);
+	Selection_Sort_HTL(_Index, _Length, Less);
+	long idx = 0;
+	for (long i = 0; i < _Length; i += 1) {
+		idx = _Index[i]._index;
+		fprintf(stdout, "[%ld: %s] ", _Datum[idx]._hash, _Datum[idx]._datum);
+	}
+	fprintf(stdout, "\n");
+}
+
+
 void Test_Insertion_Sort() {
 	// Insertion_Sort_LTH(_Index, _Length, Less);
 	Insertion_Sort_HTL(_Index, _Length, Less);
@@ -374,7 +460,8 @@ int main(int argc, char *argv[]) {
 	_Index = Mapping(_Datum, _Index, _Length);
 
 	// Test_Bubble_Sort();
+	Test_Selection_Sort();
 	// Test_Insertion_Sort();
-	Test_Binary_Insertion_Sort();
+	// Test_Binary_Insertion_Sort();
 	return 0;
 }
