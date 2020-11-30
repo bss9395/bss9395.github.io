@@ -1,7 +1,7 @@
-/* Sort.c
+/* Sequential_Sort.c
 Author: BSS9395
-Update: 2020-11-30T23:34:00+08@China-Guangdong-Zhanjiang+08
-Design: Sort Indices
+Update: 2020-12-01T04:24:00+08@China-Guangdong-Zhanjiang+08
+Design: Sequential Sort
 */
 
 #include <stdbool.h>
@@ -293,6 +293,8 @@ Index *Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
 	return index;
 }
 
+
+
 /*
 data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
  1st:  1, 3, 4, 5, 7, 9, 0, 8, 2,[6]
@@ -393,12 +395,7 @@ Index *Binary_Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
 		beg = leng - 1;
 		while (end < beg) {
 			mid = (end + beg + 1) / 2;
-			if (comp(&index[mid]._hash, &pick._hash)) {
-				end = mid;
-			}
-			else {
-				beg = mid - 1;
-			}
+			comp(&index[mid]._hash, &pick._hash) ? (end = mid) : (beg = mid - 1);
 		}
 		for (long j = i; j < end; j += 1) {
 			index[j] = index[j + 1];
@@ -407,6 +404,57 @@ Index *Binary_Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
 	}
 	return index;
 }
+
+Index *Bipolar_Insertion_Sort(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+
+	Index *polar = (Index *)calloc(leng, sizeof(Index));
+	long head = 0;
+	long tail = 0;
+	polar[0] = index[0];
+	for (long i = 1; i < leng; i += 1) {
+		if (comp(&polar[tail]._hash, &index[i]._hash)) {
+			tail = tail + 1;
+			polar[tail] = index[i];
+		}
+		else if (comp(&index[i]._hash, &polar[head]._hash)) {
+			head = (head == 0) ? (leng - 1) : (head - 1);
+			polar[head] = index[i];
+		}
+		else {
+			long idx = head;
+			while (comp(&polar[idx]._hash, &index[i]._hash)) {
+				idx = (idx + 1) % leng;
+			}
+			if (idx <= tail) {
+				for (long j = tail; idx <= j; j -= 1) {
+					polar[j + 1] = polar[j];
+				}
+				polar[idx] = index[i];
+				tail += 1;
+			}
+			else {
+				for (long j = head; j <= idx; j += 1) {
+					polar[j - 1] = polar[j];
+				}
+				polar[idx] = index[i];
+				head -= 1;
+			}
+		}
+	}
+
+	for (long i = 0; i < leng; i += 1) {
+		index[i] = polar[(head + i) % leng];
+	}
+	free(polar);
+	return index;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -455,13 +503,24 @@ void Test_Binary_Insertion_Sort() {
 	fprintf(stdout, "\n");
 }
 
+void Test_Bipolar_Insertion_Sort() {
+	Bipolar_Insertion_Sort(_Index, _Length, Less);
+	long idx = 0;
+	for (long i = 0; i < _Length; i += 1) {
+		idx = _Index[i]._index;
+		fprintf(stdout, "[%ld: %s] ", _Datum[idx]._hash, _Datum[idx]._datum);
+	}
+	fprintf(stdout, "\n");
+}
+
 int main(int argc, char *argv[]) {
 	_Length = sizeof(_Datum) / sizeof(_Datum[0]);
 	_Index = Mapping(_Datum, _Index, _Length);
 
 	// Test_Bubble_Sort();
-	Test_Selection_Sort();
+	// Test_Selection_Sort();
 	// Test_Insertion_Sort();
 	// Test_Binary_Insertion_Sort();
+	Test_Bipolar_Insertion_Sort();
 	return 0;
 }
