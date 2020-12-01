@@ -1,6 +1,6 @@
 /* Sequential_Sort.c
 Author: BSS9395
-Update: 2020-12-02T02:52:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-12-02T04:40:00+08@China-Guangdong-Zhanjiang+08
 Design: Sequential Sort
 */
 
@@ -116,7 +116,7 @@ void Mapping(bool normal) {
 
 void Print_Index(Index index[], long leng) {
 	for (long i = 0; i < leng; i += 1) {
-		fprintf(stdout, "%ld, ", index[i]._hash);
+		fprintf(stdout, " %ld ", index[i]._hash);
 	}
 	fprintf(stdout, "\n");
 }
@@ -133,12 +133,12 @@ void Print_Datum(Index index[], long leng) {
 ////////////////////////////////////////////////////////////////////////////////
 
 /* Stable
-data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
- 1st: [0], 1, 3, 4, 5, 7, 9, 2, 8, 6
- 2nd: [0, 1], 2, 3, 4, 5, 7, 9, 6, 8
- 3rd: [0, 1, 2], 3, 4, 5, 6, 7, 9, 8
- 4th: [0, 1, 2, 3], 4, 5, 6, 7, 8, 9
- 5th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+data:  1  3  4  5  7  9  0  8  2  6
+ 1st: [0] 1  3  4  5  7  9  2  8  6
+ 2nd: [0  1] 2  3  4  5  7  9  6  8
+ 3rd: [0  1  2] 3  4  5  6  7  9  8
+ 4th: [0  1  2  3] 4  5  6  7  8  9
+ 5th: [0  1  2  3  4  5  6  7  8  9]
 */
 Index *Bubble_Sort_LTH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
@@ -166,14 +166,14 @@ Index *Bubble_Sort_LTH(Index index[], long leng, Compare comp) {
 }
 
 /* Stable
-data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
- 1st:  1, 3, 4, 5, 7, 0, 8, 2, 6,[9]
- 2nd:  1, 3, 4, 5, 0, 7, 2, 6,[8, 9]
- 3rd:  1, 3, 4, 0, 5, 2, 6,[7, 8, 9]
- 4th:  1, 3, 0, 4, 2, 5,[6, 7, 8, 9]
- 5th:  1, 0, 3, 2, 4,[5, 6, 7, 8, 9]
- 6th:  0, 1, 2, 3,[4, 5, 6, 7, 8, 9]
- 7th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+data:  1  3  4  5  7  9  0  8  2  6
+ 1st:  1  3  4  5  7  0  8  2  6 [9]
+ 2nd:  1  3  4  5  0  7  2  6 [8  9]
+ 3rd:  1  3  4  0  5  2  6 [7  8  9]
+ 4th:  1  3  0  4  2  5 [6  7  8  9]
+ 5th:  1  0  3  2  4 [5  6  7  8  9]
+ 6th:  0  1  2  3 [4  5  6  7  8  9]
+ 7th: [0  1  2  3  4  5  6  7  8  9]
 */
 Index *Bubble_Sort_HTL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
@@ -200,20 +200,56 @@ Index *Bubble_Sort_HTL(Index index[], long leng, Compare comp) {
 	return index;
 }
 
+/* Unstable
+data:  1  3  4  5  7  9  0  8  2  6
+ 1st:  1  2 [4] 5  7  9  0  8  3 [6]    # step = 7
+ 2nd:  1  0  4  3 [6] 9  2  8  5 [7]    # step = 5
+ 3rd: [1] 0  4 [2] 6  5 [3] 8  9 [7]    # step = 3
+ 4th:  1 [0] 3 [2] 4 [5] 6 [7] 9 [8]    # step = 2
+ 5th: [0][1][2][3][4][5][6][7][8][9]    # step = 1
+ 6th: [0][1][2][3][4][5][6][7][8][9]    # step = 1
+*/
+Index *Comb_Sort(Index index[], long leng, Compare comp) {
+	double fact = 4.0 / 3.0;
+	long step = (long)(leng / fact);
+	bool flip = true;
+	Index swap;
+	while (flip) {
+		flip = false;
+		for (long i = leng - 1; step <= i; i -= 1) {
+			if (comp(&index[i]._hash, &index[i - step]._hash)) {
+				swap = index[i];
+				index[i] = index[i - step];
+				index[i - step] = swap;
+				flip = true;
+			}
+		}
+		// fprintf(stdout, "step = %ld""\n", step);
+		// Print_Index(index, leng);
+		if (1 < step) {
+			step = (long)(step / fact);
+			flip = true;
+		}
+
+
+	}
+	return index;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 /* Stable
-data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
- 1st: [0], 3, 4, 5, 7, 9, 1, 8, 2, 6
- 2nd: [0, 1], 4, 5, 7, 9, 3, 8, 2, 6
- 3rd: [0, 1, 2], 5, 7, 9, 3, 8, 4, 6
- 4th: [0, 1, 2, 3], 7, 9, 5, 8, 4, 6
- 5th: [0, 1, 2, 3, 4], 9, 5, 8, 7, 6
- 6th: [0, 1, 2, 3, 4, 5], 9, 8, 7, 6
- 7th: [0, 1, 2, 3, 4, 5, 6], 8, 7, 9
- 8th: [0, 1, 2, 3, 4, 5, 6, 7], 8, 9
- 9th: [0, 1, 2, 3, 4, 5, 6, 7, 8], 9
-10th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+data:  1  3  4  5  7  9  0  8  2  6
+ 1st: [0] 3  4  5  7  9  1  8  2  6
+ 2nd: [0  1] 4  5  7  9  3  8  2  6
+ 3rd: [0  1  2] 5  7  9  3  8  4  6
+ 4th: [0  1  2  3] 7  9  5  8  4  6
+ 5th: [0  1  2  3  4] 9  5  8  7  6
+ 6th: [0  1  2  3  4  5] 9  8  7  6
+ 7th: [0  1  2  3  4  5  6] 8  7  9
+ 8th: [0  1  2  3  4  5  6  7] 8  9
+ 9th: [0  1  2  3  4  5  6  7  8] 9
+10th: [0  1  2  3  4  5  6  7  8  9]
 */
 Index *Selection_Sort_LTH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
@@ -240,17 +276,17 @@ Index *Selection_Sort_LTH(Index index[], long leng, Compare comp) {
 }
 
 /* Stable
-data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
- 1st:  1, 3, 4, 5, 7, 6, 0, 8, 2,[9]
- 2nd:  1, 3, 4, 5, 7, 6, 0, 2,[8, 9]
- 3rd:  1, 3, 4, 5, 2, 6, 0,[7, 8, 9]
- 4th:  1, 3, 4, 5, 2, 0,[6, 7, 8, 9]
- 5th:  1, 3, 4, 0, 2,[5, 6, 7, 8, 9]
- 6th:  1, 3, 2, 0,[4, 5, 6, 7, 8, 9]
- 7th:  1, 0, 2,[3, 4, 5, 6, 7, 8, 9]
- 8th:  1, 0,[2, 3, 4, 5, 6, 7, 8, 9]
- 9th:  0,[1, 2, 3, 4, 5, 6, 7, 8, 9]
-10th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+data:  1  3  4  5  7  9  0  8  2  6
+ 1st:  1  3  4  5  7  6  0  8  2 [9]
+ 2nd:  1  3  4  5  7  6  0  2 [8  9]
+ 3rd:  1  3  4  5  2  6  0 [7  8  9]
+ 4th:  1  3  4  5  2  0 [6  7  8  9]
+ 5th:  1  3  4  0  2 [5  6  7  8  9]
+ 6th:  1  3  2  0 [4  5  6  7  8  9]
+ 7th:  1  0  2 [3  4  5  6  7  8  9]
+ 8th:  1  0 [2  3  4  5  6  7  8  9]
+ 9th:  0 [1  2  3  4  5  6  7  8  9]
+10th: [0  1  2  3  4  5  6  7  8  9]
 */
 Index *Selection_Sort_HTL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
@@ -279,17 +315,17 @@ Index *Selection_Sort_HTL(Index index[], long leng, Compare comp) {
 ////////////////////////////////////////////////////////////////////////////////
 
 /* Stable
-data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
- 1st: [1], 3, 4, 5, 7, 9, 0, 8, 2, 6
- 2nd: [1, 3], 4, 5, 7, 9, 0, 8, 2, 6
- 3rd: [1, 3, 4], 5, 7, 9, 0, 8, 2, 6
- 4th: [1, 3, 4, 5], 7, 9, 0, 8, 2, 6
- 5th: [1, 3, 4, 5, 7], 9, 0, 8, 2, 6
- 6th: [1, 3, 4, 5, 7, 9], 0, 8, 2, 6
- 7th: [0, 1, 3, 4, 5, 7, 9], 8, 2, 6
- 8th: [0, 1, 3, 4, 5, 7, 8, 9], 2, 6
- 9th: [0, 1, 2, 3, 4, 5, 7, 8, 9], 6
-10th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+data:  1  3  4  5  7  9  0  8  2  6
+ 1st: [1] 3  4  5  7  9  0  8  2  6
+ 2nd: [1  3] 4  5  7  9  0  8  2  6
+ 3rd: [1  3  4] 5  7  9  0  8  2  6
+ 4th: [1  3  4  5] 7  9  0  8  2  6
+ 5th: [1  3  4  5  7] 9  0  8  2  6
+ 6th: [1  3  4  5  7  9] 0  8  2  6
+ 7th: [0  1  3  4  5  7  9] 8  2  6
+ 8th: [0  1  3  4  5  7  8  9] 2  6
+ 9th: [0  1  2  3  4  5  7  8  9] 6
+10th: [0  1  2  3  4  5  6  7  8  9]
 */
 Index *Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
@@ -311,17 +347,17 @@ Index *Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
 }
 
 /* Stable
-data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
- 1st:  1, 3, 4, 5, 7, 9, 0, 8, 2,[6]
- 2nd:  1, 3, 4, 5, 7, 9, 0, 8,[2, 6]
- 3rd:  1, 3, 4, 5, 7, 9, 0,[2, 6, 8]
- 4th:  1, 3, 4, 5, 7, 9,[0, 2, 6, 8]
- 5th:  1, 3, 4, 5, 7,[0, 2, 6, 8, 9]
- 6th:  1, 3, 4, 5,[0, 2, 6, 7, 8, 9]
- 7th:  1, 3, 4,[0, 2, 5, 6, 7, 8, 9]
- 8th:  1, 3,[0, 2, 4, 5, 6, 7, 8, 9]
- 9th:  1,[0, 2, 3, 4, 5, 6, 7, 8, 9]
-10th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+data:  1  3  4  5  7  9  0  8  2  6
+ 1st:  1  3  4  5  7  9  0  8  2 [6]
+ 2nd:  1  3  4  5  7  9  0  8 [2  6]
+ 3rd:  1  3  4  5  7  9  0 [2  6  8]
+ 4th:  1  3  4  5  7  9 [0  2  6  8]
+ 5th:  1  3  4  5  7 [0  2  6  8  9]
+ 6th:  1  3  4  5 [0  2  6  7  8  9]
+ 7th:  1  3  4 [0  2  5  6  7  8  9]
+ 8th:  1  3 [0  2  4  5  6  7  8  9]
+ 9th:  1 [0  2  3  4  5  6  7  8  9]
+10th: [0  1  2  3  4  5  6  7  8  9]
 */
 Index *Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
@@ -343,17 +379,17 @@ Index *Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
 }
 
 /* UnStable
-data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
- 1st: [1], 3, 4, 5, 7, 9, 0, 8, 2, 6
- 2nd: [1, 3], 4, 5, 7, 9, 0, 8, 2, 6
- 3rd: [1, 3, 4], 5, 7, 9, 0, 8, 2, 6
- 4th: [1, 3, 4, 5], 7, 9, 0, 8, 2, 6
- 5th: [1, 3, 4, 5, 7], 9, 0, 8, 2, 6
- 6th: [1, 3, 4, 5, 7, 9], 0, 8, 2, 6
- 7th: [0, 1, 3, 4, 5, 7, 9], 8, 2, 6
- 8th: [0, 1, 3, 4, 5, 7, 8, 9], 2, 6
- 9th: [0, 1, 2, 3, 4, 5, 7, 8, 9], 6
-10th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+data:  1 3  4  5  7  9  0  8  2  6
+ 1st: [1] 3  4  5  7  9  0  8  2  6
+ 2nd: [1  3] 4  5  7  9  0  8  2  6
+ 3rd: [1  3  4] 5  7  9  0  8  2  6
+ 4th: [1  3  4  5] 7  9  0  8  2  6
+ 5th: [1  3  4  5  7] 9  0  8  2  6
+ 6th: [1  3  4  5  7  9] 0  8  2  6
+ 7th: [0  1  3  4  5  7  9] 8  2  6
+ 8th: [0  1  3  4  5  7  8  9] 2  6
+ 9th: [0  1  2  3  4  5  7  8  9] 6
+10th: [0  1  2  3  4  5  6  7  8  9]
 */
 Index *Binary_Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
@@ -382,17 +418,17 @@ Index *Binary_Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
 }
 
 /* Unstable
-data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
- 1st:  1, 3, 4, 5, 7, 9, 0, 8, 2,[6]
- 2nd:  1, 3, 4, 5, 7, 9, 0, 8,[2, 6]
- 3rd:  1, 3, 4, 5, 7, 9, 0,[2, 6, 8]
- 4th:  1, 3, 4, 5, 7, 9,[0, 2, 6, 8]
- 5th:  1, 3, 4, 5, 7,[0, 2, 6, 8, 9]
- 6th:  1, 3, 4, 5,[0, 2, 6, 7, 8, 9]
- 7th:  1, 3, 4,[0, 2, 5, 6, 7, 8, 9]
- 8th:  1, 3,[0, 2, 4, 5, 6, 7, 8, 9]
- 9th:  1,[0, 2, 3, 4, 5, 6, 7, 8, 9]
-10th: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+data:  1  3  4  5  7  9  0  8  2  6
+ 1st:  1  3  4  5  7  9  0  8  2 [6]
+ 2nd:  1  3  4  5  7  9  0  8 [2  6]
+ 3rd:  1  3  4  5  7  9  0 [2  6  8]
+ 4th:  1  3  4  5  7  9 [0  2  6  8]
+ 5th:  1  3  4  5  7 [0  2  6  8  9]
+ 6th:  1  3  4  5 [0  2  6  7  8  9]
+ 7th:  1  3  4 [0  2  5  6  7  8  9]
+ 8th:  1  3 [0  2  4  5  6  7  8  9]
+ 9th:  1 [0  2  3  4  5  6  7  8  9]
+10th: [0  1  2  3  4  5  6  7  8  9]
 */
 Index *Binary_Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
@@ -421,17 +457,17 @@ Index *Binary_Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
 }
 
 /* Unstable
-data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
- 1st: [1], ?, ?, ?, ?, ?, ?, ?, ?, ?
- 2nd: [1, 3], ?, ?, ?, ?, ?, ?, ?, ?
- 3rd: [1, 3, 4], ?, ?, ?, ?, ?, ?, ?
- 4th: [1, 3, 4, 5], ?, ?, ?, ?, ?, ?
- 5th: [1, 3, 4, 5, 7], ?, ?, ?, ?, ?
- 6th: [1, 3, 4, 5, 7, 9], ?, ?, ?, ?
- 7th: [1, 3, 4, 5, 7, 9], ?, ?, ?,[0]
- 8th: [1, 3, 4, 5, 7, 8, 9], ?, ?,[0]
- 9th: [1, 2, 3, 4, 5, 7, 8, 9], ?,[0]
-10th: [1, 2, 3, 4, 5, 6, 7, 8, 9],[0]
+data:  1  3  4  5  7  9  0  8  2  6
+ 1st: [1] ?  ?  ?  ?  ?  ?  ?  ?  ?
+ 2nd: [1  3] ?  ?  ?  ?  ?  ?  ?  ?
+ 3rd: [1  3  4] ?  ?  ?  ?  ?  ?  ?
+ 4th: [1  3  4  5] ?  ?  ?  ?  ?  ?
+ 5th: [1  3  4  5  7] ?  ?  ?  ?  ?
+ 6th: [1  3  4  5  7  9] ?  ?  ?  ?
+ 7th: [1  3  4  5  7  9] ?  ?  ? [0]
+ 8th: [1  3  4  5  7  8  9] ?  ? [0]
+ 9th: [1  2  3  4  5  7  8  9] ? [0]
+10th: [1  2  3  4  5  6  7  8  9][0]
 */
 Index *Bipolar_Insertion_Sort(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
@@ -481,12 +517,12 @@ Index *Bipolar_Insertion_Sort(Index index[], long leng, Compare comp) {
 }
 
 /* Unstable
-data:  1 , 3 , 4 , 5 , 7 , 9 , 0 , 8 , 2 , 6
- 1st: [1], 0 , 4 , 2 ,{6},[9], 3 , 8 , 5 ,{7}    # gap = 5
- 2nd: [1],{0},[3],{2},[4],{7},[5],{8},[6],{9}    # gap = 2
- 3rd: [0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9]    # gap = 1
+data:  1  3  4  5  7  9  0  8  2  6
+ 1st: [1] 0  4  2 {6}[9] 3  8  5 {7}    # step = 5
+ 2nd: [1]{0}[3]{2}[4]{7}[5]{8}[6]{9}    # step = 2
+ 3rd: [0  1  2  3  4  5  6  7  8  9]    # step = 1
 */
-Index *Diminishing_Gap_Sort(Index index[], long leng, Compare comp) {
+Index *Diminishing_Step_Sort(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -495,14 +531,14 @@ Index *Diminishing_Gap_Sort(Index index[], long leng, Compare comp) {
 	}
 
 	Index pick;
-	for (long gap = leng / 2; 1 <= gap; gap = gap / 2) {
+	for (long step = leng / 2; 1 <= step; step = step / 2) {
 		// Print(index, leng);
-		for (long i = gap; i < leng; i += 1) {
+		for (long i = step; i < leng; i += 1) {
 			pick = index[i];
 			long j = i;
-			while (gap <= j && comp(&pick._hash, &index[j - gap]._hash)) {
-				index[j] = index[j - gap];
-				j -= gap;
+			while (step <= j && comp(&pick._hash, &index[j - step]._hash)) {
+				index[j] = index[j - step];
+				j -= step;
 			}
 			index[j] = pick;
 		}
@@ -513,13 +549,13 @@ Index *Diminishing_Gap_Sort(Index index[], long leng, Compare comp) {
 ////////////////////////////////////////////////////////////////////////////////
 
 /* Unstable
-data:  1 , 3 , 4 , 5 , 7 , 9 , 0 , 8 , 2 , 6
- 1st: [0],{1}, 4 , 5 , 7 , 9 ,[3], 8 , 2 , 6
- 2nd:  0 | 1 |[2],[3],{4}, 9 ,[7], 8 ,[5], 6
- 3rd:  0 | 1 |{2}, 3 | 4 | 9 , 7 , 8 , 5 , 6
- 4th:  0 | 1 | 2 | 3 | 4 |[6], 7 , 8 , 5 ,{9}
- 5th:  0 | 1 | 2 | 3 | 4 |[5],{6}, 8 ,[7]| 9
- 6th:  0 | 1 | 2 | 3 | 4 | 5 | 6 |{7}, 8 | 9
+data:  1   3   4   5   7   9   0   8   2   6
+ 1st: [0] {1}  4   5   7   9  [3]  8   2   6
+ 2nd:  0 | 1 |[2] [3] {4}  9  [7]  8  [5]  6
+ 3rd:  0 | 1 |{2}  3 | 4 | 9   7   8   5   6
+ 4th:  0 | 1 | 2 | 3 | 4 |[6]  7   8   5  {9}
+ 5th:  0 | 1 | 2 | 3 | 4 |[5] {6}  8  [7]| 9
+ 6th:  0 | 1 | 2 | 3 | 4 | 5 | 6 |{7}  8 | 9
 */
 Index *Partition_Sort_Recursive_Entrance(Index *head, Index *tail, Compare comp) {
 	if (head < tail) {
@@ -566,13 +602,13 @@ Index *Partition_Sort_Recursive(Index index[], long leng, Compare comp) {
 }
 
 /* Unstable
-data:  1 , 3 , 4 , 5 , 7 , 9 , 0 , 8 , 2 , 6
- 1st: [0],{1}, 4 , 5 , 7 , 9 ,[3], 8 , 2 , 6
- 2nd:  0 | 1 |[2],[3],{4}, 9 ,[7], 8 ,[5], 6
- 3rd:  0 | 1 |{2}, 3 | 4 | 9 , 7 , 8 , 5 , 6
- 4th:  0 | 1 | 2 | 3 | 4 |[6], 7 , 8 , 5 ,{9}
- 5th:  0 | 1 | 2 | 3 | 4 |[5],{6}, 8 ,[7]| 9
- 6th:  0 | 1 | 2 | 3 | 4 | 5 | 6 |{7}, 8 | 9
+data:  1   3   4   5   7   9   0   8   2   6
+ 1st: [0] {1}  4   5   7   9  [3]  8   2   6
+ 2nd:  0 | 1 |[2] [3] {4}  9  [7]  8  [5]  6
+ 3rd:  0 | 1 |{2}  3 | 4 | 9   7   8   5   6
+ 4th:  0 | 1 | 2 | 3 | 4 |[6]  7   8   5  {9}
+ 5th:  0 | 1 | 2 | 3 | 4 |[5] {6}  8  [7]| 9
+ 6th:  0 | 1 | 2 | 3 | 4 | 5 | 6 |{7}  8 | 9
 */
 Index *Partition_Sort(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
@@ -648,12 +684,16 @@ void Test_Bubble_Sort() {
 	Print_Datum(_Index, _Length);
 }
 
+void Test_Comb_Sort() {
+	Comb_Sort(_Index, _Length, Less);
+	Print_Datum(_Index, _Length);
+}
+
 void Test_Selection_Sort() {
 	// Selection_Sort_LTH(_Index, _Length, Less);
 	Selection_Sort_HTL(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
-
 
 void Test_Insertion_Sort() {
 	// Insertion_Sort_LTH(_Index, _Length, Less);
@@ -672,8 +712,8 @@ void Test_Bipolar_Insertion_Sort() {
 	Print_Datum(_Index, _Length);
 }
 
-void Test_Diminishing_Increment_Sort() {
-	Diminishing_Gap_Sort(_Index, _Length, Less);
+void Test_Diminishing_Step_Sort() {
+	Diminishing_Step_Sort(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
@@ -689,17 +729,18 @@ void Test_Partition_Sort() {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-
 int main(int argc, char *argv[]) {
 	Mapping(true);
 
 	// Test_Bubble_Sort();
+	Test_Comb_Sort();
 	// Test_Selection_Sort();
 	// Test_Insertion_Sort();
 	// Test_Binary_Insertion_Sort();
 	// Test_Bipolar_Insertion_Sort();
 	// Test_Diminishing_Increment_Sort();
 	// Test_Partition_Sort_Recursive();
-	Test_Partition_Sort();
+	// Test_Partition_Sort();
+
 	return 0;
 }
