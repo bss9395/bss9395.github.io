@@ -1,6 +1,6 @@
 /* Sequential_Sort.c
 Author: BSS9395
-Update: 2020-12-01T05:30:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-12-02T02:08:00+08@China-Guangdong-Zhanjiang+08
 Design: Sequential Sort
 */
 
@@ -78,39 +78,54 @@ typedef struct Datum {
 
 typedef struct Index {
 	long _hash;
-	long _index;
+	void *_index;
 } Index;
 
 Datum _Datum[10] = { {1, "!"}, {3, "#"}, {4, "$"}, {5, "%"}, {7, "&"}, {9, "("}, {0, ")"}, {8, "*"}, {2, "@"}, {6, "^"} };
+Datum _Extra[10] = { {1, "1"}, {3, "3"}, {4, "4"}, {5, "5"}, {7, "7"}, {9, "9"}, {0, "0"}, {8, "8"}, {2, "2"}, {6, "6"} };
 Index *_Index = NULL;
 long _Length = 0;
 
-Index *Mapping(Datum datum[], Index index[], long leng) {
-	if (Check(datum == NULL || leng < 0, ELevel._Error, __FUNCTION__, "data == NULL || leng < 0", NULL)) {
-		exit(EXIT_FAILURE);
+void Mapping(bool normal) {
+	if (normal) {
+		long length = sizeof(_Datum) / sizeof(_Datum[0]);
+		Index *index = (Index *)calloc(length, sizeof(Index));
+		for (long i = 0; i < length; i += 1) {
+			index[i]._hash = _Datum[i]._hash;
+			index[i]._index = &_Datum[i];
+		}
+		_Index = index;
+		_Length = length;
 	}
-	if (index == NULL) {
-		index = (Index *)calloc(leng, sizeof(Index));
+	else {
+		long length = sizeof(_Datum) / sizeof(_Datum[0]);
+		long length_extra = sizeof(_Extra) / sizeof(_Extra[0]);
+		Index *index = (Index *)calloc(length + length_extra, sizeof(Index));
+		for (long i = 0; i < length; i += 1) {
+			index[i]._hash = _Datum[i]._hash;
+			index[i]._index = &_Datum[i];
+		}
+		for (long i = 0; i < length_extra; i += 1) {
+			index[length + i]._hash = _Extra[i]._hash;
+			index[length + i]._index = &_Extra[i];
+		}
+		_Index = index;
+		_Length = length + length_extra;
 	}
-
-	for (long i = 0; i < leng; i += 1) {
-		index[i]._hash = datum[i]._hash;
-		index[i]._index = i;
-	}
-
-	////////////////////////////////////////
-
-	//long idx = 0;
-	//for (long i = 0; i < leng; i += 1) {
-	//	idx = index[i]._index;
-	//	fprintf(stdout, "[%ld: %s] ", datum[idx]._hash, datum[idx]._datum);
-	//}
-	return index;
 }
 
-void Print(Index index[], long leng) {
+void Print_Index(Index index[], long leng) {
 	for (long i = 0; i < leng; i += 1) {
 		fprintf(stdout, "%ld, ", index[i]._hash);
+	}
+	fprintf(stdout, "\n");
+}
+
+void Print_Datum(Index index[], long leng) {
+	Datum *idx = NULL;
+	for (long i = 0; i < leng; i += 1) {
+		idx = index[i]._index;
+		fprintf(stdout, "[%ld: %s] ", idx->_hash, idx->_datum);
 	}
 	fprintf(stdout, "\n");
 }
@@ -245,7 +260,7 @@ Index *Selection_Sort_HTL(Index index[], long leng, Compare comp) {
 	long most = 0;
 	Index swap;
 	for (long i = leng - 1; 0 <= i; i -= 1) {
-		Print(index, leng);
+		// Print_Index(index, leng);
 		most = i;
 		for (long j = i; 0 <= j; j -= 1) {
 			if (comp(&index[most]._hash, &index[j]._hash)) {
@@ -260,6 +275,8 @@ Index *Selection_Sort_HTL(Index index[], long leng, Compare comp) {
 	}
 	return index;
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 /* Stable
 data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
@@ -292,8 +309,6 @@ Index *Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
 	}
 	return index;
 }
-
-
 
 /* Stable
 data:  1, 3, 4, 5, 7, 9, 0, 8, 2, 6
@@ -485,10 +500,11 @@ Index *Diminishing_Gap_Sort(Index index[], long leng, Compare comp) {
 		for (long i = gap; i < leng; i += 1) {
 			pick = index[i];
 			long j = i;
-			while (j -= gap, 0 <= j && comp(&pick._hash, &index[j]._hash)) {
-				index[j + gap] = index[j];
+			while (gap <= j && comp(&pick._hash, &index[j - gap]._hash)) {
+				index[j] = index[j - gap];
+				j -= gap;
 			}
-			index[j + gap] = pick;
+			index[j] = pick;
 		}
 	}
 	return index;
@@ -496,87 +512,113 @@ Index *Diminishing_Gap_Sort(Index index[], long leng, Compare comp) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/* Unstable
+data:  1 , 3 , 4 , 5 , 7 , 9 , 0 , 8 , 2 , 6
+ 1st: [0],{1}, 4 , 5 , 7 , 9 ,[3], 8 , 2 , 6
+ 2nd:  0 | 1 |[2],[3],{4}, 9 ,[7], 8 ,[5], 6
+ 3rd:  0 | 1 |{2}, 3 | 4 | 9 , 7 , 8 , 5 , 6
+ 4th:  0 | 1 | 2 | 3 | 4 |[6], 7 , 8 , 5 ,{9}
+ 5th:  0 | 1 | 2 | 3 | 4 |[5],{6}, 8 ,[7]| 9
+ 6th:  0 | 1 | 2 | 3 | 4 | 5 | 6 |{7}, 8 | 9
+*/
+Index *Partition_Sort_Recursive_Entrance(Index *head, Index *tail, Compare comp) {
+	if (head < tail) {
+		Print_Index(_Index, _Length);
+		Index pivot = head[0];
+		Index *lower = head;
+		Index *upper = tail;
+		while (true) {
+			while (lower < upper && comp(&pivot._hash, &upper->_hash)) {
+				upper -= 1;
+			}
+			if (lower < upper) {
+				lower[0] = upper[0];
+				lower += 1;
 
+				while (lower < upper && comp(&lower->_hash, &pivot._hash)) {
+					lower += 1;
+				}
+				if (lower < upper) {
+					upper[0] = lower[0];
+					upper -= 1;
+					continue;
+				}
+			}
+			break;
+		}
+		lower[0] = pivot;
+		Partition_Sort_Recursive_Entrance(head, lower - 1, comp);
+		Partition_Sort_Recursive_Entrance(lower + 1, tail, comp);
+	}
+	return head;
+}
+
+Index *Partition_Sort_Recursive(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
+	}
+
+	Partition_Sort_Recursive_Entrance(&index[0], &index[leng - 1], comp);
+	return index;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
 void Test_Bubble_Sort() {
 	Bubble_Sort_LTH(_Index, _Length, Less);
 	// Bubble_Sort_HTL(_Index, _Length, Less);
-	long idx = 0;
-	for (long i = 0; i < _Length; i += 1) {
-		idx = _Index[i]._index;
-		fprintf(stdout, "[%ld: %s] ", _Datum[idx]._hash, _Datum[idx]._datum);
-	}
-	fprintf(stdout, "\n");
+	Print_Datum(_Index, _Length);
 }
 
 void Test_Selection_Sort() {
 	// Selection_Sort_LTH(_Index, _Length, Less);
 	Selection_Sort_HTL(_Index, _Length, Less);
-	long idx = 0;
-	for (long i = 0; i < _Length; i += 1) {
-		idx = _Index[i]._index;
-		fprintf(stdout, "[%ld: %s] ", _Datum[idx]._hash, _Datum[idx]._datum);
-	}
-	fprintf(stdout, "\n");
+	Print_Datum(_Index, _Length);
 }
 
 
 void Test_Insertion_Sort() {
 	// Insertion_Sort_LTH(_Index, _Length, Less);
 	Insertion_Sort_HTL(_Index, _Length, Less);
-	long idx = 0;
-	for (long i = 0; i < _Length; i += 1) {
-		idx = _Index[i]._index;
-		fprintf(stdout, "[%ld: %s] ", _Datum[idx]._hash, _Datum[idx]._datum);
-	}
-	fprintf(stdout, "\n");
+	Print_Datum(_Index, _Length);
 }
 
 void Test_Binary_Insertion_Sort() {
 	// Binary_Insertion_Sort_LTH(_Index, _Length, Less);
 	Binary_Insertion_Sort_HTL(_Index, _Length, Less);
-	long idx = 0;
-	for (long i = 0; i < _Length; i += 1) {
-		idx = _Index[i]._index;
-		fprintf(stdout, "[%ld: %s] ", _Datum[idx]._hash, _Datum[idx]._datum);
-	}
-	fprintf(stdout, "\n");
+	Print_Datum(_Index, _Length);
 }
 
 void Test_Bipolar_Insertion_Sort() {
 	Bipolar_Insertion_Sort(_Index, _Length, Less);
-	long idx = 0;
-	for (long i = 0; i < _Length; i += 1) {
-		idx = _Index[i]._index;
-		fprintf(stdout, "[%ld: %s] ", _Datum[idx]._hash, _Datum[idx]._datum);
-	}
-	fprintf(stdout, "\n");
+	Print_Datum(_Index, _Length);
 }
 
 void Test_Diminishing_Increment_Sort() {
 	Diminishing_Gap_Sort(_Index, _Length, Less);
-	long idx = 0;
-	for (long i = 0; i < _Length; i += 1) {
-		idx = _Index[i]._index;
-		fprintf(stdout, "[%ld: %s] ", _Datum[idx]._hash, _Datum[idx]._datum);
-	}
-	fprintf(stdout, "\n");
+	Print_Datum(_Index, _Length);
+}
+
+void Test_Partition_Sort_Recursive() {
+	Partition_Sort_Recursive(_Index, _Length, LessEqual);
+	Print_Datum(_Index, _Length);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 
 int main(int argc, char *argv[]) {
-	_Length = sizeof(_Datum) / sizeof(_Datum[0]);
-	_Index = Mapping(_Datum, _Index, _Length);
+	Mapping(true);
 
 	// Test_Bubble_Sort();
 	// Test_Selection_Sort();
 	// Test_Insertion_Sort();
 	// Test_Binary_Insertion_Sort();
 	// Test_Bipolar_Insertion_Sort();
-	Test_Diminishing_Increment_Sort();
+	// Test_Diminishing_Increment_Sort();
+	Test_Partition_Sort_Recursive();
 	return 0;
 }
