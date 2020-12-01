@@ -1,6 +1,6 @@
 /* Sequential_Sort.c
 Author: BSS9395
-Update: 2020-12-02T02:08:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-12-02T02:52:00+08@China-Guangdong-Zhanjiang+08
 Design: Sequential Sort
 */
 
@@ -523,7 +523,7 @@ data:  1 , 3 , 4 , 5 , 7 , 9 , 0 , 8 , 2 , 6
 */
 Index *Partition_Sort_Recursive_Entrance(Index *head, Index *tail, Compare comp) {
 	if (head < tail) {
-		Print_Index(_Index, _Length);
+		// Print_Index(_Index, _Length);
 		Index pivot = head[0];
 		Index *lower = head;
 		Index *upper = tail;
@@ -562,6 +562,81 @@ Index *Partition_Sort_Recursive(Index index[], long leng, Compare comp) {
 	}
 
 	Partition_Sort_Recursive_Entrance(&index[0], &index[leng - 1], comp);
+	return index;
+}
+
+/* Unstable
+data:  1 , 3 , 4 , 5 , 7 , 9 , 0 , 8 , 2 , 6
+ 1st: [0],{1}, 4 , 5 , 7 , 9 ,[3], 8 , 2 , 6
+ 2nd:  0 | 1 |[2],[3],{4}, 9 ,[7], 8 ,[5], 6
+ 3rd:  0 | 1 |{2}, 3 | 4 | 9 , 7 , 8 , 5 , 6
+ 4th:  0 | 1 | 2 | 3 | 4 |[6], 7 , 8 , 5 ,{9}
+ 5th:  0 | 1 | 2 | 3 | 4 |[5],{6}, 8 ,[7]| 9
+ 6th:  0 | 1 | 2 | 3 | 4 | 5 | 6 |{7}, 8 | 9
+*/
+Index *Partition_Sort(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
+	}
+
+	typedef struct Queue {
+		Index *_head;
+		Index *_tail;
+	} Queue;
+	Queue *range = (Queue *)calloc(leng, sizeof(Queue));
+	long get = 0;
+	long put = 0;
+	range[put]._head = &index[0];
+	range[put]._tail = &index[leng - 1];
+	put += 1;
+
+	Index *head = NULL;
+	Index *tail = NULL;
+	Index pivot;
+	Index *lower = NULL;
+	Index *upper = NULL;
+	while (get < put) {
+		head = range[get]._head;
+		tail = range[get]._tail;
+		get += 1;
+
+		pivot = head[0];
+		lower = head;
+		upper = tail;
+		while (true) {
+			while (lower < upper && comp(&pivot._hash, &upper->_hash)) {
+				upper -= 1;
+			}
+			if (lower < upper) {
+				lower[0] = upper[0];
+				lower += 1;
+
+				while (lower < upper && comp(&lower->_hash, &pivot._hash)) {
+					lower += 1;
+				}
+				if (lower < upper) {
+					upper[0] = lower[0];
+					upper -= 1;
+					continue;
+				}
+			}
+			break;
+		}
+		lower[0] = pivot;
+		if (head < lower - 1) {
+			range[put]._head = head;
+			range[put]._tail = lower - 1;
+			put += 1;
+		}
+		if (lower + 1 < tail) {
+			range[put]._head = lower + 1;
+			range[put]._tail = tail;
+			put += 1;
+		}
+	}
 	return index;
 }
 
@@ -607,6 +682,11 @@ void Test_Partition_Sort_Recursive() {
 	Print_Datum(_Index, _Length);
 }
 
+void Test_Partition_Sort() {
+	Partition_Sort(_Index, _Length, Less);
+	Print_Datum(_Index, _Length);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -619,6 +699,7 @@ int main(int argc, char *argv[]) {
 	// Test_Binary_Insertion_Sort();
 	// Test_Bipolar_Insertion_Sort();
 	// Test_Diminishing_Increment_Sort();
-	Test_Partition_Sort_Recursive();
+	// Test_Partition_Sort_Recursive();
+	Test_Partition_Sort();
 	return 0;
 }
