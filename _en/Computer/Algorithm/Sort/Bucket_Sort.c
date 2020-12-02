@@ -1,6 +1,6 @@
 /* Bucket_Sort.c
 Author: BSS9395
-Update: 2020-12-03T02:52:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-12-03T05:36:00+08@China-Guangdong-Zhanjiang+08
 Design: Bucket Sort
 */
 
@@ -77,6 +77,7 @@ typedef struct Datum {
 } Datum;
 
 typedef struct Index {
+	struct Index *_link;
 	long _hash;
 	void *_index;
 } Index;
@@ -247,16 +248,81 @@ Index *Counting_Sort_Integer(Index index[], long leng, Compare comp) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+Index *Bucket_Sort(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
+	}
+
+	Index *bucket = (Index *)calloc(leng, sizeof(Index));
+	for (long i = 0; i < leng; i += 1) {
+		index[i]._link = NULL;
+	}
+
+	long idx = 0;
+	Index **iter = NULL;
+	for (long i = 0; i < leng; i += 1) {
+		idx = (index[i]._hash + leng) % leng;
+		iter = &bucket[idx]._link;
+		while ((*iter) != NULL && comp((*iter)->_hash, index[i]._hash)) {
+			iter = &((*iter)->_link);
+		}
+		index[i]._link = (*iter);
+		(*iter) = &index[i];
+	}
+
+	Index *join = NULL;
+	Index *swap = NULL;
+	Index *head = bucket[0]._link;
+	for (long i = 1; i < leng; i += 1) {
+		if (bucket[i]._link != NULL) {
+			iter = &head;
+			join = bucket[i]._link;
+			while ((*iter) != NULL && join != NULL) {
+				if (comp(join->_hash, (*iter)->_hash)) {
+					swap = join;
+					join = (*iter);
+					(*iter) = swap;
+				}
+				iter = &((*iter)->_link);
+			}
+			if (join != NULL) {
+				(*iter) = join;
+			}
+		}
+	}
+
+	for (long i = 0; i < leng; i += 1) {
+		bucket[i]._hash = head->_hash;
+		bucket[i]._index = head->_index;
+		head = head->_link;
+	}
+	free(index);
+	return bucket;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 void Test_Counting_Sort() {
 	// _Index = Counting_Sort_Natural(_Index, _Length, More);
 	_Index = Counting_Sort_Integer(_Index, _Length, More);
 	Print_Datum(_Index, _Length);
 }
 
+void Test_Bucket_Sort() {
+	_Index = Bucket_Sort(_Index, _Length, Less);
+	Print_Datum(_Index, _Length);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 int main(int argc, char *argv[]) {
 	Mapping(true);
 
-	Test_Counting_Sort();
+	// Test_Counting_Sort();
+	Test_Bucket_Sort();
 
 	return 0;
 }
