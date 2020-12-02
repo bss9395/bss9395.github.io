@@ -1,6 +1,6 @@
 /* Sequential_Sort.c
 Author: BSS9395
-Update: 2020-12-02T04:40:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-12-02T22:43:00+08@China-Guangdong-Zhanjiang+08
 Design: Sequential Sort
 */
 
@@ -81,8 +81,8 @@ typedef struct Index {
 	void *_index;
 } Index;
 
-Datum _Datum[10] = { {1, "!"}, {3, "#"}, {4, "$"}, {5, "%"}, {7, "&"}, {9, "("}, {0, ")"}, {8, "*"}, {2, "@"}, {6, "^"} };
-Datum _Extra[10] = { {1, "1"}, {3, "3"}, {4, "4"}, {5, "5"}, {7, "7"}, {9, "9"}, {0, "0"}, {8, "8"}, {2, "2"}, {6, "6"} };
+Datum _Datum[] = { {1, "!"}, {3, "#"}, {4, "$"}, {5, "%"}, {7, "&"}, {9, "("}, {0, ")"}, {8, "*"}, {2, "@"}, {6, "^"} };
+Datum _Extra[] = { {1, "1"}, {3, "3"}, {4, "4"}, {5, "5"}, {7, "7"}, {9, "9"}, {0, "0"}, {8, "8"}, {2, "2"}, {6, "6"} };
 Index *_Index = NULL;
 long _Length = 0;
 
@@ -144,6 +144,9 @@ Index *Bubble_Sort_LTH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
+	if (leng <= 1) {
+		return index;
+	}
 
 	bool flip = false;
 	Index swap;
@@ -179,6 +182,9 @@ Index *Bubble_Sort_HTL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
+	if (leng <= 1) {
+		return index;
+	}
 
 	bool flip = false;
 	Index swap;
@@ -210,6 +216,13 @@ data:  1  3  4  5  7  9  0  8  2  6
  6th: [0][1][2][3][4][5][6][7][8][9]    # step = 1
 */
 Index *Comb_Sort(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
+	}
+
 	double fact = 4.0 / 3.0;
 	long step = (long)(leng / fact);
 	bool flip = true;
@@ -255,6 +268,9 @@ Index *Selection_Sort_LTH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
+	if (leng <= 1) {
+		return index;
+	}
 
 	long most = 0;
 	Index swap;
@@ -291,6 +307,9 @@ data:  1  3  4  5  7  9  0  8  2  6
 Index *Selection_Sort_HTL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
 	}
 
 	long most = 0;
@@ -331,6 +350,9 @@ Index *Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
+	if (leng <= 1) {
+		return index;
+	}
 
 	Index pick;
 	for (long i = 0; i < leng; i += 1) {
@@ -363,6 +385,9 @@ Index *Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
+	if (leng <= 1) {
+		return index;
+	}
 
 	Index pick;
 	for (long i = leng - 1; 0 <= i; i -= 1) {
@@ -394,6 +419,9 @@ data:  1 3  4  5  7  9  0  8  2  6
 Index *Binary_Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
 	}
 
 	Index pick;
@@ -433,6 +461,9 @@ data:  1  3  4  5  7  9  0  8  2  6
 Index *Binary_Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
 	}
 
 	Index pick;
@@ -673,57 +704,165 @@ Index *Partition_Sort(Index index[], long leng, Compare comp) {
 			put += 1;
 		}
 	}
+	free(range);
+	return index;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+/* Stable
+data:  1  3  4  5  7  9  0  8  2  6
+ 1st: [1  3] 4  5  7  9  0  8  2  6
+ 2nd: [1  3  4] 5  7  9  0  8  2  6
+ 3rd: [1  3  4][5  7] 9  0  8  2  6
+ 4th: [1  3  4  5  7] 9  0  8  2  6
+ 5th: [1  3  4  5  7][0  9] 8  2  6
+ 6th: [1  3  4  5  7][0  8  9] 2  6
+ 7th: [1  3  4  5  7][0  8  9][2  6]
+ 8th: [1  3  4  5  7][0  2  6  8  9]
+ 9th: [0  1  2  3  4  5  6  7  8  9]
+*/
+Index *Merge_Sort_Recursive_Entrance(Index merge[], Index *head, Index *tail, Compare comp) {
+	if (head < tail) {
+		Index *half = head + (tail - head) / 2;
+		Merge_Sort_Recursive_Entrance(merge, head, half, comp);
+		Merge_Sort_Recursive_Entrance(merge, half + 1, tail, comp);
+
+		Index *fore = head;
+		Index *back = half + 1;
+		for (; fore <= half && back <= tail; merge += 1) {
+			comp(&fore->_hash, &back->_hash)
+				? (merge[0] = fore[0], fore += 1)
+				: (merge[0] = back[0], back += 1);
+		}
+		for (; fore <= half; merge[0] = fore[0], merge += 1, fore += 1);
+		for (; back <= tail; merge[0] = back[0], merge += 1, back += 1);
+
+		for (merge -= 1; head <= tail; tail[0] = merge[0], tail -= 1, merge -= 1);
+		// Print_Index(_Index, _Length);
+	}
+	return head;
+}
+
+Index *Merge_Sort_Recursive(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
+	}
+
+	Index *merge = (Index *)calloc(leng, sizeof(Index));
+	Merge_Sort_Recursive_Entrance(merge, &index[0], &index[leng - 1], comp);
+	free(merge);
+	return index;
+}
+
+/* Stable
+data:  1  3  4  5  7  9  0  8  2  6
+ 1st: [1  3][4  5][7  9][0  8][2  6]
+ 2nd: [1  3  4  5][0  7  8  9][2  6]
+ 3rd: [0  1  3  4  5  7  8  9][2  6]
+ 4th: [0  1  2  3  4  5  6  7  8  9]
+ */
+Index *Merge_Sort(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
+	}
+
+	Index *merge = (Index *)calloc(leng, sizeof(Index));
+	Index *swap = NULL;
+	long iter = 0;
+	long beg1 = 0;
+	long end1 = 0;
+	long beg2 = 0;
+	long end2 = 0;
+	for (long span = 1; span < leng; span += span) {
+		iter = 0;
+		beg1 = iter, end1 = beg1 + span;
+		beg2 = end1, end2 = beg2 + span;
+		while (end2 < leng) {
+			for (; beg1 < end1 && beg2 < end2; iter += 1) {
+				comp(&index[beg1]._hash, &index[beg2]._hash)
+					? (merge[iter] = index[beg1], beg1 += 1)
+					: (merge[iter] = index[beg2], beg2 += 1);
+			}
+			for (; beg1 < end1; merge[iter] = index[beg1], iter += 1, beg1 += 1);
+			for (; beg2 < end2; merge[iter] = index[beg2], iter += 1, beg2 += 1);
+
+			beg1 = end2, end1 = beg1 + span;
+			beg2 = end1, end2 = beg2 + span;
+		}
+		if (end1 < leng) {
+			end2 = leng;
+			for (; beg1 < end1 && beg2 < end2; iter += 1) {
+				comp(&index[beg1]._hash, &index[beg2]._hash)
+					? (merge[iter] = index[beg1], beg1 += 1)
+					: (merge[iter] = index[beg2], beg2 += 1);
+			}
+			for (; beg1 < end1; merge[iter] = index[beg1], iter += 1, beg1 += 1);
+			for (; beg2 < end2; merge[iter] = index[beg2], iter += 1, beg2 += 1);
+		}
+		swap = index, index = merge, merge = swap;
+		// Print_Index(index, leng);
+	}
+	free(merge);
 	return index;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 void Test_Bubble_Sort() {
-	Bubble_Sort_LTH(_Index, _Length, Less);
-	// Bubble_Sort_HTL(_Index, _Length, Less);
+	_Index = Bubble_Sort_LTH(_Index, _Length, Less);
+	// _Index = Bubble_Sort_HTL(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
 void Test_Comb_Sort() {
-	Comb_Sort(_Index, _Length, Less);
+	_Index = Comb_Sort(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
 void Test_Selection_Sort() {
-	// Selection_Sort_LTH(_Index, _Length, Less);
-	Selection_Sort_HTL(_Index, _Length, Less);
+	// _Index = Selection_Sort_LTH(_Index, _Length, Less);
+	_Index = Selection_Sort_HTL(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
 void Test_Insertion_Sort() {
-	// Insertion_Sort_LTH(_Index, _Length, Less);
-	Insertion_Sort_HTL(_Index, _Length, Less);
+	// _Index = Insertion_Sort_LTH(_Index, _Length, Less);
+	_Index = Insertion_Sort_HTL(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
 void Test_Binary_Insertion_Sort() {
-	// Binary_Insertion_Sort_LTH(_Index, _Length, Less);
-	Binary_Insertion_Sort_HTL(_Index, _Length, Less);
+	// _Index = Binary_Insertion_Sort_LTH(_Index, _Length, Less);
+	_Index = Binary_Insertion_Sort_HTL(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
 void Test_Bipolar_Insertion_Sort() {
-	Bipolar_Insertion_Sort(_Index, _Length, Less);
+	_Index = Bipolar_Insertion_Sort(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
 void Test_Diminishing_Step_Sort() {
-	Diminishing_Step_Sort(_Index, _Length, Less);
-	Print_Datum(_Index, _Length);
-}
-
-void Test_Partition_Sort_Recursive() {
-	Partition_Sort_Recursive(_Index, _Length, LessEqual);
+	_Index = Diminishing_Step_Sort(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
 void Test_Partition_Sort() {
-	Partition_Sort(_Index, _Length, Less);
+	// _Index = Partition_Sort_Recursive(_Index, _Length, LessEqual);
+	_Index = Partition_Sort(_Index, _Length, Less);
+	Print_Datum(_Index, _Length);
+}
+
+void Test_Merge_Sort() {
+	// _Index = Merge_Sort_Recursive(_Index, _Length, Less);
+	_Index = Merge_Sort(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
@@ -733,14 +872,13 @@ int main(int argc, char *argv[]) {
 	Mapping(true);
 
 	// Test_Bubble_Sort();
-	Test_Comb_Sort();
+	// Test_Comb_Sort();
 	// Test_Selection_Sort();
 	// Test_Insertion_Sort();
 	// Test_Binary_Insertion_Sort();
 	// Test_Bipolar_Insertion_Sort();
 	// Test_Diminishing_Increment_Sort();
-	// Test_Partition_Sort_Recursive();
 	// Test_Partition_Sort();
-
+	Test_Merge_Sort();
 	return 0;
 }
