@@ -1,7 +1,7 @@
-/* Sequential_Sort.c
+/* Array_Sort.c
 Author: BSS9395
 Update: 2020-12-02T22:43:00+08@China-Guangdong-Zhanjiang+08
-Design: Sequential Sort
+Design: Array Sort
 */
 
 #include <stdbool.h>
@@ -47,26 +47,26 @@ bool Check(bool failed, Level level, const ui08 *function, const ui08 *record, c
 
 ////////////////////////////////////////////////////////////////////////////////
 
-typedef bool(Compare)(long *, long *);
+typedef bool(Compare)(long, long);
 
-bool Less(long *lhs, long *rhs) {
-	return ((*lhs) < (*rhs));
+bool Less(long lhs, long rhs) {
+	return (lhs < rhs);
 }
 
-bool LessEqual(long *lhs, long *rhs) {
-	return ((*lhs) <= (*rhs));
+bool LessEqual(long lhs, long rhs) {
+	return (lhs <= rhs);
 }
 
-bool Equal(long *lhs, long *rhs) {
-	return ((*lhs) == (*rhs));
+bool Equal(long lhs, long rhs) {
+	return (lhs == rhs);
 }
 
-bool More(long *lhs, long *rhs) {
-	return ((*lhs) > (*rhs));
+bool More(long lhs, long rhs) {
+	return (lhs > rhs);
 }
 
-bool MoreEqual(long *lhs, long *rhs) {
-	return ((*lhs) >= (*rhs));
+bool MoreEqual(long lhs, long rhs) {
+	return (lhs >= rhs);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -154,7 +154,7 @@ Index *Bubble_Sort_LTH(Index index[], long leng, Compare comp) {
 		// Print(index, leng);
 		flip = false;
 		for (long j = leng - 1; i < j; j -= 1) {
-			if (comp(&index[j]._hash, &index[j - 1]._hash)) {
+			if (comp(index[j]._hash, index[j - 1]._hash)) {
 				flip = true;
 				swap = index[j];
 				index[j] = index[j - 1];
@@ -192,7 +192,7 @@ Index *Bubble_Sort_HTL(Index index[], long leng, Compare comp) {
 		// Print(index, leng);
 		flip = false;
 		for (long j = 0; j < i; j += 1) {
-			if (comp(&index[j + 1]._hash, &index[j]._hash)) {
+			if (comp(index[j + 1]._hash, index[j]._hash)) {
 				flip = true;
 				swap = index[j + 1];
 				index[j + 1] = index[j];
@@ -230,7 +230,7 @@ Index *Comb_Sort(Index index[], long leng, Compare comp) {
 	while (flip) {
 		flip = false;
 		for (long i = leng - 1; step <= i; i -= 1) {
-			if (comp(&index[i]._hash, &index[i - step]._hash)) {
+			if (comp(index[i]._hash, index[i - step]._hash)) {
 				swap = index[i];
 				index[i] = index[i - step];
 				index[i - step] = swap;
@@ -278,7 +278,7 @@ Index *Selection_Sort_LTH(Index index[], long leng, Compare comp) {
 		// Print(index, leng);
 		most = i;
 		for (long j = i; j < leng; j += 1) {
-			if (comp(&index[j]._hash, &index[most]._hash)) {
+			if (comp(index[j]._hash, index[most]._hash)) {
 				most = j;
 			}
 		}
@@ -318,7 +318,7 @@ Index *Selection_Sort_HTL(Index index[], long leng, Compare comp) {
 		// Print_Index(index, leng);
 		most = i;
 		for (long j = i; 0 <= j; j -= 1) {
-			if (comp(&index[most]._hash, &index[j]._hash)) {
+			if (comp(index[most]._hash, index[j]._hash)) {
 				most = j;
 			}
 		}
@@ -359,7 +359,7 @@ Index *Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
 		// Print(index, leng);
 		pick = index[i];
 		long j = i;
-		while (0 < j && comp(&pick._hash, &index[j - 1]._hash)) {
+		while (0 < j && comp(pick._hash, index[j - 1]._hash)) {
 			index[j] = index[j - 1];
 			j -= 1;
 		}
@@ -394,7 +394,7 @@ Index *Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
 		// Print(index, leng);
 		pick = index[i];
 		long j = i;
-		while (j < leng - 1 && comp(&index[j + 1]._hash, &pick._hash)) {
+		while (j < leng - 1 && comp(index[j + 1]._hash, pick._hash)) {
 			index[j] = index[j + 1];
 			j += 1;
 		}
@@ -435,7 +435,7 @@ Index *Binary_Insertion_Sort_LTH(Index index[], long leng, Compare comp) {
 		end = i;
 		while (beg < end) {
 			mid = (beg + end) / 2;
-			comp(&pick._hash, &index[mid]._hash) ? (end = mid) : (beg = mid + 1);
+			comp(pick._hash, index[mid]._hash) ? (end = mid) : (beg = mid + 1);
 		}
 		for (long j = i; end < j; j -= 1) {
 			index[j] = index[j - 1];
@@ -477,7 +477,7 @@ Index *Binary_Insertion_Sort_HTL(Index index[], long leng, Compare comp) {
 		beg = leng - 1;
 		while (end < beg) {
 			mid = (end + beg + 1) / 2;
-			comp(&index[mid]._hash, &pick._hash) ? (end = mid) : (beg = mid - 1);
+			comp(index[mid]._hash, pick._hash) ? (end = mid) : (beg = mid - 1);
 		}
 		for (long j = i; j < end; j += 1) {
 			index[j] = index[j + 1];
@@ -514,17 +514,17 @@ Index *Bipolar_Insertion_Sort(Index index[], long leng, Compare comp) {
 	polar[0] = index[0];
 	for (long i = 1; i < leng; i += 1) {
 		// Print(polar, leng);
-		if (comp(&polar[tail]._hash, &index[i]._hash)) {
+		if (comp(polar[tail]._hash, index[i]._hash)) {
 			tail = tail + 1;
 			polar[tail] = index[i];
 		}
-		else if (comp(&index[i]._hash, &polar[head]._hash)) {
+		else if (comp(index[i]._hash, polar[head]._hash)) {
 			head = (head == 0) ? (leng - 1) : (head - 1);
 			polar[head] = index[i];
 		}
 		else {
 			long idx = head;
-			while (comp(&polar[idx]._hash, &index[i]._hash)) {
+			while (comp(polar[idx]._hash, index[i]._hash)) {
 				idx = (idx + 1) % leng;
 			}
 			if (idx <= tail) {
@@ -567,7 +567,7 @@ Index *Diminishing_Step_Sort(Index index[], long leng, Compare comp) {
 		for (long i = step; i < leng; i += 1) {
 			pick = index[i];
 			long j = i;
-			while (step <= j && comp(&pick._hash, &index[j - step]._hash)) {
+			while (step <= j && comp(pick._hash, index[j - step]._hash)) {
 				index[j] = index[j - step];
 				j -= step;
 			}
@@ -595,14 +595,14 @@ Index *Partition_Sort_Recursive_Entrance(Index *head, Index *tail, Compare comp)
 		Index *lower = head;
 		Index *upper = tail;
 		while (true) {
-			while (lower < upper && comp(&pivot._hash, &upper->_hash)) {
+			while (lower < upper && comp(pivot._hash, upper->_hash)) {
 				upper -= 1;
 			}
 			if (lower < upper) {
 				lower[0] = upper[0];
 				lower += 1;
 
-				while (lower < upper && comp(&lower->_hash, &pivot._hash)) {
+				while (lower < upper && comp(lower->_hash, pivot._hash)) {
 					lower += 1;
 				}
 				if (lower < upper) {
@@ -674,14 +674,14 @@ Index *Partition_Sort(Index index[], long leng, Compare comp) {
 		lower = head;
 		upper = tail;
 		while (true) {
-			while (lower < upper && comp(&pivot._hash, &upper->_hash)) {
+			while (lower < upper && comp(pivot._hash, upper->_hash)) {
 				upper -= 1;
 			}
 			if (lower < upper) {
 				lower[0] = upper[0];
 				lower += 1;
 
-				while (lower < upper && comp(&lower->_hash, &pivot._hash)) {
+				while (lower < upper && comp(lower->_hash, pivot._hash)) {
 					lower += 1;
 				}
 				if (lower < upper) {
@@ -731,7 +731,7 @@ Index *Merge_Sort_Recursive_Entrance(Index merge[], Index *head, Index *tail, Co
 		Index *fore = head;
 		Index *back = half + 1;
 		for (; fore <= half && back <= tail; merge += 1) {
-			comp(&fore->_hash, &back->_hash)
+			comp(fore->_hash, back->_hash)
 				? (merge[0] = fore[0], fore += 1)
 				: (merge[0] = back[0], back += 1);
 		}
@@ -786,7 +786,7 @@ Index *Merge_Sort(Index index[], long leng, Compare comp) {
 		beg2 = end1, end2 = beg2 + span;
 		while (end2 < leng) {
 			for (; beg1 < end1 && beg2 < end2; iter += 1) {
-				comp(&index[beg1]._hash, &index[beg2]._hash)
+				comp(index[beg1]._hash, index[beg2]._hash)
 					? (merge[iter] = index[beg1], beg1 += 1)
 					: (merge[iter] = index[beg2], beg2 += 1);
 			}
@@ -799,7 +799,7 @@ Index *Merge_Sort(Index index[], long leng, Compare comp) {
 		if (end1 < leng) {
 			end2 = leng;
 			for (; beg1 < end1 && beg2 < end2; iter += 1) {
-				comp(&index[beg1]._hash, &index[beg2]._hash)
+				comp(index[beg1]._hash, index[beg2]._hash)
 					? (merge[iter] = index[beg1], beg1 += 1)
 					: (merge[iter] = index[beg2], beg2 += 1);
 			}
