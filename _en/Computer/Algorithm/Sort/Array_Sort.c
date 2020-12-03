@@ -4,6 +4,28 @@ Update: 2020-12-02T22:43:00+08@China-Guangdong-Zhanjiang+08
 Design: Array Sort
 */
 
+/*
+				   Y┌            Case1: H1 < H2 < H3
+		Y┌ H2 < H3 ─┤         Y┌ Case2: H1 < H3 ≤ H2
+		 │         N└ H1 < H3 ─┤
+H1 < H2 ─┤                    N└ Case3: H3 ≤ H1 < H2
+		 │         Y┌            Case4: H2 ≤ H1 < H3    # 3! = 6
+		N└ H1 < H3 ─┤         Y┌ Case5: H2 < H3 ≤ H1
+				   N└ H2 < H3 ─┤
+							  N└ Case6: H3 ≤ H2 ≤ H1
+
+Stirling's Formula
+n! ≈ (2·π·n)^(1/2)·(n/ә)^n
+
+  Log2[n!]
+= Log2[(2·π·n)^(1/2)·(n/ә)^n]
+= (1/2)·Log2[2·π·n] + n·Log2[n/ә]
+= (1/2)·(Log2[2·π] + Log2[n]) + n·(Log2[n] - Log2[ә])
+= (1/2 + n)·Log2[n] - n·Log2[ә] + 1/2·(1 + Log2[π]）
+
+ ⌈Log2(n!)⌉ = O(n·Log2(n))
+*/
+
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
