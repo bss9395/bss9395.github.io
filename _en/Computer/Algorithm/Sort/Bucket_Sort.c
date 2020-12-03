@@ -248,6 +248,13 @@ Index *Counting_Sort_Integer(Index index[], long leng, Compare comp) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/* Stable
+data:    1  3  4  5  7  9  0  8  2  6; 11 13 14 15 17 19 10 18 12 16
+
+bucket:  0  1  2  3  4  5  6  7  8  9
+		 0  1  2  3  4  5  6  7  8  9
+		10 11 12 13 14 15 16 17 18 19
+*/
 Index *Bucket_Sort(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
@@ -267,7 +274,8 @@ Index *Bucket_Sort(Index index[], long leng, Compare comp) {
 		idx = index[i]._hash % leng;
 		(idx < 0) ? (idx += leng) : idx;
 		iter = &bucket[idx]._link;
-		while ((*iter) != NULL && comp((*iter)->_hash, index[i]._hash)) {
+		while ((*iter) != NULL && comp((*iter)->_hash, index[i]._hash)) {    // Unstable
+		// while ((*iter) != NULL && !comp(index[i]._hash, (*iter)->_hash)) {    // Stable			
 			iter = &((*iter)->_link);
 		}
 		index[i]._link = (*iter);
@@ -284,9 +292,7 @@ Index *Bucket_Sort(Index index[], long leng, Compare comp) {
 			join = bucket[i]._link;
 			while ((*iter) != NULL && join != NULL) {
 				if (comp(join->_hash, (*iter)->_hash)) {
-					swap = join;
-					join = (*iter);
-					(*iter) = swap;
+					swap = join, join = (*iter), (*iter) = swap;
 				}
 				iter = &((*iter)->_link);
 			}
