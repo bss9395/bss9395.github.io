@@ -1,6 +1,6 @@
 /* Bucket_Sort.c
 Author: BSS9395
-Update: 2020-12-03T05:36:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-12-03T02:52:00+08@China-Guangdong-Zhanjiang+08
 Design: Bucket Sort
 */
 
@@ -264,7 +264,8 @@ Index *Bucket_Sort(Index index[], long leng, Compare comp) {
 	long idx = 0;
 	Index **iter = NULL;
 	for (long i = 0; i < leng; i += 1) {
-		idx = (index[i]._hash + leng) % leng;
+		idx = index[i]._hash % leng;
+		(idx < 0) ? (idx += leng) : idx;
 		iter = &bucket[idx]._link;
 		while ((*iter) != NULL && comp((*iter)->_hash, index[i]._hash)) {
 			iter = &((*iter)->_link);
@@ -273,12 +274,13 @@ Index *Bucket_Sort(Index index[], long leng, Compare comp) {
 		(*iter) = &index[i];
 	}
 
+	Index head;
 	Index *join = NULL;
 	Index *swap = NULL;
-	Index *head = bucket[0]._link;
+	head._link = bucket[0]._link;
 	for (long i = 1; i < leng; i += 1) {
 		if (bucket[i]._link != NULL) {
-			iter = &head;
+			iter = &(head._link);
 			join = bucket[i]._link;
 			while ((*iter) != NULL && join != NULL) {
 				if (comp(join->_hash, (*iter)->_hash)) {
@@ -294,10 +296,11 @@ Index *Bucket_Sort(Index index[], long leng, Compare comp) {
 		}
 	}
 
+	join = head._link;
 	for (long i = 0; i < leng; i += 1) {
-		bucket[i]._hash = head->_hash;
-		bucket[i]._index = head->_index;
-		head = head->_link;
+		bucket[i]._hash = join->_hash;
+		bucket[i]._index = join->_index;
+		join = join->_link;
 	}
 	free(index);
 	return bucket;
