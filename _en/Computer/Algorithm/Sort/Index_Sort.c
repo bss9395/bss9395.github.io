@@ -1,6 +1,6 @@
 /* Index_Sort.c
 Author: BSS9395
-Update: 2020-12-04T23:26:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-12-05T02:55:00+08@China-Guangdong-Zhanjiang+08
 Design: Index Sort
 */
 
@@ -73,13 +73,13 @@ bool MoreEqual(long lhs, long rhs) {
 
 typedef struct Datum {
 	long _hash;
-	char *_datum;
+	char *_value;
 } Datum;
 
 typedef struct Index {
 	struct Index *_link;
 	long _hash;
-	void *_index;
+	void *_datum;
 } Index;
 
 Datum _Datum[] = { {1, "!"}, {3, "#"}, {4, "$"}, {5, "%"}, {7, "&"}, {9, "("}, {0, ")"}, {8, "*"}, {2, "@"}, {6, "^"} };
@@ -93,7 +93,7 @@ void Mapping(bool normal) {
 		Index *index = (Index *)calloc(length, sizeof(Index));
 		for (long i = 0; i < length; i += 1) {
 			index[i]._hash = _Datum[i]._hash;
-			index[i]._index = &_Datum[i];
+			index[i]._datum = &_Datum[i];
 		}
 		_Index = index;
 		_Length = length;
@@ -104,11 +104,11 @@ void Mapping(bool normal) {
 		Index *index = (Index *)calloc(length + length_extra, sizeof(Index));
 		for (long i = 0; i < length; i += 1) {
 			index[i]._hash = _Datum[i]._hash;
-			index[i]._index = &_Datum[i];
+			index[i]._datum = &_Datum[i];
 		}
 		for (long i = 0; i < length_extra; i += 1) {
 			index[length + i]._hash = _Extra[i]._hash;
-			index[length + i]._index = &_Extra[i];
+			index[length + i]._datum = &_Extra[i];
 		}
 		_Index = index;
 		_Length = length + length_extra;
@@ -125,8 +125,8 @@ void Print_Index(Index index[], long leng) {
 void Print_Datum(Index index[], long leng) {
 	Datum *idx = NULL;
 	for (long i = 0; i < leng; i += 1) {
-		idx = index[i]._index;
-		fprintf(stdout, "[%ld: %s] ", idx->_hash, idx->_datum);
+		idx = index[i]._datum;
+		fprintf(stdout, "[%ld: %s] ", idx->_hash, idx->_value);
 	}
 	fprintf(stdout, "\n");
 }
@@ -136,7 +136,7 @@ void Print_Datum(Index index[], long leng) {
 /* Stable
 data:  1  3  4  5  7  9  0  8  2  6
 */
-Index *Insertion_Sort_List(Index index[], long leng, Compare comp) {
+Index *Index_Insertion_Sort_List(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -148,9 +148,9 @@ Index *Insertion_Sort_List(Index index[], long leng, Compare comp) {
 		index[i]._link = NULL;
 	}
 
-	Index *head = &index[0];
+	Index *head = NULL;
 	Index **iter = NULL;
-	for (long i = 1; i < leng; i += 1) {
+	for (long i = 0; i < leng; i += 1) {
 		iter = &head;
 		// while ((*iter) != NULL && comp((*iter)->_hash, index[i]._hash)) {    // Unstable
 		while ((*iter) != NULL && !comp(index[i]._hash, (*iter)->_hash)) {    // Stable
@@ -162,34 +162,121 @@ Index *Insertion_Sort_List(Index index[], long leng, Compare comp) {
 
 	Index swap;
 	Index *link = NULL;
-	for (Index *beg = index, *end = index + leng; beg < end; beg += 1) {
-		while (head < beg) {
+	for (long i = 0; i < leng; i += 1) {
+		while (head < &index[i]) {
 			head = head->_link;
 		}
 		link = head->_link;
-		if (head != beg) {
-			swap = (*beg), (*beg) = (*head), (*head) = swap;
-			beg->_link = head;
+		if (head != &index[i]) {
+			swap = index[i], index[i] = (*head), (*head) = swap;
+			index[i]._link = head;
 		}
 		head = link;
 	}
 	return index;
 }
 
+/* Stable
+data:  1  3  4  5  7  9  0  8  2  6
+*/
+Index *Index_Insertion_Sort_Array_pointer(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
+	}
 
+	for (long i = 0; i < leng; i += 1) {
+		index[i]._link = &index[i];
+	}
+
+	Index *pick;
+	for (long i = 0; i < leng; i += 1) {
+		pick = index[i]._link;
+		long j = i;
+		while (0 < j && comp(pick->_hash, index[j - 1]._link->_hash)) {
+			index[j]._link = index[j - 1]._link;
+			j -= 1;
+		}
+		index[j]._link = pick;
+	}
+
+	Index swap;
+	Index *swap_link;
+	for (long i = 0; i < leng; i += 1) {
+		if (index[i]._link != &index[i]) {
+			pick = index[i]._link;
+			long turn = i + 1;
+			for (; index[turn]._link != &index[i]; turn += 1);
+			index[turn]._link = pick;
+			swap = index[i], index[i] = (*pick), (*pick) = swap;
+			swap_link = index[i]._link, index[i]._link = pick->_link, pick->_link = swap_link;
+		}
+	}
+	return index;
+}
+
+/* Stable
+data:  1  3  4  5  7  9  0  8  2  6
+*/
+Index *Index_Insertion_Sort_Array(Index index[], long leng, Compare comp) {
+	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
+		exit(EXIT_FAILURE);
+	}
+	if (leng <= 1) {
+		return index;
+	}
+
+	long *subs = (long *)calloc(leng, sizeof(long));
+	for (long i = 0; i < leng; i += 1) {
+		subs[i] = i;
+	}
+
+	long pick = 0;
+	for (long i = 1; i < leng; i += 1) {
+		pick = subs[i];
+		long j = i;
+		while (0 < j && comp(index[pick]._hash, index[subs[j - 1]]._hash)) {
+			subs[j] = subs[j - 1];
+			j -= 1;
+		}
+		subs[j] = pick;
+	}
+
+	Index swap;
+	for (long i = 0; i < leng; i += 1) {
+		if (subs[i] != i) {
+			pick = subs[i];
+			long turn = i + 1;
+			for (; subs[turn] != i; turn += 1);
+			subs[turn] = pick;
+			swap = index[i], index[i] = index[pick], index[pick] = swap;
+		}
+	}
+	free(subs);
+	return index;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void Test_Insertion_Sort_List() {
-	Insertion_Sort_List(_Index, _Length, Less);
+void Test_Index_Insertion_Sort_List() {
+	_Index = Index_Insertion_Sort_List(_Index, _Length, Less);
+	Print_Datum(_Index, _Length);
+}
+
+void Test_Index_Insertion_Sort_Array() {
+	// _Index = Index_Insertion_Sort_Array_Pointer(_Index, _Length, Less);
+	_Index = Index_Insertion_Sort_Array(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char *argv[]) {
-	Mapping(false);
+	Mapping(true);
 
-	Test_Insertion_Sort_List();
+	// Test_Index_Insertion_Sort_List();
+	Test_Index_Insertion_Sort_Array();
 	return 0;
 }

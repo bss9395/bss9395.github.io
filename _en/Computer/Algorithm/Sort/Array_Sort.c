@@ -95,12 +95,12 @@ bool MoreEqual(long lhs, long rhs) {
 
 typedef struct Datum {
 	long _hash;
-	char *_datum;
+	char *_value;
 } Datum;
 
 typedef struct Index {
 	long _hash;
-	void *_index;
+	void *_datum;
 } Index;
 
 Datum _Datum[] = { {1, "!"}, {3, "#"}, {4, "$"}, {5, "%"}, {7, "&"}, {9, "("}, {0, ")"}, {8, "*"}, {2, "@"}, {6, "^"} };
@@ -114,7 +114,7 @@ void Mapping(bool normal) {
 		Index *index = (Index *)calloc(length, sizeof(Index));
 		for (long i = 0; i < length; i += 1) {
 			index[i]._hash = _Datum[i]._hash;
-			index[i]._index = &_Datum[i];
+			index[i]._datum = &_Datum[i];
 		}
 		_Index = index;
 		_Length = length;
@@ -125,11 +125,11 @@ void Mapping(bool normal) {
 		Index *index = (Index *)calloc(length + length_extra, sizeof(Index));
 		for (long i = 0; i < length; i += 1) {
 			index[i]._hash = _Datum[i]._hash;
-			index[i]._index = &_Datum[i];
+			index[i]._datum = &_Datum[i];
 		}
 		for (long i = 0; i < length_extra; i += 1) {
 			index[length + i]._hash = _Extra[i]._hash;
-			index[length + i]._index = &_Extra[i];
+			index[length + i]._datum = &_Extra[i];
 		}
 		_Index = index;
 		_Length = length + length_extra;
@@ -146,8 +146,8 @@ void Print_Index(Index index[], long leng) {
 void Print_Datum(Index index[], long leng) {
 	Datum *idx = NULL;
 	for (long i = 0; i < leng; i += 1) {
-		idx = index[i]._index;
-		fprintf(stdout, "[%ld: %s] ", idx->_hash, idx->_datum);
+		idx = index[i]._datum;
+		fprintf(stdout, "[%ld: %s] ", idx->_hash, idx->_value);
 	}
 	fprintf(stdout, "\n");
 }
