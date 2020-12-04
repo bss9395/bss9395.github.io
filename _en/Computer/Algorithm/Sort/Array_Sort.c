@@ -162,7 +162,7 @@ data:  1  3  4  5  7  9  0  8  2  6
  4th: [0  1  2  3] 4  5  6  7  8  9
  5th: [0  1  2  3  4  5  6  7  8  9]
 */
-Index *Bubble_Sort_LtH(Index index[], long leng, Compare comp) {
+Index *Bubble_Sort_LH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -200,7 +200,7 @@ data:  1  3  4  5  7  9  0  8  2  6
  6th:  0  1  2  3 [4  5  6  7  8  9]
  7th: [0  1  2  3  4  5  6  7  8  9]
 */
-Index *Bubble_Sort_HtL(Index index[], long leng, Compare comp) {
+Index *Bubble_Sort_HL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -286,7 +286,7 @@ data:  1  3  4  5  7  9  0  8  2  6
  9th: [0  1  2  3  4  5  6  7  8] 9
 10th: [0  1  2  3  4  5  6  7  8  9]
 */
-Index *Selection_Sort_LtH(Index index[], long leng, Compare comp) {
+Index *Selection_Sort_LH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -326,7 +326,7 @@ data:  1  3  4  5  7  9  0  8  2  6
  9th:  0 [1  2  3  4  5  6  7  8  9]
 10th: [0  1  2  3  4  5  6  7  8  9]
 */
-Index *Selection_Sort_HtL(Index index[], long leng, Compare comp) {
+Index *Selection_Sort_HL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -368,7 +368,7 @@ data:  1  3  4  5  7  9  0  8  2  6
  9th: [0  1  2  3  4  5  7  8  9] 6
 10th: [0  1  2  3  4  5  6  7  8  9]
 */
-Index *Insertion_Sort_LtH(Index index[], long leng, Compare comp) {
+Index *Insertion_Sort_LH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -403,7 +403,7 @@ data:  1  3  4  5  7  9  0  8  2  6
  9th:  1 [0  2  3  4  5  6  7  8  9]
 10th: [0  1  2  3  4  5  6  7  8  9]
 */
-Index *Insertion_Sort_HtL(Index index[], long leng, Compare comp) {
+Index *Insertion_Sort_HL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -438,7 +438,7 @@ data:  1 3  4  5  7  9  0  8  2  6
  9th: [0  1  2  3  4  5  7  8  9] 6
 10th: [0  1  2  3  4  5  6  7  8  9]
 */
-Index *Binary_Insertion_Sort_LtH(Index index[], long leng, Compare comp) {
+Index *Binary_Insertion_Sort_LH(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -480,7 +480,7 @@ data:  1  3  4  5  7  9  0  8  2  6
  9th:  1 [0  2  3  4  5  6  7  8  9]
 10th: [0  1  2  3  4  5  6  7  8  9]
 */
-Index *Binary_Insertion_Sort_HtL(Index index[], long leng, Compare comp) {
+Index *Binary_Insertion_Sort_HL(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -871,7 +871,7 @@ Index *Heap_Sort_Heapify(Index peak[], long tail, Compare comp) {
 	return peak;
 }
 
-/*
+/* Unstable
 index: 0  1  2  3  4  5  6  7  8  9
 data:  1  3  4  5  7  9  0  8  2  6
  1st:  8  7  4  5  6  1  0  3  2 [9]
@@ -884,7 +884,7 @@ data:  1  3  4  5  7  9  0  8  2  6
  8th:  1  0 [2  3  4  5  6  7  8  9]
  9th:  0 [1  2  3  4  5  6  7  8  9]
 */
-Index *Heap_Sort_TtB(Index index[], long leng, Compare comp) {
+Index *Heap_Sort_TB(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -914,7 +914,7 @@ Index *Heap_Sort_TtB(Index index[], long leng, Compare comp) {
 		if (left == tail && !comp(index[left]._hash, index[head]._hash)) {
 			swap = index[left], index[left] = index[head], index[head] = swap;
 		}
-		// Heap_Sort_TtB_Heapify(&index[i], leng - i, comp);
+		// Heap_Sort_TB_Heapify(&index[i], leng - i, comp);
 		// Print_Index(index, leng);
 	}
 
@@ -926,7 +926,7 @@ Index *Heap_Sort_TtB(Index index[], long leng, Compare comp) {
 	return index;
 }
 
-/*
+/* Unstable
 index: 0  1  2  3  4  5  6  7  8  9
 data:  1  3  4  5  7  9  0  8  2  6
  1st:  8  6  7  5  4  3  0  1  2 [9]
@@ -939,7 +939,7 @@ data:  1  3  4  5  7  9  0  8  2  6
  8th:  1  0 [2  3  4  5  6  7  8  9]
  9th:  0 [1  2  3  4  5  6  7  8  9]
 */
-Index *Heap_Sort_BtT(Index index[], long leng, Compare comp) {
+Index *Heap_Sort_BT(Index index[], long leng, Compare comp) {
 	if (Check(index == NULL || leng < 0 || comp == NULL, ELevel._Error, __FUNCTION__, "index == NULL || leng < 0 || comp == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -969,8 +969,8 @@ Index *Heap_Sort_BtT(Index index[], long leng, Compare comp) {
 ////////////////////////////////////////////////////////////////////////////////
 
 void Test_Bubble_Sort() {
-	_Index = Bubble_Sort_LtH(_Index, _Length, Less);
-	// _Index = Bubble_Sort_HtL(_Index, _Length, Less);
+	_Index = Bubble_Sort_LH(_Index, _Length, Less);
+	// _Index = Bubble_Sort_HL(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
@@ -980,20 +980,20 @@ void Test_Comb_Sort() {
 }
 
 void Test_Selection_Sort() {
-	// _Index = Selection_Sort_LtH(_Index, _Length, Less);
-	_Index = Selection_Sort_HtL(_Index, _Length, Less);
+	// _Index = Selection_Sort_LH(_Index, _Length, Less);
+	_Index = Selection_Sort_HL(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
 void Test_Insertion_Sort() {
-	// _Index = Insertion_Sort_LtH(_Index, _Length, Less);
-	_Index = Insertion_Sort_HtL(_Index, _Length, Less);
+	// _Index = Insertion_Sort_LH(_Index, _Length, Less);
+	_Index = Insertion_Sort_HL(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
 void Test_Binary_Insertion_Sort() {
-	// _Index = Binary_Insertion_Sort_LtH(_Index, _Length, Less);
-	_Index = Binary_Insertion_Sort_HtL(_Index, _Length, Less);
+	// _Index = Binary_Insertion_Sort_LH(_Index, _Length, Less);
+	_Index = Binary_Insertion_Sort_HL(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
@@ -1020,8 +1020,8 @@ void Test_Merge_Sort() {
 }
 
 void Test_Heap_Sort() {
-	// _Index = Heap_Sort_TtB(_Index, _Length, Less);
-	_Index = Heap_Sort_BtT(_Index, _Length, Less);
+	// _Index = Heap_Sort_TB(_Index, _Length, Less);
+	_Index = Heap_Sort_BT(_Index, _Length, Less);
 	Print_Datum(_Index, _Length);
 }
 
