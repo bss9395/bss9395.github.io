@@ -13,27 +13,27 @@ PlainText  = Decrypt(PublicKey , CipherText)
 
 PlainText  ≡   Plain_Numerator  / Plain_Denominator
 CipherText ≡   Cipher_Numerator / Cipher_Denominator
-PrivateKey ≡ (Private_Numerator % Prime_Numerator) / (Private_Denominator % Prime_Denominator)
-PublicKey  ≡ (Public_Numerator  % Prime_Numerator) / (Public_Denominator  % Prime_Denominator)
+PrivateKey ≡ (Private_Numerator % Modulus_Numerator) / (Private_Denominator % Modulus_Denominator)
+PublicKey  ≡ (Public_Numerator  % Modulus_Numerator) / (Public_Denominator  % Modulus_Denominator)
 
 # Asymmetric Key Pair
-    (Private_Numer × Public_Numer) % Prime_Numer   Rat
-1 = ———————————————————————————————————————————— = ———
-    (Private_Denom × Public_Denom) % Prime_Denom   Rat
+    (Private_Numer × Public_Numer) % Modulus_Numer   Rat
+1 = —————————————————————————————————————————————— = ———        ⌘ Rat ≠ 0
+    (Private_Denom × Public_Denom) % Modulus_Denom   Rat
 
-    Private_Numer % Prime_Numer   Public_Numer % Prime_Numer
-1 = ——————————————————————————— × ——————————————————————————
-    Private_Denom % Prime_Denom   Public_Denom % Prime_Denom
+    Private_Numer % Modulus_Numer   Public_Numer % Modulus_Numer
+1 = ————————————————————————————— × ————————————————————————————
+    Private_Denom % Modulus_Denom   Public_Denom % Modulus_Denom
 
 # Encryption
-Cipher_Numer   (Plain_Numer   Private_Numer) % Prime_Numer    ⌘ Plain_Numer × Rat < Prime_Numer
-———————————— = ———————————— × ————————————————————————————
-Cipher_Denom   (Plain_Denom   Private_Denom) % Prime_Denom    ⌘ Plain_Denom × Rat < Prime_Denom
+Cipher_Numer   (Plain_Numer   Private_Numer) % Modulus_Numer    ⌘ Plain_Numer × Rat < Modulus_Numer    ⌘ [Cipher_Numer ≠ 0] ⇝ [GCD(Private_Numer, Modulus_Numer) = 1]
+———————————— = ———————————— × ——————————————————————————————
+Cipher_Denom   (Plain_Denom   Private_Denom) % Modulus_Denom    ⌘ Plain_Denom × Rat < Modulus_Denom    ⌘ [Cipher_Denom ≠ 0] ⇝ [GCD(Private_Denom, Modulus_Denom) = 1]
 
 # Decryption
-Plain_Numer   (Cipher_Numer   Public_Numer) % Prime_Numer
-——————————— = ————————————— × ———————————————————————————
-Plain_Denom   (Cipher_Denom   Public_Denom) % Prime_Denom
+Plain_Numer   (Cipher_Numer   Public_Numer) % Modulus_Numer
+——————————— = ————————————— × —————————————————————————————
+Plain_Denom   (Cipher_Denom   Public_Denom) % Modulus_Denom
 
 # Example
 PlainText  = 4/5 = 0.8
