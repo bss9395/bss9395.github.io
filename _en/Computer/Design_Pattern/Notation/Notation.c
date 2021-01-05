@@ -78,17 +78,6 @@ bool Check(bool failed, Level level, char *function, char *record, char *extra) 
     return failed;
 }
 
-char *Zero_Data(iptr size) {
-    static char *zero = NULL;
-    static int full = 0;
-    if (full < size) {
-        free(zero);
-        zero = (char *)calloc(size, sizeof(char));
-        full = size;
-    }
-    return zero;
-}
-
 iptr Length(char *data) {
     iptr leng = -1;
     if (data != NULL) {
@@ -114,6 +103,17 @@ ui32 XHash(char *data, iptr leng) {
     }
     xhash += leng;
     return (ui32)xhash;
+}
+
+char *Zero_Data(iptr size) {
+    static char *zero = NULL;
+    static int full = 0;
+    if (full < size) {
+        free(zero);
+        zero = (char *)calloc(size, sizeof(char));
+        full = size;
+    }
+    return zero;
 }
 
 char *Make_Data(char *data, iptr leng) {
@@ -146,89 +146,19 @@ char *Join_Data(char *data, iptr leng_data, char *join, iptr leng_join) {
     return retu;
 }
 
-Entry *Make_Entry(char *entry, ui32 xhash) {
-    Entry *make = Malloc(sizeof(Entry));
-    make->_entry = entry;
-    make->_xhash = xhash;
-    make->_list = NULL;
-    make->_nest = NULL;
-    make->_link = NULL;
-    return make;
-}
-
-Attri *Make_Attri(char *attri) {
-    Attri *make = Malloc(sizeof(Attri));
-    make->_attri = attri;
-    make->_value = NULL;
-    make->_type = EType._UnKnown;
-    make->_leng = 0;
-    make->_link = NULL;
-    return make;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
-Entry *Handle_Entry(Entry *super, char *entry, bool sole) {
-    ui32 xhash = XHash(entry, 0);
-    Entry **iter = &(super->_nest);
-    while ((*iter) != NULL && (*iter)->_xhash < xhash) {
-        iter = &((*iter)->_link);
-    }
-    if (sole == true && (*iter) != NULL && (*iter)->_xhash == xhash) {
-        if (Strcmp((*iter)->_entry, entry) == 0) {
-            return (*iter);
+char *Copy_Data(char *buffer, char *data, iptr leng) {
+    if (leng == 0) {
+        for (; data[leng] != '\0'; leng += 1) {
+            buffer[leng] = data[leng];
         }
     }
-
-    entry = Make_Data(entry, 0);
-    Entry *node = Make_Entry(entry, xhash);
-    node->_link = (*iter);
-    (*iter) = node;
-    return node;
-}
-
-Attri *Handle_Attri(Entry *entry, char *attri, bool sole) {
-    if (sole == true && entry->_list != NULL) {
-        Attri *tail = entry->_list;
-        Attri *iter = tail;
-        do {
-            iter = iter->_link;
-            if (Strcmp(iter->_attri, attri) == 0) {
-                return iter;
-            }
-        } while (iter != tail);
+    else if (leng > 0) {
+        for (iptr i = 0; i < leng; i += 1) {
+            buffer[i] = data[i];
+        }
     }
-
-    attri = Make_Data(attri, 0);
-    Attri *node = Make_Attri(attri);
-    if (entry->_list == NULL) {
-        // circular list
-        node->_link = node;
-        entry->_list = node;
-    }
-    else {
-        Attri *tail = entry->_list;
-        node->_link = tail->_link;
-        tail->_link = node;
-        entry->_list = node;
-    }
-    return node;
-}
-
-Entry *Attach_String(Entry *entry, char *attri, char *stri, iptr leng) {
-    Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_value = Make_Data(stri, leng);
-    hand->_type = EType._String;
-    hand->_leng = (0 < leng) ? leng : Length(stri);
-    return entry;
-}
-
-Entry *Attach_Binary(Entry *entry, char *attri, char *bina, iptr leng) {
-    Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_value = Make_Data(bina, leng);
-    hand->_type = EType._Binary;
-    hand->_leng = leng;
-    return entry;
+    buffer[leng] = '\0';        // no matter if data has an ending '\0'.
+    return &buffer[leng];
 }
 
 char *Print_Fixed(char *buffer, in64 number, in08 base) {
@@ -321,6 +251,91 @@ char *Print_Float(char *buffer, fl64 number, in08 base, in08 prec) {
     return buffer;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+Entry *Make_Entry(char *entry, ui32 xhash) {
+    Entry *make = Malloc(sizeof(Entry));
+    make->_entry = entry;
+    make->_xhash = xhash;
+    make->_list = NULL;
+    make->_nest = NULL;
+    make->_link = NULL;
+    return make;
+}
+
+Attri *Make_Attri(char *attri) {
+    Attri *make = Malloc(sizeof(Attri));
+    make->_attri = attri;
+    make->_value = NULL;
+    make->_type = EType._UnKnown;
+    make->_leng = 0;
+    make->_link = NULL;
+    return make;
+}
+
+Entry *Handle_Entry(Entry *super, char *entry, bool sole) {
+    ui32 xhash = XHash(entry, 0);
+    Entry **iter = &(super->_nest);
+    while ((*iter) != NULL && (*iter)->_xhash < xhash) {
+        iter = &((*iter)->_link);
+    }
+    if (sole == true && (*iter) != NULL && (*iter)->_xhash == xhash) {
+        if (Strcmp((*iter)->_entry, entry) == 0) {
+            return (*iter);
+        }
+    }
+
+    entry = Make_Data(entry, 0);
+    Entry *node = Make_Entry(entry, xhash);
+    node->_link = (*iter);
+    (*iter) = node;
+    return node;
+}
+
+Attri *Handle_Attri(Entry *entry, char *attri, bool sole) {
+    if (sole == true && entry->_list != NULL) {
+        Attri *tail = entry->_list;
+        Attri *iter = tail;
+        do {
+            iter = iter->_link;
+            if (Strcmp(iter->_attri, attri) == 0) {
+                return iter;
+            }
+        } while (iter != tail);
+    }
+
+    attri = Make_Data(attri, 0);
+    Attri *node = Make_Attri(attri);
+    if (entry->_list == NULL) {
+        // circular list
+        node->_link = node;
+        entry->_list = node;
+    }
+    else {
+        Attri *tail = entry->_list;
+        node->_link = tail->_link;
+        tail->_link = node;
+        entry->_list = node;
+    }
+    return node;
+}
+
+Entry *Attach_Binary(Entry *entry, char *attri, char *bina, iptr leng) {
+    Attri *hand = Handle_Attri(entry, attri, false);
+    hand->_value = Make_Data(bina, leng);
+    hand->_type = EType._Binary;
+    hand->_leng = leng;
+    return entry;
+}
+
+Entry *Attach_String(Entry *entry, char *attri, char *stri, iptr leng) {
+    Attri *hand = Handle_Attri(entry, attri, false);
+    hand->_value = Make_Data(stri, leng);
+    hand->_type = EType._String;
+    hand->_leng = (0 < leng) ? leng : Length(stri);
+    return entry;
+}
+
 Entry *Attach_Fixed(Entry *entry, char *attri, in64 inte, bool many) {
     static char _buffer[1024];
     static char *buffer = _buffer;
@@ -338,12 +353,12 @@ Entry *Attach_Fixed(Entry *entry, char *attri, in64 inte, bool many) {
                 buffer[0] = ' ', buffer[1] = '|', buffer[2] = ' ';
                 buffer += 3;
             }
-            buffer = Print_Float(buffer, inte, 10, 6);
+            buffer = Print_Fixed(buffer, inte, 10);
         }
         else if (_entry == entry && _attri == attri) {
             buffer[0] = ' ', buffer[1] = '|', buffer[2] = ' ';
             buffer += 3;
-            buffer = Print_Float(buffer, inte, 10, 6);
+            buffer = Print_Fixed(buffer, inte, 10);
         }
     }
 
@@ -411,20 +426,7 @@ Entry *Attach_Float(Entry *entry, char *attri, fl64 frac, bool many) {
     return entry;
 }
 
-char *Copy_Data(char *buffer, char *data, iptr leng) {
-    if (leng == 0) {
-        for (; data[leng] != '\0'; leng += 1) {
-            buffer[leng] = data[leng];
-        }
-    }
-    else if (leng > 0) {
-        for (iptr i = 0; i < leng; i += 1) {
-            buffer[i] = data[i];
-        }
-    }
-    buffer[leng] = '\0';        // no matter if data has an ending '\0'.
-    return &buffer[leng];
-}
+////////////////////////////////////////////////////////////////////////////////
 
 iptr BackPack(char *buffer, Entry *note) {
     static iptr indent = 2;
@@ -492,6 +494,8 @@ iptr Dump_File(char *filename, char *buffer, iptr leng) {
     Check(fclose(file) != 0, ELevel._Error, __FUNCTION__, "fclose(file) != 0", NULL);
     return count;
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 void Test_Notation() {
     typedef struct _Person {
