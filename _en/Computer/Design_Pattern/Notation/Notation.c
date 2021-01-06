@@ -75,23 +75,18 @@ static char *_Digit = {
     "yz"
 };
 
-static char *_Escape = {
-    "\\"    // Escape Character  // Self-Escaped if doubles self
-            // \\  \'
-};
-
 static char *_Prefix = {
     "#"     // Comment 《 Line_Indentation_Annotation   // # This is some comments in the first level Entry.
-    ":"     // Entry   《 unary Entry with multi Attri  // person: name='BSS9395'; ID=+19930905193000;
+    ":"     // Entry   《 unary Entry with multi Attri  // person: name=`BSS9395`; ID=+19930905193000;
     "?"     // Logic   《 None  | Posi  | Nega          // ?None    ?Posi    ?Nega
     "-+"    // Number  《 Fixed | Float                 // -0.02_D  +0.98_D  H_0005  0005
     "@"     // Stamp   《 Time  | Site                  // @1993-09-05T19:30:00.000000+0800@China-Guangdong-Zhanjian-Street-Building-No+0800
-    "\'"    // String  《 Printable ASCII               // comment='This is a string.'
-    "`"     // Binary  《 `Length`Anything              // `H_0005`HA-HA 
+    "`"     // String  《 Printable ASCII               // comment=`This's a string.`
+    "^"     // Binary  《 ^Length^Anything              // ^5_H^HA-HA 
 };
 
 static char *_Midfix = {
-    "="     // Atrri Assignment          // name='BSS9395';
+    "="     // Atrri Assignment          // name=`BSS9395`;
     "|"     // Array in Attri            // credit=-0.02_D|+0.98_D;
 };
 
@@ -317,7 +312,7 @@ Attri *Make_Attri(char *attri) {
 Entry *Handle_Entry(Entry *super, char *entry, bool sole) {
     ui32 xhash = XHash(entry, 0);
     Entry **iter = &(super->_nest);
-    while ((*iter) != NULL && (*iter)->_xhash < xhash) {
+    while ((*iter) != NULL && (*iter)->_xhash <= xhash) {
         iter = &((*iter)->_link);
     }
     if (sole == true && (*iter) != NULL && (*iter)->_xhash == xhash) {
@@ -552,17 +547,17 @@ iptr BackPack(char *buffer, Entry *note) {
                     buffer += 1;
 
                     if (list->_type == EType._String) {
-                        buffer[0] = '\'';
+                        buffer[0] = '`';
                         buffer += 1;
                         buffer = Copy_Data(buffer, list->_value, list->_leng);
-                        buffer[0] = '\'';
+                        buffer[0] = '`';
                         buffer += 1;
                     }
                     else if (list->_type == EType._Binary) {
-                        buffer[0] = '`', buffer[1] = 'H', buffer[2] = '_';
-                        buffer += 3;
-                        buffer = Print_Fixed(buffer, list->_leng, 16, false);
-                        buffer[0] = '`';
+                        buffer[0] = '^';
+                        buffer += 1;
+                        buffer = Print_Fixed(buffer, list->_leng, -16, false);
+                        buffer[0] = '^';
                         buffer += 1;
                         buffer = Copy_Data(buffer, list->_value, list->_leng);
                     }
