@@ -1,6 +1,6 @@
 /* Notation.c
 Author: BSS9395
-Update: 2020-01-05T10:45:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-06T08:34:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -24,12 +24,17 @@ typedef float     fl32;  typedef double    fl64;
 typedef const char *Type;
 struct _EType {
     Type _UnKnown;
-    Type _String;
-    Type _Binary;
+    Type _Logic;
     Type _Fixed;
     Type _Float;
+    Type _String;
+    Type _Binary;
+    Type _TimeStamp;
+    Type _SiteStamp;
 } EType = {
-    ._UnKnown = "UnKnown",._String = "String",._Binary = "Binary",._Fixed = "Fixed",._Float = "Float"
+    ._UnKnown = "UnKnown",._Logic = "Logic",
+    ._Fixed = "Fixed",._Float = "Float",._String = "String",._Binary = "Binary",
+    ._TimeStamp = "TimeStamp",._SiteStamp = "SiteStamp"
 };
 
 typedef const char *Level;
@@ -59,15 +64,55 @@ typedef struct _Entry {
     struct _Entry *_link;
 } Entry;
 
-static char _Digit[62] = {
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-    'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
-    'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd',
-    'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-    'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
-    'y', 'z'
+static char *_Digit = {
+    // 62 characters
+    "0123456789"
+    "ABCDEFGHIJ"
+    "KLMNOPQRST"
+    "UVWXYZabcd"
+    "efghijklmn"
+    "opqrstuvwx"
+    "yz"
 };
+
+static char *_Escape = {
+    "\\"    // Escape Character  // Self-Escaped if doubles self
+            // \\  \'
+};
+
+static char *_Prefix = {
+    "#"     // Comment 《 Line_Indentation_Annotation   // # This is some comments in the first level Entry.
+    ":"     // Entry   《 unary Entry with multi Attri  // person: name='BSS9395'; ID=+19930905193000;
+    "?"     // Logic   《 None  | Posi  | Nega          // ?None    ?Posi    ?Nega
+    "-+"    // Number  《 Fixed | Float                 // -0.02_D  +0.98_D  H_0005  0005
+    "@"     // Stamp   《 Time  | Site                  // @1993-09-05T19:30:00.000000+0800@China-Guangdong-Zhanjian-Street-Building-No+0800
+    "\'"    // String  《 Printable ASCII               // comment='This is a string.'
+    "`"     // Binary  《 `Length`Anything              // `H_0005`HA-HA 
+};
+
+static char *_Midfix = {
+    "="     // Atrri Assignment          // name='BSS9395';
+    "|"     // Array in Attri            // credit=-0.02_D|+0.98_D;
+};
+
+static char *_Suffix = {
+    ";"     // Attri Delimiter
+    "\n"    // Entry Delimiter
+    "\r\n"  // Entry Delimiter
+};
+
+/* Pritable ASCII
+   !"#$%&'
+()*+,-./01
+23456789:;
+<=>?@ABCDE
+FGHIJKLMNO
+PQRSTUVWXY
+Z[\]^_`abc
+defghijklm
+nopqrstuvw
+xyz{|}~
+*/
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -161,19 +206,19 @@ char *Copy_Data(char *buffer, char *data, iptr leng) {
     return &buffer[leng];
 }
 
-char *Print_Fixed(char *buffer, in64 number, in08 base) {
+char *Print_Fixed(char *buffer, in64 number, in08 base, bool pref) {
     bool suffix = (base < 0) ? (base = -base, true) : false;
     if (number < 0) {
         number = -number;
         buffer[0] = '-';
         buffer += 1;
     }
-    else if (suffix == true) {
+    else if (pref == true) {
         buffer[0] = '+';
         buffer += 1;
     }
-    char *fore = buffer;
 
+    char *fore = buffer;
     char ch = 0;
     do {
         ch = (char)(number % base);
@@ -213,18 +258,14 @@ char *Print_Float(char *buffer, fl64 number, in08 base, in08 prec) {
     in64 integer = (in64)number;
     number -= integer;
 
-    if (suffix == true && integer >= 0) {
-        buffer[0] = '+';
-        buffer += 1;
-    }
-    buffer = Print_Fixed(buffer, integer, base);
+    buffer = Print_Fixed(buffer, integer, base, true);
     buffer[0] = '.';
     buffer += 1;
 
     // number = number + 0.5 * pow(1.0 / base, prec);
+    // no round-off
     char ch = 0;
     do {
-        // no round-off
         number = number * base;
         ch = (char)number;
         buffer[0] = _Digit[ch];
@@ -320,19 +361,53 @@ Attri *Handle_Attri(Entry *entry, char *attri, bool sole) {
     return node;
 }
 
-Entry *Attach_Binary(Entry *entry, char *attri, char *bina, iptr leng) {
-    Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_value = Make_Data(bina, leng);
-    hand->_type = EType._Binary;
-    hand->_leng = leng;
-    return entry;
-}
+Entry *Attach_Logic(Entry *entry, char *attri, bool logi, bool many) {
+    static char _buffer[1024];
+    static char *buffer = _buffer;
 
-Entry *Attach_String(Entry *entry, char *attri, char *stri, iptr leng) {
-    Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_value = Make_Data(stri, leng);
-    hand->_type = EType._String;
-    hand->_leng = (0 < leng) ? leng : Length(stri);
+    static Entry *_entry = NULL;
+    static char *_attri = NULL;
+    static Attri *hand = NULL;
+
+    if (entry != NULL) {
+        if (hand == NULL) {
+            _entry = entry;
+            _attri = attri;
+            hand = Handle_Attri(entry, attri, false);
+            if (hand->_value != NULL) {
+                buffer[0] = '|';
+                buffer += 1;
+            }
+            buffer[0] = '?', (logi == true)
+                ? (buffer[1] = 'P', buffer[2] = 'o', buffer[3] = 's', buffer[4] = 'i')
+                : (buffer[1] = 'N', buffer[2] = 'e', buffer[3] = 'g', buffer[4] = 'a');
+            buffer += 5;
+        }
+        else if (_entry == entry && _attri == attri) {
+            buffer[0] = '|';
+            buffer += 1;
+            buffer[0] = '?', (logi == true)
+                ? (buffer[1] = 'P', buffer[2] = 'o', buffer[3] = 's', buffer[4] = 'i')
+                : (buffer[1] = 'N', buffer[2] = 'e', buffer[3] = 'g', buffer[4] = 'a');
+            buffer += 5;
+        }
+    }
+
+    if (many == false && hand != NULL) {
+        if (hand->_value == NULL) {
+            hand->_value = Make_Data(_buffer, buffer - _buffer);
+        }
+        else {
+            Check(hand->_type != EType._Float, ELevel._Warn, __FUNCTION__, "attri->_type != EType._Fixed", NULL);
+            hand->_value = Join_Data(hand->_value, hand->_leng, _buffer, buffer - _buffer);
+        }
+        hand->_type = EType._Logic;
+        hand->_leng += buffer - _buffer;
+
+        buffer = _buffer;
+        hand = NULL;
+    }
+
     return entry;
 }
 
@@ -350,30 +425,28 @@ Entry *Attach_Fixed(Entry *entry, char *attri, in64 inte, bool many) {
             _attri = attri;
             hand = Handle_Attri(entry, attri, false);
             if (hand->_value != NULL) {
-                buffer[0] = ' ', buffer[1] = '|', buffer[2] = ' ';
-                buffer += 3;
+                buffer[0] = '|';
+                buffer += 1;
             }
-            buffer = Print_Fixed(buffer, inte, 10);
+            buffer = Print_Fixed(buffer, inte, 10, true);
         }
         else if (_entry == entry && _attri == attri) {
-            buffer[0] = ' ', buffer[1] = '|', buffer[2] = ' ';
-            buffer += 3;
-            buffer = Print_Fixed(buffer, inte, 10);
+            buffer[0] = '|';
+            buffer += 1;
+            buffer = Print_Fixed(buffer, inte, 10, true);
         }
     }
 
     if (many == false && hand != NULL) {
         if (hand->_value == NULL) {
             hand->_value = Make_Data(_buffer, buffer - _buffer);
-            hand->_type = EType._Fixed;
-            hand->_leng = buffer - _buffer;
         }
         else {
             Check(hand->_type != EType._Fixed, ELevel._Warn, __FUNCTION__, "attri->_type != EType._Fixed", NULL);
             hand->_value = Join_Data(hand->_value, hand->_leng, _buffer, buffer - _buffer);
-            hand->_type = EType._Fixed;
-            hand->_leng += buffer - _buffer;
         }
+        hand->_type = EType._Fixed;
+        hand->_leng += buffer - _buffer;
 
         buffer = _buffer;
         hand = NULL;
@@ -395,14 +468,14 @@ Entry *Attach_Float(Entry *entry, char *attri, fl64 frac, bool many) {
             _attri = attri;
             hand = Handle_Attri(entry, attri, false);
             if (hand->_value != NULL) {
-                buffer[0] = ' ', buffer[1] = '|', buffer[2] = ' ';
-                buffer += 3;
+                buffer[0] = '|';
+                buffer += 1;
             }
             buffer = Print_Float(buffer, frac, 10, 6);
         }
         else if (_entry == entry && _attri == attri) {
-            buffer[0] = ' ', buffer[1] = '|', buffer[2] = ' ';
-            buffer += 3;
+            buffer[0] = '|';
+            buffer += 1;
             buffer = Print_Float(buffer, frac, 10, 6);
         }
     }
@@ -410,19 +483,33 @@ Entry *Attach_Float(Entry *entry, char *attri, fl64 frac, bool many) {
     if (many == false && hand != NULL) {
         if (hand->_value == NULL) {
             hand->_value = Make_Data(_buffer, buffer - _buffer);
-            hand->_type = EType._Float;
-            hand->_leng = buffer - _buffer;
         }
         else {
             Check(hand->_type != EType._Float, ELevel._Warn, __FUNCTION__, "attri->_type != EType._Fixed", NULL);
             hand->_value = Join_Data(hand->_value, hand->_leng, _buffer, buffer - _buffer);
-            hand->_type = EType._Float;
-            hand->_leng += buffer - _buffer;
         }
+        hand->_type = EType._Float;
+        hand->_leng += buffer - _buffer;
 
         buffer = _buffer;
         hand = NULL;
     }
+    return entry;
+}
+
+Entry *Attach_Binary(Entry *entry, char *attri, char *bina, iptr leng) {
+    Attri *hand = Handle_Attri(entry, attri, false);
+    hand->_value = Make_Data(bina, leng);
+    hand->_type = EType._Binary;
+    hand->_leng = leng;
+    return entry;
+}
+
+Entry *Attach_String(Entry *entry, char *attri, char *stri, iptr leng) {
+    Attri *hand = Handle_Attri(entry, attri, false);
+    hand->_value = Make_Data(stri, leng);
+    hand->_type = EType._String;
+    hand->_leng = (0 < leng) ? leng : Length(stri);
     return entry;
 }
 
@@ -450,22 +537,39 @@ iptr BackPack(char *buffer, Entry *note) {
             buffer += deep;
 
             buffer = Copy_Data(buffer, head->_entry, 0);
-            buffer[0] = ' ', buffer[1] = '#';
-            buffer += 2;
+            buffer[0] = ':';
+            buffer += 1;
             if (head->_list != NULL) {
                 Attri *tail = head->_list;
                 Attri *list = tail;
                 do {
                     list = list->_link;
-
                     buffer[0] = ' ';
                     buffer += 1;
+
                     buffer = Copy_Data(buffer, list->_attri, 0);
+                    buffer[0] = '=';
+                    buffer += 1;
 
-                    buffer[0] = ' ', buffer[1] = '=', buffer[2] = ' ';
-                    buffer += 3;
+                    if (list->_type == EType._String) {
+                        buffer[0] = '\'';
+                        buffer += 1;
+                        buffer = Copy_Data(buffer, list->_value, list->_leng);
+                        buffer[0] = '\'';
+                        buffer += 1;
+                    }
+                    else if (list->_type == EType._Binary) {
+                        buffer[0] = '`', buffer[1] = 'H', buffer[2] = '_';
+                        buffer += 3;
+                        buffer = Print_Fixed(buffer, list->_leng, 16, false);
+                        buffer[0] = '`';
+                        buffer += 1;
+                        buffer = Copy_Data(buffer, list->_value, list->_leng);
+                    }
+                    else {
+                        buffer = Copy_Data(buffer, list->_value, list->_leng);
+                    }
 
-                    buffer = Copy_Data(buffer, list->_value, list->_leng);
                     buffer[0] = ';';
                     buffer += 1;
                 } while (list != tail);
@@ -505,7 +609,7 @@ void Test_Notation() {
         struct _Info {
             char *_email;   // brilliantstarrysky9395@gmail.com
             char *_birth;   // 1993-09-05T19:30:00.000+0800    // YYYY-MM-DDThh:mm:ss.ttt+ZZzz
-            ui08  _age;     // 27
+            bool _valid;    // true
         } _info;
         char *_desc;        // An idiot, then a genius.
     } Person;
@@ -517,7 +621,7 @@ void Test_Notation() {
         ._info = {
             ._email = "brilliantstarrysky9395@gmail.com",
             ._birth = "1993-09-05T19:30:00.000+0800",
-            ._age = 27
+            ._valid = true,
         },
         ._desc = "An idiot, then a genius."
     };
@@ -536,7 +640,7 @@ void Test_Notation() {
     head = Handle_Entry(head, "info", true);
     Attach_String(head, "email", person._info._email, 0);
     Attach_String(head, "birth", person._info._birth, 0);
-    Attach_Fixed(head, "age", person._info._age, false);
+    Attach_Logic(head, "valid", person._info._valid, false);
 
     ////////////////////////////////////////////////////////////////////////////
     head = Handle_Entry(&note, "person", false);
