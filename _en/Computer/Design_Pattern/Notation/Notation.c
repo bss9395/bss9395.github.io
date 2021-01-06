@@ -288,65 +288,72 @@ char *Print_Float(char *buffer, fl64 number, in08 base, in08 prec) {
 }
 
 char *Print_TimeStamp(char *buffer, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm, in32 ss, in32 tttttt, in32 ZZzz) {
-    static char _init[] = "0000-00-00T00:00:00.000000+0000";
-    // static iptr _incr[] = { 4, 3, 3, 3, 3, 3, 7, 5 };
-
-    char *_buffer = buffer;
-    for (iptr i = 0; _init[i] != '\0'; buffer[i] = _init[i], i += 1);
+    // TimeStamp ¡Ô YYYY-MM-DDThh:mm:ss.tttttt¡ÀZZzz
 
     char ch = 0;
     buffer += 4;
-    for (iptr i = 1; i <= 4 && 0 < YYYY; i += 1) {
+    for (iptr i = 1; i <= 4; i += 1) {
         ch = (char)(YYYY % 10);
         buffer[-i] = _Digit[ch];
         YYYY = YYYY / 10;
     }
 
+    buffer[0] = '-';
     buffer += 3;
-    for (iptr i = 1; i <= 3 && 0 < MM; i += 1) {
+    for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(MM % 10);
         buffer[-i] = _Digit[ch];
         MM = MM / 10;
     }
 
+    buffer[0] = '-';
     buffer += 3;
-    for (iptr i = 1; i <= 3 && 0 < DD; i += 1) {
+    for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(DD % 10);
         buffer[-i] = _Digit[ch];
         DD = DD / 10;
     }
 
+    buffer[0] = 'T';
     buffer += 3;
-    for (iptr i = 1; i <= 3 && 0 < hh; i += 1) {
+    for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(hh % 10);
         buffer[-i] = _Digit[ch];
         hh = hh / 10;
     }
 
+    buffer[0] = ':';
     buffer += 3;
-    for (iptr i = 1; i <= 3 && 0 < mm; i += 1) {
+    for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(mm % 10);
         buffer[-i] = _Digit[ch];
         mm = mm / 10;
     }
 
+    buffer[0] = ':';
     buffer += 3;
-    for (iptr i = 1; i <= 3 && 0 < ss; i += 1) {
+    for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(ss % 10);
         buffer[-i] = _Digit[ch];
         ss = ss / 10;
     }
 
+    buffer[0] = '.';
     buffer += 7;
-    for (iptr i = 1; i <= 7 && 0 < tttttt; i += 1) {
-        ch = (char)(tttttt % 10);
-        buffer[-i] = _Digit[ch];
-        tttttt = tttttt / 10;
+    if (tttttt == 0) {
+        buffer[-1] = '0', buffer[-2] = '0', buffer[-3] = '0', buffer[-4] = '0', buffer[-5] = '0', buffer[-6] = '0';
+    }
+    else {
+        for (iptr i = 1; i <= 6; i += 1) {
+            ch = (char)(tttttt % 10);
+            buffer[-i] = _Digit[ch];
+            tttttt = tttttt / 10;
+        }
     }
 
     buffer[0] = (ZZzz < 0) ? (ZZzz = -ZZzz, '-') : '+';
     buffer += 5;
-    for (iptr i = 1; i <= 5 && 0 < ZZzz; i += 1) {
+    for (iptr i = 1; i <= 4; i += 1) {
         ch = (char)(ZZzz % 10);
         buffer[-i] = _Digit[ch];
         ZZzz = ZZzz / 10;
