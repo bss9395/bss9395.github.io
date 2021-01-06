@@ -76,7 +76,7 @@ static char *_Digit = {
 };
 
 static char *_Prefix = {
-    "#"     // Comment 《 Line_Indentation_Annotation   // # This is some comments in the first level Entry.
+    "#"     // Comment 《 Line_Indentation_Annotation   // # This is a comment at the first level.
     ":"     // Entry   《 unary Entry with multi Attri  // person: name=`BSS9395`; ID=+19930905193000;
     "?"     // Logic   《 None  | Posi  | Nega          // ?None    ?Posi    ?Nega
     "-+"    // Number  《 Fixed | Float                 // -0.02_D  +0.98_D
@@ -584,17 +584,7 @@ Entry *Attach_Binary(Entry *entry, char *attri, char *bina, iptr leng) {
     return entry;
 }
 
-Entry *Attach_TimeStamp(Entry *entry, char *attri, char *time, iptr leng) {
-    Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_value = Make_Data(time, leng);
-    hand->_type = EType._TimeStamp;
-    hand->_leng = (0 < leng) ? leng : Length(time);
-    return entry;
-}
-
-
-
-Entry *Attach_Time(Entry *entry, char *attri, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm, in32 ss, in32 tttttt, in32 ZZzz) {
+Entry *Attach_TimeStamp(Entry *entry, char *attri, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm, in32 ss, in32 tttttt, in32 ZZzz) {
     static char _buffer[1024];
 
     char *buffer = Print_TimeStamp(_buffer, YYYY, MM, DD, hh, mm, ss, tttttt, ZZzz);
@@ -602,6 +592,14 @@ Entry *Attach_Time(Entry *entry, char *attri, in32 YYYY, in32 MM, in32 DD, in32 
     hand->_value = Make_Data(_buffer, buffer - _buffer);
     hand->_type = EType._TimeStamp;
     hand->_leng = buffer - _buffer;
+    return entry;
+}
+
+Entry *Attach(Entry *entry, char *attri, char *value, iptr leng, Type type) {
+    Attri *hand = Handle_Attri(entry, attri, false);
+    hand->_value = Make_Data(value, leng);
+    hand->_type = type;
+    hand->_leng = leng;
     return entry;
 }
 
@@ -659,6 +657,11 @@ iptr BackPack(char *buffer, Entry *note) {
                         buffer += 1;
                         buffer = Print_Fixed(buffer, list->_leng, -16, false);
                         buffer[0] = '^';
+                        buffer += 1;
+                        buffer = Copy_Data(buffer, list->_value, list->_leng);
+                    }
+                    else if (list->_type == EType._TimeStamp) {
+                        buffer[0] = '@';
                         buffer += 1;
                         buffer = Copy_Data(buffer, list->_value, list->_leng);
                     }
@@ -735,12 +738,12 @@ void Test_Notation() {
 
     head = Handle_Entry(head, "info", true);
     Attach_String(head, "email", person._info._email, 0);
-    Attach_TimeStamp(head, "birth", person._info._birth, Length(person._info._birth));
+    Attach(head, "birth", person._info._birth, Length(person._info._birth), EType._TimeStamp);
     Attach_Logic(head, "valid", person._info._valid, false);
 
     head = Handle_Entry(head, "info", true);
     Attach_String(head, "email", person._info._email, 0);
-    Attach_Time(head, "birth", 1993, 9, 5, 19, 30, 0, 0, -812);
+    Attach_TimeStamp(head, "birth", 1993, 9, 5, 19, 30, 0, 0, -812);
     Attach_Logic(head, "valid", person._info._valid, false);
 
     ////////////////////////////////////////////////////////////////////////////
