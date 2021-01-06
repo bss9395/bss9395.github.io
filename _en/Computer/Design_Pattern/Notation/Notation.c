@@ -1,6 +1,6 @@
 /* Notation.c
 Author: BSS9395
-Update: 2020-01-06T08:34:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-06T12:06:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -79,13 +79,13 @@ static char *_Prefix = {
     "#"     // Comment 《 Line_Indentation_Annotation   // # This is some comments in the first level Entry.
     ":"     // Entry   《 unary Entry with multi Attri  // person: name=`BSS9395`; ID=+19930905193000;
     "?"     // Logic   《 None  | Posi  | Nega          // ?None    ?Posi    ?Nega
-    "-+"    // Number  《 Fixed | Float                 // -0.02_D  +0.98_D  H_0005  0005
-    "@"     // Stamp   《 Time  | Site                  // @1993-09-05T19:30:00.000000+0800@China-Guangdong-Zhanjian-Street-Building-No+0800
-    "`"     // String  《 Printable ASCII               // comment=`This's a string.`
-    "^"     // Binary  《 ^Length^Anything              // ^5_H^HA-HA 
+    "-+"    // Number  《 Fixed | Float                 // -0.02_D  +0.98_D
+    "@"     // Stamp   《 Time  | Site                  // @1993-09-05T19:30:00.000000+0800    // @@China~Guangdong~Zhanjian~Street~Building~No+0800
+    "`"     // String  《 Printable ASCII               // comment=`This's a string.`          // ``, Self-Escaped if doubles
+    "^"     // Binary  《 ^Length^Anything              // ^5_H^HA-HA
 };
 
-static char *_Midfix = {
+static char *_Infix = {
     "="     // Atrri Assignment          // name=`BSS9395`;
     "|"     // Array in Attri            // credit=-0.02_D|+0.98_D;
 };
@@ -283,6 +283,75 @@ char *Print_Float(char *buffer, fl64 number, in08 base, in08 prec) {
         }
         buffer += 2;
     }
+    buffer[0] = '\0';
+    return buffer;
+}
+
+char *Print_TimeStamp(char *buffer, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm, in32 ss, in32 tttttt, in32 ZZzz) {
+    static char _init[] = "0000-00-00T00:00:00.000000+0000";
+    // static iptr _incr[] = { 4, 3, 3, 3, 3, 3, 7, 5 };
+
+    char *_buffer = buffer;
+    for (iptr i = 0; _init[i] != '\0'; buffer[i] = _init[i], i += 1);
+
+    char ch = 0;
+    buffer += 4;
+    for (iptr i = 1; i <= 4 && 0 < YYYY; i += 1) {
+        ch = (char)(YYYY % 10);
+        buffer[-i] = _Digit[ch];
+        YYYY = YYYY / 10;
+    }
+
+    buffer += 3;
+    for (iptr i = 1; i <= 3 && 0 < MM; i += 1) {
+        ch = (char)(MM % 10);
+        buffer[-i] = _Digit[ch];
+        MM = MM / 10;
+    }
+
+    buffer += 3;
+    for (iptr i = 1; i <= 3 && 0 < DD; i += 1) {
+        ch = (char)(DD % 10);
+        buffer[-i] = _Digit[ch];
+        DD = DD / 10;
+    }
+
+    buffer += 3;
+    for (iptr i = 1; i <= 3 && 0 < hh; i += 1) {
+        ch = (char)(hh % 10);
+        buffer[-i] = _Digit[ch];
+        hh = hh / 10;
+    }
+
+    buffer += 3;
+    for (iptr i = 1; i <= 3 && 0 < mm; i += 1) {
+        ch = (char)(mm % 10);
+        buffer[-i] = _Digit[ch];
+        mm = mm / 10;
+    }
+
+    buffer += 3;
+    for (iptr i = 1; i <= 3 && 0 < ss; i += 1) {
+        ch = (char)(ss % 10);
+        buffer[-i] = _Digit[ch];
+        ss = ss / 10;
+    }
+
+    buffer += 7;
+    for (iptr i = 1; i <= 7 && 0 < tttttt; i += 1) {
+        ch = (char)(tttttt % 10);
+        buffer[-i] = _Digit[ch];
+        tttttt = tttttt / 10;
+    }
+
+    buffer[0] = (ZZzz < 0) ? (ZZzz = -ZZzz, '-') : '+';
+    buffer += 5;
+    for (iptr i = 1; i <= 5 && 0 < ZZzz; i += 1) {
+        ch = (char)(ZZzz % 10);
+        buffer[-i] = _Digit[ch];
+        ZZzz = ZZzz / 10;
+    }
+
     buffer[0] = '\0';
     return buffer;
 }
@@ -492,6 +561,14 @@ Entry *Attach_Float(Entry *entry, char *attri, fl64 frac, bool many) {
     return entry;
 }
 
+Entry *Attach_String(Entry *entry, char *attri, char *stri, iptr leng) {
+    Attri *hand = Handle_Attri(entry, attri, false);
+    hand->_value = Make_Data(stri, leng);
+    hand->_type = EType._String;
+    hand->_leng = (0 < leng) ? leng : Length(stri);
+    return entry;
+}
+
 Entry *Attach_Binary(Entry *entry, char *attri, char *bina, iptr leng) {
     Attri *hand = Handle_Attri(entry, attri, false);
     hand->_value = Make_Data(bina, leng);
@@ -500,13 +577,30 @@ Entry *Attach_Binary(Entry *entry, char *attri, char *bina, iptr leng) {
     return entry;
 }
 
-Entry *Attach_String(Entry *entry, char *attri, char *stri, iptr leng) {
+Entry *Attach_TimeStamp(Entry *entry, char *attri, char *time, iptr leng) {
     Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_value = Make_Data(stri, leng);
-    hand->_type = EType._String;
-    hand->_leng = (0 < leng) ? leng : Length(stri);
+    hand->_value = Make_Data(time, leng);
+    hand->_type = EType._TimeStamp;
+    hand->_leng = (0 < leng) ? leng : Length(time);
     return entry;
 }
+
+
+
+Entry *Attach_Time(Entry *entry, char *attri, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm, in32 ss, in32 tttttt, in32 ZZzz) {
+    static char _buffer[1024];
+
+    char *buffer = Print_TimeStamp(_buffer, YYYY, MM, DD, hh, mm, ss, tttttt, ZZzz);
+    Attri *hand = Handle_Attri(entry, attri, false);
+    hand->_value = Make_Data(_buffer, buffer - _buffer);
+    hand->_type = EType._TimeStamp;
+    hand->_leng = buffer - _buffer;
+    return entry;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -634,7 +728,12 @@ void Test_Notation() {
 
     head = Handle_Entry(head, "info", true);
     Attach_String(head, "email", person._info._email, 0);
-    Attach_String(head, "birth", person._info._birth, 0);
+    Attach_TimeStamp(head, "birth", person._info._birth, Length(person._info._birth));
+    Attach_Logic(head, "valid", person._info._valid, false);
+
+    head = Handle_Entry(head, "info", true);
+    Attach_String(head, "email", person._info._email, 0);
+    Attach_Time(head, "birth", 1993, 9, 5, 19, 30, 0, 0, -812);
     Attach_Logic(head, "valid", person._info._valid, false);
 
     ////////////////////////////////////////////////////////////////////////////
