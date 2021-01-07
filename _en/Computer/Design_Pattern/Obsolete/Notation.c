@@ -1,6 +1,6 @@
 /* Notation.c
 Author: BSS9395
-Update: 2020-01-07T09:28:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-06T12:06:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -438,34 +438,6 @@ Entry *Handle_Entry(Entry *super, char *entry, bool sole) {
     return node;
 }
 
-Attri *Handle_Attri(Entry *entry, char *attri, bool sole) {
-    if (sole == true && entry->_list != NULL) {
-        Attri *tail = entry->_list;
-        Attri *iter = tail;
-        do {
-            iter = iter->_link;
-            if (Strcmp(iter->_attri, attri) == 0) {
-                return iter;
-            }
-        } while (iter != tail);
-    }
-
-    attri = Make_Data(attri, 0);
-    Attri *node = Make_Attri(attri);
-    if (entry->_list == NULL) {
-        // circular list
-        node->_link = node;
-        entry->_list = node;
-    }
-    else {
-        Attri *tail = entry->_list;
-        node->_link = tail->_link;
-        tail->_link = node;
-        entry->_list = node;
-    }
-    return node;
-}
-
 Entry *Remove_Entry(Entry *super, Entry *entry, bool wipe) {
     Entry **iter = &(super->_nest);
     while ((*iter) != NULL && (*iter) != entry) {
@@ -511,6 +483,82 @@ Entry *Remove_Entry_Many(Entry *super, char *entry, bool wipe) {
     return NULL;
 }
 
+Attri *Handle_Attri(Entry *entry, char *attri, bool sole) {
+    if (sole == true && entry->_list != NULL) {
+        Attri *tail = entry->_list;
+        Attri *iter = tail;
+        do {
+            iter = iter->_link;
+            if (Strcmp(iter->_attri, attri) == 0) {
+                return iter;
+            }
+        } while (iter != tail);
+    }
+
+    attri = Make_Data(attri, 0);
+    Attri *node = Make_Attri(attri);
+    if (entry->_list == NULL) {
+        // circular list
+        node->_link = node;
+        entry->_list = node;
+    }
+    else {
+        Attri *tail = entry->_list;
+        node->_link = tail->_link;
+        tail->_link = node;
+        entry->_list = node;
+    }
+    return node;
+}
+
+//Attri *Remove_Attri(Entry *entry, Attri *attri, bool wipe) {
+//    if (entry->_list != NULL) {
+//        Attri *tail = entry->_list;
+//        Attri *iter = tail;
+//        do {
+//            if (iter->_link == attri) {
+//                if (iter->_link == tail) {
+//                    entry->_list = iter;
+//                }
+//                iter->_link = iter->_link->_link;
+//                if (iter->_link == iter) {
+//                    entry->_list = NULL;
+//                }
+//
+//                if (wipe == true) {
+//                    Free_Attri(attri);
+//                    attri = NULL;
+//                }
+//                return attri;
+//            }
+//        } while (iter = iter->_link, iter != tail);
+//    }
+//    return NULL;
+//}
+
+//Attri *Remove_Attri(Entry *entry, Attri *attri, bool wipe) {
+//    if (entry->_list != NULL) {
+//        Attri *node = entry->_list;
+//        entry->_list = node->_link;
+//        node->_link = NULL;
+//
+//        Attri **iter = &(entry->_list);
+//        while ((*iter) != NULL) {
+//            if ((*iter) == attri) {
+//                if (wipe == true) {
+//                    Free_Attri(attri);
+//                    attri = NULL;
+//                }
+//                return attri;
+//            }
+//            else {
+//                (*iter) = (*iter)->_link;
+//            }
+//        }
+//    }
+//    return NULL;
+//}
+
 Attri *Remove_Attri(Entry *entry, Attri *attri, bool wipe) {
     if (entry->_list != NULL) {
         Attri **iter = &(entry->_list);
@@ -538,8 +586,88 @@ Attri *Remove_Attri(Entry *entry, Attri *attri, bool wipe) {
     return NULL;
 }
 
+//Attri *Remove_Attri_Many(Entry *entry, char *attri, bool wipe) {
+//    if (entry->_list != NULL) {
+//        Attri *list = NULL;
+//        Attri *node = NULL;
+//
+//        Attri **iter = &(entry->_list);
+//        Attri *tail = (*iter);
+//        bool goon = true;
+//        while (goon) {
+//            iter = &((*iter)->_link);
+//            if ((*iter) == tail) {
+//                goon = false;     // the loop break is in schedule.
+//            }
+//
+//            if (Strcmp((*iter)->_attri, attri) == 0) {
+//                node = (*iter);
+//                (*iter) = (*iter)->_link;
+//                if ((*iter)->_link == (*iter)) {
+//                    entry->_list = NULL;
+//                    goon = false;
+//                }
+//
+//                if (wipe == true) {
+//                    Free_Attri(node);
+//                }
+//                else {
+//                    node->_link = list;
+//                    list = node;
+//                }
+//            }
+//        }
+//
+//        if (entry->_list != NULL) {
+//            entry->_list = (*iter);
+//        }
+//        return list;
+//    }
+//    return NULL;
+//}
+
+//Attri *Remove_Attri_Many(Entry *entry, char *attri, bool wipe) {
+//    Attri *list = NULL;
+//    Attri *node = NULL;
+//    if (entry->_list != NULL) {
+//        Attri *tail = entry->_list;
+//        Attri *iter = tail;
+//        do {
+//            if (Strcmp(iter->_link->_attri, attri) == 0) {
+//                if (iter->_link == tail) {
+//                    entry->_list = iter;
+//
+//                    node = iter->_link;
+//                    iter->_link = iter->_link->_link;
+//                    node->_link = list;
+//                    list = node;
+//                    break;
+//                }
+//
+//                node = iter->_link;
+//                iter->_link = iter->_link->_link;
+//                node->_link = list;
+//                list = node;
+//                if (iter->_link == iter) {
+//                    entry->_list = NULL;
+//                    break;
+//                }
+//            }
+//        } while (iter = iter->_link, iter != tail);
+//
+//        if (wipe) {
+//            while (list != NULL) {
+//                node = list;
+//                list = list->_link;
+//                Free_Attri(node);
+//            }
+//        }
+//    }
+//    return list;
+//}
+
 Attri *Remove_Attri_Many(Entry *entry, char *attri, bool wipe) {
-    Attri *many = NULL;
+    Attri *list = NULL;
     if (entry->_list != NULL) {
         Attri *node = entry->_list;
         entry->_list = node->_link;
@@ -554,8 +682,8 @@ Attri *Remove_Attri_Many(Entry *entry, char *attri, bool wipe) {
                     Free_Attri(node);
                 }
                 else {
-                    node->_link = many;
-                    many = node;
+                    node->_link = list;
+                    list = node;
                 }
             }
             else {
@@ -564,7 +692,7 @@ Attri *Remove_Attri_Many(Entry *entry, char *attri, bool wipe) {
         }
         (*iter) = entry->_list;
     }
-    return many;
+    return list;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
