@@ -1,6 +1,6 @@
 /* Notation.c
 Author: BSS9395
-Update: 2020-01-07T09:28:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-07T12:14:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -201,74 +201,53 @@ char *Copy_Data(char *buffer, char *data, iptr leng) {
     return &buffer[leng];
 }
 
-char *Print_Fixed(char *buffer, in64 number, in08 base, bool pref) {
+char *Print_Number(char *buffer, fl64 number, in32 base, fl64 prec) {
+    bool prefix = (prec < 0) ? (prec = -prec, true) : false;
     bool suffix = (base < 0) ? (base = -base, true) : false;
+
     if (number < 0) {
         number = -number;
         buffer[0] = '-';
         buffer += 1;
     }
-    else if (pref == true) {
+    else if (prefix == true) {
         buffer[0] = '+';
         buffer += 1;
     }
 
-    char *fore = buffer;
+    in64 integer = (in64)prec;
+    prec -= integer, number += prec / base;     // round-off
+    number -= (integer < number) ? (in64)number : (integer = (in64)number);
+
     char ch = 0;
+    char *fore = buffer;
     do {
-        ch = (char)(number % base);
+        ch = (char)(integer % base);
         // buffer[0] = (ch < 10) ? (ch + '0') : (ch + 'A' - 10);
         buffer[0] = _Digit[ch];
         buffer += 1;
-        number = number / base;
-    } while (0 < number);
-
+        integer /= base;
+    } while (0 < integer);
     for (char *back = buffer - 1; fore < back; fore += 1, back -= 1) {
         fore[0] = fore[0] ^ back[0];
         back[0] = fore[0] ^ back[0];
         fore[0] = fore[0] ^ back[0];
     }
 
-    if (suffix) {
-        if (base == 10) {
-            buffer[0] = '_', buffer[1] = 'D';
-        }
-        else if (base == 2) {
-            buffer[0] = '_', buffer[1] = 'B';
-        }
-        else if (base == 8) {
-            buffer[0] = '_', buffer[1] = 'O';
-        }
-        else if (base == 16) {
-            buffer[0] = '_', buffer[1] = 'H';
-        }
-        buffer += 2;
-    }
-    buffer[0] = '\0';
-    return buffer;
-}
-
-char *Print_Float(char *buffer, fl64 number, in08 base, in08 prec) {
-    bool suffix = (base < 0) ? (base = -base, true) : false;
-    in64 integer = (in64)number;
-    number -= integer;
-
-    buffer = Print_Fixed(buffer, integer, base, true);
-    buffer[0] = '.';
-    buffer += 1;
-
-    // number = number + 0.5 * pow(1.0 / base, prec);
-    // no round-off
-    char ch = 0;
-    do {
-        number = number * base;
-        ch = (char)number;
-        buffer[0] = _Digit[ch];
+    if (prec != 0.0) {
+        buffer[0] = '.';
         buffer += 1;
-        number = number - ch;
-    } while (prec -= 1, 0 < prec);
 
-    if (suffix == true) {
+        while (prec *= base, prec <= 1) {
+            number *= base;
+            ch = (char)number;
+            buffer[0] = _Digit[ch];
+            buffer += 1;
+            number -= ch;
+        }
+    }
+
+    if (suffix) {
         if (base == 10) {
             buffer[0] = '_', buffer[1] = 'D';
         }
@@ -619,7 +598,7 @@ Entry *Attach_Logic(Entry *entry, char *attri, bool logi, bool many) {
     return entry;
 }
 
-Entry *Attach_Fixed(Entry *entry, char *attri, in64 inte, bool many) {
+Entry *Attach_Number(Entry *entry, char *attri, fl64 frac, bool many) {
     static char _buffer[1024];
     static char *buffer = _buffer;
 
@@ -636,55 +615,12 @@ Entry *Attach_Fixed(Entry *entry, char *attri, in64 inte, bool many) {
                 buffer[0] = '|';
                 buffer += 1;
             }
-            buffer = Print_Fixed(buffer, inte, 10, true);
+            buffer = Print_Number(buffer, frac, 10, 0.000001);
         }
         else if (_entry == entry && _attri == attri) {
             buffer[0] = '|';
             buffer += 1;
-            buffer = Print_Fixed(buffer, inte, 10, true);
-        }
-    }
-
-    if (many == false && hand != NULL) {
-        if (hand->_value == NULL) {
-            hand->_value = Make_Data(_buffer, buffer - _buffer);
-        }
-        else {
-            Check(hand->_type != EType._Fixed, ELevel._Warn, __FUNCTION__, "attri->_type != EType._Fixed", NULL);
-            hand->_value = Join_Data(hand->_value, hand->_leng, _buffer, buffer - _buffer);
-        }
-        hand->_type = EType._Fixed;
-        hand->_leng += buffer - _buffer;
-
-        buffer = _buffer;
-        hand = NULL;
-    }
-    return entry;
-}
-
-Entry *Attach_Float(Entry *entry, char *attri, fl64 frac, bool many) {
-    static char _buffer[1024];
-    static char *buffer = _buffer;
-
-    static Entry *_entry = NULL;
-    static char *_attri = NULL;
-    static Attri *hand = NULL;
-
-    if (entry != NULL) {
-        if (hand == NULL) {
-            _entry = entry;
-            _attri = attri;
-            hand = Handle_Attri(entry, attri, false);
-            if (hand->_value != NULL) {
-                buffer[0] = '|';
-                buffer += 1;
-            }
-            buffer = Print_Float(buffer, frac, 10, 6);
-        }
-        else if (_entry == entry && _attri == attri) {
-            buffer[0] = '|';
-            buffer += 1;
-            buffer = Print_Float(buffer, frac, 10, 6);
+            buffer = Print_Number(buffer, frac, 10, 0.000001);
         }
     }
 
@@ -732,7 +668,7 @@ Entry *Attach_TimeStamp(Entry *entry, char *attri, in32 YYYY, in32 MM, in32 DD, 
     return entry;
 }
 
-Entry *Attach(Entry *entry, char *attri, char *value, iptr leng, Type type) {
+Entry *Attach_EType(Entry *entry, char *attri, char *value, iptr leng, Type type) {
     Attri *hand = Handle_Attri(entry, attri, false);
     hand->_value = Make_Data(value, leng);
     hand->_type = type;
@@ -792,7 +728,7 @@ iptr BackPack(char *buffer, Entry *note) {
                     else if (list->_type == EType._Binary) {
                         buffer[0] = '^';
                         buffer += 1;
-                        buffer = Print_Fixed(buffer, list->_leng, -16, false);
+                        buffer = Print_Number(buffer, list->_leng, -16, false);
                         buffer[0] = '^';
                         buffer += 1;
                         buffer = Copy_Data(buffer, list->_value, list->_leng);
@@ -868,14 +804,14 @@ void Test_Notation() {
 
     many = head = Handle_Entry(&note, "person", true);
     Attach_String(head, "name", person._name, 0);
-    Attach_Fixed(head, "id", person._id, false);
-    for (iptr i = 0; i < 3; Attach_Float(head, "credit", person._credit[i], i != 3 - 1), i += 1);
+    Attach_Number(head, "id", (fl64)person._id, false);
+    for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i], i != 3 - 1), i += 1);
     Attach_Binary(head, "desc", person._desc, Length(person._desc));
 
 
     head = Handle_Entry(head, "info", true);
     Attach_String(head, "email", person._info._email, 0);
-    Attach(head, "birth", person._info._birth, Length(person._info._birth), EType._TimeStamp);
+    Attach_EType(head, "birth", person._info._birth, Length(person._info._birth), EType._TimeStamp);
     Attach_Logic(head, "valid", person._info._valid, false);
 
 
@@ -893,9 +829,9 @@ void Test_Notation() {
 
     head = Handle_Entry(&note, "person", false);
     Attach_String(head, "name", person._name, 0);
-    Attach_Fixed(head, "id", person._id, false);
-    for (iptr i = 0; i < 3; Attach_Float(head, "credit", person._credit[i] + 0.02, true), i += 1);
-    Attach_Float(NULL, NULL, 0, false);
+    Attach_Number(head, "id", (fl64)person._id, false);
+    for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i] + 0.02, true), i += 1);
+    Attach_Number(NULL, NULL, 0, false);
     Attach_Binary(head, "desc", person._desc, Length(person._desc));
 
 
