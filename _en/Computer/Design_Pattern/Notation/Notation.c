@@ -1,6 +1,6 @@
 /* Notation.c
 Author: BSS9395
-Update: 2020-01-08T09:46:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-09T04:09:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -25,6 +25,7 @@ typedef const char *Type;
 struct _EType {
     Type _UnKnown;
     Type _Logic;
+    Type _Number;
     Type _Fixed;
     Type _Float;
     Type _String;
@@ -33,7 +34,8 @@ struct _EType {
     Type _SiteStamp;
 } EType = {
     ._UnKnown = "UnKnown",._Logic = "Logic",
-    ._Fixed = "Fixed",._Float = "Float",._String = "String",._Binary = "Binary",
+    ._Number = "Number",._Fixed = "Fixed",._Float = "Float",
+    ._String = "String",._Binary = "Binary",
     ._TimeStamp = "TimeStamp",._SiteStamp = "SiteStamp"
 };
 
@@ -172,12 +174,12 @@ char *Make_Data(char *data, iptr leng) {
 }
 
 char *Join_Data(char *data, iptr leng_data, char *join, iptr leng_join) {
-    char *retu = data;
     if (leng_join == 0) {
         leng_join = Length(join);
     }
-
     data = Realloc(data, leng_data + leng_join + 1);
+    char *retu = data;
+
     data += leng_data;
     for (iptr i = 0; i < leng_join; i += 1) {
         data[i] = join[i];
@@ -396,6 +398,8 @@ iptr Free_Entry(Entry *entry) {
     return retu;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
 Entry *Handle_Entry(Entry *super, char *entry, bool sole) {
     ui32 xhash = XHash(entry, 0);
     Entry **last = &(super->_nest);
@@ -442,7 +446,7 @@ Attri *Handle_Attri(Entry *entry, char *attri, bool sole) {
     return node;
 }
 
-Entry *Remove_Entry(Entry *super, Entry *entry, bool wipe) {
+Entry *Detach_Entry(Entry *super, Entry *entry, bool wipe) {
     Entry **iter = &(super->_nest);
     while ((*iter) != NULL && (*iter) != entry) {
         iter = &((*iter)->_link);
@@ -458,7 +462,7 @@ Entry *Remove_Entry(Entry *super, Entry *entry, bool wipe) {
     return NULL;
 }
 
-Entry *Remove_Entry_Many(Entry *super, char *entry, bool wipe) {
+Entry *Detach_Entry_Many(Entry *super, char *entry, bool wipe) {
     ui32 xhash = XHash(entry, 0);
 
     Entry *node = NULL;
@@ -487,7 +491,7 @@ Entry *Remove_Entry_Many(Entry *super, char *entry, bool wipe) {
     return NULL;
 }
 
-Attri *Remove_Attri(Entry *entry, Attri *attri, bool wipe) {
+Attri *Detach_Attri(Entry *entry, Attri *attri, bool wipe) {
     Attri *many = NULL;
     if (entry->_list != NULL) {
         Attri **list = entry->_list;
@@ -522,7 +526,7 @@ Attri *Remove_Attri(Entry *entry, Attri *attri, bool wipe) {
     return many;
 }
 
-Attri *Remove_Attri_Many(Entry *entry, char *attri, bool wipe) {
+Attri *Detach_Attri_Many(Entry *entry, char *attri, bool wipe) {
     Attri *many = NULL;
     if (entry->_list != NULL) {
         Attri *node = NULL;
@@ -612,44 +616,34 @@ Entry *Attach_Logic(Entry *entry, char *attri, bool logi, bool many) {
 }
 
 Entry *Attach_Number(Entry *entry, char *attri, fl64 frac, bool many) {
-    static char _buffer[1024];
-    static char *buffer = _buffer;
+    static fl64 *_value = NULL;
+    static iptr _many = 0;
+    static iptr _numb = 0;
 
     static Entry *_entry = NULL;
     static char *_attri = NULL;
-    static Attri *hand = NULL;
 
-    if (entry != NULL) {
-        if (hand == NULL) {
-            _entry = entry;
-            _attri = attri;
-            hand = Handle_Attri(entry, attri, false);
-            if (hand->_value != NULL) {
-                buffer[0] = '|';
-                buffer += 1;
-            }
-            buffer = Print_Number(buffer, frac, 10, 0.000001);
-        }
-        else if (_entry == entry && _attri == attri) {
-            buffer[0] = '|';
-            buffer += 1;
-            buffer = Print_Number(buffer, frac, 10, 0.000001);
-        }
+    if (_numb == 0) {
+        _entry = entry;
+        _attri = attri;
     }
-
-    if (many == false && hand != NULL) {
-        if (hand->_value == NULL) {
-            hand->_value = Make_Data(_buffer, buffer - _buffer);
+    if (_entry == entry && _attri == attri) {
+        if (_many <= _numb) {
+            _many = 2 * _many + 1;
+            _value = Realloc(_value, _many * sizeof(fl64));
         }
-        else {
-            Check(hand->_type != EType._Float, ELevel._Warn, __FUNCTION__, "attri->_type != EType._Fixed", NULL);
-            hand->_value = Join_Data(hand->_value, hand->_leng, _buffer, buffer - _buffer);
-        }
-        hand->_type = EType._Float;
-        hand->_leng += buffer - _buffer;
+        _value[_numb] = frac;
+        _numb += 1;
+        if (many == false && _numb >= 1) {
+            Attri *hand = Handle_Attri(entry, attri, false);
+            Check(hand->_value != NULL && hand->_attri != EType._Number, ELevel._Warn, __FUNCTION__, "hand->_value != NULL && hand->_attri != EType._Number", NULL);
 
-        buffer = _buffer;
-        hand = NULL;
+            hand->_value = Join_Data(hand->_value, hand->_leng, (char *)_value, _numb * sizeof(fl64));
+            hand->_type = EType._Number;
+            hand->_leng += _numb * sizeof(fl64);
+
+            _numb = 0;
+        }
     }
     return entry;
 }
@@ -730,7 +724,18 @@ iptr BackPack(char *buffer, Entry *note) {
                     buffer[0] = '=';
                     buffer += 1;
 
-                    if (iter->_type == EType._String) {
+                    if (iter->_type == EType._Number || iter->_type == EType._Fixed || iter->_type == EType._Float) {
+                        fl64 *value = (fl64 *)iter->_value;
+                        iptr numb = iter->_leng / sizeof(fl64);
+                        for (iptr i = 0; i < numb; i += 1) {
+                            if (i >= 1) {
+                                buffer[0] = '|';
+                                buffer += 1;
+                            }
+                            buffer = Print_Number(buffer, value[i], 10, -0.000001);
+                        }
+                    }
+                    else if (iter->_type == EType._String) {
                         buffer[0] = '`';
                         buffer += 1;
                         buffer = Copy_Data(buffer, iter->_value, iter->_leng);
@@ -751,14 +756,12 @@ iptr BackPack(char *buffer, Entry *note) {
                         buffer = Copy_Data(buffer, iter->_value, iter->_leng);
                     }
                     else {
-                        buffer = Copy_Data(buffer, iter->_value, iter->_leng);
+                        Check(iter->_type == EType._UnKnown, ELevel._Fatal, __FUNCTION__, "iter->_type == EType._UnKnown", NULL);
                     }
 
                     buffer[0] = ';';
                     buffer += 1;
-
-                    iter = iter->_link;
-                } while (iter != list);
+                } while (iter = iter->_link, iter != list);
                 buffer[0] = '\n';
                 buffer += 1;
             }
@@ -828,11 +831,11 @@ void Test_Notation() {
     for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i] + 0.02, i != 2), i += 1);
     Attach_Binary(head, "desc", person._desc, Length(person._desc));
 
-    // Remove_Entry(&note, head, true);
-    // Remove_Entry_Many(&note, "people", true);
-    Attri *attri = Handle_Attri(many, "desc", true);
-    // Remove_Attri(many, attri, true);
-    Remove_Attri_Many(many, "desc", true);
+    //Remove_Entry(&note, head, true);
+    //Remove_Entry_Many(&note, "people", true);
+    //Attri *attri = Handle_Attri(many, "desc", true);
+    //Remove_Attri(many, attri, true);
+    //Remove_Attri_Many(many, "desc", true);
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -847,7 +850,7 @@ void Test_Notation() {
     char buffer[1024];
     iptr leng = BackPack(buffer, &note);
     fprintf(stdout, "%s""\n", buffer);
-    Dump_File("person.note", buffer, leng);
+    //Dump_File("person.note", buffer, leng);
 }
 
 int main(int argc, char *argv[]) {
