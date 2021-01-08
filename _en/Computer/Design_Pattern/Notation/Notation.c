@@ -1,6 +1,6 @@
 /* Notation.c
 Author: BSS9395
-Update: 2020-01-07T12:14:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-08T09:46:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -59,7 +59,7 @@ typedef struct _Attri {
 typedef struct _Entry {
     char *_entry;
     ui32 _xhash;
-    struct _Attri *_list;
+    struct _Attri **_list;  // the head of circular list
     struct _Entry *_nest;
     struct _Entry *_link;
 } Entry;
@@ -217,7 +217,7 @@ char *Print_Number(char *buffer, fl64 number, in32 base, fl64 prec) {
 
     in64 integer = (in64)prec;
     prec -= integer, number += prec / base;     // round-off
-    number -= (integer < number) ? (in64)number : (integer = (in64)number);
+    number -= (integer < number) ? (integer = (in64)number) : (in64)number;
 
     char ch = 0;
     char *fore = buffer;
@@ -234,7 +234,7 @@ char *Print_Number(char *buffer, fl64 number, in32 base, fl64 prec) {
         fore[0] = fore[0] ^ back[0];
     }
 
-    if (prec != 0.0) {
+    if (number != 0.0 && prec != 0.0) {
         buffer[0] = '.';
         buffer += 1;
 
@@ -369,10 +369,9 @@ iptr Free_Attri(Attri *attri) {
     if (attri != NULL) {
         free(attri->_attri);
         free(attri->_value);
-        retu += 2;
+        free(attri);
+        retu += 3;
     }
-    free(attri);
-    retu += 1;
     return retu;
 }
 
@@ -381,27 +380,26 @@ iptr Free_Entry(Entry *entry) {
     if (entry != NULL) {
         if (entry->_list != NULL) {
             Attri *node = NULL;
-            Attri *tail = entry->_list;
-            Attri *list = tail;
+            Attri *list = *(entry->_list);
+            Attri *iter = list;
             do {
-                node = list;
-                list = list->_link;
+                node = iter;
+                iter = iter->_link;
                 Free_Attri(node);
                 retu += 1;
-            } while (list != tail);
+            } while (iter != list);
         }
         free(entry->_entry);
-        retu += 1;
+        free(entry);
+        retu += 2;
     }
-    free(entry);
-    retu += 1;
     return retu;
 }
 
 Entry *Handle_Entry(Entry *super, char *entry, bool sole) {
     ui32 xhash = XHash(entry, 0);
-    Entry **iter = &(super->_nest);
-    Entry **last = iter;
+    Entry **last = &(super->_nest);
+    Entry **iter = last;
     while ((*iter) != NULL && (*iter)->_xhash <= xhash) {
         last = iter;
         iter = &((*iter)->_link);
@@ -419,14 +417,14 @@ Entry *Handle_Entry(Entry *super, char *entry, bool sole) {
 
 Attri *Handle_Attri(Entry *entry, char *attri, bool sole) {
     if (sole == true && entry->_list != NULL) {
-        Attri *tail = entry->_list;
-        Attri *iter = tail;
+        Attri *list = *(entry->_list);
+        Attri *iter = list;
         do {
-            iter = iter->_link;
             if (Strcmp(iter->_attri, attri) == 0) {
                 return iter;
             }
-        } while (iter != tail);
+            iter = iter->_link;
+        } while (iter != list);
     }
 
     attri = Make_Data(attri, 0);
@@ -434,13 +432,12 @@ Attri *Handle_Attri(Entry *entry, char *attri, bool sole) {
     if (entry->_list == NULL) {
         // circular list
         node->_link = node;
-        entry->_list = node;
+        entry->_list = &(node->_link);
     }
     else {
-        Attri *tail = entry->_list;
-        node->_link = tail->_link;
-        tail->_link = node;
-        entry->_list = node;
+        node->_link = *(entry->_list);
+        *(entry->_list) = node;
+        entry->_list = &(node->_link);
     }
     return node;
 }
@@ -491,44 +488,59 @@ Entry *Remove_Entry_Many(Entry *super, char *entry, bool wipe) {
 }
 
 Attri *Remove_Attri(Entry *entry, Attri *attri, bool wipe) {
+    Attri *many = NULL;
     if (entry->_list != NULL) {
-        Attri **iter = &(entry->_list);
-        Attri *tail = (*iter);
-        do {
-            iter = &((*iter)->_link);
+        Attri **list = entry->_list;
+        Attri **iter = list;
+        bool goon = true;
+        for (; goon == true; ) {
+            if (&((*iter)->_link) == list) {
+                goon = false;     // the loop break is in schedule.           
+            }
 
             if ((*iter) == attri) {
-                (*iter) = (*iter)->_link;
                 if ((*iter)->_link == (*iter)) {
+                    // the only Attri
                     entry->_list = NULL;
                 }
-                else {
-                    entry->_list = (*iter);
-                }
+                (*iter) = (*iter)->_link;
 
                 if (wipe == true) {
                     Free_Attri(attri);
-                    attri = NULL;
                 }
-                return attri;
+                else {
+                    many = attri;
+                }
+                break;
             }
-        } while ((*iter) != tail);
+            iter = &((*iter)->_link);
+        }
+        if (goon == false && entry->_list != NULL) {
+            entry->_list = iter;
+        }
     }
-    return NULL;
+    return many;
 }
 
 Attri *Remove_Attri_Many(Entry *entry, char *attri, bool wipe) {
     Attri *many = NULL;
     if (entry->_list != NULL) {
-        Attri *node = entry->_list;
-        entry->_list = node->_link;
-        node->_link = NULL;
+        Attri *node = NULL;
+        Attri **list = entry->_list;
+        Attri **iter = list;
+        for (bool goon = true; goon == true;) {
+            if (&((*iter)->_link) == list) {
+                goon = false;     // the loop break is in schedule.
+            }
 
-        Attri **iter = &(entry->_list);
-        while ((*iter) != NULL) {
             if (Strcmp((*iter)->_attri, attri) == 0) {
                 node = (*iter);
+                if (node->_link == node) {
+                    // the only Attri
+                    entry->_list = NULL;
+                }
                 (*iter) = (*iter)->_link;
+
                 if (wipe == true) {
                     Free_Attri(node);
                 }
@@ -536,12 +548,13 @@ Attri *Remove_Attri_Many(Entry *entry, char *attri, bool wipe) {
                     node->_link = many;
                     many = node;
                 }
+                continue;
             }
-            else {
-                iter = &((*iter)->_link);
-            }
+            iter = &((*iter)->_link);
         }
-        (*iter) = entry->_list;
+        if (entry->_list != NULL) {
+            entry->_list = iter;
+        }
     }
     return many;
 }
@@ -707,44 +720,45 @@ iptr BackPack(char *buffer, Entry *note) {
             buffer[0] = ':';
             buffer += 1;
             if (head->_list != NULL) {
-                Attri *tail = head->_list;
-                Attri *list = tail;
+                Attri *list = *(head->_list);
+                Attri *iter = list;
                 do {
-                    list = list->_link;
                     buffer[0] = ' ';
                     buffer += 1;
 
-                    buffer = Copy_Data(buffer, list->_attri, 0);
+                    buffer = Copy_Data(buffer, iter->_attri, 0);
                     buffer[0] = '=';
                     buffer += 1;
 
-                    if (list->_type == EType._String) {
+                    if (iter->_type == EType._String) {
                         buffer[0] = '`';
                         buffer += 1;
-                        buffer = Copy_Data(buffer, list->_value, list->_leng);
+                        buffer = Copy_Data(buffer, iter->_value, iter->_leng);
                         buffer[0] = '`';
                         buffer += 1;
                     }
-                    else if (list->_type == EType._Binary) {
+                    else if (iter->_type == EType._Binary) {
                         buffer[0] = '^';
                         buffer += 1;
-                        buffer = Print_Number(buffer, list->_leng, -16, false);
+                        buffer = Print_Number(buffer, iter->_leng, -16, 0.0);
                         buffer[0] = '^';
                         buffer += 1;
-                        buffer = Copy_Data(buffer, list->_value, list->_leng);
+                        buffer = Copy_Data(buffer, iter->_value, iter->_leng);
                     }
-                    else if (list->_type == EType._TimeStamp) {
+                    else if (iter->_type == EType._TimeStamp) {
                         buffer[0] = '@';
                         buffer += 1;
-                        buffer = Copy_Data(buffer, list->_value, list->_leng);
+                        buffer = Copy_Data(buffer, iter->_value, iter->_leng);
                     }
                     else {
-                        buffer = Copy_Data(buffer, list->_value, list->_leng);
+                        buffer = Copy_Data(buffer, iter->_value, iter->_leng);
                     }
 
                     buffer[0] = ';';
                     buffer += 1;
-                } while (list != tail);
+
+                    iter = iter->_link;
+                } while (iter != list);
                 buffer[0] = '\n';
                 buffer += 1;
             }
@@ -805,34 +819,29 @@ void Test_Notation() {
     many = head = Handle_Entry(&note, "person", true);
     Attach_String(head, "name", person._name, 0);
     Attach_Number(head, "id", (fl64)person._id, false);
-    for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i], i != 3 - 1), i += 1);
+    for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i], i != 2), i += 1);
     Attach_Binary(head, "desc", person._desc, Length(person._desc));
 
+    head = Handle_Entry(&note, "people", false);
+    Attach_String(head, "name", person._name, 0);
+    Attach_Number(head, "id", (fl64)person._id, false);
+    for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i] + 0.02, i != 2), i += 1);
+    Attach_Binary(head, "desc", person._desc, Length(person._desc));
 
-    head = Handle_Entry(head, "info", true);
-    Attach_String(head, "email", person._info._email, 0);
-    Attach_EType(head, "birth", person._info._birth, Length(person._info._birth), EType._TimeStamp);
-    Attach_Logic(head, "valid", person._info._valid, false);
-
-
-    head = Handle_Entry(many, "info", false);
-    Attach_String(head, "email", person._info._email, 0);
-    Attach_TimeStamp(head, "birth", 1993, 9, 5, 19, 30, 0, 0, -812);
-    Attach_Logic(head, "valid", person._info._valid, false);
-
-    // Remove_Entry(many, head, true);
-    // Remove_Entry_Many(many, "info", true);
-    // Remove_Attri(many, Handle_Attri(many, "desc", true), true);
+    // Remove_Entry(&note, head, true);
+    // Remove_Entry_Many(&note, "people", true);
+    Attri *attri = Handle_Attri(many, "desc", true);
+    // Remove_Attri(many, attri, true);
     Remove_Attri_Many(many, "desc", true);
 
     ////////////////////////////////////////////////////////////////////////////
 
-    head = Handle_Entry(&note, "person", false);
-    Attach_String(head, "name", person._name, 0);
-    Attach_Number(head, "id", (fl64)person._id, false);
-    for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i] + 0.02, true), i += 1);
-    Attach_Number(NULL, NULL, 0, false);
-    Attach_Binary(head, "desc", person._desc, Length(person._desc));
+    //head = Handle_Entry(&note, "person", false);
+    //Attach_String(head, "name", person._name, 0);
+    //Attach_Number(head, "id", (fl64)person._id, false);
+    //for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i] + 0.02, true), i += 1);
+    //Attach_Number(NULL, NULL, 0, false);
+    //Attach_Binary(head, "desc", person._desc, Length(person._desc));
 
 
     char buffer[1024];
