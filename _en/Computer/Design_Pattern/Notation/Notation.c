@@ -1,6 +1,6 @@
 ﻿/* Notation.c
 Author: BSS9395
-Update: 2020-01-10T04:50:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-10T06:47:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -179,7 +179,7 @@ char *Zero_Data(iptr size) {
 }
 
 char *Make_Data(char *data, iptr leng, bool peel) {
-    if (data != NULL) {
+    if (data != NULL && 0 <= leng) {
         if (leng == 0) {
             leng = Length(data);
         }
@@ -410,7 +410,7 @@ char *Parse_Mult_Divi(char *data, fl64 *number, in32 base) {
 /* Operator Precedence: from Low to High                Operator Associativity:
 AddiSubt   ≡ <MultDivi>[± MultDivi]                     from Left to Right
 MultDivi   ≡ <Number>[⋇ Number]                         from Left to Right
-Number     ≡ [+|-][~D]<(AddiSubt)|Digit>[{AddiSubt}]    from Right to Left     Digit{Expression} ≡ Pow(Digit, Expression)
+Number     ≡ [+|-][D_]<(AddiSubt)|Digit>[{AddiSubt}]    from Right to Left     Digit{Expression} ≡ Pow(Digit, Expression)
 Digit      ≡ [0-9].[0-9]
 
 Expression ≡ Term   |   Term ± Term
@@ -819,25 +819,25 @@ Entry *Attach_EType(Entry *entry, char *attri, char *value, iptr leng, Type type
 ////////////////////////////////////////////////////////////////////////////////
 
 iptr BackPack(char *buffer, Entry *note) {
-    static Entry *_stack[128];
+    static Entry *_entry[128];
     static iptr _top = 0;
 
     char *retu = buffer;
     iptr space = 2;
-    iptr level = 0;
+    iptr white = 0;
     _top = 0;
 
-    _stack[_top] = note->_nest;
+    _entry[_top] = note->_nest;
     _top += 1;
-    level += space;
+    white += space;
     while (_top >= 1) {
         _top -= 1;
-        Entry *head = _stack[_top];
-        level -= space;
+        Entry *head = _entry[_top];
+        white -= space;
 
         while (head != NULL) {
-            for (iptr i = 0; i < level; buffer[i++] = ' ');
-            buffer += level;
+            for (iptr i = 0; i < white; buffer[i] = ' ', i += 1);
+            buffer += white;
 
             buffer = Copy_Data(buffer, head->_entry, 0);
             buffer[0] = ':';
@@ -912,9 +912,9 @@ iptr BackPack(char *buffer, Entry *note) {
                 buffer += 1;
             }
 
-            _stack[_top] = head->_link;
+            _entry[_top] = head->_link;
             _top += 1;
-            level += space;
+            white += space;
             head = head->_nest;
         }
     }
@@ -939,25 +939,51 @@ iptr Dump_File(char *file, char *buffer, iptr leng) {
 
 Entry *Aesemble(char *data) {
     static char _buffer[1024];
-    static Entry *_stack[128];
+    static Entry **_entry[512];
+    static iptr _white[512];
     static iptr _top = 0;
+    iptr space = 0;
     iptr white = 0;
-    iptr level = 0;
 
     Entry *note = Make_Entry(NULL, 0);
     Entry **tail = &(note->_nest);
     char *stri = NULL;
     Entry *entry = NULL;
     Attri *attri = NULL;
+
     for (char *_data = NULL; data[0] != '\0';) {
         // deal with Entry
+        _data = data; for (; data[0] == ' '; data += 1);
+        white = data - _data;
+
         _data = data; for (; data[0] != ':'; data += 1);
         stri = Make_Data(_data, (char *)data - (char *)_data, true);
         data += 1;
 
         entry = Make_Entry(stri, XHash(stri, 0));
-        (*tail) = entry;
-        tail = &(entry->_link);
+        if (white > space) {
+            _entry[_top] = tail;
+            _white[_top] = white;
+            _top += 1;
+
+            space = white;
+            tail = &((*tail)->_nest);
+            (*tail) = entry;
+        }
+        else {
+            while (white < space && 0 < _top) {
+                _top -= 1;
+                tail = _entry[_top];
+                space = _white[_top];
+            }
+            if (Check(white != space, ELevel._Error, __FUNCTION__, "white < space && _top <= 0", NULL)) {
+                break;
+            }
+            if ((*tail) != NULL) {
+                tail = &((*tail)->_link);
+            }
+            (*tail) = entry;
+        }
 
         for (; data[0] != '\n';) {
             // deal with Attri
@@ -980,28 +1006,34 @@ Entry *Aesemble(char *data) {
             ////////////////////////////////////////////////////////////////////
             for (; data[0] == ' ' || data[0] == '\t'; data += 1);
             if (data[0] == '?') {
-                for (; data[0] != ';'; data += 1);
+                // Logic   ≡ None  | Posi  | Nega
+                bool *logi = (bool *)_buffer;
 
-                //// Logic   ≡ None  | Posi  | Nega
-                //bool *logi = (bool *)_buffer;
-                //while (data[0] != ';') {
-                //    if (data[0] == '?' && data[1] == 'P' && data[2] = 'o' && data[3] == 's' && data[4] == 'i') {
-                //        logi[0] = true;
-                //        logi += 1;
-                //        data += 5;
-                //    }
-                //    else if (data[0] == '?' && data[1] == 'N' && data[2] == 'e' && data[3] == 'g' && data[4] == 'a') {
-                //        logi[0] = false;
-                //        logi += 1;
-                //        data += 5;
-                //    }
-                //    while (data[0] == ' ' || data[0] == '\t' || data[0] == '|') {
-                //        data += 1;
-                //    }
-                //}
-                //attri->_value = Make_Data(_data, (char *)logi - (char *)_buffer, false);
-                //attri->_type = EType._Logic;
-                //attri->_leng = (char *)logi - (char *)_buffer;
+                while (data[0] != ';' && logi != NULL) {
+                    if (data[0] == '?' && data[1] == 'P' && data[2] == 'o' && data[3] == 's' && data[4] == 'i') {
+                        logi[0] = true;
+                        logi += 1;
+                        data += 5;
+                    }
+                    else if (data[0] == '?' && data[1] == 'N' && data[2] == 'e' && data[3] == 'g' && data[4] == 'a') {
+                        logi[0] = false;
+                        logi += 1;
+                        data += 5;
+                    }
+                    else if (data[0] == '?' && data[1] == 'N' && data[2] == 'o' && data[3] == 'n' && data[4] == 'e') {
+                        logi = NULL;
+                    }
+                    for (; data[0] == '|' || data[0] == ' ' || data[0] == '\t'; data += 1);
+                }
+                attri->_type = EType._Logic;
+                if (logi == NULL) {
+                    attri->_leng = -1;
+                    attri->_value = NULL;
+                }
+                else {
+                    attri->_leng = (char *)logi - (char *)_buffer;
+                    attri->_value = Make_Data(_buffer, attri->_leng, false);
+                }
             }
             else if (data[0] == '-' || data[0] == '+') {
                 // Number  ≡ Fixed | Float
@@ -1100,10 +1132,10 @@ void Test_Notation() {
     for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i], i != 2), i += 1);
     Attach_Binary(head, "desc", person._desc, Length(person._desc));
 
-    //head = Handle_Entry(note->_nest, "info", true);
-    //Attach_String(head, "email", person._info._email, 0);
-    //Attach_EType(head, "birth", person._info._birth, Length(person._info._birth), EType._TimeStamp);
-    //Attach_Logic(head, "valid", person._info._valid, false);
+    head = Handle_Entry(note->_nest, "info", true);
+    Attach_String(head, "email", person._info._email, 0);
+    Attach_EType(head, "birth", person._info._birth, Length(person._info._birth), EType._TimeStamp);
+    Attach_Logic(head, "valid", person._info._valid, false);
 
 
     //Remove_Entry(&note, head, true);
