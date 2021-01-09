@@ -1,6 +1,6 @@
 ﻿/* Notation.c
 Author: BSS9395
-Update: 2020-01-09T15:24:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-10T04:50:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -50,9 +50,9 @@ struct _ELevel {
 
 typedef struct _Attri {
     char *_attri;
-    char *_value;
     Type _type;
     iptr _leng;
+    char *_value;
     struct _Attri *_link;
 } Attri;
 
@@ -90,7 +90,7 @@ static char *_Prefix = {
     "#"     // Comment ≡ Line_Indentation_Annotation   // # This is a comment at the first level.
     ":"     // Entry   ≡ unary Entry with multi Attri  // person: name=`BSS9395`; ID=+19930905193000;
     "?"     // Logic   ≡ None  | Posi  | Nega          // ?None    ?Posi    ?Nega
-    "-+"    // Number  ≡ Fixed | Float                 // -D~0.02  +D~0.98  -D~1_000_000_000
+    "-+"    // Number  ≡ Fixed | Float                 // -~D0.02  +~D0.98  -~D1_000_000_000
     "`"     // String  ≡ Printable ASCII               // comment=`This's a string.`          // ``, Self-Escaped if doubles
     "^"     // Binary  ≡ ^Length^Anything              // ^5_H^HA-HA
     "@"     // Stamp   ≡ Time  | Site                  // @1993-09-05T19:30:00.000000+0800    // @@China~Guangdong~Zhanjian~Street~Building~No+0800
@@ -135,7 +135,7 @@ char *Parse_Number(char *data, fl64 *number, in32 base);
 
 bool Check(bool failed, Level level, char *function, char *record, char *extra) {
     if (failed) {
-        fprintf(stderr, "[%s] %s# %s%s""\n", level, function, record, (extra == NULL) ? "" : extra);
+        fprintf(stderr, "[%s] %s: %s%s""\n", level, function, record, (extra == NULL) ? "" : extra);
     }
     return failed;
 }
@@ -185,8 +185,7 @@ char *Make_Data(char *data, iptr leng, bool peel) {
         }
         if (peel == true) {
             // leave out white spaces at the ending.
-            for (leng -= 1; 0 <= leng && data[leng] == ' ' || data[leng] == '\t'; leng -= 1);
-            leng += 1;
+            for (; 0 < leng && data[leng - 1] == ' ' || data[leng - 1] == '\t'; leng -= 1);
         }
 
         char *make = Malloc((leng + 1) * sizeof(char));
@@ -244,16 +243,16 @@ char *Print_Number(char *buffer, fl64 number, in32 base, fl64 prec) {
     }
     if (wave) {
         if (base == 10) {
-            buffer[0] = 'D', buffer[1] = '~';
+            buffer[0] = '~', buffer[1] = 'D';
         }
         else if (base == 2) {
-            buffer[0] = 'B', buffer[1] = '~';
+            buffer[0] = '~', buffer[1] = 'B';
         }
         else if (base == 8) {
-            buffer[0] = 'O', buffer[1] = '~';
+            buffer[0] = '~', buffer[1] = 'O';
         }
         else if (base == 16) {
-            buffer[0] = 'H', buffer[1] = '~';
+            buffer[0] = '~', buffer[1] = 'H';
         }
         buffer += 2;
     }
@@ -408,10 +407,10 @@ char *Parse_Mult_Divi(char *data, fl64 *number, in32 base) {
     return data;
 }
 
-/* Operator Precedence: from Low to High            Operator Associativity:
-AddiSubt   ≡ <MultDivi>[± MultDivi]                 from Left to Right
-MultDivi   ≡ <Number>[⋇ Number]                     from Left to Right
-Number     ≡ [+|-][D_]<(AddiSubt)|Digit>[{AddiSubt}]    from Right to Left
+/* Operator Precedence: from Low to High                Operator Associativity:
+AddiSubt   ≡ <MultDivi>[± MultDivi]                     from Left to Right
+MultDivi   ≡ <Number>[⋇ Number]                         from Left to Right
+Number     ≡ [+|-][~D]<(AddiSubt)|Digit>[{AddiSubt}]    from Right to Left     Digit{Expression} ≡ Pow(Digit, Expression)
 Digit      ≡ [0-9].[0-9]
 
 Expression ≡ Term   |   Term ± Term
@@ -432,21 +431,22 @@ char *Parse_Number(char *data, fl64 *number, in32 base) {
         data += 1;
         sign = -1;
     }
-    if (data[0] != '\0' && data[1] == '~') {
+    if (data[0] == '~') {
+        data += 1;
         if (data[0] == 'D') {
-            data += 2;
+            data += 1;
             base = 10;
         }
         else if (data[0] == 'B') {
-            data += 2;
+            data += 1;
             base = 2;
         }
         else if (data[0] == 'O') {
-            data += 2;
+            data += 1;
             base = 8;
         }
         else if (data[0] == 'H') {
-            data += 2;
+            data += 1;
             base = 16;
         }
     }
@@ -454,9 +454,11 @@ char *Parse_Number(char *data, fl64 *number, in32 base) {
     if (data[0] == '(') {
         data += 1;
         data = Parse_Addi_Subt(data, &value, base);
-        if (!Check(data[0] != ')', ELevel._Error, __FUNCTION__, "data[0] != ')", NULL)) {
-            data += 1;
+        if (Check(data[0] != ')', ELevel._Error, __FUNCTION__, "data[0] != ')", NULL)) {
+            // (*number) = sign * value;
+            return data;
         }
+        data += 1;
     }
     else {
         char ch = 0;
@@ -480,23 +482,16 @@ char *Parse_Number(char *data, fl64 *number, in32 base) {
         fl64 expo = 0.0;
         data = Parse_Addi_Subt(data, &expo, base);
         value = Pow(value, expo);
-        if (!Check(data[0] != '}', ELevel._Error, __FUNCTION__, "data[0] != '}'", NULL)) {
-            data += 1;
+        if (Check(data[0] != '}', ELevel._Error, __FUNCTION__, "data[0] != '}'", NULL)) {
+            // (*number) = sign * value;
+            return data;
         }
+        data += 1;
     }
 
     for (; data[0] == ' ' || data[0] == '\t'; data += 1);  // leave out the ending spaces.
     (*number) = sign * value;
     return data;
-}
-
-void Test() {
-    char stri[] = "-D~123";
-    fl64 value = 0.0;
-    Parse_Addi_Subt(stri, &value, 10);
-
-    fprintf(stdout, "%lf\n", value);
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -743,8 +738,8 @@ Entry *Attach_Logic(Entry *entry, char *attri, bool logi, bool many) {
             Attri *hand = Handle_Attri(entry, attri, false);
             Check(hand->_value != NULL && hand->_attri != EType._Logic, ELevel._Warn, __FUNCTION__, "hand->_value != NULL && hand->_attri != EType._Logic", NULL);
 
-            hand->_value = Join_Data(hand->_value, hand->_leng, (char *)_value, _numb * sizeof(bool));
             hand->_type = EType._Logic;
+            hand->_value = Join_Data(hand->_value, hand->_leng, (char *)_value, _numb * sizeof(bool));
             hand->_leng += _numb * sizeof(bool);
 
             _numb = 0;
@@ -776,8 +771,8 @@ Entry *Attach_Number(Entry *entry, char *attri, fl64 frac, bool many) {
             Attri *hand = Handle_Attri(entry, attri, false);
             Check(hand->_value != NULL && hand->_attri != EType._Number, ELevel._Warn, __FUNCTION__, "hand->_value != NULL && hand->_attri != EType._Number", NULL);
 
-            hand->_value = Join_Data(hand->_value, hand->_leng, (char *)_value, _numb * sizeof(fl64));
             hand->_type = EType._Number;
+            hand->_value = Join_Data(hand->_value, hand->_leng, (char *)_value, _numb * sizeof(fl64));
             hand->_leng += _numb * sizeof(fl64);
 
             _numb = 0;
@@ -788,17 +783,17 @@ Entry *Attach_Number(Entry *entry, char *attri, fl64 frac, bool many) {
 
 Entry *Attach_String(Entry *entry, char *attri, char *stri, iptr leng) {
     Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_value = Make_Data(stri, leng, false);
     hand->_type = EType._String;
     hand->_leng = (0 < leng) ? leng : Length(stri);
+    hand->_value = Make_Data(stri, hand->_leng, false);
     return entry;
 }
 
 Entry *Attach_Binary(Entry *entry, char *attri, char *bina, iptr leng) {
     Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_value = Make_Data(bina, leng, false);
     hand->_type = EType._Binary;
     hand->_leng = leng;
+    hand->_value = Make_Data(bina, hand->_leng, false);
     return entry;
 }
 
@@ -807,17 +802,17 @@ Entry *Attach_TimeStamp(Entry *entry, char *attri, in32 YYYY, in32 MM, in32 DD, 
 
     char *buffer = Print_TimeStamp(_buffer, YYYY, MM, DD, hh, mm, ss, tttttt, ZZzz);
     Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_value = Make_Data(_buffer, buffer - _buffer, true);
     hand->_type = EType._TimeStamp;
-    hand->_leng = buffer - _buffer;
+    hand->_leng = (char *)buffer - (char *)_buffer;
+    hand->_value = Make_Data(_buffer, hand->_leng, true);
     return entry;
 }
 
 Entry *Attach_EType(Entry *entry, char *attri, char *value, iptr leng, Type type) {
     Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_value = Make_Data(value, leng, false);
     hand->_type = type;
     hand->_leng = leng;
+    hand->_value = Make_Data(value, hand->_leng, false);
     return entry;
 }
 
@@ -933,6 +928,7 @@ iptr Dump_File(char *file, char *buffer, iptr leng) {
         return 0;
     }
 
+    leng += 1;   // the ending '\0' is also included.
     iptr count = fwrite(buffer, sizeof(char), leng, dump);
     Check(count != leng, ELevel._Error, __FUNCTION__, "count != leng", NULL);
     Check(fclose(dump) != 0, ELevel._Error, __FUNCTION__, "fclose(file) != 0", NULL);
@@ -941,10 +937,10 @@ iptr Dump_File(char *file, char *buffer, iptr leng) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Entry *Aesemble(char *data, iptr leng) {
+Entry *Aesemble(char *data) {
+    static char _buffer[1024];
     static Entry *_stack[128];
     static iptr _top = 0;
-
     iptr white = 0;
     iptr level = 0;
 
@@ -954,21 +950,23 @@ Entry *Aesemble(char *data, iptr leng) {
     Entry *entry = NULL;
     Attri *attri = NULL;
     for (char *_data = NULL; data[0] != '\0';) {
-
+        // deal with Entry
         _data = data; for (; data[0] != ':'; data += 1);
-        stri = Make_Data(_data, data - _data, true);
+        stri = Make_Data(_data, (char *)data - (char *)_data, true);
+        data += 1;
+
         entry = Make_Entry(stri, XHash(stri, 0));
         (*tail) = entry;
         tail = &(entry->_link);
-        data += 1;
 
         for (; data[0] != '\n';) {
-
+            // deal with Attri
             for (; data[0] == ' ' || data[0] == '\t'; data += 1);
             _data = data; for (; data[0] != '='; data += 1);
-            stri = Make_Data(_data, data - _data, true);
-            attri = Make_Attri(stri);
+            stri = Make_Data(_data, (char *)data - (char *)_data, true);
+            data += 1;
 
+            attri = Make_Attri(stri);
             if (entry->_list == NULL) {
                 attri->_link = attri;
                 entry->_list = &(attri->_link);
@@ -978,37 +976,90 @@ Entry *Aesemble(char *data, iptr leng) {
                 *(entry->_list) = attri;
                 entry->_list = &(attri->_link);
             }
-            data += 1;
 
+            ////////////////////////////////////////////////////////////////////
             for (; data[0] == ' ' || data[0] == '\t'; data += 1);
-            _data = data;
             if (data[0] == '?') {
-                // Logic   ≡ None  | Posi  | Nega
+                for (; data[0] != ';'; data += 1);
 
+                //// Logic   ≡ None  | Posi  | Nega
+                //bool *logi = (bool *)_buffer;
+                //while (data[0] != ';') {
+                //    if (data[0] == '?' && data[1] == 'P' && data[2] = 'o' && data[3] == 's' && data[4] == 'i') {
+                //        logi[0] = true;
+                //        logi += 1;
+                //        data += 5;
+                //    }
+                //    else if (data[0] == '?' && data[1] == 'N' && data[2] == 'e' && data[3] == 'g' && data[4] == 'a') {
+                //        logi[0] = false;
+                //        logi += 1;
+                //        data += 5;
+                //    }
+                //    while (data[0] == ' ' || data[0] == '\t' || data[0] == '|') {
+                //        data += 1;
+                //    }
+                //}
+                //attri->_value = Make_Data(_data, (char *)logi - (char *)_buffer, false);
+                //attri->_type = EType._Logic;
+                //attri->_leng = (char *)logi - (char *)_buffer;
             }
             else if (data[0] == '-' || data[0] == '+') {
                 // Number  ≡ Fixed | Float
-
+                fl64 *number = (fl64 *)_buffer;
+                while (data[0] != ';') {
+                    data = Parse_Number(data, &number[0], 10);
+                    number += 1;
+                    while (data[0] == '|' || data[0] == ' ' || data[0] == '\t') {
+                        data += 1;
+                    }
+                }
+                attri->_type = EType._Number;
+                attri->_leng = (char *)number - (char *)_buffer;
+                attri->_value = Make_Data(_buffer, attri->_leng, false);
             }
             else if (data[0] == '`') {
                 // String  ≡ Printable ASCII
-
+                data += 1;
+                _data = data; for (; data[0] != '`'; data += 1);
+                attri->_type = EType._String;
+                attri->_leng = (char *)data - (char *)_data;
+                attri->_value = Make_Data(_data, attri->_leng, false);
+                data += 1;
+                for (; data[0] != ';' && (data[0] == ' ' || data[0] == 't'); data += 1);
             }
             else if (data[0] == '^') {
                 // Binary  ≡ ^Length^Anything
-
+                data += 1;
+                fl64 leng = 0.0;
+                data = Parse_Number(data, &leng, 10);
+                Check(data[0] != '^', ELevel._Error, __FUNCTION__, "data[0] != '^'", NULL);
+                data += 1;
+                attri->_type = EType._Binary;
+                attri->_leng = (iptr)leng;
+                attri->_value = Make_Data(data, attri->_leng, false);
+                data += (iptr)leng;
+                for (; data[0] != ';' && (data[0] == ' ' || data[0] == '\t'); data += 1);
             }
             else if (data[0] == '@') {
                 // Stamp   ≡ Time  | Site
-
+                data += 1;
+                _data = data; for (; data[0] != ';'; data += 1);
+                attri->_leng = (char *)data - (char *)_data;
+                attri->_type = EType._TimeStamp;
+                attri->_value = Make_Data(_data, attri->_leng, true);
             }
             else {
                 Check(true, ELevel._Error, __FUNCTION__, "", "UnKnown Type");
             }
 
+            if (Check(data[0] != ';', ELevel._Error, __FUNCTION__, "data[0] != ';'", NULL)) {
+                break;
+            }
+            data += 1;  // the ending '\;' of Attri.
         }
-
+        data += 1;      // the ending '\n' of Entry.
     }
+    // the ending '\0' of Notation.
 
     return note;
 }
@@ -1049,10 +1100,10 @@ void Test_Notation() {
     for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i], i != 2), i += 1);
     Attach_Binary(head, "desc", person._desc, Length(person._desc));
 
-    head = Handle_Entry(note->_nest, "info", true);
-    Attach_String(head, "email", person._info._email, 0);
-    Attach_EType(head, "birth", person._info._birth, Length(person._info._birth), EType._TimeStamp);
-    Attach_Logic(head, "valid", person._info._valid, false);
+    //head = Handle_Entry(note->_nest, "info", true);
+    //Attach_String(head, "email", person._info._email, 0);
+    //Attach_EType(head, "birth", person._info._birth, Length(person._info._birth), EType._TimeStamp);
+    //Attach_Logic(head, "valid", person._info._valid, false);
 
 
     //Remove_Entry(&note, head, true);
@@ -1066,13 +1117,15 @@ void Test_Notation() {
     char buffer[1024];
     iptr leng = BackPack(buffer, note);
     fprintf(stdout, "%s""\n", buffer);
-    Dump_File("person.note", buffer, leng);
+    // Dump_File("person.note", buffer, leng);
+
+    Entry *notation = Aesemble(buffer);
+    leng = BackPack(buffer, notation);
+    fprintf(stdout, "%s\n", buffer);
 }
 
 int main(int argc, char *argv[]) {
     Test_Notation();
-
-    Test();
 
     return 0;
 }
