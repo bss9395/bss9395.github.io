@@ -77,7 +77,7 @@ static char _Alpha[62] = {
 static in08 _Digit[128] = {
 #define PHD '?'
    '\0', PHD, PHD, PHD, PHD, PHD, PHD,'\a','\b','\t','\n','\v','\f','\r', PHD, PHD,
-    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,'\e', PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
     ' ', '!', '"', '#', '$', '%', '&','\'', '(', ')', '*', '+', ',', '-', '.', '/',
       0,   1,   2,   3,   4,   5,   6,   7,   8,   9, ':', ';', '<', '=', '>', '?',
     '@',  10,  11,  12,  13,  14,  15,  16,  17,  18,  19,  20,  21,  22,  23,  24,
@@ -90,7 +90,7 @@ static char *_Prefix = {
     "#"     // Comment ≡ Line_Indentation_Annotation   // # This is a comment at the first level.
     ":"     // Entry   ≡ unary Entry with multi Attri  // person: name=`BSS9395`; ID=+19930905193000;
     "?"     // Logic   ≡ None  | Posi  | Nega          // ?None    ?Posi    ?Nega
-    "-+"    // Number  ≡ Fixed | Float                 // -0.02_D  +0.98_D
+    "-+"    // Number  ≡ Fixed | Float                 // -D~0.02  +D~0.98  -D~1_000_000_000
     "`"     // String  ≡ Printable ASCII               // comment=`This's a string.`          // ``, Self-Escaped if doubles
     "^"     // Binary  ≡ ^Length^Anything              // ^5_H^HA-HA
     "@"     // Stamp   ≡ Time  | Site                  // @1993-09-05T19:30:00.000000+0800    // @@China~Guangdong~Zhanjian~Street~Building~No+0800
@@ -230,17 +230,32 @@ char *Copy_Data(char *buffer, char *data, iptr leng) {
 }
 
 char *Print_Number(char *buffer, fl64 number, in32 base, fl64 prec) {
-    bool prefix = (prec < 0) ? (prec = -prec, true) : false;
-    bool suffix = (base < 0) ? (base = -base, true) : false;
+    bool plus = (prec < 0) ? (prec = -prec, true) : false;
+    bool wave = (base < 0) ? (base = -base, true) : false;
 
     if (number < 0) {
         number = -number;
         buffer[0] = '-';
         buffer += 1;
     }
-    else if (prefix == true) {
+    else if (plus == true) {
         buffer[0] = '+';
         buffer += 1;
+    }
+    if (wave) {
+        if (base == 10) {
+            buffer[0] = 'D', buffer[1] = '~';
+        }
+        else if (base == 2) {
+            buffer[0] = 'B', buffer[1] = '~';
+        }
+        else if (base == 8) {
+            buffer[0] = 'O', buffer[1] = '~';
+        }
+        else if (base == 16) {
+            buffer[0] = 'H', buffer[1] = '~';
+        }
+        buffer += 2;
     }
 
     in64 integer = (in64)prec;
@@ -275,21 +290,6 @@ char *Print_Number(char *buffer, fl64 number, in32 base, fl64 prec) {
         }
     }
 
-    if (suffix) {
-        if (base == 10) {
-            buffer[0] = '_', buffer[1] = 'D';
-        }
-        else if (base == 2) {
-            buffer[0] = '_', buffer[1] = 'B';
-        }
-        else if (base == 8) {
-            buffer[0] = '_', buffer[1] = 'O';
-        }
-        else if (base == 16) {
-            buffer[0] = '_', buffer[1] = 'H';
-        }
-        buffer += 2;
-    }
     buffer[0] = '\0';
     return buffer;
 }
@@ -411,7 +411,7 @@ char *Parse_Mult_Divi(char *data, fl64 *number, in32 base) {
 /* Operator Precedence: from Low to High            Operator Associativity:
 AddiSubt   ≡ <MultDivi>[± MultDivi]                 from Left to Right
 MultDivi   ≡ <Number>[⋇ Number]                     from Left to Right
-Number     ≡ [+|-]<(AddiSubt)|Digit>[{AddiSubt}]    from Right to Left
+Number     ≡ [+|-][D_]<(AddiSubt)|Digit>[{AddiSubt}]    from Right to Left
 Digit      ≡ [0-9].[0-9]
 
 Expression ≡ Term   |   Term ± Term
@@ -432,26 +432,42 @@ char *Parse_Number(char *data, fl64 *number, in32 base) {
         data += 1;
         sign = -1;
     }
+    if (data[0] != '\0' && data[1] == '~') {
+        if (data[0] == 'D') {
+            data += 2;
+            base = 10;
+        }
+        else if (data[0] == 'B') {
+            data += 2;
+            base = 2;
+        }
+        else if (data[0] == 'O') {
+            data += 2;
+            base = 8;
+        }
+        else if (data[0] == 'H') {
+            data += 2;
+            base = 16;
+        }
+    }
 
     if (data[0] == '(') {
         data += 1;
-
         data = Parse_Addi_Subt(data, &value, base);
-
         if (!Check(data[0] != ')', ELevel._Error, __FUNCTION__, "data[0] != ')", NULL)) {
             data += 1;
         }
     }
     else {
         char ch = 0;
-        while (ch = _Digit[data[0]], 0 <= data[0] && 0 <= ch && ch <= base) {
+        while (ch = _Digit[data[0]], 0 < data[0] && 0 <= ch && ch < base) {
             data += 1;
             value = value * base + ch;
         }
         if (data[0] == '.') {
             data += 1;
             fl64 fact = 1.0;
-            while (ch = _Digit[data[0]], 0 <= data[0] && 0 <= ch && ch <= base) {
+            while (ch = _Digit[data[0]], 0 < data[0] && 0 <= ch && ch < base) {
                 data += 1;
                 fact /= base;
                 value += ch * fact;
@@ -461,20 +477,26 @@ char *Parse_Number(char *data, fl64 *number, in32 base) {
 
     if (data[0] == '{') {
         data += 1;
-
         fl64 expo = 0.0;
         data = Parse_Addi_Subt(data, &expo, base);
         value = Pow(value, expo);
-
         if (!Check(data[0] != '}', ELevel._Error, __FUNCTION__, "data[0] != '}'", NULL)) {
             data += 1;
         }
     }
 
-
     for (; data[0] == ' ' || data[0] == '\t'; data += 1);  // leave out the ending spaces.
     (*number) = sign * value;
     return data;
+}
+
+void Test() {
+    char stri[] = "-D~123";
+    fl64 value = 0.0;
+    Parse_Addi_Subt(stri, &value, 10);
+
+    fprintf(stdout, "%lf\n", value);
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1049,6 +1071,8 @@ void Test_Notation() {
 
 int main(int argc, char *argv[]) {
     Test_Notation();
+
+    Test();
 
     return 0;
 }
