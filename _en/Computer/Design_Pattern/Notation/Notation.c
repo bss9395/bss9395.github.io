@@ -1,6 +1,6 @@
 ﻿/* Notation.c
 Author: BSS9395
-Update: 2020-01-11T12:33:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-11T22:50:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -92,20 +92,14 @@ static in08 _Digit[128] = {
      52,  53,  54,  55,  56,  57,  58,  59,  60,  61,  62, '{', '|', '}', '~', PHD
 };
 
-/* Simple Syntax Tree of Notation
-Notation ≡ [Line]<\0>
-Line     ≡ [Blank|Entry]<\n>
-Blank    ≡ [white]
-Entry    ≡ <indent><entry:>[Attri]
-Attri    ≡ [white]<attri=value;>[white]
-*/
+
 
 static char *_Prefix = {
     "#"     // Comment ≡ ##Line_Indentation_Comment    // ## This is a comment at the first level.
     ":"     // Entry   ≡ unary Entry with multi Attri  // person: name=`BSS9395`; ID=+19930905193000;
     "?"     // Logic   ≡ None  | Posi  | Nega          // ?None    ?Posi    ?Nega
     "-+"    // Number  ≡ Fixed | Float                 // -#D0.02  +#D0.98  -#D1_000_000_000
-    "`"     // String  ≡ Printable ASCII               // comment=`This's a string.`          // ``, Self-Escaped if doubles
+    "`"     // String  ≡ ASCII                         // comment=`This's a string.`          // ``, Self-Escaped if doubles
     "^"     // Binary  ≡ ^Length^Anything              // ^#H5^HA-HA
     "@"     // Stamp   ≡ Time  | Site                  // @1993-09-05T19:30:00.000000+0800    // @@China~Guangdong~Zhanjian~Street~Building~No+0800
 };
@@ -185,28 +179,6 @@ ui32 XHash(char *data, iptr leng) {
     return (ui32)xhash;
 }
 
-//char *Be(const char *stri) {
-//    // special design for literal C string.
-//    iptr leng = Leng(stri);
-//    char *make = (char *)Malloc((leng + 1) * sizeof(char));
-//    for (iptr i = 0; i < leng; i += 1) {
-//        make[i] = stri[i];
-//    }
-//    make[leng] = '\0';
-//    return make;
-//}
-
-char *Zero_Data(iptr size) {
-    static char *zero = NULL;
-    static int full = 0;
-    if (full < size) {
-        free(zero);
-        zero = (char *)calloc(size, sizeof(char));
-        full = size;
-    }
-    return zero;
-}
-
 char *Make_Data(char *data, iptr leng, bool peel) {
     if (data != NULL && 0 <= leng) {
         if (leng == 0) {
@@ -214,7 +186,7 @@ char *Make_Data(char *data, iptr leng, bool peel) {
         }
         if (peel == true) {
             // leave out white spaces at the ending.
-            for (; 0 < leng && data[leng - 1] == ' ' || ('\t' <= data[leng - 1] && data[leng - 1] <= '\r'); leng -= 1);
+            for (; 0 < leng && data[leng - 1] == ' ' || data[leng - 1] == '\t'; leng -= 1);
         }
 
         char *make = Malloc((leng + 1) * sizeof(char));
@@ -436,16 +408,17 @@ char *Parse_Mult_Divi(char *data, fl64 *number, in32 base) {
     return data;
 }
 
-/* Operator Precedence: from Low to High                Operator Associativity:
-AddiSubt   ≡ <MultDivi>[± MultDivi]                     from Left to Right
-MultDivi   ≡ <Number>[⋇ Number]                         from Left to Right
-Number     ≡ [+|-][D_]<(AddiSubt)|Digit>[{AddiSubt}]    from Right to Left     Digit{Expression} ≡ Pow(Digit, Expression)
-Digit      ≡ [0-9].[0-9]
+/* Operator Precedence: from Low to High          Operator Associativity:
+         v Entrance
+AddiSubt   ≡ <MultDivi>[± MultDivi]               from Left to Right
+MultDivi   ≡ <Number>[⋇ Number]                   from Left to Right
+Number     ≡ [±]<Digit|(AddiSubt)>[{AddiSubt}]    from Right to Left     Digit{Expression} ≡ Pow(Digit, Expression)
+Digit      ≡ <0-9>[.0-9]
 
 Expression ≡ Term   |   Term ± Term
 Term       ≡ Factor | Factor ⋇ Factor
 Factor     ≡ Digit  | ±Digit | (Expression) | ±(Expression) | Digit{Expression} | ±Digit{Expression} | (Expression){Expression} | ±(Expression){Expression}
-Digit      ≡ [0-9].[0-9]
+Digit      ≡ <0-9>[.0-9]
 */
 char *Parse_Number(char *data, fl64 *number, in32 base) {
     in08 sign = +1;
@@ -898,7 +871,7 @@ char *Obtain_TimeStamp(Entry *entry, char *attri, iptr *leng) {
 char *Backpack(Buffer *buffer, Entry *note) {
     static Entry *_entry[256];
     iptr _top = 0;
-    iptr space = 2;
+    iptr space = 4;
     iptr white = 0;
     char *buff = buffer->_buff;
 
@@ -974,7 +947,7 @@ char *Backpack(Buffer *buffer, Entry *note) {
                         buff = Copy_Data(buff, iter->_value, iter->_leng);
                     }
                     else if (iter->_type == EType._UnKnown) {
-
+                        Check(true, ELevel._Warn, __FUNCTION__, "", "iter->_type == EType._UnKnown");
                     }
                     else {
                         Check(true, ELevel._ToDo, __FUNCTION__, "", "iter->_type is to be handled.");
@@ -998,179 +971,264 @@ char *Backpack(Buffer *buffer, Entry *note) {
     return buffer->_buff;
 }
 
+/* Simple Syntax Tree of Notation
+Notation ≡ <Line>[<Line>]\0
+Line     ≡ <Blank|Entry>\n[<Blank|Entry>\n]
+Blank    ≡ [ \t\v\f\r]
+Entry    ≡ indent_entry[]:[]<Attri>[<Attri>]
+Attri    ≡ attri[]=[]value[];[]
+*/
 iptr Assemble(Entry *note, Buffer buffer) {
     static char _buffer[4096];
     static Entry *_entry[256];
     static iptr _white[256];
     iptr _top = 0;
-    iptr space = -2;
+    iptr space = -4;
     iptr white = 0;
     char *data = buffer._buff;
+    char *over = buffer._buff + buffer._leng;
+    char *_data = data;
 
     Entry *tail = note;
     char *stri = NULL;
     Entry *entry = NULL;
     Attri *attri = NULL;
-    for (iptr numb = 0; data[0] != '\0';) {
-        // leave out blank line.
-        while (true) {
-            for (white = 0; data[white] == ' ' || data[white] == '\t'; white += 1);
-            if (data[white] == '\n') {
-                data += white + 1;
-                continue;
+    for (; data[0] != '\0';) {
+        // deal with indent
+        for (_data = data; data[0] == ' '; data += 1);
+        white = data - _data;
+
+        if (data[0] == '\n' || data[0] == '\t' || data[0] == '\v' || data[0] == '\f' || data[0] == '\r') {
+            // leave out blank line
+            for (; data[0] != '\n'; data += 1) {
+                if (data[0] != ' ' && data[0] != '\t' && data[0] != '\v' && data[0] != '\f' && data[0] != '\r') {
+                    Check(true, ELevel._Error, __FUNCTION__, "", "data[0] != ' ' && data[0] != '\t' && data[0] != '\v' && data[0] != '\f' && data[0] != '\r'");
+                    return (data - buffer._buff);
+                }
             }
-            break;
-        }
-        if (data[0] == '\0') {
-            break;
-        }
-
-        // deal with Entry
-        // indent
-        for (white = 0; data[white] == ' '; white += 1);
-        data += white;
-
-        for (numb = 0; data[numb] != ':'; numb += 1);
-        stri = Make_Data(data, numb, true);
-        data += numb + 1;
-
-        entry = Make_Entry(stri, XHash(stri, 0));
-        if (white > space) {
-            space = white;
-            tail->_nest = entry;
-            tail = entry;
-
-            _entry[_top] = tail;
-            _white[_top] = white;
-            _top += 1;
+            data += 1;
         }
         else {
-            while (white < space && 0 < _top) {
-                _top -= 1;
-                tail = _entry[_top];
-                space = _white[_top];
+            // deal with Entry
+            for (_data = data; data[0] != ':'; data += 1);
+            if (data[0] != ':') {
+                Check(true, ELevel._Error, __FUNCTION__, "", "data[0] != ':'");
+                return (data - buffer._buff);
             }
-            if (Check(white != space, ELevel._Error, __FUNCTION__, "white != space", NULL)) {
-                break;
-            }
-            tail->_link = entry;
-            tail = entry;
-        }
-
-        for (; data[0] != '\n';) {
-            for (; data[0] == ' ' || data[0] == '\t'; data += 1);
-
-            // deal with Attri
-            for (numb = 0; data[numb] != '='; numb += 1);
-            stri = Make_Data(data, numb, true);
-            data += numb + 1;
-
-            attri = Make_Attri(stri);
-            if (entry->_list == NULL) {
-                attri->_link = attri;
-                entry->_list = &(attri->_link);
+            stri = Make_Data(_data, data - _data, true);
+            entry = Make_Entry(stri, XHash(stri, 0));
+            data += 1;
+            if (white > space) {
+                if (_top >= 1) {
+                    _entry[_top] = tail;
+                    _white[_top] = white;
+                    _top += 1;
+                }
+                else if (white != 0) {
+                    Check(true, ELevel._Error, __FUNCTION__, "", "white != 0");
+                    Free_Entry(entry);
+                    return (_data - buffer._buff);
+                }
+                space = white;
+                tail->_nest = entry;
+                tail = entry;
             }
             else {
-                attri->_link = *(entry->_list);
-                *(entry->_list) = attri;
-                entry->_list = &(attri->_link);
+                while (white < space && 1 <= _top) {
+                    _top -= 1;
+                    tail = _entry[_top];
+                    space = _white[_top];
+                }
+                if (white != space) {
+                    Check(true, ELevel._Error, __FUNCTION__, "", "white != space");
+                    Free_Entry(entry);
+                    return (_data - buffer._buff);
+                }
+                tail->_link = entry;
+                tail = entry;
             }
 
-            ////////////////////////////////////////////////////////////////////
-            for (; data[0] == ' '; data += 1);
-            if (data[0] == '?') {
-                // Logic   ≡ None  | Posi  | Nega
-                bool *logi = (bool *)_buffer;
+            // deal with the leading spaces
+            for (; data[0] != ' ' || data[0] == '\t'; data += 1);
 
-                while (data[0] != ';' && logi != NULL) {
-                    if (data[0] == '?' && data[1] == 'P' && data[2] == 'o' && data[3] == 's' && data[4] == 'i') {
-                        logi[0] = true;
-                        logi += 1;
-                        data += 5;
-                    }
-                    else if (data[0] == '?' && data[1] == 'N' && data[2] == 'e' && data[3] == 'g' && data[4] == 'a') {
-                        logi[0] = false;
-                        logi += 1;
-                        data += 5;
-                    }
-                    else if (data[0] == '?' && data[1] == 'N' && data[2] == 'o' && data[3] == 'n' && data[4] == 'e') {
-                        logi = NULL;
-                    }
-                    for (; data[0] == '|' || data[0] == ' '; data += 1);
+            for (; data[0] != '\n';) {
+                // deal with Attri
+                for (_data = data; data[0] != '='; data += 1);
+                if (data[0] != '=') {
+                    Check(true, ELevel._Error, __FUNCTION__, "", "data[0] != '='");
+                    return (data - buffer._buff);
                 }
-                for (; data[0] != ';' && logi == NULL; data += 1);
-                attri->_type = EType._Logic;
-                if (logi == NULL) {
-                    attri->_leng = -1;
-                    attri->_value = NULL;
+                stri = Make_Data(_data, data - _data, true); data += 1;
+                attri = Make_Attri(stri);
+
+                for (; data[0] == ' ' || data[0] == '\t'; data += 1);
+                if (data[0] == '?') {
+                    // Logic  ≡ None | Posi | Nega
+                    bool *logi = (bool *)_buffer;
+                    while (data[0] != ';') {
+                        if (data[0] == '?' && data[1] == 'P' && data[2] == 'o' && data[3] == 's' && data[4] == 'i') {
+                            if (logi != NULL) {
+                                logi[0] = true;
+                                logi += 1;
+                            }
+                            data += 5;
+                        }
+                        else if (data[0] == '?' && data[1] == 'N' && data[2] == 'e' && data[3] == 'g' && data[4] == 'a') {
+                            if (logi != NULL) {
+                                logi[0] = false;
+                                logi += 1;
+                            }
+                            data += 5;
+                        }
+                        else if (data[0] == '?' && data[1] == 'N' && data[2] == 'o' && data[3] == 'n' && data[4] == 'e') {
+                            logi = NULL;
+                            data += 5;
+                        }
+                        else {
+                            Check(true, ELevel._Error, __FUNCTION__, "parse error in Logic; ", "Logic  ≡ None | Posi | Nega");
+                            Free_Attri(attri);
+                            return (data - buffer._buff);
+                        }
+                        for (; data[0] == '|' || data[0] == ' ' || data[0] == '\t'; data += 1);
+                    }
+                    attri->_type = EType._Logic;
+                    if (logi == NULL) {
+                        attri->_leng = -1;
+                        attri->_value = NULL;
+                    }
+                    else {
+                        attri->_leng = (char *)logi - (char *)_buffer;
+                        attri->_value = Make_Data(_buffer, attri->_leng, false);
+                    }
                 }
-                else {
-                    attri->_leng = (char *)logi - (char *)_buffer;
+                else if (data[0] == '-' || data[0] == '+') {
+                    // Number ≡ Fixed | Float
+                    fl64 *number = (fl64 *)_buffer;
+                    while (data[0] != ';') {
+                        _data = data;
+                        data = Parse_Number(_data, &number[0], 10);
+                        number += 1;
+                        if (data == _data) {
+                            Check(true, ELevel._Error, __FUNCTION__, "parse error in Number; ", "Number ≡ Fixed | Float");
+                            Free_Attri(attri);
+                            return (_data - buffer._buff);
+                        }
+                        for (; data[0] == '|' || data[0] == ' ' || data[0] == '\t'; data += 1);
+                    }
+                    attri->_type = EType._Number;
+                    attri->_leng = (char *)number - (char *)_buffer;
                     attri->_value = Make_Data(_buffer, attri->_leng, false);
                 }
-            }
-            else if (data[0] == '-' || data[0] == '+') {
-                // Number  ≡ Fixed | Float
-                fl64 *number = (fl64 *)_buffer;
-                while (data[0] != ';') {
-                    data = Parse_Number(data, &number[0], 10);
-                    number += 1;
-                    for (; data[0] == '|' || data[0] == ' '; data += 1);
+                else if (data[0] == '`') {
+                    // String ≡ ASCII
+                    data += 1;
+                    bool escape = false;
+                    for (_data = data; data < over; ) {
+                        if (data[0] == '`') {
+                            if (data[1] == '`') {
+                                escape = true;
+                                data += 2;
+                                continue;
+                            }
+                            break;
+                        }
+                        data += 1;
+                    }
+                    if (data >= over || data[0] != '`') {
+                        Check(true, ELevel._Error, __FUNCTION__, "parse error in String; ", "data[0] != '`'");
+                        Free_Attri(attri);
+                        return (data - buffer._buff);
+                    }
+                    attri->_type = EType._String;
+                    attri->_leng = (char *)data - (char *)_data;
+                    attri->_value = Make_Data(_data, attri->_leng, false);
+                    data += 1;
+                    if (escape == true) {
+                        char *value = attri->_value;
+                        while (true) {
+                            if (_data[0] == '`') {
+                                if (_data[1] == '`') {
+                                    value[0] = '`';
+                                    value += 1, _data += 2;
+                                    continue;
+                                }
+                                break;
+                            }
+                            value[0] = _data[0];
+                            value += 1, data += 1;
+                        }
+                        value[0] = '\0';
+                        attri->_leng = (char *)value - (char *)attri->_value;
+                    }
                 }
-                attri->_type = EType._Number;
-                attri->_leng = (char *)number - (char *)_buffer;
-                attri->_value = Make_Data(_buffer, attri->_leng, false);
-            }
-            else if (data[0] == '`') {
-                // String  ≡ Printable ASCII
-                data += 1;
-                for (numb = 0; data[numb] != '`'; numb += 1);
-                attri->_type = EType._String;
-                attri->_leng = numb;
-                attri->_value = Make_Data(data, attri->_leng, false);
-                data += numb + 1;
-                for (; data[0] != ';' && (data[0] == ' ' || data[0] == '\t'); data += 1);
-            }
-            else if (data[0] == '^') {
-                // Binary  ≡ ^Length^Anything
-                data += 1;
-                fl64 leng = 0.0;
-                data = Parse_Number(data, &leng, 10);
-                Check(data[0] != '^', ELevel._Error, __FUNCTION__, "data[0] != '^'", NULL);
-                data += 1;
-                attri->_type = EType._Binary;
-                attri->_leng = (iptr)leng;
-                attri->_value = Make_Data(data, attri->_leng, false);
-                data += (iptr)leng;
-                for (; data[0] != ';' && (data[0] == ' '); data += 1);
-            }
-            else if (data[0] == '@') {
-                // Stamp   ≡ Time  | Site
-                data += 1;
-                for (numb = 0; data[numb] != ';'; numb += 1);
-                attri->_leng = numb;
-                attri->_type = EType._TimeStamp;
-                attri->_value = Make_Data(data, attri->_leng, true);
-                data += numb;
-            }
-            else {
-                Check(true, ELevel._Error, __FUNCTION__, "", "UnKnown Type");
-            }
+                else if (data[0] == '^') {
+                    // Binary ≡ ^Length^Anything
+                    data += 1;
+                    fl64 *leng = (fl64 *)_buffer;
+                    _data = data;
+                    data = Parse_Number(data, leng, 10);
+                    if (data == _data || data[0] != '^' || (*leng) <= 0.0 || (data + 1 + (iptr)(*leng)) >= over) {
+                        Check(true, ELevel._Error, __FUNCTION__, "parse error in Binary; ", "incorrect data length");
+                        Free_Attri(attri);
+                        return (_data - buffer._buff);
+                    }
+                    data += 1;
+                    attri->_type = EType._Binary;
+                    attri->_leng = (iptr)(*leng);
+                    attri->_value = Make_Data(data, attri->_leng, false);
+                    data += attri->_leng;
+                }
+                else if (data[0] == '@') {
+                    // Stamp ≡ Time  | Site
+                    data += 1;
+                    for (_data = data; data[0] != ';' && data < over; data += 1);
+                    if (data[0] != ';') {
+                        Check(true, ELevel._Error, __FUNCTION__, "parse error in TimeStamp; ", "");
+                        Free_Attri(attri);
+                        return (_data - buffer._buff);
+                    }
+                    iptr leng = data - _data;
+                    for (; _data[leng - 1] == ' ' || _data[leng - 1] == '\t'; leng -= 1);
 
-            if (Check(data[0] != ';', ELevel._Error, __FUNCTION__, "data[0] != ';'", NULL)) {
-                break;
-            }
-            data += 1;  // the ending ';' of Attri.
+                    attri->_type = EType._TimeStamp;
+                    attri->_leng = leng;
+                    attri->_value = Make_Data(_data, attri->_leng, false);
+                }
+                else {
+                    Check(true, ELevel._Error, __FUNCTION__, "", "UnKnown Type");
+                    Free_Attri(attri);
+                    return (data - buffer._buff);
+                }
 
-            for (; data[0] == ' ' || data[0] <= '\t'; data += 1);
+                // deal with ending spaces
+                for (; data[0] == ' ' || data[0] == '\t'; data += 1);
+                if (data[0] != ';') {
+                    Check(true, ELevel._Error, __FUNCTION__, "", "data[0] != ';'");
+                    Free_Attri(attri);
+                    return (data - buffer._buff);
+                }
+                for (data += 1; data[0] == ';' || data[0] == ' ' || data[0] == '\t'; data += 1);
+
+                if (entry->_list == NULL) {
+                    attri->_link = attri;
+                }
+                else {
+                    attri->_link = *(entry->_list);
+                    *(entry->_list) = attri;
+                }
+                entry->_list = &(attri->_link);
+            }  // the ending '\n' of Entry
+            data += 1;
         }
-
-        data += 1;    // the ending '\n' of Entry.
+    }  // the ending '\0' of Notation
+    if (data[0] != '\0' && data != over) {
+        Check(true, ELevel._Error, __FUNCTION__, "", "data[0] != '\0' && data != over");
+        return (data - buffer._buff);
     }
-    // the ending '\0' of Notation.
-
-    return (data - buffer._buff);
+    return 0;
 }
+
+
 
 iptr Dump_File(char *file, Buffer buffer) {
     FILE *dump = fopen(file, "wb+");
