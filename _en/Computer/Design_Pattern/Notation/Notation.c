@@ -1,6 +1,6 @@
 ﻿/* Notation.c
 Author: BSS9395
-Update: 2020-01-10T06:47:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-11T12:33:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -48,11 +48,17 @@ struct _ELevel {
     ._ToDo = "ToDo",._Info = "Info",._Warn = "Warn",._Error = "Error",._Fatal = "Fatal"
 };
 
+typedef struct _Buffer {
+    char *_buff;
+    iptr _leng;
+    iptr _size;
+} Buffer;
+
 typedef struct _Attri {
     char *_attri;
-    Type _type;
-    iptr _leng;
     char *_value;
+    iptr _leng;
+    Type _type;
     struct _Attri *_link;
 } Attri;
 
@@ -86,13 +92,21 @@ static in08 _Digit[128] = {
      52,  53,  54,  55,  56,  57,  58,  59,  60,  61,  62, '{', '|', '}', '~', PHD
 };
 
+/* Simple Syntax Tree of Notation
+Notation ≡ [Line]<\0>
+Line     ≡ [Blank|Entry]<\n>
+Blank    ≡ [white]
+Entry    ≡ <indent><entry:>[Attri]
+Attri    ≡ [white]<attri=value;>[white]
+*/
+
 static char *_Prefix = {
-    "#"     // Comment ≡ Line_Indentation_Annotation   // # This is a comment at the first level.
+    "#"     // Comment ≡ ##Line_Indentation_Comment    // ## This is a comment at the first level.
     ":"     // Entry   ≡ unary Entry with multi Attri  // person: name=`BSS9395`; ID=+19930905193000;
     "?"     // Logic   ≡ None  | Posi  | Nega          // ?None    ?Posi    ?Nega
-    "-+"    // Number  ≡ Fixed | Float                 // -~D0.02  +~D0.98  -~D1_000_000_000
+    "-+"    // Number  ≡ Fixed | Float                 // -#D0.02  +#D0.98  -#D1_000_000_000
     "`"     // String  ≡ Printable ASCII               // comment=`This's a string.`          // ``, Self-Escaped if doubles
-    "^"     // Binary  ≡ ^Length^Anything              // ^5_H^HA-HA
+    "^"     // Binary  ≡ ^Length^Anything              // ^#H5^HA-HA
     "@"     // Stamp   ≡ Time  | Site                  // @1993-09-05T19:30:00.000000+0800    // @@China~Guangdong~Zhanjian~Street~Building~No+0800
 };
 
@@ -122,6 +136,10 @@ xyz{|}~
 
 ////////////////////////////////////////////////////////////////////////////////
 
+#define  Fseek   fseek
+#define  Ftell   ftell
+#define  Fread   fread
+#define  Fwrite  fwrite
 #define  Malloc  malloc
 #define  Realloc realloc
 #define  Strcmp  strcmp
@@ -167,6 +185,17 @@ ui32 XHash(char *data, iptr leng) {
     return (ui32)xhash;
 }
 
+//char *Be(const char *stri) {
+//    // special design for literal C string.
+//    iptr leng = Leng(stri);
+//    char *make = (char *)Malloc((leng + 1) * sizeof(char));
+//    for (iptr i = 0; i < leng; i += 1) {
+//        make[i] = stri[i];
+//    }
+//    make[leng] = '\0';
+//    return make;
+//}
+
 char *Zero_Data(iptr size) {
     static char *zero = NULL;
     static int full = 0;
@@ -185,7 +214,7 @@ char *Make_Data(char *data, iptr leng, bool peel) {
         }
         if (peel == true) {
             // leave out white spaces at the ending.
-            for (; 0 < leng && data[leng - 1] == ' ' || data[leng - 1] == '\t'; leng -= 1);
+            for (; 0 < leng && data[leng - 1] == ' ' || ('\t' <= data[leng - 1] && data[leng - 1] <= '\r'); leng -= 1);
         }
 
         char *make = Malloc((leng + 1) * sizeof(char));
@@ -213,48 +242,48 @@ char *Join_Data(char *data, iptr leng_data, char *join, iptr leng_join) {
     return retu;
 }
 
-char *Copy_Data(char *buffer, char *data, iptr leng) {
+char *Copy_Data(char *buff, char *data, iptr leng) {
     if (leng == 0) {
         for (; data[leng] != '\0'; leng += 1) {
-            buffer[leng] = data[leng];
+            buff[leng] = data[leng];
         }
     }
     else if (leng > 0) {
         for (iptr i = 0; i < leng; i += 1) {
-            buffer[i] = data[i];
+            buff[i] = data[i];
         }
     }
-    buffer[leng] = '\0';        // no matter if data has an ending '\0'.
-    return &buffer[leng];
+    buff[leng] = '\0';        // no matter if data has an ending '\0'.
+    return &buff[leng];
 }
 
-char *Print_Number(char *buffer, fl64 number, in32 base, fl64 prec) {
+char *Print_Number(char *buff, fl64 number, in32 base, fl64 prec) {
     bool plus = (prec < 0) ? (prec = -prec, true) : false;
     bool wave = (base < 0) ? (base = -base, true) : false;
 
     if (number < 0) {
         number = -number;
-        buffer[0] = '-';
-        buffer += 1;
+        buff[0] = '-';
+        buff += 1;
     }
     else if (plus == true) {
-        buffer[0] = '+';
-        buffer += 1;
+        buff[0] = '+';
+        buff += 1;
     }
     if (wave) {
         if (base == 10) {
-            buffer[0] = '~', buffer[1] = 'D';
+            buff[0] = '#', buff[1] = 'D';
         }
         else if (base == 2) {
-            buffer[0] = '~', buffer[1] = 'B';
+            buff[0] = '#', buff[1] = 'B';
         }
         else if (base == 8) {
-            buffer[0] = '~', buffer[1] = 'O';
+            buff[0] = '#', buff[1] = 'O';
         }
         else if (base == 16) {
-            buffer[0] = '~', buffer[1] = 'H';
+            buff[0] = '#', buff[1] = 'H';
         }
-        buffer += 2;
+        buff += 2;
     }
 
     in64 integer = (in64)prec;
@@ -262,111 +291,111 @@ char *Print_Number(char *buffer, fl64 number, in32 base, fl64 prec) {
     number -= (integer < number) ? (integer = (in64)number) : (in64)number;
 
     char ch = 0;
-    char *fore = buffer;
+    char *fore = buff;
     do {
         ch = (char)(integer % base);
         // buffer[0] = (ch < 10) ? (ch + '0') : (ch + 'A' - 10);
-        buffer[0] = _Alpha[ch];
-        buffer += 1;
+        buff[0] = _Alpha[ch];
+        buff += 1;
         integer /= base;
     } while (0 < integer);
-    for (char *back = buffer - 1; fore < back; fore += 1, back -= 1) {
+    for (char *back = buff - 1; fore < back; fore += 1, back -= 1) {
         fore[0] = fore[0] ^ back[0];
         back[0] = fore[0] ^ back[0];
         fore[0] = fore[0] ^ back[0];
     }
 
     if (number != 0.0 && prec != 0.0) {
-        buffer[0] = '.';
-        buffer += 1;
+        buff[0] = '.';
+        buff += 1;
 
         while (prec *= base, prec <= 1) {
             number *= base;
             ch = (char)number;
-            buffer[0] = _Alpha[ch];
-            buffer += 1;
+            buff[0] = _Alpha[ch];
+            buff += 1;
             number -= ch;
         }
     }
 
-    buffer[0] = '\0';
-    return buffer;
+    buff[0] = '\0';
+    return buff;
 }
 
-char *Print_TimeStamp(char *buffer, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm, in32 ss, in32 tttttt, in32 ZZzz) {
+char *Print_TimeStamp(char *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm, in32 ss, in32 tttttt, in32 ZZzz) {
     // TimeStamp ≡ YYYY-MM-DDThh:mm:ss.ttttttZZZzz
 
     char ch = 0;
-    buffer += 4;
+    buff += 4;
     for (iptr i = 1; i <= 4; i += 1) {
         ch = (char)(YYYY % 10);
-        buffer[-i] = _Alpha[ch];
+        buff[-i] = _Alpha[ch];
         YYYY = YYYY / 10;
     }
 
-    buffer[0] = '-';
-    buffer += 3;
+    buff[0] = '-';
+    buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(MM % 10);
-        buffer[-i] = _Alpha[ch];
+        buff[-i] = _Alpha[ch];
         MM = MM / 10;
     }
 
-    buffer[0] = '-';
-    buffer += 3;
+    buff[0] = '-';
+    buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(DD % 10);
-        buffer[-i] = _Alpha[ch];
+        buff[-i] = _Alpha[ch];
         DD = DD / 10;
     }
 
-    buffer[0] = 'T';
-    buffer += 3;
+    buff[0] = 'T';
+    buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(hh % 10);
-        buffer[-i] = _Alpha[ch];
+        buff[-i] = _Alpha[ch];
         hh = hh / 10;
     }
 
-    buffer[0] = ':';
-    buffer += 3;
+    buff[0] = ':';
+    buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(mm % 10);
-        buffer[-i] = _Alpha[ch];
+        buff[-i] = _Alpha[ch];
         mm = mm / 10;
     }
 
-    buffer[0] = ':';
-    buffer += 3;
+    buff[0] = ':';
+    buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(ss % 10);
-        buffer[-i] = _Alpha[ch];
+        buff[-i] = _Alpha[ch];
         ss = ss / 10;
     }
 
-    buffer[0] = '.';
-    buffer += 7;
+    buff[0] = '.';
+    buff += 7;
     if (tttttt == 0) {
-        buffer[-1] = '0', buffer[-2] = '0', buffer[-3] = '0', buffer[-4] = '0', buffer[-5] = '0', buffer[-6] = '0';
+        buff[-1] = '0', buff[-2] = '0', buff[-3] = '0', buff[-4] = '0', buff[-5] = '0', buff[-6] = '0';
     }
     else {
         for (iptr i = 1; i <= 6; i += 1) {
             ch = (char)(tttttt % 10);
-            buffer[-i] = _Alpha[ch];
+            buff[-i] = _Alpha[ch];
             tttttt = tttttt / 10;
         }
     }
 
-    buffer[0] = (ZZzz < 0) ? (ZZzz = -ZZzz, '-') : '+';
-    buffer += 5;
+    buff[0] = (ZZzz < 0) ? (ZZzz = -ZZzz, '-') : '+';
+    buff += 5;
     for (iptr i = 1; i <= 4; i += 1) {
         ch = (char)(ZZzz % 10);
-        buffer[-i] = _Alpha[ch];
+        buff[-i] = _Alpha[ch];
         ZZzz = ZZzz / 10;
     }
 
-    buffer[0] = '\0';
-    return buffer;
+    buff[0] = '\0';
+    return buff;
 }
 
 char *Parse_Addi_Subt(char *data, fl64 *number, in32 base) {
@@ -421,7 +450,7 @@ Digit      ≡ [0-9].[0-9]
 char *Parse_Number(char *data, fl64 *number, in32 base) {
     in08 sign = +1;
     fl64 value = 0.0;
-    for (; data[0] == ' ' || data[0] == '\t'; data += 1);  // leave out the leading spaces.
+    for (; data[0] == ' '; data += 1);  // leave out the leading spaces.
 
     if (data[0] == '+') {
         data += 1;
@@ -431,7 +460,7 @@ char *Parse_Number(char *data, fl64 *number, in32 base) {
         data += 1;
         sign = -1;
     }
-    if (data[0] == '~') {
+    if (data[0] == '#') {
         data += 1;
         if (data[0] == 'D') {
             data += 1;
@@ -489,12 +518,37 @@ char *Parse_Number(char *data, fl64 *number, in32 base) {
         data += 1;
     }
 
-    for (; data[0] == ' ' || data[0] == '\t'; data += 1);  // leave out the ending spaces.
+    for (; data[0] == ' '; data += 1);  // leave out the ending spaces.
     (*number) = sign * value;
     return data;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+
+Buffer *Make_Buffer(iptr size, bool heap) {
+    static Buffer _buffer = {
+        ._buff = NULL,
+        ._leng = 0,
+        ._size = 0
+    };
+    Buffer *make = &_buffer;
+    if (heap == true) {
+        make = (Buffer *)Malloc(sizeof(Buffer));
+    }
+    make->_buff = (char *)Malloc(size * sizeof(char));
+    make->_size = size;
+    return make;
+}
+
+iptr Free_Buffer(Buffer *buffer) {
+    iptr retu = 0;
+    if (buffer != NULL) {
+        free(buffer->_buff);
+        free(buffer);
+        retu += 2;
+    }
+    return retu;
+}
 
 Entry *Make_Entry(char *entry, ui32 xhash) {
     Entry *make = Malloc(sizeof(Entry));
@@ -657,7 +711,9 @@ Attri *Detach_Attri(Entry *entry, Attri *attri, bool wipe) {
                     // the only Attri
                     entry->_list = NULL;
                 }
-                (*iter) = (*iter)->_link;
+                else {
+                    (*iter) = (*iter)->_link;
+                }
 
                 if (wipe == true) {
                     Free_Attri(attri);
@@ -693,7 +749,9 @@ Attri *Detach_Attri_Many(Entry *entry, char *attri, bool wipe) {
                     // the only Attri
                     entry->_list = NULL;
                 }
-                (*iter) = (*iter)->_link;
+                else {
+                    (*iter) = (*iter)->_link;
+                }
 
                 if (wipe == true) {
                     Free_Attri(node);
@@ -715,6 +773,15 @@ Attri *Detach_Attri_Many(Entry *entry, char *attri, bool wipe) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+Entry *Attach_EType(Entry *entry, char *attri, char *value, iptr leng, Type type) {
+    Attri *hand = Handle_Attri(entry, attri, false);
+    Check(!(hand->_type == EType._UnKnown || hand->_type == type), type, __FUNCTION__, "!(hand->_type == EType._UnKnown || hand->_type == type)", NULL);
+    hand->_value = Join_Data(hand->_value, hand->_leng, value, leng);
+    hand->_leng += leng;
+    hand->_type = type;
+    return entry;
+}
+
 Entry *Attach_Logic(Entry *entry, char *attri, bool logi, bool many) {
     static bool *_value = NULL;
     static iptr _many = 0;
@@ -735,13 +802,7 @@ Entry *Attach_Logic(Entry *entry, char *attri, bool logi, bool many) {
         _value[_numb] = logi;
         _numb += 1;
         if (many == false && _numb >= 1) {
-            Attri *hand = Handle_Attri(entry, attri, false);
-            Check(hand->_value != NULL && hand->_attri != EType._Logic, ELevel._Warn, __FUNCTION__, "hand->_value != NULL && hand->_attri != EType._Logic", NULL);
-
-            hand->_type = EType._Logic;
-            hand->_value = Join_Data(hand->_value, hand->_leng, (char *)_value, _numb * sizeof(bool));
-            hand->_leng += _numb * sizeof(bool);
-
+            Attach_EType(entry, attri, (char *)_value, _numb * sizeof(bool), EType._Logic);
             _numb = 0;
         }
     }
@@ -768,13 +829,7 @@ Entry *Attach_Number(Entry *entry, char *attri, fl64 frac, bool many) {
         _value[_numb] = frac;
         _numb += 1;
         if (many == false && _numb >= 1) {
-            Attri *hand = Handle_Attri(entry, attri, false);
-            Check(hand->_value != NULL && hand->_attri != EType._Number, ELevel._Warn, __FUNCTION__, "hand->_value != NULL && hand->_attri != EType._Number", NULL);
-
-            hand->_type = EType._Number;
-            hand->_value = Join_Data(hand->_value, hand->_leng, (char *)_value, _numb * sizeof(fl64));
-            hand->_leng += _numb * sizeof(fl64);
-
+            Attach_EType(entry, attri, (char *)_value, _numb * sizeof(fl64), EType._Number);
             _numb = 0;
         }
     }
@@ -782,50 +837,70 @@ Entry *Attach_Number(Entry *entry, char *attri, fl64 frac, bool many) {
 }
 
 Entry *Attach_String(Entry *entry, char *attri, char *stri, iptr leng) {
-    Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_type = EType._String;
-    hand->_leng = (0 < leng) ? leng : Length(stri);
-    hand->_value = Make_Data(stri, hand->_leng, false);
+    leng = (0 < leng) ? leng : Length(stri);
+    Attach_EType(entry, attri, stri, leng, EType._String);
     return entry;
 }
 
 Entry *Attach_Binary(Entry *entry, char *attri, char *bina, iptr leng) {
-    Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_type = EType._Binary;
-    hand->_leng = leng;
-    hand->_value = Make_Data(bina, hand->_leng, false);
+    Attach_EType(entry, attri, bina, leng, EType._Binary);
     return entry;
 }
 
 Entry *Attach_TimeStamp(Entry *entry, char *attri, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm, in32 ss, in32 tttttt, in32 ZZzz) {
-    static char _buffer[1024];
-
+    static char _buffer[4096];
     char *buffer = Print_TimeStamp(_buffer, YYYY, MM, DD, hh, mm, ss, tttttt, ZZzz);
-    Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_type = EType._TimeStamp;
-    hand->_leng = (char *)buffer - (char *)_buffer;
-    hand->_value = Make_Data(_buffer, hand->_leng, true);
-    return entry;
-}
-
-Entry *Attach_EType(Entry *entry, char *attri, char *value, iptr leng, Type type) {
-    Attri *hand = Handle_Attri(entry, attri, false);
-    hand->_type = type;
-    hand->_leng = leng;
-    hand->_value = Make_Data(value, hand->_leng, false);
+    Attach_EType(entry, attri, _buffer, buffer - _buffer, EType._TimeStamp);
     return entry;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-iptr BackPack(char *buffer, Entry *note) {
-    static Entry *_entry[128];
-    static iptr _top = 0;
+char *Obtain_EType(Entry *entry, char *attri, iptr *leng, Type type) {
+    if (entry->_list != NULL) {
+        Attri *list = *(entry->_list);
+        Attri *iter = list;
+        do {
+            if (Strcmp(iter->_attri, attri) == 0) {
+                Check(iter->_type != type, ELevel._Warn, __FUNCTION__, "iter ->_type != type", NULL);
+                (*leng) = iter->_leng;
+                entry->_list = &(iter->_link);
+                return (char *)(iter->_value);
+            }
+            iter = iter->_link;
+        } while (iter != list);
+    }
+    return NULL;
+}
 
-    char *retu = buffer;
+bool *Obtain_Logic(Entry *entry, char *attri, iptr *leng) {
+    return (bool *)Obtain_EType(entry, attri, leng, EType._Logic);
+}
+
+fl64 *Obtain_Number(Entry *entry, char *attri, iptr *leng) {
+    return (fl64 *)Obtain_EType(entry, attri, leng, EType._Number);
+}
+
+char *Obtain_String(Entry *entry, char *attri, iptr *leng) {
+    return (char *)Obtain_EType(entry, attri, leng, EType._String);
+}
+
+char *Obtain_Binary(Entry *entry, char *attri, iptr *leng) {
+    return (char *)Obtain_EType(entry, attri, leng, EType._Binary);
+}
+
+char *Obtain_TimeStamp(Entry *entry, char *attri, iptr *leng) {
+    return (char *)Obtain_EType(entry, attri, leng, EType._TimeStamp);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+char *Backpack(Buffer *buffer, Entry *note) {
+    static Entry *_entry[256];
+    iptr _top = 0;
     iptr space = 2;
     iptr white = 0;
-    _top = 0;
+    char *buff = buffer->_buff;
 
     _entry[_top] = note->_nest;
     _top += 1;
@@ -836,35 +911,35 @@ iptr BackPack(char *buffer, Entry *note) {
         white -= space;
 
         while (head != NULL) {
-            for (iptr i = 0; i < white; buffer[i] = ' ', i += 1);
-            buffer += white;
+            for (iptr i = 0; i < white; buff[i] = ' ', i += 1);
+            buff += white;
 
-            buffer = Copy_Data(buffer, head->_entry, 0);
-            buffer[0] = ':';
-            buffer += 1;
+            buff = Copy_Data(buff, head->_entry, 0);
+            buff[0] = ':';
+            buff += 1;
             if (head->_list != NULL) {
                 Attri *list = *(head->_list);
                 Attri *iter = list;
                 do {
-                    buffer[0] = ' ';
-                    buffer += 1;
+                    buff[0] = ' ';
+                    buff += 1;
 
-                    buffer = Copy_Data(buffer, iter->_attri, 0);
-                    buffer[0] = '=';
-                    buffer += 1;
+                    buff = Copy_Data(buff, iter->_attri, 0);
+                    buff[0] = '=';
+                    buff += 1;
 
                     if (iter->_type == EType._Logic) {
                         bool *value = (bool *)iter->_value;
                         iptr numb = iter->_leng / sizeof(bool);
                         for (iptr i = 0; i < numb; i += 1) {
                             if (i >= 1) {
-                                buffer[0] = '|';
-                                buffer += 1;
+                                buff[0] = '|';
+                                buff += 1;
                             }
-                            buffer[0] = '?', (value[i] == true)
-                                ? (buffer[1] = 'P', buffer[2] = 'o', buffer[3] = 's', buffer[4] = 'i')
-                                : (buffer[1] = 'N', buffer[2] = 'e', buffer[3] = 'g', buffer[5] = 'a');
-                            buffer += 5;
+                            buff[0] = '?', (value[i] == true)
+                                ? (buff[1] = 'P', buff[2] = 'o', buff[3] = 's', buff[4] = 'i')
+                                : (buff[1] = 'N', buff[2] = 'e', buff[3] = 'g', buff[5] = 'a');
+                            buff += 5;
                         }
                     }
                     else if (iter->_type == EType._Number || iter->_type == EType._Fixed || iter->_type == EType._Float) {
@@ -872,31 +947,31 @@ iptr BackPack(char *buffer, Entry *note) {
                         iptr numb = iter->_leng / sizeof(fl64);
                         for (iptr i = 0; i < numb; i += 1) {
                             if (i >= 1) {
-                                buffer[0] = '|';
-                                buffer += 1;
+                                buff[0] = '|';
+                                buff += 1;
                             }
-                            buffer = Print_Number(buffer, value[i], 10, -0.000001);
+                            buff = Print_Number(buff, value[i], 10, -0.000001);
                         }
                     }
                     else if (iter->_type == EType._String) {
-                        buffer[0] = '`';
-                        buffer += 1;
-                        buffer = Copy_Data(buffer, iter->_value, iter->_leng);
-                        buffer[0] = '`';
-                        buffer += 1;
+                        buff[0] = '`';
+                        buff += 1;
+                        buff = Copy_Data(buff, iter->_value, iter->_leng);
+                        buff[0] = '`';
+                        buff += 1;
                     }
                     else if (iter->_type == EType._Binary) {
-                        buffer[0] = '^';
-                        buffer += 1;
-                        buffer = Print_Number(buffer, iter->_leng, -16, 0.0);
-                        buffer[0] = '^';
-                        buffer += 1;
-                        buffer = Copy_Data(buffer, iter->_value, iter->_leng);
+                        buff[0] = '^';
+                        buff += 1;
+                        buff = Print_Number(buff, iter->_leng, -16, 0.0);
+                        buff[0] = '^';
+                        buff += 1;
+                        buff = Copy_Data(buff, iter->_value, iter->_leng);
                     }
                     else if (iter->_type == EType._TimeStamp) {
-                        buffer[0] = '@';
-                        buffer += 1;
-                        buffer = Copy_Data(buffer, iter->_value, iter->_leng);
+                        buff[0] = '@';
+                        buff += 1;
+                        buff = Copy_Data(buff, iter->_value, iter->_leng);
                     }
                     else if (iter->_type == EType._UnKnown) {
 
@@ -905,11 +980,11 @@ iptr BackPack(char *buffer, Entry *note) {
                         Check(true, ELevel._ToDo, __FUNCTION__, "", "iter->_type is to be handled.");
                     }
 
-                    buffer[0] = ';';
-                    buffer += 1;
+                    buff[0] = ';';
+                    buff += 1;
                 } while (iter = iter->_link, iter != list);
-                buffer[0] = '\n';
-                buffer += 1;
+                buff[0] = '\n';
+                buff += 1;
             }
 
             _entry[_top] = head->_link;
@@ -918,57 +993,56 @@ iptr BackPack(char *buffer, Entry *note) {
             head = head->_nest;
         }
     }
-    buffer[0] = '\0';
-    return (buffer - retu);
+    buff[0] = '\0';
+    buffer->_leng = buff - buffer->_buff;
+    return buffer->_buff;
 }
 
-iptr Dump_File(char *file, char *buffer, iptr leng) {
-    FILE *dump = fopen(file, "wb+");
-    if (Check(dump == NULL, ELevel._Error, __FUNCTION__, "dump == NULL", NULL)) {
-        return 0;
-    }
-
-    leng += 1;   // the ending '\0' is also included.
-    iptr count = fwrite(buffer, sizeof(char), leng, dump);
-    Check(count != leng, ELevel._Error, __FUNCTION__, "count != leng", NULL);
-    Check(fclose(dump) != 0, ELevel._Error, __FUNCTION__, "fclose(file) != 0", NULL);
-    return count;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
-Entry *Aesemble(char *data) {
-    static char _buffer[1024];
-    static Entry **_entry[512];
-    static iptr _white[512];
-    static iptr _top = 0;
-    iptr space = 0;
+iptr Assemble(Entry *note, Buffer buffer) {
+    static char _buffer[4096];
+    static Entry *_entry[256];
+    static iptr _white[256];
+    iptr _top = 0;
+    iptr space = -2;
     iptr white = 0;
+    char *data = buffer._buff;
 
-    Entry *note = Make_Entry(NULL, 0);
-    Entry **tail = &(note->_nest);
+    Entry *tail = note;
     char *stri = NULL;
     Entry *entry = NULL;
     Attri *attri = NULL;
+    for (iptr numb = 0; data[0] != '\0';) {
+        // leave out blank line.
+        while (true) {
+            for (white = 0; data[white] == ' ' || data[white] == '\t'; white += 1);
+            if (data[white] == '\n') {
+                data += white + 1;
+                continue;
+            }
+            break;
+        }
+        if (data[0] == '\0') {
+            break;
+        }
 
-    for (char *_data = NULL; data[0] != '\0';) {
         // deal with Entry
-        _data = data; for (; data[0] == ' '; data += 1);
-        white = data - _data;
+        // indent
+        for (white = 0; data[white] == ' '; white += 1);
+        data += white;
 
-        _data = data; for (; data[0] != ':'; data += 1);
-        stri = Make_Data(_data, (char *)data - (char *)_data, true);
-        data += 1;
+        for (numb = 0; data[numb] != ':'; numb += 1);
+        stri = Make_Data(data, numb, true);
+        data += numb + 1;
 
         entry = Make_Entry(stri, XHash(stri, 0));
         if (white > space) {
+            space = white;
+            tail->_nest = entry;
+            tail = entry;
+
             _entry[_top] = tail;
             _white[_top] = white;
             _top += 1;
-
-            space = white;
-            tail = &((*tail)->_nest);
-            (*tail) = entry;
         }
         else {
             while (white < space && 0 < _top) {
@@ -976,21 +1050,20 @@ Entry *Aesemble(char *data) {
                 tail = _entry[_top];
                 space = _white[_top];
             }
-            if (Check(white != space, ELevel._Error, __FUNCTION__, "white < space && _top <= 0", NULL)) {
+            if (Check(white != space, ELevel._Error, __FUNCTION__, "white != space", NULL)) {
                 break;
             }
-            if ((*tail) != NULL) {
-                tail = &((*tail)->_link);
-            }
-            (*tail) = entry;
+            tail->_link = entry;
+            tail = entry;
         }
 
         for (; data[0] != '\n';) {
-            // deal with Attri
             for (; data[0] == ' ' || data[0] == '\t'; data += 1);
-            _data = data; for (; data[0] != '='; data += 1);
-            stri = Make_Data(_data, (char *)data - (char *)_data, true);
-            data += 1;
+
+            // deal with Attri
+            for (numb = 0; data[numb] != '='; numb += 1);
+            stri = Make_Data(data, numb, true);
+            data += numb + 1;
 
             attri = Make_Attri(stri);
             if (entry->_list == NULL) {
@@ -1004,7 +1077,7 @@ Entry *Aesemble(char *data) {
             }
 
             ////////////////////////////////////////////////////////////////////
-            for (; data[0] == ' ' || data[0] == '\t'; data += 1);
+            for (; data[0] == ' '; data += 1);
             if (data[0] == '?') {
                 // Logic   ≡ None  | Posi  | Nega
                 bool *logi = (bool *)_buffer;
@@ -1023,8 +1096,9 @@ Entry *Aesemble(char *data) {
                     else if (data[0] == '?' && data[1] == 'N' && data[2] == 'o' && data[3] == 'n' && data[4] == 'e') {
                         logi = NULL;
                     }
-                    for (; data[0] == '|' || data[0] == ' ' || data[0] == '\t'; data += 1);
+                    for (; data[0] == '|' || data[0] == ' '; data += 1);
                 }
+                for (; data[0] != ';' && logi == NULL; data += 1);
                 attri->_type = EType._Logic;
                 if (logi == NULL) {
                     attri->_leng = -1;
@@ -1041,9 +1115,7 @@ Entry *Aesemble(char *data) {
                 while (data[0] != ';') {
                     data = Parse_Number(data, &number[0], 10);
                     number += 1;
-                    while (data[0] == '|' || data[0] == ' ' || data[0] == '\t') {
-                        data += 1;
-                    }
+                    for (; data[0] == '|' || data[0] == ' '; data += 1);
                 }
                 attri->_type = EType._Number;
                 attri->_leng = (char *)number - (char *)_buffer;
@@ -1052,12 +1124,12 @@ Entry *Aesemble(char *data) {
             else if (data[0] == '`') {
                 // String  ≡ Printable ASCII
                 data += 1;
-                _data = data; for (; data[0] != '`'; data += 1);
+                for (numb = 0; data[numb] != '`'; numb += 1);
                 attri->_type = EType._String;
-                attri->_leng = (char *)data - (char *)_data;
-                attri->_value = Make_Data(_data, attri->_leng, false);
-                data += 1;
-                for (; data[0] != ';' && (data[0] == ' ' || data[0] == 't'); data += 1);
+                attri->_leng = numb;
+                attri->_value = Make_Data(data, attri->_leng, false);
+                data += numb + 1;
+                for (; data[0] != ';' && (data[0] == ' ' || data[0] == '\t'); data += 1);
             }
             else if (data[0] == '^') {
                 // Binary  ≡ ^Length^Anything
@@ -1070,15 +1142,16 @@ Entry *Aesemble(char *data) {
                 attri->_leng = (iptr)leng;
                 attri->_value = Make_Data(data, attri->_leng, false);
                 data += (iptr)leng;
-                for (; data[0] != ';' && (data[0] == ' ' || data[0] == '\t'); data += 1);
+                for (; data[0] != ';' && (data[0] == ' '); data += 1);
             }
             else if (data[0] == '@') {
                 // Stamp   ≡ Time  | Site
                 data += 1;
-                _data = data; for (; data[0] != ';'; data += 1);
-                attri->_leng = (char *)data - (char *)_data;
+                for (numb = 0; data[numb] != ';'; numb += 1);
+                attri->_leng = numb;
                 attri->_type = EType._TimeStamp;
-                attri->_value = Make_Data(_data, attri->_leng, true);
+                attri->_value = Make_Data(data, attri->_leng, true);
+                data += numb;
             }
             else {
                 Check(true, ELevel._Error, __FUNCTION__, "", "UnKnown Type");
@@ -1087,13 +1160,60 @@ Entry *Aesemble(char *data) {
             if (Check(data[0] != ';', ELevel._Error, __FUNCTION__, "data[0] != ';'", NULL)) {
                 break;
             }
-            data += 1;  // the ending '\;' of Attri.
+            data += 1;  // the ending ';' of Attri.
+
+            for (; data[0] == ' ' || data[0] <= '\t'; data += 1);
         }
-        data += 1;      // the ending '\n' of Entry.
+
+        data += 1;    // the ending '\n' of Entry.
     }
     // the ending '\0' of Notation.
 
-    return note;
+    return (data - buffer._buff);
+}
+
+iptr Dump_File(char *file, Buffer buffer) {
+    FILE *dump = fopen(file, "wb+");
+    if (Check(dump == NULL, ELevel._Error, __FUNCTION__, "dump == NULL", NULL)) {
+        return 0;
+    }
+
+    rewind(dump);
+    iptr numb = Fwrite(buffer._buff, sizeof(char), buffer._leng, dump);
+    if (Check(numb != buffer._leng, ELevel._Error, __FUNCTION__, "numb != buffer._leng", NULL)) {
+        return 0;
+    }
+    Check(fclose(dump) != 0, ELevel._Error, __FUNCTION__, "fclose(dump) != 0", NULL);
+    return buffer._leng;
+}
+
+char *Load_File(char *file, Buffer *buffer) {
+    FILE *load = fopen(file, "rb+");
+    if (Check(load == NULL, ELevel._Error, __FUNCTION__, "load == NULL", NULL)) {
+        buffer->_leng = 0;
+        return NULL;
+    }
+
+    Fseek(load, 0, SEEK_END);
+    iptr leng = Ftell(load);
+    if (buffer->_size <= leng) {
+        buffer->_size = leng + 2;
+        buffer->_buff = (char *)Realloc(buffer->_buff, buffer->_size * sizeof(char));
+    }
+
+    rewind(load);
+    iptr numb = Fread(buffer->_buff, sizeof(char), leng, load);
+    if (Check(numb != leng, ELevel._Error, __FUNCTION__, "numb != leng", NULL)) {
+        buffer->_leng = 0;
+        fclose(load);
+        return NULL;
+    }
+
+    Check(fclose(load) != 0, ELevel._Error, __FUNCTION__, "fclose(load) != 0", NULL);
+    buffer->_buff[leng] = '\n';      // no matter if file has an ending '\n'.
+    buffer->_buff[leng + 1] = '\0';  // no matter if file has an ending '\0'.
+    buffer->_leng = leng + 1;
+    return buffer->_buff;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1126,34 +1246,27 @@ void Test_Notation() {
     Entry *note = Make_Entry(NULL, 0);
     Entry *head = NULL;
 
-    head = Handle_Entry(note, "person", true);
-    Attach_String(head, "name", person._name, 0);
-    Attach_Number(head, "id", (fl64)person._id, false);
-    for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i], i != 2), i += 1);
-    Attach_Binary(head, "desc", person._desc, Length(person._desc));
+    //head = Handle_Entry(note, "person", true);
+    //Attach_String(head, "name", person._name, 0);
+    //Attach_Number(head, "id", (fl64)person._id, false);
+    //for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i], i != 2), i += 1);
+    //Attach_Binary(head, "desc", person._desc, Length(person._desc));
 
-    head = Handle_Entry(note->_nest, "info", true);
-    Attach_String(head, "email", person._info._email, 0);
-    Attach_EType(head, "birth", person._info._birth, Length(person._info._birth), EType._TimeStamp);
-    Attach_Logic(head, "valid", person._info._valid, false);
-
-
-    //Remove_Entry(&note, head, true);
-    //Remove_Entry_Many(&note, "people", true);
-    //Attri *attri = Handle_Attri(many, "desc", true);
-    //Remove_Attri(many, attri, true);
-    //Remove_Attri_Many(many, "desc", true);
+    //head = Handle_Entry(note->_nest, "info", true);
+    //Attach_String(head, "email", person._info._email, 0);
+    //Attach_EType(head, "birth", person._info._birth, Length(person._info._birth), EType._TimeStamp);
+    //Attach_Logic(head, "valid", person._info._valid, false);
 
     ////////////////////////////////////////////////////////////////////////////
 
-    char buffer[1024];
-    iptr leng = BackPack(buffer, note);
-    fprintf(stdout, "%s""\n", buffer);
-    // Dump_File("person.note", buffer, leng);
+    Buffer buffer = *Make_Buffer(4096, false);
+    Load_File("person.note", &buffer);
+    Entry *notation = Make_Entry(NULL, 0);
+    Assemble(notation, buffer);
 
-    Entry *notation = Aesemble(buffer);
-    leng = BackPack(buffer, notation);
-    fprintf(stdout, "%s\n", buffer);
+    Buffer buff = *Make_Buffer(4096, false);
+    Backpack(&buff, notation);
+    fprintf(stdout, "%s\n", buff._buff);
 }
 
 int main(int argc, char *argv[]) {
