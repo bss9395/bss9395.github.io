@@ -70,17 +70,27 @@ typedef struct _Entry {
     struct _Entry *_link;
 } Entry;
 
-static char _Alpha[62] = {
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-    'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
-    'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd',
-    'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-    'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
-    'y', 'z'
+static char _Alpha[256] = {
+#define PHD -1
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+    'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+    'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD
 };
 
-static in08 _Digit[128] = {
+static in08 _Digit[256] = {
 #define PHD -1
    '\0', PHD, PHD, PHD, PHD, PHD, PHD,'\a','\b','\t','\n','\v','\f','\r', PHD, PHD,
     PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
@@ -88,11 +98,19 @@ static in08 _Digit[128] = {
       0,   1,   2,   3,   4,   5,   6,   7,   8,   9, ':', ';', '<', '=', '>', '?',
     '@',  10,  11,  12,  13,  14,  15,  16,  17,  18,  19,  20,  21,  22,  23,  24,
      25,  26,  27,  28,  29,  30,  31,  32,  33,  34,  35, '[','\\', ']', '^', '_',
-    '`',  37,  38,  39,  40,  41,  42,  43,  44,  45,  46,  47,  48,  49,  50,  51,
-     52,  53,  54,  55,  56,  57,  58,  59,  60,  61,  62, '{', '|', '}', '~', PHD
+    '`',  36,  37,  38,  39,  40,  41,  42,  43,  44,  45,  46,  47,  48,  49,  50,
+     51,  52,  53,  54,  55,  56,  57,  58,  59,  60,  61, '{', '|', '}', '~', PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD
 };
 
-static in08 _Delim[128] = {
+static in08 _Delim[256] = {
 #define PHD -1
     PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
     PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
@@ -101,7 +119,15 @@ static in08 _Delim[128] = {
     '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
     'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[','\\', ']', '^', '_',
     '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
-    'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', PHD, '}', '~', PHD
+    'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', PHD, '}', '~', PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD
 };
 
 static char *_Delimiter = {
@@ -126,16 +152,7 @@ static char *_Delimiter = {
 };
 
 /* Pritable ASCII
-   !"#$%&'
-()*+,-./01
-23456789:;
-<=>?@ABCDE
-FGHIJKLMNO
-PQRSTUVWXY
-Z[\]^_`abc
-defghijklm
-nopqrstuvw
-xyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -306,11 +323,13 @@ char *Print_Number(char *buff, fl64 number, in32 base, fl64 prec) {
 
 char *Print_TimeStamp(char *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm, in32 ss, in32 tttttt, in32 ZZzz) {
     // TimeStamp ≡ YYYY-MM-DDThh:mm:ss.ttttttZZZzz
-
     char ch = 0;
     buff += 4;
     for (iptr i = 1; i <= 4; i += 1) {
         ch = (char)(YYYY % 10);
+        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
+            return NULL;
+        }
         buff[-i] = _Alpha[ch];
         YYYY = YYYY / 10;
     }
@@ -319,6 +338,9 @@ char *Print_TimeStamp(char *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm,
     buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(MM % 10);
+        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
+            return NULL;
+        }
         buff[-i] = _Alpha[ch];
         MM = MM / 10;
     }
@@ -327,6 +349,9 @@ char *Print_TimeStamp(char *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm,
     buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(DD % 10);
+        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
+            return NULL;
+        }
         buff[-i] = _Alpha[ch];
         DD = DD / 10;
     }
@@ -335,6 +360,9 @@ char *Print_TimeStamp(char *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm,
     buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(hh % 10);
+        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
+            return NULL;
+        }
         buff[-i] = _Alpha[ch];
         hh = hh / 10;
     }
@@ -343,6 +371,9 @@ char *Print_TimeStamp(char *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm,
     buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(mm % 10);
+        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
+            return NULL;
+        }
         buff[-i] = _Alpha[ch];
         mm = mm / 10;
     }
@@ -351,6 +382,9 @@ char *Print_TimeStamp(char *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm,
     buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (char)(ss % 10);
+        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
+            return NULL;
+        }
         buff[-i] = _Alpha[ch];
         ss = ss / 10;
     }
@@ -363,6 +397,9 @@ char *Print_TimeStamp(char *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm,
     else {
         for (iptr i = 1; i <= 6; i += 1) {
             ch = (char)(tttttt % 10);
+            if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
+                return NULL;
+            }
             buff[-i] = _Alpha[ch];
             tttttt = tttttt / 10;
         }
@@ -372,6 +409,9 @@ char *Print_TimeStamp(char *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm,
     buff += 5;
     for (iptr i = 1; i <= 4; i += 1) {
         ch = (char)(ZZzz % 10);
+        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
+            return NULL;
+        }
         buff[-i] = _Alpha[ch];
         ZZzz = ZZzz / 10;
     }
@@ -477,7 +517,7 @@ char *Parse_Number(char *data, fl64 *number, in32 base, bool fixed) {
     else {
         char ch = -1;
         char *_data = data;
-        while (ch = _Digit[data[0]], 0 < data[0] && 0 <= ch && ch < base) {
+        while (ch = _Digit[data[0]], 0 <= ch && ch < base) {
             data += 1;
             value = value * base + ch;
         }
@@ -489,7 +529,7 @@ char *Parse_Number(char *data, fl64 *number, in32 base, bool fixed) {
         if (fixed == false && data[0] == '.') {
             data += 1;
             fl64 fact = 1.0;
-            while (ch = _Digit[data[0]], 0 < data[0] && 0 <= ch && ch < base) {
+            while (ch = _Digit[data[0]], 0 <= ch && ch < base) {
                 data += 1;
                 fact /= base;
                 value += ch * fact;
@@ -517,28 +557,21 @@ char *Parse_Number(char *data, fl64 *number, in32 base, bool fixed) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Buffer *Make_Buffer(iptr size, bool heap) {
+Buffer Make_Buffer(iptr size) {
     static Buffer _buffer = {
         ._buff = NULL,
         ._leng = 0,
         ._size = 0
     };
-    Buffer *make = &_buffer;
-    if (heap == true) {
-        make = (Buffer *)Malloc(sizeof(Buffer));
-    }
-    make->_buff = (char *)Malloc(size * sizeof(char));
-    make->_size = size;
-    return make;
+    _buffer._buff = (char *)Malloc(size * sizeof(char));
+    _buffer._size = size;
+    return _buffer;
 }
 
-iptr Free_Buffer(Buffer *buffer) {
+iptr Free_Buffer(Buffer buffer) {
     iptr retu = 0;
-    if (buffer != NULL) {
-        free(buffer->_buff);
-        free(buffer);
-        retu += 2;
-    }
+    free(buffer._buff);
+    retu += 1;
     return retu;
 }
 
@@ -1024,7 +1057,7 @@ iptr Assemble(Entry *note, Buffer buffer) {
         if (data[0] == '\n') {
             data += 1;
         }
-        else if (0 < data[0] && _Delim[data[0]] == PHD) {
+        else if (_Delim[data[0]] == PHD) {
             // leave out blank line
             for (; data[0] == ' ' || data[0] == '\t' || data[0] == '\v' || data[0] == '\f' || data[0] == '\r'; data += 1);
             if (data[0] == '#') {
@@ -1043,7 +1076,7 @@ iptr Assemble(Entry *note, Buffer buffer) {
         else {
             // deal with Entry
             // Delimiter is excluded in Entry name 
-            for (_data = data; data[0] != ':' && !(0 < data[0] && _Delim[data[0]] == PHD); data += 1);
+            for (_data = data; data[0] != ':' && _Delim[data[0]] != PHD; data += 1);
             if (data[0] != ':' && Check(true, ELevel._Error, __FUNCTION__, "data[0] != ':'", NULL)) {
                 return (data - buffer._buff);
             }
@@ -1084,7 +1117,7 @@ iptr Assemble(Entry *note, Buffer buffer) {
             for (; data[0] != '\n';) {
                 // deal with Attri
                 // Delimiter is excluded in Attri name
-                for (_data = data; data[0] != '=' && !(0 < data[0] && _Delim[data[0]] == PHD); data += 1);
+                for (_data = data; data[0] != '=' && _Delim[data[0]] != PHD; data += 1);
                 if (data[0] != '=' && Check(true, ELevel._Error, __FUNCTION__, "data[0] != '='", NULL)) {
                     return (data - buffer._buff);
                 }
@@ -1351,11 +1384,11 @@ void Test_Notation() {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    Buffer buffer = *Make_Buffer(4096, false);
+    Buffer buffer = Make_Buffer(4096);
     Backpack(&buffer, note);
     Dump_File("person.note", buffer);
 
-    Buffer buff = *Make_Buffer(4096, false);
+    Buffer buff = Make_Buffer(4096);
     Entry *notation = Make_Entry(NULL, 0);
     Load_File("person.note", &buff);
     Assemble(notation, buff);
