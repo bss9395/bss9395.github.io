@@ -1,6 +1,6 @@
 ﻿/* Notation.c
 Author: BSS9395
-Update: 2020-01-12T13:34:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-12T16:15:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -996,9 +996,9 @@ char *Backpack(Buffer *buffer, Entry *note) {
 
 /* Simple Syntax Tree of Notation
 Notation ≡ <Line>[Line]\0
-Line     ≡ <Blank|Entry>[Blank|Entry]
-Blank    ≡ [ \t\v\f\r]##Comment\n
-Entry    ≡ indent_entry[]:[]<Attri>[Attri]##Comment\n
+Line     ≡ indent<Blank|Entry>[Blank|Entry]
+Blank    ≡ [\t\v\f\r ][##Comment]\n
+Entry    ≡ entry[]:[]<Attri>[Attri][##Comment]\n
 Attri    ≡ attri[]=[]value[];[]
 */
 iptr Assemble(Entry *note, Buffer buffer) {
@@ -1021,29 +1021,29 @@ iptr Assemble(Entry *note, Buffer buffer) {
         for (_data = data; data[0] == ' '; data += 1);
         white = data - _data;
 
-        if (data[0] == '\n' || data[0] == '#' || data[0] == '\t' || data[0] == '\v' || data[0] == '\f' || data[0] == '\r') {
+        if (data[0] == '\n') {
+            data += 1;
+        }
+        else if (0 < data[0] && _Delim[data[0]] == PHD) {
             // leave out blank line
-            for (; data[0] != '\n'; data += 1) {
-                // deal with Comment
-                if (data[0] == '#') {
-                    if (data[1] != '#') {
-                        Check(true, ELevel._Error, __FUNCTION__, "double markers to comment", NULL);
-                        return (data - buffer._buff);
-                    }
-                    for (data += 2; data[0] != '\n'; data += 1);
-                    break;
-                }
-                else if (data[0] != ' ' && data[0] != '\t' && data[0] != '\v' && data[0] != '\f' && data[0] != '\r') {
-                    Check(true, ELevel._Error, __FUNCTION__, "data[0] != ' ' && data[0] != '\t' && data[0] != '\v' && data[0] != '\f' && data[0] != '\r'", NULL);
+            for (; data[0] == ' ' || data[0] == '\t' || data[0] == '\v' || data[0] == '\f' || data[0] == '\r'; data += 1);
+            if (data[0] == '#') {
+                if (data[1] != '#') {
+                    Check(true, ELevel._Error, __FUNCTION__, "double # to comment", NULL);
                     return (data - buffer._buff);
                 }
+                for (data += 2; data[0] != '\n'; data += 1);
+            }
+            else if (data[0] != '\n') {
+                Check(true, ELevel._Error, __FUNCTION__, "data[0] != ' ' && data[0] != '\t' && data[0] != '\v' && data[0] != '\f' && data[0] != '\r'", NULL);
+                return (data - buffer._buff);
             }
             data += 1;
         }
         else {
             // deal with Entry
-            // Delimiter is not included in Entry name 
-            for (_data = data; data[0] != ':' && (0 < data[0] && _Delim[data[0]] != PHD); data += 1);
+            // Delimiter is excluded in Entry name 
+            for (_data = data; data[0] != ':' && !(0 < data[0] && _Delim[data[0]] == PHD); data += 1);
             if (data[0] != ':' && Check(true, ELevel._Error, __FUNCTION__, "data[0] != ':'", NULL)) {
                 return (data - buffer._buff);
             }
@@ -1083,8 +1083,8 @@ iptr Assemble(Entry *note, Buffer buffer) {
 
             for (; data[0] != '\n';) {
                 // deal with Attri
-                // Delimiter is not included in Attri name
-                for (_data = data; data[0] != '=' && (0 < data[0] && _Delim[data[0]] != PHD); data += 1);
+                // Delimiter is excluded in Attri name
+                for (_data = data; data[0] != '=' && !(0 < data[0] && _Delim[data[0]] == PHD); data += 1);
                 if (data[0] != '=' && Check(true, ELevel._Error, __FUNCTION__, "data[0] != '='", NULL)) {
                     return (data - buffer._buff);
                 }
@@ -1244,7 +1244,7 @@ iptr Assemble(Entry *note, Buffer buffer) {
                 // deal with Comment
                 if (data[0] == '#') {
                     if (data[1] != '#') {
-                        Check(true, ELevel._Error, __FUNCTION__, "double markers to comment", NULL);
+                        Check(true, ELevel._Error, __FUNCTION__, "double # to comment", NULL);
                         return (data - buffer._buff);
                     }
                     for (data += 2; data[0] != '\n' && data < over; data += 1);
