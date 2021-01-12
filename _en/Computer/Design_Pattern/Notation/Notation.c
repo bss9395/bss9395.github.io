@@ -1,6 +1,6 @@
 ﻿/* Notation.c
 Author: BSS9395
-Update: 2020-01-11T22:50:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-12T09:28:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -56,9 +56,9 @@ typedef struct _Buffer {
 
 typedef struct _Attri {
     char *_attri;
-    char *_value;
-    iptr _leng;
     Type _type;
+    iptr _leng;
+    char *_value;
     struct _Attri *_link;
 } Attri;
 
@@ -99,7 +99,7 @@ static char *_Prefix = {
     ":"     // Entry   ≡ unary Entry with multi Attri  // person: name=`BSS9395`; ID=+19930905193000;
     "?"     // Logic   ≡ None  | Posi  | Nega          // ?None    ?Posi    ?Nega
     "-+"    // Number  ≡ Fixed | Float                 // -#D0.02  +#D0.98  -#D1_000_000_000
-    "`"     // String  ≡ ASCII                         // comment=`This's a string.`          // ``, Self-Escaped if doubles
+    "`"     // String  ≡ ASCII | Unicode               // comment=`This's a string.`          // ``, Self-Escaped if doubles
     "^"     // Binary  ≡ ^Length^Anything              // ^#H5^HA-HA
     "@"     // Stamp   ≡ Time  | Site                  // @1993-09-05T19:30:00.000000+0800    // @@China~Guangdong~Zhanjian~Street~Building~No+0800
 };
@@ -139,9 +139,9 @@ xyz{|}~
 #define  Strcmp  strcmp
 #define  Pow     pow
 
-char *Parse_Addi_Subt(char *data, fl64 *number, in32 base);
-char *Parse_Mult_Divi(char *data, fl64 *number, in32 base);
-char *Parse_Number(char *data, fl64 *number, in32 base);
+char *Parse_Addi_Subt(char *data, fl64 *number, in32 base, bool fixed);
+char *Parse_Mult_Divi(char *data, fl64 *number, in32 base, bool fixed);
+char *Parse_Number(char *data, fl64 *number, in32 base, bool fixed);
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -370,13 +370,13 @@ char *Print_TimeStamp(char *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm,
     return buff;
 }
 
-char *Parse_Addi_Subt(char *data, fl64 *number, in32 base) {
-    data = Parse_Mult_Divi(data, number, base);
+char *Parse_Addi_Subt(char *data, fl64 *number, in32 base, bool fixed) {
+    data = Parse_Mult_Divi(data, number, base, fixed);
     for (char op = data[0]; op == '+' || op == '-'; op = data[0]) {
         data += 1;
 
         fl64 remain = 0.0;
-        data = Parse_Mult_Divi(data, &remain, base);
+        data = Parse_Mult_Divi(data, &remain, base, fixed);
         if (op == '+') {
             (*number) += remain;
         }
@@ -387,13 +387,13 @@ char *Parse_Addi_Subt(char *data, fl64 *number, in32 base) {
     return data;
 }
 
-char *Parse_Mult_Divi(char *data, fl64 *number, in32 base) {
-    data = Parse_Number(data, number, base);
+char *Parse_Mult_Divi(char *data, fl64 *number, in32 base, bool fixed) {
+    data = Parse_Number(data, number, base, fixed);
     for (char op = data[0]; op == '*' || op == '/' || op == '%'; op = data[0]) {
         data += 1;
 
         fl64 remain = 0.0;
-        data = Parse_Number(data, &remain, base);
+        data = Parse_Number(data, &remain, base, fixed);
         if (op == '*') {
             (*number) *= remain;
         }
@@ -420,7 +420,8 @@ Term       ≡ Factor | Factor ⋇ Factor
 Factor     ≡ Digit  | ±Digit | (Expression) | ±(Expression) | Digit{Expression} | ±Digit{Expression} | (Expression){Expression} | ±(Expression){Expression}
 Digit      ≡ <0-9>[.0-9]
 */
-char *Parse_Number(char *data, fl64 *number, in32 base) {
+char *Parse_Number(char *data, fl64 *number, in32 base, bool fixed) {
+    char *_retu = data;
     in08 sign = +1;
     fl64 value = 0.0;
     for (; data[0] == ' '; data += 1);  // leave out the leading spaces.
@@ -434,41 +435,48 @@ char *Parse_Number(char *data, fl64 *number, in32 base) {
         sign = -1;
     }
     if (data[0] == '#') {
-        data += 1;
         if (data[0] == 'D') {
-            data += 1;
             base = 10;
         }
         else if (data[0] == 'B') {
-            data += 1;
             base = 2;
         }
         else if (data[0] == 'O') {
-            data += 1;
             base = 8;
         }
         else if (data[0] == 'H') {
-            data += 1;
             base = 16;
         }
+        else {
+            Check(true, ELevel._Error, __FUNCTION__, "unknown base", NULL);
+            return _retu;
+        }
+        data += 2;
     }
 
     if (data[0] == '(') {
         data += 1;
-        data = Parse_Addi_Subt(data, &value, base);
-        if (Check(data[0] != ')', ELevel._Error, __FUNCTION__, "data[0] != ')", NULL)) {
+        data = Parse_Addi_Subt(data, &value, base, fixed);
+        if (data[0] != ')') {
+            Check(true, ELevel._Error, __FUNCTION__, "data[0] != ')", NULL);
             // (*number) = sign * value;
-            return data;
+            return _retu;
         }
         data += 1;
     }
     else {
-        char ch = 0;
+        char ch = -1;
+        char *_data = data;
         while (ch = _Digit[data[0]], 0 < data[0] && 0 <= ch && ch < base) {
             data += 1;
             value = value * base + ch;
         }
-        if (data[0] == '.') {
+        if (data == _data) {
+            // parse unsuccessfully 
+            Check(true, ELevel._Error, __FUNCTION__, "parse unsuccessfully", NULL);
+            return _retu;
+        }
+        if (fixed == false && data[0] == '.') {
             data += 1;
             fl64 fact = 1.0;
             while (ch = _Digit[data[0]], 0 < data[0] && 0 <= ch && ch < base) {
@@ -482,16 +490,17 @@ char *Parse_Number(char *data, fl64 *number, in32 base) {
     if (data[0] == '{') {
         data += 1;
         fl64 expo = 0.0;
-        data = Parse_Addi_Subt(data, &expo, base);
+        data = Parse_Addi_Subt(data, &expo, base, fixed);
         value = Pow(value, expo);
-        if (Check(data[0] != '}', ELevel._Error, __FUNCTION__, "data[0] != '}'", NULL)) {
+        if (data[0] != '}') {
+            Check(true, ELevel._Error, __FUNCTION__, "data[0] != '}'", NULL);
             // (*number) = sign * value;
-            return data;
+            return _retu;
         }
         data += 1;
     }
 
-    for (; data[0] == ' '; data += 1);  // leave out the ending spaces.
+    for (; data[0] == ' '; data += 1);  // leave out ending spaces.
     (*number) = sign * value;
     return data;
 }
@@ -748,7 +757,9 @@ Attri *Detach_Attri_Many(Entry *entry, char *attri, bool wipe) {
 
 Entry *Attach_EType(Entry *entry, char *attri, char *value, iptr leng, Type type) {
     Attri *hand = Handle_Attri(entry, attri, false);
-    Check(!(hand->_type == EType._UnKnown || hand->_type == type), type, __FUNCTION__, "!(hand->_type == EType._UnKnown || hand->_type == type)", NULL);
+    if (!(hand->_type == EType._UnKnown || hand->_type == type)) {
+        Check(true, type, __FUNCTION__, "!(hand->_type == EType._UnKnown || hand->_type == type)", NULL);
+    }
     hand->_value = Join_Data(hand->_value, hand->_leng, value, leng);
     hand->_leng += leng;
     hand->_type = type;
@@ -835,7 +846,9 @@ char *Obtain_EType(Entry *entry, char *attri, iptr *leng, Type type) {
         Attri *iter = list;
         do {
             if (Strcmp(iter->_attri, attri) == 0) {
-                Check(iter->_type != type, ELevel._Warn, __FUNCTION__, "iter ->_type != type", NULL);
+                if (iter->_type != type) {
+                    Check(true, ELevel._Warn, __FUNCTION__, "iter ->_type != type", NULL);
+                }
                 (*leng) = iter->_leng;
                 entry->_list = &(iter->_link);
                 return (char *)(iter->_value);
@@ -947,10 +960,10 @@ char *Backpack(Buffer *buffer, Entry *note) {
                         buff = Copy_Data(buff, iter->_value, iter->_leng);
                     }
                     else if (iter->_type == EType._UnKnown) {
-                        Check(true, ELevel._Warn, __FUNCTION__, "", "iter->_type == EType._UnKnown");
+                        Check(true, ELevel._Warn, __FUNCTION__, "iter->_type == EType._UnKnown", NULL);
                     }
                     else {
-                        Check(true, ELevel._ToDo, __FUNCTION__, "", "iter->_type is to be handled.");
+                        Check(true, ELevel._ToDo, __FUNCTION__, "iter->_type is to be handled.", NULL);
                     }
 
                     buff[0] = ';';
@@ -972,10 +985,10 @@ char *Backpack(Buffer *buffer, Entry *note) {
 }
 
 /* Simple Syntax Tree of Notation
-Notation ≡ <Line>[<Line>]\0
-Line     ≡ <Blank|Entry>\n[<Blank|Entry>\n]
-Blank    ≡ [ \t\v\f\r]
-Entry    ≡ indent_entry[]:[]<Attri>[<Attri>]
+Notation ≡ <Line>[Line]\0
+Line     ≡ <Blank|Entry>[Blank|Entry]
+Blank    ≡ [ \t\v\f\r]\n
+Entry    ≡ indent_entry[]:[]<Attri>[Attri]\n
 Attri    ≡ attri[]=[]value[];[]
 */
 iptr Assemble(Entry *note, Buffer buffer) {
@@ -1002,7 +1015,7 @@ iptr Assemble(Entry *note, Buffer buffer) {
             // leave out blank line
             for (; data[0] != '\n'; data += 1) {
                 if (data[0] != ' ' && data[0] != '\t' && data[0] != '\v' && data[0] != '\f' && data[0] != '\r') {
-                    Check(true, ELevel._Error, __FUNCTION__, "", "data[0] != ' ' && data[0] != '\t' && data[0] != '\v' && data[0] != '\f' && data[0] != '\r'");
+                    Check(true, ELevel._Error, __FUNCTION__, "data[0] != ' ' && data[0] != '\t' && data[0] != '\v' && data[0] != '\f' && data[0] != '\r'", NULL);
                     return (data - buffer._buff);
                 }
             }
@@ -1011,21 +1024,19 @@ iptr Assemble(Entry *note, Buffer buffer) {
         else {
             // deal with Entry
             for (_data = data; data[0] != ':'; data += 1);
-            if (data[0] != ':') {
-                Check(true, ELevel._Error, __FUNCTION__, "", "data[0] != ':'");
+            if (data[0] != ':' && Check(true, ELevel._Error, __FUNCTION__, "data[0] != ':'", NULL)) {
                 return (data - buffer._buff);
             }
             stri = Make_Data(_data, data - _data, true);
             entry = Make_Entry(stri, XHash(stri, 0));
             data += 1;
             if (white > space) {
-                if (_top >= 1) {
+                if (space >= 0) {
                     _entry[_top] = tail;
                     _white[_top] = white;
                     _top += 1;
                 }
-                else if (white != 0) {
-                    Check(true, ELevel._Error, __FUNCTION__, "", "white != 0");
+                else if (white != 0 && Check(true, ELevel._Error, __FUNCTION__, "white != 0", NULL)) {
                     Free_Entry(entry);
                     return (_data - buffer._buff);
                 }
@@ -1039,8 +1050,7 @@ iptr Assemble(Entry *note, Buffer buffer) {
                     tail = _entry[_top];
                     space = _white[_top];
                 }
-                if (white != space) {
-                    Check(true, ELevel._Error, __FUNCTION__, "", "white != space");
+                if (white != space && Check(true, ELevel._Error, __FUNCTION__, "white != space", NULL)) {
                     Free_Entry(entry);
                     return (_data - buffer._buff);
                 }
@@ -1048,18 +1058,18 @@ iptr Assemble(Entry *note, Buffer buffer) {
                 tail = entry;
             }
 
-            // deal with the leading spaces
-            for (; data[0] != ' ' || data[0] == '\t'; data += 1);
+            // deal with leading spaces
+            for (; data[0] == ' ' || data[0] == '\t'; data += 1);
 
             for (; data[0] != '\n';) {
                 // deal with Attri
                 for (_data = data; data[0] != '='; data += 1);
-                if (data[0] != '=') {
-                    Check(true, ELevel._Error, __FUNCTION__, "", "data[0] != '='");
+                if (data[0] != '=' && Check(true, ELevel._Error, __FUNCTION__, "data[0] != '='", NULL)) {
                     return (data - buffer._buff);
                 }
-                stri = Make_Data(_data, data - _data, true); data += 1;
+                stri = Make_Data(_data, data - _data, true);
                 attri = Make_Attri(stri);
+                data += 1;
 
                 for (; data[0] == ' ' || data[0] == '\t'; data += 1);
                 if (data[0] == '?') {
@@ -1106,10 +1116,9 @@ iptr Assemble(Entry *note, Buffer buffer) {
                     fl64 *number = (fl64 *)_buffer;
                     while (data[0] != ';') {
                         _data = data;
-                        data = Parse_Number(_data, &number[0], 10);
+                        data = Parse_Number(data, &number[0], 10, false);
                         number += 1;
-                        if (data == _data) {
-                            Check(true, ELevel._Error, __FUNCTION__, "parse error in Number; ", "Number ≡ Fixed | Float");
+                        if (data == _data && Check(true, ELevel._Error, __FUNCTION__, "parse error in Number; ", "Number ≡ Fixed | Float")) {
                             Free_Attri(attri);
                             return (_data - buffer._buff);
                         }
@@ -1120,13 +1129,11 @@ iptr Assemble(Entry *note, Buffer buffer) {
                     attri->_value = Make_Data(_buffer, attri->_leng, false);
                 }
                 else if (data[0] == '`') {
-                    // String ≡ ASCII
+                    // String ≡ ASCII | Unicode
                     data += 1;
-                    bool escape = false;
                     for (_data = data; data < over; ) {
                         if (data[0] == '`') {
                             if (data[1] == '`') {
-                                escape = true;
                                 data += 2;
                                 continue;
                             }
@@ -1139,34 +1146,31 @@ iptr Assemble(Entry *note, Buffer buffer) {
                         Free_Attri(attri);
                         return (data - buffer._buff);
                     }
-                    attri->_type = EType._String;
-                    attri->_leng = (char *)data - (char *)_data;
-                    attri->_value = Make_Data(_data, attri->_leng, false);
+                    attri->_value = (char *)Malloc((data - _data + 1) * sizeof(char));
                     data += 1;
-                    if (escape == true) {
-                        char *value = attri->_value;
-                        while (true) {
-                            if (_data[0] == '`') {
-                                if (_data[1] == '`') {
-                                    value[0] = '`';
-                                    value += 1, _data += 2;
-                                    continue;
-                                }
-                                break;
+                    char *value = attri->_value;
+                    while (true) {
+                        if (_data[0] == '`') {
+                            if (_data[1] == '`') {
+                                value[0] = '`';
+                                value += 1, _data += 2;
+                                continue;
                             }
-                            value[0] = _data[0];
-                            value += 1, data += 1;
+                            break;
                         }
-                        value[0] = '\0';
-                        attri->_leng = (char *)value - (char *)attri->_value;
+                        value[0] = _data[0];
+                        value += 1, _data += 1;
                     }
+                    value[0] = '\0';
+                    attri->_type = EType._String;
+                    attri->_leng = (char *)value - (char *)attri->_value;
                 }
                 else if (data[0] == '^') {
                     // Binary ≡ ^Length^Anything
                     data += 1;
                     fl64 *leng = (fl64 *)_buffer;
                     _data = data;
-                    data = Parse_Number(data, leng, 10);
+                    data = Parse_Number(data, leng, 10, true);
                     if (data == _data || data[0] != '^' || (*leng) <= 0.0 || (data + 1 + (iptr)(*leng)) >= over) {
                         Check(true, ELevel._Error, __FUNCTION__, "parse error in Binary; ", "incorrect data length");
                         Free_Attri(attri);
@@ -1182,8 +1186,7 @@ iptr Assemble(Entry *note, Buffer buffer) {
                     // Stamp ≡ Time  | Site
                     data += 1;
                     for (_data = data; data[0] != ';' && data < over; data += 1);
-                    if (data[0] != ';') {
-                        Check(true, ELevel._Error, __FUNCTION__, "parse error in TimeStamp; ", "");
+                    if (data[0] != ';' && Check(true, ELevel._Error, __FUNCTION__, "parse error in TimeStamp; ", "")) {
                         Free_Attri(attri);
                         return (_data - buffer._buff);
                     }
@@ -1195,15 +1198,14 @@ iptr Assemble(Entry *note, Buffer buffer) {
                     attri->_value = Make_Data(_data, attri->_leng, false);
                 }
                 else {
-                    Check(true, ELevel._Error, __FUNCTION__, "", "UnKnown Type");
+                    Check(true, ELevel._Error, __FUNCTION__, "UnKnown Type", NULL);
                     Free_Attri(attri);
                     return (data - buffer._buff);
                 }
 
                 // deal with ending spaces
                 for (; data[0] == ' ' || data[0] == '\t'; data += 1);
-                if (data[0] != ';') {
-                    Check(true, ELevel._Error, __FUNCTION__, "", "data[0] != ';'");
+                if (data[0] != ';' &&Check(true, ELevel._Error, __FUNCTION__, "data[0] != ';'", NULL)) {
                     Free_Attri(attri);
                     return (data - buffer._buff);
                 }
@@ -1222,7 +1224,7 @@ iptr Assemble(Entry *note, Buffer buffer) {
         }
     }  // the ending '\0' of Notation
     if (data[0] != '\0' && data != over) {
-        Check(true, ELevel._Error, __FUNCTION__, "", "data[0] != '\0' && data != over");
+        Check(true, ELevel._Error, __FUNCTION__, "data[0] != '\0' && data != over", NULL);
         return (data - buffer._buff);
     }
     return 0;
@@ -1232,22 +1234,24 @@ iptr Assemble(Entry *note, Buffer buffer) {
 
 iptr Dump_File(char *file, Buffer buffer) {
     FILE *dump = fopen(file, "wb+");
-    if (Check(dump == NULL, ELevel._Error, __FUNCTION__, "dump == NULL", NULL)) {
+    if (dump == NULL && Check(true, ELevel._Error, __FUNCTION__, "dump == NULL", NULL)) {
         return 0;
     }
 
     rewind(dump);
     iptr numb = Fwrite(buffer._buff, sizeof(char), buffer._leng, dump);
-    if (Check(numb != buffer._leng, ELevel._Error, __FUNCTION__, "numb != buffer._leng", NULL)) {
+    if (numb != buffer._leng && Check(true, ELevel._Error, __FUNCTION__, "numb != buffer._leng", NULL)) {
         return 0;
     }
-    Check(fclose(dump) != 0, ELevel._Error, __FUNCTION__, "fclose(dump) != 0", NULL);
+    if (fclose(dump) != 0) {
+        Check(true, ELevel._Error, __FUNCTION__, "fclose(dump) != 0", NULL);
+    }
     return buffer._leng;
 }
 
 char *Load_File(char *file, Buffer *buffer) {
     FILE *load = fopen(file, "rb+");
-    if (Check(load == NULL, ELevel._Error, __FUNCTION__, "load == NULL", NULL)) {
+    if (load == NULL && Check(true, ELevel._Error, __FUNCTION__, "load == NULL", NULL)) {
         buffer->_leng = 0;
         return NULL;
     }
@@ -1261,13 +1265,15 @@ char *Load_File(char *file, Buffer *buffer) {
 
     rewind(load);
     iptr numb = Fread(buffer->_buff, sizeof(char), leng, load);
-    if (Check(numb != leng, ELevel._Error, __FUNCTION__, "numb != leng", NULL)) {
+    if (numb != leng && Check(true, ELevel._Error, __FUNCTION__, "numb != leng", NULL)) {
         buffer->_leng = 0;
         fclose(load);
         return NULL;
     }
 
-    Check(fclose(load) != 0, ELevel._Error, __FUNCTION__, "fclose(load) != 0", NULL);
+    if (fclose(load) != 0) {
+        Check(true, ELevel._Error, __FUNCTION__, "fclose(load) != 0", NULL);
+    }
     buffer->_buff[leng] = '\n';      // no matter if file has an ending '\n'.
     buffer->_buff[leng + 1] = '\0';  // no matter if file has an ending '\0'.
     buffer->_leng = leng + 1;
