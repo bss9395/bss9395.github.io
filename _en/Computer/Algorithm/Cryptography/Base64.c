@@ -14,10 +14,11 @@ Design: Base64 Codec
 #define  Free     free
 
 typedef  intptr_t  iptr;
+typedef  unsigned  char   unch;
 typedef  int8_t    in08;  typedef  int16_t   in16;  typedef  int32_t   in32;  typedef  int64_t   in64;
 typedef  uint8_t   ui08;  typedef  uint16_t  ui16;  typedef  uint32_t  ui32;  typedef  uint64_t  ui64;
 
-typedef const char *Level;
+typedef const unch *Level;
 struct _ELevel {
     Level _ToDo;
     Level _Info;
@@ -29,14 +30,14 @@ struct _ELevel {
 };
 
 typedef struct _Buffer {
-    char *_buff;
+    unch *_buff;
     iptr _leng;
     iptr _size;
 } Buffer;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-bool Check(bool failed, Level level, char *function, char *record, char *extra) {
+bool Check(bool failed, Level level, unch *function, unch *record, unch *extra) {
     if (failed) {
         fprintf(stderr, "[%s] %s: %s%s""\n", level, function, record, (extra == NULL) ? "" : extra);
     }
@@ -45,7 +46,7 @@ bool Check(bool failed, Level level, char *function, char *record, char *extra) 
 
 Buffer Make_Buffer(iptr size) {
     return (Buffer) {
-        ._buff = (char *)Malloc(size * sizeof(char)), ._leng = size, ._size = size
+        ._buff = (unch *)Malloc(size * sizeof(unch)), ._leng = size, ._size = size
     };
 }
 
@@ -56,10 +57,10 @@ iptr Free_Buffer(Buffer buffer) {
     return retu;
 }
 
-Buffer Be(char *stri) {
+Buffer Be(unch *stri) {
     iptr leng = 0;
     for (; stri[leng] != '\0'; leng += 1);
-    char *buff = (char *)Malloc(leng + 1);
+    unch *buff = (unch *)Malloc(leng + 1);
     for (iptr i = 0; i < leng; i += 1) {
         buff[i] = stri[i];
     }
@@ -72,21 +73,21 @@ Buffer Be(char *stri) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-char *Base64_Encode(Buffer *_code, Buffer _data) {
-    static char _Base64[64] = {
+unch *Base64_Encode(Buffer *_code, Buffer _data) {
+    static unch _Base64[64] = {
         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
         'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
         'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
         'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '+', '*'
     };
-    typedef char Code[4];
-    typedef char Data[3];
+    typedef unch Code[4];
+    typedef unch Data[3];
 
     // leng ≤ ⌈_data._leng / 3⌉ * 4
     iptr leng = (_data._leng + 2) / 3 * 4;
     if (_code->_size < leng + 1) {
         _code->_size = leng + 1;
-        _code->_buff = (char *)Realloc(_code->_buff, _code->_size * sizeof(char));
+        _code->_buff = (unch *)Realloc(_code->_buff, _code->_size * sizeof(unch));
     }
     Code *code = (Code *)_code->_buff;
     Data *data = (Data *)_data._buff;
@@ -105,7 +106,7 @@ char *Base64_Encode(Buffer *_code, Buffer _data) {
         (*code)[3] = _Base64[0x3F & ((*data)[2] >> 2)];
     }
 
-    _code->_leng = (char *)code - (char *)_code->_buff;
+    _code->_leng = (unch *)code - (unch *)_code->_buff;
     leng = _data._leng % 3;
     if (leng == 1) {
         (*code)[0] = _Base64[0x3F & ((*data)[0] >> 0)];
@@ -123,7 +124,7 @@ char *Base64_Encode(Buffer *_code, Buffer _data) {
 }
 
 iptr Base64_Decode(Buffer *_data, Buffer _code) {
-    static char _Base46[256] = {
+    static unch _Base46[256] = {
     #define PHD -1
         PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
         PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
@@ -142,8 +143,8 @@ iptr Base64_Decode(Buffer *_data, Buffer _code) {
         PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
         PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD
     };
-    typedef char Data[3];
-    typedef char Code[4];
+    typedef unch Data[3];
+    typedef unch Code[4];
 
     if (_code._leng % 4 == 1 && Check(true, ELevel._Error, __FUNCTION__, "_code._leng % 4 == 1", NULL)) {
         _data->_leng = 0;
@@ -154,7 +155,7 @@ iptr Base64_Decode(Buffer *_data, Buffer _code) {
     iptr leng = (_code._leng + 3) / 4 * 3;
     if (_data->_size < leng + 1) {
         _data->_size = leng + 1;
-        _data->_buff = (char *)Realloc(_data->_buff, _data->_size);
+        _data->_buff = (unch *)Realloc(_data->_buff, _data->_size);
     }
 
     Data *data = (Data *)_data->_buff;
@@ -170,19 +171,19 @@ iptr Base64_Decode(Buffer *_data, Buffer _code) {
     for (; code < over; data += 1, code += 1) {
         if (_Base46[(*code)[0]] == PHD || _Base46[(*code)[1]] == PHD || _Base46[(*code)[2]] == PHD || _Base46[(*code)[3]] == PHD) {
             Check(true, ELevel._Error, __FUNCTION__, "_Base46[(*code)[?]] == PHD", NULL);
-            return ((char *)code - (char *)_code._buff);
+            return ((unch *)code - (unch *)_code._buff);
         }
         (*data)[0] = _Base46[(*code)[0]] >> 0 | _Base46[(*code)[1]] << 6;
         (*data)[1] = _Base46[(*code)[1]] >> 2 | _Base46[(*code)[2]] << 4;
         (*data)[2] = _Base46[(*code)[2]] >> 4 | _Base46[(*code)[3]] << 2;
     }
 
-    _data->_leng = (char *)data - (char *)_data->_buff;
+    _data->_leng = (unch *)data - (unch *)_data->_buff;
     leng = _code._leng % 4;
     if (leng == 2) {
         if (_Base46[(*code)[0]] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Base46[(*code)[?]] == PHD", NULL)) {
             _data->_leng = 0;
-            return (char *)code - (char *)_code._buff;
+            return (unch *)code - (unch *)_code._buff;
         }
         (*data)[0] = _Base46[(*code)[0]] >> 0 | _Base46[(*code)[1]] << 6;
         _data->_leng += 1;
@@ -190,7 +191,7 @@ iptr Base64_Decode(Buffer *_data, Buffer _code) {
     else if (leng == 3) {
         if (_Base46[(*code)[0]] == PHD && _Base46[(*code)[1]] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Base46[(*code)[?]] == PHD", NULL)) {
             _data->_leng = 0;
-            return (char *)code - (char *)_code._buff;
+            return (unch *)code - (unch *)_code._buff;
         }
         (*data)[0] = _Base46[(*code)[0]] >> 0 | _Base46[(*code)[1]] << 6;
         (*data)[1] = _Base46[(*code)[1]] >> 2 | _Base46[(*code)[2]] << 4;
@@ -213,7 +214,7 @@ void Test_Base64() {
     fprintf(stdout, "%s\n", data._buff);
 }
 
-int main(int argc, char *argv[]) {
+in08 main(in08 argc, unch *argv[]) {
     Test_Base64();
 
     return 0;
