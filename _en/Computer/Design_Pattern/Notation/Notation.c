@@ -1,6 +1,6 @@
 ﻿/* Notation.c
 Author: BSS9395
-Update: 2020-01-12T09:28:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-12T11:45:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -81,7 +81,7 @@ static char _Alpha[62] = {
 };
 
 static in08 _Digit[128] = {
-#define PHD '?'
+#define PHD -1
    '\0', PHD, PHD, PHD, PHD, PHD, PHD,'\a','\b','\t','\n','\v','\f','\r', PHD, PHD,
     PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
     ' ', '!', '"', '#', '$', '%', '&','\'', '(', ')', '*', '+', ',', '-', '.', '/',
@@ -92,24 +92,34 @@ static in08 _Digit[128] = {
      52,  53,  54,  55,  56,  57,  58,  59,  60,  61,  62, '{', '|', '}', '~', PHD
 };
 
+static in08 _Delim[128] = {
+#define PHD -1
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+    ' ', '!', '"', PHD, '$', '%', '&','\'', '(', ')', '*', '+', ',', '-', '.', '/',
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', PHD, PHD, '<', PHD, '>', '?',
+    '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+    'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[','\\', ']', '^', '_',
+    '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+    'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', PHD, '}', '~', PHD
+};
 
-
-static char *_Prefix = {
-    "#"     // Comment ≡ ##Line_Indentation_Comment    // ## This is a comment at the first level.
+static char *_Delimiter = {
+    "#"     // Comment ≡ ##Comment                     // ## From here to the end of this line, is a comment.
     ":"     // Entry   ≡ unary Entry with multi Attri  // person: name=`BSS9395`; ID=+19930905193000;
+
+    // Prefix
     "?"     // Logic   ≡ None  | Posi  | Nega          // ?None    ?Posi    ?Nega
     "-+"    // Number  ≡ Fixed | Float                 // -#D0.02  +#D0.98  -#D1_000_000_000
     "`"     // String  ≡ ASCII | Unicode               // comment=`This's a string.`          // ``, Self-Escaped if doubles
     "^"     // Binary  ≡ ^Length^Anything              // ^#H5^HA-HA
     "@"     // Stamp   ≡ Time  | Site                  // @1993-09-05T19:30:00.000000+0800    // @@China~Guangdong~Zhanjian~Street~Building~No+0800
-};
 
-static char *_Infix = {
+    // Infix
     "="     // Atrri Assignment          // name=`BSS9395`;
-    "|"     // Array in Attri            // credit=-0.02_D|+0.98_D;
-};
+    "|"     // Array in Attri            // credit=-#D0.02|+#D0.98;
 
-static char *_Suffix = {
+    // Suffix
     ";"     // Attri Delimiter
     "\n"    // Entry Delimiter
     "\r\n"  // Entry Delimiter
@@ -409,7 +419,7 @@ char *Parse_Mult_Divi(char *data, fl64 *number, in32 base, bool fixed) {
 }
 
 /* Operator Precedence: from Low to High          Operator Associativity:
-         v Entrance
+          v Entrance
 AddiSubt   ≡ <MultDivi>[± MultDivi]               from Left to Right
 MultDivi   ≡ <Number>[⋇ Number]                   from Left to Right
 Number     ≡ [±]<Digit|(AddiSubt)>[{AddiSubt}]    from Right to Left     Digit{Expression} ≡ Pow(Digit, Expression)
@@ -987,8 +997,8 @@ char *Backpack(Buffer *buffer, Entry *note) {
 /* Simple Syntax Tree of Notation
 Notation ≡ <Line>[Line]\0
 Line     ≡ <Blank|Entry>[Blank|Entry]
-Blank    ≡ [ \t\v\f\r]\n
-Entry    ≡ indent_entry[]:[]<Attri>[Attri]\n
+Blank    ≡ [ \t\v\f\r]##Comment\n
+Entry    ≡ indent_entry[]:[]<Attri>[Attri]##Comment\n
 Attri    ≡ attri[]=[]value[];[]
 */
 iptr Assemble(Entry *note, Buffer buffer) {
@@ -1011,10 +1021,15 @@ iptr Assemble(Entry *note, Buffer buffer) {
         for (_data = data; data[0] == ' '; data += 1);
         white = data - _data;
 
-        if (data[0] == '\n' || data[0] == '\t' || data[0] == '\v' || data[0] == '\f' || data[0] == '\r') {
+        if (data[0] == '\n' || data[0] == '#' || data[0] == '\t' || data[0] == '\v' || data[0] == '\f' || data[0] == '\r') {
             // leave out blank line
             for (; data[0] != '\n'; data += 1) {
-                if (data[0] != ' ' && data[0] != '\t' && data[0] != '\v' && data[0] != '\f' && data[0] != '\r') {
+                // deal with Comment
+                if (data[0] == '#' && data[1] == '#') {
+                    for (data += 2; data[0] != '\n' && data < over; data += 1);
+                    break;
+                }
+                else if (data[0] != ' ' && data[0] != '\t' && data[0] != '\v' && data[0] != '\f' && data[0] != '\r') {
                     Check(true, ELevel._Error, __FUNCTION__, "data[0] != ' ' && data[0] != '\t' && data[0] != '\v' && data[0] != '\f' && data[0] != '\r'", NULL);
                     return (data - buffer._buff);
                 }
@@ -1023,7 +1038,8 @@ iptr Assemble(Entry *note, Buffer buffer) {
         }
         else {
             // deal with Entry
-            for (_data = data; data[0] != ':'; data += 1);
+            // Delimiter is not included in Entry name 
+            for (_data = data; data[0] != ':' && (0 < data[0] && _Delim[data[0]] != PHD); data += 1);
             if (data[0] != ':' && Check(true, ELevel._Error, __FUNCTION__, "data[0] != ':'", NULL)) {
                 return (data - buffer._buff);
             }
@@ -1063,7 +1079,8 @@ iptr Assemble(Entry *note, Buffer buffer) {
 
             for (; data[0] != '\n';) {
                 // deal with Attri
-                for (_data = data; data[0] != '='; data += 1);
+                // Delimiter is not included in Attri name
+                for (_data = data; data[0] != '=' && (0 < data[0] && _Delim[data[0]] != PHD); data += 1);
                 if (data[0] != '=' && Check(true, ELevel._Error, __FUNCTION__, "data[0] != '='", NULL)) {
                     return (data - buffer._buff);
                 }
@@ -1219,6 +1236,11 @@ iptr Assemble(Entry *note, Buffer buffer) {
                     *(entry->_list) = attri;
                 }
                 entry->_list = &(attri->_link);
+
+                // deal with Comment
+                if (data[0] == '#' && data[1] == '#') {
+                    for (data += 2; data[0] != '\n' && data < over; data += 1);
+                }
             }  // the ending '\n' of Entry
             data += 1;
         }
