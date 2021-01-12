@@ -1,6 +1,6 @@
 ﻿/* Notation.c
 Author: BSS9395
-Update: 2020-01-12T11:45:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-12T13:34:00+08@China-Guangdong-Zhanjiang+08
 Design: Data Transfer Format
 */
 
@@ -445,16 +445,16 @@ char *Parse_Number(char *data, fl64 *number, in32 base, bool fixed) {
         sign = -1;
     }
     if (data[0] == '#') {
-        if (data[0] == 'D') {
+        if (data[1] == 'D') {
             base = 10;
         }
-        else if (data[0] == 'B') {
+        else if (data[1] == 'B') {
             base = 2;
         }
-        else if (data[0] == 'O') {
+        else if (data[1] == 'O') {
             base = 8;
         }
-        else if (data[0] == 'H') {
+        else if (data[1] == 'H') {
             base = 16;
         }
         else {
@@ -1025,8 +1025,12 @@ iptr Assemble(Entry *note, Buffer buffer) {
             // leave out blank line
             for (; data[0] != '\n'; data += 1) {
                 // deal with Comment
-                if (data[0] == '#' && data[1] == '#') {
-                    for (data += 2; data[0] != '\n' && data < over; data += 1);
+                if (data[0] == '#') {
+                    if (data[1] != '#') {
+                        Check(true, ELevel._Error, __FUNCTION__, "double markers to comment", NULL);
+                        return (data - buffer._buff);
+                    }
+                    for (data += 2; data[0] != '\n'; data += 1);
                     break;
                 }
                 else if (data[0] != ' ' && data[0] != '\t' && data[0] != '\v' && data[0] != '\f' && data[0] != '\r') {
@@ -1238,7 +1242,11 @@ iptr Assemble(Entry *note, Buffer buffer) {
                 entry->_list = &(attri->_link);
 
                 // deal with Comment
-                if (data[0] == '#' && data[1] == '#') {
+                if (data[0] == '#') {
+                    if (data[1] != '#') {
+                        Check(true, ELevel._Error, __FUNCTION__, "double markers to comment", NULL);
+                        return (data - buffer._buff);
+                    }
                     for (data += 2; data[0] != '\n' && data < over; data += 1);
                 }
             }  // the ending '\n' of Entry
@@ -1251,8 +1259,6 @@ iptr Assemble(Entry *note, Buffer buffer) {
     }
     return 0;
 }
-
-
 
 iptr Dump_File(char *file, Buffer buffer) {
     FILE *dump = fopen(file, "wb+");
@@ -1332,25 +1338,28 @@ void Test_Notation() {
     Entry *note = Make_Entry(NULL, 0);
     Entry *head = NULL;
 
-    //head = Handle_Entry(note, "person", true);
-    //Attach_String(head, "name", person._name, 0);
-    //Attach_Number(head, "id", (fl64)person._id, false);
-    //for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i], i != 2), i += 1);
-    //Attach_Binary(head, "desc", person._desc, Length(person._desc));
+    head = Handle_Entry(note, "person", true);
+    Attach_String(head, "name", person._name, 0);
+    Attach_Number(head, "id", (fl64)person._id, false);
+    for (iptr i = 0; i < 3; Attach_Number(head, "credit", person._credit[i], i != 2), i += 1);
+    Attach_Binary(head, "desc", person._desc, Length(person._desc));
 
-    //head = Handle_Entry(note->_nest, "info", true);
-    //Attach_String(head, "email", person._info._email, 0);
-    //Attach_EType(head, "birth", person._info._birth, Length(person._info._birth), EType._TimeStamp);
-    //Attach_Logic(head, "valid", person._info._valid, false);
+    head = Handle_Entry(note->_nest, "info", true);
+    Attach_String(head, "email", person._info._email, 0);
+    Attach_EType(head, "birth", person._info._birth, Length(person._info._birth), EType._TimeStamp);
+    Attach_Logic(head, "valid", person._info._valid, false);
 
     ////////////////////////////////////////////////////////////////////////////
 
     Buffer buffer = *Make_Buffer(4096, false);
-    Load_File("person.note", &buffer);
-    Entry *notation = Make_Entry(NULL, 0);
-    Assemble(notation, buffer);
+    Backpack(&buffer, note);
+    Dump_File("person.note", buffer);
 
     Buffer buff = *Make_Buffer(4096, false);
+    Entry *notation = Make_Entry(NULL, 0);
+    Load_File("person.note", &buff);
+    Assemble(notation, buff);
+
     Backpack(&buff, notation);
     fprintf(stdout, "%s\n", buff._buff);
 }
