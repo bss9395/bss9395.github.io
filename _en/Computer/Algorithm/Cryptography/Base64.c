@@ -83,15 +83,15 @@ unch *Base64_Encode(Buffer *_code, Buffer _data) {
     typedef unch Code[4];
     typedef unch Data[3];
 
-    // leng ≤ ⌈_data._leng / 3⌉ * 4
-    iptr leng = (_data._leng + 2) / 3 * 4;
-    if (_code->_size < leng + 1) {
-        _code->_size = leng + 1;
-        _code->_buff = (unch *)Realloc(_code->_buff, _code->_size * sizeof(unch));
-    }
     Code *code = (Code *)_code->_buff;
     Data *data = (Data *)_data._buff;
-    Data *over = data + (_data._leng / 3);
+    Data *over = (Data *)&data[_data._leng / 3];
+    // size ≤ ⌈_data._leng / 3⌉ * 4 = (_data._leng + 2) / 3 * 4 < (_data._leng / 3 + 1) * 4
+    iptr size = (over - data + 1) * 4;
+    if (_code->_size < size) {
+        _code->_size = size;
+        _code->_buff = (unch *)Realloc(_code->_buff, _code->_size * sizeof(unch));
+    }
 
     /*
     index:        [3]      [2]      [1]      [0]
@@ -107,13 +107,13 @@ unch *Base64_Encode(Buffer *_code, Buffer _data) {
     }
 
     _code->_leng = (unch *)code - (unch *)_code->_buff;
-    leng = _data._leng % 3;
-    if (leng == 1) {
+    size = _data._leng % 3;
+    if (size == 1) {
         (*code)[0] = _Base64[0x3F & ((*data)[0] >> 0)];
         (*code)[1] = _Base64[0x03 & ((*data)[0] >> 6)];
         _code->_leng += 2;
     }
-    else if (leng == 2) {
+    else if (size == 2) {
         (*code)[0] = _Base64[0x3F & ((*data)[0] >> 0)];
         (*code)[1] = _Base64[0x3F & ((*data)[0] >> 6 | (*data)[1] << 2)];
         (*code)[2] = _Base64[0x0F & ((*data)[1] >> 4)];
@@ -125,7 +125,7 @@ unch *Base64_Encode(Buffer *_code, Buffer _data) {
 
 iptr Base64_Decode(Buffer *_data, Buffer _code) {
     static unch _Base46[256] = {
-    #define PHD -1
+    #define PHD ((in32)-1)
         PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
         PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
         PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,  63,  62, PHD, PHD, PHD, PHD,
@@ -146,21 +146,19 @@ iptr Base64_Decode(Buffer *_data, Buffer _code) {
     typedef unch Data[3];
     typedef unch Code[4];
 
-    if (_code._leng % 4 == 1 && Check(true, ELevel._Error, __FUNCTION__, "_code._leng % 4 == 1", NULL)) {
-        _data->_leng = 0;
-        return 0;
-    }
-
-    // leng ≤ ⌈_code._leng / 4⌉ * 3
-    iptr leng = (_code._leng + 3) / 4 * 3;
-    if (_data->_size < leng + 1) {
-        _data->_size = leng + 1;
-        _data->_buff = (unch *)Realloc(_data->_buff, _data->_size);
-    }
-
     Data *data = (Data *)_data->_buff;
     Code *code = (Code *)_code._buff;
-    Code *over = code + (_code._leng / 4);
+    Code *over = (Code *)&code[_code._leng / 4];
+    if (_code._leng % 4 == 1 && Check(true, ELevel._Error, __FUNCTION__, "_code._leng % 4 == 1", NULL)) {
+        _data->_leng = 0;
+        return ((unch *)code - (unch *)_code._buff);
+    }
+    // leng ≤ ⌈_code._leng / 4⌉ * 3 = (_code._leng + 3) / 4 * 3 < (_code._leng / 4 + 1) * 3
+    iptr size = (over - code + 1) * 3;
+    if (_data->_size < size) {
+        _data->_size = size;
+        _data->_buff = (unch *)Realloc(_data->_buff, _data->_size);
+    }
 
     /*
     index:        [3]      [2]      [1]      [0]
@@ -179,8 +177,8 @@ iptr Base64_Decode(Buffer *_data, Buffer _code) {
     }
 
     _data->_leng = (unch *)data - (unch *)_data->_buff;
-    leng = _code._leng % 4;
-    if (leng == 2) {
+    size = _code._leng % 4;
+    if (size == 2) {
         if (_Base46[(*code)[0]] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Base46[(*code)[?]] == PHD", NULL)) {
             _data->_leng = 0;
             return (unch *)code - (unch *)_code._buff;
@@ -188,7 +186,7 @@ iptr Base64_Decode(Buffer *_data, Buffer _code) {
         (*data)[0] = _Base46[(*code)[0]] >> 0 | _Base46[(*code)[1]] << 6;
         _data->_leng += 1;
     }
-    else if (leng == 3) {
+    else if (size == 3) {
         if (_Base46[(*code)[0]] == PHD && _Base46[(*code)[1]] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Base46[(*code)[?]] == PHD", NULL)) {
             _data->_leng = 0;
             return (unch *)code - (unch *)_code._buff;
