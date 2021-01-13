@@ -153,11 +153,11 @@ iptr Base64_Decode(Buffer *_data, Buffer _code) {
         _data->_leng = 0;
         return ((unch *)code - (unch *)_code._buff);
     }
-    // leng ≤ ⌈_code._leng / 4⌉ * 3 = (_code._leng + 3) / 4 * 3 < (_code._leng / 4 + 1) * 3
+    // size ≤ ⌈_code._leng / 4⌉ * 3 = (_code._leng + 3) / 4 * 3 < (_code._leng / 4 + 1) * 3
     iptr size = ((Code *)over - (Code *)code + 1) * 3;
     if (_data->_size < size) {
         _data->_size = size;
-        _data->_buff = (unch *)Realloc(_data->_buff, _data->_size);
+        _data->_buff = (unch *)Realloc(_data->_buff, _data->_size * sizeof(unch));
     }
 
     /*
@@ -169,6 +169,7 @@ iptr Base64_Decode(Buffer *_data, Buffer _code) {
     for (; code < over; data += 1, code += 1) {
         if (_Base46[(*code)[0]] == PHD || _Base46[(*code)[1]] == PHD || _Base46[(*code)[2]] == PHD || _Base46[(*code)[3]] == PHD) {
             Check(true, ELevel._Error, __FUNCTION__, "_Base46[(*code)[?]] == PHD", NULL);
+            _data->_leng = 0;
             return ((unch *)code - (unch *)_code._buff);
         }
         (*data)[0] = _Base46[(*code)[0]] >> 0 | _Base46[(*code)[1]] << 6;
