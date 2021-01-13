@@ -104,7 +104,7 @@ unch *Base16_Encode(Buffer *_code, Buffer _data) {
 }
 
 iptr Base16_Decode(Buffer *_data, Buffer _code) {
-    static unch _Base16[256] = {
+    static unch _Base61[256] = {
     #define PHD ((in32)-1)
         PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
         PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
@@ -145,12 +145,12 @@ iptr Base16_Decode(Buffer *_data, Buffer _code) {
     0x0F :          |00001111|
     */
     for (; code < over; data += 1, code += 2) {
-        if (_Base16[code[0]] == PHD || _Base16[code[1]] == PHD) {
+        if (_Base61[code[0]] == PHD || _Base61[code[1]] == PHD) {
             Check(true, ELevel._Error, __FUNCTION__, "_Base16[code[?]] == PHD", NULL);
             _data->_leng = 0;
             return ((unch *)code - (unch *)_code._buff);
         }
-        data[0] = _Base16[code[0]] >> 0 | _Base16[code[1]] << 4;
+        data[0] = _Base61[code[0]] >> 0 | _Base61[code[1]] << 4;
     }
 
     _data->_leng = (unch *)data - (unch *)_data->_buff;
