@@ -87,7 +87,7 @@ unch *Base64_Encode(Buffer *_code, Buffer _data) {
     Data *data = (Data *)_data._buff;
     Data *over = (Data *)&data[_data._leng / 3];
     // size ≤ ⌈_data._leng / 3⌉ * 4 = (_data._leng + 2) / 3 * 4 < (_data._leng / 3 + 1) * 4
-    iptr size = (over - data + 1) * 4;
+    iptr size = ((Data *)over - (Data *)data + 1) * 4;
     if (_code->_size < size) {
         _code->_size = size;
         _code->_buff = (unch *)Realloc(_code->_buff, _code->_size * sizeof(unch));
@@ -154,7 +154,7 @@ iptr Base64_Decode(Buffer *_data, Buffer _code) {
         return ((unch *)code - (unch *)_code._buff);
     }
     // leng ≤ ⌈_code._leng / 4⌉ * 3 = (_code._leng + 3) / 4 * 3 < (_code._leng / 4 + 1) * 3
-    iptr size = (over - code + 1) * 3;
+    iptr size = ((Code *)over - (Code *)code + 1) * 3;
     if (_data->_size < size) {
         _data->_size = size;
         _data->_buff = (unch *)Realloc(_data->_buff, _data->_size);
