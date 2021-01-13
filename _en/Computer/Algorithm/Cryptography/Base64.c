@@ -1,6 +1,6 @@
 ﻿/* Base64.c
 Author: BSS9395
-Update: 2020-01-13T00:00:00+08@China-Guangdong-Zhanjiang+08
+Update: 2020-01-13T21:23:00+08@China-Guangdong-Zhanjiang+08
 Design: Base64 Codec
 */
 
@@ -80,14 +80,12 @@ unch *Base64_Encode(Buffer *_code, Buffer _data) {
         'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
         'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '+', '*'
     };
-    typedef unch Code[4];
-    typedef unch Data[3];
 
-    Code *code = (Code *)_code->_buff;
-    Data *data = (Data *)_data._buff;
-    Data *over = (Data *)&data[_data._leng / 3];
-    // size ≤ ⌈_data._leng / 3⌉ * 4 = (_data._leng + 2) / 3 * 4 < (_data._leng / 3 + 1) * 4
-    iptr size = ((Data *)over - (Data *)data + 1) * 4;
+    unch *code = _code->_buff;
+    unch *data = _data._buff;
+    unch *over = &data[_data._leng / 3 * 4];
+    // size ≤ ⌈_data._leng / 3⌉ * 4 = (_data._leng + 2) / 3 * 4 < (_data._leng / 3 + 1) * 4 = _data._leng / 3 * 4 + 4
+    iptr size = (over - data) + 4;
     if (_code->_size < size) {
         _code->_size = size;
         _code->_buff = (unch *)Realloc(_code->_buff, _code->_size * sizeof(unch));
@@ -99,24 +97,24 @@ unch *Base64_Encode(Buffer *_code, Buffer _data) {
     code : |  876543|  21!!!!|  !!!!87|  654321|
     0x3F :                            |00111111|
     */
-    for (; data < over; code += 1, data += 1) {
-        (*code)[0] = _Base64[0x3F & ((*data)[0] >> 0)];
-        (*code)[1] = _Base64[0x3F & ((*data)[0] >> 6 | (*data)[1] << 2)];
-        (*code)[2] = _Base64[0x3F & ((*data)[1] >> 4 | (*data)[2] << 4)];
-        (*code)[3] = _Base64[0x3F & ((*data)[2] >> 2)];
+    for (; data < over; code += 4, data += 3) {
+        code[0] = _Base64[0x3F & (data[0] >> 0)];
+        code[1] = _Base64[0x3F & (data[0] >> 6 | data[1] << 2)];
+        code[2] = _Base64[0x3F & (data[1] >> 4 | data[2] << 4)];
+        code[3] = _Base64[0x3F & (data[2] >> 2)];
     }
 
     _code->_leng = (unch *)code - (unch *)_code->_buff;
     size = _data._leng % 3;
     if (size == 1) {
-        (*code)[0] = _Base64[0x3F & ((*data)[0] >> 0)];
-        (*code)[1] = _Base64[0x03 & ((*data)[0] >> 6)];
+        code[0] = _Base64[0x3F & (data[0] >> 0)];
+        code[1] = _Base64[0x03 & (data[0] >> 6)];
         _code->_leng += 2;
     }
     else if (size == 2) {
-        (*code)[0] = _Base64[0x3F & ((*data)[0] >> 0)];
-        (*code)[1] = _Base64[0x3F & ((*data)[0] >> 6 | (*data)[1] << 2)];
-        (*code)[2] = _Base64[0x0F & ((*data)[1] >> 4)];
+        code[0] = _Base64[0x3F & (data[0] >> 0)];
+        code[1] = _Base64[0x3F & (data[0] >> 6 | data[1] << 2)];
+        code[2] = _Base64[0x0F & (data[1] >> 4)];
         _code->_leng += 3;
     }
     _code->_buff[_code->_leng] = '\0';
@@ -126,35 +124,34 @@ unch *Base64_Encode(Buffer *_code, Buffer _data) {
 iptr Base64_Decode(Buffer *_data, Buffer _code) {
     static unch _Base46[256] = {
     #define PHD ((in32)-1)
-        PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-        PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-        PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,  63,  62, PHD, PHD, PHD, PHD,
-          0,   1,   2,   3,   4,   5,   6,   7,   8,   9, PHD, PHD, PHD, PHD, PHD, PHD,
-        PHD,  10,  11,  12,  13,  14,  15,  16,  17,  18,  19,  20,  21,  22,  23,  24,
-         25,  26,  27,  28,  29,  30,  31,  32,  33,  34,  35, PHD, PHD, PHD, PHD, PHD,
-        PHD,  36,  37,  38,  39,  40,  41,  42,  43,  44,  45,  46,  47,  48,  49,  50,
-         51,  52,  53,  54,  55,  56,  57,  58,  59,  60,  61, PHD, PHD, PHD, PHD, PHD,
-        PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-        PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-        PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-        PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-        PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-        PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-        PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
-        PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD
+       PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+       PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+       PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,  63,  62, PHD, PHD, PHD, PHD,
+         0,   1,   2,   3,   4,   5,   6,   7,   8,   9, PHD, PHD, PHD, PHD, PHD, PHD,
+       PHD,  10,  11,  12,  13,  14,  15,  16,  17,  18,  19,  20,  21,  22,  23,  24,
+        25,  26,  27,  28,  29,  30,  31,  32,  33,  34,  35, PHD, PHD, PHD, PHD, PHD,
+       PHD,  36,  37,  38,  39,  40,  41,  42,  43,  44,  45,  46,  47,  48,  49,  50,
+        51,  52,  53,  54,  55,  56,  57,  58,  59,  60,  61, PHD, PHD, PHD, PHD, PHD,
+       PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+       PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+       PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+       PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+       PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+       PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+       PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD,
+       PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD
     };
-    typedef unch Data[3];
-    typedef unch Code[4];
 
-    Data *data = (Data *)_data->_buff;
-    Code *code = (Code *)_code._buff;
-    Code *over = (Code *)&code[_code._leng / 4];
+    unch *data = _data->_buff;
+    unch *code = _code._buff;
+    unch *over = &code[_code._leng / 4 * 3];
     if (_code._leng % 4 == 1 && Check(true, ELevel._Error, __FUNCTION__, "_code._leng % 4 == 1", NULL)) {
+        // Case0: 0 * 8 = 0 * 6; Case1: 1 * 8 <= 2 * 6; Case2: 2 * 8 <= 3 * 6; Case3: 3 * 8 = 4 * 6
         _data->_leng = 0;
         return ((unch *)code - (unch *)_code._buff);
     }
-    // size ≤ ⌈_code._leng / 4⌉ * 3 = (_code._leng + 3) / 4 * 3 < (_code._leng / 4 + 1) * 3
-    iptr size = ((Code *)over - (Code *)code + 1) * 3;
+    // size ≤ ⌈_code._leng / 4⌉ * 3 = (_code._leng + 3) / 4 * 3 < (_code._leng / 4 + 1) * 3 = _code._leng / 4 * 3 + 3
+    iptr size = (over - code) + 3;
     if (_data->_size < size) {
         _data->_size = size;
         _data->_buff = (unch *)Realloc(_data->_buff, _data->_size * sizeof(unch));
@@ -166,34 +163,34 @@ iptr Base64_Decode(Buffer *_data, Buffer _code) {
     code : |  876543|  21!!!!|  !!!!87|  654321|
     0x3F :                            |00111111|
     */
-    for (; code < over; data += 1, code += 1) {
-        if (_Base46[(*code)[0]] == PHD || _Base46[(*code)[1]] == PHD || _Base46[(*code)[2]] == PHD || _Base46[(*code)[3]] == PHD) {
-            Check(true, ELevel._Error, __FUNCTION__, "_Base46[(*code)[?]] == PHD", NULL);
+    for (; code < over; data += 3, code += 4) {
+        if (_Base46[code[0]] == PHD || _Base46[code[1]] == PHD || _Base46[code[2]] == PHD || _Base46[code[3]] == PHD) {
+            Check(true, ELevel._Error, __FUNCTION__, "_Base46[code[?]] == PHD", NULL);
             _data->_leng = 0;
             return ((unch *)code - (unch *)_code._buff);
         }
-        (*data)[0] = _Base46[(*code)[0]] >> 0 | _Base46[(*code)[1]] << 6;
-        (*data)[1] = _Base46[(*code)[1]] >> 2 | _Base46[(*code)[2]] << 4;
-        (*data)[2] = _Base46[(*code)[2]] >> 4 | _Base46[(*code)[3]] << 2;
+        data[0] = _Base46[code[0]] >> 0 | _Base46[code[1]] << 6;
+        data[1] = _Base46[code[1]] >> 2 | _Base46[code[2]] << 4;
+        data[2] = _Base46[code[2]] >> 4 | _Base46[code[3]] << 2;
     }
 
     _data->_leng = (unch *)data - (unch *)_data->_buff;
     size = _code._leng % 4;
     if (size == 2) {
-        if (_Base46[(*code)[0]] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Base46[(*code)[?]] == PHD", NULL)) {
+        if (_Base46[code[0]] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Base46[code[?]] == PHD", NULL)) {
             _data->_leng = 0;
             return (unch *)code - (unch *)_code._buff;
         }
-        (*data)[0] = _Base46[(*code)[0]] >> 0 | _Base46[(*code)[1]] << 6;
+        data[0] = _Base46[code[0]] >> 0 | _Base46[code[1]] << 6;
         _data->_leng += 1;
     }
     else if (size == 3) {
-        if (_Base46[(*code)[0]] == PHD && _Base46[(*code)[1]] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Base46[(*code)[?]] == PHD", NULL)) {
+        if (_Base46[code[0]] == PHD && _Base46[code[1]] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Base46[code[?]] == PHD", NULL)) {
             _data->_leng = 0;
             return (unch *)code - (unch *)_code._buff;
         }
-        (*data)[0] = _Base46[(*code)[0]] >> 0 | _Base46[(*code)[1]] << 6;
-        (*data)[1] = _Base46[(*code)[1]] >> 2 | _Base46[(*code)[2]] << 4;
+        data[0] = _Base46[code[0]] >> 0 | _Base46[code[1]] << 6;
+        data[1] = _Base46[code[1]] >> 2 | _Base46[code[2]] << 4;
         _data->_leng += 2;
     }
     _data->_buff[_data->_leng] = '\0';
