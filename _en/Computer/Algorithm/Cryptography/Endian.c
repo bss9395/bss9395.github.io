@@ -16,6 +16,7 @@ typedef  uint8_t   ui08;  typedef  uint16_t  ui16;  typedef  uint32_t  ui32;  ty
 unch *Endian() {
     static unch *lsb = "Arithmetic: Left <<< Right";
     static unch *msb = "Notational: Left >>> Right";
+    static unch *mix = "Endianness to be Explored.";
     in32 data = 0x87654321;
     in08 *ptr = (in08 *)&data;
     if (ptr[0] == 0x21) {
@@ -24,7 +25,7 @@ unch *Endian() {
     else if (ptr[0] == 0x87) {
         return msb;
     }
-    return NULL;
+    return mix;
 }
 
 iptr main(iptr argc, unch *argv[]) {
