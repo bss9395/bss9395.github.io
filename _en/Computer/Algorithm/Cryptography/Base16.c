@@ -173,7 +173,7 @@ void Test_Base16() {
     fprintf(stdout, "\n%s\n", data._buff);
 }
 
-in08 main(in08 argc, unch *argv[]) {
+iptr main(iptr argc, unch *argv[]) {
     Test_Base16();
 
     return 0;

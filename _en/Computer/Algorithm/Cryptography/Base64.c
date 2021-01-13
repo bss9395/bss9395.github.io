@@ -213,7 +213,7 @@ void Test_Base64() {
     fprintf(stdout, "%s\n", data._buff);
 }
 
-in08 main(in08 argc, unch *argv[]) {
+iptr main(iptr argc, unch *argv[]) {
     Test_Base64();
 
     return 0;
