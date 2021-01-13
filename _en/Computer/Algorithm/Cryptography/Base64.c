@@ -146,7 +146,7 @@ iptr Base64_Decode(Buffer *_data, Buffer _code) {
     unch *code = _code._buff;
     unch *over = &code[_code._leng / 4 * 3];
     if (_code._leng % 4 == 1 && Check(true, ELevel._Error, __FUNCTION__, "_code._leng % 4 == 1", NULL)) {
-        // Case0: 0 * 8 = 0 * 6; Case1: 1 * 8 <= 2 * 6; Case2: 2 * 8 <= 3 * 6; Case3: 3 * 8 = 4 * 6
+        // Case: data to code; Case0: 0 * 8 == 0 * 6; Case1: 1 * 8 <= 2 * 6; Case2: 2 * 8 <= 3 * 6; Case3: 3 * 8 == 4 * 6
         _data->_leng = 0;
         return ((unch *)code - (unch *)_code._buff);
     }

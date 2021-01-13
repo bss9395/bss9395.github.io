@@ -80,7 +80,7 @@ unch *Base16_Encode(Buffer *_code, Buffer _data) {
 
     unch *code = _code->_buff;
     unch *data = _data._buff;
-    unch *over = (unch *)&data[_data._leng];
+    unch *over = &data[_data._leng];
     // leng = _data._leng * 2
     iptr leng = _data._leng * 2;
     if (_code->_size < leng + 1) {
@@ -124,10 +124,11 @@ iptr Base16_Decode(Buffer *_data, Buffer _code) {
         PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD, PHD
     };
 
-    unch *data = (unch *)_data->_buff;
-    unch *code = (unch *)_code._buff;
-    unch *over = (unch *)&code[_code._leng];
+    unch *data = _data->_buff;
+    unch *code = _code._buff;
+    unch *over = &code[_code._leng];
     if (_code._leng % 2 == 1 && Check(true, ELevel._Error, __FUNCTION__, "_code._leng % 2 == 1", NULL)) {
+        // Case: data to code; Case0: 0 * 2 == 0 * 1; Case1: 1 * 2 == 2 * 1; Case2: 2 * 2 == 4 * 1
         _data->_leng = 0;
         return ((unch *)code - (unch *)_code._buff);
     }
