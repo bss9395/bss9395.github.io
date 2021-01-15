@@ -82,7 +82,7 @@ unch *Base16_Encode(Buffer *_code, Buffer _data) {
     unch *data = _data._buff;
     unch *over = &data[_data._leng];
     // leng = _data._leng * 2
-    iptr leng = _data._leng * 2;
+    iptr leng = (iptr)(_data._leng * 2);
     if (_code->_size < leng + 1) {
         _code->_size = leng + 1;
         _code->_buff = (unch *)Realloc(_code->_buff, _code->_size * sizeof(unch));
@@ -133,7 +133,7 @@ iptr Base16_Decode(Buffer *_data, Buffer _code) {
         return ((unch *)code - (unch *)_code._buff);
     }
     // leng = _code._leng / 2
-    iptr leng = _code._leng / 2;
+    iptr leng = (iptr)(_code._leng / 2);
     if (_data->_size < leng + 1) {
         _data->_size = leng + 1;
         _data->_buff = (unch *)Realloc(_data->_buff, _data->_size * sizeof(unch));
