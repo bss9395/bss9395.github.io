@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  无穷级数
-Update:  2021-01-19T17:50:00+08@中国-广东-湛江+08
+Update:  2021-01-19T23:23:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -17,13 +17,15 @@ $S_n ≡ \sum\limits_{i = 1}^n s_i$
 
 $\lim\limits_{n ⇝ +∞} S_n ≡ \lim\limits_{n ⇝ +∞} \sum\limits_{i = 1}^{n} s_i ≡ \sum\limits_{i = 1}^{+∞} s_i$
 
-无穷级数的上下极限
+无穷级数的下极限与上极限
 
 $\varliminf\limits_{n ⇝ +∞} S_n ≡ \mathop{\lim\inf}\limits_{n ⇝ +∞} S_n ≡ \lim\limits_{n ⇝ +∞}\inf\limits_{m ≥ n} S_m ≡ \lim\limits_{n ⇝ +∞}\inf\limits_{m ≥ n} \sum\limits_{i = 1}^m s_i$
 
 $\varlimsup\limits_{n ⇝ +∞} S_n ≡ \mathop{\lim\sup}\limits_{n ⇝ +∞} S_n ≡ \lim\limits_{n ⇝ +∞}\sup\limits_{m ≥ n} S_m ≡ \lim\limits_{n ⇝ +∞}\sup\limits_{m ≥ n} \sum\limits_{i = 1}^m s_i$
 
-无穷级数上下极限的典例
+$\varliminf\limits_{n ⇝ +∞} S_n ≤ \varlimsup\limits_{n ⇝ +∞} S_n$
+
+典例：无穷级数下极限与上极限
 
 $\varliminf\limits_{n ⇝ +∞} \dfrac{1}{n} ⇝ 0, \varlimsup\limits_{n ⇝ +∞} \dfrac{1}{n} ⇝ 0$
 
@@ -41,11 +43,15 @@ $\lim\limits_{n ⇝ +∞} S_n ⇝ S$ 也即 $\lim\limits_{n → +∞} |S_n - S| 
 
 $\sum\limits_{i = 1}^{+∞} s_i ⇝ S$ 也即 $\left| \sum\limits_{i = 1}^{+∞} s_i - S \right| ⇝ 0$
 
+$\varliminf\limits_{n ⇝ +∞} S_n = \lim\limits_{n ⇝ +∞} S_n = \varlimsup\limits_{n ⇝ +∞} S_n$
+
 无穷级数的极限发散
 
 $\lim\limits_{n ⇝ +∞} S_n \not⇝ S$ 也即 $\lim\limits_{n ⇝ +∞} |S_n - S| \not⇝ 0$
 
 $\sum\limits_{i = 1}^{+∞} s_i \not⇝ S$ 也即 $\left| \sum\limits_{i = 1}^{+∞} s_i - S \right| \not⇝ 0$
+
+$\varliminf\limits_{n ⇝ +∞} S_n ≠ \varlimsup\limits_{n ⇝ +∞} S_n$
 
 ### 无穷级数收敛的性质
 
@@ -130,17 +136,19 @@ $\left| \sum\limits_{i=n+1}^m s_i · t_i \right| ≤ |S_m · t_m| + |S_n · t_{n
 
 $\sum\limits_{i=1}^{+∞} |s_i| ⇝ S_{||} ⇒ \sum\limits_{i=1}^{+∞} s_i ⇝ S$
 
-$[∀ε>0;∃N∈ℕ;∀n>N; \sum\limits_{i=n+1}^m |s_i| < ε] ⇒ [∀ε>0;∃N∈ℕ;∀n>N;∀m>n; \left| \sum\limits_{i=n+1}^m s_i \right| ≤ \sum\limits_{i=n+1}^{m} |s_i| < ε]$
+$\left[ ∀ε>0;∃N∈ℕ;∀n>N; \left| \sum\limits_{i=n+1}^m |s_i| \right| < ε \right] ⇒ \left[ ∀ε>0;∃N∈ℕ;∀n>N;∀m>n; \left| \sum\limits_{i=n+1}^m s_i \right| ≤ \left| \sum\limits_{i=n+1}^{m} |s_i| \right| < ε \right]$
 
 若无穷级数本身收敛，则其未必绝对收敛。
 
 $\sum\limits_{i=1}^{+∞} s_i ⇝ S \not⇒ \sum\limits_{i=1}^{+∞} |s_i| ⇝ S_{||}$
 
-$[∀ε>0;∃N∈ℕ;∀n>N;∀m>n; \left| \sum\limits_{i=n+1}^m s_i \right| < ε] \not⇒ [∀ε>0;∃N∈ℕ;∀n>N; \sum\limits_{i=n+1}^m |s_i| < ε]$
+$\left[ ∀ε>0;∃N∈ℕ;∀n>N;∀m>n; \left| \sum\limits_{i=n+1}^m s_i \right| < ε \right] \not⇒ \left[ ∀ε>0;∃N∈ℕ;∀n>N; \left| \sum\limits_{i=n+1}^m |s_i| \right| < ε \right]$
 
 ### 无穷级数绝对收敛与条件收敛的性质
 
-无穷级数的正数项$+s_i^+ = +\dfrac{1}{2} · (|s_i| + s_i)$，无穷级数的负数项$-s_i^- = -\dfrac{1}{2} · (|s_i| - s_i)$。无穷级数的一般项$s_i = s_i^+ - s_i^-$，无穷级数的绝对项$|s_i| = s_i^+ + s_i^-$。
+无穷级数的正数项$+s_i^+ ≡ +\dfrac{1}{2} · (|s_i| + s_i)$，无穷级数的负数项$-s_i^- ≡ -\dfrac{1}{2} · (|s_i| - s_i)$。
+
+无穷级数的一般项$s_i = s_i^+ - s_i^-$，无穷级数的绝对项$|s_i| = s_i^+ + s_i^-$。
 
 若无穷级数绝对收敛，则其正数项级数与负数项级数均收敛，反之亦然。
 
@@ -149,6 +157,43 @@ $\sum\limits_{i=1}^{+∞} |s_i| = \sum\limits_{i=1}^{+∞} (s_i^+ + s_i^-) ⇝ S
 若无穷级数条件收敛，则其正数项级数与负数项级数均发散，反之不对。
 
 $\sum\limits_{i=1}^{+∞} s_i = \sum\limits_{i=1}^{+∞} (s_i^+ - s_i^-) ⇝ S ⇒ \sum\limits_{i=1}^{+∞} s_i^+ \not⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- \not⇝ S_-$
+
+| $⇓$  | $\sum\limits_{i=1}^{+∞} | s_i | ⇝ S_{||} ⇒ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ S_+$ | $⇐$  | $0 ≤ s_i^+ ≤ | s_i |$                                        |
+| :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\sum\limits_{i=1}^{+∞} | s_i | ⇝ S_{||} ⇒ \sum\limits_{i=1}^{+∞} s^- ⇝ S_-$ | $⇐$  | $0 ≤ s_i^- ≤ | s_i |$                                        |
+| $⇓$  | $\sum\limits_{i=1}^{+∞} | s_i | ⇝ S_{||} ⇐ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- ⇝ S_-$ | $⇐$  | $\sum\limits_{i=1}^{+∞} | s_i | = \sum\limits_{i = 1}^{+∞} s_i^+ + \sum\limits_{i=1}^{+∞} s_i^-$ |
+| $⇓$  | $\sum\limits_{i=1}^{+∞} | s_i | ⇝ S_{||} ⇔ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- ⇝ S_-$ | $⇒$  | $\sum\limits_{i=1}^{+∞} | s_i | \not⇝ S_{||} ⇒ \left[ \sum\limits_{i=1}^{+∞} s_i^+ \not⇝ S_+ ∨ \sum\limits_{i=1}^{+∞} s_i^- \not⇝ S_- \right]$ |
+| $⇓$  | $\sum\limits_{i=1}^{+∞} s_i ⇝ S ⇒ \left[ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- ⇝ S_- \right] ∨ \left[ \sum\limits_{i=1}^{+∞} s_i^+ \not⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- \not⇝ S_- \right]$ | $⇐$  | $\sum\limits_{i=1}^{+∞} s_i = \sum\limits_{i=1}^{+∞} s_i^+ - \sum\limits_{i=1}^{+∞} s_i^-$ |
+| $⇓$  | $\sum\limits_{i=1}^{+∞} s_i ⇝ S ∧ \sum\limits_{i=1}^{+∞} | s_i | \not⇝ S_{||} ⇒ \left[ \sum\limits_{i=1}^{+∞} s_i^+ \not⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- \not⇝ S_- \right]$ |      |                                                              |
+| $⇓$  | $\sum\limits_{i=1}^{+∞} s_i ⇝ S ∧ \sum\limits_{i=1}^{+∞} | s_i | \not⇝ S_{||} ⇒ \left[ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ +∞ ∧ \sum\limits_{i=1}^{+∞} s_i^- ⇝ +∞ \right]$ | $⇐$  | $0 ≤ s_i^+ ∧ 0 ≤ s_i^-$                                      |
+
+若无穷级数绝对收敛，则交换任意多项的次序，其极限不变并且保持绝对收敛。
+
+若无穷级数条件收敛，则交换任意多项的次序，可使其趋近于任意给定的极限。
+
+| $⇓$  |                                              | $\sum\limits_{i=1}^{+∞} s_i ⇝ S ⇒ \lim\limits_{i=1}^{+∞} s_i ⇝ 0$ |
+| :--: | -------------------------------------------: | :----------------------------------------------------------- |
+| $⇓$  |                                              | $\sum\limits_{i=1}^{+∞} s_i ⇝ S ∧ \sum\limits_{i=1}^{+∞} | s_i | \not⇝ S_{||} ⇒ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ +∞ ∧ \sum\limits_{i=1}^{+∞} s_i^- ⇝ +∞$ |
+| $⇓$  | $∃n_1^+∈ℕ;∃n_1^-∈ℕ;∃n_1≤\min(n_1^+, n_2^-);$ | $\left| \left( \sum\limits_{j=1}^{n_1^+} s_j^+ - \sum\limits_{j=1}^{n_1^-} s_j^- \right) - T \right| < s_{n_1}$ |
+| $⇓$  | $∃n_2^+∈ℕ;∃n_2^-∈ℕ;∃n_2≤\min(n_2^+, n_2^-);$ | $\left| \left( \sum\limits_{j=1}^{n_1^+} s_j^+ - \sum\limits_{j=1}^{n_1^-} s_j^- \right) + \left( \sum\limits_{j=n_1^+ + 1}^{n_2^+} s_j^+ - \sum\limits_{j=n_2^- + 1}^{n_2^-} s_j^- \right) - T \right| < s_{n_2} < s_{n_1}$ |
+| $⇓$  |                                        $···$ | $···$                                                        |
+| $⇓$  |                                              | $\left| \left( \sum\limits_{j=1}^{n_1^+} s_j^+ - \sum\limits_{j=1}^{n_1^-} s_j^- \right) + \left( \sum\limits_{j=n_1^+ + 1}^{n_2^+} s_j^+ - \sum\limits_{j=n_1^- + 1}^{n_2^-} s_j^- \right) + ··· + \left( \sum\limits_{j=n_2^+ + 1}^{+∞} s_j^+ - \sum\limits_{j=n_2^- + 1}^{+∞} s_j^- \right) - T \right| < ε = s_{+∞} < ··· < s_{n_2} < s_{n_1}$ |
+| $⇓$  |                                              | $\left( \sum\limits_{j=1}^{+∞} s_j^+ - \sum\limits_{j=1}^{+∞} s_j^- \right) = \sum\limits_{j=1}^{+∞} s_j ⇝ T$ |
+
+特例：无穷级数$\sum\limits_{i=1}^{+∞} \dfrac{(-1)^n}{n} ⇝ S$条件收敛非绝对收敛。
+
+$\sum\limits_{i=1}^{+∞} s_i^+ = \sum\limits_{i=1}^{+∞} \dfrac{1}{2 · i} ⇝ +∞, \sum\limits_{i=1}^{+∞} s_i^- = \sum\limits_{i=1}^{+∞}  = \dfrac{1}{2 · i - 1} ⇝ +∞$
+
+新无穷级数$- \dfrac{1}{1} + \sum\limits_{i=1}^{+∞} \left( - \dfrac{1}{4 · i - 1} + \dfrac{1}{2 · i} - \dfrac{1}{4 · i + 1} \right) ⇝ \dfrac{3}{2} · S$，由原无穷级数$\sum\limits_{i=1}^{+∞} \dfrac{(-1)^n}{n} ⇝ S$，交换无穷多项的次序得到，两者并非等值。
+
+|                   $S = $ | $- \dfrac{1}{1}$ | $+ \dfrac{1}{2}$ | $- \dfrac{1}{3}$ | $+ \dfrac{1}{4}$ | $- \dfrac{1}{5}$ | $+ \dfrac{1}{6}$ | $- \dfrac{1}{7}$ | $+ \dfrac{1}{8}$ | $- \dfrac{1}{9}$ | $+ \dfrac{1}{10}$ | $- \dfrac{1}{11}$ | $+ \dfrac{1}{12}$ | $- \dfrac{1}{13}$ | $+ \dfrac{1}{14}$ | $- \dfrac{1}{15}$ | $+ \dfrac{1}{16}$ | $- \dfrac{1}{17}$ | $+ \dfrac{1}{18}$ | $- \dfrac{1}{19}$ | $+ \dfrac{1}{20}$ | $-\dfrac{1}{21}$ | $+ \dfrac{1}{22}$ |
+| -----------------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :--------------: | :---------------: |
+| $+) \dfrac{1}{2} · S = $ |                  | $- \dfrac{1}{2}$ |                  | $+ \dfrac{1}{4}$ |                  | $- \dfrac{1}{6}$ |                  | $+ \dfrac{1}{8}$ |                  | $- \dfrac{1}{10}$ |                   | $+ \dfrac{1}{12}$ |                   | $- \dfrac{1}{14}$ |                   | $+ \dfrac{1}{16}$ |                   | $- \dfrac{1}{18}$ |                   | $+ \dfrac{1}{20}$ |                  | $- \dfrac{1}{22}$ |
+|    $\dfrac{3}{2} · S = $ | $- \dfrac{1}{1}$ |                  | $- \dfrac{1}{3}$ | $+ \dfrac{1}{2}$ | $- \dfrac{1}{5}$ |                  | $- \dfrac{1}{7}$ | $+ \dfrac{1}{4}$ | $- \dfrac{1}{9}$ |                   | $- \dfrac{1}{11}$ | $+ \dfrac{1}{6}$  | $- \dfrac{1}{13}$ |                   | $- \dfrac{1}{15}$ | $+ \dfrac{1}{8}$  | $- \dfrac{1}{17}$ |                   | $- \dfrac{1}{19}$ | $+ \dfrac{1}{10}$ | $-\dfrac{1}{21}$ |                   |
+
+
+
+
 
 
 
