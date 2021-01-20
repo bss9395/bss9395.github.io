@@ -444,71 +444,75 @@ unch *Parse_Number(unch *data, fl64 *number, in32 base, bool fixed) {
 unch *Print_TimeStamp(unch *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm, in32 ss, in32 tttttt, in32 ZZzz) {
     // TimeStamp ≡ YYYY-MM-DDThh:mm:ss.ttttttZZZzz
     unch ch = 0;
+
+    if (!(0 <= YYYY && YYYY <= 9999) && Check(true, ELevel._Error, __FUNCTION__, "!(0 <= YYYY && YYYY <= 9999)", NULL)) {
+        return NULL;
+    }
     buff += 4;
     for (iptr i = 1; i <= 4; i += 1) {
         ch = (unch)(YYYY % 10);
-        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
-            return NULL;
-        }
         buff[-i] = _Alpha[ch];
         YYYY = YYYY / 10;
     }
 
+    if (!(0 <= MM && MM <= 12) && Check(true, ELevel._Error, __FUNCTION__, "!(0 <= MM && MM <= 12)", NULL)) {
+        return NULL;
+    }
     buff[0] = '-';
     buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (unch)(MM % 10);
-        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
-            return NULL;
-        }
         buff[-i] = _Alpha[ch];
         MM = MM / 10;
     }
 
+    if (!(0 <= DD && DD <= 31) && Check(true, ELevel._Error, __FUNCTION__, "!(0 <= DD && DD <= 31)", NULL)) {
+        return NULL;
+    }
     buff[0] = '-';
     buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (unch)(DD % 10);
-        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
-            return NULL;
-        }
         buff[-i] = _Alpha[ch];
         DD = DD / 10;
     }
 
+    if (!(0 <= hh && hh < 24) && Check(true, ELevel._Error, __FUNCTION__, "!(0 <= hh && hh < 24)", NULL)) {
+        return NULL;
+    }
     buff[0] = 'T';
     buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (unch)(hh % 10);
-        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
-            return NULL;
-        }
         buff[-i] = _Alpha[ch];
         hh = hh / 10;
     }
 
+    if (!(0 <= mm && mm < 60) && Check(true, ELevel._Error, __FUNCTION__, "!(0 <= mm && mm < 60)", NULL)) {
+        return NULL;
+    }
     buff[0] = ':';
     buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (unch)(mm % 10);
-        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
-            return NULL;
-        }
         buff[-i] = _Alpha[ch];
         mm = mm / 10;
     }
 
+    if (!(0 <= ss && ss < 60) && Check(true, ELevel._Error, __FUNCTION__, "!(0 <= ss && ss < 60)", NULL)) {
+        return NULL;
+    }
     buff[0] = ':';
     buff += 3;
     for (iptr i = 1; i <= 2; i += 1) {
         ch = (unch)(ss % 10);
-        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
-            return NULL;
-        }
         buff[-i] = _Alpha[ch];
         ss = ss / 10;
     }
 
+    if (!(0 <= tttttt && tttttt <= 999999) && Check(true, ELevel._Error, __FUNCTION__, "!(0 <= tttttt && tttttt <= 999999)", NULL)) {
+        return NULL;
+    }
     buff[0] = '.';
     buff += 7;
     if (tttttt == 0) {
@@ -517,9 +521,6 @@ unch *Print_TimeStamp(unch *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm,
     else {
         for (iptr i = 1; i <= 6; i += 1) {
             ch = (unch)(tttttt % 10);
-            if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
-                return NULL;
-            }
             buff[-i] = _Alpha[ch];
             tttttt = tttttt / 10;
         }
@@ -529,9 +530,6 @@ unch *Print_TimeStamp(unch *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm,
     buff += 5;
     for (iptr i = 1; i <= 4; i += 1) {
         ch = (unch)(ZZzz % 10);
-        if (_Alpha[ch] == PHD && Check(true, ELevel._Error, __FUNCTION__, "_Alpha[ch] == PHD", NULL)) {
-            return NULL;
-        }
         buff[-i] = _Alpha[ch];
         ZZzz = ZZzz / 10;
     }
