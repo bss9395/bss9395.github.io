@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  无穷级数
-Update:  2021-01-19T23:23:00+08@中国-广东-湛江+08
+Update:  2021-01-23T00:04:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -123,16 +123,16 @@ $\left| \sum\limits_{i=n+1}^m s_i · t_i \right| ≤ |S_m · t_m| + |S_n · t_{n
 
 | $⇓$  |                                                              |      | $\left| \sum\limits_{i=n+1}^m s_i · t_i \right| ≤ |S_m| · |t_m| + |S_n| · |t_{n+1}| + \sum\limits_{i=n+1}^{m-1} |S_i| · |t_i - t_{i+1}|$ |
 | :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∀i∈[n, m]; |S_i| < \mathrm{Sup.} ∧ [t_i > t_{i+1} ∨ t_i < t_{i+1}]$ | $⇒$  | $\left| \sum\limits_{i=n+1}^m s_i · t_i \right| ≤ \mathrm{Sup.} · \left[ |t_m| + |t_{n+1}| + \left| \sum\limits_{i=n+1}^{m-1} (t_i - t_{i+1}) \right| \right] ≤ \mathrm{Sup.} · 2 · \left[ |t_m| + |t_{n+1}| \right]$ |
-| $⇓$  | $\varlimsup\limits_{i ⇝ +∞} |S_i| < \mathrm{Sup.} ∧ [t_i > t_{i+1} ∨ t_i < t_{i+1}] ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ 0$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N;∀m≥n; \left| \sum\limits_{i=n+1}^m s_i · t_i \right| < \mathrm{Sup.} · 2 · (ε_1 + ε_2) = ε$ |
-| $⇓$  | $\varlimsup\limits_{i ⇝ +∞} |S_i| < \mathrm{Sup.} ∧ [t_i > t_{i+1} ∨ t_i < t_{i+1}] ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ 0$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i · t_i ⇝ ST$                      |
-| $⇓$  | $\lim\limits_{i ⇝ +∞} S_i ⇝ S ∧ [t_i > t_{i+1} ∨ t_i < t_{i+1}] ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ t$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i · t_i = t · \sum\limits_{i=1}^{+∞} s_i + \sum\limits_{i=1}^{+∞} s_i · (t_i - t) ⇝ ST$ |
+| $⇓$  | $∀i∈[n, m]; |S_i| < \mathrm{Sup.} ∧ [t_i > t_{i+1} ⊕ t_i < t_{i+1}]$ | $⇒$  | $\left| \sum\limits_{i=n+1}^m s_i · t_i \right| ≤ \mathrm{Sup.} · \left[ |t_m| + |t_{n+1}| + \left| \sum\limits_{i=n+1}^{m-1} (t_i - t_{i+1}) \right| \right] ≤ \mathrm{Sup.} · 2 · \left[ |t_m| + |t_{n+1}| \right]$ |
+| $⇓$  | $\varlimsup\limits_{i ⇝ +∞} |S_i| < \mathrm{Sup.} ∧ [t_i > t_{i+1} ⊕ t_i < t_{i+1}] ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ 0$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N;∀m≥n; \left| \sum\limits_{i=n+1}^m s_i · t_i \right| < \mathrm{Sup.} · 2 · (ε_1 + ε_2) = ε$ |
+| $⇓$  | $\varlimsup\limits_{i ⇝ +∞} |S_i| < \mathrm{Sup.} ∧ [t_i > t_{i+1} ⊕ t_i < t_{i+1}] ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ 0$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i · t_i ⇝ ST$                      |
+| $⇓$  | $\lim\limits_{i ⇝ +∞} S_i ⇝ S ∧ [t_i > t_{i+1} ⊕ t_i < t_{i+1}] ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ t$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i · t_i = t · \sum\limits_{i=1}^{+∞} s_i + \sum\limits_{i=1}^{+∞} [ s_i · (t_i - t) ] ⇝ ST$ |
 
 特例：若$s_i > s_{i+1} ∧ \lim\limits_{i ⇝ +∞} s_i ⇝ 0$，则交错级数$\sum\limits_{i=1}^{+∞} (-1)^i · s_i ⇝ S$。
 
 ### 无穷级数的绝对收敛与条件收敛
 
-若无穷级数绝对收敛，则其本身必然收敛。
+若无穷级数绝对收敛，则其本身必定收敛。
 
 $\sum\limits_{i=1}^{+∞} |s_i| ⇝ S_{||} ⇒ \sum\limits_{i=1}^{+∞} s_i ⇝ S$
 
@@ -156,14 +156,14 @@ $\sum\limits_{i=1}^{+∞} |s_i| = \sum\limits_{i=1}^{+∞} (s_i^+ + s_i^-) ⇝ S
 
 若无穷级数条件收敛，则其正数项级数与负数项级数均发散，反之不对。
 
-$\sum\limits_{i=1}^{+∞} s_i = \sum\limits_{i=1}^{+∞} (s_i^+ - s_i^-) ⇝ S ⇒ \sum\limits_{i=1}^{+∞} s_i^+ \not⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- \not⇝ S_-$
+$\sum\limits_{i=1}^{+∞} s_i = \sum\limits_{i=1}^{+∞} (s_i^+ - s_i^-) ⇝ S ⇒ \sum\limits_{i=1}^{+∞} s_i^+ \not⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- \not⇝ S_- ⇒ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ +∞ ∧ \sum\limits_{i=1}^{+∞} s_i^- ⇝ +∞$
 
 | $⇓$  | $\sum\limits_{i=1}^{+∞} | s_i | ⇝ S_{||} ⇒ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ S_+$ | $⇐$  | $0 ≤ s_i^+ ≤ | s_i |$                                        |
 | :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\sum\limits_{i=1}^{+∞} | s_i | ⇝ S_{||} ⇒ \sum\limits_{i=1}^{+∞} s^- ⇝ S_-$ | $⇐$  | $0 ≤ s_i^- ≤ | s_i |$                                        |
 | $⇓$  | $\sum\limits_{i=1}^{+∞} | s_i | ⇝ S_{||} ⇐ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- ⇝ S_-$ | $⇐$  | $\sum\limits_{i=1}^{+∞} | s_i | = \sum\limits_{i = 1}^{+∞} s_i^+ + \sum\limits_{i=1}^{+∞} s_i^-$ |
 | $⇓$  | $\sum\limits_{i=1}^{+∞} | s_i | ⇝ S_{||} ⇔ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- ⇝ S_-$ | $⇒$  | $\sum\limits_{i=1}^{+∞} | s_i | \not⇝ S_{||} ⇒ \left[ \sum\limits_{i=1}^{+∞} s_i^+ \not⇝ S_+ ∨ \sum\limits_{i=1}^{+∞} s_i^- \not⇝ S_- \right]$ |
-| $⇓$  | $\sum\limits_{i=1}^{+∞} s_i ⇝ S ⇒ \left[ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- ⇝ S_- \right] ∨ \left[ \sum\limits_{i=1}^{+∞} s_i^+ \not⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- \not⇝ S_- \right]$ | $⇐$  | $\sum\limits_{i=1}^{+∞} s_i = \sum\limits_{i=1}^{+∞} s_i^+ - \sum\limits_{i=1}^{+∞} s_i^-$ |
+| $⇓$  | $\sum\limits_{i=1}^{+∞} s_i ⇝ S ⇒ \left[ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- ⇝ S_- \right] ⊕ \left[ \sum\limits_{i=1}^{+∞} s_i^+ \not⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- \not⇝ S_- \right]$ | $⇐$  | $\sum\limits_{i=1}^{+∞} s_i = \sum\limits_{i=1}^{+∞} s_i^+ - \sum\limits_{i=1}^{+∞} s_i^-$ |
 | $⇓$  | $\sum\limits_{i=1}^{+∞} s_i ⇝ S ∧ \sum\limits_{i=1}^{+∞} | s_i | \not⇝ S_{||} ⇒ \left[ \sum\limits_{i=1}^{+∞} s_i^+ \not⇝ S_+ ∧ \sum\limits_{i=1}^{+∞} s_i^- \not⇝ S_- \right]$ |      |                                                              |
 | $⇓$  | $\sum\limits_{i=1}^{+∞} s_i ⇝ S ∧ \sum\limits_{i=1}^{+∞} | s_i | \not⇝ S_{||} ⇒ \left[ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ +∞ ∧ \sum\limits_{i=1}^{+∞} s_i^- ⇝ +∞ \right]$ | $⇐$  | $0 ≤ s_i^+ ∧ 0 ≤ s_i^-$                                      |
 
@@ -174,13 +174,13 @@ $\sum\limits_{i=1}^{+∞} s_i = \sum\limits_{i=1}^{+∞} (s_i^+ - s_i^-) ⇝ S �
 | $⇓$  |                                              | $\sum\limits_{i=1}^{+∞} s_i ⇝ S ⇒ \lim\limits_{i=1}^{+∞} s_i ⇝ 0$ |
 | :--: | -------------------------------------------: | :----------------------------------------------------------- |
 | $⇓$  |                                              | $\sum\limits_{i=1}^{+∞} s_i ⇝ S ∧ \sum\limits_{i=1}^{+∞} | s_i | \not⇝ S_{||} ⇒ \sum\limits_{i=1}^{+∞} s_i^+ ⇝ +∞ ∧ \sum\limits_{i=1}^{+∞} s_i^- ⇝ +∞$ |
-| $⇓$  | $∃n_1^+∈ℕ;∃n_1^-∈ℕ;∃n_1≤\min(n_1^+, n_2^-);$ | $\left| \left( \sum\limits_{j=1}^{n_1^+} s_j^+ - \sum\limits_{j=1}^{n_1^-} s_j^- \right) - T \right| < s_{n_1}$ |
-| $⇓$  | $∃n_2^+∈ℕ;∃n_2^-∈ℕ;∃n_2≤\min(n_2^+, n_2^-);$ | $\left| \left( \sum\limits_{j=1}^{n_1^+} s_j^+ - \sum\limits_{j=1}^{n_1^-} s_j^- \right) + \left( \sum\limits_{j=n_1^+ + 1}^{n_2^+} s_j^+ - \sum\limits_{j=n_2^- + 1}^{n_2^-} s_j^- \right) - T \right| < s_{n_2} < s_{n_1}$ |
+| $⇓$  | $∃n_1^+∈ℕ;∃n_1^-∈ℕ;∃n_1≤\max(n_1^+, n_1^-);$ | $\left| \left( \sum\limits_{j=1}^{n_1^+} s_j^+ - \sum\limits_{j=1}^{n_1^-} s_j^- \right) - T \right| < | s_{n_1} |$ |
+| $⇓$  | $∃n_2^+∈ℕ;∃n_2^-∈ℕ;∃n_2≤\max(n_2^+, n_2^-);$ | $\left| \left( \sum\limits_{j=1}^{n_1^+} s_j^+ - \sum\limits_{j=1}^{n_1^-} s_j^- \right) + \left( \sum\limits_{j=n_1^+ + 1}^{n_2^+} s_j^+ - \sum\limits_{j=n_2^- + 1}^{n_2^-} s_j^- \right) - T \right| < | s_{n_2} | < | s_{n_1} |$ |
 | $⇓$  |                                        $···$ | $···$                                                        |
-| $⇓$  |                                              | $\left| \left( \sum\limits_{j=1}^{n_1^+} s_j^+ - \sum\limits_{j=1}^{n_1^-} s_j^- \right) + \left( \sum\limits_{j=n_1^+ + 1}^{n_2^+} s_j^+ - \sum\limits_{j=n_1^- + 1}^{n_2^-} s_j^- \right) + ··· + \left( \sum\limits_{j=n_2^+ + 1}^{+∞} s_j^+ - \sum\limits_{j=n_2^- + 1}^{+∞} s_j^- \right) - T \right| < ε = s_{+∞} < ··· < s_{n_2} < s_{n_1}$ |
+| $⇓$  |                                              | $\left| \left( \sum\limits_{j=1}^{n_1^+} s_j^+ - \sum\limits_{j=1}^{n_1^-} s_j^- \right) + \left( \sum\limits_{j=n_1^+ + 1}^{n_2^+} s_j^+ - \sum\limits_{j=n_1^- + 1}^{n_2^-} s_j^- \right) + ··· + \left( \sum\limits_{j=n_{m-1}^+ + 1}^{n_m^+} s_j^+ - \sum\limits_{j=n_{m-1}^- + 1}^{n_m^-} s_j^- \right) - T \right| < ε = | s_{n_m} | < ··· < | s_{n_2} | < | s_{n_1} |$ |
 | $⇓$  |                                              | $\left( \sum\limits_{j=1}^{+∞} s_j^+ - \sum\limits_{j=1}^{+∞} s_j^- \right) = \sum\limits_{j=1}^{+∞} s_j ⇝ T$ |
 
-特例：无穷级数$\sum\limits_{i=1}^{+∞} \dfrac{(-1)^n}{n} ⇝ S$条件收敛非绝对收敛。
+特例：无穷级数$\sum\limits_{i=1}^{+∞} \dfrac{(-1)^n}{n} ⇝ S$条件收敛非绝对收敛，交换无穷多项的次序可使其值发生改变。
 
 $\sum\limits_{i=1}^{+∞} s_i^+ = \sum\limits_{i=1}^{+∞} \dfrac{1}{2 · i} ⇝ +∞, \sum\limits_{i=1}^{+∞} s_i^- = \sum\limits_{i=1}^{+∞}  = \dfrac{1}{2 · i - 1} ⇝ +∞$
 
@@ -190,16 +190,6 @@ $\sum\limits_{i=1}^{+∞} s_i^+ = \sum\limits_{i=1}^{+∞} \dfrac{1}{2 · i} ⇝
 | -----------------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :--------------: | :---------------: |
 | $+) \dfrac{1}{2} · S = $ |                  | $- \dfrac{1}{2}$ |                  | $+ \dfrac{1}{4}$ |                  | $- \dfrac{1}{6}$ |                  | $+ \dfrac{1}{8}$ |                  | $- \dfrac{1}{10}$ |                   | $+ \dfrac{1}{12}$ |                   | $- \dfrac{1}{14}$ |                   | $+ \dfrac{1}{16}$ |                   | $- \dfrac{1}{18}$ |                   | $+ \dfrac{1}{20}$ |                  | $- \dfrac{1}{22}$ |
 |    $\dfrac{3}{2} · S = $ | $- \dfrac{1}{1}$ |                  | $- \dfrac{1}{3}$ | $+ \dfrac{1}{2}$ | $- \dfrac{1}{5}$ |                  | $- \dfrac{1}{7}$ | $+ \dfrac{1}{4}$ | $- \dfrac{1}{9}$ |                   | $- \dfrac{1}{11}$ | $+ \dfrac{1}{6}$  | $- \dfrac{1}{13}$ |                   | $- \dfrac{1}{15}$ | $+ \dfrac{1}{8}$  | $- \dfrac{1}{17}$ |                   | $- \dfrac{1}{19}$ | $+ \dfrac{1}{10}$ | $-\dfrac{1}{21}$ |                   |
-
-
-
-
-
-
-
-
-
-
 
 --------------------------------------------------------------------------------
 
@@ -383,4 +373,86 @@ $\varlimsup\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{s_i}} = \lim\limits_{i ⇝ +�
 | $⇓$  | $1 = \dfrac{s_i}{(S - S_{i-1}) - (S - S_i)} = \dfrac{s_i}{(\sqrt{S - S_{i-1}} + \sqrt{S - S_i}) · (\sqrt{S - S_{i-1}} - \sqrt{S - S_i})}$ | $⇒$  | $t_i ≡ \sqrt{S - S_{i-1}} - \sqrt{S - S_i}, \sum\limits_{i=1}^{+∞} t_i ⇝ \sqrt{S - S_0}$ |
 | $⇓$  |     $\dfrac{s_i}{t_i} = \sqrt{S - S_{i-1}} + \sqrt{S - S_i}$ | $⇒$  | $\lim\limits_{i ⇝ +∞} \dfrac{s_i}{t_i} ⇝ 0$                  |
 
-## 
+### 无穷乘积
+
+级数的乘积可类比于矩阵的乘法运算。
+
+$\sum\limits_{i=1}^n s_i · \sum\limits_{j=1}^m t_j =
+\sum\limits_{i=1,j=1}^{n,m}\left[\begin{matrix}
+s_1 \\ s_2 \\ \vdots \\ s_n
+\end{matrix}\right] ·
+\left[\begin{matrix}
+t_1 & t_2 & \cdots & t_m
+\end{matrix}\right] =
+\sum\limits_{i=1,j=1}^{n,m}\left[\begin{matrix}
+s_1 · t_1 & s_1 · t_2 & \cdots & s_1 · t_m \\
+s_2 · t_1 & s_2 · t_2 & \cdots & s_2 · t_m \\
+\vdots & \vdots & \ddots & \vdots \\
+s_n · t_1 & s_n · t_2 & \cdots & s_n · t_m \\
+\end{matrix}\right]$
+
+级数的乘积沿左上正方形对角线相加。
+
+$\sum\limits_{i=1}^{+∞} s_i · \sum\limits_{j=1}^{+∞} t_j = \sum\limits_{l=1}^{+∞} \left[ \sum\limits_{k=1}^l s_k · t_{l-k+1} \right] = \sum\limits_{l=1}^{+∞} \left[ \sum\limits_{i+j=l+1} s_i · t_j \right] = (s_1 · t_1) + (s_1 · t_2 + s_2 · t_1) + \cdots + (s_1 · t_l + s_2 · t_{l-1} + \cdots + s_{l-1} · t_2 + s_l · t_1) + \cdots$
+
+级数的乘积按左上三角形体横向相加。
+
+$\sum\limits_{i=1}^{+∞} s_i · \sum\limits_{j=1}^{+∞} t_j = \lim\limits_{l⇝+∞} \sum\limits_{i=1}^l \left[ s_i · \sum\limits_{j=1}^{l-i+1} t_j \right] = \lim\limits_{l⇝+∞} \sum\limits_{i=1}^l s_i · T_{l-i+1} = \lim\limits_{l⇝+∞} [ s_1 · (t_1 + t_2 + ··· + t_l) + s_2 · (t_1 + t_2 + ··· + t_{l-1}) + ··· + s_{l-1} · (t_1 + t_2) + s_l · (t_1) ]$
+
+级数的乘积按左上三角形体竖向相加。
+
+$\sum\limits_{i=1}^{+∞} s_i · \sum\limits_{j=1}^{+∞} t_j = \lim\limits_{l⇝+∞} \sum\limits_{j=1}^l \left[ t_j · \sum\limits_{i=1}^{l-j+1} s_i \right] = \lim\limits_{l⇝+∞} \sum\limits_{j=1}^l t_j · S_{l-j+1} = \lim\limits_{l⇝+∞} [ t_1 · (s_1 + s_2 + ··· s_l) + t_2 · (s_1 + s_2 + ··· + s_{l-1}) + ··· + t_{l-1} · (s_1 + s_2) + t_l · (s_1) ]$
+
+级数的乘积沿左上正方形外边缘相加。
+
+$\sum\limits_{i=1}^{+∞} s_i · \sum\limits_{j=1}^{+∞} t_j = \sum\limits_{l=1}^{+∞} \left[ - s_l · t_l + \sum\limits_{k=1}^l (s_k · t_l + s_l · t_k) \right] = (s_1 · t_1) + (s_1 · t_2 + s_2 · t_2 + s_2 · t_1) + \cdots + (s_1 · t_l + s_2 · t_l + \cdots + s_l · t_l + \cdots + s_l · t_2 + s_l · t_1) + \cdots$
+
+级数的乘积按左上正方形体横向相加。
+
+$\sum\limits_{i=1}^{+∞} s_i · \sum\limits_{j=1}^{+∞} t_j = \lim\limits_{l⇝+∞} \sum\limits_{i=1}^l \left[ s_i · \sum\limits_{j=1}^l t_j \right] = \lim\limits_{l⇝+∞} \sum\limits_{i=1}^l s_i · T_l = \lim\limits_{l⇝+∞} \left[ s_1 · (t_1 + t_2 + ··· + t_l) + s_2 · (t_1 + t_2 + ··· + t_l) + ··· + s_{l-1} · (t_1 + t2 + ··· + t_l) + s_l · (t_1 + t_2 + ··· + t_l) \right]$
+
+级数的乘积按左上正方形体竖向相加。
+
+$\sum\limits_{i=1}^{+∞} s_i · \sum\limits_{j=1}^{+∞} t_j = \lim\limits_{l⇝+∞} \sum\limits_{j=1}^l \left[ t_j · \sum\limits_{i=1}^l s_i \right] = \lim\limits_{l⇝+∞} \sum\limits_{j=1}^l t_j · S_l = \lim\limits_{l⇝+∞} [ t_1 · (s_1 + s_2 + ··· + s_l) + t_2 · (s_1 + s_2 + ··· + s_l) + ··· + t_{l-1} · (s_1 + s_2 + ··· + s_l) + t_l · (s_1 + s_2 + ··· + s_l) ]$
+
+### 无穷乘积的收敛
+
+若无穷级数之一绝对收敛，且其余无穷级数条件收敛，则无穷乘积必定绝对收敛。
+
+$\sum\limits_{i=1}^{+∞} | s_i | ⇝ S_{||} ∧ \sum\limits_{j=1}^{+∞} t_j ⇝ T ⇒ \lim\limits_{l⇝+∞} \sum\limits_{i=1}^l \left| s_i · \sum\limits_{j=1}^l t_j \right| ⇝ ST_{||}$
+
+| $⇓$  | $\sum\limits_{i=1}^{+∞} s_i · \sum\limits_{j=1}^{+∞} t_j = \lim\limits_{l⇝+∞} \sum\limits_{i=1}^l \left[ s_i · \sum\limits_{j=1}^l t_j \right] = \lim\limits_{l⇝+∞} \sum\limits_{i=1}^l s_i · T_l$ | $⇒$  | $\lim\limits_{l⇝+∞} \sum\limits_{i=1}^l \left| s_i · \sum\limits_{j=1}^l t_j \right| = \lim\limits_{l⇝+∞} \sum\limits_{i=1}^l | s_i · T_l |$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\lim\limits_{l⇝+∞} \sum\limits_{i=1}^l | s_i · T_l | = \lim\limits_{l⇝+∞} \left[ | T | · \sum\limits_{i=1}^l | s_i | + \sum\limits_{i=1}^l | s_i | · (|T_l| - |T|) \right]$ |      |                                                              |
+| $⇓$  | $\lim\limits_{l⇝+∞} \sum\limits_{i=1}^l | s_i · T_l | ≤ \lim\limits_{l⇝+∞} \left[ | T | · \sum\limits_{i=1}^l | s_i | + \sum\limits_{i=1}^L | s_i | · (|| T_l | - | T ||) + \sum\limits_{i=L+1}^l | s_i | · (|| T_l | - | T ||) \right]$ |      |                                                              |
+| $⇓$  | $\lim\limits_{l⇝+∞} \sum\limits_{i=1}^l | s_i · T_l | ≤ | T | · \sum\limits_{i=1}^{+∞} | s_i | + ε_1 · \sum\limits_{i=1}^L | s_i | + \mathrm{Sup.} · \sum\limits_{i=L+1}^l | s_i |$ | $⇐$  | $∃L∈ℕ;[ l>L ⇒ || T_l | - | T || < ε_1 ] ∧ [ l≤L ⇒ || T_l | - | T || ≤ \mathrm{Sup.}]$ |
+| $⇓$  | $\lim\limits_{l⇝+∞} \sum\limits_{i=1}^l | s_i · T_l | ≤ | T | · \sum\limits_{i=1}^{+∞} | s_i | + ε_1 · S_{||} + \mathrm{Sup.} · ε_2$ |      |                                                              |
+| $⇓$  | $\lim\limits_{l⇝+∞} \sum\limits_{i=1}^l | s_i · T_l | ≤ | T | · S_{||} + ε$ | $⇐$  | $ε = ε_1 · S_{||} + \mathrm{Sup.} · ε_2$                     |
+| $⇓$  | $\lim\limits_{l⇝+∞} \sum\limits_{i=1}^l \left| s_i · \sum\limits_{j=1}^l t_j \right| ⇝ ST_{||}$ |      |                                                              |
+
+若无穷级数全都条件收敛，则无穷乘积未必条件收敛。
+
+典例：无穷级数$\sum\limits_{i=1}^{+∞} s_i = \sum\limits_{i=1}^{+∞} \dfrac{(-1)^{i}}{\sqrt{i}} ⇝ S$条件收敛，无穷级数$\sum\limits_{j=1}^{+∞} t_i = \sum\limits_{j=1}^{+∞} \dfrac{(-1)^j}{\sqrt{j}} ⇝ T$条件收敛, 两者的乘积沿对角线相加$\sum\limits_{i=1}^{+∞} s_i · \sum\limits_{j=1}^{+∞} t_j \not⇝ ST$。
+
+$\lim\limits_{l⇝+∞} \left| \sum\limits_{k=1}^l s_k · t_{l-k+1} \right| = \lim\limits_{l⇝+∞} \left| \sum\limits_{k=1}^l \dfrac{(-1)^k}{\sqrt{k}} · \dfrac{(-1)^{l-k+1}}{\sqrt{l-k+1}} \right| = \lim\limits_{l⇝+∞} \sum\limits_{k=1}^l \dfrac{1}{\sqrt{k · (l - k + 1)}} ≥ \lim\limits_{l⇝+∞} \dfrac{l}{\frac{k + (l - k + 1)}{2}} ⇝ 2 ≠ 0$
+
+### 无穷乘积的性质
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
