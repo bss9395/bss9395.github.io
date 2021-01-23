@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  无穷级数
-Update:  2021-01-23T00:04:00+08@中国-广东-湛江+08
+Update:  2021-01-23T21:50:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -25,7 +25,7 @@ $\varlimsup\limits_{n ⇝ +∞} S_n ≡ \mathop{\lim\sup}\limits_{n ⇝ +∞} S_
 
 $\varliminf\limits_{n ⇝ +∞} S_n ≤ \varlimsup\limits_{n ⇝ +∞} S_n$
 
-典例：无穷级数下极限与上极限
+典例：无穷级数的下极限与上极限
 
 $\varliminf\limits_{n ⇝ +∞} \dfrac{1}{n} ⇝ 0, \varlimsup\limits_{n ⇝ +∞} \dfrac{1}{n} ⇝ 0$
 
@@ -37,15 +37,15 @@ $∀ε>0;∃N∈ℕ;∀n>N; |S_n - S| < ε$
 
 $∀ε>0;∃N∈ℕ;∀n>N; \left| \sum\limits_{i = 1}^{n} s_i - S \right| < ε$
 
-无穷级数的极限收敛
+无穷级数收敛
 
-$\lim\limits_{n ⇝ +∞} S_n ⇝ S$ 也即 $\lim\limits_{n → +∞} |S_n - S| ⇝ 0$
+$\lim\limits_{n ⇝ +∞} S_n ⇝ S$ 也即 $\lim\limits_{n ⇝ +∞} |S_n - S| ⇝ 0$
 
 $\sum\limits_{i = 1}^{+∞} s_i ⇝ S$ 也即 $\left| \sum\limits_{i = 1}^{+∞} s_i - S \right| ⇝ 0$
 
 $\varliminf\limits_{n ⇝ +∞} S_n = \lim\limits_{n ⇝ +∞} S_n = \varlimsup\limits_{n ⇝ +∞} S_n$
 
-无穷级数的极限发散
+无穷级数发散
 
 $\lim\limits_{n ⇝ +∞} S_n \not⇝ S$ 也即 $\lim\limits_{n ⇝ +∞} |S_n - S| \not⇝ 0$
 
@@ -55,6 +55,12 @@ $\varliminf\limits_{n ⇝ +∞} S_n ≠ \varlimsup\limits_{n ⇝ +∞} S_n$
 
 ### 无穷级数收敛的性质
 
+若无穷级数收敛，则其部分和的绝对值收敛。
+
+$\lim\limits_{n⇝+∞} S_n ⇝ S ⇒ \lim\limits_{n⇝+∞} | S_n | ⇝ | S |$
+
+$[ ∀ε>0;∃N∈ℕ;∀n>N; | S_n - S | < ε ] ⇒ [  ∀ε>0;∃N∈ℕ;∀n>N; || S_n | - | S || ≤ | S_n - S | < ε]$
+
 若无穷级数收敛，则其通项的极限为零。
 
 $\lim\limits_{n ⇝ +∞} S_n ⇝ S ⇒ \lim\limits_{i ⇝ +∞} s_i ⇝ 0$
@@ -63,7 +69,7 @@ $\lim\limits_{n ⇝ +∞} S_n ⇝ S ⇒ \lim\limits_{i ⇝ +∞} s_i ⇝ 0$
 
 $\lim\limits_{i ⇝ +∞} s_i \not⇝ 0 ⇒ \lim\limits_{n ⇝ +∞} S_n \not⇝ S$
 
-无穷级数满足加运算。
+无穷级数满足加法运算。
 
 $c · \sum\limits_{i = 1}^{n} s_i = \sum\limits_{i = 1}^{n} (c · s_i)$
 
@@ -373,7 +379,7 @@ $\varlimsup\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{s_i}} = \lim\limits_{i ⇝ +�
 | $⇓$  | $1 = \dfrac{s_i}{(S - S_{i-1}) - (S - S_i)} = \dfrac{s_i}{(\sqrt{S - S_{i-1}} + \sqrt{S - S_i}) · (\sqrt{S - S_{i-1}} - \sqrt{S - S_i})}$ | $⇒$  | $t_i ≡ \sqrt{S - S_{i-1}} - \sqrt{S - S_i}, \sum\limits_{i=1}^{+∞} t_i ⇝ \sqrt{S - S_0}$ |
 | $⇓$  |     $\dfrac{s_i}{t_i} = \sqrt{S - S_{i-1}} + \sqrt{S - S_i}$ | $⇒$  | $\lim\limits_{i ⇝ +∞} \dfrac{s_i}{t_i} ⇝ 0$                  |
 
-### 无穷乘积
+### 无穷级数的乘积
 
 级数的乘积可类比于矩阵的乘法运算。
 
@@ -415,9 +421,9 @@ $\sum\limits_{i=1}^{+∞} s_i · \sum\limits_{j=1}^{+∞} t_j = \lim\limits_{l�
 
 $\sum\limits_{i=1}^{+∞} s_i · \sum\limits_{j=1}^{+∞} t_j = \lim\limits_{l⇝+∞} \sum\limits_{j=1}^l \left[ t_j · \sum\limits_{i=1}^l s_i \right] = \lim\limits_{l⇝+∞} \sum\limits_{j=1}^l t_j · S_l = \lim\limits_{l⇝+∞} [ t_1 · (s_1 + s_2 + ··· + s_l) + t_2 · (s_1 + s_2 + ··· + s_l) + ··· + t_{l-1} · (s_1 + s_2 + ··· + s_l) + t_l · (s_1 + s_2 + ··· + s_l) ]$
 
-### 无穷乘积的收敛
+### 无穷级数的乘积绝对收敛
 
-若无穷级数之一绝对收敛，且其余无穷级数条件收敛，则无穷乘积必定绝对收敛。
+若无穷级数之一绝对收敛，且其余无穷级数条件收敛，则无穷级数的乘积必定绝对收敛。
 
 $\sum\limits_{i=1}^{+∞} | s_i | ⇝ S_{||} ∧ \sum\limits_{j=1}^{+∞} t_j ⇝ T ⇒ \lim\limits_{l⇝+∞} \sum\limits_{i=1}^l \left| s_i · \sum\limits_{j=1}^l t_j \right| ⇝ ST_{||}$
 
@@ -430,29 +436,96 @@ $\sum\limits_{i=1}^{+∞} | s_i | ⇝ S_{||} ∧ \sum\limits_{j=1}^{+∞} t_j �
 | $⇓$  | $\lim\limits_{l⇝+∞} \sum\limits_{i=1}^l | s_i · T_l | ≤ | T | · S_{||} + ε$ | $⇐$  | $ε = ε_1 · S_{||} + \mathrm{Sup.} · ε_2$                     |
 | $⇓$  | $\lim\limits_{l⇝+∞} \sum\limits_{i=1}^l \left| s_i · \sum\limits_{j=1}^l t_j \right| ⇝ ST_{||}$ |      |                                                              |
 
-若无穷级数全都条件收敛，则无穷乘积未必条件收敛。
+若无穷级数全都条件收敛，则无穷级数的乘积未必条件收敛。
 
 典例：无穷级数$\sum\limits_{i=1}^{+∞} s_i = \sum\limits_{i=1}^{+∞} \dfrac{(-1)^{i}}{\sqrt{i}} ⇝ S$条件收敛，无穷级数$\sum\limits_{j=1}^{+∞} t_i = \sum\limits_{j=1}^{+∞} \dfrac{(-1)^j}{\sqrt{j}} ⇝ T$条件收敛, 两者的乘积沿对角线相加$\sum\limits_{i=1}^{+∞} s_i · \sum\limits_{j=1}^{+∞} t_j \not⇝ ST$。
 
 $\lim\limits_{l⇝+∞} \left| \sum\limits_{k=1}^l s_k · t_{l-k+1} \right| = \lim\limits_{l⇝+∞} \left| \sum\limits_{k=1}^l \dfrac{(-1)^k}{\sqrt{k}} · \dfrac{(-1)^{l-k+1}}{\sqrt{l-k+1}} \right| = \lim\limits_{l⇝+∞} \sum\limits_{k=1}^l \dfrac{1}{\sqrt{k · (l - k + 1)}} ≥ \lim\limits_{l⇝+∞} \dfrac{l}{\frac{k + (l - k + 1)}{2}} ⇝ 2 ≠ 0$
 
-### 无穷乘积的性质
+### 无穷乘积
 
+无穷乘积的部分积
 
+$P_l ≡ \prod\limits_{n=1}^l p_n ≡ \prod\limits_{n=1}^l (1 + s_n)$
 
+无穷乘积的极限
 
+$\lim\limits_{l⇝+∞} P_l ≡ \lim\limits_{l⇝+∞} \prod\limits_{n=1}^l p_n ≡ \prod\limits_{n=1}^{+∞} p_n ≡ \prod\limits_{n=1}^{+∞} (1 + s_n)$
 
+无穷乘积收敛
 
+$\lim\limits_{l⇝+∞} P_l ⇝ P ≠ 0$，也即$\lim\limits_{l⇝+∞} | P_l - P | ⇝ 0$
 
+$\prod\limits_{n=1}^{+∞} p_n ⇝ P ≠ 0$，也即$\left| \prod\limits_{n=1}^{+∞} p_n - P \right| ⇝ 0$
 
+无穷乘积发散
 
+$\lim\limits_{l⇝+∞} P_l \not⇝ P ≠ 0$，也即$\lim\limits_{l⇝+∞} | P_l - P | \not⇝ 0$
 
+$\prod\limits_{n=1}^{+∞} p_n \not⇝ P ≠ 0$，也即$\left| \prod\limits_{n=1}^{+∞} p_n - P \right| \not⇝ 0$
 
+### 无穷乘积收敛的性质
 
+若无穷乘积收敛，则其通项的极限为一。
 
+$\lim\limits_{l⇝+∞} P_l ⇝ P ≠ 0 ⇒ \lim\limits_{n⇝+∞} p_n ⇝ 1 ⇒ \lim\limits_{n⇝+∞} s_n ⇝ 0$
 
+$\lim\limits_{n⇝+∞} p_n = \lim\limits_{n⇝+∞} \dfrac{P_n}{P_{n-1}} = \dfrac{\lim\limits_{n⇝+∞} P_n}{\lim\limits_{n⇝+∞} P_{n-1}} = \dfrac{P}{P} ⇝ 1$
 
+若通项的极限不为一，则无穷乘积发散。
 
+$\lim\limits_{n⇝+∞} p_n \not⇝ 1 ⇒ \lim\limits_{l⇝+∞} P_l \not⇝ P ≠ 0$
 
+### 无穷乘积的对偶原理
 
+若无穷乘积收敛，则其对应的无穷级数也收敛，反之亦然。
+
+$\left[ \prod\limits_{n=1}^{+∞} p_n ⇝ P \right] ⇔ \left[ \ln \prod\limits_{n=1}^{+∞} p_n ⇝ \ln P \right] ⇔ \left[ \sum\limits_{n=1}^{+∞} \ln p_n ⇝ \ln P \right]$
+
+$\left[ \prod\limits_{n=1}^{+∞} (1 + | s_n |) ⇝ P_{||} \right] ⇔ \left[ \sum\limits_{n=1}^{+∞} \ln (1 + | s_n |) ⇝ \ln P_{||} \right] ⇔ \left[ \sum\limits_{n=1}^{+∞} | s_n | ⇝ S_{||} \right]$
+
+$\left[ \prod\limits_{n=1}^{+∞} (1 + s_n) ⇝ P \right] ⇔ \left[ \sum\limits_{n=1}^{+∞} \ln (1 + s_n) ⇝ \ln P \right] \mathop{⇒}\limits_{-1 < s_n ≤ 0} \left[ \sum\limits_{n=1}^{+∞} s_n ⇝ S \right]$
+
+若无穷乘积发散于零，则其对应的无穷级数发散于负无穷。
+
+$\left[ \prod\limits_{n=1}^{+∞} p_n ⇝ 0 \right] ⇔ \left[ \sum\limits_{n=1}^{+∞} \ln p_n ⇝ -∞ \right]$
+
+$\left[ \prod\limits_{n=1}^{+∞} (1 + s_n) ⇝ 0 \right] ⇔ \left[ \sum\limits_{n=1}^{+∞} \ln (1 + s_n) ⇝ -∞ \right] \mathop{⇐}\limits_{-1 < s_n ≤ 0} \left[ \sum\limits_{n=1}^{+∞} s_n ⇝ -∞ \right]$
+
+| $⇓$  | $(1 + | s_1 |) · (1 + | s_2 |) = (1 + | s_1 | + | s_2 |) + | s_1 | · | s_2 | ≥ 1 + | s_1 | + | s_2 | > | s_1 | + | s_2 |$ |      |                                                              |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\prod\limits_{n=1}^{+∞} (1 + | s_n |) > \sum\limits_{n=1}^{+∞} | s_n | ≥ \sum\limits_{n=1}^{+∞} \ln (1 + | s_n |) ≥ 0$ | $⇐$  | $| s_n | ≥ \ln (1 + | s_n |) ≥ 0$                            |
+| $⇓$  | $\prod\limits_{n=1}^{+∞} (1 + | s_n |) ⇝ P_{||} ⇒ \sum\limits_{n=1}^{+∞} | s_n | ⇝ S_{||} ⇒ \sum\limits_{n=1}^{+∞} \ln (1 + | s_n |) ⇝ \ln P_{||}$ |      |                                                              |
+| $⇓$  | $\prod\limits_{n=1}^{+∞} (1 + | s_n |) ⇝ P_{||} ⇔ \sum\limits_{n=1}^{+∞} | s_n | ⇝ S_{||} ⇔ \sum\limits_{n=1}^{+∞} \ln (1 + | s_n |) ⇝ \ln P_{||}$ |      |                                                              |
+| $⇓$  | $-1 < s_n ≤ 0 ⇒ \prod\limits_{n=1}^{+∞} (1 + s_n) > 0 ≥ \sum\limits_{n=1}^{+∞} s_n ≥ \sum\limits_{n=1}^{+∞} \ln (1 + s_n)$ | $⇐$  | $| \ln (1 + s_n) | ≥ | s_n | ≥ \ln (1 + | s_n |) ≥ s_n ≥ \ln (1 + s_n) \mathop{=}\limits_{-1 < s_n} \ln | 1 + s_n |$ |
+| $⇓$  | $\prod\limits_{n=1}^{+∞} (1 + s_n) ⇝ P ⇔ \sum\limits_{n=1}^{+∞} \ln (1 + s_n) ⇝ \ln P ⇒ \sum\limits_{n=1}^{+∞} s_n ⇝ S$ |      |                                                              |
+
+特例：若$\sum\limits_{n=1}^{+∞} s_n^2 ⇝ \mathrm{Con.}$，则$\left[ \sum\limits_{n=1}^{+∞} s_n ⇝ S \right] ⇔ \left[ \sum\limits_{n=1}^{+∞} \ln (1 + s_n) ⇝ \ln P \right] ⇔ \left[ \prod\limits_{n=1}^{+∞} (1 + s_n) ⇝ P \right]$
+
+| $⇓$  | $\sum\limits_{n=1}^{+∞} s_n^2 ⇝ \mathrm{Con.}$               |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $\lim\limits_{n⇝+∞} s_n^2 ⇝ 0 ⇒ \lim\limits_{n⇝+∞} s_n ⇝ 0 ⇒ \lim\limits_{n⇝+∞} \ln (1 + s_n) ⇝ 0$ |
+| $⇓$  | $\lim\limits_{n⇝+∞} \dfrac{s_n - \ln (1 + s_n)}{s_n^2} = \lim\limits_{n⇝+∞} \dfrac{1}{2 · (1 + s_n)} ⇝ \dfrac{1}{2}$ |
+| $⇓$  | $\sum\limits_{n=1}^{+∞} s_n^2 ⇝ \mathrm{Con.} ⇒ \left[ \sum\limits_{n=1}^{+∞} s_n - \sum\limits_{n=1}^{+∞} \ln (1 + s_n) ⇝ \mathrm{Con.} \right]$ |
+| $⇓$  | $\sum\limits_{n=1}^{+∞} s_n^2 ⇝ \mathrm{Con.} ⇒ \left[ \sum\limits_{n=1}^{+∞} s_n ⇝ S ⇔ \sum\limits_{n=1}^{+∞} \ln (1 + s_n) ⇝ \ln P ⇔ \prod\limits_{n=1}^{+∞} (1 + s_n) ⇝ P \right]$ |
+| $⇓$  | $\sum\limits_{n=1}^{+∞} s_n^2 ⇝ +∞ ⇒ \left[ \sum\limits_{n=1}^{+∞} s_n - \sum\limits_{n=1}^{+∞} \ln (1 + s_n) ⇝ +∞ \right]$ |
+| $⇓$  | $\sum\limits_{n=1}^{+∞} s_n^2 ⇝ +∞ ⇒ \left[ \sum\limits_{n=1}^{+∞} s_n ⇝ S ⇔ \sum\limits_{n=1}^{+∞} \ln (1 + s_n) ⇝ -∞ ⇔ \prod\limits_{n=1}^{+∞} (1 + s_n) ⇝ 0 \right]$ |
+
+### 无穷乘积的绝对收敛与条件收敛
+
+若无穷乘积绝对收敛，则必定条件收敛。
+
+$\left[ \prod\limits_{n=1}^{+∞} (1 + | s_n |) ⇝ P_{||} \right] ⇔ \left[ \sum\limits_{n=1}^{+∞} \ln (1 + | s_n |) ⇝ \ln P_{||} \right] ⇒ \left[ \sum\limits_{n=1}^{+∞} \ln (1 + s_n) ⇝ \ln P \right] ⇔ \left[ \prod\limits_{n=1}^{+∞} (1 + s_n) ⇝ P \right]$
+
+若无穷乘积条件收敛，则未必绝对收敛。
+
+$\left[ \prod\limits_{n=1}^{+∞} (1 + s_n) ⇝ P \right] ⇔ \left[ \sum\limits_{n=1}^{+∞} \ln (1 + s_n) ⇝ \ln P \right] \not⇒ \left[ \sum\limits_{n=1}^{+∞} \ln (1 + | s_n |) ⇝ \ln P_{||} \right] ⇔ \left[ \prod\limits_{n=1}^{+∞} (1 + | s_n |) ⇝ P_{||} \right]$ 
+
+### 无穷乘积绝对收敛与条件收敛的性质
+
+若无穷乘积绝对收敛，则交换任意多项的次序，其极限不变并且保持绝对收敛。
+
+若无穷乘积条件收敛，则交换任意多项的次序，可使其趋近于任意给定的正数。
+
+### 
 
