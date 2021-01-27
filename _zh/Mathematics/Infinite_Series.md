@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  无穷级数
-Update:  2021-01-26T20:27:00+08@中国-广东-湛江+08
+Update:  2021-01-26T17:27:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -135,14 +135,19 @@ $\sum\limits_{i=n+1}^m s_i · t_i = \sum\limits_{i=n+1}^m (S_i - S_{i-1}) · t_i
 
 $\left| \sum\limits_{i=n+1}^m s_i · t_i \right| ≤ |S_m · t_m| + |S_n · t_{n+1}| + \left| \sum\limits_{i=n+1}^{m-1} S_i · (t_i - t_{i+1}) \right| ≤ |S_m| · |t_m| + |S_n| · |t_{n+1}| + \sum\limits_{i=n+1}^{m-1} |S_i| · |t_i - t_{i+1}|$
 
-| $⇓$  |                                                              |      | $\left| \sum\limits_{i=n+1}^m s_i · t_i \right| ≤ |S_m| · |t_m| + |S_n| · |t_{n+1}| + \sum\limits_{i=n+1}^{m-1} |S_i| · |t_i - t_{i+1}|$ |
-| :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∀i∈[n, m]; |S_i| < \mathrm{Sup.} ∧ [t_i > t_{i+1} ⊕ t_i < t_{i+1}]$ | $⇒$  | $\left| \sum\limits_{i=n+1}^m s_i · t_i \right| ≤ \mathrm{Sup.} · \left[ |t_m| + |t_{n+1}| + \left| \sum\limits_{i=n+1}^{m-1} (t_i - t_{i+1}) \right| \right] ≤ \mathrm{Sup.} · 2 · \left[ |t_m| + |t_{n+1}| \right]$ |
-| $⇓$  | $\varlimsup\limits_{i ⇝ +∞} |S_i| < \mathrm{Sup.} ∧ [t_i > t_{i+1} ⊕ t_i < t_{i+1}] ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ 0$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N;∀m≥n; \left| \sum\limits_{i=n+1}^m s_i · t_i \right| < \mathrm{Sup.} · 2 · (ε_1 + ε_2) = ε$ |
-| $⇓$  | $\varlimsup\limits_{i ⇝ +∞} |S_i| < \mathrm{Sup.} ∧ [t_i > t_{i+1} ⊕ t_i < t_{i+1}] ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ 0$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i · t_i ⇝ ST$                      |
-| $⇓$  | $\lim\limits_{i ⇝ +∞} S_i ⇝ S ∧ [t_i > t_{i+1} ⊕ t_i < t_{i+1}] ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ t$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i · t_i = t · \sum\limits_{i=1}^{+∞} s_i + \sum\limits_{i=1}^{+∞} [ s_i · (t_i - t) ] ⇝ ST$ |
+| $⇓$  |                                                              |                                                        | $[ ∃N∈ℕ;∀i>N; | S_i | ≤ \mathrm{Sup.} ∧ t_i ≥ t_{i+1} ] ⊕ [ ∃N∈ℕ;∀i>N; | S_i | ≤ \mathrm{Sup.} ∧ t_i ≤ t_{i+1} ]$ |
+| :--: | -----------------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------------- |
+| $⇓$  |                                                              |                                                        | $\left| \sum\limits_{i=n+1}^m s_i · t_i \right| ≤ \mathrm{Sup.} · \left[ |t_m| + |t_{n+1}| + \left| \sum\limits_{i=n+1}^{m-1} (t_i - t_{i+1}) \right| \right] ≤ \mathrm{Sup.} · 2 · \left[ |t_m| + |t_{n+1}| \right]$ |
+| $⇓$  | $\varlimsup\limits_{i ⇝ +∞} |S_i| ≤ \mathrm{Sup.} ∧ t_i ⪌ t_{i+1} ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ 0$ |                          $⇒$                           | $∀ε>0;∃N∈ℕ;∀n≥N;∀m≥n; \left| \sum\limits_{i=n+1}^m s_i · t_i \right| < \mathrm{Sup.} · 2 · (ε_1 + ε_2) = ε$ |
+| $⇓$  | $\varlimsup\limits_{i ⇝ +∞} |S_i| ≤ \mathrm{Sup.} ∧ t_i ⪌ t_{i+1} ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ 0$ |                          $⇒$                           | $\sum\limits_{i=1}^{+∞} s_i · t_i ⇝ ST$                      |
+| $⇓$  | $\lim\limits_{i ⇝ +∞} S_i ⇝ S ∧ t_i ⪌ t_{i+1} ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ t$ | $\mathop{⇒}\limits_{\lim\limits_{i⇝+∞} (t_i - t) ⇝ 0}$ | $\sum\limits_{i=1}^{+∞} s_i · t_i = t · \sum\limits_{i=1}^{+∞} s_i + \sum\limits_{i=1}^{+∞} [ s_i · (t_i - t) ] ⇝ ST$ |
+| $⇓$  | $\lim\limits_{i ⇝ +∞} S_i ⇝ S ∧ t_i ⪌ t_{i+1} ∧ \varlimsup\limits_{i⇝+∞} | t_i | ≤ \mathrm{Sup.}$ |    $\mathop{⇒}\limits_{\lim\limits_{i⇝+∞} t_i ⇝ t}$    | $\sum\limits_{i=1}^{+∞} s_i · t_i ⇝ ST$                      |
 
-特例：若$s_i > s_{i+1} ∧ \lim\limits_{i ⇝ +∞} s_i ⇝ 0$，则交错级数$\sum\limits_{i=1}^{+∞} (-1)^i · s_i ⇝ S$。
+若部分和$\sum\limits_{i=1}^n s_i$有确界，且$t_i$单调趋于零，则无穷级数$\sum\limits_{i=1}^{+∞} s_i · t_i$收敛。
+
+若无穷级数$\sum\limits_{i=1}^{+∞} s_i$收敛，且$t_i$单调有确界，则无穷级数$\sum\limits_{i=1}^{+∞} s_i · t_i$收敛。
+
+特例：若$t_i$单调趋于零，则交错级数$\sum\limits_{i=1}^{+∞} (-1)^i · t_i$收敛。
 
 ### 无穷级数的绝对收敛与条件收敛
 
@@ -628,20 +633,20 @@ $\left[ ∃N∈ℕ;∀n≥N;∀m>n; \sup\limits_{x∈X} \left| \sum\limits_{i=n+
 
 若函数项为连续函数，但和函数非连续函数，则函数项级数必定非一致收敛。$Q ∧ ¬R ⇒ ¬P$
 
-| $\fbox{1}$ | $∀ε_1>0;∃δ>0;∀x∈X; x_0∈\fbox{X} ∧ | x - x_0 | < δ ⇒ | F_n (x) - F_n (x_0) | < ε_1$ |
+| $\fbox{1}$ | $∀ε_1>0;∃δ>0;∀x∈X; x_0∈X ∧ | x - x_0 | < δ ⇒ | F_n (x) - F_n (x_0) | < ε_1$ |
 | :--------: | :----------------------------------------------------------- |
-| $\fbox{2}$ | $∀ε>0;∃N∈ℕ;∀n≥N;∀x∈\fbox{X}; | F_n (x) - F (x) | < ε$        |
-|    $⇓$     | $∀ε_2>0;∃N∈ℕ;∀n≥N; x_0∈\fbox{X} ⇒ | F_n (x_0) - F (x_0) | < ε_2$ |
-|    $⇓$     | $∀ε>0;∃δ>0;∃N∈ℕ;∀n≥N;∀x∈X; x_0∈\fbox{X} ∧ | x - x_0 | < δ ⇒ | F_n (x) - F (x_0) | < | F_n (x) - F_n (x_0) | + | F_n (x_0) - F (x_0) | < ε_1 + ε_2 = ε$ |
-|    $⇓$     | $∀ε>0;∃δ>0;∃N∈ℕ;∀n≥N;∀x∈X; x_0∈\fbox{X} ∧ | x - x_0 | < δ ⇒ | F_n (x) - F (x_0) | < ε$ |
-|    $⇕$     | $∀ε>0;∃δ>0;∃N∈ℕ;∀x∈X;∀n≥N; x_0∈\fbox{X} ∧ | x - x_0 | < δ ⇒ | F_n (x) - F (x_0) | < ε$ |
-|    $⇓$     | $\lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} F_n (x) \mathop{≡}\limits^{\fbox{1}} \lim\limits_{n⇝+∞ \\ x⇝x_0} F_n (x) \mathop{≡}\limits^{\fbox{2}} \lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x)$ |
+| $\fbox{2}$ | $∀ε>0;∃N∈ℕ;∀n≥N;∀x∈X; | F_n (x) - F (x) | < ε$               |
+|    $⇓$     | $∀ε_2>0;∃N∈ℕ;∀n≥N; x_0∈X ⇒ | F_n (x_0) - F (x_0) | < ε_2$    |
+|    $⇓$     | $∀ε>0;∃δ>0;∃N∈ℕ;∀n≥N;∀x∈X; x_0∈X ∧ | x - x_0 | < δ ⇒ | F_n (x) - F (x_0) | < | F_n (x) - F_n (x_0) | + | F_n (x_0) - F (x_0) | < ε_1 + ε_2 = ε$ |
+|    $⇓$     | $∀ε>0;∃δ>0;∃N∈ℕ;∀n≥N;∀x∈X; x_0∈X ∧ | x - x_0 | < δ ⇒ | F_n (x) - F (x_0) | < ε$ |
+|    $⇕$     | $∀ε>0;∃δ>0;∃N∈ℕ;∀x∈X;∀n≥N; x_0∈X ∧ | x - x_0 | < δ ⇒ | F_n (x) - F (x_0) | < ε$ |
+|    $⇓$     | $\lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} F_n (x) \mathop{≡}\limits_{\fbox{2,1}} \lim\limits_{n⇝+∞ \\ x⇝x_0} F_n (x) \mathop{≡}\limits_{\fbox{1,2}} \lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x)$ |
 
-若函数项级数$F_n (x)$在区间$\fbox{X}$上一致收敛，则多重极限可以随意交换极限运算的次序，反之亦然。
+若函数项级数$F_n (x)$在区间$X$上一致收敛，则多重极限可以随意交换极限运算的次序，反之亦然。
 
 $\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x) ≡ \lim\limits_{n⇝+∞ \\ x⇝x_0} F_n (x) ≡ \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} F_n (x)$
 
-若函数项级数$F_n (x)$在区间$\fbox{X}$上非一致收敛，则多重极限不可随意交换极限运算的次序，反之亦然。
+若函数项级数$F_n (x)$在区间$X$上非一致收敛，则多重极限不可随意交换极限运算的次序，反之亦然。
 
 $\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x) \not≡ \lim\limits_{n⇝+∞ \\ x⇝x_0} F_n (x) \not≡ \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} F_n (x)$
 
@@ -653,7 +658,7 @@ $\lim\limits_{n⇝+∞ \\ x≡\frac{1}{2 · n}⇝0} F_n (x) = \lim\limits_{n⇝+
 
 $\lim\limits_{n⇝+∞} \lim\limits_{x⇝0} F_n (x) = \lim\limits_{n⇝+∞} 0 ⇝ 0 $
 
-函数项级数不可随意交换极限运算与求和运算的次序，除非函数项级数$F_n (x)$在区间$\fbox{X}$上一致收敛，反之亦然。
+函数项级数不可随意交换极限运算与求和运算的次序，除非函数项级数$F_n (x)$在区间$X$上一致收敛，反之亦然。
 
 $\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x) ≡ \lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} \sum\limits_{i=1}^{n} f_i (x) ≡ \lim\limits_{x⇝x_0} \sum\limits_{i=1}^{+∞} f_i (x) \not≡ \sum\limits_{i=1}^{+∞} \lim\limits_{x⇝x_0} f_i (x) ≡ \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n \lim\limits_{x⇝x_0} f_i (x) ≡ \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} \sum\limits_{i=1}^n f_i (x) ≡ \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} F_n (x)$
 
@@ -661,7 +666,7 @@ $\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x) ≡ \lim\limits_{x⇝x_0} 
 
 $\int\limits_α^β \left[ \lim\limits_{n⇝+∞} F_n (x) \right] \mathrm{d}x ≡ \int\limits_α^β \left[ \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n f_i (x) \right] \mathrm{d}x ≡ \int\limits_α^β \left[ \sum\limits_{i=1}^{+∞} f_i (x) \right] \mathrm{d}x \not≡ \sum\limits_{i=1}^{+∞} \left[ \int\limits_α^β f_i (x) \mathrm{d}x \right] ≡ \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n \left[ \int\limits_α^β f_i (x) \mathrm{d}x \right] ≡ \lim\limits_{n⇝+∞} \int\limits_α^β \left[ \sum\limits_{i=1}^n f_i (x) \right] \mathrm{d}x ≡ \lim\limits_{n⇝+∞} \int\limits_α^β F_n (x) \mathrm{d}x$
 
-函数项级数不可随意交换极限运算与求导运算的次序，除非函数项级数$F_n (x)$在区间$\fbox{X}$上一致收敛，反之亦然。
+函数项级数不可随意交换极限运算与求导运算的次序，除非函数项级数$F_n (x)$在区间$X$上一致收敛，反之亦然。
 
 $\lim\limits_{x⇝x_0} \dfrac{\mathrm{d}}{\mathrm{d}x} \left[ \lim\limits_{n⇝+∞} F_n (x) \right] ≡ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d}}{\mathrm{d}x} \left[ \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n f_i (x) \right] ≡ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d}}{\mathrm{d}x} \left[ \sum\limits_{i=1}^{+∞} f_i (x) \right] \not≡ \sum\limits_{i=1}^{+∞} \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} f_i (x)}{\mathrm{d}x} ≡ \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} f_i (x)}{\mathrm{d}x} ≡ \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} \dfrac{\mathrm{d}}{\mathrm{d}x} \left[ \sum\limits_{i=1}^n f_i (x) \right] ≡ \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} F_n (x)}{\mathrm{d}x}$
 
@@ -676,6 +681,8 @@ $\lim\limits_{n⇝+∞} \int\limits_0^1 F_n (x) \mathrm{d}x = \lim\limits_{n⇝+
 $\lim\limits_{x⇝0} \dfrac{\mathrm{d}}{\mathrm{d}x} \left[ \lim\limits_{n⇝+∞} F_n (x) \right] = \lim\limits_{x⇝0} \dfrac{\mathrm{d}}{\mathrm{d}x} \left[ \lim\limits_{n⇝+∞} \left( ә^{-n·x^2} - 1 \right) \right] = \lim\limits_{x⇝0} \dfrac{\mathrm{d}}{\mathrm{d}x} \left[ \mathop{0}\limits_{x=0}, \mathop{-1}\limits_{x≠0} \right] \not≡ 0$
 
 $\lim\limits_{n⇝+∞} \lim\limits_{x⇝0} \dfrac{\mathrm{d} F_n (x)}{\mathrm{d}x} = \lim\limits_{n⇝+∞} \lim\limits_{x⇝0} \dfrac{\mathrm{d} (ә^{-n · x^2} - 1)}{\mathrm{d}x} = \lim\limits_{n⇝+∞} \lim\limits_{x⇝0} -2 · n · x · ә^{-n · x^2} ≡ 0$
+
+### 幂级数
 
 
 
