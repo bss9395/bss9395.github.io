@@ -2,10 +2,35 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  无穷级数
-Update:  2021-01-26T17:27:00+08@中国-广东-湛江+08
+Update:  2021-01-28T19:46:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
+
+### 数列极限
+
+
+
+### 数列极限的性质
+
+若$\lim\limits_{n⇝+∞} S_n ⇝ S$，且 $\lim\limits_{n⇝+∞} T_n ⇝ T$。
+
+$\lim\limits_{n⇝+∞} [ S_n + T_n ] = \lim\limits_{n⇝+∞} S_n + \lim\limits_{n⇝+∞} T_n = S + T$
+
+$\lim\limits_{n⇝+∞} [ S_n - T_n ] = \lim\limits_{n⇝+∞} S_n - \lim\limits_{n⇝+∞} T_n = S - T$
+
+$\lim\limits_{n⇝+∞} [ S_n · T_n ] = \lim\limits_{n⇝∞} S_n · \lim\limits_{n⇝∞} T_n = S · T$
+
+$\lim\limits_{n⇝+∞} \dfrac{S_n}{T_n} = \dfrac{\lim\limits_{n⇝∞} S_n}{\lim\limits_{n⇝∞} T_n} = \dfrac{S}{T}$
+
+$\lim\limits_{n⇝+∞} [ \mathrm{Con.} · S_n ] = \mathrm{Con.} · \lim\limits_{n⇝+∞} S_n$
+
+| $⇓$  | $[ ∀ε_1>0;∃N∈ℕ;∀n≥N; | S_n - S | < ε_1 ] ∧ [∀ε_2>0;∃N∈ℕ;∀n≥N; | T_n - T | < ε_2]$ |
+| :--: | ------------------------------------------------------------ |
+| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | (S_n + T_n) - (S + T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
+| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | (S_n - T_n) - (S - T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
+| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | S_n · T_n - S · T | = | (S_n · T_n - S_n · T) + (S_n · T - S · T) | ≤ | S_n | · | T_n - T | + | S_n - S | · | T | ≤ \mathrm{Sup.} · ε_2 + ε_1 · | T | = ε$ |
+| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{S_n}{T_n} - \dfrac{S}{T} \right| = \dfrac{| S_n · T - S · T_n |}{| T_n | · | T |} = \dfrac{| (S_n · T - S · T) + (S · T - S · T_n) |}{| T_n | · | T |} = \dfrac{| S_n - S | · | T | + | S | · | T - T_n |}{| T_n | · | T |} ≤ \dfrac{ε_1 · | T | + | S | · ε_2}{\mathrm{Inf.} · | T |} = ε$ |
 
 ### 无穷级数
 
@@ -68,12 +93,6 @@ $\lim\limits_{n ⇝ +∞} S_n ⇝ S ⇒ \lim\limits_{i ⇝ +∞} s_i ⇝ 0$
 若通项不收敛于零，则无穷级数发散。
 
 $\lim\limits_{i ⇝ +∞} s_i \not⇝ 0 ⇒ \lim\limits_{n ⇝ +∞} S_n \not⇝ S$
-
-无穷级数满足加法运算。
-
-$c · \sum\limits_{i = 1}^{n} s_i = \sum\limits_{i = 1}^{n} (c · s_i)$
-
-$\sum\limits_{i = 1}^{n} (s_i ± t_i) = \sum\limits_{i = 1}^{n} s_i ± \sum\limits_{i = 1}^{n} t_i$
 
 将无穷级数的有限多项改变，其敛散性不变。
 
@@ -633,14 +652,17 @@ $\left[ ∃N∈ℕ;∀n≥N;∀m>n; \sup\limits_{x∈X} \left| \sum\limits_{i=n+
 
 若函数项为连续函数，但和函数非连续函数，则函数项级数必定非一致收敛。$Q ∧ ¬R ⇒ ¬P$
 
-| $\fbox{1}$ | $∀ε_1>0;∃δ>0;∀x∈X; x_0∈X ∧ | x - x_0 | < δ ⇒ | F_n (x) - F_n (x_0) | < ε_1$ |
-| :--------: | :----------------------------------------------------------- |
-| $\fbox{2}$ | $∀ε>0;∃N∈ℕ;∀n≥N;∀x∈X; | F_n (x) - F (x) | < ε$               |
+| $\fbox{1}$ | $∀ε_1>0;∃δ>0;∃N∈ℕ;∀x∈X;∀n≥N; x_0∈X ∧ | x - x_0 | < δ ⇒ | F_n (x) - F_n (x_0) | < ε_1$ |
+| :--------: | ------------------------------------------------------------ |
+| $\fbox{2}$ | $∀ε_3>0;∃N∈ℕ;∀n≥N;∀x∈X; | F_n (x) - F (x) | < ε_3$           |
 |    $⇓$     | $∀ε_2>0;∃N∈ℕ;∀n≥N; x_0∈X ⇒ | F_n (x_0) - F (x_0) | < ε_2$    |
-|    $⇓$     | $∀ε>0;∃δ>0;∃N∈ℕ;∀n≥N;∀x∈X; x_0∈X ∧ | x - x_0 | < δ ⇒ | F_n (x) - F (x_0) | < | F_n (x) - F_n (x_0) | + | F_n (x_0) - F (x_0) | < ε_1 + ε_2 = ε$ |
-|    $⇓$     | $∀ε>0;∃δ>0;∃N∈ℕ;∀n≥N;∀x∈X; x_0∈X ∧ | x - x_0 | < δ ⇒ | F_n (x) - F (x_0) | < ε$ |
-|    $⇕$     | $∀ε>0;∃δ>0;∃N∈ℕ;∀x∈X;∀n≥N; x_0∈X ∧ | x - x_0 | < δ ⇒ | F_n (x) - F (x_0) | < ε$ |
-|    $⇓$     | $\lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} F_n (x) \mathop{≡}\limits_{\fbox{2,1}} \lim\limits_{n⇝+∞ \\ x⇝x_0} F_n (x) \mathop{≡}\limits_{\fbox{1,2}} \lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x)$ |
+|    $⇓$     | $∀ε_1>0;∀ε_2>0;∀ε_4=ε_1+ε_2;∃δ>0;∃N∈ℕ;∀x∈X;∀n≥N; x_0∈X ∧ | x - x_0 | < δ ⇒ | F_n (x) - F (x_0) | < | F_n (x) - F_n (x_0) | + | F_n (x_0) - F (x_0) | < ε_4$ |
+|    $⇓$     | $∀ε_4>0;∃δ>0;∃N∈ℕ;∀x∈X;∀n≥N; x_0∈X ∧ | x - x_0 | < δ ⇒ | F_n (x) - F (x_0) | < ε_4$ |
+|    $⇕$     | $∀ε_4>0;∃δ>0;∃N∈ℕ;∀n≥N;∀x∈X; x_0∈X ∧ | x - x_0 | < δ ⇒ | F_n (x) - F (x_0) | < ε_4$ |
+|    $⇓$     | $\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x) \mathop{≡}\limits_{\fbox{1}} \lim\limits_{n⇝+∞ \\ x⇝x_0} F_n (x) \mathop{≡}\limits_{\fbox{2}} \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} F_n (x)$ |
+|    $⇓$     | $∀ε_3>0;∀ε_4>0;∀ε_5=ε_3+ε_4;∃δ>0;∃N∈ℕ;∀n≥N;∀x∈X; x_0∈X ∧ | x - x_0 | < δ ⇒ | F (x) - F (x_0) | ≤ | F (x) - F_n (x) | + | F_n (x) - F (x_0) | < ε_5$ |
+|    $⇓$     | $∀ε_5>0;∃δ>0;∀x∈X; x_0∈X ∧ | x - x_0 | < δ ⇒ | F (x) - F (x_0) | < ε_5$ |
+|    $⇓$     | $\lim\limits_{x⇝x_0} F (x) ⇝ F (x_0)$                        |
 
 若函数项级数$F_n (x)$在区间$X$上一致收敛，则多重极限可以随意交换极限运算的次序，反之亦然。
 
