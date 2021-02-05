@@ -2,12 +2,10 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  无穷级数
-Update:  2021-01-28T19:46:00+08@中国-广东-湛江+08
+Update:  2021-02-06T01:03:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
-
-### 数列极限
 
 
 
@@ -664,11 +662,11 @@ $\left[ ∃N∈ℕ;∀n≥N;∀m>n; \sup\limits_{x∈X} \left| \sum\limits_{i=n+
 |    $⇓$     | $∀ε_5>0;∃δ>0;∀x∈X; x_0∈X ∧ | x - x_0 | < δ ⇒ | F (x) - F (x_0) | < ε_5$ |
 |    $⇓$     | $\lim\limits_{x⇝x_0} F (x) ⇝ F (x_0)$                        |
 
-若函数项级数$F_n (x)$在区间$X$上一致收敛，则多重极限可以随意交换极限运算的次序，反之亦然。
+若函数项级数$F_n (x)$在区间$X$上一致收敛，则多重极限可以随意交换极限运算的次序。
 
 $\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x) ≡ \lim\limits_{n⇝+∞ \\ x⇝x_0} F_n (x) ≡ \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} F_n (x)$
 
-若函数项级数$F_n (x)$在区间$X$上非一致收敛，则多重极限不可随意交换极限运算的次序，反之亦然。
+若函数项级数$F_n (x)$在区间$X$上非一致收敛，则多重极限不可随意交换极限运算的次序。
 
 $\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x) \not≡ \lim\limits_{n⇝+∞ \\ x⇝x_0} F_n (x) \not≡ \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} F_n (x)$
 
@@ -680,15 +678,15 @@ $\lim\limits_{n⇝+∞ \\ x≡\frac{1}{2 · n}⇝0} F_n (x) = \lim\limits_{n⇝+
 
 $\lim\limits_{n⇝+∞} \lim\limits_{x⇝0} F_n (x) = \lim\limits_{n⇝+∞} 0 ⇝ 0 $
 
-函数项级数不可随意交换极限运算与求和运算的次序，除非函数项级数$F_n (x)$在区间$X$上一致收敛，反之亦然。
+函数项级数不可随意交换极限运算与求和运算的次序，除非函数项级数$F_n (x)$在区间$X$上一致收敛。
 
 $\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x) ≡ \lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} \sum\limits_{i=1}^{n} f_i (x) ≡ \lim\limits_{x⇝x_0} \sum\limits_{i=1}^{+∞} f_i (x) \not≡ \sum\limits_{i=1}^{+∞} \lim\limits_{x⇝x_0} f_i (x) ≡ \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n \lim\limits_{x⇝x_0} f_i (x) ≡ \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} \sum\limits_{i=1}^n f_i (x) ≡ \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} F_n (x)$
 
-函数项级数不可随意交换极限运算与积分运算的次序，除非函数项级数$F_n (x)$在区间$[α, β]$上一致收敛，反之亦然。
+函数项级数不可随意交换极限运算与积分运算的次序，除非函数项级数$F_n (x)$在区间$[α, β]$上一致收敛。？
 
 $\int\limits_α^β \left[ \lim\limits_{n⇝+∞} F_n (x) \right] \mathrm{d}x ≡ \int\limits_α^β \left[ \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n f_i (x) \right] \mathrm{d}x ≡ \int\limits_α^β \left[ \sum\limits_{i=1}^{+∞} f_i (x) \right] \mathrm{d}x \not≡ \sum\limits_{i=1}^{+∞} \left[ \int\limits_α^β f_i (x) \mathrm{d}x \right] ≡ \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n \left[ \int\limits_α^β f_i (x) \mathrm{d}x \right] ≡ \lim\limits_{n⇝+∞} \int\limits_α^β \left[ \sum\limits_{i=1}^n f_i (x) \right] \mathrm{d}x ≡ \lim\limits_{n⇝+∞} \int\limits_α^β F_n (x) \mathrm{d}x$
 
-函数项级数不可随意交换极限运算与求导运算的次序，除非函数项级数$F_n (x)$在区间$X$上一致收敛，反之亦然。
+函数项级数不可随意交换极限运算与求导运算的次序，除非函数项级数$F_n (x)$在区间$X$上一致收敛。？
 
 $\lim\limits_{x⇝x_0} \dfrac{\mathrm{d}}{\mathrm{d}x} \left[ \lim\limits_{n⇝+∞} F_n (x) \right] ≡ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d}}{\mathrm{d}x} \left[ \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n f_i (x) \right] ≡ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d}}{\mathrm{d}x} \left[ \sum\limits_{i=1}^{+∞} f_i (x) \right] \not≡ \sum\limits_{i=1}^{+∞} \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} f_i (x)}{\mathrm{d}x} ≡ \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} f_i (x)}{\mathrm{d}x} ≡ \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} \dfrac{\mathrm{d}}{\mathrm{d}x} \left[ \sum\limits_{i=1}^n f_i (x) \right] ≡ \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} F_n (x)}{\mathrm{d}x}$
 
@@ -706,6 +704,62 @@ $\lim\limits_{n⇝+∞} \lim\limits_{x⇝0} \dfrac{\mathrm{d} F_n (x)}{\mathrm{d
 
 ### 幂级数
 
+幂级数的部分和
 
+$F_n (x) ≡ \sum\limits_{i=1}^n p_i · (x - x_0)^i$
+
+幂级数的极限
+
+$\lim\limits_{n⇝+∞} F_n (x) ≡ \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n p_i · (x - x_0)^i ≡ \sum\limits_{i=1}^{+∞} p_i · (x - x_0)^i$
+
+幂级数收敛
+
+$\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x) ⇝ F (x_0) ⇔ \lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} | F_n (x) - F (x_0) | ⇝ 0$
+
+$\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n p_i · (x - x_0)^i ⇝ F (x_0) ⇔ \lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} \left| \sum\limits_{i=1}^n p_i · (x - x_0)^i - F (x_0) \right| ⇝ 0$
+
+幂级数发散
+
+$\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} F_n (x) \not⇝ F (x_0) ⇔ \lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} | F_n (x) - F (x_0) | \not⇝ 0$
+
+$\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n p_i · (x - x_0)^i \not⇝ F (x_0) ⇔ \lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} \left| \sum\limits_{i=1}^n p_i · (x - x_0)^i - F (x_0) \right| \not⇝ 0$
+
+### 幂级数收敛的性质
+
+若幂级数在点$x_1 - x_0$处条件收敛，则在区间$| x - x_0 | < | x_1 - x_0 |$内绝对收敛且条件收敛。
+
+若幂级数在点$x_2 - x_0$处绝对发散，则在区间$| x - x_0 | ≥ | x_2 - x_0 |$外条件发散且绝对发散。
+
+$\left[ \sum\limits_{i=1}^{+∞} | p_i · (x_1 - x_0)^i | ⇝ F_{||} (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x_2 - x_0)^i | \mathop{⇝}\limits_{| x_2 - x_0 | < | x_1 - x_0 |} F_{||} (x_2) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x - x_0)^i \mathop{⇝}\limits_{| x - x_0 | ≤ | x_2 - x_0 | < | x_1 - x_0 |} F (x) \right]$   
+
+$\left[ \sum\limits_{i=1}^{+∞} p_i · (x_2 - x_0)^i \not⇝ F (x_2) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x_2 - x_0)^i | \not⇝ F_{||} (x_2) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i \mathop{\not⇝}\limits_{| x_1 - x_0 | ≥ | x_2 - x_0 |} F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{\not⇝}\limits_{| x - x_0 | ≥ | x_1 - x_0 | ≥ | x_2 - x_0 |} F_{||} (x) \right]$  
+
+| $⇓$  | $\sum\limits_{i=1}^{+∞} | p_i · (x_2 - x_0)^i | = \sum\limits_{i=1}^{+∞} | p_i · (x_1 - x_0)^i | · \dfrac{| x_2 - x_0 |^i}{| x_1 - x_0 |^i}$ |                             | $\dfrac{| x_2 - x_1 |^i}{| x_1 - x_0 |^i} = \dfrac{1}{γ^i}$  |
+| :--: | -----------------------------------------------------------: | :-------------------------: | :----------------------------------------------------------- |
+| $⇓$  | $\left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x_2 - x_0)^i | \mathop{⇝}\limits_{| x_2 - x_0 | < | x_1 - x_0 |} F_{||} (x_2) \right]$ | $\mathop{⇐}\limits^{γ > 1}$ | $\left[ | p_i · (x_1 - x_0)^i | ≤ \mathrm{Sup.} \right] ∧ \left[ \sum\limits_{i=1}^{+∞} \dfrac{| x_2 - x_0 |^i}{| x_1 - x_0 |^i} ⇝ \mathrm{Con.} \right]$ |
+| $⇓$  | $\left[ \sum\limits_{i=1}^{+∞} | p_i · (x_2 - x_0)^i | \not⇝ F_{||} (x_2) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i \mathop{\not⇝}\limits_{| x_2 - x_0 | < | x_1 - x_0 |} F (x_1) \right]$ |                             |                                                              |
+
+幂级数的绝对收敛半径$R$与绝对发散半径$\overline{R}$。
+
+$R ≡ \dfrac{1}{\varlimsup\limits_{i⇝+∞} \sqrt[i]{| p_i |}} ≡ \varliminf\limits_{i⇝+∞} \dfrac{1}{\sqrt[i]{| p_i |}} < \varlimsup\limits_{i⇝+∞} \dfrac{1}{\sqrt[i]{| p_i |}} ≡ \dfrac{1}{\varliminf\limits_{i⇝+∞} \sqrt[i]{| p_i |}} ≡ \overline{R}$
+
+幂级数在绝对收敛半径内区间上绝对一致收敛。
+
+幂级数在绝对收敛半径内绝对收敛且条件收敛，幂级数在绝对发散半径外绝对发散且条件发散。
+
+$\left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0 )^i | \mathop{↭}\limits_{| x - x_0 | ≤ R_γ < R} F_{||} (x) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x - x_0 )^i \mathop{↭}\limits_{| x - x_0 | ≤ R_γ < R} F_{||} (x) \right]$
+
+$\left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{⇝}\limits_{| x - x_0 | < R} F_{||} (x) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x - x_0)^i \mathop{⇝}\limits_{| x - x_0 | < R} F (x) \right]$
+
+$\left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{\not⇝}\limits_{| x - x_0 | > \overline{R}} F_{||} (x) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x - x_0)^i \mathop{\not⇝}\limits_{| x - x_0 | > \overline{R}} F (x) \right]$
+
+| $⇑$  | $\varlimsup\limits_{i⇝+∞} | p_i · (x - x_0)^i | ⇝ \dfrac{1}{γ_+^i}$ |     $\mathop{⇒}\limits^{γ_+ > 1}$      | $\sum\limits_{i=1}^{+∞} | p_i · (x - x_0 )^i | ↭ F_{||} (x)$ |
+| :--: | -----------------------------------------------------------: | :------------------------------------: | :----------------------------------------------------------- |
+| $⇑$  | $\varliminf\limits_{i⇝+∞} \dfrac{1}{\sqrt[i]{| p_i · (x - x_0)^i |}} = \varliminf\limits_{i⇝+∞} \dfrac{1}{\sqrt[i]{| p_i |} · | x - x_0 |} ⇝ γ_+ > 1$ |     $\mathop{⇒}\limits^{γ_+ > 1}$      | $\sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | ⇝ F_{||} (x)$  |
+| $⇑$  | $\varlimsup\limits_{i⇝+∞} \dfrac{1}{\sqrt[i]{| p_i · (x - x_0)^i |}} = \varlimsup\limits_{i⇝+∞} \dfrac{1}{\sqrt[i]{| p_i |} · | x - x_0 |} ⇝ γ_- < 1$ |     $\mathop{⇒}\limits^{γ_- < 1}$      | $\sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \not⇝ F_{||} (x)$ |
+| $⇑$  | $R ≡ \dfrac{1}{\varlimsup\limits_{i⇝+∞} \sqrt[i]{| p_i |}} ≡ \varliminf\limits_{i⇝+∞} \dfrac{1}{\sqrt[i]{| p_i |}} ⇝ γ_+ · | x - x_0 | > | x - x_0 |$ |                                        | $\overline{R} ≡ \dfrac{1}{\varliminf\limits_{i⇝+∞} \sqrt[i]{| p_i |}} ≡ \varlimsup\limits_{i⇝+∞} \dfrac{1}{\sqrt[i]{| p_i |}} ⇝ γ_- · | x - x_0 | < | x - x_0 |$ |
+| $⇑$  |                         $R_γ ≡ \dfrac{R}{γ_+} ≥ | x - x_0 |$ |     $\mathop{⇒}\limits^{γ_+ > 1}$      | $\sum\limits_{i=1}^{+∞} | p_i · (x - x_0 )^i | \mathop{↭}\limits_{| x - x_0 | ≤ R_{γ} < R} F_{||} (x)$ |
+| $⇑$  |                                            $R > | x - x_0 |$ |                  $⇒$                   | $\sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{⇝}\limits_{| x - x_0 | < R} F_{||} (x)$ |
+| $⇑$  |                                 $\overline{R} < | x - x_0 |$ | $\mathop{⇒}\limits^{\overline{R} ≥ R}$ | $\sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{\not⇝}\limits_{| x - x_0 | > \overline{R}} F_{||} (x)$ |
 
 
