@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  无穷级数
-Update:  2021-02-06T01:03:00+08@中国-广东-湛江+08
+Update:  2021-02-06T23:39:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -46,7 +46,7 @@ $\varliminf\limits_{n ⇝ +∞} S_n ≡ \mathop{\lim\inf}\limits_{n ⇝ +∞} S_
 
 $\varlimsup\limits_{n ⇝ +∞} S_n ≡ \mathop{\lim\sup}\limits_{n ⇝ +∞} S_n ≡ \lim\limits_{n ⇝ +∞}\sup\limits_{m ≥ n} S_m ≡ \lim\limits_{n ⇝ +∞}\sup\limits_{m ≥ n} \sum\limits_{i = 1}^m s_i$
 
-$\varliminf\limits_{n ⇝ +∞} S_n ≤ \varlimsup\limits_{n ⇝ +∞} S_n$
+$\dfrac{1}{\varlimsup\limits_{n⇝+∞} T_n} = \varliminf\limits_{n⇝+∞} \dfrac{1}{T_n} = \varliminf\limits_{n⇝+∞}  S_n ≤ \varlimsup\limits_{n⇝+∞} S_n = \varlimsup\limits_{n⇝+∞} \dfrac{1}{T_n} = \dfrac{1}{\varliminf\limits_{n⇝+∞} T_n}$
 
 典例：无穷级数的下极限与上极限
 
@@ -112,9 +112,9 @@ $\lim\limits_{i ⇝ +∞} S_{2 · i - 1} ⇝ -1, \lim\limits_{i ⇝ +∞} S_{2 �
 
 若无穷级数收敛，则其部分和的极限之差为无穷小。
 
-$[∀ε>0;∃N∈ℕ;∀n>N; |S_n - S| < ε] ⇔ [∀ε>0;∃N∈ℕ;∀n>N;∀m>N;|S_m - S_n| < ε]$
+$[∀ε>0;∃N∈ℕ;∀n≥N; |S_n - S| < ε] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀m>N;|S_m - S_n| < ε]$
 
-$[∀ε>0;∃N∈ℕ;∀n>N; \left| \sum\limits_{i=1}^n s_i - S \right| < ε] ⇔ [∀ε>0;∃N∈ℕ;∀n>N;∀m>n; \left| \sum\limits_{i=n+1}^m s_i \right| < ε]$
+$[∀ε>0;∃N∈ℕ;∀n≥N; \left| \sum\limits_{i=1}^n s_i - S \right| < ε] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \left| \sum\limits_{i=n+1}^m s_i \right| < ε]$
 
 $[∀ε>0;∃N∈ℕ; n ≥ N ⇒ | S_n - S | < ε] ⇔ [∀ε>0;∃N∈ℕ; n ≥ N ∧ m ≥ N ⇒ |S_m - S_n| < ε]$
 
@@ -122,9 +122,9 @@ $[∀ε>0;∃N∈ℕ; n ≥ N ⇒ \left| \sum\limits_{i=1}^n s_i - S \right| < �
 
 若无穷级数发散，则其部分和的极限之差非无穷小。
 
-$[∃ε>0;∀N∈ℕ;∃n>N; |S_n - S| ≥ ε] ⇔ [∃ε>0;∀N∈ℕ;∃n>N; |S_m - S_n| ≥ ε]$
+$[∃ε>0;∀N∈ℕ;∃n≥N; |S_n - S| ≥ ε] ⇔ [∃ε>0;∀N∈ℕ;∃n≥N; |S_m - S_n| ≥ ε]$
 
-$[∃ε>0;∀N∈ℕ;∃n>N; \left| \sum\limits_{i=1}^n s_i - S \right| ≥ ε] ⇔ [∃ε>0;∀N∈ℕ;∃n>N;∃m>n; \left| \sum\limits_{i=n+1}^m s_i \right| ≥ ε$
+$[∃ε>0;∀N∈ℕ;∃n≥N; \left| \sum\limits_{i=1}^n s_i - S \right| ≥ ε] ⇔ [∃ε>0;∀N∈ℕ;∃n≥N;∃m>n; \left| \sum\limits_{i=n+1}^m s_i \right| ≥ ε$
 
 $[∃ε>0;∀N∈ℕ; n ≥ N ∧ | S_n - S | ≥ ε] ⇔ [∃ε>0;∀N∈ℕ; n ≥ N ∧ m ≥ N ∧ |S_m - S_n| ≥ ε]$
 
@@ -132,17 +132,17 @@ $[∃ε>0;∀N∈ℕ; n ≥ N ∧ \left| \sum\limits_{i=1}^n s_i - S \right| ≥
 
 必要性证明，根据三角不等关系式。
 
-| $⇓$  | $∀ε_1>0;∃N∈ℕ;∀n>N; \lvert S_n - S \rvert < ε_1] ∧ [∀ε_2>0;∃N∈ℕ;∀m>N; \lvert S_m - S \rvert < ε_2$ |
+| $⇓$  | $∀ε_1>0;∃N∈ℕ;∀n≥N; \lvert S_n - S \rvert < ε_1] ∧ [∀ε_2>0;∃N∈ℕ;∀m>N; \lvert S_m - S \rvert < ε_2$ |
 | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∀ε=ε_1 + ε_2;∃N∈ℕ;∀n>N;∀m>N; \lvert S_m - S_n \rvert ≤ \lvert S_m - S \rvert + \lvert S_n - S \rvert < ε_1 + ε_2 = ε$ |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n>N;∀m>N; \lvert S_m - S_n \rvert < ε$           |
+| $⇓$  | $∀ε=ε_1 + ε_2;∃N∈ℕ;∀n≥N;∀m>N; \lvert S_m - S_n \rvert ≤ \lvert S_m - S \rvert + \lvert S_n - S \rvert < ε_1 + ε_2 = ε$ |
+| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N;∀m>N; \lvert S_m - S_n \rvert < ε$           |
 
 充分性证明，根据上下确界关系式。
 
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n>N;∀m>N; \lvert S_m - S_n \rvert < ε$           |
+| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N;∀m>N; \lvert S_m - S_n \rvert < ε$           |
 | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∃S;∀ε=ε_1+ε_2;∃N∈ℕ;∀n>N;∀m>N; S - ε_1 < S_m, S_n < S + ε_2$ |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n>N;\lvert S_n - S \rvert < ε$                   |
+| $⇓$  | $∃S;∀ε=ε_1+ε_2;∃N∈ℕ;∀n≥N;∀m>N; S - ε_1 < S_m, S_n < S + ε_2$ |
+| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N;\lvert S_n - S \rvert < ε$                   |
 
 ### 无穷级数的分部审敛法
 
@@ -726,28 +726,37 @@ $\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} \sum\limits_{i=1}^n p_i · (x - x_
 
 ### 幂级数收敛的性质
 
-若幂级数在点$x_1 - x_0$处条件收敛，则在区间$| x - x_0 | < | x_1 - x_0 |$内绝对收敛且条件收敛。
+若幂级数在点$x_1 - x_0$处条件收敛，则在区间$[0, x_1 - x_0]$上条件一致收敛。
 
-若幂级数在点$x_2 - x_0$处绝对发散，则在区间$| x - x_0 | ≥ | x_2 - x_0 |$外条件发散且绝对发散。
+$\left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x - x_0) \mathop{↭}\limits_{x - x_0 ∈ [0, x_1 - x_0]} F (x) \right]$
+
+若幂级数在点$x_1 - x_0$处条件收敛，则在区间$| x - x_0 | < | x_1 - x_0 |$上绝对收敛，且在区间$| x - x_0 | < | x_1 - x_0 |$上条件收敛。
+
+若幂级数在点$x_2 - x_0$处绝对发散，则在区间$| x - x_0 | > | x_2 - x_0 |$上条件发散，且在区间$| x - x_0 | ≥ | x_2 - x_0 |$上绝对发散。
+
+若幂级数在点$x_1 - x_0$处绝对收敛，则在区间$| x - x_0 | ≤ | x_1 - x_0 |$上绝对收敛，且在区间$| x - x_0 | ≤ | x_1 - x_0 |$上条件收敛。
+
+若幂级数在点$x_2 - x_0$处条件发散，则在区间$| x - x_0 | > | x_2 - x_0 |$上条件发散，且在区间$| x - x_0 | ≥ | x_2 - x_0 |$上绝对发散。
 
 $\left[ \sum\limits_{i=1}^{+∞} | p_i · (x_1 - x_0)^i | ⇝ F_{||} (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x_2 - x_0)^i | \mathop{⇝}\limits_{| x_2 - x_0 | < | x_1 - x_0 |} F_{||} (x_2) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x - x_0)^i \mathop{⇝}\limits_{| x - x_0 | ≤ | x_2 - x_0 | < | x_1 - x_0 |} F (x) \right]$   
 
-$\left[ \sum\limits_{i=1}^{+∞} p_i · (x_2 - x_0)^i \not⇝ F (x_2) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x_2 - x_0)^i | \not⇝ F_{||} (x_2) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i \mathop{\not⇝}\limits_{| x_1 - x_0 | ≥ | x_2 - x_0 |} F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{\not⇝}\limits_{| x - x_0 | ≥ | x_1 - x_0 | ≥ | x_2 - x_0 |} F_{||} (x) \right]$  
+$\left[ \sum\limits_{i=1}^{+∞} p_i · (x_2 - x_0)^i \not⇝ F (x_2) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x_2 - x_0)^i | \not⇝ F_{||} (x_2) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i \mathop{\not⇝}\limits_{| x_1 - x_0 | > | x_2 - x_0 |} F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{\not⇝}\limits_{| x - x_0 | ≥ | x_1 - x_0 | > | x_2 - x_0 |} F_{||} (x) \right]$  
 
-| $⇓$  | $\sum\limits_{i=1}^{+∞} | p_i · (x_2 - x_0)^i | = \sum\limits_{i=1}^{+∞} | p_i · (x_1 - x_0)^i | · \dfrac{| x_2 - x_0 |^i}{| x_1 - x_0 |^i}$ |                             | $\dfrac{| x_2 - x_1 |^i}{| x_1 - x_0 |^i} = \dfrac{1}{γ^i}$  |
-| :--: | -----------------------------------------------------------: | :-------------------------: | :----------------------------------------------------------- |
-| $⇓$  | $\left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x_2 - x_0)^i | \mathop{⇝}\limits_{| x_2 - x_0 | < | x_1 - x_0 |} F_{||} (x_2) \right]$ | $\mathop{⇐}\limits^{γ > 1}$ | $\left[ | p_i · (x_1 - x_0)^i | ≤ \mathrm{Sup.} \right] ∧ \left[ \sum\limits_{i=1}^{+∞} \dfrac{| x_2 - x_0 |^i}{| x_1 - x_0 |^i} ⇝ \mathrm{Con.} \right]$ |
-| $⇓$  | $\left[ \sum\limits_{i=1}^{+∞} | p_i · (x_2 - x_0)^i | \not⇝ F_{||} (x_2) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i \mathop{\not⇝}\limits_{| x_2 - x_0 | < | x_1 - x_0 |} F (x_1) \right]$ |                             |                                                              |
+| $⇓$  | $\sum\limits_{i=1}^{+∞} p_i · (x - x_0)^i = \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i · \dfrac{(x - x_0 )^i}{(x_1 - x_0)^i}$ |      |                                                              |
+| :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
+|      | $\left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x - x_0) \mathop{↭}\limits_{x - x_0 ∈ [0, x_1 - x_0]} F (x) \right]$ | $⇐$  | $\left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ∧ \left[ \left| \dfrac{x - x_0}{x_1 - x_0} \right| ≤ 1 \right]$ |
+| $⇓$  | $\left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{⇝}\limits_{| x - x_0 | < | x_1 - x_0 |} F_{||} (x) \right]$ | $⇐$  | $[ | p_i · (x_1 - x_0)^i | ≤ \mathrm{Sup.} ] ∧ \left[ \sum\limits_{i=1}^{+∞} \dfrac{| x - x_0 |^i}{| x_1 - x_0 |^i} ⇝ \mathrm{Con.} \right]$ |
+| $⇓$  | $\left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \not⇝ F_{||} (x) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i \mathop{\not⇝}\limits_{| x - x_0 | < | x_1 - x_0 |} F (x_1) \right]$ |      |                                                              |
 
 幂级数的绝对收敛半径$R$与绝对发散半径$\overline{R}$。
 
 $R ≡ \dfrac{1}{\varlimsup\limits_{i⇝+∞} \sqrt[i]{| p_i |}} ≡ \varliminf\limits_{i⇝+∞} \dfrac{1}{\sqrt[i]{| p_i |}} < \varlimsup\limits_{i⇝+∞} \dfrac{1}{\sqrt[i]{| p_i |}} ≡ \dfrac{1}{\varliminf\limits_{i⇝+∞} \sqrt[i]{| p_i |}} ≡ \overline{R}$
 
-幂级数在绝对收敛半径内区间上绝对一致收敛。
+幂级数在绝对收敛半径内区间$[-R_γ, +R_γ]$上绝对一致收敛。
 
-幂级数在绝对收敛半径内绝对收敛且条件收敛，幂级数在绝对发散半径外绝对发散且条件发散。
+幂级数在绝对收敛半径内绝对收敛且条件收敛，幂级数在绝对发散半径外条件发散且绝对发散。
 
-$\left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0 )^i | \mathop{↭}\limits_{| x - x_0 | ≤ R_γ < R} F_{||} (x) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x - x_0 )^i \mathop{↭}\limits_{| x - x_0 | ≤ R_γ < R} F_{||} (x) \right]$
+$\left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0 )^i | \mathop{↭}\limits_{| x - x_0 | ≤ R_γ < R} F_{||} (x) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x - x_0 )^i \mathop{↭}\limits_{| x - x_0 | ≤ R_γ < R} F (x) \right]$
 
 $\left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{⇝}\limits_{| x - x_0 | < R} F_{||} (x) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x - x_0)^i \mathop{⇝}\limits_{| x - x_0 | < R} F (x) \right]$
 
@@ -762,4 +771,27 @@ $\left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{\not⇝}\limits_
 | $⇑$  |                                            $R > | x - x_0 |$ |                  $⇒$                   | $\sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{⇝}\limits_{| x - x_0 | < R} F_{||} (x)$ |
 | $⇑$  |                                 $\overline{R} < | x - x_0 |$ | $\mathop{⇒}\limits^{\overline{R} ≥ R}$ | $\sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{\not⇝}\limits_{| x - x_0 | > \overline{R}} F_{||} (x)$ |
 
+幂级数在绝对收敛半径内区间$| x - x_0 | < R$上，连续且有任意阶导数。
+
+幂级数在绝对收敛半径内区间$| x - x_0 | ≤ R_γ < R$上，可逐项积分且积分后绝对收敛半径不变，端点处敛散性可能由发散变成收敛。
+
+幂级数在绝对收敛半径内区间$| x - x_0 | ≤ R_γ < R$上，可逐项求导且求导后绝对收敛半径不变，端点处敛散性可能由收敛变成发散。
+
+$\int\limits_{x_0}^{x} \mathrm{d} x · \lim\limits_{n⇝+∞} F_n (x) ≡ \int\limits_{x_0}^{x} \mathrm{d} x · \sum\limits_{i=1}^{+∞} p_i · (x - x_0)^i ≡ \sum\limits_{i=1}^{+∞} \int\limits_{x_0}^{x}\mathrm{d} x · p_i · (x - x_0)^i ≡ \lim\limits_{n⇝+∞} \int\limits_{x_0}^{x} \mathrm{d} x · F_n (x) ≡ \sum\limits_{i=1}^{+∞} \dfrac{p_i}{i + 1} · (x - x_0)^{i + 1}$
+
+$\dfrac{\mathrm{d}}{\mathrm{d} x} \lim\limits_{n⇝+∞} F_n (x) ≡ \dfrac{\mathrm{d}}{\mathrm{d} x} \sum\limits_{i=1}^{+∞} [ p_i · (x - x_0)^i ] ≡ \sum\limits_{i=1}^{+∞} \dfrac{\mathrm{d}}{\mathrm{d} x} [ p_i · (x - x_0)^i] ≡ \lim\limits_{n⇝+∞} \dfrac{\mathrm{d}}{\mathrm{d} x} F_n (x) ≡ \sum\limits_{i=1}^{+∞} [ p_i · i · (x - x_0)^{i - 1} ]$
+
+$\varliminf\limits_{n⇝+∞} \sqrt[i]{\left| \dfrac{p_i}{i + 1} \right|} = \dfrac{\varliminf\limits_{n⇝+∞} \sqrt[i]{| p_i |}}{\varlimsup\limits_{n⇝+∞} \sqrt[i]{i + 1}} = R = \varliminf\limits_{n⇝+∞} \sqrt[i]{| p_i · i |} = \varliminf\limits_{n⇝+∞} \sqrt[i]{| p_i |} · \varliminf\limits_{n⇝+∞} \sqrt[i]{i} $
+
+幂级数在绝对收敛半径$±R$处的敛散性不恒定。
+
+典例：幂级数$\sum\limits_{i=0}^{+∞} (-x)^i = \dfrac{1}{1 + x}$的绝对收敛半径为$R = 1$。
+
+$\lim\limits_{x⇝1^-} \sum\limits_{i=0}^{+∞} (-x)^i = \lim\limits_{x⇝1^-} \dfrac{1}{1 + x} ⇝ \dfrac{1}{2} \not⇜ \sum\limits_{i=0}^{+∞} (-1)^i = \sum\limits_{i=0}^{+∞} \lim\limits_{x⇝1^-} (-x)^i$
+
+若幂级数在点$x_1 - x_0$处的极限收敛，则在点$x_1 - x_0$处收敛为该极限。
+
+$\left[ \lim\limits_{x⇝x_1^-} \sum\limits_{i=0}^{+∞} | p_i | · (x - x_0)^i ⇝ F_{x_1^-} \right] \mathop{⇒}\limits^{x_1 > x_0} \left[ \sum\limits_{i=0}^{+∞} | p_i | · (x_1 - x_0)^i ⇝ F_{x_1^-} \right]$
+
+$F_{x_1^-} ⇜ \lim\limits_{x⇝x_1^-} \sum\limits_{i=0}^{+∞} | p_i | · (x - x_0)^i ≤ \sum\limits_{i=0}^{+∞} | p_i | · (x_1 - x_0)^i = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \lim\limits_{x⇝x_1^-} | p_i | · (x - x_0)^i = \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_1^-} \sum\limits_{i=0}^n | p_i | · (x - x_0)^i ≤ \left[ \lim\limits_{n⇝+∞} \right] \lim\limits_{x⇝x_1^-} \sum\limits_{i=0}^{+∞} | p_i | · (x - x_0)^i ⇝ F_{x_1^-}$
 
