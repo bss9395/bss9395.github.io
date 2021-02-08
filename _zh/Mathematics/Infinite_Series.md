@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  无穷级数
-Update:  2021-02-08T04:05:00+08@中国-广东-湛江+08
+Update:  2021-02-09T01:21:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -29,6 +29,26 @@ $\lim\limits_{n⇝+∞} [ \mathrm{Con.} · S_n ] = \mathrm{Con.} · \lim\limits_
 | $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | (S_n - T_n) - (S - T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
 | $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | S_n · T_n - S · T | = | (S_n · T_n - S_n · T) + (S_n · T - S · T) | ≤ | S_n | · | T_n - T | + | S_n - S | · | T | ≤ \mathrm{Sup.} · ε_2 + ε_1 · | T | = ε$ |
 | $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{S_n}{T_n} - \dfrac{S}{T} \right| = \dfrac{| S_n · T - S · T_n |}{| T_n | · | T |} = \dfrac{| (S_n · T - S · T) + (S · T - S · T_n) |}{| T_n | · | T |} = \dfrac{| S_n - S | · | T | + | S | · | T - T_n |}{| T_n | · | T |} ≤ \dfrac{ε_1 · | T | + | S | · ε_2}{\mathrm{Inf.} · | T |} = ε$ |
+
+典例：数列$\lim\limits_{n⇝+∞} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝+∞} s_n \mathop{⇝}\limits^{s≠∞} s$
+
+| $⇓$  |  $\lim\limits_{n⇝+∞} s_n ⇝ 0$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{s_0 + ··· + s_n}{n + 1} \right| ≤ \left| \dfrac{s_0 + ··· + s_{N-1}}{n + 1} \right| + \left| \dfrac{s_N + ··· + s_n}{n + 1} \right| ≤ \dfrac{\mathrm{Sup.}}{n + 1} + \dfrac{n - N + 1}{n + 1} · ε_1 = ε$ |
+| :--: | ----------------------------: | :--: | :----------------------------------------------------------- |
+| $⇓$  |  $\lim\limits_{n⇝+∞} s_n ⇝ s$ | $⇔$  | $\lim\limits_{n⇝+∞} (s_n - s) ⇝ 0$                           |
+| $⇓$  | $\lim\limits_{n⇝+∞} s_n ⇝ +∞$ | $⇒$  | $∃ε>0;∀N∈ℕ;∃n≥N; \dfrac{s_0 + ··· + s_n}{n + 1} = \dfrac{s_0 + ··· + s_{N-1}}{n + 1} + \dfrac{s_N + ··· + s_n}{n + 1} > \dfrac{\mathrm{Inf.}}{n + 1} + \dfrac{n - N + 1}{n+1} · ε_2 = ε$ |
+| $⇓$  | $\lim\limits_{n⇝+∞} s_n ⇝ -∞$ | $⇔$  | $\lim\limits_{n⇝+∞} -s_n ⇝ +∞$                               |
+| $⇓$  |                               |      | $\lim\limits_{n⇝+∞} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝+∞} s_n \mathop{⇝}\limits^{s≠∞} s$ |
+
+反例：数列$\lim\limits_{n⇝+∞} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right]$
+
+$\lim\limits_{n⇝+∞} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right] ≈ \lim\limits_{2 · n⇝+∞} \dfrac{0 + (-1 + 2) + (-3 + 4) + ··· + [-(2 · n + 1) + 2 · n]}{2 · n + 1} = \lim\limits_{n⇝+∞} \dfrac{n}{2 · n + 1} ⇝ \dfrac{1}{2} ≠ ∞ ⇜ \lim\limits_{n⇝+∞} (-i)^i · i$
+
+典例：数列$\lim\limits_{n⇝+∞} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n - i} \right] = \lim\limits_{n⇝+∞} s_n · t_n = \lim\limits_{n⇝+∞} s_n · \lim\limits_{n⇝+∞} t_n \mathop{⇝}\limits_{t≠∞}^{s≠∞} s·t$
+
+| $⇓$  | $\left[ \lim\limits_{n⇝+∞} s_n ⇝ 0 \right] ∧ \left[ \lim\limits_{n⇝+∞} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝+∞} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] ≤ \lim\limits_{n⇝+∞} \left[ \dfrac{\mathrm{Sup.}\lbrace t_i \rbrace}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \mathrm{Sup.}\lbrace t_i \rbrace \lim\limits_{n⇝+∞} · s_n ⇝ 0$ |
+| :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\left[ \lim\limits_{n⇝+∞} s_n ⇝ s \right] ⇔ \left[ \lim\limits_{n⇝+∞} (s_n - s) ⇝ 0 \right]$ | $⇒$  | $\lim\limits_{n⇝+∞} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] = \lim\limits_{n⇝+∞} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (s_i - s) · t_{n-i} + \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s · t_{n-i} \right] ⇝ s · t$ |
+| $⇓$  |                                                              |      | $\lim\limits_{n⇝+∞} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] = \lim\limits_{n⇝+∞} s_n · t_n = \lim\limits_{n⇝+∞} s_n · \lim\limits_{n⇝+∞} t_n \mathop{⇝}\limits_{t≠∞}^{s≠∞} s · t$ |
 
 ### 无穷级数
 
@@ -114,21 +134,21 @@ $\lim\limits_{i ⇝ +∞} S_{2 · i - 1} ⇝ -1, \lim\limits_{i ⇝ +∞} S_{2 �
 
 $[∀ε>0;∃N∈ℕ;∀n≥N; |S_n - S| < ε] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀m>N;|S_m - S_n| < ε]$
 
-$[∀ε>0;∃N∈ℕ;∀n≥N; \left| \sum\limits_{i=0}^n s_i - S \right| < ε] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \left| \sum\limits_{i=n+1}^m s_i \right| < ε]$
+$[∀ε>0;∃N∈ℕ;∀n≥N; \left| \sum\limits_{i=0}^n s_i - S \right| < ε] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \left| \sum\limits_{i=n}^m s_i \right| < ε]$
 
 $[∀ε>0;∃N∈ℕ; n ≥ N ⇒ | S_n - S | < ε] ⇔ [∀ε>0;∃N∈ℕ; n ≥ N ∧ m > N ⇒ |S_m - S_n| < ε]$
 
-$[∀ε>0;∃N∈ℕ; n ≥ N ⇒ \left| \sum\limits_{i=0}^n s_i - S \right| < ε] ⇔ [∀ε>0;∃N∈ℕ; n ≥ N ∧ m > n ⇒ \left| \sum\limits_{i=n + 1}^m s_i \right| < ε]$
+$[∀ε>0;∃N∈ℕ; n ≥ N ⇒ \left| \sum\limits_{i=0}^n s_i - S \right| < ε] ⇔ [∀ε>0;∃N∈ℕ; n ≥ N ∧ m > n ⇒ \left| \sum\limits_{i=n}^m s_i \right| < ε]$
 
 若无穷级数发散，则其部分和的极限之差非无穷小。
 
 $[∃ε>0;∀N∈ℕ;∃n≥N; |S_n - S| ≥ ε] ⇔ [∃ε>0;∀N∈ℕ;∃n≥N;∃m>N; |S_m - S_n| ≥ ε]$
 
-$[∃ε>0;∀N∈ℕ;∃n≥N; \left| \sum\limits_{i=0}^n s_i - S \right| ≥ ε] ⇔ [∃ε>0;∀N∈ℕ;∃n≥N;∃m>n; \left| \sum\limits_{i=n+1}^m s_i \right| ≥ ε$
+$[∃ε>0;∀N∈ℕ;∃n≥N; \left| \sum\limits_{i=0}^n s_i - S \right| ≥ ε] ⇔ [∃ε>0;∀N∈ℕ;∃n≥N;∃m>n; \left| \sum\limits_{i=n}^m s_i \right| ≥ ε$
 
 $[∃ε>0;∀N∈ℕ; n ≥ N ∧ | S_n - S | ≥ ε] ⇔ [∃ε>0;∀N∈ℕ; n ≥ N ∧ m > N ∧ |S_m - S_n| ≥ ε]$
 
-$[∃ε>0;∀N∈ℕ; n ≥ N ∧ \left| \sum\limits_{i=0}^n s_i - S \right| ≥ ε] ⇔ [∃ε>0;∀N∈ℕ; n ≥ N ∧ m > n ∧ \left| \sum\limits_{i=n + 1}^m s_i \right| ≥ ε]$
+$[∃ε>0;∀N∈ℕ; n ≥ N ∧ \left| \sum\limits_{i=0}^n s_i - S \right| ≥ ε] ⇔ [∃ε>0;∀N∈ℕ; n ≥ N ∧ m > n ∧ \left| \sum\limits_{i=n}^m s_i \right| ≥ ε]$
 
 必要性证明，根据三角不等关系式。
 
@@ -148,17 +168,17 @@ $[∃ε>0;∀N∈ℕ; n ≥ N ∧ \left| \sum\limits_{i=0}^n s_i - S \right| ≥
 
 无穷级数的分部求和公式
 
-$\sum\limits_{i=n+1}^m s_i · t_i = \sum\limits_{i=n+1}^m (S_i - S_{i-1}) · t_i = S_m · t_m + \sum\limits_{i=n+1}^{m-1} S_i · t_i - \sum\limits_{i=n+1}^{m-1} S_i · t_{i+1} - S_n · t_{n+1} = (S_m · t_m - S_n · t_{n+1}) + \sum\limits_{i=n+1}^{m-1} S_i · (t_i - t_{i+1})$
+$\sum\limits_{i=n}^m s_i · t_i \mathop{===}\limits^{S_{-1}≡0} \sum\limits_{i=n}^m (S_i - S_{i-1}) · t_i = S_m · t_m + \sum\limits_{i=n}^{m-1} S_i · t_i - \sum\limits_{i=n}^{m-1} S_i · t_{i+1} - S_{n-1} · t_n = (S_m · t_m - S_{n-1} · t_n) + \sum\limits_{i=n}^{m-1} S_i · (t_i - t_{i+1}) $
 
-$\left| \sum\limits_{i=n+1}^m s_i · t_i \right| ≤ |S_m · t_m| + |S_n · t_{n+1}| + \left| \sum\limits_{i=n+1}^{m-1} S_i · (t_i - t_{i+1}) \right| ≤ |S_m| · |t_m| + |S_n| · |t_{n+1}| + \sum\limits_{i=n+1}^{m-1} |S_i| · |t_i - t_{i+1}|$
+$\left| \sum\limits_{i=n}^m s_i · t_i \right| ≤ | S_m · t_m | + | S_{n-1} · t_n | + \left| \sum\limits_{i=n}^{m-1} S_i · (t_i - t_{i+1}) \right| ≤ | S_m | · | t_m | + | S_{n-1} | · | t_n | + \sum\limits_{i=n}^{m-1} | S_i | · | t_i - t_{i+1} |$
 
 | $⇓$  |                                                              |                                                        | $[ ∃N∈ℕ;∀i>N; | S_i | ≤ \mathrm{Sup.} ∧ t_i ≥ t_{i+1} ] ⊕ [ ∃N∈ℕ;∀i>N; | S_i | ≤ \mathrm{Sup.} ∧ t_i ≤ t_{i+1} ]$ |
 | :--: | -----------------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------------- |
-| $⇓$  |                                                              |                                                        | $\left| \sum\limits_{i=n+1}^m s_i · t_i \right| ≤ \mathrm{Sup.} · \left[ |t_m| + |t_{n+1}| + \left| \sum\limits_{i=n+1}^{m-1} (t_i - t_{i+1}) \right| \right] ≤ \mathrm{Sup.} · 2 · \left[ |t_m| + |t_{n+1}| \right]$ |
-| $⇓$  | $\varlimsup\limits_{i ⇝ +∞} |S_i| ≤ \mathrm{Sup.} ∧ t_i ⪌ t_{i+1} ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ 0$ |                          $⇒$                           | $∀ε>0;∃N∈ℕ;∀n≥N;∀m≥n; \left| \sum\limits_{i=n+1}^m s_i · t_i \right| < \mathrm{Sup.} · 2 · (ε_1 + ε_2) = ε$ |
-| $⇓$  | $\varlimsup\limits_{i ⇝ +∞} |S_i| ≤ \mathrm{Sup.} ∧ t_i ⪌ t_{i+1} ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ 0$ |                          $⇒$                           | $\sum\limits_{i=1}^{+∞} s_i · t_i ⇝ ST$                      |
-| $⇓$  | $\lim\limits_{i ⇝ +∞} S_i ⇝ S ∧ t_i ⪌ t_{i+1} ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ t$ | $\mathop{⇒}\limits_{\lim\limits_{i⇝+∞} (t_i - t) ⇝ 0}$ | $\sum\limits_{i=1}^{+∞} s_i · t_i = t · \sum\limits_{i=1}^{+∞} s_i + \sum\limits_{i=1}^{+∞} [ s_i · (t_i - t) ] ⇝ ST$ |
-| $⇓$  | $\lim\limits_{i ⇝ +∞} S_i ⇝ S ∧ t_i ⪌ t_{i+1} ∧ \varlimsup\limits_{i⇝+∞} | t_i | ≤ \mathrm{Sup.}$ |    $\mathop{⇒}\limits_{\lim\limits_{i⇝+∞} t_i ⇝ t}$    | $\sum\limits_{i=1}^{+∞} s_i · t_i ⇝ ST$                      |
+| $⇓$  |                                                              |                                                        | $\left| \sum\limits_{i=n}^m s_i · t_i \right| ≤ \mathrm{Sup.} · \left[ |t_m| + |t_n| + \left| \sum\limits_{i=n}^{m-1} (t_i - t_{i+1}) \right| \right] ≤ \mathrm{Sup.} · 2 · \left[ |t_m| + |t_n| \right]$ |
+| $⇓$  | $\varlimsup\limits_{i ⇝ +∞} |S_i| ≤ \mathrm{Sup.} ∧ t_i ⪌ t_{i+1} ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ 0$ |                          $⇒$                           | $∀ε>0;∃N∈ℕ;∀n≥N;∀m≥n; \left| \sum\limits_{i=n}^m s_i · t_i \right| < \mathrm{Sup.} · 2 · (ε_1 + ε_2) = ε$ |
+| $⇓$  | $\varlimsup\limits_{i ⇝ +∞} |S_i| ≤ \mathrm{Sup.} ∧ t_i ⪌ t_{i+1} ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ 0$ |                          $⇒$                           | $\sum\limits_{i=0}^{+∞} s_i · t_i ⇝ ST$                      |
+| $⇓$  | $\lim\limits_{i ⇝ +∞} S_i ⇝ S ∧ t_i ⪌ t_{i+1} ∧ \lim\limits_{i ⇝ +∞} t_i ⇝ t$ | $\mathop{⇒}\limits_{\lim\limits_{i⇝+∞} (t_i - t) ⇝ 0}$ | $\sum\limits_{i=0}^{+∞} s_i · t_i = t · \sum\limits_{i=0}^{+∞} s_i + \sum\limits_{i=0}^{+∞} [ s_i · (t_i - t) ] ⇝ ST$ |
+| $⇓$  | $\lim\limits_{i ⇝ +∞} S_i ⇝ S ∧ t_i ⪌ t_{i+1} ∧ \varlimsup\limits_{i⇝+∞} | t_i | ≤ \mathrm{Sup.}$ |    $\mathop{⇒}\limits_{\lim\limits_{i⇝+∞} t_i ⇝ t}$    | $\sum\limits_{i=0}^{+∞} s_i · t_i ⇝ ST$                      |
 
 若部分和$\sum\limits_{i=0}^n s_i$有确界，且$t_i$单调趋于零，则无穷级数$\sum\limits_{i=0}^{+∞} s_i · t_i$收敛。
 
@@ -172,13 +192,13 @@ $\left| \sum\limits_{i=n+1}^m s_i · t_i \right| ≤ |S_m · t_m| + |S_n · t_{n
 
 $\sum\limits_{i=0}^{+∞} |s_i| ⇝ S_{||} ⇒ \sum\limits_{i=0}^{+∞} s_i ⇝ S$
 
-$\left[ ∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \left| \sum\limits_{i=n+1}^m |s_i| \right| < ε \right] ⇒ \left[ ∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \left| \sum\limits_{i=n+1}^m s_i \right| ≤ \left| \sum\limits_{i=n+1}^{m} |s_i| \right| < ε \right]$
+$\left[ ∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \left| \sum\limits_{i=n}^m |s_i| \right| < ε \right] ⇒ \left[ ∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \left| \sum\limits_{i=n}^m s_i \right| ≤ \left| \sum\limits_{i=n}^{m} |s_i| \right| < ε \right]$
 
 若无穷级数本身收敛，则其未必绝对收敛。
 
 $\sum\limits_{i=0}^{+∞} s_i ⇝ S \not⇒ \sum\limits_{i=0}^{+∞} |s_i| ⇝ S_{||}$
 
-$\left[ ∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \left| \sum\limits_{i=n+1}^m s_i \right| < ε \right] \not⇒ \left[ ∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \left| \sum\limits_{i=n+1}^m |s_i| \right| < ε \right]$
+$\left[ ∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \left| \sum\limits_{i=n}^m s_i \right| < ε \right] \not⇒ \left[ ∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \left| \sum\limits_{i=n}^m |s_i| \right| < ε \right]$
 
 ### 无穷级数绝对收敛与条件收敛的性质
 
@@ -276,23 +296,6 @@ $\left[ \sum\limits_{i=0}^{+∞} f(α + i) ⇝ S \right] ⇔ \left[ \int_α^{+�
 
 $\lim\limits_{i ⇝ +∞} \dfrac{i^{ε_2}}{\ln^β i · \ln^γ \ln i} = \lim\limits_{i ⇝ +∞} \left[ \left[ \lim\limits_{i ⇝ +∞} \dfrac{i^{\frac{ε_2}{β}}}{\ln i} \right]^β· \dfrac{1}{\ln^γ \ln i} \right] = \lim\limits_{i ⇝ +∞} \left[ \left( \dfrac{ε_2}{β} \right)^β · \left[ \lim\limits_{i ⇝ +∞} \dfrac{i^{\frac{ε_2}{γ}}}{\ln \ln i} \right]^γ \right] = \lim\limits_{i ⇝ +∞} \left[ \left( \dfrac{ε_2}{β} \right)^β · \left( \dfrac{ε_2}{γ} · \ln i \right)^γ · i^{ε_2} \right] ⇝ +∞$
 
-### 正项级数的根值审敛法
-
-| $⇑$  |                $∃N∈ℕ;∀i≥N; s_i ≤ \dfrac{\mathrm{Sup.}}{γ^i}$ | $⇒$  | $γ > 1 ⇒ \sum\limits_{i=1}^{+∞} s_i ⇝ S$                     |
-| :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
-| $⇑$  | $∃N∈ℕ;∀i≥N; \sqrt[i + 1]{s_{i+1}} · γ ≤ \sqrt[i]{s_i} · γ ≤ \sqrt[N]{\mathrm{Sup.}} ⇝ 1$ | $⇒$  | $\sqrt[i]{s_i} ≤ \dfrac{1}{γ} + o \left( \dfrac{1}{γ} \right)$ |
-| $⇑$  | $∃N∈ℕ;∀i≥N; \sqrt[i]{s_i} = \dfrac{1}{γ_i} + o \left( \dfrac{1}{γ_i} \right)$ | $⇒$  | $γ_i = \dfrac{1}{\sqrt[i]{s_i}} + o (1)$                     |
-| $⇑$  |                     $\dfrac{1}{\sqrt[i]{s_i}} = γ_i ≥ γ > 1$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i ⇝ S$                             |
-| $⇑$  |                         $\dfrac{1}{\sqrt[i]{s_i}} = γ_i ≤ 1$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i \not⇝ S$                         |
-| $⇑$  | $\varliminf\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{s_i}} = \varliminf\limits_{i ⇝ +∞} γ_i ⇝ γ > 1$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i ⇝ S$                             |
-| $⇑$  | $\varlimsup\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{s_i}} = \varlimsup\limits_{i ⇝ +∞} γ_i ⇝ γ < 1$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i \not⇝ S$                         |
-
-特例：正项级数$\sum\limits_{i = 1}^{+∞} \dfrac{1}{i} \not⇝ S$，正项级数$\sum\limits_{i = 1}^{+∞} \dfrac{1}{i^2} ⇝ S$。
-
-$\lim\limits_{i ⇝ +∞} γ_i = \lim\limits_{i ⇝ +∞} \sqrt[i]{i} ⇝ 1$
-
-$\lim\limits_{i ⇝ +∞} γ_i = \lim\limits_{i ⇝ +∞} \sqrt[i]{i^2} = \left[ \lim\limits_{i ⇝ +∞} \sqrt[i]{i} \right]^2 ⇝ 1$
-
 ### 正项级数的比值审敛法
 
 | $⇑$  |                $∃N∈ℕ;∀i≥N; s_i ≤ \dfrac{\mathrm{Sup.}}{γ^i}$ | $⇒$  | $γ > 1 ⇒ \sum\limits_{i=1}^{+∞} s_i ⇝ S$ |
@@ -309,6 +312,23 @@ $\lim\limits_{i ⇝ +∞} γ_i = \lim\limits_{i ⇝ +∞} \sqrt[i]{i^2} = \left[
 $\lim\limits_{i ⇝ +∞} γ_i = \lim\limits_{i ⇝ +∞} \dfrac{i + 1}{i} ⇝ 1$
 
 $\lim\limits_{i ⇝ +∞} γ_i = \lim\limits_{i ⇝ +∞} \dfrac{i^2}{(i + 1)^2} = \left[ \lim\limits_{i ⇝ +∞} \dfrac{i}{i + 1} \right]^2 ⇝ 1$
+
+### 正项级数的根值审敛法
+
+| $⇑$  |                $∃N∈ℕ;∀i≥N; s_i ≤ \dfrac{\mathrm{Sup.}}{γ^i}$ | $⇒$  | $γ > 1 ⇒ \sum\limits_{i=1}^{+∞} s_i ⇝ S$                     |
+| :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
+| $⇑$  | $∃N∈ℕ;∀i≥N; \sqrt[i + 1]{s_{i+1}} · γ ≤ \sqrt[i]{s_i} · γ ≤ \sqrt[N]{\mathrm{Sup.}} ⇝ 1$ | $⇒$  | $\sqrt[i]{s_i} ≤ \dfrac{1}{γ} + o \left( \dfrac{1}{γ} \right)$ |
+| $⇑$  | $∃N∈ℕ;∀i≥N; \sqrt[i]{s_i} = \dfrac{1}{γ_i} + o \left( \dfrac{1}{γ_i} \right)$ | $⇒$  | $γ_i = \dfrac{1}{\sqrt[i]{s_i}} + o (1)$                     |
+| $⇑$  |                     $\dfrac{1}{\sqrt[i]{s_i}} = γ_i ≥ γ > 1$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i ⇝ S$                             |
+| $⇑$  |                         $\dfrac{1}{\sqrt[i]{s_i}} = γ_i ≤ 1$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i \not⇝ S$                         |
+| $⇑$  | $\varliminf\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{s_i}} = \varliminf\limits_{i ⇝ +∞} γ_i ⇝ γ > 1$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i ⇝ S$                             |
+| $⇑$  | $\varlimsup\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{s_i}} = \varlimsup\limits_{i ⇝ +∞} γ_i ⇝ γ < 1$ | $⇒$  | $\sum\limits_{i=1}^{+∞} s_i \not⇝ S$                         |
+
+特例：正项级数$\sum\limits_{i = 1}^{+∞} \dfrac{1}{i} \not⇝ S$，正项级数$\sum\limits_{i = 1}^{+∞} \dfrac{1}{i^2} ⇝ S$。
+
+$\lim\limits_{i ⇝ +∞} γ_i = \lim\limits_{i ⇝ +∞} \sqrt[i]{i} ⇝ 1$
+
+$\lim\limits_{i ⇝ +∞} γ_i = \lim\limits_{i ⇝ +∞} \sqrt[i]{i^2} = \left[ \lim\limits_{i ⇝ +∞} \sqrt[i]{i} \right]^2 ⇝ 1$
 
 ### 正项级数的幂值审敛法
 
@@ -371,9 +391,9 @@ $\lim\limits_{i ⇝ +∞} β_i = \lim\limits_{i ⇝ +∞} i · \ln i · \left[ \
 
 ### 正项级数的审敛法对比
 
-收敛速度：根值审敛法 > 比值审敛法 > 幂值审敛法 > 指数审敛法 > 对数审敛法 > 比较审敛法
+收敛速度：比值审敛法 > 根值审敛法 > 幂值审敛法 > 指数审敛法 > 对数审敛法 > 比较审敛法
 
-强效程度：根值审敛法 < 比值审敛法 < 幂值审敛法 < 指数审敛法 < 对数审敛法 < 比较审敛法
+强效程度：比值审敛法 < 根值审敛法 < 幂值审敛法 < 指数审敛法 < 对数审敛法 < 比较审敛法
 
 由于$1 < \varliminf\limits_{i ⇝ +∞} \dfrac{s_i}{s_{i+1}} ≤ \varliminf\limits_{i ⇝ +∞} {\dfrac{1}{\sqrt[i]{s_i}}} ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{s_i}} ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{s_i}{s_{i+1}}$
 
@@ -381,11 +401,11 @@ $\lim\limits_{i ⇝ +∞} β_i = \lim\limits_{i ⇝ +∞} i · \ln i · \left[ \
 
 证明$\varliminf\limits_{i ⇝ +∞} \dfrac{s_i}{s_{i+1}} ≤ \varliminf\limits_{i ⇝ +∞} {\dfrac{1}{\sqrt[i]{s_i}}}$，也即$\varlimsup\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{s_{i+1}}{s_i}$
 
-| $⇓$  |    $\varlimsup\limits_{i ⇝ +∞} \dfrac{s_{i+1}}{s_i} ⇝ ρ$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{s_{i+1}}{s_i} < ρ + ε$               |
-| :--: | -------------------------------------------------------: | :--: | :----------------------------------------------------------- |
-| $⇓$  |                     $\dfrac{s_i}{s_N} < (ρ + ε)^{i - N}$ | $⇒$  | $s_i < s_N · (ρ + ε)^{-N} · (ρ + ε)^i$                       |
-| $⇓$  | $\sqrt[i]{s_i} < \sqrt[i]{s_N · (ρ + ε)^{-N}} · (ρ + ε)$ | $⇒$  | $\varlimsup\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \varlimsup\limits_{i ⇝ +∞} \left[ \sqrt[i]{s_N · (q + ε)^{-N}} · (ρ + ε) \right] ⇝ ρ + ε$ |
-| $⇓$  |                                                 $ε ⇝ 0⁺$ | $⇒$  | $\varlimsup\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{s_{i+1}}{s_i} ⇝ ρ$ |
+| $⇓$  |        $\varlimsup\limits_{i ⇝ +∞} \dfrac{s_{i+1}}{s_i} ⇝ ρ$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{s_{i+1}}{s_i} < ρ + ε$               |
+| :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\dfrac{s_i}{s_N} = \dfrac{s_i}{s_{i-1}} ··· \dfrac{s_{N-1}}{s_N} < (ρ + ε)^{i - N}$ | $⇒$  | $s_i < s_N · (ρ + ε)^{-N} · (ρ + ε)^i$                       |
+| $⇓$  |     $\sqrt[i]{s_i} < \sqrt[i]{s_N · (ρ + ε)^{-N}} · (ρ + ε)$ | $⇒$  | $\varlimsup\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \varlimsup\limits_{i ⇝ +∞} \left[ \sqrt[i]{s_N · (q + ε)^{-N}} · (ρ + ε) \right] ⇝ ρ + ε$ |
+| $⇓$  |                                                     $ε ⇝ 0⁺$ | $⇒$  | $\varlimsup\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{s_{i+1}}{s_i} ⇝ ρ$ |
 
 特例：正项级数$\sum\limits_{i=0}^{+∞} \left( \dfrac{1}{2^i} + \dfrac{1}{3^i} \right) = \sum\limits_{i=0}^{+∞} \dfrac{1}{2^i} + \sum\limits_{i=0}^{+∞} \dfrac{1}{3^i} = \dfrac{1}{1 - \frac{1}{2}} + \dfrac{1}{1 - \frac{1}{3}} ⇝ \dfrac{1}{2}$
 
@@ -603,7 +623,7 @@ $[∀ε>0;∃N∈ℕ;∀n≥N; \sup\limits_{x∈X} | F_n (x) - F (x) | ≤ ε] �
 
 $[∀ε>0;∃N∈ℕ;∀n≥N;∀m>N; \sup\limits_{x∈X} | F_m (x) - F_n (x) | ≤ ε] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀m>N;∀x∈X; | F_m (x) - F_n (x) | < ε]$
 
-$[∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \sup\limits_{x∈X} \left| \sum\limits_{i=n+1}^m f_i (x) \right| ≤ ε] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀m>n;∀x∈X; \left| \sum\limits_{i=n+1}^m f_i (x) \right| < ε]$
+$[∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \sup\limits_{x∈X} \left| \sum\limits_{i=n}^m f_i (x) \right| ≤ ε] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀m>n;∀x∈X; \left| \sum\limits_{i=n}^m f_i (x) \right| < ε]$
 
 $\left[ \lim\limits_{n⇝+∞} F_n (x) \mathop{↭}\limits_{x∈X} F (x) \right] ⇔ \left[ \lim\limits_{n⇝+∞} | F_n (x) - F (x) | \mathop{↭}\limits_{x∈X} 0 \right] ⇔ \left[ \lim\limits_{n⇝+∞} \sup\limits_{x∈X} | F_n (x) - F (x) | ⇝ 0 \right]$
 
@@ -619,7 +639,7 @@ $[∃ε>0;∀N∈ℕ;∃n≥N; \sup\limits_{x∈X} | F_n (x) - F (x) | > ε] ⇔
 
 $[∃ε>0;∀N∈ℕ;∃n≥N;∃m>N; \sup\limits_{x∈X} | F_m (x) - F_n (x) | > ε] ⇔ [∃ε>0;∀N∈ℕ;∃n≥N;∃m>N;∃x∈X; | F_m (x) - F_n (x) | ≥ ε]$
 
-$[∃ε>0;∀N∈ℕ;∃n≥N;∃m>n; \sup\limits_{x∈X} \left| \sum\limits_{i=n+1}^m f_i (x) \right| > ε] ⇔ [∃ε>0;∀N∈ℕ;∃n≥N;∃m>n;∃x∈X; \left| \sum\limits_{i=n+1}^m f_i (x) \right| ≥ ε]$
+$[∃ε>0;∀N∈ℕ;∃n≥N;∃m>n; \sup\limits_{x∈X} \left| \sum\limits_{i=n}^m f_i (x) \right| > ε] ⇔ [∃ε>0;∀N∈ℕ;∃n≥N;∃m>n;∃x∈X; \left| \sum\limits_{i=n}^m f_i (x) \right| ≥ ε]$
 
 $\left[ \lim\limits_{n⇝+∞} F_n (x) \mathop{\not↭}\limits_{x∈X} F (x) \right] ⇔ \left[ \lim\limits_{n⇝+∞} | F_n (x) - F (x) | \mathop{\not↭}\limits_{x∈X} 0 \right] ⇔ \left[ \lim\limits_{n⇝+∞} \sup\limits_{x∈X} | F_n (x) - F (x) | \not⇝ 0 \right]$
 
@@ -641,7 +661,7 @@ $\lim\limits_{n⇝+∞} \sup\limits_{x∈(0, 1)} | F_n (x) - F(x) | = \lim\limit
 
 $\left[ ∃N∈ℕ;∀i≥N; \sup\limits_{x∈X} | f_i (x) | ≤ | s_i | \right] ⇔ \left[ ∃N∈ℕ;∀i≥N;∀x∈X; | f_i (x) | ≤ | s_i | \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | s_i | ⇝ S ⇒ \sum\limits_{i=1}^{+∞} | f_i (x) | \mathop{↭}\limits_{x∈X} F_{||} (x) ⇒ \sum\limits_{i=1}^{+∞} f_i (x) \mathop{↭}\limits_{x∈X} F (x) \right]$
 
-$\left[ ∃N∈ℕ;∀n≥N;∀m>n; \sup\limits_{x∈X} \left| \sum\limits_{i=n+1}^m f_i (x) \right| ≤ \sup\limits_{x∈X} \left| \sum\limits_{i=n+1}^m | f_i (x) | \right| ≤ \left| \sum\limits_{i=n+1}^m | s_i | \right| < ε \right] ⇔ \left[ ∃N∈ℕ;∀n≥N;∀m>n;∀x∈X; \left| \sum\limits_{i=n+1}^m f_i (x) \right| ≤ \left| \sum\limits_{i=n+1}^m | f_i (x) | \right| ≤ \left| \sum\limits_{i=n+1}^m | s_i | \right| < ε \right]$
+$\left[ ∃N∈ℕ;∀n≥N;∀m>n; \sup\limits_{x∈X} \left| \sum\limits_{i=n}^m f_i (x) \right| ≤ \sup\limits_{x∈X} \left| \sum\limits_{i=n}^m | f_i (x) | \right| ≤ \left| \sum\limits_{i=n}^m | s_i | \right| < ε \right] ⇔ \left[ ∃N∈ℕ;∀n≥N;∀m>n;∀x∈X; \left| \sum\limits_{i=n}^m f_i (x) \right| ≤ \left| \sum\limits_{i=n}^m | f_i (x) | \right| ≤ \left| \sum\limits_{i=n}^m | s_i | \right| < ε \right]$
 
 ### 函数项级数一致收敛的性质
 
@@ -697,7 +717,7 @@ $\lim\limits_{x⇝x_0} \dfrac{\mathrm{d}}{\mathrm{d}x} \left[ \lim\limits_{n⇝+
 
 $\int\limits_0^1 \left[ \lim\limits_{n⇝+∞} F_n (x) \right] \mathrm{d}x = \int_0^1 \lim\limits_{n⇝+∞} \left[ n · x · (1 - x^2)^n \right] \mathrm{d}x = \int\limits_0^1 \lim\limits_{n⇝+∞} \left[ \mathop{0}\limits_{x=0,1}; \mathop{n · x · (1 - x^2)^n}\limits_{x∈(0, 1)} \right] \mathrm{d}x = \int\limits_0^1 0 \mathrm{d}x = 0 ≠ \dfrac{1}{2}$
 
-$\lim\limits_{n⇝+∞} \int\limits_0^1 F_n (x) \mathrm{d}x = \lim\limits_{n⇝+∞} \int\limits_0^1 [ n · x · (1 - x^2)^n ] \mathrm{d}x = \lim\limits_{n⇝+∞} \left. \dfrac{- n · (1 - x^2)^{n+1}}{2 · (n + 1)} \right|_0^1 = \lim\limits_{n⇝+∞} \dfrac{n}{2 · (n + 1)} ⇝ \dfrac{1}{2}$
+$\lim\limits_{n⇝+∞} \int\limits_0^1 F_n (x) \mathrm{d}x = \lim\limits_{n⇝+∞} \int\limits_0^1 [ n · x · (1 - x^2)^n ] \mathrm{d}x = \lim\limits_{n⇝+∞} \left. \dfrac{- n · (1 - x^2)^{n + 1}}{2 · (n + 1)} \right|_0^1 = \lim\limits_{n⇝+∞} \dfrac{n}{2 · (n + 1)} ⇝ \dfrac{1}{2}$
 
 典例：函数项级数$F_n (x) = \sum\limits_{i=\rlap{≡}{0,}1}^n f_i (x) = \sum\limits_{i=\rlap{≡}{0,}1}^n \left[ ә^{-i · x^2} - ә^{-(i - 1) · x^2} \right] = ә^{-n · x^2} - 1$
 
@@ -804,21 +824,30 @@ $\left[ \lim\limits_{x⇝x_1} \sum\limits_{i=0}^{+∞} | p_i · (x - x_0) |^i �
 
 $F_{x_1} ⇜ \lim\limits_{x⇝x_1} \sum\limits_{i=0}^{+∞} | p_i | · | x - x_0 |^i ≤ \sum\limits_{i=0}^{+∞} | p_i | · | x_1 - x_0 |^i = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \lim\limits_{x⇝x_1} | p_i | · | x - x_0 |^i = \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_1} \sum\limits_{i=0}^n | p_i | · | x - x_0 |^i ≤ \rlap{≡≡≡} \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_1} \sum\limits_{i=0}^{+∞} | p_i | · | x - x_0 |^i ⇝ F_{x_1}$
 
-幂级数在共同绝对收敛半径内可相加减与相乘，且绝对收敛半径至少为共同绝对收敛半径。
+同起点幂级数可做加运算，其绝对收敛半径至少为共同的绝对收敛半径。
 
-$\left[ \sum\limits_{i=0}^{+∞} p_i · (x - x_0)^i \right] ± \left[ \sum\limits_{j=0}^{+∞} q_j · (x - x_0)^j \right] \mathop{========}\limits_{| x - x_0 |<R_{pq}}^{R_{pq}≡\min\lbrace R_p, R_q \rbrace} \sum\limits_{l=0}^{+∞} (p_l ± q_l) · (x - x_0)^l$
+同起点幂级数可做乘运算，其绝对收敛半径至少为各绝对收敛半径之积。
 
-$\left[ \sum\limits_{i=0}^{+∞} p_i · (x - x_0)^i \right] · \left[ \sum\limits_{j=0}^{+∞} q_j · (x - x_0)^j \right] \mathop{========}\limits_{| x - x_0 | < R_{pq}}^{R_{pq}≡\min\lbrace R_p, R_q \rbrace} \sum\limits_{l=0}^{+∞} \left[ \sum\limits_{k=0}^l p_k · q_{l-k} \right] · (x - x_0)^l$
+$\left[ \sum\limits_{i=0}^{+∞} p_i · (x - x_0)^i \right] ± \left[ \sum\limits_{j=0}^{+∞} q_j · (x - x_0)^j \right] \mathop{=======}\limits_{| x - x_0 |<R_{pq}}^{R_{pq}≡\min\lbrace R_p, R_q \rbrace} \sum\limits_{l=0}^{+∞} (p_l ± q_l) · (x - x_0)^l$
+
+$\left[ \sum\limits_{i=0}^{+∞} p_i · (x - x_0)^i \right] · \left[ \sum\limits_{j=0}^{+∞} q_j · (x - x_0)^j \right] \mathop{======}\limits_{| x - x_0 | < R_p · R_q} \sum\limits_{l=0}^{+∞} \left[ \sum\limits_{k=0}^l p_k · q_{l-k} \right] · (x - x_0)^l$
 
 | $⇓$  | $\dfrac{1}{R_{pq}} ≡ \dfrac{1}{\min\lbrace R_p, R_q \rbrace} = \max\left\lbrace \dfrac{1}{R_p}, \dfrac{1}{R_q} \right\rbrace = \max\left\lbrace \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l |}, \varlimsup\limits_{l⇝+∞} \sqrt[l]{| q_l |} \right\rbrace = \varlimsup\limits_{l⇝+∞} \sqrt[l]{\max\lbrace | p_l |, | q_l |\rbrace}$ |      |                                                              |
 | :--: | ------------------------------------------------------------ | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\dfrac{1}{R} ≡ \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l ± q_l |} ≤ \varlimsup\limits_{l⇝+∞} \sqrt[i]{| p_l | ± | q_l |} ≤ \varlimsup\limits_{l⇝+∞} \sqrt[i]{2 · \max\lbrace| p_l |, | q_l |\rbrace} = \varlimsup\limits_{l⇝+∞} \sqrt[i]{\max\lbrace| p_l |, | q_l |\rbrace} = \dfrac{1}{R_{pq}}$ | $⇒$  | $R_{pq} ≤ \dfrac{1}{\varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l ± q_l |}} ≡ R$ |
-| $⇓$  | $\dfrac{1}{R_{pq}} = \varlimsup\limits_{l⇝+∞} \sqrt[l]{\max\lbrace| p_l |, | q_l|\rbrace} ≤ \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l | ± | q_l |} \mathop{=====}\limits^{0 ≤ ± · p_l · q_l} \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l ± q_l |} ≡ \dfrac{1}{R}$ | $⇒$  | $R_{pq} \mathop{=====}\limits^{0 ≤ ± · p_l · q_l} R$         |
-| $⇓$  | $\left| \dfrac{1}{R_p} - \dfrac{1}{R_q} \right| = \left| \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l |} - \varlimsup\limits_{l⇝+∞} \sqrt[l]{| q_l |} \right| = \varlimsup\limits_{l⇝+∞} \left| \sqrt[l]{| p_l |} - \sqrt[l]{| q_l |} \right| ≤ \varlimsup\limits_{l⇝+∞} \sqrt[l]{|| p_l | - | q_l ||} ≤ \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l ± q_l |} ≡ \dfrac{1}{R}$ | $⇒$  | $R_{pq} ≤ R ≤ \dfrac{R_p · R_q}{| R_p - R_q |} \mathop{========}\limits^{\max\lbrace R_p, R_q \rbrace = +∞} R_{pq}$ |
+| $⇓$  | $\dfrac{1}{R} ≡ \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l ± q_l |} ≤ \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l | + | q_l |} ≤ \varlimsup\limits_{l⇝+∞} \sqrt[l]{2 · \max\lbrace| p_l |, | q_l |\rbrace} = \varlimsup\limits_{l⇝+∞} \sqrt[l]{\max\lbrace| p_l |, | q_l |\rbrace} = \dfrac{1}{R_{pq}}$ | $⇒$  | $R_{pq} ≤ \dfrac{1}{\varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l ± q_l |}} ≡ R$ |
+| $⇓$  | $\dfrac{1}{R_{pq}} = \varlimsup\limits_{l⇝+∞} \sqrt[l]{\max\lbrace| p_l |, | q_l|\rbrace} ≤ \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l | + | q_l |} \mathop{=====}\limits^{0 ≤ ± · p_l · q_l} \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l ± q_l |} ≡ \dfrac{1}{R}$ | $⇒$  | $R_{pq} \mathop{=====}\limits^{0 ≤ ± · p_l · q_l} R$         |
+| $⇓$  | $\left| \dfrac{1}{R_p} - \dfrac{1}{R_q} \right| = \left| \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l |} - \varlimsup\limits_{l⇝+∞} \sqrt[l]{| q_l |} \right| ≤ \varlimsup\limits_{l⇝+∞} \left| \sqrt[l]{| p_l |} - \sqrt[l]{| q_l |} \right| ≤ \varlimsup\limits_{l⇝+∞} \sqrt[l]{|| p_l | - | q_l ||} ≤ \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l ± q_l |} ≡ \dfrac{1}{R}$ | $⇒$  | $R_{pq} ≤ R ≤ \dfrac{R_p · R_q}{| R_p - R_q |} \mathop{========}\limits^{\max\lbrace R_p, R_q \rbrace = +∞} R_{pq}$ |
 
-附加证明：$| p_l |^{\frac{1}{l}} - | q_l |^{\frac{1}{l}} ≤ || p_l | - | q_l ||^\frac{1}{l}$
+| $⇓$  | $\lim\limits_{n⇝+∞} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] = \lim\limits_{n⇝+∞} s_n · t_n$ |      |                                                   |
+| :--: | :----------------------------------------------------------- | :--: | ------------------------------------------------- |
+| $⇓$  | $\dfrac{1}{R} ≡ \varlimsup\limits_{l⇝+∞} \sqrt[l]{\left| \sum\limits_{k=0}^l p_k · q_{l-k} \right|} ≤ \varlimsup\limits_{l⇝+∞} \sqrt[l]{\sum\limits_{k=0}^l | p_k | · | q_{l-k} |} = \varlimsup\limits_{l⇝+∞} \sqrt[l]{l + 1} · \varlimsup\limits_{l⇝+∞} \sqrt[l]{\dfrac{1}{l + 1} · \sum\limits_{k=0}^l | p_k | · | q_{l-k} |} = \varlimsup\limits_{l⇝+∞} \sqrt[l]{| p_l | · | q_l |} = \dfrac{1}{R_p · R_q}$ | $⇒$  | $R_p · R_q ≤ R$                                   |
+| $⇓$  | $\dfrac{1}{R_p · R_q} = \varlimsup\limits_{l⇝+∞} \sqrt[l]{\sum\limits_{k=0}^l | p_k | · | q_{l-k} |} \mathop{===}\limits_{q_j⪌0}^{p_i⪌0} \varlimsup\limits_{l⇝+∞} \sqrt[l]{\left| \sum\limits_{k=0}^l p_k · q_{l-k} \right|} ≡ \dfrac{1}{R}$ | $⇒$  | $R_p · R_q \mathop{===}\limits_{q_j⪌0}^{p_i⪌0} R$ |
 
-$| x | + | y | ≤ (| x |^\frac{1}{l} + | y |^{\frac{1}{l}})^l ⇒ (| x | + | y |)^\frac{1}{l} ≤ | x |^\frac{1}{l} + | y |^{\frac{1}{l}} ⇒ | x |^{\frac{1}{l}} ≤ || x | - | y ||^{\frac{1}{l}} + | y |^{\frac{1}{l}} ⇒ || x |^{\frac{1}{l}} - | y |^{\frac{1}{l}}| ≤ || x | - | y ||^\frac{1}{l}$
+附加证明：$|| p_l |^{\frac{1}{l}} - | q_l |^{\frac{1}{l}}| ≤ || p_l | - | q_l ||^\frac{1}{l}$
 
-
+| $⇓$  | $| x | + | y | ≤ (| x |^\frac{1}{l} + | y |^{\frac{1}{l}})^l$ |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $(| x | + | y |)^\frac{1}{l} ≤ | x |^\frac{1}{l} + | y |^{\frac{1}{l}}$ |
+| $⇓$  | $| x |^{\frac{1}{l}} ≤ || x | - | y ||^{\frac{1}{l}} + | y |^{\frac{1}{l}}$ |
+| $⇓$  | $|| x |^{\frac{1}{l}} - | y |^{\frac{1}{l}}| ≤ || x | - | y ||^\frac{1}{l}$ |
 
