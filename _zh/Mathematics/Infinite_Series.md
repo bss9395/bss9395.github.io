@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  无穷级数
-Update:  2021-02-09T01:21:00+08@中国-广东-湛江+08
+Update:  2021-02-10T00:17:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -395,27 +395,28 @@ $\lim\limits_{i ⇝ +∞} β_i = \lim\limits_{i ⇝ +∞} i · \ln i · \left[ \
 
 强效程度：比值审敛法 < 根值审敛法 < 幂值审敛法 < 指数审敛法 < 对数审敛法 < 比较审敛法
 
-由于$1 < \varliminf\limits_{i ⇝ +∞} \dfrac{s_i}{s_{i+1}} ≤ \varliminf\limits_{i ⇝ +∞} {\dfrac{1}{\sqrt[i]{s_i}}} ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{s_i}} ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{s_i}{s_{i+1}}$
+由于$\left[ 1 < \varliminf\limits_{i ⇝ +∞} \dfrac{s_i}{s_{i+1}} ≤ \varliminf\limits_{i ⇝ +∞} {\dfrac{1}{\sqrt[i]{s_i}}} \right] ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{s_i}} ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{s_i}{s_{i+1}}$
 
-也即$\varliminf\limits_{i ⇝ +∞} \dfrac{s_{i+1}}{s_i} ≤ \varliminf\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \varlimsup\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{s_{i+1}}{s_i} < 1$​
-
-证明$\varliminf\limits_{i ⇝ +∞} \dfrac{s_i}{s_{i+1}} ≤ \varliminf\limits_{i ⇝ +∞} {\dfrac{1}{\sqrt[i]{s_i}}}$，也即$\varlimsup\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{s_{i+1}}{s_i}$
+也即$\varliminf\limits_{i ⇝ +∞} \dfrac{s_{i+1}}{s_i} ≤ \varliminf\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \left[ \varlimsup\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{s_{i+1}}{s_i} < 1 \right]$​
 
 | $⇓$  |        $\varlimsup\limits_{i ⇝ +∞} \dfrac{s_{i+1}}{s_i} ⇝ ρ$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{s_{i+1}}{s_i} < ρ + ε$               |
 | :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\dfrac{s_i}{s_N} = \dfrac{s_i}{s_{i-1}} ··· \dfrac{s_{N-1}}{s_N} < (ρ + ε)^{i - N}$ | $⇒$  | $s_i < s_N · (ρ + ε)^{-N} · (ρ + ε)^i$                       |
-| $⇓$  |     $\sqrt[i]{s_i} < \sqrt[i]{s_N · (ρ + ε)^{-N}} · (ρ + ε)$ | $⇒$  | $\varlimsup\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \varlimsup\limits_{i ⇝ +∞} \left[ \sqrt[i]{s_N · (q + ε)^{-N}} · (ρ + ε) \right] ⇝ ρ + ε$ |
+| $⇓$  |     $\sqrt[i]{s_i} < \sqrt[i]{s_N · (ρ + ε)^{-N}} · (ρ + ε)$ | $⇒$  | $\varlimsup\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \varlimsup\limits_{i ⇝ +∞} \left[ \sqrt[i]{s_N · (ρ + ε)^{-N}} · (ρ + ε) \right] ⇝ ρ + ε$ |
 | $⇓$  |                                                     $ε ⇝ 0⁺$ | $⇒$  | $\varlimsup\limits_{i ⇝ +∞} \sqrt[i]{s_i} ≤ \varlimsup\limits_{i ⇝ +∞} \dfrac{s_{i+1}}{s_i} ⇝ ρ$ |
+| $⇓$  |                                                              |      | $\varliminf\limits_{i ⇝ +∞} \dfrac{s_i}{s_{i+1}} ≤ \varliminf\limits_{i ⇝ +∞} {\dfrac{1}{\sqrt[i]{s_i}}}$ |
 
-特例：正项级数$\sum\limits_{i=0}^{+∞} \left( \dfrac{1}{2^i} + \dfrac{1}{3^i} \right) = \sum\limits_{i=0}^{+∞} \dfrac{1}{2^i} + \sum\limits_{i=0}^{+∞} \dfrac{1}{3^i} = \dfrac{1}{1 - \frac{1}{2}} + \dfrac{1}{1 - \frac{1}{3}} ⇝ \dfrac{1}{2}$
+特例：正项级数$\sum\limits_{i=0 \\ j=2·i,2·i+1}^{+∞} \left( \dfrac{1}{2^{2 · i}} + \dfrac{1}{3^{2 · i + 1}} \right) = \sum\limits_{i=0}^{+∞} \dfrac{1}{2^{2 · i}} + \dfrac{1}{3} · \sum\limits_{i=0}^{+∞} \dfrac{1}{3^{2 · i}} = \dfrac{1}{1 - \frac{1}{2^2}} + \dfrac{1}{3} · \dfrac{1}{1 - \frac{1}{3^2}} = \dfrac{41}{24}$
 
-$\varliminf\limits_{i ⇝ +∞} \dfrac{s_i}{s_{i+1}} = \lim\limits_{i ⇝ +∞} \dfrac{1/3^i}{1/2^{i + 1}} = \lim\limits_{i ⇝ +∞} \dfrac{2^{i + 1}}{3^i} ⇝ 0 < 1$
+根据比值审敛法不可判定敛散性，但根据根值审敛法可判定为收敛。
 
-$\varlimsup\limits_{i ⇝ +∞} \dfrac{s_i}{s_{i+1}} = \lim\limits_{i ⇝ +∞} \dfrac{1/2^i}{1/3^i} = \lim\limits_{i ⇝ +∞} \dfrac{3^i}{2^i} ⇝ +∞ > 1$
+$\varliminf\limits_{j⇝+∞} \dfrac{s_j}{s_{j+1}} = \min\left\lbrace \lim\limits_{i⇝+∞} \dfrac{1/2^{2·i}}{1/3^{2·i+1}}, \lim\limits_{i⇝+∞} \dfrac{1/3^{2·i+1}}{1/2^{2·i+2}} \right\rbrace = \lim\limits_{i⇝+∞} \dfrac{2^{2·i+2}} {3^{2·i+1}} ⇝ 0 < 1$
 
-$\varliminf\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{s_i}} = \lim\limits_{i ⇝ +∞} \sqrt[2 · i - 1]{2^i} = \lim\limits_{i ⇝ +∞} 2^{\frac{i}{2 · i - 1}} ⇝ \sqrt{2} > 1$
+$\varlimsup\limits_{j⇝+∞} \dfrac{s_j}{s_{j+1}} = \max\left\lbrace \lim\limits_{i⇝+∞} \dfrac{1/2^{2·i}}{1/3^{2·i+1}}, \lim\limits_{i⇝+∞} \dfrac{1/3^{2·i+1}}{1/2^{2·i+2}} \right\rbrace = \lim\limits_{i⇝+∞} \dfrac{3^{2·i+1}}{2^{2·i}} ⇝ +∞ > 1$
 
-$\varlimsup\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{s_i}} = \lim\limits_{i ⇝ +∞} \sqrt[2 · i]{3^i} = \lim\limits_{i ⇝ +∞} 3^{\frac{1}{2}} ⇝ \sqrt{3} > 1$
+$\varliminf\limits_{j⇝+∞} \dfrac{1}{\sqrt[j]{s_j}} = \min\left\lbrace \lim\limits_{i⇝+∞} \sqrt[2·i]{2^{2·i}}, \lim\limits_{i⇝+∞} \sqrt[2·i+1]{3^{2·i+1}} \right\rbrace = \lim\limits_{i⇝+∞} \sqrt[2·i]{2^{2·i}} = 2 > 1$
+
+$\varliminf\limits_{j⇝+∞} \dfrac{1}{\sqrt[j]{s_j}} = \max\left\lbrace \lim\limits_{i⇝+∞} \sqrt[2·i]{2^{2·i}}, \lim\limits_{i⇝+∞} \sqrt[2·i+1]{3^{2·i+1}} \right\rbrace = \lim\limits_{i⇝+∞} \sqrt[2·i+1]{3^{2·i+1}} = 3 > 1$
 
 ### 构造性收敛正项级数
 
@@ -487,13 +488,13 @@ $\left[ \sum\limits_{i=0}^{+∞} | s_i | ⇝ S_{||} \right] ∧ \left[ \sum\limi
 
 若无穷级数全都条件收敛，则无穷级数的乘积未必条件收敛。
 
-若无穷级数全都条件收敛，且无穷级数的乘积条件收敛，则该乘积等于无穷级数的极限相乘。根据幂级数的性质。
+若无穷级数全都条件收敛，且无穷级数的乘积条件收敛，则该乘积等于无穷级数的极限相乘。
 
-$\left[ \sum\limits_{i=0}^{+∞} s_i ⇝ S \right] ∧ \left[ \sum\limits_{j=0}^{+∞} t_j ⇝ T \right] ∧ \left[ \lim\limits_{l⇝+∞} \sum\limits_{i=0}^l s_i · \sum\limits_{j=0}^l t_j ⇝ ST \right] ⇒ \left[ S · T = ST \right]$
+$\left[ \sum\limits_{i=0}^{+∞} s_i = S \right] ∧ \left[ \sum\limits_{j=0}^{+∞} t_j = T \right] ∧ \left[ \sum\limits_{l=0}^{+∞} \left( \sum\limits_{k=0}^l s_k · t_{l-k} \right) = ST \right] ⇒ \left[ S · T = \sum\limits_{i=0}^{+∞} s_i · \sum\limits_{j=0}^{+∞} t_j = \sum\limits_{l=0}^{+∞} \left( \sum\limits_{k=0}^l s_k · t_{l-k} \right) = ST \right]$
 
 典例：无穷级数$\sum\limits_{i=\rlap{≡}{0,}1}^{+∞} s_i = \sum\limits_{i=\rlap{≡}{0,}1}^{+∞} \dfrac{(-1)^{i}}{\sqrt{i}} ⇝ S$条件收敛，无穷级数$\sum\limits_{j=\rlap{≡}{0,}1}^{+∞} t_i = \sum\limits_{j=\rlap{≡}{0,}1}^{+∞} \dfrac{(-1)^j}{\sqrt{j}} ⇝ T$条件收敛, 两者的乘积沿对角线相加$\sum\limits_{i=\rlap{≡}{0,}1}^{+∞} s_i · \sum\limits_{j=\rlap{≡}{0,}1}^{+∞} t_j \not⇝ ST$。
 
-$\lim\limits_{l⇝+∞} \left| \sum\limits_{k=1}^l s_k · t_{l-k+1} \right| = \lim\limits_{l⇝+∞} \left| \sum\limits_{k=1}^l \dfrac{(-1)^k}{\sqrt{k}} · \dfrac{(-1)^{l-k+1}}{\sqrt{l-k+1}} \right| = \lim\limits_{l⇝+∞} \sum\limits_{k=1}^l \dfrac{1}{\sqrt{k · (l - k + 1)}} ≥ \lim\limits_{l⇝+∞} \dfrac{l}{\frac{k + (l - k + 1)}{2}} ⇝ 2 ≠ 0$
+$\lim\limits_{l⇝+∞} \left| \sum\limits_{k=1}^l s_k · t_{l-k} \right| = \lim\limits_{l⇝+∞} \left| \sum\limits_{k=1}^l \dfrac{(-1)^k}{\sqrt{k}} · \dfrac{(-1)^{l - k}}{\sqrt{l - k}} \right| = \lim\limits_{l⇝+∞} \sum\limits_{k=1}^l \dfrac{1}{\sqrt{k · (l - k)}} ≥ \lim\limits_{l⇝+∞} \dfrac{l}{\frac{k + (l - k)}{2}} ⇝ 2 ≠ 0$
 
 ### 无穷乘积
 
@@ -751,7 +752,11 @@ $\lim\limits_{x⇝x_0} \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n p_i · (x - x_
 
 若幂级数在点$x_1 - x_0$处条件收敛，则在区间$[±0, x_1 - x_0]$上条件一致收敛。
 
-$\left[ \sum\limits_{i=0}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ⇒ \left[ \sum\limits_{i=0}^{+∞} p_i · (x - x_0) \mathop{↭}\limits_{[±0, x - x_0]⊆[±0, x_1 - x_0]} F (x) \right]$
+若幂级数在点$x_1 - x_0$处绝对收敛，则在区间$[±0, x_1 - x_0]$上绝对一致收敛。
+
+$\left[ \sum\limits_{i=0}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ⇒ \left[ \sum\limits_{i=0}^{+∞} p_i · (x - x_0)^i \mathop{↭}\limits_{[±0, x - x_0]⊆[±0, x_1 - x_0]} F (x) \right]$
+
+$\left[ \sum\limits_{i=0}^{+∞} | p_i · (x_1 - x_0)^i | ⇝ F_{||} (x_1) \right] ⇒ \left[ \sum\limits_{i=0}^{+∞} | p_i · (x - x_0)^i | \mathop{↭}\limits_{[±0, x - x_0]⊆[±0, x_1 - x_0]} F_{||} (x) \right]$
 
 若幂级数在点$x_1 - x_0$处条件收敛，则在区间$[±0, x_1 - x_0)$上绝对收敛，且在区间$[±0, x_1 - x_0]$上条件收敛。
 
@@ -767,7 +772,8 @@ $\left[ \sum\limits_{i=0}^{+∞} p_i · (x_2 - x_0)^i \not⇝ F (x_2) \right] �
 
 | $⇓$  | $\sum\limits_{i=1}^{+∞} p_i · (x - x_0)^i = \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i · \dfrac{(x - x_0 )^i}{(x_1 - x_0)^i}$ |      |                                                              |
 | :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x - x_0) \mathop{↭}\limits_{[±0, x - x_0] ⊆ [±0, x_1 - x_0]} F (x) \right]$ | $⇐$  | $\left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ∧ \left[ \left| \dfrac{(x - x_0)^i}{(x_1 - x_0)^i} \right| ≤ 1 \right]$ |
+| $⇓$  | $\left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x - x_0)^i \mathop{↭}\limits_{[±0, x - x_0] ⊆ [±0, x_1 - x_0]} F (x) \right]$ | $⇐$  | $\left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ∧ \left[ \left| \dfrac{(x - x_0)^i}{(x_1 - x_0)^i} \right| ≤ 1 \right]$ |
+| $⇓$  | $\left[ \sum\limits_{i=1}^{+∞} | p_i · (x_1 - x_0)^i | ⇝ F_{||} (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{↭}\limits_{[±0, x - x_0] ⊆ [±0, x_1 - x_0]} F_{||} (x) \right]$ | $⇐$  | $\left[ \sum\limits_{i=1}^{+∞} | p_i · (x_1 - x_0)^i | ⇝ F_{||} (x_1) \right] ∧ \left[ \left| \dfrac{(x - x_0)^i}{(x_1 - x_0)^i} \right| ≤ 1 \right]$ |
 | $⇓$  | $\left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i ⇝ F (x_1) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{⇝}\limits_{| x - x_0 | < | x_1 - x_0 |} F_{||} (x) \right]$ | $⇐$  | $[ | p_i · (x_1 - x_0)^i | ≤ \mathrm{Sup.} ] ∧ \left[ \sum\limits_{i=1}^{+∞} \dfrac{(x - x_0)^i}{(x_1 - x_0)^i} ⇝ \mathrm{Con.} \right]$ |
 | $⇓$  | $\left[ \sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \not⇝ F_{||} (x) \right] ⇒ \left[ \sum\limits_{i=1}^{+∞} p_i · (x_1 - x_0)^i \mathop{\not⇝}\limits_{| x - x_0 | < | x_1 - x_0 |} F (x_1) \right]$ |      |                                                              |
 
@@ -794,11 +800,19 @@ $\left[ \sum\limits_{i=0}^{+∞} | p_i · (x - x_0)^i | \mathop{\not⇝}\limits_
 | $⇑$  |                                            $R > | x - x_0 |$ |                  $⇒$                   | $\sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{⇝}\limits_{| x - x_0 | < R} F_{||} (x)$ |
 | $⇑$  |                                 $\overline{R} < | x - x_0 |$ | $\mathop{⇒}\limits^{\overline{R} ≥ R}$ | $\sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{\not⇝}\limits_{| x - x_0 | > \overline{R}} F_{||} (x)$ |
 
-|      |      |      |
-| ---- | ---- | ---- |
-|      |      |      |
-|      |      |      |
-|      |      |      |
+比值审敛法的绝对收敛半径内含于根值审敛法的绝对收敛半径，比值审敛法的绝对发散半径内含于根值审敛法的绝对发散半径。
+
+$\left[ \varliminf\limits_{i ⇝ +∞} \left| \dfrac{p_i}{p_{i+1}} \right| ≤ \varliminf\limits_{i ⇝ +∞} {\dfrac{1}{\sqrt[i]{| p_i |}}} \right] ≤ \left[ \varlimsup\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{| p_i |}} ≤ \varlimsup\limits_{i ⇝ +∞} \left| \dfrac{p_i}{p_{i+1}} \right| \right]$
+
+特例：幂级数$\sum\limits_{i=0 \\ j=2·i,2·i+1}^{+∞} \left[ \dfrac{1}{2^{2 · i}} · (x - x_0)^{2·i} + \dfrac{1}{3^{2 · i + 1}} · (x - x_0)^{2·i+1} \right]$
+
+$\varliminf\limits_{j⇝+∞} \dfrac{| p_j |}{| p_{j+1} |} = \min\left\lbrace \lim\limits_{i⇝+∞} \dfrac{1/2^{2·i}}{1/3^{2·i+1}}, \lim\limits_{i⇝+∞} \dfrac{1/3^{2·i+1}}{1/2^{2·i+2}} \right\rbrace = \lim\limits_{i⇝+∞} \dfrac{2^{2·i+2}} {3^{2·i+1}} ⇝ 0$
+
+$\varlimsup\limits_{j⇝+∞} \dfrac{| p_j |}{| p_{j+1} |} = \max\left\lbrace \lim\limits_{i⇝+∞} \dfrac{1/2^{2·i}}{1/3^{2·i+1}}, \lim\limits_{i⇝+∞} \dfrac{1/3^{2·i+1}}{1/2^{2·i+2}} \right\rbrace = \lim\limits_{i⇝+∞} \dfrac{3^{2·i+1}}{2^{2·i}} ⇝ +∞$
+
+$\varliminf\limits_{j⇝+∞} \dfrac{1}{\sqrt[j]{| p_j |}} = \min\left\lbrace \lim\limits_{i⇝+∞} \sqrt[2·i]{2^{2·i}}, \lim\limits_{i⇝+∞} \sqrt[2·i+1]{3^{2·i+1}} \right\rbrace = \lim\limits_{i⇝+∞} \sqrt[2·i]{2^{2·i}} = 2 > 0$
+
+$\varliminf\limits_{j⇝+∞} \dfrac{1}{\sqrt[j]{| p_j |}} = \max\left\lbrace \lim\limits_{i⇝+∞} \sqrt[2·i]{2^{2·i}}, \lim\limits_{i⇝+∞} \sqrt[2·i+1]{3^{2·i+1}} \right\rbrace = \lim\limits_{i⇝+∞} \sqrt[2·i+1]{3^{2·i+1}} = 3 < +∞$
 
 幂级数在绝对收敛半径内区间$| x - x_0 | < R$上，连续且有任意阶导数。
 
@@ -820,9 +834,11 @@ $\lim\limits_{x⇝1^-} \sum\limits_{i=0}^{+∞} (-x)^i = \lim\limits_{x⇝1^-} \
 
 若幂级数在点$x_1 - x_0$处的绝对极限将收敛，则在点$x_1 - x_0$处绝对收敛为该极限。
 
-$\left[ \lim\limits_{x⇝x_1} \sum\limits_{i=0}^{+∞} | p_i · (x - x_0) |^i ⇝ F_{x_1} \right] \mathop{⇒}\limits^{| x - x_0 | ≤ | x_1 - x_0 |} \left[ \sum\limits_{i=0}^{+∞} | p_i · (x_1 - x_0) |^i ⇝ F_{x_1} \right]$
+$\left[ \lim\limits_{x⇝x_1} \sum\limits_{i=0}^{+∞} | p_i · (x - x_0)^i | ⇝ F_{|x_1|} \right] \mathop{⇒}\limits^{| x - x_0 | ≤ | x_1 - x_0 |} \left[ \sum\limits_{i=0}^{+∞} | p_i · (x_1 - x_0)^i | ⇝ F_{|x_1|} \right]$
 
-$F_{x_1} ⇜ \lim\limits_{x⇝x_1} \sum\limits_{i=0}^{+∞} | p_i | · | x - x_0 |^i ≤ \sum\limits_{i=0}^{+∞} | p_i | · | x_1 - x_0 |^i = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \lim\limits_{x⇝x_1} | p_i | · | x - x_0 |^i = \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_1} \sum\limits_{i=0}^n | p_i | · | x - x_0 |^i ≤ \rlap{≡≡≡} \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_1} \sum\limits_{i=0}^{+∞} | p_i | · | x - x_0 |^i ⇝ F_{x_1}$
+$F_{|x_1|} ⇜ \lim\limits_{x⇝x_1} \sum\limits_{i=0}^{+∞} | p_i | · | x - x_0 |^i \mathop{≤}\limits^{| x - x_0 | <≤ | x_1 - x_0 |} \sum\limits_{i=0}^{+∞} | p_i | · | x_1 - x_0 |^i = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \lim\limits_{x⇝x_1} | p_i | · | x - x_0 |^i = \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_1} \sum\limits_{i=0}^n | p_i | · | x - x_0 |^i ≤ \rlap{≡≡≡} \lim\limits_{n⇝+∞} \lim\limits_{x⇝x_1} \sum\limits_{i=0}^{+∞} | p_i | · | x - x_0 |^i ⇝ F_{|x_1|}$
+
+### 幂级数的运算性质
 
 同起点幂级数可做加运算，其绝对收敛半径至少为共同的绝对收敛半径。
 
@@ -850,4 +866,37 @@ $\left[ \sum\limits_{i=0}^{+∞} p_i · (x - x_0)^i \right] · \left[ \sum\limit
 | $⇓$  | $(| x | + | y |)^\frac{1}{l} ≤ | x |^\frac{1}{l} + | y |^{\frac{1}{l}}$ |
 | $⇓$  | $| x |^{\frac{1}{l}} ≤ || x | - | y ||^{\frac{1}{l}} + | y |^{\frac{1}{l}}$ |
 | $⇓$  | $|| x |^{\frac{1}{l}} - | y |^{\frac{1}{l}}| ≤ || x | - | y ||^\frac{1}{l}$ |
+
+### 幂级数展开
+
+若任意函数$f (x)$在点$x_0$处连续且有无穷阶导数，则在该点$x = x_0$处可唯一展开成无穷阶幂级数。
+
+若任意函数$f (x)$在点$x_0$处展开成无穷阶幂级数，则在该点$x = x_0$处必定收敛于自身，但在点$x ≠ x_0$处未必收敛于自身。
+
+$f (x) = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \dfrac{{^i}f (x_0)}{i!} · (x - x_0)^i = f (x_0) + \dfrac{{^1}f (x_0)}{1!} · (x - x_0)^1 + \dfrac{{^2}f (x_0)}{2!} · (x - x_0)^2 + ··· + \dfrac{{^n}f (x_0)}{n!} · (x - x_0)^n + ···$
+
+$f (x) = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x}\right|_{x_0} · (x - x_0)^i = f (x_0) + \left.\dfrac{\mathrm{d}^1 f (x)}{1! · \mathrm{d}^1 x}\right|_{x_0} · (x - x_0)^1 + \left.\dfrac{\mathrm{d}^2 f (x)}{2! · \mathrm{d}^2 x}\right|_{x_0} · (x - x_0)^2 + ··· + \left.\dfrac{\mathrm{d}^n f (x)}{n! · \mathrm{d}^n x}\right|_{x_0} · (x - x_0)^n + ···$
+
+$f (x) = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i f (x)}{\mathrm{d} x^i}\right|_{x_0} · (x - x_0)^i = f (x_0) + \left.\dfrac{\mathrm{d}^1 f (x)}{\mathrm{d} x^1}\right|_{x_0} · (x - x_0)^1 + \left.\dfrac{\mathrm{d}^2 f (x)}{\mathrm{d} x^2}\right|_{x_0} · (x - x_0)^2 + ··· + \left.\dfrac{\mathrm{d}^n f (x)}{\mathrm{d} x^n}\right|_{x_0} · (x - x_0)^n + ···$
+
+典例：函数$F (x) = \sum\limits_{i=0}^{+∞} \dfrac{\sin 2^i · x}{i!}$在点$x_0 = 0$处连续且有无穷阶导数。其无穷阶幂级数在点$x = 0$处收敛于自身，但在点$x ≠ 0$处发散。
+
+| $⇓$  | $\left[ \left| \dfrac{\sin 2^i · x}{i!} \right| \mathop{≤}\limits_{x∈(-∞, +∞)} \dfrac{1}{i!} \mathop{<}\limits_{i⇝+∞} \dfrac{1}{2^i} \right] ⇒ \left[ \sum\limits_{i=0}^{+∞} \left| \dfrac{\sin 2^i · x}{i!} \right| \mathop{↭}\limits_{x∈(-∞, +∞)} F_{||} (x) \right]$ |                                                              |
+| :--: | :----------------------------------------------------------- | ------------------------------------------------------------ |
+| $⇓$  | $\dfrac{\mathrm{d}^j F (x)}{\mathrm{d}^j x} = \sum\limits_{i=0}^{+∞} \dfrac{\mathrm{d}^j}{\mathrm{d}^j x} \left[ \dfrac{\sin 2^i · x}{i!} \right] = \sum\limits_{i=0}^{+∞} \dfrac{(2^i)^j · \sin \left( 2^i · x + j · \dfrac{π}{2} \right)}{i!}$ |                                                              |
+| $⇓$  | $\left. \dfrac{\mathrm{d}^j F (x)}{j! · \mathrm{d}^j x} \right|_{x_0=0} \mathop{====}\limits_{j = 2 · k + 1}^{\rlap{≡≡≡}{j = 2 · k}} \sum\limits_{i=0}^{+∞} \dfrac{(2^i)^{2 · k +1} · \sin \left( k · π + \dfrac{π}{2} \right)}{(2 · k + 1)! · i!} = \sum\limits_{i=0}^{+∞} \dfrac{(-1)^k}{(2 · k + 1)!} · \dfrac{(2^{2 · k + 1})^i}{i!} = \dfrac{(-1)^k}{(2 · k + 1)!} · ә^{2^{2 · k + 1}}$ | $\left. \dfrac{\mathrm{d}^j F (x)}{j! · \mathrm{d}^j x} \right|_{x_0} \mathop{===}\limits^{j=2·k} \sum\limits_{i=0}^{+∞} \dfrac{(2^i)^{2 · k} · \sin\left( k · π \right)}{(2 · k)! · i!} = 0$ |
+| $⇓$  | $F (x) = \sum\limits_{j=2·k+1 \\ k=0}^{+∞} \dfrac{(-1)^k · ә^{2^{2 · k + 1}}}{(2 · k + 1)!} · x^{2 · k + 1}$ |                                                              |
+| $⇓$  | $\overline{R}= \varlimsup\limits_{j=2·k+1 \\ k⇝+∞} \dfrac{1}{\sqrt[j]{| p_j |}} ≤ \varlimsup\limits_{j=2·k+1 \\ k⇝+∞} \left| \dfrac{p_j}{p_{j+2}} \right| = \lim\limits_{k⇝+∞} \dfrac{ә^{2^{2 · k + 1}}}{(2 · k + 1)!} · \dfrac{(2 · k + 3)!}{ә^{2^{2 · k + 3}}} = \lim\limits_{k⇝+∞} \dfrac{(2 · k + 2) · (2 · k + 3)}{ә^{3·2^{2·k+1}}} ⇝ 0$ |                                                              |
+
+典例：函数$f (x) = \mathop{0}\limits_{x∈(-∞, 0]}; \mathop{ә^{-x^{-1}}}\limits_{x∈(0, +∞)}$在点$x_0 = 0$处连续且有无穷阶导数。其无穷阶幂级数在点$x = 0$处收敛于自身，但在点$x ≠ 0$处不收敛于自身。
+
+|  $⇓$  | $\lim\limits_{x⇝0^+} ә^{-x^{-1}} ⇝ 0 ⇜ \lim\limits_{x⇝0^-} f (x)$ | $⇒$  | $\lim\limits_{x⇝0} f (0) = 0$                                |
+| :---: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+|  $⇓$  | $\dfrac{\mathrm{d}^0 f (x)}{\mathrm{d}^0 x} \mathop{====}\limits_{x∈(0, +∞)} f (x) = ә^{-x^{-1}} · 1 = ә^{-x^{-1}} · 𝓟_0 (-x^{-1})$ | $⇒$  | $\lim\limits_{x⇝0} \dfrac{\mathrm{d}^0 f (x)}{\mathrm{d}^0 x} = 0 = \left. \dfrac{\mathrm{d}^0 f (x)}{0! · \mathrm{d}^0 x} \right|_{x_0=0}$ |
+|  $⇓$  | $\dfrac{\mathrm{d}^1 f (x)}{\mathrm{d}^1 x} \mathop{====}\limits_{x∈(0, +∞)} \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ ә^{-x^{-1}} · 𝓟_0 (-x^{-1}) \right] = ә^{-x^{-1}} · \left[ \dfrac{1}{x^2} · 𝓟_0 (-x^{-1}) + \dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_0 (-x^{-1}) \right] = ә^{-x^{-1}} · 𝓟_2 (-x^{-1})$ | $⇐$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_0 (-x^{-1}) = 0 · \dfrac{1}{x^2}$ |
+|  $⇓$  | $\dfrac{\mathrm{d}^2 f (x)}{\mathrm{d}^2 x} \mathop{====}\limits_{x∈(0, +∞)} \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ ә^{-x^{-1}} · 𝓟_2 (-x^{-1}) \right] = ә^{-x^{-1}} · \left[ \dfrac{1}{x^2} · 𝓟_2 (-x^{-1}) + \dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_2 (-x^{-1}) \right] = ә^{-x^{-1}} · 𝓟_4 (-x^{-1})$ | $⇐$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_2 (-x^{-1}) = 𝓟_1 (-x^{-1}) · \dfrac{1}{x^2}$ |
+| $···$ | $···$                                                        |      |                                                              |
+|  $⇓$  | $\dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x} \mathop{====}\limits_{x∈(0, +∞)} \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ ә^{-x^{-1}} · 𝓟_{2 · i - 2} (-x^{-1}) \right] = ә^{-x^{-1}} · \left[ \dfrac{1}{x^2} · 𝓟_{2 · i - 2} (-x^{-1}) + \dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_{2 · i - 2} (-x^{-1}) \right] = ә^{-x^{-1}} · 𝓟_{2 · i} (-x^{-1})$ | $⇐$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_{2·i-2} (-x^{-1}) = 𝓟_{2·i-3} (-x^{-1}) · \dfrac{1}{x^2}$ |
+|  $⇓$  | $\lim\limits_{x⇝0^+} \dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x} = \lim\limits_{x⇝0^+} \left[ ә^{-x^{-1}} · 𝓟_{2 · i} (-x^{-1}) \right] = \lim\limits_{x=-t^{-1} \\ t⇝+∞} \dfrac{𝓟_{2 · i} (t)}{ә^t} ⇝ 0 ⇜ \lim\limits_{x⇝0^-} \dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x}$ | $⇒$  | $\lim\limits_{x⇝0} \dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x} = 0 = \left. \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} \right|_{x_0 = 0}$ |
+|  $⇓$  | $f (x) = \sum\limits_{i=0}^{+∞} \left. \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} \right|_{x_0=0} · x^i = 0 \mathop{≠}\limits_{x∈(0, +∞)} ә^{-x^{-1}}$ |      |                                                              |
 
