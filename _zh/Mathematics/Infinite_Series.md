@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  无穷级数
-Update:  2021-02-10T00:17:00+08@中国-广东-湛江+08
+Update:  2021-02-11T00:39:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -800,9 +800,9 @@ $\left[ \sum\limits_{i=0}^{+∞} | p_i · (x - x_0)^i | \mathop{\not⇝}\limits_
 | $⇑$  |                                            $R > | x - x_0 |$ |                  $⇒$                   | $\sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{⇝}\limits_{| x - x_0 | < R} F_{||} (x)$ |
 | $⇑$  |                                 $\overline{R} < | x - x_0 |$ | $\mathop{⇒}\limits^{\overline{R} ≥ R}$ | $\sum\limits_{i=1}^{+∞} | p_i · (x - x_0)^i | \mathop{\not⇝}\limits_{| x - x_0 | > \overline{R}} F_{||} (x)$ |
 
-比值审敛法的绝对收敛半径内含于根值审敛法的绝对收敛半径，比值审敛法的绝对发散半径内含于根值审敛法的绝对发散半径。
+比值审敛法的绝对收敛半径小于等于根值审敛法的绝对收敛半径，比值审敛法的绝对发散半径大于等于根值审敛法的绝对发散半径。
 
-$\left[ \varliminf\limits_{i ⇝ +∞} \left| \dfrac{p_i}{p_{i+1}} \right| ≤ \varliminf\limits_{i ⇝ +∞} {\dfrac{1}{\sqrt[i]{| p_i |}}} \right] ≤ \left[ \varlimsup\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{| p_i |}} ≤ \varlimsup\limits_{i ⇝ +∞} \left| \dfrac{p_i}{p_{i+1}} \right| \right]$
+$\left[ \varliminf\limits_{i ⇝ +∞} \left| \dfrac{p_i}{p_{i+1}} \right| ≤ \varliminf\limits_{i ⇝ +∞} {\dfrac{1}{\sqrt[i]{| p_i |}}} ≡ R \right] ≤ \left[ \overline{R} ≡ \varlimsup\limits_{i ⇝ +∞} \dfrac{1}{\sqrt[i]{| p_i |}} ≤ \varlimsup\limits_{i ⇝ +∞} \left| \dfrac{p_i}{p_{i+1}} \right| \right]$
 
 特例：幂级数$\sum\limits_{i=0 \\ j=2·i,2·i+1}^{+∞} \left[ \dfrac{1}{2^{2 · i}} · (x - x_0)^{2·i} + \dfrac{1}{3^{2 · i + 1}} · (x - x_0)^{2·i+1} \right]$
 
@@ -867,7 +867,7 @@ $\left[ \sum\limits_{i=0}^{+∞} p_i · (x - x_0)^i \right] · \left[ \sum\limit
 | $⇓$  | $| x |^{\frac{1}{l}} ≤ || x | - | y ||^{\frac{1}{l}} + | y |^{\frac{1}{l}}$ |
 | $⇓$  | $|| x |^{\frac{1}{l}} - | y |^{\frac{1}{l}}| ≤ || x | - | y ||^\frac{1}{l}$ |
 
-### 幂级数展开
+### 无穷阶幂级数展开
 
 若任意函数$f (x)$在点$x_0$处连续且有无穷阶导数，则在该点$x = x_0$处可唯一展开成无穷阶幂级数。
 
@@ -879,7 +879,7 @@ $f (x) = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i f 
 
 $f (x) = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i f (x)}{\mathrm{d} x^i}\right|_{x_0} · (x - x_0)^i = f (x_0) + \left.\dfrac{\mathrm{d}^1 f (x)}{\mathrm{d} x^1}\right|_{x_0} · (x - x_0)^1 + \left.\dfrac{\mathrm{d}^2 f (x)}{\mathrm{d} x^2}\right|_{x_0} · (x - x_0)^2 + ··· + \left.\dfrac{\mathrm{d}^n f (x)}{\mathrm{d} x^n}\right|_{x_0} · (x - x_0)^n + ···$
 
-典例：函数$F (x) = \sum\limits_{i=0}^{+∞} \dfrac{\sin 2^i · x}{i!}$在点$x_0 = 0$处连续且有无穷阶导数。其无穷阶幂级数在点$x = 0$处收敛于自身，但在点$x ≠ 0$处发散。
+典例：函数$F (x) = \sum\limits_{i=0}^{+∞} \dfrac{\sin 2^i · x}{i!}$在点$x_0 = 0$处连续且有无穷阶导数。其在点$x_0 = 0$处展开的无穷阶幂级数收敛于自身，但在点$x ≠ 0$处条件发散。
 
 | $⇓$  | $\left[ \left| \dfrac{\sin 2^i · x}{i!} \right| \mathop{≤}\limits_{x∈(-∞, +∞)} \dfrac{1}{i!} \mathop{<}\limits_{i⇝+∞} \dfrac{1}{2^i} \right] ⇒ \left[ \sum\limits_{i=0}^{+∞} \left| \dfrac{\sin 2^i · x}{i!} \right| \mathop{↭}\limits_{x∈(-∞, +∞)} F_{||} (x) \right]$ |                                                              |
 | :--: | :----------------------------------------------------------- | ------------------------------------------------------------ |
@@ -888,15 +888,27 @@ $f (x) = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i f 
 | $⇓$  | $F (x) = \sum\limits_{j=2·k+1 \\ k=0}^{+∞} \dfrac{(-1)^k · ә^{2^{2 · k + 1}}}{(2 · k + 1)!} · x^{2 · k + 1}$ |                                                              |
 | $⇓$  | $\overline{R}= \varlimsup\limits_{j=2·k+1 \\ k⇝+∞} \dfrac{1}{\sqrt[j]{| p_j |}} ≤ \varlimsup\limits_{j=2·k+1 \\ k⇝+∞} \left| \dfrac{p_j}{p_{j+2}} \right| = \lim\limits_{k⇝+∞} \dfrac{ә^{2^{2 · k + 1}}}{(2 · k + 1)!} · \dfrac{(2 · k + 3)!}{ә^{2^{2 · k + 3}}} = \lim\limits_{k⇝+∞} \dfrac{(2 · k + 2) · (2 · k + 3)}{ә^{3·2^{2·k+1}}} ⇝ 0$ |                                                              |
 
-典例：函数$f (x) = \mathop{0}\limits_{x∈(-∞, 0]}; \mathop{ә^{-x^{-1}}}\limits_{x∈(0, +∞)}$在点$x_0 = 0$处连续且有无穷阶导数。其无穷阶幂级数在点$x = 0$处收敛于自身，但在点$x ≠ 0$处不收敛于自身。
+典例：函数$f (x) = \mathop{0}\limits_{x≤0}; \mathop{ә^{-x^{-1}}}\limits_{0<x}$在点$x_0 = 0$处连续且有无穷阶导数。其在点$x_0=0$处展开的无穷阶幂级数收敛于自身，但在点$x ≠ 0$处不收敛于自身。
 
-|  $⇓$  | $\lim\limits_{x⇝0^+} ә^{-x^{-1}} ⇝ 0 ⇜ \lim\limits_{x⇝0^-} f (x)$ | $⇒$  | $\lim\limits_{x⇝0} f (0) = 0$                                |
-| :---: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-|  $⇓$  | $\dfrac{\mathrm{d}^0 f (x)}{\mathrm{d}^0 x} \mathop{====}\limits_{x∈(0, +∞)} f (x) = ә^{-x^{-1}} · 1 = ә^{-x^{-1}} · 𝓟_0 (-x^{-1})$ | $⇒$  | $\lim\limits_{x⇝0} \dfrac{\mathrm{d}^0 f (x)}{\mathrm{d}^0 x} = 0 = \left. \dfrac{\mathrm{d}^0 f (x)}{0! · \mathrm{d}^0 x} \right|_{x_0=0}$ |
-|  $⇓$  | $\dfrac{\mathrm{d}^1 f (x)}{\mathrm{d}^1 x} \mathop{====}\limits_{x∈(0, +∞)} \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ ә^{-x^{-1}} · 𝓟_0 (-x^{-1}) \right] = ә^{-x^{-1}} · \left[ \dfrac{1}{x^2} · 𝓟_0 (-x^{-1}) + \dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_0 (-x^{-1}) \right] = ә^{-x^{-1}} · 𝓟_2 (-x^{-1})$ | $⇐$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_0 (-x^{-1}) = 0 · \dfrac{1}{x^2}$ |
-|  $⇓$  | $\dfrac{\mathrm{d}^2 f (x)}{\mathrm{d}^2 x} \mathop{====}\limits_{x∈(0, +∞)} \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ ә^{-x^{-1}} · 𝓟_2 (-x^{-1}) \right] = ә^{-x^{-1}} · \left[ \dfrac{1}{x^2} · 𝓟_2 (-x^{-1}) + \dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_2 (-x^{-1}) \right] = ә^{-x^{-1}} · 𝓟_4 (-x^{-1})$ | $⇐$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_2 (-x^{-1}) = 𝓟_1 (-x^{-1}) · \dfrac{1}{x^2}$ |
-| $···$ | $···$                                                        |      |                                                              |
-|  $⇓$  | $\dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x} \mathop{====}\limits_{x∈(0, +∞)} \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ ә^{-x^{-1}} · 𝓟_{2 · i - 2} (-x^{-1}) \right] = ә^{-x^{-1}} · \left[ \dfrac{1}{x^2} · 𝓟_{2 · i - 2} (-x^{-1}) + \dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_{2 · i - 2} (-x^{-1}) \right] = ә^{-x^{-1}} · 𝓟_{2 · i} (-x^{-1})$ | $⇐$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_{2·i-2} (-x^{-1}) = 𝓟_{2·i-3} (-x^{-1}) · \dfrac{1}{x^2}$ |
-|  $⇓$  | $\lim\limits_{x⇝0^+} \dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x} = \lim\limits_{x⇝0^+} \left[ ә^{-x^{-1}} · 𝓟_{2 · i} (-x^{-1}) \right] = \lim\limits_{x=-t^{-1} \\ t⇝+∞} \dfrac{𝓟_{2 · i} (t)}{ә^t} ⇝ 0 ⇜ \lim\limits_{x⇝0^-} \dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x}$ | $⇒$  | $\lim\limits_{x⇝0} \dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x} = 0 = \left. \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} \right|_{x_0 = 0}$ |
-|  $⇓$  | $f (x) = \sum\limits_{i=0}^{+∞} \left. \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} \right|_{x_0=0} · x^i = 0 \mathop{≠}\limits_{x∈(0, +∞)} ә^{-x^{-1}}$ |      |                                                              |
+| $⇓$  | $\lim\limits_{x⇝0^+} f (x) = \lim\limits_{x=t^{-1} \\ t⇝+∞} \dfrac{1}{ә^{t}} ⇝ 0 ⇜ \lim\limits_{x⇝0^-} 0 = \lim\limits_{x⇝0^-} f (x)$ | $⇒$  | $\lim\limits_{x⇝0} f (x) = 0$                                |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\dfrac{\mathrm{d}^0 f (x)}{\mathrm{d}^0 x} \mathop{==}\limits_{0<x} f (x) = ә^{-x^{-1}} · 1 = ә^{-x^{-1}} · 𝓟_0 (x^{-1})$ | $⇒$  | $\lim\limits_{x⇝0^+} \dfrac{\mathrm{d}^0 f (x)}{\mathrm{d}^0 x} ⇝ 0 ⇜ \lim\limits_{x⇝0^-} 0 = \lim\limits_{x⇝0^-} \dfrac{\mathrm{d}^0 f (x)}{\mathrm{d}^0 x}$ |
+| $⇓$  | $\dfrac{\mathrm{d}^1 f (x)}{\mathrm{d}^1 x} \mathop{==}\limits_{0<x} \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ ә^{-x^{-1}} · 𝓟_0 (x^{-1}) \right] = ә^{-x^{-1}} · \left[ \dfrac{1}{x^2} · 𝓟_0 (x^{-1}) + \dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_0 (x^{-1}) \right] = ә^{-x^{-1}} · 𝓟_2 (x^{-1})$ | $⇐$  | $\dfrac{\mathrm{d} 𝓟_0 (x^{-1})}{\mathrm{d} x} = \left.\dfrac{\mathrm{d} 𝓟_0 (y)}{\mathrm{d} y}\right|_{x^{-1}} · \dfrac{-1}{x^2} = 0$ |
+| $⇓$  | $\dfrac{\mathrm{d}^2 f (x)}{\mathrm{d}^2 x} \mathop{==}\limits_{0<x} \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ ә^{-x^{-1}} · 𝓟_2 (x^{-1}) \right] = ә^{-x^{-1}} · \left[ \dfrac{1}{x^2} · 𝓟_2 (x^{-1}) + \dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_2 (x^{-1}) \right] = ә^{-x^{-1}} · 𝓟_4 (x^{-1})$ | $⇐$  | $\dfrac{\mathrm{d} 𝓟_2 (x^{-1})}{\mathrm{d} x} = \left.\dfrac{\mathrm{d} 𝓟_2 (y)}{\mathrm{d} y}\right|_{x^{-1}} · \dfrac{-1}{x^2} = 𝓟_3 (x^{-1})$ |
+|      | $···$                                                        |      | $···$                                                        |
+| $⇓$  | $\dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x} \mathop{==}\limits_{0<x} \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ ә^{-x^{-1}} · 𝓟_{2 · i - 2} (x^{-1}) \right] = ә^{-x^{-1}} · \left[ \dfrac{1}{x^2} · 𝓟_{2 · i - 2} (x^{-1}) + \dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_{2 · i - 2} (x^{-1}) \right] = ә^{-x^{-1}} · 𝓟_{2 · i} (x^{-1})$ | $⇐$  | $\dfrac{\mathrm{d} 𝓟_{2 · i - 2} (x^{-1})}{\mathrm{d} x} = \left.\dfrac{\mathrm{d} 𝓟_{2 · i - 2} (y)}{\mathrm{d} y} \right|_{x^{-1}} · \dfrac{-1}{x^2} = 𝓟_{2 · i - 1} (x^{-1})$ |
+| $⇓$  | $\lim\limits_{i⇝+∞} \lim\limits_{x⇝0^+} \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} = \lim\limits_{i⇝+∞} \lim\limits_{x=t^{-1} \\ t⇝+∞} \dfrac{𝓟_{2 · i} (t)}{i! · ә^{t}} ⇝ 0 ⇜ \lim\limits_{x=t^{-1} \\ t⇝+∞} \lim\limits_{i⇝+∞} \dfrac{𝓟_{2 · i} (t)}{i! · ә^{t}} = \lim\limits_{x⇝0^+} \lim\limits_{i⇝+∞} \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x}$ | $⇒$  | $$\lim\limits_{x⇝0^+} \dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x} ⇝ 0 ⇜ \lim\limits_{x⇝0^-} 0 = \lim\limits_{x⇝0^-} \dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x}$$ |
+| $⇓$  | $f (x) = \sum\limits_{i=0}^{+∞} \left. \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} \right|_{x_0=0} · x^i = 0 \mathop{≠}\limits_{x∈(0, +∞)} ә^{-x^{-1}}$ | $⇐$  | $\left. \dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x} \right|_{x_0=0} = 0$ |
+
+典例：函数$F (x) = \dfrac{1}{1 - x} = \sum\limits_{i=0}^{+∞} x^i$在点$x_0=0$处连续且有无穷阶导数。其在点$x_0=0$处展开的无穷阶幂级数在绝对发散半径$\overline{R} = 1$外条件发散。
+
+无穷阶幂级数$f (x) = \sum\limits_{i=0}^{+∞} \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} · (x - x_0)^i$在绝对收敛半径$R_{x_0}$内任意点$x = x_1$处可唯一展开成无穷阶幂级数，其绝对收敛半径至少为$R_{x_1} = R_{x_0} - | x_1 - x_0 |$。
+
+| $⇓$  | $| x - x_0 | = | x - x_1 + x_1 - x_0 | ≤ | x - x_1 | + | x_1 - x_0 | ≤ R_{x_0} $ | $⇒$  | $| x - x_1 | ≤ R_{x_0} - | x_1 - x_0 | = R_{x_1}$ |
+| :--: | :----------------------------------------------------------- | :--: | :------------------------------------------------ |
+| $⇓$  | $f_{x_0} (x) \mathop{=====}\limits_{|x-x_1|≤R_{x_1}} \sum\limits_{i=0}^{+∞} \left. \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} \right|_{x_0} · (x - x_0)^i = \sum\limits_{i=0}^{+∞} \left. \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} \right|_{x_0} · [(x - x_1) + (x_1 - x_0)]^i$ |      |                                                   |
+| $⇓$  | $f_{x_0} (x) \mathop{=====}\limits_{|x-x_1|≤R_{x_1}} \sum\limits_{i=0}^{+∞} \left[ \left. \dfrac{\mathrm{d}^{i-j}}{i! · \mathrm{d}^{i-j} x} \dfrac{\mathrm{d}^j f (x)}{\mathrm{d}^j x} \right|_{x_0} · \sum\limits_{j=0}^{i} \dfrac{i!}{j! · (i - j)!} · (x - x_1)^j · (x_1 - x_0)^{i - j} \right]$ |      |                                                   |
+| $⇓$  | $f_{x_1} (x) \mathop{=====}\limits_{|x-x_1|≤R_{x_1}} \sum\limits_{j=0}^{+∞} \dfrac{1}{j!} · \left[ \sum\limits_{i=j}^{+∞} \dfrac{\mathrm{d}^{i-j}}{(i - j)! · \mathrm{d}^{i-j} x} \left. \dfrac{\mathrm{d}^j f (x)}{\mathrm{d}^j x} \right|_{x_0} · (x_1 - x_0)^{i-j} \right] · (x - x_1)^j$ |      |                                                   |
+| $⇓$  | $f_{x_1} (x) \mathop{=====}\limits_{|x-x_1|≤R_{x_1}} \sum\limits_{j=0}^{+∞} \dfrac{1}{j!} · \left[ \sum\limits_{i=0}^{+∞} \dfrac{\mathrm{d}^{i}}{i! · \mathrm{d}^i x} \left. \dfrac{\mathrm{d}^j f (x)}{\mathrm{d}^j x} \right|_{x_0} · (x_1 - x_0)^{i} \right] · (x - x_1)^j$ |      |                                                   |
+| $⇓$  | $f_{x_1} (x) \mathop{=====}\limits_{|x-x_1|≤R_{x_1}} \sum\limits_{j=0}^{+∞} \left. \dfrac{\mathrm{d}^j f (x)}{j! · \mathrm{d}^j x} \right|_{x_1} · (x - x_1)^j$ |      |                                                   |
 
