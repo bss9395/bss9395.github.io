@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  重要级数
-Update:  2021-02-11T18:11:00+08@中国-广东-湛江+08
+Update:  2021-02-12T10:58:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -16,6 +16,8 @@ Link  :
 | $\log_l (1 + x)$                                             | $\dfrac{(-1)^{h-1} · (h - 1)!}{(1 + x)^h · \ln l}$           | $\sum\limits_{i=0}^n \dfrac{(-1)^{i - 1}}{i · \ln l} · x^i$  | $+ \dfrac{(-1)^n}{(n + 1) · (1 + θ)^{n + 1} · \ln l} · x^{n + 1}$ | $(-1, +1)$                                                   |
 | $\ln (1 + x)$                                                | $\dfrac{(-1)^{h-1} · (h - 1)!}{(1 + x)^h}$                   | $\sum\limits_{i=0}^n \dfrac{(-1)^{i-1}}{i} · x^i$            | $+ \dfrac{(-1)^n}{(n + 1) · (1 + θ)^{n + 1}} · x^{n + 1}$    | $(-1, +1]$                                                   |
 | $\mathop{(1 + x)^p}\limits_{p≠0}$                            | $\dfrac{(1 + x)^p}{(1 + x)^h} · \prod\limits_{j=0}^{h-1} (p - j)$ | $\sum\limits_{i=0}^n \prod\limits_{j=0}^{i-1} \dfrac{p - j}{j + 1} · x^i$ | $+ \dfrac{(1 + θ)^p}{(1 + θ)^{n + 1}} · \prod\limits_{j=0}^n \dfrac{p - j}{j + 1} · x^{n + 1}$ | $\mathop{(-1, +1)}\limits_{p≤-1}; \mathop{(-1, +1]}\limits_{-1<p<0}; \mathop{[-1, +1]}\limits_{0<p}$ |
+| $(1 + x)^{\frac{1}{2}}$                                      | $\dfrac{(1 + x)^{\frac{1}{2}}}{(1 + x)^h} · \prod\limits_{j=0}^{h-1} \dfrac{1 - 2 · j}{2}$ | $\sum\limits_{i=0}^n \prod\limits_{j=0}^{i-1} \dfrac{1 - 2 · j}{2 · (j + 1)} · x^i$ | $+ \dfrac{(1 + θ)^{\frac{1}{2}}}{(1 + θ)^{n+1}} · \prod\limits_{j=0}^n \dfrac{1 - 2 · j}{2 · (j + 1)} · x^{n + 1}$ | $[-1, +1]$                                                   |
+| $(1 + x)^{-\frac{1}{2}}$                                     | $\dfrac{1}{(1 + x)^{\frac{1}{2} + h}} · \prod\limits_{j=0}^{h-1} \dfrac{1 - 2 · j}{2}$ | $\sum\limits_{i=0}^n \prod\limits_{j=0}^{j-i} \dfrac{1 - 2 · j}{2 · (j + 1)} · x^i$ | $+ \dfrac{1}{(1 + θ)^{\frac{1}{2} + n + 1}} · \prod\limits_{j=0}^n \dfrac{1 - 2 · j}{2 · (j + 1)} · x^{n + 1}$ | $(-1, +1]$                                                   |
 | $\dfrac{1}{1 + x}$                                           | $\dfrac{(-1)^h · h!}{(1 + x)^{h + 1}}$                       | $\sum\limits_{i=0}^n (-1)^i · x^i$                           | $+ \dfrac{(-1)^{n+1}}{(1 + θ)^{n + 2}} · x^{n + 1}$          | $(-1, +1)$                                                   |
 | $\dfrac{1}{1 - x}$                                           | $\dfrac{h!}{(1 - x)^{h + 1}}$                                | $\sum\limits_{i=0}^n x^i$                                    | $+ \dfrac{1}{(1 - θ)^{n + 2}} · x^{n + 1}$                   | $(-1, +1)$                                                   |
 | $\sin x = \dfrac{ә^{\imath · x} - ә^{-\imath · x}}{2 · \imath}$ | $\sin \left( x + h · \dfrac{π}{2} \right) = \imath^h · \dfrac{ә^{\imath · x} - (-1)^h · ә^{-\imath · x}}{2 · \imath}$ | $\sum\limits_{i=0}^n \dfrac{(-1)^{i}}{(2 · i + 1)!} · x^{2 · i + 1}$ | $+ \dfrac{(-1)^{n + 1} · \sin θ}{(2 · n + 3)!} · x^{2 · n + 3}$ | $(-∞, +∞)$                                                   |
@@ -27,10 +29,10 @@ Link  :
 
 附加证明：$f (x) = \mathop{(1 + x)^p}\limits_{p≠0}$的收敛点集为$\mathop{(-1, +1)}\limits_{p≤-1}; \mathop{(-1, +1]}\limits_{-1<p<0}; \mathop{[-1, +1]}\limits_{0<p}$。
 
-| $⇓$  | $R_n (x) = \dfrac{(1 + θ)^p}{(1 + θ)^{n + 1}} · \prod\limits_{j=0}^n \dfrac{p - j}{j + 1} · x^{n + 1} = \dfrac{(1 + θ)^p}{(1 + θ)^{n + 1}} · \prod\limits_{j=0}^n \dfrac{j - p}{j + 1} · (-x)^{n + 1}$ |      |                                                              |
-| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $+∞ \mathop{⇜}\limits^{p≤-1} \lim\limits_{n⇝+∞} \dfrac{1^p}{2^{n + 1}} · \prod\limits_{j=0}^n \left| \dfrac{j - p}{(j + 1)} \right| ≤ \lim\limits_{n⇝+∞} \mathop{| R_n (+1) |}\limits_{1 < 1 + θ < 2}^{0<θ<1} ≤ \lim\limits_{n⇝+∞} \dfrac{2^p}{1^{n + 1}} · \prod\limits_{j=0}^n \left| \dfrac{j - p}{(j + 1)} \right| \mathop{⇝}\limits^{-1 < p} 0$ | $⇒$  | $\mathop{[+0, +1)}\limits_{p≤-1}; \mathop{[+0, +1]}\limits_{-1<p}$ |
 | $⇓$  | $f (x) = \sum\limits_{i=0}^n \prod\limits_{j=0}^{i-1} \dfrac{p - j}{j + 1} · x^i = \sum\limits_{i=0}^n \prod\limits_{j=0}^{i-1} \dfrac{j - p}{j + 1} · (-x)^i$ |      |                                                              |
-| $⇓$  | $\lim\limits_{i⇝+∞} i · \left[ \dfrac{| s_i (-1) |}{| s_{i+1} (-1) |} - 1 \right] = \lim\limits_{i⇝+∞} i · \left[ \prod\limits_{j=0}^{i-1} \dfrac{j - p}{j + 1} · \prod\limits_{j=0}^{i} \dfrac{j + 1}{j - p} - 1 \right] = \lim\limits_{i⇝+∞} i · \left( \dfrac{i + 1}{i - p} - 1 \right) = 1 + p$ | $⇒$  | $\mathop{(-1, -0]}\limits_{p<0}; \mathop{[-1, -0]}\limits_{0<p}$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $R_n (x) = \dfrac{(1 + θ)^p}{(1 + θ)^{n + 1}} · \prod\limits_{j=0}^n \dfrac{p - j}{j + 1} · x^{n + 1} = \dfrac{(1 + θ)^p}{(1 + θ)^{n + 1}} · \prod\limits_{j=0}^n \dfrac{j - p}{j + 1} · (-x)^{n + 1}$ |      |                                                              |
+| $⇓$  | $\left[ 0 ≠ 1 \mathop{≤}\limits^{p≤-1} \lim\limits_{i⇝+∞} \prod\limits_{j=0}^{i-1} \left| \dfrac{j - p}{j + 1} \right| = \lim\limits_{i⇝+∞} | s_{i} (+1) | \right] ∧ \left[ \lim\limits_{n⇝+∞} \mathop{| R_n (+1) |}\limits_{1≤1+θ≤2}^{0≤θ≤1} ≤ \lim\limits_{n⇝+∞} \dfrac{2^p}{1^{n + 1}} · \prod\limits_{j=0}^n \left| \dfrac{j - p}{j + 1} \right| \mathop{⇝}\limits^{-1 < p} 0 \right]$ | $⇒$  | $\mathop{[+0, +1)}\limits_{p≤-1}; \mathop{[+0, +1]}\limits_{-1<p}$ |
+| $⇓$  | $\lim\limits_{i⇝+∞} i · \left[ \dfrac{s_i^+ (-1)}{s_{i+1}^+ (-1)} - 1 \right] \mathop{==}\limits^{j≥p} \lim\limits_{i⇝+∞} i · \left[ \prod\limits_{j=0}^{i-1} \dfrac{j - p}{j + 1} · \prod\limits_{j=0}^{i} \dfrac{j + 1}{j - p} - 1 \right] = \lim\limits_{i⇝+∞} i · \left[ \dfrac{i + 1}{i - p} - 1 \right] = 1 + p$ | $⇒$  | $\mathop{(-1, -0]}\limits_{p<0}; \mathop{[-1, -0]}\limits_{0<p}$ |
 | $⇓$  |                                                              |      | $\mathop{(-1, +1)}\limits_{p≤-1}; \mathop{(-1, +1]}\limits_{-1<p<0}; \mathop{[-1, +1]}\limits_{0<p}$ |
 
