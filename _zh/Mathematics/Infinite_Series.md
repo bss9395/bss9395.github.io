@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  无穷级数
-Update:  2021-02-13T10:15:00+08@中国-广东-湛江+08
+Update:  2021-02-15T01:03:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -620,11 +620,11 @@ $F (x) = \lim\limits_{n⇝+∞} F_n (x) = \lim\limits_{n⇝+∞} x^n$
 
 函数项级数一致收敛
 
-$[∀ε>0;∃N∈ℕ;∀n≥N; \sup\limits_{x∈X} | F_n (x) - F (x) | ≤ ε] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀x∈X; | F_n (x) - F (x) | < ε]$
+$\left[ ∀ε>0;∃N∈ℕ;∀n≥N; \sup\limits_{x∈X} | F_n (x) - F (x) | ≤ ε \right] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀x∈X; | F_n (x) - F (x) | < ε]$
 
-$[∀ε>0;∃N∈ℕ;∀n≥N;∀m>N; \sup\limits_{x∈X} | F_m (x) - F_n (x) | ≤ ε] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀m>N;∀x∈X; | F_m (x) - F_n (x) | < ε]$
+$\left[ ∀ε>0;∃N∈ℕ;∀n≥N;∀m>N; \sup\limits_{x∈X} | F_m (x) - F_n (x) | ≤ ε \right] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀m>N;∀x∈X; | F_m (x) - F_n (x) | < ε]$
 
-$[∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \sup\limits_{x∈X} \left| \sum\limits_{i=n}^m f_i (x) \right| ≤ ε] ⇔ [∀ε>0;∃N∈ℕ;∀n≥N;∀m>n;∀x∈X; \left| \sum\limits_{i=n}^m f_i (x) \right| < ε]$
+$\left[ ∀ε>0;∃N∈ℕ;∀n≥N;∀m>n; \sup\limits_{x∈X} \left| \sum\limits_{i=n}^m f_i (x) \right| ≤ ε \right] ⇔ \left[ ∀ε>0;∃N∈ℕ;∀n≥N;∀m>n;∀x∈X; \left| \sum\limits_{i=n}^m f_i (x) \right| < ε \right]$
 
 $\left[ \lim\limits_{n⇝+∞} F_n (x) \mathop{↭}\limits_{x∈X} F (x) \right] ⇔ \left[ \lim\limits_{n⇝+∞} | F_n (x) - F (x) | \mathop{↭}\limits_{x∈X} 0 \right] ⇔ \left[ \lim\limits_{n⇝+∞} \sup\limits_{x∈X} | F_n (x) - F (x) | ⇝ 0 \right]$
 
@@ -871,7 +871,7 @@ $\left[ \sum\limits_{i=0}^{+∞} p_i · (x - x_0)^i \right] · \left[ \sum\limit
 
 $\dfrac{1}{1 - (x - x_0)} · \sum\limits_{i=0}^{+∞} p_i · (x - x_0)^i = \sum\limits_{j=0}^{+∞} (x - x_0)^j · \sum\limits_{i=0}^{+∞} p_i · (x - x_0)^i = \sum\limits_{l=0}^{+∞} \left[ \sum\limits_{k=0}^l p_k \right] · (x - x_0)^l = \sum\limits_{l=0}^{+∞} P_l · (x - x_0)^l$
 
-### 幂级数无穷阶展开
+### 幂级数的无穷阶展开
 
 若函数$f (x)$在点$x = x_0$处连续且有无穷阶导数，则在点$x = x_0$处可唯一展开成无穷阶幂级数。
 
@@ -897,10 +897,11 @@ $\left[ | {^i}f (θ) | ≤ \mathrm{Sup.} \right] ⇒ \left[ \lim\limits_{n⇝+�
 
 有函数$f (x)$在点$x = x_0$处展开成无穷阶幂级数，若在区间$[+x_0, x_1]$内各阶导数非负数，则在区间$[+x_0, x_1)$内收敛于自身，反之不对。
 
-| $⇓$  | $f (x) = \lim\limits_{n⇝+∞} \left[ \sum\limits_{i=0}^n \dfrac{{^i}f (x_0)}{i!} · (x - x_0)^i + \dfrac{{^{n+1}}f (x_0)}{(n + 1)!} · (x - x_0)^{n + 1} + \dfrac{{^{n+2}}f (θ)}{(n + 2)!} · (x - x_0)^{n + 2} \right]$ | $⇒$  | $\left[ 0 ≤ \sum\limits_{i=0}^n \dfrac{{^i} f (x_0)}{i!} · (x - x_0)^i = f (x) - R_n (x) \right] \mathop{⇒}\limits_{x∈[+x_0, x_1]} [ R_n (x) ≤ f (x)]$ |
+| $⇓$  | $f (x) = \lim\limits_{n⇝+∞} \left[ \sum\limits_{i=0}^n \dfrac{{^i}f (x_0)}{i!} · (x - x_0)^i + R_n (x) \right]$ | $⇒$  | $\left[ 0 ≤ {^i} f (x) \right] \mathop{⇒}\limits_{x∈[+x_0, x_1]} [ R_n (x) ≤ f (x)]$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $R_n (x) = \dfrac{{^{n+1}}f (x_0)}{(n + 1)!} · (x - x_0)^{n + 1} + \dfrac{{^{n+2}}f (θ)}{(n + 2)!} · (x - x_0)^{n + 2}$ | $⇒$  | $\dfrac{R_n (x)}{(x - x_0)^{n + 1}} = \dfrac{{^{n+1}f (x_0)}}{(n + 1)!} + \dfrac{{^{n+2}}f (θ)}{(n + 2)!} · (x - x_0)^1$ |
-| $⇓$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} \left[ \dfrac{R_n (x)}{(x - x_0)^{n + 1}} \right] \mathop{=====}\limits_{x∈[+x_0, x_1]}^{θ∈[+x_0, x]} \dfrac{{^{n+2}}f (θ)}{(n + 2)!} ≥ 0$ | $⇒$  | $\dfrac{R_n (x)}{(x - x_0)^{n + 1}} ≤ \dfrac{R_n (x_1)}{(x_1 - x_0)^{n + 1}} ≤ \dfrac{f (x_1)}{(x_1 - x_0)^{n + 1}}$ |
+| $⇓$  | $\dfrac{R_n (x)}{(x - x_0)^{n + 1}} = \dfrac{{^{n+1}}f (x_0)}{(n + 1)!} + \dfrac{{^{n+2}}f (x_0)}{(n + 2)!} · (x - x_0)^{1} + \dfrac{{^{n+3}}f (x_0)}{(n + 3)!} · (x - x_0)^2 + T_{n+3} (x)$ | $⇒$  | $g (x) ≡ \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ \dfrac{R_n (x)}{(x - x_0)^{n + 1}} \right] = g (x_0) + \dfrac{{^1}g (θ)}{1！} · (x - x_0)^1$ |
+| $⇓$  | $g (x) = \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ \dfrac{R_n (x)}{(x - x_0)^{n + 1}} \right] \mathop{=====}\limits_{x∈[+x_0, x_1]}^{θ∈[+x_0, x]} \dfrac{{^{n+2}}f (x_0)}{(n + 2)!} + \left[ \dfrac{{^{n+3}}f (x_0)}{(n + 3)!} · 2 + {^2}T_{n+3} (θ) \right] · (x - x_0)^1 ≥ 0$ | $⇐$  | ${^1}g (x) = \dfrac{{^{n+3}}f (x_0)}{(n + 3)!} · 2 + {^2}T_{n+3} (x) ≥ 0$ |
+| $⇓$  | $\dfrac{R_n (x)}{(x - x_0)^{n + 1}} ≤ \dfrac{R_n (x_1)}{(x_1 - x_0)^{n + 1}} ≤ \dfrac{f (x_1)}{(x_1 - x_0)^{n + 1}}$ |      |                                                              |
 | $⇓$  | $\lim\limits_{n⇝+∞} R_n (x) ≤ \lim\limits_{n⇝+∞} \left[ \dfrac{x - x_0}{x_1 - x_0} \right]^{n + 1} · f (x_1) \mathop{⇝}\limits_{x∈[+x_0, x_1)} 0$ | $⇐$  | $\dfrac{x - x_0}{x_1 - x_0} \mathop{<}\limits_{x∈[+x_0, x_1)} 1$ |
 
 无穷阶幂级数$f (x) = \sum\limits_{i=0}^{+∞} \left. \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} \right|_{x_0} · (x - x_0)^i$，在绝对收敛半径$R_{x_0}$内点$x = x_1$处可唯一展开成无穷阶幂级数，其绝对收敛半径至少为$R_{x_1} = R_{x_0} - | x_1 - x_0 |$。
@@ -935,4 +936,44 @@ $\left[ | {^i}f (θ) | ≤ \mathrm{Sup.} \right] ⇒ \left[ \lim\limits_{n⇝+�
 | $⇓$  | $\dfrac{\mathrm{d}^i f (x)}{\mathrm{d}^i x} \mathop{==}\limits_{0<x} \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ ә^{-x^{-1}} · 𝓟_{2 · i - 2} (x^{-1}) \right] = ә^{-x^{-1}} · \left[ \dfrac{1}{x^2} · 𝓟_{2 · i - 2} (x^{-1}) + \dfrac{\mathrm{d}}{\mathrm{d} x} 𝓟_{2 · i - 2} (x^{-1}) \right] = ә^{-x^{-1}} · 𝓟_{2 · i} (x^{-1})$ | $⇐$  | $\dfrac{\mathrm{d} 𝓟_{2 · i - 2} (x^{-1})}{\mathrm{d} x} = \left.\dfrac{\mathrm{d} 𝓟_{2 · i - 2} (y)}{\mathrm{d} y} \right|_{x^{-1}} · \dfrac{-1}{x^2} = 𝓟_{2 · i - 1} (x^{-1})$ |
 | $⇓$  | $\lim\limits_{i⇝+∞} \lim\limits_{x⇝0^+} \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} = \lim\limits_{i⇝+∞} \lim\limits_{x=t^{-1} \\ t⇝+∞} \dfrac{𝓟_{2 · i} (t)}{i! · ә^{t}} ⇝ 0 ⇜ \lim\limits_{x=t^{-1} \\ t⇝+∞} \lim\limits_{i⇝+∞} \dfrac{𝓟_{2 · i} (t)}{i! · ә^{t}} = \lim\limits_{x⇝0^+} \lim\limits_{i⇝+∞} \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x}$ | $⇒$  | $$\lim\limits_{x⇝0^+} \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} ⇝ 0 ⇜ \lim\limits_{x⇝0^-} 0 = \lim\limits_{x⇝0^-} \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x}$$ |
 | $⇓$  | $f (x) = \sum\limits_{i=0}^{+∞} \left. \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} \right|_{x_0=0} · x^i = 0 \mathop{≠}\limits_{x∈(0, +∞)} ә^{-x^{-1}}$ | $⇐$  | $\left. \dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x} \right|_{x_0=0} = 0$ |
+
+### 多项式一致逼近
+
+对于区间$X$上的函数$F (x)$，可用多项式函数$P_n (x)$一致逼近，相等于多项式函数$P_n (x)$一致收敛于函数$F (x)$。
+
+$\left[ ∀ε>0;∃N∈ℕ;∀n≥N; \sup\limits_{x∈X} | P_n (x) - F (x) | ≤ ε \right] ⇔ [ ∀ε>0;∃N∈ℕ;∀n≥N;∀x∈X; | P_n (x) - F (x) | < ε ]$
+
+$\left[ \lim\limits_{n⇝+∞} P_n (x) \mathop{↭}\limits_{x∈X} F (x) \right] ⇔ \left[ \lim\limits_{n⇝+∞} | P_n (x) - F (x) | \mathop{↭}\limits_{x∈X} 0 \right] ⇔ \left[ \lim\limits_{n⇝+∞} \sup\limits_{x∈X} | P_n (x) - F (x) | ⇝ 0 \right]$
+
+若区间$X$上的函数$F (x)$可用多项式函数$P_n (x)$一致逼近，则函数$F (x)$为连续函数。多项式函数$P_n (x)$本身为连续函数。
+
+若区间$X$上的函数$F (x)$可展开成条件收敛的无穷阶幂级数，则函数$F (x)$可用多项式函数$P_n (X)$一致逼近。
+
+$\left[ F (x) = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n p_i · (x - x_0)^i \right] ⇒ \left[ P_n  (x) ≡ \sum\limits_{i=0}^n p_i · (x - x_0)^i \right]$
+
+### 构造性多项式一致逼近
+
+步骤一：构造性多项式函数在闭区间$[0, 1]$上一致逼近连续函数$f (x)$，$f (x) \mathop{===}\limits_{x∉[0, 1]} f (0) = f (1) = 0$。
+
+| $⇓$  | $\int\limits_{-1}^{+1} (1 - t^2)^n \mathrm{d} t ≥ \int\limits_{-1}^{+1} (1 - n · t^2) \mathrm{d} t = \left[ t - \dfrac{n}{3} · t^3 \right]_{-1}^{+1} = 2$ |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $\left[ 0 ≤ Q_n (-t) = Q_n (t) \mathop{≡}\limits_{t∈[-1, +1]} \dfrac{(1 - t^2)^n}{\int\limits_{-1}^{+1} (1 - t^2)^n \mathrm{d} t} ≤ \dfrac{(1 - t^2)^n}{2} \right] ⇒ \left[ f (x) = f (x) · \dfrac{\int\limits_{-1}^{+1} (1 - t^2)^n \mathrm{d} t}{\int\limits_{-1}^{+1} (1 - t^2)^n \mathrm{d} t} = \int\limits_{-1}^{+1} f (x) · Q_n (t) \mathrm{d} t \right]$ |
+| $⇓$  | $\left[ P_n (x) ≡ \int\limits_{-1}^{+1} f (x + t) · Q_n (t) \mathrm{d} t \mathop{===}\limits_{\mathrm{d} u = \mathrm{d} t}^{u = x + t} \int\limits_{x-1}^{x+1} f (u) · Q_n (u - x) \mathrm{d} u \mathop{=====}\limits_{-1≤x-1≤0}^{1≤x+1≤2} \int\limits_{0}^{1} f (u) · Q_n (u - x) \mathrm{d} u \right] ⇒ \left[ | P_n (x) - f (x) | ≤ \int\limits_{-1}^{+1} | f (x + t) - f (x) | · | Q_n (t) | \mathrm{d} t \right]$ |
+| $⇓$  | $[ ∀ε>0;∃δ>0; | t | = | (x + t) - x | < δ ⇒ | f (x + t) - f (x) | < ε ] ∧ \left[  | f (x) - f (y) | \mathop{≤}\limits_{x,y∈[0, 1]} \mathrm{Sup.} ≡ \sup\limits_{x∈[0, 1]} f (x) - \inf\limits_{x∈[0, 1]} f (x) \right]$ |
+| $⇓$  | $\lim\limits_{n⇝+∞} | P_n (x) - f (x) | ≤ \lim\limits_{n⇝+∞} \left[ 2 · \mathrm{Sup.} · \int\limits_{+δ}^{+1} Q_n (t) \mathrm{d} t + 2 · ε · \int\limits_{0}^{+δ} Q_n (t) \mathrm{d} t \right] ≤ \lim\limits_{n⇝+∞} \left[ 2 · \mathrm{Sup.} · \dfrac{(1 - δ^2)^n}{2} · 1 + 2 · ε · \dfrac{(1 - 0^2)^n}{2} · 1 \right] \mathop{⇝}\limits^{ε⇝0^+} 0$ |
+
+步骤二：构造性多项式函数在闭区间$[0, 1]$上一致逼近连续函数$g (x)$，$f (x) \mathop{=}\limits_{x∈[0, 1]} x · [ g (1) - g (0) ] - [ g (x) - g (0) ]$，$f (x) \mathop{=}\limits_{x∉[0, 1]} f (0) = f (1) = 0$。
+
+$\left[ \lim\limits_{n⇝+∞} P_n (x) \mathop{↭}\limits_{x∈[0, 1]} f (x) = x · [ g (1) - g (0) ] - [ g (x) - g (0) ] \right] ⇔ \left[ \lim\limits_{n⇝+∞} x · [ g (1) - g (0)] + g (0) -P_n (x) \mathop{↭}\limits_{x∈[0, 1]} g (x) ] \right]$
+
+步骤三：构造性多项式函数在闭区间$[α, β]$上一致逼近连续函数$h (y)$，$y = α + x · (β - α), x = \dfrac{y - α}{β - α}$。
+
+$\left[ \lim\limits_{n⇝+∞} P_n (x) \mathop{↭}\limits_{x∈[0, 1]} g (x) \mathop{=}\limits_{x∈[0, 1]} h (y) \mathop{=}\limits_{y∈[α, β]} h [α + x · (β - α)] \right] ⇔ \left[ \lim\limits_{n⇝+∞} P_n \left( \dfrac{y - α}{β - α} \right) \mathop{↭}\limits_{x∈[0, 1]} h (y) \right]$
+
+附加证明：$(1 - t^2)^n \mathop{≥}\limits_{-1≤t≤1} (1 - n · t^2)$
+
+| $⇓$  | $g (x) ≡ (1 - t^2)^n - (1 - n · t^2)$                        |      |                                                              |
+| :--: | ------------------------------------------------------------ | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} g (x) = n · (1 - t^2)^{n - 1} · (-2 · t) + 2 · n · t = 2 · n · t · [ 1 - (1 - t^2)^{n - 1} ]$ | $⇒$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} g (x) ≈ \mathop{<0}\limits_{-1≤x<0}; \mathop{=0}\limits_{x=0};\mathop{>0}\limits_{0<x≤+1};$ |
+| $⇓$  | $g (x) \mathop{≥}\limits_{-1≤x≤+1} g (0) = 0$                | $⇒$  | $(1 - t^2)^n \mathop{≥}\limits_{-1≤x≤+1} (1 - n · t^2)$      |
 
