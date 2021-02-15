@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  无穷级数
-Update:  2021-02-15T01:03:00+08@中国-广东-湛江+08
+Update:  2021-02-15T17:51:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -939,17 +939,17 @@ $\left[ | {^i}f (θ) | ≤ \mathrm{Sup.} \right] ⇒ \left[ \lim\limits_{n⇝+�
 
 ### 多项式一致逼近
 
-对于区间$X$上的函数$F (x)$，可用多项式函数$P_n (x)$一致逼近，相等于多项式函数$P_n (x)$一致收敛于函数$F (x)$。
+对于区间$X$上的函数$f (x)$，可用多项式函数$P_n (x)$一致逼近，相等于多项式函数$P_n (x)$一致收敛于函数$f (x)$。
 
-$\left[ ∀ε>0;∃N∈ℕ;∀n≥N; \sup\limits_{x∈X} | P_n (x) - F (x) | ≤ ε \right] ⇔ [ ∀ε>0;∃N∈ℕ;∀n≥N;∀x∈X; | P_n (x) - F (x) | < ε ]$
+$\left[ ∀ε>0;∃N∈ℕ;∀n≥N; \sup\limits_{x∈X} | P_n (x) - f (x) | ≤ ε \right] ⇔ [ ∀ε>0;∃N∈ℕ;∀n≥N;∀x∈X; | P_n (x) - f (x) | < ε ]$
 
-$\left[ \lim\limits_{n⇝+∞} P_n (x) \mathop{↭}\limits_{x∈X} F (x) \right] ⇔ \left[ \lim\limits_{n⇝+∞} | P_n (x) - F (x) | \mathop{↭}\limits_{x∈X} 0 \right] ⇔ \left[ \lim\limits_{n⇝+∞} \sup\limits_{x∈X} | P_n (x) - F (x) | ⇝ 0 \right]$
+$\left[ \lim\limits_{n⇝+∞} P_n (x) \mathop{↭}\limits_{x∈X} f (x) \right] ⇔ \left[ \lim\limits_{n⇝+∞} | P_n (x) - f (x) | \mathop{↭}\limits_{x∈X} 0 \right] ⇔ \left[ \lim\limits_{n⇝+∞} \sup\limits_{x∈X} | P_n (x) - f (x) | ⇝ 0 \right]$
 
-若区间$X$上的函数$F (x)$可用多项式函数$P_n (x)$一致逼近，则函数$F (x)$为连续函数。多项式函数$P_n (x)$本身为连续函数。
+若区间$X$上的函数$f (x)$可用多项式函数$P_n (x)$一致逼近，则函数$f (x)$为连续函数。多项式函数$P_n (x)$本身为连续函数。
 
-若区间$X$上的函数$F (x)$可展开成条件收敛的无穷阶幂级数，则函数$F (x)$可用多项式函数$P_n (X)$一致逼近。
+若区间$X$上的函数$f (x)$可展开成条件收敛的无穷阶幂级数，则函数$f (x)$可用多项式函数$P_n (X)$一致逼近。
 
-$\left[ F (x) = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n p_i · (x - x_0)^i \right] ⇒ \left[ P_n  (x) ≡ \sum\limits_{i=0}^n p_i · (x - x_0)^i \right]$
+$\left[ f (x) = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n p_i · (x - x_0)^i \right] ⇒ \left[ P_n  (x) ≡ \sum\limits_{i=0}^n p_i · (x - x_0)^i \right]$
 
 ### 构造性多项式一致逼近
 
@@ -961,6 +961,7 @@ $\left[ F (x) = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n p_i · (x - x_0)^i \r
 | $⇓$  | $\left[ P_n (x) ≡ \int\limits_{-1}^{+1} f (x + t) · Q_n (t) \mathrm{d} t \mathop{===}\limits_{\mathrm{d} u = \mathrm{d} t}^{u = x + t} \int\limits_{x-1}^{x+1} f (u) · Q_n (u - x) \mathrm{d} u \mathop{=====}\limits_{-1≤x-1≤0}^{1≤x+1≤2} \int\limits_{0}^{1} f (u) · Q_n (u - x) \mathrm{d} u \right] ⇒ \left[ | P_n (x) - f (x) | ≤ \int\limits_{-1}^{+1} | f (x + t) - f (x) | · | Q_n (t) | \mathrm{d} t \right]$ |
 | $⇓$  | $[ ∀ε>0;∃δ>0; | t | = | (x + t) - x | < δ ⇒ | f (x + t) - f (x) | < ε ] ∧ \left[  | f (x) - f (y) | \mathop{≤}\limits_{x,y∈[0, 1]} \mathrm{Sup.} ≡ \sup\limits_{x∈[0, 1]} f (x) - \inf\limits_{x∈[0, 1]} f (x) \right]$ |
 | $⇓$  | $\lim\limits_{n⇝+∞} | P_n (x) - f (x) | ≤ \lim\limits_{n⇝+∞} \left[ 2 · \mathrm{Sup.} · \int\limits_{+δ}^{+1} Q_n (t) \mathrm{d} t + 2 · ε · \int\limits_{0}^{+δ} Q_n (t) \mathrm{d} t \right] ≤ \lim\limits_{n⇝+∞} \left[ 2 · \mathrm{Sup.} · \dfrac{(1 - δ^2)^n}{2} · 1 + 2 · ε · \dfrac{(1 - 0^2)^n}{2} · 1 \right] \mathop{⇝}\limits^{ε⇝0^+} 0$ |
+| $⇓$  | $\lim\limits_{n⇝+∞} P_n (x) \mathop{↭}\limits_{x∈[0， 1]} f (x)$ |
 
 步骤二：构造性多项式函数在闭区间$[0, 1]$上一致逼近连续函数$g (x)$，$f (x) \mathop{=}\limits_{x∈[0, 1]} x · [ g (1) - g (0) ] - [ g (x) - g (0) ]$，$f (x) \mathop{=}\limits_{x∉[0, 1]} f (0) = f (1) = 0$。
 
@@ -970,10 +971,32 @@ $\left[ \lim\limits_{n⇝+∞} P_n (x) \mathop{↭}\limits_{x∈[0, 1]} f (x) = 
 
 $\left[ \lim\limits_{n⇝+∞} P_n (x) \mathop{↭}\limits_{x∈[0, 1]} g (x) \mathop{=}\limits_{x∈[0, 1]} h (y) \mathop{=}\limits_{y∈[α, β]} h [α + x · (β - α)] \right] ⇔ \left[ \lim\limits_{n⇝+∞} P_n \left( \dfrac{y - α}{β - α} \right) \mathop{↭}\limits_{x∈[0, 1]} h (y) \right]$
 
-附加证明：$(1 - t^2)^n \mathop{≥}\limits_{-1≤t≤1} (1 - n · t^2)$
+附加证明：$(1 - t^2)^n \mathop{≥}\limits_{-1≤t≤1} (1 - n · t^2)$。
 
 | $⇓$  | $g (x) ≡ (1 - t^2)^n - (1 - n · t^2)$                        |      |                                                              |
 | :--: | ------------------------------------------------------------ | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} g (x) = n · (1 - t^2)^{n - 1} · (-2 · t) + 2 · n · t = 2 · n · t · [ 1 - (1 - t^2)^{n - 1} ]$ | $⇒$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} g (x) ≈ \mathop{<0}\limits_{-1≤x<0}; \mathop{=0}\limits_{x=0};\mathop{>0}\limits_{0<x≤+1};$ |
 | $⇓$  | $g (x) \mathop{≥}\limits_{-1≤x≤+1} g (0) = 0$                | $⇒$  | $(1 - t^2)^n \mathop{≥}\limits_{-1≤x≤+1} (1 - n · t^2)$      |
 
+步骤一：构造性多项式函数在闭区间$[0, 1]$上一致逼近连续函数$f (x)$，$f (x) \mathop{===}\limits_{x∉[0, 1]} f (0) = f (1) = 0$。
+
+| $⇓$  | $P_n [f (t) = 1; x; y = 1 - x] ≡ \sum\limits_{i=0}^n \dfrac{n!}{i! · (n - i)!} · x^i · y^{n - i} = (x + y)^n = 1$ |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $\sum\limits_{i=1}^n \dfrac{n!}{(i - 1)! · (n - i)!} · x^{i - 1} · y^{n - i} = \dfrac{∂}{∂ x} (x + y)^n = n · (x + y)^{n - 1}$ |
+| $⇓$  | $P_n [f (t) = t; x; y = 1 - x] ≡ \sum\limits_{i=0}^{n} \dfrac{i}{n} · \dfrac{n!}{i! · (n - i)!} · x^i · y^{n - i} = x · (x + y)^{n - 1} = x$ |
+| $⇓$  | $\sum\limits_{i=1}^n \dfrac{i}{n} · \dfrac{n!}{(i - 1)! · (n - i)!} · x^{i - 1} · y^{n - i} = \dfrac{∂}{∂ x} [x · (x + y)^{n - 1}] = (x + y)^{n - 1} + (n - 1) · x · (x + y)^{n - 2}$ |
+| $⇓$  | $P_n [f (t) = t^2; x; y = 1 - x] ≡ \sum\limits_{i=0}^n \dfrac{i^2}{n^2} · \dfrac{n!}{i! · (n - i)!} · x^{i} · y^{n - 1} = \dfrac{x}{n} · [ (x + y)^{n - 1} + (n - 1) · x · (x + y)^{n - 2} ] = \left( 1 - \dfrac{1}{n} \right) · x^2 + \dfrac{1}{n} · x$ |
+|      |                                                              |
+| $⇓$  | $\sum\limits_{i=0}^n \left[ \dfrac{i}{n} - x \right]^2 · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} = \sum\limits_{i=0}^n \left[ \dfrac{i^2}{n^2} - 2 · x · \dfrac{i}{n} + x^2 \right] · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i}$ |
+| $⇓$  | $\sum\limits_{i=0}^n \left[ \dfrac{i}{n} - x \right]^2 · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} = \left[ \left( 1 - \dfrac{1}{n} \right) · x^2 + \dfrac{1}{n} · x \right] - 2 · x · x + x^2 · 1 = \dfrac{1}{n} · x · (1 - x) ≤ \dfrac{1}{n} · \dfrac{1}{2} · \left( 1 - \dfrac{1}{2} \right) = \dfrac{1}{4 · n}$ |
+|      |                                                              |
+| $⇓$  | $[ ∀ε>0;∃δ>0; | y - x | < δ ⇒ | f (y) - f (x) | < ε ] ∧ \left[  | f (y) - f (x) | \mathop{≤}\limits_{x,y∈[0, 1]} \mathrm{Sup.} ≡ \sup\limits_{x∈[0, 1]} f (x) - \inf\limits_{x∈[0, 1]} f (x) \right] ∧ \left[ f (x) = \sum\limits_{i=0}^n f (x) · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} \right]$ |
+| $⇓$  | $\sum\limits_{i=0}^n \left| f \left( \dfrac{i}{n} \right) - f (x) \right| · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} ≤ \left[ ε · \sum\limits_{\left| \frac{i}{n} - x \right|<δ}^{n} \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} + \dfrac{\mathrm{2 · Sup.}}{δ^2} · \sum\limits_{\left| \frac{i}{n} - x \right|≥δ}^n \left[ \dfrac{i}{n} - x \right]^2 · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} \right]$ |
+| $⇓$  | $\lim\limits_{n⇝+∞} | P_n [f (t); x; y = 1 - x] - f (x) | ≤ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \left| f \left( \dfrac{i}{n} \right) - f (x) \right| · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} ≤ \lim\limits_{n⇝+∞} \left[ ε · 1 + \dfrac{\mathrm{2 · Sup.}}{δ^2 · 4 · n} \right] \mathop{⇝}\limits^{ε⇝0^+} 0$ |
+| $⇓$  | $\lim\limits_{n⇝+∞} P_n [f (t); x; y = 1- x] \mathop{↭}\limits_{x∈[0, 1]} f (x)$ |
+
+步骤二：构造性多项式函数在闭区间$[α, β]$上一致逼近连续函数$h (y)$，$y = α + x · (β - α), x = \dfrac{y - α}{β - α}$。
+
+$\left[ \lim\limits_{n⇝+∞} P_n (x) \mathop{↭}\limits_{x∈[0, 1]} f (x) \mathop{=}\limits_{x∈[0, 1]} h (y) \mathop{=}\limits_{y∈[α, β]} h [α + x · (β - α)] \right] ⇔ \left[ \lim\limits_{n⇝+∞} P_n \left( \dfrac{y - α}{β - α} \right) \mathop{↭}\limits_{x∈[0, 1]} h (y) \right]$
+
+### 
