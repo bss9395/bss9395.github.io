@@ -1,8 +1,8 @@
 ---
 layout:  zh_post
 Topic :  收敛极限
-Title :  重要级数
-Update:  2021-02-12T10:58:00+08@中国-广东-湛江+08
+Title :  重要公式
+Update:  2021-02-17T23:16:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -35,4 +35,32 @@ Link  :
 | $⇓$  | $\left[ 0 ≠ 1 \mathop{≤}\limits^{p≤-1} \lim\limits_{i⇝+∞} \prod\limits_{j=0}^{i-1} \left| \dfrac{j - p}{j + 1} \right| = \lim\limits_{i⇝+∞} | s_{i} (+1) | \right] ∧ \left[ \lim\limits_{n⇝+∞} \mathop{| R_n (+1) |}\limits_{1≤1+θ≤2}^{0≤θ≤1} ≤ \lim\limits_{n⇝+∞} \dfrac{2^p}{1^{n + 1}} · \prod\limits_{j=0}^n \left| \dfrac{j - p}{j + 1} \right| \mathop{⇝}\limits^{-1 < p} 0 \right]$ | $⇒$  | $\mathop{[+0, +1)}\limits_{p≤-1}; \mathop{[+0, +1]}\limits_{-1<p}$ |
 | $⇓$  | $\lim\limits_{i⇝+∞} i · \left[ \dfrac{s_i^+ (-1)}{s_{i+1}^+ (-1)} - 1 \right] \mathop{==}\limits^{j≥p} \lim\limits_{i⇝+∞} i · \left[ \prod\limits_{j=0}^{i-1} \dfrac{j - p}{j + 1} · \prod\limits_{j=0}^{i} \dfrac{j + 1}{j - p} - 1 \right] = \lim\limits_{i⇝+∞} i · \left[ \dfrac{i + 1}{i - p} - 1 \right] = 1 + p$ | $⇒$  | $\mathop{(-1, -0]}\limits_{p<0}; \mathop{[-1, -0]}\limits_{0<p}$ |
 | $⇓$  |                                                              |      | $\mathop{(-1, +1)}\limits_{p≤-1}; \mathop{(-1, +1]}\limits_{-1<p<0}; \mathop{[-1, +1]}\limits_{0<p}$ |
+
+### 复数积分
+
+$\int e^{-α · x} · e^{\imath · β · x} \mathrm{d} x = \dfrac{e^{-α · x + \imath · β · x}}{-α + \imath · β} = \dfrac{e^{-α · x}}{α^2 + β^2} · [[ -α · \cos (β · x) + β · \sin (β · x) ] + \imath · [ -α · \sin (β · x) - β · \cos (β · x) ]]$
+
+$\int e^{-α · x} · \cos (β · x) \mathrm{d} x = \dfrac{e^{-α · x}}{α^2 + β^2} · [ -α · \cos (β · x) + β · \sin (β · x)]$
+
+$\int e^{-α · x} · \sin (β · x) \mathrm{d} x = \dfrac{e^{-α · x}}{α^2 + β^2} · [-α · \sin (β · x) - β · \cos (β · x)]$
+
+| $⇓$  | $\int e^{-α · x} · e^{\imath · β · x} \mathrm{d} x = \dfrac{e^{-α · x + \imath · β · x}}{-α + \imath · β} = \dfrac{e^{-α · x}}{-α + \imath · β} · \dfrac{-α - \imath · \beta}{-α - \imath · \beta} · [\cos (β · x) + \imath · \sin (β · x)]$ |      |                                                              |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\int e^{-α · x} · e^{\imath · β · x} \mathrm{d} x = \dfrac{e^{-α · x}}{α^2 + β^2} · [[ -α · \cos (β · x) + β · \sin (β · x) ] + \imath · [ -α · \sin (β · x) - β · \cos (β · x) ]]$ | $⇔$  | $\int e^{-α · x} · [ \cos (β · x) + \imath · \sin (β · x)] \mathrm{d} x$ |
+| $⇓$  | $\int e^{-α · x} · \cos (β · x) \mathrm{d} x = \dfrac{e^{-α · x}}{α^2 + β^2} · [ -α · \cos (β · x) + β · \sin (β · x)]$ | $⇒$  | $\int\limits_0^{+∞} e^{- α · x} · \cos (β · x) \mathrm{d} x = \dfrac{α}{α^2 + β^2}$ |
+| $⇓$  | $\int e^{-α · x} · \sin (β · x) \mathrm{d} x = \dfrac{e^{-α · x}}{α^2 + β^2} · [-α · \sin (β · x) - β · \cos (β · x)]$ | $⇒$  | $\int\limits_0^{+∞} e^{- α · x} · \sin (β · x) \mathrm{d} x = \dfrac{β}{α^2 + β^2}$ |
+
+### 指数积分
+
+
+
+
+
+### 三角积分
+
+$\int\limits_{-π}^{+π} \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} x = 2 · π$
+
+| $\int\limits_{-π}^{+π} \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} x \mathop{=======}\limits_{\cos x = \frac{1 - \tan^2 \frac{x}{2}}{1 + \tan^2 \frac{x}{2}}}^{t = \tan \frac{x}{2}} \int\limits_{-∞}^{+∞} \dfrac{1 - r^2}{1 - 2 · r · \dfrac{1 - t^2}{1 + t^2} + r^2} \dfrac{2 · \mathrm{d} t}{1 + t^2} = \int\limits_{-∞}^{+∞} \dfrac{2 · (1 - r^2)}{(1 - r)^2 + (1 + r)^2 · t^2} \mathrm{d} t = 2 · \left. \arctan \left( \dfrac{1 + r}{1 - r} · t \right) \right|_{-∞}^{+∞} = 2 · π$ |
+| ------------------------------------------------------------ |
+|                                                              |
 
