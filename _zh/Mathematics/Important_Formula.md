@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  重要公式
-Update:  2021-02-17T23:16:00+08@中国-广东-湛江+08
+Update:  2021-02-18T16:30:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -38,29 +38,68 @@ Link  :
 
 ### 复数积分
 
-$\int e^{-α · x} · e^{\imath · β · x} \mathrm{d} x = \dfrac{e^{-α · x + \imath · β · x}}{-α + \imath · β} = \dfrac{e^{-α · x}}{α^2 + β^2} · [[ -α · \cos (β · x) + β · \sin (β · x) ] + \imath · [ -α · \sin (β · x) - β · \cos (β · x) ]]$
+$\int\limits_{0}^{+∞} e^{-α · x} · e^{\imath · β · x} \mathrm{d} x = \dfrac{α + \imath · β}{α^2 + β^2}$
 
-$\int e^{-α · x} · \cos (β · x) \mathrm{d} x = \dfrac{e^{-α · x}}{α^2 + β^2} · [ -α · \cos (β · x) + β · \sin (β · x)]$
+$\int\limits_0^{+∞} e^{- α · x} · \cos (β · x) \mathrm{d} x = \dfrac{α}{α^2 + β^2}$
 
-$\int e^{-α · x} · \sin (β · x) \mathrm{d} x = \dfrac{e^{-α · x}}{α^2 + β^2} · [-α · \sin (β · x) - β · \cos (β · x)]$
+$\int\limits_0^{+∞} e^{- α · x} · \sin (β · x) \mathrm{d} x = \dfrac{β}{α^2 + β^2}$
 
-| $⇓$  | $\int e^{-α · x} · e^{\imath · β · x} \mathrm{d} x = \dfrac{e^{-α · x + \imath · β · x}}{-α + \imath · β} = \dfrac{e^{-α · x}}{-α + \imath · β} · \dfrac{-α - \imath · \beta}{-α - \imath · \beta} · [\cos (β · x) + \imath · \sin (β · x)]$ |      |                                                              |
+| $⇓$  | $\int\limits_{X_0}^{X_1} e^{-α · x} · e^{\imath · β · x} \mathrm{d} x = \left[ \dfrac{e^{-α · x + \imath · β · x}}{-α + \imath · β} \right]_{I_0}^{I_1} = \left[ \dfrac{e^{-α · x}}{-α + \imath · β} · \dfrac{-α - \imath · \beta}{-α - \imath · \beta} · [\cos (β · x) + \imath · \sin (β · x)] \right]_{X_0}^{X_1}$ |      |                                                              |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\int e^{-α · x} · e^{\imath · β · x} \mathrm{d} x = \dfrac{e^{-α · x}}{α^2 + β^2} · [[ -α · \cos (β · x) + β · \sin (β · x) ] + \imath · [ -α · \sin (β · x) - β · \cos (β · x) ]]$ | $⇔$  | $\int e^{-α · x} · [ \cos (β · x) + \imath · \sin (β · x)] \mathrm{d} x$ |
-| $⇓$  | $\int e^{-α · x} · \cos (β · x) \mathrm{d} x = \dfrac{e^{-α · x}}{α^2 + β^2} · [ -α · \cos (β · x) + β · \sin (β · x)]$ | $⇒$  | $\int\limits_0^{+∞} e^{- α · x} · \cos (β · x) \mathrm{d} x = \dfrac{α}{α^2 + β^2}$ |
-| $⇓$  | $\int e^{-α · x} · \sin (β · x) \mathrm{d} x = \dfrac{e^{-α · x}}{α^2 + β^2} · [-α · \sin (β · x) - β · \cos (β · x)]$ | $⇒$  | $\int\limits_0^{+∞} e^{- α · x} · \sin (β · x) \mathrm{d} x = \dfrac{β}{α^2 + β^2}$ |
+| $⇓$  | $\int\limits_{X_0}^{X_1} e^{-α · x} · e^{\imath · β · x} \mathrm{d} x = \left[ \dfrac{e^{-α · x}}{α^2 + β^2} · [[ -α · \cos (β · x) + β · \sin (β · x) ] + \imath · [ -α · \sin (β · x) - β · \cos (β · x) ]] \right]_{X_0}^{X_1}$ | $⇔$  | $\int\limits_{X_0}^{X_1} e^{-α · x} · [ \cos (β · x) + \imath · \sin (β · x)] \mathrm{d} x$ |
+| $⇓$  | $\int\limits_{X_0}^{X_1} e^{-α · x} · \cos (β · x) \mathrm{d} x = \left[ \dfrac{e^{-α · x}}{α^2 + β^2} · [ -α · \cos (β · x) + β · \sin (β · x)] \right]_{X_0}^{X_1}$ | $⇒$  | $\int\limits_0^{+∞} e^{- α · x} · \cos (β · x) \mathrm{d} x = \dfrac{α}{α^2 + β^2}$ |
+| $⇓$  | $\int\limits_{X_0}^{X_1} e^{-α · x} · \sin (β · x) \mathrm{d} x = \left[ \dfrac{e^{-α · x}}{α^2 + β^2} · [-α · \sin (β · x) - β · \cos (β · x)] \right]_{X_0}^{X_1}$ | $⇒$  | $\int\limits_0^{+∞} e^{- α · x} · \sin (β · x) \mathrm{d} x = \dfrac{β}{α^2 + β^2}$ |
+| $⇓$  |                                                              | $⇒$  | $\int\limits_{0}^{+∞} e^{-α · x} · e^{\imath · β · x} \mathrm{d} x = \dfrac{α + \imath · β}{α^2 + β^2}$ |
 
 ### 指数积分
 
+$\int\limits_{0}^{+∞} e^{-x^2} \mathrm{d} x = \dfrac{\sqrt{π}}{2}$
 
-
-
+| $⇓$  | $\int\limits_0^{+∞} e^{-x^2} \mathrm{d} x \mathop{===}\limits^{t = x^2} \int\limits_0^{+∞} e^{-t} \dfrac{\mathrm{d} t}{2 · \sqrt{t}} = \dfrac{1}{2} · \int\limits_{0}^{+∞} t^{\frac{1}{2} - 1} · e^{-t} \mathrm{d} t = \dfrac{1}{2} · Γ \left( \dfrac{1}{2} \right) = \dfrac{\sqrt{π}}{2}$ | $⇐$  | $Γ \left( \dfrac{1}{2} \right) = \sqrt{π}$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------- |
+|      |                                                              |      |                                            |
 
 ### 三角积分
 
+$\int\limits_{0}^{\frac{π}{2}} \cos^n x \mathrm{d}x = \left[ \dfrac{π}{2} \right]^{\frac{1 + (-1)^n}{2}} · \left[ \prod\limits_{i=1}^n i^{(-1)^i} \right]^{(-1)^{n+1}}$
+
+$\int\limits_{0}^{\frac{π}{2}} \sin^n x \mathrm{d} x = \int\limits_{0}^{\frac{π}{2}} \cos^n x \mathrm{d} x$
+
 $\int\limits_{-π}^{+π} \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} x = 2 · π$
 
-| $\int\limits_{-π}^{+π} \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} x \mathop{=======}\limits_{\cos x = \frac{1 - \tan^2 \frac{x}{2}}{1 + \tan^2 \frac{x}{2}}}^{t = \tan \frac{x}{2}} \int\limits_{-∞}^{+∞} \dfrac{1 - r^2}{1 - 2 · r · \dfrac{1 - t^2}{1 + t^2} + r^2} \dfrac{2 · \mathrm{d} t}{1 + t^2} = \int\limits_{-∞}^{+∞} \dfrac{2 · (1 - r^2)}{(1 - r)^2 + (1 + r)^2 · t^2} \mathrm{d} t = 2 · \left. \arctan \left( \dfrac{1 + r}{1 - r} · t \right) \right|_{-∞}^{+∞} = 2 · π$ |
-| ------------------------------------------------------------ |
-|                                                              |
+| $⇓$  | $\int\limits_{0}^{\frac{π}{2}} f (\sin x) \mathrm{d} x \mathop{====}\limits^{x=\frac{π}{2}-t} -\int\limits_{\frac{π}{2}}^{0} f (\cos t) \mathrm{d} t = \int\limits_{0}^{\frac{π}{2}} f (\cos t) \mathrm{d} t$ | $⇒$  | $\int\limits_{0}^{\frac{π}{2}} \sin^n x \mathrm{d} x = \int\limits_{0}^{\frac{π}{2}} \cos^n x \mathrm{d} x$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $I_n = \int\limits_{0}^{\frac{π}{2}} \cos^n \mathrm{d} x = \int\limits_{0}^{\frac{π}{2}} \cos^{n-1} x \mathrm{d} \sin x = \left[ \cos^{n - 1} x · \sin x \right]_{0}^{\frac{π}{2}} + (n - 1) · \int\limits_{0}^{\frac{π}{2}} \cos^{n-2} x · \sin^2 x \mathrm{d} x$ |      |                                                              |
+| $⇓$  | $I_n = (n - 1) · \int\limits_{0}^{\frac{π}{2}} \cos^{n-2} x · [ 1 - \cos^2 x] \mathrm{d} x = (n - 1) · [ I_{n-2} - I_n ]$ |      |                                                              |
+| $⇓$  | $I_n = \dfrac{n - 1}{n} · I_{n-2}$                           |      |                                                              |
+| $⇓$  | $I_{2·m} = \dfrac{π}{2} · \dfrac{1}{2} · \dfrac{3}{4} ··· \dfrac{2 · m - 3}{2 · m - 2} · \dfrac{2 · m - 1}{2 · m}$ | $⇐$  | $I_0 = \int\limits_{0}^{\frac{π}{2}} \cos^0 x \mathrm{d} x = \dfrac{π}{2}$ |
+| $⇓$  | $I_{2·m+1} = 1 · \dfrac{2}{3} · \dfrac{4}{5} ··· \dfrac{2 · m - 2}{2 · m - 1} · \dfrac{2 · m}{2 · m + 1}$ | $⇐$  | $I_1 = \int\limits_{0}^{\frac{π}{2}} \cos^1 x \mathrm{d} x = [ \sin x ]_{0}^{\frac{π}{2}} = 1$ |
+| $⇓$  | $I_n = \left[ \dfrac{π}{2} \right]^{\frac{1 + (-1)^n}{2}} · \left[ \prod\limits_{i=1}^n i^{(-1)^i} \right]^{(-1)^{n+1}}$ |      |                                                              |
+
+| $⇓$  | $\int\limits_{-π}^{+π} \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} x \mathop{=======}\limits_{\cos x = \frac{1 - \tan^2 \frac{x}{2}}{1 + \tan^2 \frac{x}{2}}}^{t = \tan \frac{x}{2}} \int\limits_{-∞}^{+∞} \dfrac{1 - r^2}{1 - 2 · r · \dfrac{1 - t^2}{1 + t^2} + r^2} \dfrac{2 · \mathrm{d} t}{1 + t^2} = \int\limits_{-∞}^{+∞} \dfrac{2 · (1 - r^2)}{(1 - r)^2 + (1 + r)^2 · t^2} \mathrm{d} t = 2 · \left[ \arctan \left( \dfrac{1 + r}{1 - r} · t \right) \right]_{-∞}^{+∞} = 2 · π$ |
+| :--: | ------------------------------------------------------------ |
+|      |                                                              |
+
+### 调和积分
+
+$\int\limits_{0}^{1} \dfrac{1}{x^α} \mathrm{d} x = \mathop{\dfrac{1}{1 - α}}\limits_{0<α<1}; \mathop{+∞}\limits_{1≤α<+∞}$
+
+$\int\limits_{1}^{+∞} \dfrac{1}{x^α} \mathrm{d} x = \mathop{+∞}\limits_{0<α≤1}; \mathop{\dfrac{1}{α - 1}}\limits_{1<α<+∞}$
+
+$\int\limits_{0}^{+∞} \dfrac{1}{x^α} \mathrm{d} x = +∞$
+
+$\int\limits_{1}^{2} \dfrac{1}{x · \ln^β x} \mathrm{d} x = \mathop{\dfrac{\ln^{1 - β} 2}{1 - β}}\limits_{0<β<1}; \mathop{+∞}\limits_{1≤β<+∞}$
+
+$\int\limits_{2}^{+∞} \dfrac{1}{x · \ln^β x} \mathrm{d} x = \mathop{+∞}\limits_{0<β≤1}; \mathop{\dfrac{1}{(β - 1) · \ln^{β - 1} 2}}\limits_{1<β<+∞}$
+
+$\int\limits_{2}^{+∞} \dfrac{1}{x · \ln^β x} \mathrm{d} x = +∞$
+
+|      | $\int\limits_{X_0}^{X_1} \dfrac{1}{x^α} \mathrm{d} x \mathop{====}\limits_{0<X_0,X_1}^{α≠1} \left[ \dfrac{x^{1 - α}}{1 - α} \right]_{X_0}^{X_1} = \dfrac{X_1^{1 - α} - X_0^{1 - α}}{1 - α}$ | $\int\limits_{X_0}^{X_1} \dfrac{1}{x^1} \mathrm{d} x \mathop{====}\limits_{0<X_0,X_1}^{α=1} [ \ln x ]_{X_0}^{X_1} = \ln \dfrac{X_1}{X_0}$ |      |                                                              |
+| :--: | :----------------------------------------------------------- | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\int\limits_{0}^{X_1} \dfrac{1}{x^α} \mathrm{d} x \mathop{==}\limits^{α≠1} \dfrac{X_1 - (0^+)^{1 - α}}{1 - α} = \mathop{\dfrac{X_1}{1 - α}}\limits_{0<α<1}; \mathop{+∞}\limits_{1<α<+∞}$ | $\int\limits_{0}^{X_1} \dfrac{1}{x^1} \mathrm{d} x = \ln \dfrac{X_1}{0^+} = +∞$ | $⇒$  | $\int\limits_{0}^{1} \dfrac{1}{x^α} \mathrm{d} x = \mathop{\dfrac{1}{1 - α}}\limits_{0<α<1}; \mathop{+∞}\limits_{1≤α<+∞}$ |
+| $⇓$  | $\int\limits_{X_0}^{+∞} \dfrac{1}{x^α} \mathrm{d} x \mathop{==}\limits^{α≠1} \dfrac{(+∞)^{1 - α} - X_0}{1 - α} = \mathop{+∞}\limits_{0<α<1}; \mathop{\dfrac{X_0}{α - 1}}\limits_{1<α<+∞}$ | $\int\limits_{X_0}^{+∞} \dfrac{1}{x^1} \mathrm{d} x = \ln \dfrac{+∞}{X_0} = +∞$ | $⇒$  | $\int\limits_{1}^{+∞} \dfrac{1}{x^α} \mathrm{d} x = \mathop{+∞}\limits_{0<α≤1}; \mathop{\dfrac{1}{α - 1}}\limits_{1<α<+∞}$ |
+| $⇓$  |                                                              |                                                              | $⇒$  | $\int\limits_{0}^{+∞} \dfrac{1}{x^α} \mathrm{d} x = +∞$      |
+| $⇓$  | $\int\limits_{X_0}^{X_1} \dfrac{1}{x · \ln^β x} \mathrm{d} x \mathop{====}\limits^{t=\ln x} \int\limits_{\ln X_0}^{\ln X_1} \dfrac{1}{t^β} \mathrm{d} t \mathop{====}\limits_{1<X_0,X_1}^{β≠1} \left[ \dfrac{t^{1 - β}}{1 - β} \right]_{\ln X_0}^{\ln X_1} = \dfrac{\ln^{1 - β} X_1 - \ln^{1 - β} X_0}{1 - β}$ |                                                              | $⇒$  | $\int\limits_{1}^{2} \dfrac{1}{x · \ln^β x} \mathrm{d} x = \mathop{\dfrac{\ln^{1 - β} 2}{1 - β}}\limits_{0<β<1}; \mathop{+∞}\limits_{1≤β<+∞}$ |
+| $⇓$  | $\int\limits_{X_0}^{X_1} \dfrac{1}{x · \ln^1 x} \mathrm{d} x \mathop{===}\limits^{t=\ln x} \int\limits_{X_0}^{X_1} \dfrac{1}{t^1} \mathrm{d} t \mathop{====}\limits_{1<X_0,X_1}^{β=1} [ \ln t ]_{\ln X_0}^{\ln X_1} = \ln \dfrac{\ln X_1}{\ln X_0}$ |                                                              | $⇒$  | $\int\limits_{2}^{+∞} \dfrac{1}{x · \ln^β x} \mathrm{d} x = \mathop{+∞}\limits_{0<β≤1}; \mathop{\dfrac{1}{(β - 1) · \ln^{β - 1} 2}}\limits_{1<β<+∞}$ |
+| $⇓$  |                                                              |                                                              | $⇒$  | $\int\limits_{2}^{+∞} \dfrac{1}{x · \ln^β x} \mathrm{d} x = +∞$ |
 
