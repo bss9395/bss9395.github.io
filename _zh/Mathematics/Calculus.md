@@ -199,7 +199,7 @@ $\left[ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} w_i · \dfrac{X_1 - X_0}{n 
 
 反例：函数$𝓓 (x) = \mathop{1}\limits_{x∈ℚ}; \mathop{0}\limits_{x∉ℚ}$在区间$[0, 1]$上有确界，但其定积分不存在。
 
-$\lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} 𝓓 \left( \dfrac{i}{n + 1} \right) · \dfrac{1}{n + 1} \mathop{===}\limits^{\frac{i}{n + 1}∈ℚ} \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \dfrac{1}{n + 1} ⇝ +∞$
+$\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_i+1]} 𝓓 (x) · Δx_i = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} 0 · Δx_i = 0 ≠ 1 = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n}  1 · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i$
 
 若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则函数$f (x)$在区间$[X_0, X_1]$上的断点集为零测集，反之亦然。
 
