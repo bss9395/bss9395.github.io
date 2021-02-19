@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-02-04T14:34:00+08@中国-广东-湛江+08
+Update:  2021-02-19T22:42:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -144,4 +144,70 @@ $[ R_n (x_0) = 0 ] ⇒ [ f (x) |_{x_0} = f (x_0) ]$
 | $⇓$  | $R_n (x) \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{{^{n+1}f (θ)}}{n!} · (x - θ)^n · (x - x_0)^1$ | $⇐$  | $G (t) ≡ (x - t)^1$                                          | ${^1}G (t) = -1$                                    |
 | $⇓$  | $R_n (x) \mathop{====}\limits_{∃θ∈[x_0, x]} \int\limits_{x_0}^x \dfrac{{^{n+1}}f (t)}{n!} · (x - t)^n \mathrm{d} t$ | $⇐$  | $G (t) ≡ \int\limits_{x_0}^t \dfrac{{^{n+1}}f (t)}{n!} · (x - t)^n \mathrm{d} t$ | ${^1}G (t) = \dfrac{{^{n+1}}f (t)}{n!} · (x - t)^n$ |
 | $⇓$  | $R_n (x) = O (x - x_0)^{n + 1}$                              | $⇐$  | $\varlimsup\limits_{x⇝x_0} \dfrac{R_n (x)}{(x - x_0)^{n + 1}} = \dfrac{{^{n+1}}f (θ)}{(n + 1)!} ≤ \mathrm{Sup.}$ |                                                     |
+
+### 零测集
+
+对于任意零测集$𝒪$，均存在至多可数个区间$X_i$覆盖之，使得其可测度长度为零。
+
+$∀ε>0; \left[ 𝒪 ⊆ \bigcup\limits_{i=0}^{n⇝+∞} X_i \right] ∧ \left[ | 𝒪 | ≤ \sum\limits_{i=0}^{n⇝+∞} | X_i | < ε \right]$
+
+至多可数集$\mathop{\lbrace s_i \rbrace}\limits_{n⇝+∞}$为零测集。此外有限集为至多可数集，零测集的子集为零测集。
+
+$∀ε_2>0; \left[ \mathop{\lbrace s_i \rbrace}\limits_{n⇝+∞} ⊆ \bigcup\limits_{i=0}^{n⇝+∞} \left( s_i - \dfrac{ε_1}{2^{i+1}}, s_i + \dfrac{ε_1}{2^{i+1}} \right) \right] ⇒ \left[ \left| \mathop{\lbrace s_i \rbrace}\limits_{n⇝+∞} \right| = \sum\limits_{i=0}^{n⇝+∞} | s_i | ≤ \sum\limits_{i=0}^{n} \dfrac{ε_1}{2^{i}} ≤ \sum\limits_{i=0}^{+∞} \dfrac{ε_1}{2^i} =  2 · ε_1 = ε_2 \right]$
+
+至多可数个零测集$𝒪_i$的合集$\mathop{\lbrace 𝒪_i \rbrace}\limits_{n⇝+∞}$为零测集。
+
+$∀ε_3>0; \left[ \mathop{\lbrace 𝒪_i \rbrace}\limits_{n⇝+∞} ⊆ \bigcup\limits_{i=0}^{n⇝+∞} \bigcup\limits_{j=0}^{m⇝+∞} X_{i,j} \right] ⇒ \left[ \left| \mathop{\lbrace 𝒪_i \rbrace}\limits_{n⇝+∞} \right| = \sum\limits_{i=0}^{n⇝+∞} | 𝒪_i | = \sum\limits_{i=0}^{n⇝+∞} \sum\limits_{j=0}^{m⇝+∞} | X_{i,j} | ≤ \sum\limits_{i=0}^{n⇝+∞} \dfrac{1}{2^{i}} · \sum\limits_{j=0}^{m⇝+∞} \dfrac{ε_1}{2^{j}} ≤ \sum\limits_{i=0}^{+∞} \dfrac{ε_2}{2^i} = 2 · ε_2 = ε_3 \right]$
+
+### 定积分
+
+在定义域区间$[X_0, X_1]$划分成$n + 1$个子区间$[x_i, x_{i+1}]$的基础上，多添加$m$个点再形成$m$个子区间，其下积分和不减，其上积分和不增。
+
+$\sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i ≤ \sum\limits_{j=0}^{n+m} \inf\limits_{x∈[x_j, x_{j+1}]} f (x) · Δx_j ≤ \sum\limits_{j=0}^{n+m} f (θ_j) · Δx_j ≤ \sum\limits_{j=0}^{n+m} \sup\limits_{x∈[x_j, x_{j+1}]} f (x) · Δx_j ≤ \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i$
+
+| $⇓$  | $[x_{j}, x_{j+1}] ⊆ [x_{i}, x_{i+1}]$                      |  ⇒   | $\inf\limits_{x∈[x_i, x_{i+1}]} f (x) ≤ \inf\limits_{x∈[x_j, x_{j+1}]} f (x) ≤ \sup\limits_{x∈[x_j, x_{j+1}]} f (x) ≤ \sup\limits_{x∈[x_i, x_{i+1}]} f (x)$ |
+| :--: | :--------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $[x_{j}, x_{j+1}] ∪ [x_{j+1}, x_{j+2}] = [x_{i}, x_{i+1}]$ |  ⇒   | $\inf\limits_{x∈[x_i, x_{i+1}]} f (x) · [(x_{j+1} - x_{j}) + (x_{j+2} - x_{j+1})] ≤ \inf\limits_{x∈[x_j, x_{j+1}]} f (x) · (x_{j+1} - x_{j}) + \inf\limits_{x∈[x_{j+1}, x_{j+2}]} f (x) · (x_{j+2} - x_{j+1})$ |
+| $⇓$  | $[x_{j}, x_{j+1}] ∪ [x_{j+1}, x_{j+2}] = [x_{i}, x_{i+1}]$ |  ⇒   | $\sup\limits_{x∈[x_j, x_{j+1}]} f (x) · (x_{j+1} - x_{j}) + \sup\limits_{x∈[x_{j+1}, x_{j+2}]} f (x) · (x_{j+2} - x_{j+1}) ≤ \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · [(x_{j+1} - x_{j}) + (x_{j+2} - x_{j+1})]$ |
+
+若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则其下积分和的极限等同于上积分和的极限，反之亦然。可任取点$θ_i$处的函数值$f (θ_i)$视为该子区间的平均值。
+
+$\int\limits_{X_0}^{X_1} f (x) \mathrm{d} x \mathop{≡≡≡≡}\limits_{X_0=x_0}^{X_1=x_{n+1}} \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_i+1]} f (x) · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f (θ_i) · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i$
+
+$\int\limits_{X_0}^{X_1} f (x) \mathrm{d} x \mathop{≡≡≡≡}\limits_{X_0=x_0}^{X_1=x_{n+1}} \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n f (x_i) · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f (θ_i) · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n f (x_{i+1}) · Δx_i$
+
+$\int\limits_{X_0}^{X_1} f (x) \mathrm{d} x ≡≡≡≡ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n f \left[ i · \dfrac{X_1 - X_0}{n + 1} \right] · \dfrac{X_1 - X_0}{n + 1} = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} f \left[ θ_i · \dfrac{X_1 - X_0}{n + 1} \right] · \dfrac{X_1 - X_0}{n + 1} = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} f \left[ (i + 1) · \dfrac{X_1 - X_0}{n + 1} \right] · \dfrac{X_1 - X_0}{n + 1}$
+
+若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则其振幅和的极限为零，反之亦然。
+
+$0 ⇜ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n w_i · Δx_i ≡ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \sup\limits_{u,v∈[x_i, x_{i+1}]} | f (u) - f (v) | · Δx_i$
+
+$0 ⇜ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} w_i · \dfrac{X_1 - X_0}{n + 1} ≡ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \sup\limits_{u,v∈[x_i, x_{i+1}]} | f (u) - f (v) | · \dfrac{X_1 - X_0}{n + 1}$
+
+| $⇕$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i$ |
+| :--: | ------------------------------------------------------------ |
+| $⇕$  | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \sup\limits_{u,v∈[x_i, x_{i+1}]} | f (u) - f (v) | · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \left[ \sup\limits_{x∈[x_i, x_{i+1}]} f (x) - \inf\limits_{x∈[x_i, x_{i+1}]} f (x) \right] · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i - \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i ⇝ 0$ |
+
+若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则函数$f (x)$在区间$[X_0, X_1]$上有确界，反之不对。
+
+$\left[ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} w_i · \dfrac{X_1 - X_0}{n + 1} ⇝ 0 \right] ⇒ \left[ f (x) ≤ \mathrm{Sup.} \right]$
+
+| $⇓$  | $0 ⇜ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} w_i · \dfrac{X_1 - X_0}{n + 1} = (X_1 - X_0) · \lim\limits_{n⇝+∞} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} w_i = (X_1 - X_0) · w_n$ |      |                                                       |
+| :--: | :----------------------------------------------------------- | :--: | :---------------------------------------------------- |
+| $⇓$  | $0 ⇜ w_n = \sup\limits_{u,v∈[x_n, x_{n+1}]} | f (u) - f (v) | ≥ || f (u) | - | f (v) ||$ |      |                                                       |
+| $⇓$  | $| f (x) | ≤ \mathrm{Sup.}$                                  | $⇐$  | $[ | f (u) | ⇝ +∞ ] ⇒ [ | f (u) | - | f (v) | ⇝ +∞ ]$ |
+
+反例：函数$𝓓 (x) = \mathop{1}\limits_{x∈ℚ}; \mathop{0}\limits_{x∉ℚ}$在区间$[0, 1]$上有确界，但其定积分不存在。
+
+$\lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} 𝓓 \left( \dfrac{i}{n + 1} \right) · \dfrac{1}{n + 1} \mathop{===}\limits^{\frac{i}{n + 1}∈ℚ} \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \dfrac{1}{n + 1} ⇝ +∞$
+
+若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则函数$f (x)$在区间$[X_0, X_1]$上的断点集为零测集，反之亦然。
+
+$\left[ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i · Δx_i ⇝ 0 \right] ⇔ \left[ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε} ⇝ 0 \right]$
+
+| $⇓$  | $ε · 𝜁 > \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n w_i · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i<ε} + \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \mathop{w_i · Δx_i}\limits_{w_i≥ε} ≥ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i≥ε} = ε · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε}$ |      |                                       |
+| :--: | :----------------------------------------------------------- | :--: | :------------------------------------ |
+| $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε} < 𝜁 ⇝ 0$ |      |                                       |
+| $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i<ε} + \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i≥ε} ≤ ε · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i<ε} + \mathrm{Sup.} · \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε} ≤ ε · (X_1 - X_0) + \mathrm{Sup.} · 𝜁$ | $⇐$  | $\mathrm{Sup.} ≡ \sup\limits_{i} w_i$ |
+| $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i · Δx_i ⇝ 0$ |      |                                       |
 
