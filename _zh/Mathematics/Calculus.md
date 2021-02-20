@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-02-19T22:42:00+08@中国-广东-湛江+08
+Update:  2021-02-21T00:45:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -147,9 +147,9 @@ $[ R_n (x_0) = 0 ] ⇒ [ f (x) |_{x_0} = f (x_0) ]$
 
 ### 零测集
 
-对于任意零测集$𝒪$，均存在至多可数个区间$X_i$覆盖之，使得其可测度长度为零。
+对于任意零测集$\mathcal{O}$，均存在至多可数个区间$X_i$覆盖之，使得其可测度长度为零。
 
-$∀ε>0; \left[ 𝒪 ⊆ \bigcup\limits_{i=0}^{n⇝+∞} X_i \right] ∧ \left[ | 𝒪 | ≤ \sum\limits_{i=0}^{n⇝+∞} | X_i | < ε \right]$
+$∀ε>0; \left[ \mathcal{O} ⊆ \bigcup\limits_{i=0}^{n⇝+∞} X_i \right] ∧ \left[ | \mathcal{O} | ≤ \sum\limits_{i=0}^{n⇝+∞} | X_i | < ε \right]$
 
 至多可数集$\mathop{\lbrace s_i \rbrace}\limits_{n⇝+∞}$为零测集。此外有限集为至多可数集，零测集的子集为零测集。
 
@@ -157,7 +157,7 @@ $∀ε_2>0; \left[ \mathop{\lbrace s_i \rbrace}\limits_{n⇝+∞} ⊆ \bigcup\li
 
 至多可数个零测集$𝒪_i$的合集$\mathop{\lbrace 𝒪_i \rbrace}\limits_{n⇝+∞}$为零测集。
 
-$∀ε_3>0; \left[ \mathop{\lbrace 𝒪_i \rbrace}\limits_{n⇝+∞} ⊆ \bigcup\limits_{i=0}^{n⇝+∞} \bigcup\limits_{j=0}^{m⇝+∞} X_{i,j} \right] ⇒ \left[ \left| \mathop{\lbrace 𝒪_i \rbrace}\limits_{n⇝+∞} \right| = \sum\limits_{i=0}^{n⇝+∞} | 𝒪_i | = \sum\limits_{i=0}^{n⇝+∞} \sum\limits_{j=0}^{m⇝+∞} | X_{i,j} | ≤ \sum\limits_{i=0}^{n⇝+∞} \dfrac{1}{2^{i}} · \sum\limits_{j=0}^{m⇝+∞} \dfrac{ε_1}{2^{j}} ≤ \sum\limits_{i=0}^{+∞} \dfrac{ε_2}{2^i} = 2 · ε_2 = ε_3 \right]$
+$∀ε_3>0; \left[ \mathop{\lbrace \mathcal{O}_i \rbrace}\limits_{n⇝+∞} ⊆ \bigcup\limits_{i=0}^{n⇝+∞} \bigcup\limits_{j=0}^{m⇝+∞} X_{i,j} \right] ⇒ \left[ \left| \mathop{\lbrace \mathcal{O}_i \rbrace}\limits_{n⇝+∞} \right| = \sum\limits_{i=0}^{n⇝+∞} | \mathcal{O}_i | = \sum\limits_{i=0}^{n⇝+∞} \sum\limits_{j=0}^{m⇝+∞} | X_{i,j} | ≤ \sum\limits_{i=0}^{n⇝+∞} \dfrac{1}{2^{i}} · \sum\limits_{j=0}^{m⇝+∞} \dfrac{ε_1}{2^{j}} ≤ \sum\limits_{i=0}^{+∞} \dfrac{ε_2}{2^i} = 2 · ε_2 = ε_3 \right]$
 
 ### 定积分
 
@@ -170,9 +170,11 @@ $\sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i ≤ \sum\
 | $⇓$  | $[x_{j}, x_{j+1}] ∪ [x_{j+1}, x_{j+2}] = [x_{i}, x_{i+1}]$ |  ⇒   | $\inf\limits_{x∈[x_i, x_{i+1}]} f (x) · [(x_{j+1} - x_{j}) + (x_{j+2} - x_{j+1})] ≤ \inf\limits_{x∈[x_j, x_{j+1}]} f (x) · (x_{j+1} - x_{j}) + \inf\limits_{x∈[x_{j+1}, x_{j+2}]} f (x) · (x_{j+2} - x_{j+1})$ |
 | $⇓$  | $[x_{j}, x_{j+1}] ∪ [x_{j+1}, x_{j+2}] = [x_{i}, x_{i+1}]$ |  ⇒   | $\sup\limits_{x∈[x_j, x_{j+1}]} f (x) · (x_{j+1} - x_{j}) + \sup\limits_{x∈[x_{j+1}, x_{j+2}]} f (x) · (x_{j+2} - x_{j+1}) ≤ \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · [(x_{j+1} - x_{j}) + (x_{j+2} - x_{j+1})]$ |
 
-若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则其下积分和的极限等同于上积分和的极限，反之亦然。可任取点$θ_i$处的函数值$f (θ_i)$视为该子区间的平均值。
+若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则其下积分和的极限等同于上积分和的极限，反之亦然。
 
 $\int\limits_{X_0}^{X_1} f (x) \mathrm{d} x \mathop{≡≡≡≡}\limits_{X_0=x_0}^{X_1=x_{n+1}} \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_i+1]} f (x) · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f (θ_i) · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i$
+
+若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则可任取点$θ_i$处的函数值$f (θ_i)$并视为该子区间的平均值。
 
 $\int\limits_{X_0}^{X_1} f (x) \mathrm{d} x \mathop{≡≡≡≡}\limits_{X_0=x_0}^{X_1=x_{n+1}} \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n f (x_i) · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f (θ_i) · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n f (x_{i+1}) · Δx_i$
 
@@ -180,34 +182,84 @@ $\int\limits_{X_0}^{X_1} f (x) \mathrm{d} x ≡≡≡≡ \lim\limits_{n⇝+∞} 
 
 若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则其振幅和的极限为零，反之亦然。
 
-$0 ⇜ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n w_i · Δx_i ≡ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \sup\limits_{u,v∈[x_i, x_{i+1}]} | f (u) - f (v) | · Δx_i$
+$0 ⇜ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n w_i · Δx_i ≡ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \sup\limits_{u,v∈[x_i, x_{i+1}]} | f (u) - f (v) | · Δx_i ≡ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} | f (x_{i+1}) - f (x_i) | · Δx_i$
 
-$0 ⇜ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} w_i · \dfrac{X_1 - X_0}{n + 1} ≡ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \sup\limits_{u,v∈[x_i, x_{i+1}]} | f (u) - f (v) | · \dfrac{X_1 - X_0}{n + 1}$
+$0 ⇜ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} w_i · \dfrac{X_1 - X_0}{n + 1} ≡ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \sup\limits_{u,v∈[x_i, x_{i+1}]} | f (u) - f (v) | · \dfrac{X_1 - X_0}{n + 1} ≡ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n | f (x_{i+1}) - f (x_i) | · \dfrac{X_1 - X_0}{n + 1}$
 
 | $⇕$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i$ |
-| :--: | ------------------------------------------------------------ |
+| :--: | :----------------------------------------------------------- |
 | $⇕$  | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \sup\limits_{u,v∈[x_i, x_{i+1}]} | f (u) - f (v) | · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \left[ \sup\limits_{x∈[x_i, x_{i+1}]} f (x) - \inf\limits_{x∈[x_i, x_{i+1}]} f (x) \right] · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i - \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i ⇝ 0$ |
+
+连续函数$f (x)$在区间$[X_0, X_1]$上必一致连续，且其振幅和的极限为零，反之不对。连续函数$f (x)$在区间$[X_0, X_1]$上的定积分存在。
+
+| $⇓$  | $∀ε>0;∃δ>0; [ Δx_i = | x_{i+1} - x_{i} | < δ ] ⇒ [ | f (x_{i+1}) - f (x_i) | < ε ]$ |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $\lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} | f (x_{i+1}) - f (x_{i}) | · Δx_i ≤ ε · \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} Δx_i = ε · (X_1 - X_0) ⇝ 0$ |
 
 若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则函数$f (x)$在区间$[X_0, X_1]$上有确界，反之不对。
 
 $\left[ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} w_i · \dfrac{X_1 - X_0}{n + 1} ⇝ 0 \right] ⇒ \left[ f (x) ≤ \mathrm{Sup.} \right]$
 
-| $⇓$  | $0 ⇜ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} w_i · \dfrac{X_1 - X_0}{n + 1} = (X_1 - X_0) · \lim\limits_{n⇝+∞} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} w_i = (X_1 - X_0) · w_n$ |      |                                                       |
-| :--: | :----------------------------------------------------------- | :--: | :---------------------------------------------------- |
-| $⇓$  | $0 ⇜ w_n = \sup\limits_{u,v∈[x_n, x_{n+1}]} | f (u) - f (v) | ≥ || f (u) | - | f (v) ||$ |      |                                                       |
-| $⇓$  | $| f (x) | ≤ \mathrm{Sup.}$                                  | $⇐$  | $[ | f (u) | ⇝ +∞ ] ⇒ [ | f (u) | - | f (v) | ⇝ +∞ ]$ |
+| $⇓$  | $0 ⇜ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} w_i · \dfrac{X_1 - X_0}{n + 1} = (X_1 - X_0) · \lim\limits_{n⇝+∞} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} w_i$ |      |                                                         |
+| :--: | :----------------------------------------------------------- | :--: | :------------------------------------------------------ |
+| $⇓$  | $0 ⇜ w_i = \sup\limits_{u,v∈[x_{i}, x_{i+1}]} | f (u) - f (v) | ≥ || f (u) | - | f (v) ||$ | $⇐$  | $0 ≤ w_i$                                               |
+| $⇓$  | $| f (x) | ≤ \mathrm{Sup.}$                                  | $⇐$  | $[ | f (u) | ⇝ +∞ ] ⇒ [ || f (u) | - | f (v) || ⇝ +∞ ]$ |
 
-反例：函数$𝓓 (x) = \mathop{1}\limits_{x∈ℚ}; \mathop{0}\limits_{x∉ℚ}$在区间$[0, 1]$上有确界，但其定积分不存在。
+反例：函数$\mathcal{Q} (x) = \mathop{1}\limits_{x∈ℚ}; \mathop{0}\limits_{x∉ℚ}$在区间$[0, 1]$上有确界，但其定积分不存在。
 
-$\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_i+1]} 𝓓 (x) · Δx_i = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} 0 · Δx_i = 0 ≠ 1 = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n}  1 · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i$
+$\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_i+1]} \mathcal{Q} (x) · Δx_i = \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} 0 · Δx_i ⇝ 0 ≠ 1 ⇜ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n}  1 · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} \mathcal{Q} (x) · Δx_i$
 
 若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则函数$f (x)$在区间$[X_0, X_1]$上的断点集为零测集，反之亦然。
 
 $\left[ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i · Δx_i ⇝ 0 \right] ⇔ \left[ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε} ⇝ 0 \right]$
 
-| $⇓$  | $ε · 𝜁 > \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n w_i · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i<ε} + \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \mathop{w_i · Δx_i}\limits_{w_i≥ε} ≥ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i≥ε} = ε · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε}$ |      |                                       |
+| $⇓$  | $ε · 𝜁 > \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n w_i · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i<ε} + \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \mathop{w_i · Δx_i}\limits_{w_i≥ε} ≥ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i≥ε} ≥ ε · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε}$ |      |                                       |
 | :--: | :----------------------------------------------------------- | :--: | :------------------------------------ |
 | $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε} < 𝜁 ⇝ 0$ |      |                                       |
 | $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i<ε} + \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i≥ε} ≤ ε · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i<ε} + \mathrm{Sup.} · \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε} ≤ ε · (X_1 - X_0) + \mathrm{Sup.} · 𝜁$ | $⇐$  | $\mathrm{Sup.} ≡ \sup\limits_{i} w_i$ |
 | $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i · Δx_i ⇝ 0$ |      |                                       |
+
+特例：函数$\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ^+;n∈ℤ \backslash 0}^{1 = \gcd (|m|, |n|)} \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}}; \mathop{0}\limits_{x≠\frac{m}{n}}$在区间$[0, 1]$上，任何无理点处连续，任何有理点处不连续，其断点集为零测集，因此其定积分存在。
+
+$\int\limits_{0}^{1} \mathcal{R} (x) \mathrm{d} x = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i,x_{i+1}]} \mathcal{R} (x) · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} 0 · Δx_i ⇝ 0$
+
+单调函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，其断点集为零测集。
+
+| $⇓$  | $0 ≤ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^{n} | f (x_{i+1}) - f (x_i) | · \dfrac{X_1 - X_0}{n + 1} ≤ \lim\limits_{n⇝+∞} | f (X_1) - f (X_0) | · \dfrac{X_1 - X_0}{n + 1} ⇝ 0$ |
+| :--: | ------------------------------------------------------------ |
+| $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i · Δx_i ⇝ 0$ |
+
+若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则函数$| f (x) |$在区间$[X_0, X_1]$上的定积分存在，其断点集为零测集。
+
+若函数$f (x)$与函数$g (x)$在区间$[X_0, X_1]$上的定积分存在，则函数$f (x) · g (x)$在区间$[X_0, X_1]$上的定积分存在，其断点集为零测集。
+
+$\mathcal{O}^{| f |} ⊆ \mathcal{O}^{f}$
+
+$\mathcal{O}^{f·g} ⊆ \mathcal{O}^{f} ∪ \mathcal{O}^{g}$
+
+| $⇓$  | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n || f (x_{i+1}) | - | f (x_i) || · Δx_i ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} | f (x_{i+1}) - f (x_i) | · Δx_i ⇝ 0$ |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_{i}^{|f|} · Δx_i ⇝ 0$ |
+|      |                                                              |
+| $⇓$  | $| f (x_{i+1}) · g (x_{i+1}) - f (x_{i}) · g (x_{i}) | ≤ | f (x_{i+1}) · [ g (x_{i+1}) - g (x_i) ] | + | g (x_i) · [ f (x_{i+1}) - f (x_{i}) ] | ≤ \sup | f (x) | · | g (x_{i+1}) - g (x_{i}) | + \sup | g (x) | · | f (x_{i+1}) - f (x_{i}) |$ |
+| $⇓$  | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} | f (x_{i+1}) · g (x_{i+1}) - f (x_{i}) · g (x_{i}) | · Δx_i ≤ \sup | f(x) | · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} | [ g (x_{i+1}) - g (x_{i})] | · Δx_i + \sup | g (x) | · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} | [ f (x_{i+1}) - f (x_i) ] | · Δx_i ⇝ 0$ |
+| $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_{i}^{f·g} · Δx_i ⇝ 0$ |
+
+若函数$f (y)$在区间$[Y_0, Y_1]$上连续，且函数$y = g (x)$在区间$[X_0, X_1]$上的定积分存在，则函数$f (g (x))$在区间$[X_0, X_1]$上的定积分存在，其断点集为零测集。
+
+若函数$f (y)$在区间$[Y_0, Y_1]$上的定积分存在，且函数$y = g (x)$在区间$[X_0, X_1]$上连续，则函数$f (g (x))$在区间$[X_0, X_1]$上的定积分未必存在。
+
+若函数$f (y)$在区间$[ Y_0, Y_1 ]$上的定积分存在，且函数$y = g (x)$在区间$[X_0, X_1]$上的定积分存在，则函数$f (g (x))$在区间$[X_0, X_1]$上的定积分未必存在。
+
+$\mathcal{O}^{f∘g} ⊆ \mathcal{O}^{g}$
+
+| $⇓$  | $∀ε>0;∃δ>0; [ | g (x_{i+1}) - g (x_{i}) | = | y_{i+1} - y_i | = Δy_i < δ ] ⇒ [ | f (g (x_{{i+1}})) - f (g (x_{i})) | = | f (y_{i+1}) - f (y_i) | < ε ]$ | $∀ε>0;∀𝜁>0; \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε} < 𝜁$ |
+| :--: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| $⇓$  | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} | f (g (x_{i+1})) - f (g (x_{i})) | · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{| f (g (x_{i+1})) - f (g (x_{i})) |}\limits_{| g (x_{i+1}) - g (x_i) | < δ} · Δx_i + \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{| f (g (x_{i+1})) - f (g (x_{i})) |}\limits_{| g (x_{i+1}) - g (x_i) | ≥ δ} · Δx_i$ |                                                              |
+| $⇓$  | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} | f (g (x_{i+1})) - f (g (x_{i})) | · Δx_i = ε · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} Δx_i + \mathrm{Sup.} · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n Δx_i = ε · (X_1 - X_0) + \mathrm{Sup.} · 𝜁 ⇝ 0$ |                                                              |
+| $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_{i}^{f∘g} · Δx_i ⇝ 0$ |                                                              |
+
+反例：函数$\mathrm{sgn} (x) = \mathop{-1}\limits_{x<0};\mathop{0}\limits_{x=0};\mathop{+1}\limits_{x>0}$以及函数$\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ^+;n∈ℤ \backslash 0}^{1 = \gcd (|m|, |n|)} \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}}; \mathop{0}\limits_{x≠\frac{m}{n}}$在区间$[0, 1]$上的定积分均存在，但函数$\mathcal{Q} (x) = \mathop{1}\limits_{x∈Q}; \mathop{0}\limits_{x∉Q}$在区间$[0, 1]$上的定积分不存在。
+
+$\mathcal{Q} (x) = \mathrm{sgn} (\mathcal{R} (x))$
 
