@@ -15,7 +15,7 @@ $\mathcal{Q} (x) = \mathop{1}\limits_{x∈Q}; \mathop{0}\limits_{x∉Q}$
 
 ### 函数$\mathcal{R} (x)$
 
-$\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ^+;n∈ℤ \backslash 0}^{1 = \gcd (|m|, |n|)} \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}}; \mathop{0}\limits_{x≠\frac{m}{n}}$
+$\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ;n∈ℤ^+}^{1 = \gcd (|m|, |n|)} \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}}; \mathop{0}\limits_{x≠\frac{m}{n}}$
 
 函数$\mathcal{R} (x)$在区间$[0, 1]$内，任何无理点处连续，任何有理点处不连续。
 
