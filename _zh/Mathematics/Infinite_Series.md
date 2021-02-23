@@ -1004,20 +1004,20 @@ $\left[ \lim\limits_{n⇝+∞} P_n (x) \mathop{↭}\limits_{x∈[0, 1]} g (x) \m
 
 步骤一：[离散]构造性多项式函数在闭区间$[0, 1]$上一致逼近连续函数$f (x)$，$f (x) \mathop{===}\limits_{x∉[0, 1]} 0$。
 
-| $⇓$  | $P_n [f (t) = 1; x; y = 1 - x] ≡ \sum\limits_{i=0}^n \dfrac{n!}{i! · (n - i)!} · x^i · y^{n - i} = (x + y)^n = 1$ |
+| $⇓$  | $P_n [f (t) = 1; x; y ]_{y = 1 - x} ≡ \sum\limits_{i=0}^n \dfrac{n!}{i! · (n - i)!} · x^i · y^{n - i} = (x + y)^n = 1$ |
 | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\sum\limits_{i=1}^n \dfrac{n!}{(i - 1)! · (n - i)!} · x^{i - 1} · y^{n - i} = \dfrac{∂}{∂ x} (x + y)^n = n · (x + y)^{n - 1}$ |
-| $⇓$  | $P_n [f (t) = t; x; y = 1 - x] ≡ \sum\limits_{i=0}^{n} \dfrac{i}{n} · \dfrac{n!}{i! · (n - i)!} · x^i · y^{n - i} = x · (x + y)^{n - 1} = x$ |
+| $⇓$  | $P_n [f (t) = t; x; y ]_{y=1-x} ≡ \sum\limits_{i=0}^{n} \dfrac{i}{n} · \dfrac{n!}{i! · (n - i)!} · x^i · y^{n - i} = x · (x + y)^{n - 1} = x$ |
 | $⇓$  | $\sum\limits_{i=1}^n \dfrac{i}{n} · \dfrac{n!}{(i - 1)! · (n - i)!} · x^{i - 1} · y^{n - i} = \dfrac{∂}{∂ x} [x · (x + y)^{n - 1}] = (x + y)^{n - 1} + (n - 1) · x · (x + y)^{n - 2}$ |
-| $⇓$  | $P_n [f (t) = t^2; x; y = 1 - x] ≡ \sum\limits_{i=0}^n \dfrac{i^2}{n^2} · \dfrac{n!}{i! · (n - i)!} · x^{i} · y^{n - 1} = \dfrac{x}{n} · [ (x + y)^{n - 1} + (n - 1) · x · (x + y)^{n - 2} ] = \left( 1 - \dfrac{1}{n} \right) · x^2 + \dfrac{1}{n} · x$ |
+| $⇓$  | $P_n [f (t) = t^2; x; y ]_{y=1-x} ≡ \sum\limits_{i=0}^n \dfrac{i^2}{n^2} · \dfrac{n!}{i! · (n - i)!} · x^{i} · y^{n - 1} = \dfrac{x}{n} · [ (x + y)^{n - 1} + (n - 1) · x · (x + y)^{n - 2} ] = \left( 1 - \dfrac{1}{n} \right) · x^2 + \dfrac{1}{n} · x$ |
 |      |                                                              |
 | $⇓$  | $\sum\limits_{i=0}^n \left[ \dfrac{i}{n} - x \right]^2 · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} = \sum\limits_{i=0}^n \left[ \dfrac{i^2}{n^2} - 2 · x · \dfrac{i}{n} + x^2 \right] · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i}$ |
 | $⇓$  | $\sum\limits_{i=0}^n \left[ \dfrac{i}{n} - x \right]^2 · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} = \left[ \left( 1 - \dfrac{1}{n} \right) · x^2 + \dfrac{1}{n} · x \right] - 2 · x · x + x^2 · 1 = \dfrac{1}{n} · x · (1 - x) ≤ \dfrac{1}{n} · \dfrac{1}{2} · \left( 1 - \dfrac{1}{2} \right) = \dfrac{1}{4 · n}$ |
 |      |                                                              |
 | $⇓$  | $[ ∀ε>0;∃δ>0; | y - x | < δ \mathop{⇒}\limits_{x,y∈[0, 1]} | f (y) - f (x) | < ε ] ∧ \left[  | f (y) - f (x) | \mathop{≤}\limits_{x,y∈[0, 1]} \mathrm{Sup.} ≡ \sup\limits_{x∈[0, 1]} f (x) - \inf\limits_{x∈[0, 1]} f (x) \right] ∧ \left[ f (x) = \sum\limits_{i=0}^n f (x) · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} \right]$ |
 | $⇓$  | $\sum\limits_{i=0}^n \left| f \left( \dfrac{i}{n} \right) - f (x) \right| · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} ≤ \left[ ε · \sum\limits_{\left| \frac{i}{n} - x \right|<δ}^{n} \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} + \dfrac{\mathrm{2 · Sup.}}{δ^2} · \sum\limits_{\left| \frac{i}{n} - x \right|≥δ}^n \left[ \dfrac{i}{n} - x \right]^2 · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} \right]$ |
-| $⇓$  | $\lim\limits_{n⇝+∞} | P_n [f (t); x; y = 1 - x] - f (x) | ≤ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \left| f \left( \dfrac{i}{n} \right) - f (x) \right| · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} ≤ \lim\limits_{n⇝+∞} \left[ ε · 1 + \dfrac{\mathrm{2 · Sup.}}{δ^2 · 4 · n} \right] \mathop{⇝}\limits^{ε⇝0^+} 0$ |
-| $⇓$  | $\lim\limits_{n⇝+∞} P_n [f (t); x; y = 1- x] \mathop{↭}\limits_{x∈[0, 1]} f (x)$ |
+| $⇓$  | $\lim\limits_{n⇝+∞} | P_n [f (t); x; y ]_{y=1-x} - f (x) | ≤ \lim\limits_{n⇝+∞} \sum\limits_{i=0}^n \left| f \left( \dfrac{i}{n} \right) - f (x) \right| · \dfrac{n!}{i! · (n - i)!} · x^i · (1 - x)^{n - i} ≤ \lim\limits_{n⇝+∞} \left[ ε · 1 + \dfrac{\mathrm{2 · Sup.}}{δ^2 · 4 · n} \right] \mathop{⇝}\limits^{ε⇝0^+} 0$ |
+| $⇓$  | $\lim\limits_{n⇝+∞} P_n [f (t); x; y ]_{y=1-x} \mathop{↭}\limits_{x∈[0, 1]} f (x)$ |
 
 步骤二：[离散]构造性多项式函数在闭区间$[α, β]$上一致逼近连续函数$h (y)$，$y = α + x · (β - α), x = \dfrac{y - α}{β - α}$。
 

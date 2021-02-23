@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-02-22T19:31:00+08@中国-广东-湛江+08
+Update:  2021-02-23T16:58:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -147,17 +147,21 @@ $[ R_n (x_0) = 0 ] ⇒ [ f (x) |_{x_0} = f (x_0) ]$
 
 ### 零测集
 
+对于任意间断点$ω_i$，其所在任意区间内的振幅均不为零。
+
+$∃ε>0; ε ≤ \lim\limits^{Δx_i⇝0} w_i^f = \lim\limits^{Δx_i⇝0} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (u) - f (v) | = \lim\limits^{Δx_i⇝0} \sup\limits_{x∈[x_{i},x_{i+1}]} f (x) - \inf\limits_{x∈[x_{i},x_{i+1}]} f (x)$
+
 对于任意零测集$\mathcal{O}$，均存在可列可数个区间$X_{i∈ℕ}$覆盖之，使得其可测度长度为零。
 
-$∀\mathcal{O};∃\lbrace X_{i∈ℕ} \rbrace;∀ε>0; \left[ \mathcal{O} ⊆ \bigcup\limits_{i=0}^{ℕ} X_i \right] ∧ \left[ | \mathcal{O} | ≤ \sum\limits_{i=0}^{ℕ} | X_i | < ε \right]$
+$∀\mathcal{O};∃\lbrace X_{i∈ℕ} \rbrace;∀ζ>0; \left[ \mathcal{O} ⊆ \bigcup\limits_{i=0}^{ℕ} X_i \right] ∧ \left[ | \mathcal{O} | ≤ \sum\limits_{i=0}^{ℕ} | X_i | < ζ \right]$
 
 可列可数集$\lbrace {s_{i∈ℕ}} \rbrace$为零测集。此外有限集为可列可数集，零测集的子集为零测集。
 
-$∀\lbrace\mathcal{s_{i∈ℕ}}\rbrace;∃\lbrace X_{i∈ℕ} \rbrace;∀ε_2>0; \left[ \lbrace s_{i∈ℕ} \rbrace ⊆ \bigcup\limits_{i=0}^{ℕ} \left( s_i - \dfrac{ε_1}{2^{i+1}}, s_i + \dfrac{ε_1}{2^{i+1}} \right) \right] ∧ \left[ \left| \lbrace s_{i∈ℕ} \rbrace \right| = \sum\limits_{i=0}^{ℕ} | s_i | ≤ \sum\limits_{i=0}^{ℕ} \dfrac{ε_1}{2^{i}} ≤ \sum\limits_{i=0}^{+∞} \dfrac{ε_1}{2^i} =  2 · ε_1 = ε_2 \right]$
+$∀\lbrace\mathcal{s_{i∈ℕ}}\rbrace;∃\lbrace X_{i∈ℕ} \rbrace;∀ζ_2>0; \left[ \lbrace s_{i∈ℕ} \rbrace ⊆ \bigcup\limits_{i=0}^{ℕ} \left( s_i - \dfrac{ζ_1}{2^{i+1}}, s_i + \dfrac{ζ_1}{2^{i+1}} \right) \right] ∧ \left[ \left| \lbrace s_{i∈ℕ} \rbrace \right| = \sum\limits_{i=0}^{ℕ} | s_i | ≤ \sum\limits_{i=0}^{ℕ} \dfrac{ζ_1}{2^{i}} ≤ \sum\limits_{i=0}^{+∞} \dfrac{ζ_1}{2^i} =  2 · ζ_1 = ζ_2 \right]$
 
 可列可数个零测集$𝒪_i$的合集$\lbrace 𝒪_{i∈ℕ} \rbrace$为零测集。
 
-$∀\lbrace\mathcal{O}_{i∈ℕ}\rbrace;∃\lbrace X_{{i∈ℕ},{j∈ℕ}} \rbrace;∀ε_3>0; \left[ \lbrace \mathcal{O}_{i∈ℕ} \rbrace ⊆ \bigcup\limits_{i=0}^{ℕ} \bigcup\limits_{j=0}^{ℕ} X_{i,j} \right] ∧ \left[ \left| \lbrace \mathcal{O}_{i∈ℕ} \rbrace \right| = \sum\limits_{i=0}^{ℕ} | \mathcal{O}_i | = \sum\limits_{i=0}^{ℕ} \sum\limits_{j=0}^{ℕ} | X_{i,j} | ≤ \sum\limits_{i=0}^{+∞} \dfrac{1}{2^{i}} · \sum\limits_{j=0}^{+∞} \dfrac{ε_1}{2^{j}} ≤ \sum\limits_{i=0}^{+∞} \dfrac{ε_2}{2^i} = 2 · ε_2 = ε_3 \right]$
+$∀\lbrace\mathcal{O}_{i∈ℕ}\rbrace;∃\lbrace X_{{i∈ℕ},{j∈ℕ}} \rbrace;∀ζ_3>0; \left[ \lbrace \mathcal{O}_{i∈ℕ} \rbrace ⊆ \bigcup\limits_{i=0}^{ℕ} \bigcup\limits_{j=0}^{ℕ} X_{i,j} \right] ∧ \left[ \left| \lbrace \mathcal{O}_{i∈ℕ} \rbrace \right| = \sum\limits_{i=0}^{ℕ} | \mathcal{O}_i | = \sum\limits_{i=0}^{ℕ} \sum\limits_{j=0}^{ℕ} | X_{i,j} | ≤ \sum\limits_{i=0}^{+∞} \dfrac{1}{2^{i}} · \sum\limits_{j=0}^{+∞} \dfrac{ζ_1}{2^{j}} ≤ \sum\limits_{i=0}^{+∞} \dfrac{ζ_2}{2^i} = 2 · ζ_2 = ζ_3 \right]$
 
 ### 定积分
 
@@ -169,7 +173,7 @@ $∀\lbrace\mathcal{O}_{i∈ℕ}\rbrace;∃\lbrace X_{{i∈ℕ},{j∈ℕ}} \rbra
 
 $\sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i ≤ \sum\limits_{j=0}^{n+m} \inf\limits_{x∈[x_j, x_{j+1}]} f (x) · Δx_j ≤ \sum\limits_{j=0}^{n+m} f (θ_j) · Δx_j ≤ \sum\limits_{j=0}^{n+m} \sup\limits_{x∈[x_j, x_{j+1}]} f (x) · Δx_j ≤ \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i$
 
-$\sum\limits_{i=0}^{n} \inf\limits_{x∈[x_{i},x_{i+1}]} f (x) · Δx_i ≤ \rlap{≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡}\left[ \sum\limits_{j=0}^{n+m} \inf\limits_{x∈[x_{j},x_{j+1}]} f (x) · Δx_j ≤ \sum\limits_{j=0}^{n+m} f (θ_j) · Δx_j ≤ \sum\limits_{j=0}^{n+m} \sup\limits_{x∈[x_{j},x_{j+1}]} f (x) · Δx_j \right] ≤ \sum\limits_{k=0}^{m} \sup\limits_{x∈[x_{k},x_{k+1}]} f (x) · Δx_k$
+$\sum\limits_{i=0}^{n} \inf\limits_{x∈[x_{i},x_{i+1}]} f (x) · Δx_i ≤ \rlap{≡≡≡≡≡≡≡≡≡≡≡≡≡}{\sum\limits_{j=0}^{n+m} \inf\limits_{x∈[x_{j},x_{j+1}]} f (x) · Δx_j} ≤ \sum\limits_{j=0}^{n+m} f (θ_j) · Δx_j ≤ \rlap{≡≡≡≡≡≡≡≡≡≡≡≡≡}{\sum\limits_{j=0}^{n+m} \sup\limits_{x∈[x_{j},x_{j+1}]} f (x) · Δx_j} ≤ \sum\limits_{k=0}^{m} \sup\limits_{x∈[x_{k},x_{k+1}]} f (x) · Δx_k$
 
 $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_{i},x_{i+1}]} f (x) · Δx_i ≤ \varlimsup\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_{i},x_{i+1}]} f (x) · Δx_i ≤ \lim\limits_{n+m⇝+∞}^{Δx_j⇝0} \sum\limits_{j=0}^{n+m} f (θ_j) · Δx_j ≤ \varliminf\limits_{m⇝+∞}^{Δx_k⇝0} \sum\limits_{k=0}^{m} \sup\limits_{x∈[x_{k},x_{k+1}]} f (x) · Δx_k ≤ \lim\limits_{m⇝+∞}^{Δx_k⇝0} \sum\limits_{k=0}^{m} \sup\limits_{x∈[x_{k},x_{k+1}]} f (x) · Δx_k$
 
@@ -233,7 +237,7 @@ $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i,
 
 若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则函数$f (x)$在区间$[X_0, X_1]$上的断点集为零测集，反之亦然。函数$f (x)$在区间$[X_0, X_1]$上几乎处处连续。
 
-$\left[ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i · Δx_i ⇝ 0 \right] ⇔ \left[ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε} ⇝ 0 \right]$
+$\left[ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i · Δx_i ⇝ 0 \right] ⇔ \left[  ∀ε>0; \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε} ⇝ 0 \right]$
 
 | $⇓$  | $∀ε,𝜁>0;$ | $ε · 𝜁 > \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n w_i · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i<ε} + \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \mathop{w_i · Δx_i}\limits_{w_i≥ε} ≥ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i≥ε} ≥ ε · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε}$ |
 | :--: | --------: | :----------------------------------------------------------- |
@@ -262,33 +266,39 @@ $\int\limits_{0}^{1} \mathcal{R} (x) \mathrm{d} x = \lim\limits_{n⇝+∞}^{Δx_
 
 若函数$f (x)$以及函数$g (x) ≠ 0$在区间$[X_0, X_1]$上的定积分存在，则函数$\dfrac{f (x)}{g (x)}$在区间$[X_0, X_1]$上的定积分存在，其断点集为零测集。
 
-$\mathcal{O}^{| f |} ⊆ \mathcal{O}^{f}$
-
-$\mathcal{O}^{f+g} ⊆ \mathcal{O}^{f} ∪ \mathcal{O}^g$
-
-$\mathcal{O}^{f-g} ⊆ \mathcal{O}^{f} ∪ \mathcal{O}^g$
-
-$\mathcal{O}^{f·g} ⊆ \mathcal{O}^{f} ∪ \mathcal{O}^{g}$
-
-$\mathcal{O}^{\frac{f}{g}} ⊆ \mathcal{\mathcal{O}^{f}} ∪ \mathcal{O}^{g}$
-
 | $⇓$  | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \sup\limits_{u,v∈[x_i,x_{i+1}]} || f (u) | - f (v) || · Δx_i ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_i,x_{i+1}]} | f (u) - f (v) | · Δx_i ⇝ 0$ |
 | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_{i}^{|f|} · Δx_i ⇝ 0$ |
+| $⇓$  | $∃ε>0; \left[ \lim\limits^{Δx_i⇝0} w_i^f < ε \right] ⇒ \left[ \lim\limits^{Δx_i⇝0} w_i^{|f|} ≤ \lim\limits^{Δx_i⇝0} w_i^f < ε \right]$ |
+| $⇓$  | $∃ε>0; \left[ ε ≤ \lim\limits^{Δx_i⇝0} w_i^{|f|} \right] ⇒ \left[ ε ≤ \lim\limits^{Δx_i⇝0} w_i^{f} \right]$ |
+| $⇓$  | $\mathcal{O}^{| f |} ⊆ \mathcal{O}^{f}$                      |
 |      |                                                              |
 | $⇓$  | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | [ f (u) + g (u) ] - [ f (v) + g (v) ] | · Δx_i ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (u) - f (v) | · Δx_i + \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | g (u) - g (v) | · Δx_i ⇝ 0$ |
 | $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i^{f+g} ·Δx_i ⇝ 0$ |
+| $⇓$  | $∃ε>0;∃ε^f,ε^g>0; \left[ \lim\limits^{Δx_i⇝0} w_i^f < ε^f \right] ∧ \left[ \lim\limits^{Δx_i⇝0} w_i^g < ε^g \right] ⇒ \left[ \lim\limits^{Δx_i⇝0} w_i^{f+g} ≤ \lim\limits^{Δx_i⇝0} (w_i^f + w_i^g) < ε^f + ε^g = ε \right]$ |
+| $⇓$  | $∃ε>0;∃ε^f,ε^g>0; \left[ ε^f + ε^g = ε ≤ \lim\limits^{Δx_i⇝0} w_i^{f+g} \right] ⇒ \left[ ε^f ≤ \lim\limits^{Δx_i⇝0} w_i^{f} \right] ∨ \left[ ε^g ≤ \lim\limits^{Δx_i⇝0} w_i^g \right]$ |
+| $⇓$  | $\mathcal{O}^{f+g} ⊆ \mathcal{O}^{f} ∪ \mathcal{O}^g$        |
 |      |                                                              |
 | $⇓$  | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | [ f (u) - g (u) ] - [ f (v) - g (v) ] | · Δx_i ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (u) - f (v) | · Δx_i + \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | g (u) - g (v) | · Δx_i ⇝ 0$ |
 | $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i^{f-g} ·Δx_i ⇝ 0$ |
+| $⇓$  | $∃ε>0;∃ε^f,ε^g>0; \left[ \lim\limits^{Δx_i⇝0} w_i^f < ε^f \right] ∧ \left[ \lim\limits^{Δx_i⇝0} w_i^g < ε^g \right] ⇒ \left[ \lim\limits^{Δx_i⇝0} w_i^{f-g} ≤ \lim\limits^{Δx_i⇝0} (w_i^f + w_i^g) < ε^f + ε^g = ε \right]$ |
+| $⇓$  | $∃ε>0;∃ε^f,ε^g>0; \left[ ε^f + ε^g = ε ≤ \lim\limits^{Δx_i⇝0} w_i^{f-g} \right] ⇒ \left[ ε^f ≤ \lim\limits^{Δx_i⇝0} w_i^{f} \right] ∨ \left[ ε^g ≤ \lim\limits^{Δx_i⇝0} w_i^g \right]$ |
+| $⇓$  | $\mathcal{O}^{f-g} ⊆ \mathcal{O}^{f} ∪ \mathcal{O}^g$        |
 |      |                                                              |
 | $⇓$  | $\sup\limits_{u,v∈[x_i,x_{i+1}]} | f (u) · g (u) - f (v) · g (v) | ≤ \sup\limits_{u,v∈[x_i,x_{i+1}]} [ | f (u) | · |g (u) - g (v) | + | g (v) | · |f (u) - f (v) | ] ≤ \sup f (x) · \sup\limits_{u,v∈[x_i,x_{i+1}]} | g (u) - g (v) | + \sup g (x) · \sup\limits_{u,v∈[x_i,x_{i+1}]} | f (u) - f (v) |$ |
 | $⇓$  | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_i,x_{i+1}]} | f (u) · g (u) - f (v) · g (v) | · Δx_i ≤ \sup | f(x) | · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_i,x_{i+1}]} |g (u) - g (v) | · Δx_i + \sup | g (x) | · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_i,x_{i+1}]} | f (u) - f (v) | · Δx_i ⇝ 0$ |
 | $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_{i}^{f·g} · Δx_i ⇝ 0$ |
+| $⇓$  | $∃ε>0;∃ε^f,ε^g>0; \left[ \lim\limits^{Δx_i⇝0} w_i^f < ε^f \right] ∧ \left[ \lim\limits^{Δx_i⇝0} w_i^g < ε^g \right] ⇒ \left[ \lim\limits^{Δx_i⇝0} w_i^{f·g} ≤ \lim\limits^{Δx_i⇝0} \left[ \sup f (x) · w_i^g + \sup g (x) · w_i^f \right] < \sup f (x) · ε^f + \sup g (x) · ε^g = ε \right]$ |
+| $⇓$  | $∃ε>0;∃ε^f,ε^g>0; \left[ ε ≤ \lim\limits^{Δx_i⇝0} w_i^{f·g} \right] ⇒ \left[ ε^f ≤ \lim\limits^{Δx_i⇝0} w_i^f \right] ∨ \left[ ε^g ≤ \lim\limits^{Δx_i⇝0} w_i^g \right]$ |
+| $⇓$  | $\mathcal{O}^{f·g} ⊆ \mathcal{O}^{f} ∪ \mathcal{O}^{g}$      |
 |      |                                                              |
-| $⇓$  | $\sup\limits_{u,v∈[x_{i},x_{i+1}]} \left| \dfrac{f (u)}{g (u)} - \dfrac{f (v)}{g (v)} \right| = \sup\limits_{u,v∈[x_{i},x_{i+1}]} \left| \dfrac{g (v) · [ f (u)  - f (v) ] - f (v) · [ g (u) - g (v) ]}{g (u) · g (v)} \right| ≤ \sup \left| \dfrac{1}{g (x)} \right| · \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (u) - f (v) | + \sup \left| \dfrac{f (x)}{g^2 (x)} \right| · \sup\limits_{u,v∈[x_{i},x_{i+1}]} | g (u) - g (v) |$ |
-| $⇓$  | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} \left| \dfrac{f (u)}{g (u)} - \dfrac{f (v)}{g (v)} \right| · Δx_i ≤ \sup \left| \dfrac{1}{g (x)} \right| · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (u) - f (v) | · Δx_i + \sup \left| \dfrac{f (x)}{g^2 (x)} \right| · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | g (u) - g (v) | · Δx_i ⇝ 0$ |
+| $⇓$  | $\sup\limits_{u,v∈[x_{i},x_{i+1}]} \left| \dfrac{f (u)}{g (u)} - \dfrac{f (v)}{g (v)} \right| = \sup\limits_{u,v∈[x_{i},x_{i+1}]} \left| \dfrac{g (v) · [ f (u)  - f (v) ] - f (v) · [ g (u) - g (v) ]}{g (u) · g (v)} \right| ≤ \dfrac{1}{\inf \left| g (x) \right|} · \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (u) - f (v) | + \dfrac{\sup | f (x) |}{\inf | g^2 (x) |} · \sup\limits_{u,v∈[x_{i},x_{i+1}]} | g (u) - g (v) |$ |
+| $⇓$  | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} \left| \dfrac{f (u)}{g (u)} - \dfrac{f (v)}{g (v)} \right| · Δx_i ≤ \dfrac{1}{\inf | g (x) |} · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (u) - f (v) | · Δx_i + \dfrac{\sup | f (x) |}{\inf | g^2 (x) |} · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | g (u) - g (v) | · Δx_i ⇝ 0$ |
 | $⇓$  | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i^{\frac{f}{g}} · Δx_i ⇝ 0$ |
+|      |                                                              |
+| $⇓$  | $∃ε>0;∃ε^f,ε^g>0; \left[ \lim\limits^{Δx_i⇝0} w_i^f < ε^f \right] ∧ \left[ \lim\limits^{Δx_i⇝0} w_i^g < ε^g \right] ⇒ \left[ \lim\limits^{Δx_i⇝0} w_i^{\frac{f}{g}} ≤ \lim\limits^{Δx_i⇝0} \left[ \dfrac{1}{\inf | g (x) |} · w_i^g + \dfrac{\sup | f (x) |}{\inf | g^2 (x) |} · w_i^f \right] < \dfrac{1}{\inf | g (x) |} · ε^f + \dfrac{\sup | f (x) |}{\inf | g^2 (x) |} · ε^g = ε \right]$ |
+| $⇓$  | $∃ε>0;∃ε^f,ε^g>0; \left[ ε ≤ \lim\limits^{Δx_i⇝0} w_i^{\frac{f}{g}} \right] ⇒ \left[ ε^f ≤ \lim\limits^{Δx_i⇝0} w_i^f \right] ∨ \left[ ε^g ≤ \lim\limits^{Δx_i⇝0} w_i^g \right]$ |
+| $⇓$  | $\mathcal{O}^{\frac{f}{g}} ⊆ \mathcal{\mathcal{O}^{f}} ∪ \mathcal{O}^{g}$ |
 
 若函数$f (y)$在区间$[Y_0, Y_1]$上连续，且函数$y = g (x)$在区间$[X_0, X_1]$上的定积分存在，则复合函数$f (g (x))$在区间$[X_0, X_1]$上的定积分存在，其断点集为零测集。
 
@@ -296,14 +306,14 @@ $\mathcal{O}^{\frac{f}{g}} ⊆ \mathcal{\mathcal{O}^{f}} ∪ \mathcal{O}^{g}$
 
 若函数$f (y)$在区间$[ Y_0, Y_1 ]$上的定积分存在，且函数$y = g (x)$在区间$[X_0, X_1]$上的定积分存在，则复合函数$f (g (x))$在区间$[X_0, X_1]$上的定积分未必存在。
 
-$\mathcal{O}^{f∘g} ⊆ \mathcal{O}^{g}$
-
 | $⇓$  |   $∀ε>0;∃δ>0;$ | $\left[ \sup\limits_{u,v∈[x_i,x_{i+1}]} | g (u) - g (v) | < δ \right] ⇒ \left[ \sup\limits_{u,v∈[x_i,x_{i+1}]} | f (g (u)) - f (g (v)) | < ε \right]$ |
 | :--: | -------------: | :----------------------------------------------------------- |
-| $⇓$  |   $∀δ>0;∀𝜁>0;$ | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥δ} < 𝜁$ |
+| $⇓$  |   $∀𝜁>0;∀δ>0;$ | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥δ} < 𝜁$ |
 | $⇓$  | $∀ε,𝜁>0;∃δ>0;$ | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (g (u)) - f (g (v)) | · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]}\mathop{| f (g (u)) - f (g (v)) |}\limits_{\sup | g (u) - g (v) | < δ} · Δx_i + \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} \mathop{| f (g (u)) - f (g (v)) |}\limits_{\sup | g (u) - g (v) | ≥ δ} · Δx_i$ |
-| $⇓$  | $∀ε,𝜁>0;∃δ>0;$ | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (g (u)) - f (g (v)) | · Δx_i = ε · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{\sup | g (u) - g (v) | < δ} + \sup f (y) · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \mathop{Δx_i}\limits_{\sup | g (u) - g (v) | ≥ δ} = ε · (X_1 - X_0) + \sup f (y) · 𝜁$ |
+| $⇓$  | $∀ε,𝜁>0;∃δ>0;$ | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (g (u)) - f (g (v)) | · Δx_i < ε · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{\sup | g (u) - g (v) | < δ} + \sup f (y) · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \mathop{Δx_i}\limits_{\sup | g (u) - g (v) | ≥ δ} = ε · (X_1 - X_0) + \sup f (y) · 𝜁$ |
 | $⇓$  | $∀ε,𝜁>0;∃δ>0;$ | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_{i}^{f∘g} · Δx_i ⇝ 0$ |
+| $⇓$  |                | $\left[ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i^{f∘g} · Δx_i}\limits_{w_i^{f∘g}≥ε} \right] ⇒ \left[ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i^{g} · Δx_i}\limits_{w_i^g≥δ} \right]$ |
+| $⇓$  |                | $\mathcal{O}^{f∘g} ⊆ \mathcal{O}^{g}$                        |
 
 反例：函数$\mathrm{sgn} (y) = \mathop{-1}\limits_{y<0};\mathop{0}\limits_{y=0};\mathop{+1}\limits_{y>0}$在区间$[0, 1]$上的定积分存在，函数$\mathcal{F} (x) ≡ \mathop{I_i - \left| x - X_{i,j} \right|}\limits_{| x - X_{i,j} | < I_{i}}; \mathop{0}\limits_{| x - X_{i,j} | ≥ I_{i}}$在区间$[0, 1]$上连续因此定积分存在。
 
