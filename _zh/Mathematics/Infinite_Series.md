@@ -166,7 +166,7 @@ $[∃ε>0;∀N∈ℕ; n ≥ N ∧ \left| \sum\limits_{i=0}^n s_i - S \right| ≥
 
 ### 无穷级数的分部审敛法
 
-无穷级数的分部求和公式
+错位加和公式
 
 $\sum\limits_{i=n}^m s_i · t_i \mathop{===}\limits^{S_{-1}≡0} \sum\limits_{i=n}^m (S_i - S_{i-1}) · t_i = S_m · t_m + \sum\limits_{i=n}^{m-1} S_i · t_i - \sum\limits_{i=n}^{m-1} S_i · t_{i+1} - S_{n-1} · t_n = (S_m · t_m - S_{n-1} · t_n) + \sum\limits_{i=n}^{m-1} S_i · (t_i - t_{i+1}) $
 
