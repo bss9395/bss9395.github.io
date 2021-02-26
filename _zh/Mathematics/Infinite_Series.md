@@ -54,7 +54,7 @@ $\lim\limits_{n⇝+∞} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i ·
 
 无穷级数的部分和
 
-$S_n ≡ \sum\limits_{i=0}^n s_i$
+$S_{n+1} \mathop{≡≡}\limits^{S_0≡0} \sum\limits_{i=0}^n s_i$
 
 无穷级数的极限
 
