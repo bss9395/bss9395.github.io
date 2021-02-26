@@ -339,9 +339,11 @@ $\int\limits_{0}^{1} \mathcal{R} (x) \mathrm{d} x = \lim\limits_{n⇝+∞}^{Δx_
 | $\int\limits_{X_0}^{X_1} \mathrm{Con.} · f (x) \mathrm{d} x = \mathrm{Con.} · \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x$ |      |                                                              |
 | $\int\limits_{X_0}^{X_1} [ f (x) + g (x) ] \mathrm{d} x = \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x + \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x$ |      |                                                              |
 | $\int\limits_{X_0}^{X_1} [ f (x) - g (x) ] \mathrm{d} x = \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x - \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x$ |      |                                                              |
-| $\left[ f (x) ≥ 0 \right] ⇒ \left[ \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x ≥ 0 \right]$ |      |                                                              |
 | $[ f (x) ≤ g (x) ] ⇒ \left[ \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x ≤ \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x \right]$ |      |                                                              |
+| $[ 0 ≤ g (x) ] ⇒ \left[ 0 ≤ \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x \right]$ | $⇐$  | $f (x) = 0$                                                  |
 | $[ f (x) ≤ g (x) ] ∧ \left[ \lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) < g (x_0) ⇜ \lim\limits_{x⇝x_0} g (x) \right] ⇒ \left[ \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x < \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x \right]$ | $⇐$  | $\left[ \int\limits_{X_0}^{x_0-δ} + \int\limits_{x_0-δ}^{x_0+δ} + \int\limits_{x_0+δ}^{X_1} \right] [ f (x) - g (x) ] \mathrm{d} x < 0$ |
+| $[ 0 ≤ g (x) ] ∧ \left[ 0 < g (x_0) ⇜ \lim\limits_{x⇝x_0} g (x) \right] ⇒ \left[ 0 < \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x \right]$ | $⇐$  | $f (x) = 0$                                                  |
+| $[ 0 ≤ g (x) ] ∧ \left[ 0 = \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x \right] ⇒ \left[ 0 = g (x_0) ⇜ \lim\limits_{x⇝x_0} g (x) \right]$ | $⇐$  | $[P ∧ Q ⇒ R] ⇔ [P ^ ¬R ⇒ ¬Q]$                                |
 | $\left| \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x \right| ≤ \int\limits_{X_0}^{X_1} | f (x) | \mathrm{d} x$ | $⇐$  | $- \int\limits_{X_0}^{X_1} | f (x) | \mathrm{d} x ≤ \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x ≤ + \int\limits_{X_0}^{X_1} | f (x) | \mathrm{d} x$ |
 
 ### 积分中值定理
