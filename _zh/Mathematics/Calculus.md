@@ -46,6 +46,30 @@ Link  :
 
 反例：函数$f (x) = | x |$在点$x_0 = 0$处不可导。
 
+### 连续性
+
+函数的连续性。
+
+$\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0)$
+
+$∀ε>0;∃δ>0; \left[ \sup\limits_{x∈X} | x - x_0 | < δ \right] ⇒ \left[ \sup\limits_{x∈X} | f (x) - f (x_0) | < ε \right]$
+
+$∀ε>0;∃δ>0;∀x∈X; \left[ | x - x_0 | < δ \right] ⇒ \left[ | f (x) - f (x_0) | < ε \right]$
+
+函数的一致连续性。
+
+$\lim\limits_{x⇝y} f (x) ↭ f (y)$
+
+$∀ε>0;∃δ>0; \left[ \sup\limits_{x,y∈X} | x - y | < δ \right] ⇒ \left[ \sup\limits_{x,y∈X} | f (x) - f (y) | < ε \right]$
+
+$∀ε>0;∃δ>0;∀x,y∈X; [ | x - y | < δ ] ⇒ [ | f (x) - f (y) | < ε ]$
+
+若函数$f (x)$在区间$X$上一致连续，则函数$f (x)$在区间$X$上连续，反之不对。
+
+若函数$f (x)$在区间$[X_0, X_1]$上连续，则函数$f (x)$在区间$[X_0, X_1]$上一致连续，反之亦然。
+
+
+
 ### 连续介值定理
 
 函数$f (x)$在区间$X$上连续，对于函数值域内任意的函数值$f (t)$，必定至少存在一点$θ∈X$使得成立。
@@ -343,8 +367,10 @@ $\int\limits_{0}^{1} \mathcal{R} (x) \mathrm{d} x = \lim\limits_{n⇝+∞}^{Δx_
 | $[ 0 ≤ g (x) ] ⇒ \left[ 0 ≤ \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x \right]$ | $⇐$  | $f (x) = 0$                                                  |
 | $[ f (x) ≤ g (x) ] ∧ \left[ \lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) < g (x_0) ⇜ \lim\limits_{x⇝x_0} g (x) \right] ⇒ \left[ \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x < \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x \right]$ | $⇐$  | $\left[ \int\limits_{X_0}^{x_0-δ} + \int\limits_{x_0-δ}^{x_0+δ} + \int\limits_{x_0+δ}^{X_1} \right] [ f (x) - g (x) ] \mathrm{d} x < 0$ |
 | $[ 0 ≤ g (x) ] ∧ \left[ 0 < g (x_0) ⇜ \lim\limits_{x⇝x_0} g (x) \right] ⇒ \left[ 0 < \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x \right]$ | $⇐$  | $f (x) = 0$                                                  |
-| $[ 0 ≤ g (x) ] ∧ \left[ 0 = \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x \right] ⇒ \left[ 0 = g (x_0) ⇜ \lim\limits_{x⇝x_0} g (x) \right]$ | $⇐$  | $[P ∧ Q ⇒ R] ⇔ [P ^ ¬R ⇒ ¬Q]$                                |
+| $[ 0 ≤ g (x) ] ∧ \left[ 0 = \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x \right] ⇒ \left[ 0 = g (x_0) ⇜ \lim\limits_{x⇝x_0} g (x) \right]$ | $⇐$  | $[ P ∧ Q ⇒ R ] ⇔ [ P ∧ ¬R ⇒ ¬Q ]$                            |
 | $\left| \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x \right| ≤ \int\limits_{X_0}^{X_1} | f (x) | \mathrm{d} x$ | $⇐$  | $- \int\limits_{X_0}^{X_1} | f (x) | \mathrm{d} x ≤ \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x ≤ + \int\limits_{X_0}^{X_1} | f (x) | \mathrm{d} x$ |
+
+
 
 ### 积分中值定理
 
@@ -357,10 +383,6 @@ $\inf F (x) · g^{↗^0} (X_0) ≥ \int\limits_{[X_0,X_1]}^{x} f (θ_{i}) · g^{
 $\inf F (x) · g^{↗_0} (X_1) ≤ \int\limits_{x}^{[X_0,X_1]} f (θ_{i}) · g^{↗_0} (θ_{i}) · Δx_i ≤ \sup F (x) · g^{↗_0} (X_1)$
 
 $\inf F (x) · g^{↘^0} (X_1) ≥ \int\limits_{x}^{[X_0,X_1]} f (θ_{i}) · g^{↘^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↘^0} (X_1)$
-
-| $F (x) ≡ \int\limits_{X_0}^{x} f (x) \mathrm{d} x \mathop{=======}\limits_{θ_0∈[X_0,X_0+Δx_0]}^{θ_{n}∈[x-Δx_n,x]} \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f (θ_i) · Δx_i$ | $F (x_{i+1}) - F (x_{i}) = f (θ_i) · Δx_i = f (θ_{i}) · (x_{i+1} - x_{i})$ | $F (x_{0}) ≡ 0$ | $x_0 = X_0, x_{n+1} = x$ |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :-------------- | :----------------------- |
-| $F (x) ≡ \int\limits_{x}^{X_1} f (x) \mathrm{d} x \mathop{=======}\limits_{θ_{n}∈[x,x+Δx_n]}^{θ_{0}∈[X_1-Δx_0,X_1]} \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f (θ_i) · Δx_i$ | $F (x_{i+1}) - F (x_{i}) = f (θ_i) · Δx_i = f (θ_{i}) · (x_{i+1} - x_{i})$ | $F (x_{0}) ≡ 0$ | $x_{n+1} = x, x_0 = X_1$ |
 
 | $⇓$  | $F (x) ≡ \int\limits_{X_0}^{x} f (x) \mathrm{d} x \mathop{=======}\limits_{θ_0∈[X_0,X_0+Δx_0]}^{θ_{n}∈[x-Δx_n,x]} \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f (θ_i) · Δx_i$ |      |                                           |
 | :--: | :----------------------------------------------------------- | :--: | :---------------------------------------- |
@@ -415,4 +437,4 @@ $\int\limits_{X_0}^{X_1} f (x) · g^{⤨} (x) \mathrm{d} x \mathop{=====}\limits
 | $⇓$  | $\int\limits_{X_0}^{X_1} f (x) · \dfrac{g^{⤨} (x) - g^{⤨} (X_1)}{g^{⤨} (X_0) - g^{⤨} (X_1)} \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} 1 ·  \int\limits_{X_0}^{θ} f (x) \mathrm{d} x$ | $⇐$  | $h^{↘_0} (X_0) = 1$                                          |
 | $⇓$  | $\int\limits_{X_0}^{X_1} f (x) · g^{⤨} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} g^{⤨} (X_0) · \int\limits_{X_0}^{θ} f (x) \mathrm{d} x + g^{⤨} (X_1) · \int\limits_{θ}^{X_1} f (x) \mathrm{d} x$ |      |                                                              |
 
-### 
+###

@@ -1,7 +1,7 @@
 ---
 layout:  zh_post
 Topic :  收敛极限
-Title :  重要不等式
+Title :  基本不等式
 Update:  2021-02-26T18:55:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :

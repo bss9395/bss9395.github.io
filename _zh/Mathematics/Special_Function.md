@@ -17,15 +17,15 @@ $\mathcal{Q} (x) = \mathop{1}\limits_{x∈Q}; \mathop{0}\limits_{x∉Q}$
 
 $\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ;n∈ℤ^+}^{1 = \gcd (|m|, |n|)} \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}}; \mathop{0}\limits_{x≠\frac{m}{n}}$
 
-函数$\mathcal{R} (x)$在区间$[0, 1]$内，任何无理点处连续，任何有理点处不连续。
+函数$\mathcal{R} (x)$在区间$ℝ$内，任何无理点处连续，任何有理点处不连续。
 
-| $⇓$  | $∀x,x_0∈[0, 1];∀ε>0; \left[ ε ≤ \mathop{\mathcal{R} (x)}\limits_{x=\frac{m}{n}} \right] ⇒ \left[ x∈\left\lbrace \mathop{\dfrac{m_i}{n_j}}\limits_{1≤m_i≤n_j≤\frac{1}{ε}} \right\rbrace \right]$ | $P ⇒ Q$   |
-| :--: | :----------------------------------------------------------- | :-------- |
-| $⇓$  | $∀x,x_0∈[0, 1];∀ε>0;∃δ=\min\left\lbrace \mathop{\dfrac{m_i}{n_j}}\limits_{1≤m_i≤n_j≤\frac{1}{ε}} \right\rbrace=\dfrac{1}{\max\lbrace n_j \rbrace}=\dfrac{1}{⌊\frac{1}{ε}⌋}; \left[ | x - \mathop{x_0}\limits_{x_0≠\frac{m}{n}} | ≤ x < δ \right] ⇒ \left[ \left| \mathcal{R} (x) - \mathop{\mathcal{R} (x_0)}\limits_{x_0≠\frac{m}{n}} \right| = \mathcal{R} (x) = \left[ \mathop{\mathcal{R} (x)}\limits_{x=\frac{m}{n}};\mathop{0}\limits_{x≠\frac{m}{n}} \right] < ε \right]$ | $¬Q ⇒ ¬P$ |
-| $⇓$  | $\lim\limits_{x⇝x_0≠\frac{m}{n}} \mathcal{R} (x) ⇝ \mathcal{R} (x_0)$ |           |
-|      |                                                              |           |
-| $⇓$  | $∀x,x_0∈[0, 1];∃ε_0>0;\left| \mathcal{R} (x) - \mathop{\mathcal{R} (x_0)}\limits_{x_0=\frac{p}{q}} \right| = \left| \left[ \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}};\mathop{0}\limits_{x≠\frac{m}{n}} \right] - \dfrac{1}{q} \right| \mathop{≥}\limits_{x≠\frac{m}{n}} \dfrac{1}{q} = ε_0$ |           |
-| $⇓$  | $\lim\limits_{x⇝x_0=\frac{m}{n}} \mathcal{R} (x) ⇝ \mathcal{R} (x_0)$ |           |
+| $⇓$  | $∀x,x_0∈ℝ;∀ε>0; \left[ ε ≤ \mathop{\mathcal{R} (x)}\limits_{x=\frac{m}{n}} \right] ⇒ \left[ x∈\mathop{\left\lbrace \dfrac{m_i}{n_j} \right\rbrace}\limits_{1≤n_j≤\frac{1}{ε}}^{1≤m_i} \right]$ | $P ⇒ Q$                   |
+| :--: | :----------------------------------------------------------- | :------------------------ |
+| $⇓$  | $∀x,x_0∈ℝ;∀ε>0;∃δ=\min\mathop{\left\lbrace \dfrac{m_i}{n_j} \right\rbrace}\limits_{1≤n_j≤\frac{1}{ε}}^{1≤m_i}=\dfrac{1}{\max\lbrace n_j \rbrace}=\dfrac{1}{⌊\frac{1}{ε}⌋}; \left[ | x - \mathop{x_0}\limits_{x_0≠\frac{p}{q}} | ≤ x < δ \right] ⇒ \left[ \left| \mathcal{R} (x) - \mathop{\mathcal{R} (x_0)}\limits_{x_0≠\frac{p}{q}} \right| = \mathcal{R} (x) = \left[ \mathop{\mathcal{R} (x)}\limits_{x=\frac{m}{n}};\mathop{0}\limits_{x≠\frac{m}{n}} \right] < ε \right]$ | $¬Q ⇒ ¬P$                 |
+| $⇓$  | $\lim\limits_{x⇝x_0≠\frac{m}{n}} \mathcal{R} (x) ⇝ \mathcal{R} (x_0)$ |                           |
+|      |                                                              |                           |
+| $⇓$  | $∀x,x_0∈ℝ;∃ε_0>0;∀δ>0; \left[ | x - x_0 | < δ \right] ∧ \left| \mathcal{R} (x) - \mathop{\mathcal{R} (x_0)}\limits_{x_0=\frac{p}{q}} \right| = \left| \left[ \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}};\mathop{0}\limits_{x≠\frac{m}{n}} \right] - \dfrac{1}{q} \right| \mathop{≥}\limits_{x≠\frac{m}{n}} \dfrac{1}{q} = ε_0$ | $¬[ P ⇒ Q ] ⇔ [ P ∧ ¬Q ]$ |
+| $⇓$  | $\lim\limits_{x⇝x_0=\frac{m}{n}} \mathcal{R} (x) \not⇝ \mathcal{R} (x_0)$ |                           |
 
 ### 函数$\mathcal{F} (x)$
 
