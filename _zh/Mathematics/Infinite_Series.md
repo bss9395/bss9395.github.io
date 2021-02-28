@@ -13,15 +13,15 @@ Link  :
 
 若$\lim\limits_{n⇝+∞} S_n ⇝ S$，且 $\lim\limits_{n⇝+∞} T_n ⇝ T$。
 
-$\lim\limits_{n⇝+∞} [ S_n + T_n ] = \lim\limits_{n⇝+∞} S_n + \lim\limits_{n⇝+∞} T_n = S + T$
+$\lim\limits_{n⇝+∞} [ S_n + T_n ] = \lim\limits_{n⇝+∞} S_n + \lim\limits_{n⇝+∞} T_n ⇝ S + T$
 
-$\lim\limits_{n⇝+∞} [ S_n - T_n ] = \lim\limits_{n⇝+∞} S_n - \lim\limits_{n⇝+∞} T_n = S - T$
+$\lim\limits_{n⇝+∞} [ S_n - T_n ] = \lim\limits_{n⇝+∞} S_n - \lim\limits_{n⇝+∞} T_n ⇝ S - T$
 
-$\lim\limits_{n⇝+∞} [ S_n · T_n ] = \lim\limits_{n⇝∞} S_n · \lim\limits_{n⇝∞} T_n = S · T$
+$\lim\limits_{n⇝+∞} [ S_n · T_n ] = \lim\limits_{n⇝∞} S_n · \lim\limits_{n⇝∞} T_n ⇝ S · T$
 
-$\lim\limits_{n⇝+∞} \dfrac{S_n}{T_n} = \dfrac{\lim\limits_{n⇝∞} S_n}{\lim\limits_{n⇝∞} T_n} = \dfrac{S}{T}$
+$\lim\limits_{n⇝+∞} \dfrac{S_n}{T_n} = \dfrac{\lim\limits_{n⇝∞} S_n}{\lim\limits_{n⇝∞} T_n} \mathop{⇝}\limits_{T≠0} \dfrac{S}{T}$
 
-$\lim\limits_{n⇝+∞} [ \mathrm{Con.} · S_n ] = \mathrm{Con.} · \lim\limits_{n⇝+∞} S_n$
+$\lim\limits_{n⇝+∞} [ \mathrm{Con.} · S_n ] = \mathrm{Con.} · \lim\limits_{n⇝+∞} S_n ⇝ \mathrm{Con.} · S$
 
 | $⇓$  | $[ ∀ε_1>0;∃N∈ℕ;∀n≥N; | S_n - S | < ε_1 ] ∧ [∀ε_2>0;∃N∈ℕ;∀n≥N; | T_n - T | < ε_2]$ |
 | :--: | ------------------------------------------------------------ |

@@ -11,7 +11,7 @@ Link  :
 
 $\mathcal{Q} (x) = \mathop{1}\limits_{x∈ℚ}; \mathop{0}\limits_{x∉ℚ}$
 
-函数$\mathrm{Q} (x)$在区间$[0, 1]$内，处处不连续，也处处不可导。
+函数$\mathcal{Q} (x)$在区间$[X_0, X_1]⊆ℝ$内，处处不连续，也处处不可导。
 
 ### 函数$\mathcal{R} (x)$
 
@@ -27,7 +27,11 @@ $\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ;n∈ℤ^+}^{1 = \gcd (|m|, |n|)
 | $⇓$  | $∀x,x_0∈[X_0,X_1];∃ε_0>0;∀δ>0; \left[ | x - x_0 | < δ \right] ∧ \left[ \sup \left| \mathcal{R} (x) - \mathop{\mathcal{R} (x_0)}\limits_{x_0=\frac{p}{q}} \right| = \sup \left| \left[ \mathop{\mathcal{R} (x)}\limits_{x=\frac{m}{n}};\mathop{0}\limits_{x≠\frac{m}{n}} \right] - \dfrac{1}{q} \right| ≥ \dfrac{1}{q} = ε_0 \right]$ | $¬[ P ⇒ Q ] ⇔ [P ∧ ¬Q]$ |
 | $⇓$  | $\lim\limits_{x⇝x_0=\frac{m}{n}} \mathcal{R} (x) \not⇝ \mathcal{R} (x_0)$ |                         |
 
-必存在函数$f (x)$在区间$[X_0,X_1]⊆ℝ$内，任何无理点处连续，任何有理点处不连续。例如$f (x) ≡ \mathcal{R} (x)$
+比存在函数$f (x)$在区间$[X_0, X_1]⊆ℝ$内，任何无理点处连续，任何有理点处连续。例如$f (x) ≡ x$。
+
+必存在函数$f (x)$在区间$[X_0, X_1]⊆ℝ$内，任何无理点处不连续，任何有理点处不连续。例如$f (x) ≡ \mathcal{Q} (x)$。
+
+必存在函数$f (x)$在区间$[X_0,X_1]⊆ℝ$内，任何无理点处连续，任何有理点处不连续。例如$f (x) ≡ \mathcal{R} (x)$。
 
 $∀x_n,r_0,q_0∈[X_0,X_1];∃f(x); \left[ \lim\limits_{n⇝+∞}^{Δx⇝0} \sup | f (x_n) - \mathop{f (r_0)}\limits_{r_0∉ℚ} | ⇝ 0 \right] ∧ \left[ \lim\limits_{n⇝+∞}^{Δx⇝0} \sup | f (x_n) - \mathop{f (q_0)}\limits_{q_0∈ℚ} | > 0 \right]$
 
@@ -35,9 +39,8 @@ $∀x_n,r_0,q_0∈[X_0,X_1];∃f(x); \left[ \lim\limits_{n⇝+∞}^{Δx⇝0} \su
 
 $∀x_n,r_0,q_0∈[X_0,X_1];¬∃f(x); \left[ \lim\limits_{n⇝+∞}^{Δx⇝0} \sup | f (x_n) - \mathop{f (r_0)}\limits_{r_0∉ℚ} | > 0 \right] ∧ \left[ \lim\limits_{n⇝+∞}^{Δx⇝0} \sup | f (x_n) - \mathop{f (q_0)}\limits_{q_0∈ℚ} | ⇝ 0 \right]$
 
-| $⇓$  |                                                              |      |                                                              |                  |
-| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- | :--------------- |
 | $⇓$  | $∀r∈[X_0,X_1]\backslashℚ;∃ε>0;∀δ>0; [ | x - r_0 | < δ ] ∧ [ \sup | f (x) - f (r) | ≥ ε ]$ |      |                                                              |                  |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- | :--------------- |
 | $⇓$  | $∀r∈[X_0,X_1]\backslashℚ;∃m∈ℕ;∃ε>0; \lim\limits_{n⇝+∞}^{Δx⇝0} \sup | f (x_n) - f (r) | ≥ ε ≥ \dfrac{1}{m+1}$ |      |                                                              |                  |
 | $⇓$  | $∀r; [ r ∈ [X_0,X_1]\backslashℚ ] ⇒ \left[ r ∈ \bigcup\limits_{m=0}^{ℕ} \mathop{r_m}\limits_{w^f (r_m)≥\frac{1}{m+1}} \right]$ | $⇒$  | $r_m ∈ \left( r_m - \dfrac{ζ}{2^{m+1}}, r_m + \dfrac{ζ}{2^{m+1}} \right)$ |                  |
 | $⇓$  | $[X_0,X_1] \backslash ℚ ⊆ \bigcup\limits_{m=0}^{ℕ} \mathop{r_0}\limits_{w^f(r_0)≥\frac{1}{m+1}} ⊆ \mathcal{O}$ | $⇒$  | $[X_0,X_1] \backslash ℚ ⊆ \mathcal{O}$                       | $\mathrm{False}$ |
@@ -46,7 +49,7 @@ $∀x_n,r_0,q_0∈[X_0,X_1];¬∃f(x); \left[ \lim\limits_{n⇝+∞}^{Δx⇝0} \
 
 $\lbrace (X_{i,j} - I_{i}, X_{i,j} + I_{i}) \rbrace \mathop{≡≡≡≡≡}\limits_{I_{i}=\frac{1}{2^{2·i+3}}}^{X_{i,j}=\frac{2·j+1}{2^{i+1}}} \bigcup\limits_{i=0}^{+∞} \bigcup\limits_{j=0}^{2^i-1} \left( \dfrac{2 · j + 1}{2^{i + 1}} - \dfrac{1}{2^{2 · i + 3}}, \dfrac{2 · j + 1}{2^{i + 1}} + \dfrac{1}{2^{2 · i + 3}} \right) = \bigcup\limits_{i=1}^{+∞} \bigcup\limits_{j=1}^{2^{i-1}} \left( \dfrac{2·j-1}{2^i} - \dfrac{1}{2^{2·i+1}}, \dfrac{2·j-1}{2^i} + \dfrac{1}{2^{2·i+1}} \right)$
 
-$| \lbrace (X_{i,j} - I_{i}, X_{i,j} + I_{i}) \rbrace | = \sum\limits_{i=0}^{+∞} \sum\limits_{j=0}^{2^i - 1} 2 · I_i = \sum\limits_{i=0}^{+∞} 2^i · \dfrac{2}{2^{2·i+3}} = \sum\limits_{i=0}^{+∞} \dfrac{1}{2^{i+2}} = \dfrac{\frac{1}{4}}{1 - \frac{1}{2}} = \dfrac{1}{2}$
+$| \lbrace (X_{i,j} - I_{i}, X_{i,j} + I_{i}) \rbrace | = \sum\limits_{i=0}^{+∞} \sum\limits_{j=0}^{2^i - 1} 2 · I_i = \sum\limits_{i=0}^{+∞} \sum\limits_{j=0}^{2^i-1} \dfrac{2}{2^{2·i+3}} = \sum\limits_{i=0}^{+∞} 2^i · \dfrac{2}{2^{2·i+3}} = \sum\limits_{i=0}^{+∞} \dfrac{1}{2^{i+2}} = \dfrac{\frac{1}{4}}{1 - \frac{1}{2}} = \dfrac{1}{2}$
 
 | $I_0 = \dfrac{1}{2^3}$ | $\left( \dfrac{1}{2^1} - \dfrac{1}{2^3}, \dfrac{1}{2^1} + \dfrac{1}{2^3} \right)$ |
 | :--------------------: | :----------------------------------------------------------: |
