@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-03-01T20:58:00+08@中国-广东-湛江+08
+Update:  2021-03-02T00:35:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -87,7 +87,7 @@ $∃ε>0;∀Δx>0; [ | x,y - x_0 | < Δx ] ∧ [ \sup f (x) - \inf f (y) ≥ ε 
 
 函数$f (x)$在区间$X$上单点$x_0$处的连续性。连续性是局部性质。
 
-$\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0)$
+$\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) ≠ ±∞$
 
 $∀ε>0;∃δ>0; \left[ | x - x_0 | < δ \right] ⇒ \left[ | f (x) - f (x_0) | < ε \right]$
 
@@ -95,7 +95,7 @@ $∀ε>0;∃δ>0; \left[ \sup | x - x_0 | < δ \right] ⇒ \left[ \sup | f (x) -
 
 函数$f (x)$在区间X上的一致连续性。一致连续性是全局性质。
 
-$\lim\limits_{x⇝x_t} f (x) ↭ f (x_t)$
+$\lim\limits_{x⇝x_t} f (x) ↭ f (x_t) ≠ ±∞$
 
 $∀ε>0;∃δ>0; [ | x - x_t | < δ ] ⇒ [ | f (x) - f (x_t) | < ε ]$
 
@@ -139,19 +139,14 @@ $\left[ \lim\limits_{x⇝y} f (x) ↭ f (y) \right] ⇒ \left[ \lim\limits_{x⇝
 
 
 
-若函数$f^{↑} (x)$在区间$X$上严格单调，且其函数值域为单区间，则函数$f^{↑} (x)$在区间$X$上单调连续。
-
-$\lim\limits_{x⇝x_0} f^{↕} (x) ⇝ f^{↕} (x_0)$
+若函数$f^{↕} (x)$在单区间$X$上严格单调，且其函数值域为单区间，则函数$f^{↕} (x)$在单区间$X$上单调连续。
 
 | $⇓$  | $∀x_1,x_2∈X; [ f^{-1} (y_1) = x_1 < x_2 = f^{-1} (y_2) ] ⇔ [ f^{↕} (x_1) = y_1 < y_2 = f^{↕} (x_2) ]$ |      |                                               |
 | :--: | :----------------------------------------------------------- | :--: | :-------------------------------------------- |
 | $⇓$  | $∀y_1,y_0,y,y_2∈Y; [ y_1 < y_0, y < y_2 ] ⇔ [ x_1 < x_0, x < x_2 ]$ |      |                                               |
 | $⇓$  | $∀ε=|y_2-y_1|>0;∃δ=|x_2-x_1|>0; [ | x - x_0 | < δ ] ⇒ [ | y - y_0 | < ε]$ |      |                                               |
 | $⇓$  | $∀ε>0;∃δ>0; [ | x - x_0 | < δ ] ⇒ [ | f^{↑} (x) - f^{↑} (x_0) | < ε ]$ | $⇒$  | $\lim\limits_{x⇝x_0} f^{↑} (x) ⇝ f^{↑} (x_0)$ |
-|      |                                                              |      |                                               |
-| $⇓$  | $∀ε>0;∃δ>0; [ | x - x_0 | < δ ] ⇒ [ | f^{↓} (x) - f^{↓} (x_0) | < ε ]$ | $⇒$  | $\lim\limits_{x⇝x_0} f^{↓} (x) ⇝ f^{↓} (x_0)$ |
-
-
+| $⇓$  |                                                              |      | $\lim\limits_{x⇝x_0} f^{↕} (x) ⇝ f^{↕} (x_0)$ |
 
 ### 连续介值定理
 
@@ -159,56 +154,83 @@ $\lim\limits_{x⇝x_0} f^{↕} (x) ⇝ f^{↕} (x_0)$
 
 $f(x)|_{∀t∈X} = \left.f (x)\right|_{∃θ∈X}$
 
-| $⇓$  | $∀t∈X;∃θ∈X; f (t) = f (θ)$                                   | $⇔$  | $f(x)|_{∀t∈X} = \left.f (x)\right|_{∃θ∈X}$ |
-| :--: | :----------------------------------------------------------- | :--: | ------------------------------------------ |
-| $⇓$  | $∀f(x)∈\left( \inf\limits_{x∈X} f(x), \sup\limits_{x∈X} f(x) \right);∃θ∈X; f (t) = f (θ)$ |      |                                            |
-| $⇓$  | $∀f(x)∈\left[\min \lbrace f (α), f (β) \rbrace, \max \lbrace f (α), f (β) \rbrace \right];∃θ∈[α, β]; f (t) = f (θ)$ |      |                                            |
-| $⇓$  | $f (α) · f (β) ≤ 0 ⇒ 0 = \left. f (θ) \right|_{∃θ∈[α, β]}$   |      |                                            |
+| $⇓$  | $∀t∈X;∃θ∈X; f (t) = f (θ)$                                   | $⇔$  | $f(x)|_{∀t∈X} = \left.f (x)\right|_{∃θ∈X}$                   |
+| :--: | :----------------------------------------------------------- | :--: | ------------------------------------------------------------ |
+| $⇓$  | $∀y∈\left( \inf\limits_{x∈X} f(x), \sup\limits_{x∈X} f(x) \right) ⊊ (-∞, +∞);∃θ∈X; y = f (θ)$ | $⇐$  | $y ≡ f (x)$                                                  |
+| $⇓$  | $∀y∈\left[\min \lbrace f (X_0), f (X_1) \rbrace, \max \lbrace f (X_0), f (X_1) \rbrace \right];∃θ∈[X_0, X_1]; y = f (θ)$ | $⇐$  | $[ \min\lbrace f (X_0), f (X_1) \rbrace, \max\lbrace f (X_0), f (X_1) \rbrace ] ⊆ \left( \inf\limits_{x∈[X_0,X_1]} f (x), \sup\limits_{x∈[X_0,X_1]} f (x) \right)$ |
+| $⇓$  | $\left[ f (X_0) · f (X_1) ≤ 0 \right] ⇒ \left[ 0 = \left. f (θ) \right|_{∃θ∈[X_0, X_1]} \right]$ | $⇐$  | $0 ∈ [ \min\lbrace f (X_0), f (X_1) \rbrace, \max\lbrace f (X_0), f (X_1) \rbrace ]$ |
 
-函数$f (x)$在闭区间$[α, β]$上连续，若函数的值域内含于定义域，则必定存在不动点$θ∈[α, β]$使得成立。
+若函数$f (x)$在单区间$X$上连续，则其值域$Y$为单区间，反之不对。
 
-$∀x∈[α, β]; f(x)∈[α, β] ⇒ \left.f (x)\right|_{∃θ∈[α, β]} = θ$
+若函数$f (x)$在区间$[X_0, X_1]$上连续，且其值域内含于定义域，则必存在不动点$θ∈[X_0, X_1]$使得成立。
+
+$∀x∈[X_0, X_1]; f(x)∈[X_0, X_1] ⇒ \left.f (x)\right|_{∃θ∈[X_0, X_1]} = θ$
 
 | $⇓$  | $F (x) ≡ f (x) - x$                    |      |                                                |
 | :--: | :------------------------------------- | :--: | :--------------------------------------------- |
-| $⇓$  | $F (α) · F (β) ≤ 0$                    | $⇐$  | $F (α) = f (α) - α ≥ 0, F (β) = f (β) - β ≤ 0$ |
-| $⇓$  | $0 = \left. F (x) \right|_{∃θ∈[α, β]}$ |      |                                                |
-| $⇓$  | $\left.f (x)\right|_{∃θ∈[α, β]} = θ$   |      |                                                |
+| $⇓$  | $F (X_0) · F (X_1) ≤ 0$                    | $⇐$  | $F (X_0) = f (X_0) - X_0 ≥ 0, F (X_1) = f (X_1) - X_1 ≤ 0$ |
+| $⇓$  | $0 = \left. F (x) \right|_{∃θ∈[X_0, X_1]}$ |      |                                                |
+| $⇓$  | $\left.f (x)\right|_{∃θ∈[X_0, X_1]} = θ$   |      |                                                |
+
+若函数$f (x)$在区间$[X_0, X_1]$上连续，则对于任意$λ_i>0$必存在点$θ$使得成立。
+
+$∀x_i∈[X_0,X_1];∃θ∈[\min\lbrace x_i \rbrace, \max\lbrace x_i \rbrace];∀λ_i>0; \left[ \sum\limits_{i=0}^{n} λ_i = 1 \right] ⇒ \left[ f (θ) = \sum\limits_{i=0}^{n} λ_i · f (x_i) \right]$
+
+| $⇓$  | $\min\lbrace f (x_i) \rbrace ≤ \sum\limits_{i=0}^{n} λ_i · f (x_i) ≤ \max\lbrace f (x_i) \rbrace$ | $⇐$  | $∀λ_i>0; \sum\limits_{i=0}^{n} λ_i = 1$                      |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $∃θ∈[\min\lbrace x_i \rbrace, \max\lbrace x_i \rbrace]; f (θ) = \sum\limits_{i=0}^{n} λ_i · f (x_i)$ | $⇐$  | $[\min\lbrace f (x_i) \rbrace, \max\lbrace f (x_i) \rbrace ] ⊆ \left( \inf\limits_{x∈[\min\lbrace x_i \rbrace, \max\lbrace x_i \rbrace]} f (x), \sup\limits_{x∈[\min\lbrace x_i \rbrace, \max\lbrace x_i \rbrace]} f (x) \right)$ |
+
+对于实数域的奇数次多项式$0 = P_{2·m+1} (x) = \sum\limits_{i=0}^{2 · m + 1} p_i · (x - x_0)^{i}$，必定存在至少一个实数解$θ$。
+
+| $⇓$  | $P_{2·m+1} (x) = \sum\limits_{i=0}^{2·m+1} p_i · (x - x_0)^{i} = p_{2·m+1} · (x - x_0)^{2·m+1} + \sum\limits_{i=0}^{2·m} \dfrac{p_i}{(x - x_0)^{2 · m + 1 - i}}$ |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $\lim\limits_{x⇝+∞} P_{2·m+1} (x) = \lim\limits_{m⇝+∞} p_{2·m+1} · (x - x_0)^{2 · m + 1} ⇝ +∞ · p_{2·m+1}$ |
+| $⇓$  | $\lim\limits_{x⇝-∞} P_{2·m+1} (x) = \lim\limits_{m⇝+∞} p_{2·m+1} · (x - x_0)^{2 · m + 1} ⇝ -∞ · p_{2·m+1}$ |
+| $⇓$  | $0∈\left( \inf\limits_{x∈ℝ} P_{2·m+1} (x), \sup\limits_{x∈ℝ} P_{2·m+1} (x) \right) = (-∞, +∞)$ |
+| $⇓$  | $∃θ∈ℝ; 0 = P_{2·m+1} (θ) = \sum\limits_{i=0}^{2 · m + 1} p_i · (θ - x_0)^{i}$ |
+
+若函数$f (x)$在区间$(X_0, X_1)$上连续，且$\lim\limits_{x⇝X_0^{+}} f (x)$与$\lim\limits_{x⇝X_1^{-}} f (x)$均有确界，则函数$f (x)$在区间$(X_0, X_1)$上有确界。
+
+若函数$f (x)$在区间$(-∞, +∞)$上连续，且$\lim\limits_{x⇝-∞} f (x)$与$\lim\limits_{x⇝+∞} f (x)$均有确界，则函数$f (x)$在区间$(-∞, +∞)$上有确界。
+
+$∀x∈(X_0,X_1); | f (x) | ≤ \max\left\lbrace \left| \sup\limits_{x∈X} f (x) \right|, \left| \inf\limits_{x∈X} f (x) \right| \right\rbrace ≠ +∞$
 
 ### 微分中值定理
 
-函数$f (x)$在闭区间$[α, β]$上连续且可导，若两个端点的函数值相等，则必定至少存在一点$θ∈(α, β)$使得成立。
+函数$f (x)$在闭区间$[X_0, X_1]$上连续且可导，若两个端点的函数值相等，则必定至少存在一点$θ∈(X_0, X_1)$使得成立。
 
-$[ f (α) = f (β) ] ⇒ \left[ \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(α, β)}  = 0 \right]$
+$[ f (X_0) = f (X_1) ] ⇒ \left[ \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)}  = 0 \right]$
 
-| $⇓$  | $\lim\limits_{x⇝θ^-} \dfrac{f (x) - f (θ)}{x - θ} ≤ 0 ≤ \lim\limits_{x⇝θ^+} \dfrac{f (x) - f (θ)}{x - θ}$ | $⇐$  | $f (θ) ≡ \min\limits_{x∈(α, β)} f (x)$ |
+| $⇓$  | $\lim\limits_{x⇝θ^-} \dfrac{f (x) - f (θ)}{x - θ} ≤ 0 ≤ \lim\limits_{x⇝θ^+} \dfrac{f (x) - f (θ)}{x - θ}$ | $⇐$  | $f (θ) ≡ \min\limits_{x∈(X_0, X_1)} f (x)$ |
 | :--: | :----------------------------------------------------------- | :--: | :------------------------------------- |
-| $⇓$  | $\lim\limits_{x⇝θ^-} \dfrac{f (x) - f (θ)}{x - θ} ≥ 0 ≥ \lim\limits_{x⇝θ^+} \dfrac{f (x) - f (θ)}{x - θ}$ | $⇐$  | $f (θ) ≡ \max\limits_{x∈(α, β)} f (x)$ |
-| $⇓$  | $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x}\right|_{∃θ∈(α, β)} = \lim\limits_{x⇝θ} \dfrac{f (x) - f (θ)}{x - θ} = 0$ | $⇐$  | $f (α) = f (β)$                        |
+| $⇓$  | $\lim\limits_{x⇝θ^-} \dfrac{f (x) - f (θ)}{x - θ} ≥ 0 ≥ \lim\limits_{x⇝θ^+} \dfrac{f (x) - f (θ)}{x - θ}$ | $⇐$  | $f (θ) ≡ \max\limits_{x∈(X_0, X_1)} f (x)$ |
+| $⇓$  | $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x}\right|_{∃θ∈(X_0, X_1)} = \lim\limits_{x⇝θ} \dfrac{f (x) - f (θ)}{x - θ} = 0$ | $⇐$  | $f (X_0) = f (X_1)$                        |
 
-函数$f (x)$在闭区间$[α, β]$上连续且可导，则必定至少存在一点$θ∈(α, β)$使得成立。
+函数$f (x)$在闭区间$[X_0, X_1]$上连续且可导，则必定至少存在一点$θ∈(X_0, X_1)$使得成立。
 
-$\left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(α, β)} = \dfrac{f (β) - f (α)}{β - α}$
+$\left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{X_1 - X_0}$
 
-| $⇓$  | $$ F (x) = \left|\begin{matrix} 1 & 1 & 1 \\ α & x & β \\ f (α) & f (x) & f (β) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ α & x - α & β - α \\ f (α) & f (x) - f (α) & f (β) - f (α) \end{matrix}\right| = (x - α) · [ f (β) - f (α) ] - (β - α) · [ f (x) - f (α) ] $$ | $⇒$  | $F (α) = 0 = F (β)$                                          |
+| $⇓$  | $$ F (x) = \left|\begin{matrix} 1 & 1 & 1 \\ X_0 & x & X_1 \\ f (X_0) & f (x) & f (X_1) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & x - X_0 & X_1 - X_0 \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = (x - X_0) · [ f (X_1) - f (X_0) ] - (X_1 - X_0) · [ f (x) - f (X_0) ] $$ | $⇒$  | $F (X_0) = 0 = F (X_1)$                                          |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $$\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ α & x - α & β - α \\ f (α) & f (x) - f (α) & f (β) - f (α) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ α & 1 & β - α \\ f (α) & \dfrac{\mathrm{d} f (x)}{\mathrm{d}x} & f (β) - f (α) \end{matrix}\right| = [ f (β) - f (α) ] - (β - α) · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$$ |      |                                                              |
-| $⇓$  | $\left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(α, β)} = \dfrac{f (β) - f (α)}{β - α} - \dfrac{1}{β - α} · \left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(α, β)} = \dfrac{f (β) - f (α)}{β - α}$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(α, β)} = 0$ |
+| $⇓$  | $$\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & x - X_0 & X_1 - X_0 \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & 1 & X_1 - X_0 \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d}x} & f (X_1) - f (X_0) \end{matrix}\right| = [ f (X_1) - f (X_0) ] - (X_1 - X_0) · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$$ |      |                                                              |
+| $⇓$  | $\left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{X_1 - X_0} - \dfrac{1}{X_1 - X_0} · \left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{X_1 - X_0}$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = 0$ |
 
-函数$f (x)$与函数$g (x)$在闭区间$[α, β]$上连续且可导，则必定至少存在一点$θ∈(α, β)$使得成立。
+函数$f (x)$与函数$g (x)$在闭区间$[X_0, X_1]$上连续且可导，则必定至少存在一点$θ∈(X_0, X_1)$使得成立。
 
-$\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(α, β)} = \dfrac{f (β) - f (α)}{g (β) - g (α)}$
+$\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{g (X_1) - g (X_0)}$
 
-| $⇓$  | $$ F (x) = \left|\begin{matrix} 1 & 1 & 1 \\ g (α) & g (x) & g (β) \\ f (α) & f (x) & f (β) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (α) & g (x) - g (α) & g (β) - g (α) \\ f (α) & f (x) - f (α) & f (β) - f (α) \end{matrix}\right| = (x - α) · [ f (β) - f (α) ] - (β - α) · [ f (x) - f (α) ] $$ | $⇒$  | $F (α) = 0 = F (β)$                                          |
+| $⇓$  | $$ F (x) = \left|\begin{matrix} 1 & 1 & 1 \\ g (X_0) & g (x) & g (X_1) \\ f (X_0) & f (x) & f (X_1) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & g (x) - g (X_0) & g (X_1) - g (X_0) \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = (x - X_0) · [ f (X_1) - f (X_0) ] - (X_1 - X_0) · [ f (x) - f (X_0) ] $$ | $⇒$  | $F (X_0) = 0 = F (X_1)$                                          |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $$\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ g (α) & g (x) - g (α) & g (β) - g (α) \\ f (α) & f (x) - f (α) & f (β) - f (α) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (α) & \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} & g (β) - g (α) \\ f (α) & \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} & f (β) - f (α) \end{matrix}\right| = [ f (β) - f (α) ]  · \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} - [ g (β) - g (α) ] · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$$ |      |                                                              |
-| $⇓$  | $$\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(α, β)} = \dfrac{f (β) - f (α)}{g (β) - g (α)} - \dfrac{1}{g (β) - g (α)} · \left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(α, β)} = \dfrac{f (β) - f (α)}{g (β) - g (α)}$$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(α, β)} = 0$ |
+| $⇓$  | $$\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & g (x) - g (X_0) & g (X_1) - g (X_0) \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} & g (X_1) - g (X_0) \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} & f (X_1) - f (X_0) \end{matrix}\right| = [ f (X_1) - f (X_0) ]  · \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} - [ g (X_1) - g (X_0) ] · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$$ |      |                                                              |
+| $⇓$  | $$\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{g (X_1) - g (X_0)} - \dfrac{1}{g (X_1) - g (X_0)} · \left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{g (X_1) - g (X_0)}$$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = 0$ |
 
 ### 导数极限定理
 
-函数$f (x)$在区间$[α, β]$上连续且可导，根据微分中值定理。
+若函数$f (x)$在区间$[X_0, X_1]$上连续且可导，则其在点$X_0$处的右导数等于其导数在该点处的右极限，且其在点$X_1$处的左导数等于其导数在该点处的左极限。
 
-$\left. \dfrac{\mathrm{d} f_+ (x)}{\mathrm{d} x} \right|_α = \lim\limits_{x⇝α^+} \dfrac{f (x) - f (α)}{x - α} = \lim\limits_{θ⇝α^+} \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{θ∈(α, x)} = \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{α^+}$
+$\left. \dfrac{\mathrm{d} f^{+} (x)}{\mathrm{d} x} \right|_{X_0} = \lim\limits_{x⇝X_0^+} \dfrac{f (x) - f (X_0)}{x - X_0} = \lim\limits_{θ⇝X_0^+} \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{θ∈(X_0, x)} = \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{X_0^+}$
+
+$\left. \dfrac{\mathrm{d} f^{-} (x)}{\mathrm{d} x} \right|_{X_1} = \lim\limits_{x⇝X_1^-} \dfrac{f (x) - f (X_1)}{x - X_1} = \lim\limits_{θ⇝X_1^{-}} \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{θ∈(x, X_1^-)} = \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{X_1^-}$
 
 ### 幂级数公式
 
