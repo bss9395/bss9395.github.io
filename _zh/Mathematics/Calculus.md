@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-03-01T18:31:00+08@中国-广东-湛江+08
+Update:  2021-03-01T20:58:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -69,29 +69,37 @@ $∀x_1,x_2∈X; [ f^{-1} (y_1) = x_1 < x_2 = f^{-1} (y_2) ] ⇔ [ f^{↓} (x_1)
 
 ### 连续性
 
+| $⇕$  | $∀u,v∈[x_i,x_{i+1}];∀ε>0;∃δ>0; \left[ | g (u) - g (v) | < δ \right] ⇒ \left[ | f (g (u)) - f (g (v)) | < ε \right]$ | $∀y;∃x; P (x,y,y)$                                       |
+| :--: | :----------------------------------------------------------- | :------------------------------------------------------- |
+| $⇕$  | $∀ε>0;∃δ>0;∀u,v∈[x_i,x_{i+1}]; \left[ | g (u) - g (v) | < δ \right] ⇒ \left[ | f (g (u)) - f (g (v)) | < ε \right]$ | $∃x;∀y; P (x,y,y)$                                       |
+| $⇕$  | $∀ε>0;∃δ>0; \left[ ∀u,v∈[x_i,x_{i+1}];  | g (u) - g (v) | < δ \right] ⇒ \left[ ∀u,v∈[x_i,x_{i+1}];  | f (g (u)) - f (g (v)) | < ε \right]$ | $∃x;∀y_1;∀y_2; P (x,y_1,y_2)$                            |
+| $⇕$  | $∀ε>0;∃δ>0; \left[ ∀u,v∈[x_i,x_{i+1}]; \sup | g (u) - g (v) | < δ \right] ⇒ \left[ ∀u,v∈[x_i,x_{i+1}]; \sup | f (g (u)) - f (g (v)) | < ε \right]$ | $[ ε;∀t; | f (t) | < ε ] ⇔ [ ε;∀t; \sup | f (t) | ≤ ε ]$ |
+| $⇕$  | $∀ε>0;∃δ>0;∀u,v∈[x_i,x_{i+1}]; \left[ \sup | g (u) - g (v) | < δ \right] ⇒ \left[ \sup | f (g (u)) - f (g (v)) | < ε \right]$ |                                                          |
+| $⇕$  | $∀ε>0;∃δ>0; \left[ \sup\limits_{u,v∈[x_{i},x_{i+1}]} | g (u) - g (v) | < δ \right] ⇒ \left[ \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (g (u)) - f (g (v)) | < ε \right]$ |                                                          |
+
 对于任意间断点$x_0$，其所在任意区间内的振幅均不为零。
 
 $∃ε>0; ε ≤ \lim\limits_{Δx⇝0} w^f (x_0) = \lim\limits_{Δx⇝0} \sup\limits_{|x,y-x_0|<Δx} | f (x) - f (y) | = \lim\limits_{Δx⇝0} \left[ \sup\limits_{|x-x_0|<Δx} f (x) - \inf\limits_{|y-x_0|<Δx} f (y) \right]$
 
-$∃ε>0;∀Δx>0;∀x,y∈X; [ | x,y - x_0 | < Δx ] ⇒ [ \sup | f (x) - f (y) | < ε ]$
+$∃ε>0;∀Δx>0; [ \sup | x,y - x_0 | < Δx ] ∧ [ \sup | f (x) - f (y) | ≥ ε ]$
 
-$∃ε>0;∀Δx>0;∀x,y∈X; [ | x,y - x_0 | < Δx ] ⇒ [ \sup f (x) - \inf f (y)< ε ]$
+$∃ε>0;∀Δx>0; [ | x,y - x_0 | < Δx ] ∧ [ \sup f (x) - \inf f (y) ≥ ε ]$
 
 函数$f (x)$在区间$X$上单点$x_0$处的连续性。连续性是局部性质。
 
 $\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0)$
 
-$∀ε>0;∃δ>0;∀x∈X; \left[ | x - x_0 | < δ \right] ⇒ \left[ | f (x) - f (x_0) | < ε \right]$
+$∀ε>0;∃δ>0; \left[ | x - x_0 | < δ \right] ⇒ \left[ | f (x) - f (x_0) | < ε \right]$
 
-$∀ε>0;∃δ>0; \left[ \sup\limits_{x∈X} | x - x_0 | < δ \right] ⇒ \left[ \sup\limits_{x∈X} | f (x) - f (x_0) | < ε \right]$
+$∀ε>0;∃δ>0; \left[ \sup | x - x_0 | < δ \right] ⇒ \left[ \sup | f (x) - f (x_0) | < ε \right]$
 
 函数$f (x)$在区间X上的一致连续性。一致连续性是全局性质。
 
 $\lim\limits_{x⇝x_t} f (x) ↭ f (x_t)$
 
-$∀ε>0;∃δ>0;∀x,x_t∈X; [ | x - x_t | < δ ] ⇒ [ | f (x) - f (x_t) | < ε ]$
+$∀ε>0;∃δ>0; [ | x - x_t | < δ ] ⇒ [ | f (x) - f (x_t) | < ε ]$
 
-$∀ε>0;∃δ>0; \left[ \sup\limits_{x,x_t∈X} | x - x_t | < δ \right] ⇒ \left[ \sup\limits_{x,y∈X} | f (x) - f (x_t) | < ε \right]$
+$∀ε>0;∃δ>0; \left[ \sup | x - x_t | < δ \right] ⇒ \left[ \sup | f (x) - f (x_t) | < ε \right]$
 
 若函数$f (x)$在区间$X$上单点$x_0$处连续，则在该点处的振幅为零，反之亦然。
 
@@ -406,9 +414,9 @@ $\int\limits_{0}^{1} \mathcal{R} (x) \mathrm{d} x = \lim\limits_{n⇝+∞}^{Δx_
 
 | $⇓$  |   $∀ε>0;∃δ>0;$ | $\left[ \sup\limits_{u,v∈[x_i,x_{i+1}]} | g (u) - g (v) | < δ \right] ⇒ \left[ \sup\limits_{u,v∈[x_i,x_{i+1}]} | f (g (u)) - f (g (v)) | < ε \right]$ |
 | :--: | -------------: | :----------------------------------------------------------- |
-| $⇓$  |   $∀𝜁>0;∀δ>0;$ | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥δ} < 𝜁$ |
+| $⇓$  |   $∀𝜁>0;∀δ>0;$ | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i^g≥δ} < 𝜁$ |
 | $⇓$  | $∀ε,𝜁>0;∃δ>0;$ | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (g (u)) - f (g (v)) | · Δx_i = \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]}\mathop{| f (g (u)) - f (g (v)) |}\limits_{\sup | g (u) - g (v) | < δ} · Δx_i + \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} \mathop{| f (g (u)) - f (g (v)) |}\limits_{\sup | g (u) - g (v) | ≥ δ} · Δx_i$ |
-| $⇓$  | $∀ε,𝜁>0;∃δ>0;$ | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (g (u)) - f (g (v)) | · Δx_i < ε · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{\sup | g (u) - g (v) | < δ} + \sup f (y) · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \mathop{Δx_i}\limits_{\sup | g (u) - g (v) | ≥ δ} = ε · (X_1 - X_0) + \sup f (y) · 𝜁$ |
+| $⇓$  | $∀ε,𝜁>0;∃δ>0;$ | $0 ≤ \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (g (u)) - f (g (v)) | · Δx_i < ε · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{\sup | g (u) - g (v) | < δ} + \mathrm{Sup.} · \lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^n \mathop{Δx_i}\limits_{\sup | g (u) - g (v) | ≥ δ} = ε · (X_1 - X_0) + \mathrm{Sup.} · 𝜁$ |
 | $⇓$  |                | $\lim\limits_{n⇝+∞}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_{i}^{f∘g} · Δx_i ⇝ 0$ |
 |      |                |                                                              |
 | $⇓$  |   $∃ε>0;∃δ>0;$ | $\left[ \lim\limits^{Δx_i⇝0} w_i^g < δ \right] ⇒ \left[ \lim\limits^{Δx_i⇝0} w_i^{f∘g} < ε \right]$ |
