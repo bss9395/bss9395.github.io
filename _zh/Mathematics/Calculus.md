@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-03-03T01:11:00+08@中国-广东-湛江+08
+Update:  2021-03-03T19:34:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -131,13 +131,13 @@ $\lim\limits_{x⇝x_0} f (g (x)) = f \left( \lim\limits_{x⇝x_0} g (x) \right) 
 | $⇓$  | $∀ζ>0;∃ε>0;∃δ>0;∀x∈X;∀y∈Y; [ | x - x_0 | < δ ] ⇒ [ | g (x) - g (x_0) | < ε ] ⇒ [ | f (g (x)) - f (g (x_0)) | < ζ ]$ |      |
 | $⇓$  | $∀ζ>0;∃δ>0;∀x∈X; [ | x - x_0 | < δ ] ⇒ [ | f (g (x)) - f (g (x_0)) | < ζ ]$ |      |
 
-若函数$f (x)$在区间$X$上一致连续，则其导函数在区间$X$上有确界，反之亦然。
+若函数$f (x)$在区间$X$上一致连续，则其导函数在区间$X$上有确界，反之不对。
 
-| $⇕$  | $¬∃ε>0;∀δ>0;∃x,x_t∈X; \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| ≥ \dfrac{ε}{δ} \mathop{≥}\limits_{δ⇝0^+} \dfrac{ε}{\sup δ}$ |      |                                                              |
+| $⇕$  | $∃ε>0;∀δ>0;∃x,x_t∈X; [ | x - x_t | < δ ] ∧ [ | f (x) - f (x_t) | ≥ ε ]$ | $⇔$  | $\lim\limits_{x⇝x_t} f (x) \not↭ f (x_t)$                    |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇕$  | $¬∃ε>0;∀δ>0;∃x,x_t∈X; [ | x - x_t | < δ ] ∧ [ | f (x) - f (x_t) | ≥ ε ]$ | $⇔$  | $¬ \left[ \lim\limits_{x⇝x_t} f (x) \not↭ f (x_t) \right]$   |
-| $⇕$  | $∀ε>0;∃δ>0;∀x,x_t∈X; [ | x - x_t | < δ ] ⇒ [ | f (x) - f (x_t) | < ε ]$ | $⇔$  | $\lim\limits_{x⇝x_t} f (x) ↭ f (x_t)$                        |
-| $⇕$  | $∀ε>0;∃δ>0;∀x,x_t∈X; \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| < \dfrac{ε}{δ} \mathop{≤}\limits^{ε⇝0^+} \dfrac{\sup ε}{δ} ≤ \mathrm{Sup.}$ | $⇔$  | $∃\mathrm{Sup.}>0;∀x,x_t∈X; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right| < \mathrm{Sup.}$ |
+| $⇕$  | $∃ε>0;∀δ>0;∃x,x_t∈X; \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| ≥ \dfrac{ε}{δ} \mathop{≥}\limits_{δ⇝0^+} \dfrac{ε}{\sup δ} = \mathrm{Sup.} ≠ +∞$ |      |                                                              |
+| $⇕$  | $∃x,x_t∈X; | f (x) - f (x_t) | ≥ \mathrm{Sup.} · | x - x_t |$ |      |                                                              |
+| $⇓$  | $\left[ \lim\limits_{x⇝x_t} f (x) ↭ f (x_t) \right] ⇔ \left[ ∀x,x_t∈X; | f (x) - f (x_t) | < \mathrm{Sup.} · | x - x_t | \right]$ | $⇒$  | $\left[ ∀x_t∈X; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} < \mathrm{Sup.} \right]$ |
 
 若函数$f (x)$在区间$X$上一致连续，则函数$f (x)$在区间$X$上必连续，反之不对。
 
@@ -147,9 +147,19 @@ $\left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \rig
 
 $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0,X_1]} f (x_0) \right] ⇔ \left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈[X_0,X_1]} f (x_t) \right]$
 
-| $⇕$  | $∀ε>0;∃δ>0;∀x,x_0∈[X_0,X_1]; \left[ | x - x_0 | < δ \right] ⇒ \left[ | f (x) - f (x_0) | < ε ≠ +∞ \right]$ | $⇔$  | $\lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0,X_1]} f (x_0)$ |
+| $⇓$  | $\lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0,X_1]} f (x_0) ≠ ±∞$ |      |                                                              |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇕$  | $∀ε>0;∃δ>0;∀x,x_t∈[X_0,X_1]; \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| < \dfrac{ε}{δ} \mathop{≤}\limits^{ε⇝0^+} \dfrac{\sup ε}{δ} ≤ \mathrm{Sup.}$ | $⇔$  | $\lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈[X_0,X_1]} f (x_t)$ |
+| $⇓$  | $∀x∈[X_0,X_1]; f (x) ∈ \left[ \inf\limits_{x_0∈[X_0,X_1]} f (x_0), \sup\limits_{x_0∈[X_0,X_1]} f (x_0) \right] ⊊ (-∞, +∞)$ |      |                                                              |
+| $⇓$  | $∀x,x_t∈[X_0,X_1]; | f (x) - f (x_t) | ≤ \sup\limits_{x_0∈[X_0,X_1]} f (x_0) - \inf\limits_{x_0∈[X_0,X_1]} f (x_0) = \mathrm{Sup.} ≠ +∞$ |      |                                                              |
+| $⇓$  | $∀ε>0;∃δ>0;∀x∈[X_0,X_1]; [ | x - x_0 | < δ ] ⇒ [ | f (x) - f (x_0) | < ε ]$ |      |                                                              |
+| $⇓$  | $¬ \left[ ∃ε>0;∀δ>0;∃x,x_t∈[X_0,X_1]; [ | x - x_t | < δ ] ∧ [ +∞ ≠ \mathrm{Sup.} ≥ | f (x) - f (x_t) | ≥ ε ] \right]$ | $⇔$  | $¬ \left[ \lim\limits_{x⇝x_t} f (x) \mathop{\not↭}\limits_{x,x_t∈[X_0,X_1]} f (x_t) \right]$ |
+| $⇓$  | $\lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈[X_0,X_1]} f (x_t)$ |      |                                                              |
+
+若函数$f (x)$在区间$[X_0^{±}, ±∞)$上连续，且 $\lim\limits_{x⇝±∞} f (x) ⇝ f_{±∞}$存在有确界，则函数$f (x)$在$[X_0^{±}, ±∞)$上一致连续。
+
+$\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0^{±},±∞]} f (x_0) \right] ⇔ \left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_0∈[X_0^{±},±∞]} f (x_t) \right]$
+
+
 
 典例：函数$f (x) = \dfrac{1}{x}$在区间$(0, 1)$上非一致连续，但在区间$\mathop{[X_0, X_1)}\limits_{0<X_0}$上一致连续。
 
