@@ -69,12 +69,10 @@ $∀x_1,x_2∈X; [ f^{-1} (y_1) = x_1 < x_2 = f^{-1} (y_2) ] ⇔ [ f^{↓} (x_1)
 
 ### 连续性
 
-| $⇕$  | $∀u,v∈[x_i,x_{i+1}];∀ε>0;∃δ>0; \left[ | g (u) - g (v) | < δ \right] ⇒ \left[ | f (g (u)) - f (g (v)) | < ε \right]$ | $∀y;∃x; P (x,y,y)$                                       |
-| :--: | :----------------------------------------------------------- | :------------------------------------------------------- |
 | $⇕$  | $∀ε>0;∃δ>0;∀u,v∈[x_i,x_{i+1}]; \left[ | g (u) - g (v) | < δ \right] ⇒ \left[ | f (g (u)) - f (g (v)) | < ε \right]$ | $∃x;∀y; P (x,y,y)$                                       |
+| :--: | :----------------------------------------------------------- | :------------------------------------------------------- |
 | $⇕$  | $∀ε>0;∃δ>0; \left[ ∀u,v∈[x_i,x_{i+1}];  | g (u) - g (v) | < δ \right] ⇒ \left[ ∀u,v∈[x_i,x_{i+1}];  | f (g (u)) - f (g (v)) | < ε \right]$ | $∃x;∀y_1;∀y_2; P (x,y_1,y_2)$                            |
 | $⇕$  | $∀ε>0;∃δ>0; \left[ ∀u,v∈[x_i,x_{i+1}]; \sup | g (u) - g (v) | ≤ δ \right] ⇒ \left[ ∀u,v∈[x_i,x_{i+1}]; \sup | f (g (u)) - f (g (v)) | ≤ ε \right]$ | $[ ε;∀t; | f (t) | < ε ] ⇔ [ ε;∀t; \sup | f (t) | ≤ ε ]$ |
-| $⇕$  | $∀ε>0;∃δ>0;∀u,v∈[x_i,x_{i+1}]; \left[ \sup | g (u) - g (v) | ≤ δ \right] ⇒ \left[ \sup | f (g (u)) - f (g (v)) | ≤ ε \right]$ |                                                          |
 | $⇕$  | $∀ε>0;∃δ>0; \left[ \sup\limits_{u,v∈[x_{i},x_{i+1}]} | g (u) - g (v) | ≤ δ \right] ⇒ \left[ \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (g (u)) - f (g (v)) | ≤ ε \right]$ |                                                          |
 
 对于任意间断点$x_0$，其所在任意区间内的振幅均不为零。
@@ -89,17 +87,19 @@ $∃ε>0;∀Δx>0;∃x,y∈X; [ | x,y - x_0 | < Δx ] ∧ [ \sup f (x) - \inf f 
 
 $\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) ≠ ±∞$
 
-$∀ε>0;∃δ>0;∀x∈X; \left[ | x - x_0 | < δ \right] ⇒ \left[ | f (x) - f (x_0) | < ε \right]$
+$∀x_0∈X;∀ε>0;∃δ>0;∀x∈X; \left[ | x - x_0 | < δ \right] ⇒ \left[ | f (x) - f (x_0) | < ε \right]$
 
-$∀ε>0;∃δ>0;∀x∈X; \left[ \sup | x - x_0 | ≤ δ \right] ⇒ \left[ \sup | f (x) - f (x_0) | ≤ ε \right]$
+$∀x_0∈X;∀ε>0;∃δ>0;∀x∈X; \left[ \sup | x - x_0 | ≤ δ \right] ⇒ \left[ \sup | f (x) - f (x_0) | ≤ ε \right]$
 
 函数$f (x)$在区间X上的一致连续性。一致连续性是全局性质。
 
 $\lim\limits_{x⇝x_t} f (x) ↭ f (x_t) ≠ ±∞$
 
-$∀ε>0;∃δ>0;∀x∈X; [ | x - x_t | < δ ] ⇒ [ | f (x) - f (x_t) | < ε ]$
+$∀ε>0;∃δ>0;∀x,x_t∈X; \left[ | x - x_t | < δ \right] ⇒ \left[ | f (x) - f (x_t) | < ε \right]$
 
-$∀ε>0;∃δ>0;∀x∈X; \left[ \sup | x - x_t | ≤ δ \right] ⇒ \left[ \sup | f (x) - f (x_t) | ≤ ε \right]$
+$∀ε>0;∃δ>0;∀x,x_t∈X; \left[ \sup | x - x_t | ≤ δ \right] ⇒ \left[ \sup | f (x) - f (x_t) | ≤ ε \right]$
+
+$∀ε>0;∃δ>0;∀(x_0,x_1)⊆X; \left[ ∀x,x_t∈(x_0,x_1); \sup | x - x_t | ≤ δ \right] ⇒ \left[ ∀x,x_t∈(x_0,x_1); \sup | f (x) - f (x_t) | ≤ ε \right]$ 开区间有限覆盖定理
 
 若函数$f (x)$在区间$X$上单点$x_0$处连续，则在该点处的振幅为零，反之亦然。
 
@@ -131,17 +131,23 @@ $\lim\limits_{x⇝x_0} f (g (x)) = f \left( \lim\limits_{x⇝x_0} g (x) \right) 
 | $⇓$  | $∀ζ>0;∃ε>0;∃δ>0;∀x∈X;∀y∈Y; [ | x - x_0 | < δ ] ⇒ [ | g (x) - g (x_0) | < ε ] ⇒ [ | f (g (x)) - f (g (x_0)) | < ζ ]$ |      |
 | $⇓$  | $∀ζ>0;∃δ>0;∀x∈X; [ | x - x_0 | < δ ] ⇒ [ | f (g (x)) - f (g (x_0)) | < ζ ]$ |      |
 
-若函数$f (x)$在区间$X$上一致连续，则其导函数在区间$X$上有确界，反之不对。
+若函数$f (x)$在区间$X$上一致连续，则其导函数在区间$X$上有确界，反之亦然。
 
 | $⇕$  | $∃ε>0;∀δ>0;∃x,x_t∈X; [ | x - x_t | < δ ] ∧ [ | f (x) - f (x_t) | ≥ ε ]$ | $⇔$  | $\lim\limits_{x⇝x_t} f (x) \not↭ f (x_t)$                    |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇕$  | $∃ε>0;∀δ>0;∃x,x_t∈X; \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| ≥ \dfrac{ε}{δ} \mathop{≥}\limits_{δ⇝0^+} \dfrac{ε}{\sup δ} = \mathrm{Sup.} ≠ +∞$ |      |                                                              |
+| $⇕$  | $∃ε>0;∀δ>0;∃x,x_t∈X; \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| ≥ \dfrac{ε}{δ} ≥ \dfrac{ε}{\sup δ} = \mathrm{Sup.} ≠ +∞$ |      |                                                              |
 | $⇕$  | $∃x,x_t∈X; | f (x) - f (x_t) | ≥ \mathrm{Sup.} · | x - x_t |$ |      |                                                              |
 | $⇓$  | $\left[ \lim\limits_{x⇝x_t} f (x) ↭ f (x_t) \right] ⇔ \left[ ∀x,x_t∈X; | f (x) - f (x_t) | < \mathrm{Sup.} · | x - x_t | \right]$ | $⇒$  | $\left[ ∀x_t∈X; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} < \mathrm{Sup.} \right]$ |
 
 若函数$f (x)$在区间$X$上一致连续，则函数$f (x)$在区间$X$上必连续，反之不对。
 
 $\left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \right] ⇒ \left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈X} f (x_0) \right]$
+
+|      |      |      |
+| ---- | ---- | ---- |
+|      |      |      |
+|      |      |      |
+|      |      |      |
 
 若函数$f (x)$在区间$[X_0, X_1]$上连续，则函数$f (x)$在区间$[X_0, X_1]$上必一致连续，反之亦然。
 
