@@ -294,7 +294,7 @@ $\left[ \sum\limits_{i=0}^{+∞} f(α + i) ⇝ S \right] ⇔ \left[ \int_α^{+�
 
 附加证明：$\lim\limits_{i ⇝ +∞} \dfrac{i^{ε_2}}{\ln^β i · \ln^γ \ln i} ⇝ +∞$
 
-$\lim\limits_{i ⇝ +∞} \dfrac{i^{ε_2}}{\ln^β i · \ln^γ \ln i} = \lim\limits_{i ⇝ +∞} \left[ \left[ \lim\limits_{i ⇝ +∞} \dfrac{i^{\frac{ε_2}{β}}}{\ln i} \right]^β· \dfrac{1}{\ln^γ \ln i} \right] = \lim\limits_{i ⇝ +∞} \left[ \left( \dfrac{ε_2}{β} \right)^β · \left[ \lim\limits_{i ⇝ +∞} \dfrac{i^{\frac{ε_2}{γ}}}{\ln \ln i} \right]^γ \right] = \lim\limits_{i ⇝ +∞} \left[ \left( \dfrac{ε_2}{β} \right)^β · \left( \dfrac{ε_2}{γ} · \ln i \right)^γ · i^{ε_2} \right] ⇝ +∞$
+$\lim\limits_{i⇝+∞} \dfrac{i^{ε_2}}{\ln^β i · \ln^γ \ln i} = \left[ \lim\limits_{i⇝+∞} \dfrac{i^{\frac{ε_2}{2·β}}}{\ln i} \right]^{β} · \left[ \lim\limits_{i⇝+∞} \dfrac{i^{\frac{ε_2}{2·γ}}}{\ln \ln i} \right]^{γ} = \left[ \lim\limits_{i⇝+∞} \dfrac{ε_2}{2·β} · i^{\frac{ε_2}{2·β} - 1 + 1} \right]^{β} · \left[ \lim\limits_{i⇝+∞} \dfrac{ε_2}{2·γ} · i^{\frac{ε_2}{2·γ}-1+1} · \ln i \right]^{γ} ⇝ +∞$
 
 ### 正项级数的比值审敛法
 
