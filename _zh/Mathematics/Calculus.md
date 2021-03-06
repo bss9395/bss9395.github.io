@@ -210,11 +210,11 @@ $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0^{±},±∞
 
 | $⇓$  | $∃X_1;[X_0^{±}, ±∞) = [X_0^{±}, X_1] ∪ [X_1, ±∞)$            |      |                                                              |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∀ε>0;∀x,x_t∈[X_1,±∞); [ | f (x) - f (x_t) | ≤ ε ]$          | $⇔$  | $\left[ \lim\limits_{x⇝±∞} f (x) \mathop{⇝}\limits_{x∈[X_1,±∞)} f_{±∞} \right]$ |
-| $⇓$  | $∀ε>0; ¬[ ∀δ=|x-x_t|; | x - x_t | ≤ δ ] ∨ [ ∀x,x_t∈[X_1,±∞);  | f (x) - f (x_t) | ≤ ε ]$ |      |                                                              |
-| $⇓$  | $∀ε>0;∃δ=|x-x_t|;∀x,x_t∈[X_1,±∞); ¬[ | x - x_t | ≤ δ ] ∨ [   | f (x) - f (x_t) | ≤ ε ]$ |      |                                                              |
-| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈[X_1,±∞); [ | x - x_t | ≤ δ ] ⇒ [   | f (x) - f (x_t) | ≤ ε ]$ | $⇒$  | $\left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x∈[X_1,±∞)} f (x_t) \right]$ |
-| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈[X_0^{±},X_1]; [ | x - x_t | ≤ δ ] ⇒ [ | f (x) - f (x_t) | ≤ ε ]$ | $⇔$  | $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0^{±},X_1]} f (x_0) \right] ⇔ \left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈[X_0^{±},X_1]} f (x_t) \right]$ |
+| $⇓$  | $∀ε>0;∃X_1∈[X_0^{±},±∞];∀x,x_t∈[X_1,±∞); [ | f (x) - f (x_t) | ≤ ε ]$ | $⇔$  | $\left[ \lim\limits_{x⇝±∞} f (x) \mathop{⇝}\limits_{x∈[X_1,±∞)} f_{±∞} \right]$ |
+| $⇓$  | $∀ε>0;∃X_1∈[X_0^{±},±∞]; ¬[ ∀δ=|x-x_t|; | x - x_t | ≤ δ ] ∨ [ ∀x,x_t∈[X_1,±∞);  | f (x) - f (x_t) | ≤ ε ]$ |      |                                                              |
+| $⇓$  | $∀ε>0;∃X_1∈[X_0^{±},±∞];∃δ=|x-x_t|;∀x,x_t∈[X_1,±∞); ¬[ | x - x_t | ≤ δ ] ∨ [   | f (x) - f (x_t) | ≤ ε ]$ |      |                                                              |
+| $⇓$  | $∀ε>0;∃X_1∈[X_0^{±},±∞];∃δ>0;∀x,x_t∈[X_1,±∞); [ | x - x_t | ≤ δ ] ⇒ [   | f (x) - f (x_t) | ≤ ε ]$ | $⇒$  | $\left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x∈[X_1,±∞)} f (x_t) \right]$ |
+| $⇓$  | $∀ε>0;∃X_1∈[X_0^{±},±∞];∃δ>0;∀x,x_t∈[X_0^{±},X_1]; [ | x - x_t | ≤ δ ] ⇒ [ | f (x) - f (x_t) | ≤ ε ]$ | $⇔$  | $\left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈[X_0^{±},X_1]} f (x_t) \right]$ |
 | $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈[X_0^{±},±∞); [ | x - x_t | ≤ δ ] ⇒ [ | f (x) - f (x_t) | ≤ ε ]$ | $⇒$  | $\left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_0∈[X_0^{±},±∞)} f (x_t) \right]$ |
 
 典例：函数$f (x) = \dfrac{1}{x}$在区间$(0, 1)$上非一致连续，但在区间$\mathop{[X_0, X_1)}\limits_{0<X_0}$上一致连续。
@@ -284,7 +284,7 @@ $∀x∈(X_0,X_1); | f (x) | ≤ \max\left\lbrace \left| \sup\limits_{x∈X} f (
 
 ### 微分中值定理
 
-函数$f (x)$在闭区间$[X_0, X_1]$上连续且可导，若两个端点的函数值相等，则必定至少存在一点$θ∈(X_0, X_1)$使得成立。
+函数$f (x)$在闭区间$[X_0, X_1]$上连续且可导，若两个端点的函数值相等，则必至少存在一点$θ∈(X_0, X_1)$使得成立。
 
 $[ f (X_0) = f (X_1) ] ⇒ \left[ \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)}  = 0 \right]$
 
@@ -293,23 +293,23 @@ $[ f (X_0) = f (X_1) ] ⇒ \left[ \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} 
 | $⇓$  | $\lim\limits_{x⇝θ^-} \dfrac{f (x) - f (θ)}{x - θ} ≥ 0 ≥ \lim\limits_{x⇝θ^+} \dfrac{f (x) - f (θ)}{x - θ}$ | $⇐$  | $f (θ) ≡ \max\limits_{x∈(X_0, X_1)} f (x)$ |
 | $⇓$  | $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x}\right|_{∃θ∈(X_0, X_1)} = \lim\limits_{x⇝θ} \dfrac{f (x) - f (θ)}{x - θ} = 0$ | $⇐$  | $f (X_0) = f (X_1)$                        |
 
-函数$f (x)$在闭区间$[X_0, X_1]$上连续且可导，则必定至少存在一点$θ∈(X_0, X_1)$使得成立。
+函数$f (x)$在闭区间$[X_0, X_1]$上连续且可导，则必至少存在一点$θ∈(X_0, X_1)$使得成立。
 
 $\left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{X_1 - X_0}$
 
-| $⇓$  | $$ F (x) = \left|\begin{matrix} 1 & 1 & 1 \\ X_0 & x & X_1 \\ f (X_0) & f (x) & f (X_1) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & x - X_0 & X_1 - X_0 \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = (x - X_0) · [ f (X_1) - f (X_0) ] - (X_1 - X_0) · [ f (x) - f (X_0) ] $$ | $⇒$  | $F (X_0) = 0 = F (X_1)$                                          |
+| $⇓$  | $F (x) = \left|\begin{matrix} 1 & 1 & 1 \\ X_0 & x & X_1 \\ f (X_0) & f (x) & f (X_1) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & x - X_0 & X_1 - X_0 \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right|$ | $⇒$  | $F (X_0) = 0 = F (X_1)$                                      |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $$\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & x - X_0 & X_1 - X_0 \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & 1 & X_1 - X_0 \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d}x} & f (X_1) - f (X_0) \end{matrix}\right| = [ f (X_1) - f (X_0) ] - (X_1 - X_0) · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$$ |      |                                                              |
-| $⇓$  | $\left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{X_1 - X_0} - \dfrac{1}{X_1 - X_0} · \left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{X_1 - X_0}$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = 0$ |
+| $⇓$  | $$\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & x - X_0 & X_1 - X_0 \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & 1 & X_1 - X_0 \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d}x} & f (X_1) - f (X_0) \end{matrix}\right|$$ | $⇒$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = [ f (X_1) - f (X_0) ] - (X_1 - X_0) · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$ |
+| $⇓$  | $\left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{X_1 - X_0}$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = 0$ |
 
-函数$f (x)$与函数$g (x)$在闭区间$[X_0, X_1]$上连续且可导，则必定至少存在一点$θ∈(X_0, X_1)$使得成立。
+函数$f (x)$与函数$g (x)$在闭区间$[X_0, X_1]$上连续且可导，则必至少存在一点$θ∈(X_0, X_1)$使得成立。
 
 $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{g (X_1) - g (X_0)}$
 
-| $⇓$  | $$ F (x) = \left|\begin{matrix} 1 & 1 & 1 \\ g (X_0) & g (x) & g (X_1) \\ f (X_0) & f (x) & f (X_1) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & g (x) - g (X_0) & g (X_1) - g (X_0) \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = (x - X_0) · [ f (X_1) - f (X_0) ] - (X_1 - X_0) · [ f (x) - f (X_0) ] $$ | $⇒$  | $F (X_0) = 0 = F (X_1)$                                          |
+| $⇓$  | $F (x) = \left|\begin{matrix} 1 & 1 & 1 \\ g (X_0) & g (x) & g (X_1) \\ f (X_0) & f (x) & f (X_1) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & g (x) - g (X_0) & g (X_1) - g (X_0) \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right|$ | $⇒$  | $F (X_0) = 0 = F (X_1)$                                      |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $$\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & g (x) - g (X_0) & g (X_1) - g (X_0) \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} & g (X_1) - g (X_0) \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} & f (X_1) - f (X_0) \end{matrix}\right| = [ f (X_1) - f (X_0) ]  · \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} - [ g (X_1) - g (X_0) ] · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$$ |      |                                                              |
-| $⇓$  | $$\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{g (X_1) - g (X_0)} - \dfrac{1}{g (X_1) - g (X_0)} · \left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{g (X_1) - g (X_0)}$$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = 0$ |
+| $⇓$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & g (x) - g (X_0) & g (X_1) - g (X_0) \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} & g (X_1) - g (X_0) \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} & f (X_1) - f (X_0) \end{matrix}\right|$ | $⇒$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = [ f (X_1) - f (X_0) ]  · \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} - [ g (X_1) - g (X_0) ] · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$ |
+| $⇓$  | $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} · \dfrac{\mathrm{d} x}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{g (X_1) - g (X_0)}$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = 0$ |
 
 ### 导数极限定理
 
@@ -559,8 +559,6 @@ $\int\limits_{0}^{1} \mathcal{R} (x) \mathrm{d} x = \lim\limits_{n⇝+∞}^{Δx_
 | $[ 0 ≤ g (x) ] ∧ \left[ 0 < g (x_0) ⇜ \lim\limits_{x⇝x_0} g (x) \right] ⇒ \left[ 0 < \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x \right]$ | $⇐$  | $f (x) = 0$                                                  |
 | $[ 0 ≤ g (x) ] ∧ \left[ 0 = \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x \right] ⇒ \left[ 0 = g (x_0) ⇜ \lim\limits_{x⇝x_0} g (x) \right]$ | $⇐$  | $[ P ∧ Q ⇒ R ] ⇔ [ P ∧ ¬R ⇒ ¬Q ]$                            |
 | $\left| \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x \right| ≤ \int\limits_{X_0}^{X_1} | f (x) | \mathrm{d} x$ | $⇐$  | $- \int\limits_{X_0}^{X_1} | f (x) | \mathrm{d} x ≤ \int\limits_{X_0}^{X_1} f (x) \mathrm{d} x ≤ + \int\limits_{X_0}^{X_1} | f (x) | \mathrm{d} x$ |
-
-
 
 ### 积分中值定理
 
