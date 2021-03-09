@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-03-06T02:57:00+08@中国-广东-湛江+08
+Update:  2021-03-09T23:11:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -94,7 +94,7 @@ $∃ε>0; ε ≤ \lim\limits_{Δx⇝0} w^f (x_0) = \lim\limits_{Δx⇝0} \sup\li
 
 $∃ε>0;∀Δx>0;∃u,v∈X; [ | u,v - x_0 | ≤ Δx ] ∧ [ |f (u) - f (v) | > ε ]$
 
-连续性是局部性质。若函数$f (x)$在区间$X$上连续，则函数在区间$X$上任意点$x_0$有确界。
+连续性是局部性质。若函数$f (x)$在区间$X$上连续，则函数在区间$X$上任意点处有局部的确界。
 
 $\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) ≠ ±∞$
 
@@ -102,9 +102,9 @@ $∀x_0∈X;∀ε>0;∃δ>0;∀x∈X; \left[ | x - x_0 | ≤ δ \right] ⇒ \lef
 
 $∀x_0∈X;∀ε>0;∃δ>0; \sup\limits_{|x-x_0|≤δ} | f (x) - f (x_0) | ≤ ε $
 
-$∀x_0∈X;∃\mathrm{Sup_{x_0}.}; | f (x_0) | ≤ \mathrm{Sup_{x_0}.}$
+$∀x_0∈X;∃\mathrm{Sup_{x_0}}; | f (x_0) | ≤ \mathrm{Sup_{x_0}}$
 
-一致连续性是全局性质。若函数$f (x)$在区间X上一致连续，则函数在区间$X$上有确界。
+一致连续性是全局性质。若函数$f (x)$在区间X上一致连续，则函数在区间$X$上所有点处有全局的确界。
 
 $\lim\limits_{x⇝x_t} f (x) ↭ f (x_t) ≠ ±∞$
 
@@ -112,13 +112,13 @@ $∀ε>0;∃δ>0;∀x,x_t∈X; \left[ | x - x_t | ≤ δ \right] ⇒ \left[ | f 
 
 $∀ε>0;∃δ>0; \sup\limits_{|x-x_t|≤δ} | f (x) - f (x_t) | ≤ ε$ 
 
-$∃\mathrm{Sup.};∀x_t∈X; | f (x_t) | ≤ \sup\limits_{x_t∈X} | f (x_t) | =\mathrm{Sup.}$
+$∃\mathrm{Sup};∀x_t∈X; | f (x_t) | ≤ \sup\limits_{x_t∈X} | f (x_t) | =\mathrm{Sup}$
 
 若函数$f (x)$在区间$X$上点$x_0$处连续，则在该点处的振幅为零，反之亦然。
 
 $\left[ \lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) \right] ⇔ \left[ \lim\limits_{Δx⇝0} w^{f} (x_0) ⇝ 0 \right]$
 
-若函数$f (x)$在区间$X$上点$x_0$处连续，则在该点函数值的左与右极限均相等，反之亦然。
+若函数$f (x)$在区间$X$上点$x_0$处连续，则在该点处的左极限与右极限相等，反之亦然。
 
 $f (x_0^-) = \lim\limits_{x⇝x_0^-} f (x) ⇝ f (x_0) ⇜ \lim\limits_{x⇝x_0^+} f (x) = f (x_0^+)$
 
@@ -144,37 +144,21 @@ $\lim\limits_{x⇝x_0} f (g (x)) = f \left( \lim\limits_{x⇝x_0} g (x) \right) 
 | $⇓$  | $∀ζ>0;∃ε>0;∃δ>0;∀y∈Y;∀x∈X; [ | x - x_0 | ≤ δ ] ⇒ [ | g (x) - g (x_0) | ≤ ε ] ⇒ [ | f (g (x)) - f (g (x_0)) | ≤ ζ ]$ |
 | $⇓$  | $∀ζ>0;∃δ>0;∀x∈X; [ | x - x_0 | ≤ δ ] ⇒ [ | f (g (x)) - f (g (x_0)) | ≤ ζ ]$ |
 
-若函数$f (x)$在区间$X$上一致连续，则其在区间$X$上所有点处切割线的斜率有全局的确界，反之亦然。
+若函数$f (x)$在区间$X$上任意切割线的斜率有全局的确界，则函数$f (x)$在区间$X$上一致连续，反之不对。
 
-$\left[ \lim\limits_{x⇝x_t} f (x) ↭ f (x_t) \right] ⇔ \left[ ∃\mathrm{Sup.};∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | \right] ⇔ \left[ ∃\mathrm{Sup.};∀x_t∈X; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup.} \right]$
+$\left[ ∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \right]$
 
-| $⇕$  | $\lim\limits_{x⇝x_t} f (x) \not↭ f (x_t)$                    |      |                                                              |
+$\left[ ∀x_t∈\fbox{X}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t}} ≠ +∞ \right] ⇒ \left[ ∀x,x_t∈\fbox{X}; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈\fbox{X}} f (x_t) \right]$
+
+| $⇓$  | $∀x_t∈\fbox{X}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t}} ≠ +∞$ | $⇒$  | $\lim\limits_{x⇝x_t} \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| = \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t}} ≤ \mathrm{Sup} = \sup\limits_{x_t∈\fbox{X}}\lbrace \mathrm{Sup_{x_t}} \rbrace ≠ +∞$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∃ε>0;∀δ>0;∃x,x_t∈X; [ | x - x_t | ≤ δ ] ∧ [ | f (x) - f (x_t) | > ε ≠ +∞ ]$ | $⇐$  | $[ x = x_t ] ⇒ [ | f (x) - f (x_t) | = 0]$                   |
-| $⇓$  | $∃\mathrm{S.};∃ε>0;∀δ>0;∃x,x_t∈X; \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| > \dfrac{ε}{δ} ≥ \dfrac{ε}{\sup δ} = \mathrm{S.} ≠ +∞$ | $⇐$  | $\sup δ = |X|$                                               |
-| $⇓$  | $∃\mathrm{S.};∃x,x_t∈X; \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| > \mathrm{S.}$ | $⇐$  | $x ≠ x_t$                                                    |
-| $⇓$  | $∃\mathrm{S.};∃x,x_t∈X; | f (x) - f (x_t) | > \mathrm{S.} · | x - x_t |$ | $⇔$  | $¬∀\mathrm{S.};∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{S.} · | x - x_t |$ |
-| $⇓$  | $∃\mathrm{S.};∃x,x_t∈X;∃ε=\mathrm{S.}·|x-x_t|; [ | f (x) - f (x_t) | > ε ] ∧ [ ∀δ=|x-x_t|; |x-x_t| ≤ δ ]$ |      | $∃y∀x[Q(x, y)]$                                              |
-| $⇓$  | $∃ε>0;∀δ>0;∃x,x_t∈X; [ | x - x_t | ≤ δ ] ∧ [ | f (x) - f (x_t) | > ε ]$ |      | $∀x∃y[Q(x, y)]$                                              |
-|      |                                                              |      |                                                              |
-| $⇓$  | $∃\mathrm{Sup.}=\sup \mathrm{S.};∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{S.} · | x - x_t | ≤ \mathrm{Sup.} · | x - x_t |$ | $⇔$  | $∀\mathrm{S.};∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{S.} · | x - x_t |$ |
-| $⇓$  | $\left[ \lim\limits_{x⇝x_t} f (x) ↭ f (x_t) \right] ⇔ \left[ ∃\mathrm{Sup.};∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | \right]$ | $⇔$  | $∃\mathrm{Sup.};∀x_t∈X; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup.}$ |
+| $⇓$  | $∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | $ |      |                                                              |
+| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈X; [ | x - x_t | ≤ δ ] ⇒ [ | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | ≤ ε ]$ |      |                                                              |
+| $⇓$  | $\lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t)$ |      |                                                              |
 
-若函数$f (x)$在区间$X$上连续，则其在区间$X$上任意点处切割线的斜率有局部的确界，反之亦然。
+若函数$f (x)$在区间$X$上满足切割线过程，则函数$f (x)$在区间$X$上一致连续，反之亦然。
 
-$\left[ \lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) \right] ⇔ \left[ ∀x_0∈X;∃\mathrm{Sup_{x_0}.};∀x∈X; | f (x) - f (x_0) | ≤ \mathrm{Sup_{x_0}.} · | x - x_0 | \right] ⇔ \left[ ∀x_0∈X;∃\mathrm{Sup_{x_0}.}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_0} ≤ \mathrm{Sup_{x_0}.} \right]$
-
-| $⇕$  | $\lim\limits_{x⇝x_0} f (x) \not⇝ f (x_0)$                    |      |                                                              |
-| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∃x_0∈X;∃ε>0;∀δ_{x_0}>0;∃x∈X; [ | x - x_0 | ≤ δ_{x_0} ] ∧ [ | f (x) - f (x_0) | > ε ≠ +∞ ]$ | $⇐$  | $[ x = x_0 ] ⇒ [ | f (x) - f (x_0) | = 0]$                   |
-| $⇓$  | $∃x_0∈X;∃\mathrm{S_{x_0}.};∃ε>0;∀δ_{x_0}>0;∃x∈X; \left| \dfrac{f (x) - f (x_0)}{x - x_0} \right| > \dfrac{ε}{δ_{x_0}} ≥ \dfrac{ε}{\sup δ_{x_0}} = \mathrm{S_{x_0}.} ≠ +∞$ | $⇐$  | $\sup δ_{x_0} ≤ |X|$                                         |
-| $⇓$  | $∃x_0∈X;∃\mathrm{S_{x_0}.};∃x∈X; \left| \dfrac{f (x) - f (x_0)}{x - x_0} \right| > \mathrm{S_{x_0}.}$ | $⇐$  | $x ≠ x_0$                                                    |
-| $⇓$  | $∃x_0∈X;∃\mathrm{S_{x_0}.};∃x∈X; | f (x) - f (x_0) | > \mathrm{S_{x_0}.} · | x - x_0 |$ | $⇔$  | $¬∀x_0∈X;∀\mathrm{S_{x_0}.};∀x∈X; | f (x) - f (x_0) | ≤ \mathrm{S_{x_0}.} · | x - x_0 |$ |
-| $⇓$  | $∃x_0∈X;∃\mathrm{S_{x_0}.};∃x∈X;∃ε=\mathrm{S_{x_0}.}·|x-x_0|; [ | f (x) - f (x_0) | > ε ] ∧ [ ∀δ_{x_0}=|x-x_0|; |x-x_0| ≤ δ ]$ |      | $∃y∀x[Q(x, y)]$                                              |
-| $⇓$  | $∃x_0∈X;∃ε>0;∀δ_{x_0}>0;∃x∈X; [ | x - x_0 | ≤ δ ] ∧ [ | f (x) - f (x_0) | > ε ]$ |      | $∀x∃y[Q(x, y)]$                                              |
-|      |                                                              |      |                                                              |
-| $⇓$  | $∀x_0∈X;∃\mathrm{Sup_{x_0}.}=\sup \mathrm{S_{x_0}.};∀x∈X; | f (x) - f (x_0) | ≤ \mathrm{S_{x_0}.} · | x - x_0 | ≤ \mathrm{Sup_{x_0}.} · | x - x_0 |$ | $⇔$  | $∀x_0∈X;∀\mathrm{S_{x_0}.};∀x∈X; | f (x) - f (x_0) | ≤ \mathrm{S_{x_0}.} · | x - x_0 |$ |
-| $⇓$  | $\left[ \lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) \right] ⇔ \left[ ∀x_0∈X;∃\mathrm{Sup_{x_0}.};∀x∈X; | f (x) - f (x_0) | ≤ \mathrm{Sup_{x_0}.} · | x - x_0 | \right]$ | $⇔$  | $∀x_0∈X;∃\mathrm{Sup_{x_0}.}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_0} ≤ \mathrm{Sup_{x_0}.}$ |
+$0 ⇜ \lim\limits_{x⇝x_t} | f (x) - f (x_t) | \mathop{===}\limits_{x_t∈X}^{x∈X} \lim\limits_{x⇝x_t} \left[ \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · | x - x_t | \right] \mathop{===}\limits_{x_t∈X}^{x∈X} \lim\limits_{x⇝x_t} \left[ \lim\limits_{x⇝x_t} \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · | x - x_t | \right] \mathop{===}\limits_{x_t∈\fbox{X}}^{x∈X} \lim\limits_{x⇝x_t} \left[ \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x} · | x - x_t | \right]$
 
 若函数$f (x)$在区间$X$上一致连续，则函数$f (x)$在区间$X$上连续，反之不对。
 
@@ -184,15 +168,9 @@ $\left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \rig
 
 $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0,X_1]} f (x_0) \right] ⇔ \left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈[X_0,X_1]} f (x_t) \right]$
 
-| $⇓$  | $∀x_0∈[X_0,X_1];∃\mathrm{Sup_{x_0}.};∀x∈[X_0,X_1]; | f (x) - f (x_0) | ≤ \mathrm{Sup_{x_0}.} · | x - x_0 |$ | $⇔$  | $\lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0,X_1]} f (x_0)$ |
-| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∃\mathrm{Sup.}=\sup\limits_{x_0∈[X_0,X_1]} \mathrm{Sup_{x_0}.}≠+∞;∀x_0∈[X_0,X_1];∃\mathrm{Sup_{x_0}.};∀x∈[X_0,X_1]; | f (x) - f (x_0) | ≤ \mathrm{Sup_{x_0}.} · | x - x_0 | ≤ \mathrm{Sup.} · | x - x_0 |$ |      |                                                              |
-| $⇓$  | $∃\mathrm{Sup.}≠+∞;∀x,x_t∈[X_0,X_1]; | f (x) - f (x_0) | ≤ \mathrm{Sup.} · | x - x_0 |$ | $⇔$  | $\lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈[X_0,X_1]} f (x_t)$ |
-| $⇓$  | $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0,X_1]} f (x_0) \right] ⇔ \left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈[X_0,X_1]} f (x_t) \right]$ |      |                                                              |
+若函数$f (x)$在区间$(X_0, X_1)$上一致连续，则可将函数$f (x)$延拓为区间$[X_0,X_1]$上的一致连续函数$\tilde{f} (x) = \mathop{\lim\limits^{x⇝X_0^+} f (x)}\limits_{x=X_0}; \mathop{f (x)}\limits_{x∈(X_0,X_1)}; \mathop{\lim\limits^{x⇝X_1^-} f (x)}\limits_{x=X_1}$。
 
-若函数在区间$(X_0, X_1)$上一致连续，则可将函数$f (x)$延拓为区间$[X_0,X_1]$上的一致连续函数$\tilde{f} (x) = \mathop{\lim\limits^{x⇝X_0^+} f (x)}\limits_{x=X_0}; \mathop{f (x)}\limits_{x∈(X_0,X_1)}; \mathop{\lim\limits^{x⇝X_1^-} f (x)}\limits_{x=X_1}$。
-
-若函数在区间$(X_0,X_1]$上一致连续，且在区间$[X_1, X_2)$上一致连续，则函数$f (x)$在区间$(X_0, X_2)$上一致连续。
+若函数$f (x)$在区间$(X_0,X_1]$上一致连续，且在区间$[X_1, X_2)$上一致连续，则函数$f (x)$在区间$(X_0, X_2)$上一致连续。
 
 $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{↭}\limits_{x,x_0∈(X_0,X_1]} f (x_0) \right] ∧ \left[ \lim\limits_{x⇝x_0} f (x) \mathop{↭}\limits_{x,x_0∈[X_1,X_2)} f (x_0) \right] ⇒ \left[ \lim\limits_{x⇝x_0} f (x) \mathop{↭}\limits_{x,x_0∈(X_0,X_2)} f (x_0) \right]$
 
@@ -223,6 +201,8 @@ $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0^{±},±∞
 
 典例：函数$f (x) = | x |$在区间$(-∞, +∞)$上一致连续。函数$\mathrm{sgn} (x) = \mathop{-1}\limits_{x<0};\mathop{0}\limits_{x=0};\mathop{+1}\limits_{x>0}$在区间$[-1, +1]$上非一致连续。
 
+典例：函数$f (x) = \sqrt{x}$在区间$(+0, +∞)$上一致连续，但其在点$x_0=0^+$处导函数的极限为$\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_0=0^+} = \lim\limits_{x⇝0^+} \dfrac{1}{2 · \sqrt{x}} = +∞$。
+
 | $⇓$  | $∃ε>0;∀δ>0;∃x≡\dfrac{1}{n},x_t≡\dfrac{1}{n + 1}; \left[ | x - x_t | = \left| \dfrac{1}{n · (n + 1)} \right| < δ \right] ∧ \left[ | f (x) - f (x_t) | = \left| \dfrac{1}{x} - \dfrac{1}{x_t} \right| = \left| \dfrac{1}{\frac{1}{n}} - \dfrac{1}{\frac{1}{n + 1}} \right| = 1 ≥ ε \right]$ |
 | :--: | :----------------------------------------------------------- |
 | $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈[X_0,X_1); \left[ | x - x_t | < δ \right] ⇒ \left[ | f (x) - f (x_t) | = \left| \dfrac{1}{x} - \dfrac{1}{x_t} \right| = \dfrac{| x - x_t |}{| x · x_t |} < \dfrac{δ}{X_0^2} = ε \right]$ |
@@ -234,6 +214,8 @@ $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0^{±},±∞
 | $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈(-∞,+∞); [ | x - x_t | < δ ] ⇒ [ | f (x) - f (x_t) | = || x | - | x_t || < | x - x_t | < δ = ε ]$ |
 |      |                                                              |
 | $⇓$  | $∃ε>0;∀δ>0;∃x≡\dfrac{1}{n},x_t≡0; \left[ | x - x_t | = \left| \dfrac{1}{n} \right| < δ \right] ∧ [ | f (x) - f (x_t) | = | 1 - 0 | = 1 ≥ ε ]$ |
+|      |                                                              |
+| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈(0, +∞); [ | x - x_t | < δ ] ⇒ \left[ | f (x) - f (x_t) | = | \sqrt{x} - \sqrt{x_t} | < \left| \dfrac{x - x_t}{\sqrt{x} + \sqrt{x_t}} \right| \mathop{<}\limits^{x-x_t=δ} \left| \dfrac{δ}{\sqrt{x_t+δ}+\sqrt{x_t}} \right| < \left| \dfrac{δ}{\sqrt{δ}} \right| = ε \right]$ |
 
 ### 连续介值定理
 
@@ -311,13 +293,9 @@ $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = 
 | $⇓$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & g (x) - g (X_0) & g (X_1) - g (X_0) \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} & g (X_1) - g (X_0) \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} & f (X_1) - f (X_0) \end{matrix}\right|$ | $⇒$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = [ f (X_1) - f (X_0) ]  · \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} - [ g (X_1) - g (X_0) ] · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$ |
 | $⇓$  | $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} · \dfrac{\mathrm{d} x}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{g (X_1) - g (X_0)}$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = 0$ |
 
-### 导数极限定理
 
-若函数$f (x)$在区间$[X_0, X_1]$上连续且可导，则其在点$X_0$处的右导数等于其导数在该点处的右极限，且其在点$X_1$处的左导数等于其导数在该点处的左极限。
 
-$\left. \dfrac{\mathrm{d} f^{+} (x)}{\mathrm{d} x} \right|_{X_0} = \lim\limits_{x⇝X_0^+} \dfrac{f (x) - f (X_0)}{x - X_0} = \lim\limits_{θ⇝X_0^+} \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{θ∈(X_0, x)} = \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{X_0^+}$
 
-$\left. \dfrac{\mathrm{d} f^{-} (x)}{\mathrm{d} x} \right|_{X_1} = \lim\limits_{x⇝X_1^-} \dfrac{f (x) - f (X_1)}{x - X_1} = \lim\limits_{θ⇝X_1^{-}} \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{θ∈(x, X_1^-)} = \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{X_1^-}$
 
 ### 幂级数公式
 
