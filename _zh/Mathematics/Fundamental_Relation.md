@@ -1,11 +1,17 @@
 ---
 layout:  zh_post
 Topic :  收敛极限
-Title :  基本不等式
-Update:  2021-03-06T18:33:00+08@中国-广东-湛江+08
+Title :  基本关系式
+Update:  2021-03-10T16:01:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
+
+### 组合恒等式
+
+$\mathrm{C} (n, i) = \dfrac{n!}{i! · (n - i)!} = \dfrac{n!}{(n - i)! · i!} = \mathrm{C} (n, n - i)$
+
+$\mathrm{C} (n + 1, i) = \dfrac{(n + 1)!}{i! · (n + 1 - i)!} = \dfrac{n!}{i! · (n - i)!} + \dfrac{n!}{(i - 1)! · (n - i + 1)!} = \mathrm{C} (n, i) + \mathrm{C} (n, i - 1)$
 
 ### 对数不等式
 

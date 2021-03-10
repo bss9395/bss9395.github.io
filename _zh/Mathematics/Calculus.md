@@ -100,17 +100,17 @@ $\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) ≠ ±∞$
 
 $∀x_0∈X;∀ε>0;∃δ>0;∀x∈X; \left[ | x - x_0 | ≤ δ \right] ⇒ \left[ | f (x) - f (x_0) | ≤ ε \right]$
 
-$∀x_0∈X;∀ε>0;∃δ>0; \sup\limits_{|x-x_0|≤δ} | f (x) - f (x_0) | ≤ ε $
+$\left[ ∀x_0∈X;∀ε>0;∃δ>0; \sup\limits_{|x-x_0|≤δ} | f (x) - f (x_0) | ≤ ε \right] ⇔ \left[ ∀x_0∈X;∀ε>0;∃δ>0;∀x∈\left\lbrace\mathop{x∈X}\limits_{|x-x_0|≤δ}\right\rbrace; | f (x) - f (x_0) | ≤ ε \right]$
 
 $∀x_0∈X;∃\mathrm{Sup_{x_0}}; | f (x_0) | ≤ \mathrm{Sup_{x_0}}$
 
 一致连续性是全局性质。若函数$f (x)$在区间X上一致连续，则函数在区间$X$上所有点处有全局的确界。
 
-$\lim\limits_{x⇝x_t} f (x) ↭ f (x_t) ≠ ±∞$
+$\lim\limits_{x↭x_t} f (x) ↭ f (x_t) ≠ ±∞$
 
 $∀ε>0;∃δ>0;∀x,x_t∈X; \left[ | x - x_t | ≤ δ \right] ⇒ \left[ | f (x) - f (x_t) | ≤ ε \right]$
 
-$∀ε>0;∃δ>0; \sup\limits_{|x-x_t|≤δ} | f (x) - f (x_t) | ≤ ε$ 
+$\left[ ∀ε>0;∃δ>0; \sup\limits_{|x-x_t|≤δ} | f (x) - f (x_t) | ≤ ε \right] ⇔ \left[ ∀x_0∈X;∀ε>0;∃δ>0;∀x,x_t∈\left\lbrace\mathop{x,x_t∈X}\limits_{|x-x_t|≤δ}\right\rbrace; | f (x) - f (x_t) | ≤ ε \right]$ 
 
 $∃\mathrm{Sup};∀x_t∈X; | f (x_t) | ≤ \sup\limits_{x_t∈X} | f (x_t) | =\mathrm{Sup}$
 
@@ -146,45 +146,45 @@ $\lim\limits_{x⇝x_0} f (g (x)) = f \left( \lim\limits_{x⇝x_0} g (x) \right) 
 
 若函数$f (x)$在区间$X$上任意切割线的斜率有全局的确界，则函数$f (x)$在区间$X$上一致连续，反之不对。
 
-$\left[ ∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \right]$
+$\left[ ∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \right]$
 
-$\left[ ∀x_t∈\fbox{X}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t}} ≠ +∞ \right] ⇒ \left[ ∀x,x_t∈\fbox{X}; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈\fbox{X}} f (x_t) \right]$
+$\left[ ∀x_t∈\fbox{X}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t}} ≠ +∞ \right] ⇒ \left[ ∀x,x_t∈\fbox{X}; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈\fbox{X}} f (x_t) \right]$
 
 | $⇓$  | $∀x_t∈\fbox{X}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t}} ≠ +∞$ | $⇒$  | $\lim\limits_{x⇝x_t} \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| = \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t}} ≤ \mathrm{Sup} = \sup\limits_{x_t∈\fbox{X}}\lbrace \mathrm{Sup_{x_t}} \rbrace ≠ +∞$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $⇓$  | $∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | $ |      |                                                              |
 | $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈X; [ | x - x_t | ≤ δ ] ⇒ [ | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | ≤ ε ]$ |      |                                                              |
-| $⇓$  | $\lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t)$ |      |                                                              |
+| $⇓$  | $\lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t)$ |      |                                                              |
 
 若函数$f (x)$在区间$X$上满足切割线过程，则函数$f (x)$在区间$X$上一致连续，反之亦然。
 
-$0 ⇜ \lim\limits_{x⇝x_t} | f (x) - f (x_t) | \mathop{===}\limits_{x_t∈X}^{x∈X} \lim\limits_{x⇝x_t} \left[ \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · | x - x_t | \right] \mathop{===}\limits_{x_t∈X}^{x∈X} \lim\limits_{x⇝x_t} \left[ \lim\limits_{x⇝x_t} \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · | x - x_t | \right] \mathop{===}\limits_{x_t∈\fbox{X}}^{x∈X} \lim\limits_{x⇝x_t} \left[ \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x} · | x - x_t | \right]$
+$0 ↭ \lim\limits_{x↭x_t} | f (x) - f (x_t) | \mathop{===}\limits_{x_t∈X}^{x∈X} \lim\limits_{x↭x_t} \left[ \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · | x - x_t | \right] \mathop{===}\limits_{x_t∈X}^{x∈X} \left[ \lim\limits_{x↭x_t} \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · \lim\limits_{x↭x_t} | x - x_t | \right] \mathop{===}\limits_{x_t∈\fbox{X}}^{x∈X} \lim\limits_{x⇝x_t} \left[ \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x} · | x - x_t | \right]$
 
 若函数$f (x)$在区间$X$上一致连续，则函数$f (x)$在区间$X$上连续，反之不对。
 
-$\left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \right] ⇒ \left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈X} f (x_0) \right]$
+$\left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \right] ⇒ \left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈X} f (x_0) \right]$
 
 若函数$f (x)$在区间$[X_0, X_1]$上连续，则函数$f (x)$在区间$[X_0, X_1]$上一致连续，反之亦然。
 
-$\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0,X_1]} f (x_0) \right] ⇔ \left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈[X_0,X_1]} f (x_t) \right]$
+$\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0,X_1]} f (x_0) \right] ⇔ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈[X_0,X_1]} f (x_t) \right]$
 
 若函数$f (x)$在区间$(X_0, X_1)$上一致连续，则可将函数$f (x)$延拓为区间$[X_0,X_1]$上的一致连续函数$\tilde{f} (x) = \mathop{\lim\limits^{x⇝X_0^+} f (x)}\limits_{x=X_0}; \mathop{f (x)}\limits_{x∈(X_0,X_1)}; \mathop{\lim\limits^{x⇝X_1^-} f (x)}\limits_{x=X_1}$。
 
 若函数$f (x)$在区间$(X_0,X_1]$上一致连续，且在区间$[X_1, X_2)$上一致连续，则函数$f (x)$在区间$(X_0, X_2)$上一致连续。
 
-$\left[ \lim\limits_{x⇝x_0} f (x) \mathop{↭}\limits_{x,x_0∈(X_0,X_1]} f (x_0) \right] ∧ \left[ \lim\limits_{x⇝x_0} f (x) \mathop{↭}\limits_{x,x_0∈[X_1,X_2)} f (x_0) \right] ⇒ \left[ \lim\limits_{x⇝x_0} f (x) \mathop{↭}\limits_{x,x_0∈(X_0,X_2)} f (x_0) \right]$
+$\left[ \lim\limits_{x↭x_0} f (x) \mathop{↭}\limits_{x,x_0∈(X_0,X_1]} f (x_0) \right] ∧ \left[ \lim\limits_{x↭x_0} f (x) \mathop{↭}\limits_{x,x_0∈[X_1,X_2)} f (x_0) \right] ⇒ \left[ \lim\limits_{x↭x_0} f (x) \mathop{↭}\limits_{x,x_0∈(X_0,X_2)} f (x_0) \right]$
 
-| $⇓$  | $(X_0,X_1]$ | $∀ε_1>0;∃δ>0;∀x,x_t∈(X_0,X_1]; \left[ | x - x_t | ≤ δ \right] ⇒ \left[ | f (x) - f (x_t) | ≤ ε_1 \right]$ |
-| :--: | :---------: | :----------------------------------------------------------- |
-| $⇓$  | $[X_1,X_2)$ | $∀ε_2>0;∃δ>0;∀x,x_t∈[X_1,X_2); \left[ | x - x_t | ≤ δ \right] ⇒ \left[ | f (x) - f (x_t) | ≤ ε_2 \right]$ |
-| $⇓$  | $(X_0,X_2)$ | $∀ε_3>0;∃δ>0;∀x∈(X_0,X_1];∀x_t∈[X_1,X_2); [ | x - x_t | ≤ δ ] ⇒ [ | f (x) - f (x_t) | ≤ | f (x) - f (X_1) | + | f (X_1) - f (x_t) | ≤ ε_1 + ε_2 = ε_3 ]$ |
-| $⇓$  | $(X_0,X_2)$ | $∀ε_3>0;∃δ>0;∀x,x_t∈(X_0,X_1); \left[ | x - x_t | ≤ δ \right] ⇒ \left[ | f (x) - f (x_t) | ≤ ε_3 \right]$ |
+| $⇓$  | $∀ε_1>0;∃δ>0;∀x,x_t∈(X_0,X_1]; \left[ | x - x_t | ≤ δ \right] ⇒ \left[ | f (x) - f (x_t) | ≤ ε_1 \right]$ | $\lim\limits_{x↭x_0} f (x) \mathop{↭}\limits_{x,x_0∈(X_0,X_1]} f (x_0)$ |
+| :--: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| $⇓$  | $∀ε_2>0;∃δ>0;∀x,x_t∈[X_1,X_2); \left[ | x - x_t | ≤ δ \right] ⇒ \left[ | f (x) - f (x_t) | ≤ ε_2 \right]$ | $\lim\limits_{x↭x_0} f (x) \mathop{↭}\limits_{x,x_0∈[X_1,X_2)} f (x_0)$ |
+| $⇓$  | $∀ε_3>0;∃δ>0;∀x∈(X_0,X_1];∀x_t∈[X_1,X_2); [ | x - x_t | ≤ δ ] ⇒ [ | f (x) - f (x_t) | ≤ | f (x) - f (X_1) | + | f (X_1) - f (x_t) | ≤ ε_1 + ε_2 = ε_3 ]$ |                                                              |
+| $⇓$  | $∀ε_3>0;∃δ>0;∀x,x_t∈(X_0,X_1); \left[ | x - x_t | ≤ δ \right] ⇒ \left[ | f (x) - f (x_t) | ≤ ε_3 \right]$ | $\lim\limits_{x↭x_0} f (x) \mathop{↭}\limits_{x,x_0∈(X_0,X_2)} f (x_0)$ |
 
 若函数$f (x)$在区间$(-∞,+∞)$上连续，且以区间$[T_0, T_1]$为周期，则函数$f (x)$在区间$(-∞,+∞)$上一致连续。
 
 若函数$f (x)$在区间$[X_0^{±}, ±∞)$上连续，且 $\lim\limits_{x⇝±∞} f (x) ⇝ f_{±∞}$的极限存在，则函数$f (x)$在$[X_0^{±}, ±∞)$上一致连续。
 
-$\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0^{±},±∞)} f (x_0) \right] ∧ \left[ \lim\limits_{x⇝±∞} f (x) ⇝ f_{±∞} \right] ⇔ \left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_0∈[X_0^{±},±∞)} f (x_t) \right]$
+$\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0^{±},±∞)} f (x_0) \right] ∧ \left[ \lim\limits_{x⇝±∞} f (x) ⇝ f_{±∞} \right] ⇔ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_0∈[X_0^{±},±∞)} f (x_t) \right]$
 
 | $⇓$  | $∃X_1;[X_0^{±}, ±∞) = [X_0^{±}, X_1] ∪ [X_1, ±∞)$            |      |                                                              |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
@@ -299,7 +299,7 @@ $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = 
 
 ### 幂级数公式
 
-若多项式函数$\mathrm{Poly}_n (x)$在点$x_0$处连续且有$n$阶导数，则在点$x_0$处可唯一展开成$n$阶幂级数。
+若多项式函数$\mathrm{Poly}_n (x)$在点$x_0$处连续且有$n + 1$阶导数，则在点$x_0$处可唯一展开成$n$阶幂级数。
 
 $P_n (x) = \sum\limits_{i=0}^n p_i · (x - x_0)^i = p_0 · (x - x_0)^0 + p_1 · (x - x_0)^1 + p_2 · (x - x_0)^2 + ··· + p_n · (x - x_0)^n$
 
@@ -311,7 +311,7 @@ $P_n (x) = \sum\limits_{i=0}^n \dfrac{{^i}P_n (x_0)}{i!} · (x - x_0)^i = \sum\l
 | $\left.\dfrac{\mathrm{d}^n P_n (x)}{\mathrm{d} x^n}\right|_{x_0} ≡ \left.\dfrac{\mathrm{d}^n P_n (x)}{n! · \mathrm{d}^n x}\right|_{x_0} ≡ p_n$ | $\left.\dfrac{\mathrm{d}^0 P_n (x)}{\mathrm{d} x^0}\right|_{x_0} ≡ \left.\dfrac{\mathrm{d}^0 P_n (x)}{0! · \mathrm{d}^0 x}\right|_{x_0} ≡ p_0$ | $\left.\dfrac{\mathrm{d}^1 P_n (x)}{\mathrm{d} x^1}\right|_{x_0} ≡ \left.\dfrac{\mathrm{d}^1 P_n (x)}{1! · \mathrm{d}^1 x}\right|_{x_0} ≡ p_1$ | $\left.\dfrac{\mathrm{d}^2 P_n (x)}{\mathrm{d} x^2}\right|_{x_0} ≡ \left.\dfrac{\mathrm{d}^2 P_n (x)}{2! · \mathrm{d}^2 x}\right|_{x_0} ≡ p_2$ |
 | $\dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}^n P_n (x)}{\mathrm{d} x^n} = \dfrac{(n + 1) · \mathrm{d}^{n+1} P_n (x)}{\mathrm{d} x^{n+1}}$ | $\dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}^0 P_n (x)}{\mathrm{d} x^0} = \dfrac{1 · \mathrm{d}^1 P_n (x)}{\mathrm{d} x^1}$ | $\dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}^1 P (x)}{\mathrm{d} x^1} = \dfrac{2 · \mathrm{d}^2 P_n (x)}{\mathrm{d} x^2}$ | $\dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}^2 P_n (x)}{\mathrm{d} x^2} = \dfrac{3 · \mathrm{d}^3 P_n (x)}{\mathrm{d} x^3}$ |
 
-若任意形式的函数$f (x)$在点$x_0$处连续且有$n$阶导数，则在点$x_0$处可唯一展开成$n$阶幂级数。
+若任意形式的函数$f (x)$在点$x_0$处连续且有$n + 1$阶导数，则在点$x_0$处可唯一展开成$n$阶幂级数。
 
 $f (x) = \sum\limits_{i=0}^n \dfrac{{^i}f (x_0)}{i!} · (x - x_0)^i + R_n (x) = f (x_0) + \dfrac{{^1}f (x_0)}{1!} · (x - x_0)^1 + \dfrac{{^2}f (x)}{2!} · (x - x_0)^2 + ··· + \dfrac{{^n}f (x)}{n!} · (x - x_0)^n + R_n (x)$
 
