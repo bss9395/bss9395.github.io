@@ -2,32 +2,36 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  特殊函数
-Update:  2021-02-28T16:14:00+08@中国-广东-湛江+08
+Update:  2021-03-11T18:18:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
 
-### 函数$\mathcal{Q} (x)$
+### 特征函数$\mathcal{X}_{I} (x)$
+
+$\mathcal{X}_{I} (x) = \mathop{1}\limits_{x∈I};\mathop{0}\limits_{x∉I}$
+
+### 有理函数$\mathcal{Q} (x)$
 
 $\mathcal{Q} (x) = \mathop{1}\limits_{x∈ℚ}; \mathop{0}\limits_{x∉ℚ}$
 
 函数$\mathcal{Q} (x)$在区间$[X_0, X_1]⊆ℝ$内，处处不连续，也处处不可导。
 
-### 函数$\mathcal{R} (x)$
+### 实数函数$\mathcal{R} (x)$
 
 $\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ;n∈ℤ^+}^{1 = \gcd (|m|, |n|)} \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}}; \mathop{0}\limits_{x≠\frac{m}{n}}$
 
 函数$\mathcal{R} (x)$在区间$[X_0,X_1]⊆ℝ$内，任何无理点处连续，任何有理点处不连续。
 
-| $⇓$  | $∀x,x_0∈[X_0,X_1];∀ε>0; \left[ ε ≤ \mathop{\mathcal{R} (x)}\limits_{x=\frac{m}{n}} = \mathop{\mathcal{R} (x)}\limits_{x=\frac{m}{n}} - \mathop{\mathcal{R} (x_0)}\limits_{x_0≠\frac{p}{q}} \right] ⇒ \left[ | x | ∈ \mathop{\left\lbrace \dfrac{| m_i |}{n_j} \right\rbrace}\limits_{1≤n_j≤⌊\frac{1}{ε}⌋≤\frac{1}{ε}} \right]$ | $¬Q ⇒ ¬P$               |
+| $⇓$  | $∀x_0∈X;∀ε>0;∃δ>0;∀x∈X; \left[ \dfrac{1}{n} = \left| \mathop{\mathcal{R} (x)}\limits_{x=\frac{m}{n}} - \mathop{\mathcal{R} (x_0)}\limits_{x_0≠\frac{p}{q}} \right| > ε \right] ⇒ \left[ \left| \mathop{x}\limits_{x=\frac{m}{n}} - \mathop{x_0}\limits_{x_0≠\frac{p}{q}} \right| ∈\left\lbrace \left| \mathop{\dfrac{m_j}{n_i}}\limits_{n_i<\frac{1}{ε}} - \mathop{x_0}\limits_{x_0≠\frac{p}{q}} \right| \right\rbrace \right]$ | $¬Q ⇒ ¬P$               |
 | :--: | :----------------------------------------------------------- | :---------------------- |
-| $⇓$  | $∀x,x_0∈[X_0,X_1];∀ε>0;∃δ=\min\mathop{\left\lbrace \dfrac{|m_i|}{n_j} \right\rbrace}\limits_{1≤n_j≤≤⌊\frac{1}{ε}⌋≤\frac{1}{ε}}; \left[ | x - \mathop{x_0}\limits_{x_0≠\frac{p}{q}} | ≤ | x | + | x_0 | < δ + | x_0 | \right] ⇒ \left[ \sup \left| \mathcal{R} (x) - \mathop{\mathcal{R} (x_0)}\limits_{x_0≠\frac{p}{q}} \right| = \sup \left| \mathop{\mathcal{R} (x)}\limits_{x=\frac{m}{n}};\mathop{0}\limits_{x≠\frac{m}{n}} \right| < ε \right]$ | $P ⇒ Q$                 |
+| $⇓$  | $∀x_0∈X;∀ε>0;∃δ<\min\left\lbrace \left| \mathop{\dfrac{m_j}{n_i}}\limits_{n_i<\frac{1}{ε}} - \mathop{x_0}\limits_{x_0≠\frac{p}{q}} \right| \right\rbrace;∀x∈X; \left[ | x - \mathop{x_0}\limits_{x_0≠\frac{p}{q}} | ≤ δ \right] ⇒ \left[ \sup \left| \mathcal{R} (x) - \mathop{\mathcal{R} (x_0)}\limits_{x_0≠\frac{p}{q}} \right| = \sup \left| \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}};\mathop{0}\limits_{x≠\frac{m}{n}} \right| = \dfrac{1}{n} ≤ ε \right]$ | $P ⇒ Q$                 |
 | $⇓$  | $\lim\limits_{x⇝x_0≠\frac{m}{n}} \mathcal{R} (x) ⇝ \mathcal{R} (x_0)$ |                         |
 |      |                                                              |                         |
-| $⇓$  | $∀x,x_0∈[X_0,X_1];∃ε_0>0;∀δ>0; \left[ | x - x_0 | < δ \right] ∧ \left[ \sup \left| \mathcal{R} (x) - \mathop{\mathcal{R} (x_0)}\limits_{x_0=\frac{p}{q}} \right| = \sup \left| \left[ \mathop{\mathcal{R} (x)}\limits_{x=\frac{m}{n}};\mathop{0}\limits_{x≠\frac{m}{n}} \right] - \dfrac{1}{q} \right| ≥ \dfrac{1}{q} = ε_0 \right]$ | $¬[ P ⇒ Q ] ⇔ [P ∧ ¬Q]$ |
+| $⇓$  | $∃x_0∈X;∃ε>0;∀δ>0;∀x∈X; \left[ \left| x - \mathop{x_0}\limits_{x_0=\frac{p}{q}} \right| ≤ δ \right] ∧ \left[ \sup \left| \mathcal{R} (x) - \mathop{\mathcal{R} (x_0)}\limits_{x_0=\frac{p}{q}} \right| = \sup \left| \left[ \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}};\mathop{0}\limits_{x≠\frac{m}{n}} \right] - \dfrac{1}{q} \right| ≥ \dfrac{1}{q} > ε \right]$ | $¬[ P ⇒ Q ] ⇔ [P ∧ ¬Q]$ |
 | $⇓$  | $\lim\limits_{x⇝x_0=\frac{m}{n}} \mathcal{R} (x) \not⇝ \mathcal{R} (x_0)$ |                         |
 
-比存在函数$f (x)$在区间$[X_0, X_1]⊆ℝ$内，任何无理点处连续，任何有理点处连续。例如$f (x) ≡ x$。
+必存在函数$f (x)$在区间$[X_0, X_1]⊆ℝ$内，任何无理点处连续，任何有理点处连续。例如$f (x) ≡ x$。
 
 必存在函数$f (x)$在区间$[X_0, X_1]⊆ℝ$内，任何无理点处不连续，任何有理点处不连续。例如$f (x) ≡ \mathcal{Q} (x)$。
 
@@ -45,7 +49,7 @@ $∀x_n,r_0,q_0∈[X_0,X_1];¬∃f(x); \left[ \lim\limits_{n⇝+∞}^{Δx⇝0} \
 | $⇓$  | $∀r; [ r ∈ [X_0,X_1]\backslashℚ ] ⇒ \left[ r ∈ \bigcup\limits_{m=0}^{ℕ} \mathop{r_m}\limits_{w^f (r_m)≥\frac{1}{m+1}} \right]$ | $⇒$  | $r_m ∈ \left( r_m - \dfrac{ζ}{2^{m+1}}, r_m + \dfrac{ζ}{2^{m+1}} \right)$ |                  |
 | $⇓$  | $[X_0,X_1] \backslash ℚ ⊆ \bigcup\limits_{m=0}^{ℕ} \mathop{r_0}\limits_{w^f(r_0)≥\frac{1}{m+1}} ⊆ \mathcal{O}$ | $⇒$  | $[X_0,X_1] \backslash ℚ ⊆ \mathcal{O}$                       | $\mathrm{False}$ |
 
-### 函数$\mathcal{F} (x)$
+### 分形函数$\mathcal{F} (x)$
 
 $\lbrace (X_{i,j} - I_{i}, X_{i,j} + I_{i}) \rbrace \mathop{≡≡≡≡≡}\limits_{I_{i}=\frac{1}{2^{2·i+3}}}^{X_{i,j}=\frac{2·j+1}{2^{i+1}}} \bigcup\limits_{i=0}^{+∞} \bigcup\limits_{j=0}^{2^i-1} \left( \dfrac{2 · j + 1}{2^{i + 1}} - \dfrac{1}{2^{2 · i + 3}}, \dfrac{2 · j + 1}{2^{i + 1}} + \dfrac{1}{2^{2 · i + 3}} \right) = \bigcup\limits_{i=1}^{+∞} \bigcup\limits_{j=1}^{2^{i-1}} \left( \dfrac{2·j-1}{2^i} - \dfrac{1}{2^{2·i+1}}, \dfrac{2·j-1}{2^i} + \dfrac{1}{2^{2·i+1}} \right)$
 
@@ -60,8 +64,9 @@ $\mathcal{F} (x) ≡ \mathop{I_i - \left| x - X_{i,j} \right|}\limits_{| x - X_{
 
 函数$\mathcal{F} (x)$在区间$[0, 1]$内连续，在以点$X_{i,j}$为中点且以$I_i$为半径的区间内呈三角形状，其三角形状区间的可测度长度为$\dfrac{1}{2}$。
 
-### 函数$\mathrm{sgn} (x)$
+### 符号函数$\mathrm{sgn} (x)$
 
 $\mathrm{sgn} (x) = \mathop{-1}\limits_{x<0};\mathop{0}\limits_{x=0};\mathop{+1}\limits_{x>0}$
 
 $\mathrm{sgn} (\mathcal{R} (x)) = \mathcal{Q} (x)$
+

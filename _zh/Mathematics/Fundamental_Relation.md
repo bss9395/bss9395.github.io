@@ -2,16 +2,36 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  基本关系式
-Update:  2021-03-10T16:01:00+08@中国-广东-湛江+08
+Update:  2021-03-11T22:31:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
+
+### 取整恒等式
+
+$x = ⌊x⌋ + [x]$
+
+$x + \mathrm{sgn} (x) = ⌈x⌉ + [x]$
+
+典例：$2.71828 = ⌊2.71828⌋ + [2.71828] = 2 + 0.71828$，$-2.71828 = ⌊-2.71828⌋ + [-2.71828] = -2 + -0.71828$
+
+典例：$2.71828 + 1 = ⌈2.71828⌉ + [2.71828] = 3 + 0.71828$，$-2.71828 + -1 = ⌈-2.71828⌉ + [-2.71828] = -3 + -0.71828$
+
+最值恒等式
+
+$\max\limits_{x∈X}\lbrace f (x), g (x) \rbrace = \dfrac{f (x) + g (x) + | f (x) - g (x) |}{2} = \dfrac{f (x) + g (x) + \sqrt{[ f (x) - g (x) ]^2}}{2}$
+
+$\min\limits_{x∈X}\lbrace f (x), g (x) \rbrace = \dfrac{f (x) + g (x) - | f (x) - g (x) |}{2} = \dfrac{f (x) + g (x) - \sqrt{[ f (x) - g (x) ]^2}}{2}$
+
+$\min\limits_{x∈X} \lbrace f (x), g (x) \rbrace = -\max\limits_{x∈X} \lbrace -f (x), -g (x) \rbrace$
 
 ### 组合恒等式
 
 $\mathrm{C} (n, i) = \dfrac{n!}{i! · (n - i)!} = \dfrac{n!}{(n - i)! · i!} = \mathrm{C} (n, n - i)$
 
 $\mathrm{C} (n + 1, i) = \dfrac{(n + 1)!}{i! · (n + 1 - i)!} = \dfrac{n!}{i! · (n - i)!} + \dfrac{n!}{(i - 1)! · (n - i + 1)!} = \mathrm{C} (n, i) + \mathrm{C} (n, i - 1)$
+
+------
 
 ### 对数不等式
 
