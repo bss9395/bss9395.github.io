@@ -158,7 +158,7 @@ $\left[ ∀x_t∈\fbox{X}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|
 
 若函数$f (x)$在区间$X$上满足切割线过程，则函数$f (x)$在区间$X$上一致连续，反之亦然。
 
-$0 ↭ \lim\limits_{x↭x_t} | f (x) - f (x_t) | \mathop{===}\limits_{x_t∈X}^{x∈X} \lim\limits_{x↭x_t} \left[ \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · | x - x_t | \right] \mathop{===}\limits_{x_t∈X}^{x∈X} \left[ \lim\limits_{x↭x_t} \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · \lim\limits_{x↭x_t} | x - x_t | \right] \mathop{===}\limits_{x_t∈\fbox{X}}^{x∈X} \lim\limits_{x⇝x_t} \left[ \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x} · | x - x_t | \right]$
+$0 ↭ \lim\limits_{x↭x_t} | f (x) - f (x_t) | \mathop{===}\limits_{x_t∈X}^{x∈X} \lim\limits_{x↭x_t} \left[ \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · | x - x_t | \right] \mathop{===}\limits_{x_t∈X}^{x∈X} \left[ \lim\limits_{x↭x_t} \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · \lim\limits_{x↭x_t} | x - x_t | \right] \mathop{===}\limits_{x_t∈\fbox{X}}^{x∈X} \lim\limits_{x⇝x_t} \left[ \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t=x} · | x - x_t | \right]$
 
 若函数$f (x)$在区间$X$上一致连续，则函数$f (x)$在区间$X$上连续，反之不对。
 
