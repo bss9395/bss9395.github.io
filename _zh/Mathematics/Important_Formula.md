@@ -123,9 +123,9 @@ $\int\limits_{-π}^{+π} \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} 
 | $⇓$  | $I_{2·m+1} = 1 · \dfrac{2}{3} · \dfrac{4}{5} ··· \dfrac{2 · m - 2}{2 · m - 1} · \dfrac{2 · m}{2 · m + 1}$ | $⇐$  | $I_1 = \int\limits_{0}^{\frac{π}{2}} \cos^1 x \mathrm{d} x = [ \sin x ]_{0}^{\frac{π}{2}} = 1$ |
 | $⇓$  | $I_n = \left[ \dfrac{π}{2} \right]^{\frac{1 + (-1)^n}{2}} · \left[ \prod\limits_{i=1}^n i^{(-1)^i} \right]^{(-1)^{n+1}}$ |      |                                                              |
 
-| $⇓$  | $\int\limits_{-π}^{+π} \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} x \mathop{=======}\limits_{\cos x = \frac{1 - \tan^2 \frac{x}{2}}{1 + \tan^2 \frac{x}{2}}}^{t = \tan \frac{x}{2}} \int\limits_{-∞}^{+∞} \dfrac{1 - r^2}{1 - 2 · r · \dfrac{1 - t^2}{1 + t^2} + r^2} \dfrac{2 · \mathrm{d} t}{1 + t^2} = \int\limits_{-∞}^{+∞} \dfrac{2 · (1 - r^2)}{(1 - r)^2 + (1 + r)^2 · t^2} \mathrm{d} t = 2 · \left[ \arctan \left( \dfrac{1 + r}{1 - r} · t \right) \right]_{-∞}^{+∞} = 2 · π$ |
+| $⇓$  | $\int\limits \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} x \mathop{=======}\limits_{\cos x = \frac{1 - \tan^2 \frac{x}{2}}{1 + \tan^2 \frac{x}{2}}}^{t = \tan \frac{x}{2}} \int\limits \dfrac{1 - r^2}{1 - 2 · r · \dfrac{1 - t^2}{1 + t^2} + r^2} \dfrac{2 · \mathrm{d} t}{1 + t^2} = \int\limits \dfrac{2 · (1 - r^2)}{(1 - r)^2 + (1 + r)^2 · t^2} \mathrm{d} t = 2 · \tan^{-1} \left( \dfrac{1 + r}{1 - r} · t \right) = 2 · \tan^{-1} \left( \dfrac{1 + r}{1 - r} · \tan \dfrac{x}{2} \right)$ |
 | :--: | ------------------------------------------------------------ |
-|      |                                                              |
+| $⇓$  | $\int\limits_{-π}^{+π} \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} x = \left[ 2 · \tan^{-1} \left( \dfrac{1 + r}{1 - r} · \tan \dfrac{x}{2} \right) \right]_{-π}^{+π} = 2 · π$ |
 
 ### 调和积分
 
