@@ -7,51 +7,6 @@ Author:  璀璨星辰
 Link  :
 ---
 
-### 数列极限
-
-
-
-### 数列极限的性质
-
-若$\lim\limits_{n⇝∞⁺} S_n ⇝ S$，且 $\lim\limits_{n⇝∞⁺} T_n ⇝ T$。
-
-$\lim\limits_{n⇝∞⁺} [ S_n + T_n ] = \lim\limits_{n⇝∞⁺} S_n + \lim\limits_{n⇝∞⁺} T_n ⇝ S + T$
-
-$\lim\limits_{n⇝∞⁺} [ S_n - T_n ] = \lim\limits_{n⇝∞⁺} S_n - \lim\limits_{n⇝∞⁺} T_n ⇝ S - T$
-
-$\lim\limits_{n⇝∞⁺} [ S_n · T_n ] = \lim\limits_{n⇝∞} S_n · \lim\limits_{n⇝∞} T_n ⇝ S · T$
-
-$\lim\limits_{n⇝∞⁺} \dfrac{S_n}{T_n} = \dfrac{\lim\limits_{n⇝∞} S_n}{\lim\limits_{n⇝∞} T_n} \mathop{⇝}\limits_{T≠0} \dfrac{S}{T}$
-
-$\lim\limits_{n⇝∞⁺} [ \mathrm{Con.} · S_n ] = \mathrm{Con.} · \lim\limits_{n⇝∞⁺} S_n ⇝ \mathrm{Con.} · S$
-
-| $⇓$  | $[ ∀ε_1>0;∃N∈ℕ;∀n≥N; | S_n - S | < ε_1 ] ∧ [∀ε_2>0;∃N∈ℕ;∀n≥N; | T_n - T | < ε_2]$ |
-| :--: | ------------------------------------------------------------ |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | (S_n + T_n) - (S + T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | (S_n - T_n) - (S - T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | S_n · T_n - S · T | = | (S_n · T_n - S_n · T) + (S_n · T - S · T) | ≤ | S_n | · | T_n - T | + | S_n - S | · | T | ≤ \mathrm{Sup.} · ε_2 + ε_1 · | T | = ε$ |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{S_n}{T_n} - \dfrac{S}{T} \right| = \dfrac{| S_n · T - S · T_n |}{| T_n | · | T |} = \dfrac{| (S_n · T - S · T) + (S · T - S · T_n) |}{| T_n | · | T |} = \dfrac{| S_n - S | · | T | + | S | · | T - T_n |}{| T_n | · | T |} ≤ \dfrac{ε_1 · | T | + | S | · ε_2}{\mathrm{Inf.} · | T |} = ε$ |
-
-典例：数列$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$
-
-| $⇓$  |  $\lim\limits_{n⇝∞⁺} s_n ⇝ 0$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{s_0 + ··· + s_n}{n + 1} \right| ≤ \left| \dfrac{s_0 + ··· + s_{N-1}}{n + 1} \right| + \left| \dfrac{s_N + ··· + s_n}{n + 1} \right| ≤ \dfrac{\mathrm{Sup.}}{n + 1} + \dfrac{n - N + 1}{n + 1} · ε_1 = ε$ |
-| :--: | ----------------------------: | :--: | :----------------------------------------------------------- |
-| $⇓$  |  $\lim\limits_{n⇝∞⁺} s_n ⇝ s$ | $⇔$  | $\lim\limits_{n⇝∞⁺} (s_n - s) ⇝ 0$                           |
-| $⇓$  | $\lim\limits_{n⇝∞⁺} s_n ⇝ ∞⁺$ | $⇒$  | $∃ε>0;∀N∈ℕ;∃n≥N; \dfrac{s_0 + ··· + s_n}{n + 1} = \dfrac{s_0 + ··· + s_{N-1}}{n + 1} + \dfrac{s_N + ··· + s_n}{n + 1} > \dfrac{\mathrm{Inf.}}{n + 1} + \dfrac{n - N + 1}{n+1} · ε_2 = ε$ |
-| $⇓$  | $\lim\limits_{n⇝∞⁺} s_n ⇝ ∞⁻$ | $⇔$  | $\lim\limits_{n⇝∞⁺} -s_n ⇝ ∞⁺$                               |
-| $⇓$  |                               |      | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$ |
-
-反例：数列$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right]$
-
-$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right] ≈ \lim\limits_{2 · n⇝∞⁺} \dfrac{0 + (-1 + 2) + (-3 + 4) + ··· + [-(2 · n + 1) + 2 · n]}{2 · n + 1} = \lim\limits_{n⇝∞⁺} \dfrac{n}{2 · n + 1} ⇝ \dfrac{1}{2} ≠ ∞ ⇜ \lim\limits_{n⇝∞⁺} (-i)^i · i$
-
-典例：数列$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n - i} \right] = \lim\limits_{n⇝∞⁺} s_n · t_n = \lim\limits_{n⇝∞⁺} s_n · \lim\limits_{n⇝∞⁺} t_n \mathop{⇝}\limits_{t≠∞}^{s≠∞} s·t$
-
-| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ 0 \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] ≤ \lim\limits_{n⇝∞⁺} \left[ \dfrac{\mathrm{Sup.}\lbrace t_i \rbrace}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \mathrm{Sup.}\lbrace t_i \rbrace \lim\limits_{n⇝∞⁺} · s_n ⇝ 0$ |
-| :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ⇔ \left[ \lim\limits_{n⇝∞⁺} (s_n - s) ⇝ 0 \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] = \lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (s_i - s) · t_{n-i} + \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s · t_{n-i} \right] ⇝ s · t$ |
-| $⇓$  |                                                              |      | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] = \lim\limits_{n⇝∞⁺} s_n · t_n = \lim\limits_{n⇝∞⁺} s_n · \lim\limits_{n⇝∞⁺} t_n \mathop{⇝}\limits_{t≠∞}^{s≠∞} s · t$ |
-
 ### 无穷级数
 
 无穷级数的部分和
