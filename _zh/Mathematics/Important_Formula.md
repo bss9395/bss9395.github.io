@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  重要公式
-Update:  2021-03-09T03:54:00+08@中国-广东-湛江+08
+Update:  2021-03-18T00:47:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -24,31 +24,52 @@ Link  :
 
 | $\dfrac{0}{0}$                                               | $\dfrac{∞}{∞}$                                               | $1^0$                                             | $0^{\frac{1}{0}}$                         | $∞^{\frac{1}{∞}}$                                            | $1^{∞}$                                                      | $1^{\frac{1}{∞}}$                                            | $0 · ∞$                                                     |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | ------------------------------------------------- | ----------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| $\lim\limits_{x⇝0} \dfrac{\sin x}{x} \mathop{⇝}\limits_{x∈\left(-\frac{π}{2},+\frac{π}{2}\right)}^{\sin |x| ≤ |x| ≤ \tan |x|} 1$ | $\lim\limits_{n⇝∞⁺} \dfrac{n^α}{β^n} \mathop{⇝}\limits_{1<β}^{0<α} 0$ | $\lim\limits_{x⇝0} \mathop{β^x}\limits_{0<β} = 1$ | $\lim\limits_{x⇝0^+} x^{\frac{1}{x}} ⇝ 0$ | $\lim\limits_{n⇝∞⁺} \sqrt[n]{n} \mathop{⇝}\limits^{\sqrt[n]{n} = 1 + α_n} 1$ | $\lim\limits_{x⇝±∞} \left( 1 + \dfrac{1}{x} \right)^{x} ⇝ ә$ | $\lim\limits_{n⇝∞⁺} \mathop{β^{\frac{1}{n}}}\limits_{0<β} \mathop{⇝}\limits^{β^{\frac{1}{n}} = 1 + α_n} 1$ | $\lim\limits_{x⇝0^+} \mathop{x^α · \ln x}\limits_{0<α} ⇝ 0$ |
+| $\lim\limits_{x⇝0} \dfrac{\sin x}{x} \mathop{⇝}\limits_{x∈\left(-\frac{π}{2},+\frac{π}{2}\right)}^{\sin |x| ≤ |x| ≤ \tan |x|} 1$ | $\lim\limits_{n⇝∞⁺} \dfrac{n^α}{β^n} \mathop{⇝}\limits_{1<β}^{0<α} 0$ | $\lim\limits_{x⇝0} \mathop{β^x}\limits_{0<β} = 1$ | $\lim\limits_{x⇝0^+} x^{\frac{1}{x}} ⇝ 0$ | $\lim\limits_{n⇝∞⁺} \sqrt[n]{n} \mathop{⇝}\limits^{\sqrt[n]{n} = 1 + α_n} 1$ | $\lim\limits_{x⇝±∞} \left( 1 + \dfrac{1}{x} \right)^{x} ⇝ ә$ | $\lim\limits_{n⇝∞⁺} \mathop{\sqrt[n]{β}}\limits_{0<β} \mathop{⇝}\limits^{\sqrt[n]{β} = 1 + α_n} 1$ | $\lim\limits_{x⇝0^+} \mathop{x^α · \ln x}\limits_{0<α} ⇝ 0$ |
 | $\lim\limits_{x⇝0} \dfrac{\log_{β} (1 + x)}{x} ⇝ \dfrac{1}{\ln β}$ | $\lim\limits_{n⇝∞⁺} \dfrac{β^n}{n!} \mathop{⇝}\limits^{1<β} 0$ |                                                   |                                           | $\lim\limits_{n⇝∞⁺} \sqrt[n]{n!} \mathop{⇝}\limits^{1^n} ∞⁺$ | $\lim\limits_{x⇝∞⁺} \mathop{β^{x}}\limits_{0<β} = \mathop{0}\limits_{0<β<1};\mathop{1}\limits_{β=1};\mathop{∞⁺}\limits_{1<β}$ |                                                              |                                                             |
 | $\lim\limits_{x⇝0} \dfrac{β^x - 1}{x} ⇝ \ln β$               | $\lim\limits_{x⇝∞⁺} \dfrac{\ln x}{x^α} \mathop{⇝}\limits_{0<α} 0$ |                                                   |                                           | $\lim\limits_{x⇝∞⁺} x^{\frac{1}{x}} ⇝ 1$                     |                                                              |                                                              |                                                             |
 |                                                              | $\lim\limits_{x⇝∞⁺} \dfrac{x^α}{β^x} \mathop{⇝}\limits_{1<β}^{0<α} 0$ |                                                   |                                           |                                                              |                                                              |                                                              |                                                             |
 |                                                              | $\lim\limits_{x⇝∞⁺} \dfrac{β^x}{x^x} \mathop{⇝}\limits^{1<β} 0$ |                                                   |                                           |                                                              |                                                              |                                                              |                                                             |
 
-等比数列的极限值。
+### 等比数列极限
 
 $\lim\limits_{n⇝∞⁺} β^n = \mathop{∞}\limits_{β<-1};\mathop{※}\limits_{β=-1};\mathop{0}\limits_{-1<β<+1};\mathop{1}\limits_{β=+1};\mathop{∞⁺}\limits_{+1<β}$
 
-有理数列的极限值。
+$\lim\limits_{n⇝∞⁺} \sum\limits_{i=0}^{n} β^n = \lim\limits_{n⇝∞⁺} \dfrac{β^n - 1}{β - 1} = \mathop{∞}\limits_{β<-1};\mathop{※}\limits_{β=-1};\mathop{\dfrac{1}{1 - β}}\limits_{-1<β<+1};\mathop{∞⁺}\limits_{β=+1};\mathop{∞⁺}\limits_{+1<β}$
 
-$\lim\limits_{x⇝∞^{±}} \dfrac{s_n · x^n + s_{n-1} · x^{n-1} + ··· + s_1 · x^{1} + s_0 · x^{0}}{t_m · x^{m} + t_{m-1} · x^{m-1} + ··· + t_1 · x^{1} + t_0 · x^{0}} = \mathop{0}\limits_{n<m};\mathop{\dfrac{s_n}{t_n}}\limits_{n=m};\mathop{\dfrac{s_n}{t_m}·∞^{±}}\limits_{n>m} $
+$\lim\limits_{x⇝∞^{±}} \dfrac{\sum\limits_{i=0}^{n} s_i · x^{i}}{\sum\limits_{j=0}^{m} t_j · x^{j}} = \lim\limits_{x⇝∞^{±}} \dfrac{s_n · x^n + s_{n-1} · x^{n-1} + ··· + s_1 · x^{1} + s_0 · x^{0}}{t_m · x^{m} + t_{m-1} · x^{m-1} + ··· + t_1 · x^{1} + t_0 · x^{0}} = \mathop{0}\limits_{n<m};\mathop{\dfrac{s_n}{t_n}}\limits_{n=m};\mathop{\dfrac{s_n}{t_m}·∞^{±}}\limits_{n>m}$
 
-均值数列的极限值。
+### 均值数列极限
 
 $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$
 
-等比级数的极限值。
+$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n - i} \right] = \lim\limits_{n⇝∞⁺} s_n · t_n = \lim\limits_{n⇝∞⁺} s_n · \lim\limits_{n⇝∞⁺} t_n \mathop{⇝}\limits_{t≠∞}^{s≠∞} s·t$
 
-$\lim\limits_{n⇝∞⁺} \sum\limits_{i=0}^{n} β^n = \lim\limits_{n⇝∞⁺} \dfrac{β^n - 1}{β - 1} = \mathop{∞}\limits_{β<-1};\mathop{※}\limits_{β=-1};\mathop{\dfrac{1}{1 - β}}\limits_{-1<β<+1};\mathop{∞⁺}\limits_{β=+1};\mathop{∞⁺}\limits_{+1<β}$
+$\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i} = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$
 
+$\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i^{n}} = \sup\limits_{0≤i} s_i$
 
+| $⇓$  | $\lim\limits_{n⇝∞⁺} s_n ⇝ s$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{s_0 + ··· + s_n}{n + 1} - s_n \right| ≤ \left| \dfrac{(s_0 - s_n) + ··· + (s_{N-1} - s_n)}{n + 1} \right| + \left| \dfrac{(s_N - s_n) + ··· + (s_n - s_n)}{n + 1} \right| ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · ε_1 = ε$ |
+| :--: | ----------------------------- | :----------------------------------------------------------- |
+| $⇓$  | $\lim\limits_{n⇝∞⁺} s_n ⇝ ∞⁺$ | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{s_0 + ··· + s_n}{n + 1} = \dfrac{s_0 + ··· + s_{N-1}}{n + 1} + \dfrac{s_N + ··· + s_n}{n + 1} ≥ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · \min\limits_{N≤m≤n} s_m = s_{m⇝∞⁺} = +ε$ |
+| $⇓$  | $\lim\limits_{n⇝∞⁺} s_n ⇝ ∞⁻$ | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{s_0 + ··· + s_n}{n + 1} = \dfrac{s_0 + ··· + s_{N-1}}{n + 1} + \dfrac{s_N + ··· + s_n}{n + 1} ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · \max\limits_{N≤m≤n} s_m = s_{m⇝∞⁺} = -ε$ |
+| $⇓$  |                               | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$ |
 
+| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ 0 \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] ≤ \lim\limits_{n⇝∞⁺} \left[ \dfrac{\mathrm{Sup.}\lbrace t_i \rbrace}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \mathrm{Sup.}\lbrace t_i \rbrace \lim\limits_{n⇝∞⁺} · s_n ⇝ 0$ |
+| :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ⇔ \left[ \lim\limits_{n⇝∞⁺} (s_n - s) ⇝ 0 \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] = \lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (s_i - s) · t_{n-i} + \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s · t_{n-i} \right] ⇝ s · t$ |
+| $⇓$  |                                                              |      | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] = \lim\limits_{n⇝∞⁺} s_n · t_n = \lim\limits_{n⇝∞⁺} s_n · \lim\limits_{n⇝∞⁺} t_n \mathop{⇝}\limits_{t≠∞}^{s≠∞} s · t$ |
 
+| $⇓$  | $\lim\limits_{n⇝∞⁺} s_n = \lim\limits_{n⇝∞⁺} \dfrac{1}{\dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} \dfrac{1}{s_i}}$ | $\dfrac{1}{\dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} \dfrac{1}{s_i}} = \dfrac{n + 1}{\sum\limits_{i=0}^{n} \dfrac{1}{s_i}} ≤ \left[\sum\limits_{i=0}^{n} s_i\right]^{\frac{1}{n+1}} ≤ \dfrac{\sum\limits_{i=0}^{n+1} s_i}{n + 1}$ | $\lim\limits_{n⇝∞⁺} \dfrac{\sum\limits_{i=0}^{n+1} s_i}{n + 1} = \lim\limits_{n⇝∞⁺} s_n$ |
+| :--: | -----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------- |
+| $⇓$  |                                                              | $\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i} = \lim\limits_{n⇝∞⁺} \left[\sum\limits_{i=0}^{n} s_i\right]^{\frac{1}{n}·\frac{n}{n+1}} = \lim\limits_{n⇝∞⁺} s_n$ |                                                              |
+
+| $⇓$  | $\sup\limits_{0≤n} s_n = \lim\limits_{n⇝∞⁺} \max\limits_{0≤i≤n} s_i$ | $\max\limits_{0≤i≤n} s_i = \sqrt[n]{\left(\max\limits_{0≤i≤n} s_i\right)^{n}} ≤ \sqrt[n]{\sum\limits_{i=0}^{n} s_i^{n}} ≤ \sqrt[n]{n · \left(\max\limits_{0≤i≤n} s_i\right)^{n}} = \sqrt[n]{n} · \max\limits_{0≤i≤n} s_i$ | $\lim\limits_{n⇝∞⁺} \sqrt[n]{n} ⇝ 1$ |
+| :--: | -----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------- |
+| $⇓$  |                                                              | $\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i^{n}} = \sup\limits_{0≤n} s_n$ |                                      |
+
+反例：数列$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right]$
+
+$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right] ≈ \lim\limits_{2 · n⇝∞⁺} \dfrac{0 + (-1 + 2) + (-3 + 4) + ··· + [-(2 · n + 1) + 2 · n]}{2 · n + 1} = \lim\limits_{n⇝∞⁺} \dfrac{n}{2 · n + 1} ⇝ \dfrac{1}{2} ≠ ∞ ⇜ \lim\limits_{n⇝∞⁺} (-i)^i · i$
 
 ### 初等导函数
 
