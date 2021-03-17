@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  基本关系式
-Update:  2021-03-14T00:03:00+08@中国-广东-湛江+08
+Update:  2021-03-17T21:27:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -30,6 +30,51 @@ $\min\limits_{x∈X} \lbrace f (x), g (x) \rbrace = -\max\limits_{x∈X} \lbrace
 $\mathrm{C} (n, i) = \dfrac{n!}{i! · (n - i)!} = \dfrac{n!}{(n - i)! · i!} = \mathrm{C} (n, n - i)$
 
 $\mathrm{C} (n + 1, i) = \dfrac{(n + 1)!}{i! · (n + 1 - i)!} = \dfrac{n!}{i! · (n - i)!} + \dfrac{n!}{(i - 1)! · (n - i + 1)!} = \mathrm{C} (n, i) + \mathrm{C} (n, i - 1)$
+
+$(x + y)^{n} = \sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · x^{i} · y^{n-i}$
+
+| $⇓$  |                               $(x + y)^{0}$ | $= 1$                                                        |
+| :--: | ------------------------------------------: | ------------------------------------------------------------ |
+| $⇓$  |                               $(x + y)^{1}$ | $= \dfrac{1!}{0! · 1!} x^{0} · y^{1} + \dfrac{1!}{1! · 0!} x^{1} · y^{0}$ |
+| $⇓$  |                               $(x + y)^{n}$ | $= \sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · x^{i} · y^{n-i}$ |
+| $⇓$  | $(x + y)^{n} · (x + y)^{1} = (x + y)^{n+1}$ | $= \sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · x^{i+1} · y^{n-i} + \sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · x^{i} · y^{n+1-i}$ |
+|      |                                             | $= x^{n+1} · y^{0} + \left[ \sum\limits_{i=1}^{n} \dfrac{n!}{(i - 1)! · (n - i + 1)!} · x^{i} · y^{n-(i-1)} + \sum\limits_{i=1}^{n} \dfrac{n!}{i! · (n - i)!} · x^{i} · y^{n+1-i} \right] + x^{0} · y^{n+1}$ |
+|      |                                             | $= x^{n+1} · y^{0} + \sum\limits_{i=1}^{n} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · x^{i} · y^{n+1-i} + x^{0} · y^{n+1}$ |
+| $⇓$  |                             $(x + y)^{n+1}$ | $= \sum\limits_{i=0}^{n+1} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · x^{i} · y^{n+1-i}$ |
+
+### 等比恒等式
+
+$x^{n+1} - y^{n+1} = (x - y) · \sum\limits_{i=0}^{n} x^{i} · y^{n - i}$
+
+$\dfrac{x^{n+1} - 1}{x - 1} = \sum\limits_{i=0}^{n} x^{i}$
+
+| $⇓$  |          $x^{n+1} - y^{n+1}$ | $= (x - y) · \sum\limits_{i=0}^{n} x^{i} · y^{n - i} = \sum\limits_{i=0}^{n} x^{i+1} · y^{n-i} - \sum\limits_{i=0}^{n} x^{i} · y^{n-(i-1)} = x^{n+1} + \left[ \sum\limits_{i=0}^{n-1} x^{i+1} · y^{n-i} - \sum\limits_{i=0}^{n-1} x^{i+1} · y^{n-i} \right] - y^{n+1}$ |
+| :--: | ---------------------------: | :----------------------------------------------------------- |
+| $⇓$  |                $x^{n+1} - 1$ | $= (x - 1) · \sum\limits_{i=0}^{n} x^{i}$                    |
+| $⇓$  | $\dfrac{x^{n+1} - 1}{x - 1}$ | $= \sum\limits_{i=0}^{n} x^{i}$                              |
+
+### 等幂恒等式
+
+$I(m, n) = \dfrac{(m + 1)^{n+1}}{n + 1} - \sum\limits_{i=0}^{n-1} \dfrac{n!}{i! · (n + 1 - i)!} · I(m,i)$
+
+$\sum\limits_{j=0}^{m} j^{0} = \dfrac{(m + 1)^{1}}{1}$
+
+$\sum\limits_{j=0}^{m} j^{1} = \dfrac{(m + 1)^{2}}{2} - \dfrac{(m + 1)^{1}}{2}$
+
+$\sum\limits_{j=0}^{m} j^{2} = \dfrac{(m + 1)^3}{3} - \dfrac{(m + 1)^{2}}{2} + \dfrac{(m + 1)^{1}}{6}$
+
+$\sum\limits_{j=0}^{m} j^{3} = \dfrac{(m + 1)^{4}}{4} - \dfrac{(m + 1)^3}{2} + \dfrac{(m + 1)^{2}}{4}$
+
+| $⇓$  |             |                                              $(x + 1)^{n+1}$ | $= \sum\limits_{i=0}^{n+1} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · x^{i} = \sum\limits_{i=0}^{n} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · x^{i} + x^{n+1}$ |
+| :--: | :---------: | -----------------------------------------------------------: | :----------------------------------------------------------- |
+| $⇓$  |             | $(m + 1)^{n+1} - 0^{n+1} = \sum\limits_{j=0}^{m} [(j + 1)^{n+1} - j^{n+1}]$ | $= \sum\limits_{j=0}^{m} \sum\limits_{i=0}^{n} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · j^{i} = \sum\limits_{i=0}^{n} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · \sum\limits_{j=0}^{m} j^{i} = (n + 1) · \sum\limits_{j=0}^{m} j^{n} + \sum\limits_{i=0}^{n-1} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · \sum\limits_{j=0}^{m} j^{i}$ |
+| $⇓$  |             |                                $\sum\limits_{j=0}^{m} j^{n}$ | $= \dfrac{(m + 1)^{n + 1}}{n + 1} - \sum\limits_{i=0}^{n-1} \dfrac{n!}{i! · (n + 1 - i)!} · \sum\limits_{j=0}^{m} j^{i}$ |
+| $⇓$  |             |                                                    $I(m, n)$ | $= \dfrac{(m + 1)^{n+1}}{n + 1} - \sum\limits_{i=0}^{n-1} \dfrac{n!}{i! · (n + 1 - i)!} · I(m,i)$ |
+|      |             |                                                              |                                                              |
+| $⇓$  | $0^{0} ≡ 1$ |                      $\sum\limits_{j=0}^{m} j^{0} = I(m, 0)$ | $= \dfrac{(m + 1)^{1}}{1} - \dfrac{1}{1} · \mathop{I(m, -1)}\limits_{≡0}$ |
+| $⇓$  |             |                     $\sum\limits_{j=0}^{m} j^{1} = I (m, 1)$ | $= \dfrac{(m + 1)^{2}}{2} - \dfrac{1}{2} · I(m, 0) = \dfrac{(m + 1)^{2}}{2} - \dfrac{(m + 1)^{1}}{2}$ |
+| $⇓$  |             |                      $\sum\limits_{j=0}^{m} j^{2} = I(m, 2)$ | $= \dfrac{(m + 1)^{3}}{3} - \dfrac{1}{3} · I(m, 0) - \dfrac{1}{1} · I(m, 1) = \dfrac{(m + 1)^3}{3} - \dfrac{(m + 1)^{2}}{2} + \dfrac{(m + 1)^{1}}{6}$ |
+| $⇓$  |             |                      $\sum\limits_{j=0}^{m} j^{3} = I(m, 3)$ | $= \dfrac{(m + 1)^{4}}{4} - \dfrac{1}{4} · I(m, 0) - \dfrac{1}{1} · I(m, 1) - \dfrac{3}{2} · I(m, 2) = \dfrac{(m + 1)^{4}}{4} - \dfrac{(m + 1)^3}{2} + \dfrac{(m + 1)^{2}}{4}$ |
 
 ------
 

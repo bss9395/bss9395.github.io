@@ -30,13 +30,23 @@ Link  :
 |                                                              | $\lim\limits_{x⇝∞⁺} \dfrac{x^α}{β^x} \mathop{⇝}\limits_{1<β}^{0<α} 0$ |                                                   |                                           |                                                              |                                                              |                                                              |                                                             |
 |                                                              | $\lim\limits_{x⇝∞⁺} \dfrac{β^x}{x^x} \mathop{⇝}\limits^{1<β} 0$ |                                                   |                                           |                                                              |                                                              |                                                              |                                                             |
 
-等比数列的极限。
+等比数列的极限值。
 
 $\lim\limits_{n⇝∞⁺} β^n = \mathop{∞}\limits_{β<-1};\mathop{※}\limits_{β=-1};\mathop{0}\limits_{-1<β<+1};\mathop{1}\limits_{β=+1};\mathop{∞⁺}\limits_{+1<β}$
 
-均值数列的极限。
+有理数列的极限值。
+
+$\lim\limits_{x⇝∞^{±}} \dfrac{s_n · x^n + s_{n-1} · x^{n-1} + ··· + s_1 · x^{1} + s_0 · x^{0}}{t_m · x^{m} + t_{m-1} · x^{m-1} + ··· + t_1 · x^{1} + t_0 · x^{0}} = \mathop{0}\limits_{n<m};\mathop{\dfrac{s_n}{t_n}}\limits_{n=m};\mathop{\dfrac{s_n}{t_m}·∞^{±}}\limits_{n>m} $
+
+均值数列的极限值。
 
 $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$
+
+等比级数的极限值。
+
+$\lim\limits_{n⇝∞⁺} \sum\limits_{i=0}^{n} β^n = \lim\limits_{n⇝∞⁺} \dfrac{β^n - 1}{β - 1} = \mathop{∞}\limits_{β<-1};\mathop{※}\limits_{β=-1};\mathop{\dfrac{1}{1 - β}}\limits_{-1<β<+1};\mathop{∞⁺}\limits_{β=+1};\mathop{∞⁺}\limits_{+1<β}$
+
+
 
 
 
