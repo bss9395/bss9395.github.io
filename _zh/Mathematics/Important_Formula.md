@@ -40,32 +40,30 @@ $\lim\limits_{x⇝∞^{±}} \dfrac{\sum\limits_{i=0}^{n} s_i · x^{i}}{\sum\limi
 
 ### 均值数列极限
 
-$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$
+$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$
 
-$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n - i} \right] = \lim\limits_{n⇝∞⁺} s_n · t_n = \lim\limits_{n⇝∞⁺} s_n · \lim\limits_{n⇝∞⁺} t_n \mathop{⇝}\limits_{t≠∞}^{s≠∞} s·t$
+$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n} · \sum\limits_{i=0}^n s_i · t_{n - i} \right] = \lim\limits_{n⇝∞⁺} (s_n · t_n) = \lim\limits_{n⇝∞⁺} s_n · \lim\limits_{n⇝∞⁺} t_n \mathop{⇝}\limits_{t≠∞}^{s≠∞} s·t$
 
 $\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i} = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$
 
 $\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i^{n}} = \sup\limits_{0≤i} s_i$
 
-| $⇓$  | $\lim\limits_{n⇝∞⁺} s_n ⇝ s$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{s_0 + ··· + s_n}{n + 1} - s_n \right| ≤ \left| \dfrac{(s_0 - s_n) + ··· + (s_{N-1} - s_n)}{n + 1} \right| + \left| \dfrac{(s_N - s_n) + ··· + (s_n - s_n)}{n + 1} \right| ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · ε_1 = ε$ |
-| :--: | ----------------------------- | :----------------------------------------------------------- |
-| $⇓$  | $\lim\limits_{n⇝∞⁺} s_n ⇝ ∞⁺$ | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{s_0 + ··· + s_n}{n + 1} = \dfrac{s_0 + ··· + s_{N-1}}{n + 1} + \dfrac{s_N + ··· + s_n}{n + 1} ≥ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · \min\limits_{N≤m≤n} s_m = s_{m⇝∞⁺} = +ε$ |
-| $⇓$  | $\lim\limits_{n⇝∞⁺} s_n ⇝ ∞⁻$ | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{s_0 + ··· + s_n}{n + 1} = \dfrac{s_0 + ··· + s_{N-1}}{n + 1} + \dfrac{s_N + ··· + s_n}{n + 1} ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · \max\limits_{N≤m≤n} s_m = s_{m⇝∞⁺} = -ε$ |
-| $⇓$  |                               | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$ |
-
-| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ 0 \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] ≤ \lim\limits_{n⇝∞⁺} \left[ \dfrac{\mathrm{Sup.}\lbrace t_i \rbrace}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \mathrm{Sup.}\lbrace t_i \rbrace \lim\limits_{n⇝∞⁺} · s_n ⇝ 0$ |
+| $⇓$  |                                 $\lim\limits_{n⇝∞⁺} s_n ⇝ s$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i - s_n \right| ≤ \left| \dfrac{1}{n + 1} · \sum\limits_{i=0}^{N-1} (s_i - s_n) \right| + \left| \dfrac{1}{n + 1} · \sum\limits_{i=N}^{n} (s_i - s_n) \right| ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · ε_1 ≤ ε$ |
 | :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ⇔ \left[ \lim\limits_{n⇝∞⁺} (s_n - s) ⇝ 0 \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] = \lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (s_i - s) · t_{n-i} + \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s · t_{n-i} \right] ⇝ s · t$ |
-| $⇓$  |                                                              |      | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n-i} \right] = \lim\limits_{n⇝∞⁺} s_n · t_n = \lim\limits_{n⇝∞⁺} s_n · \lim\limits_{n⇝∞⁺} t_n \mathop{⇝}\limits_{t≠∞}^{s≠∞} s · t$ |
+| $⇓$  |                                $\lim\limits_{n⇝∞⁺} s_n ⇝ ∞⁺$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i = \dfrac{1}{n + 1} · \sum\limits_{i=0}^{N-1} s_i + \dfrac{1}{n + 1} · \sum\limits_{i=N}^{n} s_i ≥ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · \min\limits_{N≤m≤n} s_m = s_{m⇝∞⁺} ≥ +ε$ |
+| $⇓$  |                                $\lim\limits_{n⇝∞⁺} s_n ⇝ ∞⁻$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i = \dfrac{1}{n + 1} · \sum\limits_{i=0}^{N-1} s_i + \dfrac{1}{n + 1} · \sum\limits_{i=N}^{n} s_i ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · \max\limits_{N≤m≤n} s_m = s_{m⇝∞⁺} ≤ -ε$ |
+| $⇓$  |                                                              |      | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} \left[ \dfrac{n + 1}{n} · \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i \right] = \lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$ |
+|      |                                                              |      |                                                              |
+| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ 0 \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) \right] ≤ \lim\limits_{n⇝∞⁺} \left[ \dfrac{\sup |t_i|}{n + 1} · \sum\limits_{i=0}^{n} s_i \right] = \sup |t_i| · \lim\limits_{n⇝∞⁺} s_n ⇝ 0$ |
+| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) \right] = \lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i - s_n) · t_{n-i} + \dfrac{s_n}{n + 1} · \sum\limits_{i=0}^{n} t_{n-i} \right] = \lim\limits_{n⇝∞⁺} (s_n · t_n) ⇝ s · t$ |
+| $⇓$  |                                                              |      | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (s_i · t_{n-i}) \right] = \lim\limits_{n⇝∞⁺} (s_n · t_n) = \lim\limits_{n⇝∞⁺} s_n · \lim\limits_{n⇝∞⁺} t_n \mathop{⇝}\limits_{t≠∞}^{s≠∞} s · t$ |
 
 | $⇓$  | $\lim\limits_{n⇝∞⁺} s_n = \lim\limits_{n⇝∞⁺} \dfrac{1}{\dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} \dfrac{1}{s_i}}$ | $\dfrac{1}{\dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} \dfrac{1}{s_i}} = \dfrac{n + 1}{\sum\limits_{i=0}^{n} \dfrac{1}{s_i}} ≤ \left[\sum\limits_{i=0}^{n} s_i\right]^{\frac{1}{n+1}} ≤ \dfrac{\sum\limits_{i=0}^{n+1} s_i}{n + 1}$ | $\lim\limits_{n⇝∞⁺} \dfrac{\sum\limits_{i=0}^{n+1} s_i}{n + 1} = \lim\limits_{n⇝∞⁺} s_n$ |
 | :--: | -----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------- |
 | $⇓$  |                                                              | $\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i} = \lim\limits_{n⇝∞⁺} \left[\sum\limits_{i=0}^{n} s_i\right]^{\frac{1}{n}·\frac{n}{n+1}} = \lim\limits_{n⇝∞⁺} s_n$ |                                                              |
-
-| $⇓$  | $\sup\limits_{0≤n} s_n = \lim\limits_{n⇝∞⁺} \max\limits_{0≤i≤n} s_i$ | $\max\limits_{0≤i≤n} s_i = \sqrt[n]{\left(\max\limits_{0≤i≤n} s_i\right)^{n}} ≤ \sqrt[n]{\sum\limits_{i=0}^{n} s_i^{n}} ≤ \sqrt[n]{n · \left(\max\limits_{0≤i≤n} s_i\right)^{n}} = \sqrt[n]{n} · \max\limits_{0≤i≤n} s_i$ | $\lim\limits_{n⇝∞⁺} \sqrt[n]{n} ⇝ 1$ |
-| :--: | -----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------- |
-| $⇓$  |                                                              | $\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i^{n}} = \sup\limits_{0≤n} s_n$ |                                      |
+|      |                                                              |                                                              |                                                              |
+| $⇓$  | $\sup\limits_{0≤n} s_n = \lim\limits_{n⇝∞⁺} \max\limits_{0≤i≤n} s_i$ | $\max\limits_{0≤i≤n} s_i = \sqrt[n]{\left(\max\limits_{0≤i≤n} s_i\right)^{n}} ≤ \sqrt[n]{\sum\limits_{i=0}^{n} s_i^{n}} ≤ \sqrt[n]{n · \left(\max\limits_{0≤i≤n} s_i\right)^{n}} = \sqrt[n]{n} · \max\limits_{0≤i≤n} s_i$ | $\lim\limits_{n⇝∞⁺} \sqrt[n]{n} ⇝ 1$                         |
+| $⇓$  |                                                              | $\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i^{n}} = \sup\limits_{0≤n} s_n$ |                                                              |
 
 反例：数列$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right]$
 
