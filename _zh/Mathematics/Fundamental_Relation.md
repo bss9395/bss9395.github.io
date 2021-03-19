@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  基本关系式
-Update:  2021-03-18T01:50:00+08@中国-广东-湛江+08
+Update:  2021-03-19T17:38:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -89,27 +89,55 @@ $[n!]^2 ≥ n^{n}$
 | $(n - i) · (i + 1) - n = i · [n - (i + 1)] ≥ 0$ | $[n!]^{2} = [(n - 0) · 1] · [(n - 1) · 2] ··· [2 · (n - 1)] · [1 · (n - 0)]$ |                |
 | $(n - i) · (i + 1) ≥ n$                         | $[n!]^2 ≥ n^{n}$                                             | $[n!]^2 = n^n$ |
 
-### 凸函数不等式
+### 凹函数不等式
 
 函数$f(x)$在点$(x_0,f(x_0))$与点$(x_1,f(x_1))$此两点处的切割线函数。
 
-$t(x) = \dfrac{x_1 - x}{x_1 - x_0} · f (x_0) + \dfrac{x - x_0}{x_1 - x_0} · f (x_1)$
+$g(x) = \dfrac{x_1 - x}{x_1 - x_0} · f (x_0) + \dfrac{x - x_0}{x_1 - x_0} · f (x_1)$
+
+$g[(1 - t) · x_0 + t · x_1] = (1 - t) · f(x_0) + t · f(x_1)$
 
 | $⇓$  | $0 = T(t) ≡ \left|\begin{matrix} 1 & 1 & 1 \\ 0 & t & 1 \\ x_0 & x & x_1 \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ 0 & t & 1 \\ x_0 & x - x_0 & x_1 - x_0 \end{matrix}\right|$ | $⇒$  | $0 = T(t) ≡ t · (x_1 - x_0) - (x - x_0)$                     |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $x = (1 - t) · x_0 + t · x_1$                                | $⇒$  | $(0,x_0);(1,x_1)$                                            |
-| $⇓$  | $t ≡ \dfrac{x - x_0}{x_1 - x_0}$                             |      |                                                              |
+| $⇓$  | $x = (1 - t) · x_0 + t · x_1$                                | $⇒$  | $(t, x(t)) = (0,x_0);(1,x_1)$                                |
+| $⇓$  | $t = \dfrac{x - x_0}{x_1 - x_0}$                             | $⇒$  | $1 - t = \dfrac{x_1 - x}{x_1 - x_0}$                         |
 |      |                                                              |      |                                                              |
 | $⇓$  | $0 = F(x) ≡ \left|\begin{matrix} 1 & 1 & 1 \\ x_0 & x & x_1 \\ f(x_0) & g(x) & f(x_1) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ x_0 & x - x_0 & x_1 - x_0 \\ f(x_0) & g(x) - f(x_0) & f(x_1) - f (x_0) \end{matrix}\right|$ | $⇒$  | $0 = F(x) ≡ (x - x_0) · [f(x_1) - f(x_0)] - (x_1 - x_0)·[g(x) - f(x_0)]$ |
-| $⇓$  | $g(x) = \dfrac{x_1 - x}{x_1 - x_0} · f (x_0) + \dfrac{x - x_0}{x_1 - x_0} · f (x_1)$ | $⇒$  | $(x_0, f(x_0));(x_1,f(x_1))$                                 |
-| $⇓$  | $g\left( \dfrac{x_1 - x_0}{x_1 - x_0} · x_0 + \dfrac{x - x_0}{x_1 - x_0} · x_1 \right) = \dfrac{x_1 - x_0}{x_1 - x_0} · f(x_0) + \dfrac{x - x_0}{x_1 - x_0} · f(x_1)$ | $⇐$  | $t ≡ \dfrac{x - x_0}{x_1 - x_0}$                             |
+| $⇓$  | $g(x) = \dfrac{x_1 - x}{x_1 - x_0} · f (x_0) + \dfrac{x - x_0}{x_1 - x_0} · f (x_1)$ | $⇒$  | $(x, f (x)) = (x_0, f(x_0));(x_1,f(x_1))$                    |
+| $⇓$  | $g[(1 - t) · x_0 + t · x_1] = (1 - t) · f(x_0) + t · f(x_1)$ |      |                                                              |
+
+凹函数的运算性质。
+
+$f(x) \mathop{≤}\limits^{x_0≤x≤x_1} \dfrac{x_1 - x}{x_1 - x_0} · f(x_0) + \dfrac{x - x_0}{x_1 - x_0} · f(x_1)$
+
+$\dfrac{f(x) - f (x_0)}{x - x_0} ≤ \dfrac{f(x_1) - f(x_0)}{x_1 - x_0} ≤ \dfrac{f(x_1) - f(x)}{x_1 - x}$
+
+$\left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{x_0^{+}} ≤ \dfrac{f(x_1) - f(x_0)}{x_1 - x_0} ≤ \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{x_1^{-}}$
+
+$f(x) ≥ f(x_0) + \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{x_0} · (x - x_0)$
+
+| $⇓$  |                                                $f(x) ≤ g(x)$ | $⇒$  | $f(x) ≤ \dfrac{x_1 - x}{x_1 - x_0} · f(x_0) + \dfrac{x - x_0}{x_1 - x_0} · f(x_1)$ |
+| :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\dfrac{f(x) - f (x_0)}{x - x_0} ≤ \dfrac{f(x_1) - f(x_0)}{x_1 - x_0}$ | $⇐$  | $f(x) - f(x_0) ≤ \left[\dfrac{x_1 - x}{x_1 - x_0} · f(x_0) - f(x_0)\right] + \dfrac{x - x_0}{x_1 - x_0} · f(x_1) = \dfrac{x - x_0}{x_1 - x_0} · [f(x_1) - f(x_0)]$ |
+| $⇓$  | $\dfrac{f(x_1) - f(x_0)}{x_1 - x_0} ≤ \dfrac{f(x_1) - f(x)}{x_1 - x}$ | $⇐$  | $f(x_1) - f(x) ≥ -\dfrac{x_1 - x}{x_1 - x_0} · f(x_0) + \left[ f(x_1) - \dfrac{x - x_0}{x_1 - x_0} · f(x_1) \right] = \dfrac{x_1 - x}{x_1 - x_0} · [f(x_1) - f(x_0)]$ |
+| $⇓$  | $\dfrac{f(x) - f (x_0)}{x - x_0} ≤ \dfrac{f(x_1) - f(x_0)}{x_1 - x_0} ≤ \dfrac{f(x_1) - f(x)}{x_1 - x}$ | $⇒$  | $\lim\limits_{x⇝x_0^+} \dfrac{f (x) - f (x_0)}{x - x_0} = \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{x_0^{+}} ≤ \dfrac{f(x_1) - f(x_0)}{x_1 - x_0} ≤ \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{x_1^{-}} = \lim\limits_{x⇝x_0^-} \dfrac{f (x_1) - f (x)}{x_1 - x}$ |
+| $⇓$  | $f(x) ≥ f(x_0) + \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{x_0} · (x - x_0)$ | $⇐$  | $\left[ f(x) - f(x_0) ≥ \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{x_0^+} · (x - x_0) \right] ∧ \left[ f(x_1) - f(x) ≤ \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{x_1^-} · (x_1 - x) \right]$ |
+|      |                                                              |      |                                                              |
+| $⇓$  | $f(x) ≤ \dfrac{x_1 - x}{x_1 - x_0} · f(x_0) + \dfrac{x - x_0}{x_1 - x_0} · f(x_1)$ | $⇐$  | $f(x) = \dfrac{x_1 - x}{x_1 - x_0} · \left[ f(x) + \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{x} · (x_0 - x) \right] + \dfrac{x - x_0}{x_1 - x_0} · \left[ f(x) + \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{x} · (x_1 - x) \right]$ |
 
 
-下凸函数与上凸函数
+凹函数不等式。
 
-$f[(1 - t) · x_0 + t · x_1] ≤ (1 - t) · f(x_0) + t · f(x_1)$
+$f\left[ \sum\limits_{i=0}^{n} t_i · x_i \right] \mathop{≤}\limits_{\sum\limits_{i=0}^{n} t_i =1}^{0≤t_i≤1} \sum\limits_{i=0}^{n} t_i · f(x_i)$
 
-$f[(1 - t) · x_0 + t · x_1] ≥ (1 - t) · f(x_0) + t · f(x_1)$
+$f\left[ \sum\limits_{i=0}^{n} \dfrac{t_i · x_i}{\sum\limits_{i=0}^{n} t_i} \right] \mathop{≤}\limits^{0≤t_i} \sum\limits_{i=0}^{n} \dfrac{t_i · f(x_i)}{\sum\limits_{i=0}^{n} t_i}$
+
+| $⇓$  |                                                    $t_0 = 1$ | $f (t_0 · x_0) ≤ t_0 · f(x_0)$                               |
+| :--: | -----------------------------------------------------------: | :----------------------------------------------------------- |
+| $⇓$  |                                              $t_0 + t_1 = 1$ | $f(t_0 · x_0 + t_1 · x_1) ≤ t_0 · f(x_0) + t_1 · f(x_1) = g(t_0 · x_0 + t_1 · x_1)$ |
+| $⇓$  |                              $\sum\limits_{i=0}^{n} t_i = 1$ | $f\left[ \sum\limits_{i=0}^{n} t_i · x_i \right] ≤ \sum\limits_{i=0}^{n} t_i · f(x_i)$ |
+| $⇓$  |                            $\sum\limits_{i=0}^{n+1} t_i = 1$ | $f\left[ \sum\limits_{i=0}^{n+1} t_i · x_i \right] = f\left[ (1 - t_{n+1}) · \sum\limits_{i=0}^{n} \dfrac{t_i}{1 - t_{n+1}} · x_i + t_{n+1} · x_{n+1} \right]$ |
+| $⇓$  | $\dfrac{1 - t_{n+1}}{1 - t_{n+1}} = \sum\limits_{i=0}^{n} \dfrac{t_i}{1 - t_{n+1}} = 1$ | $f\left[ \sum\limits_{i=0}^{n+1} t_i · x_i \right] ≤ (1 - t_{n+1}) · f\left[ \sum\limits_{i=0}^{n} \dfrac{t_i}{1 - t_{n+1}} · x_i \right] + t_{n+1} · f(x_{n+1}) ≤ (1 - t_{n+1}) · \sum\limits_{i=0}^{n} \dfrac{t_i}{1 - t_{n+1}} · f(x_i) + t_{n+1} · x_{n+1} = \sum\limits_{i=0}^{n+1} t_i · f(x_i)$ |
 
 ### 对函数不等式
 
