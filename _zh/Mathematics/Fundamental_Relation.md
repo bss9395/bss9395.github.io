@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  基本关系式
-Update:  2021-03-20T01:38:00+08@中国-广东-湛江+08
+Update:  2021-03-20T15:36:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -129,6 +129,10 @@ $f(x) ≥ f(x_0) + \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{x_0} · (
 
 凹区间满足$\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} ≥ 0$，凸区间满足$\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} ≤ 0$。凹区间与凸区间的分界点称为拐点，此点处满足$\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = 0$，反之不对。
 
+典例：函数$f(x) = x^{3}$的二阶导函数为$\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} = 6 · x$，凹区间为$[0⁺, ∞⁺)$，凸区间为$(∞⁻, 0⁻]$，拐点为$x = 0$。
+
+典例：函数$f(x) = x^{4}$的二阶导函数为$\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} = 12 · x^{2}$，凹区间为$(∞⁻, ∞⁺)$，无凸区间，无拐点，但$\left.\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x}\right|_{x=0} = 0$。
+
 凹函数不等式。凸函数不等式完全类似。
 
 $f\left[ \sum\limits_{i=0}^{n} t_i · x_i \right] \mathop{≤}\limits_{\sum\limits_{i=0}^{n} t_i =1}^{0≤t_i≤1} \sum\limits_{i=0}^{n} t_i · f(x_i)$
@@ -145,26 +149,26 @@ $f\left[ \sum\limits_{i=0}^{n} \dfrac{t_i · x_i}{\sum\limits_{i=0}^{n} t_i} \ri
 | $⇓$  | $\sum\limits_{i=0}^{n} \dfrac{t_i}{\sum\limits_{i=0}^{n} t_i} = 1$ | $f\left[ \sum\limits_{i=0}^{n} \dfrac{t_i · x_i}{\sum\limits_{i=0}^{n} t_i} \right] \mathop{≤}\limits^{0≤t_i} \sum\limits_{i=0}^{n} \dfrac{t_i · f(x_i)}{\sum\limits_{i=0}^{n} t_i}$ |
 |      | $\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \mathop{====}\limits^{f(x)≡g(x)} \mathrm{Con}$ | $f\left[ \sum\limits_{i=0}^{n} \dfrac{t_i · x_i}{\sum\limits_{i=0}^{n} t_i} \right] \mathop{==}\limits^{0≤t_i} \sum\limits_{i=0}^{n} \dfrac{t_i · f(x_i)}{\sum\limits_{i=0}^{n} t_i}$ |
 
-### 平均值不等式
+### 权均值不等式
 
-$\left[ \prod\limits_{i=0}^{n} x_i \right]^{\frac{1}{n+1}} \mathop{≤}\limits_{0<x_i}^{0<p} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$
+$\prod\limits_{i=0}^{n} x_i^{t_i} \mathop{≤}\limits_{0<x_i}^{0<p} \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p}$
 
-$\left[ \prod\limits_{i=0}^{n} x_i \right]^{\frac{1}{n+1}} \mathop{≥}\limits_{0<x_i}^{p<0} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$
+$\prod\limits_{i=0}^{n} x_i^{t_i} \mathop{≥}\limits_{0<x_i}^{p<0} \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p}$
 
-$\dfrac{1}{n + 1} \sum\limits_{i=0}^{n} x_i \mathop{≤}\limits_{0<x_i}^{\left|p-\frac{1}{2}\right|<\frac{1}{2}} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$
+$\sum\limits_{i=0}^{n} t_i · x_i \mathop{≤}\limits_{0<x_i}^{\left|p-\frac{1}{2}\right|<\frac{1}{2}} \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p}$
 
-$\dfrac{1}{n + 1} \sum\limits_{i=0}^{n} x_i \mathop{≥}\limits_{0<x_i}^{\left|p-\frac{1}{2}\right|>\frac{1}{2}} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$
+$\sum\limits_{i=0}^{n} t_i · x_i \mathop{≥}\limits_{0<x_i}^{\left|p-\frac{1}{2}\right|>\frac{1}{2}} \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p}$
 
-$\min x_i ≤ \mathop{\left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{-1} \right]^{-1}}\limits_{\mathrm{Harmonic}} ≤ \mathop{\left[ \prod\limits_{i=0}^{n} x_i \right]^{\frac{1}{n+1}}}\limits_{\mathrm{Geometric}} ≤ \mathop{\left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{+1} \right]^{+1}}\limits_{\mathrm{Arithmetic}} ≤ \mathop{\left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{2} \right]^{\frac{1}{2}}}\limits_{\mathrm{Quadratic}} ≤ \max x_i$
+$\min x_i ≤ \mathop{\left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{-1} \right]^{-1}}\limits^{\mathrm{Harmonic\underline{}Mean}} ≤ \mathop{\left[ \prod\limits_{i=0}^{n} x_i \right]^{\frac{1}{n+1}}}\limits^{\mathrm{Geometric\underline{}Mean}} ≤ \mathop{\left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{+1} \right]^{+1}}\limits^{\mathrm{Arithmetic\underline{}Mean}} ≤ \mathop{\left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{2} \right]^{\frac{1}{2}}}\limits^{\mathrm{Quadratic\underline{}Mean}} ≤ \max x_i$
 
-| $f(x) \mathop{≡≡}\limits_{0<x} \ln x$            | $\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} = -\dfrac{1}{x^{2}} < 0$ | $\dfrac{\mathrm{d}^{1} f(x)}{\mathrm{d}^{1} x} = +\dfrac{1}{x^{1}} > 0$ | $x_i ≡ x$                                                    |
-| :----------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| $0 < p$                                          | $\ln \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p} = p · \ln \left[ \sum\limits_{i=0}^{n} \dfrac{x_i^{\frac{1}{p}}}{n + 1} \right] ≥ p · \sum\limits_{i=0}^{n} \dfrac{\ln x_i^{\frac{1}{p}}}{n + 1} = \ln \left[ \prod\limits_{i=0}^{n} x_i \right]^{\frac{1}{n + 1}}$ | $\left[ \prod\limits_{i=0}^{n} x_i \right]^{\frac{1}{n + 1}} ≤ \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$ | $\left[ \prod\limits_{i=0}^{n} x_i \right]^{\frac{1}{n + 1}} = \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$ |
-| $p < 0$                                          | $\ln \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p} = p · \ln \left[ \sum\limits_{i=0}^{n} \dfrac{x_i^{\frac{1}{p}}}{n + 1} \right] ≤ p · \sum\limits_{i=0}^{n} \dfrac{\ln x_i^{\frac{1}{p}}}{n + 1} = \ln \left[ \prod\limits_{i=0}^{n} x_i \right]^{\frac{1}{n + 1}}$ | $\left[ \prod\limits_{i=0}^{n} x_i \right]^{\frac{1}{n + 1}} ≥ \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$ |                                                              |
-|                                                  |                                                              |                                                              |                                                              |
-| $f(x) \mathop{≡≡}\limits_{0<x} x^{p}$            | $\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} = p · (p - 1) · x^{p-2} = \mathop{0^-}\limits_{\left|p-\frac{1}{2}\right|<\frac{1}{2}};\mathop{0^+}\limits_{\left|p-\frac{1}{2}\right|>\frac{1}{2}}$ | $x_i ≡ u_i^{p}$                                              | $x_i ≡ x$                                                    |
-| $\left| p - \dfrac{1}{2} \right| < \dfrac{1}{2}$ | $\left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} u_i \right]^{p} = \left[ \sum\limits_{i=0}^{n} \dfrac{u_i}{n + 1} \right]^{p} ≥ \sum\limits_{i=0}^{n} \dfrac{u_i^{p}}{n + 1} = \dfrac{1}{n + 1} \sum\limits_{i=0}^{n} u_i^{p}$ | $\dfrac{1}{n + 1} \sum\limits_{i=0}^{n} x_i ≤ \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$ | $\dfrac{1}{n + 1} \sum\limits_{i=0}^{n} x_i = \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$ |
-| $\left| p - \dfrac{1}{2} \right| > \dfrac{1}{2}$ | $\left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i \right]^{p} = \left[ \sum\limits_{i=0}^{n} \dfrac{x_i}{n + 1} \right]^{p} ≤ \sum\limits_{i=0}^{n} \dfrac{x_i^{p}}{n + 1} = \dfrac{1}{n + 1} \sum\limits_{i=0}^{n} x_i^{p}$ | $\dfrac{1}{n + 1} \sum\limits_{i=0}^{n} x_i ≥ \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$ |                                                              |
+| $f(x) \mathop{≡≡}\limits_{0<x} \ln x$            | $\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} = -\dfrac{1}{x^{2}} < 0$ | $\dfrac{\mathrm{d}^{1} f(x)}{\mathrm{d}^{1} x} = +\dfrac{1}{x^{1}} > 0$ | $x_i ≡ x$                                                    | $\sum\limits_{i=0}^{n} t_i \mathop{===}\limits_{0≤t_i≤1} 1$  |
+| :----------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| $0 < p$                                          | $\ln \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p} = p · \ln \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right] ≥ p · \sum\limits_{i=0}^{n} t_i · \ln x_i^{\frac{1}{p}} = \ln \prod\limits_{i=0}^{n} x_i^{t_i}$ | $\prod\limits_{i=0}^{n} x_i^{t_i} \mathop{≤}\limits_{0<x_i}^{0<p} \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p}$ | $\prod\limits_{i=0}^{n} x_i^{t_i} \mathop{=}\limits_{0<x}^{0<p} \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p}$ | $\left[ \prod\limits_{i=0}^{n} x_i \right]^{\frac{1}{n + 1}} \mathop{≤}\limits_{0<x_i}^{0<p} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$ |
+| $p < 0$                                          | $\ln \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p} = p · \ln \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right] ≤ p · \sum\limits_{i=0}^{n} t_i · \ln x_i^{\frac{1}{p}} = \ln \prod\limits_{i=0}^{n} x_i^{t_i}$ | $\prod\limits_{i=0}^{n} x_i^{t_i} \mathop{≥}\limits_{0<x_i}^{p<0} \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p}$ | $\prod\limits_{i=0}^{n} x_i^{t_i} \mathop{=}\limits_{0<x}^{p<0} \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p}$ | $\left[ \prod\limits_{i=0}^{n} x_i \right]^{\frac{1}{n + 1}} \mathop{≥}\limits_{0<x_i}^{p<0} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$ |
+|                                                  |                                                              |                                                              |                                                              |                                                              |
+| $f(x) \mathop{≡≡}\limits_{0<x} x^{p}$            | $\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} = p · (p - 1) · x^{p-2} = \mathop{0^-}\limits_{\left|p-\frac{1}{2}\right|<\frac{1}{2}};\mathop{0^+}\limits_{\left|p-\frac{1}{2}\right|>\frac{1}{2}}$ | $x_i ≡ u_i^{p}$                                              | $x_i ≡ x$                                                    | $\sum\limits_{i=0}^{n} t_i \mathop{===}\limits_{0≤t_i≤1} 1$  |
+| $\left| p - \dfrac{1}{2} \right| < \dfrac{1}{2}$ | $\left[ \sum\limits_{i=0}^{n} t_i · u_i \right]^{p} ≥ \sum\limits_{i=0}^{n} t_i · u_i^{p}$ | $\sum\limits_{i=0}^{n} t_i · x_i \mathop{≤}\limits_{0<x_i}^{\left|p-\frac{1}{2}\right|<\frac{1}{2}} \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p}$ | $\sum\limits_{i=0}^{n} t_i · x_i \mathop{=}\limits_{0<x}^{\left|p-\frac{1}{2}\right|<\frac{1}{2}} \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p}$ | $\dfrac{1}{n + 1} \sum\limits_{i=0}^{n} x_i \mathop{≤}\limits_{0<x_i}^{\left|p-\frac{1}{2}\right|<\frac{1}{2}} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$ |
+| $\left| p - \dfrac{1}{2} \right| > \dfrac{1}{2}$ | $\left[ \sum\limits_{i=0}^{n} t_i · u_i \right]^{p} ≤ \sum\limits_{i=0}^{n} t_i · u_i^{p}$ | $\sum\limits_{i=0}^{n} t_i · x_i \mathop{≥}\limits_{0<x_i}^{\left|p-\frac{1}{2}\right|>\frac{1}{2}} \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p}$ | $\sum\limits_{i=0}^{n} t_i · x_i \mathop{=}\limits_{0<x}^{\left|p-\frac{1}{2}\right|>\frac{1}{2}} \left[ \sum\limits_{i=0}^{n} t_i · x_i^{\frac{1}{p}} \right]^{p}$ | $\dfrac{1}{n + 1} \sum\limits_{i=0}^{n} x_i \mathop{≤}\limits_{0<x_i}^{\left|p-\frac{1}{2}\right|>\frac{1}{2}} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} x_i^{\frac{1}{p}} \right]^{p}$ |
 
 ### 对函数不等式
 
