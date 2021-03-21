@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  自然基数
-Update:  2021-03-21T05:20:00+08@中国-广东-湛江+08
+Update:  2021-03-21T19:44:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -40,22 +40,21 @@ $ә^{α} = \lim\limits_{x⇝∞^{±}} \left( 1 + \dfrac{α}{x} \right)^{x}$
 
 ### 自然函数
 
-$f(x) ≡ \left( 1 + \dfrac{α}{x} \right)^{x}$
+$f(x) ≡ \left( 1 + \dfrac{α}{x} \right)^{x} \left[ \mathop{==}\limits_{α<0} \mathop{ә^{α}}\limits_{∞⁻};\mathop{1}\limits_{0⁻};\mathop{0}\limits_{(-α)⁺};\mathop{ә^{α}}\limits_{∞⁺} \right] \left[ \mathop{==}\limits_{α=0} 1 \right] \left[ \mathop{==}\limits_{α>0} \mathop{ә^{α}}\limits_{∞⁻};\mathop{∞⁺}\limits_{(-α)⁻};\mathop{1}\limits_{0⁺};\mathop{ә^{α}}\limits_{∞⁺} \right]$
 
-$\dfrac{\mathrm{d}^{1} f(x)}{\mathrm{d}^{1} x} = \left(1+\dfrac{α}{x}\right)^{x} · \left[ \ln\left(1+\dfrac{α}{x}\right) - \dfrac{α}{x + α} \right]$
+$\dfrac{\mathrm{d}^{1} f(x)}{\mathrm{d}^{1} x} = \left(1+\dfrac{α}{x}\right)^{x} · \left[ \ln\left(1+\dfrac{α}{x}\right) - \dfrac{α}{x + α} \right] = \mathop{0}\limits_{∞};\mathop{+0}\limits_{∞⁻<x<∞⁺}$
 
-$\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} = \left(1+\dfrac{α}{x}\right)^{x} · \left[ \left[ \ln\left(1+\dfrac{α}{x}\right) - \dfrac{α}{x + α} \right]^{2} - \dfrac{α^{2}}{x · (x + α)^{2}} \right]$
+$\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} = \left(1+\dfrac{α}{x}\right)^{x} · \left[ \left[ \ln\left(1+\dfrac{α}{x}\right) - \dfrac{α}{x + α} \right]^{2} - \dfrac{α^{2}}{x · (x + α)^{2}} \right] = \mathop{+0}\limits_{x<0};\mathop{-0}\limits_{\left[\ln\left(1+\frac{α}{x}\right)^{1+\frac{α}{x}}-1\right]^2<\frac{1}{x}};\mathop{0}\limits_{\left[\ln\left(1+\frac{α}{x}\right)^{1+\frac{α}{x}}-1\right]^2=\frac{1}{x}};\mathop{+0}\limits_{\left[\ln\left(1+\frac{α}{x}\right)^{1+\frac{α}{x}}-1\right]^2≥\frac{1}{x}}$
 
-
-
-| $⇓$  |                                                              |                                                              |
-| :--: | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| $⇓$  | $f(x) ≡ \left( 1 + \dfrac{α}{x} \right)^{x} = ә^{x·\ln\left(1+\frac{α}{x}\right)}$ | $u[t(x)] \mathop{≡≡≡≡}\limits_{α·x>-x^2}^{t=\frac{α}{x}>-1} \left[ \ln\left( 1 + \dfrac{α}{x} \right) + \dfrac{-α}{x + α} \right] = \ln(1 + t) + \dfrac{-t}{1 + t} ≥ u[t]_{t=0} = 0$ |
-| $⇓$  | $\dfrac{\mathrm{d}^{1} f(x)}{\mathrm{d}^{1} x} = ә^{x·\ln\left(1+\frac{α}{x}\right)} · \left[ \ln\left(1 + \dfrac{α}{x}\right) + x · \dfrac{1}{1 + \dfrac{α}{x}} · \dfrac{-α}{x^{2}} \right] = ә^{x·\ln\left(1+\frac{α}{x}\right)} · u[t(x)]$ | $\dfrac{\mathrm{d} u[t]}{\mathrm{d} t} = \dfrac{1}{1 + t} + \dfrac{-1}{1 + t} + \dfrac{t}{(1 + t)^2} = \dfrac{t}{(1 + t)^2} = \mathop{-0}\limits_{-1<t<0};\mathop{0}\limits_{t=0};\mathop{+0}\limits_{t>0}$ |
-| $⇓$  | $\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} = ә^{x·\ln\left(1+\frac{α}{x}\right)} · \left[ u^2[t(x)] + \dfrac{\mathrm{d} u[t(x)]}{\mathrm{d} t} · \dfrac{\mathrm{d} t(x)}{\mathrm{d} x} \right]$ | $\dfrac{\mathrm{d} u[t(x)]}{\mathrm{d} t} · \dfrac{\mathrm{d} t(x)}{\mathrm{d} x} = \dfrac{t}{(1 + t)^2} · \dfrac{-α}{x^2} = \dfrac{t^2}{(1 + t)^2} · \dfrac{-1}{x} = \mathop{+0}\limits_{x<0};\mathop{-0}\limits_{x>0}$ |
-| $⇓$  |                                                              |                                                              |
-| $⇓$  |                                                              |                                                              |
-| $⇓$  |                                                              |                                                              |
-
-
+| $⇓$  | $f(x) ≡ \left( 1 + \dfrac{α}{x} \right)^{x} = ә^{x·\ln\left(1+\frac{α}{x}\right)}$ | $⇒$  | $u[t(x)] \mathop{≡≡≡≡≡}\limits_{x·(x + α)>0}^{t=\frac{α}{x}>-1} \ln\left( 1 + \dfrac{α}{x} \right) + x · \dfrac{1}{1 + \dfrac{α}{x}} · \dfrac{-α}{x^2} = \ln(1 + t) + \dfrac{-t}{1 + t} ≥ \mathop{0}\limits_{u[0]}$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\dfrac{\mathrm{d}^{1} f(x)}{\mathrm{d}^{1} x} = \left(1+\dfrac{α}{x}\right)^{x} · \left[ \ln\left(1+\dfrac{α}{x}\right) + \dfrac{-α}{x + α} \right] = ә^{x·\ln\left(1+\frac{α}{x}\right)} · u[t(x)]$ | $⇒$  | $\dfrac{\mathrm{d} u[t]}{\mathrm{d} t} = \dfrac{1}{1 + t} + \dfrac{-1}{1 + t} + \dfrac{t}{(1 + t)^2} = \dfrac{t}{(1 + t)^2} = \mathop{-0}\limits_{-1<t<0};\mathop{0}\limits_{t=0};\mathop{+0}\limits_{t>0}$ |
+| $⇓$  | $\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} = \left(1+\dfrac{α}{x}\right)^{x} · \left[ \left[ \ln\left(1+\dfrac{α}{x}\right) + \dfrac{-α}{x + α} \right]^{2} + \dfrac{-α^{2}}{x · (x + α)^{2}} \right] = ә^{x·\ln\left(1+\frac{α}{x}\right)} · \left[ u^2[t(x)] + \dfrac{\mathrm{d} u[t]}{\mathrm{d} t} · \dfrac{\mathrm{d} t(x)}{\mathrm{d} x} \right]$ | $⇒$  | $\dfrac{\mathrm{d} u[t]}{\mathrm{d} t} · \dfrac{\mathrm{d} t(x)}{\mathrm{d} x} = \dfrac{t}{(1 + t)^2} · \dfrac{-α}{x^2} = \dfrac{t^2}{(1 + t)^2} · \dfrac{-1}{x} = \mathop{+0}\limits_{x<0};\mathop{∞⁺}\limits_{x=0⁻};\mathop{∞⁻}\limits_{x=0⁺};\mathop{-0}\limits_{x>0}$ |
+|      |                                                              |      |                                                              |
+| $⇓$  | $f(x)$                                                       | $⇐$  |                                                              |
+|      |                                                              |      |                                                              |
+| $⇓$  | $\dfrac{\mathrm{d}^{1} f(x)}{\mathrm{d}^{1} x} = \mathop{0}\limits_{∞};\mathop{+0}\limits_{∞⁻<x<∞⁺}$ | $⇐$  | $u[0] \mathop{==}\limits_{x=∞}^{t=0} 0$                      |
+|      |                                                              |      |                                                              |
+| $⇓$  | $\left[ \ln\left( 1 + \dfrac{α}{x} \right)^{1+\frac{α}{x}} - 1 \right]^2 = \dfrac{(x + α)^2}{α^2} · \left[ \ln\left( 1 + \dfrac{α}{x} \right) + \dfrac{-α}{x + α} \right]^2 = \left[ \dfrac{1}{x} · \dfrac{α^2}{(x + α)^2} \right] · \dfrac{(x + α)^2}{α^2} = \dfrac{1}{x}$ | $⇐$  | $\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} \mathop{==}\limits_{x>0} 0$ |
+| $⇓$  | $\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} = \mathop{+0}\limits_{x<0};\mathop{-0}\limits_{\left[\ln\left(1+\frac{α}{x}\right)^{1+\frac{α}{x}}-1\right]^2<\frac{1}{x}};\mathop{0}\limits_{\left[\ln\left(1+\frac{α}{x}\right)^{1+\frac{α}{x}}-1\right]^2=\frac{1}{x}};\mathop{+0}\limits_{\left[\ln\left(1+\frac{α}{x}\right)^{1+\frac{α}{x}}-1\right]^2≥\frac{1}{x}}$ |      |                                                              |
 
