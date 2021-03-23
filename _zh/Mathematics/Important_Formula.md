@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  重要公式
-Update:  2021-03-24T01:12:00+08@中国-广东-湛江+08
+Update:  2021-03-24T02:23:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -29,6 +29,15 @@ Link  :
 | $\lim\limits_{x⇝0} \dfrac{β^x - 1}{x} ⇝ \ln β$               | $\lim\limits_{x⇝∞⁺} \dfrac{\ln x}{x^α} \mathop{⇝}\limits_{0<α} 0$ |                                                   |                                           | $\lim\limits_{x⇝∞⁺} x^{\frac{1}{x}} ⇝ 1$                     |                                                              |                                                              |                                                             |
 |                                                              | $\lim\limits_{x⇝∞⁺} \dfrac{x^α}{β^x} \mathop{⇝}\limits_{1<β}^{0<α} 0$ |                                                   |                                           |                                                              |                                                              |                                                              |                                                             |
 |                                                              | $\lim\limits_{x⇝∞⁺} \dfrac{β^x}{x^x} \mathop{⇝}\limits^{1<β} 0$ |                                                   |                                           |                                                              |                                                              |                                                              |                                                             |
+
+### 阶乘数列极限
+
+$\lim\limits_{n⇝∞^{+}} \dfrac{n}{\sqrt[n]{n!}} ⇝ ә$
+
+| $\left( \dfrac{n + 1}{ә} \right)^{n} < n! < (n + 1) · \left( \dfrac{n + 1}{ә} \right)^{n}$ |
+| ------------------------------------------------------------ |
+| $\dfrac{n + 1}{n} · \dfrac{n}{\sqrt[n]{n!}} = \dfrac{n + 1}{\sqrt[n]{n!}} < ә < \sqrt[n]{n + 1} · \dfrac{n + 1}{\sqrt[n]{n!}} = \sqrt[n]{n + 1} · \dfrac{n + 1}{n} · \dfrac{n}{\sqrt[n]{n!}}$ |
+| $\lim\limits_{n⇝∞^{+}} \dfrac{n}{\sqrt[n]{n!}} = \lim\limits_{n⇝∞^{+}} \dfrac{n + 1}{n} · \lim\limits_{n⇝∞^{+}} \dfrac{n}{\sqrt[n]{n!}} ⇝ ә ⇜ \lim\limits_{n⇝∞^{+}} \sqrt[n]{n + 1} · \lim\limits_{n⇝∞^{+}} \dfrac{n + 1}{n} · \lim\limits_{n⇝∞^{+}} \dfrac{n}{\sqrt[n]{n!}} = \lim\limits_{n⇝∞^{+}} \dfrac{n}{\sqrt[n]{n!}}$ |
 
 ### 等比数列极限
 
@@ -77,6 +86,7 @@ $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \sum\li
 
 | $⇓$  |         | $\dfrac{x}{1 + x} \mathop{≤}\limits_{x>-1} \ln(1 + x) \mathop{≤}\limits_{x>-1} x$ | $\dfrac{1}{n^{m}} = \dfrac{1}{n^{m} - 1} · \dfrac{1}{1 + \dfrac{1}{n^{m} - 1}} ≤ \ln\left( 1 + \dfrac{1}{n^{m} - 1} \right) ≤ \dfrac{1}{n^{m} - 1}$ |
 | :--: | ------: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| $⇓$  |         | $\dfrac{1}{n^m} ≤ \ln\dfrac{n^m}{n^m - 1} ≤ \dfrac{1}{n^m - 1}$ |                                                              |
 |      |         |                                                              |                                                              |
 |      |         |                                                              | $\dfrac{α}{x + α} \mathop{≤}\limits_{x·(x+α)>0} \ln\left( 1 + \dfrac{α}{x} \right) \mathop{≤}\limits_{x·(x+α)>0} \dfrac{α}{x}$ |
 | $⇓$  | $m = 1$ | $\dfrac{1}{n} ≤ \ln\left( \dfrac{n}{n - 1} \right) ≤ \dfrac{1}{n - 1}$ | $\dfrac{1}{n} ≤ \ln(n) - \ln(n - 1) ≤ \dfrac{1}{n - 1}$      |
@@ -86,7 +96,7 @@ $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \sum\li
 |      |         |                                                              |                                                              |
 | $⇓$  | $m = 2$ | $\dfrac{1}{n^{2}} ≤ \ln\left( \dfrac{n^2}{n^2 - 1} \right) ≤ \dfrac{1}{n^2 - 1}$ | $\dfrac{1}{n^2} ≤ [\ln(n) - \ln(n - 1)] + [\ln(n) - \ln(n + 1)] ≤ \dfrac{1}{n^2 - 1}$ |
 | $⇓$  |         | $\sum\limits_{i=2}^{n} \dfrac{1}{n^{2}} ≤ \ln(n) + [\ln(2) - \ln(n + 1)] = \ln \dfrac{2 · n}{n + 1} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{n^2 - 1}$ | $s_{n} ≡ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2}$ |
-| $⇓$  |         | $-1 ≤ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i^2} - 1 = \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{(i - 1)^2} - \dfrac{1}{n^2} < -\dfrac{1}{n^2}$ | $s_{n+1} - s_{n} = \ln \dfrac{(n + 1)^2}{n · (n + 1)} - \dfrac{1}{(n + 1)^2} = \ln\left[ 1 + \dfrac{1}{(n + 1)^2} \right] - \dfrac{1}{(n + 1)^2} < 0$ |
+| $⇓$  |         | $-1 ≤ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i^2} - 1 = \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{(i - 1)^2} - \dfrac{1}{n^2} < -\dfrac{1}{n^2}$ | $s_{n+1} - s_{n} = \ln \dfrac{(n + 1)^2}{n · (n + 1)} - \dfrac{1}{(n + 1)^2} = \ln\left[ 1 + \dfrac{1}{(n + 1)^2 - 1} \right] - \dfrac{1}{(n + 1)^2} > 0$ |
 | $⇓$  |         | $0 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \left[ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} \right]$ | $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \sum\limits_{i=1}^{n} \dfrac{1}{i^2}$ |
 
 ### 初等导函数
