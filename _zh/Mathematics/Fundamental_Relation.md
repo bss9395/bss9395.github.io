@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  基本关系式
-Update:  2021-03-20T15:36:00+08@中国-广东-湛江+08
+Update:  2021-03-23T12:35:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -172,14 +172,24 @@ $\min x_i \mathop{≤}\limits_{0<x_i} \mathop{\left[ \dfrac{1}{n + 1} · \sum\li
 
 ### 对函数不等式
 
-$\dfrac{x}{1 + x} \mathop{≤}\limits_{-1<x} \ln (1 + x) \mathop{≤}\limits_{-1<x} x$
+$\dfrac{x}{1 + x} \mathop{≤}\limits_{x>-1} \ln (1 + x) \mathop{≤}\limits_{x>-1} x$
 
-$\dfrac{1}{1 + x} \mathop{≤}\limits_{0<x} \ln \left( 1 + \dfrac{1}{x} \right) \mathop{≤}\limits_{0<x} \dfrac{1}{x}$
+$\dfrac{α}{x + α} \mathop{≤}\limits_{x·(x+α)>0} \ln\left( 1 + \dfrac{α}{x} \right) \mathop{≤}\limits_{x·(x+α)>0} \dfrac{α}{x}$
 
-|                                                             | $x∈(-1,+∞)$                                                  | $x∈(-1,+∞)$                                               | $x=0$                                | $x∈(+0,+∞)$                                                  |
-| :---------------------------------------------------------- | :----------------------------------------------------------- | :-------------------------------------------------------- | :----------------------------------- | :----------------------------------------------------------- |
-| $f (x) \mathop{≡≡≡}\limits_{-1<x} \ln (1 + x)$              | $1+θ∈(1,1+x)⊆(0, +∞)$                                        | $\dfrac{x}{1+θ}∈\left(\dfrac{x}{1+x},\dfrac{x}{1}\right)$ |                                      | $t ≡ \dfrac{1}{x}$                                           |
-| $\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} = \dfrac{1}{1 + x}$ | $\dfrac{f (x) - f (0)}{x - 0} = \dfrac{\ln (1 + x)}{x} = \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(0,x)} = \dfrac{1}{1 + θ}$ | $\dfrac{x}{1 + x} ≤ \ln (1 + x) ≤ x$                      | $\dfrac{x}{1 + x} = \ln (1 + x) = x$ | $\dfrac{1}{1 + x} ≤ \ln \left( 1 + \dfrac{1}{x} \right) ≤ \dfrac{1}{x}$ |
+$\dfrac{α}{1 + \dfrac{α}{x}} \mathop{≤}\limits_{x>0}^{x>-α} \ln\left( 1 + \dfrac{α}{x} \right)^{x} \mathop{≤}\limits_{x>0}^{x>-α} α$
+
+$\dfrac{α}{1 + \dfrac{α}{x}} \mathop{≥}\limits_{x<0}^{x<-α} \ln\left( 1 + \dfrac{α}{x} \right)^{x} \mathop{≥}\limits_{x<0}^{x<-α} α$
+
+$\dfrac{α}{x} \mathop{≤}\limits_{x·(x+α)>0} \ln\left( 1 + \dfrac{α}{x} \right)^{1+\frac{α}{x}} \mathop{≤}\limits_{x·(x+α)>0} \dfrac{α}{x} · \left( 1 + \dfrac{α}{x} \right)$
+
+|                                                              | $x∈(-1,+∞)$                                                  | $x∈(-1,+∞)$                                                  | $x=0$                                                        |
+| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| $f (x) \mathop{≡≡≡}\limits_{-1<x} \ln (1 + x)$               | $1+θ∈(1,1+x)⊆(0, +∞)$                                        | $\dfrac{x}{1+θ}∈\left(\dfrac{x}{1+x},\dfrac{x}{1}\right)$    |                                                              |
+| $\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} = \dfrac{1}{1 + x}$  | $\dfrac{f (x) - f (0)}{x - 0} = \dfrac{\ln (1 + x)}{x} = \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(0,x)} = \dfrac{1}{1 + θ}$ | $\dfrac{1}{1 + \dfrac{1}{x}} = \dfrac{x}{1 + x} \mathop{≤}\limits_{x>-1} \ln (1 + x) \mathop{≤}\limits_{x>-1} x$ | $\dfrac{1}{1 + \dfrac{1}{x}} = \dfrac{x}{1 + x} \mathop{=}\limits_{x=0} \ln (1 + x) \mathop{=}\limits_{x=0} x$ |
+|                                                              |                                                              |                                                              |                                                              |
+| $t \mathop{≡≡≡≡≡}\limits_{x·(x+α)>0}^{\frac{α}{x}>-1} \dfrac{α}{x}$ | $\dfrac{α}{x} · \dfrac{1}{1 + \dfrac{α}{x}} = \dfrac{α}{x + α} \mathop{≤}\limits_{x·(x+α)>0} \ln\left( 1 + \dfrac{α}{x} \right) \mathop{≤}\limits_{x·(x+α)>0} \dfrac{α}{x}$ | $\dfrac{α}{x} \mathop{≤}\limits_{x·(x+α)>0} \ln\left( 1 + \dfrac{α}{x} \right)^{1+\frac{α}{x}} \mathop{≤}\limits_{x·(x+α)>0} \dfrac{α}{x} · \left( 1 + \dfrac{α}{x} \right)$ | $α = 0$                                                      |
+| $x > 0$                                                      | $\dfrac{α}{1 + \dfrac{α}{x}} \mathop{≤}\limits_{x>0}^{x>-α} \ln\left( 1 + \dfrac{α}{x} \right)^{x} \mathop{≤}\limits_{x>0}^{x>-α} α$ |                                                              | $\dfrac{α}{1 + \dfrac{α}{x}} \mathop{=}\limits_{x>0}^{α=0} \ln\left( 1 + \dfrac{α}{x} \right)^{x} \mathop{=}\limits_{x>0}^{α=0} α$ |
+| $x < 0$                                                      | $\dfrac{α}{1 + \dfrac{α}{x}} \mathop{≥}\limits_{x<0}^{x<-α} \ln\left( 1 + \dfrac{α}{x} \right)^{x} \mathop{≥}\limits_{x<0}^{x<-α} α$ |                                                              | $\dfrac{α}{1 + \dfrac{α}{x}} \mathop{=}\limits_{x<0}^{α=0} \ln\left( 1 + \dfrac{α}{x} \right)^{x} \mathop{=}\limits_{x<0}^{α=0} α$ |
 
 ### 幂函数不等式
 

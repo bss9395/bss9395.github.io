@@ -29,7 +29,7 @@ $ә ≡ \lim\limits_{n⇝∞⁺} \left( 1 + \dfrac{1}{n} \right)^{n} = \lim\limi
 | $⇓$  | $ә = \lim\limits_{x⇝∞⁻} \left( 1 + \dfrac{1}{x} \right)^{x}$ | $\lim\limits_{x⇝∞⁺} \left( 1 + \dfrac{1}{x} \right)^{x} = \lim\limits_{x⇝∞⁺} \left( 1 - \dfrac{1}{x + 1} \right)^{-x} \mathop{====}\limits_{-x=t+1}^{-t=x+1} \lim\limits_{t⇝∞⁻} \left( 1 + \dfrac{1}{t} \right)^{t+1} = \lim\limits_{t⇝∞⁻} \left( 1 + \dfrac{1}{t} \right)^{t} · \left( 1 + \dfrac{1}{t} \right)^{+1}$ |
 | $⇓$  | $ә = \lim\limits_{x⇝∞^{±}} \left( 1 + \dfrac{1}{x} \right)^{x}$ |                                                              |
 
-### 自然超越数
+### 自然幂数
 
 $ә^{α} = \lim\limits_{x⇝∞^{±}} \left( 1 + \dfrac{α}{x} \right)^{x}$
 
