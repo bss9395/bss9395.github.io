@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  重要公式
-Update:  2021-03-18T00:47:00+08@中国-广东-湛江+08
+Update:  2021-03-24T01:12:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -68,6 +68,26 @@ $\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i^{n}} = \sup\limits_
 反例：数列$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right]$
 
 $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right] ≈ \lim\limits_{2 · n⇝∞⁺} \dfrac{0 + (-1 + 2) + (-3 + 4) + ··· + [-(2 · n + 1) + 2 · n]}{2 · n + 1} = \lim\limits_{n⇝∞⁺} \dfrac{n}{2 · n + 1} ⇝ \dfrac{1}{2} ≠ ∞ ⇜ \lim\limits_{n⇝∞⁺} (-i)^i · i$
+
+### 调和数列极限
+
+$1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \sum\limits_{i=1}^{n} \dfrac{1}{i}$
+
+$1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \sum\limits_{i=1}^{n} \dfrac{1}{i^2}$
+
+| $⇓$  |         | $\dfrac{x}{1 + x} \mathop{≤}\limits_{x>-1} \ln(1 + x) \mathop{≤}\limits_{x>-1} x$ | $\dfrac{1}{n^{m}} = \dfrac{1}{n^{m} - 1} · \dfrac{1}{1 + \dfrac{1}{n^{m} - 1}} ≤ \ln\left( 1 + \dfrac{1}{n^{m} - 1} \right) ≤ \dfrac{1}{n^{m} - 1}$ |
+| :--: | ------: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+|      |         |                                                              |                                                              |
+|      |         |                                                              | $\dfrac{α}{x + α} \mathop{≤}\limits_{x·(x+α)>0} \ln\left( 1 + \dfrac{α}{x} \right) \mathop{≤}\limits_{x·(x+α)>0} \dfrac{α}{x}$ |
+| $⇓$  | $m = 1$ | $\dfrac{1}{n} ≤ \ln\left( \dfrac{n}{n - 1} \right) ≤ \dfrac{1}{n - 1}$ | $\dfrac{1}{n} ≤ \ln(n) - \ln(n - 1) ≤ \dfrac{1}{n - 1}$      |
+| $⇓$  |         | $\sum\limits_{i=2}^{n} \dfrac{1}{i} ≤ \ln(n) ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i - 1}$ | $s_{n} ≡ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i}$        |
+| $⇓$  |         | $-1 ≤ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i} - 1 = \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} -\dfrac{1}{n} = -\dfrac{1}{n}$ | $s_{n+1} - s_{n} = \ln\left( \dfrac{n + 1}{n} \right) - \dfrac{1}{n + 1} = \ln\left( 1 + \dfrac{1}{n} \right) - \dfrac{1}{n + 1} > 0$ |
+| $⇓$  |         | $0 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \left[ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i} \right]$ | $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \sum\limits_{i=1}^{n} \dfrac{1}{i}$ |
+|      |         |                                                              |                                                              |
+| $⇓$  | $m = 2$ | $\dfrac{1}{n^{2}} ≤ \ln\left( \dfrac{n^2}{n^2 - 1} \right) ≤ \dfrac{1}{n^2 - 1}$ | $\dfrac{1}{n^2} ≤ [\ln(n) - \ln(n - 1)] + [\ln(n) - \ln(n + 1)] ≤ \dfrac{1}{n^2 - 1}$ |
+| $⇓$  |         | $\sum\limits_{i=2}^{n} \dfrac{1}{n^{2}} ≤ \ln(n) + [\ln(2) - \ln(n + 1)] = \ln \dfrac{2 · n}{n + 1} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{n^2 - 1}$ | $s_{n} ≡ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2}$ |
+| $⇓$  |         | $-1 ≤ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i^2} - 1 = \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{(i - 1)^2} - \dfrac{1}{n^2} < -\dfrac{1}{n^2}$ | $s_{n+1} - s_{n} = \ln \dfrac{(n + 1)^2}{n · (n + 1)} - \dfrac{1}{(n + 1)^2} = \ln\left[ 1 + \dfrac{1}{(n + 1)^2} \right] - \dfrac{1}{(n + 1)^2} < 0$ |
+| $⇓$  |         | $0 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \left[ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} \right]$ | $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \sum\limits_{i=1}^{n} \dfrac{1}{i^2}$ |
 
 ### 初等导函数
 
