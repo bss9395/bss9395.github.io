@@ -49,30 +49,29 @@ $\lim\limits_{x⇝∞^{±}} \dfrac{\sum\limits_{i=0}^{n} s_i · x^{i}}{\sum\limi
 
 ### 均值数列极限
 
-$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$
+$\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i ⇝ s \right]$
 
-$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n} · \sum\limits_{i=0}^n s_i · t_{n - i} \right] = \lim\limits_{n⇝∞⁺} (s_n · t_n) = \lim\limits_{n⇝∞⁺} s_n · \lim\limits_{n⇝∞⁺} t_n \mathop{⇝}\limits_{t≠∞}^{s≠∞} s·t$
+$\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n - i} ⇝ s·t \right]$
 
-$\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i} = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$
+$\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} \sqrt[n+1]{\sum\limits_{i=0}^{n} s_i} ⇝ s \right]$
 
-$\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i^{n}} = \sup\limits_{0≤i} s_i$
+$\lim\limits_{n⇝∞⁺} \sqrt[n+1]{\sum\limits_{i=0}^{n} s_i^{n+1}} = \sup\limits_{0≤n} s_n$
 
-| $⇓$  |                                 $\lim\limits_{n⇝∞⁺} s_n ⇝ s$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i - s_n \right| ≤ \left| \dfrac{1}{n + 1} · \sum\limits_{i=0}^{N-1} (s_i - s_n) \right| + \left| \dfrac{1}{n + 1} · \sum\limits_{i=N}^{n} (s_i - s_n) \right| ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · ε_1 ≤ ε$ |
+| $⇓$  |                                 $\lim\limits_{n⇝∞⁺} s_n ⇝ s$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i - s \right| ≤ \left| \dfrac{1}{n + 1} · \sum\limits_{i=0}^{N-1} (s_i - s) \right| + \left| \dfrac{1}{n + 1} · \sum\limits_{i=N}^{n} (s_i - s) \right| ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · ε_1 ≤ ε$ |
 | :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
 | $⇓$  |                                $\lim\limits_{n⇝∞⁺} s_n ⇝ ∞⁺$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i = \dfrac{1}{n + 1} · \sum\limits_{i=0}^{N-1} s_i + \dfrac{1}{n + 1} · \sum\limits_{i=N}^{n} s_i ≥ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · \min\limits_{N≤m≤n} s_m = s_{m⇝∞⁺} ≥ +ε$ |
 | $⇓$  |                                $\lim\limits_{n⇝∞⁺} s_n ⇝ ∞⁻$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i = \dfrac{1}{n + 1} · \sum\limits_{i=0}^{N-1} s_i + \dfrac{1}{n + 1} · \sum\limits_{i=N}^{n} s_i ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · \max\limits_{N≤m≤n} s_m = s_{m⇝∞⁺} ≤ -ε$ |
-| $⇓$  |                                                              |      | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} \left[ \dfrac{n + 1}{n} · \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i \right] = \lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i \right] = \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits^{s≠∞} s$ |
+| $⇓$  |                           $\lim\limits_{n⇝∞⁺} s_n ⇝ s,∞^{±}$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n} · \sum\limits_{i=0}^n s_i = \lim\limits_{n⇝∞⁺} \dfrac{n}{n + 1} · \dfrac{1}{n} · \sum\limits_{i=0}^{n} s_i = \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i ⇝ s,∞^{±}$ |
 |      |                                                              |      |                                                              |
-| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ 0 \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) \right] ≤ \lim\limits_{n⇝∞⁺} \left[ \dfrac{\sup |t_i|}{n + 1} · \sum\limits_{i=0}^{n} s_i \right] = \sup |t_i| · \lim\limits_{n⇝∞⁺} s_n ⇝ 0$ |
-| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) \right] = \lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i - s_n) · t_{n-i} + \dfrac{s_n}{n + 1} · \sum\limits_{i=0}^{n} t_{n-i} \right] = \lim\limits_{n⇝∞⁺} (s_n · t_n) ⇝ s · t$ |
-| $⇓$  |                                                              |      | $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (s_i · t_{n-i}) \right] = \lim\limits_{n⇝∞⁺} (s_n · t_n) = \lim\limits_{n⇝∞⁺} s_n · \lim\limits_{n⇝∞⁺} t_n \mathop{⇝}\limits_{t≠∞}^{s≠∞} s · t$ |
-
-| $⇓$  | $\lim\limits_{n⇝∞⁺} s_n = \lim\limits_{n⇝∞⁺} \dfrac{1}{\dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} \dfrac{1}{s_i}}$ | $\dfrac{1}{\dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} \dfrac{1}{s_i}} = \dfrac{n + 1}{\sum\limits_{i=0}^{n} \dfrac{1}{s_i}} ≤ \left[\sum\limits_{i=0}^{n} s_i\right]^{\frac{1}{n+1}} ≤ \dfrac{\sum\limits_{i=0}^{n+1} s_i}{n + 1}$ | $\lim\limits_{n⇝∞⁺} \dfrac{\sum\limits_{i=0}^{n+1} s_i}{n + 1} = \lim\limits_{n⇝∞⁺} s_n$ |
-| :--: | -----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------- |
-| $⇓$  |                                                              | $\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i} = \lim\limits_{n⇝∞⁺} \left[\sum\limits_{i=0}^{n} s_i\right]^{\frac{1}{n}·\frac{n}{n+1}} = \lim\limits_{n⇝∞⁺} s_n$ |                                                              |
-|      |                                                              |                                                              |                                                              |
-| $⇓$  | $\sup\limits_{0≤n} s_n = \lim\limits_{n⇝∞⁺} \max\limits_{0≤i≤n} s_i$ | $\max\limits_{0≤i≤n} s_i = \sqrt[n]{\left(\max\limits_{0≤i≤n} s_i\right)^{n}} ≤ \sqrt[n]{\sum\limits_{i=0}^{n} s_i^{n}} ≤ \sqrt[n]{n · \left(\max\limits_{0≤i≤n} s_i\right)^{n}} = \sqrt[n]{n} · \max\limits_{0≤i≤n} s_i$ | $\lim\limits_{n⇝∞⁺} \sqrt[n]{n} ⇝ 1$                         |
-| $⇓$  |                                                              | $\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i^{n}} = \sup\limits_{0≤n} s_n$ |                                                              |
+| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ 0 \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) ≤ \sup |t_i| · \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i ⇝ 0$ |
+| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) = \lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i - s) · t_{n-i} + \dfrac{s}{n + 1} · \sum\limits_{i=0}^{n} t_{n-i} \right] ⇝ 0 + s · t$ |
+| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) = \lim\limits_{n⇝∞⁺} \dfrac{n}{n + 1} · \dfrac{1}{n} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) = \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (s_i · t_{n-i}) ⇝ s · t$ |
+|      |                                                              |      |                                                              |
+| $⇓$  |                                                              |      | $\dfrac{1}{\dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} \dfrac{1}{s_i}} = \dfrac{n + 1}{\sum\limits_{i=0}^{n} \dfrac{1}{s_i}} ≤ \left[\sum\limits_{i=0}^{n} s_i\right]^{\frac{1}{n+1}} ≤ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i$ |
+| $⇓$  |                                 $\lim\limits_{n⇝∞⁺} s_n ⇝ s$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i} = \lim\limits_{n⇝∞⁺} \left[\sum\limits_{i=0}^{n} s_i\right]^{\frac{1}{n}·\frac{n}{n+1}} = \lim\limits_{n⇝∞⁺} \sqrt[n+1]{\sum\limits_{i=0}^{n} s_i} ⇝ s$ |
+|      |                                                              |      |                                                              |
+| $⇓$  |                                                              |      | $\max\limits_{0≤i≤n} s_i = \sqrt[n+1]{\left(\max\limits_{0≤i≤n} s_i\right)^{n+1}} ≤ \sqrt[n+1]{\sum\limits_{i=0}^{n} s_i^{n+1}} ≤ \sqrt[n+1]{(n + 1) · \left(\max\limits_{0≤i≤n} s_i\right)^{n+1}} = \sqrt[n+1]{n+1} · \max\limits_{0≤i≤n} s_i$ |
+| $⇓$  | $\sup\limits_{0≤n} s_n = \lim\limits_{n⇝∞⁺} \max\limits_{0≤i≤n} s_i$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \sqrt[n+1]{\sum\limits_{i=0}^{n} s_i^{n+1}} = \sup\limits_{0≤n} s_n$ |
 
 反例：数列$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right]$
 
@@ -82,19 +81,19 @@ $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i 
 
 $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \sum\limits_{i=1}^{n} \dfrac{1}{i}$
 
-| $⇓$  |         | $\dfrac{x}{1 + x} \mathop{≤}\limits_{x>-1} \ln(1 + x) \mathop{≤}\limits_{x>-1} x$ | $⇒$  | $\dfrac{1}{n^{m}} = \dfrac{1}{n^{m} - 1} · \dfrac{1}{1 + \dfrac{1}{n^{m} - 1}} ≤ \ln\left( 1 + \dfrac{1}{n^{m} - 1} \right) ≤ \dfrac{1}{n^{m} - 1}$ |
-| :--: | ------: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  |         | $\dfrac{1}{n^m} ≤ \ln\dfrac{n^m}{n^m - 1} ≤ \dfrac{1}{n^m - 1}$ |      | $\dfrac{α}{x + α} \mathop{≤}\limits_{x·(x+α)>0} \ln\left( 1 + \dfrac{α}{x} \right) \mathop{≤}\limits_{x·(x+α)>0} \dfrac{α}{x}$ |
-|      |         |                                                              |      |                                                              |
-| $⇓$  | $m = 1$ | $\dfrac{1}{n} ≤ \ln\left( \dfrac{n}{n - 1} \right) ≤ \dfrac{1}{n - 1}$ | $⇒$  | $\dfrac{1}{n} ≤ \ln(n) - \ln(n - 1) ≤ \dfrac{1}{n - 1}$      |
-| $⇓$  |         | $\sum\limits_{i=2}^{n} \dfrac{1}{i} ≤ \ln(n) ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i - 1}$ |      | $s_{n} ≡ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i}$        |
-| $⇓$  |         | $-1 ≤ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i} - 1 = \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} -\dfrac{1}{n} = -\dfrac{1}{n}$ |      | $s_{n+1} - s_{n} = \ln\left( \dfrac{n + 1}{n} \right) - \dfrac{1}{n + 1} = \ln\left( 1 + \dfrac{1}{n} \right) - \dfrac{1}{n + 1} > 0$ |
-| $⇓$  |         | $0 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \left[ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i} \right]$ | $⇒$  | $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \sum\limits_{i=1}^{n} \dfrac{1}{i}$ |
-|      |         |                                                              |      |                                                              |
-| $⇓$  | $m = 2$ | $\dfrac{1}{n^{2}} ≤ \ln\left( \dfrac{n^2}{n^2 - 1} \right) ≤ \dfrac{1}{n^2 - 1}$ | $⇒$  | $\dfrac{1}{n^2} ≤ [\ln(n) - \ln(n - 1)] + [\ln(n) - \ln(n + 1)] ≤ \dfrac{1}{n^2 - 1}$ |
-| $⇓$  |         | $\sum\limits_{i=2}^{n} \dfrac{1}{n^{2}} ≤ \ln(n) + [\ln(2) - \ln(n + 1)] = \ln \dfrac{2 · n}{n + 1} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{n^2 - 1}$ |      | $s_{n} ≡ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2}$ |
-| $⇓$  |         | $-1 ≤ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i^2} - 1 = \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{(i - 1)^2} - \dfrac{1}{n^2} < -\dfrac{1}{n^2}$ |      | $s_{n+1} - s_{n} = \ln \dfrac{(n + 1)^2}{n · (n + 1)} - \dfrac{1}{(n + 1)^2} = \ln\left[ 1 + \dfrac{1}{(n + 1)^2 - 1} \right] - \dfrac{1}{(n + 1)^2} > 0$ |
-| $⇓$  |         | $\dfrac{-1}{\ln 2} ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{-1}{\ln \dfrac{2 · n}{n + 1}} ≤ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \left[ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} \right] ≤ \lim\limits_{n⇝∞^{+}} \dfrac{-1}{n^2 · \ln \dfrac{2 · n}{n + 1}} ⇝ 0$ |      |                                                              |
+| $⇓$  | $\dfrac{x}{1 + x} \mathop{≤}\limits_{x>-1} \ln(1 + x) \mathop{≤}\limits_{x>-1} x$ | $⇒$  | $\dfrac{1}{n^{m}} = \dfrac{1}{n^{m} - 1} · \dfrac{1}{1 + \dfrac{1}{n^{m} - 1}} ≤ \ln\left( 1 + \dfrac{1}{n^{m} - 1} \right) ≤ \dfrac{1}{n^{m} - 1}$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\dfrac{1}{n^m} ≤ \ln\dfrac{n^m}{n^m - 1} ≤ \dfrac{1}{n^m - 1}$ |      | $\dfrac{α}{x + α} \mathop{≤}\limits_{x·(x+α)>0} \ln\left( 1 + \dfrac{α}{x} \right) \mathop{≤}\limits_{x·(x+α)>0} \dfrac{α}{x}$ |
+|      |                                                              |      |                                                              |
+| $⇓$  | $\dfrac{1}{n} ≤ \ln\left( \dfrac{n}{n - 1} \right) ≤ \dfrac{1}{n - 1}$ | $⇒$  | $\dfrac{1}{n} ≤ \ln(n) - \ln(n - 1) ≤ \dfrac{1}{n - 1}$      |
+| $⇓$  | $\sum\limits_{i=2}^{n} \dfrac{1}{i} ≤ \ln(n) ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i - 1}$ |      | $s_{n} ≡ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i}$        |
+| $⇓$  | $-1 ≤ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i} - 1 = \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} -\dfrac{1}{n} = -\dfrac{1}{n}$ |      | $s_{n+1} - s_{n} = \ln\left( \dfrac{n + 1}{n} \right) - \dfrac{1}{n + 1} = \ln\left( 1 + \dfrac{1}{n} \right) - \dfrac{1}{n + 1} > 0$ |
+| $⇓$  | $0 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \left[ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i} \right]$ | $⇒$  | $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \sum\limits_{i=1}^{n} \dfrac{1}{i}$ |
+|      |                                                              |      |                                                              |
+| $⇓$  | $\dfrac{1}{n^{2}} ≤ \ln\left( \dfrac{n^2}{n^2 - 1} \right) ≤ \dfrac{1}{n^2 - 1}$ | $⇒$  | $\dfrac{1}{n^2} ≤ [\ln(n) - \ln(n - 1)] + [\ln(n) - \ln(n + 1)] ≤ \dfrac{1}{n^2 - 1}$ |
+| $⇓$  | $\sum\limits_{i=2}^{n} \dfrac{1}{n^{2}} ≤ \ln(n) + [\ln(2) - \ln(n + 1)] = \ln \dfrac{2 · n}{n + 1} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{n^2 - 1}$ |      | $s_{n} ≡ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2}$ |
+| $⇓$  | $-1 ≤ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i^2} - 1 = \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{(i - 1)^2} - \dfrac{1}{n^2} < -\dfrac{1}{n^2}$ |      | $s_{n+1} - s_{n} = \ln \dfrac{(n + 1)^2}{n · (n + 1)} - \dfrac{1}{(n + 1)^2} = \ln\left[ 1 + \dfrac{1}{(n + 1)^2 - 1} \right] - \dfrac{1}{(n + 1)^2} > 0$ |
+| $⇓$  | $\dfrac{-1}{\ln 2} ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{-1}{\ln \dfrac{2 · n}{n + 1}} ≤ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \left[ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} \right] ≤ \lim\limits_{n⇝∞^{+}} \dfrac{-1}{n^2 · \ln \dfrac{2 · n}{n + 1}} ⇝ 0$ |      |                                                              |
 
 ### 初等导函数
 

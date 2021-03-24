@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-03-18T22:11:00+08@中国-广东-湛江+08
+Update:  2021-03-24T17:43:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -79,6 +79,24 @@ Link  :
 |     单调递减 | $f^{↘} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↘} (x_1) ≥ f^{↘} (x_2)]]$ |
 | 严格单调递增 | $f^{↑} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↑} (x_1) < f^{↑} (x_2)]]$ |
 | 严格单调递减 | $f^{↓} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↓} (x_1) > f^{↓} (x_2)]]$ |
+
+上确界与下确界的运算性质。
+
+$\sup\limits_{x} f(x) = -\inf\limits_{x} [-f(x)]$
+
+$\inf\limits_{x} f(x) = -\sup\limits_{x} [-f(x)]$
+
+$\sup\limits_{x} [f(x) + g(x)] ≤ \sup\limits_{x} f(x) + \sup\limits_{x} g(x)$
+
+$\inf\limits_{x} [f(x) + g(x)] ≥ \inf\limits_{x} f(x) + \inf\limits_{x} g(x)$
+
+$\varlimsup\limits_{x⇝x_0} [f(x) + g(x)] ≤ \varlimsup\limits_{x⇝x_0} f(x) + \varlimsup\limits_{x⇝x_0} g(x)$
+
+$\varliminf\limits_{x⇝x_0} [f(x) + g(x)] ≥ \varliminf\limits_{x⇝x_0} f(x) + \varliminf\limits_{x⇝x_0} g(x)$
+
+| $∀x; f(x) ≤ \sup\limits_{x} f(x)$ | $∀x; [f(x) + g(x)] ≤ \sup\limits_{x} f(x) + \sup\limits_{x} g(x)$ | $\sup\limits_{x} [f(x) + g(x)] ≤ \sup\limits_{x} f(x) + \sup\limits_{x} g(x)$ | $\varlimsup\limits_{x⇝x_0} [f(x) + g(x)] ≤ \varlimsup\limits_{x⇝x_0} f(x) + \varlimsup\limits_{x⇝x_0} g(x)$ |
+| :-------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | ------------------------------------------------------------ |
+| $∀x; f(x) ≥ \inf\limits_{x} f(x)$ | $∀x; [f(x) + g(x)] ≥ \inf\limits_{x} f(x) + \inf\limits_{x} g(x)$ | $\inf\limits_{x} [f(x) + g(x)] ≥ \inf\limits_{x} f(x) + \inf\limits_{x} g(x)$ | $\varliminf\limits_{x⇝x_0} [f(x) + g(x)] ≥ \varliminf\limits_{x⇝x_0} f(x) + \varliminf\limits_{x⇝x_0} g(x)$ |
 
 典例：函数$f (x) = \sin x$在区间$\left( 0, \dfrac{π}{2} \right)$上的取值范围为$0 < f (x) < 1$，其下确界为$0$，其上确界为$1$。
 
