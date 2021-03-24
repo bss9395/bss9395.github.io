@@ -82,22 +82,19 @@ $\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i 
 
 $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \sum\limits_{i=1}^{n} \dfrac{1}{i}$
 
-$1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \sum\limits_{i=1}^{n} \dfrac{1}{i^2}$
-
-| $⇓$  |         | $\dfrac{x}{1 + x} \mathop{≤}\limits_{x>-1} \ln(1 + x) \mathop{≤}\limits_{x>-1} x$ | $\dfrac{1}{n^{m}} = \dfrac{1}{n^{m} - 1} · \dfrac{1}{1 + \dfrac{1}{n^{m} - 1}} ≤ \ln\left( 1 + \dfrac{1}{n^{m} - 1} \right) ≤ \dfrac{1}{n^{m} - 1}$ |
-| :--: | ------: | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| $⇓$  |         | $\dfrac{1}{n^m} ≤ \ln\dfrac{n^m}{n^m - 1} ≤ \dfrac{1}{n^m - 1}$ |                                                              |
-|      |         |                                                              |                                                              |
-|      |         |                                                              | $\dfrac{α}{x + α} \mathop{≤}\limits_{x·(x+α)>0} \ln\left( 1 + \dfrac{α}{x} \right) \mathop{≤}\limits_{x·(x+α)>0} \dfrac{α}{x}$ |
-| $⇓$  | $m = 1$ | $\dfrac{1}{n} ≤ \ln\left( \dfrac{n}{n - 1} \right) ≤ \dfrac{1}{n - 1}$ | $\dfrac{1}{n} ≤ \ln(n) - \ln(n - 1) ≤ \dfrac{1}{n - 1}$      |
-| $⇓$  |         | $\sum\limits_{i=2}^{n} \dfrac{1}{i} ≤ \ln(n) ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i - 1}$ | $s_{n} ≡ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i}$        |
-| $⇓$  |         | $-1 ≤ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i} - 1 = \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} -\dfrac{1}{n} = -\dfrac{1}{n}$ | $s_{n+1} - s_{n} = \ln\left( \dfrac{n + 1}{n} \right) - \dfrac{1}{n + 1} = \ln\left( 1 + \dfrac{1}{n} \right) - \dfrac{1}{n + 1} > 0$ |
-| $⇓$  |         | $0 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \left[ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i} \right]$ | $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \sum\limits_{i=1}^{n} \dfrac{1}{i}$ |
-|      |         |                                                              |                                                              |
-| $⇓$  | $m = 2$ | $\dfrac{1}{n^{2}} ≤ \ln\left( \dfrac{n^2}{n^2 - 1} \right) ≤ \dfrac{1}{n^2 - 1}$ | $\dfrac{1}{n^2} ≤ [\ln(n) - \ln(n - 1)] + [\ln(n) - \ln(n + 1)] ≤ \dfrac{1}{n^2 - 1}$ |
-| $⇓$  |         | $\sum\limits_{i=2}^{n} \dfrac{1}{n^{2}} ≤ \ln(n) + [\ln(2) - \ln(n + 1)] = \ln \dfrac{2 · n}{n + 1} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{n^2 - 1}$ | $s_{n} ≡ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2}$ |
-| $⇓$  |         | $-1 ≤ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i^2} - 1 = \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{(i - 1)^2} - \dfrac{1}{n^2} < -\dfrac{1}{n^2}$ | $s_{n+1} - s_{n} = \ln \dfrac{(n + 1)^2}{n · (n + 1)} - \dfrac{1}{(n + 1)^2} = \ln\left[ 1 + \dfrac{1}{(n + 1)^2 - 1} \right] - \dfrac{1}{(n + 1)^2} > 0$ |
-| $⇓$  |         | $0 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \left[ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} \right]$ | $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \sum\limits_{i=1}^{n} \dfrac{1}{i^2}$ |
+| $⇓$  |         | $\dfrac{x}{1 + x} \mathop{≤}\limits_{x>-1} \ln(1 + x) \mathop{≤}\limits_{x>-1} x$ | $⇒$  | $\dfrac{1}{n^{m}} = \dfrac{1}{n^{m} - 1} · \dfrac{1}{1 + \dfrac{1}{n^{m} - 1}} ≤ \ln\left( 1 + \dfrac{1}{n^{m} - 1} \right) ≤ \dfrac{1}{n^{m} - 1}$ |
+| :--: | ------: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  |         | $\dfrac{1}{n^m} ≤ \ln\dfrac{n^m}{n^m - 1} ≤ \dfrac{1}{n^m - 1}$ |      | $\dfrac{α}{x + α} \mathop{≤}\limits_{x·(x+α)>0} \ln\left( 1 + \dfrac{α}{x} \right) \mathop{≤}\limits_{x·(x+α)>0} \dfrac{α}{x}$ |
+|      |         |                                                              |      |                                                              |
+| $⇓$  | $m = 1$ | $\dfrac{1}{n} ≤ \ln\left( \dfrac{n}{n - 1} \right) ≤ \dfrac{1}{n - 1}$ | $⇒$  | $\dfrac{1}{n} ≤ \ln(n) - \ln(n - 1) ≤ \dfrac{1}{n - 1}$      |
+| $⇓$  |         | $\sum\limits_{i=2}^{n} \dfrac{1}{i} ≤ \ln(n) ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i - 1}$ |      | $s_{n} ≡ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i}$        |
+| $⇓$  |         | $-1 ≤ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i} - 1 = \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i - 1} -\dfrac{1}{n} = -\dfrac{1}{n}$ |      | $s_{n+1} - s_{n} = \ln\left( \dfrac{n + 1}{n} \right) - \dfrac{1}{n + 1} = \ln\left( 1 + \dfrac{1}{n} \right) - \dfrac{1}{n + 1} > 0$ |
+| $⇓$  |         | $0 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \left[ \ln(n) - \sum\limits_{i=1}^{n} \dfrac{1}{i} \right]$ | $⇒$  | $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \sum\limits_{i=1}^{n} \dfrac{1}{i}$ |
+|      |         |                                                              |      |                                                              |
+| $⇓$  | $m = 2$ | $\dfrac{1}{n^{2}} ≤ \ln\left( \dfrac{n^2}{n^2 - 1} \right) ≤ \dfrac{1}{n^2 - 1}$ | $⇒$  | $\dfrac{1}{n^2} ≤ [\ln(n) - \ln(n - 1)] + [\ln(n) - \ln(n + 1)] ≤ \dfrac{1}{n^2 - 1}$ |
+| $⇓$  |         | $\sum\limits_{i=2}^{n} \dfrac{1}{n^{2}} ≤ \ln(n) + [\ln(2) - \ln(n + 1)] = \ln \dfrac{2 · n}{n + 1} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{n^2 - 1}$ |      | $s_{n} ≡ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2}$ |
+| $⇓$  |         | $-1 ≤ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} ≤ \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{i^2} - 1 = \sum\limits_{i=2}^{n} \dfrac{1}{i^2 - 1} - \sum\limits_{i=2}^{n} \dfrac{1}{(i - 1)^2} - \dfrac{1}{n^2} < -\dfrac{1}{n^2}$ |      | $s_{n+1} - s_{n} = \ln \dfrac{(n + 1)^2}{n · (n + 1)} - \dfrac{1}{(n + 1)^2} = \ln\left[ 1 + \dfrac{1}{(n + 1)^2 - 1} \right] - \dfrac{1}{(n + 1)^2} > 0$ |
+| $⇓$  |         | $\dfrac{-1}{\ln 2} ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{-1}{\ln \dfrac{2 · n}{n + 1}} ≤ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln \dfrac{2 · n}{n + 1}} · \left[ \ln \dfrac{2 · n}{n + 1} - \sum\limits_{i=1}^{n} \dfrac{1}{i^2} \right] ≤ \lim\limits_{n⇝∞^{+}} \dfrac{-1}{n^2 · \ln \dfrac{2 · n}{n + 1}} ⇝ 0$ |      |                                                              |
 
 ### 初等导函数
 
