@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  重要公式
-Update:  2021-03-24T02:23:00+08@中国-广东-湛江+08
+Update:  2021-03-25T01:52:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -49,6 +49,12 @@ $\lim\limits_{x⇝∞^{±}} \dfrac{\sum\limits_{i=0}^{n} s_i · x^{i}}{\sum\limi
 
 ### 均值数列极限
 
+$s_n^{↘} = \inf\limits_{i} s_i ≤ \mathop{\mathrm{ave}}\limits_{i} s_i ≤ \sup\limits_{i} s_i = s_n^{↗}$
+
+$\dfrac{s_n^{↘}}{\mathop{\mathrm{ave}}\limits_{i} t_i} = \dfrac{\inf\limits_{i} s_i}{\mathop{\mathrm{ave}}\limits_{i} t_i} ≤ \dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{\mathop{\mathrm{ave}}\limits_{i} t_i} ≤ \dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{\inf\limits_{i} t_i} = \dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{t_n^{↘}}$
+
+$\dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{t_n^{↗}} = \dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{\sup\limits_{i} t_i} ≤ \dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{\mathop{\mathrm{ave}}\limits_{i} t_i} ≤ \dfrac{\sup\limits_{i} s_i}{\mathop{\mathrm{ave}}\limits_{i} t_i} = \dfrac{s_n^{↗}}{\mathop{\mathrm{ave}}\limits_{i} t_i}$
+
 $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i ⇝ s \right]$
 
 $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n - i} ⇝ s·t \right]$
@@ -56,6 +62,8 @@ $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝�
 $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} \sqrt[n+1]{\sum\limits_{i=0}^{n} s_i} ⇝ s \right]$
 
 $\lim\limits_{n⇝∞⁺} \sqrt[n+1]{\sum\limits_{i=0}^{n} s_i^{n+1}} = \sup\limits_{0≤n} s_n$
+
+$\left[ \lim\limits_{n⇝∞^{+}} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞^{+}} t_n ⇝ t \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} \dfrac{S_{n+1}}{T_{n+1}} = \lim\limits_{n⇝∞^{+}} \dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{\mathop{\mathrm{ave}}\limits_{i} t_i} = \lim\limits_{n⇝∞^{+}} \dfrac{\sum\limits_{i=0}^{n} s_i}{n + 1} · \dfrac{n+1}{\sum\limits_{i=0}^{n} t_i} ⇝ \dfrac{s}{t} \right]$
 
 | $⇓$  |                                 $\lim\limits_{n⇝∞⁺} s_n ⇝ s$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i - s \right| ≤ \left| \dfrac{1}{n + 1} · \sum\limits_{i=0}^{N-1} (s_i - s) \right| + \left| \dfrac{1}{n + 1} · \sum\limits_{i=N}^{n} (s_i - s) \right| ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · ε_1 ≤ ε$ |
 | :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |

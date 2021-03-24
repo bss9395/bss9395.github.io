@@ -72,8 +72,8 @@ Link  :
 |   严格极大值 | $f (x_0) ≡ \max\limits_{x∈X⊆Y} f (x)$                        | $[ ∃x_0∈X;∀x∈X \backslash x_0; f (x_0) > f (x) ]$            |
 |   严格极小值 | $f (x_0) ≡ \min\limits_{x∈X⊆Y} f (x)$                        | $[ ∃x_0∈X;∀x∈X \backslash x_0; f (x_0) < f (x) ]$            |
 |              |                                                              |                                                              |
-|       上极限 | $s ≡ \varlimsup\limits_{x⇝x_0} f (x) ≡ \lim\limits_{x⇝x_0} \sup\limits_{t∈(x_0^{±},x^{±})} f (t)$ |                                                              |
-|       下极限 | $s ≡ \varliminf\limits_{x⇝x_0} f (x) ≡ \lim\limits_{x⇝x_0} \inf\limits_{t∈(x_0^{±},x^{±})} f (t)$ |                                                              |
+|       上极限 | $s ≡ \varlimsup\limits_{x⇝x_0} f (x) ≡ \lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(x_0,δ)} f(x)$ |                                                              |
+|       下极限 | $s ≡ \varliminf\limits_{x⇝x_0} f (x) ≡ \lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{U}(x_0,δ)} f(x)$ |                                                              |
 |              |                                                              |                                                              |
 |     单调递增 | $f^{↗} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↗} (x_1) ≤ f^{↗} (x_2)]]$ |
 |     单调递减 | $f^{↘} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↘} (x_1) ≥ f^{↘} (x_2)]]$ |
@@ -82,25 +82,29 @@ Link  :
 
 上确界与下确界的运算性质。
 
-$\sup\limits_{x} f(x) = -\inf\limits_{x} [-f(x)]$
+$\sup\limits_{x∈X} f(x) = -\inf\limits_{x∈X} [-f(x)]$
 
-$\inf\limits_{x} f(x) = -\sup\limits_{x} [-f(x)]$
+$\inf\limits_{x∈X} f(x) = -\sup\limits_{x∈X} [-f(x)]$
 
-$\sup\limits_{x} [f(x) + g(x)] ≤ \sup\limits_{x} f(x) + \sup\limits_{x} g(x)$
+$\sup\limits_{x∈X} [f(x) + g(x)] ≤ \sup\limits_{x∈X} f(x) + \sup\limits_{x∈X} g(x)$
 
-$\inf\limits_{x} [f(x) + g(x)] ≥ \inf\limits_{x} f(x) + \inf\limits_{x} g(x)$
+$\inf\limits_{x∈X} [f(x) + g(x)] ≥ \inf\limits_{x∈X} f(x) + \inf\limits_{x∈X} g(x)$
 
 $\varlimsup\limits_{x⇝x_0} [f(x) + g(x)] ≤ \varlimsup\limits_{x⇝x_0} f(x) + \varlimsup\limits_{x⇝x_0} g(x)$
 
 $\varliminf\limits_{x⇝x_0} [f(x) + g(x)] ≥ \varliminf\limits_{x⇝x_0} f(x) + \varliminf\limits_{x⇝x_0} g(x)$
 
-| $∀x; f(x) ≤ \sup\limits_{x} f(x)$ | $∀x; [f(x) + g(x)] ≤ \sup\limits_{x} f(x) + \sup\limits_{x} g(x)$ | $\sup\limits_{x} [f(x) + g(x)] ≤ \sup\limits_{x} f(x) + \sup\limits_{x} g(x)$ | $\varlimsup\limits_{x⇝x_0} [f(x) + g(x)] ≤ \varlimsup\limits_{x⇝x_0} f(x) + \varlimsup\limits_{x⇝x_0} g(x)$ |
-| :-------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| $∀x; f(x) ≥ \inf\limits_{x} f(x)$ | $∀x; [f(x) + g(x)] ≥ \inf\limits_{x} f(x) + \inf\limits_{x} g(x)$ | $\inf\limits_{x} [f(x) + g(x)] ≥ \inf\limits_{x} f(x) + \inf\limits_{x} g(x)$ | $\varliminf\limits_{x⇝x_0} [f(x) + g(x)] ≥ \varliminf\limits_{x⇝x_0} f(x) + \varliminf\limits_{x⇝x_0} g(x)$ |
+| $∀x∈X; f(x) ≤ \sup\limits_{x∈X} f(x)$ | $∀x∈X; -f(x) ≥ -\sup\limits_{x∈X} f(x)$                      | $\inf\limits_{x∈X} [-f(x)] = -\sup\limits_{x∈X} f(x)$        | $\sup\limits_{x∈X} f(x) = -\inf\limits_{x∈X} [-f(x)]$        |
+| :------------------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- | ------------------------------------------------------------ |
+| $∀x∈X; f(x) ≥ \inf\limits_{x∈X} f(x)$ | $∀x∈X; -f(x) ≤ -\inf\limits_{x∈X} f(x)$                      | $\sup\limits_{x∈X} [-f(x)] = -\inf\limits_{x∈X} f(x)$        | $\inf\limits_{x∈X} f(x) = -\sup\limits_{x∈X} [-f(x)]$        |
+| $∀x∈X; f(x) ≤ \sup\limits_{x∈X} f(x)$ | $∀x∈X; [f(x) + g(x)] ≤ \sup\limits_{x∈X} f(x) + \sup\limits_{x∈X} g(x)$ | $\sup\limits_{x∈X} [f(x) + g(x)] ≤ \sup\limits_{x∈X} f(x) + \sup\limits_{x∈X} g(x)$ | $\varlimsup\limits_{x⇝x_0} [f(x) + g(x)] ≤ \varlimsup\limits_{x⇝x_0} f(x) + \varlimsup\limits_{x⇝x_0} g(x)$ |
+| $∀x∈X; f(x) ≥ \inf\limits_{x∈X} f(x)$ | $∀x∈X; [f(x) + g(x)] ≥ \inf\limits_{x∈X} f(x) + \inf\limits_{x∈X} g(x)$ | $\inf\limits_{x∈X} [f(x) + g(x)] ≥ \inf\limits_{x∈X} f(x) + \inf\limits_{x∈X} g(x)$ | $\varliminf\limits_{x⇝x_0} [f(x) + g(x)] ≥ \varliminf\limits_{x⇝x_0} f(x) + \varliminf\limits_{x⇝x_0} g(x)$ |
 
 典例：函数$f (x) = \sin x$在区间$\left( 0, \dfrac{π}{2} \right)$上的取值范围为$0 < f (x) < 1$，其下确界为$0$，其上确界为$1$。
 
 典例：函数$f (x) = \dfrac{1}{x}$在区间$(0, ∞⁺)$上的取值范围为$0 < f (x)$，其下确界为$0$，其上确界为$∞⁺$。
+
+典例：函数$f(x) = \sin x$在区间$(0, π)$上的下确界为$-1$且上确界为$+1$，函数$g(x) = -\sin x$在区间$(0, π)$上的下确界为$-1$且上确界为$+1$，函数$f(x) + g(x)$在区间$(0, π)$上为$0$。
 
 | $∀x∈[X_0, X_1]; | f (x) | ≤ ε$ | $⇔$  | $\sup\limits_{x∈[X_0,X_1]} | f (x) | ≤ ε$ |                                                     | $∃x∈[X_0,X_1]; | f (x) | > ε$ | $⇔$  | $\sup\limits_{x∈[X_0,X_1]} | f (x) | > ε$ |
 | -----------------------------: | :--: | :---------------------------------------- | :-------------------------------------------------: | ----------------------------: | :--: | :---------------------------------------- |
