@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  重要公式
-Update:  2021-03-25T01:52:00+08@中国-广东-湛江+08
+Update:  2021-03-26T03:56:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -49,41 +49,42 @@ $\lim\limits_{x⇝∞^{±}} \dfrac{\sum\limits_{i=0}^{n} s_i · x^{i}}{\sum\limi
 
 ### 均值数列极限
 
-$s_n^{↘} = \inf\limits_{i} s_i ≤ \mathop{\mathrm{ave}}\limits_{i} s_i ≤ \sup\limits_{i} s_i = s_n^{↗}$
+$\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s,∞^{±} \right] ⇔ \left[ \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i ⇝ s,∞^{±} \right]$
 
-$\dfrac{s_n^{↘}}{\mathop{\mathrm{ave}}\limits_{i} t_i} = \dfrac{\inf\limits_{i} s_i}{\mathop{\mathrm{ave}}\limits_{i} t_i} ≤ \dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{\mathop{\mathrm{ave}}\limits_{i} t_i} ≤ \dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{\inf\limits_{i} t_i} = \dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{t_n^{↘}}$
+$\left[ \lim\limits_{n⇝∞⁺} s_n \mathop{⇝}\limits_{0<s_n} s,∞^{+} \right] ⇒ \left[ \lim\limits_{n⇝∞^{+}} \left[ \prod\limits_{i=0}^{n} s_i \right]^{\frac{1}{n+1}} ⇝ s \right]$
 
-$\dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{t_n^{↗}} = \dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{\sup\limits_{i} t_i} ≤ \dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{\mathop{\mathrm{ave}}\limits_{i} t_i} ≤ \dfrac{\sup\limits_{i} s_i}{\mathop{\mathrm{ave}}\limits_{i} t_i} = \dfrac{s_n^{↗}}{\mathop{\mathrm{ave}}\limits_{i} t_i}$
+$\lim\limits_{n⇝∞^{+}} \left[ \sum\limits_{i=0}^{n} s_i^{n+1} \right]^{\frac{1}{n+1}} \mathop{⇝}\limits_{0≤s_i} \sup\limits_{i} s_i$
 
-$\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i ⇝ s \right]$
+$\left[ \lim\limits_{n⇝∞⁺} s_n · t_n ⇝ r,∞^{±} \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n - i} ⇝ r \right]$
 
-$\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i · t_{n - i} ⇝ s·t \right]$
+$\left[ \lim\limits_{n⇝∞^{+}} \dfrac{s_n}{t_n} ⇝ r,∞^{±} \right] ⇒ \left[ \lim\limits_{n⇝∞^{+}} \left[ \sum\limits_{i=0}^{n} s_n \right]^{+1} · \left[ \sum\limits_{i=0}^{n} t_n \right]^{-1} ⇝r,∞^{±} \right]$
 
-$\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} \sqrt[n+1]{\sum\limits_{i=0}^{n} s_i} ⇝ s \right]$
 
-$\lim\limits_{n⇝∞⁺} \sqrt[n+1]{\sum\limits_{i=0}^{n} s_i^{n+1}} = \sup\limits_{0≤n} s_n$
-
-$\left[ \lim\limits_{n⇝∞^{+}} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞^{+}} t_n ⇝ t \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} \dfrac{S_{n+1}}{T_{n+1}} = \lim\limits_{n⇝∞^{+}} \dfrac{\mathop{\mathrm{ave}}\limits_{i} s_i}{\mathop{\mathrm{ave}}\limits_{i} t_i} = \lim\limits_{n⇝∞^{+}} \dfrac{\sum\limits_{i=0}^{n} s_i}{n + 1} · \dfrac{n+1}{\sum\limits_{i=0}^{n} t_i} ⇝ \dfrac{s}{t} \right]$
-
-| $⇓$  |                                 $\lim\limits_{n⇝∞⁺} s_n ⇝ s$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i - s \right| ≤ \left| \dfrac{1}{n + 1} · \sum\limits_{i=0}^{N-1} (s_i - s) \right| + \left| \dfrac{1}{n + 1} · \sum\limits_{i=N}^{n} (s_i - s) \right| ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · ε_1 ≤ ε$ |
-| :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
-| $⇓$  |                                $\lim\limits_{n⇝∞⁺} s_n ⇝ ∞⁺$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i = \dfrac{1}{n + 1} · \sum\limits_{i=0}^{N-1} s_i + \dfrac{1}{n + 1} · \sum\limits_{i=N}^{n} s_i ≥ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · \min\limits_{N≤m≤n} s_m = s_{m⇝∞⁺} ≥ +ε$ |
-| $⇓$  |                                $\lim\limits_{n⇝∞⁺} s_n ⇝ ∞⁻$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i = \dfrac{1}{n + 1} · \sum\limits_{i=0}^{N-1} s_i + \dfrac{1}{n + 1} · \sum\limits_{i=N}^{n} s_i ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · \max\limits_{N≤m≤n} s_m = s_{m⇝∞⁺} ≤ -ε$ |
-| $⇓$  |                           $\lim\limits_{n⇝∞⁺} s_n ⇝ s,∞^{±}$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n} · \sum\limits_{i=0}^n s_i = \lim\limits_{n⇝∞⁺} \dfrac{n}{n + 1} · \dfrac{1}{n} · \sum\limits_{i=0}^{n} s_i = \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i ⇝ s,∞^{±}$ |
-|      |                                                              |      |                                                              |
-| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ 0 \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) ≤ \sup |t_i| · \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i ⇝ 0$ |
-| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) = \lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i - s) · t_{n-i} + \dfrac{s}{n + 1} · \sum\limits_{i=0}^{n} t_{n-i} \right] ⇝ 0 + s · t$ |
-| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) = \lim\limits_{n⇝∞⁺} \dfrac{n}{n + 1} · \dfrac{1}{n} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) = \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (s_i · t_{n-i}) ⇝ s · t$ |
-|      |                                                              |      |                                                              |
-| $⇓$  |                                                              |      | $\dfrac{1}{\dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} \dfrac{1}{s_i}} = \dfrac{n + 1}{\sum\limits_{i=0}^{n} \dfrac{1}{s_i}} ≤ \left[\sum\limits_{i=0}^{n} s_i\right]^{\frac{1}{n+1}} ≤ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i$ |
-| $⇓$  |                                 $\lim\limits_{n⇝∞⁺} s_n ⇝ s$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \sqrt[n]{\sum\limits_{i=0}^{n} s_i} = \lim\limits_{n⇝∞⁺} \left[\sum\limits_{i=0}^{n} s_i\right]^{\frac{1}{n}·\frac{n}{n+1}} = \lim\limits_{n⇝∞⁺} \sqrt[n+1]{\sum\limits_{i=0}^{n} s_i} ⇝ s$ |
-|      |                                                              |      |                                                              |
-| $⇓$  |                                                              |      | $\max\limits_{0≤i≤n} s_i = \sqrt[n+1]{\left(\max\limits_{0≤i≤n} s_i\right)^{n+1}} ≤ \sqrt[n+1]{\sum\limits_{i=0}^{n} s_i^{n+1}} ≤ \sqrt[n+1]{(n + 1) · \left(\max\limits_{0≤i≤n} s_i\right)^{n+1}} = \sqrt[n+1]{n+1} · \max\limits_{0≤i≤n} s_i$ |
-| $⇓$  | $\sup\limits_{0≤n} s_n = \lim\limits_{n⇝∞⁺} \max\limits_{0≤i≤n} s_i$ | $⇒$  | $\lim\limits_{n⇝∞⁺} \sqrt[n+1]{\sum\limits_{i=0}^{n} s_i^{n+1}} = \sup\limits_{0≤n} s_n$ |
+| $⇓$  |                              $\lim\limits_{n⇝∞^{+}} s_n ⇝ s$ |                         $⇒$                          | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i - s \right| ≤ \left| \dfrac{1}{n + 1} · \sum\limits_{i=0}^{N-1} (s_i - s) \right| + \left| \dfrac{1}{n + 1} · \sum\limits_{i=N}^{n} (s_i - s) \right| ≤ \dfrac{\mathrm{Sum}}{n + 1} + \dfrac{n - N + 1}{n + 1} · ε_0 ≤ ε$ |
+| :--: | -----------------------------------------------------------: | :--------------------------------------------------: | :----------------------------------------------------------- |
+| $⇓$  |                          $\lim\limits_{n⇝∞^{+}} s_n ⇝ ∞^{+}$ | $\mathop{⇒}\limits_{t_N=s_N+\mathrm{Inf}>0}^{s_N≤0}$ | $\left[ \lim\limits_{n⇝∞^{+}} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} \dfrac{1}{t_i} ⇝ 0^{+} \right] ⇒ \left[ \lim\limits_{n⇝∞^{+}} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} t_i^{-1} \right]^{-1} ⇝ ∞^{+} \right] ⇒ \left[ \lim\limits_{n⇝∞^{+}} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} t_i ⇝ ∞^{+} \right] \mathop{⇒}\limits^{\sum\limits_{i=0}^{n} t_i = \sum\limits_{i=0}^{N} \mathrm{Inf} + \sum\limits_{i=0}^{n} s_i} \left[ \lim\limits_{n⇝∞^{+}} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i ⇝ ∞^{+} \right]$ |
+| $⇓$  |                          $\lim\limits_{n⇝∞^{+}} s_n ⇝ ∞^{-}$ |                         $⇒$                          | $\left[ \lim\limits_{n⇝∞^{+}} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (-s_i) ⇝ ∞^{+} \right] ⇒ \left[ \lim\limits_{n⇝∞^{+}} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i ⇝ ∞^{-} \right]$ |
+| $⇓$  |                        $\lim\limits_{n⇝∞^{+}} s_n ⇝ s,∞^{±}$ |                         $⇒$                          | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n} · \sum\limits_{i=0}^n s_i = \lim\limits_{n⇝∞⁺} \dfrac{n}{n + 1} · \dfrac{1}{n} · \sum\limits_{i=0}^{n} s_i = \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i ⇝ s,∞^{±}$ |
+|      |                                                              |                                                      |                                                              |
+| $⇓$  | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i ⇝ s$ |                         $⇒$                          | $\left[ \lim\limits_{n⇝∞^{+}} \left[ \sum\limits_{i=0}^{n} s_i - (n + 1) · s \right] ⇝ 0 \right] ⇒ \left[ \lim\limits_{n⇝∞^{+}} (s_{n} - s) = \lim\limits_{n⇝∞^{+}} \left[ \sum\limits_{i=0}^{n} s_i - (n + 1) · s \right] - \lim\limits_{n⇝∞^{+}} \left[ \sum\limits_{i=0}^{n-1} s_i - n · s \right] ⇝ 0 \right]$ |
+| $⇓$  | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n s_i ⇝ s,∞^{±}$ |                         $⇒$                          | $\lim\limits_{n⇝∞^{+}} s_{n} ⇝ s,∞^{±}$                      |
+|      |                                                              |                                                      |                                                              |
+| $⇓$  | $\lim\limits_{n⇝∞^{+}} s_n^{-1} \mathop{⇝}\limits_{0<s_n} s^{-1},0^{+}$ |                                                      | $\inf\limits_{i} s_i \mathop{≤}\limits_{0<s_i} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i^{-1} \right]^{-1} \mathop{≤}\limits_{0<s_i} \left[ \prod\limits_{i=0}^{n} s_i \right]^{\frac{1}{n+1}} \mathop{≤}\limits_{0≤s_i} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i^{+1} \right]^{+1} \mathop{≤}\limits_{0≤s_i} \sup\limits_{i} s_i$ |
+| $⇓$  | $\lim\limits_{n⇝∞⁺} s_n^{+1} \mathop{⇝}\limits_{0<s_n} s^{+1},∞^{+}$ |                         $⇒$                          | $\lim\limits_{n⇝∞^{+}} \left[ \prod\limits_{i=0}^{n} s_i \right]^{\frac{1}{n}} = \lim\limits_{n⇝∞^{+}} \left[ \prod\limits_{i=0}^{n} s_i \right]^{\frac{1}{n} · \frac{n}{n+1}} = \lim\limits_{n⇝∞^{+}} \left[ \prod\limits_{i=0}^{n} s_i \right]^{\frac{1}{n+1}} ⇝ s$ |
+|      |                                                              |                                                      |                                                              |
+| $⇓$  |                                                              |                                                      | $\sup\limits_{i≤n} s_i \mathop{=}\limits_{0≤s_i} \left[\sup\limits_{i≤n} s_i\right]^{\frac{n+1}{n+1}} \mathop{≤}\limits_{0≤s_i} \left[\sum\limits_{i=0}^{n} s_i^{n+1}\right]^{\frac{1}{n+1}} \mathop{≤}\limits_{0≤s_i} \left[(n + 1) · \sup\limits_{i≤n} s_i\right]^{\frac{1}{n+1}} \mathop{=}\limits_{0≤s_i} \sqrt[n+1]{n+1} · \sup\limits_{i≤n} s_i$ |
+| $⇓$  |                                                              |                                                      | $\lim\limits_{n⇝∞^{+}} \left[ \sum\limits_{i=0}^{n} s_i^{n+1} \right]^{\frac{1}{n+1}} \mathop{⇝}\limits_{0≤s_i} \sup\limits_{i} s_i$ |
+|      |                                                              |                                                      |                                                              |
+| $⇓$  |                 $\lim\limits_{n⇝∞^{+}} \dfrac{s_n}{t_n} ⇝ r$ |                         $⇒$                          | $\left[ \lim\limits_{n⇝∞^{+}} (s_n - r · t_n) ⇝ 0 \right] ⇒ \left[ \lim\limits_{n⇝∞^{+}} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i - \dfrac{r}{n + 1} · \sum\limits_{i=0}^{n} t_i \right] = \lim\limits_{n⇝∞^{+}} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i - r · t_i) ⇝ 0 \right]$ |
+| $⇓$  |           $\lim\limits_{n⇝∞^{+}} \dfrac{s_n}{t_n} ⇝ r,∞^{±}$ |                         $⇒$                          | $\lim\limits_{⇝∞^{+}} \left[ \sum\limits_{i=0}^{n} s_i \right]^{+1} · \left[ \sum\limits_{i=0}^{n} t_i \right]^{-1} = \lim\limits_{n⇝∞^{+}} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i \right]^{+1} · \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} t_i \right]^{-1} ⇝ r,∞^{±}$ |
+|      |                                                              |                                                      |                                                              |
+| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ 0 \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ |                         $⇒$                          | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} |s_i · t_{n-i}| ≤ \sup |t_i| · \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} s_i ⇝ 0$ |
+| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ |                         $⇒$                          | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) = \lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^{n} (s_i - s) · t_{n-i} + \dfrac{s}{n + 1} · \sum\limits_{i=0}^{n} t_{n-i} \right] ⇝ 0 + s · t$ |
+| $⇓$  | $\left[ \lim\limits_{n⇝∞⁺} s_n ⇝ s \right] ∧ \left[ \lim\limits_{n⇝∞⁺} t_n ⇝ t \right]$ |                         $⇒$                          | $\lim\limits_{n⇝∞⁺} \dfrac{1}{n} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) = \lim\limits_{n⇝∞⁺} \dfrac{n}{n + 1} · \dfrac{1}{n} · \sum\limits_{i=0}^{n} (s_i · t_{n-i}) = \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (s_i · t_{n-i}) ⇝ s · t$ |
 
 反例：数列$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right]$
 
-$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right] ≈ \lim\limits_{2 · n⇝∞⁺} \dfrac{0 + (-1 + 2) + (-3 + 4) + ··· + [-(2 · n + 1) + 2 · n]}{2 · n + 1} = \lim\limits_{n⇝∞⁺} \dfrac{n}{2 · n + 1} ⇝ \dfrac{1}{2} ≠ ∞ ⇜ \lim\limits_{n⇝∞⁺} (-i)^i · i$
+$\lim\limits_{n⇝∞⁺} \left[ \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i \right] = \lim\limits_{2 · n⇝∞⁺} \dfrac{0 + (-1 + 2) + (-3 + 4) + ··· + [-(2 · n + 1) + 2 · n]}{2 · n + 1} = \lim\limits_{n⇝∞⁺} \dfrac{n}{2 · n + 1} ⇝ \dfrac{1}{2} ≠ ∞ ⇜ \lim\limits_{n⇝∞⁺} (-i)^i · i$
 
 ### 调和数列极限
 
