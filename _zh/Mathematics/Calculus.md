@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-03-24T17:43:00+08@中国-广东-湛江+08
+Update:  2021-03-27T18:58:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -81,6 +81,8 @@ Link  :
 | 严格单调递减 | $f^{↓} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↓} (x_1) > f^{↓} (x_2)]]$ |
 
 上确界与下确界的运算性质。
+
+$\inf\limits_{x∈Y⊇X} f(x) ≤ \inf\limits_{x∈X} f(x) ≤ \sup\limits_{x∈X} f(x) ≤ \sup\limits_{x∈Y⊇X} f(x)$
 
 $\sup\limits_{x∈X} f(x) = -\inf\limits_{x∈X} [-f(x)]$
 
@@ -226,6 +228,14 @@ $\left[ \lim\limits_{n⇝∞⁺} S_n ⇝ S ≠ ∞ \right] ⇒ \left[ ∀n∈ℕ
 $\left[ \lim\limits_{n⇝∞⁺} S_n^{↗} ⇝ ∞^{+} \right] ∨ \left[ \lim\limits_{n⇝∞⁺} S_n^{↘} ⇝ ∞^{-} \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} | S_n^{⤨} | ⇝ ∞⁺ \right]$
 
 $\left[ \lim\limits_{n⇝∞⁺} | S_n^{⤨} | ≤ \mathrm{Sup} \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} S_n^{↗} ⇝ \sup S_n \right] ∧ \left[ \lim\limits_{n⇝∞⁺} S_n^{↘} ⇝ \inf S_n \right]$
+
+典例：若数列$0 ≤ S_{n+m} ≤ S_{n} + S_{m}$，则数列$\dfrac{S_n}{n}$的极限值收敛。
+
+| $⇓$  | $n \mathop{=}\limits_{0≤r≤m} m · q + r$                      | $⇒$  | $\dfrac{1}{m} = \dfrac{q}{n} + \dfrac{r}{n · m}$             |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\dfrac{s_n}{n} = \dfrac{s_{m·q+r}}{n} = \dfrac{q · s_{m}}{n} + \dfrac{s_{r}}{n} ≤ \dfrac{s_{m}}{m} + \dfrac{s_{r}}{n}$ | $⇐$  | $\dfrac{1}{m} ≥ \dfrac{q}{n}$                                |
+| $⇓$  | $\varlimsup\limits_{n⇝∞^{+}} \dfrac{s_{n}}{n} ≤ \varlimsup\limits_{n⇝∞^{+}} \left( \dfrac{s_{m}}{m} + \dfrac{s_{r}}{n} \right) = \dfrac{s_{m}}{m} + 0 = \dfrac{s_{m}}{m}$ | $⇒$  | $\varlimsup\limits_{n⇝∞^{+}} \dfrac{s_{n}}{n} ≤ \varliminf\limits_{m⇝∞^{+}} \dfrac{s_{m}}{m}$ |
+| $⇓$  | $\varlimsup\limits_{n⇝∞^{+}} \dfrac{s_{n}}{n} = \lim\limits_{n⇝∞^{+}} \dfrac{s_{n}}{n} = \varliminf\limits_{n⇝∞^{+}} \dfrac{s_{n}}{n}$ |      |                                                              |
 
 ### 数列极限的运算性质
 

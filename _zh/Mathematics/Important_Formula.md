@@ -89,6 +89,10 @@ $∞^{+} ⇜ \lim\limits_{n⇝∞^{+}} \sum\limits_{i=0}^{n} \dfrac{1}{n + 1} = 
 
 $∞ ⇜ \lim\limits_{n⇝∞⁺} (-i)^i · i ≠ \lim\limits_{n⇝∞⁺} \dfrac{1}{n + 1} · \sum\limits_{i=0}^n (-1)^i · i = \lim\limits_{2 · n⇝∞⁺} \dfrac{0 + (-1 + 2) + (-3 + 4) + ··· + [-(2 · n + 1) + 2 · n]}{2 · n + 1} = \lim\limits_{n⇝∞⁺} \dfrac{n}{2 · n + 1} ⇝ \dfrac{1}{2}$
 
+典例：级数$\lim\limits_{n⇝∞^{+}} \sum\limits_{i=0}^{n} s_i ⇝ S$，且$\lim\limits_{n⇝∞^{+}} t_n ⇝ t,∞^{±}$。
+
+$\lim\limits_{n⇝∞^{+}} \dfrac{1}{t_n} · \left[ \sum\limits_{i=0}^{n} t_i · s_i \right] \mathop{==}\limits^{S_0=0} \lim\limits_{n⇝∞^{±}} \dfrac{1}{t_n} · \left[ \sum\limits_{i=0}^{n} t_{i} · (S_{i+1} - S_{i}) \right] = \lim\limits_{n⇝∞^{+}} \dfrac{1}{t_n} · \left[ \sum\limits_{i=0}^{n} t_{i} · S_{i+1} - \sum\limits_{i=0}^{n-1} t_{i+1} · S_{i+1} \right] = \lim\limits_{n⇝∞^{+}} \left[ \dfrac{1}{t_n} · \left[ \sum\limits_{i=0}^{n-1} (t_{i+1} - t_{i}) · S_{i+1} \right] + S_{n+1} \right] = \lim\limits_{n⇝∞^{+}} \dfrac{t_{n} - t_{n-1}}{t_{n} - t_{n-1}} · S_{n} + \lim\limits_{n⇝∞^{+}} S_{n+1} ⇝ 0$
+
 ### 调和数列极限
 
 $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \sum\limits_{i=1}^{n} \dfrac{1}{i}$
