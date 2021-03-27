@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  基本关系式
-Update:  2021-03-24T02:04:00+08@中国-广东-湛江+08
+Update:  2021-03-27T22:44:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -201,14 +201,30 @@ $\dfrac{α}{x} \mathop{≤}\limits_{x·(x+α)>0} \ln\left( 1 + \dfrac{α}{x} \ri
 
 ### 幂函数不等式
 
-$x^p \mathop{≤}\limits_{0≤x}^{\left|p-\frac{1}{2}\right|<\frac{1}{2}} p · x + q$
+$x^p \mathop{≤}\limits_{0≤x}^{\left|p-\frac{1}{2}\right|≤\frac{1}{2}} p · x + q$
 
-$x^p \mathop{≥}\limits_{0≤x}^{\left|p-\frac{1}{2}\right|>\frac{1}{2}} p · x + q$
+$x^p \mathop{≥}\limits_{0≤x}^{\left|p-\frac{1}{2}\right|≥\frac{1}{2}} p · x + q$
 
-| $p + q = 1$                                      | $\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} = p · (x^{p-1} - 1)$ | $f (x) = x^{p} - p · x + p - 1$                              | $0 ≤ x$               |                     | $x=1$                 |
-| :----------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :-------------------- | :------------------ | :-------------------- |
-| $\left| p - \dfrac{1}{2} \right| < \dfrac{1}{2}$ | $\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} = \mathop{+0}\limits_{0<x<1};\mathop{0}\limits_{x=1};\mathop{-0}\limits_{1<x}$ | $f (x) = \mathop{-0}\limits_{0<x<1};\mathop{0}\limits_{x=1};\mathop{-0}\limits_{1<x}$ | $x^p ≤ p · x + 1 - p$ | $x^{p} ≤ p · x + q$ | $x^{p} = p · x + q$   |
-| $\left| p - \dfrac{1}{2} \right| > \dfrac{1}{2}$ | $\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} = \mathop{-0}\limits_{0<x<1};\mathop{0}\limits_{x=1};\mathop{+0}\limits_{1<x}$ | $f (x) = \mathop{+0}\limits_{0<x<1};\mathop{0}\limits_{x=1};\mathop{+0}\limits_{1<x}$ | $x^p ≥ p · x + 1 - p$ | $x^{p} ≥ p · x + q$ | $[p < 0] ⇒ [ 0 < x ]$ |
+$(1 + x)^{p} \mathop{≤}\limits_{-1≤x}^{\left|p-\frac{1}{2}\right|≤\frac{1}{2}} 1 + p · x$
+
+$(1 + x)^{p} \mathop{≥}\limits_{-1≤x}^{\left|p-\frac{1}{2}\right|≥\frac{1}{2}} 1 + p · x$
+
+| $p + q = 1$                                      | $\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} = p · (x^{p-1} - 1)$ | $f (x) = x^{p} - p · x + p - 1$                              | $0 ≤ x$               |                     | $x=1$                 | $t \mathop{≡≡≡}\limits_{-1≤x}^{0≤t} x + 1$ |
+| :----------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :-------------------- | :------------------ | :-------------------- | ------------------------------------------ |
+| $\left| p - \dfrac{1}{2} \right| ≤ \dfrac{1}{2}$ | $\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} = \mathop{+0}\limits_{0<x<1};\mathop{0}\limits_{x=1};\mathop{-0}\limits_{1<x}$ | $f (x) = \mathop{-0}\limits_{0<x<1};\mathop{0}\limits_{x=1};\mathop{-0}\limits_{1<x}$ | $x^p ≤ p · x + 1 - p$ | $x^{p} ≤ p · x + q$ | $x^{p} = p · x + q$   | $(1 + x)^{p} ≤ 1 + p · x$                  |
+| $\left| p - \dfrac{1}{2} \right| ≥ \dfrac{1}{2}$ | $\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} = \mathop{-0}\limits_{0<x<1};\mathop{0}\limits_{x=1};\mathop{+0}\limits_{1<x}$ | $f (x) = \mathop{+0}\limits_{0<x<1};\mathop{0}\limits_{x=1};\mathop{+0}\limits_{1<x}$ | $x^p ≥ p · x + 1 - p$ | $x^{p} ≥ p · x + q$ | $[p < 0] ⇒ [ 0 < x ]$ | $(1 + x)^{p} ≥ 1 + p · x$                  |
+
+### 连乘积不等式
+
+$\prod\limits_{i=0}^{n} (1 + x_i)^{p} \mathop{≥}\limits_{0≤x_i}^{1≤n,p} 1 + p · \sum\limits_{i=0}^{n} x_i + p^{n+1} · \prod\limits_{i=0}^{n} x_i$
+
+|    $(1 + x_i)^{p} \mathop{≥}\limits^{1≤p}$ | $1 + p · x_i$                                                |                                                              |
+| -----------------------------------------: | :----------------------------------------------------------- | ------------------------------------------------------------ |
+|   $\prod\limits_{i=0}^{0} (1 + x_i)^{p} ≥$ | $1 + p · x_0$                                                | $≥ 1 + p · \sum\limits_{i=0}^{0} x_i$                        |
+|   $\prod\limits_{i=0}^{1} (1 + x_i)^{p} ≥$ | $\left[ 1 + p · x_0 \right] · (1 + p · x_1)$                 | $≥ 1 + p · \sum\limits_{i=0}^{1} x_i + p^{2} · \prod\limits_{i=0}^{1} x_i$ |
+|   $\prod\limits_{i=0}^{2} (1 + x_i)^{p} ≥$ | $\left[ 1 + p · \sum\limits_{i=0}^{1} x_i + p^{2} · \prod\limits_{i=0}^{1} x_i \right] · (1 + p · x_2)$ | $≥ 1 + p · \sum\limits_{i=0}^{2} x_i + p^{3} · \prod\limits_{i=0}^{2} x_i$ |
+|   $\prod\limits_{i=0}^{n} (1 + x_i)^{p} ≥$ |                                                              | $≥ 1 + p · \sum\limits_{i=0}^{n} x_i + p^{n+1} · \prod\limits_{i=0}^{n} x_i$ |
+| $\prod\limits_{i=0}^{n+1} (1 + x_i)^{p} ≥$ | $\left[ 1 + p · \sum\limits_{i=0}^{n} x_i + p^{n+1} · \prod\limits_{i=0}^{n} x_i \right] · (1 + p · x_{n+1})$ | $≥ 1 + p · \sum\limits_{i=0}^{n+1} x_i + p^{n+2} · \prod\limits_{i=0}^{n+1} x_i$ |
 
 ### 互补项不等式
 

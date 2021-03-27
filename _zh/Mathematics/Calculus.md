@@ -233,9 +233,9 @@ $\left[ \lim\limits_{n⇝∞⁺} | S_n^{⤨} | ≤ \mathrm{Sup} \right] ⇒ \lef
 
 | $⇓$  | $n \mathop{=}\limits_{0≤r≤m} m · q + r$                      | $⇒$  | $\dfrac{1}{m} = \dfrac{q}{n} + \dfrac{r}{n · m}$             |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\dfrac{s_n}{n} = \dfrac{s_{m·q+r}}{n} = \dfrac{q · s_{m}}{n} + \dfrac{s_{r}}{n} ≤ \dfrac{s_{m}}{m} + \dfrac{s_{r}}{n}$ | $⇐$  | $\dfrac{1}{m} ≥ \dfrac{q}{n}$                                |
-| $⇓$  | $\varlimsup\limits_{n⇝∞^{+}} \dfrac{s_{n}}{n} ≤ \varlimsup\limits_{n⇝∞^{+}} \left( \dfrac{s_{m}}{m} + \dfrac{s_{r}}{n} \right) = \dfrac{s_{m}}{m} + 0 = \dfrac{s_{m}}{m}$ | $⇒$  | $\varlimsup\limits_{n⇝∞^{+}} \dfrac{s_{n}}{n} ≤ \varliminf\limits_{m⇝∞^{+}} \dfrac{s_{m}}{m}$ |
-| $⇓$  | $\varlimsup\limits_{n⇝∞^{+}} \dfrac{s_{n}}{n} = \lim\limits_{n⇝∞^{+}} \dfrac{s_{n}}{n} = \varliminf\limits_{n⇝∞^{+}} \dfrac{s_{n}}{n}$ |      |                                                              |
+| $⇓$  | $\dfrac{S_n}{n} = \dfrac{S_{m·q+r}}{n} = \dfrac{q · S_{m}}{n} + \dfrac{S_{r}}{n} \mathop{≤}\limits^{0≤S_{m}} \dfrac{S_{m}}{m} + \dfrac{S_{r}}{n}$ | $⇐$  | $\dfrac{1}{m} ≥ \dfrac{q}{n}$                                |
+| $⇓$  | $\varlimsup\limits_{n⇝∞^{+}} \dfrac{S_{n}}{n} ≤ \varlimsup\limits_{n⇝∞^{+}} \left( \dfrac{S_{m}}{m} + \dfrac{S_{r}}{n} \right) = \dfrac{S_{m}}{m} + 0 = \dfrac{S_{m}}{m}$ | $⇒$  | $\varlimsup\limits_{n⇝∞^{+}} \dfrac{S_{n}}{n} ≤ \varliminf\limits_{m⇝∞^{+}} \dfrac{S_{m}}{m}$ |
+| $⇓$  | $\varlimsup\limits_{n⇝∞^{+}} \dfrac{S_{n}}{n} = \lim\limits_{n⇝∞^{+}} \dfrac{S_{n}}{n} = \varliminf\limits_{n⇝∞^{+}} \dfrac{S_{n}}{n}$ |      |                                                              |
 
 ### 数列极限的运算性质
 
