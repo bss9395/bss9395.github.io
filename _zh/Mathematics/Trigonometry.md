@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  三角函数
-Update:  2021-03-29T21:21:00+08@中国-广东-湛江+08
+Update:  2021-03-30T03:02:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -35,6 +35,16 @@ $S = \lim\limits_{n⇝∞^{+}} S_n = \lim\limits_{n⇝∞^{+}} \left[ n · \dfra
 | $ә^{+τ·k·π} = (-1)^k$                                        | $ә^{+τ·(k·π+\frac{π}{2})} = (-1)^{k} · τ$                    |
 
 ### 三角函数
+
+![max-width:360px;](figures/Trigonometry.svg)
+
+![max-width:360px;](figures/Trigonometric_Functions.svg)
+
+![max-width:360px;](figures/Hyperbolic_Functions.svg)
+
+![max-width:360px;](figures/Arcus_Trigonometric_Functions.svg)
+
+![max-width:360px;](figures/Arcus_Hyperbolic_Functions.svg)
 
 | $\sin x = \dfrac{ә^{τ·x} - ә^{-τ·x}}{2 · τ}$                 | $'\sin x \mathop{======}\limits_{x∈[-1,+1]}^{y∈\left[-\frac{π}{2},+\frac{π}{2}\right]} -τ · \ln\left( τ · x + \sqrt{1 - x^2} \right)$ | $\sin (-x) = -\sin x$             | $\sin x = -τ · \sinh (τ · x)$           |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :-------------------------------- | :-------------------------------------- |
@@ -85,4 +95,15 @@ $S = \lim\limits_{n⇝∞^{+}} S_n = \lim\limits_{n⇝∞^{+}} \left[ n · \dfra
 | $A · \sin x + B · \cos x = \sqrt{A^2 + B^2} · \left[ \dfrac{A}{\sqrt{A^2 + B^2}} · \sin x + \dfrac{B}{\sqrt{A^2 + B^2}} · \cos x \right] \mathop{=======}\limits_{\cosφ=\frac{B}{\sqrt{A^2+B^2}}}^{\sinφ=\frac{A}{\sqrt{A^2 + B^2}}} \sqrt{A^2 + B^2} · \sin\left( x + \arctan \dfrac{B}{A} \right)$ |
 | :----------------------------------------------------------- |
 | $A · \sin x + B · \cos x = \sqrt{A^2 + B^2} · \left[ \dfrac{A}{\sqrt{A^2 + B^2}} · \sin x + \dfrac{B}{\sqrt{A^2 + B^2}} · \cos x \right] \mathop{=======}\limits_{\cosφ=\frac{B}{\sqrt{A^2+B^2}}}^{\sinφ=\frac{A}{\sqrt{A^2+B^2}}} \sqrt{A^2 + B^2} · \cos\left( x - \arctan \dfrac{A}{B} \right)$ |
+
+### 三角公式
+
+|                         |                    | $\sin θ$                                        | $\cos θ$                                         | $\tan θ$                                        |
+| :---------------------- | :----------------- | :---------------------------------------------- | :----------------------------------------------- | :---------------------------------------------- |
+| $\sin θ = x$            | $θ = '\sin x$      | $\sin('\sin x) = x$                             | $\cos('\sin x) = \sqrt{1 - x^2}$                 | $\tan('\sin x) = \dfrac{x}{\sqrt{1 - x^2}}$     |
+| $\cos θ = x$            | $θ = '\cos x$      | $\sin('\cos x) = \sqrt{1 - x^2}$                | $\cos('\cos x) = x$                              | $\tan('\cos x) = \dfrac{\sqrt{1 - x^2}}{x}$     |
+| $\tan θ = x$            | $θ = '\tan x$      | $\sin('\tan x) = \dfrac{x}{\sqrt{1 + x^2}}$     | $\cos('\tan x) = \dfrac{1}{\sqrt{1 + x^2}}$      | $\tan('\tan x) = x$                             |
+| $\sin θ = \dfrac{1}{x}$ | $θ = '\sin^{-1} x$ | $\sin('\sin^{-1} x) = \dfrac{1}{x}$             | $\cos('\sin^{-1} x) = \dfrac{\sqrt{x^2 - 1}}{x}$ | $\tan('\sin^{-1} x) = \dfrac{1}{\sqrt{x^2 -1}}$ |
+| $\cos θ = \dfrac{1}{x}$ | $θ = '\cos^{-1} x$ | $\sin(\cos^{-1} x) = \dfrac{\sqrt{x^2 - 1}}{x}$ | $\cos(\cos^{-1} x) = \dfrac{1}{x}$               | $\tan(\cos^{-1} x) = \sqrt{x^2 - 1}$            |
+| $\tan θ = \dfrac{1}{x}$ | $θ = '\tan^{-1} x$ | $\sin(\tan^{-1} x) = \dfrac{1}{\sqrt{x^2 + 1}}$ | $\cos(\tan^{-1} x) = \dfrac{x}{\sqrt{x^2 + 1}}$  | $\tan(\tan^{-1} x) = \dfrac{1}{x}$              |
 

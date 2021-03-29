@@ -151,7 +151,7 @@ $∀x_1,x_2∈X; [ f^{-1} (y_1) = x_1 < x_2 = f^{-1} (y_2) ] ⇔ [ f^{↓} (x_1)
 
 不可数集也称不可列不可数集，其集合中元素的个数不可列不可数，因此无法映射到自然数集$ℕ$。
 
-自然数集$ℕ$为可数集，整数集$ℤ ↦ ±ℕ$为可数集，有理数集$ℚ ↦ \dfrac{ℤ}{ℤ^{+}}$为可数集。无理数集$ℝ \backslash ℚ$非可数集，实数集$ℝ = ℚ ∪ [ℝ \backslash ℚ]$非可数集。
+自然数集$ℕ$为可数集，整数集$ℤ ↦ ±ℕ$为可数集，有理数集$ℚ ↦ \dfrac{ℤ}{ℤ^{+} }$为可数集。无理数集$ℝ \backslash ℚ$非可数集，实数集$ℝ = ℚ ∪ [ℝ \backslash ℚ]$非可数集。
 
 有限集为可数集，可数集的子集为可数集，可数个可数集的合集为可数集。
 
@@ -161,13 +161,13 @@ $∀x_1,x_2∈X; [ f^{-1} (y_1) = x_1 < x_2 = f^{-1} (y_2) ] ⇔ [ f^{↓} (x_1)
 
 $∀\mathcal{O};∀ζ_1>0;∃\lbrace X_{i∈ℕ} \rbrace; \left[ \mathcal{O} ⊆ \bigcup\limits_{i=0}^{ℕ} X_i \right] ∧ \left[ | \mathcal{O} | ≤ \sum\limits_{i=0}^{ℕ} | X_i | < ζ_1 \right]$
 
-可数集$\lbrace {s_{i∈ℕ}} \rbrace$为零测集。
+可数集$\lbrace s_{i∈ℕ} \rbrace$为零测集。
 
-$∀\lbrace\mathcal{s_{i∈ℕ}}\rbrace;∀ζ_2>0;∃\lbrace X_{i∈ℕ} \rbrace; \left[ \lbrace s_{i∈ℕ} \rbrace ⊆ \bigcup\limits_{i=0}^{ℕ} \left( s_i - \dfrac{ζ_1}{2^{i+1}}, s_i + \dfrac{ζ_1}{2^{i+1}} \right) \right] ∧ \left[ \left| \lbrace s_{i∈ℕ} \rbrace \right| = \sum\limits_{i=0}^{ℕ} | s_i | ≤ \sum\limits_{i=0}^{ℕ} \dfrac{ζ_1}{2^{i}} ≤ \sum\limits_{i=0}^{∞⁺} \dfrac{ζ_1}{2^i} =  2 · ζ_1 = ζ_2 \right]$
+$∀\lbrace\mathcal{s_{i∈ℕ} }\rbrace;∀ζ_2>0;∃\lbrace X_{i∈ℕ} \rbrace; \left[ \lbrace s_{i∈ℕ} \rbrace ⊆ \bigcup\limits_{i=0}^{ℕ} \left( s_i - \dfrac{ζ_1}{2^{i+1} }, s_i + \dfrac{ζ_1}{2^{i+1} } \right) \right] ∧ \left[ \left| \lbrace s_{i∈ℕ} \rbrace \right| = \sum\limits_{i=0}^{ℕ} | s_i | ≤ \sum\limits_{i=0}^{ℕ} \dfrac{ζ_1}{2^{i} } ≤ \sum\limits_{i=0}^{∞⁺} \dfrac{ζ_1}{2^i} =  2 · ζ_1 = ζ_2 \right]$
 
 可数个零测集$\mathcal{O}_i$的合集$\lbrace \mathcal{O}_{i∈ℕ} \rbrace$为零测集。
 
-$∀\lbrace\mathcal{O}_{i∈ℕ}\rbrace;∀ζ_3>0;∃\lbrace X_{{i∈ℕ},{j∈ℕ}} \rbrace; \left[ \lbrace \mathcal{O}_{i∈ℕ} \rbrace ⊆ \bigcup\limits_{i=0}^{ℕ} \bigcup\limits_{j=0}^{ℕ} X_{i,j} \right] ∧ \left[ \left| \lbrace \mathcal{O}_{i∈ℕ} \rbrace \right| = \sum\limits_{i=0}^{ℕ} | \mathcal{O}_i | = \sum\limits_{i=0}^{ℕ} \sum\limits_{j=0}^{ℕ} | X_{i,j} | ≤ \sum\limits_{i=0}^{∞⁺} \dfrac{1}{2^{i}} · \sum\limits_{j=0}^{∞⁺} \dfrac{ζ_1}{2^{j}} ≤ \sum\limits_{i=0}^{∞⁺} \dfrac{ζ_2}{2^i} = 2 · ζ_2 = ζ_3 \right]$
+$∀\lbrace\mathcal{O}_{i∈ℕ}\rbrace;∀ζ_3>0;∃\lbrace X_{ {i∈ℕ},{j∈ℕ} } \rbrace; \left[ \lbrace \mathcal{O}_{i∈ℕ} \rbrace ⊆ \bigcup\limits_{i=0}^{ℕ} \bigcup\limits_{j=0}^{ℕ} X_{i,j} \right] ∧ \left[ \left| \lbrace \mathcal{O}_{i∈ℕ} \rbrace \right| = \sum\limits_{i=0}^{ℕ} | \mathcal{O}_i | = \sum\limits_{i=0}^{ℕ} \sum\limits_{j=0}^{ℕ} | X_{i,j} | ≤ \sum\limits_{i=0}^{∞⁺} \dfrac{1}{2^{i} } · \sum\limits_{j=0}^{∞⁺} \dfrac{ζ_1}{2^{j} } ≤ \sum\limits_{i=0}^{∞⁺} \dfrac{ζ_2}{2^i} = 2 · ζ_2 = ζ_3 \right]$
 
 ### 数列极限
 
@@ -221,9 +221,9 @@ $\varliminf\limits_{n⇝∞⁺} S_n = \varliminf\limits_{n_m⇝∞⁺}^{n_m∈\l
 
 $\left[ \lim\limits_{n⇝∞⁺} S_n ⇝ S ≠ ∞ \right] ⇒ \left[ ∀n∈ℕ; |S_n| ≤ \max\left\lbrace \left|\inf S_n\right|, \left| \sup S_n \right| \right\rbrace \right]$
 
-若数列$| S_n |$单调递增无上确界，则数列$| S_n |$的极限值发散于$∞⁺$。$P ⇒ Q$ 
+若数列$| S_n |$单调递增无上确界，则数列$| S_n |$的极限值发散于$∞⁺$。$P ⇒ Q$
 
-若数列$| S_n |$单调递增有上确界，则数列$| S_n |$的极限值必定收敛。$¬Q ⇒ ¬P$ 
+若数列$| S_n |$单调递增有上确界，则数列$| S_n |$的极限值必定收敛。$¬Q ⇒ ¬P$
 
 $\left[ \lim\limits_{n⇝∞⁺} S_n^{↗} ⇝ ∞^{+} \right] ∨ \left[ \lim\limits_{n⇝∞⁺} S_n^{↘} ⇝ ∞^{-} \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} | S_n^{⤨} | ⇝ ∞⁺ \right]$
 
@@ -233,9 +233,9 @@ $\left[ \lim\limits_{n⇝∞⁺} | S_n^{⤨} | ≤ \mathrm{Sup} \right] ⇒ \lef
 
 | $⇓$  | $n \mathop{=}\limits_{0≤r≤m} m · q + r$                      | $⇒$  | $\dfrac{1}{m} = \dfrac{q}{n} + \dfrac{r}{n · m}$             |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\dfrac{S_n}{n} = \dfrac{S_{m·q+r}}{n} = \dfrac{q · S_{m}}{n} + \dfrac{S_{r}}{n} \mathop{≤}\limits^{0≤S_{m}} \dfrac{S_{m}}{m} + \dfrac{S_{r}}{n}$ | $⇐$  | $\dfrac{1}{m} ≥ \dfrac{q}{n}$                                |
-| $⇓$  | $\varlimsup\limits_{n⇝∞^{+}} \dfrac{S_{n}}{n} ≤ \varlimsup\limits_{n⇝∞^{+}} \left( \dfrac{S_{m}}{m} + \dfrac{S_{r}}{n} \right) = \dfrac{S_{m}}{m} + 0 = \dfrac{S_{m}}{m}$ | $⇒$  | $\varlimsup\limits_{n⇝∞^{+}} \dfrac{S_{n}}{n} ≤ \varliminf\limits_{m⇝∞^{+}} \dfrac{S_{m}}{m}$ |
-| $⇓$  | $\varlimsup\limits_{n⇝∞^{+}} \dfrac{S_{n}}{n} = \lim\limits_{n⇝∞^{+}} \dfrac{S_{n}}{n} = \varliminf\limits_{n⇝∞^{+}} \dfrac{S_{n}}{n}$ |      |                                                              |
+| $⇓$  | $\dfrac{S_n}{n} = \dfrac{S_{m·q+r} }{n} = \dfrac{q · S_{m} }{n} + \dfrac{S_{r} }{n} \mathop{≤}\limits^{0≤S_{m} } \dfrac{S_{m} }{m} + \dfrac{S_{r} }{n}$ | $⇐$  | $\dfrac{1}{m} ≥ \dfrac{q}{n}$                                |
+| $⇓$  | $\varlimsup\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n} ≤ \varlimsup\limits_{n⇝∞^{+} } \left( \dfrac{S_{m} }{m} + \dfrac{S_{r} }{n} \right) = \dfrac{S_{m} }{m} + 0 = \dfrac{S_{m} }{m}$ | $⇒$  | $\varlimsup\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n} ≤ \varliminf\limits_{m⇝∞^{+} } \dfrac{S_{m} }{m}$ |
+| $⇓$  | $\varlimsup\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n} = \lim\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n} = \varliminf\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n}$ |      |                                                              |
 
 ### 数列极限的运算性质
 
@@ -283,7 +283,7 @@ $∀x_0∈X;∀ε>0;∃δ>0;∀x∈X; \left[ | x - x_0 | ≤ δ \right] ⇒ \lef
 
 $\left[ ∀x_0∈X;∀ε>0;∃δ>0; \sup\limits_{|x-x_0|≤δ} | f (x) - f (x_0) | ≤ ε \right] ⇔ \left[ ∀x_0∈X;∀ε>0;∃δ>0;∀x∈\left\lbrace\mathop{x∈X}\limits_{|x-x_0|≤δ}\right\rbrace; | f (x) - f (x_0) | ≤ ε \right]$
 
-$∀x_0∈X;∃\mathrm{Sup_{x_0}}; | f (x_0) | ≤ \mathrm{Sup_{x_0}}$
+$∀x_0∈X;∃\mathrm{Sup_{x_0} }; | f (x_0) | ≤ \mathrm{Sup_{x_0} }$
 
 一致连续性是全局性质。若函数$f (x)$在区间X上一致连续，则函数在区间$X$上所有点处有全局的确界。
 
@@ -329,9 +329,9 @@ $\lim\limits_{x⇝x_0} f (g (x)) = f \left( \lim\limits_{x⇝x_0} g (x) \right) 
 
 $\left[ ∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \right]$
 
-$\left[ ∀x_t∈\fbox{X}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t}} ≠ ∞⁺ \right] ⇒ \left[ ∀x,x_t∈\fbox{X}; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈\fbox{X}} f (x_t) \right]$
+$\left[ ∀x_t∈\fbox{X}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t} } ≠ ∞⁺ \right] ⇒ \left[ ∀x,x_t∈\fbox{X}; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈\fbox{X} } f (x_t) \right]$
 
-| $⇓$  | $∀x_t∈\fbox{X}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t}} ≠ ∞⁺$ | $⇒$  | $\lim\limits_{x⇝x_t} \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| = \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t}} ≤ \mathrm{Sup} = \sup\limits_{x_t∈\fbox{X}}\lbrace \mathrm{Sup_{x_t}} \rbrace ≠ ∞⁺$ |
+| $⇓$  | $∀x_t∈\fbox{X}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t} } ≠ ∞⁺$ | $⇒$  | $\lim\limits_{x⇝x_t} \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| = \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t} ≤ \mathrm{Sup_{x_t} } ≤ \mathrm{Sup} = \sup\limits_{x_t∈\fbox{X} }\lbrace \mathrm{Sup_{x_t} } \rbrace ≠ ∞⁺$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $⇓$  | $∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | $ |      |                                                              |
 | $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈X; [ | x - x_t | ≤ δ ] ⇒ [ | f (x) - f (x_t) | ≤ \mathrm{Sup.} · | x - x_t | ≤ ε ]$ |      |                                                              |
@@ -339,7 +339,7 @@ $\left[ ∀x_t∈\fbox{X}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|
 
 若函数$f (x)$在区间$X$上满足切割线过程，则函数$f (x)$在区间$X$上一致连续，反之亦然。
 
-$0 ↭ \lim\limits_{x↭x_t} | f (x) - f (x_t) | \mathop{===}\limits_{x_t∈X}^{x∈X} \lim\limits_{x↭x_t} \left[ \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · | x - x_t | \right] \mathop{===}\limits_{x_t∈X}^{x∈X} \left[ \lim\limits_{x↭x_t} \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · \lim\limits_{x↭x_t} | x - x_t | \right] \mathop{===}\limits_{x_t∈\fbox{X}}^{x∈X} \lim\limits_{x⇝x_t} \left[ \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t=x} · | x - x_t | \right]$
+$0 ↭ \lim\limits_{x↭x_t} | f (x) - f (x_t) | \mathop{===}\limits_{x_t∈X}^{x∈X} \lim\limits_{x↭x_t} \left[ \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · | x - x_t | \right] \mathop{===}\limits_{x_t∈X}^{x∈X} \left[ \lim\limits_{x↭x_t} \left| \dfrac{f (x) - f (x_t)}{x - x_t} \right| · \lim\limits_{x↭x_t} | x - x_t | \right] \mathop{===}\limits_{x_t∈\fbox{X} }^{x∈X} \lim\limits_{x⇝x_t} \left[ \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_t=x} · | x - x_t | \right]$
 
 若函数$f (x)$在区间$X$上一致连续，则函数$f (x)$在区间$X$上连续，反之不对。
 
@@ -382,13 +382,13 @@ $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0^{±},±∞
 
 典例：函数$f (x) = | x |$在区间$(∞⁻, ∞⁺)$上一致连续。函数$\mathrm{sgn} (x) = \mathop{-1}\limits_{x<0};\mathop{0}\limits_{x=0};\mathop{+1}\limits_{x>0}$在区间$[-1, +1]$上非一致连续。
 
-典例：函数$f (x) = \sqrt{x}$在区间$(+0, ∞⁺)$上一致连续，但其在点$x_0=0^+$处导函数的极限为$\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_0=0^+} = \lim\limits_{x⇝0^+} \dfrac{1}{2 · \sqrt{x}} = ∞⁺$。
+典例：函数$f (x) = \sqrt{x}$在区间$(+0, ∞⁺)$上一致连续，但其在点$x_0=0^+$处导函数的极限为$\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_0=0^+} = \lim\limits_{x⇝0^+} \dfrac{1}{2 · \sqrt{x} } = ∞⁺$。
 
-| $⇓$  | $∃ε>0;∀δ>0;∃x≡\dfrac{1}{n},x_t≡\dfrac{1}{n + 1}; \left[ | x - x_t | = \left| \dfrac{1}{n · (n + 1)} \right| < δ \right] ∧ \left[ | f (x) - f (x_t) | = \left| \dfrac{1}{x} - \dfrac{1}{x_t} \right| = \left| \dfrac{1}{\frac{1}{n}} - \dfrac{1}{\frac{1}{n + 1}} \right| = 1 ≥ ε \right]$ |
+| $⇓$  | $∃ε>0;∀δ>0;∃x≡\dfrac{1}{n},x_t≡\dfrac{1}{n + 1}; \left[ | x - x_t | = \left| \dfrac{1}{n · (n + 1)} \right| < δ \right] ∧ \left[ | f (x) - f (x_t) | = \left| \dfrac{1}{x} - \dfrac{1}{x_t} \right| = \left| \dfrac{1}{\frac{1}{n} } - \dfrac{1}{\frac{1}{n + 1} } \right| = 1 ≥ ε \right]$ |
 | :--: | :----------------------------------------------------------- |
 | $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈[X_0,X_1); \left[ | x - x_t | < δ \right] ⇒ \left[ | f (x) - f (x_t) | = \left| \dfrac{1}{x} - \dfrac{1}{x_t} \right| = \dfrac{| x - x_t |}{| x · x_t |} < \dfrac{δ}{X_0^2} = ε \right]$ |
 |      |                                                              |
-| $⇓$  | $∃ε>0;∀δ>0;∃x≡\sqrt{n·π+\frac{π}{2}},x_t≡\sqrt{n·π}; \left[ | x - x_t | = \dfrac{\frac{π}{2}}{\sqrt{n·π+\frac{π}{2}} + \sqrt{n·π}} < δ \right] ∧ \left[ | f (x) - f (x_t) | = \left| \sin x^2 - \sin x_t^2 \right| = \left| \sin \left( n·π+\frac{π}{2} \right) - \sin (n·π) \right| = 1 ≥ ε \right]$ |
+| $⇓$  | $∃ε>0;∀δ>0;∃x≡\sqrt{n·π+\frac{π}{2} },x_t≡\sqrt{n·π}; \left[ | x - x_t | = \dfrac{\frac{π}{2} }{\sqrt{n·π+\frac{π}{2} } + \sqrt{n·π} } < δ \right] ∧ \left[ | f (x) - f (x_t) | = \left| \sin x^2 - \sin x_t^2 \right| = \left| \sin \left( n·π+\frac{π}{2} \right) - \sin (n·π) \right| = 1 ≥ ε \right]$ |
 |      |                                                              |
 | $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈(∞⁻,∞⁺); \left[ | x - x_t | < δ \right] ⇒ \left[ | f (x) - f (x_t) | = \left| (α · x + β) - (α · x_t + β) \right| = | α | · | x - x_t | < | α | · δ = ε \right]$ |
 |      |                                                              |
@@ -396,7 +396,7 @@ $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0^{±},±∞
 |      |                                                              |
 | $⇓$  | $∃ε>0;∀δ>0;∃x≡\dfrac{1}{n},x_t≡0; \left[ | x - x_t | = \left| \dfrac{1}{n} \right| < δ \right] ∧ [ | f (x) - f (x_t) | = | 1 - 0 | = 1 ≥ ε ]$ |
 |      |                                                              |
-| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈(0, ∞⁺); [ | x - x_t | < δ ] ⇒ \left[ | f (x) - f (x_t) | = | \sqrt{x} - \sqrt{x_t} | < \left| \dfrac{x - x_t}{\sqrt{x} + \sqrt{x_t}} \right| \mathop{<}\limits^{x-x_t=δ} \left| \dfrac{δ}{\sqrt{x_t+δ}+\sqrt{x_t}} \right| < \left| \dfrac{δ}{\sqrt{δ}} \right| = ε \right]$ |
+| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈(0, ∞⁺); [ | x - x_t | < δ ] ⇒ \left[ | f (x) - f (x_t) | = | \sqrt{x} - \sqrt{x_t} | < \left| \dfrac{x - x_t}{\sqrt{x} + \sqrt{x_t} } \right| \mathop{<}\limits^{x-x_t=δ} \left| \dfrac{δ}{\sqrt{x_t+δ}+\sqrt{x_t} } \right| < \left| \dfrac{δ}{\sqrt{δ} } \right| = ε \right]$ |
 
 ### 连续介值定理
 
@@ -432,14 +432,14 @@ $∀x_i∈[X_0,X_1];∃θ∈[\min\lbrace x_i \rbrace, \max\lbrace x_i \rbrace];�
 
 对于实数域的奇数次多项式$0 = P_{2·m+1} (x) = \sum\limits_{i=0}^{2 · m + 1} p_i · (x - x_0)^{i}$，必定存在至少一个实数解$θ$。
 
-| $⇓$  | $P_{2·m+1} (x) = \sum\limits_{i=0}^{2·m+1} p_i · (x - x_0)^{i} = p_{2·m+1} · (x - x_0)^{2·m+1} + \sum\limits_{i=0}^{2·m} \dfrac{p_i}{(x - x_0)^{2 · m + 1 - i}}$ |
+| $⇓$  | $P_{2·m+1} (x) = \sum\limits_{i=0}^{2·m+1} p_i · (x - x_0)^{i} = p_{2·m+1} · (x - x_0)^{2·m+1} + \sum\limits_{i=0}^{2·m} \dfrac{p_i}{(x - x_0)^{2 · m + 1 - i} }$ |
 | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\lim\limits_{x⇝∞⁺} P_{2·m+1} (x) = \lim\limits_{m⇝∞⁺} p_{2·m+1} · (x - x_0)^{2 · m + 1} ⇝ ∞⁺ · p_{2·m+1}$ |
 | $⇓$  | $\lim\limits_{x⇝∞⁻} P_{2·m+1} (x) = \lim\limits_{m⇝∞⁺} p_{2·m+1} · (x - x_0)^{2 · m + 1} ⇝ ∞⁻ · p_{2·m+1}$ |
 | $⇓$  | $0∈\left( \inf\limits_{x∈ℝ} P_{2·m+1} (x), \sup\limits_{x∈ℝ} P_{2·m+1} (x) \right) = (∞⁻, ∞⁺)$ |
 | $⇓$  | $∃θ∈ℝ; 0 = P_{2·m+1} (θ) = \sum\limits_{i=0}^{2 · m + 1} p_i · (θ - x_0)^{i}$ |
 
-若函数$f (x)$在区间$(X_0, X_1)$上连续，且$\lim\limits_{x⇝X_0^{+}} f (x)$与$\lim\limits_{x⇝X_1^{-}} f (x)$均有确界，则函数$f (x)$在区间$(X_0, X_1)$上有确界。
+若函数$f (x)$在区间$(X_0, X_1)$上连续，且$\lim\limits_{x⇝X_0^{+} } f (x)$与$\lim\limits_{x⇝X_1^{-} } f (x)$均有确界，则函数$f (x)$在区间$(X_0, X_1)$上有确界。
 
 若函数$f (x)$在区间$(∞⁻, ∞⁺)$上连续，且$\lim\limits_{x⇝∞⁻} f (x)$与$\lim\limits_{x⇝∞⁺} f (x)$均有确界，则函数$f (x)$在区间$(∞⁻, ∞⁺)$上有确界。
 
@@ -462,7 +462,7 @@ $\left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = \d
 
 | $⇓$  | $F (x) = \left|\begin{matrix} 1 & 1 & 1 \\ X_0 & x & X_1 \\ f (X_0) & f (x) & f (X_1) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & x - X_0 & X_1 - X_0 \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right|$ | $⇒$  | $F (X_0) = 0 = F (X_1)$                                      |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $$\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & x - X_0 & X_1 - X_0 \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & 1 & X_1 - X_0 \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d}x} & f (X_1) - f (X_0) \end{matrix}\right|$$ | $⇒$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = [ f (X_1) - f (X_0) ] - (X_1 - X_0) · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$ |
+| $⇓$  | $$\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d} }{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & x - X_0 & X_1 - X_0 \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & 1 & X_1 - X_0 \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d}x} & f (X_1) - f (X_0) \end{matrix}\right|$$ | $⇒$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = [ f (X_1) - f (X_0) ] - (X_1 - X_0) · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$ |
 | $⇓$  | $\left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{X_1 - X_0}$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = 0$ |
 
 函数$f (x)$与函数$g (x)$在闭区间$[X_0, X_1]$上连续且可导，则必至少存在一点$θ∈(X_0, X_1)$使得成立。
@@ -471,7 +471,7 @@ $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = 
 
 | $⇓$  | $F (x) = \left|\begin{matrix} 1 & 1 & 1 \\ g (X_0) & g (x) & g (X_1) \\ f (X_0) & f (x) & f (X_1) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & g (x) - g (X_0) & g (X_1) - g (X_0) \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right|$ | $⇒$  | $F (X_0) = 0 = F (X_1)$                                      |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & g (x) - g (X_0) & g (X_1) - g (X_0) \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} & g (X_1) - g (X_0) \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} & f (X_1) - f (X_0) \end{matrix}\right|$ | $⇒$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = [ f (X_1) - f (X_0) ]  · \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} - [ g (X_1) - g (X_0) ] · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$ |
+| $⇓$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d} }{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & g (x) - g (X_0) & g (X_1) - g (X_0) \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} & g (X_1) - g (X_0) \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} & f (X_1) - f (X_0) \end{matrix}\right|$ | $⇒$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = [ f (X_1) - f (X_0) ]  · \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} - [ g (X_1) - g (X_0) ] · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$ |
 | $⇓$  | $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} · \dfrac{\mathrm{d} x}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{g (X_1) - g (X_0)}$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = 0$ |
 
 
@@ -484,41 +484,41 @@ $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = 
 
 $P_n (x) = \sum\limits_{i=0}^n p_i · (x - x_0)^i = p_0 · (x - x_0)^0 + p_1 · (x - x_0)^1 + p_2 · (x - x_0)^2 + ··· + p_n · (x - x_0)^n$
 
-$P_n (x) = \sum\limits_{i=0}^n \dfrac{{^i}P_n (x_0)}{i!} · (x - x_0)^i = \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i P_n (x)}{i! · \mathrm{d}^i x}\right|_{x_0} · (x - x_0)^i = \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i P_n (x)}{\mathrm{d} x^i}\right|_{x_0} · (x - x_0)^i$
+$P_n (x) = \sum\limits_{i=0}^n \dfrac{ {^i}P_n (x_0)}{i!} · (x - x_0)^i = \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i P_n (x)}{i! · \mathrm{d}^i x}\right|_{x_0} · (x - x_0)^i = \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i P_n (x)}{\mathrm{d} x^i}\right|_{x_0} · (x - x_0)^i$
 
 | ${^n}P_n (x_0) = n! · p_n$                                   | ${^0}P_n (x_0) = 0! · p_0$                                   | ${^1}P_n (x_0) = 1! · p_1$                                   | ${^2}P_n (x_0) = 2! · p_2$                                   |
 | ------------------------------------------------------------ | :----------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| $\left.\dfrac{\mathrm{d}^n P_n (x)}{\mathrm{d}^n x}\right|_{x_0} ≡ \left.\underbrace{\dfrac{\mathrm{d}}{\mathrm{d} x} ··· \dfrac{\mathrm{d}}{\mathrm{d} x} }_n P_n (x) \right|_{x_0} ≡ n! · p_n$ | $\left.\dfrac{\mathrm{d}^0 P_n (x)}{\mathrm{d}^0 x}\right|_{x_0} ≡ \left.P_n (x)\right|_{x_0} ≡ 0! · p_0$ | $\left.\dfrac{\mathrm{d}^1 P_n (x)}{\mathrm{d}^1 x}\right|_{x_0} ≡ \left.\dfrac{\mathrm{d}}{\mathrm{d} x} P_n (x)\right|_{x_0} ≡ 1! · p_1$ | $\left.\dfrac{\mathrm{d}^2 P_n (x)}{\mathrm{d}^2 x}\right|_{x_0} ≡ \left.\dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}}{\mathrm{d} x} P_n (x)\right|_{x_0} ≡ 2! · p_2$ |
+| $\left.\dfrac{\mathrm{d}^n P_n (x)}{\mathrm{d}^n x}\right|_{x_0} ≡ \left.\underbrace{\dfrac{\mathrm{d} }{\mathrm{d} x} ··· \dfrac{\mathrm{d} }{\mathrm{d} x} }_n P_n (x) \right|_{x_0} ≡ n! · p_n$ | $\left.\dfrac{\mathrm{d}^0 P_n (x)}{\mathrm{d}^0 x}\right|_{x_0} ≡ \left.P_n (x)\right|_{x_0} ≡ 0! · p_0$ | $\left.\dfrac{\mathrm{d}^1 P_n (x)}{\mathrm{d}^1 x}\right|_{x_0} ≡ \left.\dfrac{\mathrm{d} }{\mathrm{d} x} P_n (x)\right|_{x_0} ≡ 1! · p_1$ | $\left.\dfrac{\mathrm{d}^2 P_n (x)}{\mathrm{d}^2 x}\right|_{x_0} ≡ \left.\dfrac{\mathrm{d} }{\mathrm{d} x} \dfrac{\mathrm{d} }{\mathrm{d} x} P_n (x)\right|_{x_0} ≡ 2! · p_2$ |
 | $\left.\dfrac{\mathrm{d}^n P_n (x)}{\mathrm{d} x^n}\right|_{x_0} ≡ \left.\dfrac{\mathrm{d}^n P_n (x)}{n! · \mathrm{d}^n x}\right|_{x_0} ≡ p_n$ | $\left.\dfrac{\mathrm{d}^0 P_n (x)}{\mathrm{d} x^0}\right|_{x_0} ≡ \left.\dfrac{\mathrm{d}^0 P_n (x)}{0! · \mathrm{d}^0 x}\right|_{x_0} ≡ p_0$ | $\left.\dfrac{\mathrm{d}^1 P_n (x)}{\mathrm{d} x^1}\right|_{x_0} ≡ \left.\dfrac{\mathrm{d}^1 P_n (x)}{1! · \mathrm{d}^1 x}\right|_{x_0} ≡ p_1$ | $\left.\dfrac{\mathrm{d}^2 P_n (x)}{\mathrm{d} x^2}\right|_{x_0} ≡ \left.\dfrac{\mathrm{d}^2 P_n (x)}{2! · \mathrm{d}^2 x}\right|_{x_0} ≡ p_2$ |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}^n P_n (x)}{\mathrm{d} x^n} = \dfrac{(n + 1) · \mathrm{d}^{n+1} P_n (x)}{\mathrm{d} x^{n+1}}$ | $\dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}^0 P_n (x)}{\mathrm{d} x^0} = \dfrac{1 · \mathrm{d}^1 P_n (x)}{\mathrm{d} x^1}$ | $\dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}^1 P (x)}{\mathrm{d} x^1} = \dfrac{2 · \mathrm{d}^2 P_n (x)}{\mathrm{d} x^2}$ | $\dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}^2 P_n (x)}{\mathrm{d} x^2} = \dfrac{3 · \mathrm{d}^3 P_n (x)}{\mathrm{d} x^3}$ |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x} \dfrac{\mathrm{d}^n P_n (x)}{\mathrm{d} x^n} = \dfrac{(n + 1) · \mathrm{d}^{n+1} P_n (x)}{\mathrm{d} x^{n+1} }$ | $\dfrac{\mathrm{d} }{\mathrm{d} x} \dfrac{\mathrm{d}^0 P_n (x)}{\mathrm{d} x^0} = \dfrac{1 · \mathrm{d}^1 P_n (x)}{\mathrm{d} x^1}$ | $\dfrac{\mathrm{d} }{\mathrm{d} x} \dfrac{\mathrm{d}^1 P (x)}{\mathrm{d} x^1} = \dfrac{2 · \mathrm{d}^2 P_n (x)}{\mathrm{d} x^2}$ | $\dfrac{\mathrm{d} }{\mathrm{d} x} \dfrac{\mathrm{d}^2 P_n (x)}{\mathrm{d} x^2} = \dfrac{3 · \mathrm{d}^3 P_n (x)}{\mathrm{d} x^3}$ |
 
 若任意形式的函数$f (x)$在点$x_0$处连续且有$n + 1$阶导数，则在点$x_0$处可唯一展开成$n$阶幂级数。
 
-$f (x) = \sum\limits_{i=0}^n \dfrac{{^i}f (x_0)}{i!} · (x - x_0)^i + R_n (x) = f (x_0) + \dfrac{{^1}f (x_0)}{1!} · (x - x_0)^1 + \dfrac{{^2}f (x)}{2!} · (x - x_0)^2 + ··· + \dfrac{{^n}f (x)}{n!} · (x - x_0)^n + R_n (x)$
+$f (x) = \sum\limits_{i=0}^n \dfrac{ {^i}f (x_0)}{i!} · (x - x_0)^i + R_n (x) = f (x_0) + \dfrac{ {^1}f (x_0)}{1!} · (x - x_0)^1 + \dfrac{ {^2}f (x)}{2!} · (x - x_0)^2 + ··· + \dfrac{ {^n}f (x)}{n!} · (x - x_0)^n + R_n (x)$
 
 $f (x) = \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x}\right|_{x_0} · (x - x_0)^i + R_n (x) = f (x_0) + \left.\dfrac{\mathrm{d}^1 f (x)}{1! · \mathrm{d}^1 x}\right|_{x_0} · (x - x_0)^1 + \left.\dfrac{\mathrm{d}^2 f (x)}{2! · \mathrm{d}^2 x}\right|_{x_0} · (x - x_0)^2 + ··· + \left.\dfrac{\mathrm{d}^n f (x)}{n! · \mathrm{d}^n x}\right|_{x_0} · (x - x_0)^n + R_n (x)$
 
 $f (x) = \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i f (x)}{\mathrm{d} x^i}\right|_{x_0} · (x - x_0)^i + R_n (x) = f (x_0) + \left.\dfrac{\mathrm{d}^1 f (x)}{\mathrm{d} x^1}\right|_{x_0} · (x - x_0)^1 + \left.\dfrac{\mathrm{d}^2 f (x)}{\mathrm{d} x^2}\right|_{x_0} · (x - x_0)^2 + ··· + \left.\dfrac{\mathrm{d}^n f (x)}{\mathrm{d} x^n}\right|_{x_0} · (x - x_0)^n + R_n (x)$
 
-$R_n (x) = o (x - x_0)^n = f (x) - f (x_0) - \sum\limits_{i=1}^n \dfrac{{^i}f (x_0)}{i!} · (x - x_0)^i  \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{{^{n+1}}f (θ)}{(n + 1)!} · (x - x_0)^{n + 1} \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{{^{n+1}f (θ)}}{n!} · (x - θ)^n · (x - x_0)^1 \mathop{====}\limits_{∃θ∈[x_0, x]} \int\limits_{x_0}^x \dfrac{{^{n+1}}f (t)}{n!} · (x - t)^n \mathrm{d} t$
+$R_n (x) = o (x - x_0)^n = f (x) - f (x_0) - \sum\limits_{i=1}^n \dfrac{ {^i}f (x_0)}{i!} · (x - x_0)^i  \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{ {^{n+1} }f (θ)}{(n + 1)!} · (x - x_0)^{n + 1} \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{ {^{n+1}f (θ)} }{n!} · (x - θ)^n · (x - x_0)^1 \mathop{====}\limits_{∃θ∈[x_0, x]} \int\limits_{x_0}^x \dfrac{ {^{n+1} }f (t)}{n!} · (x - t)^n \mathrm{d} t$
 
 $[ R_n (x_0) = 0 ] ⇒ [ f (x) |_{x_0} = f (x_0) ]$
 
-| $⇓$  | ${^m} R_n (x) = {^m} f (x) - {^m} f (x_0) - \sum\limits_{i=m+1}^n \dfrac{{^{i-m}}f (x_0)}{i!} · \dfrac{i!}{(i - m)!} · (x - x_0)^{i-m}$ | $⇒$  | $\lim\limits_{x ⇝ x_0} {^m} R_n (x) \mathop{⇝}\limits_{0 ≤ m ≤ n} 0$ |
+| $⇓$  | ${^m} R_n (x) = {^m} f (x) - {^m} f (x_0) - \sum\limits_{i=m+1}^n \dfrac{ {^{i-m} }f (x_0)}{i!} · \dfrac{i!}{(i - m)!} · (x - x_0)^{i-m}$ | $⇒$  | $\lim\limits_{x ⇝ x_0} {^m} R_n (x) \mathop{⇝}\limits_{0 ≤ m ≤ n} 0$ |
 | :--: | ------------------------------------------------------------ | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{R_n (x)}{(x - x_0)^n} = \lim\limits_{x⇝x_0} \dfrac{1}{n} · \dfrac{{^1}R_n (x)}{(x - x_0)^{n - 1}} = \lim\limits_{x⇝x_0} \dfrac{(n - m)!}{n!} · \dfrac{{^m} R_n (x)}{(x - x_0)^{n - m}} = ··· = \lim\limits_{x⇝x_0} \dfrac{0!}{n!} · \dfrac{{^n}R_n (x)}{(x - x_0)^0} ⇝ 0$ |      |                                                              |
+| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{R_n (x)}{(x - x_0)^n} = \lim\limits_{x⇝x_0} \dfrac{1}{n} · \dfrac{ {^1}R_n (x)}{(x - x_0)^{n - 1} } = \lim\limits_{x⇝x_0} \dfrac{(n - m)!}{n!} · \dfrac{ {^m} R_n (x)}{(x - x_0)^{n - m} } = ··· = \lim\limits_{x⇝x_0} \dfrac{0!}{n!} · \dfrac{ {^n}R_n (x)}{(x - x_0)^0} ⇝ 0$ |      |                                                              |
 | $⇓$  | $R_n (x) = o (x - x_0)^{n}$                                  |      |                                                              |
 
-| $⇓$  | $F (t) ≡ \sum\limits_{i=0}^n \dfrac{{^i} f (t)}{i!} · (x - t)^i$ | $⇒$  | $R_n (x) = F (x) - F (x_0)$                                  |                                                     |
+| $⇓$  | $F (t) ≡ \sum\limits_{i=0}^n \dfrac{ {^i} f (t)}{i!} · (x - t)^i$ | $⇒$  | $R_n (x) = F (x) - F (x_0)$                                  |                                                     |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- | :-------------------------------------------------- |
-| $⇓$  | ${^1} F (t) = \sum\limits_{i=0}^n \left[ \dfrac{{^{i+1}} f (t)}{i!} · (x - t)^i - \dfrac{{^i} f (t)}{i!} · i · (x - t)^{i-1} \right]$ |      |                                                              |                                                     |
-| $⇓$  | ${^1}F (t) = \sum\limits_{i=0}^n \dfrac{{^{i+1}} f (t)}{i!} · (x - t)^i - \sum\limits_{i=0}^{n-1} \dfrac{{^{i+1}} f (t)}{i!} · (x - t)^i = \dfrac{{^{n+1}} f (t)}{n!} · (x - t)^n$ |      |                                                              |                                                     |
-| $⇓$  | $\dfrac{R_n (x)}{G (x) - G (x_0)} = \dfrac{F (x) - F (x_0)}{G (x) - G (x_0)} = \left.\dfrac{{^1} F (t)}{{^1} G (t)}\right|_{∃θ∈[x_0, x]} = \dfrac{{^{n+1}} f (θ)}{n!} · \dfrac{(x - θ)^n}{{^1} G (θ)} $ |      |                                                              |                                                     |
-| $⇓$  | $R_n (x) \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{{^{n+1}} f (θ)}{n!} · \dfrac{(x - θ)^n}{{^1} G (θ)} · [G (x) - G (x_0)]$ |      |                                                              |                                                     |
-| $⇓$  | $R_n (x) \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{{^{n+1}f (θ)}}{(n + 1)!} · (x - x_0)^{n + 1}$ | $⇐$  | $G (t) ≡ (x - t)^{n + 1}$                                    | ${^1}G (t) = -(n + 1) · (x - t)^n$                  |
-| $⇓$  | $R_n (x) \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{{^{n+1}f (θ)}}{n!} · (x - θ)^n · (x - x_0)^1$ | $⇐$  | $G (t) ≡ (x - t)^1$                                          | ${^1}G (t) = -1$                                    |
-| $⇓$  | $R_n (x) \mathop{====}\limits_{∃θ∈[x_0, x]} \int\limits_{x_0}^x \dfrac{{^{n+1}}f (t)}{n!} · (x - t)^n \mathrm{d} t$ | $⇐$  | $G (t) ≡ \int\limits_{x_0}^t \dfrac{{^{n+1}}f (t)}{n!} · (x - t)^n \mathrm{d} t$ | ${^1}G (t) = \dfrac{{^{n+1}}f (t)}{n!} · (x - t)^n$ |
-| $⇓$  | $R_n (x) = O (x - x_0)^{n + 1}$                              | $⇐$  | $\varlimsup\limits_{x⇝x_0} \dfrac{R_n (x)}{(x - x_0)^{n + 1}} = \dfrac{{^{n+1}}f (θ)}{(n + 1)!} ≤ \mathrm{Sup.}$ |                                                     |
+| $⇓$  | ${^1} F (t) = \sum\limits_{i=0}^n \left[ \dfrac{ {^{i+1} } f (t)}{i!} · (x - t)^i - \dfrac{ {^i} f (t)}{i!} · i · (x - t)^{i-1} \right]$ |      |                                                              |                                                     |
+| $⇓$  | ${^1}F (t) = \sum\limits_{i=0}^n \dfrac{ {^{i+1} } f (t)}{i!} · (x - t)^i - \sum\limits_{i=0}^{n-1} \dfrac{ {^{i+1} } f (t)}{i!} · (x - t)^i = \dfrac{ {^{n+1} } f (t)}{n!} · (x - t)^n$ |      |                                                              |                                                     |
+| $⇓$  | $\dfrac{R_n (x)}{G (x) - G (x_0)} = \dfrac{F (x) - F (x_0)}{G (x) - G (x_0)} = \left.\dfrac{ {^1} F (t)}{ {^1} G (t)}\right|_{∃θ∈[x_0, x]} = \dfrac{ {^{n+1} } f (θ)}{n!} · \dfrac{(x - θ)^n}{ {^1} G (θ)} $ |      |                                                              |                                                     |
+| $⇓$  | $R_n (x) \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{ {^{n+1} } f (θ)}{n!} · \dfrac{(x - θ)^n}{ {^1} G (θ)} · [G (x) - G (x_0)]$ |      |                                                              |                                                     |
+| $⇓$  | $R_n (x) \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{ {^{n+1}f (θ)} }{(n + 1)!} · (x - x_0)^{n + 1}$ | $⇐$  | $G (t) ≡ (x - t)^{n + 1}$                                    | ${^1}G (t) = -(n + 1) · (x - t)^n$                  |
+| $⇓$  | $R_n (x) \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{ {^{n+1}f (θ)} }{n!} · (x - θ)^n · (x - x_0)^1$ | $⇐$  | $G (t) ≡ (x - t)^1$                                          | ${^1}G (t) = -1$                                    |
+| $⇓$  | $R_n (x) \mathop{====}\limits_{∃θ∈[x_0, x]} \int\limits_{x_0}^x \dfrac{ {^{n+1} }f (t)}{n!} · (x - t)^n \mathrm{d} t$ | $⇐$  | $G (t) ≡ \int\limits_{x_0}^t \dfrac{ {^{n+1} }f (t)}{n!} · (x - t)^n \mathrm{d} t$ | ${^1}G (t) = \dfrac{ {^{n+1} }f (t)}{n!} · (x - t)^n$ |
+| $⇓$  | $R_n (x) = O (x - x_0)^{n + 1}$                              | $⇐$  | $\varlimsup\limits_{x⇝x_0} \dfrac{R_n (x)}{(x - x_0)^{n + 1} } = \dfrac{ {^{n+1} }f (θ)}{(n + 1)!} ≤ \mathrm{Sup.}$ |                                                     |
 
 ### 定积分
 
@@ -557,7 +557,7 @@ $(m + 1) · \sum\limits_{i=0}^{n} \left[ \sup\limits_{x∈[x_{i},x_{i+1}]} f (x)
 
 若函数$f (x)$在区间$[X_0, X_1]$上的定积分存在，则其振幅积和的极限为零，反之亦然。
 
-$\int\limits_{X_0}^{X_1} f (x) \mathrm{d} x \mathop{≡≡≡≡}\limits_{X_0=x_0}^{X_1=x_{n+1}} \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_i+1]} f (x) · Δx_i = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f (θ_i) · Δx_i = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i$
+$\int\limits_{X_0}^{X_1} f (x) \mathrm{d} x \mathop{≡≡≡≡}\limits_{X_0=x_0}^{X_1=x_{n+1} } \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_i+1]} f (x) · Δx_i = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f (θ_i) · Δx_i = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i$
 
 $0 ⇜ \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^n w_i · Δx_i ≡ \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^n \sup\limits_{u,v∈[x_{i}, x_{i+1}]} | f (u) - f (v) | · Δx_i = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \left[ \sup\limits_{x∈[x_{i},x_{i+1}]} f (x) - \inf\limits_{x∈[x_i,x_{i+1}]} f (x) \right] · Δx_i = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} f (x) · Δx_i - \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_i+1]} f (x) · Δx_i$
 
@@ -604,7 +604,7 @@ $\left[ \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i · Δx_i 
 | $⇓$  | $∀ε,𝜁>0;$ | $\lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i · Δx_i = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i<ε} + \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{w_i · Δx_i}\limits_{w_i≥ε} ≤ ε · \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i<ε} + \sup\limits f (x) · \lim\limits_{n⇝∞⁺} \sum\limits_{i=0}^{n} \mathop{Δx_i}\limits_{w_i≥ε} ≤ ε · (X_1 - X_0) + \sup\limits f (x) · 𝜁$ |
 | $⇓$  | $∀ε,𝜁>0;$ | $\lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i · Δx_i ⇝ 0$ |
 
-特例：函数$\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ;n∈ℤ^+}^{1 = \gcd (|m|, |n|)} \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}}; \mathop{0}\limits_{x≠\frac{m}{n}}$在区间$[0, 1]$上，任何无理点处连续，任何有理点处不连续，其断点集为零测集，因此其定积分存在。
+特例：函数$\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ;n∈ℤ^+}^{1 = \gcd (|m|, |n|)} \mathop{\dfrac{1}{n} }\limits_{x=\frac{m}{n} }; \mathop{0}\limits_{x≠\frac{m}{n} }$在区间$[0, 1]$上，任何无理点处连续，任何有理点处不连续，其断点集为零测集，因此其定积分存在。
 
 $\int\limits_{0}^{1} \mathcal{R} (x) \mathrm{d} x = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i,x_{i+1}]} \mathcal{R} (x) · Δx_i = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} 0 · Δx_i ⇝ 0$
 
@@ -653,10 +653,10 @@ $\int\limits_{0}^{1} \mathcal{R} (x) \mathrm{d} x = \lim\limits_{n⇝∞⁺}^{Δ
 |      |                                                              |
 | $⇓$  | $\sup\limits_{u,v∈[x_{i},x_{i+1}]} \left| \dfrac{f (u)}{g (u)} - \dfrac{f (v)}{g (v)} \right| = \sup\limits_{u,v∈[x_{i},x_{i+1}]} \left| \dfrac{g (v) · [ f (u)  - f (v) ] - f (v) · [ g (u) - g (v) ]}{g (u) · g (v)} \right| ≤ \dfrac{1}{\inf \left| g (x) \right|} · \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (u) - f (v) | + \dfrac{\sup | f (x) |}{\inf | g^2 (x) |} · \sup\limits_{u,v∈[x_{i},x_{i+1}]} | g (u) - g (v) |$ |
 | $⇓$  | $0 ≤ \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} \left| \dfrac{f (u)}{g (u)} - \dfrac{f (v)}{g (v)} \right| · Δx_i ≤ \dfrac{1}{\inf | g (x) |} · \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | f (u) - f (v) | · Δx_i + \dfrac{\sup | f (x) |}{\inf | g^2 (x) |} · \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{u,v∈[x_{i},x_{i+1}]} | g (u) - g (v) | · Δx_i ⇝ 0$ |
-| $⇓$  | $\lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i^{\frac{f}{g}} · Δx_i ⇝ 0$ |
-| $⇓$  | $∃ε>0;∃ε^f,ε^g>0; \left[ w_i^f < ε^f \right] ∧ \left[ w_i^g < ε^g \right] ⇒ \left[ w_i^{\frac{f}{g}} ≤ \left[ \dfrac{1}{\inf | g (x) |} · w_i^f + \dfrac{\sup | f (x) |}{\inf | g^2 (x) |} · w_i^g \right] < \dfrac{1}{\inf | g (x) |} · ε^f + \dfrac{\sup | f (x) |}{\inf | g^2 (x) |} · ε^g = ε \right]$ |
-| $⇓$  | $∃ε>0;∃ε^f,ε^g>0; \left[ ε ≤ w_i^{\frac{f}{g}} \right] ⇒ \left[ ε^f ≤ w_i^f \right] ∨ \left[ ε^g ≤ w_i^g \right]$ |
-| $⇓$  | $\mathcal{O}^{\frac{f}{g}} ⊆ \mathcal{\mathcal{O}^{f}} ∪ \mathcal{O}^{g}$ |
+| $⇓$  | $\lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} w_i^{\frac{f}{g} } · Δx_i ⇝ 0$ |
+| $⇓$  | $∃ε>0;∃ε^f,ε^g>0; \left[ w_i^f < ε^f \right] ∧ \left[ w_i^g < ε^g \right] ⇒ \left[ w_i^{\frac{f}{g} } ≤ \left[ \dfrac{1}{\inf | g (x) |} · w_i^f + \dfrac{\sup | f (x) |}{\inf | g^2 (x) |} · w_i^g \right] < \dfrac{1}{\inf | g (x) |} · ε^f + \dfrac{\sup | f (x) |}{\inf | g^2 (x) |} · ε^g = ε \right]$ |
+| $⇓$  | $∃ε>0;∃ε^f,ε^g>0; \left[ ε ≤ w_i^{\frac{f}{g} } \right] ⇒ \left[ ε^f ≤ w_i^f \right] ∨ \left[ ε^g ≤ w_i^g \right]$ |
+| $⇓$  | $\mathcal{O}^{\frac{f}{g} } ⊆ \mathcal{\mathcal{O}^{f} } ∪ \mathcal{O}^{g}$ |
 
 特例：函数$f (x) = \mathop{1}\limits_{x∈ℚ};\mathop{-1}\limits_{x∉ℚ}$在区间$[0, 1]$上的定积分不存在，其断点集非为零测集。但函数$| f (x) | = 1$在区间$[0, 1]$上的定积分存在。
 
@@ -679,11 +679,11 @@ $\int\limits_{0}^{1} \mathcal{R} (x) \mathrm{d} x = \lim\limits_{n⇝∞⁺}^{Δ
 | $⇓$  |   $∃ε>0;∃δ>0;$ | $[ w_i^{f∘g} > ε ] ⇒ [ w_i^{g} > δ ]$                        |
 | $⇓$  |                | $\mathcal{O}^{f∘g} ⊆ \mathcal{O}^{g}$                        |
 
-反例：函数$\mathrm{sgn} (y) = \mathop{-1}\limits_{y<0};\mathop{0}\limits_{y=0};\mathop{+1}\limits_{y>0}$在区间$[0, 1]$上的定积分存在，函数$\mathcal{F} (x) ≡ \mathop{I_i - \left| x - X_{i,j} \right|}\limits_{| x - X_{i,j} | < I_{i}}; \mathop{0}\limits_{| x - X_{i,j} | ≥ I_{i}}$在区间$[0, 1]$上连续因此定积分存在。
+反例：函数$\mathrm{sgn} (y) = \mathop{-1}\limits_{y<0};\mathop{0}\limits_{y=0};\mathop{+1}\limits_{y>0}$在区间$[0, 1]$上的定积分存在，函数$\mathcal{F} (x) ≡ \mathop{I_i - \left| x - X_{i,j} \right|}\limits_{| x - X_{i,j} | < I_{i} }; \mathop{0}\limits_{| x - X_{i,j} | ≥ I_{i} }$在区间$[0, 1]$上连续因此定积分存在。
 
 但复合函数$\mathrm{sgn} (\mathcal{F} (x)) = \mathop{1}\limits_{|x-X_{i,j}|<I_i};\mathop{0}\limits_{|x-X_{i,j}|≥I_i}$在区间$[0, 1]$上的断点集非为零测集，其定积分不存在。
 
-反例：函数$\mathrm{sgn} (y) = \mathop{-1}\limits_{y<0};\mathop{0}\limits_{y=0};\mathop{+1}\limits_{y>0}$在区间$[0, 1]$上的定积分存在，函数$\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ;n∈ℤ^+}^{1 = \gcd (|m|, |n|)} \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}}; \mathop{0}\limits_{x≠\frac{m}{n}}$在区间$[0, 1]$上的定积分存在。
+反例：函数$\mathrm{sgn} (y) = \mathop{-1}\limits_{y<0};\mathop{0}\limits_{y=0};\mathop{+1}\limits_{y>0}$在区间$[0, 1]$上的定积分存在，函数$\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ;n∈ℤ^+}^{1 = \gcd (|m|, |n|)} \mathop{\dfrac{1}{n} }\limits_{x=\frac{m}{n} }; \mathop{0}\limits_{x≠\frac{m}{n} }$在区间$[0, 1]$上的定积分存在。
 
 但复合函数$\mathrm{sgn} (\mathcal{R} (x)) = \mathcal{Q} (x) = \mathop{1}\limits_{x∈Q}; \mathop{0}\limits_{x∉Q}$在区间$[0, 1]$上的断点集非为零测集，其定积分不存在。
 
