@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-01T06:18:00+08@中国-广东-湛江+08
+Update:  2021-04-02T00:10:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -11,21 +11,24 @@ Link  :
 
 $n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$按先后次序从其各个集合中选取元素$x_i∈X_i$，可排列成$n + 1$元序偶$\langle x_0, x_1, ..., x_n \rangle$。
 
-$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$中所有可能的$n + 1$元序偶，组成其全乘积$X_0 × X_1 × ... × X_n ≡ \left\lbrace \langle x_0, x_1, ..., x_n \rangle \middle| ∀X_i∈\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace;∀x_i∈X_i; \right\rbrace$。
+$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有可能的$n + 1$元序偶，组成其全乘积$X_0 × X_1 × ... × X_n ≡ \left\lbrace ∀x_i;\langle x_0, x_1, ..., x_n \rangle \middle| ∀X_i∈\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace;x_i∈X_i \right\rbrace$。
 
-$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$中所有的集合若为同一集合$X$，则其全乘积可简记作$X^{n+1}$。
+$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有的集合若为同一集合$X$，则其全乘积即为集合$X$的$n + 1$次幂方，可简记作$X^{n+1}$。
 
-$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$中所有存在的$n + 1$元序偶，组成其$n + 1$元关系$\mathcal{F}[X_0 × X_1 × ... × X_n] ≡ \left\lbrace \langle x_0, x_1, ..., x_n \rangle \middle| \mathrm{ifa} \langle x_0, x_1, ..., x_n \rangle \right\rbrace$，因此$\mathcal{F} ⊆ X_0 × X_1 × ... × X_n$。
+$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有存在的$n + 1$元序偶，组成其$n + 1$元关系$\mathcal{F}[X_0 × X_1 × ... × X_n] ≡ \left\lbrace ∀x_i; \langle x_0, x_1, ..., x_n \rangle \middle| Ⅎ\langle x_0, x_1, ..., x_n \rangle∈X_0 × X_1 × ... × X_n \right\rbrace$。
 
 二元关系$\mathcal{F}[X × X]$可能具有6种特殊性质。
 
-| 相等性 | $∀x∈X; \langle x, x \rangle∈\mathcal{F}$                     |      |                                                              |
+| 相等性 | $∀x∈X; \langle x, x \rangle∈\mathcal{F}$                     |      | 恒等关系$\mathcal{I}[X × X] ≡ \left\lbrace \langle x, x \rangle \middle| ∀x∈X; \right\rbrace$ |
 | :----: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | 不等性 | $∀x∈X; \langle x, x \rangle∉\mathcal{F}$                     |      |                                                              |
 | 对称性 | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} ⇔ \langle y, x \rangle∈\mathcal{F}$ | $⇔$  | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} ⇒ \langle y, x \rangle∈\mathcal{F}$ |
 | 不称性 | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} ∧ \langle y, x \rangle∈\mathcal{F} ⇒ x = y$ | $⇔$  | $∀x∈X;∀y∈X; x ≠ y ⇒ \langle x, y \rangle∉\mathcal{F} ∨ \langle y, x \rangle∉\mathcal{F}$ |
 | 传递性 | $∀x∈X;∀y∈X;∀z∈X; \langle x, y \rangle∈\mathcal{F} ∧ \langle y, z \rangle∈\mathcal{F} ⇒ \langle x, z \rangle∈\mathcal{F}$ |      |                                                              |
-| 循环性 | $∀x∈X;∀y∈X;∀z∈X; \langle x, y \rangle∈\mathcal{F} ∧ \langle y, z \rangle∈\mathcal{F} ⇒ \langle z, x \rangle∈\mathcal{F}$ |      |                                                              |
+
+对于二元关系$\mathcal{F}[X × Y]$，其前域$X$中所有存在的元素组成其原域$\mathrm{def} \mathcal{F} ≡ \lbrace ∀x;x | ∀y;\langle x, y \rangle∈\mathcal{F} \rbrace$，其后域$Y$中所有存在的元素组成其值域$\mathrm{dom} \mathcal{F} ≡ \lbrace ∀y;y | ∀x;\langle x, y \rangle∈\mathcal{F} \rbrace$。
+
+二元关系$\mathcal{F}[X × Y]$与二元关系$\mathcal{G}[Y × Z]$的复合关系$\mathcal{F} ∘ \mathcal{G} [X × Z] ≡ \left\lbrace ∀x∈X;∀z∈Z;\langle x, z \rangle \middle| ∃y∈Y; \langle x, y \rangle∈\mathcal{F} ∧ \langle y, z \rangle∈\mathcal{G} \right\rbrace$。
 
 
 
