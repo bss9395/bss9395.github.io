@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-02T21:10:00+08@中国-广东-湛江+08
+Update:  2021-04-02T23:00:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -17,18 +17,28 @@ $n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rb
 
 $n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有存在的$n + 1$元序偶，组成其$n + 1$元关系$\mathcal{F}[X_0 × X_1 × ... × X_n] ≡ \left\lbrace ∀x_i; \langle x_0, x_1, ..., x_n \rangle \middle| Ⅎ\langle x_0, x_1, ..., x_n \rangle∈X_0 × X_1 × ... × X_n \right\rbrace$。
 
-二元关系$\mathcal{F}[X × X]$可能具有5种特殊性质。
+二元关系$\mathcal{F}[Y × X]$，其前域$Y$中所有存在的元素组成其值域$\mathrm{dom} \mathcal{F} ≡ \lbrace ∀y;y | ∀x;\langle y, x \rangle∈\mathcal{F} \rbrace$，其后域$X$中所有存在的元素组成其原域$\mathrm{def} \mathcal{F} ≡ \lbrace ∀x;x | ∀y;\langle y, x \rangle∈\mathcal{F} \rbrace$。
 
-| 相等性 | $∀x∈X; \langle x, x \rangle∈\mathcal{F}$                     |      | 恒等关系$\mathcal{I}[X × X] ≡ \left\lbrace ∀x;\langle x, x \rangle \middle| x∈X \right\rbrace$ |
-| :----: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| 不等性 | $∀x∈X; \langle x, x \rangle∉\mathcal{F}$                     |      |                                                              |
-| 对称性 | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} ⇔ \langle y, x \rangle∈\mathcal{F}$ | $⇔$  | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} ⇒ \langle y, x \rangle∈\mathcal{F}$ |
-| 不称性 | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} ⇔ \langle y, x \rangle∉\mathcal{F}$ | $⇔$  | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} \not⇔ \langle y, x \rangle∈\mathcal{F}$ |
-| 传递性 | $∀x∈X;∀y∈X;∀z∈X; \langle x, y \rangle∈\mathcal{F} ∧ \langle y, z \rangle∈\mathcal{F} ⇒ \langle x, z \rangle∈\mathcal{F}$ |      |                                                              |
+二元关系$\mathcal{G}[Z × Y]$与二元关系$\mathcal{F}[Y × X]$，两者的复合关系$\mathcal{G} ∘ \mathcal{F} [Z × X] ≡ \left\lbrace ∀z∈Z;∀x∈X;\langle z, x \rangle \middle| ∃y∈Y; \langle z, y \rangle∈\mathcal{G} ∧ \langle y, x \rangle∈\mathcal{F} \right\rbrace$。
 
-对于二元关系$\mathcal{F}[X × Y]$，其前域$X$中所有存在的元素组成其原域$\mathrm{def} \mathcal{F} ≡ \lbrace ∀x;x | ∀y;\langle x, y \rangle∈\mathcal{F} \rbrace$，其后域$Y$中所有存在的元素组成其值域$\mathrm{dom} \mathcal{F} ≡ \lbrace ∀y;y | ∀x;\langle x, y \rangle∈\mathcal{F} \rbrace$。
+二元关系$\mathcal{F}[X × X]$可能具有的特殊性质。
 
-二元关系$\mathcal{F}[X × Y]$与二元关系$\mathcal{G}[Y × Z]$的复合关系$\mathcal{F} ∘ \mathcal{G} [X × Z] ≡ \left\lbrace ∀x∈X;∀z∈Z;\langle x, z \rangle \middle| ∃y∈Y; \langle x, y \rangle∈\mathcal{F} ∧ \langle y, z \rangle∈\mathcal{G} \right\rbrace$。
+| 相等性 | $∀x∈X; \langle x, x \rangle∈\mathcal{F}$                     |      | 恒等关系$\mathcal{I}[X × X] ≡ \left\lbrace ∀x;\langle x, x \rangle \middle| x∈X \right\rbrace$ | $⇒$  | $\mathcal{I}[X × X] ⊆ \mathcal{F}[X × X]$                    |
+| :----: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- | :--: | ------------------------------------------------------------ |
+| 不等性 | $∀x∈X; \langle x, x \rangle∉\mathcal{F}$                     |      |                                                              | $⇒$  | $\mathcal{I}[X × X] ⋂ \mathcal{F}[X × X] = 𝟘$                |
+| 对称性 | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} ⇔ \langle y, x \rangle∈\mathcal{F}$ | $⇔$  | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} ⇒ \langle y, x \rangle∈\mathcal{F}$ | $⇒$  | $\mathcal{F}[X × X] = {'}\mathcal{F}[X × X]$                 |
+| 不称性 | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} ⇔ \langle y, x \rangle∉\mathcal{F}$ | $⇔$  | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} \not⇔ \langle y, x \rangle∈\mathcal{F}$ | $⇒$  | $\mathcal{F}[X × X] ⋂ {'}\mathcal{F}[X × X] = 𝟘$             |
+| 传递性 | $∀x∈X;∀y∈X;∀z∈X; \langle x, y \rangle∈\mathcal{F} ∧ \langle y, z \rangle∈\mathcal{F} ⇒ \langle x, z \rangle∈\mathcal{F}$ |      |                                                              | $⇒$  | $\mathcal{F}[X × X] ∘ \mathcal{F}[X × X] ⊆ \mathcal{F}[X × X]$ |
+
+二元关系的运算性质。
+
+| 双置性 | $\mathcal{F} = {''}\mathcal{F}$                              | $\mathcal{F}[Y × X] = {''}\mathcal{F}[Y × X]$                |
+| :----: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 转置性 | ${'}(\mathcal{G} ∘ \mathcal{F}) = {'}\mathcal{F} ∘ {'}\mathcal{G}$ | ${'}(\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × Z]) = {'}\mathcal{F}[Y × Z] ∘ {'}\mathcal{G}[Z × Y]$ |
+| 结合性 | $\mathcal{H} ∘ \mathcal{G} ∘ \mathcal{F} = (\mathcal{H} ∘ \mathcal{G}) ∘ \mathcal{F} = \mathcal{H} ∘ (\mathcal{G} ∘ \mathcal{F})$ | $\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X] = (\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X] = \mathcal{H}[T × Z] ∘ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ |
+| 恒等性 | $\mathcal{F} = \mathcal{I} ∘ \mathcal{F} = \mathcal{F} ∘ \mathcal{I}$ | $\mathcal{F}[Y × X] = \mathcal{I}[Y × Y] ∘ \mathcal{F}[Y × X] = \mathcal{F}[Y × X] ∘ \mathcal{I}[X × X]$ |
+|        |                                                              |                                                              |
+
 
 
 
