@@ -2,42 +2,78 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-03T14:06:00+08@中国-广东-湛江+08
+Update:  2021-04-04T01:38:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
 
 ### 关系
 
-$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$按先后次序从其各个集合中选取元素$x_i∈X_i$，可排列成$n + 1$元序偶$\langle x_n, ..., x_1, x_0 \rangle$。
+$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$按先后次序从其各个集合中选取元素$x_i∈X_i$，可排列成$n + 1$元序偶$〈 x_n, ..., x_1, x_0 〉$。
 
-$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有可能的$n + 1$元序偶，组成其全乘积$X_n × ... × X_1 × X_0 ≡ \left\lbrace ∀x_i;\langle x_n, ..., x_1, x_0 \rangle \middle| ∀X_i∈\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace;x_i∈X_i \right\rbrace$。
+$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有可能的$n + 1$元序偶，组成其全乘积$X_n × ... × X_1 × X_0 ≡ \left\lbrace ∀x_i;〈 x_n, ..., x_1, x_0 〉 \middle| x_i∈X_i∈\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace \right\rbrace$。
 
-$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有的集合若为同一集合$X$，则其全乘积即为集合$X$的$n + 1$次幂方，可简记作$X^{n+1}$。
+$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有的集合若为同一集合$X$，则其全乘积即为集合$X$的$n + 1$次幂方，可简记作$X^{n+1} ≡ \left\lbrace ∀x_i; 〈 x_n, ..., x_1, x_0 〉 \middle| x_i∈X \right\rbrace$。
 
-$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有存在的$n + 1$元序偶，组成其$n + 1$元关系$\mathcal{F}[X_n × ... × X_1 × X_0] ≡ \left\lbrace ∀x_i; \langle x_n, ..., x_1, x_0 \rangle \middle| Ⅎ\langle x_n, ..., x_1, x_0 \rangle∈X_n × ... × X_1 × X_0 \right\rbrace$。
+$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有存在的$n + 1$元序偶，组成其$n + 1$元关系$\mathcal{F}[X_n × ... × X_1 × X_0] ≡ \left\lbrace ∀x_i; 〈 x_n, ..., x_1, x_0 〉 \middle| Ⅎ〈 x_n, ..., x_1, x_0 〉∈X_n × ... × X_1 × X_0 \right\rbrace$。
 
-二元关系$\mathcal{F}[Y × X]$，其前域$Y$中所有存在的元素组成其值域$\mathrm{dom} \mathcal{F} ≡ \lbrace ∀y;y | ∀x;\langle y, x \rangle∈\mathcal{F} \rbrace$，其后域$X$中所有存在的元素组成其原域$\mathrm{def} \mathcal{F} ≡ \lbrace ∀x;x | ∀y;\langle y, x \rangle∈\mathcal{F} \rbrace$。
+二元关系$\mathcal{F}[Y × X]$，其前域$Y$中所有存在的元素组成其值域$\mathrm{dom} \mathcal{F} ≡ \lbrace ∀y;y | ∃x;〈 y, x 〉∈\mathcal{F} \rbrace$，其后域$X$中所有存在的元素组成其原域$\mathrm{def} \mathcal{F} ≡ \lbrace ∀x;x | ∃y;〈 y, x 〉∈\mathcal{F} \rbrace$。
 
-二元关系$\mathcal{G}[Z × Y]$与二元关系$\mathcal{F}[Y × X]$，两者的复合关系$\mathcal{G} ∘ \mathcal{F} [Z × X] ≡ \left\lbrace ∀z∈Z;∀x∈X;\langle z, x \rangle \middle| ∃y∈Y; \langle z, y \rangle∈\mathcal{G} ∧ \langle y, x \rangle∈\mathcal{F} \right\rbrace$。
+二元关系$\mathcal{F}[Y × X]$，其前域$Y$与其后域$X$互相对换位置，即为其反关系${'}\mathcal{F}[Y × X] ≡ \left\lbrace ∀x;∀y; 〈 x, y 〉 \middle| 〈 y, x 〉∈\mathcal{F} \right\rbrace$。
+
+二元关系$\mathcal{G}[Z × Y]$的后域$Y$与二元关系$\mathcal{F}[Y × X]$的前域$Y$互相叠加相消，即为其复合关系$\mathcal{G} ∘ \mathcal{F} [Z × X] ≡ \left\lbrace ∀z;∀x;〈 z, x 〉 \middle| ∃y; 〈 z, y 〉∈\mathcal{G} ∧ 〈 y, x 〉∈\mathcal{F} \right\rbrace$。
 
 二元关系$\mathcal{F}[X × X]$可能具有的特殊性质。
 
-| 相等性 | $∀x∈X; \langle x, x \rangle∈\mathcal{F}$                     |      | 恒等关系$\mathcal{I}[X × X] ≡ \left\lbrace ∀x;\langle x, x \rangle \middle| x∈X \right\rbrace$ | $⇒$  | $\mathcal{I}[X × X] ⊆ \mathcal{F}[X × X]$                    |
+| 相等性 | $∀x∈X; 〈 x, x 〉∈\mathcal{F}$                               |      | 恒等关系$\mathcal{I}[X × X] ≡ \left\lbrace ∀x;〈 x, x 〉 \middle| x∈X \right\rbrace$ | $⇒$  | $\mathcal{I}[X × X] ⊆ \mathcal{F}[X × X]$                    |
 | :----: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- | :--: | ------------------------------------------------------------ |
-| 不等性 | $∀x∈X; \langle x, x \rangle∉\mathcal{F}$                     |      |                                                              | $⇒$  | $\mathcal{I}[X × X] ⋂ \mathcal{F}[X × X] = 𝟘$                |
-| 对称性 | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} ⇒ \langle y, x \rangle∈\mathcal{F}$ | $⇔$  | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} ⇔ \langle y, x \rangle∈\mathcal{F}$ | $⇒$  | $\mathcal{F}[X × X] = {'}\mathcal{F}[X × X]$                 |
-| 不称性 | $∀x∈X;∀y∈X; \langle x, y \rangle∈\mathcal{F} ⇒ \langle y, x \rangle∉\mathcal{F}$ | $⇔$  | $∀x∈X;∀y∈X; \langle x, y \rangle∉\mathcal{F} ∨ \langle y, x \rangle∉\mathcal{F}$ | $⇒$  | $\mathcal{F}[X × X] ⋂ {'}\mathcal{F}[X × X] = 𝟘$             |
-| 传递性 | $∀x∈X;∀y∈X;∀z∈X; \langle x, y \rangle∈\mathcal{F} ∧ \langle y, z \rangle∈\mathcal{F} ⇒ \langle x, z \rangle∈\mathcal{F}$ |      |                                                              | $⇒$  | $\mathcal{F}[X × X] ∘ \mathcal{F}[X × X] ⊆ \mathcal{F}[X × X]$ |
+| 不等性 | $∀x∈X; 〈 x, x 〉∉\mathcal{F}$                               |      | 恒等关系$∀x; 〈 x, x 〉∈\mathcal{I}[X × X] ⇔ x∈X$            | $⇒$  | $\mathcal{I}[X × X] ⋂ \mathcal{F}[X × X] = 𝟘$                |
+| 对称性 | $∀y∈X;∀x∈X; 〈 y, x 〉∈\mathcal{F} ⇒ 〈 x, y 〉∈\mathcal{F}$ | $⇔$  | $∀y∈X;∀x∈X; 〈 y, x 〉∈\mathcal{F} ⇔ 〈 x, y 〉∈\mathcal{F}$ | $⇒$  | $\mathcal{F}[X × X] = {'}\mathcal{F}[X × X]$                 |
+| 不称性 | $∀y∈X;∀x∈X; 〈 y, x 〉∈\mathcal{F} ⇒ 〈 x, y 〉∉\mathcal{F}$ | $⇔$  | $∀y∈X;∀x∈X; 〈 y, x 〉∉\mathcal{F} ∨ 〈 x, y 〉∉\mathcal{F}$ | $⇒$  | $\mathcal{F}[X × X] ⋂ {'}\mathcal{F}[X × X] = 𝟘$             |
+| 传递性 | $∀z∈X;∀y∈X;∀x∈X; 〈 z, y 〉∈\mathcal{F} ∧ 〈 y, x 〉∈\mathcal{F} ⇒ 〈 z, x 〉∈\mathcal{F}$ |      |                                                              | $⇒$  | $\mathcal{F}[X × X] ∘ \mathcal{F}[X × X] ⊆ \mathcal{F}[X × X]$ |
 
-二元关系的运算性质。
+二元关系$\mathcal{F}[Y × X]$具有的典型运算性质。
 
-| 双置性 | $\mathcal{F}[Y × X] = {''}\mathcal{F}[Y × X]$                |
-| :----: | :----------------------------------------------------------- |
-| 转置性 | ${'}(\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × Z]) = {'}\mathcal{F}[Y × Z] ∘ {'}\mathcal{G}[Z × Y]$ |
-| 结合性 | $\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X] = (\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X] = \mathcal{H}[T × Z] ∘ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ |
-| 恒等性 | $\mathcal{F}[Y × X] = \mathcal{I}[Y × Y] ∘ \mathcal{F}[Y × X] = \mathcal{F}[Y × X] ∘ \mathcal{I}[X × X]$ |
-| 归一性 | $\mathcal{I}[X × X] = {'}\mathcal{F}[Y × X] ∘ \mathcal{F}[Y × X]$ |
+| 双反性 | $\mathcal{F}[Y × X] = {''}\mathcal{F}[Y × X]$                | $\mathrm{dom} \mathcal{F}[Y × X] = \mathrm{def} {'}\mathcal{F}[Y × X]$ |
+| :----: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 恒等性 | $\mathcal{F}[Y × X] = \mathcal{I}[Y × Y] ∘ \mathcal{F}[Y × X]$ | $\mathcal{F}[Y × X] = \mathcal{F}[Y × X] ∘ \mathcal{I}[X × X]$ |
+| 归一性 | $\mathcal{I}[X × X] ⊇ {'}\mathcal{F}[Y × X] ∘ \mathcal{F}[Y × X] ⋂ \mathcal{I}[X × X]$ | $\mathcal{I}[Y × Y] ⊇ \mathcal{F}[Y × X] ∘ {'}\mathcal{F}[Y × X] ⋂ \mathcal{I}[Y × Y]$ |
+| 逆反性 | ${'}(\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × Z]) = {'}\mathcal{F}[Y × Z] ∘ {'}\mathcal{G}[Z × Y]$ |                                                              |
+| 结合性 | $\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X] = \mathcal{H}[T × Z] ∘ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X] = (\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X]$ |
+| 分配性 | $\mathcal{H}[Z × Y] ∘ (\mathcal{G}[Y × X] ∪ \mathcal{F}[Y × X]) = (\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X]) ∪ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $(\mathcal{H}[Z × Y] ∪ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X] = (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]) ∪ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ |
+| 分配性 | $\mathcal{H}[Z × Y] ∘ (\mathcal{G}[Y × X] ∩ \mathcal{F}[Y × X]) ⊆ (\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X]) ⋂ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $(\mathcal{H}[Z × Y] ⋂ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X] ⊆ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]) ⋂ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ |
+
+| 双反性 | $∀y;∀x; 〈 y, x 〉∈\mathcal{F}[Y, X]$                        |      |                                                              |
+| :----: | ------------------------------------------------------------ | :--: | :----------------------------------------------------------- |
+|  $⇕$   | $∀y;∀x; 〈 x, y 〉∈{'}\mathcal{F}[Y, X]$                     |      |                                                              |
+|  $⇕$   | $∀y;∀x; 〈 y, x 〉∈{''}\mathcal{F}[Y, X]$                    |      |                                                              |
+|        |                                                              |      |                                                              |
+| 恒等性 | $∀y;∀x; 〈 y, x 〉∈\mathcal{F}[Y × X]$                       |      |                                                              |
+|  $⇕$   | $∀y;∀x; 〈 y, y 〉∈\mathcal{I}[Y × Y] ∧ 〈 y, x 〉∈\mathcal{F}[Y × X]$ |      |                                                              |
+|  $⇕$   | $∀y;∀x; 〈 y, x 〉∈\mathcal{I}[Y × Y] ∘ \mathcal{F}[Y × X]$  |      |                                                              |
+|        |                                                              |      |                                                              |
+| 归一性 | $∀y;∀x; 〈 x, y 〉∈{'}\mathcal{F}[Y × X] ∧ 〈 y, x 〉∈\mathcal{F}[Y × X]$ |      |                                                              |
+|  $⇓$   | $∀x∈\mathrm{def}\mathcal{F}; 〈 x, x 〉∈{'}\mathcal{F}[Y × X] ∘ \mathcal{F}[Y × X]$ |      |                                                              |
+|  $⇓$   | $\mathcal{I}[X × X] ⊇ {'}\mathcal{F}[Y × X] ∘ \mathcal{F}[Y × X] ⋂ \mathcal{I}[X × X]$ |      |                                                              |
+|        |                                                              |      |                                                              |
+| 逆反性 | $∀x;∀z; 〈 x, z 〉∈{'}(\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × Z])$ | $⇔$  | $∀x;∀z; 〈 z, x 〉∈\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × Z]$  |
+|  $⇕$   | $∀x;∀z;∃y; 〈 z, y 〉∈\mathcal{G}[Z × Y] ∧ 〈 y, x 〉∈\mathcal{F}[Y × Z]$ | $⇔$  | $∀x;∀z;∃y; 〈 x, y 〉∈{'}\mathcal{F}[Y × Z] ∧ 〈 y, z 〉∈{'}\mathcal{G}[Z × Y]$ |
+|  $⇕$   | $∀x;∀z; 〈 x, z 〉∈{'}\mathcal{F}[Y × Z] ∘ {'}\mathcal{G}[Z × Y]$ |      |                                                              |
+|        |                                                              |      |                                                              |
+| 结合性 | $∀t;∀x; 〈 t, x 〉∈\mathcal{H}[T × Z] ∘ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $⇔$  | $∀t;∀x;∃z; 〈 t, z 〉∈\mathcal{H}[T × Z] ∧ 〈 z, x 〉∈\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X]$ |
+|  $⇕$   | $∀t;∀x;∃z;∃y; 〈 t, z 〉∈\mathcal{H}[T × Z] ∧ 〈 z, y 〉∈\mathcal{G}[Z × Y] ∧ 〈 y, x 〉∈\mathcal{F}[Y × X]$ | $⇔$  | $∀t;∀x;∃y; 〈t, y〉∈\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∧ 〈 y, x 〉∈\mathcal{F}[Y × X]$ |
+|  $⇕$   | $∀t;∀x; 〈t, x〉∈(\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X]$ |      |                                                              |
+|        |                                                              |      |                                                              |
+| 分配性 | $∀z;∀x; 〈z, x〉∈\mathcal{H}[Z × Y] ∘ (\mathcal{G}[Y × X] ∪ \mathcal{F}[Y × X])$ | $⇔$  | $∀z;∀x;∃y; 〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{G}[Y × X] ∪ \mathcal{F}[Y × X]$ |
+|  $⇕$   | $∀z;∀x;∃y; [〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{G}[Y × X]] ∨ [〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{F}[Y × X]]$ |      |                                                              |
+|  $⇕$   | $∀z;∀x; [∃y; 〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{G}[Y × X]] ∨ [∃y; 〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{F}[Y × X]]$ |      |                                                              |
+|  $⇕$   | $∀z;∀x; 〈z, x〉∈\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X] ∪ \mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]$ |      |                                                              |
+|        |                                                              |      |                                                              |
+| 分配性 | $∀z;∀x; 〈z, x〉∈\mathcal{H}[Z × Y] ∘ (\mathcal{G}[Y × X] ∩ \mathcal{F}[Y × X])$ | $⇔$  | $∀z;∀x;∃y; 〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{G}[Y × X] ⋂ \mathcal{F}[Y × X]$ |
+|  $⇕$   | $∀z;∀x;∃y; [〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{G}[Y × X]] ∧ [〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{F}[Y × X]]$ |      |                                                              |
+|  $⇓$   | $∀z;∀x; [∃y; 〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{G}[Y × X]] ∧ [∃y;〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{F}[Y × X]]$ |      |                                                              |
+|  $⇕$   | $∀z;∀x; 〈z, x〉∈\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X] ⋂ \mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]$ |      |                                                              |
+
 
 
 
