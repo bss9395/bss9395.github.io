@@ -25,9 +25,9 @@ $n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rb
 
 二元关系$\mathcal{F}[X × X]$可能具有的特殊性质。
 
-| 相等性 | $∀x∈X; 〈 x, x 〉∈\mathcal{F}$                               |      | 恒等关系$\mathcal{I}[X × X] ≡ \left\lbrace ∀x;〈 x, x 〉 \middle| x∈X \right\rbrace$ | $⇒$  | $\mathcal{I}[X × X] ⊆ \mathcal{F}[X × X]$                    |
+| 相等性 | $∀x∈X; 〈 x, x 〉∈\mathcal{F}$                     |      | 恒等关系$\mathcal{I}[X × X] ≡ \left\lbrace ∀x;〈 x, x 〉 \middle| x∈X \right\rbrace$ | $⇒$  | $\mathcal{I}[X × X] ⊆ \mathcal{F}[X × X]$                    |
 | :----: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- | :--: | ------------------------------------------------------------ |
-| 不等性 | $∀x∈X; 〈 x, x 〉∉\mathcal{F}$                               |      | 恒等关系$∀x; 〈 x, x 〉∈\mathcal{I}[X × X] ⇔ x∈X$            | $⇒$  | $\mathcal{I}[X × X] ⋂ \mathcal{F}[X × X] = 𝟘$                |
+| 不等性 | $∀x∈X; 〈 x, x 〉∉\mathcal{F}$                     |      | 恒等关系$∀x; 〈 x, x 〉∈\mathcal{I}[X × X] ⇔ x∈X$  | $⇒$  | $\mathcal{I}[X × X] ⋂ \mathcal{F}[X × X] = 𝟘$                |
 | 对称性 | $∀y∈X;∀x∈X; 〈 y, x 〉∈\mathcal{F} ⇒ 〈 x, y 〉∈\mathcal{F}$ | $⇔$  | $∀y∈X;∀x∈X; 〈 y, x 〉∈\mathcal{F} ⇔ 〈 x, y 〉∈\mathcal{F}$ | $⇒$  | $\mathcal{F}[X × X] = {'}\mathcal{F}[X × X]$                 |
 | 不称性 | $∀y∈X;∀x∈X; 〈 y, x 〉∈\mathcal{F} ⇒ 〈 x, y 〉∉\mathcal{F}$ | $⇔$  | $∀y∈X;∀x∈X; 〈 y, x 〉∉\mathcal{F} ∨ 〈 x, y 〉∉\mathcal{F}$ | $⇒$  | $\mathcal{F}[X × X] ⋂ {'}\mathcal{F}[X × X] = 𝟘$             |
 | 传递性 | $∀z∈X;∀y∈X;∀x∈X; 〈 z, y 〉∈\mathcal{F} ∧ 〈 y, x 〉∈\mathcal{F} ⇒ 〈 z, x 〉∈\mathcal{F}$ |      |                                                              | $⇒$  | $\mathcal{F}[X × X] ∘ \mathcal{F}[X × X] ⊆ \mathcal{F}[X × X]$ |
@@ -37,11 +37,12 @@ $n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rb
 | 双反性 | $\mathcal{F}[Y × X] = {''}\mathcal{F}[Y × X]$                | $\mathrm{dom} \mathcal{F}[Y × X] = \mathrm{def} {'}\mathcal{F}[Y × X]$ |
 | :----: | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | 恒等性 | $\mathcal{F}[Y × X] = \mathcal{I}[Y × Y] ∘ \mathcal{F}[Y × X]$ | $\mathcal{F}[Y × X] = \mathcal{F}[Y × X] ∘ \mathcal{I}[X × X]$ |
-| 归一性 | $\mathcal{I}[X × X] ⊇ {'}\mathcal{F}[Y × X] ∘ \mathcal{F}[Y × X] ⋂ \mathcal{I}[X × X]$ | $\mathcal{I}[Y × Y] ⊇ \mathcal{F}[Y × X] ∘ {'}\mathcal{F}[Y × X] ⋂ \mathcal{I}[Y × Y]$ |
+| 归一性 | $\mathcal{I}[\mathrm{def}F × \mathrm{def}F] ⊆ {'}\mathcal{F}[Y × X] ∘ \mathcal{F}[Y × X]$ | $\mathcal{I}[\mathrm{dom}F × \mathrm{dom}F] ⊆ \mathcal{F}[Y × X] ∘ {'}\mathcal{F}[Y × X]$ |
 | 逆反性 | ${'}(\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × Z]) = {'}\mathcal{F}[Y × Z] ∘ {'}\mathcal{G}[Z × Y]$ |                                                              |
 | 结合性 | $\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X] = \mathcal{H}[T × Z] ∘ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X] = (\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X]$ |
 | 分配性 | $\mathcal{H}[Z × Y] ∘ (\mathcal{G}[Y × X] ∪ \mathcal{F}[Y × X]) = (\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X]) ∪ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $(\mathcal{H}[Z × Y] ∪ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X] = (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]) ∪ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ |
 | 分配性 | $\mathcal{H}[Z × Y] ∘ (\mathcal{G}[Y × X] ∩ \mathcal{F}[Y × X]) ⊆ (\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X]) ⋂ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $(\mathcal{H}[Z × Y] ⋂ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X] ⊆ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]) ⋂ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ |
+
 
 | 双反性 | $∀y;∀x; 〈 y, x 〉∈\mathcal{F}[Y, X]$                        |      |                                                              |
 | :----: | ------------------------------------------------------------ | :--: | :----------------------------------------------------------- |
@@ -54,7 +55,7 @@ $n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rb
 |        |                                                              |      |                                                              |
 | 归一性 | $∀y;∀x; 〈 x, y 〉∈{'}\mathcal{F}[Y × X] ∧ 〈 y, x 〉∈\mathcal{F}[Y × X]$ |      |                                                              |
 |  $⇓$   | $∀x∈\mathrm{def}\mathcal{F}; 〈 x, x 〉∈{'}\mathcal{F}[Y × X] ∘ \mathcal{F}[Y × X]$ |      |                                                              |
-|  $⇓$   | $\mathcal{I}[X × X] ⊇ {'}\mathcal{F}[Y × X] ∘ \mathcal{F}[Y × X] ⋂ \mathcal{I}[X × X]$ |      |                                                              |
+|  $⇓$   | $\mathcal{I}[\mathrm{def}F × \mathrm{def}F] ⊆ {'}\mathcal{F}[Y × X] ∘ \mathcal{F}[Y × X]$ |      |                                                              |
 |        |                                                              |      |                                                              |
 | 逆反性 | $∀x;∀z; 〈 x, z 〉∈{'}(\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × Z])$ | $⇔$  | $∀x;∀z; 〈 z, x 〉∈\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × Z]$  |
 |  $⇕$   | $∀x;∀z;∃y; 〈 z, y 〉∈\mathcal{G}[Z × Y] ∧ 〈 y, x 〉∈\mathcal{F}[Y × Z]$ | $⇔$  | $∀x;∀z;∃y; 〈 x, y 〉∈{'}\mathcal{F}[Y × Z] ∧ 〈 y, z 〉∈{'}\mathcal{G}[Z × Y]$ |
@@ -73,6 +74,7 @@ $n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rb
 |  $⇕$   | $∀z;∀x;∃y; [〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{G}[Y × X]] ∧ [〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{F}[Y × X]]$ |      |                                                              |
 |  $⇓$   | $∀z;∀x; [∃y; 〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{G}[Y × X]] ∧ [∃y;〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{F}[Y × X]]$ |      |                                                              |
 |  $⇕$   | $∀z;∀x; 〈z, x〉∈\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X] ⋂ \mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]$ |      |                                                              |
+
 
 
 
