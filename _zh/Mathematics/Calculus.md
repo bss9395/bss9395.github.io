@@ -9,13 +9,37 @@ Link  :
 
 ### 关系
 
-$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$按先后次序从其各个集合中选取元素$x_i∈X_i$，可排列成$n + 1$元序偶$〈 x_n, ..., x_1, x_0 〉$。
+集合$S$中元素的个数为$\mathrm{ord} S$。
 
-$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有可能的$n + 1$元序偶，组成其全乘积$X_n × ... × X_1 × X_0 ≡ \left\lbrace ∀x_i;〈 x_n, ..., x_1, x_0 〉 \middle| x_i∈X_i∈\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace \right\rbrace$。
+$n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rbrace$按先后次序从其各个集合中选取元素$s_i∈S_i$，可排列成$n + 1$元序偶$〈 s_0, s_1, ..., s_n 〉$。
 
-$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有的集合若为同一集合$X$，则其全乘积即为集合$X$的$n + 1$次幂方，可简记作$X^{n+1} ≡ \left\lbrace ∀x_i; 〈 x_n, ..., x_1, x_0 〉 \middle| x_i∈X \right\rbrace$。
+$n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rbrace$所有可能的$n + 1$元序偶，组成其全乘积$S_0 × S_1 × ... × S_n ≡ \left\lbrace ∀s_i; 〈 s_0, s_1, ..., s_n 〉 \middle| s_i∈S_i∈\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rbrace \right\rbrace$，其元素的个数为$\prod\limits_{i=0}^{n} \mathrm{ord} S_i$。
 
-$n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rbrace$所有存在的$n + 1$元序偶，组成其$n + 1$元关系$\mathcal{F}[X_n × ... × X_1 × X_0] ≡ \left\lbrace ∀x_i; 〈 x_n, ..., x_1, x_0 〉 \middle| Ⅎ〈 x_n, ..., x_1, x_0 〉∈X_n × ... × X_1 × X_0 \right\rbrace$。
+$n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rbrace$所有的集合若为同一集合$S$，则其全乘积即为集合$S$的$n + 1$次幂方，可简记作$S^{n+1} ≡ \left\lbrace ∀s_i; 〈 s_0, s_1, ..., s_n 〉 \middle| s_i∈S \right\rbrace$。
+
+$n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rbrace$所有存在的$n + 1$元序偶，组成其$n + 1$元关系$\mathcal{F}[S_0 × S_1 × ... × S_n] ≡ \left\lbrace ∀s_i; 〈 s_0, s_1, ..., s_n 〉 \middle| Ⅎ〈 s_0, s_1, ..., s_n 〉∈S_0 × S_1 × ... × S_n \right\rbrace$。
+
+全乘积具有的典型运算性质。
+
+| 零元性 | $𝟘 = S × 𝟘$                           | $𝟘 = 𝟘 × S$                           |
+| :----: | :------------------------------------ | :------------------------------------ |
+| 不称性 | $S × T \not≡ T × S$                   |                                       |
+| 限定性 | $[R = T] ∧ [S = U] ⇒ [R × S = T × U]$ | $[R ⊆ T] ∧ [S ⊆ U] ⇒ [R × S ⊆ T × U]$ |
+| 结合性 | $R × S × T = (R × S) × T$             | $R × S × T = R × (S × T)$             |
+| 结合性 | $R × S × T ≠〈R × S〉× T$             | $R × S × T ≠ R ×〈S × T〉$            |
+| 分配性 | $(R ⋃ S) × T = (R × T) ⋃ (S × T)$     | $R × (S ⋃ T) = (R × S) ⋃ (R × T)$     |
+| 分配性 | $(R ⋂ S) × T = (R × T) ⋂ (S × T)$     | $R × (S ⋂ T) = (R × S) ⋂ (R × T)$     |
+
+| 分配性 | $∀rs;∀t;〈rs, t〉∈(R ⋃ S) × T$                |      |                                             |
+| :----: | :-------------------------------------------- | :--: | :------------------------------------------ |
+|  $⇕$   | $∀rs;∀t; [rs∈R⋃S] ∧ [t∈T]$                    | $⇔$  | $∀rs;∀t; [[rs∈R] ∨ [rs∈S]] ∧ [t∈T]$         |
+|  $⇕$   | $∀rs;∀t; [[rs∈R] ∧ [t∈T]] ∨ [[rs∈S] ∧ [t∈T]]$ | $⇔$  | $∀rs;∀t; [〈rs, t〉∈R×T] ∨ [〈rs, t〉∈S×T]$ |
+|  $⇕$   | $∀rs;∀t;〈rs, t〉∈(R × T) ⋃ (S × T)$          | $⇒$  | $(R ⋃ S) × T = (R × T) ⋃ (S × T)$           |
+|        |                                               |      |                                             |
+| 分配性 | $∀rs;∀t;〈rs, t〉∈(R ⋂ S) × T$                |      |                                             |
+|  $⇕$   | $∀rs;∀t; [rs∈R⋂S] ∧ [t∈T]$                    | $⇔$  | $∀rs;∀t; [[rs∈R] ∧ [rs∈S]] ∧ [t∈T]$         |
+|  $⇕$   | $∀rs;∀t; [[rs∈R] ∧ [t∈T]] ∧ [[rs∈S] ∧ [t∈T]]$ | $⇔$  | $∀rs;∀t; [〈rs, t〉∈R×T] ∧ [〈rs, t〉∈S×T]$ |
+|  $⇕$   | $∀rs;∀t;〈rs, t〉∈(R × T) ⋂ (S × T)$          | $⇒$  | $(R ⋂ S) × T = (R × T) ⋂ (S × T)$           |
 
 二元关系$\mathcal{F}[Y × X]$，其前域$Y$中所有存在的元素组成其值域$\mathrm{dom} \mathcal{F} ≡ \lbrace ∀y;y | ∃x;〈 y, x 〉∈\mathcal{F} \rbrace$，其后域$X$中所有存在的元素组成其原域$\mathrm{def} \mathcal{F} ≡ \lbrace ∀x;x | ∃y;〈 y, x 〉∈\mathcal{F} \rbrace$。
 
@@ -25,24 +49,24 @@ $n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rb
 
 二元关系$\mathcal{F}[X × X]$可能具有的特殊性质。
 
-| 相等性 | $∀x∈X; 〈 x, x 〉∈\mathcal{F}$                     |      | 恒等关系$\mathcal{I}[X × X] ≡ \left\lbrace ∀x;〈 x, x 〉 \middle| x∈X \right\rbrace$ | $⇒$  | $\mathcal{I}[X × X] ⊆ \mathcal{F}[X × X]$                    |
+| 相等性 | $∀x∈X; 〈 x, x 〉∈\mathcal{F}$                               |      | 恒等关系$\mathcal{I}[X × X] ≡ \left\lbrace ∀x;〈 x, x 〉 \middle| x∈X \right\rbrace$ | $⇒$  | $\mathcal{I}[X × X] ⊆ \mathcal{F}[X × X]$                    |
 | :----: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- | :--: | ------------------------------------------------------------ |
-| 不等性 | $∀x∈X; 〈 x, x 〉∉\mathcal{F}$                     |      | 恒等关系$∀x; 〈 x, x 〉∈\mathcal{I}[X × X] ⇔ x∈X$  | $⇒$  | $\mathcal{I}[X × X] ⋂ \mathcal{F}[X × X] = 𝟘$                |
+| 不等性 | $∀x∈X; 〈 x, x 〉∉\mathcal{F}$                               |      | 恒等关系$∀x; 〈 x, x 〉∈\mathcal{I}[X × X] ⇔ x∈X$            | $⇒$  | $\mathcal{I}[X × X] ⋂ \mathcal{F}[X × X] = 𝟘$                |
 | 对称性 | $∀y∈X;∀x∈X; 〈 y, x 〉∈\mathcal{F} ⇒ 〈 x, y 〉∈\mathcal{F}$ | $⇔$  | $∀y∈X;∀x∈X; 〈 y, x 〉∈\mathcal{F} ⇔ 〈 x, y 〉∈\mathcal{F}$ | $⇒$  | $\mathcal{F}[X × X] = {'}\mathcal{F}[X × X]$                 |
 | 不称性 | $∀y∈X;∀x∈X; 〈 y, x 〉∈\mathcal{F} ⇒ 〈 x, y 〉∉\mathcal{F}$ | $⇔$  | $∀y∈X;∀x∈X; 〈 y, x 〉∉\mathcal{F} ∨ 〈 x, y 〉∉\mathcal{F}$ | $⇒$  | $\mathcal{F}[X × X] ⋂ {'}\mathcal{F}[X × X] = 𝟘$             |
 | 传递性 | $∀z∈X;∀y∈X;∀x∈X; 〈 z, y 〉∈\mathcal{F} ∧ 〈 y, x 〉∈\mathcal{F} ⇒ 〈 z, x 〉∈\mathcal{F}$ |      |                                                              | $⇒$  | $\mathcal{F}[X × X] ∘ \mathcal{F}[X × X] ⊆ \mathcal{F}[X × X]$ |
 
 二元关系$\mathcal{F}[Y × X]$具有的典型运算性质。
 
-| 双反性 | $\mathcal{F}[Y × X] = {''}\mathcal{F}[Y × X]$                | $\mathrm{dom} \mathcal{F}[Y × X] = \mathrm{def} {'}\mathcal{F}[Y × X]$ |
+| 同构性 | $\mathcal{F}[Y × X] \mathop{≡≡≡≡≡≡}\limits_{\mathrm{def} \mathcal{F} = \mathrm{def} \mathcal{G}}^{\mathrm{dom} \mathcal{F} = \mathrm{dom} \mathcal{G}} \mathcal{G}[V × U]$ | $\mathcal{F}[Y × X] \mathop{≡≡≡}\limits_{\mathcal{F}⊇\mathcal{G}}^{\mathcal{F}⊆\mathcal{G}} \mathcal{G}[V × U]$ |
 | :----: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 双反性 | $\mathcal{F}[Y × X] = {''}\mathcal{F}[Y × X]$                | $\mathrm{dom} \mathcal{F}[Y × X] = \mathrm{def} {'}\mathcal{F}[Y × X]$ |
 | 恒等性 | $\mathcal{F}[Y × X] = \mathcal{I}[Y × Y] ∘ \mathcal{F}[Y × X]$ | $\mathcal{F}[Y × X] = \mathcal{F}[Y × X] ∘ \mathcal{I}[X × X]$ |
 | 归一性 | $\mathcal{I}[\mathrm{def}F × \mathrm{def}F] ⊆ {'}\mathcal{F}[Y × X] ∘ \mathcal{F}[Y × X]$ | $\mathcal{I}[\mathrm{dom}F × \mathrm{dom}F] ⊆ \mathcal{F}[Y × X] ∘ {'}\mathcal{F}[Y × X]$ |
 | 逆反性 | ${'}(\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × Z]) = {'}\mathcal{F}[Y × Z] ∘ {'}\mathcal{G}[Z × Y]$ |                                                              |
 | 结合性 | $\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X] = \mathcal{H}[T × Z] ∘ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X] = (\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X]$ |
 | 分配性 | $\mathcal{H}[Z × Y] ∘ (\mathcal{G}[Y × X] ∪ \mathcal{F}[Y × X]) = (\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X]) ∪ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $(\mathcal{H}[Z × Y] ∪ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X] = (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]) ∪ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ |
 | 分配性 | $\mathcal{H}[Z × Y] ∘ (\mathcal{G}[Y × X] ∩ \mathcal{F}[Y × X]) ⊆ (\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X]) ⋂ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $(\mathcal{H}[Z × Y] ⋂ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X] ⊆ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]) ⋂ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ |
-
 
 | 双反性 | $∀y;∀x; 〈 y, x 〉∈\mathcal{F}[Y, X]$                        |      |                                                              |
 | :----: | ------------------------------------------------------------ | :--: | :----------------------------------------------------------- |
@@ -74,6 +98,19 @@ $n + 1$元有序集合族$\left\lbrace \mathop{X_i}\limits_{0≤i≤n} \right\rb
 |  $⇕$   | $∀z;∀x;∃y; [〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{G}[Y × X]] ∧ [〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{F}[Y × X]]$ |      |                                                              |
 |  $⇓$   | $∀z;∀x; [∃y; 〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{G}[Y × X]] ∧ [∃y;〈z, y〉∈\mathcal{H}[Z × Y] ∧ 〈y, x〉∈\mathcal{F}[Y × X]]$ |      |                                                              |
 |  $⇕$   | $∀z;∀x; 〈z, x〉∈\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X] ⋂ \mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]$ |      |                                                              |
+
+二元关系$\mathcal{F}[Y × X]$可能具有的类型。
+
+二元关系$\mathcal{f}[Y × X]$若具有映射类型，则可称为函数，也简记作$y = \mathcal{f}(x)$。
+
+| 映射 | $∀x∈\mathrm{def} \mathcal{F};∀y_0,y_1;〈y_0, x〉∈\mathcal{F} ∧〈y_1, x〉∈\mathcal{F} ⇒ [y_0 = y_1]$ |      |                                                            |
+| :--: | :----------------------------------------------------------- | :--: | :--------------------------------------------------------- |
+| 单射 | $∀x_0,x_1∈\mathrm{def} f; [f(x_0) = f(x_1)] ⇒ [x_0 = x_1]$   | $⇔$  | $∀x_0,x_1∈\mathrm{def} f; [x_0 ≠ x_1] ⇒ [f(x_0) ≠ f(x_1)]$ |
+| 满射 | $∀y∈Y;∃x; y = f(x)$                                          |      |                                                            |
+| 双射 |                                                            |      |                                                            |
+| 投射 |                                                              |      |                                                            |
+|      |                                                              |      |                                                            |
+|      |                                                              |      |                                                            |
 
 
 
