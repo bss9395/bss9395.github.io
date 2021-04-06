@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-04T01:38:00+08@中国-广东-湛江+08
+Update:  2021-04-07T00:26:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -43,9 +43,13 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 
 二元关系$\mathcal{F}[Y × X]$，其前域$Y$中所有存在的元素组成其值域$\mathrm{dom} \mathcal{F} ≡ \lbrace ∀y;y | ∃x;〈 y, x 〉∈\mathcal{F} \rbrace$，其后域$X$中所有存在的元素组成其原域$\mathrm{def} \mathcal{F} ≡ \lbrace ∀x;x | ∃y;〈 y, x 〉∈\mathcal{F} \rbrace$。
 
-二元关系$\mathcal{F}[Y × X]$，其前域$Y$与其后域$X$互相对换位置，即为其反关系${'}\mathcal{F}[Y × X] ≡ \left\lbrace ∀x;∀y; 〈 x, y 〉 \middle| 〈 y, x 〉∈\mathcal{F} \right\rbrace$。
+二元关系$\mathcal{F}[Y × X]$，其值域$\mathrm{dom}\mathcal{F} ⊆ Y$与其原域$\mathrm{def}\mathcal{F} ⊆ X$对换位置，即为其反关系${'}\mathcal{F}[Y × X] ≡ \left\lbrace ∀x;∀y; 〈 x, y 〉 \middle| 〈 y, x 〉∈\mathcal{F} \right\rbrace$。
 
-二元关系$\mathcal{G}[Z × Y]$的后域$Y$与二元关系$\mathcal{F}[Y × X]$的前域$Y$互相叠加相消，即为其复合关系$\mathcal{G} ∘ \mathcal{F} [Z × X] ≡ \left\lbrace ∀z;∀x;〈 z, x 〉 \middle| ∃y; 〈 z, y 〉∈\mathcal{G} ∧ 〈 y, x 〉∈\mathcal{F} \right\rbrace$。
+二元关系$\mathcal{G}[Z × Y]$与$\mathcal{F}[Y × X]$，前原域$\mathrm{def}\mathcal{G} ⊆ Y$与后值域$\mathrm{dom}\mathcal{F} ⊆ Y$叠加相消，即为复合关系$\mathcal{G} ∘ \mathcal{F} [Z × X] ≡ \left\lbrace ∀z;∀x;〈 z, x 〉 \middle| ∃y; 〈 z, y 〉∈\mathcal{G} ∧ 〈 y, x 〉∈\mathcal{F} \right\rbrace$。
+
+二元关系$\mathcal{F}[Y × X]$，其值域$\mathrm{dom}\mathcal{F} ⊆ Y$通常视为输出域，其原域$\mathrm{def}\mathcal{F} ⊆ X$通常视为输入域。
+
+因此可记作，二元关系$∀x∈\mathrm{def}\mathcal{F};∃y∈\mathrm{dom}\mathcal{F}; y = \mathcal{F}(x)$，反关系$∀y∈\mathrm{dom}\mathcal{F};∃x∈\mathrm{def}\mathcal{F}; x = {'}\mathcal{F}(y)$，复合关系$∀x∈\mathrm{def}\mathcal{G∘F};∃z∈\mathrm{dom}\mathcal{G∘F}; z = \mathcal{G}(\mathcal{F}(x))$。
 
 二元关系$\mathcal{F}[X × X]$可能具有的特殊性质。
 
@@ -101,17 +105,12 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 
 二元关系$\mathcal{F}[Y × X]$可能具有的类型。
 
-二元关系$\mathcal{f}[Y × X]$若具有映射类型，则可称为函数，也简记作$y = \mathcal{f}(x)$。
+| 敛射$Y↢X$ | $∀y_0,y_1;∀x;〈y_0, x〉∈\mathcal{F}[Y × X] ∧ 〈y_1, x〉∈\mathcal{F}[Y × X] ⇒ y_0 = y_1$ | $∀y_0,y_1;∀x; y_0 ≠ y_1 ⇒ 〈y_0, x〉∉\mathcal{F}[Y × X] ∨ 〈y_0, x〉∉\mathcal{F}[Y × X]$ |
+| :-------: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 散射$Y↣X$ | $∀y;∀x_0,x_1;〈y, x_0〉∈\mathcal{F}[Y × X] ∧ 〈y, x_1〉∈\mathcal{F}[Y × X] ⇒ x_0 = x_1$ | $∀y;∀x_0,x_1; x_0 ≠ x_1 ⇒ 〈y, x_0〉∉\mathcal{F}[Y × X] ∨ 〈y, x_1〉∉\mathcal{F}[Y × X]$ |
+| 映射$Y⇼X$ | $∀y_0,y_1;∀x_0,x_1;〈y_0, x_0〉∈\mathcal{F}[Y × X] ∧ 〈y_1, x_1〉∈\mathcal{F}[Y × X] ⇒ [y_0 = y_1 ⇔ x_0 = x_1]$ | $∀y_0,y_1;∀x_0,x_1; [y_0 ≠ y_1 ⇔ x_0 = x_1] ⇒〈y_0, x_0〉∉\mathcal{F}[Y × X] ∨ 〈y_1, x_1〉∉\mathcal{F}[Y × X]$ |
 
-| 映射 | $∀x∈\mathrm{def} \mathcal{F};∀y_0,y_1;〈y_0, x〉∈\mathcal{F} ∧〈y_1, x〉∈\mathcal{F} ⇒ [y_0 = y_1]$ |      |                                                            |
-| :--: | :----------------------------------------------------------- | :--: | :--------------------------------------------------------- |
-| 单射 | $∀x_0,x_1∈\mathrm{def} f; [f(x_0) = f(x_1)] ⇒ [x_0 = x_1]$   | $⇔$  | $∀x_0,x_1∈\mathrm{def} f; [x_0 ≠ x_1] ⇒ [f(x_0) ≠ f(x_1)]$ |
-| 满射 | $∀y∈Y;∃x; y = f(x)$                                          |      |                                                            |
-| 双射 |                                                            |      |                                                            |
-| 投射 |                                                              |      |                                                            |
-|      |                                                              |      |                                                            |
-|      |                                                              |      |                                                            |
-
+二元关系$\mathcal{F}[Y × X]$可视为多值函数，通常记作$y ⊨ \mathcal{F}(x)$。二元关系的敛射可视为单值函数，通常记作$y = \mathcal{F}(x)$。二元关系的映射满足敛射与散射，通常记作$y ≡ \mathcal{F}(x)$。
 
 
 
