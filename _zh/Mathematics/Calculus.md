@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-07T00:26:00+08@中国-广东-湛江+08
+Update:  2021-04-07T07:20:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -45,11 +45,11 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 
 二元关系$\mathcal{F}[Y × X]$，其值域$\mathrm{dom}\mathcal{F} ⊆ Y$与其原域$\mathrm{def}\mathcal{F} ⊆ X$对换位置，即为其反关系${'}\mathcal{F}[Y × X] ≡ \left\lbrace ∀x;∀y; 〈 x, y 〉 \middle| 〈 y, x 〉∈\mathcal{F} \right\rbrace$。
 
-二元关系$\mathcal{G}[Z × Y]$与$\mathcal{F}[Y × X]$，前原域$\mathrm{def}\mathcal{G} ⊆ Y$与后值域$\mathrm{dom}\mathcal{F} ⊆ Y$叠加相消，即为复合关系$\mathcal{G} ∘ \mathcal{F} [Z × X] ≡ \left\lbrace ∀z;∀x;〈 z, x 〉 \middle| ∃y; 〈 z, y 〉∈\mathcal{G} ∧ 〈 y, x 〉∈\mathcal{F} \right\rbrace$。
+二元关系$\mathcal{G}[Z × Y]$与$\mathcal{F}[Y × X]$，前者的原域$\mathrm{def}\mathcal{G} ⊆ Y$与后者的值域$\mathrm{dom}\mathcal{F} ⊆ Y$叠加相消，即为复合关系$\mathcal{G} ∘ \mathcal{F} [Z × X] ≡ \left\lbrace ∀z;∀x;〈 z, x 〉 \middle| ∃y; 〈 z, y 〉∈\mathcal{G} ∧ 〈 y, x 〉∈\mathcal{F} \right\rbrace$。
 
-二元关系$\mathcal{F}[Y × X]$，其值域$\mathrm{dom}\mathcal{F} ⊆ Y$通常视为输出域，其原域$\mathrm{def}\mathcal{F} ⊆ X$通常视为输入域。
+二元关系$\mathcal{F}[Y × X]$，其值域$\mathrm{dom}\mathcal{F} ⊆ Y$通常视为输出域，其原域$\mathrm{def}\mathcal{F} ⊆ X$通常视为输入域。原域的输入与值域的输出为多对多的关系，因此$\mathrm{ord}(\mathrm{dom} \mathcal{F}) \not≡ \mathrm{ord}(\mathrm{def} \mathcal{F})$。
 
-因此可记作，二元关系$∀x∈\mathrm{def}\mathcal{F};∃y∈\mathrm{dom}\mathcal{F}; y = \mathcal{F}(x)$，反关系$∀y∈\mathrm{dom}\mathcal{F};∃x∈\mathrm{def}\mathcal{F}; x = {'}\mathcal{F}(y)$，复合关系$∀x∈\mathrm{def}\mathcal{G∘F};∃z∈\mathrm{dom}\mathcal{G∘F}; z = \mathcal{G}(\mathcal{F}(x))$。
+若采用简化的记法，二元关系$∀x∈\mathrm{def}\mathcal{F};∃y∈\mathrm{dom}\mathcal{F}; y = \mathcal{F}(x)$，反关系$∀y∈\mathrm{dom}\mathcal{F};∃x∈\mathrm{def}\mathcal{F}; x = {'}\mathcal{F}(y)$，复合关系$∀x∈\mathrm{def}\mathcal{G∘F};∃z∈\mathrm{dom}\mathcal{G∘F}; z = \mathcal{G}(\mathcal{F}(x))$。
 
 二元关系$\mathcal{F}[X × X]$可能具有的特殊性质。
 
@@ -105,12 +105,33 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 
 二元关系$\mathcal{F}[Y × X]$可能具有的类型。
 
-| 敛射$Y↢X$ | $∀y_0,y_1;∀x;〈y_0, x〉∈\mathcal{F}[Y × X] ∧ 〈y_1, x〉∈\mathcal{F}[Y × X] ⇒ y_0 = y_1$ | $∀y_0,y_1;∀x; y_0 ≠ y_1 ⇒ 〈y_0, x〉∉\mathcal{F}[Y × X] ∨ 〈y_0, x〉∉\mathcal{F}[Y × X]$ |
-| :-------: | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| 散射$Y↣X$ | $∀y;∀x_0,x_1;〈y, x_0〉∈\mathcal{F}[Y × X] ∧ 〈y, x_1〉∈\mathcal{F}[Y × X] ⇒ x_0 = x_1$ | $∀y;∀x_0,x_1; x_0 ≠ x_1 ⇒ 〈y, x_0〉∉\mathcal{F}[Y × X] ∨ 〈y, x_1〉∉\mathcal{F}[Y × X]$ |
-| 映射$Y⇼X$ | $∀y_0,y_1;∀x_0,x_1;〈y_0, x_0〉∈\mathcal{F}[Y × X] ∧ 〈y_1, x_1〉∈\mathcal{F}[Y × X] ⇒ [y_0 = y_1 ⇔ x_0 = x_1]$ | $∀y_0,y_1;∀x_0,x_1; [y_0 ≠ y_1 ⇔ x_0 = x_1] ⇒〈y_0, x_0〉∉\mathcal{F}[Y × X] ∨ 〈y_1, x_1〉∉\mathcal{F}[Y × X]$ |
+| 敛射$\mathcal{F}: Y ↢ X$ | $∀y_0,y_1;∀x;〈y_0, x〉∈\mathcal{F} ∧ 〈y_1, x〉∈\mathcal{F} ⇒ y_0 = y_1$ | $∀y_0,y_1;∀x; y_0 ≠ y_1 ⇒ 〈y_0, x〉∉\mathcal{F} ∨ 〈y_0, x〉∉\mathcal{F}$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) ≤ \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
+| :----------------------: | :----------------------------------------------------------- | :----------------------------------------------------------- | ------------------------------------------------------------ |
+| 散射$\mathcal{F}: Y ↣ X$ | $∀y;∀x_0,x_1;〈y, x_0〉∈\mathcal{F} ∧ 〈y, x_1〉∈\mathcal{F} ⇒ x_0 = x_1$ | $∀y;∀x_0,x_1; x_0 ≠ x_1 ⇒ 〈y, x_0〉∉\mathcal{F} ∨ 〈y, x_1〉∉\mathcal{F}$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) ≥ \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
+| 映射$\mathcal{F}: Y ⇼ X$ | $∀y_0,y_1;∀x_0,x_1;〈y_0, x_0〉∈\mathcal{F} ∧ 〈y_1, x_1〉∈\mathcal{F} ⇒ [y_0 = y_1 ⇔ x_0 = x_1]$ | $∀y_0,y_1;∀x_0,x_1; [y_0 ≠ y_1 ⇔ x_0 = x_1] ⇒〈y_0, x_0〉∉\mathcal{F} ∨ 〈y_1, x_1〉∉\mathcal{F}$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) = \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
 
-二元关系$\mathcal{F}[Y × X]$可视为多值函数，通常记作$y ⊨ \mathcal{F}(x)$。二元关系的敛射可视为单值函数，通常记作$y = \mathcal{F}(x)$。二元关系的映射满足敛射与散射，通常记作$y ≡ \mathcal{F}(x)$。
+二元关系$\mathcal{F}[Y × X]$可视为多值函数，通常记作$y ⊨ \mathcal{F}(x)$。二元关系的敛射可视$\rlap{≡≡}{单值}$函数，通常记作$y = \mathcal{F}(x)$。二元关系的映射满足敛射与散射，通常记作$y ≡ \mathcal{F}(x)$。
+
+二元关系$\mathcal{F}[X × X]$的映射，若其值域与原域相同$\mathrm{dom}\mathcal{F} = \mathrm{def}\mathcal{F}$，则又称为置换$\mathcal{F}: X⇼X$。
+
+二元关系$\mathcal{F}[Y × X]$可能有$2^{\mathrm{ord} Y × \mathrm{ord} X}$个，敛射关系$\mathcal{F}: Y ↢ X$可能有$\sum\limits_{i=0}^{\mathrm{ord}X} \dfrac{(\mathrm{ord}X)!}{i! · (\mathrm{ord}X - i)!} · (\mathrm{ord}Y)^{i} = (\mathrm{ord}Y + 1)^{\mathrm{ord}X}$个，散射关系$\mathcal{F}: Y ↣ X$可能有$\sum\limits_{i=0}^{\mathrm{ord}Y} \dfrac{(\mathrm{ord}Y)!}{i! · (\mathrm{ord}Y - i)!} · (\mathrm{ord}X)^{i} = (\mathrm{ord}X + 1)^{\mathrm{ord}Y}$个。
+
+映射关系$\mathcal{F}: Y ⇼ X$可能有$\dfrac{(\max\lbrace \mathrm{ord}Y, \mathrm{ord}X \rbrace)!}{(\max\lbrace \mathrm{ord}Y, \mathrm{ord}X \rbrace - \min\lbrace \mathrm{ord}Y, \mathrm{ord}X \rbrace)!} + (\min\lbrace \mathrm{ord}Y, \mathrm{ord}X \rbrace)^{\max\lbrace \mathrm{ord}Y, \mathrm{ord}X \rbrace + 1}$个。
+
+函数$\mathcal{G}: Z ↢ Y$与函数$\mathcal{F}: Y ↢ X$的复合函数$\mathcal{G ∘ F}: Z ↢ X$。
+
+
+
+典例：集合$Y = \lbrace y_0 \rbrace$，集合$X = \lbrace x_0, x_1, x_2 \rbrace$。
+
+二元关系可能有$2^{1 × 3} = 8$个，分别为$𝟘, \lbrace〈y_0, x_0〉\rbrace, \lbrace〈y_0, x_1〉\rbrace, \lbrace〈y_0, x_2〉\rbrace, \lbrace〈y_0, x_0〉, 〈y_0, x_1〉\rbrace, \lbrace〈y_0, x_0〉, 〈y_0, x_2〉\rbrace, \lbrace〈y_0, x_1〉, 〈y_0, x_2〉\rbrace, \lbrace〈y_0, x_0〉, 〈y_0, x_1〉, 〈y_0, x_2〉\rbrace$。
+
+敛射关系可能有$(1 + 1)^3 = 8$个，分别为$𝟘, \lbrace〈y_0, x_0〉\rbrace, \lbrace〈y_0, x_1〉\rbrace, \lbrace〈y_0, x_2〉\rbrace, \lbrace〈y_0, x_0〉, 〈y_0, x_1〉\rbrace, \lbrace〈y_0, x_0〉, 〈y_0, x_2〉\rbrace, \lbrace〈y_0, x_1〉, 〈y_0, x_2〉\rbrace, \lbrace〈y_0, x_0〉, 〈y_0, x_1〉, 〈y_0, x_2〉\rbrace$。
+
+散射关系可能有$(3 + 1)^1 = 4$个，分别为$𝟘, \lbrace〈y_0, x_0〉\rbrace, \lbrace〈y_0, x_1〉\rbrace, \lbrace〈y_0, x_2〉\rbrace$。
+
+映射关系可能有$\dfrac{3!}{(3 - 1)!} + 1 = 4$个，分别为$𝟘, \lbrace〈y_0, x_0〉\rbrace, \lbrace〈y_0, x_1〉\rbrace, \lbrace〈y_0, x_2〉\rbrace$。
+
 
 
 
