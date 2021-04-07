@@ -9,6 +9,8 @@ Link  :
 
 ### 关系
 
+全称量词$∀$表示对于每个/对于所有，存在量词$∃$表示存在一些/至少一个，特称量词$Ⅎ$表示唯一存在/实际存在。
+
 集合$S$中元素的个数为$\mathrm{ord} S$。
 
 $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rbrace$按先后次序从其各个集合中选取元素$s_i∈S_i$，可排列成$n + 1$元序偶$〈 s_0, s_1, ..., s_n 〉$。
@@ -62,15 +64,15 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 
 二元关系$\mathcal{F}[Y × X]$具有的典型运算性质。
 
-| 同构性 | $\mathcal{F}[Y × X] \mathop{≡≡≡≡≡≡}\limits_{\mathrm{def} \mathcal{F} = \mathrm{def} \mathcal{G}}^{\mathrm{dom} \mathcal{F} = \mathrm{dom} \mathcal{G}} \mathcal{G}[V × U]$ | $\mathcal{F}[Y × X] \mathop{≡≡≡}\limits_{\mathcal{F}⊇\mathcal{G}}^{\mathcal{F}⊆\mathcal{G}} \mathcal{G}[V × U]$ |
-| :----: | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| 双反性 | $\mathcal{F}[Y × X] = {''}\mathcal{F}[Y × X]$                | $\mathrm{dom} \mathcal{F}[Y × X] = \mathrm{def} {'}\mathcal{F}[Y × X]$ |
-| 恒等性 | $\mathcal{F}[Y × X] = \mathcal{I}[Y × Y] ∘ \mathcal{F}[Y × X]$ | $\mathcal{F}[Y × X] = \mathcal{F}[Y × X] ∘ \mathcal{I}[X × X]$ |
-| 归一性 | $\mathcal{I}[\mathrm{def}F × \mathrm{def}F] ⊆ {'}\mathcal{F}[Y × X] ∘ \mathcal{F}[Y × X]$ | $\mathcal{I}[\mathrm{dom}F × \mathrm{dom}F] ⊆ \mathcal{F}[Y × X] ∘ {'}\mathcal{F}[Y × X]$ |
-| 逆反性 | ${'}(\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × Z]) = {'}\mathcal{F}[Y × Z] ∘ {'}\mathcal{G}[Z × Y]$ |                                                              |
-| 结合性 | $\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X] = \mathcal{H}[T × Z] ∘ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X] = (\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X]$ |
-| 分配性 | $\mathcal{H}[Z × Y] ∘ (\mathcal{G}[Y × X] ∪ \mathcal{F}[Y × X]) = (\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X]) ∪ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $(\mathcal{H}[Z × Y] ∪ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X] = (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]) ∪ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ |
-| 分配性 | $\mathcal{H}[Z × Y] ∘ (\mathcal{G}[Y × X] ∩ \mathcal{F}[Y × X]) ⊆ (\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X]) ⋂ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $(\mathcal{H}[Z × Y] ⋂ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X] ⊆ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]) ⋂ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ |
+| $\mathcal{F}[Y × X] \mathop{≡≡≡≡≡≡}\limits_{\mathrm{def} \mathcal{F} = \mathrm{def} \mathcal{G}}^{\mathrm{dom} \mathcal{F} = \mathrm{dom} \mathcal{G}} \mathcal{G}[V × U]$ | $\mathcal{F}[Y × X] \mathop{≡≡≡}\limits_{\mathcal{F}⊇\mathcal{G}}^{\mathcal{F}⊆\mathcal{G}} \mathcal{G}[V × U]$ |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| $\mathcal{F}[Y × X] = {''}\mathcal{F}[Y × X]$                | $\mathrm{dom} \mathcal{F}[Y × X] = \mathrm{def} {'}\mathcal{F}[Y × X]$ |
+| $\mathcal{F}[Y × X] = \mathcal{I}[Y × Y] ∘ \mathcal{F}[Y × X]$ | $\mathcal{F}[Y × X] = \mathcal{F}[Y × X] ∘ \mathcal{I}[X × X]$ |
+| $\mathcal{I}[\mathrm{def}F × \mathrm{def}F] ⊆ {'}\mathcal{F}[Y × X] ∘ \mathcal{F}[Y × X]$ | $\mathcal{I}[\mathrm{dom}F × \mathrm{dom}F] ⊆ \mathcal{F}[Y × X] ∘ {'}\mathcal{F}[Y × X]$ |
+| ${'}(\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × Z]) = {'}\mathcal{F}[Y × Z] ∘ {'}\mathcal{G}[Z × Y]$ |                                                              |
+| $\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X] = \mathcal{H}[T × Z] ∘ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X] = (\mathcal{H}[T × Z] ∘ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X]$ |
+| $\mathcal{H}[Z × Y] ∘ (\mathcal{G}[Y × X] ∪ \mathcal{F}[Y × X]) = (\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X]) ∪ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $(\mathcal{H}[Z × Y] ∪ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X] = (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]) ∪ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ |
+| $\mathcal{H}[Z × Y] ∘ (\mathcal{G}[Y × X] ∩ \mathcal{F}[Y × X]) ⊆ (\mathcal{H}[Z × Y] ∘ \mathcal{G}[Y × X]) ⋂ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X])$ | $(\mathcal{H}[Z × Y] ⋂ \mathcal{G}[Z × Y]) ∘ \mathcal{F}[Y × X] ⊆ (\mathcal{H}[Z × Y] ∘ \mathcal{F}[Y × X]) ⋂ (\mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X])$ |
 
 | 双反性 | $∀y;∀x; 〈 y, x 〉∈\mathcal{F}[Y, X]$                        |      |                                                              |
 | :----: | ------------------------------------------------------------ | :--: | :----------------------------------------------------------- |
@@ -105,20 +107,18 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 
 二元关系$\mathcal{F}[Y × X]$可能具有的类型。
 
-| 敛射$\mathcal{F}: Y ↢ X$ | $∀y_0,y_1;∀x;〈y_0, x〉∈\mathcal{F} ∧ 〈y_1, x〉∈\mathcal{F} ⇒ y_0 = y_1$ | $∀y_0,y_1;∀x; y_0 ≠ y_1 ⇒ 〈y_0, x〉∉\mathcal{F} ∨ 〈y_0, x〉∉\mathcal{F}$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) ≤ \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
-| :----------------------: | :----------------------------------------------------------- | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| 散射$\mathcal{F}: Y ↣ X$ | $∀y;∀x_0,x_1;〈y, x_0〉∈\mathcal{F} ∧ 〈y, x_1〉∈\mathcal{F} ⇒ x_0 = x_1$ | $∀y;∀x_0,x_1; x_0 ≠ x_1 ⇒ 〈y, x_0〉∉\mathcal{F} ∨ 〈y, x_1〉∉\mathcal{F}$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) ≥ \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
-| 映射$\mathcal{F}: Y ⇼ X$ | $∀y_0,y_1;∀x_0,x_1;〈y_0, x_0〉∈\mathcal{F} ∧ 〈y_1, x_1〉∈\mathcal{F} ⇒ [y_0 = y_1 ⇔ x_0 = x_1]$ | $∀y_0,y_1;∀x_0,x_1; [y_0 ≠ y_1 ⇔ x_0 = x_1] ⇒〈y_0, x_0〉∉\mathcal{F} ∨ 〈y_1, x_1〉∉\mathcal{F}$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) = \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
+| 满射$\mathcal{F}: Y ⇹ X$ | $∀y_0∈Y;∃x_0∈X;〈y_0, x_0〉∈\mathcal{F} ∧ ∀x_1∈X;∃y_1∈Y;〈y_1, x_1〉∈\mathcal{F}$ | $\mathrm{dom}\mathcal{F} = Y ∧ \mathrm{def}\mathcal{F} = X$  | $\mathrm{ord}(\mathrm{dom}\mathcal{F}) = \mathrm{ord}(Y)$    |
+| :----------------------: | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 敛射$\mathcal{F}: Y ↢ X$ | $∀x∈\mathrm{def}\mathcal{F};Ⅎy∈\mathrm{dom}\mathcal{F};〈y, x〉∈\mathcal{F}$ | $∀x;∀y_0,y_1;〈y_0, x〉∈\mathcal{F} ∧ 〈y_1, x〉∈\mathcal{F} ⇒ y_0 = y_1$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) ≤ \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
+| 散射$\mathcal{F}: Y ↣ X$ | $∀y∈\mathrm{dom}\mathcal{F};Ⅎx∈\mathrm{def}\mathcal{F};〈y, x〉∈\mathcal{F}$ | $∀y;∀x_0,x_1;〈y, x_0〉∈\mathcal{F} ∧ 〈y, x_1〉∈\mathcal{F} ⇒ x_0 = x_1$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) ≥ \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
+| 映射$\mathcal{F}: Y ⇼ X$ | $[∀x∈\mathrm{def}\mathcal{F};Ⅎy∈\mathrm{dom}\mathcal{F};〈y, x〉∈\mathcal{F}] ∧ [∀y∈\mathrm{dom}\mathcal{F};Ⅎx∈\mathrm{def}\mathcal{F};〈y, x〉∈\mathcal{F}]$ | $∀x_0,x_1;∀y_0,y_1;〈y_0, x_0〉∈\mathcal{F} ∧ 〈y_1, x_1〉∈\mathcal{F} ⇒ [y_0 = y_1 ⇔ x_0 = x_1]$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) = \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
+| 置换$\mathcal{F}: X ⇼ X$ | $[∀x∈\mathrm{def}\mathcal{F};Ⅎy∈\mathrm{def}\mathcal{F};〈y, x〉∈\mathcal{F}] ∧ [∀y∈\mathrm{def}\mathcal{F};Ⅎx∈\mathrm{def}\mathcal{F};〈y, x〉∈\mathcal{F}]$ | $\mathrm{dom}\mathcal{F} = \mathrm{def}\mathcal{F}$          | $Y ≡ X$                                                      |
 
-二元关系$\mathcal{F}[Y × X]$可视为多值函数，通常记作$y ⊨ \mathcal{F}(x)$。二元关系的敛射可视$\rlap{≡≡}{单值}$函数，通常记作$y = \mathcal{F}(x)$。二元关系的映射满足敛射与散射，通常记作$y ≡ \mathcal{F}(x)$。
+二元关系$\mathcal{F}[Y × X]$可视为多值函数，通常记作$y ⊨ \mathcal{F}(x)$。二元关系的敛射可视为$\rlap{≡≡}{单值}$函数，通常记作$y = \mathcal{F}(x)$。二元关系的映射满足敛射与散射，通常记作$y ≡ \mathcal{F}(x)$。
 
 二元关系$\mathcal{F}[X × X]$的映射，若其值域与原域相同$\mathrm{dom}\mathcal{F} = \mathrm{def}\mathcal{F}$，则又称为置换$\mathcal{F}: X⇼X$。
 
 二元关系$\mathcal{F}[Y × X]$可能有$2^{\mathrm{ord} Y × \mathrm{ord} X}$个，敛射关系$\mathcal{F}: Y ↢ X$可能有$\sum\limits_{i=0}^{\mathrm{ord}X} \dfrac{(\mathrm{ord}X)!}{i! · (\mathrm{ord}X - i)!} · (\mathrm{ord}Y)^{i} = (\mathrm{ord}Y + 1)^{\mathrm{ord}X}$个，散射关系$\mathcal{F}: Y ↣ X$可能有$\sum\limits_{i=0}^{\mathrm{ord}Y} \dfrac{(\mathrm{ord}Y)!}{i! · (\mathrm{ord}Y - i)!} · (\mathrm{ord}X)^{i} = (\mathrm{ord}X + 1)^{\mathrm{ord}Y}$个。映射关系$\mathcal{F}: Y ⇼ X$可能有$\sum\limits_{i=0}^{\min\lbrace \mathrm{ord}X, \mathrm{ord}Y \rbrace} \dfrac{(\mathrm{ord}X)!}{i! · (\mathrm{ord}X - i)!} · \dfrac{(\mathrm{ord}Y)!}{i! · (\mathrm{ord}Y - i)!} · i! = \sum\limits_{i=0}^{\min\lbrace \mathrm{ord}X, \mathrm{ord}Y \rbrace} \dfrac{(\mathrm{ord}X)! · (\mathrm{ord}Y)!}{i! ·(\mathrm{ord}X - i)! · (\mathrm{ord}Y - i)!}$个。
-
-函数$\mathcal{G}: Z ↢ Y$与函数$\mathcal{F}: Y ↢ X$的复合函数$\mathcal{G ∘ F}: Z ↢ X$。
-
-
 
 典例：集合$Y = \lbrace y_0 \rbrace$，集合$X = \lbrace x_0, x_1, x_2 \rbrace$。
 
@@ -129,6 +129,12 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 散射关系可能有$(3 + 1)^1 = 4$个，分别为$𝟘, \lbrace〈y_0, x_0〉\rbrace, \lbrace〈y_0, x_1〉\rbrace, \lbrace〈y_0, x_2〉\rbrace$。
 
 映射关系可能有$\dfrac{1!·3!}{0!·1!·3!} + \dfrac{1!·3!}{1!·0!·2!} = 4$个，分别为$𝟘, \lbrace〈y_0, x_0〉\rbrace, \lbrace〈y_0, x_1〉\rbrace, \lbrace〈y_0, x_2〉\rbrace$。
+
+
+
+$\mathcal{G}: Z ↢ Y$与函数$\mathcal{F}: Y ↢ X$的复合函数$\mathcal{G ∘ F}: Z ↢ X$。
+
+
 
 
 
