@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-07T07:20:00+08@中国-广东-湛江+08
+Update:  2021-04-07T16:50:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -114,9 +114,7 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 
 二元关系$\mathcal{F}[X × X]$的映射，若其值域与原域相同$\mathrm{dom}\mathcal{F} = \mathrm{def}\mathcal{F}$，则又称为置换$\mathcal{F}: X⇼X$。
 
-二元关系$\mathcal{F}[Y × X]$可能有$2^{\mathrm{ord} Y × \mathrm{ord} X}$个，敛射关系$\mathcal{F}: Y ↢ X$可能有$\sum\limits_{i=0}^{\mathrm{ord}X} \dfrac{(\mathrm{ord}X)!}{i! · (\mathrm{ord}X - i)!} · (\mathrm{ord}Y)^{i} = (\mathrm{ord}Y + 1)^{\mathrm{ord}X}$个，散射关系$\mathcal{F}: Y ↣ X$可能有$\sum\limits_{i=0}^{\mathrm{ord}Y} \dfrac{(\mathrm{ord}Y)!}{i! · (\mathrm{ord}Y - i)!} · (\mathrm{ord}X)^{i} = (\mathrm{ord}X + 1)^{\mathrm{ord}Y}$个。
-
-映射关系$\mathcal{F}: Y ⇼ X$可能有$\dfrac{(\max\lbrace \mathrm{ord}Y, \mathrm{ord}X \rbrace)!}{(\max\lbrace \mathrm{ord}Y, \mathrm{ord}X \rbrace - \min\lbrace \mathrm{ord}Y, \mathrm{ord}X \rbrace)!} + (\min\lbrace \mathrm{ord}Y, \mathrm{ord}X \rbrace)^{\max\lbrace \mathrm{ord}Y, \mathrm{ord}X \rbrace + 1}$个。
+二元关系$\mathcal{F}[Y × X]$可能有$2^{\mathrm{ord} Y × \mathrm{ord} X}$个，敛射关系$\mathcal{F}: Y ↢ X$可能有$\sum\limits_{i=0}^{\mathrm{ord}X} \dfrac{(\mathrm{ord}X)!}{i! · (\mathrm{ord}X - i)!} · (\mathrm{ord}Y)^{i} = (\mathrm{ord}Y + 1)^{\mathrm{ord}X}$个，散射关系$\mathcal{F}: Y ↣ X$可能有$\sum\limits_{i=0}^{\mathrm{ord}Y} \dfrac{(\mathrm{ord}Y)!}{i! · (\mathrm{ord}Y - i)!} · (\mathrm{ord}X)^{i} = (\mathrm{ord}X + 1)^{\mathrm{ord}Y}$个。映射关系$\mathcal{F}: Y ⇼ X$可能有$\sum\limits_{i=0}^{\min\lbrace \mathrm{ord}X, \mathrm{ord}Y \rbrace} \dfrac{(\mathrm{ord}X)!}{i! · (\mathrm{ord}X - i)!} · \dfrac{(\mathrm{ord}Y)!}{i! · (\mathrm{ord}Y - i)!} · i! = \sum\limits_{i=0}^{\min\lbrace \mathrm{ord}X, \mathrm{ord}Y \rbrace} \dfrac{(\mathrm{ord}X)! · (\mathrm{ord}Y)!}{i! ·(\mathrm{ord}X - i)! · (\mathrm{ord}Y - i)!}$个。
 
 函数$\mathcal{G}: Z ↢ Y$与函数$\mathcal{F}: Y ↢ X$的复合函数$\mathcal{G ∘ F}: Z ↢ X$。
 
@@ -130,7 +128,7 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 
 散射关系可能有$(3 + 1)^1 = 4$个，分别为$𝟘, \lbrace〈y_0, x_0〉\rbrace, \lbrace〈y_0, x_1〉\rbrace, \lbrace〈y_0, x_2〉\rbrace$。
 
-映射关系可能有$\dfrac{3!}{(3 - 1)!} + 1 = 4$个，分别为$𝟘, \lbrace〈y_0, x_0〉\rbrace, \lbrace〈y_0, x_1〉\rbrace, \lbrace〈y_0, x_2〉\rbrace$。
+映射关系可能有$\dfrac{1!·3!}{0!·1!·3!} + \dfrac{1!·3!}{1!·0!·2!} = 4$个，分别为$𝟘, \lbrace〈y_0, x_0〉\rbrace, \lbrace〈y_0, x_1〉\rbrace, \lbrace〈y_0, x_2〉\rbrace$。
 
 
 
