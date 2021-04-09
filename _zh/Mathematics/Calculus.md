@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-07T16:50:00+08@中国-广东-湛江+08
+Update:  2021-04-09T11:24:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -118,7 +118,7 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 | 敛射$\mathcal{F}[Y ↢ X]$ | $∀x∈\mathrm{def}\mathcal{F};Ⅎy∈\mathrm{dom}\mathcal{F};〈y, x〉∈\mathcal{F}$ | $∀x;∀y_0,y_1;〈y_0, x〉∈\mathcal{F} ∧ 〈y_1, x〉∈\mathcal{F} ⇒ [y_0 = y_1]$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) ≤ \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
 | 散射$\mathcal{F}[Y ↣ X]$ | $∀y∈\mathrm{dom}\mathcal{F};Ⅎx∈\mathrm{def}\mathcal{F};〈y, x〉∈\mathcal{F}$ | $∀y;∀x_0,x_1;〈y, x_0〉∈\mathcal{F} ∧ 〈y, x_1〉∈\mathcal{F} ⇒ [x_0 = x_1]$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) ≥ \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
 | 映射$\mathcal{F}[Y ⇼ X]$ | $[∀x∈\mathrm{def}\mathcal{F};Ⅎy∈\mathrm{dom}\mathcal{F};〈y, x〉∈\mathcal{F}] ∧ [∀y∈\mathrm{dom}\mathcal{F};Ⅎx∈\mathrm{def}\mathcal{F};〈y, x〉∈\mathcal{F}]$ | $∀x_0,x_1;∀y_0,y_1;〈y_0, x_0〉∈\mathcal{F} ∧ 〈y_1, x_1〉∈\mathcal{F} ⇒ [y_0 = y_1 ⇔ x_0 = x_1]$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) = \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
-| 置换$\mathcal{F}[X ⇆ X]$ | $[∀x∈X;Ⅎy∈X;〈y, x〉∈\mathcal{F}] ∧ [∀y∈X;Ⅎx∈X;〈y, x〉∈\mathcal{F}]$ | $\mathrm{dom}\mathcal{F} = Y = \mathrm{def}\mathcal{F} = X$  | $\mathrm{ord}(\mathrm{dom}\mathcal{F}) = \mathrm{ord}(Y) = \mathrm{ord}(\mathrm{def}\mathcal{F}) = \mathrm{ord}(X)$ |
+| 置换$\mathcal{F}[X ⇆ X]$ | $[∀x∈X;Ⅎy∈X;〈y, x〉∈\mathcal{F}] ∧ [∀y∈X;Ⅎx∈X;〈y, x〉∈\mathcal{F}]$ | $\mathrm{dom}\mathcal{F} = \mathrm{def}\mathcal{F} = X$      | $\mathrm{ord}(\mathrm{dom}\mathcal{F}) = \mathrm{ord}(\mathrm{def}\mathcal{F}) = \mathrm{ord}(X)$ |
 
 二元关系$\mathcal{F}[Y × X]$可视为多值函数，通常记作$y ⊨ \mathcal{F}(x)$。二元关系的敛射可视为$\rlap{≡≡}{单值}$函数，通常记作$y = \mathcal{F}(x)$。二元关系的映射满足敛射与散射，通常记作$y ≡ \mathcal{F}(x)$。
 
@@ -134,16 +134,27 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 
 映射关系可能有$\dfrac{1!·3!}{0!·1!·3!} + \dfrac{1!·3!}{1!·0!·2!} = 4$个，分别为$𝟘, \lbrace〈y_0, x_0〉\rbrace, \lbrace〈y_0, x_1〉\rbrace, \lbrace〈y_0, x_2〉\rbrace$。
 
+二元关系$\mathcal{G}[Z × Y]$与二元关系$\mathcal{F}[Y × X]$的复合关系。
 
+| $\mathcal{G}[Z ⇹ Y] ∘ \mathcal{F}[Y ⇹ X] = \mathcal{G ∘ F}[Z ⇹ X]$ |      | $[Z = \mathrm{dom}\mathcal{G}] ∧ [\mathrm{def}\mathcal{G} = Y = \mathrm{dom}\mathcal{F}] ∧ [\mathrm{def}\mathcal{F} = X]$ |
+| :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $\mathcal{G}[Z ↢ Y] ∘ \mathcal{F}[Y ↢ X] = \mathcal{G ∘ F}[Z ↢ X]$ | $⇒$  | $\mathcal{G ∘ F}[Z ⇼ X] ⇒ \mathcal{G}[Z ⇼ Y] ∧ \mathcal{F}[Y ⇼ X]$ |
+| $\mathcal{G}[Z ↣ Y] ∘ \mathcal{F}[Y ↣ X] = \mathcal{G ∘ F}[Z ↣ X]$ | $⇒$  | $\mathcal{G ∘ F}[Z ⇼ X] ⇒ \mathcal{G}[Z ⇼ Y] ∧ \mathcal{F}[Y ⇼ X]$ |
+| $\mathcal{G}[Z ⇼ Y] ∘ \mathcal{F}[Y ⇼ X] = \mathcal{G ∘ F}[Z ⇼ X]$ |      |                                                              |
+| $\mathcal{G}[X ⇆ X] ∘ \mathcal{F}[X ⇆ X] = \mathcal{G ∘ F}[X ⇆ X]$ |      |                                                              |
 
-| $\mathcal{G}[Z ⇹ Y] ∘ \mathcal{F}[Y ⇹ X] = \mathcal{G ∘ F}[Z ⇹ X]$ |      |      |
-| :----------------------------------------------------------- | :--- | :--- |
-| $\mathcal{G}[Z ↢ Y] ∘ \mathcal{F}[Y ↢ X] = \mathcal{G ∘ F}[Z ↢ X]$ |      |      |
-| $\mathcal{G}[Z ↣ Y] ∘ \mathcal{F}[Y ↣ X] = \mathcal{G ∘ F}[Z ↣ X]$ |      |      |
-| $\mathcal{G}[Z ⇼ Y] ∘ \mathcal{F}[Y ⇼ X] = \mathcal{G ∘ F}[Z ⇼ X]$ |      |      |
-| $\mathcal{G}[X ⇆ X] ∘ \mathcal{F}[X ⇆ X] = \mathcal{G ∘ F}[X ⇆ X]$ |      |      |
-
-
+| $⇓$  | $∀x∈\mathrm{def}\mathcal{F};Ⅎy∈\mathrm{dom}\mathcal{F};〈y, x〉∈\mathcal{F}$ | $⇔$  | $\mathcal{F}[Y ↢ X]$     |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------- |
+| $⇓$  | $∀y∈\mathrm{def}\mathcal{G};Ⅎz∈\mathrm{dom}\mathcal{G};〈z, y〉∈\mathcal{G}$ | $⇔$  | $\mathcal{G}[Z ↢ Y]$     |
+| $⇓$  | $∀x∈\mathrm{def}\mathcal{G ∘ F};Ⅎy∈\mathrm{def}\mathcal{G} ∩ \mathrm{dom}\mathcal{F};Ⅎz∈\mathrm{dom}\mathcal{G ∘ F};〈z, x〉∈\mathcal{G ∘ F}$ | $⇔$  | $\mathcal{G ∘ F}[Z ↢ X]$ |
+|      |                                                              |      |                          |
+| $⇓$  | $[Z = \mathrm{dom}\mathcal{G}] ∧ [\mathrm{def}\mathcal{G} = Y = \mathrm{dom}\mathcal{F}] ∧ [\mathrm{def}\mathcal{F} = X]$ |      |                          |
+| $⇓$  | $∀x∈X;Ⅎy∈Y;Ⅎz∈Z;〈z, x〉∈\mathcal{G ∘ F}$                    | $⇔$  | $\mathcal{G ∘ F}[Z ↢ X]$ |
+| $⇓$  | $∀z∈Z;Ⅎx∈X;〈z, x〉∈\mathcal{G ∘ F}$                         | $⇔$  | $\mathcal{G ∘ F}[Z ⇼ X]$ |
+| $⇓$  | $∀x∈X;Ⅎy∈Y;〈y, x〉∈\mathcal{F}$                             | $⇔$  | $\mathcal{F}[Y ↢ X]$     |
+| $⇓$  | $∀z∈Z;Ⅎx∈X;Ⅎy∈Y;〈z, y〉∈\mathcal{G}$                        |      |                          |
+| $⇓$  | $∀y∈Y;Ⅎz∈Z;〈z, y〉∈\mathcal{G}$                             | $⇔$  | $\mathcal{G}[Z ↢ Y]$     |
+| $⇓$  | $[∀z∈Z;Ⅎy∈Y;〈z, y〉∈\mathcal{G}] ∧ [∀y∈Y;Ⅎz∈Z;〈z, y〉∈\mathcal{G}]$ | $⇔$  | $\mathcal{G}[Z ⇼ Y]$     |
 
 
 
