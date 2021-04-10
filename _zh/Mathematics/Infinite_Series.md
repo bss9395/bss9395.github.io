@@ -7,6 +7,104 @@ Author:  璀璨星辰
 Link  :
 ---
 
+### 数列极限
+
+若数列$S_n$的极限值收敛于$S$，则对于任意的正实数$ε$，必有任意多项落在区间$[S - ε, S + ε]$内，且至多有限项落在区间$[S - ε, S + ε]$外。
+
+| $\lim\limits_{n⇝∞⁺} S_n ⇝ S ≠ ∞$      | $\lim\limits_{n⇝∞⁺} S_n ⇝ S⁺ ≠ ∞⁺$     | $\lim\limits_{n⇝∞⁺} S_n ⇝ S⁻ ≠ ∞⁻$     |
+| :------------------------------------ | :------------------------------------- | :------------------------------------- |
+| $\lim\limits_{n⇝∞⁺} | S_n - S | ⇝ 0⁺$ | $\lim\limits_{n⇝∞⁺} S_n - S⁺ ⇝ 0⁺$     | $\lim\limits_{n⇝∞⁺} S_n - S⁻ ⇝ 0⁻$     |
+| $∀ε>0;∃N∈ℕ;∀n≥N; | S_n - S | ≤ ε$     | $∀ε>0;∃N∈ℕ;∀n≥N; 0⁺ ≤ S_n - S ≤ ε$     | $∀ε>0;∃N∈ℕ;∀n≥N; ε ≤ S_n - S ≤ 0⁻$     |
+| $∀ε>0;∃N∈ℕ;∀n≥N; S - ε ≤ S_n ≤ S + ε$ | $∀ε>0;∃N∈ℕ;∀n≥N; S + 0⁺ ≤ S_n ≤ S + ε$ | $∀ε>0;∃N∈ℕ;∀n≥N; S + ε ≤ S_n ≤ S + 0⁻$ |
+
+若数列$S_n$的极限值发散于$∞$，则对于任意的正实数$ε$，必有任意多项落在区间$[-ε, +ε]$外，且至多有限项落在区间$[-ε, +ε]$内。
+
+| $\lim\limits_{n⇝∞⁺} S_n ⇝ ∞$              | $\lim\limits_{n⇝∞⁺} S_n ⇝ ∞⁺$ | $\lim\limits_{n⇝∞⁺} S_n ⇝ ∞⁻$ |
+| :---------------------------------------- | :---------------------------- | :---------------------------- |
+| $\lim\limits_{n⇝∞⁺} | S_n | ⇝ ∞⁺$         |                               |                               |
+| $∀ε>0;∃N∈ℕ;∀n≥N; | S_n | ≥ ε$             | $∀ε>0;∃N∈ℕ;∀n≥N; S_n ≥ +ε$    | $∀ε>0;∃N∈ℕ;∀n≥N; S_n ≤ -ε$    |
+| $∀ε>0;∃N∈ℕ;∀n≥N; [S_n ≤ -ε] ∨ [S_n ≥ +ε]$ |                               |                               |
+
+数列$S_n$的下极限与上极限。
+
+$\varliminf\limits_{n⇝∞⁺} S_n ≡ \mathop{\lim\inf}\limits_{n⇝∞⁺} S_n ≡ \lim\limits_{n⇝∞⁺} \inf\limits_{m≥n} S_m$
+
+$\varlimsup\limits_{n⇝∞⁺} S_n ≡ \mathop{\lim\sup}\limits_{n⇝∞⁺} S_n ≡ \lim\limits_{n⇝∞⁺} \sup\limits_{m≥n} S_m$
+
+若数列$S_n$中有限多项发生改变，数列的敛散性不会改变。
+
+若数列$S_n$的极限值收敛于$S$，则其上极限与其下极限相等，反之亦然。因此若数列$S_n$的极限值存在，则此极限值唯一确定。
+
+$\left[ \lim\limits_{n⇝∞⁺} S_n ⇝ S \right] ⇔ \left[ \varliminf\limits_{n⇝∞⁺} S_n ⇝ S ⇜ \varlimsup\limits_{n⇝∞⁺} S_n \right]$
+
+若数列$S_n$的极限值收敛于$S$，则其任何子数列$S_{n_m}$的极限值均收敛于S，反之亦然。
+
+$\left[ \lim\limits_{n⇝∞⁺} S_n ⇝ S \right] ⇔ \left[ \lim\limits_{m⇝∞⁺} S_{n_m} ⇝ S \right]$
+
+若数列$S_n$的极限值收敛于$S$，则其任意无穷项$S_m$与$S_n$之差为无穷小。
+
+$[∀ε>0;∃N∈ℕ;∀n≥N; |S_n - S| < ε] ⇔ [∀ε>0;∃N∈ℕ;∀n,m≥N;|S_m - S_n| < ε]$
+
+典例：数列$S_n = (-1)^n$的极限值不存在。
+
+$\lim\limits_{m⇝∞⁺} S_{2·m} = \lim\limits_{m⇝∞⁺} (-1)^{2·m} ⇝ (+1) ≠ (-1) ⇜ \lim\limits_{m⇝∞⁺} (-1)^{2·m+1} = \lim\limits_{m⇝∞⁺} S_{2·m+1}$
+
+$\varliminf\limits_{n⇝∞⁺} S_n ⇝ (-1) ≠ (+1) ⇜ \varlimsup\limits_{n⇝∞⁺} S_n$
+
+典例：数列$S_n = \sin n$的极限值不存在。
+
+$\varliminf\limits_{n⇝∞⁺} S_n = \varliminf\limits_{n_m⇝∞⁺}^{n_m∈\left(2·m·π-\frac{3}{4}·π,2·m·π-\frac{1}{4}·π\right)} \sin n_m < 0 < \varlimsup\limits_{n_m⇝∞⁺}^{n_m∈\left(2·m·π+\frac{1}{4}·π,2·m·π+\frac{3}{4}·π\right)}  \sin n_m = \varlimsup\limits_{n⇝∞⁺} S_n$
+
+若数列$S_n$的极限值收敛，则数列$S_n$有确界，反之不对。
+
+$\left[ \lim\limits_{n⇝∞⁺} S_n ⇝ S ≠ ∞ \right] ⇒ \left[ ∀n∈ℕ; |S_n| ≤ \max\left\lbrace \left|\inf S_n\right|, \left| \sup S_n \right| \right\rbrace \right]$
+
+若数列$| S_n |$单调递增无上确界，则数列$| S_n |$的极限值发散于$∞⁺$。$P ⇒ Q$
+
+若数列$| S_n |$单调递增有上确界，则数列$| S_n |$的极限值必定收敛。$¬Q ⇒ ¬P$
+
+$\left[ \lim\limits_{n⇝∞⁺} S_n^{↗} ⇝ ∞^{+} \right] ∨ \left[ \lim\limits_{n⇝∞⁺} S_n^{↘} ⇝ ∞^{-} \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} | S_n^{⤨} | ⇝ ∞⁺ \right]$
+
+$\left[ \lim\limits_{n⇝∞⁺} | S_n^{⤨} | ≤ \mathrm{Sup} \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} S_n^{↗} ⇝ \sup S_n \right] ∧ \left[ \lim\limits_{n⇝∞⁺} S_n^{↘} ⇝ \inf S_n \right]$
+
+典例：若数列$0 ≤ S_{n+m} ≤ S_{n} + S_{m}$，则数列$\dfrac{S_n}{n}$的极限值收敛。
+
+| $⇓$  | $n \mathop{=}\limits_{0≤r≤m} m · q + r$                      | $⇒$  | $\dfrac{1}{m} = \dfrac{q}{n} + \dfrac{r}{n · m}$             |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\dfrac{S_n}{n} = \dfrac{S_{m·q+r} }{n} = \dfrac{q · S_{m} }{n} + \dfrac{S_{r} }{n} \mathop{≤}\limits^{0≤S_{m} } \dfrac{S_{m} }{m} + \dfrac{S_{r} }{n}$ | $⇐$  | $\dfrac{1}{m} ≥ \dfrac{q}{n}$                                |
+| $⇓$  | $\varlimsup\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n} ≤ \varlimsup\limits_{n⇝∞^{+} } \left( \dfrac{S_{m} }{m} + \dfrac{S_{r} }{n} \right) = \dfrac{S_{m} }{m} + 0 = \dfrac{S_{m} }{m}$ | $⇒$  | $\varlimsup\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n} ≤ \varliminf\limits_{m⇝∞^{+} } \dfrac{S_{m} }{m}$ |
+| $⇓$  | $\varlimsup\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n} = \lim\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n} = \varliminf\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n}$ |      |                                                              |
+
+### 数列极限的运算性质
+
+$\left[ \lim\limits_{n⇝∞⁺} S_n ⇝ S < T ⇜ \lim\limits_{n⇝∞⁺} T_n \right] ⇒ \left[ ∃N∈ℕ;∀n≥N; S_n < \dfrac{S + T}{2} < T_n \right]$
+
+$\left[ ∃N∈ℕ;∀n≥N; S_n ≤ R_n ≤ T_n \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} S_n ≤ \lim\limits_{n⇝∞⁺} R_n ≤ \lim\limits_{n⇝∞⁺} T_n  \right]$
+
+| $⇓$  | $\lim\limits_{n⇝∞⁺} S_n ⇝ S < T ⇜ \lim\limits_{n⇝∞⁺} T_n$    |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $∀ε=\dfrac{T - S}{2};∃N∈ℕ;∀n≥N; S_n < S + ε = S + \dfrac{T - S}{2} = \dfrac{S + T}{2} = T - \dfrac{T - S}{2} = T - ε < T_n$ |
+| $⇓$  | $∃N∈ℕ;∀n≥N; S_n < \dfrac{S + T}{2} < T_n$                    |
+
+若$\lim\limits_{n⇝∞⁺} S_n ⇝ S$，且 $\lim\limits_{n⇝∞⁺} T_n ⇝ T$。
+
+$\lim\limits_{n⇝∞⁺} [ S_n + T_n ] = \lim\limits_{n⇝∞⁺} S_n + \lim\limits_{n⇝∞⁺} T_n ⇝ S + T$
+
+$\lim\limits_{n⇝∞⁺} [ S_n - T_n ] = \lim\limits_{n⇝∞⁺} S_n - \lim\limits_{n⇝∞⁺} T_n ⇝ S - T$
+
+$\lim\limits_{n⇝∞⁺} [ S_n · T_n ] = \lim\limits_{n⇝∞⁺} S_n · \lim\limits_{n⇝∞⁺} T_n ⇝ S · T$
+
+$\lim\limits_{n⇝∞⁺} \dfrac{S_n}{T_n} = \dfrac{\lim\limits_{n⇝∞⁺} S_n}{\lim\limits_{n⇝∞⁺} T_n} \mathop{⇝}\limits_{T≠0} \dfrac{S}{T}$
+
+$\lim\limits_{n⇝∞⁺} [ \mathrm{Con} · S_n ] = \mathrm{Con} · \lim\limits_{n⇝∞⁺} S_n ⇝ \mathrm{Con} · S$
+
+| $⇓$  | $[ ∀ε_1>0;∃N∈ℕ;∀n≥N; | S_n - S | < ε_1 ] ∧ [∀ε_2>0;∃N∈ℕ;∀n≥N; | T_n - T | < ε_2]$ |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | (S_n + T_n) - (S + T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
+| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | (S_n - T_n) - (S - T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
+| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | S_n · T_n - S · T | = | (S_n · T_n - S_n · T) + (S_n · T - S · T) | ≤ | S_n | · | T_n - T | + | S_n - S | · | T | ≤ \mathrm{Sup} · ε_2 + ε_1 · | T | = ε$ |
+| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{S_n}{T_n} - \dfrac{S}{T} \right| = \dfrac{| S_n · T - S · T_n |}{| T_n | · | T |} = \dfrac{| (S_n · T - S · T) + (S · T - S · T_n) |}{| T_n | · | T |} = \dfrac{| S_n - S | · | T | + | S | · | T - T_n |}{| T_n | · | T |} ≤ \dfrac{ε_1 · | T | + | S | · ε_2}{\mathrm{Inf} · | T |} = ε$ |
+
 ### 无穷级数
 
 无穷级数的部分和

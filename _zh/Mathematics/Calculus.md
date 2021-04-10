@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-10T10:52:00+08@中国-广东-湛江+08
+Update:  2021-04-10T22:50:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -124,7 +124,7 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 
 二元关系$\mathcal{F}〈Y × X〉$可视为$\rlap{≡≡≡≡≡≡≡}{单变元单变量多值}$函数，通常记作$y ⊨ \mathcal{F}(x)$。其敛射关系可视为$\rlap{≡≡≡≡≡≡≡≡≡≡}{单变元单变量单值}$函数，通常记作$y = \mathcal{F}(x)$。其映射关系同时满足敛射关系与散射关系，通常记作$y ≡ \mathcal{F}(x)$。
 
-二元关系$\mathcal{F}〈(Y_0 × Y_1 × ... × Y_m) × (X_0 × X_1 × ... × X_n)〉$可视为$n变元m变量多值$函数，通常记作$(y_0, y_1, ..., y_m) ⊨ \mathcal{F}(x_0, x_1, ..., x_n)$。其敛射关系可视为$n变元m变量\rlap{≡≡}{单值}$函数，通常记作$(y_0, y_1, ..., y_m) = \mathcal{F}(x_0, x_1, ..., x_n)$。其映射关系同时满足敛射关系与散射关系，通常记作$(y_0, y_1, ..., y_m) ≡ \mathcal{F}(x_0, x_1, ..., x_m)$。
+多元关系$\mathcal{F}〈(Y_0 × Y_1 × ... × Y_m) × (X_0 × X_1 × ... × X_n)〉$可视为$n变元m变量多值$函数，通常记作$(y_0, y_1, ..., y_m) ⊨ \mathcal{F}(x_0, x_1, ..., x_n)$。其敛射关系可视为$n变元m变量\rlap{≡≡}{单值}$函数，通常记作$(y_0, y_1, ..., y_m) = \mathcal{F}(x_0, x_1, ..., x_n)$。其映射关系同时满足敛射关系与散射关系，通常记作$(y_0, y_1, ..., y_m) ≡ \mathcal{F}(x_0, x_1, ..., x_m)$。
 
 二元关系 $\mathcal{F}〈Y × X〉$可能有$2^{\mathrm{ord} Y × \mathrm{ord} X}$个，敛射关系$\mathcal{F}: Y ↢ X$可能有$\sum\limits_{i=0}^{\mathrm{ord}X} \dfrac{(\mathrm{ord}X)!}{i! · (\mathrm{ord}X - i)!} · (\mathrm{ord}Y)^{i} = (\mathrm{ord}Y + 1)^{\mathrm{ord}X}$个，散射关系$\mathcal{F}: Y ↣ X$可能有$\sum\limits_{i=0}^{\mathrm{ord}Y} \dfrac{(\mathrm{ord}Y)!}{i! · (\mathrm{ord}Y - i)!} · (\mathrm{ord}X)^{i} = (\mathrm{ord}X + 1)^{\mathrm{ord}Y}$个。映射关系$\mathcal{F}: Y ⇼ X$可能有$\sum\limits_{i=0}^{\min\lbrace \mathrm{ord}X, \mathrm{ord}Y \rbrace} \dfrac{(\mathrm{ord}X)!}{i! · (\mathrm{ord}X - i)!} · \dfrac{(\mathrm{ord}Y)!}{i! · (\mathrm{ord}Y - i)!} · i! = \sum\limits_{i=0}^{\min\lbrace \mathrm{ord}X, \mathrm{ord}Y \rbrace} \dfrac{(\mathrm{ord}X)! · (\mathrm{ord}Y)!}{i! ·(\mathrm{ord}X - i)! · (\mathrm{ord}Y - i)!}$个。
 
@@ -160,7 +160,7 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 | $⇓$  | $∀y∈Y;Ⅎz∈Z;〈z, y〉∈\mathcal{G}$                             | $⇔$  | $\mathcal{G}〈Z ↢ Y〉$     |
 | $⇓$  | $[∀z∈Z;Ⅎy∈Y;〈z, y〉∈\mathcal{G}] ∧ [∀y∈Y;Ⅎz∈Z;〈z, y〉∈\mathcal{G}]$ | $⇔$  | $\mathcal{G}〈Z ⇼ Y〉$     |
 
-### 极限
+### 极值点
 
 任意实数的绝对值，为其与实数轴上原点之间的距离。
 
@@ -211,14 +211,8 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 | 严格极小值 | $m ≡ \min\limits_{m∈S⊆T} S$ | $[ ∃m∈S;∀a∈S \backslash m; m < a ]$                          |                                                  |
 
 
-|       极限值 | $\lim\limits_{x⇝x_0^+} f(x) ⇝ f_{x_0^+}$                     | $∀ε>0;∃δ>0; 0 ≤ x - x_0 ≤ +δ ⇒ |f(x) - f_{x_0^+}| ≤ ε$       |
-| -----------: | :----------------------------------------------------------- | :----------------------------------------------------------- |
-|       极限值 | $\lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-}$                     | $∀ε>0;∃δ>0; -δ ≤ x - x_0 ≤ 0 ⇒ |f(x) - f_{x_0^-}| ≤ ε$       |
-|       极限值 | $\lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$                         | $\lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-} = f_{x_0} = f_{x_0^+} ⇜ \lim\limits_{x⇝x_0^+} f(x)$ |
-|       极限值 | $\lim\limits_{x⇝x_0} f(x) ⇝ ∞^{±},∞$                         | $\lim\limits_{x⇝x_0} \dfrac{1}{f(x)} ⇝ 0^{±},0$              |
-|       极限值 | $\lim\limits_{x⇝∞^{±},∞} f(x) ⇝ f_{∞^{±}}$                   | $\lim\limits_{\frac{1}{x}⇝0^{±},0} f(x) ⇝ f_{∞^{±}}$         |
-|              |                                                              |                                                              |
 |       最大值 | $f (x_0) ≡ \max\limits_{x∈X} f (x)$                          | $[ ∃x_0∈X;∀x∈X; f (x_0) ≥ f (x) ] ⇔ [ ∃x_0∈X;∀x∈X; f (x_0) ≤ f (x) ⇒ f (x_0) = f (x) ]$ |
+| -----------: | :----------------------------------------------------------- | :----------------------------------------------------------- |
 |       最小值 | $f (x_0) ≡ \min\limits_{x∈X} f (x)$                          | $[ ∃x_0∈X;∀x∈X; f (x_0) ≤ f (x) ] ⇔ [ ∃x_0∈X;∀x∈X; f (x_0) ≥ f (x) ⇒ f (x_0) = f (x) ]$ |
 |       极大值 | $f (x_0) ≡ \max\limits_{x∈X⊆Y} f (x)$                        | $[ ∃x_0∈X;∀x∈X⊆Y; f (x_0) ≥ f (x) ] ⇔ [ ∃x_0∈X;∀x∈X⊆Y; f (x_0) ≤ f (x) ⇒ f (x_0) = f (x) ]$ |
 |       极小值 | $f (x_0) ≡ \min\limits_{x∈X⊆Y} f (x)$                        | $[ ∃x_0∈X;∀x∈X⊆Y; f (x_0) ≤ f (x) ] ⇔ [ ∃x_0∈X;∀x∈X⊆Y; f (x_0) ≥ f (x) ⇒ f (x_0) = f (x) ]$ |
@@ -231,13 +225,29 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 |   严格极大值 | $f (x_0) ≡ \max\limits_{x∈X⊆Y} f (x)$                        | $[ ∃x_0∈X;∀x∈X \backslash x_0; f (x_0) > f (x) ]$            |
 |   严格极小值 | $f (x_0) ≡ \min\limits_{x∈X⊆Y} f (x)$                        | $[ ∃x_0∈X;∀x∈X \backslash x_0; f (x_0) < f (x) ]$            |
 |              |                                                              |                                                              |
-|       上极限 | $s ≡ \varlimsup\limits_{x⇝x_0} f (x) ≡ \lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(x_0,δ)} f(x)$ |                                                              |
-|       下极限 | $s ≡ \varliminf\limits_{x⇝x_0} f (x) ≡ \lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{U}(x_0,δ)} f(x)$ |                                                              |
+|       右极限 | $\lim\limits_{x⇝x_0^+} f(x) ⇝ f_{x_0^+}$                     | $∀ε>0;∃δ>0; 0 ≤ x - x_0 ≤ +δ ⇒ |f(x) - f_{x_0^+}| ≤ ε$       |
+|       左极限 | $\lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-}$                     | $∀ε>0;∃δ>0; -δ ≤ x - x_0 ≤ 0 ⇒ |f(x) - f_{x_0^-}| ≤ ε$       |
+|       极限值 | $\lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$                         | $∀ε>0;∃δ>0;∀x_1,x_2∈\mathrm{U}(x_0,δ); |f(x_1) - f(x_2)| ≤ ε$ |
+|       极限值 | $\lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$                         | $\lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-} = f_{x_0} = f_{x_0^+} ⇜ \lim\limits_{x⇝x_0^+} f(x)$ |
+|       极限值 | $\lim\limits_{x⇝x_0} f(x) ⇝ ∞^{±},∞$                         | $\lim\limits_{x⇝x_0} \dfrac{1}{f(x)} ⇝ 0^{±},0$              |
+|       极限值 | $\lim\limits_{x⇝∞^{±},∞} f(x) ⇝ f_{∞^{±}}$                   | $\lim\limits_{\frac{1}{x}⇝0^{±},0} f(x) ⇝ f_{∞^{±}}$         |
+|       上极限 | $f_{x_0} ≡ \varlimsup\limits_{x⇝x_0} f (x)$                  | $f_{x_0} ≡ \lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(x_0,δ)} f(x)$ |
+|       下极限 | $f_{x_0} ≡ \varliminf\limits_{x⇝x_0} f (x)$                  | $f_{x_0} ≡ \lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{U}(x_0,δ)} f(x)$ |
+|       极限值 | $f_{x_0} = \varliminf\limits_{x⇝x_0} f(x) = \varlimsup\limits_{x⇝x_0} f(x)$ | $f_{x_0} = \lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{U}(x_0,δ)} f(x) = \lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(x_0,δ)} f(x)$ |
 |              |                                                              |                                                              |
 |     单调递增 | $f^{↗} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↗} (x_1) ≤ f^{↗} (x_2)]]$ |
 |     单调递减 | $f^{↘} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↘} (x_1) ≥ f^{↘} (x_2)]]$ |
 | 严格单调递增 | $f^{↑} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↑} (x_1) < f^{↑} (x_2)]]$ |
 | 严格单调递减 | $f^{↓} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↓} (x_1) > f^{↓} (x_2)]]$ |
+
+| $⇕$  | $\lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$                         |      |                                                              |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $∀ε>0;∃δ>0;∀x∈\mathrm{U}(x_0,δ); |f(x) - f_{x_0}| ≤ ε$       |      |                                                              |
+| $⇓$  | $∀ε>0;∃δ>0;∀x_1,x_2∈\mathrm{U}(x_0, δ); |f(x_1) - f(x_2)| ≤ |f(x_1) - f_{x_0}| + |f(x_2) - f_{x_0}| ≤ 2·ε_0 = ε$ | $⇒$  | $∀ε>0;∃N∈ℕ;∀n,m≥N; x_n,x_m∈\mathrm{U}\left(x_0,\frac{1}{N}\right) ⇒ |f(x_n) - f(x_m)| ≤ ε$ |
+| $⇓$  | $∀ε>0;∃δ>0;∀x_1,x_2∈\mathrm{U}(x_0,δ); |f(x_1) - f(x_2)| ≤ ε$ | $⇔$  | $∀ε>0;∃δ>0; \sup\limits_{x_1,x_2∈\mathrm{U}(x_0,δ)} |f(x_1) - f(x_2)| ≤ ε$ |
+| $⇓$  | $∀ε>0;∃δ>0;∀x,x_1∈\mathrm{U}(x_0,δ); f(x_1) - ε ≤ f(x) ≤ f(x_1) + ε$ |      |                                                              |
+| $⇓$  | $f_{x_0} ⇜ \lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{U}(x_0,δ)} f(x) = \lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(x_0,δ)} f(x)$ |      |                                                              |
+| $⇓$  | $∀ε>0;∃δ>0;∀x∈\mathrm{U}(x_0,δ); |f(x) - f_{x_0}| ≤ ε$       | $⇒$  | $∀ε>0;∃N∈ℕ;∀n≥N; x_n∈\mathrm{U}\left(x_0,\frac{1}{N}\right) ⇒ |f(x_n) - f_{x_0}| ≤ ε$ |
 
 上确界与下确界的运算性质。
 
@@ -260,6 +270,8 @@ $\varliminf\limits_{x⇝x_0} [f(x) + g(x)] ≥ \varliminf\limits_{x⇝x_0} f(x) 
 | $∀x∈X; f(x) ≥ \inf\limits_{x∈X} f(x)$ | $∀x∈X; -f(x) ≤ -\inf\limits_{x∈X} f(x)$                      | $\sup\limits_{x∈X} [-f(x)] = -\inf\limits_{x∈X} f(x)$        | $\inf\limits_{x∈X} f(x) = -\sup\limits_{x∈X} [-f(x)]$        |
 | $∀x∈X; f(x) ≤ \sup\limits_{x∈X} f(x)$ | $∀x∈X; [f(x) + g(x)] ≤ \sup\limits_{x∈X} f(x) + \sup\limits_{x∈X} g(x)$ | $\sup\limits_{x∈X} [f(x) + g(x)] ≤ \sup\limits_{x∈X} f(x) + \sup\limits_{x∈X} g(x)$ | $\varlimsup\limits_{x⇝x_0} [f(x) + g(x)] ≤ \varlimsup\limits_{x⇝x_0} f(x) + \varlimsup\limits_{x⇝x_0} g(x)$ |
 | $∀x∈X; f(x) ≥ \inf\limits_{x∈X} f(x)$ | $∀x∈X; [f(x) + g(x)] ≥ \inf\limits_{x∈X} f(x) + \inf\limits_{x∈X} g(x)$ | $\inf\limits_{x∈X} [f(x) + g(x)] ≥ \inf\limits_{x∈X} f(x) + \inf\limits_{x∈X} g(x)$ | $\varliminf\limits_{x⇝x_0} [f(x) + g(x)] ≥ \varliminf\limits_{x⇝x_0} f(x) + \varliminf\limits_{x⇝x_0} g(x)$ |
+
+
 
 典例：函数$f (x) = \sin x$在区间$\left( 0, \dfrac{π}{2} \right)$上的取值范围为$0 < f (x) < 1$，其下确界为$0$，其上确界为$1$。
 
@@ -327,104 +339,6 @@ $∀\lbrace\mathcal{s_{i∈ℕ} }\rbrace;∀ζ_2>0;∃\lbrace X_{i∈ℕ} \rbrac
 可数个零测集$\mathcal{O}_i$的合集$\lbrace \mathcal{O}_{i∈ℕ} \rbrace$为零测集。
 
 $∀\lbrace\mathcal{O}_{i∈ℕ}\rbrace;∀ζ_3>0;∃\lbrace X_{ {i∈ℕ},{j∈ℕ} } \rbrace; \left[ \lbrace \mathcal{O}_{i∈ℕ} \rbrace ⊆ \bigcup\limits_{i=0}^{ℕ} \bigcup\limits_{j=0}^{ℕ} X_{i,j} \right] ∧ \left[ \left| \lbrace \mathcal{O}_{i∈ℕ} \rbrace \right| = \sum\limits_{i=0}^{ℕ} | \mathcal{O}_i | = \sum\limits_{i=0}^{ℕ} \sum\limits_{j=0}^{ℕ} | X_{i,j} | ≤ \sum\limits_{i=0}^{∞⁺} \dfrac{1}{2^{i} } · \sum\limits_{j=0}^{∞⁺} \dfrac{ζ_1}{2^{j} } ≤ \sum\limits_{i=0}^{∞⁺} \dfrac{ζ_2}{2^i} = 2 · ζ_2 = ζ_3 \right]$
-
-### 数列极限
-
-若数列$S_n$的极限值收敛于$S$，则对于任意的正实数$ε$，必有任意多项落在区间$[S - ε, S + ε]$内，且至多有限项落在区间$[S - ε, S + ε]$外。
-
-| $\lim\limits_{n⇝∞⁺} S_n ⇝ S ≠ ∞$      | $\lim\limits_{n⇝∞⁺} S_n ⇝ S⁺ ≠ ∞⁺$     | $\lim\limits_{n⇝∞⁺} S_n ⇝ S⁻ ≠ ∞⁻$     |
-| :------------------------------------ | :------------------------------------- | :------------------------------------- |
-| $\lim\limits_{n⇝∞⁺} | S_n - S | ⇝ 0⁺$ | $\lim\limits_{n⇝∞⁺} S_n - S⁺ ⇝ 0⁺$     | $\lim\limits_{n⇝∞⁺} S_n - S⁻ ⇝ 0⁻$     |
-| $∀ε>0;∃N∈ℕ;∀n≥N; | S_n - S | ≤ ε$     | $∀ε>0;∃N∈ℕ;∀n≥N; 0⁺ ≤ S_n - S ≤ ε$     | $∀ε>0;∃N∈ℕ;∀n≥N; ε ≤ S_n - S ≤ 0⁻$     |
-| $∀ε>0;∃N∈ℕ;∀n≥N; S - ε ≤ S_n ≤ S + ε$ | $∀ε>0;∃N∈ℕ;∀n≥N; S + 0⁺ ≤ S_n ≤ S + ε$ | $∀ε>0;∃N∈ℕ;∀n≥N; S + ε ≤ S_n ≤ S + 0⁻$ |
-
-若数列$S_n$的极限值发散于$∞$，则对于任意的正实数$ε$，必有任意多项落在区间$[-ε, +ε]$外，且至多有限项落在区间$[-ε, +ε]$内。
-
-| $\lim\limits_{n⇝∞⁺} S_n ⇝ ∞$              | $\lim\limits_{n⇝∞⁺} S_n ⇝ ∞⁺$ | $\lim\limits_{n⇝∞⁺} S_n ⇝ ∞⁻$ |
-| :---------------------------------------- | :---------------------------- | :---------------------------- |
-| $\lim\limits_{n⇝∞⁺} | S_n | ⇝ ∞⁺$         |                               |                               |
-| $∀ε>0;∃N∈ℕ;∀n≥N; | S_n | ≥ ε$             | $∀ε>0;∃N∈ℕ;∀n≥N; S_n ≥ +ε$    | $∀ε>0;∃N∈ℕ;∀n≥N; S_n ≤ -ε$    |
-| $∀ε>0;∃N∈ℕ;∀n≥N; [S_n ≤ -ε] ∨ [S_n ≥ +ε]$ |                               |                               |
-
-数列$S_n$的下极限与上极限。
-
-$\varliminf\limits_{n⇝∞⁺} S_n ≡ \mathop{\lim\inf}\limits_{n⇝∞⁺} S_n ≡ \lim\limits_{n⇝∞⁺} \inf\limits_{m≥n} S_m$
-
-$\varlimsup\limits_{n⇝∞⁺} S_n ≡ \mathop{\lim\sup}\limits_{n⇝∞⁺} S_n ≡ \lim\limits_{n⇝∞⁺} \sup\limits_{m≥n} S_m$
-
-若数列$S_n$中有限多项发生改变，数列的敛散性不会改变。
-
-若数列$S_n$的极限值收敛于$S$，则其上极限与其下极限相等，反之亦然。因此若数列$S_n$的极限值存在，则此极限值唯一确定。
-
-$\left[ \lim\limits_{n⇝∞⁺} S_n ⇝ S \right] ⇔ \left[ \varliminf\limits_{n⇝∞⁺} S_n ⇝ S ⇜ \varlimsup\limits_{n⇝∞⁺} S_n \right]$
-
-若数列$S_n$的极限值收敛于$S$，则其任何子数列$S_{n_m}$的极限值均收敛于S，反之亦然。
-
-$\left[ \lim\limits_{n⇝∞⁺} S_n ⇝ S \right] ⇔ \left[ \lim\limits_{m⇝∞⁺} S_{n_m} ⇝ S \right]$
-
-若数列$S_n$的极限值收敛于$S$，则其任意两无穷项$S_m$与$S_n$之差为无穷小。
-
-$[∀ε>0;∃N∈ℕ;∀n≥N; |S_n - S| < ε] ⇔ [∀ε>0;∃N∈ℕ;∀n,m≥N;|S_m - S_n| < ε]$
-
-典例：数列$S_n = (-1)^n$的极限值不存在。
-
-$\lim\limits_{m⇝∞⁺} S_{2·m} = \lim\limits_{m⇝∞⁺} (-1)^{2·m} ⇝ (+1) ≠ (-1) ⇜ \lim\limits_{m⇝∞⁺} (-1)^{2·m+1} = \lim\limits_{m⇝∞⁺} S_{2·m+1}$
-
-$\varliminf\limits_{n⇝∞⁺} S_n ⇝ (-1) ≠ (+1) ⇜ \varlimsup\limits_{n⇝∞⁺} S_n$
-
-典例：数列$S_n = \sin n$的极限值不存在。
-
-$\varliminf\limits_{n⇝∞⁺} S_n = \varliminf\limits_{n_m⇝∞⁺}^{n_m∈\left(2·m·π-\frac{3}{4}·π,2·m·π-\frac{1}{4}·π\right)} \sin n_m < 0 < \varlimsup\limits_{n_m⇝∞⁺}^{n_m∈\left(2·m·π+\frac{1}{4}·π,2·m·π+\frac{3}{4}·π\right)}  \sin n_m = \varlimsup\limits_{n⇝∞⁺} S_n$
-
-若数列$S_n$的极限值收敛，则数列$S_n$有确界，反之不对。
-
-$\left[ \lim\limits_{n⇝∞⁺} S_n ⇝ S ≠ ∞ \right] ⇒ \left[ ∀n∈ℕ; |S_n| ≤ \max\left\lbrace \left|\inf S_n\right|, \left| \sup S_n \right| \right\rbrace \right]$
-
-若数列$| S_n |$单调递增无上确界，则数列$| S_n |$的极限值发散于$∞⁺$。$P ⇒ Q$
-
-若数列$| S_n |$单调递增有上确界，则数列$| S_n |$的极限值必定收敛。$¬Q ⇒ ¬P$
-
-$\left[ \lim\limits_{n⇝∞⁺} S_n^{↗} ⇝ ∞^{+} \right] ∨ \left[ \lim\limits_{n⇝∞⁺} S_n^{↘} ⇝ ∞^{-} \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} | S_n^{⤨} | ⇝ ∞⁺ \right]$
-
-$\left[ \lim\limits_{n⇝∞⁺} | S_n^{⤨} | ≤ \mathrm{Sup} \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} S_n^{↗} ⇝ \sup S_n \right] ∧ \left[ \lim\limits_{n⇝∞⁺} S_n^{↘} ⇝ \inf S_n \right]$
-
-典例：若数列$0 ≤ S_{n+m} ≤ S_{n} + S_{m}$，则数列$\dfrac{S_n}{n}$的极限值收敛。
-
-| $⇓$  | $n \mathop{=}\limits_{0≤r≤m} m · q + r$                      | $⇒$  | $\dfrac{1}{m} = \dfrac{q}{n} + \dfrac{r}{n · m}$             |
-| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\dfrac{S_n}{n} = \dfrac{S_{m·q+r} }{n} = \dfrac{q · S_{m} }{n} + \dfrac{S_{r} }{n} \mathop{≤}\limits^{0≤S_{m} } \dfrac{S_{m} }{m} + \dfrac{S_{r} }{n}$ | $⇐$  | $\dfrac{1}{m} ≥ \dfrac{q}{n}$                                |
-| $⇓$  | $\varlimsup\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n} ≤ \varlimsup\limits_{n⇝∞^{+} } \left( \dfrac{S_{m} }{m} + \dfrac{S_{r} }{n} \right) = \dfrac{S_{m} }{m} + 0 = \dfrac{S_{m} }{m}$ | $⇒$  | $\varlimsup\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n} ≤ \varliminf\limits_{m⇝∞^{+} } \dfrac{S_{m} }{m}$ |
-| $⇓$  | $\varlimsup\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n} = \lim\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n} = \varliminf\limits_{n⇝∞^{+} } \dfrac{S_{n} }{n}$ |      |                                                              |
-
-### 数列极限的运算性质
-
-$\left[ \lim\limits_{n⇝∞⁺} S_n ⇝ S < T ⇜ \lim\limits_{n⇝∞⁺} T_n \right] ⇒ \left[ ∃N∈ℕ;∀n≥N; S_n < \dfrac{S + T}{2} < T_n \right]$
-
-$\left[ ∃N∈ℕ;∀n≥N; S_n ≤ R_n ≤ T_n \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} S_n ≤ \lim\limits_{n⇝∞⁺} R_n ≤ \lim\limits_{n⇝∞⁺} T_n  \right]$
-
-| $⇓$  | $\lim\limits_{n⇝∞⁺} S_n ⇝ S < T ⇜ \lim\limits_{n⇝∞⁺} T_n$    |
-| :--: | :----------------------------------------------------------- |
-| $⇓$  | $∀ε=\dfrac{T - S}{2};∃N∈ℕ;∀n≥N; S_n < S + ε = S + \dfrac{T - S}{2} = \dfrac{S + T}{2} = T - \dfrac{T - S}{2} = T - ε < T_n$ |
-| $⇓$  | $∃N∈ℕ;∀n≥N; S_n < \dfrac{S + T}{2} < T_n$                    |
-
-若$\lim\limits_{n⇝∞⁺} S_n ⇝ S$，且 $\lim\limits_{n⇝∞⁺} T_n ⇝ T$。
-
-$\lim\limits_{n⇝∞⁺} [ S_n + T_n ] = \lim\limits_{n⇝∞⁺} S_n + \lim\limits_{n⇝∞⁺} T_n ⇝ S + T$
-
-$\lim\limits_{n⇝∞⁺} [ S_n - T_n ] = \lim\limits_{n⇝∞⁺} S_n - \lim\limits_{n⇝∞⁺} T_n ⇝ S - T$
-
-$\lim\limits_{n⇝∞⁺} [ S_n · T_n ] = \lim\limits_{n⇝∞⁺} S_n · \lim\limits_{n⇝∞⁺} T_n ⇝ S · T$
-
-$\lim\limits_{n⇝∞⁺} \dfrac{S_n}{T_n} = \dfrac{\lim\limits_{n⇝∞⁺} S_n}{\lim\limits_{n⇝∞⁺} T_n} \mathop{⇝}\limits_{T≠0} \dfrac{S}{T}$
-
-$\lim\limits_{n⇝∞⁺} [ \mathrm{Con} · S_n ] = \mathrm{Con} · \lim\limits_{n⇝∞⁺} S_n ⇝ \mathrm{Con} · S$
-
-| $⇓$  | $[ ∀ε_1>0;∃N∈ℕ;∀n≥N; | S_n - S | < ε_1 ] ∧ [∀ε_2>0;∃N∈ℕ;∀n≥N; | T_n - T | < ε_2]$ |
-| :--: | :----------------------------------------------------------- |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | (S_n + T_n) - (S + T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | (S_n - T_n) - (S - T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | S_n · T_n - S · T | = | (S_n · T_n - S_n · T) + (S_n · T - S · T) | ≤ | S_n | · | T_n - T | + | S_n - S | · | T | ≤ \mathrm{Sup} · ε_2 + ε_1 · | T | = ε$ |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{S_n}{T_n} - \dfrac{S}{T} \right| = \dfrac{| S_n · T - S · T_n |}{| T_n | · | T |} = \dfrac{| (S_n · T - S · T) + (S · T - S · T_n) |}{| T_n | · | T |} = \dfrac{| S_n - S | · | T | + | S | · | T - T_n |}{| T_n | · | T |} ≤ \dfrac{ε_1 · | T | + | S | · ε_2}{\mathrm{Inf} · | T |} = ε$ |
 
 ### 连续性
 
