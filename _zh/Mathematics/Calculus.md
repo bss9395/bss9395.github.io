@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-09T11:24:00+08@中国-广东-湛江+08
+Update:  2021-04-10T09:24:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -120,7 +120,7 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 | 映射$\mathcal{F}[Y ⇼ X]$ | $[∀x∈\mathrm{def}\mathcal{F};Ⅎy∈\mathrm{dom}\mathcal{F};〈y, x〉∈\mathcal{F}] ∧ [∀y∈\mathrm{dom}\mathcal{F};Ⅎx∈\mathrm{def}\mathcal{F};〈y, x〉∈\mathcal{F}]$ | $∀x_0,x_1;∀y_0,y_1;〈y_0, x_0〉∈\mathcal{F} ∧ 〈y_1, x_1〉∈\mathcal{F} ⇒ [y_0 = y_1 ⇔ x_0 = x_1]$ | $\mathrm{ord} (\mathrm{dom}\mathcal{F}) = \mathrm{ord} (\mathrm{def}\mathcal{F})$ |
 | 置换$\mathcal{F}[X ⇆ X]$ | $[∀x∈X;Ⅎy∈X;〈y, x〉∈\mathcal{F}] ∧ [∀y∈X;Ⅎx∈X;〈y, x〉∈\mathcal{F}]$ | $\mathrm{dom}\mathcal{F} = \mathrm{def}\mathcal{F} = X$      | $\mathrm{ord}(\mathrm{dom}\mathcal{F}) = \mathrm{ord}(\mathrm{def}\mathcal{F}) = \mathrm{ord}(X)$ |
 
-二元关系$\mathcal{F}[Y × X]$可视为多值函数，通常记作$y ⊨ \mathcal{F}(x)$。二元关系的敛射可视为$\rlap{≡≡}{单值}$函数，通常记作$y = \mathcal{F}(x)$。二元关系的映射满足敛射与散射，通常记作$y ≡ \mathcal{F}(x)$。
+二元关系$\mathcal{F}[Y × X]$可视为$\rlap{≡≡≡≡≡≡≡}{单变元单变量多值}$函数，通常记作$y ⊨ \mathcal{F}(x)$。其敛射关系可视为$\rlap{≡≡≡≡≡≡≡≡≡≡}{单变元单变量单值}$函数，通常记作$y = \mathcal{F}(x)$。其映射关系同时满足敛射关系与散射关系，通常记作$y ≡ \mathcal{F}(x)$。二元关系$\mathcal{F}[〈Y_0 × Y_1 × ... × Y_m〉×〈X_0 × X_1 × ... × X_n〉]$可视为$n变元m变量多值$函数，通常记作$(y_0, y_1, ..., y_m) ⊨ \mathcal{F}(x_0, x_1, ..., x_n)$。其敛射关系可视为$n变元m变量\rlap{≡≡}{单值}$函数，通常记作$(y_0, y_1, ..., y_m) = \mathcal{F}(x_0, x_1, ..., x_n)$。其映射关系同时满足敛射关系与散射关系，通常记作$(y_0, y_1, ..., y_m) ≡ \mathcal{F}(x_0, x_1, ..., x_m)$。
 
 二元关系$\mathcal{F}[Y × X]$可能有$2^{\mathrm{ord} Y × \mathrm{ord} X}$个，敛射关系$\mathcal{F}: Y ↢ X$可能有$\sum\limits_{i=0}^{\mathrm{ord}X} \dfrac{(\mathrm{ord}X)!}{i! · (\mathrm{ord}X - i)!} · (\mathrm{ord}Y)^{i} = (\mathrm{ord}Y + 1)^{\mathrm{ord}X}$个，散射关系$\mathcal{F}: Y ↣ X$可能有$\sum\limits_{i=0}^{\mathrm{ord}Y} \dfrac{(\mathrm{ord}Y)!}{i! · (\mathrm{ord}Y - i)!} · (\mathrm{ord}X)^{i} = (\mathrm{ord}X + 1)^{\mathrm{ord}Y}$个。映射关系$\mathcal{F}: Y ⇼ X$可能有$\sum\limits_{i=0}^{\min\lbrace \mathrm{ord}X, \mathrm{ord}Y \rbrace} \dfrac{(\mathrm{ord}X)!}{i! · (\mathrm{ord}X - i)!} · \dfrac{(\mathrm{ord}Y)!}{i! · (\mathrm{ord}Y - i)!} · i! = \sum\limits_{i=0}^{\min\lbrace \mathrm{ord}X, \mathrm{ord}Y \rbrace} \dfrac{(\mathrm{ord}X)! · (\mathrm{ord}Y)!}{i! ·(\mathrm{ord}X - i)! · (\mathrm{ord}Y - i)!}$个。
 
@@ -155,10 +155,6 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 | $⇓$  | $∀z∈Z;Ⅎx∈X;Ⅎy∈Y;〈z, y〉∈\mathcal{G}$                        |      |                          |
 | $⇓$  | $∀y∈Y;Ⅎz∈Z;〈z, y〉∈\mathcal{G}$                             | $⇔$  | $\mathcal{G}[Z ↢ Y]$     |
 | $⇓$  | $[∀z∈Z;Ⅎy∈Y;〈z, y〉∈\mathcal{G}] ∧ [∀y∈Y;Ⅎz∈Z;〈z, y〉∈\mathcal{G}]$ | $⇔$  | $\mathcal{G}[Z ⇼ Y]$     |
-
-
-
-
 
 ### 极值点
 
