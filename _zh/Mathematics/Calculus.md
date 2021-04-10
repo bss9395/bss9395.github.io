@@ -2,16 +2,18 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-10T09:24:00+08@中国-广东-湛江+08
+Update:  2021-04-10T10:52:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
 
-### 关系
+### 约定
 
 全称量词$∀$表示对于每个/对于所有，存在量词$∃$表示存在某个/存在一些，特称量词$Ⅎ$表示唯一存在/实际存在。
 
 集合$S$中元素的个数为$\mathrm{ord} S$。
+
+### 关系
 
 $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rbrace$按先后次序从其各个集合中选取元素$s_i∈S_i$，可排列成$n + 1$元序偶$〈 s_0, s_1, ..., s_n 〉$。
 
@@ -156,7 +158,7 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 | $⇓$  | $∀y∈Y;Ⅎz∈Z;〈z, y〉∈\mathcal{G}$                             | $⇔$  | $\mathcal{G}[Z ↢ Y]$     |
 | $⇓$  | $[∀z∈Z;Ⅎy∈Y;〈z, y〉∈\mathcal{G}] ∧ [∀y∈Y;Ⅎz∈Z;〈z, y〉∈\mathcal{G}]$ | $⇔$  | $\mathcal{G}[Z ⇼ Y]$     |
 
-### 极值点
+### 极限
 
 任意实数的绝对值，为其与实数轴上原点之间的距离。
 
@@ -207,8 +209,14 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 | 严格极小值 | $m ≡ \min\limits_{m∈S⊆T} S$ | $[ ∃m∈S;∀a∈S \backslash m; m < a ]$                          |                                                  |
 
 
-|       最大值 | $f (x_0) ≡ \max\limits_{x∈X} f (x)$                          | $[ ∃x_0∈X;∀x∈X; f (x_0) ≥ f (x) ] ⇔ [ ∃x_0∈X;∀x∈X; f (x_0) ≤ f (x) ⇒ f (x_0) = f (x) ]$ |
+|       极限值 | $\lim\limits_{x⇝x_0^+} f(x) ⇝ f_{x_0^+}$                     | $∀ε>0;∃δ>0; 0 ≤ x - x_0 ≤ +δ ⇒ |f(x) - f_{x_0^+}| ≤ ε$       |
 | -----------: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+|       极限值 | $\lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-}$                     | $∀ε>0;∃δ>0; -δ ≤ x - x_0 ≤ 0 ⇒ |f(x) - f_{x_0^-}| ≤ ε$       |
+|       极限值 | $\lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$                         | $\lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-} = f_{x_0} = f_{x_0^+} ⇜ \lim\limits_{x⇝x_0^+} f(x)$ |
+|       极限值 | $\lim\limits_{x⇝x_0} f(x) ⇝ ∞^{±},∞$                         | $\lim\limits_{x⇝x_0} \dfrac{1}{f(x)} ⇝ 0^{±},0$              |
+|       极限值 | $\lim\limits_{x⇝∞^{±}} f(x) ⇝ f_{∞^{±}}$                     | $\lim\limits_{\frac{1}{x}⇝0^{±}} f(x) ⇝ f_{∞^{±}}$           |
+|              |                                                              |                                                              |
+|       最大值 | $f (x_0) ≡ \max\limits_{x∈X} f (x)$                          | $[ ∃x_0∈X;∀x∈X; f (x_0) ≥ f (x) ] ⇔ [ ∃x_0∈X;∀x∈X; f (x_0) ≤ f (x) ⇒ f (x_0) = f (x) ]$ |
 |       最小值 | $f (x_0) ≡ \min\limits_{x∈X} f (x)$                          | $[ ∃x_0∈X;∀x∈X; f (x_0) ≤ f (x) ] ⇔ [ ∃x_0∈X;∀x∈X; f (x_0) ≥ f (x) ⇒ f (x_0) = f (x) ]$ |
 |       极大值 | $f (x_0) ≡ \max\limits_{x∈X⊆Y} f (x)$                        | $[ ∃x_0∈X;∀x∈X⊆Y; f (x_0) ≥ f (x) ] ⇔ [ ∃x_0∈X;∀x∈X⊆Y; f (x_0) ≤ f (x) ⇒ f (x_0) = f (x) ]$ |
 |       极小值 | $f (x_0) ≡ \min\limits_{x∈X⊆Y} f (x)$                        | $[ ∃x_0∈X;∀x∈X⊆Y; f (x_0) ≤ f (x) ] ⇔ [ ∃x_0∈X;∀x∈X⊆Y; f (x_0) ≥ f (x) ⇒ f (x_0) = f (x) ]$ |
