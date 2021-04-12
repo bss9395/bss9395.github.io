@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  特殊函数
-Update:  2021-03-11T18:18:00+08@中国-广东-湛江+08
+Update:  2021-04-12T20:17:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -69,4 +69,15 @@ $\mathcal{F} (x) ≡ \mathop{I_i - \left| x - X_{i,j} \right|}\limits_{| x - X_{
 $\mathrm{sgn} (x) = \mathop{-1}\limits_{x<0};\mathop{0}\limits_{x=0};\mathop{+1}\limits_{x>0}$
 
 $\mathrm{sgn} (\mathcal{R} (x)) = \mathcal{Q} (x)$
+
+### 振荡函数$\sin \dfrac{1}{x}$
+
+$f(x) = \mathop{0}\limits_{x≤0};\mathop{x^{0} · \sin \dfrac{1}{x}}\limits_{x>0}$，在点$x = 0$处振荡。
+
+$f(x) = \mathop{0}\limits_{x≤0};\mathop{x^{1} · \sin \dfrac{1}{x}}\limits_{x>0}$，在点$x = 0$处连续。
+
+| $f(x) = \mathop{0}\limits_{x≤0};\mathop{x^{0} · \sin \dfrac{1}{x}}\limits_{x>0}$ | $\lim\limits_{\mathop{x⇝0}\limits_{x=\frac{1}{2·n·π}}} x^{0} · \sin \dfrac{1}{x} ⇝ 0$ | $\lim\limits_{\mathop{x⇝0}\limits_{x=\frac{1}{2·n·π}+\frac{π}{2}}} x^{0} · \sin \dfrac{1}{x} ⇝ 1$ |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| $f(x) = \mathop{0}\limits_{x≤0};\mathop{x^{1} · \sin \dfrac{1}{x}}\limits_{x>0}$ | $\lim\limits_{x⇝0} x^{1} · \sin \dfrac{1}{x} ⇝ 0$            |                                                              |
+|                                                              |                                                              |                                                              |
 
