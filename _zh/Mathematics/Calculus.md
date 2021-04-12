@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-12T21:50:00+08@中国-广东-湛江+08
+Update:  2021-04-13T00:28:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -233,12 +233,18 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 |       极限值 | $\lim\limits_{x⇝∞^{±},∞} f(x) ⇝ f_{∞^{±}}$                   | $\lim\limits_{\frac{1}{x}⇝0^{±},0} f(x) ⇝ f_{∞^{±}}$         |
 |       上极限 | $f_{x_0} ≡ \varlimsup\limits_{x⇝x_0} f (x)$                  | $f_{x_0} ≡ \lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(x_0,δ)} f(x)$ |
 |       下极限 | $f_{x_0} ≡ \varliminf\limits_{x⇝x_0} f (x)$                  | $f_{x_0} ≡ \lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{U}(x_0,δ)} f(x)$ |
-|       极限值 | $f_{x_0} = \varliminf\limits_{x⇝x_0} f(x) = \varlimsup\limits_{x⇝x_0} f(x)$ | $f_{x_0} = \lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{U}(x_0,δ)} f(x) = \lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(x_0,δ)} f(x)$ |
+|   唯一极限值 | $f_{x_0} = \varliminf\limits_{x⇝x_0} f(x) = \varlimsup\limits_{x⇝x_0} f(x)$ | $f_{x_0} = \lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{U}(x_0,δ)} f(x) = \lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(x_0,δ)} f(x)$ |
 |              |                                                              |                                                              |
 |     单调递增 | $f^{↗} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↗} (x_1) ≤ f^{↗} (x_2)]]$ |
 |     单调递减 | $f^{↘} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↘} (x_1) ≥ f^{↘} (x_2)]]$ |
 | 严格单调递增 | $f^{↑} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↑} (x_1) < f^{↑} (x_2)]]$ |
 | 严格单调递减 | $f^{↓} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↓} (x_1) > f^{↓} (x_2)]]$ |
+
+| $∀x∈[X_0, X_1]; | f (x) | ≤ ε$ | $⇔$  | $\sup\limits_{x∈[X_0,X_1]} | f (x) | ≤ ε$ |                                                     | $∃x∈[X_0,X_1]; | f (x) | > ε$ | $⇔$  | $\sup\limits_{x∈[X_0,X_1]} | f (x) | > ε$ |
+| -----------------------------: | :--: | :---------------------------------------- | :-------------------------------------------------: | ----------------------------: | :--: | :---------------------------------------- |
+|  $∀x∈[X_0,X_1]; | f (x) | < ε$ | $⇔$  | $\sup\limits_{x∈[X_0,X_1]} | f (x) | < ε$ |                                                     | $∃x∈[X_0,X_1]; | f (x) | ≥ ε$ | $⇔$  | $\sup\limits_{x∈[X_0,X_1]} | f (x) | ≥ ε$ |
+|  $∀x∈(X_0,X_1); | f (x) | ≤ ε$ | $⇔$  | $\sup\limits_{x∈(X_0,X_1)} | f (x) | ≤ ε$ |                                                     | $∃x∈(X_0,X_1); | f (x) | > ε$ | $⇔$  | $\sup\limits_{x∈(X_0,X_1)} | f (x) | > ε$ |
+|  $∀x∈(X_0,X_1); | f (x) | < ε$ | $⇒$  | $\sup\limits_{x∈(X_0,X_1)} | f (x) | ≤ ε$ | $\rlap{≡≡≡≡≡≡≡≡≡}\sup\limits_{x⇝X_0} | f (x) | = ε$ | $∃x∈(X_0,X_1); | f (x) | ≥ ε$ | $⇒$  | $\sup\limits_{x∈(X_0,X_1)} | f (x) | ≥ ε$ |
 
 | $⇕$  | $\lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$                         |                                                     |                                                              |
 | :--: | :----------------------------------------------------------- | :-------------------------------------------------: | :----------------------------------------------------------- |
@@ -271,19 +277,44 @@ $\varliminf\limits_{x⇝x_0} [f(x) + g(x)] ≥ \varliminf\limits_{x⇝x_0} f(x) 
 | $∀x∈X; f(x) ≤ \sup\limits_{x∈X} f(x)$ | $∀x∈X; [f(x) + g(x)] ≤ \sup\limits_{x∈X} f(x) + \sup\limits_{x∈X} g(x)$ | $\sup\limits_{x∈X} [f(x) + g(x)] ≤ \sup\limits_{x∈X} f(x) + \sup\limits_{x∈X} g(x)$ | $\varlimsup\limits_{x⇝x_0} [f(x) + g(x)] ≤ \varlimsup\limits_{x⇝x_0} f(x) + \varlimsup\limits_{x⇝x_0} g(x)$ |
 | $∀x∈X; f(x) ≥ \inf\limits_{x∈X} f(x)$ | $∀x∈X; [f(x) + g(x)] ≥ \inf\limits_{x∈X} f(x) + \inf\limits_{x∈X} g(x)$ | $\inf\limits_{x∈X} [f(x) + g(x)] ≥ \inf\limits_{x∈X} f(x) + \inf\limits_{x∈X} g(x)$ | $\varliminf\limits_{x⇝x_0} [f(x) + g(x)] ≥ \varliminf\limits_{x⇝x_0} f(x) + \varliminf\limits_{x⇝x_0} g(x)$ |
 
-
-
 典例：函数$f (x) = \sin x$在区间$\left( 0, \dfrac{π}{2} \right)$上的取值范围为$0 < f (x) < 1$，其下确界为$0$，其上确界为$1$。
 
 典例：函数$f (x) = \dfrac{1}{x}$在区间$(0, ∞⁺)$上的取值范围为$0 < f (x)$，其下确界为$0$，其上确界为$∞⁺$。
 
 典例：函数$f(x) = \sin x$在区间$(0, π)$上的下确界为$-1$且上确界为$+1$，函数$g(x) = -\sin x$在区间$(0, π)$上的下确界为$-1$且上确界为$+1$，函数$f(x) + g(x)$在区间$(0, π)$上为$0$。
 
-| $∀x∈[X_0, X_1]; | f (x) | ≤ ε$ | $⇔$  | $\sup\limits_{x∈[X_0,X_1]} | f (x) | ≤ ε$ |                                                     | $∃x∈[X_0,X_1]; | f (x) | > ε$ | $⇔$  | $\sup\limits_{x∈[X_0,X_1]} | f (x) | > ε$ |
-| -----------------------------: | :--: | :---------------------------------------- | :-------------------------------------------------: | ----------------------------: | :--: | :---------------------------------------- |
-|  $∀x∈[X_0,X_1]; | f (x) | < ε$ | $⇔$  | $\sup\limits_{x∈[X_0,X_1]} | f (x) | < ε$ |                                                     | $∃x∈[X_0,X_1]; | f (x) | ≥ ε$ | $⇔$  | $\sup\limits_{x∈[X_0,X_1]} | f (x) | ≥ ε$ |
-|  $∀x∈(X_0,X_1); | f (x) | ≤ ε$ | $⇔$  | $\sup\limits_{x∈(X_0,X_1)} | f (x) | ≤ ε$ |                                                     | $∃x∈(X_0,X_1); | f (x) | > ε$ | $⇔$  | $\sup\limits_{x∈(X_0,X_1)} | f (x) | > ε$ |
-|  $∀x∈(X_0,X_1); | f (x) | < ε$ | $⇒$  | $\sup\limits_{x∈(X_0,X_1)} | f (x) | ≤ ε$ | $\rlap{≡≡≡≡≡≡≡≡≡}\sup\limits_{x⇝X_0} | f (x) | = ε$ | $∃x∈(X_0,X_1); | f (x) | ≥ ε$ | $⇒$  | $\sup\limits_{x∈(X_0,X_1)} | f (x) | ≥ ε$ |
+函数极限的运算性质，若$\lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$，且$\lim\limits_{x⇝x_0} g(x) ⇝ g_{x_0}$。
+
+$\lim\limits_{x⇝x_0} [f(x) + g(x)] = \lim\limits_{x⇝x_0} f(x) + \lim\limits_{x⇝x_0} g(x) ⇝ f_{x_0} + g_{x_0}$
+
+$\lim\limits_{x⇝x_0} [f(x) - g(x)] = \lim\limits_{x⇝x_0} f(x) - \lim\limits_{x⇝x_0} g(x) ⇝ f_{x_0} - g_{x_0}$
+
+$\lim\limits_{x⇝x_0} [f(x) · g(x)] = \lim\limits_{x⇝x_0} f(x) · \lim\limits_{x⇝x_0} g(x) ⇝ f_{x_0} · g_{x_0}$
+
+$\lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} = \dfrac{\lim\limits_{x⇝x_0} f(x)}{\lim\limits_{x⇝x_0} g(x)} \mathop{⇝}\limits_{g_{x_0}≠0} \dfrac{f_{x_0}}{g_{x_0}}$
+
+$\lim\limits_{x⇝x_0} \mathrm{Con} · f(x) = \mathrm{Con} · \lim\limits_{x⇝x_0} f(x) ⇝ \mathrm{Con} · f_{x_0}$
+
+| $⇓$  | $[∀ε_1>0;∃δ_1>0; ∀x∈\mathrm{U}(x_0,δ_1); |f(x) - f_{x_0}| ≤ ε_1] ∧ [∀ε_2>0;∃δ_2>0; ∀x∈\mathrm{U}(x_0,δ_2); |g(x) - g_{x_0}| ≤ ε_2]$ |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $∀ε>0;∃δ=\min\lbrace δ_1,δ_2 \rbrace;∀x∈\mathrm{U}(x_0,δ); |[f(x) + g(x)] - [f_{x_0} + g_{x_0}]| ≤ |f(x) - f_{x_0}| + |g(x) - g_{x_0}| = ε_1 + ε_2 = ε$ |
+| $⇓$  | $∀ε>0;∃δ=\min\lbrace δ_1,δ_2 \rbrace;∀x∈\mathrm{U}(x_0,δ); |[f(x) - g(x)] - [f_{x_0} - g_{x_0}]| ≤ |f(x) - f_{x_0}| + |g(x) - g_{x_0}| = ε_1 + ε_2 = ε$ |
+| $⇓$  | $∀ε>0;∃δ=\min\lbrace δ_1,δ_2 \rbrace;∀x∈\mathrm{U}(x_0,δ); |f(x) · g(x) - f_{x_0} · g_{x_0}] ≤ |f(x)| · |g(x) - g_{x_0}| + |g_{x_0}| · |f(x) - f_{x_0}| ≤ |\sup f(x)| · ε_2 + |g_{x_0}| · ε_1 = ε$ |
+| $⇓$  | $∀ε>0;∃δ=\min\lbrace δ_1,δ_2 \rbrace;∀x∈\mathrm{U}(x_0,δ); \left| \dfrac{f(x)}{g(x)} - \dfrac{f_{x_0}}{g_{x_0}} \right| = \left| \dfrac{f(x) · g_{x_0} - f_{x_0} · g(x)}{g(x) · g_{x_0}} \right| ≤ \dfrac{\left| f(x) \right| · |g(x) - g_{x_0}| + |g_{x_0}| · |f(x) - f_{x_0}|}{\left| g(x) · g_{x_0} \right|} ≤ \dfrac{|\sup f(x)| · ε_2 + |g_{x_0}| · ε_1}{|\inf g(x)| · |g_{x_0}|} = ε$ |
+
+若函数$f(y)$在点$y_0$处有极限$\lim\limits_{y⇝y_0} f(y) ⇝ f_{y_0} = f_{g_{x_0}}$，且函数$g(x)$在点$x_0$处有极限$\lim\limits_{x⇝x_0} g(x) ⇝ g_{x_0} = y_0$。
+
+$\lim\limits_{x⇝x_0} f(g(x)) \mathop{====}\limits^{g(x)≠g_{x_0}} \lim\limits_{y⇝g_{x_0}} f\left(y\right) ⇝ f_{g_{x_0}}$
+
+| $⇓$  | $∀ζ>0;∃ε>0;∀y; y∈\mathrm{U}(y_0,ε) ⇒ f(y)∈\mathrm{U}(f_{y_0},ζ)$ |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $∀ε>0;∃δ>0;∀x; x∈\mathrm{U}(x_0,δ) ⇒ g(x)∈\mathrm{U}(y_0,ε)$ |
+| $⇓$  | $∀ζ>0;∃ε>0;∃δ>0;∀x; x∈\mathrm{U}(x_0,δ) ⇒ g(x)∈\mathrm{U}(y_0,ε) ⇒ f(g(x))∈\mathrm{U}(f_{y_0},ζ)$ |
+| $⇓$  | $∀ζ>0;∃δ>0;∀x∈\mathrm{U}(x_0,δ); f(g(x))∈\mathrm{U}(f_{y_0},ζ)$ |
+
+反例：函数$f(y) = \mathop{0}\limits_{y=0};\mathop{1}\limits_{y≠0}$，且函数$g(x) ≡ 0$。
+
+$\lim\limits_{x⇝x_0} f(g(x)) = f(0) = 0 ≠ 1 ⇜ \lim\limits_{y⇝0} f(y)$
 
 函数$f (x)$在点$x_0$处可导，若点$x_0$为$f (x)$的极值点，则$f' (x_0) = 0$，反之不对。
 

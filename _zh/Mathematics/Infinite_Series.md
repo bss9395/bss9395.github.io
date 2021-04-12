@@ -86,7 +86,7 @@ $\left[ ∃N∈ℕ;∀n≥N; S_n ≤ R_n ≤ T_n \right] ⇒ \left[ \lim\limits_
 | $⇓$  | $∀ε=\dfrac{T - S}{2};∃N∈ℕ;∀n≥N; S_n < S + ε = S + \dfrac{T - S}{2} = \dfrac{S + T}{2} = T - \dfrac{T - S}{2} = T - ε < T_n$ |
 | $⇓$  | $∃N∈ℕ;∀n≥N; S_n < \dfrac{S + T}{2} < T_n$                    |
 
-若$\lim\limits_{n⇝∞⁺} S_n ⇝ S$，且 $\lim\limits_{n⇝∞⁺} T_n ⇝ T$。
+数列极限的运算性质。若$\lim\limits_{n⇝∞⁺} S_n ⇝ S$，且 $\lim\limits_{n⇝∞⁺} T_n ⇝ T$。
 
 $\lim\limits_{n⇝∞⁺} [ S_n + T_n ] = \lim\limits_{n⇝∞⁺} S_n + \lim\limits_{n⇝∞⁺} T_n ⇝ S + T$
 
@@ -98,12 +98,12 @@ $\lim\limits_{n⇝∞⁺} \dfrac{S_n}{T_n} = \dfrac{\lim\limits_{n⇝∞⁺} S_n
 
 $\lim\limits_{n⇝∞⁺} [ \mathrm{Con} · S_n ] = \mathrm{Con} · \lim\limits_{n⇝∞⁺} S_n ⇝ \mathrm{Con} · S$
 
-| $⇓$  | $[ ∀ε_1>0;∃N∈ℕ;∀n≥N; | S_n - S | < ε_1 ] ∧ [∀ε_2>0;∃N∈ℕ;∀n≥N; | T_n - T | < ε_2]$ |
+| $⇓$  | $[ ∀ε_1>0;∃N_1∈ℕ;∀n≥N_1; | S_n - S | < ε_1 ] ∧ [∀ε_2>0;∃N_2∈ℕ;∀n≥N_2; | T_n - T | < ε_2]$ |
 | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | (S_n + T_n) - (S + T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | (S_n - T_n) - (S - T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; | S_n · T_n - S · T | = | (S_n · T_n - S_n · T) + (S_n · T - S · T) | ≤ | S_n | · | T_n - T | + | S_n - S | · | T | ≤ \mathrm{Sup} · ε_2 + ε_1 · | T | = ε$ |
-| $⇓$  | $∀ε>0;∃N∈ℕ;∀n≥N; \left| \dfrac{S_n}{T_n} - \dfrac{S}{T} \right| = \dfrac{| S_n · T - S · T_n |}{| T_n | · | T |} = \dfrac{| (S_n · T - S · T) + (S · T - S · T_n) |}{| T_n | · | T |} = \dfrac{| S_n - S | · | T | + | S | · | T - T_n |}{| T_n | · | T |} ≤ \dfrac{ε_1 · | T | + | S | · ε_2}{\mathrm{Inf} · | T |} = ε$ |
+| $⇓$  | $∀ε>0;∃N=\max\lbrace N_1,N_2 \rbrace;∀n≥N; | (S_n + T_n) - (S + T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
+| $⇓$  | $∀ε>0;∃N=\max\lbrace N_1,N_2 \rbrace;∀n≥N; | (S_n - T_n) - (S - T) | < | S_n - S | + | T_n - T | < ε_1 + ε_2 = ε$ |
+| $⇓$  | $∀ε>0;∃N=\max\lbrace N_1,N_2 \rbrace;∀n≥N; | S_n · T_n - S · T | = | (S_n · T_n - S_n · T) + (S_n · T - S · T) | ≤ | S_n | · | T_n - T | + | S_n - S | · | T | ≤ \mathrm{Sup} · ε_2 + ε_1 · | T | = ε$ |
+| $⇓$  | $∀ε>0;∃N=\max\lbrace N_1,N_2 \rbrace;∀n≥N; \left| \dfrac{S_n}{T_n} - \dfrac{S}{T} \right| = \dfrac{| S_n · T - S · T_n |}{| T_n | · | T |} = \dfrac{| (S_n · T - S · T) + (S · T - S · T_n) |}{| T_n | · | T |} = \dfrac{| S_n - S | · | T | + | S | · | T - T_n |}{| T_n | · | T |} ≤ \dfrac{ε_1 · | T | + | S | · ε_2}{\mathrm{Inf} · | T |} = ε$ |
 
 ### 无穷级数
 
