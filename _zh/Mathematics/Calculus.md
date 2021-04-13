@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-13T00:28:00+08@中国-广东-湛江+08
+Update:  2021-04-13T21:35:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -174,8 +174,8 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 
 |   无穷大 | $∞$  |            | $\dfrac{1}{0} = ∞$   | $\dfrac{1}{∞} = 0$   | $\lim\limits_{n⇝∞⁺} (-1)^n · n ⇝ ∞$ | $x_0 + ∞ \mathop{=}\limits_{x_0≠∞} ∞$    | $x_0 - ∞ \mathop{=}\limits_{x_0≠∞} ∞$    | $(+|x_0|) · ∞ \mathop{=}\limits_{x_0≠0} ∞$   | $(-|x_0|) · ∞ \mathop{=}\limits_{x_0≠0} ∞$   |
 | -------: | :--- | :--------- | :------------------- | :------------------- | :---------------------------------- | :--------------------------------------- | :--------------------------------------- | :------------------------------------------- | :------------------------------------------- |
-| 正无穷大 | $∞⁺$ | $|∞| = ∞⁺$ | $\dfrac{1}{0⁺} = ∞⁺$ | $\dfrac{1}{∞⁺} = 0⁺$ | $\lim\limits_{n⇝∞⁺} (+1) · n ⇝ ∞⁺$  | $x_0 + ∞⁺ \mathop{=}\limits_{x_0≠∞⁻} ∞⁺$ | $x_0 - ∞⁺ \mathop{=}\limits_{x_0≠∞⁻} ∞⁻$ | $(+|x_0|) · ∞⁺ \mathop{=}\limits_{x_0≠0} ∞⁺$ | $(-|x_0|) · ∞⁺ \mathop{=}\limits_{x_0≠0} ∞⁻$ |
-| 负无穷大 | $∞⁻$ | $∞⁻ = -∞⁺$ | $\dfrac{1}{0⁻} = ∞⁻$ | $\dfrac{1}{∞⁻} = 0⁻$ | $\lim\limits_{n⇝∞⁺} (-1) · n ⇝ ∞⁻$  | $x_0 + ∞⁻ \mathop{=}\limits_{x_0≠∞⁺} ∞⁻$ | $x_0 - ∞⁻ \mathop{=}\limits_{x_0≠∞⁺} ∞⁺$ | $(+|x_0|) · ∞⁻ \mathop{=}\limits_{x_0≠0} ∞⁻$ | $(-|x_0|) · ∞⁻ \mathop{=}\limits_{x_0≠0} ∞⁺$ |
+| 正无穷大 | $∞⁺$ | $|∞| = ∞⁺$ | $\dfrac{1}{0⁺} = ∞⁺$ | $\dfrac{1}{∞⁺} = 0⁺$ | $\lim\limits_{n⇝∞⁺} (+1) · n ⇝ ∞⁺$  | $x_0 + ∞⁺ \mathop{=}\limits_{x_0≠∞⁻} ∞⁺$ | $x_0 - ∞⁺ \mathop{=}\limits_{x_0≠∞⁺} ∞⁻$ | $(+|x_0|) · ∞⁺ \mathop{=}\limits_{x_0≠0} ∞⁺$ | $(-|x_0|) · ∞⁺ \mathop{=}\limits_{x_0≠0} ∞⁻$ |
+| 负无穷大 | $∞⁻$ | $∞⁻ = -∞⁺$ | $\dfrac{1}{0⁻} = ∞⁻$ | $\dfrac{1}{∞⁻} = 0⁻$ | $\lim\limits_{n⇝∞⁺} (-1) · n ⇝ ∞⁻$  | $x_0 + ∞⁻ \mathop{=}\limits_{x_0≠∞⁺} ∞⁻$ | $x_0 - ∞⁻ \mathop{=}\limits_{x_0≠∞⁻} ∞⁺$ | $(+|x_0|) · ∞⁻ \mathop{=}\limits_{x_0≠0} ∞⁻$ | $(-|x_0|) · ∞⁻ \mathop{=}\limits_{x_0≠0} ∞⁺$ |
 
 点$x_0$的闭邻域$\mathrm{U}_{X}(x_0, δ)$由属于区域$X$中的点构成，点$x_0$未必属于区域$X$。点$x_0$的任意闭邻域$\mathrm{U}_{X}(x_0)$与其任意补邻域$¬\mathrm{U}_{X}(x_0)$之间没有交集。
 
@@ -346,6 +346,28 @@ $∀x_1,x_2∈X; [ f^{-1} (y_1) = x_1 < x_2 = f^{-1} (y_2) ] ⇔ [ f^{↓} (x_1)
 | $⇓$  | $∀ε=|y_2-y_1|>0;∃δ=|x_2-x_1|>0; [ | x - x_0 | < δ ] ⇒ [ | y - y_0 | < ε]$ |      |                                               |
 | $⇓$  | $∀ε>0;∃δ>0; [ | x - x_0 | < δ ] ⇒ [ | f^{↑} (x) - f^{↑} (x_0) | < ε ]$ | $⇒$  | $\lim\limits_{x⇝x_0} f^{↑} (x) ⇝ f^{↑} (x_0)$ |
 | $⇓$  |                                                              |      | $\lim\limits_{x⇝x_0} f^{↕} (x) ⇝ f^{↕} (x_0)$ |
+
+### 渐进量
+
+若$\lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} ⇝ 0$，则称当$x⇝x_0$时，函数$f(x)$对于函数$g(x)$为渐进小量，可记作$f(x) ≈ \mathrm{o}[g(x)]_{x_0}$。
+
+若$\lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} ⇝ q$，则称当$x⇝x_0$时，函数$f(x)$对于函数$g(x)$为渐进同量，可记作$f(x) ≈ \mathrm{O}[g(x)]_{x_0}$。
+
+若$\lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} ⇝ 1$，则称当$x⇝x_0$时，函数$f(x)$对于函数$g(x)$为渐进等量，可记作$f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}$。
+
+若$f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}$，则当$x⇝x_0$时，函数$f(x)$与函数$g(x)$可在乘运算中，但非加运算中相互替换。
+
+| $f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}$                              | $⇒$  | $g(x) ≈ \mathrm{Θ}[f(x)]_{x_0}$                              |
+| :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $f(x) ≈ \mathrm{o}[g(x)]_{x_0}$                              | $⇒$  | $f(x) ≈ \mathrm{O}[g(x)]_{x_0}$                              |
+| $f(x) · \mathrm{o}[g(x)] ≈ \mathrm{o}[f(x) · g(x)]_{x_0}$    | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x) · \mathrm{o}[g(x)]}{f(x) · g(x)} = \lim\limits_{x⇝x_0} \dfrac{\mathrm{o}[g(x)]}{g(x)} ⇝ 0$ |
+| $f(x) · \mathrm{O}[g(x)] ≈ \mathrm{O}[f(x) · g(x)]_{x_0}$    | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x) · \mathrm{O}[g(x)]}{f(x) · g(x)} = \lim\limits_{x⇝x_0} \dfrac{\mathrm{O}[g(x)]}{g(x)} ⇝ q$ |
+| $α · \mathrm{o}[g(x)] ≈ \mathrm{o}[g(x)]_{x_0}$              | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{α · \mathrm{o}[g(x)]}{g(x)} ⇝ 0$ |
+| $α · \mathrm{O}[g(x)] ≈ \mathrm{O}[g(x)]_{x_0}$              | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{α · \mathrm{O}[g(x)]}{g(x)} ⇝ α · q$ |
+| $\mathrm{o}^{α}[g(x)] \mathop{≈}\limits^{0<α} \mathrm{o}[g^{α}(x)]_{x_0}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{\mathrm{o}^{α}[g(x)]}{g^{α}(x)} \mathop{=}\limits^{0<α} \left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{o}[g(x)]}{g(x)} \right]^{α} ⇝ 0$ |
+| $\mathrm{O}^{α}[g(x)] \mathop{≈}\limits^{0<α} \mathrm{O}[g^{α}(x)]_{x_0}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{\mathrm{O^{α}}[g(x)]}{g^{α}(x)} \mathop{=}\limits^{0<α} \left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{O}[g(x)]}{g(x)} \right]^{α} ⇝ q^{α}$ |
+| $\lim\limits_{x⇝x_0} \dfrac{f(x)}{u(x)} \mathop{=======}\limits_{u(x)≈\mathrm{Θ}[v(x)]_{x_0}}^{f(x)≈\mathrm{Θ}[g(x)]_{x_0}} \lim\limits_{x⇝x_0} \dfrac{g(x)}{v(x)}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x)}{u(x)} = \lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} · \dfrac{g(x)}{v(x)} · \dfrac{v(x)}{u(x)} = \lim\limits_{x⇝x_0} \dfrac{g(x)}{v(x)}$ |
+| $f(x) \mathop{≈}\limits_{g(x) ≈ \mathrm{Θ}[h(x)]_{x_0}}^{f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}} \mathrm{Θ}[h(x)]_{x_0}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x)}{h(x)} = \lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} · \dfrac{g(x)}{h(x)} ⇝ 1$ |
 
 ### 可数集
 
