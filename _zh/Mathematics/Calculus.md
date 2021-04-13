@@ -360,14 +360,18 @@ $∀x_1,x_2∈X; [ f^{-1} (y_1) = x_1 < x_2 = f^{-1} (y_2) ] ⇔ [ f^{↓} (x_1)
 | $f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}$                              | $⇒$  | $g(x) ≈ \mathrm{Θ}[f(x)]_{x_0}$                              |
 | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $f(x) ≈ \mathrm{o}[g(x)]_{x_0}$                              | $⇒$  | $f(x) ≈ \mathrm{O}[g(x)]_{x_0}$                              |
+| $f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}$                              | $⇔$  | $f(x) ≈ g(x) + \mathrm{o}[g(x)]_{x_0}$                       |
 | $f(x) · \mathrm{o}[g(x)] ≈ \mathrm{o}[f(x) · g(x)]_{x_0}$    | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x) · \mathrm{o}[g(x)]}{f(x) · g(x)} = \lim\limits_{x⇝x_0} \dfrac{\mathrm{o}[g(x)]}{g(x)} ⇝ 0$ |
 | $f(x) · \mathrm{O}[g(x)] ≈ \mathrm{O}[f(x) · g(x)]_{x_0}$    | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x) · \mathrm{O}[g(x)]}{f(x) · g(x)} = \lim\limits_{x⇝x_0} \dfrac{\mathrm{O}[g(x)]}{g(x)} ⇝ q$ |
 | $α · \mathrm{o}[g(x)] ≈ \mathrm{o}[g(x)]_{x_0}$              | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{α · \mathrm{o}[g(x)]}{g(x)} ⇝ 0$ |
 | $α · \mathrm{O}[g(x)] ≈ \mathrm{O}[g(x)]_{x_0}$              | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{α · \mathrm{O}[g(x)]}{g(x)} ⇝ α · q$ |
 | $\mathrm{o}^{α}[g(x)] \mathop{≈}\limits^{0<α} \mathrm{o}[g^{α}(x)]_{x_0}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{\mathrm{o}^{α}[g(x)]}{g^{α}(x)} \mathop{=}\limits^{0<α} \left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{o}[g(x)]}{g(x)} \right]^{α} ⇝ 0$ |
 | $\mathrm{O}^{α}[g(x)] \mathop{≈}\limits^{0<α} \mathrm{O}[g^{α}(x)]_{x_0}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{\mathrm{O^{α}}[g(x)]}{g^{α}(x)} \mathop{=}\limits^{0<α} \left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{O}[g(x)]}{g(x)} \right]^{α} ⇝ q^{α}$ |
+| $\lim\limits_{x⇝x_0} f(x) · u(x) \mathop{=======}\limits_{u(x)≈\mathrm{Θ}[v(x)]_{x_0}}^{f(x)≈\mathrm{Θ}[g(x)]_{x_0}} \lim\limits_{x⇝x_0} g(x) · v(x)$ | $⇐$  | $\lim\limits_{x⇝x_0} f(x) · u(x) = \lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} · [g(x) · v(x)] · \dfrac{u(x)}{v(x)} = \lim\limits_{x⇝x_0} g(x) · v(x)$ |
 | $\lim\limits_{x⇝x_0} \dfrac{f(x)}{u(x)} \mathop{=======}\limits_{u(x)≈\mathrm{Θ}[v(x)]_{x_0}}^{f(x)≈\mathrm{Θ}[g(x)]_{x_0}} \lim\limits_{x⇝x_0} \dfrac{g(x)}{v(x)}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x)}{u(x)} = \lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} · \dfrac{g(x)}{v(x)} · \dfrac{v(x)}{u(x)} = \lim\limits_{x⇝x_0} \dfrac{g(x)}{v(x)}$ |
-| $f(x) \mathop{≈}\limits_{g(x) ≈ \mathrm{Θ}[h(x)]_{x_0}}^{f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}} \mathrm{Θ}[h(x)]_{x_0}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x)}{h(x)} = \lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} · \dfrac{g(x)}{h(x)} ⇝ 1$ |
+| $f(x) \mathop{≈≈≈≈≈≈≈}\limits_{g(x) ≈ \mathrm{Θ}[h(x)]_{x_0}}^{f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}} \mathrm{Θ}[h(x)]_{x_0}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x)}{h(x)} = \lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} · \dfrac{g(x)}{h(x)} ⇝ 1$ |
+
+
 
 ### 可数集
 

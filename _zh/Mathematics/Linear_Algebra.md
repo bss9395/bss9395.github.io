@@ -1,7 +1,7 @@
 ---
 layout:  zh_post
 Topic :  收敛极限
-Title :  微积分
+Title :  线性代数
 Update:  2021-04-05T15:00:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
@@ -97,12 +97,12 @@ h_{n,0} & h_{n,1} & ⋯ & h_{n,m} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$h_{1,0}$} & h_{1,1} & ⋯ & h_{1,m} \\
 h_{0,0} & \fbox{$h_{0,1}$} & ⋯ & h_{0,m} \\
-\end{matrix}\right] \mathop{====}\limits^{h_{i,j}=f_{j,i}} \mathrm{rev} \left[\begin{matrix} 
+\end{matrix}\right] \mathop{====}\limits^{h_{i,j}=f_{j,i}} \mathrm{rev} \left[\begin{matrix}
 f_{m,0} & f_{m,1} & ⋯ & f_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$f_{1,0}$} & f_{1,1} & ⋯ & f_{1,n} \\
 f_{0,0} & \fbox{$f_{0,1}$} & ⋯ & f_{0,n} \\
-\end{matrix}\right] = \left[\begin{matrix} 
+\end{matrix}\right] = \left[\begin{matrix}
 f_{0,n} & f_{1,n} & ⋯ & f_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$f_{0,1}$} & f_{1,1} & ⋯ & f_{m,1} \\
