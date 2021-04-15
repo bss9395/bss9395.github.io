@@ -123,7 +123,7 @@ $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \sum\limits_{i=1}^{n} \dfr
 
 ### 初等导函数
 
-| $f (x)$                                                      | $\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} = \left.1 \middle/ \dfrac{\mathrm{d x}}{\mathrm{d} f (x)} \right. = \left. 1 \middle/ \dfrac{\mathrm{d} f^{-1} (y)}{\mathrm{d} y} \right.$ | $\lim\limits_{x⇝x_0} \dfrac{f (x) - f (x_0)}{x - x_0}$       |
+| $f (x)$                                                      | $\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} = \left.1 \middle/ \dfrac{\mathrm{d x}}{\mathrm{d} f (x)} \right. = \left. 1 \middle/ \dfrac{\mathrm{d} {'}f (y)}{\mathrm{d} y} \right.$ | $\lim\limits_{x⇝x_0} \dfrac{f (x) - f (x_0)}{x - x_0}$       |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | $\mathop{\log_β | x |}\limits_{0<β≠1}$                       | $\dfrac{1}{x · \ln β}$                                       | $\lim\limits_{x⇝x_0} \dfrac{\log_β x - \log_β x_0}{x - x_0} = \dfrac{1}{\ln β} · \lim\limits_{x⇝x_0} \ln \left( \dfrac{x}{x_0} \right)^{\frac{1}{x - x_0}} \mathop{====}\limits^{Δ=x-x_0} \dfrac{1}{\ln β} · \lim\limits_{Δ⇝0} \ln \left( 1 + \dfrac{Δ}{x_0} \right)^{\frac{x_0}{Δ} · \frac{1}{x_0}} ⇝ \dfrac{1}{x_0 · \ln β}$ |
 | $\ln | x |$                                                  | $\dfrac{1}{x}$                                               |                                                              |

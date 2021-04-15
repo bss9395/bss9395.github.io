@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  离散数学
-Update:  2021-04-15T01:04:00+08@中国-广东-湛江+08
+Update:  2021-04-15T17:45:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -164,19 +164,33 @@ $n + 1$元有序集合族$\left\lbrace \mathop{S_i}\limits_{0≤i≤n} \right\rb
 
 |                  $ℕ$                  | $⊊$  |                 $ℤ = ±ℕ$                  | $⊊$  |           $ℚ = \dfrac{±ℕ}{ℕ^{+}}$            | $⊊$  |                        $(ℚ^{+})^{ℚ}$                         | $⊊$  |      $ℝ = [0,1) × ±ℕ$      | $⊊$  |             $ℂ = ℝ ± τ · ℝ$              |
 | :-----------------------------------: | :--: | :---------------------------------------: | :--: | :------------------------------------------: | :--: | :----------------------------------------------------------: | :--: | :------------------------: | :--: | :--------------------------------------: |
-|        $\mathrm{ord} ℕ ≡ ϰ_0$         | $<$  |   $\mathrm{ord} ℤ ≤ 2 · \mathrm{ord} ℕ$   | $<$  | $\mathrm{ord} ℚ ≤ 2 · \mathrm{ord}〈ℕ × ℕ〉$ | $<$  | $\mathrm{ord} (ℚ^{+})^{ℚ} ≤ (\mathrm{ord} ℚ^{+})^{\mathrm{ord} ℚ}$ | $<$  | $\mathrm{ord} ℝ ≡ 2 · ϰ_1$ | $<$  | $\mathrm{ord} ℂ ≤ \mathrm{ord}〈ℝ × ℝ〉$ |
-|           $\mathrm{Θ}[ϰ_0]$           |      |        $\mathrm{O}[ϰ_0] ≈ 2 · ϰ_0$        |      |       $\mathrm{O}[ϰ_0^2] ≈ 2 · ϰ_0^2$        |      | $\mathrm{O}\left[ϰ_0^{4·ϰ_0^2}\right] ≈ (ϰ_0^2)^{2 · ϰ_0^2}$ |      |     $\mathrm{O}[ϰ_1]$      |      |     $\mathrm{O}[ϰ_1^2] ≈ 4 · ϰ_1^2$      |
-| $\mathrm{fld} ℕ = \dfrac{ϰ_0^2}{ϰ_1}$ | $<$  | $\mathrm{fld} ℤ = 2 · \dfrac{ϰ_0^2}{ϰ_1}$ | $<$  |  $\mathrm{fld} ℚ ≤ 2 · \dfrac{ϰ_0^3}{ϰ_1}$   | $<$  |                $ϰ_0^{ϰ_0} ≈ \mathrm{o}[ϰ_1]$                 | $<$  | $\mathrm{fld} ℝ = 2 · ϰ_0$ | $<$  |       $\mathrm{fld} ℂ = 4 · ϰ_0^2$       |
+|        $\mathrm{ord} ℕ ≡ ϰ_0$         | $<$  |   $\mathrm{ord} ℤ ≤ 2 · \mathrm{ord} ℕ$   | $<$  | $\mathrm{ord} ℚ ≤ 2 · \mathrm{ord}〈ℕ × ℕ〉$ | $≪$  | $\mathrm{ord} (ℚ^{+})^{ℚ} ≤ (\mathrm{ord} ℚ^{+})^{\mathrm{ord} ℚ}$ | $≪$  | $\mathrm{ord} ℝ ≡ 2 · ϰ_1$ | $<$  | $\mathrm{ord} ℂ ≤ \mathrm{ord}〈ℝ × ℝ〉$ |
+|           $\mathrm{Θ}[ϰ_0]$           | $<$  |        $\mathrm{O}[ϰ_0] ≈ 2 · ϰ_0$        | $<$  |       $\mathrm{O}[ϰ_0^2] ≈ 2 · ϰ_0^2$        | $≪$  | $\mathrm{O}\left[ϰ_0^{4·ϰ_0^2}\right] ≈ (ϰ_0^2)^{2 · ϰ_0^2} ≈ \mathrm{o}[ϰ_1]$ | $≪$  |     $\mathrm{O}[ϰ_1]$      | $<$  |     $\mathrm{O}[ϰ_1^2] ≈ 4 · ϰ_1^2$      |
+| $\mathrm{fld} ℕ = \dfrac{ϰ_0^2}{ϰ_1}$ | $<$  | $\mathrm{fld} ℤ = 2 · \dfrac{ϰ_0^2}{ϰ_1}$ | $<$  |  $\mathrm{fld} ℚ ≤ 2 · \dfrac{ϰ_0^3}{ϰ_1}$   | $≪$  |                $ϰ_0^{ϰ_0} ≈ \mathrm{o}[ϰ_1]$                 | $≪$  | $\mathrm{fld} ℝ = 2 · ϰ_0$ | $<$  |       $\mathrm{fld} ℂ = 4 · ϰ_0^2$       |
 
-| 0维  | $\mathrm{fld} ●  = \left[ \dfrac{\mathrm{ord} ℕ}{\mathrm{ord} ℝ} \right]^0 = э^0 = 1$ | $\mathrm{fld} ℝ = \mathrm{ord} ℕ$         |                                           |
+有理数集定义在加运算与乘运算上，实数集定义在加运算与乘运算以及幂运算上，因此实数集中元素必远远多于有理数集中元素。
+
+有理数集与实数集本身均具有无限紧致性，有理数集中的元素未能填满直线数轴上的点，实数集中的元素能填满直线数轴上的点。
+
+若集合$S$中元素的个数$\mathrm{ord} S ≈ \mathrm{o}[ϰ_1]$，则称集合$S$为可数集，否则称集合$S$为不可数集，因此有限集为可数集。
+
+| 0维  | $\mathrm{fld} ●  = \left[ \dfrac{\mathrm{fld} ℝ}{\mathrm{ord} ℝ} \right]^0 = э^0 = 1$ | $\mathrm{fld} ℝ = 2 · ϰ_0$                | $\mathrm{ord} ℝ = 2 · ϰ_1$                |
 | :--: | :----------------------------------------------------------- | :---------------------------------------- | :---------------------------------------- |
-| 1维  | $\mathrm{fld} ● = \left[ \dfrac{\mathrm{ord} ℕ}{\mathrm{ord} ℝ} \right]^1 ≡ э^1 ≡ \dfrac{ϰ_0}{ϰ_1} = \mathrm{o}[1]$ | $\mathrm{fld}([0,1]) = 1$                 | $\mathrm{fld} ((0,1)) = 1$                |
-| 2维  | $\mathrm{fld} ● = \left[ \dfrac{\mathrm{ord} ℕ}{\mathrm{ord} ℝ} \right]^2 = э^2 = \dfrac{ϰ_0^2}{ϰ_0^1} = \mathrm{o}[1]$ | $\mathrm{fld}([0,1] × [0,1]) = 1$         | $\mathrm{fld}((0,1) × (0,1)) = 1$         |
-| 3维  | $\mathrm{fld} ● = \left[ \dfrac{\mathrm{ord} ℕ}{\mathrm{ord} ℝ} \right]^3 = э^3 = \dfrac{ϰ_0^3}{ϰ_0^3} = \mathrm{o}[1]$ | $\mathrm{fld}([0,1] × [0,1] × [0,1]) = 1$ | $\mathrm{fld}((0,1) × (0,1) × (0,1)) = 1$ |
+| 1维  | $\mathrm{fld} ● = \left[ \dfrac{\mathrm{fld} ℝ}{\mathrm{ord} ℝ} \right]^1 ≡ э^1 ≡ \dfrac{ϰ_0}{ϰ_1} = \mathrm{o}[1]$ | $\mathrm{fld}([0,1]) = 1$                 | $\mathrm{fld} ((0,1)) = 1$                |
+| 2维  | $\mathrm{fld} ● = \left[ \dfrac{\mathrm{fld} ℝ}{\mathrm{ord} ℝ} \right]^2 = э^2 = \dfrac{ϰ_0^2}{ϰ_1^2} = \mathrm{o}[1]$ | $\mathrm{fld}([0,1] × [0,1]) = 1$         | $\mathrm{fld}((0,1) × (0,1)) = 1$         |
+| 3维  | $\mathrm{fld} ● = \left[ \dfrac{\mathrm{fld} ℝ}{\mathrm{ord} ℝ} \right]^3 = э^3 = \dfrac{ϰ_0^3}{ϰ_1^3} = \mathrm{o}[1]$ | $\mathrm{fld}([0,1] × [0,1] × [0,1]) = 1$ | $\mathrm{fld}((0,1) × (0,1) × (0,1)) = 1$ |
 
-典例：映射关系$Y = f(X) = 2 · X$，其中$X = \bigcup \lbrace X_i \rbrace = [0,1]$，因此$Y = \bigcup \lbrace Y_i \rbrace = [0,2]$，显然$\mathrm{ord} X < \mathrm{ord} Y$。
+典例：映射关系$y = f(x) = 2 · x - 1$，并且$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = 2$，其中$X = \bigcup \lbrace X_i \rbrace = [0,1]$，因此$Y = \bigcup \lbrace Y_i \rbrace = [-1,+1]$，显然$\mathrm{ord} X < \mathrm{ord} Y$。
 
-对于点域$x∈X_i$及其映射点域$y∈Y_i$，必满足$Y_i = f(X_i)$，$\mathrm{fld} \mathrm{Y_i} = 2 · \mathrm{fld} X_i$，$\mathrm{ord} \lbrace Y_i \rbrace = \mathrm{ord} \lbrace X_i \rbrace$。
+对于点域$x∈X_i$及其映射点域$y∈Y_i$，必满足$Y_i = f(X_i)$，$\mathrm{fld} Y_i = 2 · \mathrm{fld} X_i$，$\mathrm{ord} \lbrace Y_i \rbrace = \mathrm{ord} \lbrace X_i \rbrace$。
+
+典例：映射关系$y = f(x) = \tan \left( \dfrac{2 · x - 1}{2} · π \right)$，并且$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{π}{\cos^2 \left( \frac{2 · x - 1}{2} · π \right)}$，其中$X = \bigcup\lbrace X_i \rbrace = (0,1)$，因此$Y = \bigcup\lbrace Y_i \rbrace = (∞^{-},∞^{+})$，显然$\mathrm{ord} X < \mathrm{ord} Y$。
+
+对于点域$x∈X_i$及其映射点域$y∈Y_i$，必满足$Y_i = f(X_i), \mathrm{fld} Y_i = \dfrac{π}{\cos^2 \left( \frac{2 · x - 1}{2} · π \right)} · \mathrm{fld} X_i, \mathrm{ord} \lbrace Y_i \rbrace = \mathrm{ord} \lbrace X_i \rbrace$。
+
+典例：自然数集$ℕ$，整数集$ℤ$，倒自然数集$\dfrac{1}{ℕ^{+}} ⊊ [0, 1]$，倒整数集$\dfrac{1}{ℤ^{±}} ⊊ [-1, +1]$。
+
+倒自然数集$\dfrac{1}{ℕ^{+}}$与倒整数集$\dfrac{1}{ℤ^{±}}$，满足映射关系$y = f(x) = 2 · x - 1$。
 
 ### 零测集
 
