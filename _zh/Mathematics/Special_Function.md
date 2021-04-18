@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  特殊函数
-Update:  2021-04-17T03:49:00+08@中国-广东-湛江+08
+Update:  2021-04-18T21:21:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -25,32 +25,37 @@ $\mathcal{Q} (x) = \mathop{1}\limits_{x∈ℚ}; \mathop{0}\limits_{x∉ℚ}$
 
 $\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ;n∈ℤ^+}^{1 = \gcd (|m|, |n|)} \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}}; \mathop{0}\limits_{x≠\frac{m}{n}}$
 
-函数$\mathcal{R} (x)$在区间$ℝ$内，任何无理点处连续，任何有理点处不连续。
-| $⇓$  | $∀x_0∉ℚ;∀ε>0;∃δ>0;∀x∈ℝ; \left[\left| \mathcal{R}(x) - \mathcal{R}(x_0) \right| > ε\right] ⇒ \left[ x ∈ \left\lbrace\dfrac{m_j}{n_i} : \dfrac{1}{n_i} > ε \right\rbrace \right]$ | $¬Q ⇒ ¬P$ |
+函数$\mathcal{R} (x)$在区间$ℝ$内，任何有理点处不连续，任何无理点处连续。
+| $⇓$  | $∀x_0∉ℚ;∀ε>0;∃δ>0;∀x∈ℝ; \left[\left| \mathcal{R}(x) - \mathcal{R}(x_0) \right| > ε\right] ⇒ \left[ x ∈ \left\lbrace ∀m_j∈ℤ;∀n_i∈ℕ; \dfrac{m_j}{n_i} : \dfrac{1}{n_i} > ε \right\rbrace \right]$ | $¬Q ⇒ ¬P$ |
 | :--: | :----------------------------------------------------------- | :-------- |
-| $⇓$  | $∀x_0∉ℚ;∀ε>0;∃δ>0;∀x∈ℝ; \left[ |x - x_0| < \min\left\lbrace\left| \dfrac{m_j}{n_i} - x_0 \right|: \dfrac{1}{n_i} > ε \right\rbrace = δ \right] ⇒ \left[ \left| \mathcal{R}(x) - \mathcal{R}(x_0) \right| = \left| \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}};\mathop{0}\limits_{x≠\frac{m}{n}} \right| ≤ ε \right]$ | $P ⇒ Q$   |
+| $⇓$  | $∀x_0∉ℚ;∀ε>0;∃δ>0;∀x∈ℝ; \left[ |x - x_0| < \min\left\lbrace ∀m_j∈ℤ;∀n_i∈ℕ; \left| \dfrac{m_j}{n_i} - x_0 \right|: \dfrac{1}{n_i} > ε \right\rbrace = δ \right] ⇒ \left[ \left| \mathcal{R}(x) - \mathcal{R}(x_0) \right| = \left| \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}};\mathop{0}\limits_{x≠\frac{m}{n}} \right| ≤ ε \right]$ | $P ⇒ Q$   |
 | $⇓$  | $\lim\limits_{x⇝x_0≠\frac{p}{q}} \mathcal{R} (x) ⇝ \mathcal{R} (x_0)$ |           |
 |      |                                                              |           |
 | $⇓$  | $∃x_0=\dfrac{p}{q}∈ℚ;∃ε>0;∀δ>0; \sup\limits_{x∈\mathrm{U}(x_0,δ)} \left| \mathcal{R}(x) - \mathcal{R}(x_0) \right| = \sup\limits_{x∈\mathrm{U}(x_0,δ)} \left| \mathop{\dfrac{1}{n}}\limits_{x=\frac{m}{n}};\mathop{0}\limits_{x≠\frac{m}{n}} - \dfrac{1}{q} \right| ≥ \dfrac{1}{q}$ |           |
 | $⇓$  | $\lim\limits_{x⇝x_0=\frac{p}{q}} \mathcal{R} (x) \not⇝ \mathcal{R} (x_0)$ |           |
 
-必存在函数$f (x)$在区间$ℝ$内，任何无理点处连续，任何有理点处连续。例如$f (x) ≡ x$。
+必存在函数$f (x)$在区间$ℝ$内，任何有理点处连续，任何无理点处连续。例如$f (x) ≡ x$。
 
-必存在函数$f (x)$在区间$ℝ$内，任何无理点处不连续，任何有理点处不连续。例如$f (x) ≡ \mathcal{Q} (x)$。
+必存在函数$f (x)$在区间$ℝ$内，任何有理点处不连续，任何无理点处不连续。例如$f (x) ≡ \mathcal{Q}(x)$。
 
-必存在函数$f (x)$在区间$ℝ$内，任何无理点处连续，任何有理点处不连续。例如$f (x) ≡ \mathcal{R} (x)$。
+必存在函数$f (x)$在区间$ℝ$内，任何有理点处不连续，任何无理点处连续。例如$f (x) ≡ \mathcal{R}(x)$。
 
-$∀x_n,r_0,q_0∈[X_0,X_1];∃f(x); \left[ \lim\limits_{n⇝+∞}^{Δx⇝0} \sup | f (x_n) - \mathop{f (r_0)}\limits_{r_0∉ℚ} | ⇝ 0 \right] ∧ \left[ \lim\limits_{n⇝+∞}^{Δx⇝0} \sup | f (x_n) - \mathop{f (q_0)}\limits_{q_0∈ℚ} | > 0 \right]$
+$∃f(x); \left[ ∀r∈ℚ;∃ε>0;∀δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| > ε \right] ∧ \left[ ∀r∉ℚ;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right]$
 
-不存在函数$f (x)$在区间$ℝ$内，任何无理点处不连续，任何有理点处连续。
+$∃f(x);∀r∈ℝ; [r∉ℚ] ⇔ \left[ ∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right]$
 
-$∀x_n,r_0,q_0∈[X_0,X_1];¬∃f(x); \left[ \lim\limits_{n⇝+∞}^{Δx⇝0} \sup | f (x_n) - \mathop{f (r_0)}\limits_{r_0∉ℚ} | > 0 \right] ∧ \left[ \lim\limits_{n⇝+∞}^{Δx⇝0} \sup | f (x_n) - \mathop{f (q_0)}\limits_{q_0∈ℚ} | ⇝ 0 \right]$
+不存在函数$f (x)$在区间$ℝ$内，任何有理点处连续，任何无理点处不连续。
 
-| $⇓$  | $∀r∈[X_0,X_1]\backslashℚ;∃ε>0;∀δ>0; [ | x - r_0 | < δ ] ∧ [ \sup | f (x) - f (r) | ≥ ε ]$ |      |                                                              |                  |
-| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- | :--------------- |
-| $⇓$  | $∀r∈[X_0,X_1]\backslashℚ;∃m∈ℕ;∃ε>0; \lim\limits_{n⇝+∞}^{Δx⇝0} \sup | f (x_n) - f (r) | ≥ ε ≥ \dfrac{1}{m+1}$ |      |                                                              |                  |
-| $⇓$  | $∀r; [ r ∈ [X_0,X_1]\backslashℚ ] ⇒ \left[ r ∈ \bigcup\limits_{m=0}^{ℕ} \mathop{r_m}\limits_{w^f (r_m)≥\frac{1}{m+1}} \right]$ | $⇒$  | $r_m ∈ \left( r_m - \dfrac{ζ}{2^{m+1}}, r_m + \dfrac{ζ}{2^{m+1}} \right)$ |                  |
-| $⇓$  | $[X_0,X_1] \backslash ℚ ⊆ \bigcup\limits_{m=0}^{ℕ} \mathop{r_0}\limits_{w^f(r_0)≥\frac{1}{m+1}} ⊆ \mathcal{O}$ | $⇒$  | $[X_0,X_1] \backslash ℚ ⊆ \mathcal{O}$                       | $\mathrm{False}$ |
+$¬∃f(x); \left[ ∀r∈ℚ;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right] ∧ \left[ ∀r∉ℚ;∃ε>0;∀δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| > ε \right]$
+
+$¬∃f(x);∀r∈ℝ; [r∈ℚ] ⇔ \left[ ∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right]$
+
+| $⇓$  | $∃f(x);∀r∈ℝ; [r∉ℚ] ⇔ \left[ ∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right]$ | $¬Q$                |
+| :--: | :----------------------------------------------------------- | :------------------ |
+| $⇓$  | $∃f(x); \left[ ∀r∈ℚ;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right] ∧ \left[ ∀r∉ℚ;∃ε>0;∀δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| > ε \right]$ | $P$                 |
+| $⇓$  | $∃f(x); \left[ ∀r∈ℝ; [r∈ℚ] ⇒ \left[ ∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right] \right] ∧ \left[ ∀∈ℝ; [r∉ℚ] ⇒ \left[ ∃ε>0;∀δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| > ε \right] \right]$ |                     |
+| $⇓$  | $∃f(x);∀r∈ℝ; [r∈ℚ] ⇔ \left[ ∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right]$ | $P → Q$             |
+| $⇓$  | $¬∃f(x); \left[ ∀r∈ℚ;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right] ∧ \left[ ∀r∉ℚ;∃ε>0;∀δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| > ε \right]$ | $¬Q ∧ (P → Q) ⇒ ¬P$ |
 
 ### 分形函数$\mathcal{F} (x)$
 
