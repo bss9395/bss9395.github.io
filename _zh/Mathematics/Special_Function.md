@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  特殊函数
-Update:  2021-04-18T21:21:00+08@中国-广东-湛江+08
+Update:  2021-04-19T13:26:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -40,22 +40,24 @@ $\mathcal{R} (x) \mathop{======}\limits_{m∈ℤ;n∈ℤ^+}^{1 = \gcd (|m|, |n|)
 
 必存在函数$f (x)$在区间$ℝ$内，任何有理点处不连续，任何无理点处连续。例如$f (x) ≡ \mathcal{R}(x)$。
 
-$∃f(x); \left[ ∀r∈ℚ;∃ε>0;∀δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| > ε \right] ∧ \left[ ∀r∉ℚ;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right]$
+$∃f(x); \left[ ∀q_0∈ℚ;∃ε>0;∀δ>0; w^{f}(q_0,δ) > ε \right] ∧ \left[ ∀r_0∉ℚ;∀ε>0;∃δ>0; w^{f}(r_0,δ) ≤ ε \right]$
 
-$∃f(x);∀r∈ℝ; [r∉ℚ] ⇔ \left[ ∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right]$
+$∃f(x);∀r∈ℝ; [r∉ℚ] ⇔ \left[ ∀ε>0;∃δ>0; w^{f}(r,δ) ≤ ε \right]$
 
-不存在函数$f (x)$在区间$ℝ$内，任何有理点处连续，任何无理点处不连续。
+不存在函数$f (x)$在区间$ℝ$内，任何有理点处连续，任何无理点处不连续。注意：有理数的间隙由无理数填充，反之不对。
 
-$¬∃f(x); \left[ ∀r∈ℚ;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right] ∧ \left[ ∀r∉ℚ;∃ε>0;∀δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| > ε \right]$
+$¬∃f(x); \left[ ∀q_0∈ℚ;∀ε>0;∃q_1>0; w^{f}(q_0,q_1) ≤ ε \right] ∧ \left[ ∀r_0∉ℚ;∃ε>0;∀δ>0; w^{f}(r_0,δ) > ε \right]$
 
-$¬∃f(x);∀r∈ℝ; [r∈ℚ] ⇔ \left[ ∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right]$
+$¬∃f(x);∀q∈ℝ; [q∈ℚ] ⇔ \left[ ∀ε>0;∃δ>0; w^{f}(q,δ) ≤ ε \right]$
 
-| $⇓$  | $∃f(x);∀r∈ℝ; [r∉ℚ] ⇔ \left[ ∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right]$ | $¬Q$                |
-| :--: | :----------------------------------------------------------- | :------------------ |
-| $⇓$  | $∃f(x); \left[ ∀r∈ℚ;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right] ∧ \left[ ∀r∉ℚ;∃ε>0;∀δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| > ε \right]$ | $P$                 |
-| $⇓$  | $∃f(x); \left[ ∀r∈ℝ; [r∈ℚ] ⇒ \left[ ∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right] \right] ∧ \left[ ∀∈ℝ; [r∉ℚ] ⇒ \left[ ∃ε>0;∀δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| > ε \right] \right]$ |                     |
-| $⇓$  | $∃f(x);∀r∈ℝ; [r∈ℚ] ⇔ \left[ ∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right]$ | $P → Q$             |
-| $⇓$  | $¬∃f(x); \left[ ∀r∈ℚ;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| ≤ ε \right] ∧ \left[ ∀r∉ℚ;∃ε>0;∀δ>0; \sup\limits_{x∈\mathrm{U}(r,δ)} |f(x) - f(r)| > ε \right]$ | $¬Q ∧ (P → Q) ⇒ ¬P$ |
+| $⇓$  | $∃f(x); \left[ ∀q_0∈ℚ;∀ε_q>0;∃q_1>0; w^{f}(q_0,q_1) ≤ ε_q \right] ∧ \left[ ∀r_0∉ℚ;∃ε_r>0;∀δ>0; w^{f}(r_0,δ) > ε_r \right]$ | $P$                  |
+| :--: | :----------------------------------------------------------- | :------------------- |
+| $⇓$  | $∃f(x); ∀q_0∈ℚ;∀q_1∈ℚ; ∃r_0∉ℚ,r_0∈[q_0,q_1];∃ε_r=\mathrm{Con}>0;∀δ>0; w^{f}(r_0,δ) > ε_r = \mathrm{Con} > 0$ |                      |
+| $⇓$  | $∃f(x); ∀q_0∈ℚ;∀ε_q>0;∃q_1>0; ∃r_0∉ℚ,r_0∈[q_0,q_1];∃ε_r=\mathrm{Con}>0;∀δ=\min\lbrace |q_0-r_0|,|q_1-r_0| \rbrace; 0 < \mathrm{Con} = ε_r < w^{f}(r_0,δ) ≤ w^{f}(q_0,q_1) ≤ ε_q$ |                      |
+| $⇓$  | $∃f(x); ∀q_0∈ℚ;∀ε_q>0;∃q_1>0; \mathrm{Con} ≤ w^{f}(q_0,q_1) ≤ ε_q$ | $Q = \mathrm{False}$ |
+| $⇓$  | $¬∃f(x); \left[ ∀q_0∈ℚ;∀ε>0;∃q_1>0; w^{f}(q_0,q_1) ≤ ε \right] ∧ \left[ ∀r_0∉ℚ;∃ε>0;∀δ>0; w^{f}(r_0,δ) > ε \right]$ | $¬Q ∧ (P → Q) ⇒ ¬P$  |
+| $⇓$  | $¬∃f(x); \left[ ∀q∈ℝ; [q∈ℚ] ⇒ [∀ε>0;∃δ>0; w^{f}(q,δ) ≤ ε] \right] ∧ \left[ ∀q∈ℝ; [q∉ℚ] ⇒ [∃ε>0;∀δ>0; w^{f}(q,δ) > ε] \right]$ |                      |
+| $⇓$  | $¬∃f(x);∀q∈ℝ; [q∈ℚ] ⇔ \left[ ∀ε>0;∃δ>0; w^{f}(q,δ) ≤ ε \right]$ |                      |
 
 ### 分形函数$\mathcal{F} (x)$
 
