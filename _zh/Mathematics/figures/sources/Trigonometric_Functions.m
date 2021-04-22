@@ -21,4 +21,4 @@ ax.YTick = [-pi,-pi/2,-1,0,+1,+pi/2,+pi];
 ax.XTickLabels = {'$-\pi$','$-\frac{\pi}{2}$','-1','$0$','+1','$+\frac{\pi}{2}$','$+\pi$'};
 ax.YTickLabels = {'$-\pi$','$-\frac{\pi}{2}$','-1','$0$','+1','$+\frac{\pi}{2}$','$+\pi$'};
 title('Trigonometric Functions');
-legend({'$\sin x$','$\cos x$','$\tan x$','$x$'}, 'Interpreter', 'latex', 'Location', 'NorthWest');
+legend({'$\sin x$','$\cos x$','$\tan x$','$x$'}, 'Interpreter', 'latex', 'Location', 'SouthEast');
