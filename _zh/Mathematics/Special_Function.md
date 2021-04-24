@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  特殊函数
-Update:  2021-04-19T13:26:00+08@中国-广东-湛江+08
+Update:  2021-04-24T19:26:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -82,12 +82,24 @@ $\mathrm{sgn} (\mathcal{R} (x)) = \mathcal{Q} (x)$
 
 ### 振荡函数$\mathcal{W}(x)$
 
-$\mathcal{W}(x) = \mathop{0}\limits_{x≤0};\mathop{x^{0} · \sin \dfrac{1}{x}}\limits_{x>0}$，在点$x = 0$处振荡。
+$\mathcal{W}_{n}(x) = \mathop{0}\limits_{x=0};\mathop{x^{n} · \sin \dfrac{1}{x}}\limits_{x≠0}$
 
-$\mathcal{W}(x) = \mathop{0}\limits_{x≤0};\mathop{x^{1} · \sin \dfrac{1}{x}}\limits_{x>0}$，在点$x = 0$处连续。
+$\dfrac{\mathrm{d} \mathcal{W}_{n}(0)}{\mathrm{d} x} = \lim\limits_{x⇝0} \dfrac{\mathcal{W}_{n}(x) - \mathcal{W}_{n}(0)}{x - 0} = \lim\limits_{x⇝0} x^{n-1} · \sin \dfrac{1}{x}$
 
-| $\mathcal{W}(x) = \mathop{0}\limits_{x≤0};\mathop{x^{0} · \sin \dfrac{1}{x}}\limits_{x>0}$ | $\lim\limits_{\mathop{x⇝0}\limits_{x=\frac{1}{2·n·π}}} x^{0} · \sin \dfrac{1}{x} ⇝ 0$ | $\lim\limits_{\mathop{x⇝0}\limits_{x=\frac{1}{2·n·π}+\frac{π}{2}}} x^{0} · \sin \dfrac{1}{x} ⇝ 1$ |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| $\mathcal{W}(x) = \mathop{0}\limits_{x≤0};\mathop{x^{1} · \sin \dfrac{1}{x}}\limits_{x>0}$ | $\lim\limits_{x⇝0} x^{1} · \sin \dfrac{1}{x} ⇝ 0$            |                                                              |
-|                                                              |                                                              |                                                              |
+$\lim\limits_{x⇝0} \dfrac{\mathrm{d} \mathcal{W}_{n}(x)}{\mathrm{d} x} = \lim\limits_{x⇝0} n · x^{n-1} · \sin \dfrac{1}{x} - x^{n-2} · \cos \dfrac{1}{x}$
+
+当$n ≤ 0$时，$\mathcal{W}_{n}(x)$在点$x = 0$处振荡，因此其导数振荡，其导函数振荡。
+
+当$0 < n ≤ 1$时，$\mathcal{W}_{n} (x)$在点$x = 0$处连续，其导数振荡，其导函数振荡。
+
+当$1 < n ≤ 2$时，$\mathcal{W}_{n}(x)$在点$x = 0$处连续，其导数收敛，其导函数振荡。
+
+当$2 < n$时，$\mathcal{W}_{n}(x)$在点$x = 0$处连续，并且其导数收敛，其导函数收敛。
+| $n < 0$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{n} · \sin \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π+\frac{π}{2}]^{-1}} |x^{n}| \mathop{⇝}\limits_{n<0} ∞^{+}$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{n} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π]^{-1}} |x^{n}| \mathop{⇝}\limits_{n<0} ∞^{+}$ | 在点$x=0$处振荡 |
+| :---------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :-------------- |
+| $n = 0$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|x^{n} · \sin \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝0}^{x=[m·π+\frac{π}{2}]^{-1}} \left|\sin \dfrac{1}{x}\right| = 1$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|x^{n} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝0}^{x=[m·π]^{-1}} \left|\cos \dfrac{1}{x}\right| = 1$ | 在点$x=0$处振荡 |
+| $0 < n$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{n} · \sin \dfrac{1}{x} \right| ≤ \lim\limits_{x⇝0}^{δ⇝0} |x^{n}| \mathop{⇝}\limits_{0<n} 0$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{n} · \cos \dfrac{1}{x} \right| ≤ \lim\limits_{x⇝0}^{δ⇝0} |x^{n}| \mathop{⇝}\limits_{0<n} 0$ | 在点$x=0$处收敛 |
+|             |                                                              |                                                              |                 |
+| $1 < n ≤ 2$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|n · x^{n-1} · \sin \dfrac{1}{x} - x^{n-2} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π+\frac{π}{2}]^{-1}} |n·x^{n-1}| \mathop{⇝}\limits_{1<n≤2} 0$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|n · x^{n-1} · \sin \dfrac{1}{x} - x^{n-2} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π]^{-1}} |x^{n-2}| \mathop{⇝}\limits_{1<n≤2} ∞^{+}$ | 在点$x=0$处振荡 |
+
 

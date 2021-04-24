@@ -303,9 +303,9 @@ $\lim\limits_{x⇝x_0} f (g (x)) \mathop{====}\limits_{g(x_0)=y_0} f \left( \lim
 |              |                                                              |                                                              |                                                   |
 |       导函数 | ${^1}f(x) ≡ \dfrac{\mathrm{d}^1 f(x)}{\mathrm{d}^1 x}$       | $∀x∈X;∀ε>0;∃δ>0;∀x_t∈X; 0<|x_t - x|≤δ ⇒ \left| \dfrac{f(x_t) - f(x)}{x_t - x} - {^1}f(x) \right|≤ε$ |                                                   |
 |       导函数 | ${^1}f(x) ≡ \dfrac{\mathrm{d}^1 f(x)}{\mathrm{d}^1 x}$       | $\lim\limits_{x_t⇝x} \dfrac{f(x_t) - f(x)}{x_t - x} \mathop{=====}\limits^{x_t=x+Δx} \lim\limits_{Δx⇝0} \dfrac{f(x + Δx) - f(x)}{Δx} = \lim\limits_{Δx⇝0} \dfrac{Δf(x)}{Δx}$ |                                                   |
-| 导函数右极限 | ${^1}f_{x_0}^{+} ≡ \left.\dfrac{\mathrm{d}^{1}f^{+}(x)}{\mathrm{d}^{1}x}\right|_{x_0}$ | $\lim\limits_{x⇝x_0^{+}} {^1}f(x) = \lim\limits_{x⇝x_0^{+}} \dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}$ |                                                   |
-| 导函数左极限 | ${^1}f_{x_0}^{-} ≡ \left.\dfrac{\mathrm{d}^{1}f^{-}(x)}{\mathrm{d}^{1}x}\right|_{x_0}$ | $\lim\limits_{x⇝x_0^{-}} {^1}f(x) = \lim\limits_{x⇝x_0^{-}} \dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}$ |                                                   |
-| 导函数极限值 | ${^1}f_{x_0} ≡ \left.\dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}\right|_{x_0}$ | $\lim\limits_{x⇝x_0} {^1}f(x) = \lim\limits_{x⇝x_0} \dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}$ | ${^1}f_{x_0} = {^1}f_{x_0}^{+} = {^1}f_{x_0}^{-}$ |
+| 导函数右极限 | ${^1}f_{x_0^{+}} ≡ \left.\dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}\right|_{x_0^{+}}$ | $\lim\limits_{x⇝x_0^{+}} {^1}f(x) = \lim\limits_{x⇝x_0^{+}} \dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}$ |                                                   |
+| 导函数左极限 | ${^1}f_{x_0^{-}} ≡ \left.\dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}\right|_{x_0^{-}}$ | $\lim\limits_{x⇝x_0^{-}} {^1}f(x) = \lim\limits_{x⇝x_0^{-}} \dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}$ |                                                   |
+| 导函数极限值 | ${^1}f_{x_0} ≡ \left.\dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}\right|_{x_0}$ | $\lim\limits_{x⇝x_0} {^1}f(x) = \lim\limits_{x⇝x_0} \dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}$ | ${^1}f_{x_0} = {^1}f_{x_0^{+}} = {^1}f_{x_0^{-}}$ |
 
 若函数$f(x)$在点$x_0$处的导数值${^1}f(x_0)$存在，则其在点$x_0$处连续，反之不对。
 
@@ -326,8 +326,13 @@ $\lim\limits_{x⇝0^{+}} \dfrac{f(x) - f(0)}{x - 0} = \lim\limits_{x⇝0^{+}} \d
 | $\dfrac{\mathrm{d}}{\mathrm{d} x} {'}f^{⇵}(x)$      | $\left[ \dfrac{\mathrm{d} x}{\mathrm{d} {'}f^{⇵}(x)} \right]^{-1} \mathop{====}\limits_{y={'}f^{⇵}(x)}^{x=f^{⇵}(y)} \left[ \dfrac{\mathrm{d} f^{⇵}(y)}{\mathrm{d} y} \right]^{-1}$ | $\lim\limits_{x_t⇝x} \dfrac{{'}f^{⇵}(x_t) - {'}f^{⇵}(x)}{x_t - x} = \left[ \lim\limits_{x_t⇝x} \dfrac{x_t - x}{{'}f^{⇵}(x_t) - {'}f^{⇵}(x)} \right]^{-1} \mathop{====}\limits_{y={'}f^{⇵}(x)}^{x=f^{⇵}(y)} \left[ \lim\limits_{x_t⇝x} \dfrac{f^{⇵}(y_t) - f^{⇵}(y)}{y_t - y} \right]^{-1}$ |
 |                                                     |                                                              |                                                              |
 | $\dfrac{\mathrm{d}}{\mathrm{d} x} |x|$              | $\dfrac{|x|}{x}$                                             | $\lim\limits_{x_t⇝x>0} \dfrac{(+x_t) - (+x)}{x_t - x} ⇝ +1;\lim\limits_{x_t⇝x<0} \dfrac{(-x_t) - (-x)}{x_t - x} ⇝ -1$ |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} |f(x)|^{g(x)}$    | $|f(x)|^{g(x)} · \left[ \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \ln |f(x)| + \dfrac{g(x)}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right]$ | $\dfrac{\mathrm{d} ә^{g(x) · \ln |f(x)|}}{\mathrm{d} x} = ә^{g(x) · \ln |f(x)|} · \left[ \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \ln |f(x)| + g(x) · \dfrac{1}{|f(x)|} · \dfrac{|f(x)|}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right]$ |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} f(x)^{g(x)}$      | $f(x)^{g(x)} · \left[ \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \ln |f(x)| + \dfrac{g(x)}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right]$ | $\dfrac{\mathrm{d} f(x)^{g(x)}}{\mathrm{d} |f(x)^{g(x)}|} · \dfrac{\mathrm{d} |f(x)|^{g(x)}}{\mathrm{d} x} = \dfrac{f(x)^{g(x)}}{|f(x)^{g(x)}|} · |f(x)|^{g(x)} · \left[ \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \ln |f(x)| + \dfrac{g(x)}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right]$ |
+| $\dfrac{\mathrm{d}}{\mathrm{d} x} f(x)^{g(x)}$      | $f(x)^{g(x)} · \left[ \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \ln |f(x)| + \dfrac{g(x)}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right]$ | $\dfrac{\mathrm{d} f(x)^{g(x)}}{\mathrm{d} |f(x)^{g(x)}|} · \dfrac{\mathrm{d} ә^{g(x) · \ln |f(x)|}}{\mathrm{d} x} = \dfrac{f(x)^{g(x)}}{|f(x)^{g(x)}|} · ә^{g(x) · \ln |f(x)|} · \left[ \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \ln |f(x)| + \dfrac{g(x)}{|f(x)|} · \dfrac{|f(x)|}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right]$ |
+
+典例：函数$f(x) = \dfrac{(x + 9)^{\frac{1}{2}} · (3 - x)^{\frac{2}{3}}}{(x + 4)^{\frac{3}{4}} · (5 - x)^{\frac{4}{5}}}$，因此$\ln |f(x)| = \dfrac{1}{2} · \ln |x + 9| + \dfrac{2}{3} · \ln |3 - x| - \dfrac{3}{4} · \ln |x + 4| - \dfrac{4}{5} · \ln |5 - x|$。
+
+$\dfrac{1}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{+1}{2 · (x + 9)} + \dfrac{-2}{3 · (3 - x)} - \dfrac{3}{4 · (x + 4)} - \dfrac{-4}{5 · (5 - x)} $
+
+$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{(x + 9)^{\frac{1}{2}} · (3 - x)^{\frac{2}{3}}}{(x + 4)^{\frac{3}{4}} · (5 - x)^{\frac{4}{5}}} · \left[ \dfrac{+1}{2 · (x + 9)} + \dfrac{-2}{3 · (3 - x)} - \dfrac{3}{4 · (x + 4)} - \dfrac{-4}{5 · (5 - x)} \right]$
 
 
 
