@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-04-24T00:56:00+08@中国-广东-湛江+08
+Update:  2021-04-25T21:36:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -334,11 +334,11 @@ $\dfrac{1}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{+1}{2 · (x +
 
 $\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{(x + 9)^{\frac{1}{2}} · (3 - x)^{\frac{2}{3}}}{(x + 4)^{\frac{3}{4}} · (5 - x)^{\frac{4}{5}}} · \left[ \dfrac{+1}{2 · (x + 9)} + \dfrac{-2}{3 · (3 - x)} - \dfrac{3}{4 · (x + 4)} - \dfrac{-4}{5 · (5 - x)} \right]$
 
-周期函数$f(x) = f(x + T)$，其导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{\mathrm{d} f(x + T)}{\mathrm{d} x}$以$T$为周期。
+周期函数$f(x) = f(x + T)$，其导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{\mathrm{d} [f(x + T)]}{\mathrm{d} (x + T)} · \dfrac{\mathrm{d} (x + T)}{\mathrm{d} x} = \dfrac{\mathrm{d} f(x + T)}{\mathrm{d} (x + T)}$以$T$为周期，因此$\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x} = \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x+T}$。
 
-奇函数$f(x) = -f(-x)$，其导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = +\dfrac{\mathrm{d} f(-x)}{\mathrm{d} x}$为偶函数。
+奇函数$f(x) = -f(-x)$，其导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{\mathrm{d} [-f(-x)]}{\mathrm{d} (-x)} · \dfrac{\mathrm{d} (-x)}{\mathrm{d} x} = +\dfrac{\mathrm{d} f(-x)}{\mathrm{d} (-x)}$为偶函数，因此$\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x} = +\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{-x}$。
 
-偶函数$f(x) = +f(-x)$，其导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = -\dfrac{\mathrm{d} f(-x)}{\mathrm{d} x}$为奇函数。
+偶函数$f(x) = +f(-x)$，其导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{\mathrm{d} [+f(-x)]}{\mathrm{d} (-x)} · \dfrac{\mathrm{d} (-x)}{\mathrm{d} x} = -\dfrac{\mathrm{d} f(-x)}{\mathrm{d} (-x)}$为奇函数，因此$\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x} = -\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{-x}$。
 
 ### 一致连续性
 
@@ -413,50 +413,52 @@ $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0^{±},±∞
 
 ### 连续介值定理
 
-函数$f (x)$在区间$X$上连续，对于函数值域内任意的函数值$f (t)$，必定至少存在一点$θ∈X$使得成立。
+若函数$f (x)$在单区间$X$上连续，则其值域$Y$为单区间，反之不对。单区间内任意一点均为聚点，并且任意两点均可连通成线。
 
-$f(x)|_{∀t∈X} = \left.f (x)\right|_{∃θ∈X}$
+若函数$f(x)$在单区间$X=[x_{α},x_{β}]$上连续，则对于任意函数值$f(x)$，必定存在某一点$θ∈X$其函数值相等。
 
-| $⇓$  | $∀t∈X;∃θ∈X; f (t) = f (θ)$                                   | $⇔$  | $f(x)|_{∀t∈X} = \left.f (x)\right|_{∃θ∈X}$                   |
-| :--: | :----------------------------------------------------------- | :--: | ------------------------------------------------------------ |
-| $⇓$  | $∀y∈\left( \inf\limits_{x∈X} f(x), \sup\limits_{x∈X} f(x) \right) ⊊ (∞⁻, ∞⁺);∃θ∈X; y = f (θ)$ | $⇐$  | $y ≡ f (x)$                                                  |
-| $⇓$  | $∀y∈\left[\min \lbrace f (X_0), f (X_1) \rbrace, \max \lbrace f (X_0), f (X_1) \rbrace \right];∃θ∈[X_0, X_1]; y = f (θ)$ | $⇐$  | $[ \min\lbrace f (X_0), f (X_1) \rbrace, \max\lbrace f (X_0), f (X_1) \rbrace ] ⊆ \left( \inf\limits_{x∈[X_0,X_1]} f (x), \sup\limits_{x∈[X_0,X_1]} f (x) \right)$ |
-| $⇓$  | $\left[ f (X_0) · f (X_1) ≤ 0 \right] ⇒ \left[ 0 = \left. f (θ) \right|_{∃θ∈[X_0, X_1]} \right]$ | $⇐$  | $0 ∈ [ \min\lbrace f (X_0), f (X_1) \rbrace, \max\lbrace f (X_0), f (X_1) \rbrace ]$ |
+$f(x)|_{∀x∈X} = \left.f (x)\right|_{∃θ∈X}$
 
-若函数$f (x)$在单区间$X$上连续，则其值域$Y$为单区间，反之不对。
-
-若函数$f (x)$在区间$[X_0, X_1]$上连续，且其值域内含于定义域，则必存在不动点$θ∈[X_0, X_1]$使得成立。
-
-$∀x∈[X_0, X_1]; f(x)∈[X_0, X_1] ⇒ \left.f (x)\right|_{∃θ∈[X_0, X_1]} = θ$
-
-| $⇓$  | $F (x) ≡ f (x) - x$                    |      |                                                |
-| :--: | :------------------------------------- | :--: | :--------------------------------------------- |
-| $⇓$  | $F (X_0) · F (X_1) ≤ 0$                    | $⇐$  | $F (X_0) = f (X_0) - X_0 ≥ 0, F (X_1) = f (X_1) - X_1 ≤ 0$ |
-| $⇓$  | $0 = \left. F (x) \right|_{∃θ∈[X_0, X_1]}$ |      |                                                |
-| $⇓$  | $\left.f (x)\right|_{∃θ∈[X_0, X_1]} = θ$   |      |                                                |
-
-若函数$f (x)$在区间$[X_0, X_1]$上连续，则对于任意$λ_i>0$必存在点$θ$使得成立。
-
-$∀x_i∈[X_0,X_1];∃θ∈[\min\lbrace x_i \rbrace, \max\lbrace x_i \rbrace];∀λ_i>0; \left[ \sum\limits_{i=0}^{n} λ_i = 1 \right] ⇒ \left[ f (θ) = \sum\limits_{i=0}^{n} λ_i · f (x_i) \right]$
-
-| $⇓$  | $\min\lbrace f (x_i) \rbrace ≤ \sum\limits_{i=0}^{n} λ_i · f (x_i) ≤ \max\lbrace f (x_i) \rbrace$ | $⇐$  | $∀λ_i>0; \sum\limits_{i=0}^{n} λ_i = 1$                      |
+| $⇓$  | $∀x∈X;∃θ∈X; f (x) = f (θ)$                                   | $⇔$  | $\left. f(x) \right|_{∀x∈X} = \left. f(x) \right|_{∃θ∈X}$    |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∃θ∈[\min\lbrace x_i \rbrace, \max\lbrace x_i \rbrace]; f (θ) = \sum\limits_{i=0}^{n} λ_i · f (x_i)$ | $⇐$  | $[\min\lbrace f (x_i) \rbrace, \max\lbrace f (x_i) \rbrace ] ⊆ \left( \inf\limits_{x∈[\min\lbrace x_i \rbrace, \max\lbrace x_i \rbrace]} f (x), \sup\limits_{x∈[\min\lbrace x_i \rbrace, \max\lbrace x_i \rbrace]} f (x) \right)$ |
+| $⇓$  | $∀y∈f(X);∃θ∈X; y = f(θ)$                                     | $⇐$  | $y ≡ f(x)$                                                   |
+| $⇓$  | $∀y∈[\min\lbrace f(x_α),f(x_β),\max\lbrace f(x_α),f(x_β) \rbrace \rbrace] ⊆ f([x_α,x_β]);∃θ∈X; y = f(θ)$ |      |                                                              |
+| $⇓$  | $[f(x_α) · f(x_β) ≤ 0] ⇒ \left[ 0 = \left. f(x) \right|_{∃θ∈[x_α,x_β]} \right]$ |      | $[f(x_α),f(x_β) < 0] ⇒ \left[ 0 = \left. f(x) \right|_{∃θ∈(x_α,x_β)} \right]$ |
 
-对于实数域的奇数次多项式$0 = P_{2·m+1} (x) = \sum\limits_{i=0}^{2 · m + 1} p_i · (x - x_0)^{i}$，必定存在至少一个实数解$θ$。
+若函数$f(x)$在单区间$X = [x_α, x_β]$上连续，对于权均值$\sum\limits_{i=0}^{n} t_i · f(x_i)$，则必定存在某一点$θ∈X$其函数值相等。
 
-| $⇓$  | $P_{2·m+1} (x) = \sum\limits_{i=0}^{2·m+1} p_i · (x - x_0)^{i} = p_{2·m+1} · (x - x_0)^{2·m+1} + \sum\limits_{i=0}^{2·m} \dfrac{p_i}{(x - x_0)^{2 · m + 1 - i} }$ |
-| :--: | :----------------------------------------------------------- |
-| $⇓$  | $\lim\limits_{x⇝∞⁺} P_{2·m+1} (x) = \lim\limits_{m⇝∞⁺} p_{2·m+1} · (x - x_0)^{2 · m + 1} ⇝ ∞⁺ · p_{2·m+1}$ |
-| $⇓$  | $\lim\limits_{x⇝∞⁻} P_{2·m+1} (x) = \lim\limits_{m⇝∞⁺} p_{2·m+1} · (x - x_0)^{2 · m + 1} ⇝ ∞⁻ · p_{2·m+1}$ |
-| $⇓$  | $0∈\left( \inf\limits_{x∈ℝ} P_{2·m+1} (x), \sup\limits_{x∈ℝ} P_{2·m+1} (x) \right) = (∞⁻, ∞⁺)$ |
-| $⇓$  | $∃θ∈ℝ; 0 = P_{2·m+1} (θ) = \sum\limits_{i=0}^{2 · m + 1} p_i · (θ - x_0)^{i}$ |
+$\sum\limits_{i=0}^{n} t_i · f(x_i) \mathop{=====}\limits_{x_i∈[x_α,x_β]}^{\sum\limits_{i=0}^{n} t_i \mathop{==}\limits^{0≤t_i} 1} \left. f(θ) \right|_{∃θ∈[x_α,x_β]}$
 
-若函数$f (x)$在区间$(X_0, X_1)$上连续，且$\lim\limits_{x⇝X_0^{+} } f (x)$与$\lim\limits_{x⇝X_1^{-} } f (x)$均有确界，则函数$f (x)$在区间$(X_0, X_1)$上有确界。
+| $⇓$  | $\sum\limits_{i=0}^{n} t_i · f(x_i) ∈ [\min\lbrace f(x_i) \rbrace, \max\lbrace f(x_i) \rbrace] ⊆ f([x_α,x_β])$ | $\sum\limits_{i=0}^{n} t_i \mathop{==}\limits^{0≤t_i} 1$ |
+| :--: | :----------------------------------------------------------- | :------------------------------------------------------- |
+| $⇓$  | $\sum\limits_{i=0}^{n} t_i · f(x_i) = \left. f(θ) \right|_{∃θ∈[x_α,x_β]}$ |                                                          |
+
+若函数$f (x)$在单区间$X = [x_α, x_β]$上连续，且其值域内含于定义域，则必定存在某一个不动点$θ∈[x_α, x_β]$。
+
+$f([x_α,x_β]) ⊆ [x_α,x_β] ⇒ \left. f(x) \right|_{∃θ∈[x_α,x_β]} = θ$ 
+
+| $⇓$  | $F (x) ≡ f (x) - x$                        |      |                                                        |
+| :--: | :----------------------------------------- | :--: | :----------------------------------------------------- |
+| $⇓$  | $F(x_α) · F(x_β) ≤ 0$                      | $⇐$  | $F(x_α) = f(x_α) - x_α ≥ 0, F(x_β) = f(x_β) - x_β ≤ 0$ |
+| $⇓$  | $0 = \left. F (x) \right|_{∃θ∈[x_α, x_β]}$ |      |                                                        |
+| $⇓$  | $\left.f (x)\right|_{∃θ∈[x_α, x_β]} = θ$   |      |                                                        |
+
+对于实数域奇数次多项式$P_{2·n+1}(x) ≡ \sum\limits_{i=0}^{2·n+1} p_i · (x - x_0)^{i}$，必定存在某一个实数解$θ∈ℝ$。
+
+| $⇓$  | $P_{2·n+1}(x) ≡ \sum\limits_{i=0}^{2·n+1} p_i · (x - x_0)^{i} = p_{2·n+1} · (x - x_0)^{2·n+1} · \left[ 1 + \sum\limits_{i=1}^{2·n} \dfrac{p_{i} · (x - x_0)^{i}}{p_{2·n+1} · (x - x_0)^{2·n+1}} + \dfrac{p_0}{p_{2·n+1}·(x - x_0)^{2·n+1}} \right]$ |      |                    |
+| :--: | :----------------------------------------------------------- | :--: | :----------------- |
+| $⇓$  | $\lim\limits_{x⇝∞^{+}} P_{2·n+1}(x) = \lim\limits_{x⇝∞^{+}} p_{2·n+1} · (x - x_0)^{2·n+1} ⇝ p_{2·n+1} · ∞^{+}$ |      |                    |
+| $⇓$  | $\lim\limits_{x⇝∞^{-}} P_{2·n+1}(x) = \lim\limits_{x⇝∞^{+}} p_{2·n+1} · (x - x_0)^{2·n+1} ⇝ p_{2·n+1} · ∞^{-}$ |      |                    |
+| $⇓$  | $P_{2·n+1}(ℝ) = ℝ$                                           | $⇒$  | $0 ∈ P_{2·n+1}(ℝ)$ |
+| $⇓$  | $0 = \left. P_{2·n+1}(x) \right|_{∃θ∈ℝ}$                     |      |                    |
+
+若函数$f (x)$在单区间$(x_α, x_β)$上连续，且$\lim\limits_{x⇝x_α^{+} } f (x)$与$\lim\limits_{x⇝x_β^{-} } f (x)$均有确界，则函数$f (x)$在区间$(x_α, x_β)$上有确界。
 
 若函数$f (x)$在区间$(∞⁻, ∞⁺)$上连续，且$\lim\limits_{x⇝∞⁻} f (x)$与$\lim\limits_{x⇝∞⁺} f (x)$均有确界，则函数$f (x)$在区间$(∞⁻, ∞⁺)$上有确界。
 
-$∀x∈(X_0,X_1); | f (x) | ≤ \max\left\lbrace \left| \sup\limits_{x∈X} f (x) \right|, \left| \inf\limits_{x∈X} f (x) \right| \right\rbrace ≠ ∞⁺$
+$|f(x)| ≤ \max\left\lbrace \left| \inf\limits_{x∈X} f(x) \right|, \left| \sup\limits_{x∈X} f(x) \right| \right\rbrace$
+
+
 
 ### 微分中值定理
 
