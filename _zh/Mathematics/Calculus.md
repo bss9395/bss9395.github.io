@@ -389,27 +389,29 @@ $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[X_0^{±},±∞
 | $⇓$  | $∀ε>0;∃X_1∈[X_0^{±},±∞];∃δ>0;∀x,x_t∈[X_0^{±},X_1]; [ | x - x_t | ≤ δ ] ⇒ [ | f (x) - f (x_t) | ≤ ε ]$ | $⇔$  | $\left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_t∈[X_0^{±},X_1]} f (x_t) \right]$ |
 | $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈[X_0^{±},±∞); [ | x - x_t | ≤ δ ] ⇒ [ | f (x) - f (x_t) | ≤ ε ]$ | $⇒$  | $\left[ \lim\limits_{x⇝x_t} f (x) \mathop{↭}\limits_{x,x_0∈[X_0^{±},±∞)} f (x_t) \right]$ |
 
-典例：函数$f (x) = \dfrac{1}{x}$在区间$(0, 1)$上非一致连续，但在区间$\mathop{[X_0, X_1)}\limits_{0<X_0}$上一致连续。
+典例：函数$f (x) = \dfrac{1}{x}$在区间$(0, x_β)$上非一致连续，但在区间$\mathop{[x_α, x_β)}\limits_{0<x_α}$上一致连续。
 
-典例：函数$f (x) = \sin x^2$在区间$(∞⁻, ∞⁺)$上非一致连续。函数$f (x) = α · x + β$在区间$(∞⁻, ∞⁺)$上一致连续。
+典例：函数$f (x) = α · x + β$在区间$(∞^{-}, ∞^{+})$上一致连续。函数$f (x) = \sin x^2$在区间$(∞^{-}, ∞^{+})$上非一致连续。
 
-典例：函数$f (x) = | x |$在区间$(∞⁻, ∞⁺)$上一致连续。函数$\mathrm{sgn} (x) = \mathop{-1}\limits_{x<0};\mathop{0}\limits_{x=0};\mathop{+1}\limits_{x>0}$在区间$[-1, +1]$上非一致连续。
+典例：函数$f (x) = | x |$在区间$(∞^{-}, ∞^{+})$上一致连续。函数$\mathrm{sgn} (x) = \mathop{-1}\limits_{x<0};\mathop{0}\limits_{x=0};\mathop{+1}\limits_{x>0}$在区间$[-1, +1]$上非一致连续。
 
-典例：函数$f (x) = \sqrt{x}$在区间$(+0, ∞⁺)$上一致连续，但其在点$x_0=0^+$处导函数的极限为$\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x_0=0^+} = \lim\limits_{x⇝0^+} \dfrac{1}{2 · \sqrt{x} } = ∞⁺$。
+典例：函数$f (x) = \sqrt{x}$在区间$[0, ∞^{+})$上一致连续，但在点$x_0=0^+$处导函数右极限为$\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{0^+} = \lim\limits_{x⇝0^+} \dfrac{1}{2 · \sqrt{x} } = ∞^{+}$。
 
-| $⇓$  | $∃ε>0;∀δ>0;∃x≡\dfrac{1}{n},x_t≡\dfrac{1}{n + 1}; \left[ | x - x_t | = \left| \dfrac{1}{n · (n + 1)} \right| < δ \right] ∧ \left[ | f (x) - f (x_t) | = \left| \dfrac{1}{x} - \dfrac{1}{x_t} \right| = \left| \dfrac{1}{\frac{1}{n} } - \dfrac{1}{\frac{1}{n + 1} } \right| = 1 ≥ ε \right]$ |
+| $⇓$  | $∃ε>0;∀δ>0;∃x=\dfrac{1}{n},x_t=\dfrac{1}{n + 1}∈(0,x_β); \left[ | x - x_t | = \left| \dfrac{1}{n · (n + 1)} \right| ≤ δ \right] ∧ \left[ | f (x) - f (x_t) | = \left| \dfrac{1}{x} - \dfrac{1}{x_t} \right| = \left| \dfrac{1}{\frac{1}{n} } - \dfrac{1}{\frac{1}{n + 1} } \right| = 1 > ε \right]$ |
 | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈[X_0,X_1); \left[ | x - x_t | < δ \right] ⇒ \left[ | f (x) - f (x_t) | = \left| \dfrac{1}{x} - \dfrac{1}{x_t} \right| = \dfrac{| x - x_t |}{| x · x_t |} < \dfrac{δ}{X_0^2} = ε \right]$ |
+| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈[x_α,x_β); \left[ | x - x_t | ≤ δ \right] ⇒ \left[ | f (x) - f (x_t) | = \left| \dfrac{1}{x} - \dfrac{1}{x_t} \right| = \dfrac{| x - x_t |}{| x · x_t |} ≤ \dfrac{δ}{x_α^2} = ε \right]$ |
 |      |                                                              |
-| $⇓$  | $∃ε>0;∀δ>0;∃x≡\sqrt{n·π+\frac{π}{2} },x_t≡\sqrt{n·π}; \left[ | x - x_t | = \dfrac{\frac{π}{2} }{\sqrt{n·π+\frac{π}{2} } + \sqrt{n·π} } < δ \right] ∧ \left[ | f (x) - f (x_t) | = \left| \sin x^2 - \sin x_t^2 \right| = \left| \sin \left( n·π+\frac{π}{2} \right) - \sin (n·π) \right| = 1 ≥ ε \right]$ |
+| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈(∞^{-},∞^{+}); \left[ | x - x_t | ≤ δ \right] ⇒ \left[ | f (x) - f (x_t) | = \left| (α · x + β) - (α · x_t + β) \right| = | α | · | x - x_t | ≤ | α | · δ = ε \right]$ |
 |      |                                                              |
-| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈(∞⁻,∞⁺); \left[ | x - x_t | < δ \right] ⇒ \left[ | f (x) - f (x_t) | = \left| (α · x + β) - (α · x_t + β) \right| = | α | · | x - x_t | < | α | · δ = ε \right]$ |
+| $⇓$  | $∃ε>0;∀δ>0;∃x=\sqrt{n·π+\frac{π}{2} },x_t=\sqrt{n·π}∈(∞^{-},∞^{+}); \left[ | x - x_t | = \dfrac{\frac{π}{2} }{\sqrt{n·π+\frac{π}{2} } + \sqrt{n·π} } ≤ δ \right] ∧ \left[ | f (x) - f (x_t) | = \left| \sin x^2 - \sin x_t^2 \right| = \left| \sin \left( n·π+\frac{π}{2} \right) - \sin (n·π) \right| = 1 > ε \right]$ |
 |      |                                                              |
-| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈(∞⁻,∞⁺); [ | x - x_t | < δ ] ⇒ [ | f (x) - f (x_t) | = || x | - | x_t || < | x - x_t | < δ = ε ]$ |
+| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈(∞^{-},∞^{+}); [ | x - x_t | ≤ δ ] ⇒ [ | f (x) - f (x_t) | = || x | - | x_t || ≤ | x - x_t | ≤ δ = ε ]$ |
 |      |                                                              |
-| $⇓$  | $∃ε>0;∀δ>0;∃x≡\dfrac{1}{n},x_t≡0; \left[ | x - x_t | = \left| \dfrac{1}{n} \right| < δ \right] ∧ [ | f (x) - f (x_t) | = | 1 - 0 | = 1 ≥ ε ]$ |
+| $⇓$  | $∃ε>0;∀δ>0;∃x=\dfrac{1}{n},x_t=0∈[-1,+1]; \left[ | x - x_t | = \left| \dfrac{1}{n} \right| ≤ δ \right] ∧ [ | f (x) - f (x_t) | = | 1 - 0 | = 1 > ε ]$ |
 |      |                                                              |
-| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈(0, ∞⁺); [ | x - x_t | < δ ] ⇒ \left[ | f (x) - f (x_t) | = | \sqrt{x} - \sqrt{x_t} | < \left| \dfrac{x - x_t}{\sqrt{x} + \sqrt{x_t} } \right| \mathop{<}\limits^{x-x_t=δ} \left| \dfrac{δ}{\sqrt{x_t+δ}+\sqrt{x_t} } \right| < \left| \dfrac{δ}{\sqrt{δ} } \right| = ε \right]$ |
+| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈[0, ∞^{+}); [ | x - x_t | ≤ δ ] ⇒ \left[ | f (x) - f (x_t) | = | \sqrt{x} - \sqrt{x_t} | \mathop{≤}\limits^{\sqrt{u+v}≤\sqrt{u}+\sqrt{v}} \sqrt{|x - x_t|} ≤ \sqrt{δ} = ε \right]$ |
+
+
 
 ### 连续介值定理
 
