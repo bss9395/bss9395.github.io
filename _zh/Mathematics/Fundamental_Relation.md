@@ -31,27 +31,27 @@ $\mathrm{C} (n, i) = \dfrac{n!}{i! · (n - i)!} = \dfrac{n!}{(n - i)! · i!} = \
 
 $\mathrm{C} (n + 1, i) = \dfrac{(n + 1)!}{i! · (n + 1 - i)!} = \dfrac{n!}{i! · (n - i)!} + \dfrac{n!}{(i - 1)! · (n - i + 1)!} = \mathrm{C} (n, i) + \mathrm{C} (n, i - 1)$
 
-$(x + y)^{n} = \sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · x^{i} · y^{n-i}$
+$(y + x)^{n} = \sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · y^{n-i} · x^{i}$
 
-| $⇓$  |                               $(x + y)^{0}$ | $= 1$                                                        |
-| :--: | ------------------------------------------: | ------------------------------------------------------------ |
-| $⇓$  |                               $(x + y)^{1}$ | $= \dfrac{1!}{0! · 1!} x^{0} · y^{1} + \dfrac{1!}{1! · 0!} x^{1} · y^{0}$ |
-| $⇓$  |                               $(x + y)^{n}$ | $= \sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · x^{i} · y^{n-i}$ |
-| $⇓$  | $(x + y)^{n} · (x + y)^{1} = (x + y)^{n+1}$ | $= \sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · x^{i+1} · y^{n-i} + \sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · x^{i} · y^{n+1-i}$ |
-|      |                                             | $= x^{n+1} · y^{0} + \left[ \sum\limits_{i=1}^{n} \dfrac{n!}{(i - 1)! · (n - i + 1)!} · x^{i} · y^{n-(i-1)} + \sum\limits_{i=1}^{n} \dfrac{n!}{i! · (n - i)!} · x^{i} · y^{n+1-i} \right] + x^{0} · y^{n+1}$ |
-|      |                                             | $= x^{n+1} · y^{0} + \sum\limits_{i=1}^{n} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · x^{i} · y^{n+1-i} + x^{0} · y^{n+1}$ |
-| $⇓$  |                             $(x + y)^{n+1}$ | $= \sum\limits_{i=0}^{n+1} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · x^{i} · y^{n+1-i}$ |
+|               $(y + x)^{0}$ | $1$                                                          |
+| --------------------------: | ------------------------------------------------------------ |
+|               $(y + x)^{1}$ | $y^{1} · x^{0} + y^{0} · x^{1}$                              |
+|               $(y + x)^{n}$ | $\sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · y^{n - i} · x^{i}$ |
+| $(y + x)^{1} · (y + x)^{n}$ | $\sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · \left[ y^{n-i+1} · x^{i} + y^{n-i} · x^{i+1} \right]$ |
+|                             | $y^{n+1} · x^{0} + \left[ \sum\limits_{i=1}^{n} \dfrac{n!}{i! · (n - i)!} y^{n-i+1} · x^{i}  +  \sum\limits_{i=1}^{n} \dfrac{n!}{(i - 1)! · (n - i + 1)!} · y^{n-(i-1)} · x^{i} \right] + y^{0} · x^{n+1}$ |
+|                             | $y^{n+1} · x^{0} + \left[ \sum\limits_{i=1}^{n} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · y^{n+1-i} · x^{i} \right] + y^{0} · x^{n+1}$ |
+|             $(y + x)^{n+1}$ | $\sum\limits_{i=0}^{n+1} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · y^{n-i+1} · x^{i}$ |
 
 ### 等比恒等式
 
-$x^{n+1} - y^{n+1} = (x - y) · \sum\limits_{i=0}^{n} x^{i} · y^{n - i}$
+$y^{n+1} - x^{n+1} = (y - x) · \sum\limits_{i=0}^{n} y^{n-i} · x^{i}$
 
-$\dfrac{x^{n+1} - 1}{x - 1} = \sum\limits_{i=0}^{n} x^{i}$
+$\dfrac{1 - x^{n+1}}{1 - x} = \sum\limits_{i=0}^{n} x^{i}$
 
-| $⇓$  |          $x^{n+1} - y^{n+1}$ | $= (x - y) · \sum\limits_{i=0}^{n} x^{i} · y^{n - i} = \sum\limits_{i=0}^{n} x^{i+1} · y^{n-i} - \sum\limits_{i=0}^{n} x^{i} · y^{n-(i-1)} = x^{n+1} + \left[ \sum\limits_{i=0}^{n-1} x^{i+1} · y^{n-i} - \sum\limits_{i=0}^{n-1} x^{i+1} · y^{n-i} \right] - y^{n+1}$ |
-| :--: | ---------------------------: | :----------------------------------------------------------- |
-| $⇓$  |                $x^{n+1} - 1$ | $= (x - 1) · \sum\limits_{i=0}^{n} x^{i}$                    |
-| $⇓$  | $\dfrac{x^{n+1} - 1}{x - 1}$ | $= \sum\limits_{i=0}^{n} x^{i}$                              |
+|          $y^{n+1} - x^{n+1}$ | $(y - x) · \sum\limits_{i=0}^{n} y^{n-i} · x^{i} = \sum\limits_{i=0}^{n} y^{n-i+1} · x^{i} - \sum\limits_{i=0}^{n} y^{n-i} · x^{i+1} = y^{n+1} + \left[ \sum\limits_{i=1}^{n} y^{n-i+1} · x^{i} - \sum\limits_{i=1}^{n} y^{n-(i-1)} · x^{i} \right] - x^{n+1} = y^{n+1} - x^{n+1}$ |
+| ---------------------------: | :----------------------------------------------------------- |
+|                $1 - x^{n+1}$ | $(1 - x) · \sum\limits_{i=0}^{n} x^{i}$                      |
+| $\dfrac{1 - x^{n+1}}{1 - x}$ | $\sum\limits_{i=0}^{n} x^{i}$                                |
 
 ### 等幂恒等式
 

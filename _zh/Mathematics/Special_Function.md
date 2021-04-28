@@ -86,7 +86,7 @@ $\mathcal{W}_{n}(x) = \mathop{0}\limits_{x=0};\mathop{x^{n} · \sin \dfrac{1}{x}
 
 $\dfrac{\mathrm{d} \mathcal{W}_{n}(0)}{\mathrm{d} x} = \lim\limits_{x⇝0} \dfrac{\mathcal{W}_{n}(x) - \mathcal{W}_{n}(0)}{x - 0} = \lim\limits_{x⇝0} x^{n-1} · \sin \dfrac{1}{x}$
 
-$\lim\limits_{x⇝0} \dfrac{\mathrm{d} \mathcal{W}_{n}(x)}{\mathrm{d} x} = \lim\limits_{x⇝0} n · x^{n-1} · \sin \dfrac{1}{x} - x^{n-2} · \cos \dfrac{1}{x}$
+$\lim\limits_{x⇝0} \dfrac{\mathrm{d} \mathcal{W}_{n}(x)}{\mathrm{d} x} = \lim\limits_{x⇝0} \left[ n · x^{n-1} · \sin \dfrac{1}{x} - x^{n-2} · \cos \dfrac{1}{x} \right]$
 
 当$n ≤ 0$时，$\mathcal{W}_{n}(x)$在点$x = 0$处振荡，因此其导数振荡，其导函数振荡。
 
@@ -95,11 +95,11 @@ $\lim\limits_{x⇝0} \dfrac{\mathrm{d} \mathcal{W}_{n}(x)}{\mathrm{d} x} = \lim\
 当$1 < n ≤ 2$时，$\mathcal{W}_{n}(x)$在点$x = 0$处连续，其导数收敛，其导函数振荡。
 
 当$2 < n$时，$\mathcal{W}_{n}(x)$在点$x = 0$处连续，并且其导数收敛，其导函数收敛。
-| $n < 0$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{n} · \sin \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π+\frac{π}{2}]^{-1}} |x^{n}| \mathop{⇝}\limits_{n<0} ∞^{+}$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{n} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π]^{-1}} |x^{n}| \mathop{⇝}\limits_{n<0} ∞^{+}$ | 在点$x=0$处振荡 |
-| :---------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :-------------- |
-| $n = 0$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|x^{n} · \sin \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝0}^{x=[m·π+\frac{π}{2}]^{-1}} \left|\sin \dfrac{1}{x}\right| = 1$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|x^{n} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝0}^{x=[m·π]^{-1}} \left|\cos \dfrac{1}{x}\right| = 1$ | 在点$x=0$处振荡 |
-| $0 < n$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{n} · \sin \dfrac{1}{x} \right| ≤ \lim\limits_{x⇝0}^{δ⇝0} |x^{n}| \mathop{⇝}\limits_{0<n} 0$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{n} · \cos \dfrac{1}{x} \right| ≤ \lim\limits_{x⇝0}^{δ⇝0} |x^{n}| \mathop{⇝}\limits_{0<n} 0$ | 在点$x=0$处收敛 |
-|             |                                                              |                                                              |                 |
-| $1 < n ≤ 2$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|n · x^{n-1} · \sin \dfrac{1}{x} - x^{n-2} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π+\frac{π}{2}]^{-1}} |n·x^{n-1}| ⇝ \mathop{0}\limits_{1<n≤2}$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|n · x^{n-1} · \sin \dfrac{1}{x} - x^{n-2} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π]^{-1}} |x^{n-2}| ⇝ \mathop{∞^{+}}\limits_{1<n<2};\mathop{1}\limits_{n=2}$ | 在点$x=0$处振荡 |
+| $n < 0$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{n} · \sin \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π+\frac{π}{2}]^{-1}} |x^{n}| \mathop{⇝}\limits_{n<0} ∞^{+}$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{n} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π]^{-1}} |x^{n}| \mathop{⇝}\limits_{n<0} ∞^{+}$ | 振荡 |
+| :---------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :--- |
+| $n = 0$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|x^{n} · \sin \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝0}^{x=[m·π+\frac{π}{2}]^{-1}} \left|\sin \dfrac{1}{x}\right| = 1$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|x^{n} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝0}^{x=[m·π]^{-1}} \left|\cos \dfrac{1}{x}\right| = 1$ | 振荡 |
+| $0 < n$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{n} · \sin \dfrac{1}{x} \right| ≤ \lim\limits_{x⇝0}^{δ⇝0} |x^{n}| \mathop{⇝}\limits_{0<n} 0$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{n} · \cos \dfrac{1}{x} \right| ≤ \lim\limits_{x⇝0}^{δ⇝0} |x^{n}| \mathop{⇝}\limits_{0<n} 0$ | 收敛 |
+|             |                                                              |                                                              |      |
+| $1 < n ≤ 2$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|n · x^{n-1} · \sin \dfrac{1}{x} - x^{n-2} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π+\frac{π}{2}]^{-1}} |n·x^{n-1}| ⇝ \mathop{0}\limits_{1<n≤2}$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|n · x^{n-1} · \sin \dfrac{1}{x} - x^{n-2} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π]^{-1}} |x^{n-2}| ⇝ \mathop{∞^{+}}\limits_{1<n<2};\mathop{1}\limits_{n=2}$ | 振荡 |
 
 
