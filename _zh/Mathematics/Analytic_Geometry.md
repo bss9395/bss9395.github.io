@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  解析几何学
-Update:  2021-04-30T02:21:00+08@中国-广东-湛江+08
+Update:  2021-04-30T05:52:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -43,12 +43,6 @@ $\Lambda^{2} f(x,y) = \Lambda [f_{x} · \lambda x + f_{y} · \lambda y] = f_{x,x
 
 ------
 
-### 平面极坐标系
-
-
-
-------
-
 ### 单变元参数方程
 
 $\left\lbrace\begin{align}
@@ -58,10 +52,32 @@ x &= x(t) \\
 
 $y(x) = y[{'}x(t)]$
 
-| $\dfrac{\Lambda y(x)}{\lambda x} = \dfrac{\Lambda y(t)}{\lambda t} · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1}$ | $\dfrac{\Lambda y(x)}{\lambda x} = \dfrac{Λ y(t)}{λ t} · \dfrac{Λ t}{λ x(t)}$ |
-| :----------------------------------------------------------- | :----------------------------------------------------------- |
-| $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3}$ | $\dfrac{\Lambda}{\lambda x} \dfrac{\Lambda y(x)}{\lambda x} = \dfrac{\Lambda}{\lambda t} \left[ \dfrac{\Lambda y}{\lambda t} · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-1} \right] · \dfrac{\Lambda t}{\lambda x} = \left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-1} + \dfrac{\Lambda y}{\lambda t} · (-1) · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-2} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \dfrac{\Lambda t}{\lambda x}$ |
-|                                                              |                                                              |
+$\dfrac{\Lambda y(x)}{\lambda x} = \dfrac{\Lambda y(t)}{\lambda t} · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1}$
+
+$\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3}$
+
+| $\dfrac{\Lambda y(x)}{\lambda x}$         | $\dfrac{Λ y(t)}{λ t} · \dfrac{Λ t}{λ x(t)} = \dfrac{\Lambda y(t)}{\lambda t} · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1}$ |
+| :---------------------------------------- | :----------------------------------------------------------- |
+| $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x}$ | $\dfrac{\Lambda}{\lambda x} \dfrac{\Lambda y(x)}{\lambda x} = \dfrac{\Lambda}{\lambda t} \left[ \dfrac{\Lambda y}{\lambda t} · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-1} \right] · \dfrac{\Lambda t}{\lambda x} = \left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-1} + \dfrac{\Lambda y}{\lambda t} · (-1) · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-2} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \dfrac{\Lambda t}{\lambda x} = \left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3}$ |
+
+### 平面极角坐标系
+
+$\left\lbrace\begin{align}
+y &= r(θ) · \sin θ \\
+x &= r(θ) · \cos θ \\
+\end{align}\right.$
+
+$y(x) = y[{'}x(θ)]$
+
+$\tan α = \dfrac{\Lambda y(x)}{\lambda x} = \left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) \right] · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ \right]^{-1}$
+
+$\tan κ = \tan (α - θ) = r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \right]^{-1}$
+
+| $\tan α = \dfrac{\Lambda y(x)}{\lambda x}$ | $\dfrac{\Lambda y(θ)}{\lambda θ} · \left[ \dfrac{\Lambda x(θ)}{\lambda θ} \right]^{-1} = \left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \sin θ + r(θ) · \cos θ \right] · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \cos θ - r(θ) · \sin θ \right]^{-1} = \left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) \right] · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ \right]^{-1}$ |
+| :----------------------------------------- | :----------------------------------------------------------- |
+| $\tan κ \tan (α - θ)$                      | $\dfrac{\tan α - \tan θ}{1 + \tan α · \tan θ} = \dfrac{\left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) \right] · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ \right]^{-1} - \tan θ}{1 + \left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) \right] · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ \right]^{-1} · \tan θ} = \dfrac{\dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) - \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) · \tan^{2} θ}{\dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ + \dfrac{\Lambda r(θ)}{\lambda θ} · \tan^{2} θ + r(θ) · \tan θ} = r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \right]^{-1}$ |
+
+------
 
 ### 抛物体参数方程
 
@@ -72,20 +88,32 @@ x(t) &= v_x · t \\
 
 $y(x) = \dfrac{v_{y}}{v_x} · x - \dfrac{1}{2} · \dfrac{g}{v_x^2} · x^2$
 
-|      |      |      |
-| ---- | ---- | ---- |
-|      |      |      |
-|      |      |      |
-|      |      |      |
+$v(t) = \sqrt{\left[ \dfrac{\Lambda y(t)}{\lambda t} \right]^{2} + \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{2}} = \sqrt{v_{x}^{2} + (v_{y} - g · t)^{2}}$
+
+$\tan α = \dfrac{\Lambda y(x)}{\lambda x} = \dfrac{v_{y} - g · t}{v_{x}}$
+
+| $\dfrac{\Lambda y(t)}{\lambda t}$                            | $v_{y} - g · t$                                              |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| $\dfrac{\Lambda x(t)}{\lambda t}$                            | $v_{x}$                                                      |
+| $v(t) = \sqrt{\left[ \dfrac{\Lambda y(t)}{\lambda t} \right]^{2} + \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{2}}$ | $\sqrt{v_{x}^{2} + (v_{y} - g · t)^{2}}$                     |
+| $\tan α = \dfrac{\Lambda y(x)}{\lambda x}$                   | $\dfrac{\Lambda y(t)}{\lambda t} · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1} = \dfrac{v_{y} - g · t}{v_{x}}$ |
 
 ### 椭圆参数方程
 
 $\left\lbrace\begin{align}
-y(t) &= r_y · \sin t \\
-x(t) &= r_x · \cos t \\
+y(θ) &= r_y · \sin θ \\
+x(θ) &= r_x · \cos θ \\
 \end{align}\right.$
 
 $\dfrac{x^2}{r_x^2} + \dfrac{y^2}{r_y^2} = 1$
+
+$\dfrac{\Lambda y(x)}{\lambda x} = \dfrac{-r_{y}}{r_{x} · \tan θ}$
+
+$\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \dfrac{-r_{y}}{r_{x} · \sin^{3} θ}$
+
+| $\dfrac{\Lambda y(x)}{\lambda x}$         | $\dfrac{\Lambda y(θ)}{\lambda θ} · \left[ \dfrac{\Lambda x(θ)}{\lambda θ} \right]^{-1} = \dfrac{+r_{y} · \cos θ} {-r_{x} · \sin θ} = \dfrac{-r_{y}}{r_{x} · \tan θ}$ |
+| :---------------------------------------- | :----------------------------------------------------------- |
+| $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x}$ | $\left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3} = \left[ (-r_{y} · \sin θ) · (-r_{x} · \sin θ) - (+r_{y} · \cos θ) · (-r_{x} · \cos θ) \right] · [-r_{x} · \sin θ]^{-3} = \dfrac{-r_{y}}{r_{x} · \sin^{3} θ}$ |
 
 ### 摆线参数方程
 
@@ -96,9 +124,22 @@ x(t) &= r · (t - \sin t) \\
 
 $x(y) = r · {'}\cos \left( 1 - \dfrac{y}{r} \right) - \sqrt{y · (2 · r - y)}$
 
-|      |      |      |
-| ---- | ---- | ---- |
-|      |      |      |
-|      |      |      |
-|      |      |      |
+$\dfrac{\Lambda y(x)}{\lambda x} = \dfrac{1}{\tan \frac{t}{2}}$
+
+$\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \dfrac{-1}{r · (1 - \cos t)^{2}}$
+
+|                                           |                                                              |
+| :---------------------------------------- | :----------------------------------------------------------- |
+| $\dfrac{\Lambda y(x)}{\lambda x}$         | $\dfrac{\Lambda y(t)}{\lambda t} · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1} = \dfrac{r · \sin t}{r · (1 - \cos t)} = \dfrac{2 · \sin \frac{t}{2} · \cos \frac{t}{2}}{2 · \sin^{2} \frac{t}{2}} = \dfrac{1}{\tan \frac{t}{2}}$ |
+| $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x}$ | $\left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3} = \dfrac{[r · \cos t] · [r · (1 - \cos t)] - [r · \sin t] · [r · \sin t]}{[r · (1 - \cos t)]^{3}} = \dfrac{-1}{r · (1 - \cos t)^{2}}$ |
+
+### 螺线参数方程
+
+$r(θ) = β^{α · θ}$
+
+$\tan κ = \dfrac{1}{α · \ln β}$
+
+| $\tan κ$ | $r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \right]^{-1} = β^{α·θ} · [ β^{α·θ} · \ln β · α ]^{-1} = \dfrac{1}{α · \ln β}$ |      |
+| :------- | :----------------------------------------------------------- | ---- |
+|          |                                                              |      |
 
