@@ -2,10 +2,18 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  特殊函数
-Update:  2021-04-24T19:26:00+08@中国-广东-湛江+08
+Update:  2021-04-30T23:00:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
+
+### 绝对函数$\mathrm{abs}(x)$
+
+$\mathrm{abs}(x) = |x| = \mathop{-x}\limits_{x<0};\mathop{0}\limits_{x=0};\mathop{+x}\limits_{x>0}$
+
+$\dfrac{\Lambda \mathrm{abs}(0)}{\lambda x} = \lim\limits_{x⇝0} \dfrac{\mathrm{abs}(x) - \mathrm{abs}(0)}{x - 0} = \lim\limits_{x⇝0} \dfrac{|x|}{x}$
+
+$\dfrac{\Lambda \mathrm{abs}(x)}{\lambda x} = \mathop{-1}\limits_{x<0};\mathop{|x|·x^{-1}}\limits_{x=0};\mathop{+1}\limits_{x>0} = \dfrac{|x|}{x}$
 
 ### 特征函数$\mathcal{X}_{I} (x)$
 
@@ -76,9 +84,15 @@ $\mathcal{F} (x) ≡ \mathop{I_i - \left| x - X_{i,j} \right|}\limits_{| x - X_{
 
 ### 符号函数$\mathrm{sgn} (x)$
 
-$\mathrm{sgn} (x) = \mathop{-1}\limits_{x<0};\mathop{0}\limits_{x=0};\mathop{+1}\limits_{x>0}$
+$\mathrm{sgn} (x) = \mathop{-1}\limits_{x<0};\mathop{0}\limits_{x=0};\mathop{+1}\limits_{x>0} = \mathop{0}\limits_{x=0};\mathop{x·|x|^{-1}}\limits_{x≠0}$
 
 $\mathrm{sgn} (\mathcal{R} (x)) = \mathcal{Q} (x)$
+
+$\dfrac{\mathrm{d} \mathrm{sgn}(0)}{\mathrm{d} x} = \lim\limits_{x⇝0} \dfrac{\mathrm{sgn}(x) - \mathrm{sgn}(0)}{x - 0} = \lim\limits_{x⇝0} \dfrac{1}{|x|}$
+
+$\dfrac{\mathrm{d} \mathrm{sgn}(x)}{\mathrm{d} x} = \mathop{\dfrac{0}{x}}\limits_{x<0};\mathop{\dfrac{-1}{x}}\limits_{x=0^{-}};\mathop{\dfrac{+1}{x}}\limits_{x=0^{+}};\mathop{\dfrac{0}{x}}\limits_{x>0} = \mathop{\dfrac{1}{|x|}}\limits_{x=0};\mathop{\dfrac{0}{x}}\limits_{x≠0}$
+
+$\lim\limits_{x⇝0} \dfrac{\mathrm{d} \mathrm{sgn}(x)}{\mathrm{d} x} ⇝ 0 ≠ \dfrac{\mathrm{d} \mathrm{sgn}(0)}{\mathrm{d} x}$
 
 ### 振荡函数$\mathcal{W}_{α}(x)$
 
@@ -86,15 +100,15 @@ $\mathcal{W}_{α}(x) = \mathop{0}\limits_{x=0};\mathop{x^{α} · \sin \dfrac{1}{
 
 $\dfrac{\mathrm{d} \mathcal{W}_{α}(0)}{\mathrm{d} x} = \lim\limits_{x⇝0} \dfrac{\mathcal{W}_{α}(x) - \mathcal{W}_{α}(0)}{x - 0} = \lim\limits_{x⇝0} x^{α-1} · \sin \dfrac{1}{x}$
 
-$\lim\limits_{x⇝0} \dfrac{\mathrm{d} \mathcal{W}_{α}(x)}{\mathrm{d} x} = \lim\limits_{x⇝0} \left[ α · x^{α-1} · \sin \dfrac{1}{x} - x^{α-2} · \cos \dfrac{1}{x} \right]$
+$\dfrac{\mathrm{d} \mathcal{W}_{α}(x)}{\mathrm{d} x} = \mathop{\left[ x^{α-1} · \sin \dfrac{1}{x} \right]}\limits_{x=0};\mathop{\left[ α · x^{α-1} · \sin \dfrac{1}{x} - x^{α-2} · \cos \dfrac{1}{x} \right]}\limits_{x≠0}$
 
-当$n ≤ 0$时，$\mathcal{W}_{α}(x)$在点$x = 0$处振荡，因此其导数振荡，其导函数振荡。
+当$α ≤ 0$时，$\mathcal{W}_{α}(x)$在点$x = 0$处振荡，因此其导数振荡，其导函数振荡。
 
-当$0 < n ≤ 1$时，$\mathcal{W}_{α} (x)$在点$x = 0$处连续，其导数振荡，其导函数振荡。
+当$0 < α ≤ 1$时，$\mathcal{W}_{α} (x)$在点$x = 0$处连续，其导数振荡，其导函数振荡。
 
-当$1 < n ≤ 2$时，$\mathcal{W}_{α}(x)$在点$x = 0$处连续，其导数收敛，其导函数振荡。
+当$1 < α ≤ 2$时，$\mathcal{W}_{α}(x)$在点$x = 0$处连续，其导数收敛，其导函数振荡。
 
-当$2 < n$时，$\mathcal{W}_{α}(x)$在点$x = 0$处连续，并且其导数收敛，其导函数收敛。
+当$2 < α$时，$\mathcal{W}_{α}(x)$在点$x = 0$处连续，并且其导数收敛，其导函数收敛。
 | $α < 0$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{α} · \sin \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π+\frac{π}{2}]^{-1}} |x^{α}| \mathop{⇝}\limits_{n<0} ∞^{+}$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{α} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π]^{-1}} |x^{α}| \mathop{⇝}\limits_{n<0} ∞^{+}$ | $x = 0$处振荡 |
 | :---------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :------------ |
 | $α = 0$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|x^{α} · \sin \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝0}^{x=[m·π+\frac{π}{2}]^{-1}} \left|\sin \dfrac{1}{x}\right| = 1$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|x^{α} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝0}^{x=[m·π]^{-1}} \left|\cos \dfrac{1}{x}\right| = 1$ | $x = 0$处振荡 |

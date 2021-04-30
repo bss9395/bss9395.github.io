@@ -79,7 +79,7 @@ $\tan κ = \tan (α - θ) = r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \r
 
 ------
 
-### 抛物体参数方程
+### 抛体参数方程
 
 $\left\lbrace\begin{align}
 y(t) &= v_y · t - \dfrac{1}{2} · g · t^2 \\
