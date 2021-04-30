@@ -396,13 +396,13 @@ $\left[ ∀x_t∈\fbox{X};Ⅎ\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f (x)}{\
 | $⇕$  | $Ⅎ\mathrm{Sup};∀ε>0;∃δ>0;∀x,x_t∈X; [ |x - x_t| ≤ δ ] ⇒ [ |f(x) - f(x_t)| ≤ \mathrm{Sup} · |x - x_t| ≤ \mathrm{Sup} · δ = ε ]$ |      |                                                              |
 | $⇓$  | $\lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t)$ |      |                                                              |
 
-若函数$f (x)$在区间$\fbox{X}$上满足切割线极限过程，则函数$f (x)$在区间$X$上一致连续，反之亦然。
+若函数$f (x)$在区间$\fbox{X}$上满足切割线极限过程，则函数$f (x)$在区间$X$上一致连续，反之亦然。[有待验证]
 
 $0 ↭ \lim\limits_{x↭x_t} \left| \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} \right| · |x - x_t| \mathop{===}\limits_{x_t∈\fbox{X}}^{x∈\fbox{X}} \lim\limits_{x_t↭x} \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x_t - x|$
 
-| $⇓$  | $f(x) = f(x_t) + \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} · (x - x_t) + o(|x - x_t|)$ | $f(x_t) = f(x) + \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} · (x_t - x) + o(|x_t - x|)$ |
-| :--: | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| $⇓$  | $|f(x) - f(x_t) + o(|x - x_t|)| = \left| \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} \right| · |x - x_t| = \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x_t - x|$ |                                                              |
+| $⇓$  | $f(x) = f(x_t) + \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} · (x - x_t) + o_{x_t}(|x - x_t|)$ | $f(x_t) = f(x) + \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} · (x_t - x) + o_{x}(|x_t - x|)$ |
+| :--: | ------------------------------------------------------------ | :----------------------------------------------------------- |
+| $⇓$  | $|f(x) - f(x_t) - o_{x_t}(|x - x_t|)| = \left| \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} \right| · |x - x_t|$ | $|f(x_t) - f(x) - o_{x}(|x_t-x|)| = \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x_t - x|$ |
 | $⇓$  | $0 ↭ \lim\limits_{x↭x_t} |f(x) - f(x_t) + o(|x - x_t|)| = \lim\limits_{x↭x_t} \left| \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} \right| · |x - x_t| \mathop{===}\limits_{x_t∈\fbox{X}}^{x∈\fbox{X}} \lim\limits_{x_t↭x} \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x_t - x|$ |                                                              |
 
 
@@ -507,38 +507,38 @@ $f([x_α,x_β]) ⊆ [x_α,x_β] ⇒ \left. f(x) \right|_{∃θ∈[x_α,x_β]} = 
 
 $|f(x)| ≤ \max\left\lbrace \left| \inf\limits_{x∈X} f(x) \right|, \left| \sup\limits_{x∈X} f(x) \right| \right\rbrace$
 
-
-
 ### 微分中值定理
 
-函数$f (x)$在闭区间$[X_0, X_1]$上连续且可导，若两个端点的函数值相等，则必至少存在一点$θ∈(X_0, X_1)$使得成立。
+若函数$f(x)$在点$x_0$处导数值$\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0$，则称点$x_0$为函数$f(x)$的驻点。
 
-$[ f (X_0) = f (X_1) ] ⇒ \left[ \left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)}  = 0 \right]$
+若函数$f(x)$在点$x_0$处导数值存在，且达到极小值极大值，则其在点$x_0$处导数$\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0$。
 
-| $⇓$  | $\lim\limits_{x⇝θ^-} \dfrac{f (x) - f (θ)}{x - θ} ≤ 0 ≤ \lim\limits_{x⇝θ^+} \dfrac{f (x) - f (θ)}{x - θ}$ | $⇐$  | $f (θ) ≡ \min\limits_{x∈(X_0, X_1)} f (x)$ |
-| :--: | :----------------------------------------------------------- | :--: | :------------------------------------- |
-| $⇓$  | $\lim\limits_{x⇝θ^-} \dfrac{f (x) - f (θ)}{x - θ} ≥ 0 ≥ \lim\limits_{x⇝θ^+} \dfrac{f (x) - f (θ)}{x - θ}$ | $⇐$  | $f (θ) ≡ \max\limits_{x∈(X_0, X_1)} f (x)$ |
-| $⇓$  | $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x}\right|_{∃θ∈(X_0, X_1)} = \lim\limits_{x⇝θ} \dfrac{f (x) - f (θ)}{x - θ} = 0$ | $⇐$  | $f (X_0) = f (X_1)$                        |
+若函数$f(x)$在闭区间$[x_α,x_β]$上连续且可导，当两端点处函数值相等，则存在某一点$θ∈(x_α,x_β)$其导数值为零。
 
-函数$f (x)$在闭区间$[X_0, X_1]$上连续且可导，则必至少存在一点$θ∈(X_0, X_1)$使得成立。
+$[f(x_α) = f(x_β)] ⇒ \left[ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = 0 \right]$
 
-$\left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{X_1 - X_0}$
+| $⇓$  | $f(θ) = \min\limits_{x∈(x_α,x_β)} f(x)$ | $\lim\limits_{x⇝θ^{-}} \dfrac{f(x) - f(θ)}{x - θ} ≤ 0 ≤ \lim\limits_{x⇝θ^{+}} \dfrac{f(x) - f(θ)}{x - θ}$ |
+| :--: | :-------------------------------------- | :----------------------------------------------------------- |
+| $⇓$  | $f(θ) = \max\limits_{x∈(x_α,x_β)} f(x)$ | $\lim\limits_{x⇝θ^{-}} \dfrac{f(x) - f(θ)}{x - θ} ≥ 0 ≥ \lim\limits_{x⇝θ^{+}} \dfrac{f(x) - f(θ)}{x - θ}$ |
+| $⇓$  | $f(x_α) = f(x_β)$                       | $\lim\limits_{x⇝θ} \dfrac{f(x) - f(θ)}{x - θ} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| = 0$ |
 
-| $⇓$  | $F (x) = \left|\begin{matrix} 1 & 1 & 1 \\ X_0 & x & X_1 \\ f (X_0) & f (x) & f (X_1) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & x - X_0 & X_1 - X_0 \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right|$ | $⇒$  | $F (X_0) = 0 = F (X_1)$                                      |
-| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $$\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d} }{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & x - X_0 & X_1 - X_0 \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ X_0 & 1 & X_1 - X_0 \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d}x} & f (X_1) - f (X_0) \end{matrix}\right|$$ | $⇒$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = [ f (X_1) - f (X_0) ] - (X_1 - X_0) · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$ |
-| $⇓$  | $\left. \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{X_1 - X_0}$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = 0$ |
+若函数$f(x)$在闭区间$[x_α,x_β]$上连续且可导，则存在某一点$θ∈(x_α,x_β)$其导数值，等同于两端点处直线的斜率。
 
-函数$f (x)$与函数$g (x)$在闭区间$[X_0, X_1]$上连续且可导，则必至少存在一点$θ∈(X_0, X_1)$使得成立。
+$\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = \dfrac{f(x_β) - f(x_α)}{x_β - x_α}$
 
-$\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{g (X_1) - g (X_0)}$
+| $⇓$  | $F(x) ≡ \left|\begin{matrix} 1 & 1 & 1 \\ x_α & x & x_β \\ f(x_α) & f(x) & f(x_β) \\ \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ x_α & x - x_α & x_β - x_α \\ f(x_α) & f(x) - f(x_α) & f(x_β) - f(x_α) \end{matrix}\right|$ | $F(x_α) = 0 = F(x_β)$                                        |
+| :--: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| $⇓$  | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ x_α & x - x_α & x_β - x_α \\ f(x_α) & f(x) - f(x_α) & f(x_β) - f(x_α) \\ \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ x_α & 1 & x_β - x_α \\ f(x_α) & \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} & f(x_β) - f(x_α) \end{matrix}\right|$ | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = [f(x_β) - f(x_α)] - (x_β - x_α) · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ |
+| $⇓$  | $\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = \dfrac{f(x_β) - f(x_α)}{x_β - x_α}$ | $\left. \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = 0$ |
 
-| $⇓$  | $F (x) = \left|\begin{matrix} 1 & 1 & 1 \\ g (X_0) & g (x) & g (X_1) \\ f (X_0) & f (x) & f (X_1) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & g (x) - g (X_0) & g (X_1) - g (X_0) \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right|$ | $⇒$  | $F (X_0) = 0 = F (X_1)$                                      |
-| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = \dfrac{\mathrm{d} }{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & g (x) - g (X_0) & g (X_1) - g (X_0) \\ f (X_0) & f (x) - f (X_0) & f (X_1) - f (X_0) \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g (X_0) & \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} & g (X_1) - g (X_0) \\ f (X_0) & \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} & f (X_1) - f (X_0) \end{matrix}\right|$ | $⇒$  | $\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} = [ f (X_1) - f (X_0) ]  · \dfrac{\mathrm{d} g (x)}{\mathrm{d} x} - [ g (X_1) - g (X_0) ] · \dfrac{\mathrm{d} f (x)}{\mathrm{d} x}$ |
-| $⇓$  | $\left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} x} · \dfrac{\mathrm{d} x}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \left.\dfrac{\mathrm{d} f (x)}{\mathrm{d} g (x)}\right|_{∃θ∈(X_0, X_1)} = \dfrac{f (X_1) - f (X_0)}{g (X_1) - g (X_0)}$ | $⇐$  | $\left.\dfrac{\mathrm{d} F (x)}{\mathrm{d} x} \right|_{∃θ∈(X_0, X_1)} = 0$ |
+若函数$f(x)$与函数$g(x)$在闭区间$[x_α,x_β]$上连续且可导，则存在某一点$θ∈(x_α,x_β)$其导数值，等同于两端点处函数值的比值。
 
+$\left.\dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)}\right|_{∃θ∈(x_α, x_β)} = \dfrac{g(x_β) - g(x_α)}{f(x_β) - f(x_α)}$
 
+| $⇓$  | $F(x) ≡ \left|\begin{matrix} 1 & 1 & 1 \\ g(x_α) & g(x) & g(x_β) \\ f(x_α) & f(x) & f(x_β) \\ \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g(x_α) & g(x) - g(x_α) & g(x_β) - g(x_α) \\ f(x_α) & f(x) - f(x_α) & f(x_β) - f(x_α) \\ \end{matrix}\right|$ | $F(x_α) = 0 = F(x_β)$                                        |
+| :--: | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| $⇓$  | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ g(x_α) & g(x) - g(x_α) & g(x_β) - g(x_α) \\ f(x_α) & f(x) - f(x_α) & f(x_β) - f(x_α) \\ \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g(x_α) & \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} & g(x_β) - g(x_α) \\ f(x_α) & \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} & f(x_β) - f(x_α) \end{matrix}\right|$ | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = [f(x_β) - f(x_α)]  · \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} - [g(x_β) - g(x_α)] · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ |
+| $⇓$  | $\left.\dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∃θ∈(x_α,x_β)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \dfrac{\mathrm{d} x}{\mathrm{d} f(x)} \right|_{∃θ∈(x_α,x_β)} = \dfrac{g(x_β) - g(x_α)}{f(x_β) - f(x_α)}$ | $\left. \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = 0$ |
 
 
 

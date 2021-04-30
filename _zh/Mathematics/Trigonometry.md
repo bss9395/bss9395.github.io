@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  三角函数
-Update:  2021-04-22T17:42:00+08@中国-广东-湛江+08
+Update:  2021-05-01T04:55:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -116,4 +116,11 @@ $S = \lim\limits_{n⇝∞^{+}} S_n = \lim\limits_{n⇝∞^{+}} \left[ n · \dfra
 | $\sin θ = \dfrac{1}{x}$ | $θ = '\sin^{-1} x$ | $\sin('\sin^{-1} x) = \dfrac{1}{x}$             | $\cos('\sin^{-1} x) = \dfrac{\sqrt{x^2 - 1}}{x}$ | $\tan('\sin^{-1} x) = \dfrac{1}{\sqrt{x^2 -1}}$ |
 | $\cos θ = \dfrac{1}{x}$ | $θ = '\cos^{-1} x$ | $\sin(\cos^{-1} x) = \dfrac{\sqrt{x^2 - 1}}{x}$ | $\cos(\cos^{-1} x) = \dfrac{1}{x}$               | $\tan(\cos^{-1} x) = \sqrt{x^2 - 1}$            |
 | $\tan θ = \dfrac{1}{x}$ | $θ = '\tan^{-1} x$ | $\sin(\tan^{-1} x) = \dfrac{1}{\sqrt{x^2 + 1}}$ | $\cos(\tan^{-1} x) = \dfrac{x}{\sqrt{x^2 + 1}}$  | $\tan(\tan^{-1} x) = \dfrac{1}{x}$              |
+
+### 反角公式
+
+| $\tan \dfrac{π}{4} = 1$ | $\tan \left(\dfrac{π}{4} + y \right) = \dfrac{1 + \tan y}{1 - \tan y}$ | $\dfrac{π}{4} + {'}\tan x \mathop{====}\limits^{y={'}\tan x} {'}\tan \dfrac{1 + x}{1 - x}$ |
+| :---------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+|                         |                                                              |                                                              |
+|                         |                                                              |                                                              |
 
