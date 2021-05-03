@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-05-03T21:21:00+08@中国-广东-湛江+08
+Update:  2021-05-04T00:15:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -392,13 +392,17 @@ $\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{(x + 9)^{\frac{1}{2}} · (3 - x)
 
 $\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[x_{α}, x_{β}]} f (x_0) \right] ⇔ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈[x_{α}, x_{β}]} f (x_t) \right]$
 
-
+| $⇓$  | $∀x_0∈\fbox{X}=X;∀ε>0;∃δ_0>0; w^{f}(x_0,δ_0) ≤ ε$            | $⇔$  | $∀x_0∈X;∀ε>0;∃δ_0>0;∀x∈X; |x - x_0| ≤ δ_0 ⇒ |f(x) - f(x_0)| ≤ ε$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $∀ε>0;∀x_0∈\fbox{X}=X;∃δ_0>0; w^{f}(x_0,δ_0) ≤ ε$            |      |                                                              |
+| $⇓$  | $∀ε>0;∃δ>0;∀x_0∈\fbox{X}=X;∃δ_0>0; w^{f}\left(x_0,δ=\inf_{x_0∈\fbox{X}}δ_0 \right) ≤ w^{f}(x_0,δ_0) ≤ ε$ |      |                                                              |
+| $⇓$  | $∀ε>0;∃δ>0;∀x∈X; w^{f}(x,δ) ≤ ε$                             | $⇔$  | $∀ε>0;∃δ>0;∀x,x_t∈X; |x - x_t| ≤ δ ⇒ |f(x) - f(x_t)| ≤ ε$    |
 
 若函数$f(x)$在区间$X$上点$x_0$处导数有确界，则函数$f(x)$在点$x_0$处连续，反之不对。
 
 若函数$f(x)$在区间$X$上点$x_0$处间断，则函数$f(x)$在该点处导数无确界，反之不对。
 
-$\left[ Ⅎx_0∈X;Ⅎ\mathrm{Sup}_{x_0}; \left| \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} f(x) \mathop{⇝}\limits_{x_0∈X} f(x_0) \right]$
+$\left[ Ⅎx_0∈X;∃\mathrm{Sup}_{x_0}; \left| \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} f(x) \mathop{⇝}\limits_{x_0∈X} f(x_0) \right]$
 
 | $⇓$  | $Ⅎx_0∈X;∃ε>0;∀δ>0;∃x∈X; |x - x_0| ≤ δ ∧ |f(x) - f(x_0)| > ε$ | $⇔$  | $\lim\limits_{x⇝x_0} f(x) \not⇝ f(x_0)$                      |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
@@ -406,19 +410,19 @@ $\left[ Ⅎx_0∈X;Ⅎ\mathrm{Sup}_{x_0}; \left| \dfrac{\mathrm{d} f(x_0)}{\math
 | $⇓$  | $Ⅎx_0∈X;∀\mathrm{Sup}_{x_0}; \left| \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} \right| > \mathrm{Sup}_{x_0}$ | $⇔$  | $\left| \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} \right| = \lim\limits_{x⇝x_0} \left| \dfrac{f(x) - f(x_0)}{x - x_0} \right| ⇝ ∞^{+}$ |
 |      |                                                              |      |                                                              |
 | $⇓$  | $\left[ \lim\limits_{x⇝x_0} f(x) \not⇝ f(x_0) \right] ⇒ \left[ Ⅎx_0∈X;∀\mathrm{Sup}_{x_0}; \left| \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} \right| > \mathrm{Sup}_{x_0} \right]$ |      |                                                              |
-| $⇓$  | $\left[ Ⅎx_0∈X;Ⅎ\mathrm{Sup}_{x_0}; \left| \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} f(x) ⇝ f(x_0) \right]$ |      |                                                              |
+| $⇓$  | $\left[ Ⅎx_0∈X;∃\mathrm{Sup}_{x_0}; \left| \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} f(x) ⇝ f(x_0) \right]$ |      |                                                              |
 
 若函数$f (x)$在区间$\fbox{X}$上导函数有确界，则函数$f (x)$在区间$X$上必一致连续，反之不对。
 
 若函数$f(x)$在区间$X$上非一致连续，则函数$f(x)$在区间$\fbox{X}$上导函数无确界，反之不对。
 
-$\left[ ∀x_t∈\fbox{X};Ⅎ\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right| ≤ \mathrm{Sup_{x} } \right] ⇔ \left[ Ⅎ\mathrm{Sup}^{f};∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup}^{f} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \right]$
+$\left[ ∀x_t∈\fbox{X};∃\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right| ≤ \mathrm{Sup_{x} } \right] ⇔ \left[ ∃\mathrm{Sup}^{f};∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup}^{f} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \right]$
 
-| $⇕$  | $∀x∈\fbox{X};Ⅎ\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x} ≠ ∞^{+}$ |      |                                                              |
+| $⇕$  | $∀x∈\fbox{X};∃\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x} ≠ ∞^{+}$ |      |                                                              |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇕$  | $Ⅎ\mathrm{Sup};∀x∈\fbox{X};Ⅎ\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x} ≤ \sup\limits_{x∈\fbox{X}} \left\lbrace \mathrm{Sup}_{x} \right\rbrace = \mathrm{Sup}$ |      |                                                              |
-| $⇕$  | $Ⅎ\mathrm{Sup};∀x∈\fbox{X}; |\mathrm{d} f(x)| ≤ \mathrm{Sup} · |\mathrm{d} x|$ | $⇔$  | $Ⅎ\mathrm{Sup}^{f};∀x,x_t∈X; |f(x) - f(x_t)| ≤ \mathrm{Sup}^{f} · |x - x_t|$ |
-| $⇕$  | $Ⅎ\mathrm{Sup};∀ε>0;∃δ>0;∀x,x_t∈X; [ |x - x_t| ≤ δ ] ⇒ [ |f(x) - f(x_t)| ≤ \mathrm{Sup} · |x - x_t| ≤ \mathrm{Sup} · δ = ε ]$ |      |                                                              |
+| $⇕$  | $∃\mathrm{Sup};∀x∈\fbox{X};∃\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x} ≤ \sup\limits_{x∈\fbox{X}} \left\lbrace \mathrm{Sup}_{x} \right\rbrace = \mathrm{Sup}$ |      |                                                              |
+| $⇕$  | $∃\mathrm{Sup};∀x∈\fbox{X}; |\mathrm{d} f(x)| ≤ \mathrm{Sup} · |\mathrm{d} x|$ | $⇔$  | $∃\mathrm{Sup}^{f};∀x,x_t∈X; |f(x) - f(x_t)| ≤ \mathrm{Sup}^{f} · |x - x_t|$ |
+| $⇕$  | $∃\mathrm{Sup};∀ε>0;∃δ>0;∀x,x_t∈X; [ |x - x_t| ≤ δ ] ⇒ [ |f(x) - f(x_t)| ≤ \mathrm{Sup} · |x - x_t| ≤ \mathrm{Sup} · δ = ε ]$ |      |                                                              |
 | $⇓$  | $\lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t)$ |      |                                                              |
 
 若函数$f (x)$在区间$\fbox{X}$上满足切割线极限过程，则函数$f (x)$在区间$X$上一致连续，反之不对。无限远点是个特殊点。
