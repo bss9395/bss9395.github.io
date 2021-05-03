@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  解析几何学
-Update:  2021-04-30T05:52:00+08@中国-广东-湛江+08
+Update:  2021-05-04T01:57:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -26,7 +26,7 @@ $\dfrac{\Lambda g(f(x))}{\lambda x} = \dfrac{\Lambda g(f(x))}{\lambda f(x)} · \
 
 二变元全微分定理。
 
-$\dfrac{\Lambda^{2} f(x,y)}{\lambda^{1} y · \lambda^{1} x} = f_{y,x}$
+$\dfrac{\Lambda^{2} f(x,y)}{\lambda^{1} x · \lambda^{1} y} = f_{y,x} = \dfrac{\Lambda^{2} f(x,y)}{\lambda^{1} y · \lambda^{1} x}$
 
 $\Lambda^{1} f(x,y) = f_{x} · \lambda x + f_{y} · \lambda y$
 
@@ -43,6 +43,22 @@ $\Lambda^{2} f(x,y) = \Lambda [f_{x} · \lambda x + f_{y} · \lambda y] = f_{x,x
 
 ------
 
+### 单变元隐式方程
+
+$0 = F(y(x),x)$
+
+$\dfrac{\Lambda y(x)}{\lambda x} = -\dfrac{\Lambda F(y,x)}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1}$
+
+$\dfrac{\Lambda^2 y(x)}{\lambda^2 x} = -\dfrac{\Lambda^2 F(y,x)}{\lambda^2 x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} - \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda F(y,x)}{\lambda x} \right]^{2} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-3}$
+
+|                                       | $0 = \dfrac{\Lambda F(y,x)}{\lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda F(y,x)}{\lambda x}$ |
+| :------------------------------------ | :----------------------------------------------------------- |
+| $\dfrac{\Lambda y(x)}{\lambda x}$     | $= -\dfrac{\Lambda F(y,x)}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1}$ |
+|                                       |                                                              |
+| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $= - \left[ \left[ \dfrac{\Lambda^2 F(y,x)}{\lambda x · \lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^{2} F(y,x)}{\lambda^2 x} \right] · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} + \dfrac{\Lambda F(y,x)}{\lambda x} · (-1) · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-2} · \left[ \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^{2} F(y,x)}{\lambda y · \lambda x} \right] \right]$ |
+|                                       | $= -\dfrac{\Lambda^{2} F(y,x)}{\lambda^2 x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} + \dfrac{\Lambda F(y,x)}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-2} · \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \dfrac{\Lambda y}{\lambda x}$ |
+| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $= - \dfrac{\Lambda^2 F(y,x)}{\lambda^2 x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} - \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda F(y,x)}{\lambda x} \right]^{2} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-3}$ |
+
 ### 单变元参数方程
 
 $\left\lbrace\begin{align}
@@ -56,7 +72,7 @@ $\dfrac{\Lambda y(x)}{\lambda x} = \dfrac{\Lambda y(t)}{\lambda t} · \left[ \df
 
 $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3}$
 
-| $\dfrac{\Lambda y(x)}{\lambda x}$         | $\dfrac{Λ y(t)}{λ t} · \dfrac{Λ t}{λ x(t)} = \dfrac{\Lambda y(t)}{\lambda t} · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1}$ |
+| $\dfrac{\Lambda y(x)}{\lambda x}$         | $\dfrac{Λ y(t)}{λ t} · \dfrac{Λ t}{λ x(t)} = \left[ \dfrac{\Lambda y(t)}{\lambda t} \right] · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1}$ |
 | :---------------------------------------- | :----------------------------------------------------------- |
 | $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x}$ | $\dfrac{\Lambda}{\lambda x} \dfrac{\Lambda y(x)}{\lambda x} = \dfrac{\Lambda}{\lambda t} \left[ \dfrac{\Lambda y}{\lambda t} · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-1} \right] · \dfrac{\Lambda t}{\lambda x} = \left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-1} + \dfrac{\Lambda y}{\lambda t} · (-1) · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-2} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \dfrac{\Lambda t}{\lambda x} = \left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3}$ |
 
@@ -79,7 +95,7 @@ $\tan κ = \tan (α - θ) = r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \r
 
 ------
 
-### 抛体参数方程
+### 抛物体参数方程
 
 $\left\lbrace\begin{align}
 y(t) &= v_y · t - \dfrac{1}{2} · g · t^2 \\
@@ -98,7 +114,7 @@ $\tan α = \dfrac{\Lambda y(x)}{\lambda x} = \dfrac{v_{y} - g · t}{v_{x}}$
 | $v(t) = \sqrt{\left[ \dfrac{\Lambda y(t)}{\lambda t} \right]^{2} + \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{2}}$ | $\sqrt{v_{x}^{2} + (v_{y} - g · t)^{2}}$                     |
 | $\tan α = \dfrac{\Lambda y(x)}{\lambda x}$                   | $\dfrac{\Lambda y(t)}{\lambda t} · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1} = \dfrac{v_{y} - g · t}{v_{x}}$ |
 
-### 椭圆参数方程
+### 椭圆线参数方程
 
 $\left\lbrace\begin{align}
 y(θ) &= r_y · \sin θ \\
@@ -115,7 +131,7 @@ $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \dfrac{-r_{y}}{r_{x} · \sin^{3} θ}$
 | :---------------------------------------- | :----------------------------------------------------------- |
 | $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x}$ | $\left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3} = \left[ (-r_{y} · \sin θ) · (-r_{x} · \sin θ) - (+r_{y} · \cos θ) · (-r_{x} · \cos θ) \right] · [-r_{x} · \sin θ]^{-3} = \dfrac{-r_{y}}{r_{x} · \sin^{3} θ}$ |
 
-### 摆线参数方程
+### 旋轮线参数方程
 
 $\left\lbrace\begin{align}
 y(t) &= r · (1 - \cos t) \\
@@ -133,7 +149,7 @@ $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \dfrac{-1}{r · (1 - \cos t)^{2}}$
 | $\dfrac{\Lambda y(x)}{\lambda x}$         | $\dfrac{\Lambda y(t)}{\lambda t} · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1} = \dfrac{r · \sin t}{r · (1 - \cos t)} = \dfrac{2 · \sin \frac{t}{2} · \cos \frac{t}{2}}{2 · \sin^{2} \frac{t}{2}} = \dfrac{1}{\tan \frac{t}{2}}$ |
 | $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x}$ | $\left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3} = \dfrac{[r · \cos t] · [r · (1 - \cos t)] - [r · \sin t] · [r · \sin t]}{[r · (1 - \cos t)]^{3}} = \dfrac{-1}{r · (1 - \cos t)^{2}}$ |
 
-### 螺线参数方程
+### 螺旋线参数方程
 
 $r(θ) = β^{α · θ}$
 
@@ -142,4 +158,18 @@ $\tan κ = \dfrac{1}{α · \ln β}$
 | $\tan κ$ | $r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \right]^{-1} = β^{α·θ} · [ β^{α·θ} · \ln β · α ]^{-1} = \dfrac{1}{α · \ln β}$ |      |
 | :------- | :----------------------------------------------------------- | ---- |
 |          |                                                              |      |
+
+------
+
+### 抛物线坐标方程
+
+$y^2 = 2 · p · x$
+
+$\tan α = \dfrac{\Lambda y(x)}{\lambda x} = \dfrac{p}{y}$
+
+|      |      |      |
+| :--- | ---- | ---- |
+| $$   |      |      |
+|      |      |      |
+|      |      |      |
 
