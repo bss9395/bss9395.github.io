@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-05-03T03:24:00+08@中国-广东-湛江+08
+Update:  2021-05-03T21:21:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -241,19 +241,22 @@ $w^{f}(x_0,δ) ≡ \sup\limits_{u,v∈\mathrm{U}(x_0,δ)} |f(u) - f(v)| = \left[
 
 $\left[ \lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) \right] ⇔ \left[ \lim\limits_{x⇝x_0^{-}} f (x) ⇝ f (x_0) \right] ∧ \left[ \lim\limits_{x⇝x_0^{+}} f (x) ⇝ f (x_0) \right]$
 
-| $\lim\limits_{x⇝x_0^{+}} f(x) ⇝ f(x_0) ≠ ∞$ | $∀x_0∈X;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}^{+}(x_0,δ)} |f(x) - f(x_0)|≤ε$ | $∀x_0∈X;∀ε>0;∃δ>0;∀x∈\mathrm{U}^{+}(x_0,δ); f(x)∈\mathrm{U}(f(x_0),ε)$ |
+| $\lim\limits_{x⇝x_0^{+}} f(x) ⇝ f(x_0) ≠ ∞$ | $Ⅎx_0∈X;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}^{+}(x_0,δ)} |f(x) - f(x_0)|≤ε$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x∈\mathrm{U}^{+}(x_0,δ); f(x)∈\mathrm{U}(f(x_0),ε)$ |
 | :------------------------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| $\lim\limits_{x⇝x_0^-} f(x) ⇝ f(x_0) ≠ ∞$   | $∀x_0∈X;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}^{-}(x_0,δ)} |f(x) - f(x_0)|≤ε$ | $∀x_0∈X;∀ε>0;∃δ>0;∀x∈\mathrm{U}^{-}(x_0,δ); f(x)∈\mathrm{U}(f(x_0),ε)$ |
-| $\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) ≠ ∞$   | $∀x_0∈X;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(x_0,δ)} |f(x) - f(x_0)| ≤ ε$ | $∀x_0∈X;∀ε>0;∃δ>0;∀x∈\mathrm{U}(x_0,δ); f(x)∈\mathrm{U}(f(x_0),ε)$ |
-| $\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) ≠ ∞$   | $∀x_0∈X;∀ε>0;∃δ>0;∀x∈\mathrm{U}(x_0,δ); |f(x) - f(x_0)|≤ε$   | $∀x_0∈X;∀ε>0;∃δ>0;∀x∈X; |x - x_0|≤δ ⇒ |f(x) - f(x_0)|≤ε$     |
+| $\lim\limits_{x⇝x_0^-} f(x) ⇝ f(x_0) ≠ ∞$   | $Ⅎx_0∈X;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}^{-}(x_0,δ)} |f(x) - f(x_0)|≤ε$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x∈\mathrm{U}^{-}(x_0,δ); f(x)∈\mathrm{U}(f(x_0),ε)$ |
+| $\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) ≠ ∞$   | $Ⅎx_0∈X;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{U}(x_0,δ)} |f(x) - f(x_0)| ≤ ε$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x∈\mathrm{U}(x_0,δ); f(x)∈\mathrm{U}(f(x_0),ε)$ |
+| $\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) ≠ ∞$   | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x∈\mathrm{U}(x_0,δ); |f(x) - f(x_0)|≤ε$   | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x∈X; |x - x_0|≤δ ⇒ |f(x) - f(x_0)|≤ε$     |
+|                                             |                                                              |                                                              |
+| $\lim\limits_{x⇝x_0} f(x) \not⇝ f(x_0)$     | $Ⅎx_0∈X;∃ε>0;∀δ>0;∃x∈\mathrm{U}(x_0,δ); |f(x) - f(x_0)| > ε$ | $Ⅎx_0∈X;∃ε>0;∀δ>0;∃x∈X; |x - x_0| ≤ δ ∧ |f(x) - f(x_0)| > ε$ |
 
 一致连续性是全局性质。若函数$f(x)$在区间$X$上一致连续，则函数必在任意点$x∈X$处连续，反之不对。$[∃x;∀y; Q(x, y)] ⇒ [∀y;∃x; Q(x, y)]$
 
 $\left[ \lim\limits_{x↭x_t} f (x) ↭ f (x_t) \right] ⇒ \left[ \lim\limits_{x⇝x_0} f(x) ⇝ f(x_0) \right]$
 
-| $\lim\limits_{x↭x_t} f (x) ↭ f (x_t) ≠ ∞$ | $∀ε>0;∃δ>0;∀x,x_t∈X; |x - x_t|≤δ ⇒ |f(x) - f(x_t)|≤ε$ | $∀ε>0;∃δ>0; \sup\limits_{|x-x_t|≤δ} |f(x) - f(x_t)|≤ε$ |
-| :---------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------ |
-|                                           |                                                       |                                                        |
+| $\lim\limits_{x↭x_t} f (x) ↭ f (x_t) ≠ ∞$ | $∀ε>0;∃δ>0;∀x,x_t∈X; |x - x_t|≤δ ⇒ |f(x) - f(x_t)|≤ε$     | $∀ε>0;∃δ>0; \sup\limits_{|x-x_t|≤δ} |f(x) - f(x_t)|≤ε$   |
+| :---------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------- |
+|                                           |                                                           |                                                          |
+| $\lim\limits_{x↭x_t} f(x) \not↭ f(x_t)$   | $∃ε>0;∀δ>0;∃x,x_t∈X; |x - x_t| ≤ δ ∧ |f(x) - f(x_t)| > ε$ | $∃ε>0;∀δ>0; \sup\limits_{|x-x_t|≤δ} |f(x) - f(x_t)| > ε$ |
 
 若函数$f (x)$在区间$X$上点$x_0$处连续，则在该点处的振幅为零，反之亦然。
 
@@ -383,13 +386,33 @@ $\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{(x + 9)^{\frac{1}{2}} · (3 - x)
 |                                                              | $\dfrac{\mathrm{d}^{n+i} g(x)}{\mathrm{d}^{n+1} x} · \dfrac{\mathrm{d}^{0} f(x)}{\mathrm{d}^{0} x} + \left[ \sum\limits_{i=1}^{n} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · \dfrac{\mathrm{d}^{n+1-i} g(x)}{\mathrm{d}^{n+1-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x}\right] + \dfrac{\mathrm{d}^{0} g(x)}{\mathrm{d}^{0} x} · \dfrac{\mathrm{d}^{n+1} f(x)}{\mathrm{d}^{n+1} x}$ |                                                        |
 | $\dfrac{\mathrm{d}^{n+1}}{\mathrm{d}^{n+1} x} [g(x) · f(x)]$ | $\sum\limits_{i=0}^{n+1} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · \dfrac{\mathrm{d}^{n+1-i} g(x)}{\mathrm{d}^{n+1-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x}$ |                                                        |
 
-
-
 ### 一致连续性
 
-若函数$f (x)$在区间$\fbox{X}$上导函数有全局的确界，则函数$f (x)$在区间$X$上一致连续，反之不对。
+若函数$f (x)$在区间$\fbox{X} = [x_{α}, x_{β}]$上连续，则函数$f (x)$在区间$[x_{α}, x_{β}]$上一致连续，反之亦然。
 
-$\left[ ∀x_t∈\fbox{X};Ⅎ\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right|_{x} ≤ \mathrm{Sup_{x} } \right] ⇔ \left[ Ⅎ\mathrm{Sup}^{f};∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup}^{f} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \right]$
+$\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[x_{α}, x_{β}]} f (x_0) \right] ⇔ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈[x_{α}, x_{β}]} f (x_t) \right]$
+
+
+
+若函数$f(x)$在区间$X$上点$x_0$处导数有确界，则函数$f(x)$在点$x_0$处连续，反之不对。
+
+若函数$f(x)$在区间$X$上点$x_0$处间断，则函数$f(x)$在该点处导数无确界，反之不对。
+
+$\left[ Ⅎx_0∈X;Ⅎ\mathrm{Sup}_{x_0}; \left| \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} f(x) \mathop{⇝}\limits_{x_0∈X} f(x_0) \right]$
+
+| $⇓$  | $Ⅎx_0∈X;∃ε>0;∀δ>0;∃x∈X; |x - x_0| ≤ δ ∧ |f(x) - f(x_0)| > ε$ | $⇔$  | $\lim\limits_{x⇝x_0} f(x) \not⇝ f(x_0)$                      |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $Ⅎx_0∈X;∃ε>0;∀δ>0;∃x∈X;Ⅎ\mathrm{Sup}_{x_0}; \left| \dfrac{f(x) - f(x_0)}{x - x_0} \right| \mathop{>}\limits_{δ⇝0^{+}} \dfrac{ε}{δ} = \mathrm{Sup}_{x_0}$ |      |                                                              |
+| $⇓$  | $Ⅎx_0∈X;∀\mathrm{Sup}_{x_0}; \left| \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} \right| > \mathrm{Sup}_{x_0}$ | $⇔$  | $\left| \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} \right| = \lim\limits_{x⇝x_0} \left| \dfrac{f(x) - f(x_0)}{x - x_0} \right| ⇝ ∞^{+}$ |
+|      |                                                              |      |                                                              |
+| $⇓$  | $\left[ \lim\limits_{x⇝x_0} f(x) \not⇝ f(x_0) \right] ⇒ \left[ Ⅎx_0∈X;∀\mathrm{Sup}_{x_0}; \left| \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} \right| > \mathrm{Sup}_{x_0} \right]$ |      |                                                              |
+| $⇓$  | $\left[ Ⅎx_0∈X;Ⅎ\mathrm{Sup}_{x_0}; \left| \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} f(x) ⇝ f(x_0) \right]$ |      |                                                              |
+
+若函数$f (x)$在区间$\fbox{X}$上导函数有确界，则函数$f (x)$在区间$X$上必一致连续，反之不对。
+
+若函数$f(x)$在区间$X$上非一致连续，则函数$f(x)$在区间$\fbox{X}$上导函数无确界，反之不对。
+
+$\left[ ∀x_t∈\fbox{X};Ⅎ\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f (x)}{\mathrm{d} x} \right| ≤ \mathrm{Sup_{x} } \right] ⇔ \left[ Ⅎ\mathrm{Sup}^{f};∀x,x_t∈X; | f (x) - f (x_t) | ≤ \mathrm{Sup}^{f} · | x - x_t | \right] ⇒ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t) \right]$
 
 | $⇕$  | $∀x∈\fbox{X};Ⅎ\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x} ≠ ∞^{+}$ |      |                                                              |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
@@ -398,22 +421,19 @@ $\left[ ∀x_t∈\fbox{X};Ⅎ\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f (x)}{\
 | $⇕$  | $Ⅎ\mathrm{Sup};∀ε>0;∃δ>0;∀x,x_t∈X; [ |x - x_t| ≤ δ ] ⇒ [ |f(x) - f(x_t)| ≤ \mathrm{Sup} · |x - x_t| ≤ \mathrm{Sup} · δ = ε ]$ |      |                                                              |
 | $⇓$  | $\lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t)$ |      |                                                              |
 
-若函数$f (x)$在区间$\fbox{X}$上满足切割线极限过程，则函数$f (x)$在区间$X$上一致连续，反之亦然。[有待验证]
+若函数$f (x)$在区间$\fbox{X}$上满足切割线极限过程，则函数$f (x)$在区间$X$上一致连续，反之不对。无限远点是个特殊点。
 
-$\left[ \lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x_t∈X}^{x∈X} f(x_t) \right] ⇔ \left[ 0 ⇜ \lim\limits_{x⇝x_t} \left| \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} \right| · |x - x_t| \mathop{===}\limits_{x_t∈\fbox{X}}^{x∈X} \lim\limits_{x⇝x_t} \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x - x_t| \right]$
+$\left[ \lim\limits_{x⇝x_t} \left| \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} \right| · |x - x_t| \mathop{===}\limits_{x_t∈\fbox{X}}^{x∈X} \lim\limits_{x⇝x_t} \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x - x_t| ⇝ 0 \right] ⇒ \left[ \lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x_t∈X}^{x∈X} f(x_t) \right]$
 
-若函数$f(x)$在区间$\fbox{X}$上已连续，且满足切割线极限过程，则函数$f(x)$在区间$X$上一致连续，反之亦然。
+若函数$f(x)$在区间$\fbox{X}$上已连续，且满足切割线极限过程，则函数$f(x)$在区间$X$上一致连续，反之不对。
 
-$\left[ \lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x_t∈X}^{x∈X} f(x_t) \right] ⇔ \left[ 0 \mathop{⇜}\limits_{x_t∈\fbox{X}}^{x∈X} \lim\limits_{x⇝x_t} \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x - x_t| \right]$
+$\left[ \lim\limits_{x⇝x_t} \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x - x_t| \mathop{⇝}\limits_{x_t∈\fbox{X}}^{x∈X} 0 \right] ⇒ \left[ \lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x_t∈X}^{x∈X} f(x_t) \right]$
 
-| $⇕$  | $f(x) = f(x_t) + \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} · (x - x_t) + o_{x_t}(|x - x_t|)$ | $f(x_t) = f(x) + \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} · (x_t - x) + o_{x}(|x_t - x|)$ |
-| :--: | ------------------------------------------------------------ | :----------------------------------------------------------- |
-| $⇕$  | $|f(x) - f(x_t) - o_{x_t}(|x - x_t|)| = \left| \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} \right| · |x - x_t|$ | $|f(x_t) - f(x) - o_{x}(|x_t - x|)| = \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x_t - x|$ |
-| $⇕$  | $0 \mathop{↭}\limits_{x_t∈X}^{x∈X} \lim\limits_{x↭x_t} |f(x) - f(x_t) + o(|x - x_t|)| = \lim\limits_{x⇝x_t} \left| \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} \right| · |x - x_t| \mathop{===}\limits_{x_t∈\fbox{X}}^{x∈X} \lim\limits_{x⇝x_t} \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x - x_t|$ |                                                              |
 
-若函数$f (x)$在区间$\fbox{X} = [x_{α}, x_{β}]$上连续，则函数$f (x)$在区间$[x_{α}, x_{β}]$上一致连续，反之亦然。
 
-$\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[x_{α}, x_{β}]} f (x_0) \right] ⇔ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈[x_{α}, x_{β}]} f (x_t) \right]$
+
+
+
 
 若函数$f (x)$在区间$(x_{α}, x_{β})$上一致连续，则可将函数$f(x)$延拓为区间$[x_{α}, x_{β}]$上的一致连续函数$\tilde{f}(x) = \mathop{f(x_α^+)}\limits_{x=x_α}; \mathop{f (x)}\limits_{x∈(x_α,x_β)};\mathop{f(x_β^{-})}\limits_{x=x_β}$。
 
