@@ -49,16 +49,15 @@ $0 = F(y(x),x)$
 
 $\dfrac{\Lambda y(x)}{\lambda x} = -\dfrac{\Lambda F(y,x)}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1}$
 
-$\dfrac{\Lambda^2 y(x)}{\lambda^2 x} = -\dfrac{\Lambda^2 F(y,x)}{\lambda^2 x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} - \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda F(y,x)}{\lambda x} \right]^{2} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-3}$
+$\dfrac{\Lambda^2 y(x)}{\lambda^2 x} = -\left[ \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda y}{\lambda x} \right]^{2} + \dfrac{\Lambda^2 F(y,x)}{\lambda y · \lambda x} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^2 F(y,x)}{\lambda x · \lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^2 F(y,x)}{\lambda^2 x} \right] · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1}$
 
-|                                       | $0 = \dfrac{\Lambda F(y,x)}{\lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda F(y,x)}{\lambda x}$ |
-| :------------------------------------ | :----------------------------------------------------------- |
-| $\dfrac{\Lambda y(x)}{\lambda x}$     | $-\dfrac{\Lambda F(y,x)}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1}$ |
 |                                       |                                                              |
-| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $- \left[ \left[ \dfrac{\Lambda^2 F(y,x)}{\lambda x · \lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^{2} F(y,x)}{\lambda^2 x} \right] · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} + \dfrac{\Lambda F(y,x)}{\lambda x} · (-1) · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-2} · \left[ \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^{2} F(y,x)}{\lambda y · \lambda x} \right] \right]$ |
-|                                       | $-\dfrac{\Lambda^{2} F(y,x)}{\lambda^2 x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} - \dfrac{\Lambda y}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} · \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \dfrac{\Lambda y}{\lambda x}$ |
-| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $-\left[ \dfrac{\Lambda^{2} F(y,x)}{\lambda^2 x} + \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda y}{\lambda x} \right]^{2} \right] · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1}$ |
-| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $- \dfrac{\Lambda^2 F(y,x)}{\lambda^2 x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} - \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda F(y,x)}{\lambda x} \right]^{2} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-3}$ |
+| :------------------------------------ | :----------------------------------------------------------- |
+| $\dfrac{\Lambda 0}{\lambda x}$        | $\dfrac{\Lambda F(y,x)}{\lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda F(y,x)}{\lambda x}$ |
+| $\dfrac{\Lambda^2 0}{\lambda^2 x}$    | $\left[ \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^2 F(y,x)}{\lambda y · \lambda x} \right] · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda F(y,x)}{\lambda y} · \dfrac{\Lambda^2 y}{\lambda^2 x} + \dfrac{\Lambda^2 F(y,x)}{\lambda x · \lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^2 F(y,x)}{\lambda^2 x}$ |
+|                                       |                                                              |
+| $\dfrac{\Lambda y(x)}{\lambda x}$     | $-\dfrac{\Lambda F(y,x)}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1}$ |
+| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $-\left[ \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda y}{\lambda x} \right]^{2} + \dfrac{\Lambda^2 F(y,x)}{\lambda y · \lambda x} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^2 F(y,x)}{\lambda x · \lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^2 F(y,x)}{\lambda^2 x} \right] · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1}$ |
 
 ### 单变元参数方程
 
@@ -173,5 +172,5 @@ $\dfrac{\Lambda^2 y(x)}{\lambda^2 x} = -\dfrac{p^2}{y^3}$
 |                                       |                                                              |
 | :------------------------------------ | :----------------------------------------------------------- |
 | $\dfrac{\Lambda y(x)}{\lambda x}$     | $-\dfrac{\Lambda F(y,x)}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} = -(-2 · p) · [2 · y]^{-1} = \dfrac{p}{y}$ |
-| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $-\left[ \dfrac{\Lambda^{2} F(y,x)}{\lambda^2 x} + \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda y}{\lambda x} \right]^{2} \right] · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} = -\left[ 0 + 2 · \dfrac{p^2}{y^2} \right] · [2 · y]^{-1} = -\dfrac{p^2}{y^3}$ |
+| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $-\left[ \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda y}{\lambda x} \right]^{2} + \dfrac{\Lambda^2 F(y,x)}{\lambda y · \lambda x} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^2 F(y,x)}{\lambda x · \lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^2 F(y,x)}{\lambda^2 x} \right] · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} = -\left[ 2 · \dfrac{p^2}{y^2} + 0 + 0 + 0 \right] · [2 · y]^{-1} = -\dfrac{p^2}{y^3}$ |
 
