@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-05-05T00:04:00+08@中国-广东-湛江+08
+Update:  2021-05-05T00:30:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -527,17 +527,16 @@ $\left[ ∀x_t∈\fbox{X};∃\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f (x)}{\
 
 若函数$f (x)$在区间$\fbox{X}$上满足切割线极限过程，则函数$f (x)$在区间$X$上一致连续，反之不对。无限远点是个特殊点。
 
-$\left[ \lim\limits_{x⇝x_t} \left| \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} \right| · |x - x_t| \mathop{===}\limits_{x_t∈\fbox{X}}^{x∈X} \lim\limits_{x⇝x_t} \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x - x_t| ⇝ 0 \right] ⇒ \left[ \lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x_t∈X}^{x∈X} f(x_t) \right]$
+$\left[ 0 ⇜ \lim\limits_{x⇝x_t}^{x_t∈\fbox{X}} \left| \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} \right| · |x - x_t| = \lim\limits_{x⇝x_t}^{x_t∈\fbox{X}} \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x - x_t| \right] ⇒ \left[ \lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x_t∈X}^{x∈X} f(x_t) \right]$
 
 若函数$f(x)$在区间$\fbox{X}$上已连续，且满足切割线极限过程，则函数$f(x)$在区间$X$上一致连续，反之不对。
 
-$\left[ \lim\limits_{x⇝x_t} \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x - x_t| \mathop{⇝}\limits_{x_t∈\fbox{X}}^{x∈X} 0 \right] ⇒ \left[ \lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x_t∈X}^{x∈X} f(x_t) \right]$
+$\left[ \lim\limits_{x⇝x_t}^{x_t∈\fbox{X}} \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} = \lim\limits_{x⇝x_t} ^{x_t∈\fbox{X}}\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right] ⇒ \left[ \lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x_t∈X}^{x∈X} f(x_t) \right]$
 
-
-
-
-
-
+| $⇓$  | $f(x) = f(x_t) + \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} · (x - x_t) + o_{x_t}(|x - x_t|)$ |      | $f(x_t) = f(x) + \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} · (x_t - x) + o_{x}(|x_t - x|)$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $|f(x) - f(x_t) - o_{x_t}(|x - x_t|)| = \left| \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} \right| · |x - x_t|$ |      | $|f(x_t) - f(x) - o_{x}(|x_t - x|)| = \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x_t - x|$ |
+| $⇓$  | $0 ⇜ \lim\limits_{x⇝x_t}^{x_t∈\fbox{X}} |f(x) - f(x_t) + o(|x - x_t|)| = \lim\limits_{x⇝x_t}^{x_t∈\fbox{X}} \left| \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} \right| · |x - x_t| = \lim\limits_{x⇝x_t}^{x_t∈\fbox{X}} \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x - x_t|$ | $⇔$  | $\lim\limits_{x⇝x_t}^{x_t∈\fbox{X}} f(x) ⇝ f(x_t)$           |
 
 若函数$f (x)$在区间$(x_{α}, x_{β})$上一致连续，则可将函数$f(x)$延拓为区间$[x_{α}, x_{β}]$上的一致连续函数$\tilde{f}(x) = \mathop{f(x_α^+)}\limits_{x=x_α}; \mathop{f (x)}\limits_{x∈(x_α,x_β)};\mathop{f(x_β^{-})}\limits_{x=x_β}$。
 
