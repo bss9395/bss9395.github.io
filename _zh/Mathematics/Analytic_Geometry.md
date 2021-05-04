@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  解析几何学
-Update:  2021-05-04T01:57:00+08@中国-广东-湛江+08
+Update:  2021-05-04T17:52:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -53,11 +53,12 @@ $\dfrac{\Lambda^2 y(x)}{\lambda^2 x} = -\dfrac{\Lambda^2 F(y,x)}{\lambda^2 x} ·
 
 |                                       | $0 = \dfrac{\Lambda F(y,x)}{\lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda F(y,x)}{\lambda x}$ |
 | :------------------------------------ | :----------------------------------------------------------- |
-| $\dfrac{\Lambda y(x)}{\lambda x}$     | $= -\dfrac{\Lambda F(y,x)}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1}$ |
+| $\dfrac{\Lambda y(x)}{\lambda x}$     | $-\dfrac{\Lambda F(y,x)}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1}$ |
 |                                       |                                                              |
-| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $= - \left[ \left[ \dfrac{\Lambda^2 F(y,x)}{\lambda x · \lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^{2} F(y,x)}{\lambda^2 x} \right] · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} + \dfrac{\Lambda F(y,x)}{\lambda x} · (-1) · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-2} · \left[ \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^{2} F(y,x)}{\lambda y · \lambda x} \right] \right]$ |
-|                                       | $= -\dfrac{\Lambda^{2} F(y,x)}{\lambda^2 x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} + \dfrac{\Lambda F(y,x)}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-2} · \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \dfrac{\Lambda y}{\lambda x}$ |
-| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $= - \dfrac{\Lambda^2 F(y,x)}{\lambda^2 x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} - \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda F(y,x)}{\lambda x} \right]^{2} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-3}$ |
+| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $- \left[ \left[ \dfrac{\Lambda^2 F(y,x)}{\lambda x · \lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^{2} F(y,x)}{\lambda^2 x} \right] · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} + \dfrac{\Lambda F(y,x)}{\lambda x} · (-1) · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-2} · \left[ \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^{2} F(y,x)}{\lambda y · \lambda x} \right] \right]$ |
+|                                       | $-\dfrac{\Lambda^{2} F(y,x)}{\lambda^2 x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} - \dfrac{\Lambda y}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} · \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \dfrac{\Lambda y}{\lambda x}$ |
+| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $-\left[ \dfrac{\Lambda^{2} F(y,x)}{\lambda^2 x} + \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda y}{\lambda x} \right]^{2} \right] · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1}$ |
+| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $- \dfrac{\Lambda^2 F(y,x)}{\lambda^2 x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} - \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda F(y,x)}{\lambda x} \right]^{2} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-3}$ |
 
 ### 单变元参数方程
 
@@ -155,9 +156,9 @@ $r(θ) = β^{α · θ}$
 
 $\tan κ = \dfrac{1}{α · \ln β}$
 
-| $\tan κ$ | $r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \right]^{-1} = β^{α·θ} · [ β^{α·θ} · \ln β · α ]^{-1} = \dfrac{1}{α · \ln β}$ |      |
-| :------- | :----------------------------------------------------------- | ---- |
-|          |                                                              |      |
+| $\tan κ$ | $r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \right]^{-1} = β^{α·θ} · [ β^{α·θ} · \ln β · α ]^{-1} = \dfrac{1}{α · \ln β}$ |
+| :------- | :----------------------------------------------------------- |
+|          |                                                              |
 
 ------
 
@@ -167,9 +168,10 @@ $y^2 = 2 · p · x$
 
 $\tan α = \dfrac{\Lambda y(x)}{\lambda x} = \dfrac{p}{y}$
 
-|      |      |      |
-| :--- | ---- | ---- |
-| $$   |      |      |
-|      |      |      |
-|      |      |      |
+$\dfrac{\Lambda^2 y(x)}{\lambda^2 x} = -\dfrac{p^2}{y^3}$
+
+|                                       |                                                              |
+| :------------------------------------ | :----------------------------------------------------------- |
+| $\dfrac{\Lambda y(x)}{\lambda x}$     | $-\dfrac{\Lambda F(y,x)}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} = -(-2 · p) · [2 · y]^{-1} = \dfrac{p}{y}$ |
+| $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $-\left[ \dfrac{\Lambda^{2} F(y,x)}{\lambda^2 x} + \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda y}{\lambda x} \right]^{2} \right] · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} = -\left[ 0 + 2 · \dfrac{p^2}{y^2} \right] · [2 · y]^{-1} = -\dfrac{p^2}{y^3}$ |
 
