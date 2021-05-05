@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  特殊函数
-Update:  2021-04-30T23:00:00+08@中国-广东-湛江+08
+Update:  2021-05-06T00:44:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -116,4 +116,11 @@ $\dfrac{\mathrm{d} \mathcal{W}_{α}(x)}{\mathrm{d} x} = \mathop{\left[ x^{α-1} 
 |             |                                                              |                                                              |               |
 | $1 < α ≤ 2$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|α · x^{α-1} · \sin \dfrac{1}{x} - x^{α-2} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π+\frac{π}{2}]^{-1}} |α·x^{α-1}| ⇝ \mathop{0}\limits_{1<α≤2}$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|α · x^{α-1} · \sin \dfrac{1}{x} - x^{α-2} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π]^{-1}} |x^{α-2}| ⇝ \mathop{∞^{+}}\limits_{1<α<2};\mathop{1}\limits_{α=2}$ | $x=0$处振荡   |
 
+### 倒幂函数
+
+$\mathcal{E}(x) = \mathop{※}\limits_{x=0};\mathop{ә^{\frac{1}{x}}}\limits_{x≠0}$
+
+$\lim\limits_{x⇝0^{-}} ә^{\frac{1}{x}} ⇝ 0^{+}$
+
+$\lim\limits_{x⇝0^{+}} ә^{\frac{1}{x}} ⇝ ∞^{+}$
 
