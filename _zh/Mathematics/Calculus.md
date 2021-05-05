@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-05-05T00:30:00+08@中国-广东-湛江+08
+Update:  2021-05-05T21:26:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -403,7 +403,7 @@ $f(x)|_{∀x∈X} = \left.f (x)\right|_{∃θ∈X}$
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $⇓$  | $∀y∈f(X);∃θ∈X; y = f(θ)$                                     | $⇐$  | $y ≡ f(x)$                                                   |
 | $⇓$  | $∀y∈[\min\lbrace f(x_α),f(x_β),\max\lbrace f(x_α),f(x_β) \rbrace \rbrace] ⊆ f([x_α,x_β]);∃θ∈X; y = f(θ)$ |      |                                                              |
-| $⇓$  | $[f(x_α) · f(x_β) ≤ 0] ⇒ \left[ 0 = \left. f(x) \right|_{∃θ∈[x_α,x_β]} \right]$ |      | $[f(x_α),f(x_β) < 0] ⇒ \left[ 0 = \left. f(x) \right|_{∃θ∈(x_α,x_β)} \right]$ |
+| $⇓$  | $[f(x_α) · f(x_β) ≤ 0] ⇒ \left[ 0 = \left. f(x) \right|_{∃θ∈[x_α,x_β]} \right]$ |      | $[f(x_α) · f(x_β) < 0] ⇒ \left[ 0 = \left. f(x) \right|_{∃θ∈(x_α,x_β)} \right]$ |
 
 若函数$f(x)$在单区间$X = [x_α, x_β]$上连续，对于权均值$\sum\limits_{i=0}^{n} t_i · f(x_i)$，则必定存在某一点$θ∈X$其函数值相等。
 
@@ -442,16 +442,20 @@ $|f(x)| ≤ \max\left\lbrace \left| \inf\limits_{x∈X} f(x) \right|, \left| \su
 
 若函数$f(x)$在点$x_0$处导数值$\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0$，则称点$x_0$为函数$f(x)$的驻点。
 
-若函数$f(x)$在点$x_0$处导数值存在，且达到极小值极大值，则其在点$x_0$处导数$\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0$。
+若函数$f(x)$在点$x_0$处达到极小值极大值且导数值存在，则其在点$x_0$处导数$\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0$。
 
 若函数$f(x)$在闭区间$[x_α,x_β]$上连续且可导，当两端点处函数值相等，则存在某一点$θ∈(x_α,x_β)$其导数值为零。
 
 $[f(x_α) = f(x_β)] ⇒ \left[ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = 0 \right]$
 
-| $⇓$  | $f(θ) = \min\limits_{x∈(x_α,x_β)} f(x)$ | $\lim\limits_{x⇝θ^{-}} \dfrac{f(x) - f(θ)}{x - θ} ≤ 0 ≤ \lim\limits_{x⇝θ^{+}} \dfrac{f(x) - f(θ)}{x - θ}$ |
-| :--: | :-------------------------------------- | :----------------------------------------------------------- |
-| $⇓$  | $f(θ) = \max\limits_{x∈(x_α,x_β)} f(x)$ | $\lim\limits_{x⇝θ^{-}} \dfrac{f(x) - f(θ)}{x - θ} ≥ 0 ≥ \lim\limits_{x⇝θ^{+}} \dfrac{f(x) - f(θ)}{x - θ}$ |
-| $⇓$  | $f(x_α) = f(x_β)$                       | $\lim\limits_{x⇝θ} \dfrac{f(x) - f(θ)}{x - θ} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| = 0$ |
+$[[f(x_α) - f(x_α^{+})] · [f(x_β^{-}) - f(x_β)] ≤ 0] ⇒ \left[ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = 0 \right]$
+
+| $⇓$  | $f(θ) = \inf\limits_{x∈(x_α,x_β)} f(x)$                      | $⇔$  | $\lim\limits_{x⇝θ^{-}} \dfrac{f(x) - f(θ)}{x - θ} ≤ 0 ≤ \lim\limits_{x⇝θ^{+}} \dfrac{f(x) - f(θ)}{x - θ}$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $f(θ) = \sup\limits_{x∈(x_α,x_β)} f(x)$                      | $⇔$  | $\lim\limits_{x⇝θ^{-}} \dfrac{f(x) - f(θ)}{x - θ} ≥ 0 ≥ \lim\limits_{x⇝θ^{+}} \dfrac{f(x) - f(θ)}{x - θ}$ |
+| $⇓$  | $[f(θ^{-}) - f(θ)] · [f(θ) - f(θ^{+})] ≤ 0$                  | $⇔$  | $\dfrac{f(θ^{-}) - f(θ)}{θ^{-} - θ} · \dfrac{f(θ^{+}) - f(θ)}{θ^{+} - θ} ≤ 0$ |
+| $⇓$  | $f(x_α) = f(x_β)$                                            | $⇒$  | $\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = \lim\limits_{x⇝θ} \dfrac{f(x) - f(θ)}{x - θ} = 0$ |
+| $⇓$  | $[[f(x_α) - f(x_α^{+})] · [f(x_β^{-}) - f(x_β)] ≤ 0] ⇒ [f(x_γ) \mathop{======}\limits_{x_α<x_γ<x_δ<x_β}^{∃x_γ,x_δ;} f(x_δ)]$ | $⇒$  | $\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = \lim\limits_{x⇝θ} \dfrac{f(x) - f(θ)}{x - θ} = 0$ |
 
 若函数$f(x)$在闭区间$[x_α,x_β]$上连续且可导，则存在某一点$θ∈(x_α,x_β)$其导数值，等同于两端点处直线的斜率。
 
@@ -471,6 +475,8 @@ $\left.\dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)}\right|_{∃θ∈(x_α, x_β)} = 
 | $⇓$  | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ g(x_α) & g(x) - g(x_α) & g(x_β) - g(x_α) \\ f(x_α) & f(x) - f(x_α) & f(x_β) - f(x_α) \\ \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g(x_α) & \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} & g(x_β) - g(x_α) \\ f(x_α) & \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} & f(x_β) - f(x_α) \end{matrix}\right|$ | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = [f(x_β) - f(x_α)]  · \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} - [g(x_β) - g(x_α)] · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ |
 | $⇓$  | $\left.\dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∃θ∈(x_α,x_β)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \dfrac{\mathrm{d} x}{\mathrm{d} f(x)} \right|_{∃θ∈(x_α,x_β)} = \dfrac{g(x_β) - g(x_α)}{f(x_β) - f(x_α)}$ | $\left. \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = 0$ |
 
+### 导数介值定理
+
 若函数$f(x)$在区间$X$上连续，且在点$x_0∈X$处导函数极限值$\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0}$存在，则在该点处导数值$\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x}$等于该极限值，反之不对。
 
 $\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0} = \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$
@@ -485,6 +491,22 @@ $\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = \left. \dfrac{\mathrm{d} f(x)}{\mathr
 $\dfrac{\mathrm{d} \mathcal{W}_{2}(x)}{\mathrm{d} x} = \mathop{\left[ x · \sin \dfrac{1}{x} \right]}\limits_{x=0};\mathop{\left[ 2 · x · \sin \dfrac{1}{x} - \cos \dfrac{1}{x} \right]}\limits_{x≠0}$
 
 $\dfrac{\mathrm{d} \mathcal{W}_{2}(0)}{\mathrm{d} x} = \lim\limits_{x⇝0} x · \sin \dfrac{1}{x} ⇝ 0 \not⇜ \lim\limits_{x⇝0} \dfrac{\mathrm{d} \mathcal{W}_{2}(x)}{\mathrm{d} x}$
+
+若函数$f(x)$在区间$X$上连续且导函数存在，则函数$f(x)$在区间$X$上不存在跳跃间断点。
+
+
+
+若函数$f(x)$在区间$[x_α,x_β]$上连续且导数值存在，则对于两端点处导数值之间的任意取值$t$，存在某点$θ∈(x_α,x_β)$其导数值相等。
+
+$∀t∈\left[\min\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x} \right\rbrace, \max\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x} \right\rbrace\right];∃θ∈(x_α,x_β); \dfrac{\mathrm{d} f(θ)}{\mathrm{d} x} = t$
+
+| $⇓$  | $F(x) ≡ f(x) - t · x$                                        |      | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} - t$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\dfrac{\mathrm{d} F(x_α^{+})}{\mathrm{d} x} · \dfrac{\mathrm{d} F(x_β^{-})}{\mathrm{d} x} = \left[ \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x} - t \right] · \left[ \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x} - t \right] ≤ 0$ | $⇐$  | $∀t∈\left[\min\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x} \right\rbrace, \max\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x} \right\rbrace\right];$ |
+| $⇓$  | $\dfrac{\mathrm{d} F(x_α^{+})}{\mathrm{d} x} = \lim\limits_{x⇝x_α^{+}} \dfrac{F(x) - F(x_α)}{x - x_α}$ |      | $\dfrac{\mathrm{d} F(x_β^{-})}{\mathrm{d} x} = \lim\limits_{x⇝x_β^{-}} \dfrac{F(x) - F(x_β)}{x - x_β}$ |
+| $⇓$  | $[F(x_α^{+}) - F(x_α)] · [F(x_β^{-}) - F(x_β)] ≥ 0$          |      | $\lim\limits_{x⇝x_0}^{x_0∈[x_α,x_β]} F(x) ⇝ F(x_0)$          |
+| $⇓$  | $∃θ∈(x_α,x_β); [F(θ^{-}) - F(θ)] · [F(θ) - F(θ^{+})] ≤ 0$    | $⇔$  | $\left[ F(θ) = \inf\limits_{x∈\mathrm{U}(θ,δ)} F(x) \right] ∨ \left[ F(θ) = \sup\limits_{x∈\mathrm{U}(θ,δ)} F(x) \right]$ |
+| $⇓$  | $\left. \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} - t = 0$ | $⇒$  | $\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = t$ |
 
 ### 一致连续性
 
@@ -531,7 +553,7 @@ $\left[ 0 ⇜ \lim\limits_{x⇝x_t}^{x_t∈\fbox{X}} \left| \dfrac{\mathrm{d} f(
 
 若函数$f(x)$在区间$\fbox{X}$上已连续，且满足切割线极限过程，则函数$f(x)$在区间$X$上一致连续，反之不对。
 
-$\left[ \lim\limits_{x⇝x_t}^{x_t∈\fbox{X}} \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} = \lim\limits_{x⇝x_t} ^{x_t∈\fbox{X}}\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right] ⇒ \left[ \lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x_t∈X}^{x∈X} f(x_t) \right]$
+$\left[ 0 ⇜ = \lim\limits_{x⇝x_t}^{x_t∈\fbox{X}} \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| · |x - x_t| \right] ⇒ \left[ \lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x_t∈X}^{x∈X} f(x_t) \right]$
 
 | $⇓$  | $f(x) = f(x_t) + \dfrac{\mathrm{d} f(x_t)}{\mathrm{d} x_t} · (x - x_t) + o_{x_t}(|x - x_t|)$ |      | $f(x_t) = f(x) + \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} · (x_t - x) + o_{x}(|x_t - x|)$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
