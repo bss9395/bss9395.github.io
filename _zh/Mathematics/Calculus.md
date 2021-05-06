@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-05-06T18:08:00+08@中国-广东-湛江+08
+Update:  2021-05-06T21:54:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -75,15 +75,18 @@ Link  :
 |   严格极大值 | $f (x_0) ≡ \max\limits_{x∈X⊆Y} f (x)$                        | $[ ∃x_0∈X;∀x∈X \backslash x_0; f (x_0) > f (x) ]$            |
 |   严格极小值 | $f (x_0) ≡ \min\limits_{x∈X⊆Y} f (x)$                        | $[ ∃x_0∈X;∀x∈X \backslash x_0; f (x_0) < f (x) ]$            |
 |              |                                                              |                                                              |
-|       右极限 | $\lim\limits_{x⇝x_0^+} f(x) ⇝ f_{x_0^+}$                     | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈X; 0 ≤ x - x_0 ≤ +δ ⇒ |f(x) - f_{x_0^+}| ≤ ε$ |
-|       左极限 | $\lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-}$                     | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈X; -δ ≤ x - x_0 ≤ 0 ⇒ |f(x) - f_{x_0^-}| ≤ ε$ |
-|       极限值 | $\lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$                         | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈\mathrm{B}_{X}(x_0,δ); |f(x) - f_{x_0}| ≤ ε$ |
-|       极限值 | $\lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$                         | $\lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-} = f_{x_0} = f_{x_0^+} ⇜ \lim\limits_{x⇝x_0^+} f(x)$ |
+|   左侧函数值 | $f(x_0^{-}) ≡ f(x_0-Δx_0)$                                   |                                                              |
+|   右侧函数值 | $f(x_0^{+}) ≡ f(x_0 + Δx_0)$                                 |                                                              |
+|       函数值 | $f(x_0)$                                                     |                                                              |
+|   函数右极限 | $f(x)|_{x_0^{-}} ≡ \lim\limits_{x⇝x_0^+} f(x) ⇝ f_{x_0^+}$   | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈X; 0 ≤ x - x_0 ≤ +δ ⇒ |f(x) - f_{x_0^+}| ≤ ε$ |
+|   函数左极限 | $f(x)|_{x_0^{+}} ≡ \lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-}$   | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈X; -δ ≤ x - x_0 ≤ 0 ⇒ |f(x) - f_{x_0^-}| ≤ ε$ |
+|   函数极限值 | $f(x)|_{x_0} ≡ \lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$           | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈\mathrm{B}_{X}(x_0,δ); |f(x) - f_{x_0}| ≤ ε$ |
+|   函数极限值 | $f(x)|_{x_0} ≡ \lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$           | $\lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-} = f_{x_0} = f_{x_0^+} ⇜ \lim\limits_{x⇝x_0^+} f(x)$ |
 |       极限值 | $\lim\limits_{x⇝x_0} f(x) ⇝ ∞^{±},∞$                         | $\lim\limits_{x⇝x_0} \dfrac{1}{f(x)} ⇝ 0^{±},0$              |
 |       极限值 | $\lim\limits_{x⇝∞^{±},∞} f(x) ⇝ f_{∞^{±}}$                   | $\lim\limits_{\frac{1}{x}⇝0^{±},0} f(x) ⇝ f_{∞^{±}}$         |
-|       上极限 | $f_{x_0} ≡ \varlimsup\limits_{x⇝x_0} f (x)$                  | $f_{x_0} ≡ \lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{B}(x_0,δ)} f(x)$ |
-|       下极限 | $f_{x_0} ≡ \varliminf\limits_{x⇝x_0} f (x)$                  | $f_{x_0} ≡ \lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{B}(x_0,δ)} f(x)$ |
-|   唯一极限值 | $f_{x_0} = \varliminf\limits_{x⇝x_0} f(x) = \varlimsup\limits_{x⇝x_0} f(x)$ | $f_{x_0} = \lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{B}(x_0,δ)} f(x) = \lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{B}(x_0,δ)} f(x)$ |
+|       上极限 | $\varlimsup\limits_{x⇝x_0} f (x)$                            | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{B}(x_0,δ)} f(x)$   |
+|       下极限 | $\varliminf\limits_{x⇝x_0} f (x)$                            | $\lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{B}(x_0,δ)} f(x)$   |
+|   唯一极限值 | $\varliminf\limits_{x⇝x_0} f(x) = \varlimsup\limits_{x⇝x_0} f(x)$ | $\lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{B}(x_0,δ)} f(x) = \lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{B}(x_0,δ)} f(x)$ |
 |              |                                                              |                                                              |
 |     单调递增 | $f^{↗} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↗} (x_1) ≤ f^{↗} (x_2)]]$ |
 |     单调递减 | $f^{↘} (x)$                                                  | $[∀x_1,x_2∈X; [ x_1 < x_2 ] ⇒ [ f^{↘} (x_1) ≥ f^{↘} (x_2)]]$ |
@@ -278,7 +281,11 @@ $\left[ \lim\limits_{x⇝x_0} f(x) \not⇝ f(x_0) \right] ⇔ \left[ \lim\limits
 
 若函数$f(x)$在区间$X$上点$x_0$处左极限与右极限全都存在，但不均等于该点处函数值，则称点$x_0$为函数$f(x)$的跳跃间断点。若极限值为无穷大，则可视为极限存在。
 
+$\left[ \lim\limits_{x⇝x_0^{-}} f(x) ⇝ f(x)|_{x_0^{-}} ≠ f(x_0) \right] ∨ \left[ f(x_0) ≠ f(x)|_{x_0^{+}} ⇜ \lim\limits_{x⇝x_0^{+}} f(x) \right]$
+
 若函数$f(x)$在区间$X$上点$x_0$处左极限与右极限不都存在，但不均等于该点处函数值，则称点$x_0$为函数$f(x)$的振荡间断点。其极限值无限振荡，不趋于任何固定值。
+
+$\left[ \lim\limits_{x⇝x_0^{-}} f(x) \not⇝ f(x_0) \right] ∨ \left[ f(x_0) \not⇜ \lim\limits_{x⇝x_0^{+}} f(x) \right]$
 
 若函数$f (x)$在点$x_0$处连续$\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0)$，且函数$g (x)$在点$x_0$处连续$\lim\limits_{x⇝x_0} g (x) ⇝ g (x_0)$。
 
@@ -304,11 +311,11 @@ $\lim\limits_{x⇝x_0} f (g (x)) \mathop{====}\limits_{g(x_0)=y_0} f \left( \lim
 
 ### 导函数
 
-若函数$f(x)$在点$x_0$处去心邻域内的右导数${^1}f(x_0^{+})$与左导数${^1}f(x_0^{-})$存在且相等，则其导数值${^1}f(x_0)$存在。
+若函数$f(x)$在点$x_0$处去心闭邻域的右导数${^1}f(x_0^{+})$与左导数${^1}f(x_0^{-})$存在且相等，则其导数值${^1}f(x_0)$存在。函数$f(x)$在区间$X$上所有点$x_t$处导数值${^1}f(x_t)$组成其导函数${^1}f(x)$。
 
-若函数$f(x)$在点$x_0$处导函数${^1}f(x)$的右极限${^1}f_{x_0}^{+}$与左极限${^1}f_{x_0}^{-}$存在且相等，则其导函数极限值${^1}f_{x_0}$存在。
+若函数$f(x)$在点$x_0$处导函数${^1}f(x)$的右极限${^1}f_{x_0^{+}}$与左极限${^1}f_{x_0^{-}}$存在且相等，则其导函数极限值${^1}f_{x_0}$存在。函数$f(x)$在点$x_0$处导数值${^1}f(x_0)$与其导函数极限值${^1}f_{x_0}$未必等同。
 
-若函数$f(x)$在区间$(X_0,X_1)$内任意点处导数值存在，且在点$X_0$处右导数存在与在点$X_1$处左导数存在，则其在区间$[X_0,X_1]$内任意点处导数值存在。
+若函数$f(x)$在区间$(x_α,x_β)$上任意点处导数值存在，且在点$x_α$处右导数${^1}f(x_α^{+})$与在点$x_β$处左导数${^1}f(x_β^{-})$存在，则其在区间$[x_α,x_β]$上任意点处导数值存在。
 
 |       右导数 | ${^1}f(x_0^+) ≡ \dfrac{\mathrm{d}^1 f(x_0^+)}{\mathrm{d}^1 x}$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x_t∈X; 0<x_t-x_0≤+δ ⇒ \left| \dfrac{f(x_t) - f(x_0) - {^1}f(x_0) · [x_t - x_0]}{x_t - x_0} \right| ≤ ε$ |                                                              |
 | -----------: | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -490,7 +497,7 @@ $\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = \left. \dfrac{\mathrm{d} f(x)}{\mathr
 
 | $⇓$  | $\dfrac{f(x) - f(x_0)}{x - x_0} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_0,x)}$ | $⇐$  | $\lim\limits_{x⇝x_0} f(x) ⇝ f(x_0)$                          |
 | :--: | :----------------------------------------------------------- | :--: | ------------------------------------------------------------ |
-| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{f(x) - f(x_0)}{x - x_0} = \lim\limits_{θ⇝x_0} \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{θ∈(x_0,x)} = \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ | $⇐$  | $\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} ⇝ f_{x_0} \right] ⇒ \left[ \lim\limits_{θ⇝x_0} \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{θ∈(x_0,x)} ⇝ f_{x_0} \right]$ |
+| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{f(x) - f(x_0)}{x - x_0} = \lim\limits_{θ⇝x_0} \left.\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}\right|_{θ∈(x_0,x)} = \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ | $⇐$  | $\left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∀x} ⇝ f_{x_0} \right] ⇒ \left[ \lim\limits_{θ⇝x_0} \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_0,x)} ⇝ f_{x_0} \right]$ |
 | $⇓$  | $\dfrac{\mathrm{d} {f(x_0)}}{\mathrm{d} x} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0}$ |      |                                                              |
 
 反例：函数$\mathcal{W}_{2}(x) = \mathop{0}\limits_{x=0};\mathop{x^{2} · \sin \dfrac{1}{x}}\limits_{x≠0}$，在点$x_0 = 0$处连续。
@@ -499,9 +506,11 @@ $\dfrac{\mathrm{d} \mathcal{W}_{2}(x)}{\mathrm{d} x} = \mathop{\left[ x · \sin 
 
 $\dfrac{\mathrm{d} \mathcal{W}_{2}(0)}{\mathrm{d} x} = \lim\limits_{x⇝0} x · \sin \dfrac{1}{x} ⇝ 0 \not⇜ \lim\limits_{x⇝0} \dfrac{\mathrm{d} \mathcal{W}_{2}(x)}{\mathrm{d} x}$
 
-若函数$f(x)$在区间$X$上连续且导函数存在，则函数$f(x)$在区间$X$上不存在跳跃间断点。
+若函数$f(x)$在区间$X$上连续，则函数$f(x)$的导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$在区间$X$上不存在跳跃间断点。
 
-
+| $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x} = \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x}$ |                  |
+| :--: | :----------------------------------------------------------- | :--------------- |
+| $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{-}} ≠ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{+}} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x}$ | $\mathrm{False}$ |
 
 若函数$f(x)$在区间$[x_α,x_β]$上连续且导数值存在，则对于两端点处导数值之间的任意取值$t$，存在某点$θ∈(x_α,x_β)$其导数值相等。
 
