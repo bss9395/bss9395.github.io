@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-05-07T00:45:00+08@中国-广东-湛江+08
+Update:  2021-05-07T13:18:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -509,13 +509,14 @@ $\dfrac{\mathrm{d} \mathcal{W}_{2}(0)}{\mathrm{d} x} = \lim\limits_{x⇝0} x · 
 
 $\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \dfrac{g(x) - g(x)|_{x_0}}{f(x) - f(x)|_{x_0}} = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right]$
 
+$\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} \mathop{=====}\limits_{f(x)|_{x_0} = 0}^{g(x)|_{x_0} = 0} \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} \mathop{=====}\limits_{f(x)|_{x_0} = ∞}^{g(x)|_{x_0} = ∞} \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right]$
+
 | $⇓$  | $\dfrac{g(x) - g(x)|_{\mathop{x_0}\limits^{∞}}}{f(x) - f(x)|_{\mathop{x_0}\limits^{∞}}} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∃θ∈(\mathop{x_0}\limits^{∞},x)}$ | $⇐$  | $\lim\limits_{x⇝\mathop{x_0}\limits^{∞}} g(x) ⇝ g(x)|_{\mathop{x_0}\limits^{∞}}$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x) - g(x)|_{x_0}}{f(x) - f(x)|_{x_0}} = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ | $⇐$  | $\left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∀x} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∃θ} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right]$ |
-
-
-
-
+|      |                                                              |      |                                                              |
+| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g^{-1}(x)}{f^{-1}(x)} \mathop{=====}\limits_{f(x)|_{x_0}=∞}^{g(x)|_{x_0}=∞} \left[ \lim\limits_{x⇝x_0} \dfrac{(-1) · g^{-2}(x)}{(-1) · f^{-2}(x)} \right] · \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)}$ |      |                                                              |
+| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} = \lim\limits_{x⇝x_0} \left[ \dfrac{g^{-1}(x)}{f^{-1}(x)} · \dfrac{g^{2}(x)}{f^{2}(x)} \right] = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ |      |                                                              |
 
 若函数$f(x)$在区间$X$上连续，则函数$f(x)$的导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$在区间$X$上不存在跳跃间断点。
 
