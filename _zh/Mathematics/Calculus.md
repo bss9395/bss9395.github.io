@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-05-07T13:18:00+08@中国-广东-湛江+08
+Update:  2021-05-07T20:20:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -491,11 +491,11 @@ $\dfrac{g(x_β) - g(x_α)}{f(x_β) - f(x_α)} = \left.\dfrac{\mathrm{d} g(x)}{\m
 
 ### 导数介值定理
 
-若函数$f(x)$在点$x_0∈X$处连续，且其导函数的极限值$\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0}$存在，则在该点处其导数值$\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x}$等于该极限值，反之不对。
+若函数$f(x)$在点$\mathop{x_0}\limits^{∞}$处连续，且其导函数的极限值$\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0}$存在，则在该点处其导数值$\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x}$等于该极限值，反之不对。
 
 $\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} ⇝ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \dfrac{f(x) - f(x_0)}{x - x_0} = \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0} \right]$
 
-| $⇓$  | $\dfrac{f(x) - f(x_0)}{x - x_0} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_0,x)}$ | $⇐$  | $\lim\limits_{x⇝x_0} f(x) ⇝ f(x_0)$                          |
+| $⇓$  | $\dfrac{f(x) - f(\mathop{x_0}\limits^{∞})}{x - \mathop{x_0}\limits^{∞}} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(\mathop{x_0}\limits^{∞},x)}$ | $⇐$  | $\lim\limits_{x⇝\mathop{x_0}\limits^{∞}} f(x) ⇝ f(\mathop{x_0}\limits^{∞})$ |
 | :--: | :----------------------------------------------------------- | :--: | ------------------------------------------------------------ |
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{f(x) - f(x_0)}{x - x_0} = \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0}$ | $⇐$  | $\left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∀x} ⇝ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{θ⇝x_0} \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ} ⇝ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0} \right]$ |
 
@@ -505,7 +505,7 @@ $\dfrac{\mathrm{d} \mathcal{W}_{2}(x)}{\mathrm{d} x} = \mathop{\left[ x · \sin 
 
 $\dfrac{\mathrm{d} \mathcal{W}_{2}(0)}{\mathrm{d} x} = \lim\limits_{x⇝0} x · \sin \dfrac{1}{x} ⇝ 0 \not⇜ \lim\limits_{x⇝0} \dfrac{\mathrm{d} \mathcal{W}_{2}(x)}{\mathrm{d} x}$
 
-若函数$g(x)$与函数$f(x)$在点$\mathop{x_0}\limits^{∞}$处极限值均存在，且其导函数之比的极限值$\left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$存在，则在该点处其函数值之比的极限值$\dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)}$等于该极限值，反之不对。
+若函数$g(x)$与函数$f(x)$在点$\mathop{x_0}\limits^{∞}$处均连续异或者极限值均存在，且其导函数比的极限值$\left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$存在，则在该点处其函数值比的极限值$\dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)}$等于该极限值，反之不对。
 
 $\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \dfrac{g(x) - g(x)|_{x_0}}{f(x) - f(x)|_{x_0}} = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right]$
 
@@ -515,8 +515,19 @@ $\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} ⇝ \left
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x) - g(x)|_{x_0}}{f(x) - f(x)|_{x_0}} = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ | $⇐$  | $\left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∀x} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∃θ} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right]$ |
 |      |                                                              |      |                                                              |
+| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} \mathop{=====}\limits_{f(x)|_{x_0} = 0}^{g(x)|_{x_0} = 0} \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$                                                          |      |                                                              |
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g^{-1}(x)}{f^{-1}(x)} \mathop{=====}\limits_{f(x)|_{x_0}=∞}^{g(x)|_{x_0}=∞} \left[ \lim\limits_{x⇝x_0} \dfrac{(-1) · g^{-2}(x)}{(-1) · f^{-2}(x)} \right] · \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)}$ |      |                                                              |
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} = \lim\limits_{x⇝x_0} \left[ \dfrac{g^{-1}(x)}{f^{-1}(x)} · \dfrac{g^{2}(x)}{f^{2}(x)} \right] = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ |      |                                                              |
+
+典例：若函数$f(x)$在区间$X$上二阶导函数存在。
+
+$\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \lim\limits_{h⇝0} \dfrac{f(x+h) + f(x-h) - 2 · f(x)}{h^2}$
+
+| $⇓$  | $\lim\limits_{h⇝0} \dfrac{f(x+h) + f(x-h) - 2 · f(x)}{h^2}$  |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $= \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} [f(x+h) + f(x-h) - 2 · f(x)]}{\mathrm{d} h}}{2 · h} = \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x+h)}{\mathrm{d} (x+h)} · \dfrac{\mathrm{d} (x+h)}{\mathrm{d} h} + \dfrac{\mathrm{d} f(x-h)}{\mathrm{d}(x-h)} · \dfrac{\mathrm{d} (x-h)}{\mathrm{d} h}}{2 · h}$ |
+| $⇓$  | $= \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x+h)}{\mathrm{d} (x+h)} - \dfrac{\mathrm{d} f(x-h)}{\mathrm{d} (x-h)}}{2·h} = \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x+h)}{\mathrm{d}(x+h)} - \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}}{+2 · h} + \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x-h)}{\mathrm{d} (x-h)} - \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}}{-2 · h}$ |
+| $⇓$  | $= \dfrac{\mathrm{d}^2 f(x)}{2 · \mathrm{d}^2 x} + \dfrac{\mathrm{d}^2 f(x)}{2 · \mathrm{d}^2 x} = \dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x}$ |
 
 若函数$f(x)$在区间$X$上连续，则函数$f(x)$的导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$在区间$X$上不存在跳跃间断点。
 
@@ -697,6 +708,15 @@ $[ R_n (x_0) = 0 ] ⇒ [ f (x) |_{x_0} = f (x_0) ]$
 | $⇓$  | $R_n (x) \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{ {^{n+1}f (θ)} }{n!} · (x - θ)^n · (x - x_0)^1$ | $⇐$  | $G (t) ≡ (x - t)^1$                                          | ${^1}G (t) = -1$                                    |
 | $⇓$  | $R_n (x) \mathop{====}\limits_{∃θ∈[x_0, x]} \int\limits_{x_0}^x \dfrac{ {^{n+1} }f (t)}{n!} · (x - t)^n \mathrm{d} t$ | $⇐$  | $G (t) ≡ \int\limits_{x_0}^t \dfrac{ {^{n+1} }f (t)}{n!} · (x - t)^n \mathrm{d} t$ | ${^1}G (t) = \dfrac{ {^{n+1} }f (t)}{n!} · (x - t)^n$ |
 | $⇓$  | $R_n (x) = O (x - x_0)^{n + 1}$                              | $⇐$  | $\varlimsup\limits_{x⇝x_0} \dfrac{R_n (x)}{(x - x_0)^{n + 1} } = \dfrac{ {^{n+1} }f (θ)}{(n + 1)!} ≤ \mathrm{Sup.}$ |                                                     |
+
+典例：若函数$f(x)$在区间$X$上二阶导函数存在。
+
+$\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \lim\limits_{h⇝0} \dfrac{f(x+h) + f(x-h) - 2 · f(x)}{h^2}$
+
+| $⇓$  | $f(x+h) = f(x) + \dfrac{\mathrm{d} f(x)}{1! · \mathrm{d} x} · h + \dfrac{\mathrm{d}^2 f(x)}{2! · \mathrm{d}^2 x} · h^2 + o_{+}(h^2)$ | $f(x-h) = f(x) - \dfrac{\mathrm{d} f(x)}{1! · \mathrm{d} x} · h + \dfrac{\mathrm{d}^2 f(x)}{2! · \mathrm{d}^2 x} · h^2 + o_{-}(h^2)$ |
+| :--: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| $⇓$  | $\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \dfrac{f(x+h) + f(x-h) - 2 · f(x)}{h^2} + \left[ o_{+}(h^2) +o_{-}(h^2) \right]$ |                                                              |
+| $⇓$  | $\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \lim\limits_{h⇝0} \dfrac{f(x+h) + f(x-h) - 2 · f(x)}{h^2}$ |                                                              |
 
 ### 定积分
 
