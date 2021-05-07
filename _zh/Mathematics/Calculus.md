@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-05-07T20:20:00+08@中国-广东-湛江+08
+Update:  2021-05-08T01:57:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -75,8 +75,8 @@ Link  :
 |   严格极大值 | $f (x_0) ≡ \max\limits_{x∈X⊆Y} f (x)$                        | $[ ∃x_0∈X;∀x∈X \backslash x_0; f (x_0) > f (x) ]$            |
 |   严格极小值 | $f (x_0) ≡ \min\limits_{x∈X⊆Y} f (x)$                        | $[ ∃x_0∈X;∀x∈X \backslash x_0; f (x_0) < f (x) ]$            |
 |              |                                                              |                                                              |
-|   左侧函数值 | $f(x_0^{-}) ≡ f(x_0-Δx_0)$                                   |                                                              |
-|   右侧函数值 | $f(x_0^{+}) ≡ f(x_0 + Δx_0)$                                 |                                                              |
+|   左侧函数值 | $f(x_0^{-Δ}) ≡ f(x_0-Δ)$                                     | $x_0^{-Δ} ≡ x_0-Δ$                                           |
+|   右侧函数值 | $f(x_0^{+Δ}) ≡ f(x_0+Δ)$                                     | $x_0^{+Δ} ≡ x_0+Δ$                                           |
 |       函数值 | $f(x_0)$                                                     |                                                              |
 |   函数右极限 | $f(x)|_{x_0^{-}} ≡ \lim\limits_{x⇝x_0^+} f(x) ⇝ f_{x_0^+}$   | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈X; 0 ≤ x - x_0 ≤ +δ ⇒ |f(x) - f_{x_0^+}| ≤ ε$ |
 |   函数左极限 | $f(x)|_{x_0^{+}} ≡ \lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-}$   | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈X; -δ ≤ x - x_0 ≤ 0 ⇒ |f(x) - f_{x_0^-}| ≤ ε$ |
@@ -405,6 +405,34 @@ $\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{(x + 9)^{\frac{1}{2}} · (3 - x)
 |                                                              | $\dfrac{\mathrm{d}^{n+i} g(x)}{\mathrm{d}^{n+1} x} · \dfrac{\mathrm{d}^{0} f(x)}{\mathrm{d}^{0} x} + \left[ \sum\limits_{i=1}^{n} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · \dfrac{\mathrm{d}^{n+1-i} g(x)}{\mathrm{d}^{n+1-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x}\right] + \dfrac{\mathrm{d}^{0} g(x)}{\mathrm{d}^{0} x} · \dfrac{\mathrm{d}^{n+1} f(x)}{\mathrm{d}^{n+1} x}$ |                                                        |
 | $\dfrac{\mathrm{d}^{n+1}}{\mathrm{d}^{n+1} x} [g(x) · f(x)]$ | $\sum\limits_{i=0}^{n+1} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · \dfrac{\mathrm{d}^{n+1-i} g(x)}{\mathrm{d}^{n+1-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x}$ |                                                        |
 
+若函数$f(x)$在区间$X$上连续且导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} ≶ 0$，则函数$f^{⇵}(x)$在区间$X$上严格单调，反之不对。
+
+若函数$f(x)$在区间$X$上连续且导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} ⪋ 0$，则函数$f^{⇵}(x)$在区间$X$上单调递进，反之亦然。
+
+若函数$f(x)$在区间$X$上连续且严格单调，则其导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$仅有可能在单点处为零。
+
+$\left[ \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} ≶ 0 \right] ⇒ \left[ f^{⇵}(x) \right] ⇔ \left[ ∀x_1,x_2∈L≡\left\lbrace ∀x : \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = 0 \right\rbrace; [x_1,x_2]⊈L \right]$
+
+$\left[ \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} ⪋ 0 \right] ⇔ \left[ f^{⤨}(x) \right]$
+
+| $\lim\limits_{x_2⇝x_1} \dfrac{f(x_2) - f(x_1)}{x_2 - x_1} = \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \mathop{≤}\limits_{x_1=x_2} 0$ | $⇐$  | $\dfrac{f(x_2) - f(x_1)}{x_2 - x_1} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_1,x_2)} < 0$ | $⇒$  | $[x_1 < x_2] ⇒ [f(x_1) < f(x_2)]$ | $⇔$  | $f^{↑}(x)$ |
+| :----------------------------------------------------------- | :--: | :----------------------------------------------------------- | :--: | :-------------------------------- | :--: | :--------- |
+| $\lim\limits_{x_2⇝x_1} \dfrac{f(x_2) - f(x_1)}{x_2 - x_1} = \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} ≤ 0$ | $⇔$  | $\dfrac{f(x_2) - f(x_1)}{x_2 - x_1} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_1,x_2)} ≤ 0$ | $⇔$  | $[x_1 < x_2] ⇒ [f(x_1) ≤ f(x_2)]$ | $⇔$  | $f^{↗}(x)$ |
+
+典例：函数$f^{↑}(x) = x^3$，在$ℝ$上严格单调递增，但仅仅在点$x_0 = 0$处导数值$\dfrac{\mathrm{d} f^{↑}(0)}{\mathrm{d} x} = 0$。
+
+若函数$f(x)$在点$x_0$处两侧导函数异号，则点$x_0$为极值点，反之不对。
+
+若函数$f(x)$在点$x_0$处导函数为零，两侧二阶导函数同号，则点$x_0$为极值点，反之不对。
+
+$\left[ \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0 \right] ∧ \left[ \dfrac{\mathrm{d}^{2} f(x_0^{-Δ})}{\mathrm{d}^{2} x} · \dfrac{\mathrm{d}^{2} f(x_0^{+Δ})}{\mathrm{d}^2 x} > 0 \right] ⇒ \left[ \dfrac{\mathrm{d} f(x_0^{-Δ})}{\mathrm{d} x} · \dfrac{\mathrm{d} f(x_0^{+Δ})}{\mathrm{d} x} < 0 \right] ⇒ \left[ f(x_0) \mathop{=====}\limits_{0≤f^{''}(x_0)}^{0≤f^{'}(x_0^{+Δ})} \inf\limits_{x∈\mathrm{B}(x_0,Δ)} f(x) \right] ∨ \left[ f(x_0) \mathop{=====}\limits_{0≥f^{''}(x_0)}^{0≥f^{'}(x_0^{+Δ})} \sup\limits_{x∈\mathrm{B}(x_0,Δ)} f(x) \right]$
+
+| $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-Δ})}{\mathrm{d} x} · \dfrac{\mathrm{d} f(x_0^{+Δ})}{\mathrm{d} x} < 0$ | $⇔$  | $\dfrac{f(x_0^{-Δ}) - f(x_0)}{x_0^{-Δ} - x_0} · \dfrac{f(x_0^{+Δ}) - f(x_0)}{x_0^{+Δ} - x_0} < 0$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\left[ f(θ) = \inf\limits_{x∈\mathrm{B}(θ,Δ)} f(x) \right] ∨ \left[ f(θ) = \sup\limits_{x∈\mathrm{B}(θ,Δ)} f(x) \right]$ | $⇔$  | $[f(x_0^{-Δ}) - f(x_0)] · [f(x_0) - f(x_0^{+Δ})] ≤ 0$        |
+
+
+
 ### 连续介值定理
 
 若函数$f (x)$在单区间$X$上连续，则其值域$Y$为单区间，反之不对。单区间内任意一点均为聚点，并且任意两点均可连通成线。
@@ -467,9 +495,9 @@ $[[f(x_α) - f(x_α^{+})] · [f(x_β^{-}) - f(x_β)] ≤ 0] ⇒ \left[ \left. \d
 | $⇓$  | $f(θ) = \inf\limits_{x∈(x_α,x_β)} f(x)$                      | $⇔$  | $\lim\limits_{x⇝θ^{-}} \dfrac{f(x) - f(θ)}{x - θ} ≤ 0 ≤ \lim\limits_{x⇝θ^{+}} \dfrac{f(x) - f(θ)}{x - θ}$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $⇓$  | $f(θ) = \sup\limits_{x∈(x_α,x_β)} f(x)$                      | $⇔$  | $\lim\limits_{x⇝θ^{-}} \dfrac{f(x) - f(θ)}{x - θ} ≥ 0 ≥ \lim\limits_{x⇝θ^{+}} \dfrac{f(x) - f(θ)}{x - θ}$ |
-| $⇓$  | $[f(θ^{-}) - f(θ)] · [f(θ) - f(θ^{+})] ≤ 0$                  | $⇔$  | $\dfrac{f(θ^{-}) - f(θ)}{θ^{-} - θ} · \dfrac{f(θ^{+}) - f(θ)}{θ^{+} - θ} ≤ 0$ |
+| $⇓$  | $[f(θ^{-Δ}) - f(θ)] · [f(θ) - f(θ^{+Δ})] ≤ 0$                | $⇔$  | $\dfrac{f(θ^{-Δ}) - f(θ)}{θ^{-Δ} - θ} · \dfrac{f(θ^{+Δ}) - f(θ)}{θ^{+Δ} - θ} ≤ 0$ |
 | $⇓$  | $f(x_α) = f(x_β)$                                            | $⇒$  | $\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = \lim\limits_{x⇝θ} \dfrac{f(x) - f(θ)}{x - θ} = 0$ |
-| $⇓$  | $[[f(x_α) - f(x_α^{+})] · [f(x_β^{-}) - f(x_β)] ≤ 0] ⇒ [f(x_γ) \mathop{======}\limits_{x_α<x_γ<x_δ<x_β}^{∃x_γ,x_δ;} f(x_δ)]$ | $⇒$  | $\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = \lim\limits_{x⇝θ} \dfrac{f(x) - f(θ)}{x - θ} = 0$ |
+| $⇓$  | $[[f(x_α) - f(x_α^{+Δ})] · [f(x_β^{-Δ}) - f(x_β)] ≤ 0] ⇒ [f(x_γ) \mathop{======}\limits_{x_α≤x_γ<x_δ≤x_β}^{∃x_γ,x_δ;} f(x_δ)]$ | $⇒$  | $\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = \lim\limits_{x⇝θ} \dfrac{f(x) - f(θ)}{x - θ} = 0$ |
 
 若函数$f(x)$在闭区间$[x_α,x_β]$上连续且导函数存在，则存在某一点$θ∈(x_α,x_β)$其导数值，等同于两端点处直线的斜率。
 
@@ -515,9 +543,9 @@ $\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} ⇝ \left
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x) - g(x)|_{x_0}}{f(x) - f(x)|_{x_0}} = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ | $⇐$  | $\left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∀x} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∃θ} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right]$ |
 |      |                                                              |      |                                                              |
-| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} \mathop{=====}\limits_{f(x)|_{x_0} = 0}^{g(x)|_{x_0} = 0} \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$                                                          |      |                                                              |
+| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} \mathop{=====}\limits_{f(x)|_{x_0} = 0}^{g(x)|_{x_0} = 0} \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ |      |                                                              |
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g^{-1}(x)}{f^{-1}(x)} \mathop{=====}\limits_{f(x)|_{x_0}=∞}^{g(x)|_{x_0}=∞} \left[ \lim\limits_{x⇝x_0} \dfrac{(-1) · g^{-2}(x)}{(-1) · f^{-2}(x)} \right] · \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)}$ |      |                                                              |
-| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} = \lim\limits_{x⇝x_0} \left[ \dfrac{g^{-1}(x)}{f^{-1}(x)} · \dfrac{g^{2}(x)}{f^{2}(x)} \right] = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ |      |                                                              |
+| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} = \lim\limits_{x⇝x_0} \dfrac{g^{-1}(x)}{f^{-1}(x)} · \lim\limits_{x⇝x_0} \dfrac{g^{2}(x)}{f^{2}(x)} = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ |      |                                                              |
 
 典例：若函数$f(x)$在区间$X$上二阶导函数存在。
 
@@ -543,8 +571,8 @@ $∀t∈\left[\min\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x}, \df
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\dfrac{\mathrm{d} F(x_α^{+})}{\mathrm{d} x} · \dfrac{\mathrm{d} F(x_β^{-})}{\mathrm{d} x} = \left[ \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x} - t \right] · \left[ \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x} - t \right] ≤ 0$ | $⇐$  | $∀t∈\left[\min\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x} \right\rbrace, \max\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x} \right\rbrace\right];$ |
 | $⇓$  | $\dfrac{\mathrm{d} F(x_α^{+})}{\mathrm{d} x} = \lim\limits_{x⇝x_α^{+}} \dfrac{F(x) - F(x_α)}{x - x_α}$ |      | $\dfrac{\mathrm{d} F(x_β^{-})}{\mathrm{d} x} = \lim\limits_{x⇝x_β^{-}} \dfrac{F(x) - F(x_β)}{x - x_β}$ |
-| $⇓$  | $[F(x_α^{+}) - F(x_α)] · [F(x_β^{-}) - F(x_β)] ≥ 0$          |      | $\lim\limits_{x⇝x_0}^{x_0∈[x_α,x_β]} F(x) ⇝ F(x_0)$          |
-| $⇓$  | $∃θ∈(x_α,x_β); [F(θ^{-}) - F(θ)] · [F(θ) - F(θ^{+})] ≤ 0$    | $⇔$  | $\left[ F(θ) = \inf\limits_{x∈\mathrm{B}(θ,δ)} F(x) \right] ∨ \left[ F(θ) = \sup\limits_{x∈\mathrm{B}(θ,δ)} F(x) \right]$ |
+| $⇓$  | $[F(x_α) - F(x_α^{+Δ})] · [F(x_β^{-Δ}) - F(x_β)] ≤ 0$        |      | $\lim\limits_{x⇝x_0}^{x_0∈[x_α,x_β]} F(x) ⇝ F(x_0)$          |
+| $⇓$  | $∃θ∈(x_α,x_β); [F(θ^{-Δ}) - F(θ)] · [F(θ) - F(θ^{+Δ})] ≤ 0$  | $⇔$  | $\left[ F(θ) = \inf\limits_{x∈\mathrm{B}(θ,Δ)} F(x) \right] ∨ \left[ F(θ) = \sup\limits_{x∈\mathrm{B}(θ,Δ)} F(x) \right]$ |
 | $⇓$  | $\left. \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} - t = 0$ | $⇒$  | $\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = t$ |
 
 ### 一致连续性
@@ -667,7 +695,7 @@ $\left[ ∃ε>0;∀δ>0; \sup\limits_{|x-x_t|≤δ} |f(x) - f(x_t)| > ε \right]
 
 
 
-### 幂级数公式
+### 幂级数
 
 若多项式函数$\mathrm{Poly}_n (x)$在点$x_0$处连续且有$n + 1$阶导数，则在点$x_0$处可唯一展开成$n$阶幂级数。
 
