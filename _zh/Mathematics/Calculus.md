@@ -207,33 +207,6 @@ $∀x_1,x_2∈X; [ f^{-1} (y_1) = x_1 < x_2 = f^{-1} (y_2) ] ⇔ [ f^{↓} (x_1)
 | $⇓$  | $∀ε>0;∃δ>0; [ | x - x_0 | < δ ] ⇒ [ | f^{↑} (x) - f^{↑} (x_0) | < ε ]$ | $⇒$  | $\lim\limits_{x⇝x_0} f^{↑} (x) ⇝ f^{↑} (x_0)$ |
 | $⇓$  |                                                              |      | $\lim\limits_{x⇝x_0} f^{↕} (x) ⇝ f^{↕} (x_0)$ |
 
-### 渐进量
-
-若$\lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} ⇝ 0$，则称当$x⇝x_0$时，函数$f(x)$对于函数$g(x)$为渐进小量，可记作$f(x) ≈ \mathrm{o}[g(x)]_{x_0}$。
-
-若$\lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} ⇝ q$，则称当$x⇝x_0$时，函数$f(x)$对于函数$g(x)$为渐进同量，可记作$f(x) ≈ \mathrm{O}[g(x)]_{x_0}$。
-
-若$\lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} ⇝ 1$，则称当$x⇝x_0$时，函数$f(x)$对于函数$g(x)$为渐进等量，可记作$f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}$。
-
-若$f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}$，则当$x⇝x_0$时，函数$f(x)$与函数$g(x)$可在乘运算中，但非加运算中相互替换。
-
-| $f(x) ≈ \mathrm{o}[g(x)]_{x_0}$                              | $⇒$  | $f(x) ≈ \mathrm{O}[g(x)]_{x_0}$                              |
-| :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}$                              | $⇔$  | $g(x) ≈ \mathrm{Θ}[f(x)]_{x_0}$                              |
-| $f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}$                              | $⇔$  | $f(x) ≈ g(x) + \mathrm{o}[g(x)]_{x_0}$                       |
-| $f(x) · \mathrm{o}[g(x)] ≈ \mathrm{o}[f(x) · g(x)]_{x_0}$    | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x) · \mathrm{o}[g(x)]}{f(x) · g(x)} = \lim\limits_{x⇝x_0} \dfrac{\mathrm{o}[g(x)]}{g(x)} ⇝ 0$ |
-| $f(x) · \mathrm{O}[g(x)] ≈ \mathrm{O}[f(x) · g(x)]_{x_0}$    | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x) · \mathrm{O}[g(x)]}{f(x) · g(x)} = \lim\limits_{x⇝x_0} \dfrac{\mathrm{O}[g(x)]}{g(x)} ⇝ q$ |
-| $α · \mathrm{o}[g(x)] ≈ \mathrm{o}[g(x)]_{x_0}$              | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{α · \mathrm{o}[g(x)]}{g(x)} ⇝ 0$ |
-| $α · \mathrm{O}[g(x)] ≈ \mathrm{O}[g(x)]_{x_0}$              | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{α · \mathrm{O}[g(x)]}{g(x)} ⇝ α · q$ |
-| $\mathrm{o}^{α}[g(x)] \mathop{≈}\limits^{0<α} \mathrm{o}[g^{α}(x)]_{x_0}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{\mathrm{o}^{α}[g(x)]}{g^{α}(x)} \mathop{=}\limits^{0<α} \left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{o}[g(x)]}{g(x)} \right]^{α} ⇝ 0$ |
-| $\mathrm{O}^{α}[g(x)] \mathop{≈}\limits^{0<α} \mathrm{O}[g^{α}(x)]_{x_0}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{\mathrm{O^{α}}[g(x)]}{g^{α}(x)} \mathop{=}\limits^{0<α} \left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{O}[g(x)]}{g(x)} \right]^{α} ⇝ q^{α}$ |
-| $\lim\limits_{x⇝x_0} f(x) · u(x) \mathop{=======}\limits_{u(x)≈\mathrm{Θ}[v(x)]_{x_0}}^{f(x)≈\mathrm{Θ}[g(x)]_{x_0}} \lim\limits_{x⇝x_0} g(x) · v(x)$ | $⇐$  | $\lim\limits_{x⇝x_0} f(x) · u(x) = \lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} · [g(x) · v(x)] · \dfrac{u(x)}{v(x)} = \lim\limits_{x⇝x_0} g(x) · v(x)$ |
-| $\lim\limits_{x⇝x_0} \dfrac{f(x)}{u(x)} \mathop{=======}\limits_{u(x)≈\mathrm{Θ}[v(x)]_{x_0}}^{f(x)≈\mathrm{Θ}[g(x)]_{x_0}} \lim\limits_{x⇝x_0} \dfrac{g(x)}{v(x)}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x)}{u(x)} = \lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} · \dfrac{g(x)}{v(x)} · \dfrac{v(x)}{u(x)} = \lim\limits_{x⇝x_0} \dfrac{g(x)}{v(x)}$ |
-| $f(x) \mathop{≈≈≈≈≈≈}\limits_{g(x)≈\mathrm{o}[h(x)]_{x_0}}^{f(x)≈\mathrm{o}[g(x)]_{x_0}} \mathrm{o}[h(x)]_{x_0}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x)}{h(x)} = \lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} · \dfrac{g(x)}{h(x)} ⇝ 0 · 0 = 0$ |
-| $f(x) \mathop{≈≈≈≈≈≈≈}\limits_{g(x)≈\mathrm{O}[h(x)]_{x_0}}^{f(x)≈\mathrm{O}[g(x)]_{x_0}} \mathrm{O}[h(x)]_{x_0}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x)}{h(x)} = \lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} · \dfrac{g(x)}{h(x)} ⇝ q_0 · q_1 = q$ |
-| $f(x) \mathop{≈≈≈≈≈≈≈}\limits_{g(x) ≈ \mathrm{Θ}[h(x)]_{x_0}}^{f(x) ≈ \mathrm{Θ}[g(x)]_{x_0}} \mathrm{Θ}[h(x)]_{x_0}$ | $⇐$  | $\lim\limits_{x⇝x_0} \dfrac{f(x)}{h(x)} = \lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} · \dfrac{g(x)}{h(x)} ⇝ 1 · 1 = 1$ |
-| $f(x) \mathop{≈≈≈≈≈≈}\limits_{g(x)≈\mathrm{O}[f(x)]}^{f(x)≈\mathrm{O}[g(x)]} \mathrm{Θ}[g(x)]_{x_0}$ | $⇔$  | $f(x) ≈ \mathrm{O}[g(x)] $                                   |
-
 ### 连续性
 
 函数$f(x)$在区间$X$上点$x_0$处振幅$w_{X}^{f}(x_0)$。若函数$f(x)$在区间$X$上点$x_0$处未定义，则其在该点处振幅$w_{X}^{f}(x_0)$可视为无穷大。

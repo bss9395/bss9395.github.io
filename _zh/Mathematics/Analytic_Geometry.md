@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  解析几何学
-Update:  2021-05-04T17:52:00+08@中国-广东-湛江+08
+Update:  2021-05-09T02:12:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -61,10 +61,10 @@ $\dfrac{\Lambda^2 y(x)}{\lambda^2 x} = -\left[ \dfrac{\Lambda^2 F(y,x)}{\lambda^
 
 ### 单变元参数方程
 
-$\left\lbrace\begin{align}
+$\left\lbrace\begin{aligned}
 y &= y(t) \\
 x &= x(t) \\
-\end{align}\right.$
+\end{aligned}\right.$
 
 $y(x) = y[{'}x(t)]$
 
@@ -78,29 +78,29 @@ $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \left[ \dfrac{\Lambda^{2} y}{\lambda^
 
 ### 平面极角坐标系
 
-$\left\lbrace\begin{align}
+$\left\lbrace\begin{aligned}
 y &= r(θ) · \sin θ \\
 x &= r(θ) · \cos θ \\
-\end{align}\right.$
+\end{aligned}\right.$
 
 $y(x) = y[{'}x(θ)]$
 
 $\tan α = \dfrac{\Lambda y(x)}{\lambda x} = \left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) \right] · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ \right]^{-1}$
 
-$\tan κ = \tan (α - θ) = r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \right]^{-1}$
+$\tan ν = \tan (α - θ) = r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \right]^{-1}$
 
 | $\tan α = \dfrac{\Lambda y(x)}{\lambda x}$ | $\dfrac{\Lambda y(θ)}{\lambda θ} · \left[ \dfrac{\Lambda x(θ)}{\lambda θ} \right]^{-1} = \left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \sin θ + r(θ) · \cos θ \right] · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \cos θ - r(θ) · \sin θ \right]^{-1} = \left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) \right] · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ \right]^{-1}$ |
 | :----------------------------------------- | :----------------------------------------------------------- |
-| $\tan κ \tan (α - θ)$                      | $\dfrac{\tan α - \tan θ}{1 + \tan α · \tan θ} = \dfrac{\left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) \right] · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ \right]^{-1} - \tan θ}{1 + \left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) \right] · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ \right]^{-1} · \tan θ} = \dfrac{\dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) - \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) · \tan^{2} θ}{\dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ + \dfrac{\Lambda r(θ)}{\lambda θ} · \tan^{2} θ + r(θ) · \tan θ} = r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \right]^{-1}$ |
+| $\tan ν = \tan (α - θ)$                    | $\dfrac{\tan α - \tan θ}{1 + \tan α · \tan θ} = \dfrac{\left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) \right] · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ \right]^{-1} - \tan θ}{1 + \left[ \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) \right] · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ \right]^{-1} · \tan θ} = \dfrac{\dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) - \dfrac{\Lambda r(θ)}{\lambda θ} · \tan θ + r(θ) · \tan^{2} θ}{\dfrac{\Lambda r(θ)}{\lambda θ} - r(θ) · \tan θ + \dfrac{\Lambda r(θ)}{\lambda θ} · \tan^{2} θ + r(θ) · \tan θ} = r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \right]^{-1}$ |
 
 ------
 
 ### 抛物体参数方程
 
-$\left\lbrace\begin{align}
+$\left\lbrace\begin{aligned}
 y(t) &= v_y · t - \dfrac{1}{2} · g · t^2 \\
 x(t) &= v_x · t \\
-\end{align}\right.$
+\end{aligned}\right.$
 
 $y(x) = \dfrac{v_{y}}{v_x} · x - \dfrac{1}{2} · \dfrac{g}{v_x^2} · x^2$
 
@@ -116,10 +116,10 @@ $\tan α = \dfrac{\Lambda y(x)}{\lambda x} = \dfrac{v_{y} - g · t}{v_{x}}$
 
 ### 椭圆线参数方程
 
-$\left\lbrace\begin{align}
+$\left\lbrace\begin{aligned}
 y(θ) &= r_y · \sin θ \\
 x(θ) &= r_x · \cos θ \\
-\end{align}\right.$
+\end{aligned}\right.$
 
 $\dfrac{x^2}{r_x^2} + \dfrac{y^2}{r_y^2} = 1$
 
@@ -133,10 +133,10 @@ $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \dfrac{-r_{y}}{r_{x} · \sin^{3} θ}$
 
 ### 旋轮线参数方程
 
-$\left\lbrace\begin{align}
+$\left\lbrace\begin{aligned}
 y(t) &= r · (1 - \cos t) \\
 x(t) &= r · (t - \sin t) \\
-\end{align}\right.$
+\end{aligned}\right.$
 
 $x(y) = r · {'}\cos \left( 1 - \dfrac{y}{r} \right) - \sqrt{y · (2 · r - y)}$
 
@@ -153,7 +153,7 @@ $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \dfrac{-1}{r · (1 - \cos t)^{2}}$
 
 $r(θ) = β^{α · θ}$
 
-$\tan κ = \dfrac{1}{α · \ln β}$
+$\tan ν = \dfrac{1}{α · \ln β}$
 
 | $\tan κ$ | $r(θ) · \left[ \dfrac{\Lambda r(θ)}{\lambda θ} \right]^{-1} = β^{α·θ} · [ β^{α·θ} · \ln β · α ]^{-1} = \dfrac{1}{α · \ln β}$ |
 | :------- | :----------------------------------------------------------- |
@@ -169,8 +169,41 @@ $\tan α = \dfrac{\Lambda y(x)}{\lambda x} = \dfrac{p}{y}$
 
 $\dfrac{\Lambda^2 y(x)}{\lambda^2 x} = -\dfrac{p^2}{y^3}$
 
-|                                       |                                                              |
-| :------------------------------------ | :----------------------------------------------------------- |
 | $\dfrac{\Lambda y(x)}{\lambda x}$     | $-\dfrac{\Lambda F(y,x)}{\lambda x} · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} = -(-2 · p) · [2 · y]^{-1} = \dfrac{p}{y}$ |
+| :------------------------------------ | :----------------------------------------------------------- |
 | $\dfrac{\Lambda^2 y(x)}{\lambda^2 x}$ | $-\left[ \dfrac{\Lambda^2 F(y,x)}{\lambda^2 y} · \left[ \dfrac{\Lambda y}{\lambda x} \right]^{2} + \dfrac{\Lambda^2 F(y,x)}{\lambda y · \lambda x} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^2 F(y,x)}{\lambda x · \lambda y} · \dfrac{\Lambda y}{\lambda x} + \dfrac{\Lambda^2 F(y,x)}{\lambda^2 x} \right] · \left[ \dfrac{\Lambda F(y,x)}{\lambda y} \right]^{-1} = -\left[ 2 · \dfrac{p^2}{y^2} + 0 + 0 + 0 \right] · [2 · y]^{-1} = -\dfrac{p^2}{y^3}$ |
+
+### 平直线坐标方程
+
+$\left\lbrace\begin{aligned}
+& 0 = +p · y + q · x + r \\
+& \tan α = -\dfrac{q}{p} \\
+& \tan κ = +\dfrac{p}{q} \\
+& 0 = -q · y + p · x + r_{κ} \\
+\end{aligned}\right.
+\left\lbrace\begin{aligned}
+& y = +k · x + c \\
+& \tan α = +k \\
+& \tan κ = -\dfrac{1}{k} \\
+& y = -\dfrac{1}{k} · x + c_{κ} \\
+\end{aligned}\right.
+\left\lbrace\begin{aligned}
+& \dfrac{y - y_0}{y_1 - y_0} = +\dfrac{x - x_0}{x_1 - x_0} \\
+& \tan α = +\dfrac{y_1 - y_0}{x_1 - x_0} \\
+& \tan κ = -\dfrac{x_1 - x_0}{y_1 - y_0} \\
+& \dfrac{y - y_{κ}}{x_1 - x_0} = -\dfrac{x - x_{κ}}{y_1 - y_0} \\
+\end{aligned}\right.
+\left\lbrace\begin{aligned}
+& y - y_0 = +t · (x - x_0) \\
+& \tan α = +t \\
+& \tan κ = -\dfrac{1}{t} \\
+& y - y_{κ} = -\dfrac{1}{t} · (x - x_{κ}) \\
+\end{aligned}\right.$
+
+$\left\lbrace\begin{aligned}
+& r_{κ} = q · y_0 - p · x_0 \\
+& y_{κ} = \dfrac{-r · p + r_{κ} · q}{p^2 + q^2} = \dfrac{-r·p + q^2·y_0 -p·q·x_0}{p^2 + q^2} \\
+& x_{κ} = \dfrac{-r · q - r_{κ} · p}{p^2 + q^2} = \dfrac{-r·q-p·q·y_0+p^2·x_0}{p^2 + q^2} \\
+& \mathrm{D}[\langle x_0,y_0 \rangle; 0=p·y+q·x+r] = \sqrt{(y_{κ}-y_0)^2+(x_{κ}-x_0)^2} = \dfrac{|p·y_0+q·x_0+r|}{\sqrt{p^2 + q^2}} \\
+\end{aligned}\right.$
 
