@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-05-08T01:57:00+08@中国-广东-湛江+08
+Update:  2021-05-08T19:36:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -431,7 +431,18 @@ $\left[ \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0 \right] ∧ \left[ \dfrac{\m
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\left[ f(θ) = \inf\limits_{x∈\mathrm{B}(θ,Δ)} f(x) \right] ∨ \left[ f(θ) = \sup\limits_{x∈\mathrm{B}(θ,Δ)} f(x) \right]$ | $⇔$  | $[f(x_0^{-Δ}) - f(x_0)] · [f(x_0) - f(x_0^{+Δ})] ≤ 0$        |
 
+若函数$f(x)$在区间$[x_α,x_β]$上连续，则函数$f(x)$在区间$[x_α,x_β]$上停驻点与曲折点处取得最小值与最大值。
 
+$\min\limits_{x∈[x_α,x_β]} f(x) = \min \left\lbrace ∀x; f(x): x∈\left\lbrace ∀x_0; x_0: \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0 \right\rbrace \bigcup \left\lbrace ∀x_0; x_0: \dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x} ≠ \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x} \right\rbrace \right\rbrace$
+
+$\max\limits_{x∈[x_α,x_β]} f(x) = \max \left\lbrace ∀x; f(x): x∈\left\lbrace ∀x_0; x_0: \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0 \right\rbrace \bigcup \left\lbrace ∀x_0; x_0: \dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x} ≠ \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x} \right\rbrace \right\rbrace$
+
+典例：数列$n^{\frac{1}{n}}$在$3^{\frac{1}{3}}$处取得最大值。
+
+| $f(x) = x^{\frac{1}{x}}$                                     | $\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = x^{\frac{1}{x}} · \left[ -\dfrac{1}{x^2} · \ln|x| + \dfrac{1}{x^2} · 1 \right] = x^{\frac{1}{x}-2} · (1 - \ln|x|) = \mathop{+0}\limits_{x<ә};\mathop{0}\limits_{x=ә};\mathop{-0}\limits_{x>ә}$ |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| $\lim\limits_{x⇝0^{+}} x^{\frac{1}{x}} = \lim\limits_{x⇝0^{+}} ә^{\frac{1}{x}·\ln x} ⇝ ә^{∞^{-}} = 0$ | $\lim\limits_{x⇝∞^{+}} x^{\frac{1}{x}} = \lim\limits_{x⇝∞^{+}} ә^{\frac{1}{x}·\ln x} ⇝ ә^{0^{+}} = 1$ |
+| $\max\limits_{0≤n<∞^{+}} \left\lbrace n^{\frac{1}{n}} \right\rbrace = \max\limits_{2≤ә≤3} \left\lbrace 2^{\frac{1}{2}}, 3^{\frac{1}{3}} \right\rbrace = 3^{\frac{1}{3}}$ |                                                              |
 
 ### 连续介值定理
 
@@ -482,7 +493,9 @@ $|f(x)| ≤ \max\left\lbrace \left| \inf\limits_{x∈X} f(x) \right|, \left| \su
 
 ### 微分中值定理
 
-若函数$f(x)$在点$x_0$处导数值$\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0$，则称点$x_0$为函数$f(x)$的驻点。
+若函数$f(x)$在点$x_0$处连续且导数值$\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0$，则称点$x_0$为函数$f(x)$的停驻点。
+
+若函数$f(x)$在点$x_0$处连续但导数值不存在$\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x} ≠ \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x}$，则称点$x_0$为函数$f(x)$的曲折点。
 
 若函数$f(x)$在点$x_0$处达到极小值极大值且导数值存在，则其在点$x_0$处导数$\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0$。
 
@@ -547,6 +560,10 @@ $\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} ⇝ \left
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g^{-1}(x)}{f^{-1}(x)} \mathop{=====}\limits_{f(x)|_{x_0}=∞}^{g(x)|_{x_0}=∞} \left[ \lim\limits_{x⇝x_0} \dfrac{(-1) · g^{-2}(x)}{(-1) · f^{-2}(x)} \right] · \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)}$ |      |                                                              |
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} = \lim\limits_{x⇝x_0} \dfrac{g^{-1}(x)}{f^{-1}(x)} · \lim\limits_{x⇝x_0} \dfrac{g^{2}(x)}{f^{2}(x)} = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ |      |                                                              |
 
+反例：导数介值定理的前提不可忽略。
+
+$\left[ \lim\limits_{x⇝∞^{+}} \dfrac{2 · x - \sin x}{2 · x + \cos x} = \lim\limits_{x⇝∞^{+}} \dfrac{2 - \dfrac{\sin x}{x}}{2 + \dfrac{\cos x}{x}} \right] ⇝ 1 \not⇜ \left[ \lim\limits_{x⇝∞^{+}} \dfrac{2 - \cos x}{2 - \sin x} = \lim\limits_{x⇝∞^{+}} \dfrac{2 · x - \sin x}{2 · x + \cos x} \right]$
+
 典例：若函数$f(x)$在区间$X$上二阶导函数存在。
 
 $\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \lim\limits_{h⇝0} \dfrac{f(x+h) + f(x-h) - 2 · f(x)}{h^2}$
@@ -563,7 +580,7 @@ $\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \lim\limits_{h⇝0} \dfrac{f(x+h) +
 | :--: | :----------------------------------------------------------- | :--------------- |
 | $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{-}} ≠ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{+}} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x}$ | $\mathrm{False}$ |
 
-若函数$f(x)$在区间$[x_α,x_β]$上连续且导数值存在，则对于两端点处导数值之间的任意取值$t$，存在某点$θ∈(x_α,x_β)$其导数值相等。
+若函数$f(x)$在区间$[x_α,x_β]$上连续且导数值存在，则对于两端点处导数值之间任意取值$t$，存在某点$θ∈(x_α,x_β)$其导数值相等。
 
 $∀t∈\left[\min\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x} \right\rbrace, \max\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x} \right\rbrace\right];∃θ∈(x_α,x_β); \dfrac{\mathrm{d} f(θ)}{\mathrm{d} x} = t$
 
