@@ -66,6 +66,8 @@ $\left[ 0 ⇜ \lim\limits_{x⇝0^{+}} \left| p·f(x)+q·x+r \right| = \lim\limit
 
 $\left[ 0 ⇜ \lim\limits_{x⇝∞^{+}} \left| p·f(x)+q·x+r \right| = \lim\limits_{x⇝∞^{+}} \left| p·\dfrac{1}{x}+q·x+r \right| \right] \mathop{⇒}\limits_{r = 0}^{q=0} \left[ 0=y \right]$
 
+
+
 ### 近似误差
 
 变量精确值 $\bar{x}$
@@ -78,32 +80,22 @@ $\left[ 0 ⇜ \lim\limits_{x⇝∞^{+}} \left| p·f(x)+q·x+r \right| = \lim\lim
 
 近似误差值的运算性质。
 
-$\mathrm{D}(y + x) ≤ \mathrm{D}(y) + \mathrm{D}(x)$
-
-$\mathrm{D}(y - x) ≤ \mathrm{D}(y) + \mathrm{D}(x)$
-
-$\mathrm{D}(y · x) ≤ |y| · \mathrm{D}(x) + \mathrm{D}(y) · |x| + \mathrm{D}(y) · \mathrm{D}(x)$
-
-$\mathrm{D}\left( \dfrac{y}{x} \right) ≤ \dfrac{|y| · \mathrm{D}(x) + \mathrm{D}(y) · |x|}{x^2 · [1 - \mathrm{d}(x)]}$
-
-$\mathrm{d}(y + x) ≤ \dfrac{\mathrm{D}(y) + \mathrm{D}(x)}{|y + x|}$
-
-$\mathrm{d}(y - x) ≤ \dfrac{\mathrm{D}(y) + \mathrm{D}(x)}{|y - x|}$
-
-$\mathrm{d}(y · x) ≤ \mathrm{d}(y) + \mathrm{d}(x) + \mathrm{d}(y) · \mathrm{d}(x)$
-
-$\mathrm{d}\left( \dfrac{y}{x} \right) ≤ \dfrac{\mathrm{d}(y) + \mathrm{d}(x)}{1 - \mathrm{d}(x)}$
+| $\mathrm{D}(y + x) ≤ \mathrm{D}(y) + \mathrm{D}(x)$          | $\mathrm{d}(y + x) ≤ \dfrac{\mathrm{D}(y) + \mathrm{D}(x)}{|y + x|}$ |      |                                                              | $\mathrm{d}(y+x) \mathop{≤}\limits_{|x|≤|y+x|}^{|y|≤|y+x|} \mathrm{d}(y) + \mathrm{d}(x)$ |
+| :----------------------------------------------------------- | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| $\mathrm{D}(y - x) ≤ \mathrm{D}(y) + \mathrm{D}(x)$          | $\mathrm{d}(y - x) ≤ \dfrac{\mathrm{D}(y) + \mathrm{D}(x)}{|y - x|}$ |      |                                                              | $\mathrm{d}(y - x) \mathop{≤}\limits_{|x|≤|y-x|}^{|y|≤|y-x|} \mathrm{d}(y)+\mathrm{d}(x)$ |
+| $\mathrm{D}(y · x) ≤ |y| · \mathrm{D}(x) + \mathrm{D}(y) · |x| + \mathrm{D}(y) · \mathrm{D}(x)$ | $\mathrm{d}(y · x) ≤ \mathrm{d}(y) + \mathrm{d}(x) + \mathrm{d}(y) · \mathrm{d}(x)$ |      | $\mathrm{D}(y·x) \mathop{≤}\limits^{\mathrm{D}(y)·\mathrm{D}(x)≈0} |y| · \mathrm{D}(x) + \mathrm{D}(y) · |x|$ | $\mathrm{d}(y·x) \mathop{≤}\limits^{\mathrm{d}(y)·\mathrm{d}(x)≈0} \mathrm{d}(y) + \mathrm{d}(x)$ |
+| $\mathrm{D}\left( \dfrac{y}{x} \right) ≤ \dfrac{|y| · \mathrm{D}(x) + \mathrm{D}(y) · |x|}{x^2 · [1 - \mathrm{d}(x)]}$ | $\mathrm{d}\left( \dfrac{y}{x} \right) ≤ \dfrac{\mathrm{d}(y) + \mathrm{d}(x)}{1 - \mathrm{d}(x)}$ |      | $\mathrm{D}\left(\dfrac{y}{x}\right) \mathop{≤}\limits^{1-\mathrm{d}(x)≈0} \dfrac{|y|·\mathrm{D}(x)+\mathrm{D}(y)·|x|}{x^2}$ | $\mathrm{d}\left(\dfrac{y}{x}\right) \mathop{≤}\limits^{1-\mathrm{d}(x)≈0} \mathrm{d}(y) + \mathrm{d}(x)$ |
 
 
 | $\mathrm{D}(y + x)$                     | $\mathrm{D}(y + x) = |(y + x) - (\bar{y} + \bar{x})| ≤ |y - \bar{y}| + |x - \bar{x}| = \mathrm{D}(y) + \mathrm{D}(x)$ |
 | :-------------------------------------- | :----------------------------------------------------------- |
 | $\mathrm{D}(y - x)$                     | $ \mathrm{D}(y - x) = |(y - x) - (\bar{y} - \bar{x})| ≤ |y - \bar{y}| + |x - \bar{x}| = \mathrm{D}(y) + \mathrm{D}(x)$ |
 | $\mathrm{D}(y · x)$                     | $\mathrm{D}(y · x) = |y · x - \bar{y} · \bar{x}| = |y · x - (y + Δy) · (x + Δx)| ≤ |y · Δx| + |Δy · x| + |Δy · Δx| = |y| · \mathrm{D}(x) + \mathrm{D}(y) · |x| + \mathrm{D}(y) · \mathrm{D}(x)$ |
-| $\mathrm{D}\left( \dfrac{y}{x} \right)$ | $\mathrm{D}\left( \dfrac{y}{x} \right) = \left| \dfrac{y}{x} - \dfrac{\bar{y}}{\bar{x}} \right| = \left| \dfrac{y · (x + Δx) - (y + Δy) · x}{x · (x + Δx)} \right| ≤ \dfrac{|y · Δx| + |Δy · x|}{x^2 · \left| 1 + \dfrac{Δx}{x} \right|} ≤ \dfrac{|y| · \mathrm{D}(x) + \mathrm{D}(y) · |x|}{x^2 · [1 - \mathrm{d}(x)]}$ |
+| $\mathrm{D}\left( \dfrac{y}{x} \right)$ | $\mathrm{D}\left( \dfrac{y}{x} \right) = \left| \dfrac{y}{x} - \dfrac{\bar{y}}{\bar{x}} \right| = \left| \dfrac{y·\bar{x}-\bar{y}·x}{x·\bar{x}} \right| = \left| \dfrac{y · (x + Δx) - (y + Δy) · x}{x · (x + Δx)} \right| ≤ \dfrac{|y · Δx| + |Δy · x|}{x^2 · \left| 1 + \dfrac{Δx}{x} \right|} ≤ \dfrac{|y| · \mathrm{D}(x) + \mathrm{D}(y) · |x|}{x^2 · [1 - \mathrm{d}(x)]}$ |
 |                                         |                                                              |
 | $\mathrm{d}(y + x)$                     | $\mathrm{d}(y + x) = \dfrac{\mathrm{D}(y + x)}{|y + x|} ≤ \dfrac{\mathrm{D}(y) + \mathrm{D}(x)}{|y + x|}$ |
 | $\mathrm{d}(y - x)$                     | $\mathrm{d}(y - x) = \dfrac{\mathrm{D}(y - x)}{|y - x|} ≤ \dfrac{\mathrm{D}(y) + \mathrm{D}(x)}{|y - x|}$ |
 | $\mathrm{d}(y · x)$                     | $\mathrm{d}(y · x) = \dfrac{\mathrm{D}(y · x)}{|y · x|} ≤ \dfrac{|y| · \mathrm{D}(x) + \mathrm{D}(y) · |x| + \mathrm{D}(y) · \mathrm{D}(x)}{|y · x|} = \mathrm{d}(y) + \mathrm{d}(x) + \mathrm{d}(y) · \mathrm{d}(x)$ |
-| $\mathrm{d}\left( \dfrac{y}{x} \right)$ | $\mathrm{d}\left( \dfrac{y}{x} \right) = \mathrm{D}\left( \dfrac{y}{x} \right) · \left| \dfrac{x}{y} \right| ≤ \dfrac{|y| · \mathrm{D}(x) + \mathrm{D}(y) · |x|}{x^2 · [1 - \mathrm{d}(x)]} · \left| \dfrac{x}{y} \right| = \dfrac{\mathrm{d}(y) + \mathrm{d}(x)}{1 - \mathrm{d}(x)}$ |
+| $\mathrm{d}\left( \dfrac{y}{x} \right)$ | $\mathrm{d}\left( \dfrac{y}{x} \right) = \mathrm{D}\left( \dfrac{y}{x} \right) · \left| \dfrac{y}{x} \right|^{-1} ≤ \dfrac{|y| · \mathrm{D}(x) + \mathrm{D}(y) · |x|}{x^2 · [1 - \mathrm{d}(x)]} · \left| \dfrac{x}{y} \right| = \dfrac{\mathrm{d}(y) + \mathrm{d}(x)}{1 - \mathrm{d}(x)}$ |
 
 

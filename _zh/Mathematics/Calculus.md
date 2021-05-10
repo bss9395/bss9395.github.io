@@ -322,7 +322,9 @@ ${^2}f(x) = \dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} = \lim\limits_{x_t⇝x
 
 $\lim\limits_{x_t⇝x} \dfrac{f(x_t) - f(x)}{(x_t - x)^2} = \lim\limits_{x_t⇝x} \dfrac{x_t^2 - x^2}{(x_t - x)^2} = \lim\limits_{x_t⇝x} \dfrac{x_t + x}{x_t - x} ⇝ ∞$
 
-若函数$f(x)$在点$x_0$处的导数值${^1}f(x_0)$存在，则其在点$x_0$处连续，反之不对。
+若函数$f(x)$在点$x_0$处一阶导数值${^1}f(x_0)$存在，则函数$f(x)$必定在点$x_0$处连续，反之不对。
+
+若函数$f(x)$在点$x_0$处二阶导数值$^{2}f(x_0)$存在，则其一阶导函数在点$x_0$处连续，反之不对。
 
 $\lim\limits_{x⇝x_0} f(x) = \lim\limits_{x⇝x_0} \left[ \dfrac{f(x) - f(x_0)}{x - x_0} · (x - x_0) + f(x_0) \right] = {^1}f(x_0) · \lim\limits_{x⇝x_0} (x - x_0) + f(x_0) ⇝ f(x_0)$
 
@@ -680,10 +682,6 @@ $\left[ ∃ε>0;∀δ>0; \sup\limits_{|x-x_t|≤δ} |f(x) - f(x_t)| > ε \right]
 | $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈[0, ∞^{+}); [ | x - x_t | ≤ δ ] ⇒ \left[ | f (x) - f (x_t) | = | \sqrt{x} - \sqrt{x_t} | \mathop{≤}\limits^{\sqrt{u+v}≤\sqrt{u}+\sqrt{v}} \sqrt{|x - x_t|} ≤ \sqrt{δ} = ε \right]$ |
 |      |                                                              |
 | $⇓$  | $∃ε>0;∀δ>0;∃x=\sqrt{2·n·π+\frac{π}{2}},x_t=\sqrt{2·n·π}∈[0,∞^{+}); \left[ |x - x_t| = \dfrac{\frac{π}{2}}{\sqrt{2·n·π+\frac{π}{2}} + \sqrt{2·n·π}} ≤ δ \right] ∧ \left[ |f(x) - f(x_t)| = |x^{2} - x_t^{2}| = \dfrac{π}{2} > ε \right]$ |
-
-
-
-
 
 ### 幂级数
 

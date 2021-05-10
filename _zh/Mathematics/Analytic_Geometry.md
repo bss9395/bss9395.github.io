@@ -201,9 +201,10 @@ $\left\lbrace\begin{aligned}
 \end{aligned}\right.$
 
 $\left\lbrace\begin{aligned}
-& r_{κ} = q · y_0 - p · x_0 \\
-& y_{κ} = \dfrac{-r · p + r_{κ} · q}{p^2 + q^2} = \dfrac{-r·p + q^2·y_0 -p·q·x_0}{p^2 + q^2} \\
-& x_{κ} = \dfrac{-r · q - r_{κ} · p}{p^2 + q^2} = \dfrac{-r·q-p·q·y_0+p^2·x_0}{p^2 + q^2} \\
+& r_{κ} = +q · y_0 - p · x_0 \\
+& y_{κ} = \dfrac{-p · r + q · r_{κ}}{p^2 + q^2} = \dfrac{-p·r + q^2·y_0 -p·q·x_0}{p^2 + q^2} \\
+& x_{κ} = \dfrac{-q · r - p · r_{κ}}{p^2 + q^2} = \dfrac{-q·r-p·q·y_0+p^2·x_0}{p^2 + q^2} \\
 & \mathrm{D}[\langle x_0,y_0 \rangle; 0=p·y+q·x+r] = \sqrt{(y_{κ}-y_0)^2+(x_{κ}-x_0)^2} = \dfrac{|p·y_0+q·x_0+r|}{\sqrt{p^2 + q^2}} \\
+& \mathrm{D}[0=p·y+q·x+r_1;0=p·y+q·x+r_2] = \dfrac{|p·y_1+q·x_1+r_2|}{\sqrt{p^2+q^2}} = \dfrac{|r_1-r_2|}{\sqrt{p^2 + q^2}} \\
 \end{aligned}\right.$
 
