@@ -535,7 +535,7 @@ $\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} ⇝ \left
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g^{-1}(x)}{f^{-1}(x)} \mathop{=====}\limits_{f(x)|_{x_0}=∞}^{g(x)|_{x_0}=∞} \left[ \lim\limits_{x⇝x_0} \dfrac{(-1) · g^{-2}(x)}{(-1) · f^{-2}(x)} \right] · \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)}$ |      |                                                              |
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} = \lim\limits_{x⇝x_0} \dfrac{g^{-1}(x)}{f^{-1}(x)} · \lim\limits_{x⇝x_0} \dfrac{g^{2}(x)}{f^{2}(x)} = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ |      |                                                              |
 
-反例：导数介值定理的前提不可忽略。
+反例：导数介值定理的前提条件不可忽略。
 
 $\left[ \lim\limits_{x⇝∞^{+}} \dfrac{2 · x - \sin x}{2 · x + \cos x} = \lim\limits_{x⇝∞^{+}} \dfrac{2 - \dfrac{\sin x}{x}}{2 + \dfrac{\cos x}{x}} \right] ⇝ 1 \not⇜ \left[ \lim\limits_{x⇝∞^{+}} \dfrac{2 - \cos x}{2 - \sin x} = \lim\limits_{x⇝∞^{+}} \dfrac{2 · x - \sin x}{2 · x + \cos x} \right]$
 
@@ -566,6 +566,10 @@ $∀t∈\left[\min\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x}, \df
 | $⇓$  | $[F(x_α) - F(x_α^{+Δ})] · [F(x_β^{-Δ}) - F(x_β)] ≤ 0$        |      | $\lim\limits_{x⇝x_0}^{x_0∈[x_α,x_β]} F(x) ⇝ F(x_0)$          |
 | $⇓$  | $∃θ∈(x_α,x_β); [F(θ^{-Δ}) - F(θ)] · [F(θ) - F(θ^{+Δ})] ≤ 0$  | $⇔$  | $\left[ F(θ) = \inf\limits_{x∈\mathrm{B}(θ,Δ)} F(x) \right] ∨ \left[ F(θ) = \sup\limits_{x∈\mathrm{B}(θ,Δ)} F(x) \right]$ |
 | $⇓$  | $\left. \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} - t = 0$ | $⇒$  | $\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = t$ |
+
+典例：不定式$\lim\limits_{x⇝∞^{+}} \left[ \sqrt[9]{x^9 + x^5} - \sqrt[9]{x^9 - x^5} \right]$的极限值。
+
+$\lim\limits_{x⇝∞^{+}} \left[ \sqrt[8]{x^8 + x^7} - \sqrt[8]{x^8 - x^7} \right] = \lim\limits_{x⇝∞^{+}} x·\left[ \left(1+\dfrac{1}{x}\right)^{\frac{1}{8}} - \left(1-\dfrac{1}{x}\right)^{\frac{1}{8}} \right] = \lim\limits_{t⇝0^{+}} \dfrac{(1 + t)^{\frac{1}{8}} - (1 - t)^{\frac{1}{8}}}{t} = \lim\limits_{t⇝0^{+}} \dfrac{1}{8}·\left[(1 + t)^{-\frac{7}{8}} + (1-t)^{\frac{7}{8}} \right] ⇝ \dfrac{1}{4}$
 
 ### 一致连续性
 
@@ -721,12 +725,6 @@ $R_{n}(x) = o(x - x_0)^{n} = f(x) - f(x_0) - \sum\limits_{i=1}^{n} \dfrac{{^i}f(
 | $⇓$  | $R_n (x) \mathop{====}\limits^{∃θ∈(x_0, x)} \dfrac{ {^{n+1}f (θ)} }{n!} · (x - θ)^n · (x - x_0)^1$ | $⇐$  | $G (t) ≡ (x - t)^1$                                          | ${^1}G (t) = -1$                                      |
 | $⇓$  | $R_n (x) \mathop{====}\limits^{∃θ∈(x_0, x)} \int\limits_{x_0}^x \dfrac{ {^{n+1} }f (t)}{n!} · (x - t)^n \mathrm{d} t$ | $⇐$  | $G (t) ≡ \int\limits_{x_0}^t \dfrac{ {^{n+1} }f (t)}{n!} · (x - t)^n \mathrm{d} t$ | ${^1}G (t) = \dfrac{ {^{n+1} }f (t)}{n!} · (x - t)^n$ |
 
-典例：函数$f(x) = x^{n+1} · \mathcal{Q}(x)$在点$x_0=0$处连续但仅有一阶导数值，因此在点$x_0=0$处可唯一展开成$1$阶幂级数。
-
-$\dfrac{\mathrm{d} f(0)}{\mathrm{d} x} = \lim\limits_{x⇝0} \dfrac{f(x) - f(0)}{x - 0} = \lim\limits_{x⇝0} \dfrac{x^{n+1}·\mathcal{Q}(x)}{x} ⇝ 0$
-
-$f(x) = f(0) + \dfrac{{^1}f(0)}{1!} · (x - 0)^1 + R_{1}(x) = o(x)^1$
-
 典例：若函数$f(x)$在区间$X$上二阶导函数存在。
 
 $\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \lim\limits_{h⇝0} \dfrac{f(x+h) + f(x-h) - 2 · f(x)}{h^2}$
@@ -735,6 +733,39 @@ $\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \lim\limits_{h⇝0} \dfrac{f(x+h) +
 | :--: | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | $⇓$  | $\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \dfrac{f(x+h) + f(x-h) - 2 · f(x)}{h^2} + \left[ o_{+}(h^2) +o_{-}(h^2) \right]$ |                                                              |
 | $⇓$  | $\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \lim\limits_{h⇝0} \dfrac{f(x+h) + f(x-h) - 2 · f(x)}{h^2}$ |                                                              |
+
+典例：函数$g(x)$与函数$f(x)$之比的极限值。
+
+$\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} \mathop{======}\limits_{{^h}f(x_0)\mathop{==}\limits^{h<n}0}^{{^h}g(x_0)\mathop{==}\limits^{h<m}0} \lim\limits_{x⇝x_0} \dfrac{\dfrac{{^m}g(x_0)}{m!}·(x - x_0)^{m} + o(x-x_0)^{m}}{\dfrac{{^n}f(x_0)}{n!}·(x - x_0)^{n}} = \lim\limits_{x⇝x_0} (x - x_0)^{m-n} · \dfrac{\dfrac{{^m}f(x_0)}{m!} + \dfrac{o(x - x_0)^m}{(x - x_0)^m}}{\dfrac{{^n}f(x_0)}{n!} + \dfrac{o(x - x_0)^n}{(x - x_0)^n}} ⇝ \mathop{0}\limits_{m>n};\mathop{\dfrac{{^n}g(x_0)}{{^n}f(x_0)}}\limits_{m=n};\mathop{∞}\limits_{m<n}$
+
+典例：函数$f(x) = x^{n+1} · \mathcal{Q}(x)$在点$x_0=0$处连续但仅有一阶导数值，因此在点$x_0=0$处可唯一展开成$1$阶幂级数。
+
+$\dfrac{\mathrm{d} f(0)}{\mathrm{d} x} = \lim\limits_{x⇝0} \dfrac{f(x) - f(0)}{x - 0} = \lim\limits_{x⇝0} \dfrac{x^{n+1}·\mathcal{Q}(x)}{x} ⇝ 0$
+
+$f(x) = f(0) + \dfrac{{^1}f(0)}{1!} · (x - 0)^1 + R_{1}(x) = o(x)^1$
+
+典例：函数$f(x) = \tan x$在点$x_0 = 0$处展开成$5$阶幂级数。
+
+$\tan x = 1·x^1 + \dfrac{1}{3}·x^3 + \dfrac{2}{15}·x^5 + o(x^5)$
+
+| $f(x)$     | $\dfrac{{^0}f(0)}{0!}·x^0 + \dfrac{{^1}f(0)}{1!}·x^1 + \dfrac{{^2}f(0)}{2!}·x^2 + \dfrac{{^3}f(0)}{3!}·x^3 + \dfrac{{^4}f(0)}{4!}·x^4 + \dfrac{{^5}f(0)}{5!}·x^5 + o(x^5)$ |
+| :--------- | :----------------------------------------------------------- |
+| ${^0}f(0)$ | $\left[ \tan x \right]_{x=0} = 0$                            |
+| ${^1}f(0)$ | $\left[ \cos^{-2} x \right]_{x=0} = 1$                       |
+| ${^2}f(0)$ | $\left[ 2·\cos^{-3} x · \sin^{1} x \right]_{x=0} = 0$        |
+| ${^3}f(0)$ | $\left[ 6·\cos^{-4} x · \sin^{2} x + 2·\cos^{-2} x \right]_{x=0} = 2$ |
+| ${^4}f(0)$ | $\left[ 24·\cos^{-5} x · \sin^{3} x + 16·\cos^{-3} x · \sin^{1} x \right]_{x=0} = 0$ |
+| ${^5}f(0)$ | $\left[ 120·\cos^{-6} x · \sin^{4} x + 120·\cos^{-4} x · \sin^{2} x + 16·\cos^{-2} x \right]_{x=0} = 16$ |
+
+典例：数列$s_n = \left(1 + \dfrac{0}{n^2}\right) · \left(1 + \dfrac{1}{n^2}\right) ··· \left(1 + \dfrac{n}{n^2}\right)$的极限值。
+
+$\lim\limits_{n⇝∞^{+}} s_n = \lim\limits_{n⇝∞^{+}} \left(1 + \dfrac{0}{n^2}\right) · \left(1 + \dfrac{1}{n^2}\right) ··· \left(1 + \dfrac{n}{n^2}\right) ⇝ ә^{\frac{1}{2}}$
+
+| $⇓$  | $x - \dfrac{x^2}{2} < \ln(1 + x) < x$                        |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $\sum\limits_{i=0}^{n} \dfrac{i}{n^2} - \sum\limits_{i=0}^{n} \dfrac{i^2}{2·n^{4}} < \sum\limits_{i=0}^{n} \ln\left(1 + \dfrac{i}{n^2}\right) < \sum\limits_{i=0}^{n} \dfrac{i}{n^2}$ |
+| $⇓$  | $\dfrac{1}{n^2} · \left[ \dfrac{(n+1)^2}{2} - \dfrac{(n+1)^1}{2} \right] - \dfrac{1}{2·n^4} · \left[ \dfrac{(n+1)^3}{3} - \dfrac{(n+1)^2}{2} + \dfrac{(n+1)^1}{6} \right] < \ln s_n < \dfrac{1}{n^2} · \left[ \dfrac{(n+1)^2}{2} - \dfrac{(n+1)^1}{2} \right]$ |
+| $⇓$  | $\lim\limits_{n⇝∞^{+}} s_n = \lim\limits_{n⇝∞^{+}} \left(1 + \dfrac{0}{n^2}\right) · \left(1 + \dfrac{1}{n^2}\right) ··· \left(1 + \dfrac{n}{n^2}\right) ⇝ ә^{\frac{1}{2}}$ |
 
 ### 定积分
 
