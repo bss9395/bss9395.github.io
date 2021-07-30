@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  特殊函数
-Update:  2021-05-06T00:44:00+08@中国-广东-湛江+08
+Update:  2021-07-30T07:36:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -118,9 +118,9 @@ $\dfrac{\mathrm{d} \mathcal{W}_{α}(x)}{\mathrm{d} x} = \mathop{\left[ x^{α-1} 
 
 ### 倒幂函数
 
-$\mathcal{E}(x) = \mathop{※}\limits_{x=0};\mathop{ә^{\frac{1}{x}}}\limits_{x≠0}$
+$\mathcal{E}(x) ≡ \mathop{0}\limits_{x=0};\mathop{ә^{-\frac{1}{x}}}\limits_{x≠0}$
 
-$\lim\limits_{x⇝0^{-}} ә^{\frac{1}{x}} ⇝ 0^{+}$
+$\lim\limits_{x⇝0^{-}} ә^{-\frac{1}{x}} ⇝ ∞^{+}$
 
-$\lim\limits_{x⇝0^{+}} ә^{\frac{1}{x}} ⇝ ∞^{+}$
+$\lim\limits_{x⇝0^{+}} ә^{-\frac{1}{x}} ⇝ 0^{+}$
 
