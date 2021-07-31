@@ -102,13 +102,13 @@ $\dfrac{\mathrm{d} \mathcal{W}_{α}(0)}{\mathrm{d} x} = \lim\limits_{x⇝0} \dfr
 
 $\dfrac{\mathrm{d} \mathcal{W}_{α}(x)}{\mathrm{d} x} = \mathop{\left[ x^{α-1} · \sin \dfrac{1}{x} \right]}\limits_{x=0};\mathop{\left[ α · x^{α-1} · \sin \dfrac{1}{x} - x^{α-2} · \cos \dfrac{1}{x} \right]}\limits_{x≠0}$
 
-当$α ≤ 0$时，$\mathcal{W}_{α}(x)$在点$x = 0$处振荡，因此其导数振荡，其导函数振荡。
+当$α ≤ 0$时，$\mathcal{W}_{α}(x)$在点$x = 0$处振荡，因此其导数振荡，其导函数振荡，非一致连续。
 
-当$0 < α ≤ 1$时，$\mathcal{W}_{α} (x)$在点$x = 0$处连续，其导数振荡，其导函数振荡。
+当$0 < α ≤ 1$时，$\mathcal{W}_{α} (x)$在点$x = 0$处连续，其导数振荡，其导函数振荡，也一致连续。
 
-当$1 < α ≤ 2$时，$\mathcal{W}_{α}(x)$在点$x = 0$处连续，其导数收敛，其导函数振荡。
+当$1 < α ≤ 2$时，$\mathcal{W}_{α}(x)$在点$x = 0$处连续，其导数收敛，其导函数振荡，也一致连续。
 
-当$2 < α$时，$\mathcal{W}_{α}(x)$在点$x = 0$处连续，并且其导数收敛，其导函数收敛。
+当$2 < α$时，$\mathcal{W}_{α}(x)$在点$x = 0$处连续，并且其导数收敛，其导函数收敛，也一致连续。
 | $α < 0$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{α} · \sin \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π+\frac{π}{2}]^{-1}} |x^{α}| \mathop{⇝}\limits_{n<0} ∞^{+}$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{α} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π]^{-1}} |x^{α}| \mathop{⇝}\limits_{n<0} ∞^{+}$ | $x = 0$处振荡 |
 | :---------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :------------ |
 | $α = 0$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|x^{α} · \sin \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝0}^{x=[m·π+\frac{π}{2}]^{-1}} \left|\sin \dfrac{1}{x}\right| = 1$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|x^{α} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝0}^{x=[m·π]^{-1}} \left|\cos \dfrac{1}{x}\right| = 1$ | $x = 0$处振荡 |
