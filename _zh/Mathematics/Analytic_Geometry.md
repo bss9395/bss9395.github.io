@@ -11,7 +11,6 @@ Link  :
 
 ```
 本书中微分算符与教科书不同。
-本书中微分算符必定成对出现。
 ```
 
 在本书中，全微分算符为$\Lambda$，偏微分算符为$\lambda$，一阶求导算符为$\dfrac{\Lambda}{\lambda} ≡ \dfrac{\Lambda^{1}}{\lambda^{1}}$，高阶求导算符为$\dfrac{\Lambda^{n}}{\lambda^{n}} ≡ \dfrac{\Lambda}{\lambda} \dfrac{\Lambda^{n-1}}{\lambda^{n-1}}$。

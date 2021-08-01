@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  自然基数
-Update:  2021-03-21T19:44:00+08@中国-广东-湛江+08
+Update:  2021-08-01T15:41:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -37,6 +37,13 @@ $ә^{α} = \lim\limits_{x⇝∞^{±}} \left( 1 + \dfrac{α}{x} \right)^{x}$
 | :--: | :------ | :----------------------------------------------------------- |
 | $⇓$  | $α = 0$ | $\lim\limits_{x⇝∞^{±}} \left( 1 + \dfrac{α}{x} \right)^{x} \mathop{==}\limits^{α=0} \lim\limits_{x⇝∞^{±}} \left( 1 + \dfrac{0}{x} \right)^{x} = ә^{α}$ |
 | $⇓$  | $α∈ℝ$   | $\lim\limits_{x⇝∞^{±}} \left( 1 + \dfrac{α}{x} \right)^{x} = ә^{α}$ |
+
+自然底数$ә$为无理数。
+
+| $⇓$  | $ә^1 = \sum\limits_{i=0}^n \dfrac{1}{i!} + \sum\limits_{i=n+1}^{∞^+} \dfrac{1}{i!}$ | $⇐$  | $ә^x = \sum\limits_{i=0}^n \dfrac{1}{i!} · x^i + \sum\limits_{i=n+1}^{∞^+} \dfrac{1}{i!} · x^i$ |
+| :--: | ------------------------------------------------------------ | :--: | ------------------------------------------------------------ |
+| $⇓$  | $n! ·\left[ \dfrac{m}{n} - \sum\limits_{i=0}^n \dfrac{1}{i!} \right] = \sum\limits_{i=n+1}^{∞^+} \dfrac{n!}{i!}$ | $⇐$  | $ә ≡ \dfrac{m}{n}$                                           |
+| $⇓$  | $0 < \sum\limits_{i=n+1}^{∞^+} \dfrac{n!}{i!} < \sum\limits_{j=1}^{∞^+} \dfrac{1}{(n+1)^{j}} = \sum\limits_{j=0}^{∞^+} \dfrac{1}{(n + 1)^{j}} - 1 = \dfrac{1}{n} ≤ 1$ |      | $\mathrm{False}$                                             |
 
 ### 自然函数
 
