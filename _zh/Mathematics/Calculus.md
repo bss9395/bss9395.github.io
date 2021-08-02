@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-05-08T19:36:00+08@中国-广东-湛江+08
+Update:  2021-08-02T19:56:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -645,12 +645,6 @@ $\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \lim\limits_{h⇝0} \dfrac{f(x+h) +
 | $⇓$  | $= \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x+h)}{\mathrm{d} (x+h)} - \dfrac{\mathrm{d} f(x-h)}{\mathrm{d} (x-h)}}{2·h} = \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x+h)}{\mathrm{d}(x+h)} - \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}}{+2 · h} + \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x-h)}{\mathrm{d} (x-h)} - \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}}{-2 · h}$ |
 | $⇓$  | $= \dfrac{\mathrm{d}^2 f(x)}{2 · \mathrm{d}^2 x} + \dfrac{\mathrm{d}^2 f(x)}{2 · \mathrm{d}^2 x} = \dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x}$ |
 
-若函数$f(x)$在区间$X$上连续，则函数$f(x)$的导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$在区间$X$上不存在跳跃间断点。
-
-| $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x_0^{-}} = \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x_0} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x_0^{+}}$ | 假设在点$x_0$处导数值存在 |
-| :--: | :----------------------------------------------------------- | :------------------------ |
-| $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x_0^{-}} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{-}} ≠ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{+}} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x_0^{+}}$ | $\mathrm{False}$          |
-
 若函数$f(x)$在区间$[x_α,x_β]$上连续且导数值存在，则对于两端点处导数值之间任意取值$t$，存在某点$θ∈(x_α,x_β)$其导数值相等。
 
 $∀t∈\left[\min\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x_α^{+}}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x_{β}^{-}} \right\rbrace, \max\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x_α^{+}}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x_β^{-}} \right\rbrace\right];∃θ∈(x_α,x_β); \dfrac{\mathrm{d} f(θ)}{\mathrm{d} x} = t$
@@ -690,10 +684,6 @@ $\mathrm{R}_{n}(x) = o(x - x_0)^{n} = f(x) - f(x_0) - \sum\limits_{i=1}^{n} \dfr
 | $⇓$  | ${^m}\mathrm{R}_n(x) \mathop{====}\limits_{0≤m≤n} {^m}f(x) - {^m}f(x_0) - \sum\limits_{i=m+1}^{n} \dfrac{{^i}f(x_0)}{i!} · (x - x_0)^{i-m} · \dfrac{i!}{(i-m)!} = {^m}f(x) - {^m}f(x_0) - \sum\limits_{i=m+1}^{n} \dfrac{{^i}f(x_0)}{(i - m)!} · (x - x_0)^{i-m}$ | $⇒$  | $\lim\limits_{x⇝x_0} {^m}\mathrm{R}_n(x) ⇝ 0$ |
 | :--: | :----------------------------------------------------------- | :--: | :-------------------------------------------- |
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{\mathrm{R}_{n}(x)}{(x - x_0)^{n}} = \lim\limits_{x⇝x_0} \dfrac{(n - m)!}{n!} · \dfrac{{^m}\mathrm{R}_n(x)}{(x - x_0)^{n-m}} = \ldots = \lim\limits_{x⇝x_0}\dfrac{1!}{n!} · \dfrac{^{n-1}\mathrm{R}_n(x)}{(x - x_0)^1} = \lim\limits_{x⇝x_0} \dfrac{0!}{n!} · \dfrac{{^n}\mathrm{R}_n(x)}{(x - x_0)^{0}} ⇝ 0$ | $⇒$  | $\mathrm{R}_n(x) = o(x - x_0)^n$              |
-
-
-
-
 
 | $⇓$  | $F (t) ≡ \sum\limits_{i=0}^n \dfrac{ {^i} f (t)}{i!} · (x - t)^i$ | $⇒$  | $\mathrm{R}_n (x) = F (x) - F (x_0)$                         |                                                       |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- | :---------------------------------------------------- |
@@ -747,9 +737,55 @@ $\lim\limits_{n⇝∞^{+}} s_n = \lim\limits_{n⇝∞^{+}} \left(1 + \dfrac{0}{n
 | $⇓$  | $\dfrac{1}{n^2} · \left[ \dfrac{(n+1)^2}{2} - \dfrac{(n+1)^1}{2} \right] - \dfrac{1}{2·n^4} · \left[ \dfrac{(n+1)^3}{3} - \dfrac{(n+1)^2}{2} + \dfrac{(n+1)^1}{6} \right] < \ln s_n < \dfrac{1}{n^2} · \left[ \dfrac{(n+1)^2}{2} - \dfrac{(n+1)^1}{2} \right]$ | $⇐$  | $\sum\limits_{j=0}^{m} j^{1} = \dfrac{(m + 1)^{2}}{2} - \dfrac{(m + 1)^{1}}{2}$ |
 | $⇓$  | $\lim\limits_{n⇝∞^{+}} s_n = \lim\limits_{n⇝∞^{+}} \left(1 + \dfrac{0}{n^2}\right) · \left(1 + \dfrac{1}{n^2}\right) ··· \left(1 + \dfrac{n}{n^2}\right) ⇝ ә^{\frac{1}{2}}$ | $⇐$  | $\sum\limits_{j=0}^{m} j^{2} = \dfrac{(m + 1)^3}{3} - \dfrac{(m + 1)^{2}}{2} + \dfrac{(m + 1)^{1}}{6}$ |
 
-### 不定积分
+### 原函数
 
+若存在函数$F(x)$，其导函数为$f(x)$，则称函数$F(x)$为函数$f(x)$的原函数。函数$f(x)$的全部原函数$F(x)$组成原函数族$\lbrace \tilde{F}(x) \rbrace = \left\lbrace ∀F; F(x) : \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = f(x) \right\rbrace$。
 
+若函数$f(x)$存在原函数$F(x)$，则对函数$f(x)$作不定积分可得到函数$F(x)$的函数族$\lbrace \tilde{F}(x) \rbrace$。函数族$\lbrace \tilde{F}(x) \rbrace$中任意两个原函数$F_1(x)$与$F_2(x)$仅相差一个常数。
+
+从几何上来看，函数$f(x)$的原函数族$\lbrace \tilde{F}(x) \rbrace$形成一系列沿纵坐标轴平移的曲线族，且曲线族在横坐标相同点处切线的斜率$\dfrac{\mathrm{d}}{\mathrm{d} x} [F(x) + \mathrm{Con}]$即为函数$f(x)$。
+
+$\left[ f(x) = \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} [F(x) + \mathrm{Con}] \right] ⇔ \left[ \int f(x) \mathrm{d}x = \int \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} \mathrm{d} x = F(x) + \mathrm{Con} \right]$
+
+若函数$f(x)$的原函数$F(x)$满足特定的初始条件，则可唯一确定此原函数$F(x)$。
+
+$\left[ y_0 = F(x_0) + \mathrm{Con} \right] ⇒ \left[ \mathrm{Con} = y_0 - F(x_0) \right]$
+
+典例：质点作匀加速直线运动，加速度为$a = \dfrac{\mathrm{d} v(t)}{\mathrm{d} t} = \dfrac{\mathrm{d}^2 x(t)}{\mathrm{d}^2 t}$，初始速度为$v_0 = v(t_0)$，初始位移为$x_0 = x(t_0)$。
+
+$v(t) = a·(t-t_0) + v_0$
+
+$x(t) = \dfrac{a}{2} · (t - t_0)^2 + v_0 · (t - t_0) + x_0$
+
+| $v(t) = \int \dfrac{\mathrm{d} v(t)}{\mathrm{d} t} \mathrm{d} t = \int a \mathrm{d}t = a·t + \mathrm{Con} = a·(t-t_0) + v_0$ | $⇐$  | $v_0 = v(t_0) = a·t_0+\mathrm{Con}$                          |
+| :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $x(t) = \int \dfrac{\mathrm{d} x(t)}{\mathrm{d}t} \mathrm{d}t = \int v(t) \mathrm{d}t = \int [a · (t - t_0) + v_0] \mathrm{d} x = \dfrac{a}{2}·(t-t_0)^2 + v_0·t + \mathrm{Con} = \dfrac{a}{2} · (t - t_0)^2 + v_0 · (t - t_0) + x_0$ | $⇐$  | $x_0 = x(t_0) = \dfrac{a}{2}·(t - t_0)^2 + v_0·t+\mathrm{Con}$ |
+
+不定积分的运算性质。
+
+$\int \mathrm{Con} · f(x) \mathrm{d}x = \mathrm{Con} · \int f(x) \mathrm{d} x$
+
+$\int [f(x) + g(x)] \mathrm{d}x = \int f(x) \mathrm{d} x + \int g(x) \mathrm{d} x$
+
+$\int [f(x) - g(x)] \mathrm{d}x = \int f(x) \mathrm{d} x - \int g(x) \mathrm{d} x$
+
+|                                                              |      |                                                              |
+| :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $\dfrac{\mathrm{d}}{\mathrm{d} x} [\int \mathrm{Con} · f(x) \mathrm{d} x] = \mathrm{Con} · f(x)$ | $=$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} [\mathrm{Con} · \int f(x) \mathrm{d} x] = \mathrm{Con} · \dfrac{\mathrm{d}}{\mathrm{d}x} [\int f(x) \mathrm{d} x] = \mathrm{Con} · f(x)$ |
+| $\dfrac{\mathrm{d}}{\mathrm{d} x} \int [f(x) + g(x)]\mathrm{d}x = f(x) + g(x)$ | $=$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} \left[ \int f(x) \mathrm{d} x + \int g(x) \mathrm{d} x \right] = \dfrac{\mathrm{d}}{\mathrm{d} x} \int f(x) \mathrm{d}x + \dfrac{\mathrm{d}}{\mathrm{d} x} \int g(x) \mathrm{d} x = f(x) + g(x)$ |
+| $\dfrac{\mathrm{d}}{\mathrm{d} x} \int [f(x) - g(x)]\mathrm{d}x = f(x) - g(x)$ | $=$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} \left[ \int f(x) \mathrm{d} x - \int g(x) \mathrm{d} x \right] = \dfrac{\mathrm{d}}{\mathrm{d} x} \int f(x) \mathrm{d}x - \dfrac{\mathrm{d}}{\mathrm{d} x} \int g(x) \mathrm{d} x = f(x) - g(x)$ |
+
+对于任意函数$f(x)$，未必都存在原函数$F(x)$，使得$\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = f(x)$。
+
+典例：有理函数$\mathcal{Q} (x) = \mathop{1}\limits_{x∈ℚ}; \mathop{0}\limits_{x∉ℚ}$不存在原函数$F(x)$，使得$\dfrac{\mathrm{d} F(x)}{\mathrm{d}x} = \mathcal{Q}(x)$。
+
+若函数$f(x)$在区间$X$上的导函数存在，则函数$f(x)$的导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$在区间$X$上不存在跳跃间断点。$P⇒Q$
+
+若函数$f(x)$在区间$X$上含有跳跃间断点，则函数$f(x)$不存在原函数$F(x)$，使得$\dfrac{\mathrm{d}F(x)}{\mathrm{d}x} = f(x)$。$¬Q⇒¬P$
+
+| $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x_0^{-}} = \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x_0} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x_0^{+}}$ | 假设在点$x_0$处导数值存在 |
+| :--: | :----------------------------------------------------------- | :------------------------ |
+| $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x_0^{-}} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{-}} ≠ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{+}} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x_0^{+}}$ | $\mathrm{False}$          |
 
 ### 定积分
 

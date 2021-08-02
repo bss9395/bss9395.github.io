@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  重要公式
-Update:  2021-04-24T02:17:00+08@中国-广东-湛江+08
+Update:  2021-08-02T17:44:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -167,6 +167,54 @@ $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \sum\limits_{i=1}^{n} \dfr
 | ${'}\tanh^{-1} x$                            | $\dfrac{+1}{1 - x^2}$                                        | $\mathop{====}\limits_{(∞^{-},-1)}^{(∞^{-},0^{-})};\mathop{====}\limits_{(+1,∞^{+})}^{(0^{+},∞^{+})}$ | $\dfrac{\mathrm{d} {'}\tanh^{-1} x}{\mathrm{d} x} = \left[ \dfrac{\mathrm{d} \tanh^{-1} y}{\mathrm{d} y} \right]^{-1} = \dfrac{-1}{\sinh^{-2} y} = \dfrac{-1}{\tanh^{-2} y - 1} = \dfrac{+1}{1 - x^{2}}$ |                                 |
 | ${'}\cosh^{-1} x$                            | $\dfrac{-1}{|x| · \sqrt{1 - x^2}}$                           |       $\mathop{====}\limits_{(0^{-},+1]}^{[0,∞^{+})}$        | $\dfrac{\mathrm{d} {'}\cosh^{-1} x}{\mathrm{d} x} = \left[ \dfrac{\mathrm{d} \cosh^{-1} y}{\mathrm{d} y} \right]^{-1} = \dfrac{-1}{\cosh^{-2} y · \sinh y} = \dfrac{-1}{\cosh^{-2} y · \sqrt{\cosh^{2} y - 1}} = \dfrac{-1}{|x| · \sqrt{1 - x^2}}$ |                                 |
 | ${'}\sinh^{-1} x$                            | $\dfrac{-1}{|x| · \sqrt{1 + x^2}}$                           | $\mathop{====}\limits_{(∞^{-},0^{-})}^{(∞^{-},0^{-})};\mathop{====}\limits_{(0^{+},∞^{+})}^{(0^{+},∞^{+})}$ | $\dfrac{\mathrm{d} {'}\sinh^{-1} x}{\mathrm{d} x} = \left[ \dfrac{\mathrm{d} \sinh^{-1} y}{\mathrm{d} y} \right]^{-1} = \dfrac{-1}{\sinh^{-2} y · \cosh y} = \dfrac{-1}{\sinh^{-2} y · \sqrt{\sinh^{2} y + 1}} = \dfrac{-1}{|x| · \sqrt{1 + x^2}}$ |                                 |
+
+### 初等原函数
+
+| $f(x)$                          | $\int f(x) \mathrm{d}x$                                      |
+| ------------------------------- | :----------------------------------------------------------- |
+|                                 |                                                              |
+| $\mathop{β^{x}}\limits_{0<β≠1}$ | $\mathrm{Con} + \dfrac{β^{x}}{\ln β}$                        |
+| $ә^x$                           | $\mathrm{Con} + ә^x$                                         |
+| $x^{α}$                         | $\mathrm{Con} + \dfrac{x^{α+1}}{α+1}$                        |
+| $\ln x$                         | $\mathrm{Con} + x·\ln x - x$                                 |
+|                                 |                                                              |
+| $\sin x$                        | $\mathrm{Con} - \cos x$                                      |
+| $\cos x$                        | $\mathrm{Con} + \sin x$                                      |
+| $\tan x$                        | $\mathrm{Con} - \ln |\cos x|$                                |
+| $\tan^{-1} x$                   | $\mathrm{Con} + \ln |\sin x|$                                |
+| $\cos^{-1} x$                   | $\mathrm{Con} + \ln \left| \tan \left( \dfrac{x}{2} + \dfrac{π}{4} \right) \right|$ |
+| $\sin^{-1}x$                    | $\mathrm{Con} + \ln\left| \tan \dfrac{x}{2}\right|$          |
+| $\sin^{-2} x$                   | $\mathrm{Con} - \tan^{-1} x$                                 |
+| $\cos^{-2} x$                   | $\mathrm{Con} + \tan^{+1} x$                                 |
+|                                 |                                                              |
+| $\sinh x$                       | $\mathrm{Con} + \cosh x$                                     |
+| $\cosh x$                       | $\mathrm{Con} + \sinh x$                                     |
+| $\tanh x$                       | $\mathrm{Con} + \ln |\cosh x|$                               |
+| $\tanh^{-1} x$                  | $\mathrm{Con} + \ln | \sinh x|$                              |
+| $\cosh^{-1} x$                  | $\mathrm{Con} + {'}\tan(\sinh x)$                            |
+| $\sinh^{-1} x$                  | $\mathrm{Con} + \ln \left(\tanh \dfrac{x}{2} \right)$        |
+| $\sinh^{-2} x$                  | $\mathrm{Con} - \tanh^{-1} x$                                |
+| $\cosh^{-2} x$                  | $\mathrm{Con} + \tanh^{+1} x$                                |
+|                                 |                                                              |
+| $$                              |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+|                                 |                                                              |
+
+
+
+
 
 ### 初等幂级数
 
