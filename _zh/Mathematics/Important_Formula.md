@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  重要公式
-Update:  2021-08-02T17:44:00+08@中国-广东-湛江+08
+Update:  2021-08-03T16:08:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -170,51 +170,43 @@ $1 ⇜ \lim\limits_{n⇝∞^{+}} \dfrac{1}{\ln(n)} · \sum\limits_{i=1}^{n} \dfr
 
 ### 初等原函数
 
-| $f(x)$                          | $\int f(x) \mathrm{d}x$                                      |
-| ------------------------------- | :----------------------------------------------------------- |
-|                                 |                                                              |
-| $\mathop{β^{x}}\limits_{0<β≠1}$ | $\mathrm{Con} + \dfrac{β^{x}}{\ln β}$                        |
-| $ә^x$                           | $\mathrm{Con} + ә^x$                                         |
-| $x^{α}$                         | $\mathrm{Con} + \dfrac{x^{α+1}}{α+1}$                        |
-| $\ln x$                         | $\mathrm{Con} + x·\ln x - x$                                 |
-|                                 |                                                              |
-| $\sin x$                        | $\mathrm{Con} - \cos x$                                      |
-| $\cos x$                        | $\mathrm{Con} + \sin x$                                      |
-| $\tan x$                        | $\mathrm{Con} - \ln |\cos x|$                                |
-| $\tan^{-1} x$                   | $\mathrm{Con} + \ln |\sin x|$                                |
-| $\cos^{-1} x$                   | $\mathrm{Con} + \ln \left| \tan \left( \dfrac{x}{2} + \dfrac{π}{4} \right) \right|$ |
-| $\sin^{-1}x$                    | $\mathrm{Con} + \ln\left| \tan \dfrac{x}{2}\right|$          |
-| $\sin^{-2} x$                   | $\mathrm{Con} - \tan^{-1} x$                                 |
-| $\cos^{-2} x$                   | $\mathrm{Con} + \tan^{+1} x$                                 |
-|                                 |                                                              |
-| $\sinh x$                       | $\mathrm{Con} + \cosh x$                                     |
-| $\cosh x$                       | $\mathrm{Con} + \sinh x$                                     |
-| $\tanh x$                       | $\mathrm{Con} + \ln |\cosh x|$                               |
-| $\tanh^{-1} x$                  | $\mathrm{Con} + \ln | \sinh x|$                              |
-| $\cosh^{-1} x$                  | $\mathrm{Con} + {'}\tan(\sinh x)$                            |
-| $\sinh^{-1} x$                  | $\mathrm{Con} + \ln \left(\tanh \dfrac{x}{2} \right)$        |
-| $\sinh^{-2} x$                  | $\mathrm{Con} - \tanh^{-1} x$                                |
-| $\cosh^{-2} x$                  | $\mathrm{Con} + \tanh^{+1} x$                                |
-|                                 |                                                              |
-| $$                              |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-|                                 |                                                              |
-
-
-
-
+| $f(x)$                          | $\int f(x) \mathrm{d}x$                                      |           $X$            |
+| ------------------------------- | :----------------------------------------------------------- | :----------------------: |
+|                                 |                                                              |                          |
+| $\mathop{β^{x}}\limits_{0<β≠1}$ | $\mathrm{Con} + \dfrac{β^{x}}{\ln β}$                        |                          |
+| $ә^x$                           | $\mathrm{Con} + ә^x$                                         |                          |
+| $\mathop{x^{α}}\limits_{α≠-1}$  | $\mathrm{Con} + \dfrac{x^{α+1}}{α+1}$                        |                          |
+| $\dfrac{1}{x}$                  | $\mathrm{Con}+\ln |x|$                                       |                          |
+| $\ln x$                         | $\mathrm{Con} + x·\ln x - x$                                 |                          |
+|                                 |                                                              |                          |
+| $\sin x$                        | $\mathrm{Con} - \cos x$                                      |                          |
+| $\cos x$                        | $\mathrm{Con} + \sin x$                                      |                          |
+| $\tan x$                        | $\mathrm{Con} - \ln |\cos x|$                                |                          |
+| $\tan^{-1} x$                   | $\mathrm{Con} + \ln |\sin x|$                                |                          |
+| $\cos^{-1} x$                   | $\mathrm{Con} + \ln \left| \tan \left( \dfrac{x}{2} + \dfrac{π}{4} \right) \right|$ |                          |
+| $\sin^{-1}x$                    | $\mathrm{Con} + \ln\left| \tan \dfrac{x}{2}\right|$          |                          |
+| $\sin^{-2} x$                   | $\mathrm{Con} - \tan^{-1} x$                                 |                          |
+| $\cos^{-2} x$                   | $\mathrm{Con} + \tan^{+1} x$                                 |                          |
+|                                 |                                                              |                          |
+| $\sinh x$                       | $\mathrm{Con} + \cosh x$                                     |                          |
+| $\cosh x$                       | $\mathrm{Con} + \sinh x$                                     |                          |
+| $\tanh x$                       | $\mathrm{Con} + \ln |\cosh x|$                               |                          |
+| $\tanh^{-1} x$                  | $\mathrm{Con} + \ln | \sinh x|$                              |                          |
+| $\cosh^{-1} x$                  | $\mathrm{Con} + {'}\tan(\sinh x)$                            |                          |
+| $\sinh^{-1} x$                  | $\mathrm{Con} + \ln \left(\tanh \dfrac{x}{2} \right)$        |                          |
+| $\sinh^{-2} x$                  | $\mathrm{Con} - \tanh^{-1} x$                                |                          |
+| $\cosh^{-2} x$                  | $\mathrm{Con} + \tanh^{+1} x$                                |                          |
+|                                 |                                                              |                          |
+| $\dfrac{+1}{1 + x^2}$           | $\mathrm{Con} + {'}\tan^{+1} x$                              |                          |
+| $\dfrac{-1}{1 + x^2}$           | $\mathrm{Con} + {'}\tan^{-1} x$                              |                          |
+| $\dfrac{+1}{1 - x^2}$           | $\mathrm{Con} + {'}\tanh^{+1} x$                             |        $(-1,+1)$         |
+| $\dfrac{+1}{1 - x^2}$           | $\mathrm{Con} + {'}\tanh^{-1} x$                             | $(∞^{-},-1];[+1，∞^{+}]$ |
+|                                 |                                                              |                          |
+| $\dfrac{+1}{\sqrt{1 - x^2}}$    | $\mathrm{Con} + {'}\sin x$                                   |                          |
+| $\dfrac{-1}{\sqrt{1 - x^2}}$    | $\mathrm{Con} + {'}\cos x$                                   |                          |
+| $\dfrac{+1}{\sqrt{x^2 + 1}}$    | $\mathrm{Con} + {'}\sinh x$                                  |                          |
+| $\dfrac{+1}{\sqrt{x^2 - 1}}$    | $\mathrm{Con} + {'}\cosh x$                                  |                          |
+|                                 |                                                              |                          |
 
 ### 初等幂级数
 
@@ -256,11 +248,11 @@ $\int\limits_0^{∞⁺} e^{- α · x} · \cos (β · x) \mathrm{d} x = \dfrac{α
 
 $\int\limits_0^{∞⁺} e^{- α · x} · \sin (β · x) \mathrm{d} x = \dfrac{β}{α^2 + β^2}$
 
-| $⇓$  | $\int\limits_{X_0}^{X_1} e^{-α · x} · e^{τ · β · x} \mathrm{d} x = \left[ \dfrac{e^{-α · x + τ · β · x}}{-α + τ · β} \right]_{I_0}^{I_1} = \left[ \dfrac{e^{-α · x}}{-α + τ · β} · \dfrac{-α - τ · \beta}{-α - τ · \beta} · [\cos (β · x) + τ · \sin (β · x)] \right]_{X_0}^{X_1}$ |      |                                                              |
+| $⇓$  | $\int\limits_{x_α}^{x_β} e^{-α · x} · e^{τ · β · x} \mathrm{d} x = \left[ \dfrac{e^{-α · x + τ · β · x}}{-α + τ · β} \right]_{x_α}^{x_β} = \left[ \dfrac{e^{-α · x}}{-α + τ · β} · \dfrac{-α - τ · \beta}{-α - τ · \beta} · [\cos (β · x) + τ · \sin (β · x)] \right]_{x_α}^{x_β}$ |      |                                                              |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\int\limits_{X_0}^{X_1} e^{-α · x} · e^{τ · β · x} \mathrm{d} x = \left[ \dfrac{e^{-α · x}}{α^2 + β^2} · [[ -α · \cos (β · x) + β · \sin (β · x) ] + τ · [ -α · \sin (β · x) - β · \cos (β · x) ]] \right]_{X_0}^{X_1}$ | $⇔$  | $\int\limits_{X_0}^{X_1} e^{-α · x} · [ \cos (β · x) + τ · \sin (β · x)] \mathrm{d} x$ |
-| $⇓$  | $\int\limits_{X_0}^{X_1} e^{-α · x} · \cos (β · x) \mathrm{d} x = \left[ \dfrac{e^{-α · x}}{α^2 + β^2} · [ -α · \cos (β · x) + β · \sin (β · x)] \right]_{X_0}^{X_1}$ | $⇒$  | $\int\limits_0^{∞⁺} e^{- α · x} · \cos (β · x) \mathrm{d} x = \dfrac{α}{α^2 + β^2}$ |
-| $⇓$  | $\int\limits_{X_0}^{X_1} e^{-α · x} · \sin (β · x) \mathrm{d} x = \left[ \dfrac{e^{-α · x}}{α^2 + β^2} · [-α · \sin (β · x) - β · \cos (β · x)] \right]_{X_0}^{X_1}$ | $⇒$  | $\int\limits_0^{∞⁺} e^{- α · x} · \sin (β · x) \mathrm{d} x = \dfrac{β}{α^2 + β^2}$ |
+| $⇓$  | $\int\limits_{x_α}^{x_β} e^{-α · x} · e^{τ · β · x} \mathrm{d} x = \left[ \dfrac{e^{-α · x}}{α^2 + β^2} · [[ -α · \cos (β · x) + β · \sin (β · x) ] + τ · [ -α · \sin (β · x) - β · \cos (β · x) ]] \right]_{x_α}^{x_β}$ | $⇔$  | $\int\limits_{x_α}^{x_β} e^{-α · x} · [ \cos (β · x) + τ · \sin (β · x)] \mathrm{d} x$ |
+| $⇓$  | $\int\limits_{x_α}^{x_β} e^{-α · x} · \cos (β · x) \mathrm{d} x = \left[ \dfrac{e^{-α · x}}{α^2 + β^2} · [ -α · \cos (β · x) + β · \sin (β · x)] \right]_{x_α}^{x_β}$ | $⇒$  | $\int\limits_0^{∞⁺} e^{- α · x} · \cos (β · x) \mathrm{d} x = \dfrac{α}{α^2 + β^2}$ |
+| $⇓$  | $\int\limits_{x_α}^{x_β} e^{-α · x} · \sin (β · x) \mathrm{d} x = \left[ \dfrac{e^{-α · x}}{α^2 + β^2} · [-α · \sin (β · x) - β · \cos (β · x)] \right]_{x_α}^{x_β}$ | $⇒$  | $\int\limits_0^{∞⁺} e^{- α · x} · \sin (β · x) \mathrm{d} x = \dfrac{β}{α^2 + β^2}$ |
 | $⇓$  |                                                              | $⇒$  | $\int\limits_{0}^{∞⁺} e^{-α · x} · e^{τ · β · x} \mathrm{d} x = \dfrac{α + τ · β}{α^2 + β^2}$ |
 
 ### 指数积分

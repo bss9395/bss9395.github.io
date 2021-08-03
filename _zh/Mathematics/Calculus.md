@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-08-02T19:56:00+08@中国-广东-湛江+08
+Update:  2021-08-03T16:48:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -786,6 +786,55 @@ $\int [f(x) - g(x)] \mathrm{d}x = \int f(x) \mathrm{d} x - \int g(x) \mathrm{d} 
 | $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x_0^{-}} = \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x_0} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x_0^{+}}$ | 假设在点$x_0$处导数值存在 |
 | :--: | :----------------------------------------------------------- | :------------------------ |
 | $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x_0^{-}} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{-}} ≠ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{+}} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x_0^{+}}$ | $\mathrm{False}$          |
+
+换元积分法。
+
+$\int_{x} g(f(x)) · {^1}f(x) · \mathrm{d} x = \int_x g(f(x)) · \mathrm{d} f(x) \mathop{===}\limits^{t=f(x)} \int_t g(t) · \mathrm{d} t$
+
+分部积分法。
+
+$\int_x u(x) · \mathrm{d} v(x) = u(x) · v(x) - \int_x v(x) · \mathrm{d} u(x) $
+
+$\int_x u(x) · {^1}v(x) · \mathrm{d}x = u(x) · v(x) - \int_x v(x)·{^1}u(x) ·\mathrm{d}x$
+
+| $⇓$  | $\int_{x} g(f(x)) · {^1}f(x) · \mathrm{d} x = \int_{x} g(f(x)) · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} · \mathrm{d} x = \int_x g(f(x)) · \mathrm{d} f(x) \mathop{===}\limits^{t=f(x)} \int_t g(t) · \mathrm{d} t$ | $⇐$  | ${^1}f(x) ≡ \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$           |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+|      |                                                              |      |                                                              |
+| $⇓$  | $u(x) · \mathrm{d} v(x) = \mathrm{d}[u(x) · v(x)] - v(x) · \mathrm{d} u(x)$ | $⇔$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} [u(x) · v(x)] = \dfrac{\mathrm{d} u(x)}{\mathrm{d} x} · v(x) + u(x) · \dfrac{\mathrm{d} v(x)}{\mathrm{d} x}$ |
+| $⇓$  | $\int_x u(x) · \mathrm{d} v(x) = u(x)·v(x) - \int_x v(x) · \mathrm{d} u(x)$ | $⇐$  | $\int_x \mathrm{d} [u(x) · v(x)] = u(x)·v(x)$                |
+| $⇓$  | $\int_x u(x) · {^1}v(x) · \mathrm{d}x = u(x) · v(x) - \int_x v(x)·{^1}u(x) ·\mathrm{d}x$ |      |                                                              |
+
+典例：应用换元积分法，计算$\int \tan x · \mathrm{d}x$。
+
+$\int_x \tan x · \mathrm{d}x = \int_x \dfrac{\sin x}{\cos x} · \mathrm{d}x = \int_x \dfrac{-1}{\cos x} · \mathrm{d} \cos x \mathop{====}\limits^{t=\cos x} \int_t \dfrac{-1}{t} · \mathrm{d} t = -\ln|t| + \mathrm{Con} = -\ln |\cos x| + \mathrm{Con}$
+
+典例：应用换元积分法，计算$\int \dfrac{1}{x^2 - a^2} · \mathrm{d}x$。
+
+$\int_x \dfrac{1}{x^2 - a^2} · \mathrm{d}x = \dfrac{1}{2 · a} · \int_x \left[ \dfrac{1}{x - a} - \dfrac{1}{x + a} \right] \mathrm{d} x = \dfrac{1}{2·a} · \left[ \int_x \dfrac{\mathrm{d}(x-a)}{x-a} - \int_x \dfrac{\mathrm{d}(x+a)}{x + a} \right] \mathop{===}\limits_{s=x+a}^{t=x-a} \dfrac{1}{2·a} · \int_t \dfrac{\mathrm{d}t}{t} - \dfrac{1}{2·a} · \int_s \dfrac{\mathrm{d}s}{s} = \dfrac{1}{2·a} · \left[ \ln |t| - \ln|s| \right] + \mathrm{Con}= \dfrac{1}{2·a}· \ln \left| \dfrac{x-a}{x+a} \right| + \mathrm{Con}$
+
+典例：应用换元积分法，计算$\int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x$。已知$\int \dfrac{1}{\sqrt{x^2 - 1}} · \mathrm{d}x = {'}\cosh x + \mathrm{Con}$。
+
+$\int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x = \int \dfrac{1}{\sqrt{\frac{x^2}{a^2} - 1^2}} · \mathrm{d} \dfrac{x}{a} \mathop{==}\limits^{t=\frac{x}{a}} {'}\cosh t + \mathrm{Con}_0 = {'}\cosh \dfrac{x}{a} + \mathrm{Con}_0 = \ln\left( \dfrac{x}{a} + \sqrt{\dfrac{x^2}{a^2} - 1} \right) + \mathrm{Con}_0 = \ln \left( x + \sqrt{x^2 + a^2} \right) + \mathrm{Con}$
+
+典例：应用分部积分法$x$降幂型式，计算$\int x· ә^{-x} · \mathrm{d}x$。
+
+$\int x· ә^{-x} · \mathrm{d}x = -\int x · \mathrm{d} ә^{-x} = -x · ә^{-x} + \intә^{-x} · \mathrm{d} x = -x·ә^{-x} + \int \mathrm{d}ә^{-x} = -x·ә^{-x} + ә^{-x} + \mathrm{Con}$
+
+典例：应用分部积分法$x$升幂型式，计算$\int x · \ln x · \mathrm{d}x$。
+
+$\int x · \ln x · \mathrm{d}x = \dfrac{1}{2} · \int \ln x · \mathrm{d} x^2 = \dfrac{1}{2} · \left[ x^2 · \ln x - \int x^2 · \mathrm{d}\ln x \right] \mathop{=====}\limits^{\mathrm{d}\ln x = \frac{1}{x}·\mathrm{d}x} \dfrac{1}{2} · x^2 · \ln x - \dfrac{1}{2} · \int x · \mathrm{d} x = \dfrac{1}{2} · x^2 · \ln x - \dfrac{1}{4} ·x^2 + \mathrm{Con}$
+
+典例：应用分部积分法循环型式，计算$\int \sqrt{x^2 - a^2}·\mathrm{d}x$。已知$\int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x = {'}\cosh \dfrac{x}{a} + \mathrm{Con}$。
+
+$\int \sqrt{x^2 - a^2}·\mathrm{d}x = x · \sqrt{x^2 - a^2} - \int x · \mathrm{d} \sqrt{x^2 - a^2} = x · \sqrt{x^2 + a^2} - \int x · \dfrac{2·x}{2\sqrt{x^2-a^2}} \mathrm{d}x = x· \sqrt{x^2 - a^2} - \int \dfrac{(x^2 - a^2)+a^2}{\sqrt{x^2 - a^2}} · \mathrm{d}x = x·\sqrt{x^2-a^2} - \int \sqrt{x^2-a^2} · \mathrm{d}x - a^2 · \int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x$
+
+$\int \sqrt{x^2-a^2} = \dfrac{x·\sqrt{x^2-a^2}}{2} - \dfrac{a^2}{2} · {'}\cosh \dfrac{x}{a} + \mathrm{Con}$
+
+典例：应用分部积分法递推型式，计算$\int \cos^n x · \mathrm{d}x$。
+
+$\int \cos^n x · \mathrm{d}x = \int \cos^{n-1} x · \mathrm{d} \sin x = \cos^{n-1} x · \sin x - \int \sin x · \mathrm{d} \cos^{n-1} x = \cos^{n-1} x · \sin x + (n - 1) · \int \cos^{n-2}x · \sin^2 x ·\mathrm{d} x \mathop{=======}\limits^{\sin^2 x = 1 - \cos^2 x} \cos^{n-1} x · \sin x +(n-1) · \int [\cos^{n-2} x - \cos^n x]·\mathrm{d}x$
+
+$\int \cos^{n} x · \mathrm{d} x = \dfrac{1}{n} · \cos^{n-1}x· \sin x + \dfrac{n - 1}{n} · \int \cos^{n-2}x·\mathrm{d}x$
 
 ### 定积分
 
