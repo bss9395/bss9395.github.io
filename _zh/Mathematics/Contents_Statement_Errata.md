@@ -58,6 +58,8 @@ Trigonometry.md
 需要大量思考与讨论。
 ```
 
+### 一致连续性
+
 若函数$f(x)$在区间$X$上点$x_0$处导数值有确界，则函数$f(x)$在点$x_0$处连续，反之不对。$P ⇒ Q$
 
 若函数$f(x)$在区间$X$上点$x_0$处间断，则函数$f(x)$在该点处导数值无确界，反之不对。$¬Q ⇒ ¬P$
@@ -95,4 +97,16 @@ $\left[ 0 ↭ \lim\limits_{x↭x_t} \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} · Δx
 |                                                              |                                                           |      | $\dfrac{\mathrm{d}}{\mathrm{d} x} \sin \dfrac{1}{x} = - \dfrac{1}{x^2} · \cos \dfrac{1}{x}$ | $\lim\limits_{Δx⇝0 \\ x⇝0} -\dfrac{1}{x^2} · \cos \dfrac{1}{x} · Δx \not⇝ 0$ |
 |                                                              |                                                           |      | $\dfrac{\mathrm{d}}{\mathrm{d} x} \left[ x · \sin \dfrac{1}{x} \right] = \sin \dfrac{1}{x} - \dfrac{1}{x} · \cos \dfrac{1}{x}$ | $\lim\limits_{Δx⇝0 \\ x⇝0} \left[ \sin \dfrac{1}{x} - \dfrac{1}{x} · \cos \dfrac{1}{x} \right] · Δx ⇝ 0$ |
 |                                                              |                                                           |      | $\dfrac{\mathrm{d}}{\mathrm{d} x} \left[ x^2 · \sin \dfrac{1}{x} \right] = 2 · x · \sin \dfrac{1}{x} - \cos \dfrac{1}{x}$ | $\lim\limits_{Δx⇝0 \\ x⇝0} \left[ 2 · x · \sin \dfrac{1}{x} - \cos \dfrac{1}{x} \right] · Δx ⇝ 0$ |
+
+### 零测集 
+
+离散集与零测集彼此等价，离散集强调集合中元素的数量，零测集强调集合中元素的度量。
+
+任意零测集$\mathcal{O}$，必存在可数个区间$X_{i}$覆盖之，使得其可测度大小为零。
+
+$∀\mathcal{O};∀ε_1>0;∃\lbrace X_{i} \rbrace; \left[ \mathcal{O} ⊆ \bigcup X_i \right] ∧ \left[ \mathrm{ord} \mathcal{O} ≤ \sum\limits_{i=0}^{∞^{+}} \mathrm{ord} X_i < \sum\limits_{i=0}^{∞^{+}} \dfrac{ε_0}{2^{i}} = 2 · ε_0 = ε_1 \right]$
+
+可数个零测集$\mathcal{O}_i$的合集$\lbrace \mathcal{O}_{i} \rbrace$为零测集。
+
+$∀\lbrace\mathcal{O}_{i}\rbrace;∀ε_2>0;∃\lbrace X_{i,j} \rbrace; \left[ \lbrace \mathcal{O}_{i} \rbrace ⊆ \bigcup \bigcup X_{i,j} \right] ∧ \left[ \mathrm{ord} \lbrace \mathcal{O}_{i} \rbrace = \sum\mathrm{ord} \mathcal{O}_i = \sum \sum \mathrm{ord} X_{i,j} ≤ \sum\limits_{i=0}^{∞⁺} \dfrac{1}{2^{i} } · \sum\limits_{j=0}^{∞⁺} \dfrac{ε_0}{2^{j}} ≤ \sum\limits_{i=0}^{∞⁺} \dfrac{ε_1}{2^i} = 2 · ε_1 = ε_2 \right]$
 

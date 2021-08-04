@@ -29,6 +29,10 @@ $\mathcal{Q} (x) = \mathop{1}\limits_{x∈ℚ}; \mathop{0}\limits_{x∉ℚ}$
 | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\lim\limits_{δ⇝0} w^f (x_0,δ) \not⇝ 0$                      |
 
+函数$\mathcal{Q} (x)$在区间$[0, 1]$上有确界，但其定积分不存在。
+
+$\lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i, x_i+1]} \mathcal{Q} (x) · Δx_i = \lim\limits_{n⇝∞⁺} \sum\limits_{i=0}^{n} 0 · Δx_i ⇝ 0 ≠ 1 ⇜ \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n}  1 · Δx_i = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i, x_{i+1}]} \mathcal{Q} (x) · Δx_i$
+
 函数$\mathcal{Q}(x)$不存在原函数$F(x)$，使得$\dfrac{\mathrm{d} F(x)}{\mathrm{d}x} = \mathcal{Q}(x)$。
 
 | $Ⅎ\dfrac{1}{2}∈[0,1]=[{^1}F(\sqrt{2}),{^1}F(0)];∃θ∈[0,\sqrt{2}]; {^1}F(θ) = \mathcal{Q}(θ) = \dfrac{1}{2}$ | $\mathrm{False}$ |
@@ -121,6 +125,8 @@ $\dfrac{\mathrm{d} \mathcal{W}_{α}(x)}{\mathrm{d} x} = \mathop{\left[ x^{α-1} 
 | $0 < α$     | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{α} · \sin \dfrac{1}{x} \right| ≤ \lim\limits_{x⇝0}^{δ⇝0} |x^{α}| \mathop{⇝}\limits_{0<α} 0$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left| x^{α} · \cos \dfrac{1}{x} \right| ≤ \lim\limits_{x⇝0}^{δ⇝0} |x^{α}| \mathop{⇝}\limits_{0<α} 0$ | $x=0$处收敛   |
 |             |                                                              |                                                              |               |
 | $1 < α ≤ 2$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|α · x^{α-1} · \sin \dfrac{1}{x} - x^{α-2} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π+\frac{π}{2}]^{-1}} |α·x^{α-1}| ⇝ \mathop{0}\limits_{1<α≤2}$ | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{U}(0,δ)} \left|α · x^{α-1} · \sin \dfrac{1}{x} - x^{α-2} · \cos \dfrac{1}{x} \right| ≥ \lim\limits_{m⇝∞}^{x=[m·π]^{-1}} |x^{α-2}| ⇝ \mathop{∞^{+}}\limits_{1<α<2};\mathop{1}\limits_{α=2}$ | $x=0$处振荡   |
+
+函数$f(x) ≡ \dfrac{\mathrm{d} \mathcal{W}_{\frac{3}{2}}(x)}{\mathrm{d} x} = \mathop{0}\limits_{x=0};\mathop{\left[ \dfrac{3}{2} · x^{\frac{1}{2}} · \sin \dfrac{1}{x} - \dfrac{1}{x^{\frac{1}{2}}} · \cos \dfrac{1}{x} \right]}\limits_{x≠0}$在点$x=0$处附近振荡且无界，但有原函数$F(x) ≡ \mathcal{W}_{\frac{3}{2}}(x) = \mathop{0}\limits_{x=0};\mathop{x^{\frac{3}{2}} · \sin \dfrac{1}{x}}$。
 
 ### 倒幂函数
 
