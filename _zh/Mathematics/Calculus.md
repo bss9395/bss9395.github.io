@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  微积分
-Update:  2021-08-03T16:48:00+08@中国-广东-湛江+08
+Update:  2021-08-05T10:48:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -1027,66 +1027,66 @@ $\int\limits_{0}^{1} \mathcal{R} (x) \mathrm{d} x = \lim\limits_{n⇝∞⁺}^{Δ
 
 错位积和公式。
 
-$\inf F (x) · g^{↘_0} (X_0) ≤ \int\limits_{[X_0,X_1]}^{x} f (θ_{i}) · g^{↘_0} (θ_{i}) · Δx_i ≤ \sup F (x) · g^{↘_0} (X_0)$
+$\inf F (x) · g^{↘_0} (x_α) ≤ \int\limits_{x_α}^{x} f (θ_{i}) · g^{↘_0} (θ_{i}) · Δx_i ≤ \sup F (x) · g^{↘_0} (x_α)$
 
-$\inf F (x) · g^{↗^0} (X_0) ≥ \int\limits_{[X_0,X_1]}^{x} f (θ_{i}) · g^{↗^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↗^0} (X_0)$
+$\inf F (x) · g^{↗^0} (x_α) ≥ \int\limits_{x_α}^{x} f (θ_{i}) · g^{↗^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↗^0} (x_α)$
 
-$\inf F (x) · g^{↗_0} (X_1) ≤ \int\limits_{x}^{[X_0,X_1]} f (θ_{i}) · g^{↗_0} (θ_{i}) · Δx_i ≤ \sup F (x) · g^{↗_0} (X_1)$
+$\inf F (x) · g^{↗_0} (x_β) ≤ \int\limits_{x}^{x_β} f (θ_{i}) · g^{↗_0} (θ_{i}) · Δx_i ≤ \sup F (x) · g^{↗_0} (x_β)$
 
-$\inf F (x) · g^{↘^0} (X_1) ≥ \int\limits_{x}^{[X_0,X_1]} f (θ_{i}) · g^{↘^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↘^0} (X_1)$
+$\inf F (x) · g^{↘^0} (x_β) ≥ \int\limits_{x}^{x_β} f (θ_{i}) · g^{↘^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↘^0} (x_β)$
 
-| $⇓$  | $F (x) ≡ \int\limits_{X_0}^{x} f (x) \mathrm{d} x \mathop{=======}\limits_{θ_0∈[X_0,X_0+Δx_0]}^{θ_{n}∈[x-Δx_n,x]} \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f (θ_i) · Δx_i$ |      |                                           |
-| :--: | :----------------------------------------------------------- | :--: | :---------------------------------------- |
-| $⇓$  | $\sum\limits_{i=n}^{m} f (θ_{i}) · g (θ_{i}) · Δx_i = \sum\limits_{i=n}^{m} [ F (x_{i+1}) - F (x_{i}) ] · g (θ_{i}) = F (x_{m+1}) · g (θ_{m}) + \sum\limits_{i=n}^{m-1} F (x_{i+1}) · g (θ_{i}) - \sum\limits_{i=n}^{m-1} F (x_{i+1}) · g (θ_{i+1}) - F (x_{n}) · g (θ_{n})$ |      |                                           |
-| $⇓$  | $\sum\limits_{i=0}^{m} f (θ_{i}) · g (θ_{i}) · Δx_i = [ F (x_{m+1}) · g (θ_{m}) - \rlap{≡≡≡≡≡≡≡}{F (x_{0}) · g (θ_{0})} ] + \sum\limits_{i=0}^{m-1} F (x_{i+1}) · [ g (θ_{i}) - g (θ_{i+1}) ]$ | $⇐$  | $F (x_{0}) ≡ 0$                           |
-| $⇓$  | $\sum\limits_{i=0}^{m} f (θ_i) · g^{↘_0} (θ_i) · Δx_i ≤ \sup F (x) · g^{↘_0} (θ_{m}) + \sup F (x) · \sum\limits_{i=0}^{m-1} [ g^{↘_0} (θ_{i}) - g^{↘_0} (θ_{i+1}) ] = \sup F (x) · g^{↘_0} (θ_0)$ | $⇐$  | $g^{↘_0} (θ_{i}) ≥ g^{↘_0} (θ_{i+1}) ≥ 0$ |
-| $⇓$  | $\sum\limits_{i=0}^{m} f (θ_i) · g^{↘_0} (θ_i) · Δx_i ≥ \inf F (x) · g^{↘_0} (θ_{m}) + \inf F (x) · \sum\limits_{i=0}^{m-1} [ g^{↘_0} (θ_{i}) - g^{↘_0} (θ_{i+1}) ] = \inf F (x) · g^{↘_0} (θ_{0})$ | $⇐$  | $g^{↘_0} (θ_{i}) ≥ g^{↘_0} (θ_{i+1}) ≥ 0$ |
-| $⇓$  | $\inf F (x) · g^{↘_0} (X_0) ≤ \int\limits_{[X_0,X_1]}^{x} f (θ_{i}) · g^{↘_0} (θ_{i}) · Δx_i ≡ \lim\limits_{m⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{m} f (θ_{i}) · g^{↘_0} (θ_{i}) · Δx_i ≤ \sup F (x) · g^{↘_0} (X_0)$ | $⇐$  | $x_0 = X_0$                               |
-| $⇓$  | $\inf F (x) · g^{↗^0} (X_0) ≥ \int\limits_{[X_0,X_1]}^{x} f (θ_{i}) · g^{↗^0} (θ_{i}) · Δx_i ≡ \lim\limits_{m⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{m} f (θ_{i}) · g^{↗^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↗^0} (X_0)$ | $⇐$  | $g^{↗^0} (x) ≡ (-1) · h^{↘_0} (x)$        |
-|      |                                                              |      |                                           |
-| $⇓$  | $F (x) ≡ \int\limits_{x}^{X_1} f (x) \mathrm{d} x \mathop{=======}\limits_{θ_{n}∈[x,x+Δx_n]}^{θ_{0}∈[X_1-Δx_0,X_1]} \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f (θ_i) · Δx_i$ |      |                                           |
-| $⇓$  | $\sum\limits_{i=n}^{m} f (θ_{i}) · g (θ_{i}) · Δx_i = \sum\limits_{i=n}^{m} [ F (x_{i+1}) - F (x_{i}) ] · g (θ_{i}) = F (x_{m+1}) · g (θ_{m}) + \sum\limits_{i=n}^{m-1} F (x_{i+1}) · g (θ_{i}) - \sum\limits_{i=n}^{m-1} F (x_{i+1}) · g (θ_{i+1}) - F (x_{n}) · g (θ_{n})$ |      |                                           |
-| $⇓$  | $\sum\limits_{i=0}^{m} f (θ_{i}) · g (θ_{i}) · Δx_i = [ F (x_{m+1}) · g (θ_{m}) - \rlap{≡≡≡≡≡≡≡}{F (x_{0}) · g (θ_{0})} ] + \sum\limits_{i=0}^{m-1} F (x_{i+1}) · [ g (θ_{i}) - g (θ_{i+1}) ]$ | $⇐$  | $F (x_{0}) ≡ 0$                           |
-| $⇓$  | $\sum\limits_{i=0}^{m} f (θ_i) · g^{↗_0} (θ_i) · Δx_i ≤ \sup F (x) · g^{↗_0} (θ_{m}) + \sup F (x) · \sum\limits_{i=0}^{m-1} [ g^{↗_0} (θ_{i}) - g^{↗_0} (θ_{i+1}) ] = \sup F (x) · g^{↗_0} (θ_0)$ | $⇐$  | $0 ≤ g^{↗_0} (θ_{i+1}) ≤ g^{↗_0} (θ_{i})$ |
-| $⇓$  | $\sum\limits_{i=0}^{m} f (θ_i) · g^{↗_0} (θ_i) · Δx_i ≥ \inf F (x) · g^{↗_0} (θ_{m}) + \inf F (x) · \sum\limits_{i=0}^{m-1} [ g^{↗_0} (θ_{i}) - g^{↗_0} (θ_{i+1}) ] = \inf F (x) · g^{↗_0} (θ_0)$ | $⇐$  | $0 ≤ g^{↗_0} (θ_{i+1}) ≤ g^{↗_0} (θ_{i})$ |
-| $⇓$  | $\inf F (x) · g^{↗_0} (X_1) ≤ \int\limits_{x}^{[X_0,X_1]} f (θ_{i}) · g^{↗_0} (θ_{i}) · Δx_i ≡ \lim\limits_{m⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{m} f (θ_i) · g^{↗_0} (θ_i) · Δx_i ≤ \sup F (x) · g^{↗_0} (X_1)$ | $⇐$  | $x_0 = X_1$                               |
-| $⇓$  | $\inf F (x) · g^{↘^0} (X_1) ≥ \int\limits_{x}^{[X_0,X_1]} f (θ_{i}) · g^{↘^0} (θ_{i}) · Δx_i ≡ \lim\limits_{m⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{m} f (θ_i) · g^{↘^0} (θ_i) · Δx_i ≥ \sup F (x) · g^{↘^0} (X_1)$ | $⇐$  | $g^{↘^0} (x) ≡ (-1) · h^{↗_0} (x)$        |
-
-若函数$f (x)$在区间$[X_0, X_1]$上连续，函数$g (x)$在区间$[X_0, X_1]$上连续，则必至少存在一点$θ∈(X_0, X_1)$使得成立。
-
-$\int\limits_{X_0}^{X_1} f (x) · g (x) \mathrm{d} x = \left. f (x) \right|_{∃θ∈(X_0, X_1)} · \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x$
-
-$\int\limits_{X_0}^{X_1} f (x) \mathrm{d} x = \left. f (x) \right|_{∃θ∈[X_0, X_1]} · (X_1 - X_0)$
-
-| $⇓$  | $F (x) ≡ \int\limits_{X_0}^{x} f (x) · g (x) \mathrm{d} x$   | $⇒$  | $F (X_0) = 0; F (X_1) = \int\limits_{X_0}^{X_1} f (x) · g (x) \mathrm{d} x$ |
+| $⇓$  | $F(x_{n+1}) \mathop{≡≡≡≡≡≡}\limits_{x_i≤θ_i≤x_{i+1}}^{x_α≤θ_i≤x} \sum\limits_{i=0}^{n} f(θ_i) · Δx_i$ |      | $\int\limits_{x_α}^{x} f (x) \mathrm{d} x = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} F(x_{n+1})$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $G (x) ≡ \int\limits_{X_0}^{x} g (x) \mathrm{d} x$           | $⇒$  | $G (X_0) = 0; G (X_1) = \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x$ |
-| $⇓$  | $\dfrac{\int\limits_{X_0}^{X_1} f (x) · g (x) \mathrm{d} x}{\int\limits_{X_0}^{X_1} g (x) \mathrm{d} x} = \dfrac{F (X_1) - F (X_0)}{G (X_1) - G (X_0)} = \left. \dfrac{\mathrm{d} F (x)}{\mathrm{d} G (x)} \right|_{∃θ∈[X_0, X_1]} = \left. \dfrac{f (x) · g (x)}{g (x)} \right|_{∃θ∈[X_0, X_1]} = \left. f (x) \right|_{∃θ∈[X_0, X_1]}$ |      |                                                              |
-| $⇓$  | $\int\limits_{X_0}^{X_1} f (x) · g (x) \mathrm{d} x = \left. f (x) \right|_{∃θ∈[X_0, X_1]} · \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x$ |      |                                                              |
-| $⇓$  | $\int\limits_{X_0}^{X_1} f (x) \mathrm{d} x = \left. f (x) \right|_{∃θ∈[X_0, X_1]} · (X_1 - X_0)$ | $⇐$  | $g (x) ≡ 1$                                                  |
-
-若函数$f^{⤨} (x)$在区间$[X_0, X_1]$上连续且单调，函数$g (x)$在区间$[X_0, X_1]$上连续，则必至少存在一点$θ∈[X_0, X_1]$使得成立。
-
-$\int\limits_{X_0}^{X_1} f (x) · g^{↘_0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} g^{↘_0} (X_0) · \int\limits_{X_0}^{θ} f (x) \mathrm{d} x$
-
-$\int\limits_{X_0}^{X_1} f (x) · g^{↗^0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} g^{↗^0} (X_0) · \int\limits_{X_0}^{θ} f (x) \mathrm{d} x$
-
-$\int\limits_{X_0}^{X_1} f (x) · g^{↗_0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} g^{↗_0} (X_1) · \int\limits_{θ}^{X_1} f (x) \mathrm{d} x$
-
-$\int\limits_{X_0}^{X_1} f (x) · g^{↘^0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} g^{↘^0} (X_1) · \int\limits_{θ}^{X_1} f (x) \mathrm{d} x$
-
-$\int\limits_{X_0}^{X_1} f (x) · g^{⤨} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} g^{⤨} (X_0) · \int\limits_{X_0}^{θ} f (x) \mathrm{d} x + g^{⤨} (X_1) · \int\limits_{θ}^{X_1} f (x) \mathrm{d} x$
-
-| $⇓$  |                                                              |      | $∀F (x)∈[\inf F (x), \sup F (x)];∃θ∈[X_0,X_1]; F (x) = F (θ)$ |
-| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\int\limits_{X_0}^{X_1} f (x) · g^{↘_0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} g^{↘_0} (X_0) · \int\limits_{X_0}^{θ} f (x) \mathrm{d} x$ | $⇐$  | $\inf F (x) · g^{↘_0} (X_0) ≤ \int\limits_{[X_0,X_1]}^{x} f (θ_{i}) · g^{↘_0} (θ_{i}) · Δx_i ≤ \sup F (x) · g^{↘_0} (X_0)$ |
-| $⇓$  | $\int\limits_{X_0}^{X_1} f (x) · g^{↗^0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} g^{↗^0} (X_0) · \int\limits_{X_0}^{θ} f (x) \mathrm{d} x$ | $⇐$  | $\inf F (x) · g^{↗^0} (X_0) ≥ \int\limits_{[X_0,X_1]}^{x} f (θ_{i}) · g^{↗^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↗^0} (X_0)$ |
-| $⇓$  | $\int\limits_{X_0}^{X_1} f (x) · g^{↗_0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} g^{↗_0} (X_1) · \int\limits_{θ}^{X_1} f (x) \mathrm{d} x$ | $⇐$  | $\inf F (x) · g^{↗_0} (X_1) ≤ \int\limits_{x}^{[X_0,X_1]} f (θ_{i}) · g^{↗_0} (θ_{i}) · Δx_i ≤ \sup F (x) · g^{↗_0} (X_1)$ |
-| $⇓$  | $\int\limits_{X_0}^{X_1} f (x) · g^{↘^0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} g^{↘^0} (X_1) · \int\limits_{θ}^{X_1} f (x) \mathrm{d} x$ | $⇐$  | $\inf F (x) · g^{↘^0} (X_1) ≥ \int\limits_{x}^{[X_0,X_1]} f (θ_{i}) · g^{↘^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↘^0} (X_1)$ |
+| $⇓$  | $\sum\limits_{i=n}^{m} f (θ_{i}) · g (θ_{i}) · Δx_i = \sum\limits_{i=n}^{m} [ F (x_{i+1}) - F (x_{i}) ] · g (θ_{i}) = F (x_{m+1}) · g (θ_{m}) + \sum\limits_{i=n}^{m-1} F (x_{i+1}) · g (θ_{i}) - \sum\limits_{i=n}^{m-1} F (x_{i+1}) · g (θ_{i+1}) - F (x_{n}) · g (θ_{n})$ |      |                                                              |
+| $⇓$  | $\sum\limits_{i=0}^{m} f (θ_{i}) · g (θ_{i}) · Δx_i = [ F (x_{m+1}) · g (θ_{m}) - \rlap{≡≡≡≡≡≡≡}{F (x_{0}) · g (θ_{0})} ] + \sum\limits_{i=0}^{m-1} F (x_{i+1}) · [ g (θ_{i}) - g (θ_{i+1}) ]$ | $⇐$  | $F (x_{0}) ≡ 0$                                              |
+| $⇓$  | $\sum\limits_{i=0}^{m} f (θ_i) · g^{↘_0} (θ_i) · Δx_i ≤ \sup F (x) · g^{↘_0} (θ_{m}) + \sup F (x) · \sum\limits_{i=0}^{m-1} [ g^{↘_0} (θ_{i}) - g^{↘_0} (θ_{i+1}) ] = \sup F (x) · g^{↘_0} (θ_0)$ | $⇐$  | $g^{↘_0} (θ_{i}) ≥ g^{↘_0} (θ_{i+1}) ≥ 0$                    |
+| $⇓$  | $\sum\limits_{i=0}^{m} f (θ_i) · g^{↘_0} (θ_i) · Δx_i ≥ \inf F (x) · g^{↘_0} (θ_{m}) + \inf F (x) · \sum\limits_{i=0}^{m-1} [ g^{↘_0} (θ_{i}) - g^{↘_0} (θ_{i+1}) ] = \inf F (x) · g^{↘_0} (θ_{0})$ | $⇐$  | $g^{↘_0} (θ_{i}) ≥ g^{↘_0} (θ_{i+1}) ≥ 0$                    |
+| $⇓$  | $\inf F (x) · g^{↘_0} (x_α) ≤ \int\limits_{x_α}^{x} f (θ_{i}) · g^{↘_0} (θ_{i}) · Δx_i ≡ \lim\limits_{m⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{m} f (θ_{i}) · g^{↘_0} (θ_{i}) · Δx_i ≤ \sup F (x) · g^{↘_0} (x_α)$ | $⇐$  | $x_0 = x_α$                                                  |
+| $⇓$  | $\inf F (x) · g^{↗^0} (x_α) ≥ \int\limits_{x_α}^{x} f (θ_{i}) · g^{↗^0} (θ_{i}) · Δx_i ≡ \lim\limits_{m⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{m} f (θ_{i}) · g^{↗^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↗^0} (x_α)$ | $⇐$  | $g^{↗^0} (x) ≡ (-1) · h^{↘_0} (x)$                           |
 |      |                                                              |      |                                                              |
-| $⇓$  | $h^{↘_0} (x) ≡ \dfrac{g^{⤨} (x) - g^{⤨} (X_1)}{g^{⤨} (X_0) - g^{⤨} (X_1)}$ | $⇒$  | $\int\limits_{X_0}^{X_1} h^{↘_0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} h^{↘_0} (X_0) · \int\limits_{X_0}^{θ} f (x) \mathrm{d} x$ |
-| $⇓$  | $\int\limits_{X_0}^{X_1} f (x) · \dfrac{g^{⤨} (x) - g^{⤨} (X_1)}{g^{⤨} (X_0) - g^{⤨} (X_1)} \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} 1 ·  \int\limits_{X_0}^{θ} f (x) \mathrm{d} x$ | $⇐$  | $h^{↘_0} (X_0) = 1$                                          |
-| $⇓$  | $\int\limits_{X_0}^{X_1} f (x) · g^{⤨} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[X_0,X_1]} g^{⤨} (X_0) · \int\limits_{X_0}^{θ} f (x) \mathrm{d} x + g^{⤨} (X_1) · \int\limits_{θ}^{X_1} f (x) \mathrm{d} x$ |      |                                                              |
+| $⇓$  | $F(x_{n+1}) \mathop{≡≡≡≡≡≡}\limits_{x_i≤θ_i≤x_{i+1}}^{x≤θ_i≤x_β} \sum\limits_{i=0}^{n} f(θ_i) · Δx_i$ |      | $\int\limits_{x}^{x_β} f (x) \mathrm{d} x = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} F(x_{n+1})$ |
+| $⇓$  | $\sum\limits_{i=n}^{m} f (θ_{i}) · g (θ_{i}) · Δx_i = \sum\limits_{i=n}^{m} [ F (x_{i+1}) - F (x_{i}) ] · g (θ_{i}) = F (x_{m+1}) · g (θ_{m}) + \sum\limits_{i=n}^{m-1} F (x_{i+1}) · g (θ_{i}) - \sum\limits_{i=n}^{m-1} F (x_{i+1}) · g (θ_{i+1}) - F (x_{n}) · g (θ_{n})$ |      |                                                              |
+| $⇓$  | $\sum\limits_{i=0}^{m} f (θ_{i}) · g (θ_{i}) · Δx_i = [ F (x_{m+1}) · g (θ_{m}) - \rlap{≡≡≡≡≡≡≡}{F (x_{0}) · g (θ_{0})} ] + \sum\limits_{i=0}^{m-1} F (x_{i+1}) · [ g (θ_{i}) - g (θ_{i+1}) ]$ | $⇐$  | $F (x_{0}) ≡ 0$                                              |
+| $⇓$  | $\sum\limits_{i=0}^{m} f (θ_i) · g^{↗_0} (θ_i) · Δx_i ≤ \sup F (x) · g^{↗_0} (θ_{m}) + \sup F (x) · \sum\limits_{i=0}^{m-1} [ g^{↗_0} (θ_{i}) - g^{↗_0} (θ_{i+1}) ] = \sup F (x) · g^{↗_0} (θ_0)$ | $⇐$  | $0 ≤ g^{↗_0} (θ_{i+1}) ≤ g^{↗_0} (θ_{i})$                    |
+| $⇓$  | $\sum\limits_{i=0}^{m} f (θ_i) · g^{↗_0} (θ_i) · Δx_i ≥ \inf F (x) · g^{↗_0} (θ_{m}) + \inf F (x) · \sum\limits_{i=0}^{m-1} [ g^{↗_0} (θ_{i}) - g^{↗_0} (θ_{i+1}) ] = \inf F (x) · g^{↗_0} (θ_0)$ | $⇐$  | $0 ≤ g^{↗_0} (θ_{i+1}) ≤ g^{↗_0} (θ_{i})$                    |
+| $⇓$  | $\inf F (x) · g^{↗_0} (X_1) ≤ \int\limits_{x}^{x_β} f (θ_{i}) · g^{↗_0} (θ_{i}) · Δx_i ≡ \lim\limits_{m⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{m} f (θ_i) · g^{↗_0} (θ_i) · Δx_i ≤ \sup F (x) · g^{↗_0} (X_1)$ | $⇐$  | $x_0 = x_β$                                                  |
+| $⇓$  | $\inf F (x) · g^{↘^0} (X_1) ≥ \int\limits_{x}^{x_β} f (θ_{i}) · g^{↘^0} (θ_{i}) · Δx_i ≡ \lim\limits_{m⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{m} f (θ_i) · g^{↘^0} (θ_i) · Δx_i ≥ \sup F (x) · g^{↘^0} (X_1)$ | $⇐$  | $g^{↘^0} (x) ≡ (-1) · h^{↗_0} (x)$                           |
+
+若函数$f (x)$在区间$[x_α,x_β]$上连续，函数$g (x)$在区间$[x_α,x_β]$上连续，则必至少存在一点$θ∈(x_α, x_β)$使得成立。[积分第一中值定理]
+
+$\int\limits_{x_α}^{x_β} f (x) · g (x) \mathrm{d} x = \left. f (x) \right|_{∃θ∈(x_α, x_β)} · \int\limits_{x_α}^{x_β} g (x) \mathrm{d} x$
+
+$\int\limits_{x_α}^{x_β} f (x) \mathrm{d} x = \left. f (x) \right|_{∃θ∈[x_α,x_β]} · (x_β-x_α)$
+
+| $⇓$  | $F (x) ≡ \int\limits_{x_α}^{x} f (x) · g (x) \mathrm{d} x$   | $⇒$  | $F (x_α) = 0; F (x_β) = \int\limits_{x_α}^{x_β} f (x) · g (x) \mathrm{d} x$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $G (x) ≡ \int\limits_{x_α}^{x} g (x) \mathrm{d} x$           | $⇒$  | $G (X_0) = 0; G (X_1) = \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x$ |
+| $⇓$  | $\dfrac{\int\limits_{x_α}^{x_β} f (x) · g (x) \mathrm{d} x}{\int\limits_{x_α}^{x_β} g (x) \mathrm{d} x} = \dfrac{F (x_β) - F (x_α)}{G (x_β) - G (x_α)} = \left. \dfrac{\mathrm{d} F (x)}{\mathrm{d} G (x)} \right|_{∃θ∈[x_α, x_β]} = \left. \dfrac{f (x) · g (x)}{g (x)} \right|_{∃θ∈[x_α, x_β]} = \left. f (x) \right|_{∃θ∈[x_α, x_β]}$ |      |                                                              |
+| $⇓$  | $\int\limits_{x_α}^{x_β} f (x) · g (x) \mathrm{d} x = \left. f (x) \right|_{∃θ∈[x_α, x_β]} · \int\limits_{x_α}^{x_β} g (x) \mathrm{d} x$ |      |                                                              |
+| $⇓$  | $\int\limits_{x_α}^{x_β} f (x) \mathrm{d} x = \left. f (x) \right|_{∃θ∈[x_α, x_β]} · (x_β - x_α)$ | $⇐$  | $g (x) ≡ 1$                                                  |
+
+若函数$f^{⤨} (x)$在区间$[x_α, x_β]$上连续且单调，函数$g (x)$在区间$[x_α, x_β]$上连续，则必至少存在一点$θ∈[x_α,x_β]$使得成立。[积分第二中值定理]
+
+$\int\limits_{x_α}^{x_β} f (x) · g^{↘_0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} g^{↘_0} (x_α) · \int\limits_{x_α}^{θ} f (x) \mathrm{d} x$
+
+$\int\limits_{x_α}^{x_β} f (x) · g^{↗^0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} g^{↗^0} (x_α) · \int\limits_{x_α}^{θ} f (x) \mathrm{d} x$
+
+$\int\limits_{x_α}^{x_β} f (x) · g^{↗_0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} g^{↗_0} (x_β) · \int\limits_{θ}^{x_β} f (x) \mathrm{d} x$
+
+$\int\limits_{x_α}^{x_β} f (x) · g^{↘^0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} g^{↘^0} (x_β) · \int\limits_{θ}^{x_β} f (x) \mathrm{d} x$
+
+$\int\limits_{x_α}^{x_β} f (x) · g^{⤨} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} g^{⤨} (x_α) · \int\limits_{x_α}^{θ} f (x) \mathrm{d} x + g^{⤨} (x_β) · \int\limits_{θ}^{x_β} f (x) \mathrm{d} x$
+
+| $⇓$  |                                                              |      | $∀F (x)∈[\inf F (x), \sup F (x)];∃θ∈[x_α,x_β]; F (x) = F (θ)$ |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+| $⇓$  | $\int\limits_{x_α}^{x_β} f (x) · g^{↘_0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} g^{↘_0} (x_α) · \int\limits_{x_α}^{θ} f (x) \mathrm{d} x$ | $⇐$  | $\inf F (x) · g^{↘_0} (x_α) ≤ \int\limits_{x_α}^{x} f (θ_{i}) · g^{↘_0} (θ_{i}) · Δx_i ≤ \sup F (x) · g^{↘_0} (x_α)$ |
+| $⇓$  | $\int\limits_{x_α}^{x_β} f (x) · g^{↗^0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} g^{↗^0} (x_α) · \int\limits_{x_α}^{θ} f (x) \mathrm{d} x$ | $⇐$  | $\inf F (x) · g^{↗^0} (x_α) ≥ \int\limits_{x_α}^{x} f (θ_{i}) · g^{↗^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↗^0} (x_α)$ |
+| $⇓$  | $\int\limits_{x_α}^{x_β} f (x) · g^{↗_0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} g^{↗_0} (x_β) · \int\limits_{θ}^{x_β} f (x) \mathrm{d} x$ | $⇐$  | $\inf F (x) · g^{↗_0} (x_β) ≤ \int\limits_{x}^{x_β} f (θ_{i}) · g^{↗_0} (θ_{i}) · Δx_i ≤ \sup F (x) · g^{↗_0} (x_β)$ |
+| $⇓$  | $\int\limits_{x_α}^{x_β} f (x) · g^{↘^0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} g^{↘^0} (x_β) · \int\limits_{θ}^{x_β} f (x) \mathrm{d} x$ | $⇐$  | $\inf F (x) · g^{↘^0} (x_β) ≥ \int\limits_{x}^{x_β} f (θ_{i}) · g^{↘^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↘^0} (x_β)$ |
+|      |                                                              |      |                                                              |
+| $⇓$  | $h^{↘_0} (x) ≡ \dfrac{g^{⤨} (x) - g^{⤨} (x_β)}{g^{⤨} (x_α) - g^{⤨} (x_β)}$ | $⇒$  | $\int\limits_{x_α}^{x_β} h^{↘_0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} h^{↘_0} (x_α) · \int\limits_{x_α}^{θ} f (x) \mathrm{d} x$ |
+| $⇓$  | $\int\limits_{x_α}^{x_β} f (x) · \dfrac{g^{⤨} (x) - g^{⤨} (x_β)}{g^{⤨} (x_α) - g^{⤨} (x_β)} \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} 1 ·  \int\limits_{X_0}^{θ} f (x) \mathrm{d} x$ | $⇐$  | $h^{↘_0} (x_α) = 1$                                          |
+| $⇓$  | $\int\limits_{x_α}^{x_β} f (x) · g^{⤨} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} g^{⤨} (x_α) · \int\limits_{x_α}^{θ} f (x) \mathrm{d} x + g^{⤨} (x_β) · \int\limits_{θ}^{x_β} f (x) \mathrm{d} x$ |      |                                                              |
 
 ###
 
