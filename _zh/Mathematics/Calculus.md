@@ -787,55 +787,6 @@ $\int [f(x) - g(x)] \mathrm{d}x = \int f(x) \mathrm{d} x - \int g(x) \mathrm{d} 
 | :--: | :----------------------------------------------------------- | :------------------------ |
 | $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x_0^{-}} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{-}} ≠ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{+}} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x_0^{+}}$ | $\mathrm{False}$          |
 
-换元积分法。
-
-$\int_{x} g(f(x)) · {^1}f(x) · \mathrm{d} x = \int_x g(f(x)) · \mathrm{d} f(x) \mathop{===}\limits^{t=f(x)} \int_t g(t) · \mathrm{d} t$
-
-分部积分法。
-
-$\int_x u(x) · \mathrm{d} v(x) = u(x) · v(x) - \int_x v(x) · \mathrm{d} u(x) $
-
-$\int_x u(x) · {^1}v(x) · \mathrm{d}x = u(x) · v(x) - \int_x v(x)·{^1}u(x) ·\mathrm{d}x$
-
-| $⇓$  | $\int_{x} g(f(x)) · {^1}f(x) · \mathrm{d} x = \int_{x} g(f(x)) · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} · \mathrm{d} x = \int_x g(f(x)) · \mathrm{d} f(x) \mathop{===}\limits^{t=f(x)} \int_t g(t) · \mathrm{d} t$ | $⇐$  | ${^1}f(x) ≡ \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$           |
-| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-|      |                                                              |      |                                                              |
-| $⇓$  | $u(x) · \mathrm{d} v(x) = \mathrm{d}[u(x) · v(x)] - v(x) · \mathrm{d} u(x)$ | $⇔$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} [u(x) · v(x)] = \dfrac{\mathrm{d} u(x)}{\mathrm{d} x} · v(x) + u(x) · \dfrac{\mathrm{d} v(x)}{\mathrm{d} x}$ |
-| $⇓$  | $\int_x u(x) · \mathrm{d} v(x) = u(x)·v(x) - \int_x v(x) · \mathrm{d} u(x)$ | $⇐$  | $\int_x \mathrm{d} [u(x) · v(x)] = u(x)·v(x)$                |
-| $⇓$  | $\int_x u(x) · {^1}v(x) · \mathrm{d}x = u(x) · v(x) - \int_x v(x)·{^1}u(x) ·\mathrm{d}x$ |      |                                                              |
-
-典例：应用换元积分法，计算$\int \tan x · \mathrm{d}x$。
-
-$\int_x \tan x · \mathrm{d}x = \int_x \dfrac{\sin x}{\cos x} · \mathrm{d}x = \int_x \dfrac{-1}{\cos x} · \mathrm{d} \cos x \mathop{====}\limits^{t=\cos x} \int_t \dfrac{-1}{t} · \mathrm{d} t = -\ln|t| + \mathrm{Con} = -\ln |\cos x| + \mathrm{Con}$
-
-典例：应用换元积分法，计算$\int \dfrac{1}{x^2 - a^2} · \mathrm{d}x$。
-
-$\int_x \dfrac{1}{x^2 - a^2} · \mathrm{d}x = \dfrac{1}{2 · a} · \int_x \left[ \dfrac{1}{x - a} - \dfrac{1}{x + a} \right] \mathrm{d} x = \dfrac{1}{2·a} · \left[ \int_x \dfrac{\mathrm{d}(x-a)}{x-a} - \int_x \dfrac{\mathrm{d}(x+a)}{x + a} \right] \mathop{===}\limits_{s=x+a}^{t=x-a} \dfrac{1}{2·a} · \int_t \dfrac{\mathrm{d}t}{t} - \dfrac{1}{2·a} · \int_s \dfrac{\mathrm{d}s}{s} = \dfrac{1}{2·a} · \left[ \ln |t| - \ln|s| \right] + \mathrm{Con}= \dfrac{1}{2·a}· \ln \left| \dfrac{x-a}{x+a} \right| + \mathrm{Con}$
-
-典例：应用换元积分法，计算$\int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x$。已知$\int \dfrac{1}{\sqrt{x^2 - 1}} · \mathrm{d}x = {'}\cosh x + \mathrm{Con}$。
-
-$\int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x = \int \dfrac{1}{\sqrt{\frac{x^2}{a^2} - 1^2}} · \mathrm{d} \dfrac{x}{a} \mathop{==}\limits^{t=\frac{x}{a}} {'}\cosh t + \mathrm{Con}_0 = {'}\cosh \dfrac{x}{a} + \mathrm{Con}_0 = \ln\left( \dfrac{x}{a} + \sqrt{\dfrac{x^2}{a^2} - 1} \right) + \mathrm{Con}_0 = \ln \left( x + \sqrt{x^2 + a^2} \right) + \mathrm{Con}$
-
-典例：应用分部积分法$x$降幂型式，计算$\int x· ә^{-x} · \mathrm{d}x$。
-
-$\int x· ә^{-x} · \mathrm{d}x = -\int x · \mathrm{d} ә^{-x} = -x · ә^{-x} + \intә^{-x} · \mathrm{d} x = -x·ә^{-x} + \int \mathrm{d}ә^{-x} = -x·ә^{-x} + ә^{-x} + \mathrm{Con}$
-
-典例：应用分部积分法$x$升幂型式，计算$\int x · \ln x · \mathrm{d}x$。
-
-$\int x · \ln x · \mathrm{d}x = \dfrac{1}{2} · \int \ln x · \mathrm{d} x^2 = \dfrac{1}{2} · \left[ x^2 · \ln x - \int x^2 · \mathrm{d}\ln x \right] \mathop{=====}\limits^{\mathrm{d}\ln x = \frac{1}{x}·\mathrm{d}x} \dfrac{1}{2} · x^2 · \ln x - \dfrac{1}{2} · \int x · \mathrm{d} x = \dfrac{1}{2} · x^2 · \ln x - \dfrac{1}{4} ·x^2 + \mathrm{Con}$
-
-典例：应用分部积分法循环型式，计算$\int \sqrt{x^2 - a^2}·\mathrm{d}x$。已知$\int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x = {'}\cosh \dfrac{x}{a} + \mathrm{Con}$。
-
-$\int \sqrt{x^2 - a^2}·\mathrm{d}x = x · \sqrt{x^2 - a^2} - \int x · \mathrm{d} \sqrt{x^2 - a^2} = x · \sqrt{x^2 + a^2} - \int x · \dfrac{2·x}{2\sqrt{x^2-a^2}} \mathrm{d}x = x· \sqrt{x^2 - a^2} - \int \dfrac{(x^2 - a^2)+a^2}{\sqrt{x^2 - a^2}} · \mathrm{d}x = x·\sqrt{x^2-a^2} - \int \sqrt{x^2-a^2} · \mathrm{d}x - a^2 · \int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x$
-
-$\int \sqrt{x^2-a^2} = \dfrac{x·\sqrt{x^2-a^2}}{2} - \dfrac{a^2}{2} · {'}\cosh \dfrac{x}{a} + \mathrm{Con}$
-
-典例：应用分部积分法递推型式，计算$\int \cos^n x · \mathrm{d}x$。
-
-$\int \cos^n x · \mathrm{d}x = \int \cos^{n-1} x · \mathrm{d} \sin x = \cos^{n-1} x · \sin x - \int \sin x · \mathrm{d} \cos^{n-1} x = \cos^{n-1} x · \sin x + (n - 1) · \int \cos^{n-2}x · \sin^2 x ·\mathrm{d} x \mathop{=======}\limits^{\sin^2 x = 1 - \cos^2 x} \cos^{n-1} x · \sin x +(n-1) · \int [\cos^{n-2} x - \cos^n x]·\mathrm{d}x$
-
-$\int \cos^{n} x · \mathrm{d} x = \dfrac{1}{n} · \cos^{n-1}x· \sin x + \dfrac{n - 1}{n} · \int \cos^{n-2}x·\mathrm{d}x$
-
 ### 定积分
 
 将区间$[x_α,x_β]$划分成$n+1$个子区间$[x_i,x_{i+1}]$，每个子区间长度为$Δx_i = x_{i+1} - x_i$，任取子区间内点$θ_i∈[x_i,x_{i+1}]$，有函数$f(x)$在区间$[x_α,x_β]$上的定积分和。
@@ -1023,6 +974,114 @@ $\int\limits_{0}^{1} \mathcal{R} (x) \mathrm{d} x = \lim\limits_{n⇝∞⁺}^{Δ
 | $[ 0 ≤ g (x) ] ∧ \left[ 0 = \int\limits_{x_α}^{x_β} g (x) \mathrm{d} x \right] ⇒ \left[ 0 = g (x_0) ⇜ \lim\limits_{x⇝x_0} g (x) \right]$ | $⇐$  | $[ P ∧ Q ⇒ R ] ⇔ [ P ∧ ¬R ⇒ ¬Q ]$                            |
 | $\left| \int\limits_{x_α}^{x_β} f (x) \mathrm{d} x \right| ≤ \int\limits_{x_α}^{x_β} | f (x) | \mathrm{d} x$ | $⇐$  | $- \int\limits_{x_α}^{x_β} | f (x) | \mathrm{d} x ≤ \int\limits_{x_α}^{x_β} f (x) \mathrm{d} x ≤ + \int\limits_{x_α}^{x_β} | f (x) | \mathrm{d} x$ |
 
+### 微积分基本定理
+
+若函数$f(x)$在区间$[x_α,x_β]$上的定积分存在，则其变上限积分与其变下限积分存在，其变上限积分与其变下限积分可互相转换。
+
+$\mathrm{U}_{x_α}^{f}(x) = \int\limits_{x_α}^{x} f(x) · \mathrm{d} x$
+
+$\mathrm{L}_{x_β}^{f}(x) = \int\limits_{x}^{x_β} f(x) · \mathrm{d} x$
+
+$\mathrm{U}_{x_γ}^{f}(x) = \int\limits_{x_γ}^{x} f(x)·\mathrm{d}x = -\int\limits_{x}^{x_γ} f(x)·\mathrm{d}x = -\mathrm{L}_{x_γ}^{f}(x)$
+
+若函数$f(x)$在区间$[x_α,x_β]$上的定积分存在，因此函数$f(x)$在区间$[x_α,x_β]$上有确界，则其变上限积分$\mathrm{U}(x)$在区间$[x_α,x_β]$上连续。
+
+$\left[ \int\limits_{x_α}^{x_β} f(x) · \mathrm{d} x = \lim\limits_{n⇝∞^+}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f(θ_i) · Δx_i \right] ⇒ \left[ \lim\limits_{x⇝x_0} \mathrm{U}(x) ⇝ \mathrm{U}(x_0) \right]$
+
+| $⇓$  | $\left[ \int\limits_{x_α}^{x_β} f(x) · \mathrm{d} x = \lim\limits_{n⇝∞^+}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f(θ_i) · Δx_i \right] ⇒ \left[ f(x) ≤ \mathrm{Sup} \right]$ |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $∀x_0∈[x_α,x_β];∀ε>0;∃δ>0;∀x∈[x_α,x_β]; |\mathrm{U}(x) - \mathrm{U}(x_0)| = \left| \int\limits_{x_α}^{x} f(x) · \mathrm{d}x - \int\limits_{x_α}^{x_0} f(x) · \mathrm{d} x \right| = \left| \int\limits_{x_0}^{x} f(x) · \mathrm{d}x \right| ≤ \mathrm{Sup} · \left| \int\limits_{x_0}^{x} \mathrm{d}x \right| = \mathrm{Sup}· (x - x_α) = \mathrm{Sup} · δ = ε$ |
+| $⇓$  | $\lim\limits_{x⇝x_0} \mathrm{U}(x) ⇝ \mathrm{U}(x_0)$        |
+
+若函数$f(x)$在区间$[x_α,x_β]$上连续，则其变上限积分$\mathrm{U}(x)$为函数$f(x)$的原函数，且同理其变下限积分$\mathrm{L}(x)$为函数$f(x)$的原函数。
+
+$\dfrac{\mathrm{d}}{\mathrm{d} x} \int\limits_{x_α}^{x} f(x) · \mathrm{d} x = \dfrac{\mathrm{d} \mathrm{U}(x)}{\mathrm{d}x} = f(x)$
+
+$\dfrac{\mathrm{d}}{\mathrm{d}x} \int\limits_{v(x)}^{u(x)} f(x) ·\mathrm{d}x = \dfrac{\mathrm{d} \mathrm{U}(u(x))}{\mathrm{d} x} - \dfrac{\mathrm{d}\mathrm{U}(v(x))}{\mathrm{d}x} = f(u(x)) · {^1}u(x) - f(v(x)) · {^1} v(x)$
+
+| $⇓$  | $∀x_0∈[x_α,x_β];∀ε>0;∃δ>0;∀x_t∈[x_α,x_β]; |x_t - x_0| ≤ δ ⇒ |f(x_t) - f(x_0)| ≤ε$ |
+| :--: | :----------------------------------------------------------- |
+| $⇓$  | $\left| \dfrac{\mathrm{U}(x_t) - \mathrm{U}(x_0)}{x_t - x_0} - f(x_0) \right| = \left| \dfrac{\int\limits_{x_α}^{x_t} f(x) · \mathrm{d}x - \int\limits_{x_α}^{x_0} f(x)·\mathrm{d}x}{x_t - x_0} - f(x_0) \right| = \left| \dfrac{\int\limits_{x_0}^{x_t} f(x)·\mathrm{d}x - \int\limits_{x_0}^{x_t} f(x_0)·\mathrm{d}x}{x_t - x_0} \right| ≤ \left| \dfrac{\int\limits_{x_0}^{x_t} |f(x)-f(x_0)|·\mathrm{d}x}{x_t - x_0} \right| ≤ \dfrac{ε·\left|\int\limits_{x_0}^{x_t} \mathrm{d}x \right|}{|x_t - x_0|} = ε$ |
+| $⇓$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} \int\limits_{x_α}^{x} f(x) · \mathrm{d} x = \dfrac{\mathrm{d} \mathrm{U}(x)}{\mathrm{d}x} = f(x)$ |
+|      |                                                              |
+| $⇓$  | $\int\limits_{v(x)}^{u(x)} f(x) ·\mathrm{d}x = \int\limits_{x_γ}^{u(x)} f(x) · \mathrm{d}x + \int\limits_{v(x)}^{x_γ} f(x) · \mathrm{d}x = \int\limits_{x_γ}^{u(x)} f(x) · \mathrm{d} x - \int\limits_{x_γ}^{v(x)} f(x) · \mathrm{d} x = \mathrm{U}(u(x)) - \mathrm{U}(v(x))$ |
+| $⇓$  | $\dfrac{\mathrm{d}}{\mathrm{d}x} \int\limits_{v(x)}^{u(x)} f(x) ·\mathrm{d}x = \dfrac{\mathrm{d} \mathrm{U}(u(x))}{\mathrm{d} x} - \dfrac{\mathrm{d}\mathrm{U}(v(x))}{\mathrm{d}x} = \dfrac{\mathrm{d}\mathrm{U}(u)}{\mathrm{d}u} · \dfrac{\mathrm{d}u(x)}{\mathrm{d}x} - \dfrac{\mathrm{d}\mathrm{U}(v)}{\mathrm{d}v} ·\dfrac{\mathrm{d}v(x)}{\mathrm{d}x} = f(u(x)) · {^1}u(x) - f(v(x)) · {^1} v(x)$ |
+
+若函数$f(x)$在区间$[x_α,x_β]$上连续，则其在区间$[x_α,x_β]$上的定积分为其任意原函数在该两端点处的差值。【微积分基本定理】
+
+$\int\limits_{x_α}^{x_β} f(x) · \mathrm{d}x = F(x_β) - F(x_α) = \left. F(x) \right|_{x_α}^{x_β}$
+
+| $⇓$  | $\int\limits_{x_α}^{x_β} f(x) · \mathrm{d}x \mathop{====}\limits_{\mathrm{U}(x_α) = 0} \mathrm{U}(x_β) - \mathrm{U}(x_α) = [\mathrm{U}(x_β) + \mathrm{Con}] - [\mathrm{U}(x_α)+\mathrm{Con}] = F(x_β) - F(x_α) = \left. F(x) \right|_{x_α}^{x_β}$ |
+| :--: | :----------------------------------------------------------- |
+|      |                                                              |
+
+典例：计算定积分$\int\limits_{0}^{π} \sin x · \mathrm{d}x$。
+
+$\left[ \int\limits_{x_α}^{x_β} \sin x · \mathrm{d} x = [-\cos x]_{x_α}^{x_β} \right] ⇒ \left[ \int\limits_{0}^{π} \sin x · \mathrm{d}x = [-\cos x]_{0}^{π} = 2 \right]$
+
+典例：计算极限值$\lim\limits_{n⇝∞^{+}} \dfrac{1^{p}+2^{p}+···+n^{p}}{n^{p+1}}$。
+
+$\lim\limits_{n⇝∞^{+}} \dfrac{1^{p}+2^{p}+···+n^{p}}{n^{p+1}} = \lim\limits_{n⇝∞^{+}} \left[ \left(\dfrac{1}{n}\right)^{p} + \left( \dfrac{2}{n} \right)^{p} + ··· + \left( \dfrac{n}{n} \right)^{p} \right] · \dfrac{1}{n} \mathop{===}\limits^{p>-1} \int\limits_{0}^{1} x^{p} · \mathrm{d} x = \left[ \dfrac{x^{p+1}}{p+1} \right]_{0}^{1} = \dfrac{1}{p + 1}$
+
+换元积分法。
+
+$\int\limits_{x_α}^{x_β} g(f(x))·{^1}f(x) · \mathrm{d}x = \int\limits_{x_α}^{x_β} g(f(x)) · \mathrm{d} f(x) \mathop{====}\limits_{t_α=f(x_α)}^{t_β = f(x_β)} \int\limits_{t_α}^{t_β} g(t) · \mathrm{d}t$
+
+分部积分法。
+
+$\int\limits_{x_α}^{x_β} u(x) · \mathrm{d}v(x) = [u(x)·v(x)]_{x_α}^{x_β} - \int\limits_{x_α}^{x_β} v(x) ·\mathrm{d} u(x)$
+
+$\int\limits_{x_α}^{x_β} u(x) ·{^1}v(x) · \mathrm{d}x = [u(x)·v(x)]_{x_α}^{x_β} - \int\limits_{x_α}^{x_β} {^1}u(x) · v(x) · \mathrm{d} x$
+
+| $⇓$  | $\int\limits_{x_α}^{x_β} g(f(x)) · {^1}f(x) · \mathrm{d} x = \int\limits_{x_α}^{x_β} g(f(x)) · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} · \mathrm{d}x = \int\limits_{x_α}^{x_β} g(f(x)) · \mathrm{d} f(x) \mathop{====}\limits_{t_α=f(x_α)}^{t_β=f(x_β)} \int\limits_{t_α}^{t_β} g(t) · \mathrm{d} t$ |      |                                                              |
+| :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
+|      |                                                              |      |                                                              |
+| $⇓$  | $\mathrm{d}[u(x) · v(x)] = u(x) · \mathrm{d} v(x) + v(x) · \mathrm{d} u(x)$ | $⇔$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} [u(x) · v(x)] = \dfrac{\mathrm{d} u(x)}{\mathrm{d} x} · v(x) + u(x) · \dfrac{\mathrm{d} v(x)}{\mathrm{d} x}$ |
+| $⇓$  | $[u(x) · v(x)]_{x_α}^{x_β} = \int\limits_{x_α}^{x_β} \mathrm{d}[u(x) · v(x)] = \int\limits_{x_α}^{x_β} u(x) · \mathrm{d} v(x) + \int\limits_{x_α}^{x_β} v(x) · \mathrm{d} u(x)$ |      |                                                              |
+| $⇓$  | $\int\limits_{x_α}^{x_β} u(x) · \mathrm{d}v(x) = [u(x)·v(x)]_{x_α}^{x_β} - \int\limits_{x_α}^{x_β} v(x) ·\mathrm{d} u(x)$ |      |                                                              |
+| $⇓$  | $\int\limits_{x_α}^{x_β} u(x) ·{^1}v(x) · \mathrm{d}x = [u(x)·v(x)]_{x_α}^{x_β} - \int\limits_{x_α}^{x_β} {^1}u(x) · v(x) · \mathrm{d} x$ |      |                                                              |
+
+分部积分法的升降幂型式。
+
+$\int\limits_{x_α}^{x_β} {^0}u(x) · {^{n+1}}v(x) · \mathrm{d}x = \left[ \sum\limits_{i=0}^{n} (-1)^{n} ·{^i}u(x) ·{^{n-i}}v(x) \right]_{x_α}^{x_β} + (-1)^{n+1} \int\limits_{x_α}^{x_β} {^{n+1}}u(x) · {^0}v(x) ·\mathrm{d}x$
+
+| $\int\limits_{x_α}^{x_β} {^0}u(x) · {^{n+1}}v(x) · \mathrm{d}x$ | $= \left[ {^0}u(x)·{^n}v(x) \right]_{x_α}^{x_β} - \int_{x_α}^{x_β} {^1}u(x) ·{^n}v(x) · \mathrm{d} x$ |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+|                                                              | $= \left[ ^{0}u(x)·{^n}v(x) - {^1}u(x) · {^{n-1}}v(x) \right]_{x_α}^{x_β} + \int\limits_{x_α}^{x_β} {^2}u(x) ·{^{n-1}}v(x) ·\mathrm{d} x$ |
+|                                                              | $= \left[ \sum\limits_{i=0}^{n} (-1)^{n} ·{^i}u(x) ·{^{n-i}}v(x) \right]_{x_α}^{x_β} + (-1)^{n+1} \int\limits_{x_α}^{x_β} {^{n+1}}u(x) · {^0}v(x) ·\mathrm{d}x$ |
+
+典例：应用换元积分法，计算$\int \tan x · \mathrm{d}x$。
+
+$\int_x \tan x · \mathrm{d}x = \int_x \dfrac{\sin x}{\cos x} · \mathrm{d}x = \int_x \dfrac{-1}{\cos x} · \mathrm{d} \cos x \mathop{====}\limits^{t=\cos x} \int_t \dfrac{-1}{t} · \mathrm{d} t = -\ln|t| + \mathrm{Con} = -\ln |\cos x| + \mathrm{Con}$
+
+典例：应用换元积分法，计算$\int \dfrac{1}{x^2 - a^2} · \mathrm{d}x$。
+
+$\int_x \dfrac{1}{x^2 - a^2} · \mathrm{d}x = \dfrac{1}{2 · a} · \int_x \left[ \dfrac{1}{x - a} - \dfrac{1}{x + a} \right] \mathrm{d} x = \dfrac{1}{2·a} · \left[ \int_x \dfrac{\mathrm{d}(x-a)}{x-a} - \int_x \dfrac{\mathrm{d}(x+a)}{x + a} \right] \mathop{===}\limits_{s=x+a}^{t=x-a} \dfrac{1}{2·a} · \int_t \dfrac{\mathrm{d}t}{t} - \dfrac{1}{2·a} · \int_s \dfrac{\mathrm{d}s}{s} = \dfrac{1}{2·a} · \left[ \ln |t| - \ln|s| \right] + \mathrm{Con}= \dfrac{1}{2·a}· \ln \left| \dfrac{x-a}{x+a} \right| + \mathrm{Con}$
+
+典例：应用换元积分法，计算$\int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x$。已知$\int \dfrac{1}{\sqrt{x^2 - 1}} · \mathrm{d}x = {'}\cosh x + \mathrm{Con}$。
+
+$\int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x = \int \dfrac{1}{\sqrt{\frac{x^2}{a^2} - 1^2}} · \mathrm{d} \dfrac{x}{a} \mathop{==}\limits^{t=\frac{x}{a}} {'}\cosh t + \mathrm{Con}_0 = {'}\cosh \dfrac{x}{a} + \mathrm{Con}_0 = \ln\left( \dfrac{x}{a} + \sqrt{\dfrac{x^2}{a^2} - 1} \right) + \mathrm{Con}_0 = \ln \left( x + \sqrt{x^2 + a^2} \right) + \mathrm{Con}$
+
+典例：应用分部积分法$x$降幂型式，计算$\int x· ә^{-x} · \mathrm{d}x$。
+
+$\int x· ә^{-x} · \mathrm{d}x = -\int x · \mathrm{d} ә^{-x} = -x · ә^{-x} + \intә^{-x} · \mathrm{d} x = -x·ә^{-x} + \int \mathrm{d}ә^{-x} = -x·ә^{-x} + ә^{-x} + \mathrm{Con}$
+
+典例：应用分部积分法$x$升幂型式，计算$\int x · \ln x · \mathrm{d}x$。
+
+$\int x · \ln x · \mathrm{d}x = \dfrac{1}{2} · \int \ln x · \mathrm{d} x^2 = \dfrac{1}{2} · \left[ x^2 · \ln x - \int x^2 · \mathrm{d}\ln x \right] \mathop{=====}\limits^{\mathrm{d}\ln x = \frac{1}{x}·\mathrm{d}x} \dfrac{1}{2} · x^2 · \ln x - \dfrac{1}{2} · \int x · \mathrm{d} x = \dfrac{1}{2} · x^2 · \ln x - \dfrac{1}{4} ·x^2 + \mathrm{Con}$
+
+典例：应用分部积分法循环型式，计算$\int \sqrt{x^2 - a^2}·\mathrm{d}x$。已知$\int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x = {'}\cosh \dfrac{x}{a} + \mathrm{Con}$。
+
+$\int \sqrt{x^2 - a^2}·\mathrm{d}x = x · \sqrt{x^2 - a^2} - \int x · \mathrm{d} \sqrt{x^2 - a^2} = x · \sqrt{x^2 + a^2} - \int x · \dfrac{2·x}{2\sqrt{x^2-a^2}} \mathrm{d}x = x· \sqrt{x^2 - a^2} - \int \dfrac{(x^2 - a^2)+a^2}{\sqrt{x^2 - a^2}} · \mathrm{d}x = x·\sqrt{x^2-a^2} - \int \sqrt{x^2-a^2} · \mathrm{d}x - a^2 · \int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x$
+
+$\int \sqrt{x^2-a^2} = \dfrac{x·\sqrt{x^2-a^2}}{2} - \dfrac{a^2}{2} · {'}\cosh \dfrac{x}{a} + \mathrm{Con}$
+
+典例：应用分部积分法递推型式，计算$\int \cos^n x · \mathrm{d}x$。
+
+$\int \cos^n x · \mathrm{d}x = \int \cos^{n-1} x · \mathrm{d} \sin x = \cos^{n-1} x · \sin x - \int \sin x · \mathrm{d} \cos^{n-1} x = \cos^{n-1} x · \sin x + (n - 1) · \int \cos^{n-2}x · \sin^2 x ·\mathrm{d} x \mathop{=======}\limits^{\sin^2 x = 1 - \cos^2 x} \cos^{n-1} x · \sin x +(n-1) · \int [\cos^{n-2} x - \cos^n x]·\mathrm{d}x$
+
+$\int \cos^{n} x · \mathrm{d} x = \dfrac{1}{n} · \cos^{n-1}x· \sin x + \dfrac{n - 1}{n} · \int \cos^{n-2}x·\mathrm{d}x$
+
 ### 积分中值定理
 
 错位积和公式。
@@ -1060,7 +1119,7 @@ $\int\limits_{x_α}^{x_β} f (x) \mathrm{d} x = \left. f (x) \right|_{∃θ∈[x
 
 | $⇓$  | $F (x) ≡ \int\limits_{x_α}^{x} f (x) · g (x) \mathrm{d} x$   | $⇒$  | $F (x_α) = 0; F (x_β) = \int\limits_{x_α}^{x_β} f (x) · g (x) \mathrm{d} x$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $G (x) ≡ \int\limits_{x_α}^{x} g (x) \mathrm{d} x$           | $⇒$  | $G (X_0) = 0; G (X_1) = \int\limits_{X_0}^{X_1} g (x) \mathrm{d} x$ |
+| $⇓$  | $G (x) ≡ \int\limits_{x_α}^{x} g (x) \mathrm{d} x$           | $⇒$  | $G (x_α) = 0; G (x_β) = \int\limits_{x_α}^{x_β} g (x) \mathrm{d} x$ |
 | $⇓$  | $\dfrac{\int\limits_{x_α}^{x_β} f (x) · g (x) \mathrm{d} x}{\int\limits_{x_α}^{x_β} g (x) \mathrm{d} x} = \dfrac{F (x_β) - F (x_α)}{G (x_β) - G (x_α)} = \left. \dfrac{\mathrm{d} F (x)}{\mathrm{d} G (x)} \right|_{∃θ∈[x_α, x_β]} = \left. \dfrac{f (x) · g (x)}{g (x)} \right|_{∃θ∈[x_α, x_β]} = \left. f (x) \right|_{∃θ∈[x_α, x_β]}$ |      |                                                              |
 | $⇓$  | $\int\limits_{x_α}^{x_β} f (x) · g (x) \mathrm{d} x = \left. f (x) \right|_{∃θ∈[x_α, x_β]} · \int\limits_{x_α}^{x_β} g (x) \mathrm{d} x$ |      |                                                              |
 | $⇓$  | $\int\limits_{x_α}^{x_β} f (x) \mathrm{d} x = \left. f (x) \right|_{∃θ∈[x_α, x_β]} · (x_β - x_α)$ | $⇐$  | $g (x) ≡ 1$                                                  |
@@ -1088,5 +1147,7 @@ $\int\limits_{x_α}^{x_β} f (x) · g^{⤨} (x) \mathrm{d} x \mathop{=====}\limi
 | $⇓$  | $\int\limits_{x_α}^{x_β} f (x) · \dfrac{g^{⤨} (x) - g^{⤨} (x_β)}{g^{⤨} (x_α) - g^{⤨} (x_β)} \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} 1 ·  \int\limits_{X_0}^{θ} f (x) \mathrm{d} x$ | $⇐$  | $h^{↘_0} (x_α) = 1$                                          |
 | $⇓$  | $\int\limits_{x_α}^{x_β} f (x) · g^{⤨} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} g^{⤨} (x_α) · \int\limits_{x_α}^{θ} f (x) \mathrm{d} x + g^{⤨} (x_β) · \int\limits_{θ}^{x_β} f (x) \mathrm{d} x$ |      |                                                              |
 
-###
+
+
+
 
