@@ -1082,6 +1082,20 @@ $\int \cos^n x · \mathrm{d}x = \int \cos^{n-1} x · \mathrm{d} \sin x = \cos^{n
 
 $\int \cos^{n} x · \mathrm{d} x = \dfrac{1}{n} · \cos^{n-1}x· \sin x + \dfrac{n - 1}{n} · \int \cos^{n-2}x·\mathrm{d}x$
 
+若函数$f(x)$为奇函数且定积分存在，则$\int\limits_{-x_γ}^{+x_γ} f(x) · \mathrm{d}x = 0$。
+
+若函数$f(x)$为偶函数且定积分存在，则$\int\limits_{-x_γ}^{+x_γ} f(x) · \mathrm{d} x = 2 · \int\limits_{0}^{+x_γ} f(x) · \mathrm{d}x$。
+
+若函数$f(x)$为周期函数且定积分存在，则$\int\limits_{x_γ}^{x_γ+T} f(x) · \mathrm{d} x = \int\limits_{0}^{T} f(x) · \mathrm{d} x$。
+
+| $⇓$  | $\int\limits_{-x_γ}^{+x_γ} f(x) · \mathrm{d} x = \int\limits_{-x_γ}^{0} f(x) · \mathrm{d} x + \int\limits_{0}^{+x_γ} f(x) · \mathrm{d} x \mathop{===}\limits^{x=-t} \int\limits_{x_γ}^{0} f(-t) · \mathrm{d}(-t) + \int\limits_{0}^{x_γ} f(x) · \mathrm{d} x \mathop{======}\limits^{f(-t)=-f(t)} \int\limits_{0}^{x_γ} -f(t) · \mathrm{d}t + \int\limits_{0}^{x_γ} f(x)·\mathrm{d}x$ |
+| :--: | :----------------------------------------------------------- |
+|      |                                                              |
+| $⇓$  | $\int\limits_{-x_γ}^{+x_γ} f(x) · \mathrm{d} x = \int\limits_{-x_γ}^{0} f(x)· \mathrm{d}x + \int\limits_{0}^{+x_γ} f(x) · \mathrm{d} x \mathop{===}\limits^{x=-t} \int\limits_{x_γ}^{0} f(-t)·\mathrm{d}(-t) + \int\limits_{0}^{x_γ} f(x) · \mathrm{d} x \mathop{======}\limits^{f(-t)=+f(t)} \int\limits_{0}^{x_γ} +f(t) · \mathrm{d}t + \int\limits_{0}^{x_γ} f(x)·\mathrm{d}x$ |
+|      |                                                              |
+| $⇓$  | $\int\limits_{T}^{x_γ+T} f(x) · \mathrm{d} x \mathop{====}\limits^{x=t+T} \int\limits_{0}^{x_γ} f(t+T) · \mathrm{d}(t+T) \mathop{======}\limits^{f(t+T)=f(t)} \int\limits_{0}^{x_γ} f(t) · \mathrm{d}t$ |
+| $⇓$  | $\int\limits_{x_γ}^{x_γ+T} f(x) · \mathrm{d} x = \int\limits_{x_γ}^{0} f(x) · \mathrm{d}x + \int\limits_{0}^{T} f(x) · \mathrm{d}x + \int\limits_{T}^{x_γ+T} f(x) · \mathrm{d}x = -\int\limits_{0}^{x_γ} f(x) · \mathrm{d}x + \int\limits_{0}^{T} f(x) · \mathrm{d}x + \int\limits_{0}^{x_γ} f(x) · \mathrm{d}x = \int\limits_{0}^{T} f(x) · \mathrm{d}x$ |
+
 ### 积分中值定理
 
 错位积和公式。
@@ -1146,8 +1160,4 @@ $\int\limits_{x_α}^{x_β} f (x) · g^{⤨} (x) \mathrm{d} x \mathop{=====}\limi
 | $⇓$  | $h^{↘_0} (x) ≡ \dfrac{g^{⤨} (x) - g^{⤨} (x_β)}{g^{⤨} (x_α) - g^{⤨} (x_β)}$ | $⇒$  | $\int\limits_{x_α}^{x_β} h^{↘_0} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} h^{↘_0} (x_α) · \int\limits_{x_α}^{θ} f (x) \mathrm{d} x$ |
 | $⇓$  | $\int\limits_{x_α}^{x_β} f (x) · \dfrac{g^{⤨} (x) - g^{⤨} (x_β)}{g^{⤨} (x_α) - g^{⤨} (x_β)} \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} 1 ·  \int\limits_{X_0}^{θ} f (x) \mathrm{d} x$ | $⇐$  | $h^{↘_0} (x_α) = 1$                                          |
 | $⇓$  | $\int\limits_{x_α}^{x_β} f (x) · g^{⤨} (x) \mathrm{d} x \mathop{=====}\limits^{∃θ∈[x_α,x_β]} g^{⤨} (x_α) · \int\limits_{x_α}^{θ} f (x) \mathrm{d} x + g^{⤨} (x_β) · \int\limits_{θ}^{x_β} f (x) \mathrm{d} x$ |      |                                                              |
-
-
-
-
 

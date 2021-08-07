@@ -2,17 +2,32 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  重要公式
-Update:  2021-08-06T18:44:00+08@中国-广东-湛江+08
+Update:  2021-08-07T10:19:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
 
+### 注意
+
+```
+本书中避免使用阶乘算符，
+特别是双叹号的阶乘算符，
+两者均可替代为连乘算符,
+连乘算符的下标从一开始。
+```
+
+$(2·n-1)!! = \prod\limits_{i=1}^{n} (2·i-1)$
+
+$(2·n)!! = \prod\limits_{i=1}^{n} (2·i)$
+
+$(2·n+1)!! = \prod\limits_{i=1}^{n} (2·i+1)$
+
 ### 基本数学常数
 
-| $π$  | $3.1415926535,8979323846,...$ |
-| :--- | :---------------------------- |
-| $ә$  | $2.7182818284,5904553488,...$ |
-|      |                               |
+| $π$  | $3.1415926535,8979323846,...$ | $\lim\limits_{m⇝∞^{+}} \dfrac{1}{m} · \left[ \prod\limits_{i=1}^{m} (2·i) \right]^{+2} · \left[ \prod\limits_{i=1}^{m} (2·i-1) \right]^{-2}$ |
+| :--- | :---------------------------- | :----------------------------------------------------------- |
+| $ә$  | $2.7182818284,5904553488,...$ |                                                              |
+|      |                               |                                                              |
 
 ### 特殊数学常数
 
@@ -276,9 +291,16 @@ $\int\limits_{-π}^{+π} \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} 
 | $⇓$  | $I_n = \int\limits_{0}^{\frac{π}{2}} \cos^n \mathrm{d} x = \int\limits_{0}^{\frac{π}{2}} \cos^{n-1} x \mathrm{d} \sin x = \left[ \cos^{n - 1} x · \sin x \right]_{0}^{\frac{π}{2}} + (n - 1) · \int\limits_{0}^{\frac{π}{2}} \cos^{n-2} x · \sin^2 x \mathrm{d} x$ |      |                                                              |
 | $⇓$  | $I_n = (n - 1) · \int\limits_{0}^{\frac{π}{2}} \cos^{n-2} x · [ 1 - \cos^2 x] \mathrm{d} x = (n - 1) · [ I_{n-2} - I_n ]$ |      |                                                              |
 | $⇓$  | $I_n = \dfrac{n - 1}{n} · I_{n-2}$                           |      |                                                              |
-| $⇓$  | $I_{2·m} = \dfrac{π}{2} · \dfrac{1}{2} · \dfrac{3}{4} ··· \dfrac{2 · m - 3}{2 · m - 2} · \dfrac{2 · m - 1}{2 · m}$ | $⇐$  | $I_0 = \int\limits_{0}^{\frac{π}{2}} \cos^0 x \mathrm{d} x = \dfrac{π}{2}$ |
-| $⇓$  | $I_{2·m+1} = 1 · \dfrac{2}{3} · \dfrac{4}{5} ··· \dfrac{2 · m - 2}{2 · m - 1} · \dfrac{2 · m}{2 · m + 1}$ | $⇐$  | $I_1 = \int\limits_{0}^{\frac{π}{2}} \cos^1 x \mathrm{d} x = [ \sin x ]_{0}^{\frac{π}{2}} = 1$ |
+| $⇓$  | $I_{2·m} = \dfrac{π}{2} · \dfrac{1}{2} · \dfrac{3}{4} ··· \dfrac{2 · m - 3}{2 · m - 2} · \dfrac{2 · m - 1}{2 · m} = \dfrac{π}{2} · \left[ \prod\limits_{i=1}^{m} (2·i-1) \right]^{+1}  · \left[ \prod\limits_{i=1}^{m}(2·i) \right]^{-1}$ | $⇐$  | $I_0 = \int\limits_{0}^{\frac{π}{2}} \cos^0 x \mathrm{d} x = \dfrac{π}{2}$ |
+| $⇓$  | $I_{2·m+1} = 1 · \dfrac{2}{3} · \dfrac{4}{5} ··· \dfrac{2 · m - 2}{2 · m - 1} · \dfrac{2 · m}{2 · m + 1} = \left[ \prod\limits_{i=1}^{m}(2·i) \right]^{+1} · \left[ \prod\limits_{i=1}^{m}(2·i+1) \right]^{-1}$ | $⇐$  | $I_1 = \int\limits_{0}^{\frac{π}{2}} \cos^1 x \mathrm{d} x = [ \sin x ]_{0}^{\frac{π}{2}} = 1$ |
 | $⇓$  | $I_n = \left[ \dfrac{π}{2} \right]^{\frac{1 + (-1)^n}{2}} · \left[ \prod\limits_{i=1}^n i^{(-1)^i} \right]^{(-1)^{n+1}}$ |      |                                                              |
+|      |                                                              |      |                                                              |
+| $⇓$  | $\int\limits_{0}^{\frac{π}{2}} \cos^{2·m+1} x · \mathrm{d} x < \int\limits_{0}^{\frac{π}{2}} \cos^{2·m} x · \mathrm{d}x < \int\limits_{0}^{\frac{π}{2}} \cos^{2·m-1} x · \mathrm{d} x$ |      |                                                              |
+| $⇓$  | $I_{2·m+1} < I_{2·m} < I_{2·m-1}$                            |      | $I_{2·m-1} = \left[ \prod\limits_{i=1}^{m-1}(2·i) \right]^{+1} · \left[ \prod\limits_{i=1}^{m-1}(2·i+1) \right]^{-1}$ |
+| $⇓$  | $\left[ \prod\limits_{i=1}^{m}(2·i) \right]^{+1} · \left[ \prod\limits_{i=1}^{m}(2·i+1) \right]^{-1} < \dfrac{π}{2} · \left[ \prod\limits_{i=1}^{m} (2·i-1) \right]^{+1}  · \left[ \prod\limits_{i=1}^{m}(2·i) \right]^{-1} < \left[ \prod\limits_{i=1}^{m-1}(2·i) \right]^{+1} · \left[ \prod\limits_{i=1}^{m-1}(2·i+1) \right]^{-1}$ |      |                                                              |
+| $⇓$  | $J_{m} = \dfrac{1}{2·m+1} · \left[ \prod\limits_{i=1}^{m} (2·i) \right]^{+2} · \left[ \prod\limits_{i=1}^{m} (2·i-1) \right]^{-2} < \dfrac{π}{2} < \dfrac{1}{2·m} · \left[ \prod\limits_{i=1}^{m} (2·i) \right]^{+2} · \left[ \prod\limits_{i=1}^{m} (2·i-1) \right]^{-2} = K_{m}$ |      |                                                              |
+| $⇓$  | $K_{m} - J_{m} = \dfrac{1}{(2·m)·(2·m+1)} · \left[ \prod\limits_{i=1}^{m} (2·i) \right]^{+2} · \left[ \prod\limits_{i=1}^{m} (2·i-1) \right]^{-2} < \dfrac{1}{2·m} · \dfrac{π}{2} \mathop{⇝}\limits_{m⇝∞^{+}} 0$ |      |                                                              |
+| $⇓$  | $π = \lim\limits_{m⇝∞^{+}} (2 · K_{m}) = \lim\limits_{m⇝∞^{+}} \dfrac{1}{m} · \left[ \prod\limits_{i=1}^{m} (2·i) \right]^{+2} · \left[ \prod\limits_{i=1}^{m} (2·i-1) \right]^{-2}$ |      |                                                              |
 
 | $⇓$  | $\int\limits \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} x \mathop{=======}\limits_{\cos x = \frac{1 - \tan^2 \frac{x}{2}}{1 + \tan^2 \frac{x}{2}}}^{t = \tan \frac{x}{2}} \int\limits \dfrac{1 - r^2}{1 - 2 · r · \dfrac{1 - t^2}{1 + t^2} + r^2} \dfrac{2 · \mathrm{d} t}{1 + t^2} = \int\limits \dfrac{2 · (1 - r^2)}{(1 - r)^2 + (1 + r)^2 · t^2} \mathrm{d} t = 2 · \tan^{-1} \left( \dfrac{1 + r}{1 - r} · t \right) = 2 · \tan^{-1} \left( \dfrac{1 + r}{1 - r} · \tan \dfrac{x}{2} \right)$ |
 | :--: | ------------------------------------------------------------ |
@@ -286,24 +308,21 @@ $\int\limits_{-π}^{+π} \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} 
 
 ### 调和积分
 
-$\int\limits_{0}^{1} \dfrac{1}{x^α} \mathrm{d} x = \mathop{\dfrac{1}{1 - α}}\limits_{0<α<1}; \mathop{∞⁺}\limits_{1≤α<∞⁺}$
+$\int\limits_{0}^{1} \dfrac{1}{x^a} · \mathrm{d} x = \mathop{\dfrac{1}{1 - a}}\limits_{0<a<1}; \mathop{∞⁺}\limits_{1≤a<∞⁺}$
 
-$\int\limits_{1}^{∞⁺} \dfrac{1}{x^α} \mathrm{d} x = \mathop{∞⁺}\limits_{0<α≤1}; \mathop{\dfrac{1}{α - 1}}\limits_{1<α<∞⁺}$
+$\int\limits_{1}^{∞⁺} \dfrac{1}{x^a} · \mathrm{d} x = \mathop{∞⁺}\limits_{0<α≤1}; \mathop{\dfrac{1}{a - 1}}\limits_{1<a<∞⁺}$
 
-$\int\limits_{0}^{∞⁺} \dfrac{1}{x^α} \mathrm{d} x = ∞⁺$
+$\int\limits_{1}^{ә} \dfrac{1}{x · \ln^b x} · \mathrm{d} x = \mathop{\dfrac{1}{1 - b}}\limits_{0<b<1}; \mathop{∞⁺}\limits_{1≤b<∞⁺}$
 
-$\int\limits_{1}^{2} \dfrac{1}{x · \ln^β x} \mathrm{d} x = \mathop{\dfrac{\ln^{1 - β} 2}{1 - β}}\limits_{0<β<1}; \mathop{∞⁺}\limits_{1≤β<∞⁺}$
+$\int\limits_{ә}^{∞⁺} \dfrac{1}{x · \ln^b x} · \mathrm{d} x = \mathop{∞⁺}\limits_{0<b≤1}; \mathop{\dfrac{1}{b - 1}}\limits_{1<b<∞⁺}$
 
-$\int\limits_{2}^{∞⁺} \dfrac{1}{x · \ln^β x} \mathrm{d} x = \mathop{∞⁺}\limits_{0<β≤1}; \mathop{\dfrac{1}{(β - 1) · \ln^{β - 1} 2}}\limits_{1<β<∞⁺}$
-
-$\int\limits_{2}^{∞⁺} \dfrac{1}{x · \ln^β x} \mathrm{d} x = ∞⁺$
-
-|      | $\int\limits_{X_0}^{X_1} \dfrac{1}{x^α} \mathrm{d} x \mathop{====}\limits_{0<X_0,X_1}^{α≠1} \left[ \dfrac{x^{1 - α}}{1 - α} \right]_{X_0}^{X_1} = \dfrac{X_1^{1 - α} - X_0^{1 - α}}{1 - α}$ | $\int\limits_{X_0}^{X_1} \dfrac{1}{x^1} \mathrm{d} x \mathop{====}\limits_{0<X_0,X_1}^{α=1} [ \ln x ]_{X_0}^{X_1} = \ln \dfrac{X_1}{X_0}$ |      |                                                              |
+| $⇓$  | $\int\limits_{x_α}^{x_β} \dfrac{1}{x^a} · \mathrm{d}x \mathop{==}\limits^{a≠1} \left. \dfrac{x^{1-a}}{1-a} \right|_{x_α}^{x_β} = \dfrac{x_β^{1-a} - x_α^{1-a}}{1-a}$ | $\int\limits_{x_α}^{x_β} \dfrac{1}{x^1} \mathrm{d} x \mathop{==}\limits^{a=1} \ln x|_{x_α}^{x_β} = \ln \dfrac{x_β}{x_α}$ |      |                                                              |
 | :--: | :----------------------------------------------------------- | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\int\limits_{0}^{X_1} \dfrac{1}{x^α} \mathrm{d} x \mathop{==}\limits^{α≠1} \dfrac{X_1 - (0^+)^{1 - α}}{1 - α} = \mathop{\dfrac{X_1}{1 - α}}\limits_{0<α<1}; \mathop{∞⁺}\limits_{1<α<∞⁺}$ | $\int\limits_{0}^{X_1} \dfrac{1}{x^1} \mathrm{d} x = \ln \dfrac{X_1}{0^+} = ∞⁺$ | $⇒$  | $\int\limits_{0}^{1} \dfrac{1}{x^α} \mathrm{d} x = \mathop{\dfrac{1}{1 - α}}\limits_{0<α<1}; \mathop{∞⁺}\limits_{1≤α<∞⁺}$ |
-| $⇓$  | $\int\limits_{X_0}^{∞⁺} \dfrac{1}{x^α} \mathrm{d} x \mathop{==}\limits^{α≠1} \dfrac{(∞⁺)^{1 - α} - X_0}{1 - α} = \mathop{∞⁺}\limits_{0<α<1}; \mathop{\dfrac{X_0}{α - 1}}\limits_{1<α<∞⁺}$ | $\int\limits_{X_0}^{∞⁺} \dfrac{1}{x^1} \mathrm{d} x = \ln \dfrac{∞⁺}{X_0} = ∞⁺$ | $⇒$  | $\int\limits_{1}^{∞⁺} \dfrac{1}{x^α} \mathrm{d} x = \mathop{∞⁺}\limits_{0<α≤1}; \mathop{\dfrac{1}{α - 1}}\limits_{1<α<∞⁺}$ |
-| $⇓$  |                                                              |                                                              | $⇒$  | $\int\limits_{0}^{∞⁺} \dfrac{1}{x^α} \mathrm{d} x = ∞⁺$      |
-| $⇓$  | $\int\limits_{X_0}^{X_1} \dfrac{1}{x · \ln^β x} \mathrm{d} x \mathop{====}\limits^{t=\ln x} \int\limits_{\ln X_0}^{\ln X_1} \dfrac{1}{t^β} \mathrm{d} t \mathop{====}\limits_{1<X_0,X_1}^{β≠1} \left[ \dfrac{t^{1 - β}}{1 - β} \right]_{\ln X_0}^{\ln X_1} = \dfrac{\ln^{1 - β} X_1 - \ln^{1 - β} X_0}{1 - β}$ |                                                              | $⇒$  | $\int\limits_{1}^{2} \dfrac{1}{x · \ln^β x} \mathrm{d} x = \mathop{\dfrac{\ln^{1 - β} 2}{1 - β}}\limits_{0<β<1}; \mathop{∞⁺}\limits_{1≤β<∞⁺}$ |
-| $⇓$  | $\int\limits_{X_0}^{X_1} \dfrac{1}{x · \ln^1 x} \mathrm{d} x \mathop{===}\limits^{t=\ln x} \int\limits_{X_0}^{X_1} \dfrac{1}{t^1} \mathrm{d} t \mathop{====}\limits_{1<X_0,X_1}^{β=1} [ \ln t ]_{\ln X_0}^{\ln X_1} = \ln \dfrac{\ln X_1}{\ln X_0}$ |                                                              | $⇒$  | $\int\limits_{2}^{∞⁺} \dfrac{1}{x · \ln^β x} \mathrm{d} x = \mathop{∞⁺}\limits_{0<β≤1}; \mathop{\dfrac{1}{(β - 1) · \ln^{β - 1} 2}}\limits_{1<β<∞⁺}$ |
-| $⇓$  |                                                              |                                                              | $⇒$  | $\int\limits_{2}^{∞⁺} \dfrac{1}{x · \ln^β x} \mathrm{d} x = ∞⁺$ |
+| $⇓$  | $\int\limits_{0}^{1} \dfrac{1}{x^a} · \mathrm{d}x \mathop{==}\limits^{a≠1} \mathop{\dfrac{1}{1-a}}\limits_{0<a<1};\mathop{∞^{+}}\limits_{1<a<∞^{+}}$ | $\int\limits_{0}^{1} \dfrac{1}{x^{1}} · \mathrm{d}x \mathop{==}\limits^{a=1} ∞^{+}$ | $⇒$  | $\int\limits_{0}^{1} \dfrac{1}{x^a} · \mathrm{d} x = \mathop{\dfrac{1}{1 - a}}\limits_{0<a<1}; \mathop{∞⁺}\limits_{1≤a<∞⁺}$ |
+| $⇓$  | $\int\limits_{1}^{∞^{+}} \dfrac{1}{x^{a}} · \mathrm{d}x \mathop{==}\limits^{a≠1} \mathop{∞^{+}}\limits_{0<a<1};\mathop{\dfrac{1}{a - 1}}\limits_{1<a<∞^{+}}$ | $\int\limits_{1}^{∞⁺} \dfrac{1}{x^1} · \mathrm{d} x \mathop{==}\limits^{a=1} ∞⁺$ | $⇒$  | $\int\limits_{1}^{∞⁺} \dfrac{1}{x^a} · \mathrm{d} x = \mathop{∞⁺}\limits_{0<α≤1}; \mathop{\dfrac{1}{a - 1}}\limits_{1<a<∞⁺}$ |
+|      |                                                              |                                                              | $⇒$  | $\int\limits_{0}^{∞⁺} \dfrac{1}{x^a} · \mathrm{d} x = ∞⁺$    |
+|      |                                                              |                                                              |      |                                                              |
+| $⇓$  | $\int\limits_{x_α}^{x_β} \dfrac{1}{x·\ln^{b}x} · \mathrm{d}x \mathop{===}\limits^{t=\ln x} \int\limits_{\ln x_α}^{\ln x_β} \dfrac{1}{t^{b}} · \mathrm{d}t \mathop{==}\limits^{b≠1} \left[ \dfrac{t^{1-b}}{1-b} \right]_{\ln x_α}^{\ln x_β} = \dfrac{\ln^{1-b} x_β - \ln^{1-b} x_α}{1 - b}$ |                                                              | $⇒$  | $\int\limits_{1}^{ә} \dfrac{1}{x · \ln^b x} · \mathrm{d} x = \mathop{\dfrac{1}{1 - b}}\limits_{0<b<1}; \mathop{∞⁺}\limits_{1≤b<∞⁺}$ |
+| $⇓$  | $\int\limits_{x_α}^{x_β} \dfrac{1}{x·\ln^{1} x} · \mathrm{d}x \mathop{===}\limits^{t=\ln x} \int\limits_{\ln x_α}^{\ln x_β} \dfrac{1}{t^1} · \mathrm{d}t \mathop{==}\limits^{b=1} [\ln t]_{\ln x_α}^{\ln x_β} = \ln \dfrac{\ln x_β}{\ln x_α}$ |                                                              | $⇒$  | $\int\limits_{ә}^{∞⁺} \dfrac{1}{x · \ln^b x} · \mathrm{d} x = \mathop{∞⁺}\limits_{0<b≤1}; \mathop{\dfrac{1}{b - 1}}\limits_{1<b<∞⁺}$ |
+| $⇓$  |                                                              |                                                              | $⇒$  | $\int\limits_{1}^{∞⁺} \dfrac{1}{x · \ln^b x} · \mathrm{d} x = ∞⁺$ |
 

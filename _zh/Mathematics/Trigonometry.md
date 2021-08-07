@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  三角函数
-Update:  2021-05-01T04:55:00+08@中国-广东-湛江+08
+Update:  2021-08-07T15:50:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -123,4 +123,16 @@ $S = \lim\limits_{n⇝∞^{+}} S_n = \lim\limits_{n⇝∞^{+}} \left[ n · \dfra
 | :---------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 |                         |                                                              |                                                              |
 |                         |                                                              |                                                              |
+
+### 万能变换
+
+| $t = \tan \dfrac{x}{2}$                                      | $x = 2 · {'}\tan t$                                          | $\mathrm{d}x = \dfrac{2}{1 + t^2} · \mathrm{d}t$         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- | :------------------------------------------------------- |
+| $\sin x = \dfrac{2 · \sin \dfrac{x}{2} · \cos \dfrac{x}{2}}{\sin^{2} \dfrac{x}{2} + \cos^{2} \dfrac{x}{2}} = \dfrac{2·\tan \dfrac{x}{2}}{\tan^{2} \dfrac{x}{2} + 1} = \dfrac{2·t}{1 + t^2}$ | $\cos x = \dfrac{\cos^{2} \dfrac{x}{2} - \sin^2 \dfrac{x}{2}}{\sin^{2} \dfrac{x}{2} + \cos^{2} \dfrac{x}{2}} = \dfrac{1 - \tan^{2} \dfrac{x}{2}}{1 + \tan^{2} \dfrac{x}{2}} = \dfrac{1 - t^2}{1 + t^2}$ | $\tan x = \dfrac{\sin x}{\cos x} = \dfrac{2·t}{1 - t^2}$ |
+
+典例：计算$\int \dfrac{1}{1 + \sin x} · \mathrm{d} x$
+
+$\int\limits_{0}^{π} \dfrac{1}{3 + \sin x} · \mathrm{d} x
+\mathop{====}\limits^{t=\tan \frac{x}{2}} \int\limits_{0}^{∞^{+}} \dfrac{1}{3 + \dfrac{2·t}{1 + t^2}} · \dfrac{2}{1 + t^2} · \mathrm{d}t
+= 2·\int\limits_{0}^{∞^{+}} \dfrac{\mathrm{d}t}{3·t^2 + 2·t+3} = \dfrac{2}{3}·\int\limits_{0}^{∞^{+}} \dfrac{\mathrm{d}\left(t+\dfrac{1}{3}\right)}{\left( t+\dfrac{1}{3} \right)^{2} + \left( \dfrac{2·\sqrt{2}}{3} \right)^{2}} = \left[ \dfrac{2}{3} · \dfrac{3}{2\sqrt{2}} · {'}\tan \dfrac{t+\dfrac{1}{3}}{\dfrac{2·\sqrt{2}}{3}} \right]_{0}^{∞^{+}} = \dfrac{1}{\sqrt{2}} · \left[ \dfrac{π}{2} - {'}\tan \dfrac{1}{2·\sqrt{2}} \right]$
 
