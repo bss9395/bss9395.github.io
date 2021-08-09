@@ -355,7 +355,7 @@ $\lim\limits_{i⇝∞⁺} \dfrac{i^{ε_2}}{\ln^β i · \ln^γ \ln i} = \left[ \l
 
 | $⇑$  | $\left[ ∃N∈ℕ;∀i≥N; s_i ≤ \dfrac{\mathrm{Sup.}}{γ^i} \right] ⇒ \left[ γ > 1 ⇒ \sum\limits_{i=0}^{∞⁺} s_i ⇝ S \right]$ |      | $\left[ ∃N∈ℕ;∀i≥N; s_i ≥ \dfrac{\mathrm{Sup.}}{γ^i} \right] ⇒ \left[ 0 < γ < 1 ⇒ \sum\limits_{i=0}^{∞⁺} s_i \not⇝ S \right]$ |
 | :--: | -----------------------------------------------------------: | :--: | :----------------------------------------------------------- |
-| $⇑$  | $∃N∈ℕ;∀i≥N; s_{i+1} · γ^{i + 1} ≤ s_i · γ^i ≤ \mathrm{Sup.}$ | $⇒$  | <                                                            |
+| $⇑$  | $∃N∈ℕ;∀i≥N; s_{i+1} · γ^{i + 1} ≤ s_i · γ^i ≤ \mathrm{Sup.}$ | $⇒$  | $\dfrac{s_i}{s_{i+1}} ≤ γ + o(1)$                            |
 | $⇑$  |              $∃N∈ℕ;∀i≥N; \dfrac{s_i}{s_{i+1}} = γ_i + o (1)$ | $⇒$  | $γ_i = \dfrac{s_i}{s_{i+1}} + o (1)$                         |
 | $⇑$  |                         $\dfrac{s_i}{s_{i+1}} = γ_i ≥ γ > 1$ | $⇒$  | $\sum\limits_{i=0}^{∞⁺} s_i ⇝ S$                             |
 | $⇑$  |                             $\dfrac{s_i}{s_{i+1}} = γ_i ≤ 1$ | $⇒$  | $\sum\limits_{i=0}^{∞⁺} s_i \not⇝ S$                         |

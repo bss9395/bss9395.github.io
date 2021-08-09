@@ -310,7 +310,7 @@ $\int\limits_{-π}^{+π} \dfrac{1 - r^2}{1 - 2 · r · \cos x + r^2} \mathrm{d} 
 
 $\int\limits_{0}^{1} \dfrac{1}{x^a} · \mathrm{d} x = \mathop{\dfrac{1}{1 - a}}\limits_{0<a<1}; \mathop{∞⁺}\limits_{1≤a<∞⁺}$
 
-$\int\limits_{1}^{∞⁺} \dfrac{1}{x^a} · \mathrm{d} x = \mathop{∞⁺}\limits_{0<α≤1}; \mathop{\dfrac{1}{a - 1}}\limits_{1<a<∞⁺}$
+$\int\limits_{1}^{∞⁺} \dfrac{1}{x^a} · \mathrm{d} x = \mathop{∞⁺}\limits_{0<a≤1}; \mathop{\dfrac{1}{a - 1}}\limits_{1<a<∞⁺}$
 
 $\int\limits_{1}^{ә} \dfrac{1}{x · \ln^b x} · \mathrm{d} x = \mathop{\dfrac{1}{1 - b}}\limits_{0<b<1}; \mathop{∞⁺}\limits_{1≤b<∞⁺}$
 

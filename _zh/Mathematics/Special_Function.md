@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  特殊函数
-Update:  2021-08-02T18:58:00+08@中国-广东-湛江+08
+Update:  2021-08-08T16:51:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -136,3 +136,12 @@ $\lim\limits_{x⇝0^{-}} ә^{-\frac{1}{x}} ⇝ ∞^{+}$
 
 $\lim\limits_{x⇝0^{+}} ә^{-\frac{1}{x}} ⇝ 0^{+}$
 
+### 脉冲函数
+
+$\mathcal{P}(x) = \mathop{0}\limits_{};\mathop{+n^2·2^{n} · \left[ x - \left( n-\dfrac{1}{2^n · n} \right) \right]}\limits_{x∈\left[n-\frac{1}{2^{n}·n},n\right]};\mathop{-n^2·2^{n} · \left[ x - \left( n+\dfrac{1}{2^{n}·n} \right) \right]}\limits_{x∈\left[n,n+\frac{1}{2^{n}·n}\right]};0$
+
+脉冲函数$\mathcal{P}(x)$为连续函数，在以点$n$处为中点且以$\dfrac{1}{2^n·n}$为半径的区间内呈三角形状，在点$n$处脉冲达到高度$n$。
+
+脉冲函数$\mathcal{P}(x)$在点$n$处三角形的面积为$\dfrac{1}{2} · n · \dfrac{1}{2^{n}·n} · 2 = \dfrac{1}{2^n}$，所有三角形的面积和为$\int\limits_{0}^{∞^{+}} \mathcal{P}(x) · \mathrm{d}x = \sum\limits_{i=1}^{∞} \dfrac{1}{2^i} = 1$。
+
+脉冲函数$\mathcal{P}(x)$在无穷大点处非一致连续。
