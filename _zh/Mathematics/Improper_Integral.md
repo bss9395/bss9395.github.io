@@ -19,6 +19,12 @@ $\int\limits_{x_l}^{x_u} f(x) · \mathrm{d} x = \lim\limits_{x_t⇝x_l^{+}} \int
 
 与常义积分相对应，无穷限积分与无穷界积分统称为广义积分。若函数$f(x)$的广义积分存在，则同样也适用于微积分基本定理。
 
+任意常义积分均可通过换元法变换成无穷限积分。
+
+$\int\limits_{x_α}^{x_β} f(x) · \mathrm{d} x \mathop{====}\limits^{t=\frac{1}{x-x_α}} \int\limits_{\frac{1}{x_β-x_α}}^{∞^{+}} f \left( x_α + \dfrac{1}{t} \right) · \dfrac{1}{t^2} · \mathrm{d} t$
+
+$\int\limits_{x_α}^{x_β} f(x) · \mathrm{d} x \mathop{====}\limits^{t=\frac{x_β-x_α}{x-x_α}} \int\limits_{1}^{∞^{+}} f \left( x_α+\dfrac{x_β-x_α}{t} \right) · \dfrac{1}{t^2} · \mathrm{d} t$
+
 ### 无穷限积分
 
 无穷限积分收敛的柯西审敛法。
@@ -143,7 +149,7 @@ $\left[ \int\limits_{\phi}^{x_β} |f(x)| · \mathrm{d} x = I_{|f|} \right] ⇒ \
 
 广义积分$\int\limits_{0}^{∞^+} \dfrac{\ln(1+x)}{x^p} · \mathrm{d} x$，在$1<p<2$时收敛，否则发散。
 
-| $\lim\limits_{x⇝0^{+}} f(x) = \lim\limits_{x⇝0^{+}} \dfrac{\ln (1 + x)}{x^p} = \lim\limits_{x⇝0^{+}} \dfrac{1}{(1+x)·p·x^{p-1}} \mathop{≈}\limits^{1≤1+x} \lim\limits_{x⇝0^{+}} \dfrac{1}{p·x^{p-1}} ≤ \left[ \lim\limits_{x⇝0^+} \dfrac{1}{x^a} \right]$ | $[p-1<1] ⇒ [p<2]$ | $⇒$  | $\int\limits_{0}^{1} f(x) · \mathrm{d} x = I_0^+$       |
+| $\lim\limits_{x⇝0^{+}} f(x) = \lim\limits_{x⇝0^{+}} \dfrac{\ln (1 + x)}{x^p} = \lim\limits_{x⇝0^{+}} \dfrac{1}{(1+x)·p·x^{p-1}} = \lim\limits_{x⇝0^{+}} \dfrac{1}{p·x^{p-1}} ≤ \rlap{≡≡≡≡≡≡}\left[ \lim\limits_{x⇝0^+} \dfrac{q}{x^a} \right]$ | $[p-1<1] ⇒ [p<2]$ | $⇒$  | $\int\limits_{0}^{1} f(x) · \mathrm{d} x = I_0^+$       |
 | :----------------------------------------------------------- | :---------------- | :--: | :------------------------------------------------------ |
-| $\lim\limits_{x⇝∞^{+}} f(x) = \lim\limits_{x⇝∞^{+}} \dfrac{\ln (1 + x)}{x^p} = \lim\limits_{x⇝∞^{+}} \dfrac{1}{(1 + x) · p · x^{p-1}} \mathop{≈}\limits^{x≤1+x} \lim\limits_{x⇝∞^{+}} \dfrac{1}{p·x^{p}} ≤ \left[ \lim\limits_{x⇝∞^+} \dfrac{1}{x^a} \right] $ | $[p>1]$           | $⇒$  | $\int\limits_{1}^{∞^{+}} f(x) · \mathrm{d} x = I_{∞^+}$ |
+| $\lim\limits_{x⇝∞^{+}} f(x) = \lim\limits_{x⇝∞^{+}} \dfrac{\ln (1 + x)}{x^p} = \lim\limits_{x⇝∞^{+}} \dfrac{1}{(1 + x) · p · x^{p-1}} = \lim\limits_{x⇝∞^{+}} \dfrac{1}{p·x^{p}} ≤ \rlap{≡≡≡≡≡≡≡}\left[ \lim\limits_{x⇝∞^+} \dfrac{q}{x^a} \right] $ | $[p>1]$           | $⇒$  | $\int\limits_{1}^{∞^{+}} f(x) · \mathrm{d} x = I_{∞^+}$ |
 
