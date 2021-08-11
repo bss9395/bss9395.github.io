@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  基本关系式
-Update:  2021-04-26T12:00:00+08@中国-广东-湛江+08
+Update:  2021-08-10T18:44:00+08@中国-广东-湛江+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -285,3 +285,12 @@ $(x + y)^{p} \mathop{≥}\limits_{0≤x,0≤y}^{\left|p-\frac{1}{2}\right|>\frac
 | $\left| p - \dfrac{1}{2} \right| < \dfrac{1}{2}$ | $\left[ u_0^{\frac{1}{p}} + v_1^{\frac{1}{p}} \right]^{p} ≤ \left[ u_0^{\frac{1}{p}} \right]^{p} + \left[ v_1^{\frac{1}{p}} \right]^{p}$ | $(x + y)^{p} \mathop{≤}\limits_{0≤x,0≤y}^{\left|p-\frac{1}{2}\right|<\frac{1}{2}} x^{p} + y^{p}$ | $(x + y)^{p} \mathop{=}\limits_{0≤x,0≤y}^{\left|p-\frac{1}{2}\right|<\frac{1}{2}} x^{p} + y^{p}$ |
 | $\left| p - \dfrac{1}{2} \right| > \dfrac{1}{2}$ | $\left[ u_0^{\frac{1}{p}} + v_1^{\frac{1}{p}} \right]^{p} ≥ \left[ u_0^{\frac{1}{p}} \right]^{p} + \left[ v_1^{\frac{1}{p}} \right]^{p}$ | $(x + y)^{p} \mathop{≥}\limits_{0≤x,0≤y}^{\left|p-\frac{1}{2}\right|>\frac{1}{2}} x^{p} + y^{p}$ | $[p < 0] ⇒ [ 0 < x_i · y_i ]$                                |
 
+### 全排序不等式
+
+若数列$\lbrace a_i : a_0 ≤ a_1 ≤ ··· ≤ a_n \rbrace$，数列$\lbrace b_i : b_0 ≤ b_1 ≤ ··· ≤ b_n \rbrace$，数列$\lbrace b_i \rbrace$有乱序数列$\lbrace p_i : p_0,p_1,···,p_n \rbrace$，则数列的乘积满足：反序和 ≤ 乱序和 ≤ 顺序和。
+
+$a_0 · b_n + a_1 · b_{n-1} + ··· + a_n · b_0 ≤ a_0 · p_0 + a_1 · p_1 + ··· + a_n · p_n ≤ a_0 · b_0 + a_1 · b_1 + ··· + a_n · b_n$
+
+若数列$\lbrace a_i · p_i \rbrace$中$p_0 ≠ b_0, p_j = b_0$，则将$p_0$与$p_j$对换，记对换前和为$S$，记对换后和为$T$，则$T - S = a_0·p_j + a_j·p_0 - a_0·p_0-a_j·p_j = (a_j - a_0) · (p_0 - p_j) ≥ 0$。
+
+依此类推逐项调整，因此有乱序和 ≤ 顺序和，同理有反序和 ≤ 乱序和。
