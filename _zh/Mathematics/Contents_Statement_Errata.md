@@ -18,6 +18,7 @@ Contents_Statement_Errata.md
 Discrete_Mathematics.md
 Fundamental_Relation.md
 Important_Formula.md
+Improper_Integral.md
 Infinite_Series.md
 Linear_Algebra.md
 Numerical_Analysis.md
