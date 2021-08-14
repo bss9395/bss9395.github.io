@@ -932,30 +932,30 @@ $\dfrac{1}{1 - (x - x_0)} · \sum\limits_{i=0}^{∞⁺} p_i · (x - x_0)^i = \su
 
 若函数$f (x)$在点$x = x_0$处展开成无穷阶幂级数，则在点$x = x_0$处收敛于自身，但在点$x ≠ x_0$处未必收敛或未必收敛于自身。
 
-$f (x) = \lim\limits_{n⇝∞⁺} \left[ \sum\limits_{i=0}^n \dfrac{{^i}f (x_0)}{i!} · (x - x_0)^i = f (x_0) + \dfrac{{^1}f (x_0)}{1!} · (x - x_0)^1 + \dfrac{{^2}f (x_0)}{2!} · (x - x_0)^2 + ··· + \dfrac{{^n}f (x_0)}{n!} · (x - x_0)^n + R_n (x) \right]$
+$f (x) = \lim\limits_{n⇝∞⁺} \left[ \sum\limits_{i=0}^n \dfrac{ {^i}f (x_0)}{i!} · (x - x_0)^i = f (x_0) + \dfrac{ {^1}f (x_0)}{1!} · (x - x_0)^1 + \dfrac{ {^2}f (x_0)}{2!} · (x - x_0)^2 + ··· + \dfrac{ {^n}f (x_0)}{n!} · (x - x_0)^n + R_n (x) \right]$
 
 $f (x) = \lim\limits_{n⇝∞⁺} \left[ \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i f (x)}{i! · \mathrm{d}^i x}\right|_{x_0} · (x - x_0)^i = f (x_0) + \left.\dfrac{\mathrm{d}^1 f (x)}{1! · \mathrm{d}^1 x}\right|_{x_0} · (x - x_0)^1 + \left.\dfrac{\mathrm{d}^2 f (x)}{2! · \mathrm{d}^2 x}\right|_{x_0} · (x - x_0)^2 + ··· + \left.\dfrac{\mathrm{d}^n f (x)}{n! · \mathrm{d}^n x}\right|_{x_0} · (x - x_0)^n + R_n (x) \right]$
 
 $f (x) = \lim\limits_{n⇝∞⁺} \left[ \sum\limits_{i=0}^n \left.\dfrac{\mathrm{d}^i f (x)}{\mathrm{d} x^i}\right|_{x_0} · (x - x_0)^i = f (x_0) + \left.\dfrac{\mathrm{d}^1 f (x)}{\mathrm{d} x^1}\right|_{x_0} · (x - x_0)^1 + \left.\dfrac{\mathrm{d}^2 f (x)}{\mathrm{d} x^2}\right|_{x_0} · (x - x_0)^2 + ··· + \left.\dfrac{\mathrm{d}^n f (x)}{\mathrm{d} x^n}\right|_{x_0} · (x - x_0)^n + R_n (x) \right]$
 
-$R_n (x) = o (x - x_0)^n = f (x) - f (x_0) - \sum\limits_{i=1}^n \dfrac{{^i}f (x_0)}{i!} · (x - x_0)^i  \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{{^{n+1} }f (θ)}{(n + 1)!} · (x - x_0)^{n + 1} \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{{^{n+1}f (θ)} }{n!} · (x - θ)^n · (x - x_0)^1 \mathop{====}\limits_{∃θ∈[x_0, x]} \int\limits_{x_0}^x \dfrac{{^{n+1} }f (t)}{n!} · (x - t)^n \mathrm{d} t$
+$R_n (x) = o (x - x_0)^n = f (x) - f (x_0) - \sum\limits_{i=1}^n \dfrac{ {^i}f (x_0)}{i!} · (x - x_0)^i  \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{ {^{n+1} }f (θ)}{(n + 1)!} · (x - x_0)^{n + 1} \mathop{====}\limits_{∃θ∈[x_0, x]} \dfrac{ {^{n+1}f (θ)} }{n!} · (x - θ)^n · (x - x_0)^1 \mathop{====}\limits_{∃θ∈[x_0, x]} \int\limits_{x_0}^x \dfrac{ {^{n+1} }f (t)}{n!} · (x - t)^n \mathrm{d} t$
 
 $[ R_n (x_0) = 0 ] ⇒ [ f (x) |_{x_0} = f (x_0) ]$
 
 有函数$f (x)$在点$x = x_0$处展开成无穷阶幂级数，若在点$x ≠ x_0$处收敛于自身，则在点$x ≠ x_0$处余项$R_n (x)$的极限为零，反之亦然。
 
-$\left[ f (x) = \sum\limits_{i=0}^{∞⁺} \dfrac{{^i}f (x_0)}{i!} · (x - x_0)^i \right] ⇔ \left[ \lim\limits_{n⇝∞⁺} | R_n (x) | ⇝ 0 \right]$
+$\left[ f (x) = \sum\limits_{i=0}^{∞⁺} \dfrac{ {^i}f (x_0)}{i!} · (x - x_0)^i \right] ⇔ \left[ \lim\limits_{n⇝∞⁺} | R_n (x) | ⇝ 0 \right]$
 
 有函数$f (x)$在点$x = x_0$处展开成无穷阶幂级数，若在区间$[±x_0, x_1]$内各阶导数有确界，则在区间$[+x_0, x_1]$内收敛于自身，反之不对。
 
-$\left[ | {^i}f (θ) | ≤ \mathrm{Sup.} \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} | R_n (x) |  \mathop{====}\limits_{∃θ∈[x_0, x]} \lim\limits_{n⇝∞⁺} \left| \dfrac{{^{n+1} }f (θ)}{(n + 1)!} · (x - x_0)^{n + 1} \right| ≤ \lim\limits_{n⇝∞⁺} \mathrm{Sup.} · \dfrac{| (x - x_0)^{n + 1} |}{(n + 1)!} ⇝ 0 \right]$
+$\left[ | {^i}f (θ) | ≤ \mathrm{Sup.} \right] ⇒ \left[ \lim\limits_{n⇝∞⁺} | R_n (x) |  \mathop{====}\limits_{∃θ∈[x_0, x]} \lim\limits_{n⇝∞⁺} \left| \dfrac{ {^{n+1} }f (θ)}{(n + 1)!} · (x - x_0)^{n + 1} \right| ≤ \lim\limits_{n⇝∞⁺} \mathrm{Sup.} · \dfrac{| (x - x_0)^{n + 1} |}{(n + 1)!} ⇝ 0 \right]$
 
 有函数$f (x)$在点$x = x_0$处展开成无穷阶幂级数，若在区间$[+x_0, x_1]$内各阶导数非负数，则在区间$[+x_0, x_1)$内收敛于自身，反之不对。
 
-| $⇓$  | $f (x) = \lim\limits_{n⇝∞⁺} \left[ \sum\limits_{i=0}^n \dfrac{{^i}f (x_0)}{i!} · (x - x_0)^i + R_n (x) \right]$ | $⇒$  | $\left[ 0 ≤ {^i} f (x) \right] \mathop{⇒}\limits_{x∈[+x_0, x_1]} [ R_n (x) ≤ f (x)]$ |
+| $⇓$  | $f (x) = \lim\limits_{n⇝∞⁺} \left[ \sum\limits_{i=0}^n \dfrac{ {^i}f (x_0)}{i!} · (x - x_0)^i + R_n (x) \right]$ | $⇒$  | $\left[ 0 ≤ {^i} f (x) \right] \mathop{⇒}\limits_{x∈[+x_0, x_1]} [ R_n (x) ≤ f (x)]$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\dfrac{R_n (x)}{(x - x_0)^{n + 1} } = \dfrac{{^{n+1} }f (x_0)}{(n + 1)!} + \dfrac{{^{n+2} }f (x_0)}{(n + 2)!} · (x - x_0)^{1} + \dfrac{{^{n+3} }f (x_0)}{(n + 3)!} · (x - x_0)^2 + T_{n+3} (x)$ | $⇒$  | $g (x) ≡ \dfrac{\mathrm{d} }{\mathrm{d} x} \left[ \dfrac{R_n (x)}{(x - x_0)^{n + 1} } \right] = g (x_0) + \dfrac{{^1}g (θ)}{1！} · (x - x_0)^1$ |
-| $⇓$  | $g (x) = \dfrac{\mathrm{d} }{\mathrm{d} x} \left[ \dfrac{R_n (x)}{(x - x_0)^{n + 1} } \right] \mathop{=====}\limits_{x∈[+x_0, x_1]}^{θ∈[+x_0, x]} \dfrac{{^{n+2} }f (x_0)}{(n + 2)!} + \left[ \dfrac{{^{n+3} }f (x_0)}{(n + 3)!} · 2 + {^2}T_{n+3} (θ) \right] · (x - x_0)^1 ≥ 0$ | $⇐$  | ${^1}g (x) = \dfrac{{^{n+3} }f (x_0)}{(n + 3)!} · 2 + {^2}T_{n+3} (x) ≥ 0$ |
+| $⇓$  | $\dfrac{R_n (x)}{(x - x_0)^{n + 1} } = \dfrac{ {^{n+1} }f (x_0)}{(n + 1)!} + \dfrac{ {^{n+2} }f (x_0)}{(n + 2)!} · (x - x_0)^{1} + \dfrac{ {^{n+3} }f (x_0)}{(n + 3)!} · (x - x_0)^2 + T_{n+3} (x)$ | $⇒$  | $g (x) ≡ \dfrac{\mathrm{d} }{\mathrm{d} x} \left[ \dfrac{R_n (x)}{(x - x_0)^{n + 1} } \right] = g (x_0) + \dfrac{ {^1}g (θ)}{1！} · (x - x_0)^1$ |
+| $⇓$  | $g (x) = \dfrac{\mathrm{d} }{\mathrm{d} x} \left[ \dfrac{R_n (x)}{(x - x_0)^{n + 1} } \right] \mathop{=====}\limits_{x∈[+x_0, x_1]}^{θ∈[+x_0, x]} \dfrac{ {^{n+2} }f (x_0)}{(n + 2)!} + \left[ \dfrac{ {^{n+3} }f (x_0)}{(n + 3)!} · 2 + {^2}T_{n+3} (θ) \right] · (x - x_0)^1 ≥ 0$ | $⇐$  | ${^1}g (x) = \dfrac{ {^{n+3} }f (x_0)}{(n + 3)!} · 2 + {^2}T_{n+3} (x) ≥ 0$ |
 | $⇓$  | $\dfrac{R_n (x)}{(x - x_0)^{n + 1} } ≤ \dfrac{R_n (x_1)}{(x_1 - x_0)^{n + 1} } ≤ \dfrac{f (x_1)}{(x_1 - x_0)^{n + 1} }$ |      |                                                              |
 | $⇓$  | $\lim\limits_{n⇝∞⁺} R_n (x) ≤ \lim\limits_{n⇝∞⁺} \left[ \dfrac{x - x_0}{x_1 - x_0} \right]^{n + 1} · f (x_1) \mathop{⇝}\limits_{x∈[+x_0, x_1)} 0$ | $⇐$  | $\dfrac{x - x_0}{x_1 - x_0} \mathop{<}\limits_{x∈[+x_0, x_1)} 1$ |
 
