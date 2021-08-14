@@ -90,14 +90,14 @@ $\left[\begin{matrix}
 
 矩阵$\mathcal{F}[(m + 1) × (n + 1)]$的反置矩阵${'}\mathcal{F}[(m + 1) × (n + 1)]$。
 
-${^{'}}\mathcal{F}[(m + 1) × (n + 1)] = \mathrm{rev} \mathcal{F}[(m + 1) × (n + 1)]$
+${^{'} }\mathcal{F}[(m + 1) × (n + 1)] = \mathrm{rev} \mathcal{F}[(m + 1) × (n + 1)]$
 
 $\left[\begin{matrix}
 h_{n,0} & h_{n,1} & ⋯ & h_{n,m} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$h_{1,0}$} & h_{1,1} & ⋯ & h_{1,m} \\
 h_{0,0} & \fbox{$h_{0,1}$} & ⋯ & h_{0,m} \\
-\end{matrix}\right] \mathop{====}\limits^{h_{i,j}=f_{j,i}} \mathrm{rev} \left[\begin{matrix}
+\end{matrix}\right] \mathop{====}\limits^{h_{i,j}=f_{j,i} } \mathrm{rev} \left[\begin{matrix}
 f_{m,0} & f_{m,1} & ⋯ & f_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$f_{1,0}$} & f_{1,1} & ⋯ & f_{1,n} \\
@@ -118,7 +118,7 @@ h_{m,0} & h_{m,1} & ⋯ & h_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$h_{1,0}$} & \fbox{$h_{1,1}$} & ⋯ & \fbox{$h_{1,n}$} \\
 h_{0,0} & h_{0,1} & ⋯ & h_{0,n} \\
-\end{matrix}\right] \mathop{======}\limits^{h_{i,j}=f_{i,j}+g_{i,j}} \left[\begin{matrix}
+\end{matrix}\right] \mathop{======}\limits^{h_{i,j}=f_{i,j}+g_{i,j} } \left[\begin{matrix}
 g_{m,0} & g_{m,1} & ⋯ & g_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$g_{1,0}$} & \fbox{$g_{1,1}$} & ⋯ & \fbox{$g_{1,n}$} \\
@@ -144,7 +144,7 @@ h_{l,0} & h_{l,1} & ⋯ & h_{l,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$h_{1,0}$} & h_{1,1} & ⋯ & h_{1,n} \\
 h_{0,0} & h_{0,1} & ⋯ & h_{0,n} \\
-\end{matrix}\right] \mathop{========}\limits^{h_{i,j}=\sum\limits_{k=0}^{m} g_{i,k}·f_{k,j}} \left[\begin{matrix}
+\end{matrix}\right] \mathop{========}\limits^{h_{i,j}=\sum\limits_{k=0}^{m} g_{i,k}·f_{k,j} } \left[\begin{matrix}
 g_{l,0} & g_{l,1} & ⋯ & g_{l,m} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$g_{1,0}$} & \fbox{$g_{1,1}$} & ⋯ & \fbox{$g_{1,m}$} \\

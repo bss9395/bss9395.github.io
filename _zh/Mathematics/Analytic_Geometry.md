@@ -35,10 +35,10 @@ $\Lambda^{2} f(x,y) = \Lambda [f_{x} · \lambda x + f_{y} · \lambda y] = f_{x,x
 
 |                                                              | $\int \Lambda f(x) = f(x)$                                   | $\Lambda^{0} f(x) ≡ f(x)$                                    | $\lambda^{0} x ≡ 1$                                          | $\lambda h(x) = \dfrac{\Lambda h(x)}{\lambda x} · \lambda x$ |                                                      |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :--------------------------------------------------- |
-| $\dfrac{\Lambda^{-2} f(x)}{\lambda^{-2} x} = \dfrac{x^{5}}{20}$ | $\dfrac{\Lambda^{-1} f(x)}{\lambda^{-1} x} = \dfrac{x^{4}}{4}$ | $\dfrac{\Lambda^{0} f(x)}{\lambda^{0} x} = x^{3}$            | $\dfrac{\Lambda^{1} f(x)}{\lambda^{1} x} = 3 · x^{2}$        | $\dfrac{\Lambda^{2} f(x)}{\lambda^{2} x} = 6 · x^{1}$        | $\dfrac{\Lambda^{3} f(x)}{\lambda^{3} x} = 6$        |
-| $\Lambda^{-2} f(x) = \dfrac{x^{5}}{20} · \lambda^{-2} x$     | $\Lambda^{-1} f(x) = \dfrac{x^{4}}{4} · \lambda^{-1} x$      | $\Lambda^{0} f(x) = x^{3} · \lambda^{0} x$                   | $\Lambda^{1} f(x) = 3 · x^{2} · \lambda^{1} x$               | $\Lambda^{2} f(x) = 6 · x^{1} · \lambda^{2} x$               | $\Lambda^{3} f(x) = 6 · \lambda^{3} x$               |
+| $\dfrac{\Lambda^{-2} f(x)}{\lambda^{-2} x} = \dfrac{x^{5} }{20}$ | $\dfrac{\Lambda^{-1} f(x)}{\lambda^{-1} x} = \dfrac{x^{4} }{4}$ | $\dfrac{\Lambda^{0} f(x)}{\lambda^{0} x} = x^{3}$            | $\dfrac{\Lambda^{1} f(x)}{\lambda^{1} x} = 3 · x^{2}$        | $\dfrac{\Lambda^{2} f(x)}{\lambda^{2} x} = 6 · x^{1}$        | $\dfrac{\Lambda^{3} f(x)}{\lambda^{3} x} = 6$        |
+| $\Lambda^{-2} f(x) = \dfrac{x^{5} }{20} · \lambda^{-2} x$     | $\Lambda^{-1} f(x) = \dfrac{x^{4} }{4} · \lambda^{-1} x$      | $\Lambda^{0} f(x) = x^{3} · \lambda^{0} x$                   | $\Lambda^{1} f(x) = 3 · x^{2} · \lambda^{1} x$               | $\Lambda^{2} f(x) = 6 · x^{1} · \lambda^{2} x$               | $\Lambda^{3} f(x) = 6 · \lambda^{3} x$               |
 |                                                              | $\int \Lambda^{-1} f(x) = \Lambda^{-2} f(x)$                 | $\int \Lambda^{0} f(x) = \Lambda^{-1} f(x)$                  | $\int \Lambda^{1} f(x) = \Lambda^{0} f(x)$                   | $\int \Lambda^{2} f(x) = \Lambda^{1} f(x)$                   | $\int \Lambda^{3} f(x) = \Lambda^{2} f(x)$           |
-|                                                              | $\int \dfrac{x^{4}}{x} · \lambda^{-1} x = \dfrac{x^{5}}{20} · \lambda^{-2} x$ | $\int x^{3} · \lambda^{0} x = \dfrac{x^{4}}{4} · \lambda^{-1} x$ | $\int 3 · x^{2} · \lambda^{1} x = x^{3} · \lambda^{0} x = x^{3}$ | $\int 6 · x^{1} · \lambda^{2} x = 3 · x^{2} · \lambda^{1} x = \lambda^{1} x^{3}$ | $\int 6 · \lambda^{3} x = 6 · x^{1} · \lambda^{2} x$ |
+|                                                              | $\int \dfrac{x^{4} }{x} · \lambda^{-1} x = \dfrac{x^{5} }{20} · \lambda^{-2} x$ | $\int x^{3} · \lambda^{0} x = \dfrac{x^{4} }{4} · \lambda^{-1} x$ | $\int 3 · x^{2} · \lambda^{1} x = x^{3} · \lambda^{0} x = x^{3}$ | $\int 6 · x^{1} · \lambda^{2} x = 3 · x^{2} · \lambda^{1} x = \lambda^{1} x^{3}$ | $\int 6 · \lambda^{3} x = 6 · x^{1} · \lambda^{2} x$ |
 
 ------
 
@@ -117,13 +117,13 @@ $L_3 = \int\limits_{t_α}^{t_β} \sqrt{[{^1}x(t)]^2 + [{^1}y(t)]^2 + [{^1}z(t)]^
 
 $L_3 = \int\limits_{x_α}^{x_β} \sqrt{1 + [{^1}y(x)]^2 + [{^1}z(x)]^2} · \lambda x$
 
-$L_2 \mathop{=======}\limits_{x(\phi)=r(\phi)·\cos \phi}^{y(\phi)=r(\phi)·\sin \phi} \int\limits_{\phi_{α}}^{\phi_β} \sqrt{[^{1}r(\phi)]^2 + [r(\phi)]^2} · \lambda \phi$
+$L_2 \mathop{=======}\limits_{x(\phi)=r(\phi)·\cos \phi}^{y(\phi)=r(\phi)·\sin \phi} \int\limits_{\phi_{α} }^{\phi_β} \sqrt{[^{1}r(\phi)]^2 + [r(\phi)]^2} · \lambda \phi$
 
 | $L_3 = \int\limits_{t_α}^{t_β} \sqrt{[\lambda x(t)]^2 + [\lambda y(t)]^2 + [\lambda z(t)]^2}$ |      |                                                              |
 | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $L_3 = \int\limits_{t_α}^{t_β} \sqrt{\left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^2 + \left[ \dfrac{\Lambda y(t)}{\Lambda t} \right]^2 + \left[ \dfrac{\Lambda z(t)}{\lambda t} \right]^2} · \lambda t = \int\limits_{t_α}^{t_β} \sqrt{[{^1}x(t)]^2 + [{^1}y(t)]^2 + [{^1}z(t)]^2} · \lambda t$ |      |                                                              |
 | $L_3 = \int\limits_{x_α}^{x_β} \sqrt{\left[ \dfrac{\Lambda x}{\lambda x} \right]^2+\left[ \dfrac{\Lambda y(x)}{\lambda x} \right]^2+\left[ \dfrac{\Lambda z(x)}{\lambda x} \right]^2} · \lambda x = \int\limits_{x_α}^{x_β} \sqrt{1 + [{^1}y(x)]^2 + [{^1}z(x)]^2} · \lambda x$ |      |                                                              |
-| $L_2 \mathop{=======}\limits_{x(\phi)=r(\phi)·\cos \phi}^{y(\phi)=r(\phi)·\sin \phi} \int\limits_{\phi_α}^{\phi_β} \sqrt{[{^1}x(\phi)]^2 + [{^1}y(\phi)]^2} · \lambda \phi = \int\limits_{\phi_{α}}^{\phi_β} \sqrt{[^{1}r(\phi)]^2 + [r(\phi)]^2} · \lambda \phi$ | $⇐$  | $[{^1}x(\phi)]^2 + [{^1}y(\phi)]^2 \mathop{============}\limits_{{^1}x(\phi) = {^1}r(\phi) · \cos \phi - r(\phi) · \sin \phi}^{{^1}y(\phi) = {^1}r(\phi) · \sin \phi + r(\phi)·\cos \phi} [{^1}r(\phi)]^2 + [r(\phi)]^2$ |
+| $L_2 \mathop{=======}\limits_{x(\phi)=r(\phi)·\cos \phi}^{y(\phi)=r(\phi)·\sin \phi} \int\limits_{\phi_α}^{\phi_β} \sqrt{[{^1}x(\phi)]^2 + [{^1}y(\phi)]^2} · \lambda \phi = \int\limits_{\phi_{α} }^{\phi_β} \sqrt{[^{1}r(\phi)]^2 + [r(\phi)]^2} · \lambda \phi$ | $⇐$  | $[{^1}x(\phi)]^2 + [{^1}y(\phi)]^2 \mathop{============}\limits_{{^1}x(\phi) = {^1}r(\phi) · \cos \phi - r(\phi) · \sin \phi}^{{^1}y(\phi) = {^1}r(\phi) · \sin \phi + r(\phi)·\cos \phi} [{^1}r(\phi)]^2 + [r(\phi)]^2$ |
 
 ### 旋转曲面的面积
 
@@ -145,17 +145,17 @@ y(t) &= v_y · t - \dfrac{1}{2} · g · t^2 \\
 x(t) &= v_x · t \\
 \end{aligned}\right.$
 
-$y(x) = \dfrac{v_{y}}{v_x} · x - \dfrac{1}{2} · \dfrac{g}{v_x^2} · x^2$
+$y(x) = \dfrac{v_{y} }{v_x} · x - \dfrac{1}{2} · \dfrac{g}{v_x^2} · x^2$
 
-$v(t) = \sqrt{\left[ \dfrac{\Lambda y(t)}{\lambda t} \right]^{2} + \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{2}} = \sqrt{v_{x}^{2} + (v_{y} - g · t)^{2}}$
+$v(t) = \sqrt{\left[ \dfrac{\Lambda y(t)}{\lambda t} \right]^{2} + \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{2} } = \sqrt{v_{x}^{2} + (v_{y} - g · t)^{2} }$
 
-$\tan α = \dfrac{\Lambda y(x)}{\lambda x} = \dfrac{v_{y} - g · t}{v_{x}}$
+$\tan α = \dfrac{\Lambda y(x)}{\lambda x} = \dfrac{v_{y} - g · t}{v_{x} }$
 
 | $\dfrac{\Lambda y(t)}{\lambda t}$                            | $v_{y} - g · t$                                              |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | $\dfrac{\Lambda x(t)}{\lambda t}$                            | $v_{x}$                                                      |
-| $v(t) = \sqrt{\left[ \dfrac{\Lambda y(t)}{\lambda t} \right]^{2} + \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{2}}$ | $\sqrt{v_{x}^{2} + (v_{y} - g · t)^{2}}$                     |
-| $\tan α = \dfrac{\Lambda y(x)}{\lambda x}$                   | $\dfrac{\Lambda y(t)}{\lambda t} · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1} = \dfrac{v_{y} - g · t}{v_{x}}$ |
+| $v(t) = \sqrt{\left[ \dfrac{\Lambda y(t)}{\lambda t} \right]^{2} + \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{2} }$ | $\sqrt{v_{x}^{2} + (v_{y} - g · t)^{2} }$                     |
+| $\tan α = \dfrac{\Lambda y(x)}{\lambda x}$                   | $\dfrac{\Lambda y(t)}{\lambda t} · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1} = \dfrac{v_{y} - g · t}{v_{x} }$ |
 
 ### 椭圆形
 
@@ -166,13 +166,13 @@ x(\phi) &= r_x · \cos \phi \\
 
 $\dfrac{x^2}{r_x^2} + \dfrac{y^2}{r_y^2} = 1$
 
-$\dfrac{\Lambda y(x)}{\lambda x} = \dfrac{-r_{y}}{r_{x} · \tan \phi}$
+$\dfrac{\Lambda y(x)}{\lambda x} = \dfrac{-r_{y} }{r_{x} · \tan \phi}$
 
-$\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \dfrac{-r_{y}}{r_{x} · \sin^{3} \phi}$
+$\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \dfrac{-r_{y} }{r_{x} · \sin^{3} \phi}$
 
-| $\dfrac{\Lambda y(x)}{\lambda x}$         | $\dfrac{\Lambda y(\phi)}{\lambda \phi} · \left[ \dfrac{\Lambda x(\phi)}{\lambda \phi} \right]^{-1} = \dfrac{+r_{y} · \cos \phi} {-r_{x} · \sin \phi} = \dfrac{-r_{y}}{r_{x} · \tan \phi}$ |
+| $\dfrac{\Lambda y(x)}{\lambda x}$         | $\dfrac{\Lambda y(\phi)}{\lambda \phi} · \left[ \dfrac{\Lambda x(\phi)}{\lambda \phi} \right]^{-1} = \dfrac{+r_{y} · \cos \phi} {-r_{x} · \sin \phi} = \dfrac{-r_{y} }{r_{x} · \tan \phi}$ |
 | :---------------------------------------- | :----------------------------------------------------------- |
-| $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x}$ | $\left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3} = \left[ (-r_{y} · \sin \phi) · (-r_{x} · \sin \phi) - (+r_{y} · \cos \phi) · (-r_{x} · \cos \phi) \right] · [-r_{x} · \sin \phi]^{-3} = \dfrac{-r_{y}}{r_{x} · \sin^{3} \phi}$ |
+| $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x}$ | $\left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3} = \left[ (-r_{y} · \sin \phi) · (-r_{x} · \sin \phi) - (+r_{y} · \cos \phi) · (-r_{x} · \cos \phi) \right] · [-r_{x} · \sin \phi]^{-3} = \dfrac{-r_{y} }{r_{x} · \sin^{3} \phi}$ |
 
 椭圆的面积。
 
@@ -191,14 +191,14 @@ x(t) &= r · (t - \sin t) \\
 
 $x(y) = r · {'}\cos \left( 1 - \dfrac{y}{r} \right) - \sqrt{y · (2 · r - y)}$
 
-$\dfrac{\Lambda y(x)}{\lambda x} = \dfrac{1}{\tan \frac{t}{2}}$
+$\dfrac{\Lambda y(x)}{\lambda x} = \dfrac{1}{\tan \frac{t}{2} }$
 
-$\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \dfrac{-1}{r · (1 - \cos t)^{2}}$
+$\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x} = \dfrac{-1}{r · (1 - \cos t)^{2} }$
 
 |                                           |                                                              |
 | :---------------------------------------- | :----------------------------------------------------------- |
-| $\dfrac{\Lambda y(x)}{\lambda x}$         | $\dfrac{\Lambda y(t)}{\lambda t} · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1} = \dfrac{r · \sin t}{r · (1 - \cos t)} = \dfrac{2 · \sin \frac{t}{2} · \cos \frac{t}{2}}{2 · \sin^{2} \frac{t}{2}} = \dfrac{1}{\tan \frac{t}{2}}$ |
-| $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x}$ | $\left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3} = \dfrac{[r · \cos t] · [r · (1 - \cos t)] - [r · \sin t] · [r · \sin t]}{[r · (1 - \cos t)]^{3}} = \dfrac{-1}{r · (1 - \cos t)^{2}}$ |
+| $\dfrac{\Lambda y(x)}{\lambda x}$         | $\dfrac{\Lambda y(t)}{\lambda t} · \left[ \dfrac{\Lambda x(t)}{\lambda t} \right]^{-1} = \dfrac{r · \sin t}{r · (1 - \cos t)} = \dfrac{2 · \sin \frac{t}{2} · \cos \frac{t}{2} }{2 · \sin^{2} \frac{t}{2} } = \dfrac{1}{\tan \frac{t}{2} }$ |
+| $\dfrac{\Lambda^{2} y(x)}{\lambda^{2} x}$ | $\left[ \dfrac{\Lambda^{2} y}{\lambda^{2} t} · \dfrac{\Lambda x}{\lambda t} - \dfrac{\Lambda y}{\lambda t} · \dfrac{\Lambda^{2} x}{\lambda^{2} t} \right] · \left[ \dfrac{\Lambda x}{\lambda t} \right]^{-3} = \dfrac{[r · \cos t] · [r · (1 - \cos t)] - [r · \sin t] · [r · \sin t]}{[r · (1 - \cos t)]^{3} } = \dfrac{-1}{r · (1 - \cos t)^{2} }$ |
 
 旋轮线单拱的面积。
 
@@ -258,7 +258,7 @@ $\left\lbrace\begin{aligned}
 & \dfrac{y - y_0}{y_1 - y_0} = +\dfrac{x - x_0}{x_1 - x_0} \\
 & \tan α = +\dfrac{y_1 - y_0}{x_1 - x_0} \\
 & \tan κ = -\dfrac{x_1 - x_0}{y_1 - y_0} \\
-& \dfrac{y - y_{κ}}{x_1 - x_0} = -\dfrac{x - x_{κ}}{y_1 - y_0} \\
+& \dfrac{y - y_{κ} }{x_1 - x_0} = -\dfrac{x - x_{κ} }{y_1 - y_0} \\
 \end{aligned}\right.
 \left\lbrace\begin{aligned}
 & y - y_0 = +t · (x - x_0) \\
@@ -269,10 +269,10 @@ $\left\lbrace\begin{aligned}
 
 $\left\lbrace\begin{aligned}
 & r_{κ} = +q · y_0 - p · x_0 \\
-& y_{κ} = \dfrac{-p · r + q · r_{κ}}{p^2 + q^2} = \dfrac{-p·r + q^2·y_0 -p·q·x_0}{p^2 + q^2} \\
-& x_{κ} = \dfrac{-q · r - p · r_{κ}}{p^2 + q^2} = \dfrac{-q·r-p·q·y_0+p^2·x_0}{p^2 + q^2} \\
-& \mathrm{D}[\langle x_0,y_0 \rangle; 0=p·y+q·x+r] = \sqrt{(y_{κ}-y_0)^2+(x_{κ}-x_0)^2} = \dfrac{|p·y_0+q·x_0+r|}{\sqrt{p^2 + q^2}} \\
-& \mathrm{D}[0=p·y+q·x+r_1;0=p·y+q·x+r_2] = \dfrac{|p·y_1+q·x_1+r_2|}{\sqrt{p^2+q^2}} = \dfrac{|r_1-r_2|}{\sqrt{p^2 + q^2}} \\
+& y_{κ} = \dfrac{-p · r + q · r_{κ} }{p^2 + q^2} = \dfrac{-p·r + q^2·y_0 -p·q·x_0}{p^2 + q^2} \\
+& x_{κ} = \dfrac{-q · r - p · r_{κ} }{p^2 + q^2} = \dfrac{-q·r-p·q·y_0+p^2·x_0}{p^2 + q^2} \\
+& \mathrm{D}[\langle x_0,y_0 \rangle; 0=p·y+q·x+r] = \sqrt{(y_{κ}-y_0)^2+(x_{κ}-x_0)^2} = \dfrac{|p·y_0+q·x_0+r|}{\sqrt{p^2 + q^2} } \\
+& \mathrm{D}[0=p·y+q·x+r_1;0=p·y+q·x+r_2] = \dfrac{|p·y_1+q·x_1+r_2|}{\sqrt{p^2+q^2} } = \dfrac{|r_1-r_2|}{\sqrt{p^2 + q^2} } \\
 \end{aligned}\right.$
 
 ### 双扭线
@@ -289,9 +289,9 @@ $r^2 = a^2 · \cos (2 · \phi)$
 
 $A = a^2$
 
-| $A = 4 · \dfrac{1}{2} · \int\limits_{0}^{\frac{π}{4}} r^{2} (\phi) · \lambda \phi$ |
+| $A = 4 · \dfrac{1}{2} · \int\limits_{0}^{\frac{π}{4} } r^{2} (\phi) · \lambda \phi$ |
 | :----------------------------------------------------------- |
-| $A = 2 · \int\limits_{0}^{\frac{π}{4}} a^2 · \cos (2·\phi) · \lambda \phi = a^2 · [\sin (2·\phi)]_{0}^{\frac{π}{4}} = a^2$ |
+| $A = 2 · \int\limits_{0}^{\frac{π}{4} } a^2 · \cos (2·\phi) · \lambda \phi = a^2 · [\sin (2·\phi)]_{0}^{\frac{π}{4} } = a^2$ |
 
 ### 椭球体
 
@@ -301,7 +301,7 @@ $A_x = π·r_y·r_z·\left( 1 - \dfrac{x^2}{r_x^2} \right)$
 
 $V = \dfrac{4}{3}·π·r_x·r_y·r_z$
 
-| $A_x = π·r_y·\sqrt{1 - \dfrac{x^2}{r_x^2}}·r_z·\sqrt{1-\dfrac{x^2}{r_x^2}} = π·r_y·r_z·\left( 1 - \dfrac{x^2}{r_x^2} \right)$ | $⇐$  | $\dfrac{y^2}{r_y^2 · \left( 1 - \dfrac{x^2}{r_x^2} \right)} + \dfrac{z^2}{r_z^2 · \left( 1 - \dfrac{x^2}{r_x^2} \right)} = 1$ |
+| $A_x = π·r_y·\sqrt{1 - \dfrac{x^2}{r_x^2} }·r_z·\sqrt{1-\dfrac{x^2}{r_x^2} } = π·r_y·r_z·\left( 1 - \dfrac{x^2}{r_x^2} \right)$ | $⇐$  | $\dfrac{y^2}{r_y^2 · \left( 1 - \dfrac{x^2}{r_x^2} \right)} + \dfrac{z^2}{r_z^2 · \left( 1 - \dfrac{x^2}{r_x^2} \right)} = 1$ |
 | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $V = \int\limits_{-r_x}^{+r_x} A_x · \lambda x = \int\limits_{-r_x}^{+r_x} π·r_y·r_z·\left( 1 - \dfrac{x^2}{r_x^2} \right) \lambda x = π·r_y·r_z·\left[ x - \dfrac{x^3}{3·r_x^2} \right]_{-r_x}^{+r_x} = \dfrac{4}{3} ·π·r_x·r_y·r_z$ |      |                                                              |
 
@@ -315,7 +315,7 @@ $A=4·π·r^2$
 
 | $A = \int\limits_{x_α}^{x_β} 2 ·π·y(x) ·\sqrt{1 + [{^1}y(x)]^2} · \lambda x$ | $⇐$  | $y(x) = \sqrt{r^2 - x^2}$                 |
 | :----------------------------------------------------------- | :--: | :---------------------------------------- |
-| $A = \int\limits_{-r}^{+r} 2·π·\sqrt{r^2-x^2} ·\sqrt{1+\dfrac{x^2}{r^2 - x^2}} ·\lambda x = \int\limits_{-r}^{+r} 2·π·r · \lambda x = 2·π·r·\left[ x \right]_{-r}^{+r} = 4·π·r^2$ | $⇐$  | ${^1}y(x) = \dfrac{-x}{\sqrt{r^2 - x^2}}$ |
+| $A = \int\limits_{-r}^{+r} 2·π·\sqrt{r^2-x^2} ·\sqrt{1+\dfrac{x^2}{r^2 - x^2} } ·\lambda x = \int\limits_{-r}^{+r} 2·π·r · \lambda x = 2·π·r·\left[ x \right]_{-r}^{+r} = 4·π·r^2$ | $⇐$  | ${^1}y(x) = \dfrac{-x}{\sqrt{r^2 - x^2} }$ |
 
 ### 圆锥体
 
@@ -337,19 +337,19 @@ $A_l = π·r_A^2$
 
 $V = 2·π^2·r_{A}^2·r_{O}$
 
-| $V = \int\limits_{0}^{2·π·r_{O}} A_l · \lambda l = \int\limits_{0}^{2·π·r_{O}} π·r_A^2 · \lambda l = 2·π^2·r_A^2·r_O$ |
+| $V = \int\limits_{0}^{2·π·r_{O} } A_l · \lambda l = \int\limits_{0}^{2·π·r_{O} } π·r_A^2 · \lambda l = 2·π^2·r_A^2·r_O$ |
 | ------------------------------------------------------------ |
 |                                                              |
 
 ### 悬链线
 
-$y = \dfrac{ә^{x} + ә^{-x}}{2}$
+$y = \dfrac{ә^{x} + ә^{-x} }{2}$
 
 悬链线从$x=0$到$x=x_0$的弧长。
 
-$L = \dfrac{ә^{x_0} - ә^{-x_0}}{2}$
+$L = \dfrac{ә^{x_0} - ә^{-x_0} }{2}$
 
-| $L = \int\limits_{0}^{x_0} \sqrt{1 + [{^1}y(x)]^2} · \lambda x = \int\limits_{0}^{x_0} \sqrt{1 + \left[ \dfrac{ә^{x} - ә^{-x}}{2} \right]^2} · \lambda x = \int\limits_{0}^{x_0} \dfrac{ә^{x}+ә^{-x}}{2} · \lambda x = \left[ \dfrac{ә^x - ә^{-x}}{2} \right]_{0}^{x_0} = \dfrac{ә^{x_0} - ә^{-x_0}}{2}$ |
+| $L = \int\limits_{0}^{x_0} \sqrt{1 + [{^1}y(x)]^2} · \lambda x = \int\limits_{0}^{x_0} \sqrt{1 + \left[ \dfrac{ә^{x} - ә^{-x} }{2} \right]^2} · \lambda x = \int\limits_{0}^{x_0} \dfrac{ә^{x}+ә^{-x} }{2} · \lambda x = \left[ \dfrac{ә^x - ә^{-x} }{2} \right]_{0}^{x_0} = \dfrac{ә^{x_0} - ә^{-x_0} }{2}$ |
 | :----------------------------------------------------------- |
 |                                                              |
 

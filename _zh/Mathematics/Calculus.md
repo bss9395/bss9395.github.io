@@ -11,7 +11,7 @@ Link  :
 
 $\lim\limits_{x⇝x_0 \\ y⇝y_0}$表示$x⇝x_0$与$y⇝y_0$各自独立发生，极限符号同侧的两个极限过程同时发生。
 
-$\lim\limits_{n⇝∞^{+}}^{Δx⇝0}$表示因为$Δx⇝0$而导致$n⇝∞^{+}$，极限符号上下的两个极限过程同时发生。
+$\lim\limits_{n⇝∞^{+} }^{Δx⇝0}$表示因为$Δx⇝0$而导致$n⇝∞^{+}$，极限符号上下的两个极限过程同时发生。
 
 $\lim\limits_{y⇝y_0} \lim\limits_{x⇝x_0}$表示$x⇝x_0$领先于$y⇝y_0$发生，两个极限符号的极限过程并非同时发生。
 
@@ -47,7 +47,7 @@ $\lim\limits_{y⇝y_0} \lim\limits_{x⇝x_0}$表示$x⇝x_0$领先于$y⇝y_0$�
 |   右闭领域 | $\mathrm{B}_{X}(x_0^{+},δ)$           | $∀x∈X; [x∈\mathrm{B}_{X}(x_0^{+}, δ)] ⇔ [0 ≤ x-x_0 ≤ +δ]$    |                                                              |
 |     闭邻域 | $\mathrm{B}_{X}(x_0, δ)$              | $∀x∈X; [ x∈\mathrm{B}_{X}(x_0, δ) ] ⇔ [ | x - x_0 | ≤ δ ]$   | $\mathrm{B}_{X}(x_0,δ) ⋂ \mathrm{B}_{X}^{¬}(x_0,δ) = 𝟘$      |
 |     补邻域 | $\mathrm{B}_{X}^{¬}(x_0,δ)$           | $∀x∉X; [x∈\mathrm{B}_{X}^{¬}(x_0, δ)] ⇔ [|x-x_0|≤δ]$         | $\mathrm{B}_{X}(x_0,δ) ⋃ \mathrm{B}_{X}^{¬}(x_0,δ) = \mathrm{B}_{𝟙}(x_0,δ)$ |
-| 去心闭邻域 | $\mathrm{\mathop{B}}_{X}^{∘}(x_0, δ)$ | $∀x∈X; [x∈\mathrm{\mathop{B}}_{X}^{∘}(x_0, δ) ] ⇔ [0 < |x - x_0| ≤ δ]$ |                                                              |
+| 去心闭邻域 | $\mathrm{\mathop{B} }_{X}^{∘}(x_0, δ)$ | $∀x∈X; [x∈\mathrm{\mathop{B} }_{X}^{∘}(x_0, δ) ] ⇔ [0 < |x - x_0| ≤ δ]$ |                                                              |
 |     闭包集 | $\fbox{X}$                            | $∀x_0; \left[ x_0∈\fbox{X} \right] ⇔ [ ∀δ>0; \mathrm{B}_{X}(x_0, δ) ≠ 𝟘 ]$ | $\fbox{X}⊇X$                                                 |
 |     聚敛点 | $x_0∈\fbox{X}$                        | $∀δ>0; \mathrm{B}_{X}(x_0, δ) ≠ 𝟘$                           |                                                              |
 |     孤立点 | $x_0∈X$                               | $∃δ>0; \mathrm{B}_{X}(x_0, δ) = \lbrace x_0 \rbrace$         |                                                              |
@@ -88,13 +88,13 @@ $\lim\limits_{y⇝y_0} \lim\limits_{x⇝x_0}$表示$x⇝x_0$领先于$y⇝y_0$�
 |              |                                                              |                                                              |
 |   左侧函数值 | $f(x_0-Δ)$                                                   |                                                              |
 |   右侧函数值 | $f(x_0+Δ)$                                                   |                                                              |
-|   函数左极限 | $f(x)|_{x_0^{-}} ≡ \lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-}$   | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈X; -δ ≤ x - x_0 < 0 ⇒ |f(x) - f_{x_0^-}| ≤ ε$ |
-|   函数右极限 | $f(x)|_{x_0^{+}} ≡ \lim\limits_{x⇝x_0^+} f(x) ⇝ f_{x_0^+}$   | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈X; 0 < x - x_0 ≤ +δ ⇒ |f(x) - f_{x_0^+}| ≤ ε$ |
-|   函数极限值 | $f(x)|_{x_0} ≡ \lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$           | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈\mathrm{\mathop{B}}^{∘}(x_0,δ); |f(x) - f_{x_0}| ≤ ε$ |
+|   函数左极限 | $f(x)|_{x_0^{-} } ≡ \lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-}$   | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈X; -δ ≤ x - x_0 < 0 ⇒ |f(x) - f_{x_0^-}| ≤ ε$ |
+|   函数右极限 | $f(x)|_{x_0^{+} } ≡ \lim\limits_{x⇝x_0^+} f(x) ⇝ f_{x_0^+}$   | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈X; 0 < x - x_0 ≤ +δ ⇒ |f(x) - f_{x_0^+}| ≤ ε$ |
+|   函数极限值 | $f(x)|_{x_0} ≡ \lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$           | $Ⅎx_0∈\fbox{X};∀ε>0;∃δ>0;∀x∈\mathrm{\mathop{B} }^{∘}(x_0,δ); |f(x) - f_{x_0}| ≤ ε$ |
 |   函数极限值 | $f(x)|_{x_0} ≡ \lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0}$           | $\lim\limits_{x⇝x_0^-} f(x) ⇝ f_{x_0^-} = f_{x_0} = f_{x_0^+} ⇜ \lim\limits_{x⇝x_0^+} f(x)$ |
 |       极限值 | $\lim\limits_{x⇝x_0} f(x) ⇝ ∞^{±},∞$                         | $\lim\limits_{x⇝x_0} \dfrac{1}{f(x)} ⇝ 0^{±},0$              |
-|       极限值 | $\lim\limits_{x⇝∞^{±},∞} f(x) ⇝ f_{∞^{±}}$                   | $\lim\limits_{\frac{1}{x}⇝0^{±},0} f(x) ⇝ f_{∞^{±}}$         |
-|       上极限 | $\varlimsup\limits_{x⇝x_0} f (x)$                            | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{\mathop{B}}^{∘}(x_0,δ)} f(x)$ |
+|       极限值 | $\lim\limits_{x⇝∞^{±},∞} f(x) ⇝ f_{∞^{±} }$                   | $\lim\limits_{\frac{1}{x}⇝0^{±},0} f(x) ⇝ f_{∞^{±} }$         |
+|       上极限 | $\varlimsup\limits_{x⇝x_0} f (x)$                            | $\lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{\mathop{B} }^{∘}(x_0,δ)} f(x)$ |
 |       下极限 | $\varliminf\limits_{x⇝x_0} f (x)$                            | $\lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{B}^{∘}(x_0,δ)} f(x)$ |
 |   唯一极限值 | $\varliminf\limits_{x⇝x_0} f(x) = \varlimsup\limits_{x⇝x_0} f(x)$ | $\lim\limits_{δ⇝0} \inf\limits_{x∈\mathrm{B}^{∘}(x_0,δ)} f(x) = \lim\limits_{δ⇝0} \sup\limits_{x∈\mathrm{B}^{∘}(x_0,δ)} f(x)$ |
 |              |                                                              |                                                              |
@@ -152,7 +152,7 @@ $\lim\limits_{x⇝x_0} [f(x) - g(x)] = \lim\limits_{x⇝x_0} f(x) - \lim\limits_
 
 $\lim\limits_{x⇝x_0} [f(x) · g(x)] = \lim\limits_{x⇝x_0} f(x) · \lim\limits_{x⇝x_0} g(x) ⇝ f_{x_0} · g_{x_0}$
 
-$\lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} = \dfrac{\lim\limits_{x⇝x_0} f(x)}{\lim\limits_{x⇝x_0} g(x)} \mathop{⇝}\limits_{g_{x_0}≠0} \dfrac{f_{x_0}}{g_{x_0}}$
+$\lim\limits_{x⇝x_0} \dfrac{f(x)}{g(x)} = \dfrac{\lim\limits_{x⇝x_0} f(x)}{\lim\limits_{x⇝x_0} g(x)} \mathop{⇝}\limits_{g_{x_0}≠0} \dfrac{f_{x_0} }{g_{x_0} }$
 
 $\lim\limits_{x⇝x_0} \mathrm{Con} · f(x) = \mathrm{Con} · \lim\limits_{x⇝x_0} f(x) ⇝ \mathrm{Con} · f_{x_0}$
 
@@ -161,11 +161,11 @@ $\lim\limits_{x⇝x_0} \mathrm{Con} · f(x) = \mathrm{Con} · \lim\limits_{x⇝x
 | $⇓$  | $∀ε>0;∃δ=\min\lbrace δ_1,δ_2 \rbrace;∀x∈\mathrm{B}^{∘}(x_0,δ); |[f(x) + g(x)] - [f_{x_0} + g_{x_0}]| ≤ |f(x) - f_{x_0}| + |g(x) - g_{x_0}| = ε_1 + ε_2 = ε$ |
 | $⇓$  | $∀ε>0;∃δ=\min\lbrace δ_1,δ_2 \rbrace;∀x∈\mathrm{B}^{∘}(x_0,δ); |[f(x) - g(x)] - [f_{x_0} - g_{x_0}]| ≤ |f(x) - f_{x_0}| + |g(x) - g_{x_0}| = ε_1 + ε_2 = ε$ |
 | $⇓$  | $∀ε>0;∃δ=\min\lbrace δ_1,δ_2 \rbrace;∀x∈\mathrm{B}^{∘}(x_0,δ); |f(x) · g(x) - f_{x_0} · g_{x_0}] ≤ |f(x)| · |g(x) - g_{x_0}| + |g_{x_0}| · |f(x) - f_{x_0}| ≤ |\sup f(x)| · ε_2 + |g_{x_0}| · ε_1 = ε$ |
-| $⇓$  | $∀ε>0;∃δ=\min\lbrace δ_1,δ_2 \rbrace;∀x∈\mathrm{B}^{∘}(x_0,δ); \left| \dfrac{f(x)}{g(x)} - \dfrac{f_{x_0}}{g_{x_0}} \right| = \left| \dfrac{f(x) · g_{x_0} - f_{x_0} · g(x)}{g(x) · g_{x_0}} \right| ≤ \dfrac{\left| f(x) \right| · |g(x) - g_{x_0}| + |g_{x_0}| · |f(x) - f_{x_0}|}{\left| g(x) · g_{x_0} \right|} ≤ \dfrac{|\sup f(x)| · ε_2 + |g_{x_0}| · ε_1}{|\inf g(x)| · |g_{x_0}|} = ε$ |
+| $⇓$  | $∀ε>0;∃δ=\min\lbrace δ_1,δ_2 \rbrace;∀x∈\mathrm{B}^{∘}(x_0,δ); \left| \dfrac{f(x)}{g(x)} - \dfrac{f_{x_0} }{g_{x_0} } \right| = \left| \dfrac{f(x) · g_{x_0} - f_{x_0} · g(x)}{g(x) · g_{x_0} } \right| ≤ \dfrac{\left| f(x) \right| · |g(x) - g_{x_0}| + |g_{x_0}| · |f(x) - f_{x_0}|}{\left| g(x) · g_{x_0} \right|} ≤ \dfrac{|\sup f(x)| · ε_2 + |g_{x_0}| · ε_1}{|\inf g(x)| · |g_{x_0}|} = ε$ |
 
 若函数$f(x)$在点$x_0$处有极限$\lim\limits_{x⇝x_0} f(x) ⇝ f_{x_0} = y_0$，且函数$g(y)$在点$y_0$处有极限$\lim\limits_{y⇝y_0} g(y) ⇝ g_{y_0}$，前提条件$f(x)≠f_{x_0}$不可忽略。
 
-$\lim\limits_{x⇝x_0} g(f(x)) \mathop{====}\limits_{f_{x_0}=y_0}^{f(x)≠f_{x_0}} \lim\limits_{y⇝y_0} g(y) ⇝ g_{y_0}$
+$\lim\limits_{x⇝x_0} g(f(x)) \mathop{====}\limits_{f_{x_0}=y_0}^{f(x)≠f_{x_0} } \lim\limits_{y⇝y_0} g(y) ⇝ g_{y_0}$
 
 | $⇓$  | $∀ζ>0;∃ε>0;∀y; y∈\mathrm{B}^{∘}(y_0,ε) ⇒ g(y)∈\mathrm{B}^{∘}(g_{y_0},ζ)$ |                  |
 | :--: | :----------------------------------------------------------- | :--------------- |
@@ -221,9 +221,9 @@ $w_{X}^{f}(x_0) ≡ \lim\limits_{δ⇝0} w_{X}^{f}(x_0,δ) ≡ \lim\limits_{δ�
 
 连续性是局部点域性质。若函数$f(x)$在点$x_0∈X$处连续，则函数在点$x_0∈X$处既左连续也右连续，反之亦然。
 
-$\left[ \lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) \right] ⇔ \left[ \lim\limits_{x⇝x_0^{-}} f (x) ⇝ f (x_0) \right] ∧ \left[ \lim\limits_{x⇝x_0^{+}} f (x) ⇝ f (x_0) \right]$
+$\left[ \lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) \right] ⇔ \left[ \lim\limits_{x⇝x_0^{-} } f (x) ⇝ f (x_0) \right] ∧ \left[ \lim\limits_{x⇝x_0^{+} } f (x) ⇝ f (x_0) \right]$
 
-| $\lim\limits_{x⇝x_0^{+}} f(x) ⇝ f(x_0) ≠ ∞$ | $Ⅎx_0∈X;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{B}(x_0^{+},δ)} |f(x) - f(x_0)|≤ε$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x∈\mathrm{B}(x_0^{+},δ); f(x)∈\mathrm{B}(f(x_0),ε)$ |
+| $\lim\limits_{x⇝x_0^{+} } f(x) ⇝ f(x_0) ≠ ∞$ | $Ⅎx_0∈X;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{B}(x_0^{+},δ)} |f(x) - f(x_0)|≤ε$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x∈\mathrm{B}(x_0^{+},δ); f(x)∈\mathrm{B}(f(x_0),ε)$ |
 | :------------------------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | $\lim\limits_{x⇝x_0^-} f(x) ⇝ f(x_0) ≠ ∞$   | $Ⅎx_0∈X;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{B}(x_0^{-},δ)} |f(x) - f(x_0)|≤ε$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x∈\mathrm{B}(x_0^{-},δ); f(x)∈\mathrm{B}(f(x_0),ε)$ |
 | $\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0) ≠ ∞$   | $Ⅎx_0∈X;∀ε>0;∃δ>0; \sup\limits_{x∈\mathrm{B}(x_0,δ)} |f(x) - f(x_0)| ≤ ε$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x∈\mathrm{B}(x_0,δ); f(x)∈\mathrm{B}(f(x_0),ε)$ |
@@ -254,11 +254,11 @@ $\left[ \lim\limits_{x⇝x_0} f(x) \not⇝ f(x_0) \right] ⇔ \left[ \lim\limits
 
 若函数$f(x)$在区间$X$上点$x_0$处左极限与右极限全都存在，但不均等于该点处函数值，则称点$x_0$为函数$f(x)$的跳跃间断点。若极限值为无穷大，则可视为极限存在。
 
-$\left[ f(x)|_{x_0^{-}} ≠ f(x_0) \right] ∨ \left[ f(x_0) ≠ f(x)|_{x_0^{+}} \right]$
+$\left[ f(x)|_{x_0^{-} } ≠ f(x_0) \right] ∨ \left[ f(x_0) ≠ f(x)|_{x_0^{+} } \right]$
 
 若函数$f(x)$在区间$X$上点$x_0$处左极限与右极限不都存在，但不均等于该点处函数值，则称点$x_0$为函数$f(x)$的振荡间断点。其极限值无限振荡，不趋于任何固定值。
 
-$\left[ \lim\limits_{x⇝x_0^{-}} f(x) \not⇝ f(x_0) \right] ∨ \left[ f(x_0) \not⇜ \lim\limits_{x⇝x_0^{+}} f(x) \right]$
+$\left[ \lim\limits_{x⇝x_0^{-} } f(x) \not⇝ f(x_0) \right] ∨ \left[ f(x_0) \not⇜ \lim\limits_{x⇝x_0^{+} } f(x) \right]$
 
 若函数$f (x)$在点$x_0$处连续$\lim\limits_{x⇝x_0} f (x) ⇝ f (x_0)$，且函数$g (x)$在点$x_0$处连续$\lim\limits_{x⇝x_0} g (x) ⇝ g (x_0)$。
 
@@ -288,12 +288,12 @@ $\lim\limits_{x⇝x_0} g(f(x)) = g\left( \lim\limits_{x⇝x_0} f(x) \right) ⇝ 
 
 若函数$f (x)$在区间$\fbox{X}$上连续，则函数$f (x)$在区间$\fbox{X}$上一致连续，反之亦然。
 
-$\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈\fbox{X}} f (x_0) \right] ⇔ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈\fbox{X}} f (x_t) \right]$
+$\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈\fbox{X} } f (x_0) \right] ⇔ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈\fbox{X} } f (x_t) \right]$
 
 | $⇓$  | $∀x_0∈\fbox{X};∀ε>0;∃δ_0>0; w^{f}(x_0,δ_0) ≤ ε$              | $⇔$  | $∀x_0∈X;∀ε>0;∃δ_0>0;∀x∈X; |x - x_0| ≤ δ_0 ⇒ |f(x) - f(x_0)| ≤ ε$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $⇓$  | $∀ε>0;∀x_0∈\fbox{X};∃δ_0>0; w^{f}(x_0,δ_0) ≤ ε$              |      |                                                              |
-| $⇓$  | $∀ε>0;∃δ>0;∀x_0∈\fbox{X};∃δ_0>0; w^{f}\left(x_0,δ=\inf\limits_{x_0∈\fbox{X}}δ_0 \right) ≤ w^{f}(x_0,δ_0) ≤ ε$ |      |                                                              |
+| $⇓$  | $∀ε>0;∃δ>0;∀x_0∈\fbox{X};∃δ_0>0; w^{f}\left(x_0,δ=\inf\limits_{x_0∈\fbox{X} }δ_0 \right) ≤ w^{f}(x_0,δ_0) ≤ ε$ |      |                                                              |
 | $⇓$  | $∀ε>0;∃δ>0;∀x∈\fbox{X}; w^{f}(x,δ) ≤ ε$                      | $⇔$  | $∀ε>0;∃δ>0;∀x,x_t∈X; |x - x_t| ≤ δ ⇒ |f(x) - f(x_t)| ≤ ε$    |
 
 若函数$f (x)$在区间$\fbox{X}$上导函数有确界，则函数$f (x)$在区间$X$上必一致连续，反之不对。$P ⇒ Q$
@@ -304,7 +304,7 @@ $\left[ ∀x_t∈\fbox{X};∃\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f (x)}{\
 
 | $⇓$  | $∀x∈\fbox{X};∃\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x} ≠ ∞^{+}$ |      |                                                              |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∃\mathrm{Sup};∀x∈\fbox{X};∃\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x} ≤ \mathrm{Sup} = \sup\limits_{x∈\fbox{X}} \left\lbrace \mathrm{Sup}_{x} \right\rbrace$ |      |                                                              |
+| $⇓$  | $∃\mathrm{Sup};∀x∈\fbox{X};∃\mathrm{Sup}_{x}; \left| \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right| ≤ \mathrm{Sup}_{x} ≤ \mathrm{Sup} = \sup\limits_{x∈\fbox{X} } \left\lbrace \mathrm{Sup}_{x} \right\rbrace$ |      |                                                              |
 | $⇓$  | $∃\mathrm{Sup};∀x∈\fbox{X}; |\mathrm{d} f(x)| ≤ \mathrm{Sup} · |\mathrm{d} x|$ | $⇔$  | $∃\mathrm{Sup}^{f};∀x,x_t∈X; |f(x) - f(x_t)| ≤ \mathrm{Sup}^{f} · |x - x_t|$ |
 | $⇓$  | $∃\mathrm{Sup};∀ε>0;∃δ>0;∀x,x_t∈X; [ |x - x_t| ≤ δ ] ⇒ [ |f(x) - f(x_t)| ≤ \mathrm{Sup} · |x - x_t| ≤ \mathrm{Sup} · δ = ε ]$ |      |                                                              |
 | $⇓$  | $\lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈X} f (x_t)$ |      |                                                              |
@@ -323,13 +323,13 @@ $\left[ \lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x,x_t∈(x_α,x_β]} f(x
 | $⇓$  | $∀ε_3>0;∃δ_3=\min\lbrace δ_1, δ_2 \rbrace;∀x∈(x_α,x_β];∀x_t∈[x_β,x_γ); [ |x - x_t| ≤ δ_3 ] ⇒ [ |f(x) - f(x_t)| ≤ |f(x) - f(x_β)| + |f(x_β) - f(x_t)| ≤ ε_1 + ε_2 = ε_3 ]$ |                                                              |
 | $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈(x_α,x_γ); \left[ | x - x_t | ≤ δ \right] ⇒ \left[ | f (x) - f (x_t) | ≤ ε \right]$ | $\lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x,x_t∈(x_α,x_β)} f(x_t)$ |
 
-若函数$f (x)$在区间$[x_α^{±}, ∞^{±})$上连续，且 $\lim\limits_{x⇝∞^{±}} f (x) ⇝ f_{∞^{±}}$极限存在，则函数$f (x)$在区间$[x_α^{±}, ∞^{±})$上一致连续。
+若函数$f (x)$在区间$[x_α^{±}, ∞^{±})$上连续，且 $\lim\limits_{x⇝∞^{±} } f (x) ⇝ f_{∞^{±} }$极限存在，则函数$f (x)$在区间$[x_α^{±}, ∞^{±})$上一致连续。
 
-$\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[x_α^{±},∞^{±})} f (x_0) \right] ∧ \left[ \lim\limits_{x⇝∞^{±}} f (x) ⇝ f_{∞^{±}} \right] ⇔ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈[x_α^{±},∞^{±})} f (x_t) \right]$
+$\left[ \lim\limits_{x⇝x_0} f (x) \mathop{⇝}\limits_{x,x_0∈[x_α^{±},∞^{±})} f (x_0) \right] ∧ \left[ \lim\limits_{x⇝∞^{±} } f (x) ⇝ f_{∞^{±} } \right] ⇔ \left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x,x_t∈[x_α^{±},∞^{±})} f (x_t) \right]$
 
 | $⇓$  | $∃x_β;[x_α^{±}, ∞^{±}) = [x_α^{±}, x_β] ∪ [x_β, ∞^{±})$      |      |                                                              |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $∀ε>0;∃x_β∈[x_α^{±},∞^{±}];∀x,x_t∈[x_β,∞^{±}); [ |f(x) - f(x_t)| ≤ ε ]$ | $⇔$  | $\left[ \lim\limits_{x⇝∞^{±}} f (x) \mathop{⇝}\limits_{x∈[x_β,∞^{±})} f_{∞^{±}} \right]$ |
+| $⇓$  | $∀ε>0;∃x_β∈[x_α^{±},∞^{±}];∀x,x_t∈[x_β,∞^{±}); [ |f(x) - f(x_t)| ≤ ε ]$ | $⇔$  | $\left[ \lim\limits_{x⇝∞^{±} } f (x) \mathop{⇝}\limits_{x∈[x_β,∞^{±})} f_{∞^{±} } \right]$ |
 | $⇓$  | $∀ε>0;∃x_β∈[x_α^{±},∞^{±}];∃δ>0;∀x,x_t∈[x_β,∞^{±}); ¬[ |x - x_t| ≤ δ ] ∨ [ |f(x) - f (x_t)| ≤ ε ]$ |      |                                                              |
 | $⇓$  | $∀ε>0;∃x_β∈[x_α^{±},∞^{±}];∃δ>0;∀x,x_t∈[x_β,∞^{±}); [ |x - x_t| ≤ δ ] ⇒ [ |f(x) - f(x_t)| ≤ ε ]$ | $⇒$  | $\left[ \lim\limits_{x↭x_t} f (x) \mathop{↭}\limits_{x∈[x_β,∞^{±})} f (x_t) \right]$ |
 | $⇓$  | $∀ε>0;∃x_β∈[x_α^{±},∞^{±}];∃δ>0;∀x,x_t∈[x_α^{±},x_β]; [ |x - x_t| ≤ δ ] ⇒ [ |f(x) - f(x_t)| ≤ ε ]$ | $⇔$  | $\left[ \lim\limits_{x↭x_t} f(x) \mathop{↭}\limits_{x,x_t∈[x_α^{±},x_β]} f(x_t) \right]$ |
@@ -369,41 +369,41 @@ $\left[ ∃ε>0;∀δ>0; \sup\limits_{|x-x_t|≤δ} |f(x) - f(x_t)| > ε \right]
 |      |                                                              |
 | $⇓$  | $∃ε>0;∀δ>0;∃x=\dfrac{1}{n},x_t=0∈[-1,+1]; \left[ | x - x_t | = \left| \dfrac{1}{n} \right| ≤ δ \right] ∧ [ | f (x) - f (x_t) | = | 1 - 0 | = 1 > ε ]$ |
 |      |                                                              |
-| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈[0, ∞^{+}); [ | x - x_t | ≤ δ ] ⇒ \left[ | f (x) - f (x_t) | = | \sqrt{x} - \sqrt{x_t} | \mathop{≤}\limits^{\sqrt{u+v}≤\sqrt{u}+\sqrt{v}} \sqrt{|x - x_t|} ≤ \sqrt{δ} = ε \right]$ |
+| $⇓$  | $∀ε>0;∃δ>0;∀x,x_t∈[0, ∞^{+}); [ | x - x_t | ≤ δ ] ⇒ \left[ | f (x) - f (x_t) | = | \sqrt{x} - \sqrt{x_t} | \mathop{≤}\limits^{\sqrt{u+v}≤\sqrt{u}+\sqrt{v} } \sqrt{|x - x_t|} ≤ \sqrt{δ} = ε \right]$ |
 |      |                                                              |
-| $⇓$  | $∃ε>0;∀δ>0;∃x=\sqrt{2·n·π+\frac{π}{2}},x_t=\sqrt{2·n·π}∈[0,∞^{+}); \left[ |x - x_t| = \dfrac{\frac{π}{2}}{\sqrt{2·n·π+\frac{π}{2}} + \sqrt{2·n·π}} ≤ δ \right] ∧ \left[ |f(x) - f(x_t)| = |x^{2} - x_t^{2}| = \dfrac{π}{2} > ε \right]$ |
+| $⇓$  | $∃ε>0;∀δ>0;∃x=\sqrt{2·n·π+\frac{π}{2} },x_t=\sqrt{2·n·π}∈[0,∞^{+}); \left[ |x - x_t| = \dfrac{\frac{π}{2} }{\sqrt{2·n·π+\frac{π}{2} } + \sqrt{2·n·π} } ≤ δ \right] ∧ \left[ |f(x) - f(x_t)| = |x^{2} - x_t^{2}| = \dfrac{π}{2} > ε \right]$ |
 
 ### 导函数
 
 若函数$f(x)$在点$x_0$处去心闭邻域的右导数${^1}f(x_0^{+})$与左导数${^1}f(x_0^{-})$存在且相等，则其导数值${^1}f(x_0)$存在。函数$f(x)$在区间$X$上所有点$x_0$处导数值${^1}f(x_0)$组成其导函数${^1}f(x)$。
 
-若函数$f(x)$在点$x_0$处导函数${^1}f(x)$的右极限${^1}f_{x_0^{+}}$与左极限${^1}f_{x_0^{-}}$存在且相等，则其导函数极限值${^1}f_{x_0}$存在。函数$f(x)$在点$x_0$处导数值${^1}f(x_0)$与其导函数极限值${^1}f_{x_0}$未必等同。
+若函数$f(x)$在点$x_0$处导函数${^1}f(x)$的右极限${^1}f_{x_0^{+} }$与左极限${^1}f_{x_0^{-} }$存在且相等，则其导函数极限值${^1}f_{x_0}$存在。函数$f(x)$在点$x_0$处导数值${^1}f(x_0)$与其导函数极限值${^1}f_{x_0}$未必等同。
 
 若函数$f(x)$在区间$(x_α,x_β)$上任意点处导数值存在，且在点$x_α$处右导数${^1}f(x_α^{+})$与在点$x_β$处左导数${^1}f(x_β^{-})$均存在，则可认为函数$f(x)$在区间$[x_α,x_β]$上任意点处导数值存在。
 
-|       右导数 | ${^1}f(x_0^+) ≡ \dfrac{\mathrm{d}^1 f(x_0^+)}{\mathrm{d}^1 x_0^{+}}$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x_t∈X; 0<x_t-x_0≤+δ ⇒ \left| \dfrac{f(x_t) - f(x_0)}{x_t - x_0} - {^1}f(x_0) \right| ≤ ε$ |                                                              |
+|       右导数 | ${^1}f(x_0^+) ≡ \dfrac{\mathrm{d}^1 f(x_0^+)}{\mathrm{d}^1 x_0^{+} }$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x_t∈X; 0<x_t-x_0≤+δ ⇒ \left| \dfrac{f(x_t) - f(x_0)}{x_t - x_0} - {^1}f(x_0) \right| ≤ ε$ |                                                              |
 | -----------: | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-|       左导数 | ${^1}f(x_0^-) ≡ \dfrac{\mathrm{d}^1 f(x_0^-)}{\mathrm{d}^1 x_0^{-}}$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x_t∈X; -δ≤x_t-x_0<0 ⇒ \left| \dfrac{f(x_t) - f(x_0)}{x_t - x_0} - {^1}f(x_0) \right| ≤ ε$ |                                                              |
+|       左导数 | ${^1}f(x_0^-) ≡ \dfrac{\mathrm{d}^1 f(x_0^-)}{\mathrm{d}^1 x_0^{-} }$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x_t∈X; -δ≤x_t-x_0<0 ⇒ \left| \dfrac{f(x_t) - f(x_0)}{x_t - x_0} - {^1}f(x_0) \right| ≤ ε$ |                                                              |
 |       导数值 | ${^1}f(x_0) ≡ \dfrac{\mathrm{d}^1 f(x_0)}{\mathrm{d}^1 x_0}$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x_t∈X; 0<|x_t-x_0|≤δ ⇒ \left| \dfrac{f(x_t) - f(x_0)}{x_t - x_0} - {^1}f(x_0) \right| ≤ ε$ |                                                              |
-|       右导数 | ${^1}f(x_0^+) ≡ \dfrac{\mathrm{d}^1 f(x_0^+)}{\mathrm{d}^1 x_0^{+}}$ | $\lim\limits_{x_t⇝x_0^+} \dfrac{f(x_t) - f(x_0)}{x_t - x_0} \mathop{=====}\limits^{x_t=x_0+Δx_0} \lim\limits_{Δx_0⇝0^+} \dfrac{f(x_0+Δx_0) - f(x_0)}{Δx_0} = \lim\limits_{Δx_0⇝0^+} \dfrac{Δf(x_0)}{Δx_0}$ |                                                              |
-|       左导数 | ${^1}f(x_0^-) ≡ \dfrac{\mathrm{d}^1 f(x_0^-)}{\mathrm{d}^1 x_0^{-}}$ | $\lim\limits_{x_t⇝x_0^-} \dfrac{f(x_t) - f(x_0)}{x_t - x_0} \mathop{=====}\limits^{x_t=x_0+Δx_0} \lim\limits_{Δx_0⇝0^-} \dfrac{f(x_0+Δx_0) - f(x_0)}{Δx_0} = \lim\limits_{Δx_0⇝0^-} \dfrac{Δf(x_0)}{Δx_0}$ |                                                              |
+|       右导数 | ${^1}f(x_0^+) ≡ \dfrac{\mathrm{d}^1 f(x_0^+)}{\mathrm{d}^1 x_0^{+} }$ | $\lim\limits_{x_t⇝x_0^+} \dfrac{f(x_t) - f(x_0)}{x_t - x_0} \mathop{=====}\limits^{x_t=x_0+Δx_0} \lim\limits_{Δx_0⇝0^+} \dfrac{f(x_0+Δx_0) - f(x_0)}{Δx_0} = \lim\limits_{Δx_0⇝0^+} \dfrac{Δf(x_0)}{Δx_0}$ |                                                              |
+|       左导数 | ${^1}f(x_0^-) ≡ \dfrac{\mathrm{d}^1 f(x_0^-)}{\mathrm{d}^1 x_0^{-} }$ | $\lim\limits_{x_t⇝x_0^-} \dfrac{f(x_t) - f(x_0)}{x_t - x_0} \mathop{=====}\limits^{x_t=x_0+Δx_0} \lim\limits_{Δx_0⇝0^-} \dfrac{f(x_0+Δx_0) - f(x_0)}{Δx_0} = \lim\limits_{Δx_0⇝0^-} \dfrac{Δf(x_0)}{Δx_0}$ |                                                              |
 |       导数值 | ${^1}f(x_0) ≡ \dfrac{\mathrm{d}^1 f(x_0)}{\mathrm{d}^1 x_0}$ | $\lim\limits_{x_t⇝x_0} \dfrac{f(x_t) - f(x_0)}{x_t - x_0} \mathop{=====}\limits^{x_t=x_0+Δx_0} \lim\limits_{Δx_0⇝0} \dfrac{f(x_0 + Δx_0) - f(x_0)}{Δx_0} = \lim\limits_{Δx⇝0} \dfrac{Δf(x_0)}{Δx_0}$ | ${^1}f(x_0^{-}) = {^1}f(x_0) = {^1}f(x_0^{+})$               |
 |              |                                                              |                                                              |                                                              |
 |       导函数 | ${^1}f(x) ≡ \dfrac{\mathrm{d}^1 f(x)}{\mathrm{d}^1 x}$       | $∀x∈X;∀ε>0;∃δ>0;∀x_t∈X; 0<|x_t - x| ≤ δ ⇒ \left| \dfrac{f(x_t) - f(x)}{x_t - x} - {^1}f(x) \right| ≤ ε$ |                                                              |
 |       导函数 | ${^1}f(x) ≡ \dfrac{\mathrm{d}^1 f(x)}{\mathrm{d}^1 x}$       | $\lim\limits_{x_t⇝x} \dfrac{f(x_t) - f(x)}{x_t - x} \mathop{=====}\limits^{x_t=x+Δx} \lim\limits_{Δx⇝0} \dfrac{f(x + Δx) - f(x)}{Δx} = \lim\limits_{Δx⇝0} \dfrac{Δf(x)}{Δx}$ |                                                              |
-| 导函数右极限 | ${^1}f_{x_0^{+}} ≡ \left.\dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}\right|_{x_0^{+}}$ | $\lim\limits_{x⇝x_0^{+}} {^1}f(x) = \lim\limits_{x⇝x_0^{+}} \dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}$ |                                                              |
-| 导函数左极限 | ${^1}f_{x_0^{-}} ≡ \left.\dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}\right|_{x_0^{-}}$ | $\lim\limits_{x⇝x_0^{-}} {^1}f(x) = \lim\limits_{x⇝x_0^{-}} \dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}$ |                                                              |
-| 导函数极限值 | ${^1}f_{x_0} ≡ \left.\dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}\right|_{x_0}$ | $\lim\limits_{x⇝x_0} {^1}f(x) = \lim\limits_{x⇝x_0} \dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}$ | ${^1}f_{x_0^{-}} = {^1}f_{x_0} = {^1}f_{x_0^{+}}$            |
+| 导函数右极限 | ${^1}f_{x_0^{+} } ≡ \left.\dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}\right|_{x_0^{+} }$ | $\lim\limits_{x⇝x_0^{+} } {^1}f(x) = \lim\limits_{x⇝x_0^{+} } \dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}$ |                                                              |
+| 导函数左极限 | ${^1}f_{x_0^{-} } ≡ \left.\dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}\right|_{x_0^{-} }$ | $\lim\limits_{x⇝x_0^{-} } {^1}f(x) = \lim\limits_{x⇝x_0^{-} } \dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}$ |                                                              |
+| 导函数极限值 | ${^1}f_{x_0} ≡ \left.\dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}\right|_{x_0}$ | $\lim\limits_{x⇝x_0} {^1}f(x) = \lim\limits_{x⇝x_0} \dfrac{\mathrm{d}^{1}f(x)}{\mathrm{d}^{1}x}$ | ${^1}f_{x_0^{-} } = {^1}f_{x_0} = {^1}f_{x_0^{+} }$            |
 |              |                                                              |                                                              |                                                              |
 |   二阶导数值 | ${^2}f(x_0) ≡ \dfrac{\mathrm{d}^{2} f(x_0)}{\mathrm{d}^{2} x_0}$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x_t∈X; 0<|x_t - x_0| ≤ δ ⇒ \left| \dfrac{{^1}f(x_t) - {^1}f(x_0)}{x_t - x_0} - {^2}f(x_0) \right| ≤ ε$ |                                                              |
-|   二阶导数值 | ${^2}f(x_0) ≡ \dfrac{\mathrm{d}^{2} f(x_0)}{\mathrm{d}^{2} x_0}$ | $\lim\limits_{x_t⇝x_0} \dfrac{{^1}f(x_t) - {^1}f(x_0)}{x_t - x_0} = \lim\limits_{Δx_0⇝0} \dfrac{{^1}f(x_0 + Δx_0) - {^1}f(x_0)}{Δx_0} = \lim\limits_{Δx_0⇝0} \dfrac{Δ{^1}f(x_0)}{Δx_0}$ | $\dfrac{\mathrm{d}^{2} f(x_0)}{\mathrm{d}^{2} x_0} ≡ \dfrac{\mathrm{d}}{\mathrm{d} x_0} \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x_0}$ |
+|   二阶导数值 | ${^2}f(x_0) ≡ \dfrac{\mathrm{d}^{2} f(x_0)}{\mathrm{d}^{2} x_0}$ | $\lim\limits_{x_t⇝x_0} \dfrac{{^1}f(x_t) - {^1}f(x_0)}{x_t - x_0} = \lim\limits_{Δx_0⇝0} \dfrac{{^1}f(x_0 + Δx_0) - {^1}f(x_0)}{Δx_0} = \lim\limits_{Δx_0⇝0} \dfrac{Δ{^1}f(x_0)}{Δx_0}$ | $\dfrac{\mathrm{d}^{2} f(x_0)}{\mathrm{d}^{2} x_0} ≡ \dfrac{\mathrm{d} }{\mathrm{d} x_0} \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x_0}$ |
 |   二阶导函数 | ${^2}f(x) ≡ \dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x}$   | $∀x∈X;∀ε>0;∃δ>0;∀x_t∈X; 0<|x_t - x| ≤ δ ⇒ \left| \dfrac{{^1}f(x_t) - {^1}f(x)}{x_t - x} - {^2}f(x) \right| ≤ ε$ |                                                              |
-|   二阶导函数 | ${^2}f(x) ≡ \dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x}$   | $\lim\limits_{x_t⇝x} \dfrac{{^1}f(x_t) - {^1}f(x)}{x_t - x} = \lim\limits_{Δx⇝0} \dfrac{{^1}f(x + Δx) - {^1}f(x)}{Δx} = \lim\limits_{Δx⇝0} \dfrac{Δ{^1}f(x)}{Δx}$ | $\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} ≡ \dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ |
+|   二阶导函数 | ${^2}f(x) ≡ \dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x}$   | $\lim\limits_{x_t⇝x} \dfrac{{^1}f(x_t) - {^1}f(x)}{x_t - x} = \lim\limits_{Δx⇝0} \dfrac{{^1}f(x + Δx) - {^1}f(x)}{Δx} = \lim\limits_{Δx⇝0} \dfrac{Δ{^1}f(x)}{Δx}$ | $\dfrac{\mathrm{d}^{2} f(x)}{\mathrm{d}^{2} x} ≡ \dfrac{\mathrm{d} }{\mathrm{d} x} \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ |
 |              |                                                              |                                                              |                                                              |
-|   高阶导数值 | ${^n}f(x_0) ≡ \dfrac{\mathrm{d}^{n} f(x_0)}{\mathrm{d}^{n} x_0}$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x_t∈X; 0<|x_t - x_0| ≤ δ ⇒ \left| \dfrac{{^{n-1}}f(x_t) - {^{n-1}}f(x_0)}{x_t - x_0} - {^{n}}f(x_0) \right| ≤ ε$ |                                                              |
-|   高阶导数值 | ${^n}f(x_0) ≡ \dfrac{\mathrm{d}^{n} f(x_0)}{\mathrm{d}^{n} x_0}$ | $\lim\limits_{x_t⇝x_0} \dfrac{{^{n-1}}f(x_t) - {^{n-1}}f(x_0)}{x_t - x_0} = \lim\limits_{Δx_0⇝0} \dfrac{{^{n-1}}f(x_0 + Δx_0) - {^{n-1}}f(x_0)}{Δx_0} = \lim\limits_{Δx_0⇝0} \dfrac{Δ{^1}f(x_0)}{Δx_0}$ | $\dfrac{\mathrm{d}^{n} f(x_0)}{\mathrm{d}^{n} x_0} ≡ \dfrac{\mathrm{d}}{\mathrm{d} x_0} \dfrac{\mathrm{d}^{n-1} f(x_0)}{\mathrm{d}^{n-1} x_0}$ |
-|   高阶导函数 | ${^n}f(x) ≡ \dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x}$   | $∀x∈X;∀ε>0;∃δ>0;∀x_t∈X; 0<|x_t - x| ≤ δ ⇒ \left| \dfrac{{^{n-1}}f(x_t) - {^{n-1}}f(x)}{x_t - x} - {^{n}}f(x) \right| ≤ ε$ |                                                              |
-|   高阶导函数 | ${^n}f(x) ≡ \dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x}$   | $\lim\limits_{x_t⇝x} \dfrac{{^{n-1}}f(x_t) - {^{n-1}}f(x)}{x_t - x} = \lim\limits_{Δx⇝0} \dfrac{{^{n-1}}f(x + Δx) - {^{n-1}}f(x)}{Δx} = \lim\limits_{Δx⇝0} \dfrac{Δ{^1}f(x)}{Δx}$ | $\dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x} ≡ \dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}^{n-1} f(x)}{\mathrm{d}^{n-1} x}$ |
+|   高阶导数值 | ${^n}f(x_0) ≡ \dfrac{\mathrm{d}^{n} f(x_0)}{\mathrm{d}^{n} x_0}$ | $Ⅎx_0∈X;∀ε>0;∃δ>0;∀x_t∈X; 0<|x_t - x_0| ≤ δ ⇒ \left| \dfrac{{^{n-1} }f(x_t) - {^{n-1} }f(x_0)}{x_t - x_0} - {^{n} }f(x_0) \right| ≤ ε$ |                                                              |
+|   高阶导数值 | ${^n}f(x_0) ≡ \dfrac{\mathrm{d}^{n} f(x_0)}{\mathrm{d}^{n} x_0}$ | $\lim\limits_{x_t⇝x_0} \dfrac{{^{n-1} }f(x_t) - {^{n-1} }f(x_0)}{x_t - x_0} = \lim\limits_{Δx_0⇝0} \dfrac{{^{n-1} }f(x_0 + Δx_0) - {^{n-1} }f(x_0)}{Δx_0} = \lim\limits_{Δx_0⇝0} \dfrac{Δ{^1}f(x_0)}{Δx_0}$ | $\dfrac{\mathrm{d}^{n} f(x_0)}{\mathrm{d}^{n} x_0} ≡ \dfrac{\mathrm{d} }{\mathrm{d} x_0} \dfrac{\mathrm{d}^{n-1} f(x_0)}{\mathrm{d}^{n-1} x_0}$ |
+|   高阶导函数 | ${^n}f(x) ≡ \dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x}$   | $∀x∈X;∀ε>0;∃δ>0;∀x_t∈X; 0<|x_t - x| ≤ δ ⇒ \left| \dfrac{{^{n-1} }f(x_t) - {^{n-1} }f(x)}{x_t - x} - {^{n} }f(x) \right| ≤ ε$ |                                                              |
+|   高阶导函数 | ${^n}f(x) ≡ \dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x}$   | $\lim\limits_{x_t⇝x} \dfrac{{^{n-1} }f(x_t) - {^{n-1} }f(x)}{x_t - x} = \lim\limits_{Δx⇝0} \dfrac{{^{n-1} }f(x + Δx) - {^{n-1} }f(x)}{Δx} = \lim\limits_{Δx⇝0} \dfrac{Δ{^1}f(x)}{Δx}$ | $\dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x} ≡ \dfrac{\mathrm{d} }{\mathrm{d} x} \dfrac{\mathrm{d}^{n-1} f(x)}{\mathrm{d}^{n-1} x}$ |
 
 典例：函数$f(x) = x^2$。
 
@@ -421,26 +421,26 @@ $\lim\limits_{x⇝x_0} f(x) = \lim\limits_{x⇝x_0} \left[ \dfrac{f(x) - f(x_0)}
 
 反例：函数$f(x) = |x|$在点$x_0 = 0$处连续，但其在点$x_0 = 0$处导数值不存在。
 
-$\lim\limits_{x⇝0^{+}} \dfrac{f(x) - f(0)}{x - 0} = \lim\limits_{x⇝0^{+}} \dfrac{x}{x} ⇝ +1 ≠ -1 ⇜ \lim\limits_{x⇝0^{-}} \dfrac{-x}{x} = \lim\limits_{x⇝0^{-}} \dfrac{f(x) - f(0)}{x - 0}$
+$\lim\limits_{x⇝0^{+} } \dfrac{f(x) - f(0)}{x - 0} = \lim\limits_{x⇝0^{+} } \dfrac{x}{x} ⇝ +1 ≠ -1 ⇜ \lim\limits_{x⇝0^{-} } \dfrac{-x}{x} = \lim\limits_{x⇝0^{-} } \dfrac{f(x) - f(0)}{x - 0}$
 
 一阶导函数的运算性质。若函数$g(x)$与函数$f(x)$的一阶导函数存在。
 
-| $\dfrac{\mathrm{d}}{\mathrm{d} x}[g(x) + f(x)]$       | $\dfrac{\mathrm{d} g(x)}{\mathrm{d} x} + \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ | $\lim\limits_{x_t⇝x} \dfrac{[g(x_t) + f(x_t)] - [g(x) + f(x)]}{x_t - x} = \lim\limits_{x⇝x} \dfrac{[g(x_t) - g(x)] + [f(x_t) - f(x)]}{x_t - x}$ |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x}[g(x) + f(x)]$       | $\dfrac{\mathrm{d} g(x)}{\mathrm{d} x} + \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ | $\lim\limits_{x_t⇝x} \dfrac{[g(x_t) + f(x_t)] - [g(x) + f(x)]}{x_t - x} = \lim\limits_{x⇝x} \dfrac{[g(x_t) - g(x)] + [f(x_t) - f(x)]}{x_t - x}$ |
 | :---------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x}[g(x) - f(x)]$       | $\dfrac{\mathrm{d}g(x)}{\mathrm{d}x} - \dfrac{\mathrm{d}f(x)}{\mathrm{d}x}$ | $\lim\limits_{x_t⇝x} \dfrac{[g(x_t) - f(x_t)] - [g(x) - f(x)]}{x_t - x} = \lim\limits_{x_t⇝x} \dfrac{[g(x_t) - g(x)] - [f(x_t) - f(x)]}{x_t - x}$ |
-| $\dfrac{\mathrm{d}}{\mathrm{d}x}[g(x) · f(x)]$        | $\dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · f(x) + g(x) · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ | $\lim\limits_{x_t⇝x} \dfrac{g(x_t) · f(x_t) - g(x) · f(x)}{x_t - x} = \lim\limits_{x_t⇝x} \dfrac{[g(x_t) - g(x)] · f(x_t) + g(x) · [f(x_t) - f(x)]}{x_t - x}$ |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{g(x)}{f(x)}$ | $\dfrac{\dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · f(x) - g(x) · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}}{f^2(x)}$ | $\lim\limits_{x_t⇝x} \dfrac{\dfrac{g(x_t)}{f(x_t)} - \dfrac{g(x)}{f(x)}}{x_t - x} \mathop{===}\limits^{f(x)≠0} \lim\limits_{x_t⇝x} \dfrac{\dfrac{[g(x_t) - g(x)] · f(x)}{x_t - x} - \dfrac{g(x) · [f(x_t) - f(x)]}{x_t - x}}{f(x_t) · f(x)}$ |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} g(f(x))$            | $\dfrac{\mathrm{d} g(f(x))}{\mathrm{d} f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \mathop{===}\limits^{y=f(x)} \dfrac{\mathrm{d} g(y)}{\mathrm{d} y} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ | $\lim\limits_{x_t⇝x} \dfrac{g(f(x_t)) - g(f(x))}{x_t - x} = \lim\limits_{x_t⇝x} \dfrac{g(f(x_t)) - g(f(x))}{f(x_t) - f(x)} · \dfrac{f(x_t) - f(x)}{x_t - x}$ |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} {'}f^{⇵}(x)$        | $\left[ \dfrac{\mathrm{d} x}{\mathrm{d} {'}f^{⇵}(x)} \right]^{-1} \mathop{====}\limits_{y={'}f^{⇵}(x)}^{x=f^{⇵}(y)} \left[ \dfrac{\mathrm{d} f^{⇵}(y)}{\mathrm{d} y} \right]^{-1}$ | $\lim\limits_{x_t⇝x} \dfrac{{'}f^{⇵}(x_t) - {'}f^{⇵}(x)}{x_t - x} = \left[ \lim\limits_{x_t⇝x} \dfrac{x_t - x}{{'}f^{⇵}(x_t) - {'}f^{⇵}(x)} \right]^{-1} \mathop{====}\limits_{y={'}f^{⇵}(x)}^{x=f^{⇵}(y)} \left[ \lim\limits_{x_t⇝x} \dfrac{f^{⇵}(y_t) - f^{⇵}(y)}{y_t - y} \right]^{-1}$ |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x}[g(x) - f(x)]$       | $\dfrac{\mathrm{d}g(x)}{\mathrm{d}x} - \dfrac{\mathrm{d}f(x)}{\mathrm{d}x}$ | $\lim\limits_{x_t⇝x} \dfrac{[g(x_t) - f(x_t)] - [g(x) - f(x)]}{x_t - x} = \lim\limits_{x_t⇝x} \dfrac{[g(x_t) - g(x)] - [f(x_t) - f(x)]}{x_t - x}$ |
+| $\dfrac{\mathrm{d} }{\mathrm{d}x}[g(x) · f(x)]$        | $\dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · f(x) + g(x) · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ | $\lim\limits_{x_t⇝x} \dfrac{g(x_t) · f(x_t) - g(x) · f(x)}{x_t - x} = \lim\limits_{x_t⇝x} \dfrac{[g(x_t) - g(x)] · f(x_t) + g(x) · [f(x_t) - f(x)]}{x_t - x}$ |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x} \dfrac{g(x)}{f(x)}$ | $\dfrac{\dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · f(x) - g(x) · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} }{f^2(x)}$ | $\lim\limits_{x_t⇝x} \dfrac{\dfrac{g(x_t)}{f(x_t)} - \dfrac{g(x)}{f(x)} }{x_t - x} \mathop{===}\limits^{f(x)≠0} \lim\limits_{x_t⇝x} \dfrac{\dfrac{[g(x_t) - g(x)] · f(x)}{x_t - x} - \dfrac{g(x) · [f(x_t) - f(x)]}{x_t - x} }{f(x_t) · f(x)}$ |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x} g(f(x))$            | $\dfrac{\mathrm{d} g(f(x))}{\mathrm{d} f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \mathop{===}\limits^{y=f(x)} \dfrac{\mathrm{d} g(y)}{\mathrm{d} y} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ | $\lim\limits_{x_t⇝x} \dfrac{g(f(x_t)) - g(f(x))}{x_t - x} = \lim\limits_{x_t⇝x} \dfrac{g(f(x_t)) - g(f(x))}{f(x_t) - f(x)} · \dfrac{f(x_t) - f(x)}{x_t - x}$ |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x} {'}f^{⇵}(x)$        | $\left[ \dfrac{\mathrm{d} x}{\mathrm{d} {'}f^{⇵}(x)} \right]^{-1} \mathop{====}\limits_{y={'}f^{⇵}(x)}^{x=f^{⇵}(y)} \left[ \dfrac{\mathrm{d} f^{⇵}(y)}{\mathrm{d} y} \right]^{-1}$ | $\lim\limits_{x_t⇝x} \dfrac{{'}f^{⇵}(x_t) - {'}f^{⇵}(x)}{x_t - x} = \left[ \lim\limits_{x_t⇝x} \dfrac{x_t - x}{{'}f^{⇵}(x_t) - {'}f^{⇵}(x)} \right]^{-1} \mathop{====}\limits_{y={'}f^{⇵}(x)}^{x=f^{⇵}(y)} \left[ \lim\limits_{x_t⇝x} \dfrac{f^{⇵}(y_t) - f^{⇵}(y)}{y_t - y} \right]^{-1}$ |
 |                                                       |                                                              |                                                              |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} |x|$                | $\dfrac{|x|}{x}$                                             | $\lim\limits_{x_t⇝x>0} \dfrac{(+x_t) - (+x)}{x_t - x} ⇝ +1;\lim\limits_{x_t⇝x<0} \dfrac{(-x_t) - (-x)}{x_t - x} ⇝ -1$ |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} f(x)^{g(x)}$        | $f(x)^{g(x)} · \left[ \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \ln |f(x)| + \dfrac{g(x)}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right]$ | $\dfrac{\mathrm{d} f(x)^{g(x)}}{\mathrm{d} |f(x)^{g(x)}|} · \dfrac{\mathrm{d} ә^{g(x) · \ln |f(x)|}}{\mathrm{d} x} = \dfrac{f(x)^{g(x)}}{|f(x)^{g(x)}|} · ә^{g(x) · \ln |f(x)|} · \left[ \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \ln |f(x)| + \dfrac{g(x)}{|f(x)|} · \dfrac{|f(x)|}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right]$ |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x} |x|$                | $\dfrac{|x|}{x}$                                             | $\lim\limits_{x_t⇝x>0} \dfrac{(+x_t) - (+x)}{x_t - x} ⇝ +1;\lim\limits_{x_t⇝x<0} \dfrac{(-x_t) - (-x)}{x_t - x} ⇝ -1$ |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x} f(x)^{g(x)}$        | $f(x)^{g(x)} · \left[ \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \ln |f(x)| + \dfrac{g(x)}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right]$ | $\dfrac{\mathrm{d} f(x)^{g(x)} }{\mathrm{d} |f(x)^{g(x)}|} · \dfrac{\mathrm{d} ә^{g(x) · \ln |f(x)|} }{\mathrm{d} x} = \dfrac{f(x)^{g(x)} }{|f(x)^{g(x)}|} · ә^{g(x) · \ln |f(x)|} · \left[ \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \ln |f(x)| + \dfrac{g(x)}{|f(x)|} · \dfrac{|f(x)|}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right]$ |
 
-典例：函数$f(x) = \dfrac{(x + 9)^{\frac{1}{2}} · (3 - x)^{\frac{2}{3}}}{(x + 4)^{\frac{3}{4}} · (5 - x)^{\frac{4}{5}}}$，因此$\ln |f(x)| = \dfrac{1}{2} · \ln |x + 9| + \dfrac{2}{3} · \ln |3 - x| - \dfrac{3}{4} · \ln |x + 4| - \dfrac{4}{5} · \ln |5 - x|$。
+典例：函数$f(x) = \dfrac{(x + 9)^{\frac{1}{2} } · (3 - x)^{\frac{2}{3} } }{(x + 4)^{\frac{3}{4} } · (5 - x)^{\frac{4}{5} } }$，因此$\ln |f(x)| = \dfrac{1}{2} · \ln |x + 9| + \dfrac{2}{3} · \ln |3 - x| - \dfrac{3}{4} · \ln |x + 4| - \dfrac{4}{5} · \ln |5 - x|$。
 
 $\dfrac{1}{f(x)} · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{+1}{2 · (x + 9)} + \dfrac{-2}{3 · (3 - x)} - \dfrac{3}{4 · (x + 4)} - \dfrac{-4}{5 · (5 - x)} $
 
-$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{(x + 9)^{\frac{1}{2}} · (3 - x)^{\frac{2}{3}}}{(x + 4)^{\frac{3}{4}} · (5 - x)^{\frac{4}{5}}} · \left[ \dfrac{+1}{2 · (x + 9)} + \dfrac{-2}{3 · (3 - x)} - \dfrac{3}{4 · (x + 4)} - \dfrac{-4}{5 · (5 - x)} \right]$
+$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{(x + 9)^{\frac{1}{2} } · (3 - x)^{\frac{2}{3} } }{(x + 4)^{\frac{3}{4} } · (5 - x)^{\frac{4}{5} } } · \left[ \dfrac{+1}{2 · (x + 9)} + \dfrac{-2}{3 · (3 - x)} - \dfrac{3}{4 · (x + 4)} - \dfrac{-4}{5 · (5 - x)} \right]$
 
 周期函数$f(x) = f(x + T)$，其导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{\mathrm{d} [f(x + T)]}{\mathrm{d} (x + T)} · \dfrac{\mathrm{d} (x + T)}{\mathrm{d} x} = \dfrac{\mathrm{d} f(x + T)}{\mathrm{d} (x + T)}$以$T$为周期。
 
@@ -450,26 +450,26 @@ $\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = \dfrac{(x + 9)^{\frac{1}{2}} · (3 - x)
 
 高阶导函数的运算性质。若函数$g(x)$与函数$f(x)$的高阶导函数均存在。
 
-|     $\dfrac{\mathrm{d}^{n}}{\mathrm{d}^{n} x} [g(x) + f(x)]$ | $\dfrac{\mathrm{d}^{n} g(x)}{\mathrm{d}^{n} x} + \dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x}$ | $\dfrac{\mathrm{d}^{0} f(x)}{\mathrm{d}^{0} x} ≡ f(x)$ |
+|     $\dfrac{\mathrm{d}^{n} }{\mathrm{d}^{n} x} [g(x) + f(x)]$ | $\dfrac{\mathrm{d}^{n} g(x)}{\mathrm{d}^{n} x} + \dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x}$ | $\dfrac{\mathrm{d}^{0} f(x)}{\mathrm{d}^{0} x} ≡ f(x)$ |
 | -----------------------------------------------------------: | :----------------------------------------------------------- | :----------------------------------------------------- |
-|     $\dfrac{\mathrm{d}^{n}}{\mathrm{d}^{n} x} [g(x) · f(x)]$ | $\sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · \dfrac{\mathrm{d}^{n-i} g(x)}{\mathrm{d}^{n-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x}$ |                                                        |
-| $\dfrac{\mathrm{d}^{n}}{\mathrm{d}^{n} x} [\mathrm{Con} · f(x)]$ | $= \mathrm{Con} · \dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x}$ |                                                        |
+|     $\dfrac{\mathrm{d}^{n} }{\mathrm{d}^{n} x} [g(x) · f(x)]$ | $\sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · \dfrac{\mathrm{d}^{n-i} g(x)}{\mathrm{d}^{n-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x}$ |                                                        |
+| $\dfrac{\mathrm{d}^{n} }{\mathrm{d}^{n} x} [\mathrm{Con} · f(x)]$ | $= \mathrm{Con} · \dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x}$ |                                                        |
 
-|     $\dfrac{\mathrm{d}^{0}}{\mathrm{d}^{0} x} [g(x) + f(x)]$ | $g(x) + f(x)$                                                | $\dfrac{\mathrm{d}^{0} f(x)}{\mathrm{d}^{0} x} ≡ f(x)$ |
+|     $\dfrac{\mathrm{d}^{0} }{\mathrm{d}^{0} x} [g(x) + f(x)]$ | $g(x) + f(x)$                                                | $\dfrac{\mathrm{d}^{0} f(x)}{\mathrm{d}^{0} x} ≡ f(x)$ |
 | -----------------------------------------------------------: | :----------------------------------------------------------- | :----------------------------------------------------- |
-|     $\dfrac{\mathrm{d}^{1}}{\mathrm{d}^{1} x} [g(x) + f(x)]$ | $\dfrac{\mathrm{d}^{1} g(x)}{\mathrm{d}^{1} x} + \dfrac{\mathrm{d}^{1} f(x)}{\mathrm{d}^{1} x}$ |                                                        |
-|     $\dfrac{\mathrm{d}^{n}}{\mathrm{d}^{n} x} [g(x) + f(x)]$ | $\dfrac{\mathrm{d}^{n} g(x)}{\mathrm{d}^{n} x} + \dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x}$ |                                                        |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}^{n}}{\mathrm{d}^{n} x} [g(x) + f(x)]$ | $\dfrac{\mathrm{d}}{\mathrm{d} x} \left[ \dfrac{\mathrm{d}^{n} g(x)}{\mathrm{d}^{n} x} + \dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x} \right]$ |                                                        |
-| $\dfrac{\mathrm{d}^{n+1}}{\mathrm{d}^{n+1} x} [g(x) + f(x)]$ | $\dfrac{\mathrm{d}^{n+1} g(x)}{\mathrm{d}^{n+1} x} + \dfrac{\mathrm{d}^{n+1} f(x)}{\mathrm{d}^{n+1} x}$ |                                                        |
+|     $\dfrac{\mathrm{d}^{1} }{\mathrm{d}^{1} x} [g(x) + f(x)]$ | $\dfrac{\mathrm{d}^{1} g(x)}{\mathrm{d}^{1} x} + \dfrac{\mathrm{d}^{1} f(x)}{\mathrm{d}^{1} x}$ |                                                        |
+|     $\dfrac{\mathrm{d}^{n} }{\mathrm{d}^{n} x} [g(x) + f(x)]$ | $\dfrac{\mathrm{d}^{n} g(x)}{\mathrm{d}^{n} x} + \dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x}$ |                                                        |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x} \dfrac{\mathrm{d}^{n} }{\mathrm{d}^{n} x} [g(x) + f(x)]$ | $\dfrac{\mathrm{d} }{\mathrm{d} x} \left[ \dfrac{\mathrm{d}^{n} g(x)}{\mathrm{d}^{n} x} + \dfrac{\mathrm{d}^{n} f(x)}{\mathrm{d}^{n} x} \right]$ |                                                        |
+| $\dfrac{\mathrm{d}^{n+1} }{\mathrm{d}^{n+1} x} [g(x) + f(x)]$ | $\dfrac{\mathrm{d}^{n+1} g(x)}{\mathrm{d}^{n+1} x} + \dfrac{\mathrm{d}^{n+1} f(x)}{\mathrm{d}^{n+1} x}$ |                                                        |
 |                                                              |                                                              |                                                        |
-|     $\dfrac{\mathrm{d}^{0}}{\mathrm{d}^{0} x} [g(x) · f(x)]$ | $g(x) · f(x)$                                                | $\dfrac{\mathrm{d}^{0} f(x)}{\mathrm{d}^{0} x} ≡ f(x)$ |
-|     $\dfrac{\mathrm{d}^{1}}{\mathrm{d}^{1} x} [g(x) · f(x)]$ | $\dfrac{\mathrm{d}^{1} g(x)}{\mathrm{d}^{1} x} · f(x) + g(x) · \dfrac{\mathrm{d}^{1} f(x)}{\mathrm{d}^{1} x}$ |                                                        |
-|     $\dfrac{\mathrm{d}^{n}}{\mathrm{d}^{n} x} [g(x) · f(x)]$ | $\sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · \dfrac{\mathrm{d}^{n-i} g(x)}{\mathrm{d}^{n-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x}$ |                                                        |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}^{n}}{\mathrm{d}^{n} x} [g(x) · f(x)]$ | $\sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · \dfrac{\mathrm{d}}{\mathrm{d} x} \left[ \dfrac{\mathrm{d}^{n-i} g(x)}{\mathrm{d}^{n-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x} \right]$ |                                                        |
+|     $\dfrac{\mathrm{d}^{0} }{\mathrm{d}^{0} x} [g(x) · f(x)]$ | $g(x) · f(x)$                                                | $\dfrac{\mathrm{d}^{0} f(x)}{\mathrm{d}^{0} x} ≡ f(x)$ |
+|     $\dfrac{\mathrm{d}^{1} }{\mathrm{d}^{1} x} [g(x) · f(x)]$ | $\dfrac{\mathrm{d}^{1} g(x)}{\mathrm{d}^{1} x} · f(x) + g(x) · \dfrac{\mathrm{d}^{1} f(x)}{\mathrm{d}^{1} x}$ |                                                        |
+|     $\dfrac{\mathrm{d}^{n} }{\mathrm{d}^{n} x} [g(x) · f(x)]$ | $\sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · \dfrac{\mathrm{d}^{n-i} g(x)}{\mathrm{d}^{n-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x}$ |                                                        |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x} \dfrac{\mathrm{d}^{n} }{\mathrm{d}^{n} x} [g(x) · f(x)]$ | $\sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · \dfrac{\mathrm{d} }{\mathrm{d} x} \left[ \dfrac{\mathrm{d}^{n-i} g(x)}{\mathrm{d}^{n-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x} \right]$ |                                                        |
 |                                                              | $\sum\limits_{i=0}^{n} \dfrac{n!}{i! · (n - i)!} · \left[ \dfrac{\mathrm{d}^{n-i+1} g(x)}{\mathrm{d}^{n-i+1} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x} + \dfrac{\mathrm{d}^{n-i} g(x)}{\mathrm{d}^{n-i} x} · \dfrac{\mathrm{d}^{i+1} f(x)}{\mathrm{d}^{i+1} x} \right]$ |                                                        |
 |                                                              | $\dfrac{\mathrm{d}^{n+1} g(x)}{\mathrm{d}^{n+1} x} · \dfrac{\mathrm{d}^{0} f(x)}{\mathrm{d}^{0} x} + \left[ \sum\limits_{i=1}^{n} \dfrac{n!}{i! · (n - i)!} · \dfrac{\mathrm{d}^{n-i+1} g(x)}{\mathrm{d}^{n-i+1} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x} + \sum\limits_{i=1}^{n} \dfrac{n!}{(i - 1)! · (n - i + 1)!} · \dfrac{\mathrm{d}^{n-(i-1)} g(x)}{\mathrm{d}^{n-(i-1)} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x} \right] + \dfrac{\mathrm{d}^{0} g(x)}{\mathrm{d}^{0} x} · \dfrac{\mathrm{d}^{n+1} f(x)}{\mathrm{d}^{n+1} x}$ |                                                        |
 |                                                              | $\dfrac{\mathrm{d}^{n+i} g(x)}{\mathrm{d}^{n+1} x} · \dfrac{\mathrm{d}^{0} f(x)}{\mathrm{d}^{0} x} + \left[ \sum\limits_{i=1}^{n} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · \dfrac{\mathrm{d}^{n+1-i} g(x)}{\mathrm{d}^{n+1-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x}\right] + \dfrac{\mathrm{d}^{0} g(x)}{\mathrm{d}^{0} x} · \dfrac{\mathrm{d}^{n+1} f(x)}{\mathrm{d}^{n+1} x}$ |                                                        |
-| $\dfrac{\mathrm{d}^{n+1}}{\mathrm{d}^{n+1} x} [g(x) · f(x)]$ | $\sum\limits_{i=0}^{n+1} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · \dfrac{\mathrm{d}^{n+1-i} g(x)}{\mathrm{d}^{n+1-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x}$ |                                                        |
+| $\dfrac{\mathrm{d}^{n+1} }{\mathrm{d}^{n+1} x} [g(x) · f(x)]$ | $\sum\limits_{i=0}^{n+1} \dfrac{(n + 1)!}{i! · (n + 1 - i)!} · \dfrac{\mathrm{d}^{n+1-i} g(x)}{\mathrm{d}^{n+1-i} x} · \dfrac{\mathrm{d}^{i} f(x)}{\mathrm{d}^{i} x}$ |                                                        |
 
 若函数$f(x)$在区间$X$上连续且导函数$\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} ≶ 0$，则函数$f^{⇵}(x)$在区间$X$上严格单调，反之不对。
 
@@ -507,12 +507,12 @@ $\inf\limits_{x∈[x_α,x_β]} f(x) = \inf \left\lbrace ∀x; f(x): x∈\left\lb
 
 $\sup\limits_{x∈[x_α,x_β]} f(x) = \sup \left\lbrace ∀x; f(x): x∈\left\lbrace ∀x_0∈[x_α,x_β]; x_0: \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x} = 0 \right\rbrace \bigcup \left\lbrace ∀x_0∈[x_α,x_β]; x_0: \dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x} ≠ \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x} \right\rbrace \right\rbrace$
 
-典例：数列$n^{\frac{1}{n}}$在$3^{\frac{1}{3}}$处取得最大值。
+典例：数列$n^{\frac{1}{n} }$在$3^{\frac{1}{3} }$处取得最大值。
 
-| $f(x) = x^{\frac{1}{x}}$                                     | $\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = x^{\frac{1}{x}} · \left[ -\dfrac{1}{x^2} · \ln|x| + \dfrac{1}{x^2} · 1 \right] = x^{\frac{1}{x}-2} · (1 - \ln|x|) = \mathop{+0}\limits_{x<ә};\mathop{0}\limits_{x=ә};\mathop{-0}\limits_{x>ә}$ | $x^{\frac{1}{x}-2} > 0$ |
+| $f(x) = x^{\frac{1}{x} }$                                     | $\dfrac{\mathrm{d} f(x)}{\mathrm{d} x} = x^{\frac{1}{x} } · \left[ -\dfrac{1}{x^2} · \ln|x| + \dfrac{1}{x^2} · 1 \right] = x^{\frac{1}{x}-2} · (1 - \ln|x|) = \mathop{+0}\limits_{x<ә};\mathop{0}\limits_{x=ә};\mathop{-0}\limits_{x>ә}$ | $x^{\frac{1}{x}-2} > 0$ |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :---------------------- |
-| $\lim\limits_{x⇝0^{+}} x^{\frac{1}{x}} = \lim\limits_{x⇝0^{+}} ә^{\frac{1}{x}·\ln x} ⇝ ә^{∞^{-}} = 0$ | $\lim\limits_{x⇝∞^{+}} x^{\frac{1}{x}} = \lim\limits_{x⇝∞^{+}} ә^{\frac{1}{x}·\ln x} ⇝ ә^{0^{+}} = 1$ |                         |
-| $\max\limits_{0≤n<∞^{+}} \left\lbrace n^{\frac{1}{n}} \right\rbrace = \max\limits_{2≤ә≤3} \left\lbrace 2^{\frac{1}{2}}, 3^{\frac{1}{3}} \right\rbrace = 3^{\frac{1}{3}}$ |                                                              |                         |
+| $\lim\limits_{x⇝0^{+} } x^{\frac{1}{x} } = \lim\limits_{x⇝0^{+} } ә^{\frac{1}{x}·\ln x} ⇝ ә^{∞^{-} } = 0$ | $\lim\limits_{x⇝∞^{+} } x^{\frac{1}{x} } = \lim\limits_{x⇝∞^{+} } ә^{\frac{1}{x}·\ln x} ⇝ ә^{0^{+} } = 1$ |                         |
+| $\max\limits_{0≤n<∞^{+} } \left\lbrace n^{\frac{1}{n} } \right\rbrace = \max\limits_{2≤ә≤3} \left\lbrace 2^{\frac{1}{2} }, 3^{\frac{1}{3} } \right\rbrace = 3^{\frac{1}{3} }$ |                                                              |                         |
 
 ### 连续介值定理
 
@@ -548,10 +548,10 @@ $f([x_α,x_β]) ⊆ [x_α,x_β] ⇒ \left. f(x) \right|_{∃θ∈[x_α,x_β]} = 
 
 对于实数域奇数次多项式$P_{2·n+1}(x) ≡ \sum\limits_{i=0}^{2·n+1} p_i · (x - x_0)^{i}$，必定存在某一个实数解$θ∈ℝ$。
 
-| $⇓$  | $P_{2·n+1}(x) ≡ \sum\limits_{i=0}^{2·n+1} p_i · (x - x_0)^{i} = p_{2·n+1} · (x - x_0)^{2·n+1} · \left[ 1 + \sum\limits_{i=1}^{2·n} \dfrac{p_{i} · (x - x_0)^{i}}{p_{2·n+1} · (x - x_0)^{2·n+1}} + \dfrac{p_0}{p_{2·n+1}·(x - x_0)^{2·n+1}} \right]$ |      |                    |
+| $⇓$  | $P_{2·n+1}(x) ≡ \sum\limits_{i=0}^{2·n+1} p_i · (x - x_0)^{i} = p_{2·n+1} · (x - x_0)^{2·n+1} · \left[ 1 + \sum\limits_{i=1}^{2·n} \dfrac{p_{i} · (x - x_0)^{i} }{p_{2·n+1} · (x - x_0)^{2·n+1} } + \dfrac{p_0}{p_{2·n+1}·(x - x_0)^{2·n+1} } \right]$ |      |                    |
 | :--: | :----------------------------------------------------------- | :--: | :----------------- |
-| $⇓$  | $\lim\limits_{x⇝∞^{+}} P_{2·n+1}(x) = \lim\limits_{x⇝∞^{+}} p_{2·n+1} · (x - x_0)^{2·n+1} ⇝ p_{2·n+1} · ∞^{+}$ |      |                    |
-| $⇓$  | $\lim\limits_{x⇝∞^{-}} P_{2·n+1}(x) = \lim\limits_{x⇝∞^{+}} p_{2·n+1} · (x - x_0)^{2·n+1} ⇝ p_{2·n+1} · ∞^{-}$ |      |                    |
+| $⇓$  | $\lim\limits_{x⇝∞^{+} } P_{2·n+1}(x) = \lim\limits_{x⇝∞^{+} } p_{2·n+1} · (x - x_0)^{2·n+1} ⇝ p_{2·n+1} · ∞^{+}$ |      |                    |
+| $⇓$  | $\lim\limits_{x⇝∞^{-} } P_{2·n+1}(x) = \lim\limits_{x⇝∞^{+} } p_{2·n+1} · (x - x_0)^{2·n+1} ⇝ p_{2·n+1} · ∞^{-}$ |      |                    |
 | $⇓$  | $P_{2·n+1}(ℝ) = ℝ$                                           | $⇒$  | $0 ∈ P_{2·n+1}(ℝ)$ |
 | $⇓$  | $0 = \left. P_{2·n+1}(x) \right|_{∃θ∈ℝ}$                     |      |                    |
 
@@ -575,9 +575,9 @@ $[f(x_α) = f(x_β)] ⇒ \left[ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \ri
 
 $[[f(x_α) - f(x_α+Δ)] · [f(x_β-Δ) - f(x_β)] ≤ 0] ⇒ \left[ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = 0 \right]$
 
-| $⇓$  | $f(θ) = \inf\limits_{x∈(x_α,x_β)} f(x)$                      | $⇔$  | $\lim\limits_{x⇝θ^{-}} \dfrac{f(x) - f(θ)}{x - θ} ≤ 0 ≤ \lim\limits_{x⇝θ^{+}} \dfrac{f(x) - f(θ)}{x - θ}$ |
+| $⇓$  | $f(θ) = \inf\limits_{x∈(x_α,x_β)} f(x)$                      | $⇔$  | $\lim\limits_{x⇝θ^{-} } \dfrac{f(x) - f(θ)}{x - θ} ≤ 0 ≤ \lim\limits_{x⇝θ^{+} } \dfrac{f(x) - f(θ)}{x - θ}$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $f(θ) = \sup\limits_{x∈(x_α,x_β)} f(x)$                      | $⇔$  | $\lim\limits_{x⇝θ^{-}} \dfrac{f(x) - f(θ)}{x - θ} ≥ 0 ≥ \lim\limits_{x⇝θ^{+}} \dfrac{f(x) - f(θ)}{x - θ}$ |
+| $⇓$  | $f(θ) = \sup\limits_{x∈(x_α,x_β)} f(x)$                      | $⇔$  | $\lim\limits_{x⇝θ^{-} } \dfrac{f(x) - f(θ)}{x - θ} ≥ 0 ≥ \lim\limits_{x⇝θ^{+} } \dfrac{f(x) - f(θ)}{x - θ}$ |
 | $⇓$  | $[f(θ-Δ) - f(θ)] · [f(θ) - f(θ+Δ)] ≤ 0$                      | $⇔$  | $\dfrac{f(θ-Δ) - f(θ)}{-Δ} · \dfrac{f(θ+Δ) - f(θ)}{+Δ} ≤ 0$  |
 | $⇓$  | $f(x_γ) = f(x_δ)$                                            | $⇒$  | $\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_γ,x_δ)} = \lim\limits_{x⇝θ} \dfrac{f(x) - f(θ)}{x - θ} = 0$ |
 |      |                                                              |      |                                                              |
@@ -589,7 +589,7 @@ $\dfrac{f(x_β) - f(x_α)}{x_β - x_α} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm
 
 | $⇓$  | $F(x) ≡ \left|\begin{matrix} 1 & 1 & 1 \\ x_α & x & x_β \\ f(x_α) & f(x) & f(x_β) \\ \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ x_α & x - x_α & x_β - x_α \\ f(x_α) & f(x) - f(x_α) & f(x_β) - f(x_α) \end{matrix}\right|$ | $F(x_α) = 0 = F(x_β)$                                        |
 | :--: | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| $⇓$  | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ x_α & x - x_α & x_β - x_α \\ f(x_α) & f(x) - f(x_α) & f(x_β) - f(x_α) \\ \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ x_α & 1 & x_β - x_α \\ f(x_α) & \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} & f(x_β) - f(x_α) \end{matrix}\right|$ | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = [f(x_β) - f(x_α)] - (x_β - x_α) · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ |
+| $⇓$  | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = \dfrac{\mathrm{d} }{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ x_α & x - x_α & x_β - x_α \\ f(x_α) & f(x) - f(x_α) & f(x_β) - f(x_α) \\ \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ x_α & 1 & x_β - x_α \\ f(x_α) & \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} & f(x_β) - f(x_α) \end{matrix}\right|$ | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = [f(x_β) - f(x_α)] - (x_β - x_α) · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ |
 | $⇓$  | $\dfrac{f(x_β) - f(x_α)}{x_β - x_α} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)}$ | $\left. \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = 0$ |
 
 若函数$f(x)$与函数$g(x)$在闭区间$[x_α,x_β]$上连续且导函数存在，则存在某一点$θ∈(x_α,x_β)$其导数值，等同于两端点处函数值的比值。
@@ -598,7 +598,7 @@ $\dfrac{g(x_β) - g(x_α)}{f(x_β) - f(x_α)} = \left.\dfrac{\mathrm{d} g(x)}{\m
 
 | $⇓$  | $F(x) ≡ \left|\begin{matrix} 1 & 1 & 1 \\ g(x_α) & g(x) & g(x_β) \\ f(x_α) & f(x) & f(x_β) \\ \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g(x_α) & g(x) - g(x_α) & g(x_β) - g(x_α) \\ f(x_α) & f(x) - f(x_α) & f(x_β) - f(x_α) \\ \end{matrix}\right|$ | $F(x_α) = 0 = F(x_β)$                                        |
 | :--: | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| $⇓$  | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ g(x_α) & g(x) - g(x_α) & g(x_β) - g(x_α) \\ f(x_α) & f(x) - f(x_α) & f(x_β) - f(x_α) \\ \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g(x_α) & \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} & g(x_β) - g(x_α) \\ f(x_α) & \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} & f(x_β) - f(x_α) \end{matrix}\right|$ | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = [f(x_β) - f(x_α)]  · \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} - [g(x_β) - g(x_α)] · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ |
+| $⇓$  | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = \dfrac{\mathrm{d} }{\mathrm{d} x} \left|\begin{matrix} 1 & 0 & 0 \\ g(x_α) & g(x) - g(x_α) & g(x_β) - g(x_α) \\ f(x_α) & f(x) - f(x_α) & f(x_β) - f(x_α) \\ \end{matrix}\right| = \left|\begin{matrix} 1 & 0 & 0 \\ g(x_α) & \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} & g(x_β) - g(x_α) \\ f(x_α) & \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} & f(x_β) - f(x_α) \end{matrix}\right|$ | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = [f(x_β) - f(x_α)]  · \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} - [g(x_β) - g(x_α)] · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}$ |
 | $⇓$  | $\dfrac{g(x_β) - g(x_α)}{f(x_β) - f(x_α)} = \left.\dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∃θ∈(x_α,x_β)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} x} · \dfrac{\mathrm{d} x}{\mathrm{d} f(x)} \right|_{∃θ∈(x_α,x_β)}$ | $\left. \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = 0$ |
 
 ### 导数介值定理
@@ -611,7 +611,7 @@ $\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} ⇝ \left. \
 | :--: | :----------------------------------------------------------- | :--: | ------------------------------------------------------------ |
 | $⇓$  | $\dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x_0} = \lim\limits_{x⇝x_0} \dfrac{f(x) - f(x_0)}{x - x_0} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0}$ | $⇐$  | $\left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∀x} ⇝ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{θ⇝x_0} \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ} ⇝ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0} \right]$ |
 
-反例：函数$\mathcal{W}_{2}(x) = \mathop{0}\limits_{x=0};\mathop{x^{2} · \sin \dfrac{1}{x}}\limits_{x≠0}$，在点$x_0 = 0$处连续，但其导函数在点$x_0=0$处的极限值不存在。
+反例：函数$\mathcal{W}_{2}(x) = \mathop{0}\limits_{x=0};\mathop{x^{2} · \sin \dfrac{1}{x} }\limits_{x≠0}$，在点$x_0 = 0$处连续，但其导函数在点$x_0=0$处的极限值不存在。
 
 $\dfrac{\mathrm{d} \mathcal{W}_{2}(x)}{\mathrm{d} x} = \mathop{\left[ x · \sin \dfrac{1}{x} \right]}\limits_{x=0};\mathop{\left[ 2 · x · \sin \dfrac{1}{x} - \cos \dfrac{1}{x} \right]}\limits_{x≠0}$
 
@@ -619,13 +619,13 @@ $\dfrac{\mathrm{d} \mathcal{W}_{2}(0)}{\mathrm{d} 0} = \lim\limits_{x⇝0} x · 
 
 若函数$g(x)$与函数$f(x)$在点$x_0$处的极限值均存在，且其导函数比值的极限值$\left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$存在，则在该点处其导函数比值的极限值$\dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)}$等于该极限值，反之不对。
 
-$\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \dfrac{g(x) - g(x)|_{x_0}}{f(x) - f(x)|_{x_0}} = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right]$
+$\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \dfrac{g(x) - g(x)|_{x_0} }{f(x) - f(x)|_{x_0} } = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right]$
 
 $\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} \mathop{=====}\limits_{f(x)|_{x_0} = 0}^{g(x)|_{x_0} = 0} \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} \mathop{=====}\limits_{f(x)|_{x_0} = ∞}^{g(x)|_{x_0} = ∞} \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right]$
 
-| $⇓$  | $\dfrac{g(x) - g(x)|_{x_0}}{f(x) - f(x)|_{x_0}} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∃θ∈(x_0,x)}$ | $⇐$  | $\lim\limits_{x⇝x_0} g(x) ⇝ g(x)|_{x_0}$                     |
+| $⇓$  | $\dfrac{g(x) - g(x)|_{x_0} }{f(x) - f(x)|_{x_0} } = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∃θ∈(x_0,x)}$ | $⇐$  | $\lim\limits_{x⇝x_0} g(x) ⇝ g(x)|_{x_0}$                     |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x) - g(x)|_{x_0}}{f(x) - f(x)|_{x_0}} = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ | $⇐$  | $\left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∀x} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∃θ} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right]$ |
+| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x) - g(x)|_{x_0} }{f(x) - f(x)|_{x_0} } = \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ | $⇐$  | $\left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∀x} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right] ⇒ \left[ \lim\limits_{x⇝x_0} \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{∃θ} ⇝ \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0} \right]$ |
 |      |                                                              |      |                                                              |
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} \mathop{=====}\limits_{f(x)|_{x_0} = 0}^{g(x)|_{x_0} = 0} \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)} = \left. \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} \right|_{x_0}$ |      |                                                              |
 | $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{g^{-1}(x)}{f^{-1}(x)} \mathop{=====}\limits_{f(x)|_{x_0}=∞}^{g(x)|_{x_0}=∞} \left[ \lim\limits_{x⇝x_0} \dfrac{(-1) · g^{-2}(x)}{(-1) · f^{-2}(x)} \right] · \dfrac{\mathrm{d} g(x_0)}{\mathrm{d} f(x_0)}$ |      |                                                              |
@@ -633,7 +633,7 @@ $\left[ \lim\limits_{x⇝x_0} \dfrac{\mathrm{d} g(x)}{\mathrm{d} f(x)} ⇝ \left
 
 反例：导数介值定理的前提条件不可忽略。
 
-$\left[ \lim\limits_{x⇝∞^{+}} \dfrac{2 · x - \sin x}{2 · x + \cos x} = \lim\limits_{x⇝∞^{+}} \dfrac{2 - \dfrac{\sin x}{x}}{2 + \dfrac{\cos x}{x}} \right] ⇝ 1 \not⇜ \left[ \lim\limits_{x⇝∞^{+}} \dfrac{2 - \cos x}{2 - \sin x} = \lim\limits_{x⇝∞^{+}} \dfrac{2 · x - \sin x}{2 · x + \cos x} \right]$
+$\left[ \lim\limits_{x⇝∞^{+} } \dfrac{2 · x - \sin x}{2 · x + \cos x} = \lim\limits_{x⇝∞^{+} } \dfrac{2 - \dfrac{\sin x}{x} }{2 + \dfrac{\cos x}{x} } \right] ⇝ 1 \not⇜ \left[ \lim\limits_{x⇝∞^{+} } \dfrac{2 - \cos x}{2 - \sin x} = \lim\limits_{x⇝∞^{+} } \dfrac{2 · x - \sin x}{2 · x + \cos x} \right]$
 
 典例：若函数$f(x)$在区间$X$上二阶导函数存在。
 
@@ -641,25 +641,25 @@ $\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \lim\limits_{h⇝0} \dfrac{f(x+h) +
 
 | $⇓$  | $\lim\limits_{h⇝0} \dfrac{f(x+h) + f(x-h) - 2 · f(x)}{h^2}$  |
 | :--: | :----------------------------------------------------------- |
-| $⇓$  | $= \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} [f(x+h) + f(x-h) - 2 · f(x)]}{\mathrm{d} h}}{2 · h} = \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x+h)}{\mathrm{d} (x+h)} · \dfrac{\mathrm{d} (x+h)}{\mathrm{d} h} + \dfrac{\mathrm{d} f(x-h)}{\mathrm{d}(x-h)} · \dfrac{\mathrm{d} (x-h)}{\mathrm{d} h}}{2 · h}$ |
-| $⇓$  | $= \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x+h)}{\mathrm{d} (x+h)} - \dfrac{\mathrm{d} f(x-h)}{\mathrm{d} (x-h)}}{2·h} = \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x+h)}{\mathrm{d}(x+h)} - \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}}{+2 · h} + \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x-h)}{\mathrm{d} (x-h)} - \dfrac{\mathrm{d} f(x)}{\mathrm{d} x}}{-2 · h}$ |
+| $⇓$  | $= \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} [f(x+h) + f(x-h) - 2 · f(x)]}{\mathrm{d} h} }{2 · h} = \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x+h)}{\mathrm{d} (x+h)} · \dfrac{\mathrm{d} (x+h)}{\mathrm{d} h} + \dfrac{\mathrm{d} f(x-h)}{\mathrm{d}(x-h)} · \dfrac{\mathrm{d} (x-h)}{\mathrm{d} h} }{2 · h}$ |
+| $⇓$  | $= \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x+h)}{\mathrm{d} (x+h)} - \dfrac{\mathrm{d} f(x-h)}{\mathrm{d} (x-h)} }{2·h} = \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x+h)}{\mathrm{d}(x+h)} - \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} }{+2 · h} + \lim\limits_{h⇝0} \dfrac{\dfrac{\mathrm{d} f(x-h)}{\mathrm{d} (x-h)} - \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} }{-2 · h}$ |
 | $⇓$  | $= \dfrac{\mathrm{d}^2 f(x)}{2 · \mathrm{d}^2 x} + \dfrac{\mathrm{d}^2 f(x)}{2 · \mathrm{d}^2 x} = \dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x}$ |
 
 若函数$f(x)$在区间$[x_α,x_β]$上连续且导数值存在，则对于两端点处导数值之间任意取值$t$，存在某点$θ∈(x_α,x_β)$其导数值相等。
 
-$∀t∈\left[\min\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x_α^{+}}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x_{β}^{-}} \right\rbrace, \max\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x_α^{+}}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x_β^{-}} \right\rbrace\right];∃θ∈(x_α,x_β); \dfrac{\mathrm{d} f(θ)}{\mathrm{d} x} = t$
+$∀t∈\left[\min\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x_α^{+} }, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x_{β}^{-} } \right\rbrace, \max\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x_α^{+} }, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x_β^{-} } \right\rbrace\right];∃θ∈(x_α,x_β); \dfrac{\mathrm{d} f(θ)}{\mathrm{d} x} = t$
 
 | $⇓$  | $F(x) ≡ f(x) - t · x$                                        |      | $\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} - t$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\dfrac{\mathrm{d} F(x_α^{+})}{\mathrm{d} x_α^{+}} · \dfrac{\mathrm{d} F(x_β^{-})}{\mathrm{d} x_{β^{-}}} = \left[ \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x_{α}^{+}} - t \right] · \left[ \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x_β^{-}} - t \right] ≤ 0$ | $⇐$  | $∀t∈\left[\min\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x_α^{+}}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x_β^{-}} \right\rbrace, \max\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x_α^{+}}, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x_β^{-}} \right\rbrace\right];$ |
-| $⇓$  | $\dfrac{\mathrm{d} F(x_α^{+})}{\mathrm{d} x_α^{+}} = \lim\limits_{x⇝x_α^{+}} \dfrac{F(x) - F(x_α)}{x - x_α}$ |      | $\dfrac{\mathrm{d} F(x_β^{-})}{\mathrm{d} x_β^{-}} = \lim\limits_{x⇝x_β^{-}} \dfrac{F(x) - F(x_β)}{x - x_β}$ |
+| $⇓$  | $\dfrac{\mathrm{d} F(x_α^{+})}{\mathrm{d} x_α^{+} } · \dfrac{\mathrm{d} F(x_β^{-})}{\mathrm{d} x_{β^{-} } } = \left[ \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x_{α}^{+} } - t \right] · \left[ \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x_β^{-} } - t \right] ≤ 0$ | $⇐$  | $∀t∈\left[\min\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x_α^{+} }, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x_β^{-} } \right\rbrace, \max\left\lbrace \dfrac{\mathrm{d} f(x_α^{+})}{\mathrm{d} x_α^{+} }, \dfrac{\mathrm{d} f(x_β^{-})}{\mathrm{d} x_β^{-} } \right\rbrace\right];$ |
+| $⇓$  | $\dfrac{\mathrm{d} F(x_α^{+})}{\mathrm{d} x_α^{+} } = \lim\limits_{x⇝x_α^{+} } \dfrac{F(x) - F(x_α)}{x - x_α}$ |      | $\dfrac{\mathrm{d} F(x_β^{-})}{\mathrm{d} x_β^{-} } = \lim\limits_{x⇝x_β^{-} } \dfrac{F(x) - F(x_β)}{x - x_β}$ |
 | $⇓$  | $[F(x_α) - F(x_α+Δ)] · [F(x_β-Δ) - F(x_β)] ≤ 0$              |      | $\lim\limits_{x⇝x_0}^{x_0∈[x_α,x_β]} F(x) ⇝ F(x_0)$          |
 | $⇓$  | $∃θ∈(x_α,x_β); [F(θ-Δ) - F(θ)] · [F(θ) - F(θ+Δ)] ≤ 0$        | $⇔$  | $\left[ F(θ) = \inf\limits_{x∈\mathrm{B}(θ,Δ)} F(x) \right] ∨ \left[ F(θ) = \sup\limits_{x∈\mathrm{B}(θ,Δ)} F(x) \right]$ |
 | $⇓$  | $\left. \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} - t = 0$ | $⇒$  | $\left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{∃θ∈(x_α,x_β)} = t$ |
 
-典例：不定式$\lim\limits_{x⇝∞^{+}} \left[ \sqrt[9]{x^9 + x^5} - \sqrt[9]{x^9 - x^5} \right]$的极限值。
+典例：不定式$\lim\limits_{x⇝∞^{+} } \left[ \sqrt[9]{x^9 + x^5} - \sqrt[9]{x^9 - x^5} \right]$的极限值。
 
-$\lim\limits_{x⇝∞^{+}} x · \left[ (1 + \dfrac{1}{x^4})^{\frac{1}{9}} - (1-\dfrac{1}{x^{4}})^{\frac{1}{9}} \right] = \lim\limits_{t⇝0^{+}} \dfrac{(1+t^4)^{\frac{1}{9}} - (1-t^4)^{\frac{1}{9}}}{t} = \lim\limits_{t⇝0^{+}} \left[ \dfrac{1}{9} · (1+t^4)^{-\frac{8}{9}} · 4 · t^{3} + \dfrac{1}{9} · (1 - t^4)^{-\frac{8}{9}} · 4 · t^3 \right] ⇝ 0$
+$\lim\limits_{x⇝∞^{+} } x · \left[ (1 + \dfrac{1}{x^4})^{\frac{1}{9} } - (1-\dfrac{1}{x^{4} })^{\frac{1}{9} } \right] = \lim\limits_{t⇝0^{+} } \dfrac{(1+t^4)^{\frac{1}{9} } - (1-t^4)^{\frac{1}{9} } }{t} = \lim\limits_{t⇝0^{+} } \left[ \dfrac{1}{9} · (1+t^4)^{-\frac{8}{9} } · 4 · t^{3} + \dfrac{1}{9} · (1 - t^4)^{-\frac{8}{9} } · 4 · t^3 \right] ⇝ 0$
 
 ### 幂级数
 
@@ -671,7 +671,7 @@ $\mathrm{P}_{n}(x) = \sum\limits_{i=0}^{n} \dfrac{{^i}\mathrm{P}_{n}(x_0)}{i!} �
 
 |                                                              | ${^i}\mathrm{P}_{n} (x_0) = \left. {^i}\mathrm{P}_{n}(x) \right|_{x_0}$ | $\left. {^i}\mathrm{P}_{n}(x) \right|_{x_0} = i! · p_{i}$    | $\left. {^0}\mathrm{P}_{n}(x) \right|_{x_0} = 0! · p_0$      | $\left. {^1}\mathrm{P}_{n}(x) \right|_{x_0} = 1! · p_1$      | $\left. {^2}\mathrm{P}_{n}(x_0) \right|_{x_0} = 2! · p_2$    |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| $\dfrac{\mathrm{d}^{i+1} \mathrm{P}_n(x)}{\mathrm{d}^{i+1} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} \dfrac{\mathrm{d}^{i}\mathrm{P}_n(x)}{\mathrm{d}^{i} x}$ | $\dfrac{\mathrm{d}^i \mathrm{P}_{n}(x_0)}{\mathrm{d}^{i} x_0} = \left. \dfrac{\mathrm{d}^{i}\mathrm{P}_{n}(x)}{\mathrm{d}^{i} x} \right|_{x_0}$ | $\left. \dfrac{\mathrm{d}^{i} \mathrm{P}_n (x)}{\mathrm{d}^{i} x} \right|_{x_0} = i! · p_i$ | $\left. \dfrac{\mathrm{d}^{0} \mathrm{P}_{n}(x)}{\mathrm{d}^{0} x} \right|_{x_0} = 0! · p_0$ | $\left. \dfrac{\mathrm{d}^{1} \mathrm{P}_{n}(x)}{\mathrm{d}^{1} x} \right|_{x_0} = 1! · p_1$ | $\left. \dfrac{\mathrm{d}^{2} \mathrm{P}_{n}(x)}{\mathrm{d}^2 x} \right|_{x_0} = 2! · p_2$ |
+| $\dfrac{\mathrm{d}^{i+1} \mathrm{P}_n(x)}{\mathrm{d}^{i+1} x} = \dfrac{\mathrm{d} }{\mathrm{d} x} \dfrac{\mathrm{d}^{i}\mathrm{P}_n(x)}{\mathrm{d}^{i} x}$ | $\dfrac{\mathrm{d}^i \mathrm{P}_{n}(x_0)}{\mathrm{d}^{i} x_0} = \left. \dfrac{\mathrm{d}^{i}\mathrm{P}_{n}(x)}{\mathrm{d}^{i} x} \right|_{x_0}$ | $\left. \dfrac{\mathrm{d}^{i} \mathrm{P}_n (x)}{\mathrm{d}^{i} x} \right|_{x_0} = i! · p_i$ | $\left. \dfrac{\mathrm{d}^{0} \mathrm{P}_{n}(x)}{\mathrm{d}^{0} x} \right|_{x_0} = 0! · p_0$ | $\left. \dfrac{\mathrm{d}^{1} \mathrm{P}_{n}(x)}{\mathrm{d}^{1} x} \right|_{x_0} = 1! · p_1$ | $\left. \dfrac{\mathrm{d}^{2} \mathrm{P}_{n}(x)}{\mathrm{d}^2 x} \right|_{x_0} = 2! · p_2$ |
 
 任意的函数$f(x)$在点$x_0$处连续，若有$n+1$阶导数值则在点$x_0$处可唯一展开成$n$阶幂级数。
 
@@ -679,16 +679,16 @@ $f(x) = \sum\limits_{i=0}^{n} \dfrac{{^i}f(x_0)}{i!} · (x - x_0)^{i} + R_{n}(x)
 
 $f(x) = \sum\limits_{i=0}^{n} \dfrac{\mathrm{d}^{i} f(x_0)}{1! · \mathrm{d}^{i} x_0} · (x - x_0)^{i} + R_{n}(x) = f(x_0) + \dfrac{\mathrm{d}^{1} f(x_0)}{1! · \mathrm{d}^1 x_0} · (x - x_0)^{1} + \dfrac{\mathrm{d}^{2} f(x_0)}{2! · \mathrm{d}^2 x_0} · (x - x_0)^{2} + ... + \dfrac{\mathrm{d}^{n} f(x_0)}{n! · \mathrm{d}^{n} x_0} · (x - x_0)^{n} + \mathrm{R}_{n}(x)$
 
-$\mathrm{R}_{n}(x) = o(x - x_0)^{n} = f(x) - f(x_0) - \sum\limits_{i=1}^{n} \dfrac{{^i}f(x_0)}{i!} · (x - x_0)^{i} \mathop{====}\limits^{∃θ∈(x_0, x)} \dfrac{{^{n+1}} f(θ)}{(n + 1)!} · (x - x_0)^{n+1} \mathop{====}\limits^{∃θ∈(x_0, x)} \dfrac{{^{n+1}} f(θ)}{n!} · (x - θ)^{n} · (x - x_0)^{1} \mathop{====}\limits^{∃θ∈(x_0, x)} \int_{x_0}^{x} \dfrac{{^{n+1}} f(t)}{n!} · (x - t)^{n} \mathrm{d} t$
+$\mathrm{R}_{n}(x) = o(x - x_0)^{n} = f(x) - f(x_0) - \sum\limits_{i=1}^{n} \dfrac{{^i}f(x_0)}{i!} · (x - x_0)^{i} \mathop{====}\limits^{∃θ∈(x_0, x)} \dfrac{{^{n+1} } f(θ)}{(n + 1)!} · (x - x_0)^{n+1} \mathop{====}\limits^{∃θ∈(x_0, x)} \dfrac{{^{n+1} } f(θ)}{n!} · (x - θ)^{n} · (x - x_0)^{1} \mathop{====}\limits^{∃θ∈(x_0, x)} \int_{x_0}^{x} \dfrac{{^{n+1} } f(t)}{n!} · (x - t)^{n} \mathrm{d} t$
 
 | $⇓$  | ${^m}\mathrm{R}_n(x) \mathop{====}\limits_{0≤m≤n} {^m}f(x) - {^m}f(x_0) - \sum\limits_{i=m+1}^{n} \dfrac{{^i}f(x_0)}{i!} · (x - x_0)^{i-m} · \dfrac{i!}{(i-m)!} = {^m}f(x) - {^m}f(x_0) - \sum\limits_{i=m+1}^{n} \dfrac{{^i}f(x_0)}{(i - m)!} · (x - x_0)^{i-m}$ | $⇒$  | $\lim\limits_{x⇝x_0} {^m}\mathrm{R}_n(x) ⇝ 0$ |
 | :--: | :----------------------------------------------------------- | :--: | :-------------------------------------------- |
-| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{\mathrm{R}_{n}(x)}{(x - x_0)^{n}} = \lim\limits_{x⇝x_0} \dfrac{(n - m)!}{n!} · \dfrac{{^m}\mathrm{R}_n(x)}{(x - x_0)^{n-m}} = \ldots = \lim\limits_{x⇝x_0}\dfrac{1!}{n!} · \dfrac{^{n-1}\mathrm{R}_n(x)}{(x - x_0)^1} = \lim\limits_{x⇝x_0} \dfrac{0!}{n!} · \dfrac{{^n}\mathrm{R}_n(x)}{(x - x_0)^{0}} ⇝ 0$ | $⇒$  | $\mathrm{R}_n(x) = o(x - x_0)^n$              |
+| $⇓$  | $\lim\limits_{x⇝x_0} \dfrac{\mathrm{R}_{n}(x)}{(x - x_0)^{n} } = \lim\limits_{x⇝x_0} \dfrac{(n - m)!}{n!} · \dfrac{{^m}\mathrm{R}_n(x)}{(x - x_0)^{n-m} } = \ldots = \lim\limits_{x⇝x_0}\dfrac{1!}{n!} · \dfrac{^{n-1}\mathrm{R}_n(x)}{(x - x_0)^1} = \lim\limits_{x⇝x_0} \dfrac{0!}{n!} · \dfrac{{^n}\mathrm{R}_n(x)}{(x - x_0)^{0} } ⇝ 0$ | $⇒$  | $\mathrm{R}_n(x) = o(x - x_0)^n$              |
 
 | $⇓$  | $F (t) ≡ \sum\limits_{i=0}^n \dfrac{ {^i} f (t)}{i!} · (x - t)^i$ | $⇒$  | $\mathrm{R}_n (x) = F (x) - F (x_0)$                         |                                                       |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- | :---------------------------------------------------- |
 | $⇓$  | ${^1} F (t) = \sum\limits_{i=0}^n \left[ \dfrac{ {^{i+1} } f (t)}{i!} · (x - t)^i - \dfrac{ {^i} f (t)}{i!} · i · (x - t)^{i-1} \right]$ |      |                                                              |                                                       |
-| $⇓$  | $^{1}F(t) = \sum\limits_{i=1}^{n+1} \dfrac{{^i}f(t)}{(i - 1)!} · (x - t)^{i-1} - \sum\limits_{i=1}^{n} \dfrac{{^i}f(t)}{(i-1)!} · (x - t)^{i-1} = \dfrac{{^{n+1}}f(t)}{n!} · (x - t)^{n}$ |      |                                                              |                                                       |
+| $⇓$  | $^{1}F(t) = \sum\limits_{i=1}^{n+1} \dfrac{{^i}f(t)}{(i - 1)!} · (x - t)^{i-1} - \sum\limits_{i=1}^{n} \dfrac{{^i}f(t)}{(i-1)!} · (x - t)^{i-1} = \dfrac{{^{n+1} }f(t)}{n!} · (x - t)^{n}$ |      |                                                              |                                                       |
 | $⇓$  | $\dfrac{R_n (x)}{G (x) - G (x_0)} = \dfrac{F (x) - F (x_0)}{G (x) - G (x_0)} = \left.\dfrac{ {^1} F (t)}{ {^1} G (t)}\right|_{∃θ∈(x_0, x)} = \dfrac{ {^{n+1} } f (θ)}{n!} · \dfrac{(x - θ)^n}{ {^1} G (θ)} $ |      |                                                              |                                                       |
 | $⇓$  | $\mathrm{R}_n (x) \mathop{====}\limits^{∃θ∈(x_0, x)} \dfrac{ {^{n+1} } f (θ)}{n!} · \dfrac{(x - θ)^n}{ {^1} G (θ)} · [G (x) - G (x_0)]$ |      |                                                              |                                                       |
 | $⇓$  | $\mathrm{R}_n (x) \mathop{====}\limits^{∃θ∈(x_0, x)} \dfrac{ {^{n+1}f (θ)} }{(n + 1)!} · (x - x_0)^{n + 1}$ | $⇐$  | $G (t) ≡ (x - t)^{n + 1}$                                    | ${^1}G (t) = -(n + 1) · (x - t)^n$                    |
@@ -706,7 +706,7 @@ $\dfrac{\mathrm{d}^2 f(x)}{\mathrm{d}^2 x} = \lim\limits_{h⇝0} \dfrac{f(x+h) +
 
 典例：函数$g(x)$与函数$f(x)$之比的极限值。
 
-$\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} \mathop{======}\limits_{{^h}f(x_0)\mathop{==}\limits^{h<n}0}^{{^h}g(x_0)\mathop{==}\limits^{h<m}0} \lim\limits_{x⇝x_0} \dfrac{\dfrac{{^m}g(x_0)}{m!}·(x - x_0)^{m} + o(x-x_0)^{m}}{\dfrac{{^n}f(x_0)}{n!}·(x - x_0)^{n} + o(x-x_0)^{n}} = \lim\limits_{x⇝x_0} (x - x_0)^{m-n} · \dfrac{\dfrac{{^m}g(x_0)}{m!} + \dfrac{o(x - x_0)^m}{(x - x_0)^m}}{\dfrac{{^n}f(x_0)}{n!} + \dfrac{o(x - x_0)^n}{(x - x_0)^n}} ⇝ \mathop{0}\limits_{m>n};\mathop{\dfrac{{^n}g(x_0)}{{^n}f(x_0)}}\limits_{m=n};\mathop{∞}\limits_{m<n}$
+$\lim\limits_{x⇝x_0} \dfrac{g(x)}{f(x)} \mathop{======}\limits_{{^h}f(x_0)\mathop{==}\limits^{h<n}0}^{{^h}g(x_0)\mathop{==}\limits^{h<m}0} \lim\limits_{x⇝x_0} \dfrac{\dfrac{{^m}g(x_0)}{m!}·(x - x_0)^{m} + o(x-x_0)^{m} }{\dfrac{{^n}f(x_0)}{n!}·(x - x_0)^{n} + o(x-x_0)^{n} } = \lim\limits_{x⇝x_0} (x - x_0)^{m-n} · \dfrac{\dfrac{{^m}g(x_0)}{m!} + \dfrac{o(x - x_0)^m}{(x - x_0)^m} }{\dfrac{{^n}f(x_0)}{n!} + \dfrac{o(x - x_0)^n}{(x - x_0)^n} } ⇝ \mathop{0}\limits_{m>n};\mathop{\dfrac{{^n}g(x_0)}{{^n}f(x_0)} }\limits_{m=n};\mathop{∞}\limits_{m<n}$
 
 典例：函数$f(x) = x^{n+1} · \mathcal{Q}(x)$在点$x_0=0$处连续但仅有一阶导数值，因此在点$x_0=0$处可唯一展开成$1$阶幂级数。
 
@@ -729,13 +729,13 @@ $\tan x = 1·x^1 + \dfrac{1}{3}·x^3 + \dfrac{2}{15}·x^5 + o(x^5)$
 
 典例：数列$s_n = \left(1 + \dfrac{0}{n^2}\right) · \left(1 + \dfrac{1}{n^2}\right) ··· \left(1 + \dfrac{n}{n^2}\right)$的极限值。
 
-$\lim\limits_{n⇝∞^{+}} s_n = \lim\limits_{n⇝∞^{+}} \left(1 + \dfrac{0}{n^2}\right) · \left(1 + \dfrac{1}{n^2}\right) ··· \left(1 + \dfrac{n}{n^2}\right) ⇝ ә^{\frac{1}{2}}$
+$\lim\limits_{n⇝∞^{+} } s_n = \lim\limits_{n⇝∞^{+} } \left(1 + \dfrac{0}{n^2}\right) · \left(1 + \dfrac{1}{n^2}\right) ··· \left(1 + \dfrac{n}{n^2}\right) ⇝ ә^{\frac{1}{2} }$
 
-| $⇓$  | $x - \dfrac{x^2}{2} < \ln(1 + x) < x$                        | $⇐$  | $\ln(1+x) = \sum\limits_{i=\rlap{≡}{0,}1}^{∞^{+}} \dfrac{(-1)^{i-1}}{i} · x^i$ |
+| $⇓$  | $x - \dfrac{x^2}{2} < \ln(1 + x) < x$                        | $⇐$  | $\ln(1+x) = \sum\limits_{i=\rlap{≡}{0,}1}^{∞^{+} } \dfrac{(-1)^{i-1} }{i} · x^i$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $⇓$  | $\sum\limits_{i=0}^{n} \dfrac{i}{n^2} - \sum\limits_{i=0}^{n} \dfrac{i^2}{2·n^{4}} < \sum\limits_{i=0}^{n} \ln\left(1 + \dfrac{i}{n^2}\right) < \sum\limits_{i=0}^{n} \dfrac{i}{n^2}$ | $⇐$  | $x = \dfrac{i}{n^2}$                                         |
-| $⇓$  | $\dfrac{1}{n^2} · \left[ \dfrac{(n+1)^2}{2} - \dfrac{(n+1)^1}{2} \right] - \dfrac{1}{2·n^4} · \left[ \dfrac{(n+1)^3}{3} - \dfrac{(n+1)^2}{2} + \dfrac{(n+1)^1}{6} \right] < \ln s_n < \dfrac{1}{n^2} · \left[ \dfrac{(n+1)^2}{2} - \dfrac{(n+1)^1}{2} \right]$ | $⇐$  | $\sum\limits_{j=0}^{m} j^{1} = \dfrac{(m + 1)^{2}}{2} - \dfrac{(m + 1)^{1}}{2}$ |
-| $⇓$  | $\lim\limits_{n⇝∞^{+}} s_n = \lim\limits_{n⇝∞^{+}} \left(1 + \dfrac{0}{n^2}\right) · \left(1 + \dfrac{1}{n^2}\right) ··· \left(1 + \dfrac{n}{n^2}\right) ⇝ ә^{\frac{1}{2}}$ | $⇐$  | $\sum\limits_{j=0}^{m} j^{2} = \dfrac{(m + 1)^3}{3} - \dfrac{(m + 1)^{2}}{2} + \dfrac{(m + 1)^{1}}{6}$ |
+| $⇓$  | $\sum\limits_{i=0}^{n} \dfrac{i}{n^2} - \sum\limits_{i=0}^{n} \dfrac{i^2}{2·n^{4} } < \sum\limits_{i=0}^{n} \ln\left(1 + \dfrac{i}{n^2}\right) < \sum\limits_{i=0}^{n} \dfrac{i}{n^2}$ | $⇐$  | $x = \dfrac{i}{n^2}$                                         |
+| $⇓$  | $\dfrac{1}{n^2} · \left[ \dfrac{(n+1)^2}{2} - \dfrac{(n+1)^1}{2} \right] - \dfrac{1}{2·n^4} · \left[ \dfrac{(n+1)^3}{3} - \dfrac{(n+1)^2}{2} + \dfrac{(n+1)^1}{6} \right] < \ln s_n < \dfrac{1}{n^2} · \left[ \dfrac{(n+1)^2}{2} - \dfrac{(n+1)^1}{2} \right]$ | $⇐$  | $\sum\limits_{j=0}^{m} j^{1} = \dfrac{(m + 1)^{2} }{2} - \dfrac{(m + 1)^{1} }{2}$ |
+| $⇓$  | $\lim\limits_{n⇝∞^{+} } s_n = \lim\limits_{n⇝∞^{+} } \left(1 + \dfrac{0}{n^2}\right) · \left(1 + \dfrac{1}{n^2}\right) ··· \left(1 + \dfrac{n}{n^2}\right) ⇝ ә^{\frac{1}{2} }$ | $⇐$  | $\sum\limits_{j=0}^{m} j^{2} = \dfrac{(m + 1)^3}{3} - \dfrac{(m + 1)^{2} }{2} + \dfrac{(m + 1)^{1} }{6}$ |
 
 ### 原函数
 
@@ -743,9 +743,9 @@ $\lim\limits_{n⇝∞^{+}} s_n = \lim\limits_{n⇝∞^{+}} \left(1 + \dfrac{0}{n
 
 若函数$f(x)$存在原函数$F(x)$，则对函数$f(x)$作不定积分可得到函数$F(x)$的函数族$\lbrace \tilde{F}(x) \rbrace$。函数族$\lbrace \tilde{F}(x) \rbrace$中任意两个原函数$F_1(x)$与$F_2(x)$仅相差一个常数。
 
-从几何上来看，函数$f(x)$的原函数族$\lbrace \tilde{F}(x) \rbrace$形成一系列沿纵坐标轴平移的曲线族，且曲线族在横坐标相同点处切线的斜率$\dfrac{\mathrm{d}}{\mathrm{d} x} [F(x) + \mathrm{Con}]$即为函数$f(x)$。
+从几何上来看，函数$f(x)$的原函数族$\lbrace \tilde{F}(x) \rbrace$形成一系列沿纵坐标轴平移的曲线族，且曲线族在横坐标相同点处切线的斜率$\dfrac{\mathrm{d} }{\mathrm{d} x} [F(x) + \mathrm{Con}]$即为函数$f(x)$。
 
-$\left[ f(x) = \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = \dfrac{\mathrm{d}}{\mathrm{d} x} [F(x) + \mathrm{Con}] \right] ⇔ \left[ \int f(x) \mathrm{d}x = \int \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} \mathrm{d} x = F(x) + \mathrm{Con} \right]$
+$\left[ f(x) = \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = \dfrac{\mathrm{d} }{\mathrm{d} x} [F(x) + \mathrm{Con}] \right] ⇔ \left[ \int f(x) \mathrm{d}x = \int \dfrac{\mathrm{d} F(x)}{\mathrm{d} x} \mathrm{d} x = F(x) + \mathrm{Con} \right]$
 
 若函数$f(x)$的原函数$F(x)$满足特定的初始条件，则可唯一确定此原函数$F(x)$。
 
@@ -771,9 +771,9 @@ $\int [f(x) - g(x)] \mathrm{d}x = \int f(x) \mathrm{d} x - \int g(x) \mathrm{d} 
 
 |                                                              |      |                                                              |
 | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} [\int \mathrm{Con} · f(x) \mathrm{d} x] = \mathrm{Con} · f(x)$ | $=$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} [\mathrm{Con} · \int f(x) \mathrm{d} x] = \mathrm{Con} · \dfrac{\mathrm{d}}{\mathrm{d}x} [\int f(x) \mathrm{d} x] = \mathrm{Con} · f(x)$ |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} \int [f(x) + g(x)]\mathrm{d}x = f(x) + g(x)$ | $=$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} \left[ \int f(x) \mathrm{d} x + \int g(x) \mathrm{d} x \right] = \dfrac{\mathrm{d}}{\mathrm{d} x} \int f(x) \mathrm{d}x + \dfrac{\mathrm{d}}{\mathrm{d} x} \int g(x) \mathrm{d} x = f(x) + g(x)$ |
-| $\dfrac{\mathrm{d}}{\mathrm{d} x} \int [f(x) - g(x)]\mathrm{d}x = f(x) - g(x)$ | $=$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} \left[ \int f(x) \mathrm{d} x - \int g(x) \mathrm{d} x \right] = \dfrac{\mathrm{d}}{\mathrm{d} x} \int f(x) \mathrm{d}x - \dfrac{\mathrm{d}}{\mathrm{d} x} \int g(x) \mathrm{d} x = f(x) - g(x)$ |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x} [\int \mathrm{Con} · f(x) \mathrm{d} x] = \mathrm{Con} · f(x)$ | $=$  | $\dfrac{\mathrm{d} }{\mathrm{d} x} [\mathrm{Con} · \int f(x) \mathrm{d} x] = \mathrm{Con} · \dfrac{\mathrm{d} }{\mathrm{d}x} [\int f(x) \mathrm{d} x] = \mathrm{Con} · f(x)$ |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x} \int [f(x) + g(x)]\mathrm{d}x = f(x) + g(x)$ | $=$  | $\dfrac{\mathrm{d} }{\mathrm{d} x} \left[ \int f(x) \mathrm{d} x + \int g(x) \mathrm{d} x \right] = \dfrac{\mathrm{d} }{\mathrm{d} x} \int f(x) \mathrm{d}x + \dfrac{\mathrm{d} }{\mathrm{d} x} \int g(x) \mathrm{d} x = f(x) + g(x)$ |
+| $\dfrac{\mathrm{d} }{\mathrm{d} x} \int [f(x) - g(x)]\mathrm{d}x = f(x) - g(x)$ | $=$  | $\dfrac{\mathrm{d} }{\mathrm{d} x} \left[ \int f(x) \mathrm{d} x - \int g(x) \mathrm{d} x \right] = \dfrac{\mathrm{d} }{\mathrm{d} x} \int f(x) \mathrm{d}x - \dfrac{\mathrm{d} }{\mathrm{d} x} \int g(x) \mathrm{d} x = f(x) - g(x)$ |
 
 对于任意函数$f(x)$，未必都存在原函数$F(x)$，使得$\dfrac{\mathrm{d} F(x)}{\mathrm{d} x} = f(x)$。
 
@@ -783,9 +783,9 @@ $\int [f(x) - g(x)] \mathrm{d}x = \int f(x) \mathrm{d} x - \int g(x) \mathrm{d} 
 
 若函数$f(x)$在区间$X$上含有跳跃间断点，则函数$f(x)$不存在原函数$F(x)$，使得$\dfrac{\mathrm{d}F(x)}{\mathrm{d}x} = f(x)$。$¬Q⇒¬P$
 
-| $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x_0^{-}} = \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x_0} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x_0^{+}}$ | 假设在点$x_0$处导数值存在 |
+| $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x_0^{-} } = \dfrac{\mathrm{d} f(x_0)}{\mathrm{d} x_0} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x_0^{+} }$ | 假设在点$x_0$处导数值存在 |
 | :--: | :----------------------------------------------------------- | :------------------------ |
-| $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x_0^{-}} = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{-}} ≠ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{+}} = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x_0^{+}}$ | $\mathrm{False}$          |
+| $⇓$  | $\dfrac{\mathrm{d} f(x_0^{-})}{\mathrm{d} x_0^{-} } = \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{-} } ≠ \left. \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} \right|_{x_0^{+} } = \dfrac{\mathrm{d} f(x_0^{+})}{\mathrm{d} x_0^{+} }$ | $\mathrm{False}$          |
 
 ### 定积分
 
@@ -827,7 +827,7 @@ $\sum\limits_{j=0}^{n+m} \left[ \sup\limits_{x∈[x_j,x_{j+1}]} f(x) - \inf\limi
 
 若函数$f(x)$在区间$[x_α,x_β]$上的定积分存在，则其振幅积和的极限为零，反之亦然。
 
-$\int\limits_{x_α}^{x_β} f(x) · \mathrm{d}x \mathop{≡≡≡≡}\limits_{x_{α}=x_0}^{x_{β}=x_{n+1}} \lim\limits_{n⇝∞^{+}}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i,x_{i+1}]} f(x) · Δx_i = \lim\limits_{n⇝∞^+}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f(θ_i) · Δx_i = \lim\limits_{n⇝∞^{+}}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i,x_{i+1}]} f(x) · Δx_i$
+$\int\limits_{x_α}^{x_β} f(x) · \mathrm{d}x \mathop{≡≡≡≡}\limits_{x_{α}=x_0}^{x_{β}=x_{n+1} } \lim\limits_{n⇝∞^{+} }^{Δx_i⇝0} \sum\limits_{i=0}^{n} \inf\limits_{x∈[x_i,x_{i+1}]} f(x) · Δx_i = \lim\limits_{n⇝∞^+}^{Δx_i⇝0} \sum\limits_{i=0}^{n} f(θ_i) · Δx_i = \lim\limits_{n⇝∞^{+} }^{Δx_i⇝0} \sum\limits_{i=0}^{n} \sup\limits_{x∈[x_i,x_{i+1}]} f(x) · Δx_i$
 
 $0 ⇜ \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^n w_i · Δx_i ≡ \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^n \sup\limits_{u,v∈[x_{i}, x_{i+1}]} | f (u) - f (v) | · Δx_i = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{n} \left[ \sup\limits_{x∈[x_{i},x_{i+1}]} f (x) - \inf\limits_{x∈[x_i,x_{i+1}]} f (x) \right] · Δx_i$
 
@@ -995,17 +995,17 @@ $\left[ \int\limits_{x_α}^{x_β} f(x) · \mathrm{d} x = \lim\limits_{n⇝∞^+}
 
 若函数$f(x)$在区间$[x_α,x_β]$上连续，则其变上限积分$\mathrm{U}(x)$为函数$f(x)$的原函数，且同理其变下限积分$\mathrm{L}(x)$为函数$f(x)$的原函数。
 
-$\dfrac{\mathrm{d}}{\mathrm{d} x} \int\limits_{x_α}^{x} f(x) · \mathrm{d} x = \dfrac{\mathrm{d} \mathrm{U}(x)}{\mathrm{d}x} = f(x)$
+$\dfrac{\mathrm{d} }{\mathrm{d} x} \int\limits_{x_α}^{x} f(x) · \mathrm{d} x = \dfrac{\mathrm{d} \mathrm{U}(x)}{\mathrm{d}x} = f(x)$
 
-$\dfrac{\mathrm{d}}{\mathrm{d}x} \int\limits_{v(x)}^{u(x)} f(x) ·\mathrm{d}x = \dfrac{\mathrm{d} \mathrm{U}(u(x))}{\mathrm{d} x} - \dfrac{\mathrm{d}\mathrm{U}(v(x))}{\mathrm{d}x} = f(u(x)) · {^1}u(x) - f(v(x)) · {^1} v(x)$
+$\dfrac{\mathrm{d} }{\mathrm{d}x} \int\limits_{v(x)}^{u(x)} f(x) ·\mathrm{d}x = \dfrac{\mathrm{d} \mathrm{U}(u(x))}{\mathrm{d} x} - \dfrac{\mathrm{d}\mathrm{U}(v(x))}{\mathrm{d}x} = f(u(x)) · {^1}u(x) - f(v(x)) · {^1} v(x)$
 
 | $⇓$  | $∀x_0∈[x_α,x_β];∀ε>0;∃δ>0;∀x_t∈[x_α,x_β]; |x_t - x_0| ≤ δ ⇒ |f(x_t) - f(x_0)| ≤ε$ |
 | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\left| \dfrac{\mathrm{U}(x_t) - \mathrm{U}(x_0)}{x_t - x_0} - f(x_0) \right| = \left| \dfrac{\int\limits_{x_α}^{x_t} f(x) · \mathrm{d}x - \int\limits_{x_α}^{x_0} f(x)·\mathrm{d}x}{x_t - x_0} - f(x_0) \right| = \left| \dfrac{\int\limits_{x_0}^{x_t} f(x)·\mathrm{d}x - \int\limits_{x_0}^{x_t} f(x_0)·\mathrm{d}x}{x_t - x_0} \right| ≤ \left| \dfrac{\int\limits_{x_0}^{x_t} |f(x)-f(x_0)|·\mathrm{d}x}{x_t - x_0} \right| ≤ \dfrac{ε·\left|\int\limits_{x_0}^{x_t} \mathrm{d}x \right|}{|x_t - x_0|} = ε$ |
-| $⇓$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} \int\limits_{x_α}^{x} f(x) · \mathrm{d} x = \dfrac{\mathrm{d} \mathrm{U}(x)}{\mathrm{d}x} = f(x)$ |
+| $⇓$  | $\dfrac{\mathrm{d} }{\mathrm{d} x} \int\limits_{x_α}^{x} f(x) · \mathrm{d} x = \dfrac{\mathrm{d} \mathrm{U}(x)}{\mathrm{d}x} = f(x)$ |
 |      |                                                              |
 | $⇓$  | $\int\limits_{v(x)}^{u(x)} f(x) ·\mathrm{d}x = \int\limits_{x_γ}^{u(x)} f(x) · \mathrm{d}x + \int\limits_{v(x)}^{x_γ} f(x) · \mathrm{d}x = \int\limits_{x_γ}^{u(x)} f(x) · \mathrm{d} x - \int\limits_{x_γ}^{v(x)} f(x) · \mathrm{d} x = \mathrm{U}(u(x)) - \mathrm{U}(v(x))$ |
-| $⇓$  | $\dfrac{\mathrm{d}}{\mathrm{d}x} \int\limits_{v(x)}^{u(x)} f(x) ·\mathrm{d}x = \dfrac{\mathrm{d} \mathrm{U}(u(x))}{\mathrm{d} x} - \dfrac{\mathrm{d}\mathrm{U}(v(x))}{\mathrm{d}x} = \dfrac{\mathrm{d}\mathrm{U}(u)}{\mathrm{d}u} · \dfrac{\mathrm{d}u(x)}{\mathrm{d}x} - \dfrac{\mathrm{d}\mathrm{U}(v)}{\mathrm{d}v} ·\dfrac{\mathrm{d}v(x)}{\mathrm{d}x} = f(u(x)) · {^1}u(x) - f(v(x)) · {^1} v(x)$ |
+| $⇓$  | $\dfrac{\mathrm{d} }{\mathrm{d}x} \int\limits_{v(x)}^{u(x)} f(x) ·\mathrm{d}x = \dfrac{\mathrm{d} \mathrm{U}(u(x))}{\mathrm{d} x} - \dfrac{\mathrm{d}\mathrm{U}(v(x))}{\mathrm{d}x} = \dfrac{\mathrm{d}\mathrm{U}(u)}{\mathrm{d}u} · \dfrac{\mathrm{d}u(x)}{\mathrm{d}x} - \dfrac{\mathrm{d}\mathrm{U}(v)}{\mathrm{d}v} ·\dfrac{\mathrm{d}v(x)}{\mathrm{d}x} = f(u(x)) · {^1}u(x) - f(v(x)) · {^1} v(x)$ |
 
 若函数$f(x)$在区间$[x_α,x_β]$上连续，则其在区间$[x_α,x_β]$上的定积分为其任意原函数在该两端点处的差值。【微积分基本定理】
 
@@ -1019,9 +1019,9 @@ $\int\limits_{x_α}^{x_β} f(x) · \mathrm{d}x = F(x_β) - F(x_α) = \left. F(x)
 
 $\left[ \int\limits_{x_α}^{x_β} \sin x · \mathrm{d} x = [-\cos x]_{x_α}^{x_β} \right] ⇒ \left[ \int\limits_{0}^{π} \sin x · \mathrm{d}x = [-\cos x]_{0}^{π} = 2 \right]$
 
-典例：计算极限值$\lim\limits_{n⇝∞^{+}} \dfrac{1^{p}+2^{p}+···+n^{p}}{n^{p+1}}$。
+典例：计算极限值$\lim\limits_{n⇝∞^{+} } \dfrac{1^{p}+2^{p}+···+n^{p} }{n^{p+1} }$。
 
-$\lim\limits_{n⇝∞^{+}} \dfrac{1^{p}+2^{p}+···+n^{p}}{n^{p+1}} = \lim\limits_{n⇝∞^{+}} \left[ \left(\dfrac{1}{n}\right)^{p} + \left( \dfrac{2}{n} \right)^{p} + ··· + \left( \dfrac{n}{n} \right)^{p} \right] · \dfrac{1}{n} \mathop{===}\limits^{p>-1} \int\limits_{0}^{1} x^{p} · \mathrm{d} x = \left[ \dfrac{x^{p+1}}{p+1} \right]_{0}^{1} = \dfrac{1}{p + 1}$
+$\lim\limits_{n⇝∞^{+} } \dfrac{1^{p}+2^{p}+···+n^{p} }{n^{p+1} } = \lim\limits_{n⇝∞^{+} } \left[ \left(\dfrac{1}{n}\right)^{p} + \left( \dfrac{2}{n} \right)^{p} + ··· + \left( \dfrac{n}{n} \right)^{p} \right] · \dfrac{1}{n} \mathop{===}\limits^{p>-1} \int\limits_{0}^{1} x^{p} · \mathrm{d} x = \left[ \dfrac{x^{p+1} }{p+1} \right]_{0}^{1} = \dfrac{1}{p + 1}$
 
 换元积分法。
 
@@ -1036,19 +1036,19 @@ $\int\limits_{x_α}^{x_β} u(x) ·{^1}v(x) · \mathrm{d}x = [u(x)·v(x)]_{x_α}^
 | $⇓$  | $\int\limits_{x_α}^{x_β} g(f(x)) · {^1}f(x) · \mathrm{d} x = \int\limits_{x_α}^{x_β} g(f(x)) · \dfrac{\mathrm{d} f(x)}{\mathrm{d} x} · \mathrm{d}x = \int\limits_{x_α}^{x_β} g(f(x)) · \mathrm{d} f(x) \mathop{====}\limits_{t_α=f(x_α)}^{t_β=f(x_β)} \int\limits_{t_α}^{t_β} g(t) · \mathrm{d} t$ |      |                                                              |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 |      |                                                              |      |                                                              |
-| $⇓$  | $\mathrm{d}[u(x) · v(x)] = u(x) · \mathrm{d} v(x) + v(x) · \mathrm{d} u(x)$ | $⇔$  | $\dfrac{\mathrm{d}}{\mathrm{d} x} [u(x) · v(x)] = \dfrac{\mathrm{d} u(x)}{\mathrm{d} x} · v(x) + u(x) · \dfrac{\mathrm{d} v(x)}{\mathrm{d} x}$ |
+| $⇓$  | $\mathrm{d}[u(x) · v(x)] = u(x) · \mathrm{d} v(x) + v(x) · \mathrm{d} u(x)$ | $⇔$  | $\dfrac{\mathrm{d} }{\mathrm{d} x} [u(x) · v(x)] = \dfrac{\mathrm{d} u(x)}{\mathrm{d} x} · v(x) + u(x) · \dfrac{\mathrm{d} v(x)}{\mathrm{d} x}$ |
 | $⇓$  | $[u(x) · v(x)]_{x_α}^{x_β} = \int\limits_{x_α}^{x_β} \mathrm{d}[u(x) · v(x)] = \int\limits_{x_α}^{x_β} u(x) · \mathrm{d} v(x) + \int\limits_{x_α}^{x_β} v(x) · \mathrm{d} u(x)$ |      |                                                              |
 | $⇓$  | $\int\limits_{x_α}^{x_β} u(x) · \mathrm{d}v(x) = [u(x)·v(x)]_{x_α}^{x_β} - \int\limits_{x_α}^{x_β} v(x) ·\mathrm{d} u(x)$ |      |                                                              |
 | $⇓$  | $\int\limits_{x_α}^{x_β} u(x) ·{^1}v(x) · \mathrm{d}x = [u(x)·v(x)]_{x_α}^{x_β} - \int\limits_{x_α}^{x_β} {^1}u(x) · v(x) · \mathrm{d} x$ |      |                                                              |
 
 分部积分法的升降幂型式。
 
-$\int\limits_{x_α}^{x_β} {^0}u(x) · {^{n+1}}v(x) · \mathrm{d}x = \left[ \sum\limits_{i=0}^{n} (-1)^{n} ·{^i}u(x) ·{^{n-i}}v(x) \right]_{x_α}^{x_β} + (-1)^{n+1} \int\limits_{x_α}^{x_β} {^{n+1}}u(x) · {^0}v(x) ·\mathrm{d}x$
+$\int\limits_{x_α}^{x_β} {^0}u(x) · {^{n+1} }v(x) · \mathrm{d}x = \left[ \sum\limits_{i=0}^{n} (-1)^{n} ·{^i}u(x) ·{^{n-i} }v(x) \right]_{x_α}^{x_β} + (-1)^{n+1} \int\limits_{x_α}^{x_β} {^{n+1} }u(x) · {^0}v(x) ·\mathrm{d}x$
 
-| $\int\limits_{x_α}^{x_β} {^0}u(x) · {^{n+1}}v(x) · \mathrm{d}x$ | $= \left[ {^0}u(x)·{^n}v(x) \right]_{x_α}^{x_β} - \int_{x_α}^{x_β} {^1}u(x) ·{^n}v(x) · \mathrm{d} x$ |
+| $\int\limits_{x_α}^{x_β} {^0}u(x) · {^{n+1} }v(x) · \mathrm{d}x$ | $= \left[ {^0}u(x)·{^n}v(x) \right]_{x_α}^{x_β} - \int_{x_α}^{x_β} {^1}u(x) ·{^n}v(x) · \mathrm{d} x$ |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-|                                                              | $= \left[ ^{0}u(x)·{^n}v(x) - {^1}u(x) · {^{n-1}}v(x) \right]_{x_α}^{x_β} + \int\limits_{x_α}^{x_β} {^2}u(x) ·{^{n-1}}v(x) ·\mathrm{d} x$ |
-|                                                              | $= \left[ \sum\limits_{i=0}^{n} (-1)^{n} ·{^i}u(x) ·{^{n-i}}v(x) \right]_{x_α}^{x_β} + (-1)^{n+1} \int\limits_{x_α}^{x_β} {^{n+1}}u(x) · {^0}v(x) ·\mathrm{d}x$ |
+|                                                              | $= \left[ ^{0}u(x)·{^n}v(x) - {^1}u(x) · {^{n-1} }v(x) \right]_{x_α}^{x_β} + \int\limits_{x_α}^{x_β} {^2}u(x) ·{^{n-1} }v(x) ·\mathrm{d} x$ |
+|                                                              | $= \left[ \sum\limits_{i=0}^{n} (-1)^{n} ·{^i}u(x) ·{^{n-i} }v(x) \right]_{x_α}^{x_β} + (-1)^{n+1} \int\limits_{x_α}^{x_β} {^{n+1} }u(x) · {^0}v(x) ·\mathrm{d}x$ |
 
 典例：应用换元积分法，计算$\int \tan x · \mathrm{d}x$。
 
@@ -1058,9 +1058,9 @@ $\int_x \tan x · \mathrm{d}x = \int_x \dfrac{\sin x}{\cos x} · \mathrm{d}x = \
 
 $\int_x \dfrac{1}{x^2 - a^2} · \mathrm{d}x = \dfrac{1}{2 · a} · \int_x \left[ \dfrac{1}{x - a} - \dfrac{1}{x + a} \right] \mathrm{d} x = \dfrac{1}{2·a} · \left[ \int_x \dfrac{\mathrm{d}(x-a)}{x-a} - \int_x \dfrac{\mathrm{d}(x+a)}{x + a} \right] \mathop{===}\limits_{s=x+a}^{t=x-a} \dfrac{1}{2·a} · \int_t \dfrac{\mathrm{d}t}{t} - \dfrac{1}{2·a} · \int_s \dfrac{\mathrm{d}s}{s} = \dfrac{1}{2·a} · \left[ \ln |t| - \ln|s| \right] + \mathrm{Con}= \dfrac{1}{2·a}· \ln \left| \dfrac{x-a}{x+a} \right| + \mathrm{Con}$
 
-典例：应用换元积分法，计算$\int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x$。已知$\int \dfrac{1}{\sqrt{x^2 - 1}} · \mathrm{d}x = {'}\cosh x + \mathrm{Con}$。
+典例：应用换元积分法，计算$\int \dfrac{1}{\sqrt{x^2 - a^2} } · \mathrm{d}x$。已知$\int \dfrac{1}{\sqrt{x^2 - 1} } · \mathrm{d}x = {'}\cosh x + \mathrm{Con}$。
 
-$\int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x = \int \dfrac{1}{\sqrt{\frac{x^2}{a^2} - 1^2}} · \mathrm{d} \dfrac{x}{a} \mathop{==}\limits^{t=\frac{x}{a}} {'}\cosh t + \mathrm{Con}_0 = {'}\cosh \dfrac{x}{a} + \mathrm{Con}_0 = \ln\left( \dfrac{x}{a} + \sqrt{\dfrac{x^2}{a^2} - 1} \right) + \mathrm{Con}_0 = \ln \left( x + \sqrt{x^2 + a^2} \right) + \mathrm{Con}$
+$\int \dfrac{1}{\sqrt{x^2 - a^2} } · \mathrm{d}x = \int \dfrac{1}{\sqrt{\frac{x^2}{a^2} - 1^2} } · \mathrm{d} \dfrac{x}{a} \mathop{==}\limits^{t=\frac{x}{a} } {'}\cosh t + \mathrm{Con}_0 = {'}\cosh \dfrac{x}{a} + \mathrm{Con}_0 = \ln\left( \dfrac{x}{a} + \sqrt{\dfrac{x^2}{a^2} - 1} \right) + \mathrm{Con}_0 = \ln \left( x + \sqrt{x^2 + a^2} \right) + \mathrm{Con}$
 
 典例：应用分部积分法$x$降幂型式，计算$\int x· ә^{-x} · \mathrm{d}x$。
 
@@ -1070,11 +1070,11 @@ $\int x· ә^{-x} · \mathrm{d}x = -\int x · \mathrm{d} ә^{-x} = -x · ә^{-x}
 
 $\int x · \ln x · \mathrm{d}x = \dfrac{1}{2} · \int \ln x · \mathrm{d} x^2 = \dfrac{1}{2} · \left[ x^2 · \ln x - \int x^2 · \mathrm{d}\ln x \right] \mathop{=====}\limits^{\mathrm{d}\ln x = \frac{1}{x}·\mathrm{d}x} \dfrac{1}{2} · x^2 · \ln x - \dfrac{1}{2} · \int x · \mathrm{d} x = \dfrac{1}{2} · x^2 · \ln x - \dfrac{1}{4} ·x^2 + \mathrm{Con}$
 
-典例：应用分部积分法循环型式，计算$\int \sqrt{x^2 - a^2}·\mathrm{d}x$。已知$\int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x = {'}\cosh \dfrac{x}{a} + \mathrm{Con}$。
+典例：应用分部积分法循环型式，计算$\int \sqrt{x^2 - a^2}·\mathrm{d}x$。已知$\int \dfrac{1}{\sqrt{x^2 - a^2} } · \mathrm{d}x = {'}\cosh \dfrac{x}{a} + \mathrm{Con}$。
 
-$\int \sqrt{x^2 - a^2}·\mathrm{d}x = x · \sqrt{x^2 - a^2} - \int x · \mathrm{d} \sqrt{x^2 - a^2} = x · \sqrt{x^2 + a^2} - \int x · \dfrac{2·x}{2\sqrt{x^2-a^2}} \mathrm{d}x = x· \sqrt{x^2 - a^2} - \int \dfrac{(x^2 - a^2)+a^2}{\sqrt{x^2 - a^2}} · \mathrm{d}x = x·\sqrt{x^2-a^2} - \int \sqrt{x^2-a^2} · \mathrm{d}x - a^2 · \int \dfrac{1}{\sqrt{x^2 - a^2}} · \mathrm{d}x$
+$\int \sqrt{x^2 - a^2}·\mathrm{d}x = x · \sqrt{x^2 - a^2} - \int x · \mathrm{d} \sqrt{x^2 - a^2} = x · \sqrt{x^2 + a^2} - \int x · \dfrac{2·x}{2\sqrt{x^2-a^2} } \mathrm{d}x = x· \sqrt{x^2 - a^2} - \int \dfrac{(x^2 - a^2)+a^2}{\sqrt{x^2 - a^2} } · \mathrm{d}x = x·\sqrt{x^2-a^2} - \int \sqrt{x^2-a^2} · \mathrm{d}x - a^2 · \int \dfrac{1}{\sqrt{x^2 - a^2} } · \mathrm{d}x$
 
-$\int \sqrt{x^2-a^2} = \dfrac{x·\sqrt{x^2-a^2}}{2} - \dfrac{a^2}{2} · {'}\cosh \dfrac{x}{a} + \mathrm{Con}$
+$\int \sqrt{x^2-a^2} = \dfrac{x·\sqrt{x^2-a^2} }{2} - \dfrac{a^2}{2} · {'}\cosh \dfrac{x}{a} + \mathrm{Con}$
 
 典例：应用分部积分法递推型式，计算$\int \cos^n x · \mathrm{d}x$。
 
@@ -1108,7 +1108,7 @@ $\inf F (x) · g^{↗_0} (x_β) ≤ \int\limits_{x}^{x_β} f (θ_{i}) · g^{↗_
 
 $\inf F (x) · g^{↘^0} (x_β) ≥ \int\limits_{x}^{x_β} f (θ_{i}) · g^{↘^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↘^0} (x_β)$
 
-| $⇓$  | $F(x_{n+1}) \mathop{≡≡≡≡≡≡}\limits_{x_i≤θ_i≤x_{i+1}}^{x_α≤θ_i≤x} \sum\limits_{i=0}^{n} f(θ_i) · Δx_i$ |      | $\int\limits_{x_α}^{x} f (x) \mathrm{d} x = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} F(x_{n+1})$ |
+| $⇓$  | $F(x_{n+1}) \mathop{≡≡≡≡≡≡}\limits_{x_i≤θ_i≤x_{i+1} }^{x_α≤θ_i≤x} \sum\limits_{i=0}^{n} f(θ_i) · Δx_i$ |      | $\int\limits_{x_α}^{x} f (x) \mathrm{d} x = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} F(x_{n+1})$ |
 | :--: | :----------------------------------------------------------- | :--: | :----------------------------------------------------------- |
 | $⇓$  | $\sum\limits_{i=n}^{m} f (θ_{i}) · g (θ_{i}) · Δx_i = \sum\limits_{i=n}^{m} [ F (x_{i+1}) - F (x_{i}) ] · g (θ_{i}) = F (x_{m+1}) · g (θ_{m}) + \sum\limits_{i=n}^{m-1} F (x_{i+1}) · g (θ_{i}) - \sum\limits_{i=n}^{m-1} F (x_{i+1}) · g (θ_{i+1}) - F (x_{n}) · g (θ_{n})$ |      |                                                              |
 | $⇓$  | $\sum\limits_{i=0}^{m} f (θ_{i}) · g (θ_{i}) · Δx_i = [ F (x_{m+1}) · g (θ_{m}) - \rlap{≡≡≡≡≡≡≡}{F (x_{0}) · g (θ_{0})} ] + \sum\limits_{i=0}^{m-1} F (x_{i+1}) · [ g (θ_{i}) - g (θ_{i+1}) ]$ | $⇐$  | $F (x_{0}) ≡ 0$                                              |
@@ -1117,7 +1117,7 @@ $\inf F (x) · g^{↘^0} (x_β) ≥ \int\limits_{x}^{x_β} f (θ_{i}) · g^{↘^
 | $⇓$  | $\inf F (x) · g^{↘_0} (x_α) ≤ \int\limits_{x_α}^{x} f (θ_{i}) · g^{↘_0} (θ_{i}) · Δx_i ≡ \lim\limits_{m⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{m} f (θ_{i}) · g^{↘_0} (θ_{i}) · Δx_i ≤ \sup F (x) · g^{↘_0} (x_α)$ | $⇐$  | $x_0 = x_α$                                                  |
 | $⇓$  | $\inf F (x) · g^{↗^0} (x_α) ≥ \int\limits_{x_α}^{x} f (θ_{i}) · g^{↗^0} (θ_{i}) · Δx_i ≡ \lim\limits_{m⇝∞⁺}^{Δx_i⇝0} \sum\limits_{i=0}^{m} f (θ_{i}) · g^{↗^0} (θ_{i}) · Δx_i ≥ \sup F (x) · g^{↗^0} (x_α)$ | $⇐$  | $g^{↗^0} (x) ≡ (-1) · h^{↘_0} (x)$                           |
 |      |                                                              |      |                                                              |
-| $⇓$  | $F(x_{n+1}) \mathop{≡≡≡≡≡≡}\limits_{x_i≤θ_i≤x_{i+1}}^{x≤θ_i≤x_β} \sum\limits_{i=0}^{n} f(θ_i) · Δx_i$ |      | $\int\limits_{x}^{x_β} f (x) \mathrm{d} x = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} F(x_{n+1})$ |
+| $⇓$  | $F(x_{n+1}) \mathop{≡≡≡≡≡≡}\limits_{x_i≤θ_i≤x_{i+1} }^{x≤θ_i≤x_β} \sum\limits_{i=0}^{n} f(θ_i) · Δx_i$ |      | $\int\limits_{x}^{x_β} f (x) \mathrm{d} x = \lim\limits_{n⇝∞⁺}^{Δx_i⇝0} F(x_{n+1})$ |
 | $⇓$  | $\sum\limits_{i=n}^{m} f (θ_{i}) · g (θ_{i}) · Δx_i = \sum\limits_{i=n}^{m} [ F (x_{i+1}) - F (x_{i}) ] · g (θ_{i}) = F (x_{m+1}) · g (θ_{m}) + \sum\limits_{i=n}^{m-1} F (x_{i+1}) · g (θ_{i}) - \sum\limits_{i=n}^{m-1} F (x_{i+1}) · g (θ_{i+1}) - F (x_{n}) · g (θ_{n})$ |      |                                                              |
 | $⇓$  | $\sum\limits_{i=0}^{m} f (θ_{i}) · g (θ_{i}) · Δx_i = [ F (x_{m+1}) · g (θ_{m}) - \rlap{≡≡≡≡≡≡≡}{F (x_{0}) · g (θ_{0})} ] + \sum\limits_{i=0}^{m-1} F (x_{i+1}) · [ g (θ_{i}) - g (θ_{i+1}) ]$ | $⇐$  | $F (x_{0}) ≡ 0$                                              |
 | $⇓$  | $\sum\limits_{i=0}^{m} f (θ_i) · g^{↗_0} (θ_i) · Δx_i ≤ \sup F (x) · g^{↗_0} (θ_{m}) + \sup F (x) · \sum\limits_{i=0}^{m-1} [ g^{↗_0} (θ_{i}) - g^{↗_0} (θ_{i+1}) ] = \sup F (x) · g^{↗_0} (θ_0)$ | $⇐$  | $0 ≤ g^{↗_0} (θ_{i+1}) ≤ g^{↗_0} (θ_{i})$                    |
