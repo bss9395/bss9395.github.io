@@ -9,21 +9,21 @@ Original: https://www.cnblogs.com/qianye/archive/2012/11/25/2787923.html
 #include <stdio.h>
 
 #define _M 5
-#define _MAX 0xFFFF
-int _Player[_M + 1];
-int _Winner[_M + 1];
+static int _Max = +65535;
+static int _Player[_M];
+static int _Winner[_M + 1];
 
 /* Heap
                    |    Preferred
-                   ©¦  0:	  0
-                   ©¦   	   \
-0:	  0          ©¦  1:      1
+                   ©¦  0:	0
+                   ©¦   	     \
+0:	    0          ©¦  1:      1
        / \         ©¦         / \
 1:    1   2        ©¦  2:    2   3
      / \ / \       ©¦       / \  / \
-2:  3  4 5  6      ©¦  3:  4[1:9][2:0][3:8]
+2:  3  4 5  6      ©¦  3:  4[1][2][3]
                    |     / \
-                   |    [4:2][5:6]
+                   |    [4][5]
 H[i] ¡Ü H[2¡¤i+1]    ©¦  H[i] ¡Ü H[2¡¤i+0]
 H[i] ¡Ü H[2¡¤i+2]    ©¦  H[i] ¡Ü H[2¡¤i+1]
 H[(i-1)/2] ¡Ü H[i]  ©¦  H[i/2] ¡Ü H[i]
@@ -50,7 +50,7 @@ void Create_Winner_Tree() {
         fscanf(stdin, "%d", &_Player[i]);
     }
     for (int head = _M - 1; 0 < head; head -= 1) {
-        // ajustment start from the last one
+        // ajustment start from the last internal node.
         Compete(head);
     }
 }
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
     Create_Winner_Tree();
     for (int i = 1; i <= _M; i += 1) {
         fprintf(stdout, "%d, ", _Player[_Winner[1]]);
-        _Player[_Winner[1]] = _MAX;
+        _Player[_Winner[1]] = _Max;
         Adjust(_Winner[1]);
     }
 

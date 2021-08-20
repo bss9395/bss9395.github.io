@@ -29,11 +29,10 @@ H[(i-1)/2] ¡Ü H[i]  ©¦  H[i/2] ¡Ü H[i]
 */
 
 #define _M 5
-#define _Min -65536
-#define _Max +65535
-
-int _Loser[_M + 1];
-int _Player[_M + 1];
+static int _Min = -65536;
+static int _Max = +65535;
+static int _Loser[_M];
+static int _Player[_M + 1];
 
 void Input(int i) {
     static bool once = true;
@@ -63,14 +62,15 @@ void Adjust(int winner) {
 }
 
 void Create_Loser_Tree() {
-    for (int i = 1; i <= _M; i += 1) {
-        Input(i);
-    }
     _Player[0] = _Min;
     for (int i = 0; i <= _M; i += 1) {
         _Loser[i] = 0;
     }
+    for (int i = 1; i <= _M; i += 1) {
+        Input(i);
+    }
     for (int i = _M; 0 < i; i -= 1) {
+        // ajustment start from the last leaves node.
         Adjust(i);
     }
 }

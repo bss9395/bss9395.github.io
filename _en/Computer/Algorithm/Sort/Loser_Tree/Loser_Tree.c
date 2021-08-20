@@ -10,15 +10,15 @@ Original: https://www.cnblogs.com/qianye/archive/2012/11/25/2787923.html
 
 /* Heap
                    |    Preferred
-                   ©¦  0:	0
-                   ©¦   	     \
-0:	    0          ©¦  1:      1
+                   ©¦  0:	  0
+                   ©¦   	   \
+0:	  0          ©¦  1:      1
        / \         ©¦         / \
 1:    1   2        ©¦  2:    2   3
      / \ / \       ©¦       / \  / \
-2:  3  4 5  6      ©¦  3:  4[1:9][2:0][3:8]
+2:  3  4 5  6      ©¦  3:  4[1][2][3]
                    |     / \
-                   |    [4:2][5:6]
+                   |    [4][5]
 H[i] ¡Ü H[2¡¤i+1]    ©¦  H[i] ¡Ü H[2¡¤i+0]
 H[i] ¡Ü H[2¡¤i+2]    ©¦  H[i] ¡Ü H[2¡¤i+1]
 H[(i-1)/2] ¡Ü H[i]  ©¦  H[i/2] ¡Ü H[i]
@@ -27,10 +27,10 @@ H[(i-1)/2] ¡Ü H[i]  ©¦  H[i/2] ¡Ü H[i]
 */
 
 #define _M 5
-#define _MIN -65536
-#define _MAX +65535
-int _Loser[_M + 1];
-int _Player[_M + 1];
+static int _Min = -65536;
+static int _MAX = +65535;
+static int _Loser[_M];
+static int _Player[_M + 1];
 
 void Adjust(int winner) {
     int head = (winner + _M - 1) / 2;
@@ -50,11 +50,12 @@ void Create_Loser_Tree() {
     for (int i = 1; i <= _M; i += 1) {
         fscanf(stdin, "%d", &_Player[i]);
     }
-    _Player[0] = _MIN;
+    _Player[0] = _Min;
     for (int i = 0; i <= _M; i += 1) {
         _Loser[i] = 0;
     }
     for (int i = _M; 0 < i; i -= 1) {
+        // ajustment start from the last leaves node.
         Adjust(i);
     }
 }
