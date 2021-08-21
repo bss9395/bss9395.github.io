@@ -9,9 +9,10 @@ Original: https://www.cnblogs.com/qianye/archive/2012/11/25/2787923.html
 #include <stdio.h>
 
 #define _M 5
+static int _Min = -65536;
 static int _Max = +65535;
-static int _Player[_M];
-static int _Winner[_M + 1];
+int _Player[_M];
+int _Winner[_M + 1];
 
 /* Heap
                    |    Preferred
@@ -45,7 +46,7 @@ void Compete(int head) {
 }
 
 void Create_Winner_Tree() {
-    freopen("data.txt", "r", stdin);
+    freopen("data.txt", "rt", stdin);
     for (int i = 1; i <= _M; i += 1) {
         fscanf(stdin, "%d", &_Player[i]);
     }
@@ -64,6 +65,18 @@ void Adjust(int winner) {
 }
 
 int main(int argc, char *argv[]) {
+    int data[] = {
+     9, 0, 8, 2, 6, 1, 3, 4, 5, 7
+    };
+    int size = sizeof(data) / sizeof(*data);
+    FILE *in = fopen("data.txt", "wt");
+    for (int i = 0; i < size; i += 1) {
+        fprintf(in, "%d ", data[i]);
+    }
+    fclose(in);
+
+    ////////////////////////////////////
+
     Create_Winner_Tree();
     for (int i = 1; i <= _M; i += 1) {
         fprintf(stdout, "%d, ", _Player[_Winner[1]]);

@@ -30,13 +30,12 @@ H[(i-1)/2] ¡Ü H[i]  ©¦  H[i/2] ¡Ü H[i]
 #define _M 5
 static int _Min = -65536;
 static int _Max = +65535;
-static char buffer[1024] = { "section" };
 
-static struct {
+struct {
     int _key;
     int _round;
 } _Player[_M + 1];
-static int _Loser[_M];
+int _Loser[_M];
 FILE *input = NULL;
 FILE *output = NULL;
 
@@ -71,6 +70,7 @@ void Create_Loser_Tree() {
 }
 
 void Segment() {
+    char buffer[1024] = { "section" };
     int round = 0;
     int minimax = 0;
     int ret = 1;

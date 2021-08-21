@@ -10,9 +10,9 @@ Original: https://www.cnblogs.com/qianye/archive/2012/11/25/2787923.html
 
 /* Heap
                    |    Preferred
-                   ©¦  0:	  0
-                   ©¦   	   \
-0:	  0          ©¦  1:      1
+                   ©¦  0:	0
+                   ©¦   	     \
+0:	    0          ©¦  1:      1
        / \         ©¦         / \
 1:    1   2        ©¦  2:    2   3
      / \ / \       ©¦       / \  / \
@@ -29,16 +29,15 @@ H[(i-1)/2] ¡Ü H[i]  ©¦  H[i/2] ¡Ü H[i]
 #define _M 5
 static int _Min = -65536;
 static int _MAX = +65535;
-static int _Loser[_M];
-static int _Player[_M + 1];
+int _Loser[_M];
+int _Player[_M + 1];
 
 void Adjust(int winner) {
     int head = (winner + _M - 1) / 2;
+    int swap = 0;
     while (0 < head) {
         if (_Player[_Loser[head]] < _Player[winner]) {
-            int swap = _Loser[head];
-            _Loser[head] = winner;
-            winner = swap;
+            swap = _Loser[head]; _Loser[head] = winner; winner = swap;
         }
         head = head / 2;
     }
@@ -46,7 +45,7 @@ void Adjust(int winner) {
 }
 
 void Create_Loser_Tree() {
-    freopen("data.txt", "r", stdin);
+    freopen("data.txt", "rt", stdin);
     for (int i = 1; i <= _M; i += 1) {
         fscanf(stdin, "%d", &_Player[i]);
     }
@@ -61,6 +60,18 @@ void Create_Loser_Tree() {
 }
 
 int main(int argc, char *argv[]) {
+    int data[] = {
+         9, 0, 8, 2, 6, 1, 3, 4, 5, 7
+    };
+    int size = sizeof(data) / sizeof(*data);
+    FILE *in = fopen("data.txt", "wt");
+    for (int i = 0; i < size; i += 1) {
+        fprintf(in, "%d ", data[i]);
+    }
+    fclose(in);
+
+    ////////////////////////////////////
+
     Create_Loser_Tree();
     for (int i = 1; i <= _M; i += 1) {
         fprintf(stdout, "%d, ", _Player[_Loser[0]]);

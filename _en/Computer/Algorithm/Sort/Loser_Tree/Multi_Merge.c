@@ -31,17 +31,17 @@ H[(i-1)/2] ¡Ü H[i]  ©¦  H[i/2] ¡Ü H[i]
 #define _M 5
 static int _Min = -65536;
 static int _Max = +65535;
-static int _Loser[_M];
-static int _Player[_M + 1];
+int _Loser[_M];
+int _Player[_M + 1];
 
 void Input(int i) {
     static bool once = true;
     static char buffer[1024];
     static FILE *data[_M + 1];
     if (once == true) {
-        for (int i = 1; i <= _M; i += 1) {
+        for (int i = 0; i < _M; i += 1) {
             sprintf(buffer, "data%d.txt", i);
-            data[i] = fopen(buffer, "r");
+            data[i + 1] = fopen(buffer, "rt");
         }
         once = false;
     }
@@ -77,6 +77,31 @@ void Create_Loser_Tree() {
 
 
 int main(int argc, char *argv[]) {
+    char buffer[1024];
+    int data0[] = { 10, 15, 16, 65535 }; int size0 = sizeof(data0) / sizeof(*data0);
+    int data1[] = { 9, 18, 20, 65535 }; int size1 = sizeof(data0) / sizeof(*data0);
+    int data2[] = { 20, 22, 40, 65535 }; int size2 = sizeof(data0) / sizeof(*data0);
+    int data3[] = { 6, 15, 25, 65535 }; int size3 = sizeof(data0) / sizeof(*data0);
+    int data4[] = { 12, 37, 48, 65535 }; int size4 = sizeof(data0) / sizeof(*data0);
+    int *data[] = { data0, data1, data2, data3, data4 };
+    int size[] = { size0, size1, size2, size3, size4 };
+    FILE *in = NULL;
+    for (int i = 0; i < _M; i += 1) {
+        sprintf(buffer, "data%d.txt", i);
+        if (in == NULL) {
+            in = fopen(buffer, "wt");
+        }
+        else {
+            in = freopen(buffer, "wt", in);
+        }
+        for (int j = 0; j < size[i]; j += 1) {
+            fprintf(in, "%d ", data[i][j]);
+        }
+    }
+    fclose(in);
+
+    ////////////////////////////////////
+
     Create_Loser_Tree();
     while (_Player[_Loser[0]] != _Max) {
         fprintf(stdout, "%d, ", _Player[_Loser[0]]);
