@@ -27,15 +27,30 @@ H[(i-1)/2] ¡Ü H[i]  ©¦  H[i/2] ¡Ü H[i]
                    |  Leaves   Nodes Count = _M
 */
 
-#define _M 5
-static int _Min = -65536;
-static int _Max = +65535;
+/* Snowplow Model
+     |||||||||
+================= Snow Evenly
+S>   |\
+n>   ||\
+o>   |||\
+w>   ||||\ M
+p> H |||||\       H ¡¤ L = 2 ¡¤ M
+l>   ||||||\
+o>   |||||||\
+w>   ||||||||\
+         L
+=================
+*/
 
+#define _M 5
+const int _Min = -65536;
+const int _Max = +65535;
+
+int _Loser[_M];
 struct {
     int _key;
     int _round;
 } _Player[_M + 1];
-int _Loser[_M];
 FILE *input = NULL;
 FILE *output = NULL;
 

@@ -29,8 +29,8 @@ H[(i-1)/2] ¡Ü H[i]  ©¦  H[i/2] ¡Ü H[i]
 */
 
 #define _M 5
-static int _Min = -65536;
-static int _Max = +65535;
+const int _Min = -65536;
+const int _Max = +65535;
 int _Loser[_M];
 int _Player[_M + 1];
 

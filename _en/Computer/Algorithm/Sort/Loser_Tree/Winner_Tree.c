@@ -9,10 +9,10 @@ Original: https://www.cnblogs.com/qianye/archive/2012/11/25/2787923.html
 #include <stdio.h>
 
 #define _M 5
-static int _Min = -65536;
-static int _Max = +65535;
-int _Player[_M];
-int _Winner[_M + 1];
+const int _Min = -65536;
+const int _Max = +65535;
+int _Winner[_M];
+int _Player[_M + 1];
 
 /* Heap
                    |    Preferred
