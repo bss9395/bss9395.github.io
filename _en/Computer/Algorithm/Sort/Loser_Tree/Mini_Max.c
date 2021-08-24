@@ -30,13 +30,13 @@ H[(i-1)/2] ¡Ü H[i]  ©¦  H[i/2] ¡Ü H[i]
 /* Snowplow Model
      |||||||||
 ================= Snow Evenly
-S>   |\
+S>   |\           H ¡¤ L = 2 ¡¤ M
 n>   ||\
-o>   |||\
-w>   ||||\ M
-p> H |||||\       H ¡¤ L = 2 ¡¤ M
-l>   ||||||\
-o>   |||||||\
+o>   |||\             H represents the average High of snowplow.
+w>   ||||\            L represents the average Length of each round.
+p> H |||||\       H ¡¤ L represents the average data volumn of each round.
+l>   ||||||\          M represents the average tree volumn.
+o>   ||M||||\
 w>   ||||||||\
          L
 =================
