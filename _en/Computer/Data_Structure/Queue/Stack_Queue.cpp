@@ -60,7 +60,7 @@ public:
             _stack_out.pop();
         }
         else {
-            throw exception("The queue is empty.");
+            throw (const char *)("The queue is empty.");
         }
         return ret;
     }
@@ -78,7 +78,7 @@ public:
             return _stack_out.top();
         }
         else {
-            throw exception("The queue is empty.");
+            throw (const char *)("The queue is empty.");
         }
     }
 
@@ -95,7 +95,7 @@ public:
             return _stack_in.top();
         }
         else {
-            throw exception("The queue is empty.");
+            throw (const char *)("The queue is empty.");
         }
     }
 };

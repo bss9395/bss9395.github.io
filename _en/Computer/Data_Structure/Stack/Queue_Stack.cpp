@@ -67,7 +67,7 @@ public:
             _queue2.pop();
         }
         else {
-            throw exception("The stack is empty");
+            throw (const char *)("The stack is empty");
         }
 
         return ret;
@@ -83,7 +83,7 @@ public:
             ret = _queue2.back();
         }
         else {
-            throw exception("The stack is empty");
+            throw (const char *)("The stack is empty");
         }
         return ret;
     }
