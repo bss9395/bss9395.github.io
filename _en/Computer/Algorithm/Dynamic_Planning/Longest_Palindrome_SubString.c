@@ -29,21 +29,30 @@ typedef struct _String {
     long _leng;
 } String;
 
-char *Brute_Force(const char *str) {
-    String palindrome = (String) { NULL, 1 };
-    for (char *beg1 = str; beg1[0] != '\0'; beg1 += 1) {
-        for (char *beg2 = str; beg2[0] != '\0'; beg2 += 1) {
-            char *left = beg1;
-            char *right = beg2;
-            while (left < right && left[0] == right[0]) {
-                left += 1; right -= 1;
+////////////////////////////////////////////////////////////////////////////////
+
+char *Brute_Force(char *str) {
+    int len = strlen(str);
+
+    String palindrome = (String) { ._head = NULL, ._leng = 1 };
+    int left = 0;
+    int right = 0;
+    for (int head = 0; head < len; head += 1) {
+        for (int tail = head; tail < len; tail += 1) {
+            left = head;
+            right = tail;
+            while (left < right && str[left] == str[right]) {
+                left += 1;
+                right -= 1;
             }
-            if (left >= right && beg2 - beg1 + 1 > palindrome._leng) {
-                palindrome._head = beg1;
-                palindrome._leng = beg2 - beg1 + 1;
+            if (left >= right && tail - head + 1 > palindrome._leng) {
+                palindrome._head = &str[head];
+                palindrome._leng = tail - head + 1;
             }
         }
     }
+
+    ////////////////////////////////////
 
     if (1 < palindrome._leng) {
         char *ret = (char *)malloc((palindrome._leng + 1) * sizeof(char));
@@ -59,29 +68,29 @@ char *Brute_Force(const char *str) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-char *Axial_Symmetry(const char *str) {
-    String palindrome = (String) { NULL, 1 };
-    char *left = NULL;
-    char *right = NULL;
-    for (char *axis = str; axis[0] != '\0'; axis += 1) {
+char *Axial_Symmetry(char *str) {
+    int len = strlen(str);
+
+    String palindrome = (String) { ._head = NULL, ._leng = 1 };
+    int left = 0;
+    int right = 0;
+    for (int axis = 0; axis < len; axis += 1) {
         // case Odd
-        left = axis; right = axis;
-        while (str <= left && right[0] != '\0' && left[0] == right[0]) {
-            left -= 1; right += 1;
-        }
-        if (right - left - 1 > palindrome._leng) {
-            palindrome = (String) { left + 1, right - (left + 1) };  // ._leng = (right - 1) - (left + 1) + 1 
+        for (left = axis, right = axis; 0 <= left && right < len && str[left] == str[right]; left -= 1, right += 1);
+        if (right - (left + 1) > palindrome._leng) {
+            palindrome._head = &str[left + 1];
+            palindrome._leng = right - (left + 1);
         }
 
         // case Even
-        left = axis; right = axis + 1;
-        while (str <= left && right[0] != '\0' && left[0] == right[0]) {
-            left -= 1; right += 1;
-        }
-        if (right - left - 1 > palindrome._leng) {
-            palindrome = (String) { left + 1, right - (left + 1) };  // ._leng = (right - 1) - (left + 1) + 1 
+        for (left = axis, right = axis + 1; 0 <= left && right < len && str[left] == str[right]; left -= 1, right += 1);
+        if (right - (left + 1) > palindrome._leng) {
+            palindrome._head = &str[left + 1];
+            palindrome._leng = right - (left + 1);
         }
     }
+
+    ////////////////////////////////////
 
     if (1 < palindrome._leng) {
         char *ret = (char *)malloc((palindrome._leng + 1) * sizeof(char));
@@ -97,14 +106,22 @@ char *Axial_Symmetry(const char *str) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-char *Dynamic_Planning_1_Dimension(const char *str) {
+/* Dynamic_Planning_1_Dimension
+       ¡ýhead[tail-1]  ¡ýtail-1
+  ¡ýhead[tail-1]-1          ¡ýtail
+  ¡ýhead[tail]              ¡ýtail
+----------------------------------------
+       i    b    b    i
+  g    i    b    b    i    g
+*/
+char *Dynamic_Planning_1_Dimension(char *str) {
     int len = strlen(str);
     int *head = (int *)malloc(len * sizeof(int));
-    head[0] = 0;
 
-    String palindrome = (String) { NULL, 1 };
-    for (int tail = 1; str[tail] != '\0'; tail += 1) {
-        if (0 < head[tail - 1] && str[tail] == str[head[tail - 1] - 1]) {
+    String palindrome = (String) { ._head = NULL, ._leng = 1 };
+    head[0] = 0;
+    for (int tail = 1; tail < len; tail += 1) {
+        if (0 < head[tail - 1] && str[tail] == str[head[tail - 1] - 1]) {  // state transition equation.
             head[tail] = head[tail - 1] - 1;
         }
         else {
@@ -126,9 +143,12 @@ char *Dynamic_Planning_1_Dimension(const char *str) {
         }
 
         if (tail - head[tail] + 1 > palindrome._leng) {
-            palindrome = (String) { (char *)&str[head[tail]], tail - head[tail] + 1 };
+            palindrome._head = &str[head[tail]];
+            palindrome._leng = tail - head[tail] + 1;
         }
     }
+
+    ////////////////////////////////////
 
     if (1 < palindrome._leng) {
         char *ret = (char *)malloc(palindrome._leng * sizeof(char));
@@ -144,34 +164,39 @@ char *Dynamic_Planning_1_Dimension(const char *str) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-char *Dynamic_Planning_2_Dimension(const char *str) {
-    int str_len = strlen(str);
-    bool **state = (bool **)malloc(str_len * sizeof(bool *));
-    for (int i = 0; i < str_len; i += 1) {
-        state[i] = (bool *)malloc(str_len * sizeof(bool));
+char *Dynamic_Planning_2_Dimension(char *str) {
+    int len = strlen(str);
+    bool **state = (bool **)malloc(len * sizeof(bool *));  // n * n matrix
+    for (int i = 0; i < len; i += 1) {
+        state[i] = (bool *)malloc(len * sizeof(bool));
     }
 
-    String palindrome = (String) { NULL, 1 };
+    String palindrome = (String) { ._head = NULL, ._leng = 1 };
     state[0][0] = true;
-    for (int i = 1; i < str_len; i += 1) {
-        state[i][i] = true;
-        if (str[i - 1] == str[i]) {
-            state[i - 1][i] = true;
-            if (2 > palindrome._leng) {
-                palindrome = (String) { (char *)&str[i - 1], 2 };
+    for (int tail = 1; tail < len; tail += 1) {
+        state[tail][tail] = true;
+        if (str[tail - 1] == str[tail]) {
+            state[tail - 1][tail] = true;
+            if (2 > palindrome._leng) {           // palindrome substring length == 2
+                palindrome._head = &str[tail - 1];
+                palindrome._leng = 2;
             }
         }
     }
-    for (int len = 3; len <= str_len; len += 1) {
-        for (int i = 0, j = 0; (j = i + len - 1) < str_len; i += 1) {
-            if (state[i + 1][j - 1] == true && str[i] == str[j]) {
-                state[i][j] = true;
-                if (len > palindrome._leng) {
-                    palindrome = (String) { (char *)&str[i], len };
+    for (int full = 3; full <= len; full += 1) {  // palindrome substring length == full
+        for (int head = 0, tail = 0; (tail = head + full - 1) < len; head += 1) {
+            if (state[head + 1][tail - 1] == true && str[head] == str[tail]) {  // state transition equation.
+                state[head][tail] = true;   // true if str[head..tail] is a palindrome substring.
+
+                if (full > palindrome._leng) {
+                    palindrome._head = &str[head];
+                    palindrome._leng = full;
                 }
             }
         }
     }
+
+    ////////////////////////////////////
 
     if (1 < palindrome._leng) {
         char *ret = (char *)malloc((palindrome._leng + 1) * sizeof(char));
@@ -187,6 +212,24 @@ char *Dynamic_Planning_2_Dimension(const char *str) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/* Extended_Palindrome
+    ¡û    full   palindrome  ¡ú
+    ¡û    semi   ¡ú
+      ¡ýaxis-incr¡ýaxis     ¡ýaxis+incr
+                ¡û  incr   ¡ú |
+----------------------------------------
+  a   g   i   b   b   i   g   g         odd or even, str_len=8
+# a # g # i # b # b # i # g # g #       always odd , ext_len=str_len*2+1
+----------------------------------------
+Due to the symmetry of palindrome.
+case 1: radius[axis-incr] <  radius[axis]-incr
+       (radius[axis+incr] =  radius[axis-incr]) == MIN(radius[axis-incr],radius[axis]-incr)
+case 2: radius[axis-incr] >  radius[axis]-incr
+       (radius[axis+incr] =  radius[axis]-incr) == MIN(radius[axis-incr],radius[axis]-incr)
+case 3: radius[axis-incr] == radius[axis]-incr
+        Extend radius[axis+incr].
+        semi starts from (radius[axis-incr] == radius[axis]-incr == semi-incr).
+*/
 char *Extended_Palindrome(char *str) {
     int str_len = strlen(str);
     int ext_len = str_len * 2 + 1;
@@ -200,33 +243,33 @@ char *Extended_Palindrome(char *str) {
     beg[0] = '#';
     beg[1] = '\0';
 
-    fprintf(stdout, "%s""\n", ext);
-
     ////////////////////////////////////
 
     int *radius = (int *)malloc(ext_len * sizeof(int));
     radius[0] = 0;
     for (int axis = 1, semi = 0, incr = 0; axis < ext_len; axis += incr) {
-        while (semi < axis && ext[axis - semi - 1] == ext[axis + semi + 1]) {
-            semi += 1;
+        //while (0 <= axis - semi - 1 && axis + semi + 1 < ext_len && ext[axis - semi - 1] == ext[axis + semi + 1]) {  
+        while (semi < axis && axis + semi + 1 < ext_len && ext[axis - semi - 1] == ext[axis + semi + 1]) {
+            semi += 1;                 // Extend palindrome's semi-diameter.
         }
         radius[axis] = semi;
         for (incr = 1; incr <= semi && radius[axis - incr] != radius[axis] - incr; incr += 1) {
             radius[axis + incr] = min(radius[axis - incr], radius[axis] - incr);
         }
-        semi = max(semi - incr, 0);
+        semi = max(semi - incr, 0);    // radius[axis-incr] == radius[axis]-incr == semi-incr
     }
 
-    String palindrome = { NULL, 2 * 1 + 1 };
+    String palindrome = (String) { ._head = NULL, ._leng = 1 };
     for (int axis = 0; axis < ext_len; axis += 1) {
-        if (2 * radius[axis] + 1 > palindrome._leng) {
-            palindrome = (String) { (char *)&ext[axis - radius[axis]], 2 * radius[axis] + 1 };
+        if (radius[axis] > palindrome._leng) {
+            palindrome._head = &str[(axis - radius[axis]) / 2];  // ext_len==str_len*2+1
+            palindrome._leng = radius[axis];                     // str_len==ext_len/2
         }
     }
 
     ////////////////////////////////////
 
-    if (3 < palindrome._leng) {
+    if (1 < palindrome._leng) {
         char *ret = (char *)malloc((palindrome._leng + 1) * sizeof(char));
         int i = 0;
         for (; i < palindrome._leng; i += 1) {
@@ -242,12 +285,12 @@ char *Extended_Palindrome(char *str) {
 
 
 int main(int argc, char *argv[]) {
-    const char *str = "Iamagibbiggirl";
-    //char *ret = Brute_Force(str);
-    char *ret = Axial_Symmetry(str);
-    //char *ret = Dynamic_Planning_1_Dimension(str);
-    //char *ret = Dynamic_Planning_2_Dimension(str);
-    //char *ret = Extended_Palindrome(str);
+    char *str = (char *)"Iamagibbiggirl";
+    // char *ret = Brute_Force(str);
+    // char *ret = Axial_Symmetry(str);
+    // char *ret = Dynamic_Planning_1_Dimension(str);
+    // char *ret = Dynamic_Planning_2_Dimension(str);
+    char *ret = Extended_Palindrome(str);
 
     fprintf(stdout, "%s""\n", ret);
 
