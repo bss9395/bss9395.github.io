@@ -1,4 +1,4 @@
-/* Array.c
+/* C_Array.c
 Author: BSS9395
 Update: 2020-08-26T09:37:00+08@China-Guangdong-Zhanjiang+08
 Design: Multi-Dimensional Array
@@ -7,7 +7,7 @@ Design: Multi-Dimensional Array
 #include <stdio.h>
 #include <stdlib.h>
 
-void Array_2_Dimension() {
+void C_Array_2_Dimension() {
     int row = 5;
     int col = 7;
 
@@ -36,7 +36,7 @@ void Array_2_Dimension() {
 }
 
 int main(int argc, char *argv[]) {
-    Array_2_Dimension();
+    C_Array_2_Dimension();
 
     return 0;
 }
