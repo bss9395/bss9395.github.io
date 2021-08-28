@@ -23,11 +23,16 @@ struct _ELevel {
     ._Fatal = "Fatal"
 };
 
-typedef struct _Param {
-    int _param[1024];
-} Param;
+
+typedef struct _Index {
+    int _index[1024];
+} Index;
 
 typedef int Type;
+typedef struct _Param {
+    Type _param[1024];
+} Param;
+
 typedef struct _Array {
     int _dimen;
     int *_bound;
@@ -44,11 +49,9 @@ bool Check(bool failed, Level level, char *function, char *record, char *extra) 
     return failed;
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////
 
-
-Array Create_Array(int dimen, Param bound) {
+Array Create_Array(int dimen, Index bound) {
     Array array;
     array._dimen = dimen;
     array._bound = (int *)malloc(dimen * sizeof(int));
@@ -56,31 +59,31 @@ Array Create_Array(int dimen, Param bound) {
 
     int numb = 1;
     for (int i = dimen - 1; 0 <= i; i -= 1) {
-        array._bound[i] = bound._param[i];
+        array._bound[i] = bound._index[i];
         array._const[i] = numb;
-        numb *= bound._param[i];
+        numb *= bound._index[i];
     }
 
     array._array = (Type *)malloc(numb * sizeof(Type));
     return array;
 }
 
-int Destruct_Array(Array array) {
+int Destruct_Array(Array *array) {
     int ret = 0;
-    free(array._bound);
-    free(array._const);
-    free(array._array);
+    free(array->_bound);
+    free(array->_const);
+    free(array->_array);
 
     ret = 3;
-    array._dimen = 0;
-    array._bound = NULL;
-    array._const = NULL;
-    array._array = NULL;
+    array->_dimen = 0;
+    array->_bound = NULL;
+    array->_const = NULL;
+    array->_array = NULL;
     return ret;
 }
 
 int Assign(Array *array, int numb, Param value) {
-    if (numb > array->_bound[0] * array->_const[0]) {
+    if (!(0 <= numb && numb <= array->_bound[0] * array->_const[0])) {
         Check(true, ELevel._Error, __FUNCTION__, "numb exceeds array bound.", "");
     }
 
@@ -90,18 +93,18 @@ int Assign(Array *array, int numb, Param value) {
     return numb;
 }
 
-int Order(Array *array, Param index) {
+int Order(Array *array, Index index) {
     int order = 0;
     for (int i = 0; i < array->_dimen; i += 1) {
-        order += index._param[i] * array->_const[i];
+        order += index._index[i] * array->_const[i];
     }
     return order;
 }
 
-Type *Value(Array *array, Param index) {
+Type *Value(Array *array, Index index) {
     int order = 0;
     for (int i = 0; i < array->_dimen; i += 1) {
-        order += index._param[i] * array->_const[i];
+        order += index._index[i] * array->_const[i];
     }
     return &(array->_array[order]);
 }
@@ -109,7 +112,7 @@ Type *Value(Array *array, Param index) {
 ////////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char *argv[]) {
-    Array array = Create_Array(3, (Param) { 7, 5, 3 });
+    Array array = Create_Array(3, (Index) { 7, 5, 3 });
     fprintf(stdout, "_dimen    = %d""\n", array._dimen);
     fprintf(stdout, "_bound[0] = %d\t_bound[1] = %d\t_bound[2] = %d""\n", array._bound[0], array._bound[1], array._bound[2]);
     fprintf(stdout, "_const[0] = %d\t_const[1] = %d\t_const[2] = %d""\n", array._const[0], array._const[1], array._const[2]);
@@ -121,21 +124,21 @@ int main(int argc, char *argv[]) {
             7
     });
 
-    int order = Order(&array, (Param) { 0, 2, 2 });
+    int order = Order(&array, (Index) { 0, 2, 2 });
     fprintf(stdout, "order = %d\t_array[order] = %d""\n", order, array._array[order]);
 
-    *Value(&array, (Param) { 0, 2, 2 }) = 10;
-    fprintf(stdout, "array[0,2,2] = %d""\n", *Value(&array, (Param) { 0, 2, 2 }));
+    *Value(&array, (Index) { 0, 2, 2 }) = 10;
+    fprintf(stdout, "array[0,2,2] = %d""\n", *Value(&array, (Index) { 0, 2, 2 }));
 
     for (int i = 0; i < 7; i += 1) {
         for (int j = 0; j < 5; j += 1) {
             for (int k = 0; k < 3; k += 1) {
-                *Value(&array, (Param) { i, j, k }) = i + j + k;
+                *Value(&array, (Index) { i, j, k }) = i + j + k;
             }
         }
     }
-    fprintf(stdout, "arra[1,2,2] = %d""\n", *Value(&array, (Param) { 1, 2, 2 }));
+    fprintf(stdout, "arra[1,2,2] = %d""\n", *Value(&array, (Index) { 1, 2, 2 }));
 
-    Destruct_Array(array);
+    Destruct_Array(&array);
     return 0;
 }

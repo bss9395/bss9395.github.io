@@ -159,6 +159,8 @@ char *Dynamic_Planning_1_Dimension(char *str) {
         ret[i] = '\0';
         return ret;
     }
+
+    free(head);
     return NULL;
 }
 
@@ -207,6 +209,11 @@ char *Dynamic_Planning_2_Dimension(char *str) {
         ret[i] = '\0';
         return ret;
     }
+
+    for (int i = 0; i < len; i += 1) {
+        free(state[i]);
+    }
+    free(state);
     return NULL;
 }
 
@@ -278,6 +285,8 @@ char *Extended_Palindrome(char *str) {
         ret[i] = '\0';
         return ret;
     }
+
+    free(ext);
     return NULL;
 }
 
