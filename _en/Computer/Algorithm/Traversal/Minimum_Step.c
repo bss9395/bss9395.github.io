@@ -2,6 +2,7 @@
 Author: BSS9395
 Update: 2020-08-29T18:07:00+08@China-Guangdong-Zhanjiang+08
 Design: Mininum Step for Distance
+Original: https://blog.csdn.net/qq_43325061/article/details/119117946
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -20,7 +21,8 @@ typedef struct _Queue {
     int _back;
 } Queue;
 
-
+/* Breadth First Search
+*/
 int Minimum_Step(int dist) {
     Queue queue = { queue._fore = 0, queue._back = queue._fore };
     int step = 0;
@@ -57,12 +59,13 @@ Break:
 
 /*
 7 == 0 - 1 + 2 - 3 + 4 + 5
+25 + 0 - 1 + 2 - 3 + 4 + 5 == 32
 */
 int main(int argc, char *argv[]) {
-    int lhs = 31;
-    int rhs = 24;
+    int origin = 25;
+    int destin = 32;
     // int step = Min_Step(0);
-    int step = Minimum_Step(lhs - rhs);
+    int step = Minimum_Step(destin - origin);
     fprintf(stdout, "%d""\n", step);
 
     return 0;
