@@ -404,8 +404,8 @@ unch *Parse_Number(unch *data, fl64 *number, in32 base, bool fixed) {
         unch ch = -1;
         unch *_data = data;
         while (ch = _Digit[data[0]], 0 <= ch && ch < base) {
-            data += 1;
             value = value * base + ch;
+            data += 1;
         }
         if (data == _data) {
             // parse unsuccessfully 
