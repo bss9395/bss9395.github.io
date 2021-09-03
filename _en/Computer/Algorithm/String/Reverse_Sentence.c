@@ -15,28 +15,25 @@ typedef struct _String {
 } String;
 
 char *Reverse_Sentence(char *str) {
-    int len = strlen(str);
+    int len = (int)strlen(str);
 
     String stack[1024];
     int top = 0;
 
+    int fore = 0;
     int back = 0;
-    int fore = back;
-    while (true) {
-        for (fore = back; fore < len && str[fore] == ' '; fore += 1);
-        if (fore < len) {
-            for (back = fore; back < len && str[back] != ' '; back += 1);
-            stack[top] = (String) { &str[fore], back - fore };
-            top += 1;
-            continue;
-        }
-        break;
+    for (fore = 0; fore < len && str[fore] == ' '; fore += 1);
+    while (fore < len) {
+        for (back = fore + 1; back < len && str[back] != ' '; back += 1);
+        stack[top] = (String) { &str[fore], back - fore };
+        top += 1;
+        for (fore = back + 1; fore < len && str[fore] == ' '; fore += 1);
     }
 
     ////////////////////////////////////
 
-    char *ret = (char *)malloc((len + 1) * sizeof(char));
-    char *beg = ret;
+    char *reversed = (char *)malloc((len + 1) * sizeof(char));
+    char *beg = reversed;
     while (0 < top) {
         top -= 1;
         for (int i = 0; i < stack[top]._leng; i += 1) {
@@ -46,7 +43,7 @@ char *Reverse_Sentence(char *str) {
         beg[0] = (0 < top) ? ' ' : '\0';
         beg += 1;
     }
-    return ret;
+    return reversed;
 }
 
 int main(int argc, char *argv[]) {
