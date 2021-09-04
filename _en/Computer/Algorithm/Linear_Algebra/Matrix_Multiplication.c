@@ -10,6 +10,9 @@ Platform: Linux
 #include <stdlib.h>
 #include <string.h>
 
+/* Matrix Multiplication
+C[i][k] = ¦²_{j=0}^{y-1} A[i][j] * B[j][k]
+*/
 void Matrix_Multiplication(int x, int y, int z, double C[x][z], double A[x][y], double B[y][z]) {
     for (int i = 0; i < x; i += 1) {
         for (int k = 0; k < z; k += 1) {
@@ -21,6 +24,11 @@ void Matrix_Multiplication(int x, int y, int z, double C[x][z], double A[x][y], 
     }
 }
 
+/*
+[1 2 3]   [ 7  8  9 10]   [ 74  80  86  92]
+[4 5 6] ¡Á [11 12 13 14] = [173 188 203 218]
+          [15 16 17 18]
+*/
 int main(int argc, char *argv[]) {
     char data[] =
         "2 3 4""\n"
