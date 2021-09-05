@@ -1,6 +1,6 @@
 /* Longest_No_Repeating_SubString.c
 Author: BSS9395
-Update: 2020-09-01T19:58:00+08@China-Guangdong-Zhanjiang+08
+Update: 2021-09-01T19:58:00+08@China-Guangdong-Zhanjiang+08
 Design: Longest No Repeating SubString
 Original: https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/solution/wu-zhong-fu-zi-fu-de-zui-chang-zi-chuan-cshi-xian-/
 */

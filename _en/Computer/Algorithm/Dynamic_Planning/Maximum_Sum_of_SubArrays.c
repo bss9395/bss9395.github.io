@@ -1,6 +1,6 @@
 /* Maximum_Sum_of_SubArrays.c
 Author: BSS9395
-Update: 2020-09-01T11:10:00+08@China-Guangdong-Zhanjiang+08
+Update: 2021-09-01T11:10:00+08@China-Guangdong-Zhanjiang+08
 Design: Maximum Sum of SubArrays
 Original: https://leetcode-cn.com/problems/maximum-subarray/solution/chun-csan-chong-fang-fa-bao-li-po-jie-tan-xin-suan/
 */

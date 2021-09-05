@@ -1,6 +1,6 @@
 /* Longest_Palindrome_SubString.c
 Author: BSS9395
-Update: 2020-08-26T18:43:00+08@China-Guangdong-Zhanjiang+08
+Update: 2021-08-26T18:43:00+08@China-Guangdong-Zhanjiang+08
 Design: Longest Palindrome SubString Extraction
 Original: https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zui-chang-hui-wen-zi-chuan-by-leetcode-solution/
 Original: https://writings.sh/post/algorithm-longest-palindromic-substring#%E4%B8%AD%E5%BF%83%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95

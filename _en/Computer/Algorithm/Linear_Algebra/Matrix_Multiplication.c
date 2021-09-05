@@ -1,6 +1,6 @@
 /* Matrix_Multiplication.c
 Author: BSS9395
-Update: 2020-09-03T16:40:00+08@China-Guangdong-Zhanjiang+08
+Update: 2021-09-03T16:40:00+08@China-Guangdong-Zhanjiang+08
 Design: Matrix Multiplication
 Platform: Linux
 */

@@ -1,6 +1,6 @@
 /* Longest_Common_SubSequence.c
 Author: BSS9395
-Update: 2020-08-30T18:27:00+08@China-Guangdong-Zhanjiang+08
+Update: 2021-08-30T18:27:00+08@China-Guangdong-Zhanjiang+08
 Design: Longest Common SubSequence, Longest Common SubString
 Original: https://zhuanlan.zhihu.com/p/68409952
 */

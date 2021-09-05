@@ -1,6 +1,6 @@
 /* Palindrome_Number.c
 Author: BSS9395
-Update: 2020-09-01T09:05:00+08@China-Guangdong-Zhanjiang+08
+Update: 2021-09-01T09:05:00+08@China-Guangdong-Zhanjiang+08
 Design: Check Palindrome Number
 Original: https://leetcode-cn.com/problems/palindrome-number/solution/hui-wen-shu-by-leetcode-solution/
 */

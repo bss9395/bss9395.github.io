@@ -1,6 +1,6 @@
 /* Number_of_Unique_Paths.c
 Author: BSS9395
-Update: 2020-08-31T18:56:00+08@China-Guangdong-Zhanjiang+08
+Update: 2021-08-31T18:56:00+08@China-Guangdong-Zhanjiang+08
 Design: Number of Unique Paths
 Original: https://leetcode-cn.com/problems/unique-paths/solution/bu-tong-lu-jing-by-leetcode-solution-hzjf/
 */
