@@ -67,8 +67,8 @@ t 2 a| 2 1 1[1|2]3 4 |  "beatyu"  => "beautyu"
 r 3 t| 3 2 2 2 2[2]3 |
 X 4 y| 4 3 3 3 3 3[2]|  "beautyu" => "beauty"
   5 u| 5 4 4 4 3 4[3]|
-     ⇓---------------+
-     Deletion
+     ⇓---------------⇘
+     Deletion         Revision
 */
 int main(int argc, char *argv[]) {
     char *strX = (char *)"batyu";
