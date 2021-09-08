@@ -344,103 +344,6 @@ unch *Print_Number(unch *buff, fl64 number, in32 base, fl64 prec) {
     return buff;
 }
 
-/* Operator Precedence: from Low to High          Operator Associativity:
-          v Entrance
-AddiSubt   ≡ <MultDivi>[± MultDivi]               from Left to Right
-MultDivi   ≡ <Number>[⋇ Number]                   from Left to Right
-Number     ≡ [±]<Digit|(AddiSubt)>[{AddiSubt}]    from Right to Left     Digit{Expression} ≡ Pow(Digit, Expression)
-Digit      ≡ <0-9>[.0-9]
-
-Expression ≡ Term   |   Term ± Term
-Term       ≡ Factor | Factor ⋇ Factor
-Factor     ≡ Digit  | ±Digit | (Expression) | ±(Expression) | Digit{Expression} | ±Digit{Expression} | (Expression){Expression} | ±(Expression){Expression}
-Digit      ≡ <0-9>[.0-9]
-*/
-unch *Parse_Number(unch *data, fl64 *number, in32 base, bool fixed) {
-    unch *_retu = data;
-    in08 sign = +1;
-    fl64 value = 0.0;
-    for (; data[0] == ' '; data += 1);  // leave out the leading spaces.
-
-    if (data[0] == '+') {
-        data += 1;
-        sign = +1;
-    }
-    else if (data[0] == '-') {
-        data += 1;
-        sign = -1;
-    }
-    if (data[0] == '#') {
-        if (data[1] == 'D') {
-            base = 10;
-        }
-        else if (data[1] == 'B') {
-            base = 2;
-        }
-        else if (data[1] == 'O') {
-            base = 8;
-        }
-        else if (data[1] == 'H') {
-            base = 16;
-        }
-        else {
-            Check(true, ELevel._Error, __FUNCTION__, "unknown base", NULL);
-            return _retu;
-        }
-        data += 2;
-    }
-
-    if (data[0] == '(') {
-        data += 1;
-        data = Parse_Addi_Subt(data, &value, base, fixed);
-        if (data[0] != ')') {
-            Check(true, ELevel._Error, __FUNCTION__, "data[0] != ')", NULL);
-            // (*number) = sign * value;
-            return _retu;
-        }
-        data += 1;
-    }
-    else {
-        unch ch = -1;
-        unch *_data = data;
-        while (ch = _Digit[data[0]], 0 <= ch && ch < base) {
-            value = value * base + ch;
-            data += 1;
-        }
-        if (data == _data) {
-            // parse unsuccessfully 
-            Check(true, ELevel._Error, __FUNCTION__, "parse unsuccessfully", NULL);
-            return _retu;
-        }
-        if (fixed == false && data[0] == '.') {
-            data += 1;
-            fl64 fact = 1.0;
-            while (ch = _Digit[data[0]], 0 <= ch && ch < base) {
-                data += 1;
-                fact /= base;
-                value += ch * fact;
-            }
-        }
-    }
-
-    if (data[0] == '{') {
-        data += 1;
-        fl64 expo = 0.0;
-        data = Parse_Addi_Subt(data, &expo, base, fixed);
-        value = Pow(value, expo);
-        if (data[0] != '}') {
-            Check(true, ELevel._Error, __FUNCTION__, "data[0] != '}'", NULL);
-            // (*number) = sign * value;
-            return _retu;
-        }
-        data += 1;
-    }
-
-    for (; data[0] == ' '; data += 1);  // leave out ending spaces.
-    (*number) = sign * value;
-    return data;
-}
-
 unch *Print_TimeStamp(unch *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm, in32 ss, in32 tttttt, in32 ZZzz) {
     // TimeStamp ≡ YYYY-MM-DDThh:mm:ss.ttttttZZZzz
     unch ch = 0;
@@ -536,6 +439,103 @@ unch *Print_TimeStamp(unch *buff, in32 YYYY, in32 MM, in32 DD, in32 hh, in32 mm,
 
     buff[0] = '\0';
     return buff;
+}
+
+/* Operator Precedence: from Low to High          Operator Associativity:
+          v Entrance
+AddiSubt   ≡ <MultDivi>[± MultDivi]               from Left to Right
+MultDivi   ≡ <Number>[⋇ Number]                   from Left to Right
+Number     ≡ [±]<Digit|(AddiSubt)>[{AddiSubt}]    from Right to Left     Digit{Expression} ≡ Pow(Digit, Expression)
+Digit      ≡ <0-9>[.0-9]
+
+Expression ≡ Term   |   Term ± Term
+Term       ≡ Factor | Factor ⋇ Factor
+Factor     ≡ Digit  | ±Digit | (Expression) | ±(Expression) | Digit{Expression} | ±Digit{Expression} | (Expression){Expression} | ±(Expression){Expression}
+Digit      ≡ <0-9>[.0-9]
+*/
+unch *Parse_Number(unch *data, fl64 *number, in32 base, bool fixed) {
+    unch *_retu = data;
+    in08 sign = +1;
+    fl64 value = 0.0;
+    for (; data[0] == ' '; data += 1);  // leave out the leading spaces.
+
+    if (data[0] == '+') {
+        data += 1;
+        sign = +1;
+    }
+    else if (data[0] == '-') {
+        data += 1;
+        sign = -1;
+    }
+    if (data[0] == '#') {
+        if (data[1] == 'D') {
+            base = 10;
+        }
+        else if (data[1] == 'B') {
+            base = 2;
+        }
+        else if (data[1] == 'O') {
+            base = 8;
+        }
+        else if (data[1] == 'H') {
+            base = 16;
+        }
+        else {
+            Check(true, ELevel._Error, __FUNCTION__, "unknown base", NULL);
+            return _retu;
+        }
+        data += 2;
+    }
+
+    if (data[0] == '(') {
+        data += 1;
+        data = Parse_Addi_Subt(data, &value, base, fixed);
+        if (data[0] != ')') {
+            Check(true, ELevel._Error, __FUNCTION__, "data[0] != ')", NULL);
+            // (*number) = sign * value;
+            return _retu;
+        }
+        data += 1;
+    }
+    else {
+        unch ch = -1;
+        unch *_data = data;
+        while (ch = _Digit[data[0]], 0 <= ch && ch < base) {
+            data += 1;
+            value = value * base + ch;
+        }
+        if (data == _data) {
+            // parse unsuccessfully 
+            Check(true, ELevel._Error, __FUNCTION__, "parse unsuccessfully", NULL);
+            return _retu;
+        }
+        if (fixed == false && data[0] == '.') {
+            data += 1;
+            fl64 fact = 1.0;
+            while (ch = _Digit[data[0]], 0 <= ch && ch < base) {
+                data += 1;
+                fact /= base;
+                value += ch * fact;
+            }
+        }
+    }
+
+    if (data[0] == '{') {
+        data += 1;
+        fl64 expo = 0.0;
+        data = Parse_Addi_Subt(data, &expo, base, fixed);
+        value = Pow(value, expo);
+        if (data[0] != '}') {
+            Check(true, ELevel._Error, __FUNCTION__, "data[0] != '}'", NULL);
+            // (*number) = sign * value;
+            return _retu;
+        }
+        data += 1;
+    }
+
+    for (; data[0] == ' '; data += 1);  // leave out ending spaces.
+    (*number) = sign * value;
+    return data;
 }
 
 unch *Parse_Addi_Subt(unch *data, fl64 *number, in32 base, bool fixed) {
