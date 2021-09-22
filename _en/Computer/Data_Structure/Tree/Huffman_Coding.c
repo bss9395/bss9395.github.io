@@ -86,7 +86,7 @@ HTree Huffman_Conding(double weight[], int numb) {
                 buff[fore] = '1';
             }
         }
-        code[i] = (char *)malloc((numb - fore) * sizeof(char));
+        code[i] = (char *)malloc((numb - fore + 1) * sizeof(char));
         strcpy(code[i], &buff[fore]);
     }
 
