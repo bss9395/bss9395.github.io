@@ -5,6 +5,12 @@ Design: C++ Standard Library complex
 */
 
 /*
+Addition:
+(a+b*i) + (c+d*i) = (a+c) + (b+d)*i
+
+Subtraction:
+(a+b*i) - (c+d*i) = (a-c) + (b-d)*i
+
 Multiplication:
 (a+b*i) * (c+d*i) = (a*c-b*d) + (a*d+b*c)*i
 

@@ -5,6 +5,7 @@ Design: C++ override keyword
 */
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Base {
@@ -12,38 +13,44 @@ public:
     // overload
     void Overload() {
         cout << __FUNCTION__ << endl;
+        return;
     }
 
     // overload
-    int Overload(int load) {
+    virtual int Overload(int load) {
         cout << __FUNCTION__ << endl;
+        return load;
     }
 
-public:
-    virtual void Override(int ride) {
+    virtual Base &Override(string ride) {
         cout << __FUNCTION__ << endl;
+        return (*this);
     }
 };
 
 class Derived : public Base {
 private:
-    // override
-    virtual void Override(int ride) override {
-        cout << __FUNCTION__ << endl;
-    }
-
     // redefine
-    double Overload(double load) {
+    string Overload(string load) {
         cout << __FUNCTION__ << endl;
         Base::Overload();
         Base::Overload(1);
+        return load;
+    }
+
+    // override
+    virtual Derived &Override(string ride) override final {
+        cout << __FUNCTION__ << endl;
+        Base::Overload();
+        Base::Overload(1);
+        return (*this);
     }
 };
 
 int main(int argc, char *argv[]) {
     Derived derived;
     Base &ref = derived;
-    ref.Override(2);
+    ref.Override("derived");
 
     return 0;
 }
