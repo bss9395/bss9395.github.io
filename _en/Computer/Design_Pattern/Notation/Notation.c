@@ -257,27 +257,39 @@ unch *Copy_Data(unch *buff, unch *data, iptr leng) {
     return &buff[leng];
 }
 
-/* range of number by complement representation
+/* IEEE
 C/C++ type int: 32bits
-                       0x87654321
-±iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+                      0x87654321
+Iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
 -2^{32-1}  to  +2^{32-1}-1
 
 ////////////////////////////////////////////////////////////////////////////////
 
-C/C++ type float: 32bits                -1^{Sign} × (1.0+0.Fraction) × 2^{Exponent}
-                      0x87654321
-±eeeeeeeefffffffffffffffffffffff
-1       8                     23
--(1-2^{-23})×2^{2^{8-1}-1}-1  to  +(1-2^{-23})×2^{2^{8-1}-1}
+C/C++ type long: 64bits
+Iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+-2^{64-1}  to  +2^{64-1}-1
 
 ////////////////////////////////////////////////////////////////////////////////
 
-C/C++ type double: 64bits               -1^{Sign} × (1.0+0.Fraction) × 2^{Exponent}
+C/C++ type float: 32bits
+                      0x87654321
+±eeeeeeeefffffffffffffffffffffff
+1       8                     23
+Bias=2^{8-1}-1=127    Exponent-Bias=(1~254)-127=(-126~+127)
+(-1)^{Sign} × 2^{Exponent-Bias} × (1.Fraction)
+-(1+1-2^{-23})×2^{127}  to  +(1+1-2^{-23})×2^{127}
+-(2^{128}-2^{104})      to  +(2^{128}-2^{104})
+
+////////////////////////////////////////////////////////////////////////////////
+
+C/C++ type double: 64bits
                                                       0x87654321
 ±eeeeeeeeeeeffffffffffffffffffffffffffffffffffffffffffffffffffff
 1         11                                                  52
--(1-2^{-52})×2^{2^{11-1}-1}-1  to  +(1-2^{-52})×2^{2^{11-1}-1}
+Bias=2^{11-1}-1=1023  Exponent-Bias=(1~2046)-1023=(-1022~+1023)
+(-1)^{Sign} × 2^{Exponent-Bias} × (1.Fraction)
+-(1+1-2^{-52})×2^{1023}  to  +(1+1-2^{-52})×2^{1023}
+-(2^{1024}-2^{971})      to  +(2^{1024}-2^{971})
 */
 unch *Print_Number(unch *buff, fl64 number, in32 base, fl64 prec) {
     bool plus = (prec < 0) ? (prec = -prec, true) : false;
