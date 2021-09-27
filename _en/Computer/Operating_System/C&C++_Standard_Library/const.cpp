@@ -93,17 +93,24 @@ long Const::_Count = 0;
 
 
 int main(int argc, char *argv[]) {
+    typedef char *Char;
+    char *const const_ptr_char = nullptr;
+    Char const Char_const = const_ptr_char;  /* char *const Char_const */
+    const Char const_Char = const_ptr_char;  /* char *const const_Char */
+
+    ////////////////////////////////////
+
     char ch = 'c';
     char *ptr = &ch;
     char **ptr_ptr = &ptr;
     Const cls;
     cls.ptr_ptr_char(ptr_ptr);
-    // cls.ptr_ptr_const_char(ptr_ptr);     /* Error */
+    // cls.ptr_ptr_const_char(ptr_ptr);        /* Error */
     cls.ptr_const_ptr_char(ptr_ptr);
     cls.const_ptr_ptr_char(ptr_ptr);
     cls.ptr_const_ptr_const_char(ptr_ptr);
     cls.const_ptr_const_ptr_char(ptr_ptr);
-    // cls.const_ptr_ptr_const_char(ptr);   /* Error */
+    // cls.const_ptr_ptr_const_char(ptr_ptr);  /* Error */
     cls.const_ptr_const_ptr_char(ptr_ptr);
 
     ////////////////////////////////////
