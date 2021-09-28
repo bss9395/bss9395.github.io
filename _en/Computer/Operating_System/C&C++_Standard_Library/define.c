@@ -1,3 +1,9 @@
+/* Define.c
+Author: BSS9395
+Update: 2021-09-28T23:43:00+08@China-Guangdong-Shenzhen+08
+Design: C Define
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,9 +19,9 @@
 
 
 int main(int argc, char* argv[]) {
-	STR(5.0, 'a', "abc");
-	GLUE("abc");
-	PRINT("str1 is %s, str2 is %s, str3 is %s.\n", "abc", "cde", "fgh");
+    STR(5.0, 'a', "abc");
+    GLUE("abc");
+    PRINT("str1 is %s, str2 is %s, str3 is %s.\n", "abc", "cde", "fgh");
 
-	return 0;
+    return 0;
 }
