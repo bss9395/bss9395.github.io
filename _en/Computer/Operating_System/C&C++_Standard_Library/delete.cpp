@@ -23,8 +23,17 @@ public:
 
     Delete(const Delete &del) {
         cout << "Delete(const Delete &del)" << endl;
-        // ptr = del.ptr;              /* shallow copy: potential fatal error. */
-        _ptr = new string(*del._ptr);  /* deep copy */
+        // _ptr = del._ptr;                                              /* shallow copy: potential fatal error. */
+        _ptr = (del._ptr == nullptr) ? nullptr : new string(*del._ptr);  /* deep copy */
+    }
+
+    Delete &operator=(const Delete &del) {
+        cout << "Delete &operator=(const Delete &del)" << endl;
+        if (this != &del) {
+            // _ptr = del._ptr;                                              /* shallow copy: potential fatal error. */
+            _ptr = (del._ptr == nullptr) ? nullptr : new string(*del._ptr);  /* deep copy */
+        }
+        return (*this);
     }
 
     virtual ~Delete() {
@@ -32,16 +41,29 @@ public:
         delete _ptr;
         _ptr = nullptr;
     }
+
+public:
+    void Delete_Self() {
+        delete this;
+    }
 };
 
+// invoke copy constructor
 void Double_Delete(Delete del) {
-    // invoke copy constructor of Delete.
+    Delete dou;
+    // invoke copy assignment operator.
+    dou = del;
 }
 
 
 int main(int argc, char *argv[]) {
     Delete del;
     Double_Delete(del);
+
+    ////////////////////////////////////
+
+    Delete *self = new Delete;
+    self->Delete_Self();
 
     return 0;
 }

@@ -37,9 +37,11 @@ public:
 
     Reference &operator=(const Reference &ref) {
         cout << "Reference &operator=(const Reference &ref)" << endl;
-        this->~Reference();
-        _stri = ref._stri;
-        _data = ref._data;
+        if (this != &ref) {
+            this->~Reference();
+            _stri = ref._stri;
+            _data = ref._data;
+        }
         return (*this);
     }
 
