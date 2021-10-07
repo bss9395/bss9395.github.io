@@ -1,7 +1,7 @@
-/* Limits.c
+/* Numerical_Limits.c
 Author: BSS9395
 Update: 2021-09-27T15:23:00+08@China-Guangdong-Shenzhen+08
-Design: C/C++ type Limits
+Design: C/C++ Type Numerical Limits
 */
 
 #include <stdio.h>
