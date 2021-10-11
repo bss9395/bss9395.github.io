@@ -12,15 +12,15 @@ public class foreach {
                 "Java ME"
         };
 
-        for (var string : strings) {
-            string = "Java";            // Original value will not change.
+        for (String string : strings) {
+            string = "Java";                 // Original value will not change.
             System.out.println(string);
         }
 
         System.out.println("========================================");
         for (int i = 0; i < strings.length; i += 1) {
             System.out.println(strings[i]);
-            strings[i] = "Java";
+            strings[i] = "Java";            // Original value will change.
         }
 
         System.out.println("========================================");
