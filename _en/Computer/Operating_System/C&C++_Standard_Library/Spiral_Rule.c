@@ -1,7 +1,8 @@
-/* Clockwise_Rule.c
+/* Spiral_Rule.c
 Author: BSS9395
 Update: 2021-09-29T20:52:00+08@China-Guangdong-Shenzhen+08
 Design: C/C++ Clockwise Rule
+Credit: http://c-faq.com/decl/spiral.anderson.html
 */
 
 #include <stdio.h>
