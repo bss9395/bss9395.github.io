@@ -1,7 +1,7 @@
-/* getenv.c
+/* _putenv.c
 Author: BSS9395
 Update: 2021-10-30T11:42:00+08@China-Guangdong-Shenzhen+08
-Design: C Standard Library: getenv
+Design: C Standard Library: _putenv
 */
 
 /*

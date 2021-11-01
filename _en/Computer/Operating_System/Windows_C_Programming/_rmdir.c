@@ -1,7 +1,7 @@
-/* _chdir.c
+/* _rmdir.c
 Author: BSS9395
 Update: 2021-10-29T22:47:00+08@China-Guangdong-Shenzhen+08
-Design: Windows C Library: _chdir
+Design: Windows C Library: _rmdir
 */
 
 /* Windows API
