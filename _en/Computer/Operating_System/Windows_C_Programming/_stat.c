@@ -35,7 +35,7 @@ struct stat {
 
 typedef long iptr;
 
-iptr Make_Directory(const char *path) {
+iptr Make_Dir(const char *path) {
     iptr leng = (iptr)strlen(path);
     char *full = (char *)calloc(1, (leng + 1) * sizeof(char));
     if (full == NULL) {
@@ -51,8 +51,8 @@ iptr Make_Directory(const char *path) {
                 i += 1;
                 continue;
             }
+            full[idx] = '\0';
             if (!((stat(full, &info) == 0) && (info.st_mode & S_IFDIR))) {
-                full[idx] = '\0';
                 int ok = _mkdir(full);
                 if (ok != 0) {
                     fprintf(stderr, "[%d] %s""\n", errno, strerror(errno));
@@ -66,8 +66,8 @@ iptr Make_Directory(const char *path) {
         idx += 1, i += 1;
     }
     if ((0 < leng) && (path[leng - 1] != '/')) {
+        full[idx] = '\0';
         if (!((stat(full, &info) == 0) && (info.st_mode & S_IFDIR))) {
-            full[idx] = '\0';
             int ok = _mkdir(full);
             if (ok != 0) {
                 fprintf(stderr, "[%d] %s""\n", errno, strerror(errno));
@@ -76,6 +76,49 @@ iptr Make_Directory(const char *path) {
             }
         }
         level += 1;
+    }
+
+END:
+    free(full);
+    return level;
+}
+
+iptr Make_Directory(const char *path) {
+    iptr leng = (iptr)strlen(path);
+    char *full = (char *)calloc(1, (leng + 2) * sizeof(char));
+    if (full == NULL) {
+        exit(EXIT_FAILURE);
+    }
+
+    iptr idx = 0;
+    for (iptr i = 0; i < leng; ) {
+        if (path[i] == '/' && 0 < i && path[i - 1] == path[i]) {
+            i += 1;
+            continue;
+        }
+        full[idx] = path[i];
+        idx += 1, i += 1;
+    }
+    full[idx] = '/';
+    full[idx + 1] = '\0';
+    leng = idx + 1;
+
+    iptr level = 0;
+    struct stat info = { 0 };
+    for (idx = 0; idx < leng; idx += 1) {
+        if (full[idx] == '/' && 0 < idx && full[idx - 1] != ':') {
+            full[idx] = '\0';
+            if (!((stat(full, &info) == 0) && (info.st_mode & S_IFDIR))) {
+                int ok = _mkdir(full);
+                if (ok != 0) {
+                    fprintf(stderr, "[%d] %s""\n", errno, strerror(errno));
+                    level = -1;
+                    goto END;
+                }
+            }
+            full[idx] = '/';
+            level += 1;
+        }
     }
 
 END:
