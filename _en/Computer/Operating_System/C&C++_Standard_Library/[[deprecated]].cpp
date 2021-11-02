@@ -1,7 +1,12 @@
-/* _stat.c
+/* [[deprecated]].cpp
 Author: BSS9395
 Update: 2021-11-01T20:33:00+08@China-Guangdong-Shenzhen+08
-Design: Windows C Library: _stat
+Design: C++14 Standard Attribute: [[deprecated]]
+*/
+
+/*
+// C++14 Standard Attribute
+[[deprecated]]
 */
 
 /*
@@ -35,7 +40,7 @@ struct stat {
 
 typedef intptr_t iptr;
 
-// [[deprecated("Use Make_Directory(const char *path) instead.")]]
+[[deprecated("Use Make_Directory(const char *path) instead.")]]
 iptr Make_Dir(const char *path) {
     iptr leng = (iptr)strlen(path);
     char *full = (char *)calloc(1, (leng + 1) * sizeof(char));
