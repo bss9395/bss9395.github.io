@@ -12,7 +12,11 @@ Design: C Standard Directive: #error
 #error "Target Windows 64bit version."
 #endif // _WIN64
 
+
+#include <stdio.h>
+
 int main(int argc, char *argv[]) {
+    fprintf(stderr, "%s""\n", __FUNCTION__);
 
     return 0;
 }
