@@ -1,8 +1,10 @@
-﻿/* String_Literal.cpp
+/* String_Literal.cpp
 Author: BSS9395
 Update: 2021-11-10T01:04:00+08@China-Guangdong-Shenzhen+08
 Design: C++ Standard String Literal
-Encode: UTF-8+BOM
+Encode: UTF-8; UNIX
+Option: /utf-8; /source-charset:utf-8 /execution-charset:utf-8
+Option: -finput-charset-UTF-8 -fexec-charset=UTF-8
 */
 
 /*
@@ -23,11 +25,9 @@ prefix(optional) R"delimiter(raw_characters)delimiter"
 using namespace std;
 
 void CString_Literal() {
-    //system("chcp 65001");
-    setlocale(LC_ALL, "");
+    // system("chcp 65001");
+    setlocale(LC_ALL, ".UTF-8");
     fprintf(stderr, "locale = %s""\n", setlocale(LC_ALL, NULL));
-
-    ////////////////////////////////////
 
     char _char[] = "C:\\你好""\n";
     wchar_t _wchar[] = L"C:\\你好""\n";
@@ -54,11 +54,9 @@ void CString_Literal() {
 }
 
 void String_Literal() {
-    //system("chcp 65001");
-    setlocale(LC_ALL, "");
+    // system("chcp 65001");
+    setlocale(LC_ALL, ".UTF-8");
     fprintf(stderr, "locale = %s""\n", setlocale(LC_ALL, NULL));
-
-    ////////////////////////////////////
 
     string _char = "C:\\你好""\n"s;
     wstring _wchar = L"C:\\你好""\n"s;
@@ -85,8 +83,8 @@ void String_Literal() {
 }
 
 int main(int argc, char *argv[]) {
-    //CString_Literal();
-    String_Literal();
+    CString_Literal();
+    // String_Literal();
 
     return 0;
 }
