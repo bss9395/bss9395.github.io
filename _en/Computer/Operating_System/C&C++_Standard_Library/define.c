@@ -1,7 +1,7 @@
-/* #define.c
+/* define.c
 Author: BSS9395
 Update: 2021-09-28T23:43:00+08@China-Guangdong-Shenzhen+08
-Design: C define
+Design: C standard Pragma: #define
 */
 
 #include <stdio.h>

@@ -1,7 +1,7 @@
-/* #error.c
+/* error.c
 Author: BSS9395
 Update: 2021-11-03T23:03:00+08@China-Guangdong-Shenzhen+08
-Design: C Standard Directive: #error
+Design: C Standard Pragma: #error
 */
 
 #ifndef _WIN32
