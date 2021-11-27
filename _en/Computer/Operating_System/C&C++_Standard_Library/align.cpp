@@ -7,7 +7,7 @@ Credit: https://www.cplusplus.com/reference/memory/align/
 
 /*
 #include <memory>
-void* align (size_t alignment, size_t size, void*& ptr, size_t& space);
+void* align(size_t alignment, size_t size, void*& ptr, size_t& space);
 */
 
 #include <iostream>
