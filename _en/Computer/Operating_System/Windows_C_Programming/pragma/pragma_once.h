@@ -1,9 +1,8 @@
 /* pragma_once.h
 Author: BSS9395
 Update: 2021-11-21T00:05:00+08@China-Guangdong-Shenzhen+08
-Design: C Standard Pragma: #pragma once
+Design: Windows C Pragma: #pragma once
 */
-
 #pragma once
 #ifndef Pragma_Once_h
 #define Pragma_Once_h
@@ -12,6 +11,7 @@ Design: C Standard Pragma: #pragma once
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
 typedef const char *Level;
 static struct {
@@ -40,7 +40,7 @@ bool Check_(const bool failed, const Level level, const char *file, const iptr l
     if (failed) {
         const char *filename = NULL;
         (filename = strrchr(file, '/')) || (filename = strrchr(file, '\\'));
-        fprintf(stderr, "[%s : %s : %Id] %s : %s %s""\n", level, (filename == NULL) ? file : (filename + 1), line, function, record, (extra == NULL) ? "" : extra);
+        fprintf(stderr, "[%s : %s : %td] %s : %s %s""\n", level, (filename == NULL) ? file : (filename + 1), line, function, record, (extra == NULL) ? "" : extra);
     }
     return failed;
 }
