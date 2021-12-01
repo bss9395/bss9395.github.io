@@ -38,7 +38,7 @@ string Read_File(const string &filename) {
     return data;
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char* argv[]) {
     string data = Read_File(__FILE__);
     cout << data << endl;
 

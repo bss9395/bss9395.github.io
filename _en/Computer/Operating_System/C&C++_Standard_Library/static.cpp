@@ -11,19 +11,26 @@ typedef intptr_t iptr;
 
 class Count {
 public:
-    static constexpr char _type[] = "Count";
-    static Count _count;
+    static constexpr char _Type[] = "Count";
+    static Count _Count;
 
 public:
-    Count(const char *type = _type) {
+    const char *_type = NULL;
+
+public:
+    Count(const char *type = _Type) {
         std::cerr << __FUNCTION__ << std::endl;
+        _type = type;
         if ((Count::Increment() += 1) <= 1) {
-            std::cout << "type = " << type << ", Count::Increment() = " << Count::Increment() << std::endl;
+            std::cout << "type = " << _type << std::endl;
         }
     }
 
     virtual ~Count() {
         std::cerr << __FUNCTION__ << std::endl;
+        if ((Count::Increment() -= 1) <= 0) {
+            std::cout << "type = " << _type << std::endl;
+        }
     }
 
 public:
@@ -32,7 +39,7 @@ public:
         return incr;
     }
 };
-Count Count::_count = Count{};
+Count Count::_Count = Count{};
 
 
 int main(int argc, char *argv[]) {
