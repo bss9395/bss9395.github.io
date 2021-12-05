@@ -9,13 +9,13 @@ Link  :
 
 ### 复数的表示
 
-虚数
+虚数。
 
 $τ ≡ \sqrt{-1}, τ^2 = -1$
 
 $τ^{4 · n + 0} = +1, τ^{4 · n + 1} = +τ, τ^{4 · n + 2} = -1, τ^{4 · n + 3} = -τ$
 
-直角坐标表示法
+直角坐标表示法。
 
 $z = x + τ · y$
 
@@ -23,7 +23,7 @@ $\mathrm{Re\ } z = x, \mathrm{Im\ } z = y$
 
 $[z_1 = z_2] ⇔ [\mathrm{Re\ } z_1 = \mathrm{Re\ } z_2 ∧ \mathrm{Im\ } z_1 = \mathrm{Im\ } z_2]$
 
-极坐标表示法
+极坐标表示法。
 
 $z = r · ә^{+ τ · \phi} = r · \cos \phi + τ · r · \sin \phi$
 
@@ -31,11 +31,11 @@ $\arg z = \phi + 2 · m · π$
 
 $[z_1 = z_2] ⇔ [r_1 = r_2 ∧ \phi_1 = \phi_2 + 2 · m · π]$
 
-辐角表示法
+辐角表示法。
 
 $z = |z| · ә^{τ · \arg z}$
 
-共轭复数
+共轭复数。
 
 $\overline{z} = x - τ · y$
 
@@ -45,7 +45,7 @@ $x = \dfrac{z + \overline{z}}{2}, y = \dfrac{z - \overline{z}}{2 · τ}$
 
 ### 复数的运算
 
-复数的模
+复数的模。
 
 $|z| = |x + τ · y| = \sqrt{x^2 + y^2}$
 
@@ -53,7 +53,7 @@ $|\overline{z}| = |x - τ · y| = \sqrt{x^2 + y^2}$
 
 $|z| = |\overline{z}|$
 
-复数的辐角
+复数的辐角。
 
 $\arg z = +{'}\tan \dfrac{y}{x}$
 
