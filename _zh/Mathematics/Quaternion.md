@@ -98,7 +98,6 @@ $3$维空间单位矢量的虚乘运算。
 
 $$
 \begin{aligned}
-c * \vec{i} = c · \vec{i} &&  \\
 \vec{i} * \vec{i} = -1 && \vec{j} * \vec{j} = -1 && \vec{k} * \vec{k} = -1 \\
 \vec{i} * \vec{j} = +\vec{k} && \vec{j} * \vec{k} = +\vec{i} && \vec{k} * \vec{i} = +\vec{j} \\
 \vec{j} * \vec{i} = -\vec{k} && \vec{k} * \vec{j} = -\vec{i} && \vec{i} * \vec{k} = -\vec{j} \\
@@ -160,7 +159,7 @@ w_x \\
 -v_y & +v_x & 0 \\
 +v_z & 0 & -v_x \\
 0 & -v_z & +v_y \\
-\end{matrix}\right] * \left[\begin{matrix}
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
 w_z \\
 w_y \\
 w_x \\
@@ -266,6 +265,7 @@ $$
 &+ \vec{i} · (w_p · x_q + x_p · w_q + y_p · z_q - z_p · y_q) \\
 &+ \vec{j} · (w_p · y_q + y_p · w_q + z_p · x_q - x_p · z_q) \\
 &+ \vec{k} · (w_p · z_q + z_p · w_q + x_p · y_q - y_p · x_q) \\
+
 \end{aligned}
 $$
 

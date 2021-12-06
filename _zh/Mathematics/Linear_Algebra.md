@@ -184,33 +184,33 @@ x+1 & 9·x^3 + 30·x^2 + 42·x^1 + 26                                           
 
 $$
 \begin{aligned}
-\mathrm{A}_{(m+1)*(n+1)} &= \left[\begin{matrix}
+\mathrm{A}_{(m+1)×(n+1)} &= \left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]_{(m+1)*(n+1)} \\
-{^t}\mathrm{A}_{(n+1)*(m+1)} &= \left[\begin{matrix}
+\end{matrix}\right]_{(m+1)×(n+1)} \\
+{^t}\mathrm{A}_{(n+1)×(m+1)} &= \left[\begin{matrix}
 a_{0,n} & a_{1,n} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{0,1} & a_{1,1} & ⋯ & a_{m,1} \\
 a_{0,0} & a_{1,0} & ⋯ & a_{m,0} \\
-\end{matrix}\right]_{(n+1)*(m+1)} \\
+\end{matrix}\right]_{(n+1)×(m+1)} \\
 \end{aligned}
 $$
 
-单位$(n+1)*(n+1)$元矩阵。
+单位$(n+1)×(n+1)$元矩阵。
 
 $$
-\mathrm{I}_{(n+1)*(n+1)} = \left[\begin{matrix}
+\mathrm{I}_{(n+1)×(n+1)} = \left[\begin{matrix}
 0 & 0 & ⋯ & 1 \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 0 & 1 & ⋯ & 0 \\
 1 & 0 & ⋯ & 0 \\
-\end{matrix}\right]_{(n+1)*(n+1)}
+\end{matrix}\right]_{(n+1)×(n+1)}
 $$
 
-$(m+1)*(n+1)$元矩阵与$(m+1)*(n+1)$元矩阵的加运算。
+$(m+1)×(n+1)$元矩阵与$(m+1)×(n+1)$元矩阵的加运算。
 
 $$
 \left[\begin{matrix}
@@ -218,20 +218,20 @@ b_{m,0} + a_{m,0} & b_{m,1} + a_{m,1} & ⋯ & b_{m,n} + a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 b_{1,0} + a_{1,0} & b_{1,1} + a_{1,1} & ⋯ & b_{1,n} + a_{1,n} \\
 b_{0,0} + a_{0,0} & b_{0,1} + a_{0,1} & ⋯ & b_{0,n} + a_{0,n} \\
-\end{matrix}\right]_{(m+1)*(n+1)} = \left[\begin{matrix}
+\end{matrix}\right]_{(m+1)×(n+1)} = \left[\begin{matrix}
 b_{m,0} & b_{m,1} & ⋯ & b_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 b_{1,0} & b_{1,1} & ⋯ & b_{1,n} \\
 b_{0,0} & b_{0,1} & ⋯ & b_{0,n} \\
-\end{matrix}\right]_{(m+1)*(n+1)} + \left[\begin{matrix}
+\end{matrix}\right]_{(m+1)×(n+1)} + \left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]_{(m+1)*(n+1)}
+\end{matrix}\right]_{(m+1)×(n+1)}
 $$
 
-标量与$(m+1)*(n+1)$元矩阵的点乘运算。
+标量与$(m+1)×(n+1)$元矩阵的点乘运算。
 
 $$
 \left[\begin{matrix}
@@ -239,15 +239,15 @@ c · a_{m,0} & c · a_{m,1} & ⋯ & c · a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 c · a_{1,0} & c · a_{1,1} & ⋯ & c · a_{1,n} \\
 c · a_{0,0} & c · a_{0,1} & ⋯ & c · a_{0,n} \\
-\end{matrix}\right]_{(m+1)*(n+1)} = c · \left[\begin{matrix}
+\end{matrix}\right]_{(m+1)×(n+1)} = c · \left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]_{(m+1)*(n+1)}
+\end{matrix}\right]_{(m+1)×(n+1)}
 $$
 
-$(l+1)*(m+1)$元矩阵与$(m+1)*(n+1)$元矩阵的和乘运算。
+$(l+1)*(m+1)$元矩阵与$(m+1)×(n+1)$元矩阵的和乘运算。
 
 $$
 \left[\begin{matrix}
@@ -255,17 +255,17 @@ $$
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \sum\limits_{k=0}^{m} b_{1,k} · a_{k,0} & \sum\limits_{k=0}^{m} b_{1,k} · a_{k,1} & ⋯ & \sum\limits_{k=0}^{m} b_{1,k} · a_{k,n} \\
 \sum\limits_{k=0}^{m} b_{0,k} · a_{k,0} & \sum\limits_{k=0}^{m} b_{0,k} · a_{k,1} & ⋯ & \sum\limits_{k=0}^{m} b_{0,k} · a_{k,n} \\
-\end{matrix}\right]_{(l+1)*(n+1)} = \left[\begin{matrix}
+\end{matrix}\right]_{(l+1)×(n+1)} = \left[\begin{matrix}
 b_{l,0} & b_{l,1} & ⋯ & b_{l,m} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 b_{1,0} & b_{1,1} & ⋯ & b_{1,m} \\
 b_{0,0} & b_{0,1} & ⋯ & b_{0,m} \\
-\end{matrix}\right]_{(l+1)*(m+1)} * \left[\begin{matrix}
+\end{matrix}\right]_{(l+1)×(m+1)} \rlap{×}{+} \left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]_{(m+1)*(n+1)}
+\end{matrix}\right]_{(m+1)×(n+1)}
 $$
 
 ### 矢量的运算性质
@@ -362,7 +362,7 @@ w_x \\
 -v_y & +v_x & 0 \\
 +v_z & 0 & -v_x \\
 0 & -v_z & +v_y \\
-\end{matrix}\right] * \left[\begin{matrix}
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
 w_z \\
 w_y \\
 w_x \\
