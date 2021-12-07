@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  线性代数
-Update:  2021-12-05T18:35:00+08@中国-广东-深圳+08
+Update:  2021-12-07T23:40:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -16,7 +16,8 @@ Link  :
 
 $n$元线性代数方程组的最典型定义。
 
-$\left[\begin{matrix}
+$$
+\left[\begin{matrix}
 y_1 \\
 y_2 \\
 ⋮ \\
@@ -26,7 +27,7 @@ a_{1,1} & a_{1,2} & ⋯ & a_{1,n} \\
 a_{2,1} & a_{2,2} & ⋯ & a_{2,n} \\
 ⋮ & ⋮ & ⋱ & ⋮ \\
 a_{m,1} & a_{m,2} & ⋯ & a_{m,n}
-\end{matrix}\right] × \left[\begin{matrix}
+\end{matrix}\right]_{m×n} \rlap{×}{+} \left[\begin{matrix}
 x_1 \\
 x_2 \\
 ⋮ \\
@@ -36,84 +37,94 @@ a_{1,1} · x_1 + a_{1,2} · x_2 + ⋯ + a_{1,n} · x_n \\
 a_{2,1} · x_1 + a_{2,2} · x_2 + ⋯ + a_{2,n} · x_n \\
 ⋮ \\
 a_{m,1} · x_1 + a_{m,2} · x_2 + ⋯ + a_{m,n} · x_n \\
-\end{matrix}\right]$
+\end{matrix}\right]
+$$
 
 $n + 1$元线性代数方程组的现定义。
 
-$\left[\begin{matrix}
+$$
+\left[\begin{matrix}
 y_n \\
 ⋮ \\
 y_1 \\
 y_0 \\
 \end{matrix}\right] = \left[\begin{matrix}
-f_{m,0} & f_{m,1} & ⋯ & f_{m,n} \\
+a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
-f_{1,0} & f_{1,1} & ⋯ & f_{1,n} \\
-f_{0,0} & f_{0,1} & ⋯ & f_{0,n} \\
-\end{matrix}\right] × \left[\begin{matrix}
+a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
+a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
+\end{matrix}\right]_{(m+1)×(n+1)} \rlap{×}{+} \left[\begin{matrix}
 x_n \\
 ⋮ \\
 x_1 \\
 x_0 \\
 \end{matrix}\right] = \left[\begin{matrix}
-f_{m,0} · x_0 + f_{m,1} · x_1 + ⋯ + f_{m,n} · x_n \\
+a_{m,0} · x_0 + a_{m,1} · x_1 + ⋯ + a_{m,n} · x_n \\
 ⋮ \\
-f_{1,0} · x_0 + f_{1,1} · x_1 + ⋯ + f_{1,n} · x_n \\
-f_{0,0} · x_0 + f_{0,1} · x_1 + ⋯ + f_{0,n} · x_n \\
-\end{matrix}\right]$
+a_{1,0} · x_0 + a_{1,1} · x_1 + ⋯ + a_{1,n} · x_n \\
+a_{0,0} · x_0 + a_{0,1} · x_1 + ⋯ + a_{0,n} · x_n \\
+\end{matrix}\right]
+$$
 
 ### 矩阵的坐标
 
 矩阵的坐标遵循的原则：行优先于列，行数向上递增，列数向右递增。
 
-$(m + 1) × (n + 1)$矩阵的坐标，行数为$m + 1$，列数为$n + 1$。
+$(m+1)×(n+1)$矩阵的坐标，行数为$m+1$，列数为$n+1$。
 
-$\left[\begin{matrix}
+$$
+\left[\begin{matrix}
 (m, 0) & (m, 1) & → & (m, n) \\
 ↑ & ↑ & ↗ & ↑ \\
 (1, 0) & (1, 1) & → & (1, n) \\
 (0, 0) & (0, 1) & → & (0, n) \\
-\end{matrix}\right]$
+\end{matrix}\right]_{(m+1)×(n+1)}
+$$
 
-$(n + 1) × (n + 1)$方阵的单位矩阵，对角线为左下右上。
+$(n+1)×(n+1)$方阵的单位矩阵，对角线为左下右上。
 
-$\left[\begin{matrix}
+$$
+\left[\begin{matrix}
 0 & 0 & ⋯ & 1 \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 0 & 1 & ⋯ & 0 \\
 1 & 0 & ⋯ & 0 \\
-\end{matrix}\right]$
+\end{matrix}\right]_{(n+1)×(n+1)}
+$$
 
 ### 矩阵的运算
 
 矩阵的运算遵循的原则：行优先于列，单行从左往右，单列从下往上。
 
-矩阵$\mathcal{F}[(m + 1) × (n + 1)]$的反置矩阵${'}\mathcal{F}[(m + 1) × (n + 1)]$。
+矩阵$\mathcal{F}[(m+1)×(n+1)]$的转置矩阵为${^t}\mathcal{F}[(m+1)×(n+1)] ≡ \mathrm{rev} \mathcal{F}[(m+1)×(n+1)]$。
 
-${^{'} }\mathcal{F}[(m + 1) × (n + 1)] = \mathrm{rev} \mathcal{F}[(m + 1) × (n + 1)]$
+$\mathcal{H}[(n+1)×(m+1)] = {^t}\mathcal{F}[(m+1)×(n+1)]$。
 
-$\left[\begin{matrix}
+$$
+\left[\begin{matrix}
 h_{n,0} & h_{n,1} & ⋯ & h_{n,m} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$h_{1,0}$} & h_{1,1} & ⋯ & h_{1,m} \\
 h_{0,0} & \fbox{$h_{0,1}$} & ⋯ & h_{0,m} \\
-\end{matrix}\right] \mathop{====}\limits^{h_{i,j}=f_{j,i} } \mathrm{rev} \left[\begin{matrix}
+\end{matrix}\right]_{(n+1)×(m+1)} \mathop{====}\limits^{h_{i,j}=f_{j,i} } \mathrm{rev} \left[\begin{matrix}
 f_{m,0} & f_{m,1} & ⋯ & f_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$f_{1,0}$} & f_{1,1} & ⋯ & f_{1,n} \\
 f_{0,0} & \fbox{$f_{0,1}$} & ⋯ & f_{0,n} \\
-\end{matrix}\right] = \left[\begin{matrix}
+\end{matrix}\right]_{(m+1)×(n+1)} ≡ \left[\begin{matrix}
 f_{0,n} & f_{1,n} & ⋯ & f_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$f_{0,1}$} & f_{1,1} & ⋯ & f_{m,1} \\
 f_{0,0} & \fbox{$f_{1,0}$} & ⋯ & f_{m,0} \\
-\end{matrix}\right]$
+\end{matrix}\right]_{(n+1)×(m+1)}
+$$
 
-矩阵$\mathcal{G}[(m + 1) × (n + 1)]$与矩阵$\mathcal{F}[(m + 1) × (n + 1)]$的加运算。
+矩阵$\mathcal{G}[(m+1)×(n+1)]$与矩阵$\mathcal{F}[(m+1)×(n+1)]$的位加运算。
 
-$\mathcal{H}[(m +1) × (n + 1)] = \mathcal{G}[(m + 1) × (n + 1)] + \mathcal{F}[(m + 1) × (n + 1)]$
+$\mathcal{H}[(m+1)×(n+1)] = \mathcal{G}[(m+1)×(n+1)] + \mathcal{F}[(m+1)×(n+1)]$。
 
-$\left[\begin{matrix}
+$$
+\left[\begin{matrix}
 h_{m,0} & h_{m,1} & ⋯ & h_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$h_{1,0}$} & \fbox{$h_{1,1}$} & ⋯ & \fbox{$h_{1,n}$} \\
@@ -133,36 +144,40 @@ g_{m,0}+f_{m,0} & g_{m,1}+f_{m,1} & ⋯ & g_{m,n}+f_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$g_{1,0}+f_{1,0}$} & \fbox{$g_{1,1}+f_{1,1}$} & ⋯ & \fbox{$g_{1,n}+f_{1,n}$} \\
 g_{0,0}+f_{0,0} & g_{0,1}+f_{0,1} & ⋯ & g_{0,n}+f_{0,n} \\
-\end{matrix}\right]$
+\end{matrix}\right]
+$$
 
-矩阵$\mathcal{G}[(l + 1) × (m + 1)]$与矩阵$\mathcal{F}[(m + 1) × (n + 1)]$的乘运算。
+矩阵$\mathcal{G}[(l+1)×(m+1)]$与矩阵$\mathcal{F}[(m+1)×(n+1)]$的乘和运算。
 
-$\mathcal{H}[(l +1) × (n + 1)] = \mathcal{G}[(l + 1) × (m + 1)] × \mathcal{F}[(m + 1) × (n + 1)]$
+$\mathcal{H}[(l+1)×(n+1)] = \mathcal{G}[(l+1)×(m+1)] \rlap{×}{+} \mathcal{F}[(m+1)×(n+1)]$
 
-$\left[\begin{matrix}
+$$
+\left[\begin{matrix}
 h_{l,0} & h_{l,1} & ⋯ & h_{l,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$h_{1,0}$} & h_{1,1} & ⋯ & h_{1,n} \\
 h_{0,0} & h_{0,1} & ⋯ & h_{0,n} \\
-\end{matrix}\right] \mathop{========}\limits^{h_{i,j}=\sum\limits_{k=0}^{m} g_{i,k}·f_{k,j} } \left[\begin{matrix}
+\end{matrix}\right]_{(l+1)×(n+1)} \mathop{========}\limits^{h_{i,j}=\sum\limits_{k=0}^{m} g_{i,k}·f_{k,j} } \left[\begin{matrix}
 g_{l,0} & g_{l,1} & ⋯ & g_{l,m} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$g_{1,0}$} & \fbox{$g_{1,1}$} & ⋯ & \fbox{$g_{1,m}$} \\
 g_{0,0} & g_{0,1} & ⋯ & g_{0,m} \\
-\end{matrix}\right] × \left[\begin{matrix}
+\end{matrix}\right]_{(l+1)×(m+1)} \rlap{×}{+} \left[\begin{matrix}
 \fbox{$f_{m,0}$} & f_{m,1} & ⋯ & f_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$f_{1,0}$} & f_{1,1} & ⋯ & f_{1,n} \\
 \fbox{$f_{0,0}$} & f_{0,1} & ⋯ & f_{0,n} \\
-\end{matrix}\right]$
+\end{matrix}\right]_{(m+1)×(n+1)}
+$$
 
-二元关系$\mathcal{G}[Z × Y]$与二元关系$\mathcal{F}[Y × X]$的复合关系$\mathcal{H}[Z × X]$。
+二元关系$\mathcal{G}[Z×Y]$与二元关系$\mathcal{F}[Y×X]$的复合关系$\mathcal{H}[Z×X]$。
 
-$\mathcal{H}[Z × X] = \mathcal{G}[Z × Y] ∘ \mathcal{F}[Y × X]$
+$\mathcal{H}[Z×X] = \mathcal{G}[Z×Y] ∘ \mathcal{F}[Y×X]$
 
 ### 多项式分解
 
-$9·x^3 + 30·x^2 + 42·x^1 + 26 = 9·(x+1)^3 + 3·(x+1)^2 + 9·(x+1)^1 + 5 \\
+$$
+9·x^3 + 30·x^2 + 42·x^1 + 26 = 9·(x+1)^3 + 3·(x+1)^2 + 9·(x+1)^1 + 5 \\
 \begin{array}{l|l|l|l}
 \hline
 x+1 & 9·x^3 + 30·x^2 + 42·x^1 + 26                                            & 9·x^2 + 21·x^1 + 21                                               & 9·x^1 + 12 & 9 \\
@@ -176,7 +191,8 @@ x+1 & 9·x^3 + 30·x^2 + 42·x^1 + 26                                           
 \hline
     & \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 5 \\
 \hline
-\end{array}$
+\end{array}
+$$
 
 ### 矩阵的运算性质
 
@@ -210,7 +226,23 @@ $$
 \end{matrix}\right]_{(n+1)×(n+1)}
 $$
 
-$(m+1)×(n+1)$元矩阵与$(m+1)×(n+1)$元矩阵的加运算。
+标量与$(m+1)×(n+1)$元矩阵的量加运算。
+
+$$
+\left[\begin{matrix}
+c + a_{m,0} & c + a_{m,1} & ⋯ & c + a_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+c + a_{1,0} & c + a_{1,1} & ⋯ & c + a_{1,n} \\
+c + a_{0,0} & c + a_{0,1} & ⋯ & c + a_{0,n} \\
+\end{matrix}\right]_{(m+1)×(n+1)} = c \oplus \left[\begin{matrix}
+a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
+a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
+\end{matrix}\right]_{(m+1)×(n+1)}
+$$
+
+$(m+1)×(n+1)$元矩阵与$(m+1)×(n+1)$元矩阵的位加运算。
 
 $$
 \left[\begin{matrix}
@@ -231,7 +263,7 @@ a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
 \end{matrix}\right]_{(m+1)×(n+1)}
 $$
 
-标量与$(m+1)×(n+1)$元矩阵的点乘运算。
+标量与$(m+1)×(n+1)$元矩阵的量乘运算。
 
 $$
 \left[\begin{matrix}
@@ -239,7 +271,7 @@ c · a_{m,0} & c · a_{m,1} & ⋯ & c · a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 c · a_{1,0} & c · a_{1,1} & ⋯ & c · a_{1,n} \\
 c · a_{0,0} & c · a_{0,1} & ⋯ & c · a_{0,n} \\
-\end{matrix}\right]_{(m+1)×(n+1)} = c · \left[\begin{matrix}
+\end{matrix}\right]_{(m+1)×(n+1)} = c \odot \left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
@@ -247,7 +279,44 @@ a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
 \end{matrix}\right]_{(m+1)×(n+1)}
 $$
 
-$(l+1)*(m+1)$元矩阵与$(m+1)×(n+1)$元矩阵的和乘运算。
+$(m+1)×(n+1)$元矩阵与$(m+1)×(n+1)$元矩阵的点乘运算。
+
+$$
+\sum\limits_{i=0}^{m} \sum\limits_{j=0}^{n} b_{i,j} · a_{i,j} = \left[\begin{matrix}
+b_{m,0} & b_{m,1} & ⋯ & b_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+b_{1,0} & b_{1,1} & ⋯ & b_{1,n} \\
+b_{0,0} & b_{0,1} & ⋯ & b_{0,n} \\
+\end{matrix}\right]_{(m+1)×(n+1)} · \left[\begin{matrix}
+a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
+a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
+\end{matrix}\right]_{(m+1)×(n+1)}
+$$
+
+$(m+1)×(n+1)$元矩阵与$(m+1)×(n+1)$元矩阵的位乘运算。
+
+$$
+\left[\begin{matrix}
+b_{m,0} · a_{m,0} & b_{m,1} · a_{m,1} & ⋯ & b_{m,n} · a_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+b_{1,0} · a_{1,0} & b_{1,1} · a_{1,1} & ⋯ & b_{1,n} · a_{1,n} \\
+b_{0,0} · a_{0,0} & b_{0,1} · a_{0,1} & ⋯ & b_{0,n} · a_{0,n} \\
+\end{matrix}\right] = \left[\begin{matrix}
+b_{m,0} & b_{m,1} & ⋯ & b_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+b_{1,0} & b_{1,1} & ⋯ & b_{1,n} \\
+b_{0,0} & b_{0,1} & ⋯ & b_{0,n} \\
+\end{matrix}\right]_{(m+1)×(n+1)} × \left[\begin{matrix}
+a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
+a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
+\end{matrix}\right]_{(m+1)×(n+1)}
+$$
+
+$(l+1)*(m+1)$元矩阵与$(m+1)×(n+1)$元矩阵的乘和运算。
 
 $$
 \left[\begin{matrix}
@@ -274,40 +343,56 @@ $$
 
 $$
 \begin{aligned}
-\vec{\mathrm{V}} &= \left[\begin{matrix}
+\vec{v} &= \left[\begin{matrix}
 v_n \\
 ⋮ \\
 v_1 \\
 v_0 \\
 \end{matrix}\right] \\
-{^t}\vec{\mathrm{V}} &= \left[\begin{matrix}
+{^t}\vec{v} &= \left[\begin{matrix}
 v_0, v_1, ⋯, v_n \\
 \end{matrix}\right]
 \end{aligned}
 $$
 
-$n+1$元矢量与$n+1$元矢量的加运算。
+标量与$n+1$元矢量的量加运算。
 
 $$
 \left[\begin{matrix}
-v_n + w_n \\
+c + v_n \\
 ⋮ \\
-v_1 + w_1 \\
-v_0 + w_0 \\
-\end{matrix}\right] = \left[\begin{matrix}
+c + v_1 \\
+c + v_0 \\
+\end{matrix}\right] = c \oplus \left[\begin{matrix}
 v_n \\
 ⋮ \\
 v_1 \\
 v_0 \\
-\end{matrix}\right] + \left[\begin{matrix}
-w_n \\
-⋮ \\
-w_1 \\
-w_0 \\
 \end{matrix}\right]
 $$
 
-标量与$n+1$元矢量的点乘运算。
+$n+1$元矢量与$n+1$元矢量的位加运算。
+
+$$
+\left[\begin{matrix}
+u_n + v_n \\
+⋮ \\
+u_1 + v_1 \\
+u_0 + v_0 \\
+\end{matrix}\right] = \left[\begin{matrix}
+u_n \\
+⋮ \\
+u_1 \\
+u_0 \\
+\end{matrix}\right] + \left[\begin{matrix}
+v_n \\
+⋮ \\
+v_1 \\
+v_0 \\
+\end{matrix}\right]
+$$
+
+标量与$n+1$元矢量的量乘运算。
 
 $$
 \left[\begin{matrix}
@@ -315,7 +400,7 @@ c · v_n \\
 ⋮ \\
 c · v_1 \\
 c · v_0 \\
-\end{matrix}\right] = c · \left[\begin{matrix}
+\end{matrix}\right] = c \odot \left[\begin{matrix}
 v_n \\
 ⋮ \\
 v_1 \\
@@ -326,45 +411,66 @@ $$
 $n+1$元矢量与$n+1$元矢量的点乘运算。
 
 $$
-|\vec{v}| · |\vec{w}| · \cos \ang(\vec{v},\vec{w}) = \sum\limits_{k=0}^{n} v_k · w_k  = \left[\begin{matrix}
+|\vec{u}| · |\vec{v}| · \cos \ang(\vec{u},\vec{v}) = \sum\limits_{k=0}^{n} v_k · w_k  = \left[\begin{matrix}
+u_n \\
+⋮ \\
+u_1 \\
+u_0 \\
+\end{matrix}\right] · \left[\begin{matrix}
 v_n \\
 ⋮ \\
 v_1 \\
 v_0 \\
-\end{matrix}\right] · \left[\begin{matrix}
-w_n \\
+\end{matrix}\right]
+$$
+
+$n+1$元矢量与$n+1$元矢量的位乘运算。
+
+$$
+\left[\begin{matrix}
+u_n · v_n \\
 ⋮ \\
-w_1 \\
-w_0 \\
+u_1 · v_1 \\
+u_0 · v_0 \\
+\end{matrix}\right] = \left[\begin{matrix}
+u_n \\
+⋮ \\
+u_1 \\
+u_0 \\
+\end{matrix}\right] × \left[\begin{matrix}
+v_n \\
+⋮ \\
+v_1 \\
+v_0 \\
 \end{matrix}\right]
 $$
 
 $3$元矢量与$3$元矢量的叉乘运算。
 
 $$
-\vec{n}_{\vec{v}×\vec{w}} · |\vec{v}| · |\vec{w}| · \sin \ang(\vec{v},\vec{w}) = \left|\begin{matrix}
-\vec{k} & v_z & w_z \\
-\vec{j} & v_y & w_y \\
-\vec{i} & v_x & w_x \\
+\vec{n}_{\vec{v}\otimes\vec{w}} · |\vec{v}| · |\vec{w}| · \sin \ang(\vec{v},\vec{w}) = \left|\begin{matrix}
+\vec{k} & u_z & v_z \\
+\vec{j} & u_y & v_y \\
+\vec{i} & u_x & v_x \\
 \end{matrix}\right| = \left[\begin{matrix}
-v_x · w_y - v_y · w_x \\
-v_z · w_x - v_x · w_z \\
-v_y · w_z - v_z · w_y \\
+u_x · v_y - u_y · v_x \\
+u_z · v_x - u_x · v_z \\
+u_y · v_z - u_z · v_y \\
 \end{matrix}\right] = \left[\begin{matrix}
+u_z \\
+u_y \\
+u_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
-\end{matrix}\right] × \left[\begin{matrix}
-w_z \\
-w_y \\
-w_x \\
 \end{matrix}\right] = \left[\begin{matrix}
--v_y & +v_x & 0 \\
-+v_z & 0 & -v_x \\
-0 & -v_z & +v_y \\
+-u_y & +u_x & 0 \\
++u_z & 0 & -u_x \\
+0 & -u_z & +u_y \\
 \end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
-w_z \\
-w_y \\
-w_x \\
+v_z \\
+v_y \\
+v_x \\
 \end{matrix}\right]
 $$
