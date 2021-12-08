@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  线性代数
-Update:  2021-12-07T23:40:00+08@中国-广东-深圳+08
+Update:  2021-12-08T23:06:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -405,6 +405,17 @@ v_n \\
 ⋮ \\
 v_1 \\
 v_0 \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+0 & 0 & ⋯ & c \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+0 & c & ⋯ & 0 \\
+c & 0 & ⋯ & 0 \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_n \\
+⋮ \\
+v_1 \\
+v_0 \\
 \end{matrix}\right]
 $$
 
@@ -417,6 +428,14 @@ u_n \\
 u_1 \\
 u_0 \\
 \end{matrix}\right] · \left[\begin{matrix}
+v_n \\
+⋮ \\
+v_1 \\
+v_0 \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+u_0 & u_1 & ⋯ & u_n \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
 v_n \\
 ⋮ \\
 v_1 \\
@@ -442,13 +461,23 @@ v_n \\
 ⋮ \\
 v_1 \\
 v_0 \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+0 & 0 & ⋯ & u_n \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+0 & u_1 & ⋯ & 0 \\
+u_0 & 0 & ⋯ & 0 \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_n \\
+⋮ \\
+v_1 \\
+v_0 \\
 \end{matrix}\right]
 $$
 
 $3$元矢量与$3$元矢量的叉乘运算。
-
 $$
-\vec{n}_{\vec{v}\otimes\vec{w}} · |\vec{v}| · |\vec{w}| · \sin \ang(\vec{v},\vec{w}) = \left|\begin{matrix}
+\vec{n}_{\vec{u}\otimes\vec{v}} · |\vec{u}| · |\vec{v}| · \sin \ang(\vec{u},\vec{v}) = \left|\begin{matrix}
 \vec{k} & u_z & v_z \\
 \vec{j} & u_y & v_y \\
 \vec{i} & u_x & v_x \\
@@ -464,7 +493,8 @@ u_x \\
 v_z \\
 v_y \\
 v_x \\
-\end{matrix}\right] = \left[\begin{matrix}
+\end{matrix}\right] \\
+\left[\begin{matrix}
 -u_y & +u_x & 0 \\
 +u_z & 0 & -u_x \\
 0 & -u_z & +u_y \\
@@ -473,4 +503,128 @@ v_z \\
 v_y \\
 v_x \\
 \end{matrix}\right]
+$$
+
+### 矢量的三重积
+
+$3$元矢量的混合叉点积。
+
+$$
+\left|\begin{matrix}
+t_z & u_z & v_z \\
+t_y & u_y & v_y \\
+t_x & u_x & v_x \\
+\end{matrix}\right| = \left[\begin{matrix}
+t_z \\
+t_y \\
+t_x \\
+\end{matrix}\right] · \left[\begin{matrix}
+u_x · v_y - u_y · v_x \\
+u_z · v_x - u_x · v_z \\
+u_y · v_z - u_z · v_y \\
+\end{matrix}\right] = \left[\begin{matrix}
+t_z \\
+t_y \\
+t_x \\
+\end{matrix}\right] · \left[\begin{matrix}
+u_z \\
+u_y \\
+u_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \\
+= (t_y · u_z - t_z · u_y) · v_x + (t_z · u_x - t_x · u_z) · v_y + (t_x · u_y - t_y · u_x) · v_z \\
+= \left[\begin{matrix}
+(t_y · u_z - t_z · u_y) & (t_z · u_x - t_x · u_z) & (t_x · u_y - t_y · u_x) \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right]
+$$
+
+$3$元矢量的对称叉叉积。
+
+$$
+\begin{aligned}
+\left[\begin{matrix}
+r_z \\
+r_y \\
+r_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+r_z \\
+r_y \\
+r_x \\
+\end{matrix}\right] &= \left[\begin{matrix}
+r_x · v_y - r_y · v_x \\
+r_z · v_x - r_x · v_z \\
+r_y · v_z - r_z · v_y \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+r_z \\
+r_y \\
+r_x \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+(r_y · v_z - r_z · v_y) · r_y - (r_z · v_x - r_x · v_z) · r_x \\
+(r_x · v_y - r_y · v_x) · r_x - (r_y · v_z - r_z · v_y) · r_z \\
+(r_z · v_x - r_x · v_z) · r_z - (r_x · v_y - r_y · v_x) · r_y \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+-r_z · r_x · v_x - r_y · r_z · v_y + (r_x^2 + r_y^2) · v_z \\
+-r_x · r_y · v_x + (r_z^2 + r_x^2) · v_y - r_y · r_z · v_z \\
++(r_y^2 + r_z^2) · v_x - r_x · r_y · v_y - r_z · r_x · v_z \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+-r_z · r_x & -r_y · r_z & (r_x^2 + r_y^2) \\
+-r_x · r_y & (r_z^2 + r_x^2) & -r_y · r_z \\
+(r_y^2 + r_z^2) & -r_x · r_y & -r_z · r_x \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+
+$3$元矢量的对称点量积。
+$$
+\begin{aligned}
+\left(\left[\begin{matrix}
+r_z \\
+r_y \\
+r_x \\
+\end{matrix}\right] · \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right]\right) \odot \left[\begin{matrix}
+r_z \\
+r_y \\
+r_x \\
+\end{matrix}\right] &= (r_x · v_x + r_y · v_y + r_z · v_z) \odot \left[\begin{matrix}
+r_z \\
+r_y \\
+r_x \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+r_z · r_x · v_x + r_y · r_z · v_y + r_z^2 · v_z \\
+r_x · r_y · v_x + r_y^2 · v_y + r_y · r_z · v_z \\
+r_x^2 · v_x + r_x · r_y · v_y + r_z · r_x · v_z \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+r_z · r_x & r_y · r_z & r_z^2 \\
+r_x · r_y & r_y^2 & r_y · r_z \\
+r_x^2 & r_x · r_y & r_z · r_x \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right]
+\end{aligned}
 $$
