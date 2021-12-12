@@ -2,291 +2,459 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  四元数
-Update:  2021-12-06T00:06:00+08@中国-广东-深圳+08
+Update:  2021-12-13T01:18:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Credit:
 ---
 
-
-
-Credit: https://zhuanlan.zhihu.com/p/27471300
-Credit: https://www.qiujiawei.com/understanding-quaternions/
-Credit: https://zhuanlan.zhihu.com/p/97186723
-Credit: https://zhuanlan.zhihu.com/p/78987582
-
 ### 复数的运算性质
 
-复数的辐角表示法。
+复数的辐角表示法。辐角的旋转轴为$+τ$轴。
+
 $$
-z = |z| · ә^{τ · (+\arg z)} = |z| · \cos (\arg z) + τ · |z| · \sin (\arg z)
+z = |z| · ә^{+τ · \arg z} = |z| · [+τ · \sin(\arg z) + \cos(\arg z)]
 $$
+
 共轭复数。
+
 $$
 \begin{aligned}
-\overline{z} &= |z| · ә^{τ · (-\arg z)} = |z| · \cos (\arg z) - τ · |z| · \sin (\arg z) \\
-z · \overline{z} &= |z|^2 = z^2 \\
+\overline{z} = |z| · ә^{-τ · \arg z} &= |z| · [- τ · \sin(\arg z) + \cos(\arg z)] \\
+z^2 = |z|^2 = z \circledast \overline{z} &= |z|^2 · \left[ -τ^2 · \sin^2(\arg z) + \cos^2(\arg z) \right] \\
 \end{aligned}
 $$
-复数的逆。
+
+倒逆复数。
+
 $$
-{'}z = \dfrac{1}{z} = \dfrac{\overline{z}}{z^2}
-$$
-方向复数。
-$$
-ә^{τ · \phi} = \cos \phi + τ · \sin \phi
+{'}z = \dfrac{1}{z} = \dfrac{\overline{z}}{|z|^2} = \dfrac{\overline{z}}{z^2}
 $$
 
 单位复数。
-$$
-1 = ә^{τ · 0} = \cos 0 + τ · \sin 0
-$$
-
-单位虚数的点乘运算。
-$$
-τ · τ = -1
-$$
-
-方向复数的点乘运算。
 
 $$
-ә^{τ · \phi} · ә^{τ · \varphi} = ә^{τ · (\phi + \varphi)}
+τ · 0 + 1 = ә^{τ · 0} = τ · \sin 0 + \cos 0
+$$
+
+规范复数。
+
+$$
+\dfrac{z}{|z|} = ә^{τ · \arg z} = τ · \sin(\arg z) + \cos(\arg z)
+$$
+
+单位虚数的虚乘运算。
+
+$$
+τ \circledast τ = -1
+$$
+
+规范复数的位加运算。
+$$
+ә^{τ · \arg p} + ә^{τ · \arg q} = τ · [\sin(\arg p) + \sin(\arg p)] + [\cos(\arg p) + \cos(\arg q)]
+$$
+规范复数的虚乘运算。
+$$
+\begin{aligned}
+ә^{τ · \arg p} \circledast ә^{τ · \arg q} &≡ [τ · \sin(\arg p) + \cos(\arg p)] \circledast [τ · \sin(\arg q) + \cos(\arg q)] \\
+ә^{τ · \arg p} \circledast ә^{τ · \arg q} &= τ · \sin(\arg p + \arg q) + \cos(\arg p + \arg q)] \\
+&= ә^{τ · (\arg p + \arg q)} \\
+\end{aligned}
 $$
 
 ### 矢量的运算性质
 
-$3$维空间单位矢量。
+$3$维空间基矢量。
 
 $$
 \begin{aligned}
-\vec{i} = \left[\begin{matrix}
+\vec{η}_x &= \left[\begin{matrix}
 0 \\
 0 \\
 1 \\
-\end{matrix}\right] && \vec{j} = \left[\begin{matrix}
+\end{matrix}\right] & \vec{η}_y &= \left[\begin{matrix}
 0 \\
 1 \\
 0 \\
-\end{matrix}\right] && \vec{k} = \left[\begin{matrix}
+\end{matrix}\right] & \vec{η}_z &= \left[\begin{matrix}
 1 \\
 0 \\
 0 \\
-\end{matrix}\right]
+\end{matrix}\right] \\
 \end{aligned}
 $$
 
-$3$维空间单位矢量的点乘运算。
+$3$维空间基矢量的点乘运算。
 
 $$
 \begin{aligned}
-\vec{i} · \vec{i} = 1 && \vec{j} · \vec{j} = 1 && \vec{k} · \vec{k} = 1 \\
-\vec{i} · \vec{j} = 0 && \vec{j} · \vec{k} = 0 && \vec{k} · \vec{i} = 0 \\
-\vec{j} · \vec{i} = 0 && \vec{k} · \vec{j} = 0 && \vec{i} · \vec{k} = 0 \\
+\vec{η}_x \odot \vec{η}_x &= 1 & \vec{η}_y \odot \vec{η}_y &= 1 & \vec{η}_z \odot \vec{η}_z &= 1 \\
+\vec{η}_x \odot \vec{η}_y &= 0 & \vec{η}_y \odot \vec{η}_z &= 0 & \vec{η}_z \odot \vec{η}_x &= 0 \\
+\vec{η}_y \odot \vec{η}_x &= 0 & \vec{η}_z \odot \vec{η}_y &= 0 & \vec{η}_x \odot \vec{η}_z &= 0 \\
 \end{aligned}
 $$
 
-$3$维空间单位矢量的叉乘运算。
+$3$维空间基矢量的叉乘运算。
 
 $$
 \begin{aligned}
-\vec{i} × \vec{i} = +\vec{0} && \vec{j} × \vec{j} = +\vec{0} && \vec{k} × \vec{k} = +\vec{0} \\
-\vec{i} × \vec{j} = +\vec{k} && \vec{j} × \vec{k} = +\vec{i} && \vec{k} × \vec{i} = +\vec{j} \\
-\vec{j} × \vec{i} = -\vec{k} && \vec{k} × \vec{j} = -\vec{i} && \vec{i} × \vec{k} = -\vec{j} \\
+\vec{η}_x \otimes \vec{η}_x &= \vec{0} & \vec{η}_y \otimes \vec{η}_y &= \vec{0} & \vec{η}_z \otimes \vec{η}_z &= \vec{0} \\
+\vec{η}_x \otimes \vec{η}_y &= +\vec{η}_z & \vec{η}_y \otimes \vec{η}_z &= +\vec{η}_x & \vec{η}_z \otimes \vec{η}_x &= +\vec{η}_y \\
+\vec{η}_y \otimes \vec{η}_x &= -\vec{η}_z & \vec{η}_z \otimes \vec{η}_y &= -\vec{η}_x & \vec{η}_x \otimes \vec{η}_{z} &= -\vec{η}_y \\
 \end{aligned}
 $$
 
-$3$维空间单位矢量的虚乘运算。
+$3$维空间基矢量的虚乘运算。
 
 $$
 \begin{aligned}
-\vec{i} * \vec{i} = -1 && \vec{j} * \vec{j} = -1 && \vec{k} * \vec{k} = -1 \\
-\vec{i} * \vec{j} = +\vec{k} && \vec{j} * \vec{k} = +\vec{i} && \vec{k} * \vec{i} = +\vec{j} \\
-\vec{j} * \vec{i} = -\vec{k} && \vec{k} * \vec{j} = -\vec{i} && \vec{i} * \vec{k} = -\vec{j} \\
-\end{aligned}
-$$
-
-标量与$3$维空间矢量的点乘运算。
-
-$$
-\left[\begin{matrix}
-c · v_z \\
-c · v_y \\
-c · v_x \\
-\end{matrix}\right] = c · \left[\begin{matrix}
-v_z \\
-v_y \\
-v_x \\
-\end{matrix}\right]
-$$
-
-$3$维空间矢量与$3$维空间矢量的点乘运算。
-
-$$
-\begin{aligned}
-|\vec{v}| · |\vec{w}| · \cos \ang(\vec{v},\vec{w}) = v_x · w_x + v_y · w_y + v_z · w_z &= \left[\begin{matrix}
-v_z \\
-v_y \\
-v_x \\
-\end{matrix}\right] · \left[\begin{matrix}
-w_z \\
-w_y \\
-w_x \\
-\end{matrix}\right] = (\vec{i} · v_x + \vec{j} · v_y + \vec{k} · v_z) · (\vec{i} · w_x + \vec{j} · w_y + \vec{k} · w_z) \\
-\end{aligned}
-$$
-
-$3$维空间矢量与$3$维空间矢量的叉乘运算。
-
-$$
-\begin{aligned}
-\vec{n}_{\vec{v}×\vec{w}} · |\vec{v}| · |\vec{w}| · \sin \ang(\vec{v}, \vec{w}) = \left[\begin{matrix}
-\vec{k} & v_z & w_z \\
-\vec{j} & v_y & w_y \\
-\vec{i} & v_x & w_x \\
-\end{matrix}\right] &= \left[\begin{matrix}
-v_x · w_y - v_y · w_x \\
-v_z · w_x - v_x · w_z \\
-v_y · w_z - v_z · w_y \\
-\end{matrix}\right] = \left[\begin{matrix}
-v_z \\
-v_y \\
-v_x \\
-\end{matrix}\right] × \left[\begin{matrix}
-w_z \\
-w_y \\
-w_x \\
-\end{matrix}\right] = (\vec{i} · v_x + \vec{j} · v_y + \vec{k} · v_z) × (\vec{i} · w_x + \vec{j} · w_y + \vec{k} · w_z) \\
-&= \left[\begin{matrix}
--v_y & +v_x & 0 \\
-+v_z & 0 & -v_x \\
-0 & -v_z & +v_y \\
-\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
-w_z \\
-w_y \\
-w_x \\
-\end{matrix}\right] 
+c \circledast \vec{η}_x &= c · \vec{η}_x & c \circledast \vec{η}_y &= c · \vec{η}_y & c \circledast \vec{η}_z &= c · \vec{η}_z \\
+\vec{η}_x \circledast \vec{η}_x &= -1 & \vec{η}_y \circledast \vec{η}_y &= -1 & \vec{η}_z \circledast \vec{η}_z &= -1 \\
+\vec{η}_x \circledast \vec{η}_y &= +\vec{η}_z & \vec{η}_y \circledast \vec{η}_z &= +\vec{η}_x & \vec{η}_z \circledast \vec{η}_x &= +\vec{η}_y \\
+\vec{η}_y \circledast \vec{η}_x &= -\vec{η}_z & \vec{η}_z \circledast \vec{η}_y &= -\vec{η}_x & \vec{η}_x \circledast \vec{η}_{z} &= -\vec{η}_y \\
 \end{aligned}
 $$
 
 $3$维空间矢量与$3$维空间矢量的虚乘运算。
+
 $$
 \begin{aligned}
+\left[\begin{matrix}
+u_z \\
+u_y \\
+u_x \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] &≡ (\vec{η}_x · u_x + \vec{η}_y · u_y + \vec{η}_z · u_z) \circledast (\vec{η}_x · v_x + \vec{η}_y · v_y + \vec{η}_z · v_z) \\
 -\left[\begin{matrix}
+u_z \\
+u_y \\
+u_x \\
+\end{matrix}\right] \odot \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
-\end{matrix}\right] · \left[\begin{matrix}
-w_z \\
-w_y \\
-w_x \\
 \end{matrix}\right] + \left[\begin{matrix}
+u_z \\
+u_y \\
+u_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
-\end{matrix}\right] × \left[\begin{matrix}
-w_z \\
-w_y \\
-w_x \\
+\end{matrix}\right] = \left[\begin{matrix}
+u_z \\
+u_y \\
+u_x \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
 \end{matrix}\right] &= \left[\begin{matrix}
+-u_x & -u_y & -u_z \\
+-u_y & +u_x & 0 \\
++u_z & 0 & -u_x \\
+0 & -u_z & +u_y \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
-\end{matrix}\right] * \left[\begin{matrix}
-w_z \\
-w_y \\
-w_x \\
-\end{matrix}\right] = (\vec{i} · v_x + \vec{j} · v_y + \vec{k} · v_z) * (\vec{i} · w_x + \vec{j} · w_y + \vec{k} · w_z) \\
-
+\end{matrix}\right] \\
 \end{aligned}
 $$
 
 
 
-$3$维空间矢量的长度。
+$3$维空间矢量的规范化。
 $$
-|\vec{v}| = \left| \vec{i} · v_x + \vec{j} · v_y + \vec{k} · v_z \right| = \sqrt{v_x^2 + v_y^2 + v_z^2}
-$$
-
-$3$维空间方向矢量。
-$$
-\vec{n}_{\vec{v}} = \dfrac{\vec{v}}{|\vec{v}|} = \dfrac{\vec{i} · v_x + \vec{j} · v_y + \vec{k} · v_z}{\sqrt{v_x^2 + v_y^2 + v_z^2}}
+\begin{aligned}
+\dfrac{\vec{v}}{|\vec{v}|} &= \dfrac{v_x · \vec{η}_x + v_y · \vec{η}_y + v_z · \vec{η}_z}{|\vec{v}|} \\
+\vec{n}_{\vec{v}} &= n_x · \vec{η}_x + n_y · \vec{η}_y + n_z · \vec{η}_z \\
+\end{aligned}
 $$
 
 ### 四元数的运算性质
 
-四元数。
+四元数的辐角表示法。辐角的旋转轴为$+\vec{n}$轴。
 
 $$
 \begin{aligned}
-\bold{q} &= ә^{\vec{n}_{\vec{v}} · (+θ)} \\
-&= \cos θ + \vec{n}_{\vec{v}} · \sin θ \\
-&= \cos θ + (\vec{i} · n_x + \vec{j} · n_y + \vec{k} · n_z) · \sin θ \\
-&= \cos θ + \left( \vec{i} · \dfrac{v_x}{|\vec{v}|} + \vec{j} · \dfrac{v_y}{|\vec{v}|} + \vec{k} · \dfrac{v_z}{|\vec{v}|} \right) · \sin θ \\
-&= w + \vec{i} · x + \vec{j} · y + \vec{k} · z \\
-&= q_w + \vec{q}_{\vec{n}} \\
+\bold{q} &= |\bold{q}| · ә^{+\vec{n} · \arg \bold{q}} = |\bold{q}| · [+\vec{n} · \sin(\arg \bold{q}) + \cos(\arg \bold{q})] \\
+\bold{q} &= +\vec{q} + q = +\vec{η}_x · q_x + \vec{η}_y · q_y + \vec{η}_z · q_z + q_w \\
 \end{aligned}
-$$
-
-四元数的长度。
-$$
-1 = |\bold{q}| = |ә^{\vec{n}_{\vec{v}} · θ}| = \sqrt{w^2 + x^2 + y^2 + z^2}
 $$
 
 共轭四元数。
-$$
-\begin{aligned}
-\overline{\bold{q}} &= ә^{\vec{n}_{\vec{v}} · (-θ)} \\
-&= \cos θ - \vec{n}_{\vec{v}} · \sin θ \\
-&= q_w - \vec{q}_{\vec{n}} \\
-\bold{q} · \overline{\bold{q}} &= |\bold{q}|^2 = \left| \bold{q}^2 \right| = 1
-\end{aligned}
-$$
-四元数的逆。
-$$
-{'}\bold{q} = \dfrac{1}{\bold{q}} = \dfrac{\overline{\bold{q}}}{|\bold{q}|^2} = \overline{\bold{q}}
-$$
 
-四元数的加运算。
 $$
 \begin{aligned}
-\bold{p} + \bold{q} &= (w_p + \vec{i} · x_p + \vec{j} · y_p + \vec{k} · z_p) + (w_q + \vec{i} · x_q + \vec{j} · y_q + \vec{k} · z_q) \\
-&= (w_p + w_q) + \vec{i} · (x_p + x_q) + \vec{j} · (y_p + y_q) + \vec{k} · (z_p + z_q)
+\overline{\bold{q}} &= |\bold{q}| · ә^{-\vec{n}·\arg \bold{q}} = |\bold{q}| · [-\vec{n} · \sin(\arg \bold{q}) + \cos(\arg \bold{q})] \\
+\overline{\bold{q}} &= -\vec{q} + q = - \vec{η}_x · q_x - \vec{η}_y · q_y - \vec{η}_z · q_z + q_w \\
+\bold{q}^2 &= |\bold{q}|^2 = \bold{q} \circledast \overline{\bold{q}} = |\bold{q}|^2 · \left[ -\vec{n}^2 · \sin^2(\arg\bold{q}) + \cos^2(\arg\bold{q}) \right] \\
 \end{aligned}
 $$
 
+倒逆四元数。
+
+$$
+{'}\bold{q} = \dfrac{1}{\bold{q}} = \dfrac{\overline{\bold{q}}}{|\bold{q}|^2} = \dfrac{\overline{\bold{q}}}{\bold{q}^2}
+$$
+
+单位四元数。
+
+$$
+\vec{0} + 1 = ә^{\vec{n} · 0} = \vec{n} · \sin 0 + \cos 0
+$$
+
+规范四元数。
+
+$$
+\begin{aligned}
+\dfrac{\bold{q}}{|\bold{q}|} &= ә^{\vec{n} · \arg \bold{q}} = \vec{n} · \sin(\arg \bold{q}) + \cos(\arg \bold{q}) \\
+\dfrac{\bold{q}}{|\bold{q}|} &= \vec{q} + q = \vec{η}_x · q_x + \vec{η}_y · q_y + \vec{η}_z · q_z + q_w \\
+\end{aligned}
+$$
+
+矢量四元数。
+
+$$
+ә^{\vec{v} · \frac{π}{2}} = \vec{v} = \vec{v} · \sin \dfrac{π}{2} + \cos \dfrac{π}{2}
+$$
 
 四元数的虚乘运算。
+
 $$
 \begin{aligned}
-\bold{p} * \bold{q} &= (p_w + \vec{p}_{\vec{n}}) * (q_w + \vec{q}_{\vec{n}}) \\
-&= p_w · q_w + p_w · \vec{q}_{\vec{n}} + q_w · \vec{p}_{\vec{n}} + \vec{p}_{\vec{n}} * \vec{q}_{\vec{n}} \\
-&= (p_w · q_w - \vec{p}_{\vec{n}} · \vec{q}_{\vec{n}}) + p_w · \vec{q}_{\vec{n}} + q_w · \vec{p}_{\vec{n}} + \vec{p}_{\vec{n}} × \vec{q}_{\vec{n}} \\
-\bold{p} * \bold{q} &= (w_p + \vec{i} · x_p + \vec{j} · y_p + \vec{k} · z_p) * (w_q + \vec{i} · x_q + \vec{j} · y_q + \vec{k} · z_q) \\
-&= (w_p · w_q - x_p · x_q - y_p · y_q - z_p · z_q) \\
-&+ \vec{i} · (w_p · x_q + x_p · w_q + y_p · z_q - z_p · y_q) \\
-&+ \vec{j} · (w_p · y_q + y_p · w_q + z_p · x_q - x_p · z_q) \\
-&+ \vec{k} · (w_p · z_q + z_p · w_q + x_p · y_q - y_p · x_q) \\
+\left[\begin{matrix}
+q_w \\
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
+v_w \\
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] &≡ (\vec{η}_x · q_x + \vec{η}_y · q_y + \vec{η}_z · q_z + q_w) \circledast (\vec{η}_x · v_x + \vec{η}_y · v_y + \vec{η}_z · v_z + v_w) \\
+&= (\vec{η}_x · q_x + \vec{η}_y · q_y + \vec{η}_z · q_z) \circledast (\vec{η}_x · v_x + \vec{η}_y · v_y + \vec{η}_z · v_z) + q_w · (\vec{η}_x · v_x + \vec{η}_y · v_y + \vec{η}_z · v_z) + v_w · (\vec{η}_x · q_x + \vec{η}_y · q_y + \vec{η}_z · q_z) + q_w · v_w \\
+\left[\begin{matrix}
+q_w \\
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
+v_w \\
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] &=-\left[\begin{matrix}
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \odot \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] + \left[\begin{matrix}
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] + q_w · \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] + v_w · \left[\begin{matrix}
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] + q_w · v_w = \left[\begin{matrix}
+-q_x & -q_y & -q_z \\
+-q_y & +q_x & +q_w \\
++q_z & +q_w & -q_x \\
++q_w & -q_z & +q_y \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] + \left[\begin{matrix}
+q_w \\
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] · v_w \\
+&= \left[\begin{matrix}
+-q_x & -q_y & -q_z & +q_w \\
+-q_y & +q_x & +q_w & +q_z \\
++q_z & +q_w & -q_x & +q_y \\
++q_w & -q_z & +q_y & +q_x \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_w \\
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] = \left[\begin{matrix}
+-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w \\
+-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w \\
++q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w \\
++q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
 
+### 四元数的旋转运算
+
+四元数的对称虚虚乘运算。
+
+$$
+\begin{aligned}
+\left[\begin{matrix}
+q_w \\
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
+v_w \\
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
+q_w \\
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] &= \left[\begin{matrix}
+-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w \\
+-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w \\
++q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w \\
++q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
+q_w \\
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+
+\end{matrix}\right] \\
 \end{aligned}
 $$
 
 $$
+\left[\begin{matrix}
+-(+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_x - (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_y - (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_z + (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_w \\
+-(+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_x + (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_y + (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_z + (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_w \\
++(-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_x + (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_y - (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_z + (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_w \\
++(-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_x - (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_y + (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_z + (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_w \\
+\end{matrix}\right]
+$$
+
+$$
+\left[\begin{matrix}
+(- q_w · q_x - q_z · q_y + q_y · q_z - q_x · q_w) · v_x + (+ q_z · q_x - q_w · q_y - q_x · q_z - q_y · q_w) · v_y + (- q_y · q_x + q_x · q_y - q_w · q_z - q_z · q_w) · v_y + (- q_x^2 - q_y^2 - q_z^2 + q_w^2) · v_w \\
+(- q_z · q_x + q_w · q_y - q_x · q_z - q_y · q_w) · v_x + (- q_w · q_x - q_z · q_y - q_y · q_z + q_x · q_w) · v_y + (+ q_x^2 + q_y^2 - q_z^2 + q_w^2) · v_z + (- q_y · q_x + q_x · q_y + q_w · q_z + q_z · q_w) · v_w \\
+(- q_y · q_x - q_x · q_y - q_w · q_z + q_z · q_w) · v_x + (+ q_x^2 - q_y^2 + q_z^2 + q_w^2) · v_y + (+ q_w · q_x - q_z · q_y - q_y · q_z - q_x · q_w) · v_z + (+ q_z · q_x + q_w · q_y - q_x · q_z + q_y · q_w) · v_w \\
+(- q_x^2 + q_y^2 + q_z^2 + q_w^2) · v_x + (- q_y · q_x - q_x · q_y + q_w · q_z - q_z · q_w) · v_y + (- q_z · q_x - q_w · q_y - q_x · q_z + q_y · q_w) · v_z + (+ q_w · q_x - q_z · q_y + q_y · q_z + q_x · q_w) · v_w \\
+\end{matrix}\right]
+$$
+
+$$
+\left[\begin{matrix}
+-2 · q_w · q_x & -2 · q_y · q_w & -2 · q_z · q_w & -q_x^2 - q_y^2 - q_z^2 + q_w^2 \\
+-2 · q_z · q_x & -2 · q_y · q_z & +q_x^2 + q_y^2 - q_z^2 + q_w^2 & +2 · q_z · q_w \\
+-2 · q_x · q_y & +q_x^2 - q_y^2 + q_z^2 + q_w^2 & -2 · q_y · q_z & +2 · q_y · q_w \\
+-q_x^2 + q_y^2 + q_z^2 + q_w^2 & -2 · q_x · q_y & -2 · q_z · q_x & +2 · q_w · q_x \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_w \\
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \\
+$$
+
+四元数的逆称虚虚乘运算。
+
+$$
 \begin{aligned}
-\bold{p} * \vec{v} &= (p_w + \vec{p}_{\vec{n}}) * \vec{v} \\
-&= -\vec{p}_{\vec{n}} · \vec{v} + p_w · \vec{v} + \vec{p}_{\vec{n}} × \vec{v} \\
-\vec{v} * \overline{\bold{q}} &= \vec{v} * (q_w - \vec{q}_{\vec{n}}) \\
-&= +\vec{q}_{\vec{n}} · \vec{v} + q_w · \vec{v} + \vec{q}_{\vec{n}} × \vec{v} \\
+\left[\begin{matrix}
++q_w \\
++q_z \\
++q_y \\
++q_x \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
+v_w \\
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
++q_w \\
+-q_z \\
+-q_y \\
+-q_x \\
+\end{matrix}\right] &= \left[\begin{matrix}
+-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w \\
+-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w \\
++q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w \\
++q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
++q_w \\
+-q_z \\
+-q_y \\
+-q_x \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+
+\end{matrix}\right] \\
 \end{aligned}
 $$
 
-四元数的旋转运算。
 $$
-\begin{aligned}
-\bold{q} * \vec{v} * {'}\bold{q} &= \bold{q} * \vec{v} * \overline{\bold{q}} \\
-&= (q_w + \vec{q}_{\vec{n}}) * \vec{v} * (q_w - \vec{q}_{\vec{n}}) \\
-&= (q_w · \vec{v} + \vec{q}_{\vec{n}} * \vec{v}) * (q_w - \vec{q}_{\vec{n}}) \\
-&= q_w^2 · \vec{v} + q_w · \vec{q}_{\vec{n}} * \vec{v} - q_w · \vec{v} * \vec{q}_{\vec{n}} - \vec{q}_{\vec{n}} * \vec{v} * \vec{q}_{\vec{n}} \\
-&= q_w^2 · \vec{v} + 2 · q_w · \vec{q}_{\vec{n}} × \vec{v} - (- \vec{q}_{\vec{n}} · \vec{v} + \vec{q}_{\vec{n}} × \vec{v}) * \vec{q}_{\vec{n}} \\
-&= q_w^2 · \vec{v} + 2 · q_w · \vec{q}_{\vec{n}} × \vec{v} + \vec{q}_{\vec{n}} · \vec{v} · \vec{q}_{\vec{n}} - \vec{q}_{\vec{n}} × \vec{v} × \vec{q}_\vec{n} \\
-&= 
-\end{aligned}
+\left[\begin{matrix}
++(+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_x + (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_y + (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_z + (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_w \\
++(+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_x - (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_y - (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_z + (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_w \\
+-(-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_x - (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_y + (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_z + (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_w \\
+-(-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_x + (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_y - (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_z + (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_w \\
+\end{matrix}\right]
 $$
+
+$$
+\left[\begin{matrix}
+(+ q_w · q_x + q_z · q_y - q_y · q_z - q_x · q_w) · v_x + (- q_z · q_x + q_w · q_y + q_x · q_z - q_y · q_w) · v_y + (+ q_y · q_x - q_x · q_y + q_w · q_z - q_z · q_w) · v_y + (+ q_x^2 + q_y^2 + q_z^2 + q_w^2) · v_w \\
+(+ q_z · q_x - q_w · q_y + q_x · q_z - q_y · q_w) · v_x + (+ q_w · q_x + q_z · q_y + q_y · q_z + q_x · q_w) · v_y + (- q_x^2 - q_y^2 + q_z^2 + q_w^2) · v_z + (+ q_y · q_x - q_x · q_y - q_w · q_z + q_z · q_w) · v_w \\
+(+ q_y · q_x + q_x · q_y + q_w · q_z + q_z · q_w) · v_x + (- q_x^2 + q_y^2 - q_z^2 + q_w^2) · v_y + (- q_w · q_x + q_z · q_y + q_y · q_z - q_x · q_w) · v_z + (- q_z · q_x - q_w · q_y + q_x · q_z + q_y · q_w) · v_w \\
+(+ q_x^2 - q_y^2 - q_z^2 + q_w^2) · v_x + (+ q_y · q_x + q_x · q_y - q_w · q_z - q_z · q_w) · v_y + (+ q_z · q_x + q_w · q_y + q_x · q_z + q_y · q_w) · v_z + (- q_w · q_x + q_z · q_y - q_y · q_z + q_x · q_w) · v_w \\
+\end{matrix}\right]
+$$
+
+$$
+\left[\begin{matrix}
+0 & 0 & 0 & +q_x^2 + q_y^2 + q_z^2 + q_w^2 \\
+2 · (q_z · q_x - q_y · q_w) & 2 · (q_y · q_z + q_x · q_w) & -q_x^2 - q_y^2 + q_z^2 + q_w^2 & 0 \\
+2 · (q_x · q_y + q_z · q_w) & -q_x^2 + q_y^2 - q_z^2 + q_w^2 & 2 · (q_y · q_z - q_x · q_w) & 0 \\
++q_x^2 - q_y^2 - q_z^2 + q_w^2 & 2 · (q_x · q_y - q_z · q_w) & 2 · (q_z · q_x + q_y · q_w) & 0 \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_w \\
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \\
+$$
+
+$$
+\left[\begin{matrix}
+0 & 0 & 0 & 1 \\
+2 · (q_z · q_x - q_y · q_w) & 2 · (q_y · q_z + q_x · q_w) & 1 - 2 · (q_x^2 - q_y^2) & 0 \\
+2 · (q_x · q_y + q_z · q_w) & 1 - 2 · (q_x^2 - q_z^2) & 2 · (q_y · q_z - q_x · q_w) & 0 \\
+1 - 2 · (q_y^2 + q_z^2) & 2 · (q_x · q_y - q_z · q_w) & 2 · (q_z · q_x + q_y · q_w) & 0 \\
+\end{matrix}\right] \mathop{\rlap{×}{+}}\limits_{0=v_w}^{1=q_x^2+q_y^2+q_z^2+q_w^2} \left[\begin{matrix}
+0 \\
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right]
+$$
+

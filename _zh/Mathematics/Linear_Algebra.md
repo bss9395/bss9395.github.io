@@ -15,6 +15,8 @@ Link  :
 本书中对矩阵的反置为Reverse，而非转置Transpose。
 本书中对矩阵的倒逆为Inverse。
 本书中坐标系的基矢量符号为η。
+本书中坐标系均为右手旋坐标系。
+本书中共有2种加运算5种乘运算。
 ```
 
 $n$元线性代数方程组的最典型定义。
@@ -199,7 +201,7 @@ $$
 
 ### 基矢量的运算性质
 
-若无特别的规定，约定基矢量指单位基矢量而非规范基矢量。示例：$3$维空间单位基矢量之一$\vec{η}_{1} ≡ \left[\begin{matrix} 0 \\ 1 \\ 0 \end{matrix}\right]$，$4$维空间规范基矢量之一$\vec{n} = \dfrac{1}{\sqrt{3}} \odot \left[\begin{matrix} 1 \\ 1 \\ 1 \end{matrix}\right]$。
+若无特别的规定，约定基矢量指单位基矢量而非规范基矢量。示例：$3$维空间单位基矢量之一$\vec{η}_{1} ≡ \left[\begin{matrix} 0 \\ 1 \\ 0 \end{matrix}\right]$，$4$维空间规范基矢量之一$\vec{n} = \dfrac{1}{\sqrt{3}} · \left[\begin{matrix} 1 \\ 1 \\ 1 \end{matrix}\right]$。
 
 若无特别的规定，约定全基矢量指所有单位基矢量之位加运算的和。示例：$3$维空间全基矢量$\vec{η}_{+} ≡ \left[\begin{matrix} 1 \\ 1 \\ 1 \end{matrix}\right]$。
 
@@ -207,17 +209,17 @@ $n+1$元基矢量的点乘运算。
 
 $$
 \begin{aligned}
-\vec{η}_{i} ·_{n+1} \vec{η}_{j} &\mathop{==}\limits^{i≡j} 1 \\
-\vec{η}_{i} ·_{n+1} \vec{η}_{j} &\mathop{==}\limits^{i<j} 0 \\
-\vec{η}_{j} ·_{n+1} \vec{η}_{i} &\mathop{==}\limits^{j>i} 0 \\
+\vec{η}_{i} \odot_{n+1} \vec{η}_{j} &\mathop{==}\limits^{i≡j} 1 \\
+\vec{η}_{i} \odot_{n+1} \vec{η}_{j} &\mathop{==}\limits^{i<j} 0 \\
+\vec{η}_{j} \odot_{n+1} \vec{η}_{i} &\mathop{==}\limits^{j>i} 0 \\
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-\vec{η}_{0} ·_{2} \vec{η}_{1} &= 0 & \vec{η}_{1} ·_{2} \vec{η}_{0} &= 0 \\
-\vec{η}_{0} ·_{3} \vec{η}_{1} &= 0 & \vec{η}_{1} ·_{3} \vec{η}_{0} &= 0 \\
-\vec{η}_{0} ·_{4} \vec{η}_{1} &= 0 & \vec{η}_{1} ·_{4} \vec{η}_{0} &= 0 \\
+\vec{η}_{0} \odot_{2} \vec{η}_{1} &= 0 & \vec{η}_{1} \odot_{2} \vec{η}_{0} &= 0 \\
+\vec{η}_{0} \odot_{3} \vec{η}_{1} &= 0 & \vec{η}_{1} \odot_{3} \vec{η}_{0} &= 0 \\
+\vec{η}_{0} \odot_{4} \vec{η}_{1} &= 0 & \vec{η}_{1} \odot_{4} \vec{η}_{0} &= 0 \\
 \end{aligned}
 $$
 
@@ -316,7 +318,7 @@ c · a_{m,0} & c · a_{m,1} & ⋯ & c · a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 c · a_{1,0} & c · a_{1,1} & ⋯ & c · a_{1,n} \\
 c · a_{0,0} & c · a_{0,1} & ⋯ & c · a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} = c \odot \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(m+1)×(n+1)} = c · \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
@@ -332,7 +334,7 @@ b_{m,0} & b_{m,1} & ⋯ & b_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 b_{1,0} & b_{1,1} & ⋯ & b_{1,n} \\
 b_{0,0} & b_{0,1} & ⋯ & b_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} · \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(m+1)×(n+1)} \odot \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
@@ -445,7 +447,7 @@ c · v_n \\
 ⋮ \\
 c · v_1 \\
 c · v_0 \\
-\end{matrix}\right] = c \odot \left[\begin{matrix}
+\end{matrix}\right] = c · \left[\begin{matrix}
 v_n \\
 ⋮ \\
 v_1 \\
@@ -472,18 +474,18 @@ u_n \\
 ⋮ \\
 u_1 \\
 u_0 \\
-\end{matrix}\right] · \left[\begin{matrix}
+\end{matrix}\right] \odot \left[\begin{matrix}
 v_n \\
 ⋮ \\
 v_1 \\
 v_0 \\
-\end{matrix}\right] ≡ (u_0 · \vec{η}_0 + u_1 · \vec{η}_1 + ⋯ + u_n · \vec{η}_n) · (v_0 · \vec{η}_0 + v_1 · \vec{η}_1 + ⋯ + v_n · \vec{η}_n) \\
+\end{matrix}\right] ≡ (\vec{η}_0 · u_0 + \vec{η}_1 · u_1 + ⋯ + \vec{η}_n · u_n) \odot (\vec{η}_0 · v_0 + \vec{η}_1 · v_1 + ⋯ + \vec{η}_n · v_n) \\
 \sum\limits_{k=0}^{n} u_k · v_k  &= \left[\begin{matrix}
 u_n \\
 ⋮ \\
 u_1 \\
 u_0 \\
-\end{matrix}\right] · \left[\begin{matrix}
+\end{matrix}\right] \odot \left[\begin{matrix}
 v_n \\
 ⋮ \\
 v_1 \\
@@ -534,7 +536,7 @@ $n+1$元矢量与$n+1$元矢量的叉乘运算。
 
 $$
 \begin{aligned}
-|\vec{u}| · |\vec{v}| · \sin \ang(\vec{u},\vec{v}) · \mathop{\vec{n}}\limits_{\vec{u}\otimes\vec{v}} &= \left[\begin{matrix}
+\vec{n}_{\vec{u}\otimes\vec{v}} · |\vec{u}| · |\vec{v}| · \sin \ang(\vec{u},\vec{v}) &= \left[\begin{matrix}
 u_n \\
 ⋮ \\
 u_1 \\
@@ -544,8 +546,8 @@ v_n \\
 ⋮ \\
 v_1 \\
 v_0 \\
-\end{matrix}\right] ≡ (u_0 · \vec{η}_0 + u_1 · \vec{η}_1 + ⋯ + u_n · \vec{η}_n) \otimes (v_0 · \vec{η}_0 + v_1 · \vec{η}_1 + ⋯ + v_n · \vec{η}_n) \\
-\dfrac{1}{\sqrt{n - 1}} \odot \left[\begin{matrix}
+\end{matrix}\right] ≡ (\vec{η}_0 · u_0 + \vec{η}_1 · u_1 + ⋯ + \vec{η}_n · u_n) \otimes (\vec{η}_0 · v_0 + \vec{η}_1 · v_1 + ⋯ + \vec{η}_n · v_n) \\
+\dfrac{1}{\sqrt{n - 1}} · \left[\begin{matrix}
 \sum\limits_{i=0;\rlap{≡}{n}}^{n} \sum\limits_{j=0;\rlap{≡}{n}}^{n} [\mathrm{sgn}(j-i) · u_i · v_j] \\
 ⋮ \\
 \sum\limits_{i=0;\rlap{≡}{1}}^{n} \sum\limits_{j=0;\rlap{≡}{1}}^{n} [\mathrm{sgn}(j-i) · u_i · v_j] \\
@@ -560,7 +562,7 @@ v_n \\
 ⋮ \\
 v_1 \\
 v_0 \\
-\end{matrix}\right] = \dfrac{1}{\sqrt{n - 1}} \odot \mathop{\left[\begin{matrix}
+\end{matrix}\right] = \dfrac{1}{\sqrt{n - 1}} · \mathop{\left[\begin{matrix}
 \sum\limits_{i=0;\rlap{≡}{n}}^{n} [\mathrm{sgn}(0-i) · u_i] & \sum\limits_{i=0;\rlap{≡}{n}}^{n} [\mathrm{sgn}(1-i) · u_i] & ⋯ & 0 \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \sum\limits_{i=0;\rlap{≡}{1}}^{n} [\mathrm{sgn}(0-i) · u_i] & 0 & ⋯ & \sum\limits_{i=0;\rlap{≡}{1}}^{n} [\mathrm{sgn}(n-i) · u_i] \\
@@ -578,7 +580,7 @@ $3$元矢量与$3$元矢量的叉乘运算。
 
 $$
 \begin{aligned}
-|\vec{u}| · |\vec{v}| · \sin \ang(\vec{u},\vec{v}) · \mathop{\vec{n}}\limits_{\vec{u}\otimes\vec{v}} &= \left[\begin{matrix}
+|\vec{u}| · |\vec{v}| · \sin \ang(\vec{u},\vec{v}) · \vec{n}_{\vec{u}\otimes\vec{v}} &= \left[\begin{matrix}
 u_z \\
 u_y \\
 u_x \\
@@ -586,7 +588,7 @@ u_x \\
 v_z \\
 v_y \\
 v_x \\
-\end{matrix}\right] = (u_x · \vec{η}_x + u_y · \vec{η}_y + u_z · \vec{η}_z) \otimes (v_x · \vec{η}_x + v_y · \vec{η}_y + v_z · \vec{η}_z) \\
+\end{matrix}\right] = (\vec{η}_x · u_x + \vec{η}_y · u_y + \vec{η}_z · u_z) \otimes (\vec{η}_x · v_x + \vec{η}_y · v_y + \vec{η}_z · v_z) \\
 \left\Vert\begin{matrix}
 \vec{η}_z & u_z & v_z \\
 \vec{η}_y & u_y & v_y \\
@@ -615,9 +617,9 @@ v_x \\
 \end{aligned}
 $$
 
-### 矢量的二重积
+### 矢量的二重乘运算
 
-$3$元矢量的混合叉点积。
+$3$元矢量的混合叉点乘运算。
 
 $$
 \begin{aligned}
@@ -625,7 +627,7 @@ $$
 t_z \\
 t_y \\
 t_x \\
-\end{matrix}\right] · \left[\begin{matrix}
+\end{matrix}\right] \odot \left[\begin{matrix}
 u_z \\
 u_y \\
 u_x \\
@@ -637,7 +639,7 @@ v_x \\
 t_z \\
 t_y \\
 t_x \\
-\end{matrix}\right] · \left[\begin{matrix}
+\end{matrix}\right] \odot \left[\begin{matrix}
 u_x · v_y - u_y · v_x \\
 u_z · v_x - u_x · v_z \\
 u_y · v_z - u_z · v_y \\
@@ -657,7 +659,7 @@ v_x \\
 \end{aligned}
 $$
 
-$3$元矢量的对称叉叉积。
+$3$元矢量的对称叉叉乘运算。
 
 $$
 \begin{aligned}
@@ -703,23 +705,23 @@ v_x \\
 \end{aligned}
 $$
 
-$3$元矢量的对称点量积。
+$3$元矢量的对称点量乘运算。
 
 $$
 \begin{aligned}
-\left(\left[\begin{matrix}
+\left[\begin{matrix}
 r_z \\
 r_y \\
 r_x \\
-\end{matrix}\right] · \left[\begin{matrix}
+\end{matrix}\right] \odot \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
-\end{matrix}\right]\right) \odot \left[\begin{matrix}
+\end{matrix}\right] · \left[\begin{matrix}
 r_z \\
 r_y \\
 r_x \\
-\end{matrix}\right] &= (r_x · v_x + r_y · v_y + r_z · v_z) \odot \left[\begin{matrix}
+\end{matrix}\right] &= (r_x · v_x + r_y · v_y + r_z · v_z) · \left[\begin{matrix}
 r_z \\
 r_y \\
 r_x \\
