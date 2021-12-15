@@ -87,7 +87,7 @@ $\dfrac{z_1}{z_2} = \dfrac{r_1 · ә^{τ · \phi_1}}{r_2 · ә^{τ · \phi_2}} =
 
 复数的乘方
 
-$|z|^2 = |r · ә^{τ · \phi}|^2 = r^2 = |r^2 · ә^{τ · 2 · \phi}| = |z^2|$
+$|z|^2 = |r · ә^{τ · \phi}|^2 = r^2 = |r^2 · ә^{τ · 2 · \phi}|$
 
 $z^n = (r · ә^{τ · \phi})^n = r^n · (\cos \phi + τ · \sin \phi)^n = r^n · [\cos (n · \phi) + τ · \sin (n · \phi)] = r^n · ә^{τ · n · \phi}$
 
@@ -119,7 +119,7 @@ $z + \overline{z} = (x + τ · y) + (x - τ · y) = 2 · x = 2 · \mathrm{Re\ } 
 
 $z - \overline{z} = (x + τ · y) - (x - τ · y) = τ · 2 · y = τ · 2 · \mathrm{Im\ } z$
 
-$z · \overline{z} = (x + τ · y) · (x - τ · y) = x^2 + y^2 = |z|^2 = |z^2|$
+$z · \overline{z} = (x + τ · y) · (x - τ · y) = x^2 + y^2 = |z|^2$
 
 $\dfrac{1}{\overline{z}} = \dfrac{z}{z · \overline{z}} = \dfrac{z}{|z|^2}$
 
