@@ -42,15 +42,15 @@ $$
 $$
 \begin{aligned}
 \overline{z} = |z| · ә^{-τ · \arg z} &= |z| · [- τ · \sin(\arg z) + \cos(\arg z)] \\
-|z|^2 = z \circledast \overline{z} &= |z|^2 · \left[ -τ^2 · \sin^2(\arg z) + \cos^2(\arg z) \right] \\
-\dfrac{z}{|z|} = \dfrac{|z|}{\overline{z}} \\
+|z|^2 = z \circledast \overline{z} &≡ |z|^2 · [+τ · \sin(\arg z) + \cos(\arg z)] \circledast [-τ · \sin(\arg z) + \cos(\arg z)] = |z|^2 · \left[ -τ^2 · \sin^2(\arg z) + \cos^2(\arg z) \right] \\
+z^2 = z \circledast z &≡ |z|^2 · \left[ +τ · \sin(\arg z) + \cos(\arg z) \right] \circledast \left[ +τ · \sin(\arg z) + \cos(\arg z) \right] = |z|^2 · [ τ · \cos(2 · \arg z) + \sin(2 · \arg z) ] \\
 \end{aligned}
 $$
 
 倒逆复数。
 
 $$
-{'}z = \dfrac{1}{z} = \dfrac{\overline{z}}{|z|^2}
+{'}z = \dfrac{1}{z} = \dfrac{\overline{z}}{|z|^2} = \dfrac{\overline{z}}{|z^2|} ≠ \dfrac{\overline{z}}{z^2}
 $$
 
 单位复数。
