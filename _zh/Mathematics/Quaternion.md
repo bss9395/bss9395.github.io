@@ -2,14 +2,22 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  四元数
-Update:  2021-12-16T01:15:00+08@中国-广东-深圳+08
+Update:  2021-12-18T00:00:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Credit:
 ---
 
+### 特别注意
+
+```
+本书中复数的取值共有2种度量运算。
+本书中复数的长度为Le(z)，而非|z|。
+本书中复数的度量值为Measurement，而非绝对值Absolute。
+```
+
 ### 复数的运算性质
 
-虚数的运算性质。虚数的虚乘运算必满足交换律。
+虚数的虚乘运算。虚数的虚乘运算必满足交换律。
 
 $$
 \begin{aligned}
@@ -18,12 +26,24 @@ c \circledast τ &= c · τ \\
 \end{aligned}
 $$
 
+复数的长度。注意，复数的长度必定是非负实数。
+
+$$
+\mathrm{Le}(z) = \sqrt{\mathrm{Im}^2(z) + \mathrm{Re}^2(z)}
+$$
+
+复数的度量值。注意，复数的度量值是复数，但却未必都是正实数。
+
+$$
+|z| = \sqrt{z \circledast z}
+$$
+
 复数的辐角表示法。辐角的旋转轴为$+τ$轴。
 
 $$
 \begin{aligned}
-z = |z| · ә^{+τ · \arg z} &≡ |z| · [+τ · \sin(\arg z) + \cos(\arg z)] \\
-z &= τ · \mathrm{Im}(z) + \mathrm{Re}(z) \\
+z = \mathrm{Le}(z) · ә^{+τ · \arg z} &≡ \mathrm{Le}(z) · [+τ · \sin(\arg z) + \cos(\arg z)] \\
+z = τ · \mathrm{Im}(z) + \mathrm{Re}(z) &= τ · z_y + z_x \\
 \end{aligned}
 $$
 
@@ -31,8 +51,8 @@ $$
 
 $$
 \begin{aligned}
-\sin(\arg z) &= \dfrac{\mathrm{Im}(z)}{|z|} \\
-\cos(\arg z) &= \dfrac{\mathrm{Re}(z)}{|z|} \\
+\sin(\arg z) &= \dfrac{\mathrm{Im}(z)}{\mathrm{Le}(z)} \\
+\cos(\arg z) &= \dfrac{\mathrm{Re}(z)}{\mathrm{Le}(z)} \\
 \tan(\arg z) &= \dfrac{\mathrm{Im}(z)}{\mathrm{Re}(z)} \\
 \end{aligned}
 $$
@@ -41,20 +61,19 @@ $$
 
 $$
 \begin{aligned}
-\overline{z} = |z| · ә^{-τ · \arg z} &= |z| · [- τ · \sin(\arg z) + \cos(\arg z)] \\
-|z|^2 = z \circledast \overline{z} &≡ |z|^2 · [+τ · \sin(\arg z) + \cos(\arg z)] \circledast [-τ · \sin(\arg z) + \cos(\arg z)] = |z|^2 · \left[ -τ^2 · \sin^2(\arg z) + \cos^2(\arg z) \right] \\
-z^2 = z \circledast z &≡ |z|^2 · \left[ +τ · \sin(\arg z) + \cos(\arg z) \right] \circledast \left[ +τ · \sin(\arg z) + \cos(\arg z) \right] = |z|^2 · [ τ · \cos(2 · \arg z) + \sin(2 · \arg z) ] \\
+\overline{z} = \mathrm{Le}(z) · ә^{-τ · \arg z} &= \mathrm{Le}(z) · [- τ · \sin(\arg z) + \cos(\arg z)] \\
+\mathrm{Le}^2(z) = z \circledast \overline{z} &≡ \mathrm{Le}^2(z) · [+τ · \sin(\arg z) + \cos(\arg z)] \circledast [-τ · \sin(\arg z) + \cos(\arg z)] = \mathrm{Le}^2(z) · \left[ -τ^2 · \sin^2(\arg z) + \cos^2(\arg z) \right] \\
+z^2 ≡ z \circledast z &≡ \mathrm{Le}^2(z) · \left[ +τ · \sin(\arg z) + \cos(\arg z) \right] \circledast \left[ +τ · \sin(\arg z) + \cos(\arg z) \right] = \mathrm{Le}^2(z) · [ τ · \cos(2 · \arg z) + \sin(2 · \arg z) ] \\
 \end{aligned}
 $$
 
 倒逆复数。
 
 $$
-{'}z = \dfrac{1}{z} = \dfrac{\overline{z}}{|z|^2} = \dfrac{\overline{z}}{|z^2|} ≠ \dfrac{\overline{z}}{z^2}
+{'}z ≡ 1 \circledast^{-1} {z} ≡ \dfrac{\overline{z}}{\mathrm{Le}^2(z)} = \dfrac{\overline{z}}{\mathrm{Le}(z^2)} ≠ \dfrac{\overline{z}}{z^2}
 $$
 
 单位复数。
-
 $$
 1 = τ · 0 + 1 = ә^{τ · 0} = τ · \sin 0 + \cos 0
 $$
@@ -62,15 +81,15 @@ $$
 规范复数。
 
 $$
-\dfrac{z}{|z|} = ә^{τ · \arg z} = τ · \sin(\arg z) + \cos(\arg z)
+\dfrac{z}{\mathrm{Le}(z)} = ә^{τ · \arg z} = τ · \sin(\arg z) + \cos(\arg z)
 $$
 
 规范复数的位加运算。复数的位加运算必满足交换律。
 
 $$
 \begin{aligned}
-ә^{τ · \arg p} + ә^{τ · \arg q} ≡ [τ · \sin(\arg p) + \cos(\arg p)] + [τ · \sin(\arg q) + \cos(\arg q)] \\
-ә^{τ · (\arg p + \arg q)} ≠ ә^{τ · \arg p} + ә^{τ · \arg q} = τ · [\sin(\arg p) + \sin(\arg p)] + [\cos(\arg p) + \cos(\arg q)] \\
+ә^{τ · \arg p} + ә^{τ · \arg q} &≡ [τ · \sin(\arg p) + \cos(\arg p)] + [τ · \sin(\arg q) + \cos(\arg q)] \\
+ә^{τ · (\arg p + \arg q)} ≠ ә^{τ · \arg p} + ә^{τ · \arg q} &= τ · [\sin(\arg p) + \sin(\arg p)] + [\cos(\arg p) + \cos(\arg q)] \\
 \end{aligned}
 $$
 

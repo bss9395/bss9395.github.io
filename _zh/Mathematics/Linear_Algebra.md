@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  线性代数
-Update:  2021-12-16T00:54:00+08@中国-广东-深圳+08
+Update:  2021-12-17T23:10:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -17,8 +17,9 @@ Link  :
 本书中坐标系的基矢量符号为η。
 本书中坐标系均为右手旋坐标系。
 本书中共有2种加运算5种乘运算。
-本书中对矩阵的行列式为Determinant，其符号为║A║。
-本书中对矩阵的绝对值为Absolute，其符号为│A│。
+本书中矩阵的行列式为Determinant，其符号为║A║。
+本书中矩阵的度量值为Measurement，其符号为│A│。
+度量值Measurement是拓扑值Topologee的二次方情形。约定Topologee表示拓扑距或者拓扑值。
 ```
 
 $n$元线性代数方程组的最典型定义。
@@ -391,7 +392,7 @@ a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
 \end{matrix}\right]}\limits_{(m+1)×(n+1)}
 $$
 
-$(m+1)×(n+1)$元矩阵的绝对值。矩阵的绝对值为其自身之点乘运算的方根值。
+$(m+1)×(n+1)$元矩阵的度量值。矩阵的度量值值为其自身之点乘运算的方根值。
 
 $$
 \left[ \sum\limits_{i=0}^{m} \sum\limits_{j=0}^{n} a_{i,j}^2 \right]^{\frac{1}{2}} = \mathop{\left|\begin{matrix}
@@ -410,6 +411,17 @@ a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
 \end{matrix}\right]}\limits_{(m+1)×(n+1)} \right)
+$$
+
+$(n+1)×(n+1)$元矩阵的行列式。
+
+$$
+\mathop{\left\Vert\begin{matrix}
+a_{n,0} & a_{n,1} & ⋯ & a_{n,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
+a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
+\end{matrix}\right\Vert}\limits_{(n+1)×(n+1)} = \sum\limits_{k_0,k_1,⋯,k_n} \mathrm{sgn}(k_0, k_1, ⋯, k_n) · a_{0,k_0} · a_{1,k_1} ⋯ a_{n,k_n} \\
 $$
 
 ### 矢量的运算性质
