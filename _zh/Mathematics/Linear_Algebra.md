@@ -214,7 +214,6 @@ $$
 若无特别的规定，约定全基矢量指所有单位基矢量之位加运算的和。示例：$3$维空间全基矢量$\vec{η}_{+} ≡ \left[\begin{matrix} 1 \\ 1 \\ 1 \end{matrix}\right]$。
 
 $n+1$元基矢量的点乘运算。
-
 $$
 \begin{aligned}
 \vec{η}_{i} \odot_{n+1} \vec{η}_{j} &\mathop{==}\limits^{i≡j} 1 & \vec{η}_{i} &∥ \vec{η}_{i} \\
@@ -657,7 +656,7 @@ v_x \\
 \end{aligned}
 $$
 
-$n+1$元矢量的绝对值。矢量的绝对值为其自身之点乘运算的方根值。
+$n+1$元矢量的度量值。矢量的度量值为其自身之点乘运算的方根值。
 
 $$
 \left[ \sum\limits_{i=0}^{n} v_{i}^2 \right]^{\frac{1}{2}} = \left|\begin{matrix}
