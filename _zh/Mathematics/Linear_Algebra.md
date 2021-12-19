@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  线性代数
-Update:  2021-12-17T23:10:00+08@中国-广东-深圳+08
+Update:  2021-12-19T17:51:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -296,7 +296,7 @@ a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
 \end{matrix}\right]}\limits_{(m+1)×(n+1)}
 $$
 
-$(m+1)×(n+1)$元矩阵与$(m+1)×(n+1)$元矩阵的位加运算。矩阵的位加运算必满足交换律。
+$(m+1)×(n+1)$元矩阵与$(m+1)×(n+1)$元矩阵的位加运算。矩阵的位加运算必满足交换律。矩阵的位加运算必满足结合律。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -349,7 +349,7 @@ a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
 \end{matrix}\right]}\limits_{(m+1)×(n+1)}
 $$
 
-$(m+1)×(n+1)$元矩阵与$(m+1)×(n+1)$元矩阵的位乘运算。矩阵的位乘运算必满足交换律。
+$(m+1)×(n+1)$元矩阵与$(m+1)×(n+1)$元矩阵的位乘运算。矩阵的位乘运算必满足交换律。矩阵的位乘运算必满结合律。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -370,7 +370,7 @@ a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
 \end{matrix}\right]}\limits_{(m+1)×(n+1)}
 $$
 
-$(l+1)*(m+1)$元矩阵与$(m+1)×(n+1)$元矩阵的合乘运算。矩阵的合乘运算不满足交换律。
+$(l+1)*(m+1)$元矩阵与$(m+1)×(n+1)$元矩阵的合乘运算。矩阵的合乘运算不满足交换律。矩阵的合乘运算必满足结合律。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -389,6 +389,14 @@ a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
 \end{matrix}\right]}\limits_{(m+1)×(n+1)}
+$$
+
+$$
+\begin{aligned}
+\mathrm{D}_{(k+1)×(n+1)} &= \mathrm{C}_{(k+1)×(l+1)} \rlap{×}{+} \left[ \mathrm{B}_{(l+1)×(m+1)} \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \right] = \left[ \mathrm{C}_{(k+1)×(l+1)} \rlap{×}{+} \mathrm{B}_{(l+1)×(m+1)} \right] \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \\
+c(ba)_{q,t} &= \sum\limits_{r=0}^{l} c_{q,r} · \left[ \sum\limits_{s=0}^{m} b_{r,s} · a_{s,t} \right] = \sum\limits_{r=0}^{l} \sum\limits_{s=0}^{m} c_{q,r} · b_{r,s} · a_{s,t} \\
+(cb)a_{q,t}&= \sum\limits_{s=0}^{m} \left[ \sum\limits_{r=0}^{l} c_{q,r} · b_{r,s} \right] · a_{s,t} = \sum\limits_{r=0}^{l} \sum\limits_{s=0}^{m} c_{q,r} · b_{r,s} · a_{s,t} \\
+\end{aligned}
 $$
 
 $(m+1)×(n+1)$元矩阵的度量值。矩阵的度量值值为其自身之点乘运算的方根值。
@@ -457,7 +465,7 @@ v_0 \\
 \end{matrix}\right]
 $$
 
-$n+1$元矢量与$n+1$元矢量的位加运算。矢量的位加运算必满足交换律。
+$n+1$元矢量与$n+1$元矢量的位加运算。矢量的位加运算必满足交换律。矢量的位加运算必满足结合律。
 
 $$
 \left[\begin{matrix}
@@ -540,7 +548,7 @@ v_0 \\
 \end{aligned}
 $$
 
-$n+1$元矢量与$n+1$元矢量的位乘运算。矢量的位乘运算必满足交换律。
+$n+1$元矢量与$n+1$元矢量的位乘运算。矢量的位乘运算必满足交换律。矢量的位乘运算必满足结合律。
 
 $$
 \left[\begin{matrix}
@@ -571,7 +579,7 @@ v_0 \\
 \end{matrix}\right]
 $$
 
-$n+1$元矢量与$n+1$元矢量的叉乘运算。矢量的叉乘运算不满足交换律。
+$n+1$元矢量与$n+1$元矢量的叉乘运算。矢量的叉乘运算不满足交换律。矢量的叉乘运算不满足结合律。
 
 $$
 \begin{aligned}
@@ -615,7 +623,7 @@ v_0 \\
 \end{aligned}
 $$
 
-$3$元矢量与$3$元矢量的叉乘运算。
+$3$元矢量与$3$元矢量的叉乘运算。矢量的叉乘运算不满足结合律。
 
 $$
 \begin{aligned}
@@ -719,44 +727,144 @@ v_x \\
 \end{aligned}
 $$
 
-$3$元矢量的对称叉叉乘运算。
+$3$元矢量的任意叉叉乘运算。矢量的任意叉叉乘运算不满足结合律。
+
+$$
+\begin{aligned}
+\left(\left[\begin{matrix}
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right]\right) \otimes \left[\begin{matrix}
+p_z \\
+p_y \\
+p_x \\
+\end{matrix}\right] &= \left[\begin{matrix}
+q_x · v_y - q_y · v_x \\
+q_z · v_x - q_x · v_z \\
+q_y · v_z - q_z · v_y \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+p_z \\
+p_y \\
+p_x \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+(q_y · v_z - q_z · v_y) · p_y - (q_z · v_x - q_x · v_z) · p_x \\
+(q_x · v_y - q_y · v_x) · p_x - (q_y · v_z - q_z · v_y) · p_z \\
+(q_z · v_x - q_x · v_z) · p_z - (q_x · v_y - q_y · v_x) · p_y \\
+\end{matrix}\right] = \left[\begin{matrix}
+-q_z · p_x · v_x - q_z · p_y · v_y + (q_x · p_x + q_y · p_y) · v_z \\
+-q_y · p_x · v_x + (q_x · p_x + q_z · p_z) · v_y - q_y · p_z · v_z \\
++(q_z · p_z + q_y · p_y) · v_x - q_x · p_y · v_y - q_x · p_z · v_z \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+-q_z · p_x & -q_z · p_y & (q_x · p_x + q_y · p_y) \\
+-q_y · p_x & (q_z · p_z + q_x · p_x) & -q_y · p_z \\
+(q_y · p_y + q_z · p_z) & -q_x · p_y & -q_x · p_z \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
 
 $$
 \begin{aligned}
 \left[\begin{matrix}
-r_z \\
-r_y \\
-r_x \\
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \otimes \left(\left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+p_z \\
+p_y \\
+p_x \\
+\end{matrix}\right]\right) &= \left[\begin{matrix}
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+v_x · p_y - v_y · p_x \\
+v_z · p_x - v_x · p_z \\
+v_y · p_z - v_z · p_y \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+q_x · (v_z · p_x - v_x · p_z) - q_y · (v_y · p_z - v_z · p_y) \\
+q_z · (v_y · p_z - v_z · p_y) - q_x · (v_x · p_y - v_y · p_x) \\
+q_y · (v_x · p_y - v_y · p_x) - q_z · (v_z · p_x - v_x · p_z) \\
+\end{matrix}\right] = \left[\begin{matrix}
+-q_x · p_z · v_x - q_y · p_z · v_y + (q_x · p_x + q_y · p_y) · v_z \\
+-q_x · p_y · v_x + (q_x · p_x + q_z · p_z) · v_y - q_z · p_y · v_z \\
++(q_y · p_y + q_z · p_z) · v_x - q_y · p_x · v_y - q_z · p_x · v_z \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+-q_x · p_z & -q_y · p_z & (q_x · p_x + q_y · p_y) \\
+-q_x · p_y & (q_z · p_z + q_x · p_x) & -q_z· p_y \\
+(q_y · p_y + q_z · p_z) & -q_y · p_x & q_z · p_x \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+
+$3$元矢量的对称叉叉乘运算。矢量的对称叉叉乘运算必满足结合律。
+
+$$
+\begin{aligned}
+\left[\begin{matrix}
++q_z \\
++q_y \\
++q_x \\
 \end{matrix}\right] \otimes \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
 \end{matrix}\right] \otimes \left[\begin{matrix}
-r_z \\
-r_y \\
-r_x \\
-\end{matrix}\right] &= \left[\begin{matrix}
-r_x · v_y - r_y · v_x \\
-r_z · v_x - r_x · v_z \\
-r_y · v_z - r_z · v_y \\
++q_z \\
++q_y \\
++q_x \\
+\end{matrix}\right] &= \mathop{\left[\begin{matrix}
+-q_z · q_x & -q_y · q_z & +(q_x^2 + q_y^2) \\
+-q_x · q_y & +(q_z^2 + q_x^2) & -q_y · q_z \\
++(q_y^2 + q_z^2) & -q_x · q_y & -q_z · q_x \\
+\end{matrix}\right]}\limits_{3×3} \rlap{×}{+} \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+
+$3$元矢量的逆称叉叉乘运算。矢量的逆称叉叉乘运算必满足结合律。
+
+$$
+\begin{aligned}
+\left[\begin{matrix}
++q_z \\
++q_y \\
++q_x \\
 \end{matrix}\right] \otimes \left[\begin{matrix}
-r_z \\
-r_y \\
-r_x \\
-\end{matrix}\right] \\
-&= \left[\begin{matrix}
-(r_y · v_z - r_z · v_y) · r_y - (r_z · v_x - r_x · v_z) · r_x \\
-(r_x · v_y - r_y · v_x) · r_x - (r_y · v_z - r_z · v_y) · r_z \\
-(r_z · v_x - r_x · v_z) · r_z - (r_x · v_y - r_y · v_x) · r_y \\
-\end{matrix}\right] = \left[\begin{matrix}
--r_z · r_x · v_x - r_y · r_z · v_y + (r_x^2 + r_y^2) · v_z \\
--r_x · r_y · v_x + (r_z^2 + r_x^2) · v_y - r_y · r_z · v_z \\
-+(r_y^2 + r_z^2) · v_x - r_x · r_y · v_y - r_z · r_x · v_z \\
-\end{matrix}\right] \\
-&= \mathop{\left[\begin{matrix}
--r_z · r_x & -r_y · r_z & (r_x^2 + r_y^2) \\
--r_x · r_y & (r_z^2 + r_x^2) & -r_y · r_z \\
-(r_y^2 + r_z^2) & -r_x · r_y & -r_z · r_x \\
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+-q_z \\
+-q_y \\
+-q_x \\
+\end{matrix}\right] &= \mathop{\left[\begin{matrix}
++q_z · q_x & +q_y · q_z & -(q_x^2 + q_y^2) \\
++q_x · q_y & -(q_z^2 + q_x^2) & +q_y · q_z \\
+-(q_y^2 + q_z^2) & +q_x · q_y & +q_z · q_x \\
 \end{matrix}\right]}\limits_{3×3} \rlap{×}{+} \left[\begin{matrix}
 v_z \\
 v_y \\
@@ -769,7 +877,7 @@ $3$元矢量的对称点量乘运算。
 
 $$
 \begin{aligned}
-\left[\begin{matrix}
+\left(\left[\begin{matrix}
 r_z \\
 r_y \\
 r_x \\
@@ -777,7 +885,7 @@ r_x \\
 v_z \\
 v_y \\
 v_x \\
-\end{matrix}\right] · \left[\begin{matrix}
+\end{matrix}\right]\right) · \left[\begin{matrix}
 r_z \\
 r_y \\
 r_x \\
