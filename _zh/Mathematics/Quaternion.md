@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  四元数
-Update:  2021-12-19T18:20:00+08@中国-广东-深圳+08
+Update:  2021-12-19T23:52:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Credit:
 ---
@@ -14,7 +14,7 @@ Credit:
 本书中复数的长度值为Le(z)，而非|z|。
 本书中复数的度量值定为Measurement，而非绝对值Absolute，其符号为|z|。
 本书中长度值对复数才有意义，实数的长度值与其度量值相等，但意义不同。
-本书中对四元数的倒逆运算有2种，四元数的合乘倒逆运算与虚乘倒逆运算。
+本书中对四元数的倒逆运算有2种：四元数的合乘倒逆运算与虚乘倒逆运算。
 ```
 
 ### 复数的运算性质
@@ -29,19 +29,19 @@ c \circledast τ &= c · τ \\
 \end{aligned}
 $$
 
-复数的长度值。注意，复数的长度值是非负实数。
+复数的长度值。注意：复数的长度值是非负实数。
 
 $$
 \mathrm{Le}(z) = \sqrt{\mathrm{Im}^2(z) + \mathrm{Re}^2(z)}
 $$
 
-复数的度量值。注意，复数的度量值是复数，但未必都是非负实数。
+复数的度量值。注意：复数的度量值是复数，但未必都是非负实数。
 
 $$
 |z| = \sqrt{z \circledast z}
 $$
 
-复数的辐角表示法。辐角的旋转轴为$+τ$轴。
+复数的辐角表示法。复数的旋转轴为$+τ$轴。
 
 $$
 \begin{aligned}
@@ -207,7 +207,7 @@ v_x \\
 v_z \\
 v_y \\
 v_x \\
-\end{matrix}\right] = \left[\begin{matrix} 
+\end{matrix}\right] = \left[\begin{matrix}
 -u_x · v_x - u_y · v_y - u_z · v_z \\
 -u_y · v_x + u_z · v_z \\
 +u_z · v_x - u_x · v_z \\
@@ -217,6 +217,7 @@ v_x \\
 $$
 
 $3$维空间矢量的规范化。
+
 $$
 \begin{aligned}
 \vec{n}_{\vec{v}} = \dfrac{\vec{v}}{|\vec{v}|} &≡ \dfrac{\vec{η}_x · v_{x} + \vec{η}_y · v_{y} + \vec{η}_z · v_{z}}{\sqrt{v_x^2 + v_y^2 + v_z^2}} \\
@@ -269,7 +270,7 @@ $$
 |\bold{q}| = \sqrt{q_x^2 + q_y^2 + q_z^2 + q_w^2}
 $$
 
-四元数的辐角表示法。辐角的旋转轴为$+\vec{n}_{\vec{q}}$轴。
+四元数的辐角表示法。四元数的旋转轴为$+\vec{n}_{\vec{q}}$轴。
 
 $$
 \begin{aligned}
@@ -287,7 +288,7 @@ $$
 \cos(\arg\bold{q}) &= \dfrac{q}{|\bold{q}|} \\
 \tan(\arg\bold{q}) &= \dfrac{{'}\vec{n}_{\vec{q}} \rlap{×}{+} \vec{q}}{q} \\
 |\tan(\arg\bold{q})| &≠ \dfrac{|\vec{q}|}{|q|} \\
-\left[ \tan\dfrac{θ_p}{2} = \tan\dfrac{θ_q}{2} \right] &⇔ \left[ θ_p = θ_q \mathrm{\ mod\ } 360° \right] \\
+\left[ \tan\dfrac{\arg\bold{p}}{2} = \tan\dfrac{\arg\bold{q}}{2} \right] &⇔ \left[ \arg\bold{p} = \arg\bold{q} \mod 360° \right] \\
 \end{aligned}
 $$
 
@@ -329,7 +330,7 @@ $$
 {'}\bold{q} ≡ \circledast^{-1}\bold{q} = \dfrac{\overline{\bold{q}}}{|\bold{q}|^2} = \dfrac{\overline{\bold{q}}}{|\bold{q}^2|} ≠ \dfrac{\overline{\bold{q}}}{\bold{q}^2}
 $$
 
-同向四元数的位加运算。四元数的位加运算必满足交换律。同向四元数的位加运算必满足结合律。
+同向四元数的位加运算。四元数的位加运算必满足交换律。四元数的位加运算必满足结合律。
 
 $$
 \begin{aligned}
@@ -338,7 +339,7 @@ $$
 \end{aligned}
 $$
 
-同向四元数的虚乘运算。四元数的虚乘运算不满足交换律。同向四元数的虚乘运算必满足结合律。
+同向四元数的虚乘运算。四元数的虚乘运算不满足交换律。四元数的虚乘运算必满足结合律。注意：矢量的叉乘运算不满足结合律。
 
 $$
 \begin{aligned}
@@ -382,7 +383,7 @@ u_x + v_x \\
 \end{aligned}
 $$
 
-任意四元数的虚乘运算。四元数的虚乘运算不满足交换律。四元数的虚乘运算?满足结合律。
+任意四元数的虚乘运算。四元数的虚乘运算不满足交换律。四元数的虚乘运算必满足结合律。注意：矢量的叉乘运算不满足结合律。
 
 $$
 \begin{aligned}
@@ -466,6 +467,17 @@ v_x \\
 \end{aligned}
 $$
 
+任意四元数的等值替换。
+
+$$
+\begin{aligned}
+\bold{q} \odot \bold{v} &= \dfrac{\bold{\overline{q}} \circledast \bold{v} + \bold{v} \circledast \bold{\overline{q}}}{2} \\
+-\vec{q} \otimes \vec{v} + q · \vec{v} - v · \vec{q} &= \dfrac{\bold{\overline{q}} \circledast \bold{v} - \bold{v} \circledast \bold{\overline{q}}}{2} \\
+-\vec{q} \odot \vec{v} + q · \vec{v} + v · \vec{q} + q · v &= \dfrac{\bold{q} \circledast \bold{v} + \bold{v} \circledast \bold{q}}{2} \\
+\vec{q} \otimes \vec{v} &= \dfrac{\bold{q} \circledast \bold{v} - \bold{v} \circledast \bold{q}}{2} \\
+\end{aligned}
+$$
+
 ### 四元数的旋转运算
 
 $3$维空间矢量的旋转运算。以$3$维空间矢量$\vec{n}_{⊥\vec{v}}$为旋转轴，将$3$维空间矢量$\vec{v}$右旋转角度$\varphi$变成$3$维空间矢量$\vec{u}$。
@@ -483,7 +495,7 @@ $$
 \end{aligned}
 $$
 
-四元数对$3$维空间矢量常规旋转运算的几何意义。注意：四元数对$3$维空间矢量常规运算的值是四元数。
+四元数对$3$维空间矢量常规旋转运算的几何意义。注意：四元数对$3$维空间矢量常规运算之值是四元数。
 
 $$
 \begin{aligned}
@@ -493,7 +505,7 @@ $$
 \end{aligned}
 $$
 
-四元数对$3$维空间矢量倒逆旋转运算的几何意义。注意：四元数的逆称虚虚乘运算的值是$3$维空间矢量。
+四元数对$3$维空间矢量倒逆旋转运算的几何意义。注意：四元数的逆称虚虚乘运算之值是$3$维空间矢量。
 
 $$
 \begin{aligned}
@@ -503,15 +515,72 @@ $$
 \end{aligned}
 $$
 
-四元数的任意叉叉乘运算。
+四元数的任意虚虚乘运算。四元数的虚虚乘运算必满足结合律。
 
 $$
-\left[\begin{matrix}
+\begin{aligned}
+&\left(\left[ |\bold{q}| · ә^{+\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \right] \circledast \left[ |\bold{v}| · ә^{+\vec{n}_{\vec{v}}·\arg\bold{v}} \right]\right) \circledast \left[ |\bold{p}| · ә^{+\vec{n}_{\vec{p}}·\frac{\arg\bold{p}}{2}} \right] \\
+&= \left(\left[\begin{matrix}
 q_w \\
 q_z \\
 q_y \\
 q_x \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
+v_w \\
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right]\right) \circledast \left[\begin{matrix}
+p_w \\
+p_z \\
+p_y \\
+p_x \\
+\end{matrix}\right] = \left[\begin{matrix}
+-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w \\
+-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w \\
++q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w \\
++q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
+p_w \\
+p_z \\
+p_y \\
+p_x \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+-(+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · p_x - (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · p_y - (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · p_z + (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · p_w \\
+-(+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · p_x + (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · p_y + (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · p_z + (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · p_w \\
++(-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · p_x + (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · p_y - (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · p_z + (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · p_w \\
++(-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · p_x - (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · p_y + (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · p_z + (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · p_w \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+(- q_w · p_x - q_z · p_y + q_y · p_z - q_x · p_w) · v_x + (+ q_z · p_x - q_w · p_y - q_x · p_z - q_y · p_w) · v_y + (- q_y · p_x + q_x · p_y - q_w · p_z - q_z · p_w) · v_z + (- q_x · p_x - q_y · p_y - q_z · p_z + q_w · p_w) · v_w \\
+(- q_z · p_x + q_w · p_y - q_x · p_z - q_y · p_w) · v_x + (- q_w · p_x - q_z · p_y - q_y · p_z + q_x · p_w) · v_y + (+ q_x · p_x + q_y · p_y - q_z · p_z + q_w · p_w) · v_z + (- q_y · p_x + q_x · p_y + q_w · p_z + q_z · p_w) · v_w \\
+(- q_y · p_x - q_x · p_y - q_w · p_z + q_z · p_w) · v_x + (+ q_x · p_x - q_y · p_y + q_z · p_z + q_w · p_w) · v_y + (+ q_w · p_x - q_z · p_y - q_y · p_z - q_x · p_w) · v_z + (+ q_z · p_x + q_w · p_y - q_x · p_z + q_y · p_w) · v_w \\
+(- q_x · p_x + q_y · p_y + q_z · p_z + q_w · p_w) · v_x + (- q_y · p_x - q_x · p_y + q_w · p_z - q_z · p_w) · v_y + (- q_z · p_x - q_w · p_y - q_x · p_z + q_y · p_w) · v_z + (+ q_w · p_x - q_z · p_y + q_y · p_z + q_x · p_w) · v_w \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+(- q_x · p_w + q_y · p_z - q_z · p_y - q_w · p_x) & (- q_x · p_z - q_y · p_w + q_z · p_x - q_w · p_y) & (+ q_x · p_y - q_y · p_x - q_z · p_w - q_w · p_z) & (- q_x · p_x - q_y · p_y - q_z · p_z + q_w · p_w) \\
+(- q_x · p_z - q_y · p_w - q_z · p_x + q_w · p_y) & (+ q_x · p_w - q_y · p_z - q_z · p_y - q_w · p_x) & (+ q_x · p_x + q_y · p_y - q_z · p_z + q_w · p_w) & (+ q_x · p_y - q_y · p_x + q_z · p_w + q_w · p_z) \\
+(- q_x · p_y - q_y · p_x + q_z · p_w - q_w · p_z) & (+ q_x · p_x - q_y · p_y + q_z · p_z + q_w · p_w) & (- q_x · p_w - q_y · p_z - q_z · p_y + q_w · p_x) & (- q_x · p_z + q_y · p_w + q_z · p_x + q_w · p_y) \\
+(- q_x · p_x + q_y · p_y + q_z · p_z + q_w · p_w) & (- q_x · p_y - q_y · p_x - q_z · p_w + q_w · p_z) & (- q_x · p_z + q_y · p_w - q_z · p_x - q_w · p_y) & (+ q_x · p_w + q_y · p_z - q_z · p_y + q_w · p_x) \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_w \\
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\left[ |\bold{q}| · ә^{+\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \right] \circledast \left(\left[ |\bold{v}| · ә^{+\vec{n}_{\vec{v}}·\arg\bold{v}} \right] \circledast \left[ |\bold{p}| · ә^{+\vec{n}_{\vec{p}}·\frac{\arg\bold{p}}{2}} \right]\right) \\
+&= \left[\begin{matrix}
+q_w \\
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \circledast \left(\left[\begin{matrix}
 v_w \\
 v_z \\
 v_y \\
@@ -521,29 +590,63 @@ p_w \\
 p_z \\
 p_y \\
 p_x \\
-\end{matrix}\right] \\
-=  \\
-$$
-
-四元数的对称虚虚乘运算。
-$$
-\begin{aligned}
-&\left[ |\bold{q}| · ә^{+\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \right] \circledast \left[ |\bold{v}| · ә^{+\vec{n}_{\vec{v}}·\arg\bold{v}}  \right] \circledast \left[ |\bold{q}| · ә^{+\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \right] \\
-&= \left[\begin{matrix}
+\end{matrix}\right]\right) = \left[\begin{matrix}
 q_w \\
 q_z \\
 q_y \\
 q_x \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
+-v_x · p_x - v_y · p_y - v_z · p_z + v_w · p_w \\
+-v_y · p_x + v_x · p_y + v_w · p_z + v_z · p_w \\
++v_z · p_x + v_w · p_y - v_x · p_z + v_y · p_w \\
++v_w · p_x - v_z · p_y + v_y · p_z + v_x · p_w \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+- q_x · (+ v_w · p_x- v_z · p_y + v_y · p_z + v_x · p_w) - q_y · (+ v _z · p_x + v_w · p_y - v_x · p_z + v_y · p_w) - q_z · (- v_y · p_x + v_x · p_y + v_w · p_z + v_z · p_w) + q_w · (- v_x · p_x - v_y · p_y - v_z · p_z + v_w · p_w) \\
+- q_y · (+ v_w · p_x- v_z · p_y + v_y · p_z + v_x · p_w) + q_x · (+ v _z · p_x + v_w · p_y - v_x · p_z + v_y · p_w) + q_w · (- v_y · p_x + v_x · p_y + v_w · p_z + v_z · p_w) + q_z · (- v_x · p_x - v_y · p_y - v_z · p_z + v_w · p_w) \\
++ q_z · (+ v_w · p_x- v_z · p_y + v_y · p_z + v_x · p_w) + q_w · (+ v _z · p_x + v_w · p_y - v_x · p_z + v_y · p_w) - q_x · (- v_y · p_x + v_x · p_y + v_w · p_z + v_z · p_w) + q_y · (- v_x · p_x - v_y · p_y - v_z · p_z + v_w · p_w) \\
++ q_w · (+ v_w · p_x- v_z · p_y + v_y · p_z + v_x · p_w) - q_z · (+ v _z · p_x + v_w · p_y - v_x · p_z + v_y · p_w) + q_y · (- v_y · p_x + v_x · p_y + v_w · p_z + v_z · p_w) + q_x · (- v_x · p_x - v_y · p_y - v_z · p_z + v_w · p_w) \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+(- q_x · p_w + q_y · p_z - q_z · p_y - q_w · p_x) · v_x + (- q_x · p_z - q_y · p_w + q_z · p_x - q_w · p_y) · v_y + (+ q_x · p_y - q_y · p_x - q_z · p_w - q_w · p_z) · v_z + (- q_x · p_x - q_y · p_y - q_z · p_z + q_w · p_w) · v_w \\
+(- q_y · p_w - q_x · p_z + q_w · p_y - q_z · p_x) · v_x + (- q_y · p_z + q_x · p_w - q_w · p_x - q_z · p_y) · v_y + (+ q_y · p_y + q_x · p_x + q_w · p_w - q_z · p_z) · v_z + (- q_y · p_x + q_x · p_y + q_w · p_z + q_z · p_w) · v_w \\
+(+ q_z · p_w - q_w · p_z - q_x · p_y - q_y · p_x) · v_x + (+ q_z · p_z + q_w · p_w + q_x · p_x - q_y · p_y) · v_y + (- q_z · p_y + q_w · p_x - q_x · p_w - q_y · p_z) · v_z + (+ q_z · p_x + q_w · p_y - q_x · p_z + q_y · p_w) · v_w \\
+(+ q_w · p_w + q_z · p_z + q_y · p_y - q_x · p_x) · v_x + (+ q_w · p_z - q_z · p_w - q_y · p_x - q_x · p_y) · v_y + (- q_w · p_y - q_z · p_x + q_y · p_w - q_x · p_z) · v_z + (+ q_w · p_x - q_z · p_y + q_y · p_z + q_x · p_w) · v_w \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix}
+(- q_x · p_w + q_y · p_z - q_z · p_y - q_w · p_x) & (- q_x · p_z - q_y · p_w + q_z · p_x - q_w · p_y) & (+ q_x · p_y - q_y · p_x - q_z · p_w - q_w · p_z) & (- q_x · p_x - q_y · p_y - q_z · p_z + q_w · p_w) \\
+(- q_x · p_z - q_y · p_w - q_z · p_x + q_w · p_y) & (+ q_x · p_w - q_y · p_z - q_z · p_y - q_w · p_x) & (+ q_x · p_x + q_y · p_y - q_z · p_z + q_w · p_w) & (+ q_x · p_y - q_y · p_x + q_z · p_w + q_w · p_z) \\
+(- q_x · p_y - q_y · p_x + q_z · p_w - q_w · p_z) & (+ q_x · p_x - q_y · p_y + q_z · p_z + q_w · p_w) & (- q_x · p_w - q_y · p_z - q_z · p_y + q_w · p_x) & (- q_x · p_z + q_y · p_w + q_z · p_x + q_w · p_y) \\
+(- q_x · p_x + q_y · p_y + q_z · p_z + q_w · p_w) & (- q_x · p_y - q_y · p_x - q_z · p_w + q_w · p_z) & (- q_x · p_z + q_y · p_w - q_z · p_x - q_w · p_y) & (+ q_x · p_w + q_y · p_z - q_z · p_y + q_w · p_x) \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_w \\
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+
+四元数的对称虚虚乘运算。四元数的虚虚乘运算必满足结合律。
+
+$$
+\begin{aligned}
+&\left[ |\bold{q}| · ә^{+\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \right] \circledast \left[ |\bold{v}| · ә^{+\vec{n}_{\vec{v}}·\arg\bold{v}}  \right] \circledast \left[ |\bold{q}| · ә^{+\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \right] \\
+&= \left[\begin{matrix}
++q_w \\
++q_z \\
++q_y \\
++q_x \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 v_w \\
 v_z \\
 v_y \\
 v_x \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
-q_w \\
-q_z \\
-q_y \\
-q_x \\
++q_w \\
++q_z \\
++q_y \\
++q_x \\
 \end{matrix}\right] = \left[\begin{matrix}
 -q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w \\
 -q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w \\
@@ -554,18 +657,6 @@ q_w \\
 q_z \\
 q_y \\
 q_x \\
-\end{matrix}\right] \\
-&= \left[\begin{matrix}
--(+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_x - (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_y - (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_z + (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_w \\
--(+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_x + (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_y + (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_z + (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_w \\
-+(-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_x + (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_y - (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_z + (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_w \\
-+(-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_x - (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_y + (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_z + (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_w \\
-\end{matrix}\right] \\
-&= \left[\begin{matrix}
-(- q_w · q_x - q_z · q_y + q_y · q_z - q_x · q_w) · v_x + (+ q_z · q_x - q_w · q_y - q_x · q_z - q_y · q_w) · v_y + (- q_y · q_x + q_x · q_y - q_w · q_z - q_z · q_w) · v_z + (- q_x^2 - q_y^2 - q_z^2 + q_w^2) · v_w \\
-(- q_z · q_x + q_w · q_y - q_x · q_z - q_y · q_w) · v_x + (- q_w · q_x - q_z · q_y - q_y · q_z + q_x · q_w) · v_y + (+ q_x^2 + q_y^2 - q_z^2 + q_w^2) · v_z + (- q_y · q_x + q_x · q_y + q_w · q_z + q_z · q_w) · v_w \\
-(- q_y · q_x - q_x · q_y - q_w · q_z + q_z · q_w) · v_x + (+ q_x^2 - q_y^2 + q_z^2 + q_w^2) · v_y + (+ q_w · q_x - q_z · q_y - q_y · q_z - q_x · q_w) · v_z + (+ q_z · q_x + q_w · q_y - q_x · q_z + q_y · q_w) · v_w \\
-(- q_x^2 + q_y^2 + q_z^2 + q_w^2) · v_x + (- q_y · q_x - q_x · q_y + q_w · q_z - q_z · q_w) · v_y + (- q_z · q_x - q_w · q_y - q_x · q_z + q_y · q_w) · v_z + (+ q_w · q_x - q_z · q_y + q_y · q_z + q_x · q_w) · v_w \\
 \end{matrix}\right] \\
 &= \left[\begin{matrix}
 -2 · q_x · q_w & -2 · q_y · q_w & -2 · q_z · q_w & -q_x^2 - q_y^2 - q_z^2 + q_w^2 \\
@@ -581,7 +672,7 @@ v_x \\
 \end{aligned}
 $$
 
-四元数的逆称虚虚乘运算。
+四元数的逆称虚虚乘运算。四元数的虚虚乘运算必满足结合律。
 
 $$
 \begin{aligned}
@@ -613,12 +704,6 @@ v_x \\
 -q_x \\
 \end{matrix}\right] \\
 &= \left[\begin{matrix}
-+(+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_x + (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_y + (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_z + (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_w \\
-+(+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_x - (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_y - (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_z + (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_w \\
--(-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_x - (-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_y + (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_z + (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_w \\
--(-q_x · v_x - q_y · v_y - q_z · v_z + q_w · v_w) · q_x + (-q_y · v_x + q_x · v_y + q_w · v_z + q_z · v_w) · q_y - (+q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w) · q_z + (+q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w) · q_w \\
-\end{matrix}\right] \\
-&= \left[\begin{matrix}
 0 & 0 & 0 & +q_x^2 + q_y^2 + q_z^2 + q_w^2 \\
 2 · (q_z · q_x - q_y · q_w) & 2 · (q_y · q_z + q_x · q_w) & -q_x^2 - q_y^2 + q_z^2 + q_w^2 & 0 \\
 2 · (q_x · q_y + q_z · q_w) & -q_x^2 + q_y^2 - q_z^2 + q_w^2 & 2 · (q_y · q_z - q_x · q_w) & 0 \\
@@ -632,11 +717,11 @@ v_x \\
 \end{aligned}
 $$
 
-四元数对应的旋转矩阵。注意：四元数对应的旋转矩阵必唯一。
+四元数$ә^{+\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}}$所对应的旋转矩阵。注意：四元数的辐角是$\dfrac{\arg\bold{q}}{2}$，旋转矩阵的旋转角是$\arg\bold{q}$。注意：四元数所对应的旋转矩阵必唯一。
 
 $$
 \begin{aligned}
-&\left[ |\bold{q}| · ә^{+\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \right] \circledast \vec{v} \circledast \left[ |\bold{q}| · ә^{-\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \right] \\
+&ә^{+\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \circledast \vec{v} \circledast ә^{-\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \\
 &= \left[ + \vec{η}_x · q_x + \vec{η}_y · q_y + \vec{η}_z · q_z + q_w \right] \circledast \vec{v} \circledast \left[ - \vec{η}_x · q_x - \vec{η}_y · q_y - \vec{η}_z · q_z + q_w \right] \\
 &= \left[\begin{matrix}
 0 & 0 & 0 & 1 \\
@@ -652,7 +737,7 @@ v_x \\
 \end{aligned}
 $$
 
-旋转矩阵对应的四元数。注意：旋转矩阵对应的四元数不唯一。
+旋转矩阵所对应的四元数$ә^{+\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}}$。注意：四元数的辐角是$\dfrac{\arg\bold{q}}{2}$，旋转矩阵的旋转角是$\arg\bold{q}$。注意：旋转矩阵所对应的四元数不唯一。
 
 $$
 \begin{aligned}
