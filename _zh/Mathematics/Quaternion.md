@@ -731,12 +731,12 @@ q_w · v_w - q_x · v_x - q_y · v_y - q_z · v_z \\
 +2 · q_w · q_y & -2 · q_x · q_y & q_w^2 + q_x^2 - q_y^2 + q_z^2 & -2 · q_y · q_z \\
 +2 · q_w · q_x & q_w^2 - q_x^2 + q_y^2 + q_z^2 & -2 · q_x · q_y & -2 · q_z · q_x \\
 q_w^2 - q_x^2 - q_y^2 - q_z^2 & -2 · q_w · q_x & -2 · q_w · q_y & -2 · q_w · q_z \\
-\end{matrix}\right]}\limits_{4×4} \rlap{×}{+} \left[\begin{matrix}
+\end{matrix}\right]}\limits_{4×4} \rlap{×}{+} \mathop{\left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
 v_w \\
-\end{matrix}\right] \\
+\end{matrix}\right]}\limits_{1+3} \\
 \end{aligned}
 $$
 
@@ -776,12 +776,12 @@ q_w · v_w - q_x · v_x - q_y · v_y - q_z · v_z \\
 0 & 2 · (+ q_w · q_z + q_x · q_y) & q_w^2 - q_x^2 + q_y^2 - q_z^2 & 2 · (- q_w · q_x + q_y · q_z) \\
 0 & q_w^2 + q_x^2 - q_y^2 - q_z^2 & 2 · (- q_w · q_z + q_x · q_y) & 2 · (+ q_w · q_y + q_z · q_x) \\
 q_w^2 + q_x^2 + q_y^2 + q_z^2 & 0 & 0 & 0 \\
-\end{matrix}\right]}\limits_{4×4} \rlap{×}{+} \left[\begin{matrix}
+\end{matrix}\right]}\limits_{4×4} \rlap{×}{+} \mathop{\left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
 v_w \\
-\end{matrix}\right] \\
+\end{matrix}\right]}\limits_{1+3} \\
 \end{aligned}
 $$
 
@@ -792,16 +792,45 @@ $$
 &ә^{+\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \circledast \vec{v} \circledast ә^{-\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \\
 &= \left[ q_w + \vec{η}_x · q_x + \vec{η}_y · q_y + \vec{η}_z · q_z \right] \circledast \vec{v} \circledast \left[ q_w - \vec{η}_x · q_x - \vec{η}_y · q_y - \vec{η}_z · q_z \right] \\
 &= \mathop{\left[\begin{matrix}
-0 & 2 · (- q_w · q_y + q_z · q_x) & 2 · (+ q_w · q_x + q_y · q_z) & 1 - 2 · (q_x^2 - q_y^2) \\
-0 & 2 · (+ q_w · q_z + q_x · q_y) & 1 - 2 · (q_x^2 - q_z^2) & 2 · (- q_w · q_x + q_y · q_z) \\
-0 & 1 - 2 · (q_y^2 - q_z^2) & 2 · (- q_w · q_z + q_x · q_y) & 2 · (+ q_w · q_y + q_z · q_x) \\
+0 & 2 · (- q_w · q_y + q_z · q_x) & 2 · (+ q_w · q_x + q_y · q_z) & 1 - 2 · (q_x^2 + q_y^2) \\
+0 & 2 · (+ q_w · q_z + q_x · q_y) & 1 - 2 · (q_x^2 + q_z^2) & 2 · (- q_w · q_x + q_y · q_z) \\
+0 & 1 - 2 · (q_y^2 + q_z^2) & 2 · (- q_w · q_z + q_x · q_y) & 2 · (+ q_w · q_y + q_z · q_x) \\
 1 & 0 & 0 & 0 \\
-\end{matrix}\right]}\limits_{4×4} \mathop{\rlap{×}{+}}\limits_{0=v_w}^{1=q_x^2+q_y^2+q_z^2+q_w^2} \left[\begin{matrix}
+\end{matrix}\right]}\limits_{4×4} \mathop{\rlap{×}{+}}\limits_{0=v_w}^{1=q_x^2+q_y^2+q_z^2+q_w^2} \mathop{\left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
 0 \\
+\end{matrix}\right]}\limits_{1+3} \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&ә^{+\vec{n}_{\vec{q}}·\frac{\varphi}{2}} \circledast \vec{v} \circledast ә^{-\vec{n}_{\vec{q}}·\frac{\varphi}{2}} \\
+&= \left[ \cos\dfrac{\varphi}{2} + \sin\dfrac{\varphi}{2} · (\vec{η}_x · n_x + \vec{η}_y · n_y + \vec{η}_z · n_z) \right] \circledast \vec{v} \circledast \left[ \cos\dfrac{\varphi}{2} - \sin\dfrac{\varphi}{2} · (\vec{η}_x · n_x + \vec{η}_y · n_y + \vec{η}_z · n_z) \right] \\
+&= \left[\begin{matrix}
+0 & 2 · \left( -n_y · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} + n_z · n_x · \sin^{2}\dfrac{\varphi}{2} \right) & 2 · \left( +n_x · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} + n_y · n_z · \sin^{2}\dfrac{\varphi}{2} \right) & \cos^{2}\dfrac{\varphi}{2} + \sin^{2}\dfrac{\varphi}{2} · \left( - n_x^2 - n_y^2 + n_z^2 \right) \\
+0 & 2 · \left( +n_z · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} + n_x · n_y · \sin^{2}\dfrac{\varphi}{2} \right) & \cos^{2}\dfrac{\varphi}{2}  + \sin^{2}\dfrac{\varphi}{2} · \left( - n_x^2 + n_y^2 - n_z^2 \right) & 2 · \left( - n_x · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} + n_y · n_z · \sin^{2}\dfrac{\varphi}{2} \right) \\
+0 & \cos^{2}\dfrac{\varphi}{2} + \sin^{2}\dfrac{\varphi}{2} · \left( n_x^2 - n_y^2 - n_z^2 \right) & 2 · \left( -n_z · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} + n_x · n_y · \sin^{2}\dfrac{\varphi}{2} \right) & 2 · \left( +n_y · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} + n_z · n_x · \sin^{2}\dfrac{\varphi}{2} \right) \\
+1 & 0 & 0 & 0 \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+1 \\
 \end{matrix}\right] \\
+&= \mathop{\left[\begin{matrix}
+0 & -n_y · \sin\varphi + n_z · n_x · (1 - \cos\varphi) & +n_x · \sin\varphi + n_y · n_z · (1 - \cos\varphi) & \cos\varphi + n_z^2 · (1 - \cos\varphi) \\
+0 & +n_z · \sin\varphi + n_x · n_y · (1 - \cos\varphi) & \cos\varphi + n_y^2 · (1 - \cos\varphi) & -n_x · \sin\varphi + n_y · n_z · (1 - \cos\varphi) \\
+0 & \cos\varphi + n_x^2 · (1 - \cos\varphi) & -n_z · \sin\varphi + n_x · n_y · (1 - \cos\varphi) & +n_y · \sin\varphi + n_z · n_x · (1 - \cos\varphi) \\
+1 & 0 & 0 & 0 \\
+\end{matrix}\right]}\limits_{4×4} \mathop{\rlap{×}{+}}\limits_{0=v_w}^{1=q_x^2+q_y^2+q_z^2+q_w^2} \mathop{\left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+0 \\
+\end{matrix}\right]}\limits_{1+3} \\
 \end{aligned}
 $$
 
