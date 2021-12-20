@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  四元数
-Update:  2021-12-19T23:52:00+08@中国-广东-深圳+08
+Update:  2021-12-20T11:05:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Credit:
 ---
@@ -15,6 +15,7 @@ Credit:
 本书中复数的度量值定为Measurement，而非绝对值Absolute，其符号为|z|。
 本书中长度值对复数才有意义，实数的长度值与其度量值相等，但意义不同。
 本书中对四元数的倒逆运算有2种：四元数的合乘倒逆运算与虚乘倒逆运算。
+本书中对复数共轭运算以及对四元数的共轭运算均为Conjugate，其符号为Ā。
 ```
 
 ### 复数的运算性质
@@ -88,7 +89,7 @@ $$
 倒逆复数。若无特别的规定，复数的倒逆运算指虚乘倒逆运算，而非合乘倒逆运算，复数的两种倒逆运算其值相等但意义不同。
 
 $$
-{'}z ≡ \circledast^{-1} {z} = \dfrac{\overline{z}}{\mathrm{Le}^2(z)} = \dfrac{\overline{z}}{\mathrm{Le}(z^2)} ≠ \dfrac{\overline{z}}{z^2}
+{^\imath}z ≡ \circledast^{-1} {z} = \dfrac{\overline{z}}{\mathrm{Le}^2(z)} = \dfrac{\overline{z}}{\mathrm{Le}(z^2)} ≠ \dfrac{\overline{z}}{z^2}
 $$
 
 任意规范复数的位加运算。复数的位加运算必满足交换律。复数的位加运算必满足结合律。
@@ -284,9 +285,9 @@ $$
 
 $$
 \begin{aligned}
-\sin(\arg\bold{q}) &= \dfrac{{'}\vec{n}_{\vec{q}} \rlap{×}{+} \vec{q}}{|\bold{q}|} \\
+\sin(\arg\bold{q}) &= \dfrac{{^\imath}\vec{n}_{\vec{q}} \rlap{×}{+} \vec{q}}{|\bold{q}|} \\
 \cos(\arg\bold{q}) &= \dfrac{q}{|\bold{q}|} \\
-\tan(\arg\bold{q}) &= \dfrac{{'}\vec{n}_{\vec{q}} \rlap{×}{+} \vec{q}}{q} \\
+\tan(\arg\bold{q}) &= \dfrac{{^\imath}\vec{n}_{\vec{q}} \rlap{×}{+} \vec{q}}{q} \\
 |\tan(\arg\bold{q})| &≠ \dfrac{|\vec{q}|}{|q|} \\
 \left[ \tan\dfrac{\arg\bold{p}}{2} = \tan\dfrac{\arg\bold{q}}{2} \right] &⇔ \left[ \arg\bold{p} = \arg\bold{q} \mod 360° \right] \\
 \end{aligned}
@@ -321,13 +322,14 @@ $$
 \overline{\bold{q}} &= -\vec{q} + q = - \vec{η}_x · q_x - \vec{η}_y · q_y - \vec{η}_z · q_z + q_w \\
 |\bold{q}|^2 = \bold{q} \circledast \overline{\bold{q}} &≡ |\bold{q}|^2 · \left[ +\vec{n}_{\vec{q}} · \sin(\arg\bold{q}) + \cos(\arg\bold{q}) \right] \circledast \left[ -\vec{n}_{\vec{q}} · \sin(\arg\bold{q}) + \cos(\arg\bold{q}) \right] = |\bold{q}|^2 · \left[ -\vec{n}_{\vec{q}}^{2} · \sin^2(\arg\bold{q}) + \cos^2(\arg\bold{q}) \right] \\
 \bold{q}^2 = \bold{q} \circledast \bold{q} &≡ |\bold{q}|^2 · \left[ +\vec{n}_{\vec{q}} · \sin(\arg\bold{q}) + \cos(\arg\bold{q}) \right] \circledast \left[ +\vec{n}_{\vec{q}} · \sin(\arg\bold{q}) + \cos(\arg\bold{q}) \right] = |\bold{q}|^2 · \left[ \vec{n}_{\vec{q}} · \sin(2 · \arg\bold{q}) + \cos(2 · \arg\bold{q}) \right] \\
+\overline{\bold{q} + \bold{v}} &= \overline{\bold{q}} + \overline{\bold{v}} \\
 \end{aligned}
 $$
 
 倒逆四元数。若无特别的规定，约定四元数的倒逆运算指虚乘倒逆运算，而非合乘倒逆运算，四元数的两种倒逆运算其值不等且意义不同。
 
 $$
-{'}\bold{q} ≡ \circledast^{-1}\bold{q} = \dfrac{\overline{\bold{q}}}{|\bold{q}|^2} = \dfrac{\overline{\bold{q}}}{|\bold{q}^2|} ≠ \dfrac{\overline{\bold{q}}}{\bold{q}^2}
+{^\imath}\bold{q} ≡ \circledast^{-1}\bold{q} = \dfrac{\overline{\bold{q}}}{|\bold{q}|^2} = \dfrac{\overline{\bold{q}}}{|\bold{q}^2|} ≠ \dfrac{\overline{\bold{q}}}{\bold{q}^2}
 $$
 
 同向四元数的位加运算。四元数的位加运算必满足交换律。四元数的位加运算必满足结合律。
@@ -464,6 +466,132 @@ v_x \\
 +q_z · v_x + q_w · v_y - q_x · v_z + q_y · v_w \\
 +q_w · v_x - q_z · v_y + q_y · v_z + q_x · v_w \\
 \end{matrix}\right] \\
+\left[\begin{matrix}
++v_w \\
+-v_z \\
+-v_y \\
+-v_x \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
++q_w \\
+-q_z \\
+-q_y \\
+-q_x \\
+\end{matrix}\right] &= \left[\begin{matrix}
+-v_z \\
+-v_y \\
+-v_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+-q_z \\
+-q_y \\
+-q_x \\
+\end{matrix}\right] -_4 \left[\begin{matrix}
+-v_z \\
+-v_y \\
+-v_x \\
+\end{matrix}\right] \odot \left[\begin{matrix}
+-q_z \\
+-q_y \\
+-q_x \\
+\end{matrix}\right] +_4 v_w · \left[\begin{matrix}
+-q_z \\
+-q_y \\
+-q_x \\
+\end{matrix}\right] +_4 q_w · \left[\begin{matrix}
+-v_z \\
+-v_y \\
+-v_x \\
+\end{matrix}\right] +_4 v_w · q_w \\
+&= -\left[\begin{matrix}
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] -_4 \left[\begin{matrix}
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \odot \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] -_4 q_w · \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] -_4 v_w · \left[\begin{matrix}
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] +_4 q_w · v_w \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\left[\begin{matrix}
++v_w \\
+-v_z \\
+-v_y \\
+-v_x \\
+\end{matrix}\right] \circledast \left[\begin{matrix}
++q_w \\
+-q_z \\
+-q_y \\
+-q_x \\
+\end{matrix}\right] &= \left[\begin{matrix}
+-v_z \\
+-v_y \\
+-v_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+-q_z \\
+-q_y \\
+-q_x \\
+\end{matrix}\right] -_4 \left[\begin{matrix}
+-v_z \\
+-v_y \\
+-v_x \\
+\end{matrix}\right] \odot \left[\begin{matrix}
+-q_z \\
+-q_y \\
+-q_x \\
+\end{matrix}\right] +_4 v_w · \left[\begin{matrix}
+-q_z \\
+-q_y \\
+-q_x \\
+\end{matrix}\right] +_4 q_w · \left[\begin{matrix}
+-v_z \\
+-v_y \\
+-v_x \\
+\end{matrix}\right] +_4 v_w · q_w \\
+&= -\left[\begin{matrix}
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] -_4 \left[\begin{matrix}
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] \odot \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] -_4 q_w · \left[\begin{matrix}
+v_z \\
+v_y \\
+v_x \\
+\end{matrix}\right] -_4 v_w · \left[\begin{matrix}
+q_z \\
+q_y \\
+q_x \\
+\end{matrix}\right] +_4 q_w · v_w \\
+\overline{\bold{q} \circledast \bold{v}} &= \overline{\bold{v}} \circledast \overline{\bold{q}} \\
 \end{aligned}
 $$
 
@@ -487,9 +615,9 @@ $$
 \vec{u} \odot \vec{v} &= +|\vec{v}|^2 · \cos\varphi \\
 \vec{u} \otimes \vec{v} &= -|\vec{v}|^2 · \vec{n}_{⊥} · \sin\varphi \\
 \vec{u} \circledast \vec{v} &= \vec{u} \otimes \vec{v} - \vec{u} \odot \vec{v} = |\vec{v}|^2 · [-\vec{n}_{⊥} · \sin\varphi - \cos\varphi] = |\vec{u}|^2 · [-\vec{n}_{⊥} · \sin\varphi - \cos\varphi] \\
-\vec{u} &= \vec{u} \circledast \vec{v} \circledast {'}\vec{v} = |\vec{v}|^2 · [-\vec{n}_{⊥} · \sin\varphi - \cos\varphi] \circledast \left( -\dfrac{\vec{v}}{|\vec{v}|^2} \right) \\
+\vec{u} &= \vec{u} \circledast \vec{v} \circledast {^\imath}\vec{v} = |\vec{v}|^2 · [-\vec{n}_{⊥} · \sin\varphi - \cos\varphi] \circledast \left( -\dfrac{\vec{v}}{|\vec{v}|^2} \right) \\
 \vec{u} &=  ә^{+\vec{n}_{⊥}·\varphi} \circledast \vec{v} \\
-\vec{v} &= {'}\vec{u} \circledast \vec{u} \circledast \vec{v} = |\vec{u}|^2 · \left( -\dfrac{\vec{u}}{|\vec{u}|^2} \right) \circledast [-\vec{n}_{⊥} · \sin\varphi - \cos\varphi] \\
+\vec{v} &= {^\imath}\vec{u} \circledast \vec{u} \circledast \vec{v} = |\vec{u}|^2 · \left( -\dfrac{\vec{u}}{|\vec{u}|^2} \right) \circledast [-\vec{n}_{⊥} · \sin\varphi - \cos\varphi] \\
 \vec{v} &= \vec{u} \circledast ә^{+\vec{n}_{⊥}·\varphi} \\
 ә^{+\vec{n}_{⊥}·(2·\varphi)} \circledast \vec{v} &= ә^{+\vec{n}_{⊥}·\varphi} \circledast \vec{v} \circledast ә^{-\vec{n}_{⊥}·\varphi} \\
 \end{aligned}
@@ -742,12 +870,12 @@ $$
 $$
 \begin{aligned}
 |q_w| &= \dfrac{\sqrt{1 + A[0][0] + A[1][1] + A[2][2]}}{2} \\
-|q_x| &= \dfrac{\sqrt{1 + A[0][0] - A[1][1] - A[2][2]}}{2} \\
-|q_y| &= \dfrac{\sqrt{1 + A[1][1] - A[2][2] - A[0][0]}}{2} \\
 |q_z| &= \dfrac{\sqrt{1 + A[2][2] - A[0][0] - A[1][1]}}{2} \\
+|q_y| &= \dfrac{\sqrt{1 + A[1][1] - A[2][2] - A[0][0]}}{2} \\
+|q_x| &= \dfrac{\sqrt{1 + A[0][0] - A[1][1] - A[2][2]}}{2} \\
 q_w &≡ |q_w| \\
-q_x &≡ \mathrm{sgn}(A[2][1] - A[1][2]) · |q_x| \\
-q_y &≡ \mathrm{sgn}(A[0][2] - A[2][0]) · |q_y| \\
 q_z &≡ \mathrm{sgn}(A[1][0] - A[0][1]) · |q_z| \\
+q_y &≡ \mathrm{sgn}(A[0][2] - A[2][0]) · |q_y| \\
+q_x &≡ \mathrm{sgn}(A[2][1] - A[1][2]) · |q_x| \\
 \end{aligned}
 $$

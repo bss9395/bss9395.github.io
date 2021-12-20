@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  线性代数
-Update:  2021-12-19T17:51:00+08@中国-广东-深圳+08
+Update:  2021-12-20T11:05:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -12,8 +12,8 @@ Link  :
 ```
 本书中矩阵的定义与教科书不同。
 本书中矩阵以左下右上为对角线。
-本书中对矩阵的反置为Reverse，而非转置Transpose。
-本书中对矩阵的倒逆为Inverse，其符号为'A而非A⁻¹。
+本书中对矩阵的反置为Reverse，而非转置Transpose，其符号为´A而非Aᵀ。
+本书中对矩阵的倒逆为Inverse，其符号为ᶥA而非A⁻¹。
 本书中坐标系的基矢量符号为η。
 本书中坐标系均为右手旋坐标系。
 本书中共有2种加运算5种乘运算。
@@ -103,9 +103,9 @@ $$
 
 矩阵的运算遵循的原则：行优先于列，单行从左往右，单列从下往上。向左复合，向右运算。
 
-矩阵$\mathcal{F}[(m+1)×(n+1)]$的反置矩阵为${^r}\mathcal{F}[(m+1)×(n+1)] ≡ \mathrm{rev} \mathcal{F}[(m+1)×(n+1)]$。
+矩阵$\mathcal{F}[(m+1)×(n+1)]$的反置矩阵为${'}\mathcal{F}[(m+1)×(n+1)] ≡ \mathrm{rev} \mathcal{F}[(m+1)×(n+1)]$。
 
-$\mathcal{H}[(n+1)×(m+1)] = {^r}\mathcal{F}[(m+1)×(n+1)]$。
+$\mathcal{H}[(n+1)×(m+1)] = {'}\mathcal{F}[(m+1)×(n+1)]$。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -260,7 +260,7 @@ a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
 \end{matrix}\right]}\limits_{(m+1)×(n+1)} \\
-{^r}\mathrm{A}_{(m+1)×(n+1)} &= \mathop{\left[\begin{matrix}
+{'}\mathrm{A}_{(m+1)×(n+1)} &= \mathop{\left[\begin{matrix}
 a_{0,n} & a_{1,n} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{0,1} & a_{1,1} & ⋯ & a_{m,1} \\
@@ -393,9 +393,27 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{D}_{(k+1)×(n+1)} &= \mathrm{C}_{(k+1)×(l+1)} \rlap{×}{+} \left[ \mathrm{B}_{(l+1)×(m+1)} \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \right] = \left[ \mathrm{C}_{(k+1)×(l+1)} \rlap{×}{+} \mathrm{B}_{(l+1)×(m+1)} \right] \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \\
+\mathrm{D}_{(k+1)×(n+1)} &= \mathrm{C}_{(k+1)×(l+1)} \rlap{×}{+} \left[ \mathrm{B}_{(l+1)×(m+1)} \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \right] \\
+\mathrm{D}_{(k+1)×(n+1)} &= \left[ \mathrm{C}_{(k+1)×(l+1)} \rlap{×}{+} \mathrm{B}_{(l+1)×(m+1)} \right] \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \\
 c(ba)_{q,t} &= \sum\limits_{r=0}^{l} c_{q,r} · \left[ \sum\limits_{s=0}^{m} b_{r,s} · a_{s,t} \right] = \sum\limits_{r=0}^{l} \sum\limits_{s=0}^{m} c_{q,r} · b_{r,s} · a_{s,t} \\
 (cb)a_{q,t}&= \sum\limits_{s=0}^{m} \left[ \sum\limits_{r=0}^{l} c_{q,r} · b_{r,s} \right] · a_{s,t} = \sum\limits_{r=0}^{l} \sum\limits_{s=0}^{m} c_{q,r} · b_{r,s} · a_{s,t} \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\mathrm{C}_{(l+1)×(n+1)} &= \mathrm{B}_{(l+1)×(m+1)} \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \\
+{'}\mathrm{C}_{(l+1)×(n+1)} &= {'}\mathrm{a}_{(m+1)×(n+1)} \rlap{×}{+} {'}\mathrm{B}_{(l+1)×(m+1)} \\
+ba_{r,t} &= \sum\limits_{s=0}^{m} b_{r,s} · a_{s,t} \\
+ab_{t,r} &= \sum\limits_{s=0}^{m} a_{t,s} · b_{s,r} \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\mathrm{C}_{(l+1)×(n+1)} &= \mathrm{B}_{(l+1)×(m+1)} \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \\
+{^\imath}\mathrm{C}_{(l+1)×(n+1)} &= {^\imath}\mathrm{A}_{(m+1)×(n+1)} \rlap{×}{+} {^\imath}\mathrm{B}_{(l+1)×(m+1)} \\
+\mathrm{I}_{(l+1)×(l+1)} &= \mathrm{B}_{(l+1)×(m+1)} \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \rlap{×}{+} {^\imath}\mathrm{A}_{(m+1)×(n+1)} \rlap{×}{+} {^\imath}\mathrm{B}_{(l+1)×(m+1)} \\
 \end{aligned}
 $$
 
