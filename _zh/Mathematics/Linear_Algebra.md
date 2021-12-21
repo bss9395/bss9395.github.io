@@ -64,7 +64,7 @@ a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} \rlap{×}{+} \left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} \rlap{×}{+} \left[\begin{matrix}
 x_n \\
 ⋮ \\
 x_1 \\
@@ -81,7 +81,7 @@ $$
 
 矩阵的坐标遵循的原则：行优先于列，行数向上递增，列数向右递增。从左往右，从下往上。
 
-$(m+1)×(n+1)$元矩阵的坐标，行数为$m+1$，列数为$n+1$。
+$(1+m)×(1+n)$元矩阵的坐标，行数为$1+m$，列数为$1+n$。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -89,10 +89,10 @@ $$
 ↑ & ↑ & ↗ & ↑ \\
 (1, 0) & (1, 1) & → & (1, n) \\
 (0, 0) & (0, 1) & → & (0, n) \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)}
 $$
 
-$(n+1)×(n+1)$元方矩阵的单位方矩阵，对角线为左下右上。
+$(1+n)×(1+n)$元方矩阵的单位方矩阵，对角线为左下右上。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -100,16 +100,16 @@ $$
 ⋮ & ⋮ & ⋰ & ⋮ \\
 0 & 1 & ⋯ & 0 \\
 1 & 0 & ⋯ & 0 \\
-\end{matrix}\right]}\limits_{(n+1)×(n+1)}
+\end{matrix}\right]}\limits_{(1+n)×(1+n)}
 $$
 
 ### 矩阵的运算
 
 矩阵的运算遵循的原则：行优先于列，单行从左往右，单列从下往上。向左复合，向右运算。
 
-矩阵$\mathcal{F}[(m+1)×(n+1)]$的反置矩阵为${'}\mathcal{F}[(m+1)×(n+1)] ≡ \mathrm{rev} \mathcal{F}[(m+1)×(n+1)]$。
+矩阵$\mathcal{F}[(1+m)×(1+n)]$的反置矩阵为${'}\mathcal{F}[(1+m)×(1+n)] ≡ \mathrm{rev} \mathcal{F}[(1+m)×(1+n)]$。
 
-$\mathcal{H}[(n+1)×(m+1)] = {'}\mathcal{F}[(m+1)×(n+1)]$。
+$\mathcal{H}[(1+n)×(1+m)] = {'}\mathcal{F}[(1+m)×(1+n)]$。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -117,22 +117,22 @@ h_{n,0} & h_{n,1} & ⋯ & h_{n,m} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$h_{1,0}$} & h_{1,1} & ⋯ & h_{1,m} \\
 h_{0,0} & \fbox{$h_{0,1}$} & ⋯ & h_{0,m} \\
-\end{matrix}\right]}\limits_{(n+1)×(m+1)} \mathop{====}\limits^{h_{i,j}=f_{j,i} } \mathrm{rev} \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+n)×(1+m)} \mathop{====}\limits^{h_{i,j}=f_{j,i} } \mathrm{rev} \mathop{\left[\begin{matrix}
 f_{m,0} & f_{m,1} & ⋯ & f_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$f_{1,0}$} & f_{1,1} & ⋯ & f_{1,n} \\
 f_{0,0} & \fbox{$f_{0,1}$} & ⋯ & f_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} = \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} = \mathop{\left[\begin{matrix}
 f_{0,n} & f_{1,n} & ⋯ & f_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$f_{0,1}$} & f_{1,1} & ⋯ & f_{m,1} \\
 f_{0,0} & \fbox{$f_{1,0}$} & ⋯ & f_{m,0} \\
-\end{matrix}\right]}\limits_{(n+1)×(m+1)}
+\end{matrix}\right]}\limits_{(1+n)×(1+m)}
 $$
 
-矩阵$\mathcal{G}[(m+1)×(n+1)]$与矩阵$\mathcal{F}[(m+1)×(n+1)]$的位加运算。
+矩阵$\mathcal{G}[(1+m)×(1+n)]$与矩阵$\mathcal{F}[(1+m)×(1+n)]$的位加运算。
 
-$\mathcal{H}[(m+1)×(n+1)] = \mathcal{G}[(m+1)×(n+1)] + \mathcal{F}[(m+1)×(n+1)]$。
+$\mathcal{H}[(1+m)×(1+n)] = \mathcal{G}[(1+m)×(1+n)] + \mathcal{F}[(1+m)×(1+n)]$。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -140,27 +140,27 @@ h_{m,0} & h_{m,1} & ⋯ & h_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$h_{1,0}$} & \fbox{$h_{1,1}$} & ⋯ & \fbox{$h_{1,n}$} \\
 h_{0,0} & h_{0,1} & ⋯ & h_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} \mathop{======}\limits^{h_{i,j}=f_{i,j}+g_{i,j} } \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} \mathop{======}\limits^{h_{i,j}=f_{i,j}+g_{i,j} } \mathop{\left[\begin{matrix}
 g_{m,0} & g_{m,1} & ⋯ & g_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$g_{1,0}$} & \fbox{$g_{1,1}$} & ⋯ & \fbox{$g_{1,n}$} \\
 g_{0,0} & g_{0,1} & ⋯ & g_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} + \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} + \mathop{\left[\begin{matrix}
 f_{m,0} & f_{m,1} & ⋯ & f_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$f_{1,0}$} & \fbox{$f_{1,1}$} & ⋯ & \fbox{$f_{1,n}$} \\
 f_{0,0} & f_{0,1} & ⋯ & f_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} = \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} = \mathop{\left[\begin{matrix}
 g_{m,0}+f_{m,0} & g_{m,1}+f_{m,1} & ⋯ & g_{m,n}+f_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$g_{1,0}+f_{1,0}$} & \fbox{$g_{1,1}+f_{1,1}$} & ⋯ & \fbox{$g_{1,n}+f_{1,n}$} \\
 g_{0,0}+f_{0,0} & g_{0,1}+f_{0,1} & ⋯ & g_{0,n}+f_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)}
 $$
 
-矩阵$\mathcal{G}[(l+1)×(m+1)]$与矩阵$\mathcal{F}[(m+1)×(n+1)]$的合乘运算。
+矩阵$\mathcal{G}[(l+1)×(1+m)]$与矩阵$\mathcal{F}[(1+m)×(1+n)]$的合乘运算。
 
-$\mathcal{H}[(l+1)×(n+1)] = \mathcal{G}[(l+1)×(m+1)] \rlap{×}{+} \mathcal{F}[(m+1)×(n+1)]$
+$\mathcal{H}[(l+1)×(1+n)] = \mathcal{G}[(l+1)×(1+m)] \rlap{×}{+} \mathcal{F}[(1+m)×(1+n)]$
 
 $$
 \mathop{\left[\begin{matrix}
@@ -168,22 +168,22 @@ h_{l,0} & h_{l,1} & ⋯ & h_{l,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$h_{1,0}$} & h_{1,1} & ⋯ & h_{1,n} \\
 h_{0,0} & h_{0,1} & ⋯ & h_{0,n} \\
-\end{matrix}\right]}\limits_{(l+1)×(n+1)} \mathop{========}\limits^{h_{i,j}=\sum\limits_{k=0}^{m} g_{i,k}·f_{k,j} } \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(l+1)×(1+n)} \mathop{========}\limits^{h_{i,j}=\sum\limits_{k=0}^{m} g_{i,k}·f_{k,j} } \mathop{\left[\begin{matrix}
 g_{l,0} & g_{l,1} & ⋯ & g_{l,m} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$g_{1,0}$} & \fbox{$g_{1,1}$} & ⋯ & \fbox{$g_{1,m}$} \\
 g_{0,0} & g_{0,1} & ⋯ & g_{0,m} \\
-\end{matrix}\right]}\limits_{(l+1)×(m+1)} \rlap{×}{+} \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(l+1)×(1+m)} \rlap{×}{+} \mathop{\left[\begin{matrix}
 \fbox{$f_{m,0}$} & f_{m,1} & ⋯ & f_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$f_{1,0}$} & f_{1,1} & ⋯ & f_{1,n} \\
 \fbox{$f_{0,0}$} & f_{0,1} & ⋯ & f_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} = \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} = \mathop{\left[\begin{matrix}
 \sum\limits_{k=0}^{m} g_{l,k} · f_{k,0} & \sum\limits_{k=0}^{m} g_{l,k} · f_{k,1} & ⋯ & \sum\limits_{k=0}^{m} g_{l,k} · f_{k,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \fbox{$\sum\limits_{k=0}^{m} g_{1,k} · f_{k,0}$} & \sum\limits_{k=0}^{m} g_{1,k} · f_{k,1} & ⋯ & \sum\limits_{k=0}^{m} g_{1,k} · f_{k,n} \\
 \sum\limits_{k=0}^{m} g_{0,k} · f_{k,0} & \sum\limits_{k=0}^{m} g_{0,k} · f_{k,1} & ⋯ & \sum\limits_{k=0}^{m} g_{0,k} · f_{k,n} \\
-\end{matrix}\right]}\limits_{(l+1)×(n+1)}
+\end{matrix}\right]}\limits_{(l+1)×(1+n)}
 $$
 
 二元关系$\mathcal{G}[Z×Y]$与二元关系$\mathcal{F}[Y×X]$的复合关系$\mathcal{H}[Z×X]$。
@@ -258,33 +258,33 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{A}_{(m+1)×(n+1)} &= \mathop{\left[\begin{matrix}
+\mathrm{A}_{(1+m)×(1+n)} &= \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} \\
-{'}\mathrm{A}_{(m+1)×(n+1)} &= \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} \\
+{'}\mathrm{A}_{(1+m)×(1+n)} &= \mathop{\left[\begin{matrix}
 a_{0,n} & a_{1,n} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{0,1} & a_{1,1} & ⋯ & a_{m,1} \\
 a_{0,0} & a_{1,0} & ⋯ & a_{m,0} \\
-\end{matrix}\right]}\limits_{(n+1)×(m+1)} \\
+\end{matrix}\right]}\limits_{(1+n)×(1+m)} \\
 \end{aligned}
 $$
 
-单位$(n+1)×(n+1)$元矩阵。
+单位$(1+n)×(1+n)$元矩阵。
 
 $$
-\mathrm{I}_{(n+1)×(n+1)} = \mathop{\left[\begin{matrix}
+\mathrm{I}_{(1+n)×(1+n)} = \mathop{\left[\begin{matrix}
 0 & 0 & ⋯ & 1 \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 0 & 1 & ⋯ & 0 \\
 1 & 0 & ⋯ & 0 \\
-\end{matrix}\right]}\limits_{(n+1)×(n+1)}
+\end{matrix}\right]}\limits_{(1+n)×(1+n)}
 $$
 
-标量与$(m+1)×(n+1)$元矩阵的量加运算。矩阵的量加运算必满足交换律。
+标量与$(1+m)×(1+n)$元矩阵的量加运算。矩阵的量加运算必满足交换律。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -292,15 +292,15 @@ c + a_{m,0} & c + a_{m,1} & ⋯ & c + a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 c + a_{1,0} & c + a_{1,1} & ⋯ & c + a_{1,n} \\
 c + a_{0,0} & c + a_{0,1} & ⋯ & c + a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} = c \oplus \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} = c \oplus \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)}
 $$
 
-$(m+1)×(n+1)$元矩阵与$(m+1)×(n+1)$元矩阵的位加运算。矩阵的位加运算必满足交换律。矩阵的位加运算必满足结合律。
+$(1+m)×(1+n)$元矩阵与$(1+m)×(1+n)$元矩阵的位加运算。矩阵的位加运算必满足交换律。矩阵的位加运算必满足结合律。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -308,20 +308,20 @@ b_{m,0} + a_{m,0} & b_{m,1} + a_{m,1} & ⋯ & b_{m,n} + a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 b_{1,0} + a_{1,0} & b_{1,1} + a_{1,1} & ⋯ & b_{1,n} + a_{1,n} \\
 b_{0,0} + a_{0,0} & b_{0,1} + a_{0,1} & ⋯ & b_{0,n} + a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} = \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} = \mathop{\left[\begin{matrix}
 b_{m,0} & b_{m,1} & ⋯ & b_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 b_{1,0} & b_{1,1} & ⋯ & b_{1,n} \\
 b_{0,0} & b_{0,1} & ⋯ & b_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} + \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} + \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)}
 $$
 
-标量与$(m+1)×(n+1)$元矩阵的量乘运算。矩阵的量乘运算必满足交换律。
+标量与$(1+m)×(1+n)$元矩阵的量乘运算。矩阵的量乘运算必满足交换律。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -329,15 +329,15 @@ c · a_{m,0} & c · a_{m,1} & ⋯ & c · a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 c · a_{1,0} & c · a_{1,1} & ⋯ & c · a_{1,n} \\
 c · a_{0,0} & c · a_{0,1} & ⋯ & c · a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} = c · \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} = c · \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)}
 $$
 
-$(m+1)×(n+1)$元矩阵与$(m+1)×(n+1)$元矩阵的点乘运算。矩阵的点乘运算满足必交换律。
+$(1+m)×(1+n)$元矩阵与$(1+m)×(1+n)$元矩阵的点乘运算。矩阵的点乘运算满足必交换律。
 
 $$
 \sum\limits_{i=0}^{m} \sum\limits_{j=0}^{n} b_{i,j} · a_{i,j} = \mathop{\left[\begin{matrix}
@@ -345,15 +345,15 @@ b_{m,0} & b_{m,1} & ⋯ & b_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 b_{1,0} & b_{1,1} & ⋯ & b_{1,n} \\
 b_{0,0} & b_{0,1} & ⋯ & b_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} \odot \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} \odot \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)}
 $$
 
-$(m+1)×(n+1)$元矩阵与$(m+1)×(n+1)$元矩阵的位乘运算。矩阵的位乘运算必满足交换律。矩阵的位乘运算必满结合律。
+$(1+m)×(1+n)$元矩阵与$(1+m)×(1+n)$元矩阵的位乘运算。矩阵的位乘运算必满足交换律。矩阵的位乘运算必满结合律。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -361,20 +361,20 @@ b_{m,0} · a_{m,0} & b_{m,1} · a_{m,1} & ⋯ & b_{m,n} · a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 b_{1,0} · a_{1,0} & b_{1,1} · a_{1,1} & ⋯ & b_{1,n} · a_{1,n} \\
 b_{0,0} · a_{0,0} & b_{0,1} · a_{0,1} & ⋯ & b_{0,n} · a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} = \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} = \mathop{\left[\begin{matrix}
 b_{m,0} & b_{m,1} & ⋯ & b_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 b_{1,0} & b_{1,1} & ⋯ & b_{1,n} \\
 b_{0,0} & b_{0,1} & ⋯ & b_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} × \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} × \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)}
 $$
 
-$(l+1)*(m+1)$元矩阵与$(m+1)×(n+1)$元矩阵的合乘运算。矩阵的合乘运算不满足交换律。矩阵的合乘运算必满足结合律。
+$(l+1)*(1+m)$元矩阵与$(1+m)×(1+n)$元矩阵的合乘运算。矩阵的合乘运算不满足交换律。矩阵的合乘运算必满足结合律。
 
 $$
 \mathop{\left[\begin{matrix}
@@ -382,23 +382,23 @@ $$
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \sum\limits_{k=0}^{m} b_{1,k} · a_{k,0} & \sum\limits_{k=0}^{m} b_{1,k} · a_{k,1} & ⋯ & \sum\limits_{k=0}^{m} b_{1,k} · a_{k,n} \\
 \sum\limits_{k=0}^{m} b_{0,k} · a_{k,0} & \sum\limits_{k=0}^{m} b_{0,k} · a_{k,1} & ⋯ & \sum\limits_{k=0}^{m} b_{0,k} · a_{k,n} \\
-\end{matrix}\right]}\limits_{(l+1)×(n+1)} = \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(l+1)×(1+n)} = \mathop{\left[\begin{matrix}
 b_{l,0} & b_{l,1} & ⋯ & b_{l,m} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 b_{1,0} & b_{1,1} & ⋯ & b_{1,m} \\
 b_{0,0} & b_{0,1} & ⋯ & b_{0,m} \\
-\end{matrix}\right]}\limits_{(l+1)×(m+1)} \rlap{×}{+} \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(l+1)×(1+m)} \rlap{×}{+} \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)}
 $$
 
 $$
 \begin{aligned}
-\mathrm{D}_{(k+1)×(n+1)} &= \mathrm{C}_{(k+1)×(l+1)} \rlap{×}{+} \left[ \mathrm{B}_{(l+1)×(m+1)} \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \right] \\
-\mathrm{D}_{(k+1)×(n+1)} &= \left[ \mathrm{C}_{(k+1)×(l+1)} \rlap{×}{+} \mathrm{B}_{(l+1)×(m+1)} \right] \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \\
+\mathrm{D}_{(k+1)×(1+n)} &= \mathrm{C}_{(k+1)×(l+1)} \rlap{×}{+} \left[ \mathrm{B}_{(l+1)×(1+m)} \rlap{×}{+} \mathrm{A}_{(1+m)×(1+n)} \right] \\
+\mathrm{D}_{(k+1)×(1+n)} &= \left[ \mathrm{C}_{(k+1)×(l+1)} \rlap{×}{+} \mathrm{B}_{(l+1)×(1+m)} \right] \rlap{×}{+} \mathrm{A}_{(1+m)×(1+n)} \\
 c(ba)_{q,t} &= \sum\limits_{r=0}^{l} c_{q,r} · \left[ \sum\limits_{s=0}^{m} b_{r,s} · a_{s,t} \right] = \sum\limits_{r=0}^{l} \sum\limits_{s=0}^{m} c_{q,r} · b_{r,s} · a_{s,t} \\
 (cb)a_{q,t}&= \sum\limits_{s=0}^{m} \left[ \sum\limits_{r=0}^{l} c_{q,r} · b_{r,s} \right] · a_{s,t} = \sum\limits_{r=0}^{l} \sum\limits_{s=0}^{m} c_{q,r} · b_{r,s} · a_{s,t} \\
 \end{aligned}
@@ -406,8 +406,8 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{C}_{(l+1)×(n+1)} &= \mathrm{B}_{(l+1)×(m+1)} \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \\
-{'}\mathrm{C}_{(l+1)×(n+1)} &= {'}\mathrm{a}_{(m+1)×(n+1)} \rlap{×}{+} {'}\mathrm{B}_{(l+1)×(m+1)} \\
+\mathrm{C}_{(l+1)×(1+n)} &= \mathrm{B}_{(l+1)×(1+m)} \rlap{×}{+} \mathrm{A}_{(1+m)×(1+n)} \\
+{'}\mathrm{C}_{(l+1)×(1+n)} &= {'}\mathrm{a}_{(1+m)×(1+n)} \rlap{×}{+} {'}\mathrm{B}_{(l+1)×(1+m)} \\
 ba_{r,t} &= \sum\limits_{s=0}^{m} b_{r,s} · a_{s,t} \\
 ab_{t,r} &= \sum\limits_{s=0}^{m} a_{t,s} · b_{s,r} \\
 \end{aligned}
@@ -415,13 +415,13 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{C}_{(l+1)×(n+1)} &= \mathrm{B}_{(l+1)×(m+1)} \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \\
-{^\imath}\mathrm{C}_{(l+1)×(n+1)} &= {^\imath}\mathrm{A}_{(m+1)×(n+1)} \rlap{×}{+} {^\imath}\mathrm{B}_{(l+1)×(m+1)} \\
-\mathrm{I}_{(l+1)×(l+1)} &= \mathrm{B}_{(l+1)×(m+1)} \rlap{×}{+} \mathrm{A}_{(m+1)×(n+1)} \rlap{×}{+} {^\imath}\mathrm{A}_{(m+1)×(n+1)} \rlap{×}{+} {^\imath}\mathrm{B}_{(l+1)×(m+1)} \\
+\mathrm{C}_{(l+1)×(1+n)} &= \mathrm{B}_{(l+1)×(1+m)} \rlap{×}{+} \mathrm{A}_{(1+m)×(1+n)} \\
+{^\imath}\mathrm{C}_{(l+1)×(1+n)} &= {^\imath}\mathrm{A}_{(1+m)×(1+n)} \rlap{×}{+} {^\imath}\mathrm{B}_{(l+1)×(1+m)} \\
+\mathrm{I}_{(l+1)×(l+1)} &= \mathrm{B}_{(l+1)×(1+m)} \rlap{×}{+} \mathrm{A}_{(1+m)×(1+n)} \rlap{×}{+} {^\imath}\mathrm{A}_{(1+m)×(1+n)} \rlap{×}{+} {^\imath}\mathrm{B}_{(l+1)×(1+m)} \\
 \end{aligned}
 $$
 
-$(m+1)×(n+1)$元矩阵的度量值。矩阵的度量值值为其自身之点乘运算的方根值。
+$(1+m)×(1+n)$元矩阵的度量值。矩阵的度量值值为其自身之点乘运算的方根值。
 
 $$
 \left[ \sum\limits_{i=0}^{m} \sum\limits_{j=0}^{n} a_{i,j}^2 \right]^{\frac{1}{2}} = \mathop{\left|\begin{matrix}
@@ -429,20 +429,20 @@ a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right|}\limits_{(m+1)×(n+1)} ≡ \mathrm{sqrt} \left( \mathop{\left[\begin{matrix}
+\end{matrix}\right|}\limits_{(1+m)×(1+n)} ≡ \mathrm{sqrt} \left( \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} \odot \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} \odot \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right]}\limits_{(m+1)×(n+1)} \right)
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} \right)
 $$
 
-$(n+1)×(n+1)$元矩阵的行列式。
+$(1+n)×(1+n)$元矩阵的行列式。
 
 $$
 \mathop{\left\Vert\begin{matrix}
@@ -450,7 +450,7 @@ a_{n,0} & a_{n,1} & ⋯ & a_{n,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
 a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
-\end{matrix}\right\Vert}\limits_{(n+1)×(n+1)} = \sum\limits_{k_0,k_1,⋯,k_n} \mathrm{sgn}(k_0, k_1, ⋯, k_n) · a_{0,k_0} · a_{1,k_1} ⋯ a_{n,k_n} \\
+\end{matrix}\right\Vert}\limits_{(1+n)×(1+n)} = \sum\limits_{k_0,k_1,⋯,k_n} \mathrm{sgn}(k_0, k_1, ⋯, k_n) · a_{0,k_0} · a_{1,k_1} ⋯ a_{n,k_n} \\
 $$
 
 ### 向量的运算性质
@@ -526,7 +526,7 @@ v_0 \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 0 & c & ⋯ & 0 \\
 c & 0 & ⋯ & 0 \\
-\end{matrix}\right]}\limits_{(n+1)×(n+1)} \rlap{×}{+} \left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+n)×(1+n)} \rlap{×}{+} \left[\begin{matrix}
 v_n \\
 ⋮ \\
 v_1 \\
@@ -593,7 +593,7 @@ v_0 \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 0 & u_1 & ⋯ & 0 \\
 u_0 & 0 & ⋯ & 0 \\
-\end{matrix}\right]}\limits_{(n+1)×(n+1)} \rlap{×}{+} \left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+n)×(1+n)} \rlap{×}{+} \left[\begin{matrix}
 v_n \\
 ⋮ \\
 v_1 \\
@@ -636,7 +636,7 @@ v_0 \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 \sum\limits_{i=0;\rlap{≡}{1}}^{n} [\mathrm{sgn}(0-i) · u_i] & 0 & ⋯ & \sum\limits_{i=0;\rlap{≡}{1}}^{n} [\mathrm{sgn}(n-i) · u_i] \\
 0 & \sum\limits_{i=0;\rlap{≡}{0}}^{n} [\mathrm{sgn}(1-i) · u_i] & ⋯ & \sum\limits_{i=0;\rlap{≡}{0}}^{n} [\mathrm{sgn}(n-i) · u_i] \\
-\end{matrix}\right]}\limits_{(n+1)×(n+1)} \rlap{×}{+} \left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+n)×(1+n)} \rlap{×}{+} \left[\begin{matrix}
 v_n \\
 ⋮ \\
 v_1 \\
