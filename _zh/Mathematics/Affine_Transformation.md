@@ -751,6 +751,32 @@ $$
 \hline
 0 & 0 & 0 & 1 \\
 \end{array}\right] \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\mathrm{P_{erspect}} &\mathop{======}\limits_{[+1,-1]}^{\mathrm{left-handed}} \mathrm{L_{eft}} \rlap{×}{+} \mathrm{O_{riginate}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \rlap{×}{+} \mathrm{R_{egularize}} \\
+&\mathop{======}\limits_{-z_{\mathrm{near}}<-z_{\mathrm{far}}}^{0<-z_{\mathrm{near}}} \left[\begin{array}{c|ccc}
+0 & 0 & 0 & -1 \\
+0 & 0 & +1 & 0 \\
+0 & +1 & 0 & 0 \\
+\hline
++1 & 0 & 0 & 0 \\
+\end{array}\right] \mathop{\rlap{×}{+}}\limits_{-z_{\mathrm{near}}}^{-z_{\mathrm{far}}} \left[\begin{array}{c|ccc}
+\frac{- 2 · z_{\mathrm{far}} · z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} & 0 & 0 & - \frac{z_{\mathrm{far}} + z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
+0 & 0 & \frac{-2 · z_{\mathrm{near}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & - \frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} \\
+0 & \frac{-2 · z_{\mathrm{near}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & - \frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} \\
+\hline
+0 & 0 & 0 & 1 \\
+\end{array}\right] \\
+&\mathop{======}\limits_{-z_{\mathrm{near}}<-z_{\mathrm{far}}}^{0<-z_{\mathrm{near}}} \left[\begin{array}{c|ccc}
+\frac{2 · z_{\mathrm{far}} · z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} & 0 & 0 & + \frac{z_{\mathrm{far}} + z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
+0 & 0 & \frac{-2 · z_{\mathrm{near}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & - \frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} \\
+0 & \frac{-2 · z_{\mathrm{near}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & - \frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} \\
+\hline
+0 & 0 & 0 & 1 \\
+\end{array}\right] \\
 \mathrm{P_{erspect}} &\mathop{======}\limits_{[+1,-1]}^{\mathrm{left-handed}} \mathrm{L_{eft}} \rlap{×}{+} \mathrm{O_{riginate}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \rlap{×}{+} \mathrm{R_{egularize}} \\
 &\mathop{======}\limits_{-z_{\mathrm{near}}<-z_{\mathrm{far}}}^{0<-z_{\mathrm{near}}} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & +1 \\
