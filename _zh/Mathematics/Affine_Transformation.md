@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  仿射变换
-Update:  2021-12-25T15:10:00+08@中国-广东-深圳+08
+Update:  2021-12-23T12:44:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -509,7 +509,7 @@ $$
 
 ### 右手坐标系与左手坐标系
 
-右手坐标系与左手坐标系以$xOy$平面为镜像面互为镜像对称，$+X$轴与$+Y$轴相同，$+Z$轴互为反向对称。
+右手坐标系与左手坐标系以$xOy$平面为镜像面互为镜像对称，$+X$轴与$+Y$轴相同，$+Z$轴互为镜像对称。
 
 $$
 \begin{aligned}
@@ -579,13 +579,15 @@ $$
 
 透视投影的投影空间为视锥体，透视投影将产生近大远小收敛的视觉效果。
 
+注意：透视投影远近平面与$xOy$平面均平行，但其近平面中心未必在$-Z$轴。
+
 ```
 透视投影变换的步骤，共计5步：透视投影变换的后4步与正交投影变换完全相同。
-[正则变换] 将视锥体的底部压缩形成长方体；
-[平移变换] 将长方体近平面中心平移至原点；
-[缩放变换] 将长方体的长宽缩放到[-1, +1]，将长方体的高缩放到[-2, 0]；
-[重原变换] 将长方体的中心平移与原点重合；
-[左手变换] 将长方体以长宽平面做镜像变换；
+[正则变换] 将视锥体的底部压缩形成方棱体；注意：正则变换非仿射变换，正则变换使方棱体的原中心发生非线性偏移。
+[平移变换] 将方棱体近平面中心平移至原点；
+[缩放变换] 将方棱体的长宽缩放到[-1, +1]，将方棱体的菱缩放到[-2, 0]；
+[重原变换] 将方棱体现中心平移与原点重合；
+[左手变换] 将方棱体以长宽平面做镜像变换；
 ```
 
 $$
@@ -633,12 +635,12 @@ y \\
 x \\
 \hline
 1 \\
-\end{matrix}\right] &&\left\lbrace\begin{aligned}
+\end{matrix}\right] &⇒&\left\lbrace\begin{aligned}
 z_{\mathrm{far}}^2 &= r_{3,0} + r_{3,3} · z_{\mathrm{far}} \\
 z_{\mathrm{near}}^2 &= r_{3,0} + r_{3,3} · z_{\mathrm{near}} \\
-\end{aligned}\right. &&\left\lbrace\begin{aligned}
+\end{aligned}\right. &⇒&\left\lbrace\begin{aligned}
 r_{3,0} &= - z_{\mathrm{far}} · z_{\mathrm{near}} \\
-r_{3,3} &= \dfrac{z_{\mathrm{far}}^2 - z_{\mathrm{near}}^2}{z_{\mathrm{far}} - z_{\mathrm{near}}} = z_{\mathrm{far}} + z_{\mathrm{near}} \\
+r_{3,3} &= z_{\mathrm{far}} + z_{\mathrm{near}} \\
 \end{aligned}\right. \\
 \mathrm{R_{egularize}} &\mathop{=====}\limits_{[z_{\mathrm{far}},z_{\mathrm{near}}]} \left[\begin{array}{c|ccc}
 - z_{\mathrm{far}} · z_{\mathrm{near}} & 0 & 0 & z_{\mathrm{far}} + z_{\mathrm{near}} \\
@@ -674,7 +676,7 @@ r_{3,3} &= \dfrac{z_{\mathrm{far}}^2 - z_{\mathrm{near}}^2}{z_{\mathrm{far}} - z
 0 & +1 & 0 & 0 \\
 \hline
 +1 & 0 & 0 & 0 \\
-\end{array}\right] \mathop{≈≈}\limits_{-w} \left[\begin{array}{c|ccc}
+\end{array}\right] \mathop{≈} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & +1 \\
 0 & 0 & -1 & 0 \\
 0 & -1 & 0 & 0 \\
@@ -801,21 +803,62 @@ $$
 \end{aligned}
 $$
 
-### 正交投影变换 Orthographic Projection
+在透视投影变换中，场景内空间点$Z$轴坐标值，以逆正比非线性方式，映射到标准化的计算机屏幕坐标空间内的$Z$轴深度值。约定：逆正比表示$\dfrac{\frac{1}{x} - \frac{1}{x_0}}{\frac{1}{x_1} - \frac{1}{x_0}}$。
 
-正交投影的投影空间为长方体，正交投影将产生远近大小一致的视觉效果。
+当空间点$Z$轴坐标值趋近于透视投影近平面时，灵敏度较高；当空间点$Z$轴坐标值趋近于透视投影远平面时，灵敏度较低，可能会产生深度检测冲突现象。
+$$
+\begin{aligned}
+\left[\begin{matrix}
+z_{\mathrm{depth}} \\
+y_{\mathrm{screen}} \\
+x_{\mathrm{screen}} \\
+\hline
+-1 \\
+\end{matrix}\right] = \left[\begin{matrix}
+-1 + 2 · \frac{\frac{1}{z} - \frac{1}{z_{\mathrm{near}}}}{\frac{1}{z_{\mathrm{far}}} - \frac{1}{z_{\mathrm{near}}}} \\
+\frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} \\
+\frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} \\
+\hline
+-1 \\
+\end{matrix}\right] \mathop{≈≈≈≈≈≈}\limits^{\mathrm{right-handed}} \left[\begin{matrix}
+\frac{2 · z_{\mathrm{far}} · z_{\mathrm{near}} - z · (z_{\mathrm{far}} + z_{\mathrm{near}})}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
+- z · \frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} \\
+- z · \frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} \\
+\hline
++ z \\
+\end{matrix}\right] \mathop{======}\limits_{+z_{\mathrm{far}}<+z<+z_{\mathrm{near}}}^{+z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
+\frac{2 · z_{\mathrm{far}} · z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} & 0 & 0 & - \frac{z_{\mathrm{far}} + z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
+0 & 0 & \frac{2 · z_{\mathrm{near}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & - \frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} \\
+0 & \frac{2 · z_{\mathrm{near}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & - \frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} \\
+\hline
+0 & 0 & 0 & 1 \\
+\end{array}\right] \rlap{×}{+} \left[\begin{matrix}
+z \\
+0 \\
+0 \\
+\hline
+1 \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+
+### 平行投影变换 Parallel Projection
+
+平行投影的投影空间为方棱体，平行投影将产生远近大小一致的视觉效果。
+
+注意：平行投影远近平面与$xOy$平面均平行，但其近平面中心未必在$-Z$轴。
 
 ```
-正交投影变换的步骤，共计4步：正交投影变换与透视投影变换的后4步完全相同。
-[平移变换] 将长方体近平面中心平移至原点；
-[缩放变换] 将长方体的长宽缩放到[-1, +1]，将长方体的高缩放到[-2, 0]；
-[重原变换] 将长方体的中心平移与原点重合；
-[左手变换] 将长方体以长宽平面做镜像变换；
+平行投影变换的步骤，共计4步：平行投影变换与透视投影变换的后4步完全相同。
+[平移变换] 将方棱体近平面中心平移至原点；
+[缩放变换] 将方棱体的长宽缩放到[-1, +1]，将方棱体的高缩放到[-2, 0]；
+[重原变换] 将方棱体现中心平移与原点重合；
+[左手变换] 将方棱体以长宽平面做镜像变换；
 ```
 
 $$
 \begin{aligned}
-\mathrm{O_{rthogonalize}} &\mathop{======}\limits_{[-1,+1]}^{\mathrm{right-handed}} \mathrm{O_{riginate}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \\
+\mathrm{P_{arallel}} &\mathop{======}\limits_{[-1,+1]}^{\mathrm{right-handed}} \mathrm{O_{riginate}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \\
 &\mathop{======}\limits_{+z_{\mathrm{far}}<+z_{\mathrm{near}}}^{+z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
 1 & 0 & 0 & 1 \\
 0 & 0 & 1 & 0 \\
@@ -855,7 +898,12 @@ $$
 \hline
 1 & 0 & 0 & 0 \\
 \end{array}\right] \\
-\mathrm{O_{rthogonalize}} &\mathop{======}\limits_{[+1,-1]}^{\mathrm{left-handed}} \mathrm{L_{eft}} \rlap{×}{+} \mathrm{O_{riginate}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\mathrm{P_{arallel}} &\mathop{======}\limits_{[+1,-1]}^{\mathrm{left-handed}} \mathrm{L_{eft}} \rlap{×}{+} \mathrm{O_{riginate}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \\
 &\mathop{======}\limits_{-z_{\mathrm{near}}<-z_{\mathrm{far}}}^{0<-z_{\mathrm{near}}} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & -1 \\
 0 & 0 & +1 & 0 \\
