@@ -21,7 +21,7 @@ $$
 \end{aligned}
 $$
 
-仿射变换前后原点不必重合，仿射变换前后直线保持直线。
+仿射变换前后原点不必重合，仿射变换前后直线保持直线。注意：$3×3$元矩阵无法满足$3$维空间内仿射变换的运算性质。
 
 $$
 \begin{aligned}
@@ -75,29 +75,12 @@ $$
 $$
 \begin{aligned}
 \left[\begin{matrix}
-v_z \\
-v_y \\
-v_x \\
-v_w \\
-\end{matrix}\right] \mathop{≈≈≈}\limits_{0≠v_w} \left[\begin{matrix}
 v_z · v_w^{-1} \\
 v_y · v_w^{-1} \\
 v_x · v_w^{-1} \\
 \hline
 1 \\
-\end{matrix}\right] &\mathop{===}\limits_{0≠v_w} v_w^{-1} · \left[\begin{matrix}
-v_z \\
-v_y \\
-v_x \\
-\hline
-v_w \\
-\end{matrix}\right] = \left[\begin{array}{c|ccc}
-0 & 0 & 0 & v_w^{-1} \\
-0 & 0 & v_w^{-1} & 0 \\
-0 & v_w^{-1} & 0 & 0 \\
-\hline
-v_w^{-1} & 0 & 0 & 0 \\
-\end{array}\right] \rlap{×}{+} \left[\begin{matrix}
+\end{matrix}\right] &\mathop{≈≈≈}\limits_{0≠v_w} \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
@@ -128,7 +111,7 @@ $$
 
 ### 恒等变换 Identity
 
-恒等变换矩阵为单位矩阵。
+恒等变换的变换矩阵必为单位矩阵。
 
 $$
 \left[\begin{matrix}
@@ -154,6 +137,7 @@ $$
 
 ### 缩放变换 Scaling
 
+缩放变换对各分量的缩放未必一致。
 $$
 \left[\begin{matrix}
 s_z · v_z \\
@@ -202,6 +186,7 @@ $$
 
 ### 平移变换 Translation
 
+注意：$3×3$元矩阵无法满足$3$维空间内平移变换的运算性质。
 $$
 \left[\begin{matrix}
 v_z + t_z \\
@@ -543,23 +528,26 @@ x_{\mathrm{left}},x_{\mathrm{right}} \\
 +z \\
 -y \\
 -x \\
+\hline
 -w \\
 \end{matrix}\right] ≈ \left[\begin{matrix}
 -z \\
 +y \\
 +x \\
+\hline
 +w \\
-\end{matrix}\right] &\mathop{======}^{\mathrm{left-handed}} \left[\begin{array}{c|ccc}
+\end{matrix}\right] &\mathop{======}_{0<z_{\mathrm{near}}}^{\mathrm{left-handed}} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & -1 \\
 0 & 0 & +1 & 0 \\
 0 & +1 & 0 & 0 \\
 \hline
 +1 & 0 & 0 & 0 \\
 \end{array}\right] \rlap{×}{+} \left[\begin{matrix}
-+z \\
-+y \\
-+x \\
-+w \\
+z \\
+y \\
+x \\
+\hline
+w \\
 \end{matrix}\right] ≈ \left[\begin{array}{c|ccc}
 0 & 0 & 0 & +1 \\
 0 & 0 & -1 & 0 \\
@@ -567,10 +555,11 @@ x_{\mathrm{left}},x_{\mathrm{right}} \\
 \hline
 -1 & 0 & 0 & 0 \\
 \end{array}\right] \rlap{×}{+} \left[\begin{matrix}
-+z \\
-+y \\
-+x \\
-+w \\
+z \\
+y \\
+x \\
+\hline
+w \\
 \end{matrix}\right] \\
 \end{aligned}
 $$
@@ -583,11 +572,11 @@ $$
 
 ```
 透视投影变换的步骤，共计5步：透视投影变换的后4步与正交投影变换完全相同。
-[正则变换] 将视锥体的底部压缩形成方棱体；注意：正则变换非仿射变换，正则变换使方棱体的原中心发生非线性偏移。
-[平移变换] 将方棱体近平面中心平移至原点；
-[缩放变换] 将方棱体的长宽缩放到[-1, +1]，将方棱体的菱缩放到[-2, 0]；
-[重原变换] 将方棱体现中心平移与原点重合；
-[左手变换] 将方棱体以长宽平面做镜像变换；
+[正则变换] 将视锥体的底部压缩形成长方体；注意：正则变换并非仿射变换，正则变换使长方体的原中心发生非线性偏移。
+[平移变换] 将长方体近平面中心平移至原点；
+[缩放变换] 将长方体的长宽缩放到[-1, +1]，将长方体的高缩放到[-2, 0]；
+[重原变换] 将长方体现中心平移与原点重合；
+[左手变换] 将长方体按长宽平面做镜像变换；
 ```
 
 $$
@@ -803,9 +792,8 @@ $$
 \end{aligned}
 $$
 
-在透视投影变换中，场景内空间点$Z$轴坐标值，以逆正比非线性方式，映射到标准化的计算机屏幕坐标空间内的$Z$轴深度值。约定：逆正比表示$\dfrac{\frac{1}{x} - \frac{1}{x_0}}{\frac{1}{x_1} - \frac{1}{x_0}}$。
+在透视投影变换中，空间点$Z$轴坐标值，以逆正比非线性方式，映射到标准化的计算机屏幕坐标空间内的$Z$轴深度值。约定：逆正比表示$f(z) = \dfrac{\frac{1}{z} - \frac{1}{z_0}}{\frac{1}{z_1} - \frac{1}{z_0}}$。
 
-当空间点$Z$轴坐标值趋近于透视投影近平面时，灵敏度较高；当空间点$Z$轴坐标值趋近于透视投影远平面时，灵敏度较低，可能会产生深度检测冲突现象。
 $$
 \begin{aligned}
 \left[\begin{matrix}
@@ -813,23 +801,23 @@ z_{\mathrm{depth}} \\
 y_{\mathrm{screen}} \\
 x_{\mathrm{screen}} \\
 \hline
--1 \\
+1 \\
 \end{matrix}\right] = \left[\begin{matrix}
--1 + 2 · \frac{\frac{1}{z} - \frac{1}{z_{\mathrm{near}}}}{\frac{1}{z_{\mathrm{far}}} - \frac{1}{z_{\mathrm{near}}}} \\
-\frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} \\
-\frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} \\
+1 - 2 · \frac{\frac{1}{z} - \frac{1}{z_{\mathrm{near}}}}{\frac{1}{z_{\mathrm{far}}} - \frac{1}{z_{\mathrm{near}}}} \\
+0 \\
+0 \\
 \hline
--1 \\
-\end{matrix}\right] \mathop{≈≈≈≈≈≈}\limits^{\mathrm{right-handed}} \left[\begin{matrix}
+1 \\
+\end{matrix}\right] \mathop{≈≈≈≈≈≈}\limits_{+z_{\mathrm{far}}<+z<+z_{\mathrm{near}}}^{\mathrm{right-handed}} \left[\begin{matrix}
 \frac{2 · z_{\mathrm{far}} · z_{\mathrm{near}} - z · (z_{\mathrm{far}} + z_{\mathrm{near}})}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
-- z · \frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} \\
-- z · \frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} \\
+0 \\
+0 \\
 \hline
 + z \\
-\end{matrix}\right] \mathop{======}\limits_{+z_{\mathrm{far}}<+z<+z_{\mathrm{near}}}^{+z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
+\end{matrix}\right] \mathop{======}\limits_{0=y_{\mathrm{top}}+y_{\mathrm{bottom}}}^{0=x_{\mathrm{right}} + x_{\mathrm{left}}} \left[\begin{array}{c|ccc}
 \frac{2 · z_{\mathrm{far}} · z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} & 0 & 0 & - \frac{z_{\mathrm{far}} + z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
-0 & 0 & \frac{2 · z_{\mathrm{near}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & - \frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} \\
-0 & \frac{2 · z_{\mathrm{near}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & - \frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} \\
+0 & 0 & \frac{2 · z_{\mathrm{near}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & 0 \\
+0 & \frac{2 · z_{\mathrm{near}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & 0 \\
 \hline
 0 & 0 & 0 & 1 \\
 \end{array}\right] \rlap{×}{+} \left[\begin{matrix}
@@ -842,6 +830,10 @@ z \\
 \end{aligned}
 $$
 
+在透视投影变换中，当点$Z$轴值趋近于近平面时，其深度值灵敏度较高；当点$Z$轴值趋近于远平面时，其深度值灵敏度较低，会产生深度检测冲突现象。
+
+![Z-Dpeth.svg](figures/Z-Depth.svg)
+
 ### 平行投影变换 Parallel Projection
 
 平行投影的投影空间为方棱体，平行投影将产生远近大小一致的视觉效果。
@@ -850,10 +842,10 @@ $$
 
 ```
 平行投影变换的步骤，共计4步：平行投影变换与透视投影变换的后4步完全相同。
-[平移变换] 将方棱体近平面中心平移至原点；
-[缩放变换] 将方棱体的长宽缩放到[-1, +1]，将方棱体的高缩放到[-2, 0]；
-[重原变换] 将方棱体现中心平移与原点重合；
-[左手变换] 将方棱体以长宽平面做镜像变换；
+[平移变换] 将长方体近平面中心平移至原点；
+[缩放变换] 将长方体的长宽缩放到[-1, +1]，将长方体的高缩放到[-2, 0]；
+[重原变换] 将长方体现中心平移与原点重合；
+[左手变换] 将长方体按长宽平面做镜像变换；
 ```
 
 $$
