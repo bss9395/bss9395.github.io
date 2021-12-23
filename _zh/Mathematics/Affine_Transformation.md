@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  仿射变换
-Update:  2021-12-23T12:44:00+08@中国-广东-深圳+08
+Update:  2021-12-24T00:44:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -913,6 +913,132 @@ $$
 -\frac{z_{\mathrm{far}} + z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} & 0 & 0 & \frac{-2}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
 -\frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & 0 & \frac{+2}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & 0 \\
 -\frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} & \frac{+2}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & 0 \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] \\
+\end{aligned}
+$$
+
+### 视图变换
+
+以摄像机作为新原点，视图变换将相对于世界原点的场景坐标变换为相对于摄像机的观察坐标。
+$$
+\begin{aligned}
+\mathrm{p_{osition}} &= \left[\begin{matrix}
+p_z \\
+p_y \\
+p_x \\
+\end{matrix}\right] \\
+\mathrm{d_{irection}} &= \left[\begin{matrix}
+d_z \\
+d_y \\
+d_x \\
+\end{matrix}\right] & \mathrm{u_p} &= \left[\begin{matrix}
+u_z \\
+u_y \\
+u_x \\
+\end{matrix}\right] & \mathrm{r_{ight}} &= \left[\begin{matrix}
+r_z \\
+r_y \\
+r_x \\
+\end{matrix}\right] = \left[\begin{matrix}
+d_z \\
+d_y \\
+d_x \\
+\end{matrix}\right] \otimes \left[\begin{matrix}
+u_z \\
+u_y \\
+u_x \\
+\end{matrix}\right] = \left[\begin{matrix}
+d_x · d_y - d_y · u_x \\
+d_z · u_x - d_x · u_z \\
+d_y · u_z - d_z · u_y \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+
+```
+视图变换的步骤，共计2步：
+[重原变换] 将摄像机平移与世界坐标系的原点重合；
+[旋转变换] 将摄像机坐标轴旋转与世界坐标轴重合；
+```
+
+$$
+\begin{aligned}
+\left[\begin{array}{c|ccc}
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] &= \mathrm{R_{otate}} \rlap{×}{+} \left[\begin{array}{c|ccc}
+0 & \left( \vec{d}_{\mathrm{irection}} \otimes \vec{u}_{\mathrm{p}} \right)_z & u_z & -d_z \\
+0 & \left( \vec{d}_{\mathrm{irection}} \otimes \vec{u}_{\mathrm{p}} \right)_y & u_y & -d_y \\
+0 & \left( \vec{d}_{\mathrm{irection}} \otimes \vec{u}_{\mathrm{p}} \right)_x & u_x & -d_x \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] = \mathrm{R_{otate}} \rlap{×}{+} \left[\begin{array}{c|ccc}
+0 & d_x · u_y - d_y · u_x & u_z & -d_z \\
+0 & d_z · u_x - d_x · u_z & u_y & -d_y \\
+0 & d_y · u_z - d_z · u_y & u_x & -d_x \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] \\
+\mathrm{R_{otate}} &= \mathrm{Reverse} \left[\begin{array}{c|ccc}
+0 & d_x · u_y - d_y · u_x & u_z & -d_z \\
+0 & d_z · u_x - d_x · u_z & u_y & -d_y \\
+0 & d_y · u_z - d_z · u_y & u_x & -d_x \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] = \mathrm{Conjugate} \left[\begin{array}{c|ccc}
+0 & d_x · u_y - d_y · u_x & u_z & -d_z \\
+0 & d_z · u_x - d_x · u_z & u_y & -d_y \\
+0 & d_y · u_z - d_z · u_y & u_x & -d_x \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\mathrm{O_{riginate}} &= \left[\begin{array}{c|ccc}
+-p_z & 0 & 0 & 0 \\
+-p_y & 0 & 0 & 0 \\
+-p_x & 0 & 0 & 0 \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] \\
+\mathrm{R_{otate}} &= \left[\begin{array}{c|ccc}
+0 & -d_x & -d_y & -d_z \\
+0 & u_x & u_y & u_z \\
+0 & d_y · u_z - d_z · u_y & d_z · u_x - d_x · u_z & d_x · u_y - d_y · u_x \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\mathrm{V_{iew}} &= \mathrm{R_{otation}} \rlap{×}{+} \mathrm{Originate} \\
+&= \left[\begin{array}{c|ccc}
+0 & -d_x & -d_y & -d_z \\
+0 & u_x & u_y & u_z \\
+0 & d_y · u_z - d_z · u_y & d_z · u_x - d_x · u_z & d_x · u_y - d_y · u_x \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] \rlap{×}{+} \left[\begin{array}{c|ccc}
+-p_z & 0 & 0 & 1 \\
+-p_y & 0 & 1 & 0 \\
+-p_x & 1 & 0 & 0 \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] \\
+&= \left[\begin{array}{c|ccc}
++p_x · u_x + p_y · d_y + p_z · d_z & -d_x & -d_y & -d_z \\
+-p_x · u_x - p_y · u_y - p_z · u_z & u_x & u_y & u_z \\
+-p_x · (d_y · u_z - d_z · u_y) - p_y · (d_z · u_x - d_x · u_z) - p_z · (d_x · u_y - d_y · u_x) & d_y · u_z - d_z · u_y & d_z · u_x - d_x · u_z & d_x · u_y - d_y · u_x \\
 \hline
 1 & 0 & 0 & 0 \\
 \end{array}\right] \\
