@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  仿射变换
-Update:  2021-12-24T00:44:00+08@中国-广东-深圳+08
+Update:  2021-12-24T01:24:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -571,11 +571,10 @@ $$
 注意：透视投影远近平面与$xOy$平面均平行，但其近平面中心未必在$-Z$轴。
 
 ```
-透视投影变换的步骤，共计5步：透视投影变换的后4步与正交投影变换完全相同。
+透视投影变换的步骤，共计4步：透视投影变换的后3步与正交投影变换完全相同。
 [正则变换] 将视锥体的底部压缩形成长方体；注意：正则变换并非仿射变换，正则变换使长方体的原中心发生非线性偏移。
-[平移变换] 将长方体近平面中心平移至原点；
-[缩放变换] 将长方体的长宽缩放到[-1, +1]，将长方体的高缩放到[-2, 0]；
 [重原变换] 将长方体现中心平移与原点重合；
+[规范变换] 将长方体的三围缩放到[-1, +1]；
 [左手变换] 将长方体按长宽平面做镜像变换；
 ```
 
@@ -587,7 +586,7 @@ y · \frac{z_{\mathrm{near}}}{z} \\
 x · \frac{z_{\mathrm{near}}}{z} \\
 \hline
 1 \\
-\end{matrix}\right] &\mathop{=====}\limits_{z_{\mathrm{far}}<z_{\mathrm{near}}}^{z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
+\end{matrix}\right] &\mathop{==========}\limits_{z_{\mathrm{far}}<z_{\mathrm{near}}}^{z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & 1 \\
 0 & 0 & \frac{z_{\mathrm{near}}}{\rlap{z}{≡}} & 0 \\
 0 & \frac{z_{\mathrm{near}}}{\rlap{z}{≡}} & 0 & 0 \\
@@ -612,7 +611,7 @@ y · z_{\mathrm{near}} \\
 x · z_{\mathrm{near}} \\
 \hline
 z \\
-\end{matrix}\right] &\mathop{=====}\limits_{z_{\mathrm{far}}<z_{\mathrm{near}}}^{z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
+\end{matrix}\right] &\mathop{==========}\limits_{z_{\mathrm{far}}<z_{\mathrm{near}}}^{z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
 r_{3,0} & 0 & 0 & r_{3,3} \\
 0 & 0 & z_{\mathrm{near}} & 0 \\
 0 & z_{\mathrm{near}} & 0 & 0 \\
@@ -631,35 +630,28 @@ z_{\mathrm{near}}^2 &= r_{3,0} + r_{3,3} · z_{\mathrm{near}} \\
 r_{3,0} &= - z_{\mathrm{far}} · z_{\mathrm{near}} \\
 r_{3,3} &= z_{\mathrm{far}} + z_{\mathrm{near}} \\
 \end{aligned}\right. \\
-\mathrm{R_{egularize}} &\mathop{=====}\limits_{[z_{\mathrm{far}},z_{\mathrm{near}}]} \left[\begin{array}{c|ccc}
+\mathrm{R_{egularize}} &\mathop{==========}\limits_{[z_{\mathrm{far}},z_{\mathrm{near}}]} \left[\begin{array}{c|ccc}
 - z_{\mathrm{far}} · z_{\mathrm{near}} & 0 & 0 & z_{\mathrm{far}} + z_{\mathrm{near}} \\
 0 & 0 & z_{\mathrm{near}} & 0 \\
 0 & z_{\mathrm{near}} & 0 & 0 \\
 \hline
 0 & 0 & 0 & 1 \\
 \end{array}\right] \\
-\mathrm{T_{ranslate}} &\mathop{=====}\limits_{[z_{\mathrm{far}}-z_{\mathrm{near}},0]} \left[\begin{array}{c|ccc}
-- z_{\mathrm{near}} & 0 & 0 & 1\\
+\mathrm{T_{ranslate}} &\mathop{==========}\limits_{\left[ +\frac{z_{\mathrm{far}}+z_{\mathrm{near}}}{2},-\frac{z_{\mathrm{far}}+z_{\mathrm{near}}}{2} \right]} \left[\begin{array}{c|ccc}
+- \frac{z_{\mathrm{far}} + z_{\mathrm{near}}}{2} & 0 & 0 & 1\\
 - \frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{2} & 0 & 1 & 0 \\
 - \frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{2} & 1 & 0 & 0 \\
 \hline
 1 & 0 & 0 & 0 \\
 \end{array}\right] \\
-\mathrm{S_{cale}} &\mathop{=====}\limits_{[-2,0]} \left[\begin{array}{c|ccc}
+\mathrm{S_{cale}} &\mathop{==========}\limits_{[-1,+1]} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & \frac{-2}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
 0 & 0 & \frac{+2}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & 0 \\
 0 & \frac{+2}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & 0 \\
 \hline
 1 & 0 & 0 & 0 \\
 \end{array}\right] \\
-\mathrm{O_{riginate}} &\mathop{=====}\limits_{[-1,+1]} \left[\begin{array}{c|ccc}
-1 & 0 & 0 & 1 \\
-0 & 0 & 1 & 0 \\
-0 & 1 & 0 & 0 \\
-\hline
-1 & 0 & 0 & 0 \\
-\end{array}\right] \\
-\mathrm{L_{eft}} &\mathop{=====}\limits_{-z_{\mathrm{near}}}^{-z_{\mathrm{far}}} \left[\begin{array}{c|ccc}
+\mathrm{L_{eft}} &\mathop{==========}\limits_{-z_{\mathrm{near}}}^{-z_{\mathrm{far}}} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & -1 \\
 0 & 0 & +1 & 0 \\
 0 & +1 & 0 & 0 \\
@@ -677,21 +669,15 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{P_{erspect}} &\mathop{======}\limits_{[-1,+1]}^{\mathrm{right-handed}} \mathrm{O_{riginate}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \rlap{×}{+} \mathrm{R_{egularize}} \\
+\mathrm{P_{erspect}} &\mathop{======}\limits_{[-1,+1]}^{\mathrm{right-handed}} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \rlap{×}{+} \mathrm{R_{egularize}} \\
 &\mathop{======}\limits_{+z_{\mathrm{far}}<+z_{\mathrm{near}}}^{+z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
-1 & 0 & 0 & 1 \\
-0 & 0 & 1 & 0 \\
-0 & 1 & 0 & 0 \\
-\hline
-1 & 0 & 0 & 0 \\
-\end{array}\right] \rlap{×}{+} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & \frac{-2}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
 0 & 0 & \frac{+2}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & 0 \\
 0 & \frac{+2}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & 0 \\
 \hline
 1 & 0 & 0 & 0 \\
 \end{array}\right] \rlap{×}{+} \left[\begin{array}{c|ccc}
-- z_{\mathrm{near}} & 0 & 0 & 1\\
+- \frac{z_{\mathrm{far}} + z_{\mathrm{near}}}{2} & 0 & 0 & 1\\
 - \frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{2} & 0 & 1 & 0 \\
 - \frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{2} & 1 & 0 & 0 \\
 \hline
@@ -704,34 +690,15 @@ $$
 0 & 0 & 0 & 1 \\
 \end{array}\right] \\
 &\mathop{======}\limits_{+z_{\mathrm{far}}<+z_{\mathrm{near}}}^{+z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
-1 & 0 & 0 & 1 \\
-0 & 0 & 1 & 0 \\
-0 & 1 & 0 & 0 \\
-\hline
-1 & 0 & 0 & 0 \\
-\end{array}\right] \rlap{×}{+} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & \frac{-2}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
 0 & 0 & \frac{+2}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & 0 \\
 0 & \frac{+2}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & 0 \\
 \hline
 1 & 0 & 0 & 0 \\
 \end{array}\right] \rlap{×}{+} \left[\begin{array}{c|ccc}
-- z_{\mathrm{far}} · z_{\mathrm{near}} & 0 & 0 & + z_{\mathrm{far}} \\
-0 & 0 & z_{\mathrm{near}} & - \frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{2} \\
-0 & z_{\mathrm{near}} & 0 & - \frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{2} \\
-\hline
-0 & 0 & 0 & 1 \\
-\end{array}\right] \\
-&\mathop{======}\limits_{+z_{\mathrm{far}}<+z_{\mathrm{near}}}^{+z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
-1 & 0 & 0 & 1 \\
-0 & 0 & 1 & 0 \\
-0 & 1 & 0 & 0 \\
-\hline
-1 & 0 & 0 & 0 \\
-\end{array}\right] \rlap{×}{+} \left[\begin{array}{c|ccc}
-\frac{2 · z_{\mathrm{far}} · z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} & 0 & 0 & -\frac{2 · z_{\mathrm{far}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
-0 & 0 & \frac{2 · z_{\mathrm{near}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & - \frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} \\
-0 & \frac{2 · z_{\mathrm{near}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & - \frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} \\
+-z_{\mathrm{far}} · z_{\mathrm{near}} & 0 & 0 & +\frac{z_{\mathrm{far}} + z_{\mathrm{near}}}{2} \\
+0 & 0 & z_{\mathrm{near}} & -\frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{2} \\
+0 & z_{\mathrm{near}} & 0 & -\frac{x_{\mathrm{right} } + x_{\mathrm{left}}}{2} \\
 \hline
 0 & 0 & 0 & 1 \\
 \end{array}\right] \\
@@ -747,7 +714,7 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{P_{erspect}} &\mathop{======}\limits_{[+1,-1]}^{\mathrm{left-handed}} \mathrm{L_{eft}} \rlap{×}{+} \mathrm{O_{riginate}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \rlap{×}{+} \mathrm{R_{egularize}} \\
+\mathrm{P_{erspect}} &\mathop{======}\limits_{[+1,-1]}^{\mathrm{left-handed}} \mathrm{L_{eft}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \rlap{×}{+} \mathrm{R_{egularize}} \\
 &\mathop{======}\limits_{-z_{\mathrm{near}}<-z_{\mathrm{far}}}^{0<-z_{\mathrm{near}}} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & -1 \\
 0 & 0 & +1 & 0 \\
@@ -768,7 +735,7 @@ $$
 \hline
 0 & 0 & 0 & 1 \\
 \end{array}\right] \\
-\mathrm{P_{erspect}} &\mathop{======}\limits_{[+1,-1]}^{\mathrm{left-handed}} \mathrm{L_{eft}} \rlap{×}{+} \mathrm{O_{riginate}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \rlap{×}{+} \mathrm{R_{egularize}} \\
+\mathrm{P_{erspect}} &\mathop{======}\limits_{[+1,-1]}^{\mathrm{left-handed}} \mathrm{L_{eft}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \rlap{×}{+} \mathrm{R_{egularize}} \\
 &\mathop{======}\limits_{-z_{\mathrm{near}}<-z_{\mathrm{far}}}^{0<-z_{\mathrm{near}}} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & +1 \\
 0 & 0 & -1 & 0 \\
@@ -841,45 +808,25 @@ $$
 注意：平行投影远近平面与$xOy$平面均平行，但其近平面中心未必在$-Z$轴。
 
 ```
-平行投影变换的步骤，共计4步：平行投影变换与透视投影变换的后4步完全相同。
-[平移变换] 将长方体近平面中心平移至原点；
-[缩放变换] 将长方体的长宽缩放到[-1, +1]，将长方体的高缩放到[-2, 0]；
+平行投影变换的步骤，共计3步：平行投影变换与透视投影变换的后3步完全相同。
 [重原变换] 将长方体现中心平移与原点重合；
+[规范变换] 将长方体的三围缩放到[-1, +1]；
 [左手变换] 将长方体按长宽平面做镜像变换；
 ```
 
 $$
 \begin{aligned}
-\mathrm{P_{arallel}} &\mathop{======}\limits_{[-1,+1]}^{\mathrm{right-handed}} \mathrm{O_{riginate}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \\
+\mathrm{P_{arallel}} &\mathop{======}\limits_{[-1,+1]}^{\mathrm{right-handed}} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \\
 &\mathop{======}\limits_{+z_{\mathrm{far}}<+z_{\mathrm{near}}}^{+z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
-1 & 0 & 0 & 1 \\
-0 & 0 & 1 & 0 \\
-0 & 1 & 0 & 0 \\
-\hline
-1 & 0 & 0 & 0 \\
-\end{array}\right] \rlap{×}{+} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & \frac{-2}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
 0 & 0 & \frac{+2}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & 0 \\
 0 & \frac{+2}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & 0 \\
 \hline
 1 & 0 & 0 & 0 \\
 \end{array}\right] \rlap{×}{+} \left[\begin{array}{c|ccc}
--z_{\mathrm{near}} & 0 & 0 & 1 \\
+-\frac{z_{\mathrm{far}} + z_{\mathrm{near}}}{2} & 0 & 0 & 1 \\
 -\frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{2} & 0 & 1 & 0 \\
 -\frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{2} & 1 & 0 & 0 \\
-\hline
-1 & 0 & 0 & 0 \\
-\end{array}\right] \\
-&\mathop{======}\limits_{+z_{\mathrm{far}}<+z_{\mathrm{near}}}^{+z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
-1 & 0 & 0 & 1 \\
-0 & 0 & 1 & 0 \\
-0 & 1 & 0 & 0 \\
-\hline
-1 & 0 & 0 & 0 \\
-\end{array}\right] \mathop{\rlap{×}{+}}\limits_{+z_{\mathrm{near}}}^{+z_{\mathrm{far}}} \left[\begin{array}{c|ccc}
-+\frac{2 · z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} & 0 & 0 & \frac{-2}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
--\frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & 0 & \frac{+2}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & 0 \\
--\frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} & \frac{+2}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & 0 \\
 \hline
 1 & 0 & 0 & 0 \\
 \end{array}\right] \\
@@ -895,7 +842,7 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{P_{arallel}} &\mathop{======}\limits_{[+1,-1]}^{\mathrm{left-handed}} \mathrm{L_{eft}} \rlap{×}{+} \mathrm{O_{riginate}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \\
+\mathrm{P_{arallel}} &\mathop{======}\limits_{[+1,-1]}^{\mathrm{left-handed}} \mathrm{L_{eft}} \rlap{×}{+} \mathrm{S_{cale}} \rlap{×}{+} \mathrm{T_{ranslate}} \\
 &\mathop{======}\limits_{-z_{\mathrm{near}}<-z_{\mathrm{far}}}^{0<-z_{\mathrm{near}}} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & -1 \\
 0 & 0 & +1 & 0 \\
