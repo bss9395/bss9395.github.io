@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  仿射变换
-Update:  2021-12-24T21:03:00+08@中国-广东-深圳+08
+Update:  2021-12-24T23:42:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -595,20 +595,20 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{p_{osition}} &\mathop{==} \left[\begin{matrix}
+\mathrm{p_{osition}} &\mathop{=====} \left[\begin{matrix}
 p_z \\
 p_y \\
 p_x \\
 \end{matrix}\right] \\
-\mathrm{d_{irection}} &\mathop{==}\limits^{-Z} \left[\begin{matrix}
+\mathrm{d_{irection}} &\mathop{=====}\limits_{-Z}^{\mathrm{normalized}} \left[\begin{matrix}
 d_z \\
 d_y \\
 d_x \\
-\end{matrix}\right] & \mathrm{u_p} &\mathop{==}\limits^{+Y} \left[\begin{matrix}
+\end{matrix}\right] & \mathrm{u_p} &\mathop{=====}\limits_{+Y}^{\mathrm{normalized}} \left[\begin{matrix}
 u_z \\
 u_y \\
 u_x \\
-\end{matrix}\right] & \mathrm{r_{ight}} &\mathop{==}\limits^{+X} \left[\begin{matrix}
+\end{matrix}\right] & \mathrm{r_{ight}} &\mathop{=====}\limits_{+X}^{\mathrm{normalized}} \left[\begin{matrix}
 r_z \\
 r_y \\
 r_x \\
@@ -631,7 +631,7 @@ $$
 ```
 视野变换的步骤，共计2步：
 [重原变换|平移变换] 将摄像机平移与世界坐标系的原点重合；
-[配对变换|旋转变换] 将摄像机坐标轴旋转与世界坐标轴重合；注意：摄像机的朝向与世界坐标轴-Z轴重合。
+[配对变换|旋转变换] 将摄像机坐标轴旋转与世界坐标轴重合，摄像机的朝向与世界坐标轴-Z轴重合；注意：摄像机坐标系与世界坐标系均为规范正交坐标系。
 ```
 
 $$
@@ -868,6 +868,19 @@ $$
 \hline
 0 & 0 & 0 & 1 \\
 \end{array}\right] \\
+&\mathop{======}\limits_{0=y_{\mathrm{top}}+y_{\mathrm{bottom}}}^{0=x_{\mathrm{right}}+x_{\mathrm{left}}} \left[\begin{array}{c|ccc}
+\frac{2 · \mathrm{f_{ar}} · \mathrm{n_{ear}}}{\mathrm{f_{ar}} - \mathrm{n_{ear}}} & 0 & 0 & -\frac{\mathrm{f_{ar}} + \mathrm{n_{ear}}}{\mathrm{f_{ar}} - \mathrm{n_{ear}}} \\
+0 & 0 & \frac{2 · \mathrm{n_{ear}}}{\mathrm{h_{eight}}} & 0 \\
+0 & \frac{2 · \mathrm{n_{ear}}}{\mathrm{w_{idth}}} & 0 & 0 \\
+\hline
+0 & 0 & 0 & 1 \\
+\end{array}\right] \mathop{============}\limits_{\mathrm{a_{spect}} = \frac{\mathrm{w_{idth}}}{\mathrm{h_{eight}}} = \frac{\mathrm{w_{idth}}}{-2·\mathrm{n_{ear}}·\tan\frac{\mathrm{f_{ield}}}{2}}}^{\tan\frac{\mathrm{f_{ield}}}{2} = \frac{\mathrm{h_{eight}}}{-2 · \mathrm{n_{ear}}}} \left[\begin{array}{c|ccc}
+\frac{2 · \mathrm{f_{ar}} · \mathrm{n_{ear}}}{\mathrm{f_{ar}} - \mathrm{n_{ear}}} & 0 & 0 & -\frac{\mathrm{f_{ar}} + \mathrm{n_{ear}}}{\mathrm{f_{ar}} - \mathrm{n_{ear}}} \\
+0 & 0 & \frac{-1}{\tan\frac{\mathrm{f_{ield}}}{2}} & 0 \\
+0 & \frac{-1}{\mathrm{a_{spect}} · \tan\frac{\mathrm{f_{ield}}}{2}} & 0 & 0 \\
+\hline
+0 & 0 & 0 & 1 \\
+\end{array}\right] \\
 \end{aligned}
 $$
 
@@ -894,6 +907,24 @@ $$
 \hline
 0 & 0 & 0 & 1 \\
 \end{array}\right] \\
+&\mathop{======}\limits_{0=y_{\mathrm{top}}+y_{\mathrm{bottom}}}^{0=x_{\mathrm{right}}+x_{\mathrm{left}}} \left[\begin{array}{c|ccc}
+\frac{2 · \mathrm{f_{ar}} · \mathrm{n_{ear}}}{\mathrm{f_{ar}} - \mathrm{n_{ear}}} & 0 & 0 & + \frac{\mathrm{f_{ar}} + \mathrm{n_{ear}}}{\mathrm{f_{ar}} - \mathrm{n_{ear}}} \\
+0 & 0 & \frac{-2 · \mathrm{n_{ear}}}{\mathrm{h_{eight}}} & 0 \\
+0 & \frac{-2 · \mathrm{n_{ear}}}{\mathrm{w_{idth}}} & 0 & 0 \\
+\hline
+0 & 0 & 0 & 1 \\
+\end{array}\right] \mathop{============}\limits_{\mathrm{a_{spect}} = \frac{\mathrm{w_{idth}}}{\mathrm{h_{eight}}} = \frac{\mathrm{w_{idth}}}{2·\mathrm{n_{ear}}·\tan\frac{\mathrm{f_{ield}}}{2}}}^{\tan\frac{\mathrm{f_{ield}}}{2} = \frac{\mathrm{h_{eight}}}{2 · \mathrm{n_{ear}}}} \left[\begin{array}{c|ccc}
+\frac{2 · \mathrm{f_{ar}} · \mathrm{n_{ear}}}{\mathrm{f_{ar}} - \mathrm{n_{ear}}} & 0 & 0 & \frac{\mathrm{f_{ar}} + \mathrm{n_{ear}}}{\mathrm{f_{ar}} - \mathrm{n_{ear}}} \\
+0 & 0 & \frac{-1}{\tan\frac{\mathrm{f_{ield}}}{2}} & 0 \\
+0 & \frac{-1}{\mathrm{a_{spect}} · \tan\frac{\mathrm{f_{ield}}}{2}} & 0 & 0 \\
+\hline
+0 & 0 & 0 & 1 \\
+\end{array}\right] \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
 \mathrm{P_{erspect}} &\mathop{======}\limits_{[+1,-1]}^{\mathrm{left-handed}} \mathrm{L_{eft}} \rlap{×}{+} \mathrm{N_{ormalize}} \rlap{×}{+} \mathrm{O_{riginate}} \rlap{×}{+} \mathrm{R_{egularize}} \\
 &\mathop{======}\limits_{0<z_{\mathrm{near}}<z_{\mathrm{far}}} \left[\begin{array}{c|ccc}
 0 & 0 & 0 & +1 \\
@@ -912,6 +943,19 @@ $$
 \frac{- 2 · z_{\mathrm{far}} · z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} & 0 & 0 & - \frac{z_{\mathrm{far}} + z_{\mathrm{near}}}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
 0 & 0 & \frac{2 · z_{\mathrm{near}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} & \frac{y_{\mathrm{top}} + y_{\mathrm{bottom}}}{y_{\mathrm{top}} - y_{\mathrm{bottom}}} \\
 0 & \frac{2 · z_{\mathrm{near}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} & 0 & \frac{x_{\mathrm{right}} + x_{\mathrm{left}}}{x_{\mathrm{right}} - x_{\mathrm{left}}} \\
+\hline
+0 & 0 & 0 & -1 \\
+\end{array}\right] \\
+&\mathop{======}\limits_{0=y_{\mathrm{top}}+y_{\mathrm{bottom}}}^{0=x_{\mathrm{right}}+x_{\mathrm{left}}} \left[\begin{array}{c|ccc}
+\frac{- 2 · \mathrm{f_{ar}} · \mathrm{n_{ear}}}{\mathrm{f_{ar}} - \mathrm{n_{ear}}} & 0 & 0 & - \frac{\mathrm{f_{ar}} + \mathrm{n_{ear}}}{\mathrm{f_{ar}} - \mathrm{n_{ear}}} \\
+0 & 0 & \frac{2 · \mathrm{n_{ear}}}{\mathrm{h_{eight}}} & 0 \\
+0 & \frac{2 · \mathrm{n_{ear}}}{\mathrm{w_{idth}}} & 0 & 0 \\
+\hline
+0 & 0 & 0 & -1 \\
+\end{array}\right] \mathop{============}_{\mathrm{a_{spect}} = \frac{\mathrm{w_{idth}}}{\mathrm{h_{eight}}} = \frac{\mathrm{w_{idth}}}{2·\mathrm{n_{ear}}·\tan\frac{\mathrm{f_{ield}}}{2}}}^{\tan\frac{\mathrm{f_{ield}}}{2} = \frac{\mathrm{h_{eight}}}{2 · \mathrm{n_{ear}}}} \left[\begin{array}{c|ccc}
+\frac{- 2 · \mathrm{f_{ar}} · \mathrm{n_{ear}}}{\mathrm{f_{ar}} - \mathrm{n_{ear}}} & 0 & 0 & - \frac{\mathrm{f_{ar}} + \mathrm{n_{ear}}}{\mathrm{f_{ar}} - \mathrm{n_{ear}}} \\
+0 & 0 & \frac{1}{\tan\frac{\mathrm{f_{ield}}}{2}} & 0 \\
+0 & \frac{1}{\mathrm{a_{spect}} · \tan\frac{\mathrm{f_{ield}}}{2}} & 0 & 0 \\
 \hline
 0 & 0 & 0 & -1 \\
 \end{array}\right] \\
@@ -934,7 +978,7 @@ x_{\mathrm{screen}} \\
 0 \\
 \hline
 1 \\
-\end{matrix}\right] \mathop{≈≈≈≈≈≈}\limits_{z_{\mathrm{far}}<z<z_{\mathrm{near}}}^{\mathrm{right-handed}} \left[\begin{matrix}
+\end{matrix}\right] \mathop{≈≈≈≈≈≈}\limits_{z_{\mathrm{far}}<z<z_{\mathrm{near}}<0}^{\mathrm{right-handed}} \left[\begin{matrix}
 \frac{2 · z_{\mathrm{far}} · z_{\mathrm{near}} - z · (z_{\mathrm{far}} + z_{\mathrm{near}})}{z_{\mathrm{far}} - z_{\mathrm{near}}} \\
 0 \\
 0 \\
