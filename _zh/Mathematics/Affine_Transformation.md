@@ -7,6 +7,18 @@ Author:  璀璨星辰
 Link  :
 ---
 
+### 特别注意
+
+```
+右手旋坐标系指右手坐标系，左手旋坐标系指左手坐标系。
+在右手旋坐标系中，+X轴与+Y轴的叉乘运算为+Z轴，在左手旋坐标系中，+X轴与+Y轴的叉乘运算为-Z轴。
+计算机图形学采用空间3维右手旋坐标系，+X轴向右，+Y轴向上，+Z轴向外。OpenGL采用右手旋坐标系。
+计算机视觉采用空间3维右手旋坐标系，但+X轴向右，+Y轴向下，+Z轴向里。OpenCV采用右手旋坐标系。
+计算机操作系统均采用平面2维坐标系，但+X轴向右，+Y轴向下。计算机屏幕自上而下进行光栅化扫描。
+本书强烈建议采用空间3维右手旋坐标系，+X轴向右，+Z轴向上，+Y轴向里。以与空间几何学相辅相成。
+本书目前暂时采用计算机图形学的空间3维右手旋坐标系。
+```
+
 ### 仿射变换的运算性质
 
 线性变换前后原点保持重合，线性变换前后直线保持直线。
@@ -495,7 +507,6 @@ $$
 ### 右手坐标系与左手坐标系
 
 右手坐标系与左手坐标系以$xOy$平面为镜像面互为镜像对称，$+X$轴与$+Y$轴相同，$+Z$轴互为镜像对称。
-
 $$
 \begin{aligned}
 \left[\begin{matrix}
@@ -586,7 +597,13 @@ y · \frac{z_{\mathrm{near}}}{z} \\
 x · \frac{z_{\mathrm{near}}}{z} \\
 \hline
 1 \\
-\end{matrix}\right] &\mathop{==========}\limits_{z_{\mathrm{far}}<z_{\mathrm{near}}}^{z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
+\end{matrix}\right] &\mathop{==========}\limits_{z_{\mathrm{far}}<z_{\mathrm{near}}}^{z_{\mathrm{near}}<0} \mathrm{R_{egularize}} \rlap{×}{+} \left[\begin{matrix}
+z \\
+y \\
+x \\
+\hline
+1 \\
+\end{matrix}\right] = \left[\begin{array}{c|ccc}
 0 & 0 & 0 & 1 \\
 0 & 0 & \frac{z_{\mathrm{near}}}{\rlap{z}{≡}} & 0 \\
 0 & \frac{z_{\mathrm{near}}}{\rlap{z}{≡}} & 0 & 0 \\
@@ -611,7 +628,13 @@ y · z_{\mathrm{near}} \\
 x · z_{\mathrm{near}} \\
 \hline
 z \\
-\end{matrix}\right] &\mathop{==========}\limits_{z_{\mathrm{far}}<z_{\mathrm{near}}}^{z_{\mathrm{near}}<0} \left[\begin{array}{c|ccc}
+\end{matrix}\right] &\mathop{==========}\limits_{z_{\mathrm{far}}<z_{\mathrm{near}}}^{z_{\mathrm{near}}<0} \mathrm{R_{egularize}} \rlap{×}{+} \left[\begin{matrix}
+z \\
+y \\
+x \\
+\hline
+1 \\
+\end{matrix}\right] = \left[\begin{array}{c|ccc}
 r_{3,0} & 0 & 0 & r_{3,3} \\
 0 & 0 & z_{\mathrm{near}} & 0 \\
 0 & z_{\mathrm{near}} & 0 & 0 \\
@@ -626,7 +649,7 @@ x \\
 \end{matrix}\right] &⇒&\left\lbrace\begin{aligned}
 z_{\mathrm{far}}^2 &= r_{3,0} + r_{3,3} · z_{\mathrm{far}} \\
 z_{\mathrm{near}}^2 &= r_{3,0} + r_{3,3} · z_{\mathrm{near}} \\
-\end{aligned}\right. &⇒&\left\lbrace\begin{aligned}
+\end{aligned}\right. \left\lbrace\begin{aligned}
 r_{3,0} &= - z_{\mathrm{far}} · z_{\mathrm{near}} \\
 r_{3,3} &= z_{\mathrm{far}} + z_{\mathrm{near}} \\
 \end{aligned}\right. \\
@@ -759,7 +782,7 @@ $$
 \end{aligned}
 $$
 
-在透视投影变换中，空间点$Z$轴坐标值，以逆正比非线性方式，映射到标准化的计算机屏幕坐标空间内的$Z$轴深度值。约定：逆正比表示$f(z) = \dfrac{\frac{1}{z} - \frac{1}{z_0}}{\frac{1}{z_1} - \frac{1}{z_0}}$。
+在透视投影变换中，空间点的$Z$轴坐标值，以逆正比非线性方式，映射到标准化计算机屏幕坐标空间内的$Z$轴深度值。约定：逆正比表示$f(z) = \dfrac{\frac{1}{z} - \frac{1}{z_0}}{\frac{1}{z_1} - \frac{1}{z_0}}$。
 
 $$
 \begin{aligned}
@@ -799,11 +822,11 @@ $$
 
 在透视投影变换中，当点$Z$轴值趋近于近平面时，其深度值灵敏度较高；当点$Z$轴值趋近于远平面时，其深度值灵敏度较低，会产生深度检测冲突现象。
 
-![Z-Dpeth.svg](figures/Z-Depth.svg)
+![Z-Dpeth_Right-Handed.svg](figures/Z-Depth_Right-Handed.svg)
 
 ### 平行投影变换 Parallel Projection
 
-平行投影的投影空间为方棱体，平行投影将产生远近大小一致的视觉效果。
+平行投影的投影空间为长方体，平行投影将产生远近大小一致的视觉效果。
 
 注意：平行投影远近平面与$xOy$平面均平行，但其近平面中心未必在$-Z$轴。
 
@@ -931,24 +954,19 @@ $$
 \hline
 1 & 0 & 0 & 0 \\
 \end{array}\right] \\
-\mathrm{R_{otate}} &= \mathrm{Reverse} \left[\begin{array}{c|ccc}
+\mathrm{R_{otate}} &= \mathrm{Inverse} \left[\begin{array}{c|ccc}
 0 & d_x · u_y - d_y · u_x & u_z & -d_z \\
 0 & d_z · u_x - d_x · u_z & u_y & -d_y \\
 0 & d_y · u_z - d_z · u_y & u_x & -d_x \\
 \hline
 1 & 0 & 0 & 0 \\
-\end{array}\right] = \mathrm{Conjugate} \left[\begin{array}{c|ccc}
+\end{array}\right] = \mathrm{Reverse} \left[\begin{array}{c|ccc}
 0 & d_x · u_y - d_y · u_x & u_z & -d_z \\
 0 & d_z · u_x - d_x · u_z & u_y & -d_y \\
 0 & d_y · u_z - d_z · u_y & u_x & -d_x \\
 \hline
 1 & 0 & 0 & 0 \\
 \end{array}\right] \\
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
 \mathrm{O_{riginate}} &= \left[\begin{array}{c|ccc}
 -p_z & 0 & 0 & 0 \\
 -p_y & 0 & 0 & 0 \\
