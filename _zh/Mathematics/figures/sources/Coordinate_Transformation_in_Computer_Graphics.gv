@@ -7,10 +7,11 @@ digraph{
     node[shape="record"];
     edge[color="black:black"];
     graph[pagedir="TL", rankdir="LR", splines="line"];
+    graph[label="计算机图形学中的坐标变换", labelloc="t"];
 
-        Screen[label=" 屏幕空间 \n Screen Space \n 窗口空间 \n Viewport Space "];
+        Screen[label=" 屏幕空间 \n Screen Space \n 视窗空间 \n Viewport Space "];
         Projection[label=" 规范空间 \n Normalized Space \n 裁剪空间 \n Clip Space "];
-        View[label=" 视野空间 \n View Space \n 摄像机空间 \n Camera Space "];
+        View[label=" 视野空间 \n View Space \n 相机空间 \n Camera Space "];
         World[label=" 世界空间 \n World Space \n 场景空间 \n Scene Space "];
         Local[label=" 局部空间 \n Local Space \n 物体空间 \n Object Space "];
 

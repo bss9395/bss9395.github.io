@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  仿射变换
-Update:  2021-12-24T23:42:00+08@中国-广东-深圳+08
+Update:  2021-12-25T14:33:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -1135,3 +1135,57 @@ $$
 \end{aligned}
 $$
 
+### 视窗变换 Viewport Transformation
+
+视窗变换的投影平面为规范空间平面，视窗变换将还原投影变换时的缩放。规范空间的深度值信息，在深度检测缓冲区中处理。
+
+```
+视窗变换的步骤，共计2步：
+[还原变换|缩放变换] 将规范空间平面缩放大小匹配视窗平面；注意：投影近平面与视窗平面的长宽比应当匹配，否则将产生场景被拉伸与缩放的视觉效果。
+[居中变换|平移变换] 将视窗空间平面的中心平移到视窗中央；注意：视窗空间平面的原点在视窗平面的左下角，规范空间平面的中心应当位于视窗的中央。
+```
+
+$$
+\begin{aligned}
+\mathrm{R_{estore}} &= \left[\begin{array}{c|ccc}
+0 & 0 & 0 & 1 \\
+0 & 0 & \frac{s_{\mathrm{height}}}{2} & 0 \\
+0 & \frac{s_{\mathrm{width}}}{2} & 0 & 0 \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] \\
+\mathrm{C_{enter}} &= \left[\begin{array}{c|ccc}
+0 & 0 & 0 & 1 \\
+\frac{s_{\mathrm{height}}}{2} & 0 & 1 & 0 \\
+\frac{s_{\mathrm{width}}}{2} & 1 & 0 & 0 \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\mathrm{V_{iewport}} &\mathop{====}\limits_{[0,s_{\mathrm{height}}]}^{[0,s_{\mathrm{width}}]} \mathrm{C_{enter}} \rlap{×}{+} \mathrm{R_{estore}} \\
+&\mathop{====}\limits_{[0,s_{\mathrm{height}}]}^{[0,s_{\mathrm{width}}]} \left[\begin{array}{c|ccc}
+0 & 0 & 0 & 1 \\
+\frac{s_{\mathrm{height}}}{2} & 0 & 1 & 0 \\
+\frac{s_{\mathrm{width}}}{2} & 1 & 0 & 0 \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] \rlap{×}{+} \left[\begin{array}{c|ccc}
+0 & 0 & 0 & 1 \\
+0 & 0 & \frac{s_{\mathrm{height}}}{2} & 0 \\
+0 & \frac{s_{\mathrm{width}}}{2} & 0 & 0 \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] \\
+&\mathop{====}\limits_{[0,s_{\mathrm{height}}]}^{[0,s_{\mathrm{width}}]} \left[\begin{array}{c|ccc}
+0 & 0 & 0 & 1 \\
+\frac{s_{\mathrm{height}}}{2} & 0 & \frac{s_{\mathrm{height}}}{2} & 0 \\
+\frac{s_{\mathrm{width}}}{2} & \frac{s_{\mathrm{width}}}{2} & 0 & 0 \\
+\hline
+1 & 0 & 0 & 0 \\
+\end{array}\right] \\
+\end{aligned}
+$$
