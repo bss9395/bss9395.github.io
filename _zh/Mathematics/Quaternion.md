@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  四元数
-Update:  2021-12-20T18:44:00+08@中国-广东-深圳+08
+Update:  2021-12-26T10:35:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Credit:
 ---
@@ -239,7 +239,7 @@ $$
 \end{aligned}
 $$
 
-$3$维空间矢量的平行分量。
+$3$维空间矢量的虚乘分解。
 
 $$
 \begin{aligned}
@@ -247,17 +247,21 @@ $$
 &= -\dfrac{1}{2} · [\vec{n} \circledast \vec{v} + \vec{v} \circledast \vec{n}] \circledast \vec{n} \\
 &= -\dfrac{1}{2} · [\vec{n} \circledast \vec{v} \circledast \vec{n} + \vec{v} \circledast \vec{n} \circledast \vec{n}] \\
 &= \dfrac{1}{2} · [-\vec{n} \circledast \vec{v} \circledast \vec{n} + \vec{v}] \\
-\end{aligned}
-$$
-
-$3$维空间矢量的垂直分量。
-
-$$
-\begin{aligned}
 \vec{v}_{⊥\vec{n}} &= \vec{n} \otimes \vec{v} \otimes \vec{n} \\
 &= +\dfrac{1}{2} · [\vec{n} \circledast \vec{v} - \vec{v} \circledast \vec{n}] \otimes \vec{n} \\
 &= +\dfrac{1}{4} · [(\vec{n} \circledast \vec{v} - \vec{v} \circledast \vec{n}) \circledast \vec{n} - \vec{n} \circledast (\vec{n} \circledast \vec{v} - \vec{v} \circledast \vec{n})] \\
 &= \dfrac{1}{2} · [+\vec{n} \circledast \vec{v} \circledast \vec{n} + \vec{v}] \\
+\end{aligned}
+$$
+
+$3$维空间矢量的正交分解。
+
+$$
+\begin{aligned}
+\vec{v}_{∥\vec{u}} &= \dfrac{\vec{u}}{|\vec{u}|} \odot \vec{v} · \dfrac{\vec{u}}{|\vec{u}|} = \dfrac{\vec{u} \odot \vec{v} · \vec{u}}{|\vec{u}|^2} \\
+\vec{v}_{⊥\vec{u}} &= \dfrac{\vec{u}}{|\vec{u}|} \otimes \vec{v} \otimes \dfrac{\vec{u}}{|\vec{u}|} = \dfrac{\vec{u} \otimes \vec{v} \otimes \vec{u}}{|\vec{u}|^2} \\
+\vec{v}_{⊥\vec{u}} &= \vec{v} - \vec{v}_{∥\vec{u}} = \vec{v} - \dfrac{\vec{u} \odot \vec{v} · \vec{u}}{|\vec{u}|^2} \\
+\vec{v} &= \vec{v}_{∥\vec{u}} + \vec{v}_{⊥\vec{u}} = \dfrac{\vec{u} \odot \vec{v} · \vec{u}}{|\vec{u}|^2} + \dfrac{\vec{u} \otimes \vec{v} \otimes \vec{u}}{|\vec{u}|^2} \\
 \end{aligned}
 $$
 

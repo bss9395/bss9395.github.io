@@ -230,9 +230,9 @@ $$
 $$
 \begin{aligned}
 &\left[\begin{matrix}
-v_z · \cos\varphi + (v_y · n_x - v_x · n_y) · \sin\varphi + (v_x · n_z · n_x + v_y · n_y · n_z + v_z · n_z^2) · (1 - \cos\varphi) \\
-v_y · \cos\varphi + (v_x · n_z - v_z · n_x) · \sin\varphi + (v_x · n_x · n_y + v_y · n_y^2 + v_z · n_y · n_z) · (1 - \cos\varphi) \\
-v_x · \cos\varphi + (v_z · n_y - v_y · n_z) · \sin\varphi + (v_x · n_x^2 + v_y · n_x · n_y + v_z · n_z · n_x) · (1 - \cos\varphi) \\
+v_z · \cos\varphi + (v_y · n_x - v_x · n_y) · \sin\varphi + (v_x · n_x + v_y · n_y + v_z · n_z) · n_z · (1 - \cos\varphi) \\
+v_y · \cos\varphi + (v_x · n_z - v_z · n_x) · \sin\varphi + (v_x · n_x + v_y · n_y + v_z · n_z) · n_y · (1 - \cos\varphi) \\
+v_x · \cos\varphi + (v_z · n_y - v_y · n_z) · \sin\varphi + (v_x · n_x + v_y · n_y + v_z · n_z) · n_x · (1 - \cos\varphi) \\
 \hline
 1 \\
 \end{matrix}\right] \\

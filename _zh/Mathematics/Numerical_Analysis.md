@@ -98,7 +98,7 @@ $\left[ 0 ⇜ \lim\limits_{x⇝∞^{+} } \left| p·f(x)+q·x+r \right| = \lim\li
 | $\mathrm{d}(y · x)$                     | $\mathrm{d}(y · x) = \dfrac{\mathrm{D}(y · x)}{|y · x|} ≤ \dfrac{|y| · \mathrm{D}(x) + \mathrm{D}(y) · |x| + \mathrm{D}(y) · \mathrm{D}(x)}{|y · x|} = \mathrm{d}(y) + \mathrm{d}(x) + \mathrm{d}(y) · \mathrm{d}(x)$ |
 | $\mathrm{d}\left( \dfrac{y}{x} \right)$ | $\mathrm{d}\left( \dfrac{y}{x} \right) = \mathrm{D}\left( \dfrac{y}{x} \right) · \left| \dfrac{y}{x} \right|^{-1} ≤ \dfrac{|y| · \mathrm{D}(x) + \mathrm{D}(y) · |x|}{x^2 · [1 - \mathrm{d}(x)]} · \left| \dfrac{x}{y} \right| = \dfrac{\mathrm{d}(y) + \mathrm{d}(x)}{1 - \mathrm{d}(x)}$ |
 
-### 线性插值
+### 线性插值的误差
 
 函数$f(x)$在区间$[x_α,x_β]$上线性插值的误差。
 
