@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  四元数
-Update:  2021-12-26T10:35:00+08@中国-广东-深圳+08
+Update:  2021-12-26T18:42:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Credit:
 ---
@@ -260,7 +260,6 @@ $$
 \begin{aligned}
 \vec{v}_{∥\vec{u}} &= \dfrac{\vec{u}}{|\vec{u}|} \odot \vec{v} · \dfrac{\vec{u}}{|\vec{u}|} = \dfrac{\vec{u} \odot \vec{v} · \vec{u}}{|\vec{u}|^2} \\
 \vec{v}_{⊥\vec{u}} &= \dfrac{\vec{u}}{|\vec{u}|} \otimes \vec{v} \otimes \dfrac{\vec{u}}{|\vec{u}|} = \dfrac{\vec{u} \otimes \vec{v} \otimes \vec{u}}{|\vec{u}|^2} \\
-\vec{v}_{⊥\vec{u}} &= \vec{v} - \vec{v}_{∥\vec{u}} = \vec{v} - \dfrac{\vec{u} \odot \vec{v} · \vec{u}}{|\vec{u}|^2} \\
 \vec{v} &= \vec{v}_{∥\vec{u}} + \vec{v}_{⊥\vec{u}} = \dfrac{\vec{u} \odot \vec{v} · \vec{u}}{|\vec{u}|^2} + \dfrac{\vec{u} \otimes \vec{v} \otimes \vec{u}}{|\vec{u}|^2} \\
 \end{aligned}
 $$
@@ -850,5 +849,47 @@ q_z &≡ \mathrm{sgn}(A[2][1] - A[1][2]) · |q_z| \\
 q_y &≡ \mathrm{sgn}(A[1][3] - A[3][1]) · |q_y| \\
 q_x &≡ \mathrm{sgn}(A[3][2] - A[2][3]) · |q_x| \\
 q_w &≡ |q_w| \\
+\end{aligned}
+$$
+
+将$3$维空间矢量$\vec{v}$按右手旋转变成$3$维空间矢量$\vec{u}$所对应的四元数。注意：$3$维空间矢量$\vec{v}$与$3$维空间矢量$\vec{u}$的度量值未必相等，而且$\left[ \vec{v} ∥ \vec{u} \right] ⇔ \left[ \vec{0} = \vec{v} \otimes \vec{u} \right]$。
+
+注意：此处旋转轴垂直于矢量$\vec{v}$以及矢量$\vec{u}$。若未指定旋转轴也即四元数的方向，则满足条件的四元数必有无数多个，任意的四元数其旋转角度适当即可。
+$$
+\begin{aligned}
+&\left\lbrace\begin{array}{ll}
+\cos\varphi = 2 · \cos^2\dfrac{\varphi}{2} - 1 && \left| \cos\dfrac{\varphi}{2} \right| = \dfrac{\sqrt{1 + \cos\varphi}}{\sqrt{2}} \mathop{=====}\limits^{\varphi∈[-π,+π]} \cos\dfrac{\varphi}{2} \\
+\sin\varphi = 2 · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} && \sin\dfrac{\varphi}{2} = \dfrac{\sin\varphi}{2 · \cos\dfrac{\varphi}{2}} = \cos\dfrac{\varphi}{2} · \dfrac{\sin\varphi}{1 + \cos\varphi} \\
+\end{array}\right. \\
+&\left\lbrace\begin{aligned}
+\vec{v} \odot \vec{u} &= |\vec{v}| · |\vec{u}| · \cos∠(\vec{v},\vec{u}) \\
+\vec{v} \otimes \vec{u} &= \vec{n}_{⊥} · |\vec{v}| · |\vec{u}| · \sin∠(\vec{v},\vec{u}) \\
+\end{aligned}\right. \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+ә^{\vec{n}_{⊥} · \frac{∠(\vec{v},\vec{u})}{2}} &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \cos\dfrac{∠(\vec{v},\vec{u})}{2} + \vec{n}_{⊥} · \sin\dfrac{∠(\vec{v},\vec{u})}{2} \\
+&\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{\sqrt{1 + \cos∠(\vec{v},\vec{u})}}{\sqrt{2}} · \left( 1 + \dfrac{\vec{n}_{⊥} · \sin∠(\vec{v},\vec{u})}{1 + \cos∠(\vec{v},\vec{u})} \right) = \dfrac{1 + \cos∠(\vec{v},\vec{u}) + \vec{n}_{⊥} · \sin∠(\vec{v},\vec{u})}{\sqrt{2 · (1 + \cos∠(\vec{v},\vec{u}))}} \\
+&\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{1 + \frac{\vec{v} \odot \vec{u}}{|\vec{v}| · |\vec{u}|} + \frac{\vec{v} \otimes \vec{u}}{|\vec{v}| · |\vec{u}|}}{\sqrt{2 · \left( 1 + \frac{\vec{v} \odot |\vec{u}|}{|\vec{v}| · |\vec{u}|} \right)}} \\
+ә^{\vec{n}_{⊥} · \frac{∠(\vec{v},\vec{u})}{2}} &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{1 + \vec{n}_{\vec{v}} \odot \vec{n}_{\vec{u}} + \vec{n}_{\vec{v}} \otimes \vec{n}_{\vec{u}}}{\sqrt{2 · (1 + \vec{n}_{\vec{v}} \odot \vec{n}_{\vec{u}})}} = \dfrac{|\vec{v}| · |\vec{u}| + \vec{v} \odot \vec{u} + \vec{v} \otimes \vec{u}}{\sqrt{2 · |\vec{v}| · |\vec{u}| · (|\vec{v}| · |\vec{u}| + \vec{v} \odot \vec{u})}} \\
+\dfrac{|\vec{u}|}{|\vec{v}|} · ә^{\vec{n}_{⊥} · \frac{∠(\vec{v},\vec{u})}{2}} &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{|\vec{u}|}{|\vec{v}|} · \dfrac{1 + \vec{n}_{\vec{v}} \odot \vec{n}_{\vec{u}} + \vec{n}_{\vec{v}} \otimes \vec{n}_{\vec{u}}}{\sqrt{2 · (1 + \vec{n}_{\vec{v}} \odot \vec{n}_{\vec{u}})}} = \dfrac{|\vec{u}|}{|\vec{v}|} · \dfrac{|\vec{v}| · |\vec{u}| + \vec{v} \odot \vec{u} + \vec{v} \otimes \vec{u}}{\sqrt{2 · |\vec{v}| · |\vec{u}| · (|\vec{v}| · |\vec{u}| + \vec{v} \odot \vec{u})}} \\
+\end{aligned}
+$$
+
+以$3$维空间矢量$\vec{r}$为旋转轴，将$3$维空间矢量$\vec{v}$按右手旋转角度$\varphi$变成$3$维空间矢量$\vec{u}$所对应的四元数。注意：$3$维空间矢量$\vec{r}$任意给定，而且$\left[ \vec{r} ∦ \vec{v} \right] ∧ \left[ \vec{r} ∦ \vec{u} \right]$。
+
+$$
+\left\lbrace\begin{array}{ll}
+\vec{v}_{⊥\vec{r}} = \dfrac{\vec{r} \otimes \vec{v} \otimes \vec{r}}{|\vec{r}|^2} = \vec{n}_{\vec{r}} \otimes \vec{v} \otimes \vec{n}_{\vec{r}} && |\vec{v}_{⊥\vec{r}}| = |\vec{v}| · |\sin∠(\vec{r},\vec{v})| \\
+\vec{u}_{⊥\vec{r}} = \dfrac{\vec{r} \otimes \vec{u} \otimes \vec{r}}{|\vec{r}|^2} = \vec{n}_{\vec{r}} \otimes \vec{u} \otimes \vec{n}_{\vec{r}} && |\vec{u}_{⊥\vec{r}}| = |\vec{u}| · |\sin∠(\vec{r},\vec{u})| \\
+\end{array}\right. \\
+$$
+
+$$
+\begin{aligned}
+ә^{\vec{n}_{\vec{r}} · \frac{\arg\bold{q}}{2}} &\mathop{==}\limits_{\vec{r}∦\vec{u}}^{\vec{r}∦\vec{v}} \dfrac{1 + \vec{n}_{\vec{v}⊥\vec{n}} \odot \vec{n}_{\vec{u}⊥\vec{n}} + \vec{n}_{\vec{v}⊥\vec{n}} \otimes \vec{n}_{\vec{u}⊥\vec{n}}}{\sqrt{2 · (1 + \vec{n}_{\vec{v}⊥\vec{n}} \odot \vec{n}_{\vec{u}⊥\vec{n}})}} = \dfrac{|\vec{v}_{⊥\vec{n}}| · |\vec{u}_{⊥\vec{n}}| + \vec{v}_{⊥\vec{n}} \odot \vec{u}_{⊥\vec{n}} + \vec{v}_{⊥\vec{n}} \otimes \vec{u}_{⊥\vec{n}}}{\sqrt{2 · |\vec{v}_{⊥\vec{n}}| · |\vec{u}_{⊥\vec{n}}| · (|\vec{v}_{⊥\vec{n}}| · |\vec{u}_{⊥\vec{n}}| + \vec{v}_{⊥\vec{n}} \odot \vec{u}_{⊥\vec{n}})}} \\
+\dfrac{|\vec{u}|}{|\vec{v}|} · ә^{\vec{n}_{\vec{r}} · \frac{\arg\bold{q}}{2}} &\mathop{==}\limits_{\vec{r}∦\vec{u}}^{\vec{r}∦\vec{v}} \dfrac{|\vec{u}|}{|\vec{v}|} · \dfrac{1 + \vec{n}_{\vec{v}⊥\vec{n}} \odot \vec{n}_{\vec{u}⊥\vec{n}} + \vec{n}_{\vec{v}⊥\vec{n}} \otimes \vec{n}_{\vec{u}⊥\vec{n}}}{\sqrt{2 · (1 + \vec{n}_{\vec{v}⊥\vec{n}} \odot \vec{n}_{\vec{u}⊥\vec{n}})}} = \dfrac{|\vec{u}|}{|\vec{v}|} · \dfrac{|\vec{v}_{⊥\vec{n}}| · |\vec{u}_{⊥\vec{n}}| + \vec{v}_{⊥\vec{n}} \odot \vec{u}_{⊥\vec{n}} + \vec{v}_{⊥\vec{n}} \otimes \vec{u}_{⊥\vec{n}}}{\sqrt{2 · |\vec{v}_{⊥\vec{n}}| · |\vec{u}_{⊥\vec{n}}| · (|\vec{v}_{⊥\vec{n}}| · |\vec{u}_{⊥\vec{n}}| + \vec{v}_{⊥\vec{n}} \odot \vec{u}_{⊥\vec{n}})}} \\
 \end{aligned}
 $$
