@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  四元数
-Update:  2021-12-26T18:42:00+08@中国-广东-深圳+08
+Update:  2021-12-26T21:42:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Credit:
 ---
@@ -854,7 +854,8 @@ $$
 
 将$3$维空间矢量$\vec{v}$按右手旋转变成$3$维空间矢量$\vec{u}$所对应的四元数。注意：$3$维空间矢量$\vec{v}$与$3$维空间矢量$\vec{u}$的度量值未必相等，而且$\left[ \vec{v} ∥ \vec{u} \right] ⇔ \left[ \vec{0} = \vec{v} \otimes \vec{u} \right]$。
 
-注意：此处旋转轴垂直于矢量$\vec{v}$以及矢量$\vec{u}$。若未指定旋转轴也即四元数的方向，则满足条件的四元数必有无数多个，任意的四元数其旋转角度适当即可。
+注意：此处旋转轴垂直于矢量$\vec{v}$以及矢量$\vec{u}$。若未指定旋转轴也即四元数的方向，则满足条件的旋转轴必有无数多个，都位于矢量$\vec{v}$与矢量$\vec{u}$的对称镜面上。
+
 $$
 \begin{aligned}
 &\left\lbrace\begin{array}{ll}
@@ -878,18 +879,40 @@ $$
 \end{aligned}
 $$
 
-以$3$维空间矢量$\vec{r}$为旋转轴，将$3$维空间矢量$\vec{v}$按右手旋转角度$\varphi$变成$3$维空间矢量$\vec{u}$所对应的四元数。注意：$3$维空间矢量$\vec{r}$任意给定，而且$\left[ \vec{r} ∦ \vec{v} \right] ∧ \left[ \vec{r} ∦ \vec{u} \right]$。
+将$3$维空间矢量$\vec{v}$按右手旋转变成$3$维空间矢量$\vec{u}$所对应的旋转矩阵。注意：$3$维空间矢量$\vec{v}$与$3$维空间矢量$\vec{u}$的度量值未必相等，而且$\left[ \vec{v} ∥ \vec{u} \right] ⇔ \left[ \vec{0} = \vec{v} \otimes \vec{u} \right]$。
 
-$$
-\left\lbrace\begin{array}{ll}
-\vec{v}_{⊥\vec{r}} = \dfrac{\vec{r} \otimes \vec{v} \otimes \vec{r}}{|\vec{r}|^2} = \vec{n}_{\vec{r}} \otimes \vec{v} \otimes \vec{n}_{\vec{r}} && |\vec{v}_{⊥\vec{r}}| = |\vec{v}| · |\sin∠(\vec{r},\vec{v})| \\
-\vec{u}_{⊥\vec{r}} = \dfrac{\vec{r} \otimes \vec{u} \otimes \vec{r}}{|\vec{r}|^2} = \vec{n}_{\vec{r}} \otimes \vec{u} \otimes \vec{n}_{\vec{r}} && |\vec{u}_{⊥\vec{r}}| = |\vec{u}| · |\sin∠(\vec{r},\vec{u})| \\
-\end{array}\right. \\
-$$
+注意：$3$维空间矢量$\vec{v}$的$\vec{η}_w$分量为$0$，而且当$\vec{n}⊥\vec{v}$时旋转矩阵与$3$维空间矢量$\vec{v}$合乘运算的$\vec{η}_w$分量为$0$，因此可以将旋转矩阵的标量直角镖除对角线外置为$0$。
 
 $$
 \begin{aligned}
-ә^{\vec{n}_{\vec{r}} · \frac{\arg\bold{q}}{2}} &\mathop{==}\limits_{\vec{r}∦\vec{u}}^{\vec{r}∦\vec{v}} \dfrac{1 + \vec{n}_{\vec{v}⊥\vec{n}} \odot \vec{n}_{\vec{u}⊥\vec{n}} + \vec{n}_{\vec{v}⊥\vec{n}} \otimes \vec{n}_{\vec{u}⊥\vec{n}}}{\sqrt{2 · (1 + \vec{n}_{\vec{v}⊥\vec{n}} \odot \vec{n}_{\vec{u}⊥\vec{n}})}} = \dfrac{|\vec{v}_{⊥\vec{n}}| · |\vec{u}_{⊥\vec{n}}| + \vec{v}_{⊥\vec{n}} \odot \vec{u}_{⊥\vec{n}} + \vec{v}_{⊥\vec{n}} \otimes \vec{u}_{⊥\vec{n}}}{\sqrt{2 · |\vec{v}_{⊥\vec{n}}| · |\vec{u}_{⊥\vec{n}}| · (|\vec{v}_{⊥\vec{n}}| · |\vec{u}_{⊥\vec{n}}| + \vec{v}_{⊥\vec{n}} \odot \vec{u}_{⊥\vec{n}})}} \\
-\dfrac{|\vec{u}|}{|\vec{v}|} · ә^{\vec{n}_{\vec{r}} · \frac{\arg\bold{q}}{2}} &\mathop{==}\limits_{\vec{r}∦\vec{u}}^{\vec{r}∦\vec{v}} \dfrac{|\vec{u}|}{|\vec{v}|} · \dfrac{1 + \vec{n}_{\vec{v}⊥\vec{n}} \odot \vec{n}_{\vec{u}⊥\vec{n}} + \vec{n}_{\vec{v}⊥\vec{n}} \otimes \vec{n}_{\vec{u}⊥\vec{n}}}{\sqrt{2 · (1 + \vec{n}_{\vec{v}⊥\vec{n}} \odot \vec{n}_{\vec{u}⊥\vec{n}})}} = \dfrac{|\vec{u}|}{|\vec{v}|} · \dfrac{|\vec{v}_{⊥\vec{n}}| · |\vec{u}_{⊥\vec{n}}| + \vec{v}_{⊥\vec{n}} \odot \vec{u}_{⊥\vec{n}} + \vec{v}_{⊥\vec{n}} \otimes \vec{u}_{⊥\vec{n}}}{\sqrt{2 · |\vec{v}_{⊥\vec{n}}| · |\vec{u}_{⊥\vec{n}}| · (|\vec{v}_{⊥\vec{n}}| · |\vec{u}_{⊥\vec{n}}| + \vec{v}_{⊥\vec{n}} \odot \vec{u}_{⊥\vec{n}})}} \\
+ә^{\vec{n}_{⊥} · ∠(\vec{v},\vec{u})} &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \cos∠(\vec{v},\vec{u}) + \vec{n}_{⊥} · \sin∠(\vec{v},\vec{u}) \\
+&\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{\vec{v} \odot \vec{u} + \vec{v} \otimes \vec{u}}{|\vec{v}| · |\vec{u}|} == \dfrac{1}{|\vec{v}| · |\vec{u}|} · \left[\begin{matrix}
+v_x · u_y - v_y · u_x \\
+v_z · u_x - v_x · u_z \\
+v_y · u_z - v_z · u_y \\
+\hline
+v_x · u_x + v_y · u_y + v_z · u_z \\
+\end{matrix}\right] \mathop{≈≈} \dfrac{1}{|\vec{v}| · |\vec{u}|} · \left[\begin{array}{c|ccc}
+\rlap{+q_z}{≡≡} & -q_y & +q_x & +q_w \\
+\rlap{+q_y}{≡≡} & +q_z & +q_w & -q_x \\
+\rlap{+q_x}{≡≡} & +q_w & -q_z & +q_y \\
+\hline
++q_w & \rlap{-q_x}{≡≡} & \rlap{-q_y}{≡≡} & \rlap{-q_z}{≡≡} \\
+\end{array}\right] \\
+&\mathop{≈≈}\limits^{\vec{v} ∦ \vec{u}} \dfrac{1}{|\vec{v}| · |\vec{u}|} · \left[\begin{array}{c|ccc}
++(v_x · u_y - v_y · u_x) & -(v_z · u_x - v_x · u_z) & +(v_y · u_z - v_z · u_y) & v_x · u_x + v_y · u_y + v_z · u_z \\
++(v_z · u_x - v_x · u_z) & +(v_x · u_y - v_y · u_x) & v_x · u_x + v_y · u_y + v_z · u_z & -(v_y · u_z - v_z · u_y) \\
++(v_y · u_z - v_z · u_y) & v_x · u_x + v_y · u_y + v_z · u_z & -(v_x · u_y - v_y · u_x) & +(v_z · u_x - v_x · u_z) \\
+\hline
+v_x · u_x + v_y · u_y + v_z · u_z & -(v_y · u_z - v_z · u_y) & -(v_z · u_x - v_x · u_z) & -(v_x · u_y - v_y · u_x) \\
+\end{array}\right] \\
+\dfrac{|\vec{u}|}{|\vec{v}|} · ә^{\vec{n}_{⊥} · ∠(\vec{v},\vec{u})} &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{\vec{v} \odot \vec{u} + \vec{v} \otimes \vec{u}}{|\vec{v}|^2} \\
+&\mathop{≈≈}\limits^{\vec{v} ∦ \vec{u}} \dfrac{1}{|\vec{v}|^2} · \left[\begin{array}{c|ccc}
++(v_x · u_y - v_y · u_x) & -(v_z · u_x - v_x · u_z) & +(v_y · u_z - v_z · u_y) & v_x · u_x + v_y · u_y + v_z · u_z \\
++(v_z · u_x - v_x · u_z) & +(v_x · u_y - v_y · u_x) & v_x · u_x + v_y · u_y + v_z · u_z & -(v_y · u_z - v_z · u_y) \\
++(v_y · u_z - v_z · u_y) & v_x · u_x + v_y · u_y + v_z · u_z & -(v_x · u_y - v_y · u_x) & +(v_z · u_x - v_x · u_z) \\
+\hline
+v_x · u_x + v_y · u_y + v_z · u_z & -(v_y · u_z - v_z · u_y) & -(v_z · u_x - v_x · u_z) & -(v_x · u_y - v_y · u_x) \\
+\end{array}\right] \\
 \end{aligned}
 $$
