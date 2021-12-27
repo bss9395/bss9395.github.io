@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  拟合插值
-Update:  2021-12-27T00:07:00+08@中国-广东-深圳+08
+Update:  2021-12-27T21:47:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Link  :
 ---
@@ -13,42 +13,60 @@ Link  :
 本书中约定圆括号()强调运算优先级，运算本身具有优先级，示例：(u + v) × w。
 本书中约定方括号[]表示矩阵与向量，方括号也用于逻辑学，示例：[w, x, y, z]。
 本书中约定花括号{}表示无序的集合，集合中的元素不重复，示例：{η₀, η₁, η₂, η₃}。
-本书中约定尖括号<>表示有序的序列，序列中的元素可重复，示例：<out, in, in, extra>。
+本书中约定尖括号<>表示有序的序列，序列中的元素可重复，示例：<out₀, out₁, in₀, in₁, in₂, extra>。
 ```
 
-### 线性插值法
+### 直弦线性插值法
+
+直弦线性插值法在两点间的直弦上等间距进行线性插值。注意：圆弧线性插值法适用于任意维度的向量。
 
 $$
 \begin{aligned}
 \bold{0} &= \left\lVert\begin{matrix}
-\bold{v}_0 & \bold{l}\langle t \rangle & \bold{v}_1 \\
+\bold{v}_0 & \bold{v}_t & \bold{v}_1 \\
 t_0 & t & t_1 \\
 1 & 1 & 1 \\
 \end{matrix}\right\rVert = \left\lVert\begin{matrix}
-\bold{v}_0 & \bold{l}\langle t \rangle - \bold{v}_0 & \bold{v_1} - \bold{v_0} \\
+\bold{v}_0 & \bold{v}_t - \bold{v}_0 & \bold{v_1} - \bold{v_0} \\
 t_0 & t - t_0 & t_1 - t_0 \\
 1 & 0 & 0 \\
 \end{matrix}\right\rVert \\
-\bold{l}\langle t \rangle &= \dfrac{t_1 - t}{t_1 - t_0} · \bold{v}_0 + \dfrac{t - t_0}{t_1 - t_0} · \bold{v_1} = \bold{v}_0 + \dfrac{t - t_0}{t_1 - t_0} · (\bold{v}_1 - \bold{v}_0) \\
+\bold{v}_t &= \dfrac{t_1 - t}{t_1 - t_0} · \bold{v}_0 + \dfrac{t - t_0}{t_1 - t_0} · \bold{v_1} = \bold{v}_0 + \dfrac{t - t_0}{t_1 - t_0} · (\bold{v}_1 - \bold{v}_0) \\
 l \langle x \rangle &= \dfrac{x_1 - x}{x_1 - x_0} · f\langle x_0 \rangle + \dfrac{x - x_0}{x_1 - x_0} · f\langle x_1 \rangle = f\langle x_0 \rangle + \dfrac{x - x_0}{x_1 - x_0} · (f\langle x_1 \rangle - f\langle x_0 \rangle) \\
 \end{aligned}
 $$
 
-### 球面线性插值法
+### 圆弧线性插值法
+
+圆弧线性插值法分别对旋转角度与度量值进行线性插值。注意：圆弧线性插值法适用于任意维度的向量，圆弧线性插值法优于四元数线性插值法。
 
 $$
 \begin{aligned}
-\bold{v}\langle \varphi_t \rangle &= \dfrac{\sin(\varphi_1 - \varphi_t)}{\sin(\varphi_1 - \varphi_0)} · \bold{v}_0 + \dfrac{\sin(\varphi_t - \varphi_0)}{\sin(\varphi_1 - \varphi_0)} · \bold{v}_1 \\
-
-
+\left\lbrace\begin{aligned}
+\bold{v}_0 \odot \bold{v}_1 &= |\bold{v}_0| · |\bold{v}_1| · \cos∠\langle\bold{v}_0,\bold{v}_1\rangle = |\bold{v}_0| · |\bold{v}_1| · \cos\varphi \\
+|\bold{v}_t| &= \dfrac{t_1 - t}{t_1 - t_0} · |\bold{v}_0| + \dfrac{t - t_0}{t_1 - t_0} · |\bold{v}_t| \\
+\bold{v}_t &= α · \bold{v}_0 + β · \bold{v}_1 \\
+|\bold{v}_0| · |\bold{v}_t| · \cos(t · \varphi) = \bold{v}_0 \odot \bold{v}_t &= \bold{v}_0 \odot (α · \bold{v}_0 + β · \bold{v}_1) = α · |\bold{v}_0|^2 + β · |\bold{v}_0| · |\bold{v}_1| · \cos\varphi \\
+|\bold{v}_t| · |\bold{v}_1| · \cos((1 - t) · \varphi) = \bold{v}_t \odot \bold{v}_1 &= (α · \bold{v}_0 + β · \bold{v}_1) \odot \bold{v}_1 = α · |\bold{v}_0| · |\bold{v}_1| · \cos\varphi + β · |\bold{v}_1|^2 \\
+\end{aligned}\right. &&⇒\left\lbrace\begin{aligned}
+α &= \dfrac{|\bold{v}_t|}{|\bold{v}_0|} · \dfrac{\sin((1 - t) · \varphi)}{\sin\varphi} \\
+β &= \dfrac{|\bold{v}_t|}{|\bold{v}_1|} · \dfrac{\sin(t · \varphi)}{\sin\varphi} \\
+\end{aligned}\right. \\
 \end{aligned}
 $$
 
+$$
+\begin{aligned}
+\bold{v}_t &= |\bold{v}_t| · \left( \dfrac{\bold{v}_0}{|\bold{v}_0|} · \dfrac{\sin\left( \frac{t_1 - t}{t_1 - t_0} · \varphi \right)}{\sin\varphi} + \dfrac{\bold{v}_1}{|\bold{v}_1|} · \dfrac{\sin\left( \frac{t - t_0}{t_1 - t_0} · \varphi \right)}{\sin\varphi} \right) \\
+&= \dfrac{|\bold{v}_t|}{\sin\varphi} · \left( \bold{n}_{\bold{v}_0} · \sin\left( \dfrac{t_1 - t}{t_1 - t_0} · \varphi \right) + \bold{n}_{\bold{v}_1} · \sin\left( \dfrac{t - t_0}{t_1 - t_0} · \varphi \right) \right) \\
+\bold{v}_t &= \left( \dfrac{t_1 - t}{t_1 - t_0} · |\bold{v}_0| + \dfrac{t - t_0}{t_1 - t_0} · |\bold{v}_1| \right) · \left( \dfrac{\bold{v}_0}{|\bold{v}_0|} · \dfrac{\sin\left( \frac{t_1 - t}{t_1 - t_0} · \varphi \right)}{\sin\varphi} + \dfrac{\bold{v}_1}{|\bold{v}_1|} · \dfrac{\sin\left( \frac{t - t_0}{t_1 - t_0} · \varphi \right)}{\sin\varphi} \right) \\
+&= \left( \dfrac{t_1 - t}{t_1 - t_0} · \dfrac{|\bold{v}_0|}{\sin\varphi} + \dfrac{t - t_0}{t_1 - t_0} · \dfrac{|\bold{v}_1|}{\sin\varphi} \right) · \left( \bold{n}_{\bold{v}_0} · \sin\left( \dfrac{t_1 - t}{t_1 - t_0} · \varphi \right) + \bold{n}_{\bold{v}_1} · \sin\left( \dfrac{t - t_0}{t_1 - t_0} · \varphi \right) \right) \\
+\end{aligned}
+$$
 
+### 四元数线性插值法
 
-### 四元数插值法
-
-四元数插值法分别对旋转角度与度量值进行线性插值。
+四元数插值法分别对旋转角度与度量值进行线性插值。注意：四元数线性插值法仅适用于$3$维空间矢量。
 
 $$
 \left\lbrace\begin{aligned}
