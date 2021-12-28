@@ -855,7 +855,12 @@ v_x \\
 +q_z \\
 +q_y \\
 +q_x \\
-\end{matrix}\right] &= \mathop{\left[\begin{matrix}
+\end{matrix}\right] &= \left[\begin{matrix}
+- q_z · q_x · v_x - q_y · q_z · v_y + (q_x^2 + q_y^2) · v_z \\
+- q_x · q_y · v_x + (q_z^2 + q_x^2) · v_y - q_y · q_z · v_z \\
++ (q_y^2 + q_z^2) · v_x - q_x · q_y · v_y - q_z · q_x · v_z \\
+\end{matrix}\right] \\
+&= \mathop{\left[\begin{matrix}
 -q_z · q_x & -q_y · q_z & +(q_x^2 + q_y^2) \\
 -q_x · q_y & +(q_z^2 + q_x^2) & -q_y · q_z \\
 +(q_y^2 + q_z^2) & -q_x · q_y & -q_z · q_x \\
@@ -883,7 +888,12 @@ v_x \\
 -q_z \\
 -q_y \\
 -q_x \\
-\end{matrix}\right] &= \mathop{\left[\begin{matrix}
+\end{matrix}\right] &= \left[\begin{matrix}
++ q_z · q_x · v_x + q_y · q_z · v_y - (q_x^2 + q_y^2) · v_z \\
++ q_x · q_y · v_x - (q_z^2 + q_x^2) · v_y + q_y · q_z · v_z \\
+- (q_y^2 + q_z^2) · v_x + q_x · q_y · v_y + q_z · q_x · v_z \\
+\end{matrix}\right] \\
+&= \mathop{\left[\begin{matrix}
 +q_z · q_x & +q_y · q_z & -(q_x^2 + q_y^2) \\
 +q_x · q_y & -(q_z^2 + q_x^2) & +q_y · q_z \\
 -(q_y^2 + q_z^2) & +q_x · q_y & +q_z · q_x \\

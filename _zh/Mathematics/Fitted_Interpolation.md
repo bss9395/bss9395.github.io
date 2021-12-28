@@ -85,6 +85,8 @@ $$
 
 四元数插值法同时对旋转角度与度量值进行线性插值。注意：四元数线性插值法仅适用于$3$维空间矢量。
 
+注意：若需要对四元数本身而非$3$维空间矢量进行插值，应当同时对四元数的旋转轴与旋转角进行插值。
+
 $$
 \begin{aligned}
 \varphi &≡ ∠(\vec{v},\vec{u}) \\
@@ -104,6 +106,10 @@ v_y^2 + v_z^2 & -v_x · v_y & -v_z · v_x \\
 u_z \\
 u_y \\
 u_x \\
+\end{matrix}\right] = \left[\begin{matrix}
+- v_z · v_x · u_x - v_y · v_z · u_y + (v_x^2 + v_y^2) · u_z \\
+- v_x · v_y · u_x + (v_z^2 + v_x^2) · u_y - v_y · v_z · u_z \\
++ (v_y^2 + v_z^2) · u_x - v_x · v_y · u_y - v_z · v_x · u_z \\
 \end{matrix}\right] \\
 \left( 1 + t · \left( \dfrac{|\vec{u}|}{|\vec{v}|} - 1 \right) \right) · ә^{\vec{n}_{⊥} · t · \varphi} \circledast \vec{v} &= \left( 1 + t · \left( \dfrac{|\vec{u}|}{|\vec{v}|} - 1 \right) \right) · \left( \cos(t · \varphi) · \left[\begin{matrix}
 v_z \\

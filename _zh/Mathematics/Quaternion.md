@@ -2,7 +2,7 @@
 layout:  zh_post
 Topic :  收敛极限
 Title :  四元数
-Update:  2021-12-26T21:42:00+08@中国-广东-深圳+08
+Update:  2021-12-28T16:14:00+08@中国-广东-深圳+08
 Author:  璀璨星辰
 Credit:
 ---
@@ -203,6 +203,7 @@ v_x \\
 -u_y & +u_x & 0 \\
 +u_z & 0 & -u_x \\
 0 & -u_z & +u_y \\
+\hline
 -u_x & -u_y & -u_z \\
 \end{matrix}\right]}\limits_{4×3} \rlap{×}{+} \left[\begin{matrix}
 v_z \\
@@ -212,6 +213,7 @@ v_x \\
 +u_x · v_y - u_y · v_x \\
 +u_z · v_x - u_x · v_z \\
 +u_y · v_z - u_z · v_y \\
+\hline
 -u_x · v_x - u_y · v_y - u_z · v_z \\
 \end{matrix}\right] \\
 \end{aligned}
@@ -361,11 +363,13 @@ $$
 u_z \\
 u_y \\
 u_x \\
+\hline
 u_w \\
 \end{matrix}\right] + \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right] &≡ (u_w + \vec{η}_x · u_x + \vec{η}_y · u_y + \vec{η}_z · u_z) + (v_w + \vec{η}_x · v_x + \vec{η}_y · v_y + \vec{η}_z · v_z) \\
 &= (u_w + v_w) + \vec{η}_x · (u_x + v_x) + \vec{η}_y · (u_y + v_y) + \vec{η}_z · (u_z + v_z) \\
@@ -373,16 +377,19 @@ v_w \\
 u_z \\
 u_y \\
 u_x \\
+\hline
 u_w \\
 \end{matrix}\right] + \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right] &= \left[\begin{matrix}
 u_z + v_z \\
 u_y + v_y \\
 u_x + v_x \\
+\hline
 u_w + v_w \\
 \end{matrix}\right] \\
 \end{aligned}
@@ -396,11 +403,13 @@ $$
 q_z \\
 q_y \\
 q_x \\
+\hline
 q_w \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right] &≡ (q_w + \vec{η}_x · q_x + \vec{η}_y · q_y + \vec{η}_z · q_z) \circledast (v_w + \vec{η}_x · v_x + \vec{η}_y · v_y + \vec{η}_z · v_z) \\
 &= q_w · v_w + q_w · (\vec{η}_x · v_x + \vec{η}_y · v_y + \vec{η}_z · v_z) + v_w · (\vec{η}_x · q_x + \vec{η}_y · q_y + \vec{η}_z · q_z) + (\vec{η}_x · q_x + \vec{η}_y · q_y + \vec{η}_z · q_z) \circledast (\vec{η}_x · v_x + \vec{η}_y · v_y + \vec{η}_z · v_z) \\
@@ -408,11 +417,13 @@ v_w \\
 q_z \\
 q_y \\
 q_x \\
+\hline
 q_w \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right] &= q_w · v_w +_4 q_w · \left[\begin{matrix}
 v_z \\
@@ -442,32 +453,37 @@ v_x \\
 q_z \\
 q_y \\
 q_x \\
+\hline
 q_w \\
 \end{matrix}\right]}_{1+3} · v_w +_4 \mathop{\left[\begin{matrix}
 -q_y & +q_x & +q_w \\
 +q_z & +q_w & -q_x \\
 +q_w & -q_z & +q_y \\
+\hline
 -q_x & -q_y & -q_z \\
 \end{matrix}\right]}\limits_{4×3} \rlap{×}{+} \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
 \end{matrix}\right] \\
-&= \mathop{\left[\begin{matrix}
+&= \mathop{\left[\begin{array}{c|ccc}
 +q_z & -q_y & +q_x & +q_w \\
 +q_y & +q_z & +q_w & -q_x \\
 +q_x & +q_w & -q_z & +q_y \\
+\hline
 +q_w & -q_x & -q_y & -q_z \\
-\end{matrix}\right]}\limits_{4×4} \rlap{×}{+} \mathop{\left[\begin{matrix}
+\end{array}\right]}\limits_{4×4} \rlap{×}{+} \mathop{\left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right]}\limits_{1+3} = \left[\begin{matrix}
 q_z · v_w - q_y · v_x + q_x · v_y + q_w · v_z \\
 q_y · v_w + q_z · v_x + q_w · v_y - q_x · v_z \\
 q_x · v_w + q_w · v_x - q_z · v_y + q_y · v_z \\
-q_w · v_w -q_x · v_x - q_y · v_y - q_z · v_z \\
+\hline
+q_w · v_w - q_x · v_x - q_y · v_y - q_z · v_z \\
 \end{matrix}\right] \\
 \end{aligned}
 $$
@@ -479,11 +495,13 @@ $$
 -v_z \\
 -v_y \\
 -v_x \\
+\hline
 +v_w \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 -q_z \\
 -q_y \\
 -q_x \\
+\hline
 +q_w \\
 \end{matrix}\right] &= v_w · q_w +_4 v_w · \left[\begin{matrix}
 -q_z \\
@@ -595,49 +613,58 @@ $$
 q_z \\
 q_y \\
 q_x \\
+\hline
 q_w \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right]\right) \circledast \left[\begin{matrix}
 p_z \\
 p_y \\
 p_x \\
+\hline
 p_w \\
 \end{matrix}\right] = \left[\begin{matrix}
 q_z · v_w - q_y · v_x + q_x · v_y + q_w · v_z \\
 q_y · v_w + q_z · v_x + q_w · v_y - q_x · v_z \\
 q_x · v_w + q_w · v_x - q_z · v_y + q_y · v_z \\
+\hline
 q_w · v_w - q_x · v_x - q_y · v_y - q_z · v_z \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 p_z \\
 p_y \\
 p_x \\
+\hline
 p_w \\
 \end{matrix}\right] \\
 &= \left[\begin{matrix}
 (q_z · v_w - q_y · v_x + q_x · v_y + q_w · v_z) · p_w - (q_y · v_w + q_z · v_x + q_w · v_y - q_x · v_z) · p_x + (q_x · v_w + q_w · v_x - q_z · v_y + q_y · v_z) · p_y + (q_w · v_w - q_x · v_x - q_y · v_y - q_z · v_z) · p_z \\
 (q_y · v_w + q_z · v_x + q_w · v_y - q_x · v_z) · p_w + (q_z · v_w - q_y · v_x + q_x · v_y + q_w · v_z) · p_x + (q_w · v_w - q_x · v_x - q_y · v_y - q_z · v_z) · p_y - (q_x · v_w + q_w · v_x - q_z · v_y + q_y · v_z) · p_z \\
 (q_x · v_w + q_w · v_x - q_z · v_y + q_y · v_z) · p_w + (q_w · v_w - q_x · v_x - q_y · v_y - q_z · v_z) · p_x - (q_z · v_w - q_y · v_x + q_x · v_y + q_w · v_z) · p_y + (q_y · v_w + q_z · v_x + q_w · v_y - q_x · v_z) · p_z \\
+\hline
 (q_w · v_w - q_x · v_x - q_y · v_y - q_z · v_z) · p_w - (q_x · v_w + q_w · v_x - q_z · v_y + q_y · v_z) · p_x - (q_y · v_w + q_z · v_x + q_w · v_y - q_x · v_z) · p_y - (q_z · v_w - q_y · v_x + q_x · v_y + q_w · v_z) · p_z \\
 \end{matrix}\right] \\
 &= \left[\begin{matrix}
 (+ q_z · p_w - q_y · p_x + q_x · p_y + q_w · p_z) · v_w + (- q_y · p_w - q_z · p_x + q_w · p_y - q_x · p_z) · v_x + (+ q_x · p_w - q_w · p_x - q_z · p_y - q_y · p_z) · v_y + (+ q_w · p_w + q_x · p_x + q_y · p_y - q_z · p_z) · v_z \\
 (+ q_y · p_w + q_z · p_x + q_w · p_y - q_x · p_z) · v_w + (+ q_z · p_w - q_y · p_x - q_x · p_y - q_w · p_z) · v_x + (+ q_w · p_w + q_x · p_x - q_y · p_y + q_z · p_z) · v_y + (- q_x · p_w + q_w · p_x - q_z · p_y - q_y · p_z) · v_z \\
 (+ q_x · p_w + q_w · p_x - q_z · p_y + q_y · p_z) · v_w + (+ q_w · p_w - q_x · p_x + q_y · p_y + q_z · p_z) · v_x + (- q_z · p_w - q_y · p_x - q_x · p_y + q_w · p_z) · v_y + (+ q_y · p_w - q_z · p_x - q_w · p_y - q_x · p_z) · v_z \\
+\hline
 (+ q_w · p_w - q_x · p_x - q_y · p_y - q_z · p_z) · v_w + (- q_x · p_w - q_w · p_x - q_z · p_y + q_y · p_z) · v_x + (- q_y · p_w + q_z · p_x - q_w · p_y - q_x · p_z) · v_y + (- q_z · p_w - q_y · p_x + q_x · p_y - q_w · p_z) · v_z \\
 \end{matrix}\right] \\
-&= \left[\begin{matrix}
+&= \left[\begin{array}{c|ccc}
 (+ q_w · p_z + q_x · p_y - q_y · p_x + q_z · p_w) & (+ q_w · p_y - q_x · p_z - q_y · p_w - q_z · p_x) & (- q_w · p_x + q_x · p_w - q_y · p_z - q_z · p_y) & (+ q_w · p_w + q_x · p_x + q_y · p_y - q_z · p_z) \\
 (+ q_w · p_y - q_x · p_z + q_y · p_w + q_z · p_x) & (- q_w · p_z - q_x · p_y - q_y · p_x + q_z · p_w) & (+ q_w · p_w + q_x · p_x - q_y · p_y + q_z · p_z) & (+ q_w · p_x - q_x · p_w - q_y · p_z - q_z · p_y) \\
 (+ q_w · p_x + q_x · p_w + q_y · p_z - q_z · p_y) & (+ q_w · p_w - q_x · p_x + q_y · p_y + q_z · p_z) & (+ q_w · p_z - q_x · p_y - q_y · p_x - q_z · p_w) & (- q_w · p_y - q_x · p_z + q_y · p_w - q_z · p_x) \\
+\hline
 (+ q_w · p_w - q_x · p_x - q_y · p_y - q_z · p_z) & (- q_w · p_x - q_x · p_w + q_y · p_z - q_z · p_y) & (- q_w · p_y - q_x · p_z - q_y · p_w + q_z · p_x) & (- q_w · p_z + q_x · p_y - q_y · p_x - q_z · p_w) \\
-\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+\end{array}\right] \rlap{×}{+} \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right] \\
 \end{aligned}
@@ -650,49 +677,58 @@ $$
 q_z \\
 q_y \\
 q_x \\
+\hline
 q_w \\
 \end{matrix}\right] \circledast \left(\left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 p_z \\
 p_y \\
 p_x \\
+\hline
 p_w \\
 \end{matrix}\right]\right) = \left[\begin{matrix}
 q_z \\
 q_y \\
 q_x \\
+\hline
 q_w \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 v_z · p_w - v_y · p_x + v_x · p_y + v_w · p_z \\
 v_y · p_w + v_z · p_x + v_w · p_y - v_x · p_z \\
 v_x · p_w + v_w · p_x - v_z · p_y + v_y · p_z \\
+\hline
 v_w · p_w - v_x · p_x - v_y · p_y - v_z · p_z \\
 \end{matrix}\right] \\
 &= \left[\begin{matrix}
 + q_z · (v_w · p_w - v_x · p_x - v_y · p_y - v_z · p_z) - q_y · (v_x · p_w + v_w · p_x- v_z · p_y + v_y · p_z) + q_x · (v_y · p_w + v _z · p_x + v_w · p_y - v_x · p_z) + q_w · (v_z · p_w - v_y · p_x + v_x · p_y + v_w · p_z) \\
 + q_y · (v_w · p_w - v_x · p_x - v_y · p_y - v_z · p_z) + q_z · (v_x · p_w + v_w · p_x- v_z · p_y + v_y · p_z) + q_w · (v_y · p_w + v _z · p_x + v_w · p_y - v_x · p_z) - q_x · (v_z · p_w - v_y · p_x + v_x · p_y + v_w · p_z) \\
 + q_x · (v_w · p_w - v_x · p_x - v_y · p_y - v_z · p_z) + q_w · (v_x · p_w + v_w · p_x- v_z · p_y + v_y · p_z) - q_z · (v_y · p_w + v _z · p_x + v_w · p_y - v_x · p_z) + q_y · (v_z · p_w - v_y · p_x + v_x · p_y + v_w · p_z) \\
+\hline
 + q_w · (v_w · p_w - v_x · p_x - v_y · p_y - v_z · p_z) - q_x · (v_x · p_w + v_w · p_x- v_z · p_y + v_y · p_z) - q_y · (v_y · p_w + v _z · p_x + v_w · p_y - v_x · p_z) - q_z · (v_z · p_w - v_y · p_x + v_x · p_y + v_w · p_z) \\
 \end{matrix}\right] \\
 &= \left[\begin{matrix}
 (+ q_z · p_w - q_y · p_x + q_x · p_y + q_w · p_z) · v_w & (- q_z · p_x - q_y · p_w - q_x · p_z + q_w · p_y) · v_x & (- q_z · p_y - q_y · p_z + q_x · p_w - q_w · p_x) · v_y & (- q_z · p_z + q_y · p_y + q_x · p_x + q_w · p_w) · v_z \\
 (+ q_y · p_w + q_z · p_x + q_w · p_y - q_x · p_z) · v_w & (- q_y · p_x + q_z · p_w - q_w · p_z - q_x · p_y) · v_x & (- q_y · p_y + q_z · p_z + q_w · p_w + q_x · p_x) · v_y & (- q_y · p_z - q_z · p_y + q_w · p_x - q_x · p_w) · v_z \\
 (+ q_x · p_w + q_w · p_x - q_z · p_y + q_y · p_z) · v_w & (- q_x · p_x + q_w · p_w + q_z · p_z + q_y · p_y) · v_x & (- q_x · p_y + q_w · p_z - q_z · p_w - q_y · p_x) · v_y & (- q_x · p_z - q_w · p_y - q_z · p_x + q_y · p_w) · v_z \\
+\hline
 (+ q_w · p_w - q_x · p_x - q_y · p_y - q_z · p_z) · v_w & (- q_w · p_x - q_x · p_w + q_y · p_z - q_z · p_y) · v_x & (- q_w · p_y - q_x · p_z - q_y · p_w + q_z · p_x) · v_y & (- q_w · p_z + q_x · p_y - q_y · p_x - q_z · p_w) · v_z \\
 \end{matrix}\right] \\
-&= \left[\begin{matrix}
+&= \left[\begin{array}{c|ccc}
 (+ q_w · p_z + q_x · p_y - q_y · p_x + q_z · p_w) & (+ q_w · p_y - q_x · p_z - q_y · p_w - q_z · p_x) & (- q_w · p_x + q_x · p_w - q_y · p_z - q_z · p_y) & (+ q_w · p_w + q_x · p_x + q_y · p_y - q_z · p_z) \\
 (+ q_w · p_y - q_x · p_z + q_y · p_w + q_z · p_x) & (- q_w · p_z - q_x · p_y - q_y · p_x + q_z · p_w) & (+ q_w · p_w + q_x · p_x - q_y · p_y + q_z · p_z) & (+ q_w · p_x - q_x · p_w - q_y · p_z - q_z · p_y) \\
 (+ q_w · p_x + q_x · p_w + q_y · p_z - q_z · p_y) & (+ q_w · p_w - q_x · p_x + q_y · p_y + q_z · p_z) & (+ q_w · p_z - q_x · p_y - q_y · p_x - q_z · p_w) & (- q_w · p_y - q_x · p_z + q_y · p_w - q_z · p_x) \\
+\hline
 (+ q_w · p_w - q_x · p_x - q_y · p_y - q_z · p_z) & (- q_w · p_x - q_x · p_w + q_y · p_z - q_z · p_y) & (- q_w · p_y - q_x · p_z - q_y · p_w + q_z · p_x) & (- q_w · p_z + q_x · p_y - q_y · p_x - q_z · p_w) \\
-\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+\end{array}\right] \rlap{×}{+} \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right] \\
 \end{aligned}
@@ -707,37 +743,44 @@ $$
 +q_z \\
 +q_y \\
 +q_x \\
+\hline
 +q_w \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 +q_z \\
 +q_y \\
 +q_x \\
+\hline
 +q_w \\
 \end{matrix}\right] = \left[\begin{matrix}
 q_z · v_w - q_y · v_x + q_x · v_y + q_w · v_z \\
 q_y · v_w + q_z · v_x + q_w · v_y - q_x · v_z \\
 q_x · v_w + q_w · v_x - q_z · v_y + q_y · v_z \\
+\hline
 q_w · v_w - q_x · v_x - q_y · v_y - q_z · v_z \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 +q_z \\
 +q_y \\
 +q_x \\
+\hline
 +q_w \\
 \end{matrix}\right] \\
-&= \mathop{\left[\begin{matrix}
+&= \mathop{\left[\begin{array}{c|ccc}
 +2 · q_w · q_z & -2 · q_z · q_x & -2 · q_y · q_z & q_w^2 + q_x^2 + q_y^2 - q_z^2 \\
 +2 · q_w · q_y & -2 · q_x · q_y & q_w^2 + q_x^2 - q_y^2 + q_z^2 & -2 · q_y · q_z \\
 +2 · q_w · q_x & q_w^2 - q_x^2 + q_y^2 + q_z^2 & -2 · q_x · q_y & -2 · q_z · q_x \\
+\hline
 q_w^2 - q_x^2 - q_y^2 - q_z^2 & -2 · q_w · q_x & -2 · q_w · q_y & -2 · q_w · q_z \\
-\end{matrix}\right]}\limits_{4×4} \rlap{×}{+} \mathop{\left[\begin{matrix}
+\end{array}\right]}\limits_{4×4} \rlap{×}{+} \mathop{\left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right]}\limits_{1+3} \\
 \end{aligned}
@@ -752,37 +795,44 @@ $$
 +q_z \\
 +q_y \\
 +q_x \\
+\hline
 +q_w \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 -q_z \\
 -q_y \\
 -q_x \\
+\hline
 +q_w \\
 \end{matrix}\right] = \left[\begin{matrix}
 q_z · v_w - q_y · v_x + q_x · v_y + q_w · v_z \\
 q_y · v_w + q_z · v_x + q_w · v_y - q_x · v_z \\
 q_x · v_w + q_w · v_x - q_z · v_y + q_y · v_z \\
+\hline
 q_w · v_w - q_x · v_x - q_y · v_y - q_z · v_z \\
 \end{matrix}\right] \circledast \left[\begin{matrix}
 -q_z \\
 -q_y \\
 -q_x \\
+\hline
 +q_w \\
 \end{matrix}\right] \\
-&= \mathop{\left[\begin{matrix}
+&= \mathop{\left[\begin{array}{c|ccc}
 0 & 2 · (- q_w · q_y + q_z · q_x) & 2 · (+ q_w · q_x + q_y · q_z) & q_w^2 - q_x^2 - q_y^2 + q_z^2 \\
 0 & 2 · (+ q_w · q_z + q_x · q_y) & q_w^2 - q_x^2 + q_y^2 - q_z^2 & 2 · (- q_w · q_x + q_y · q_z) \\
 0 & q_w^2 + q_x^2 - q_y^2 - q_z^2 & 2 · (- q_w · q_z + q_x · q_y) & 2 · (+ q_w · q_y + q_z · q_x) \\
+\hline
 q_w^2 + q_x^2 + q_y^2 + q_z^2 & 0 & 0 & 0 \\
-\end{matrix}\right]}\limits_{4×4} \rlap{×}{+} \mathop{\left[\begin{matrix}
+\end{array}\right]}\limits_{4×4} \rlap{×}{+} \mathop{\left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 v_w \\
 \end{matrix}\right]}\limits_{1+3} \\
 \end{aligned}
@@ -794,15 +844,17 @@ $$
 \begin{aligned}
 &ә^{+\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \circledast \vec{v} \circledast ә^{-\vec{n}_{\vec{q}}·\frac{\arg\bold{q}}{2}} \\
 &= \left[ q_w + \vec{η}_x · q_x + \vec{η}_y · q_y + \vec{η}_z · q_z \right] \circledast \vec{v} \circledast \left[ q_w - \vec{η}_x · q_x - \vec{η}_y · q_y - \vec{η}_z · q_z \right] \\
-&= \mathop{\left[\begin{matrix}
+&= \mathop{\left[\begin{array}{c|ccc}
 0 & 2 · (- q_w · q_y + q_z · q_x) & 2 · (+ q_w · q_x + q_y · q_z) & 1 - 2 · (q_x^2 + q_y^2) \\
 0 & 2 · (+ q_w · q_z + q_x · q_y) & 1 - 2 · (q_x^2 + q_z^2) & 2 · (- q_w · q_x + q_y · q_z) \\
 0 & 1 - 2 · (q_y^2 + q_z^2) & 2 · (- q_w · q_z + q_x · q_y) & 2 · (+ q_w · q_y + q_z · q_x) \\
+\hline
 1 & 0 & 0 & 0 \\
-\end{matrix}\right]}\limits_{4×4} \mathop{\rlap{×}{+}}\limits_{0=v_w}^{1=q_x^2+q_y^2+q_z^2+q_w^2} \mathop{\left[\begin{matrix}
+\end{array}\right]}\limits_{4×4} \mathop{\rlap{×}{+}}\limits_{0=v_w}^{1=q_x^2+q_y^2+q_z^2+q_w^2} \mathop{\left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 0 \\
 \end{matrix}\right]}\limits_{1+3} \\
 \end{aligned}
@@ -812,26 +864,30 @@ $$
 \begin{aligned}
 &ә^{+\vec{n}_{\vec{q}}·\frac{\varphi}{2}} \circledast \vec{v} \circledast ә^{-\vec{n}_{\vec{q}}·\frac{\varphi}{2}} \\
 &= \left[ \cos\dfrac{\varphi}{2} + \sin\dfrac{\varphi}{2} · (\vec{η}_x · n_x + \vec{η}_y · n_y + \vec{η}_z · n_z) \right] \circledast \vec{v} \circledast \left[ \cos\dfrac{\varphi}{2} - \sin\dfrac{\varphi}{2} · (\vec{η}_x · n_x + \vec{η}_y · n_y + \vec{η}_z · n_z) \right] \\
-&= \left[\begin{matrix}
+&= \left[\begin{array}{c|ccc}
 0 & 2 · \left( -n_y · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} + n_z · n_x · \sin^{2}\dfrac{\varphi}{2} \right) & 2 · \left( +n_x · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} + n_y · n_z · \sin^{2}\dfrac{\varphi}{2} \right) & \cos^{2}\dfrac{\varphi}{2} + \sin^{2}\dfrac{\varphi}{2} · \left( - n_x^2 - n_y^2 + n_z^2 \right) \\
 0 & 2 · \left( +n_z · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} + n_x · n_y · \sin^{2}\dfrac{\varphi}{2} \right) & \cos^{2}\dfrac{\varphi}{2}  + \sin^{2}\dfrac{\varphi}{2} · \left( - n_x^2 + n_y^2 - n_z^2 \right) & 2 · \left( - n_x · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} + n_y · n_z · \sin^{2}\dfrac{\varphi}{2} \right) \\
 0 & \cos^{2}\dfrac{\varphi}{2} + \sin^{2}\dfrac{\varphi}{2} · \left( n_x^2 - n_y^2 - n_z^2 \right) & 2 · \left( -n_z · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} + n_x · n_y · \sin^{2}\dfrac{\varphi}{2} \right) & 2 · \left( +n_y · \cos\dfrac{\varphi}{2} · \sin\dfrac{\varphi}{2} + n_z · n_x · \sin^{2}\dfrac{\varphi}{2} \right) \\
+\hline
 1 & 0 & 0 & 0 \\
-\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+\end{array}\right] \rlap{×}{+} \left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
-1 \\
+\hline
+0 \\
 \end{matrix}\right] \\
-&= \mathop{\left[\begin{matrix}
+&= \mathop{\left[\begin{array}{c|ccc}
 0 & -n_y · \sin\varphi + n_z · n_x · (1 - \cos\varphi) & +n_x · \sin\varphi + n_y · n_z · (1 - \cos\varphi) & \cos\varphi + n_z^2 · (1 - \cos\varphi) \\
 0 & +n_z · \sin\varphi + n_x · n_y · (1 - \cos\varphi) & \cos\varphi + n_y^2 · (1 - \cos\varphi) & -n_x · \sin\varphi + n_y · n_z · (1 - \cos\varphi) \\
 0 & \cos\varphi + n_x^2 · (1 - \cos\varphi) & -n_z · \sin\varphi + n_x · n_y · (1 - \cos\varphi) & +n_y · \sin\varphi + n_z · n_x · (1 - \cos\varphi) \\
+\hline
 1 & 0 & 0 & 0 \\
-\end{matrix}\right]}\limits_{4×4} \mathop{\rlap{×}{+}}\limits_{0=v_w}^{1=q_x^2+q_y^2+q_z^2+q_w^2} \mathop{\left[\begin{matrix}
+\end{array}\right]}\limits_{4×4} \mathop{\rlap{×}{+}}\limits_{0=v_w}^{1=q_x^2+q_y^2+q_z^2+q_w^2} \mathop{\left[\begin{matrix}
 v_z \\
 v_y \\
 v_x \\
+\hline
 0 \\
 \end{matrix}\right]}\limits_{1+3} \\
 \end{aligned}
@@ -871,48 +927,52 @@ $$
 
 $$
 \begin{aligned}
+\dfrac{|\vec{u}|}{|\vec{v}|} · ә^{+\vec{n}_{⊥} · \frac{∠(\vec{v},\vec{u})}{2}} \circledast \vec{v} \circledast ә^{-\vec{n}_{⊥} · \frac{∠(\vec{v},\vec{u})}{2}} &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \vec{u} \\
 ә^{\vec{n}_{⊥} · \frac{∠(\vec{v},\vec{u})}{2}} &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \cos\dfrac{∠(\vec{v},\vec{u})}{2} + \vec{n}_{⊥} · \sin\dfrac{∠(\vec{v},\vec{u})}{2} \\
 &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{\sqrt{1 + \cos∠(\vec{v},\vec{u})}}{\sqrt{2}} · \left( 1 + \dfrac{\vec{n}_{⊥} · \sin∠(\vec{v},\vec{u})}{1 + \cos∠(\vec{v},\vec{u})} \right) = \dfrac{1 + \cos∠(\vec{v},\vec{u}) + \vec{n}_{⊥} · \sin∠(\vec{v},\vec{u})}{\sqrt{2 · (1 + \cos∠(\vec{v},\vec{u}))}} \\
 &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{1 + \frac{\vec{v} \odot \vec{u}}{|\vec{v}| · |\vec{u}|} + \frac{\vec{v} \otimes \vec{u}}{|\vec{v}| · |\vec{u}|}}{\sqrt{2 · \left( 1 + \frac{\vec{v} \odot |\vec{u}|}{|\vec{v}| · |\vec{u}|} \right)}} \\
 ә^{\vec{n}_{⊥} · \frac{∠(\vec{v},\vec{u})}{2}} &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{1 + \vec{n}_{\vec{v}} \odot \vec{n}_{\vec{u}} + \vec{n}_{\vec{v}} \otimes \vec{n}_{\vec{u}}}{\sqrt{2 · (1 + \vec{n}_{\vec{v}} \odot \vec{n}_{\vec{u}})}} = \dfrac{|\vec{v}| · |\vec{u}| + \vec{v} \odot \vec{u} + \vec{v} \otimes \vec{u}}{\sqrt{2 · |\vec{v}| · |\vec{u}| · (|\vec{v}| · |\vec{u}| + \vec{v} \odot \vec{u})}} \\
-\dfrac{|\vec{u}|}{|\vec{v}|} · ә^{\vec{n}_{⊥} · \frac{∠(\vec{v},\vec{u})}{2}} &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{|\vec{u}|}{|\vec{v}|} · \dfrac{1 + \vec{n}_{\vec{v}} \odot \vec{n}_{\vec{u}} + \vec{n}_{\vec{v}} \otimes \vec{n}_{\vec{u}}}{\sqrt{2 · (1 + \vec{n}_{\vec{v}} \odot \vec{n}_{\vec{u}})}} = \dfrac{|\vec{u}|}{|\vec{v}|} · \dfrac{|\vec{v}| · |\vec{u}| + \vec{v} \odot \vec{u} + \vec{v} \otimes \vec{u}}{\sqrt{2 · |\vec{v}| · |\vec{u}| · (|\vec{v}| · |\vec{u}| + \vec{v} \odot \vec{u})}} \\
+\dfrac{\sqrt{|\vec{u}|}}{\sqrt{|\vec{v}|}} · ә^{\vec{n}_{⊥} · \frac{∠(\vec{v},\vec{u})}{2}} &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{\sqrt{|\vec{u}|}}{\sqrt{|\vec{v}|}} · \dfrac{1 + \vec{n}_{\vec{v}} \odot \vec{n}_{\vec{u}} + \vec{n}_{\vec{v}} \otimes \vec{n}_{\vec{u}}}{\sqrt{2 · (1 + \vec{n}_{\vec{v}} \odot \vec{n}_{\vec{u}})}} = \dfrac{\sqrt{|\vec{u}|}}{\sqrt{|\vec{v}|}} · \dfrac{|\vec{v}| · |\vec{u}| + \vec{v} \odot \vec{u} + \vec{v} \otimes \vec{u}}{\sqrt{2 · |\vec{v}| · |\vec{u}| · (|\vec{v}| · |\vec{u}| + \vec{v} \odot \vec{u})}} \\
 \end{aligned}
 $$
 
 将$3$维空间矢量$\vec{v}$按右手旋转变成$3$维空间矢量$\vec{u}$所对应的旋转矩阵。注意：$3$维空间矢量$\vec{v}$与$3$维空间矢量$\vec{u}$的度量值未必相等，而且$\left[ \vec{v} ∥ \vec{u} \right] ⇔ \left[ \vec{0} = \vec{v} \otimes \vec{u} \right]$。
 
-注意：$3$维空间矢量$\vec{v}$的$\vec{η}_w$分量为$0$，而且当$\vec{n}⊥\vec{v}$时旋转矩阵与$3$维空间矢量$\vec{v}$合乘运算的$\vec{η}_w$分量为$0$，因此可以将旋转矩阵的标量直角镖除对角线外置为$0$。
+注意：$3$维空间矢量$\vec{v}$的$\vec{η}_w$分量为$0$，而且当$\vec{n}⊥\vec{v}$时旋转矩阵与$3$维空间矢量$\vec{v}$合乘运算的$\vec{η}_w$分量为$0$，因此四元数所对应的旋转矩阵可以降维成$3×3$元矩阵。
+
+注意：若将四元数所对应的$3×3$元旋转矩阵应用于$3$维空间点的$4$元齐次坐标，则$4$元齐次坐标经过$4×4$元旋转矩阵变换后应当使其齐次性质保持不变。
 
 $$
 \begin{aligned}
-ә^{\vec{n}_{⊥} · ∠(\vec{v},\vec{u})} &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \cos∠(\vec{v},\vec{u}) + \vec{n}_{⊥} · \sin∠(\vec{v},\vec{u}) \\
-&\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{\vec{v} \odot \vec{u} + \vec{v} \otimes \vec{u}}{|\vec{v}| · |\vec{u}|} == \dfrac{1}{|\vec{v}| · |\vec{u}|} · \left[\begin{matrix}
+\dfrac{|\vec{u}|}{|\vec{v}|} · ә^{\vec{n}_{⊥} · ∠(\vec{v},\vec{u})} \circledast \vec{v} &\mathop{==} \vec{u} \\
+ә^{\vec{n}_{⊥} · ∠(\vec{v},\vec{u})} &\mathop{==} \cos∠(\vec{v},\vec{u}) + \vec{n}_{⊥} · \sin∠(\vec{v},\vec{u}) \\
+&\mathop{==} \dfrac{\vec{v} \odot \vec{u} + \vec{v} \otimes \vec{u}}{|\vec{v}| · |\vec{u}|} == \dfrac{1}{|\vec{v}| · |\vec{u}|} · \left[\begin{matrix}
 v_x · u_y - v_y · u_x \\
 v_z · u_x - v_x · u_z \\
 v_y · u_z - v_z · u_y \\
 \hline
 v_x · u_x + v_y · u_y + v_z · u_z \\
-\end{matrix}\right] \mathop{≈≈} \dfrac{1}{|\vec{v}| · |\vec{u}|} · \left[\begin{array}{c|ccc}
+\end{matrix}\right] \mathop{≈≈}\limits_{\rlap{×}{+}}^{\circledast} \dfrac{1}{|\vec{v}| · |\vec{u}|} · \left[\begin{array}{c|ccc}
 \rlap{+q_z}{≡≡} & -q_y & +q_x & +q_w \\
 \rlap{+q_y}{≡≡} & +q_z & +q_w & -q_x \\
 \rlap{+q_x}{≡≡} & +q_w & -q_z & +q_y \\
 \hline
-+q_w & \rlap{-q_x}{≡≡} & \rlap{-q_y}{≡≡} & \rlap{-q_z}{≡≡} \\
+\rlap{+q_w}{≡≡} & \rlap{-q_x}{≡≡} & \rlap{-q_y}{≡≡} & \rlap{-q_z}{≡≡} \\
 \end{array}\right] \\
-&\mathop{≈≈}\limits^{\vec{v} ∦ \vec{u}} \dfrac{1}{|\vec{v}| · |\vec{u}|} · \left[\begin{array}{c|ccc}
-+(v_x · u_y - v_y · u_x) & -(v_z · u_x - v_x · u_z) & +(v_y · u_z - v_z · u_y) & v_x · u_x + v_y · u_y + v_z · u_z \\
-+(v_z · u_x - v_x · u_z) & +(v_x · u_y - v_y · u_x) & v_x · u_x + v_y · u_y + v_z · u_z & -(v_y · u_z - v_z · u_y) \\
-+(v_y · u_z - v_z · u_y) & v_x · u_x + v_y · u_y + v_z · u_z & -(v_x · u_y - v_y · u_x) & +(v_z · u_x - v_x · u_z) \\
+&\mathop{≈≈}\limits_{\rlap{×}{+}}^{\circledast} \dfrac{1}{|\vec{v}| · |\vec{u}|} · \left[\begin{array}{c|ccc}
+0 & -(v_z · u_x - v_x · u_z) & +(v_y · u_z - v_z · u_y) & v_x · u_x + v_y · u_y + v_z · u_z \\
+0 & +(v_x · u_y - v_y · u_x) & v_x · u_x + v_y · u_y + v_z · u_z & -(v_y · u_z - v_z · u_y) \\
+0 & v_x · u_x + v_y · u_y + v_z · u_z & -(v_x · u_y - v_y · u_x) & +(v_z · u_x - v_x · u_z) \\
 \hline
-v_x · u_x + v_y · u_y + v_z · u_z & -(v_y · u_z - v_z · u_y) & -(v_z · u_x - v_x · u_z) & -(v_x · u_y - v_y · u_x) \\
+|\vec{v}| · |\vec{u}| & 0 & 0 & 0 \\
 \end{array}\right] \\
-\dfrac{|\vec{u}|}{|\vec{v}|} · ә^{\vec{n}_{⊥} · ∠(\vec{v},\vec{u})} &\mathop{==}\limits^{\vec{v} ∦ \vec{u}} \dfrac{\vec{v} \odot \vec{u} + \vec{v} \otimes \vec{u}}{|\vec{v}|^2} \\
-&\mathop{≈≈}\limits^{\vec{v} ∦ \vec{u}} \dfrac{1}{|\vec{v}|^2} · \left[\begin{array}{c|ccc}
-+(v_x · u_y - v_y · u_x) & -(v_z · u_x - v_x · u_z) & +(v_y · u_z - v_z · u_y) & v_x · u_x + v_y · u_y + v_z · u_z \\
-+(v_z · u_x - v_x · u_z) & +(v_x · u_y - v_y · u_x) & v_x · u_x + v_y · u_y + v_z · u_z & -(v_y · u_z - v_z · u_y) \\
-+(v_y · u_z - v_z · u_y) & v_x · u_x + v_y · u_y + v_z · u_z & -(v_x · u_y - v_y · u_x) & +(v_z · u_x - v_x · u_z) \\
+\dfrac{|\vec{u}|}{|\vec{v}|} · ә^{\vec{n}_{⊥} · ∠(\vec{v},\vec{u})} &\mathop{==} \dfrac{\vec{v} \odot \vec{u} + \vec{v} \otimes \vec{u}}{|\vec{v}|^2} \\
+&\mathop{≈≈}\limits_{\rlap{×}{+}}^{\circledast} \dfrac{1}{|\vec{v}|^2} · \left[\begin{array}{c|ccc}
+0 & -(v_z · u_x - v_x · u_z) & +(v_y · u_z - v_z · u_y) & v_x · u_x + v_y · u_y + v_z · u_z \\
+0 & +(v_x · u_y - v_y · u_x) & v_x · u_x + v_y · u_y + v_z · u_z & -(v_y · u_z - v_z · u_y) \\
+0 & v_x · u_x + v_y · u_y + v_z · u_z & -(v_x · u_y - v_y · u_x) & +(v_z · u_x - v_x · u_z) \\
 \hline
-v_x · u_x + v_y · u_y + v_z · u_z & -(v_y · u_z - v_z · u_y) & -(v_z · u_x - v_x · u_z) & -(v_x · u_y - v_y · u_x) \\
+|\vec{v}|^2 & 0 & 0 & 0 \\
 \end{array}\right] \\
 \end{aligned}
 $$
