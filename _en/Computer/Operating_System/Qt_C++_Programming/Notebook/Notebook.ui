@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MW_Notebook</class>
+ <widget class="QMainWindow" name="MW_Notebook">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MW_Notebook</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QSpinBox" name="SB_Font_Size"/>
+      </item>
+      <item>
+       <widget class="QComboBox" name="CB_Font_Name"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="TE_Notebook">
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;QTextEdit&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPlainTextEdit" name="PTE_Notebook">
+      <property name="plainText">
+       <string>QPlainTextEdit</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="L_Filename">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QProgressBar" name="progressBar">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="value">
+         <number>24</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="A_New"/>
+    <addaction name="A_Open"/>
+    <addaction name="separator"/>
+    <addaction name="A_Close"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>编辑</string>
+    </property>
+    <addaction name="A_Cut"/>
+    <addaction name="A_Copy"/>
+    <addaction name="A_Paste"/>
+    <addaction name="separator"/>
+    <addaction name="A_Clear"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>格式</string>
+    </property>
+    <addaction name="A_Bold"/>
+    <addaction name="A_Italic"/>
+    <addaction name="A_Underline"/>
+    <addaction name="separator"/>
+    <addaction name="A_Show"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="A_New"/>
+   <addaction name="A_Open"/>
+   <addaction name="A_Clear"/>
+   <addaction name="separator"/>
+   <addaction name="A_Cut"/>
+   <addaction name="A_Copy"/>
+   <addaction name="A_Paste"/>
+   <addaction name="separator"/>
+   <addaction name="A_Bold"/>
+   <addaction name="A_Italic"/>
+   <addaction name="A_Underline"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="A_New">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Images/note_add.png</normaloff>:/Images/note_add.png</iconset>
+   </property>
+   <property name="text">
+    <string>新建</string>
+   </property>
+  </action>
+  <action name="A_Open">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Images/file_open.png</normaloff>:/Images/file_open.png</iconset>
+   </property>
+   <property name="text">
+    <string>打开</string>
+   </property>
+  </action>
+  <action name="A_Clear">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Images/clear_all.png</normaloff>:/Images/clear_all.png</iconset>
+   </property>
+   <property name="text">
+    <string>清空</string>
+   </property>
+  </action>
+  <action name="A_Cut">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Images/content_cut.png</normaloff>:/Images/content_cut.png</iconset>
+   </property>
+   <property name="text">
+    <string>剪切</string>
+   </property>
+  </action>
+  <action name="A_Copy">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Images/content_copy.png</normaloff>:/Images/content_copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>复制</string>
+   </property>
+  </action>
+  <action name="A_Paste">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Images/content_paste.png</normaloff>:/Images/content_paste.png</iconset>
+   </property>
+   <property name="text">
+    <string>粘贴</string>
+   </property>
+  </action>
+  <action name="A_Bold">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Images/format_bold.png</normaloff>:/Images/format_bold.png</iconset>
+   </property>
+   <property name="text">
+    <string>粗体</string>
+   </property>
+  </action>
+  <action name="A_Italic">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Images/format_italic.png</normaloff>:/Images/format_italic.png</iconset>
+   </property>
+   <property name="text">
+    <string>斜体</string>
+   </property>
+  </action>
+  <action name="A_Underline">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Images/format_underlined.png</normaloff>:/Images/format_underlined.png</iconset>
+   </property>
+   <property name="text">
+    <string>下划线</string>
+   </property>
+  </action>
+  <action name="A_Close">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Images/close.png</normaloff>:/Images/close.png</iconset>
+   </property>
+   <property name="text">
+    <string>关闭</string>
+   </property>
+  </action>
+  <action name="A_Show">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>显示标签</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

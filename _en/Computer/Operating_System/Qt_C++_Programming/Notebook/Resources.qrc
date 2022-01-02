@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/add.png</file>
+        <file>Images/backspace.png</file>
+        <file>Images/clear.png</file>
+        <file>Images/clear_all.png</file>
+        <file>Images/close.png</file>
+        <file>Images/content_copy.png</file>
+        <file>Images/content_cut.png</file>
+        <file>Images/content_paste.png</file>
+        <file>Images/delete.png</file>
+        <file>Images/delete_sweep.png</file>
+        <file>Images/drive_file_move_rtl.png</file>
+        <file>Images/edit.png</file>
+        <file>Images/file_copy.png</file>
+        <file>Images/file_open.png</file>
+        <file>Images/folder_copy.png</file>
+        <file>Images/folder_delete.png</file>
+        <file>Images/folder_open.png</file>
+        <file>Images/font_download.png</file>
+        <file>Images/format_bold.png</file>
+        <file>Images/format_italic.png</file>
+        <file>Images/format_underlined.png</file>
+        <file>Images/history.png</file>
+        <file>Images/Link.md</file>
+        <file>Images/new_label.png</file>
+        <file>Images/note_add.png</file>
+        <file>Images/open_in_new.png</file>
+        <file>Images/refresh.png</file>
+        <file>Images/remove.png</file>
+        <file>Images/sort_by_alpha.png</file>
+        <file>Images/spellcheck.png</file>
+        <file>Images/text_format.png</file>
+    </qresource>
+</RCC>

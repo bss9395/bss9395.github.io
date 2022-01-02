@@ -134,7 +134,6 @@ int main(int argc, char *argv[]) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // #ifdef __APPLE__
     glfwWindowHint(GLFW_SAMPLES, 4);
     _Window = glfwCreateWindow(_Width_sc, _Height_sc, "X-Z Coordinate", NULL, NULL);
     glfwMakeContextCurrent(_Window);
@@ -240,7 +239,7 @@ int main(int argc, char *argv[]) {
     glCullFace(GL_BACK);
     // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    glLineWidth(5.0f); // maybe unsupported.
+    glLineWidth(5.0f);
     GLfloat range[2] = { 0.0f, 0.0f };
     glGetFloatv(GL_ALIASED_LINE_WIDTH_RANGE, range);
     fprintf(stderr, "%f, %f \n", range[0], range[1]);
@@ -279,7 +278,7 @@ int main(int argc, char *argv[]) {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, _Texture);
         glBindVertexArray(_VAO_Cube);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 24);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 24);  // note: GL_TRIANGLES
 
         ////////////////////////////////
 
