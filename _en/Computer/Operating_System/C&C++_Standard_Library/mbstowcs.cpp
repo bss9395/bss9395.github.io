@@ -21,11 +21,11 @@ typedef unsigned char unch;
 typedef wchar_t wide;       // note: typedef unsigned short wchar_t;
 typedef intptr_t iptr;
 
-#ifdef _WIN32 
+#ifdef _WIN32
 #define Platform(windows, linux) windows
 #elif __linux__
 #define Platform(windows, linux) linux
-#endif 
+#endif
 
 typedef const char *Locale;
 struct {
@@ -150,7 +150,7 @@ iptr Transcode(const std::string &filename_local) {
 
     fprintf(stderr, "\n""locale = %s", locale);
     fprintf(stderr, "\n""numb = %td", numb);
-    // fwprintf(stdout, L"\n""%s", text.data());         // note: stderr, mess. two bugs on g++ (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0        
+    // fwprintf(stdout, L"\n""%s", text.data());         // note: stderr, mess. two bugs on g++ (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
     fprintf(stderr, "\n""%ls", text.data());
     fprintf(stderr, "\n");
     for (iptr i = 0; i < leng; i += 1) {
