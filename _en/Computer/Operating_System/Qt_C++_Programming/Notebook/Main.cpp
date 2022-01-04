@@ -1,7 +1,8 @@
 /* Notebook
 Author: BSS9395
-Update: 2022-01-02T23:59:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-01-05T01:10:00+08@China-Guangdong-Shenzhen+08
 Design: Notebook Text Editor
+Encode: UTF-8
 */
 
 #include "Common.h"

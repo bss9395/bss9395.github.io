@@ -3,7 +3,7 @@
 
 #include "Common.h"
 
-class MW_Notebook : public QMainWindow{
+class MW_Notebook : public QMainWindow {
     Q_OBJECT
 
 private:

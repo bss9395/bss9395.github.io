@@ -16,14 +16,86 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QSpinBox" name="SB_Font_Size"/>
-      </item>
-      <item>
-       <widget class="QComboBox" name="CB_Font_Name"/>
-      </item>
-     </layout>
+     <widget class="QGroupBox" name="GB_Font">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox { 
+	border:none
+}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFontComboBox" name="FCB_Font_Family">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="sizeIncrement">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToContents</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="SB_Font_Size">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </item>
     <item>
      <widget class="QTextEdit" name="TE_Notebook">
@@ -44,28 +116,54 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLabel" name="L_Filename">
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QProgressBar" name="progressBar">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="value">
-         <number>24</number>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QGroupBox" name="GB_Status_Bar">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>1</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="L_Filename">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="PB_Font_Size">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -111,8 +209,15 @@ p, li { white-space: pre-wrap; }
    <addaction name="menu_2"/>
    <addaction name="menu_3"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar">
+  <widget class="QStatusBar" name="SB_Status_Bar">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="TB_Major">
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
@@ -136,22 +241,23 @@ p, li { white-space: pre-wrap; }
    <addaction name="A_Bold"/>
    <addaction name="A_Italic"/>
    <addaction name="A_Underline"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QToolBar" name="toolBar_2">
    <property name="windowTitle">
-    <string>toolBar_2</string>
+    <string>TB_Minor</string>
    </property>
    <attribute name="toolBarArea">
-    <enum>LeftToolBarArea</enum>
+    <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
   </widget>
   <action name="A_New">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/Images/note_add.png</normaloff>:/Images/note_add.png</iconset>
+     <normaloff>:/images/note_add.png</normaloff>:/images/note_add.png</iconset>
    </property>
    <property name="text">
     <string>新建</string>
@@ -160,7 +266,7 @@ p, li { white-space: pre-wrap; }
   <action name="A_Open">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/Images/file_open.png</normaloff>:/Images/file_open.png</iconset>
+     <normaloff>:/images/file_open.png</normaloff>:/images/file_open.png</iconset>
    </property>
    <property name="text">
     <string>打开</string>
@@ -169,7 +275,7 @@ p, li { white-space: pre-wrap; }
   <action name="A_Clear">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/Images/clear_all.png</normaloff>:/Images/clear_all.png</iconset>
+     <normaloff>:/images/clear_all.png</normaloff>:/images/clear_all.png</iconset>
    </property>
    <property name="text">
     <string>清空</string>
@@ -178,7 +284,7 @@ p, li { white-space: pre-wrap; }
   <action name="A_Cut">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/Images/content_cut.png</normaloff>:/Images/content_cut.png</iconset>
+     <normaloff>:/images/content_cut.png</normaloff>:/images/content_cut.png</iconset>
    </property>
    <property name="text">
     <string>剪切</string>
@@ -187,7 +293,7 @@ p, li { white-space: pre-wrap; }
   <action name="A_Copy">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/Images/content_copy.png</normaloff>:/Images/content_copy.png</iconset>
+     <normaloff>:/images/content_copy.png</normaloff>:/images/content_copy.png</iconset>
    </property>
    <property name="text">
     <string>复制</string>
@@ -196,7 +302,7 @@ p, li { white-space: pre-wrap; }
   <action name="A_Paste">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/Images/content_paste.png</normaloff>:/Images/content_paste.png</iconset>
+     <normaloff>:/images/content_paste.png</normaloff>:/images/content_paste.png</iconset>
    </property>
    <property name="text">
     <string>粘贴</string>
@@ -208,7 +314,7 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/Images/format_bold.png</normaloff>:/Images/format_bold.png</iconset>
+     <normaloff>:/images/format_bold.png</normaloff>:/images/format_bold.png</iconset>
    </property>
    <property name="text">
     <string>粗体</string>
@@ -220,7 +326,7 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/Images/format_italic.png</normaloff>:/Images/format_italic.png</iconset>
+     <normaloff>:/images/format_italic.png</normaloff>:/images/format_italic.png</iconset>
    </property>
    <property name="text">
     <string>斜体</string>
@@ -232,7 +338,7 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/Images/format_underlined.png</normaloff>:/Images/format_underlined.png</iconset>
+     <normaloff>:/images/format_underlined.png</normaloff>:/images/format_underlined.png</iconset>
    </property>
    <property name="text">
     <string>下划线</string>
@@ -241,7 +347,7 @@ p, li { white-space: pre-wrap; }
   <action name="A_Close">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/Images/close.png</normaloff>:/Images/close.png</iconset>
+     <normaloff>:/images/close.png</normaloff>:/images/close.png</iconset>
    </property>
    <property name="text">
     <string>关闭</string>

@@ -5,32 +5,44 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     Logger(__FUNCTION__);
 
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/images/view_in_ar.png"));
 
+    ui->FCB_Font_Family->setFixedSize(126, 24);
+    ui->SB_Font_Size->setRange(1, 127);
+    ui->SB_Font_Size->setValue(ui->TE_Notebook->font().pointSize());
+    ui->TB_Major->addWidget(ui->GB_Font);
 
-    connect(ui->A_Cut, &QAction::triggered, [this]() -> void {
+    ui->L_Filename->setText("当前文件: ");
+    ui->PB_Font_Size->setRange(1, 127);
+    ui->PB_Font_Size->setValue(ui->SB_Font_Size->font().pointSize());
+    ui->SB_Status_Bar->addWidget(ui->GB_Status_Bar);
+
+    ////////////////////////////////////
+
+    QObject::connect(ui->A_Cut, &QAction::triggered, [this]() -> void {
         Logger("connect(ui->A_Cut, &QAction::triggered, [this]() -> void {");
         ui->TE_Notebook->cut();
         ui->PTE_Notebook->cut();
     });
 
-    connect(ui->A_Copy, &QAction::triggered, [this]() -> void {
+    QObject::connect(ui->A_Copy, &QAction::triggered, [this]() -> void {
         Logger("connect(ui->A_Copy, &QAction::triggered, [this]() -> void {");
         ui->TE_Notebook->copy();
         ui->PTE_Notebook->copy();
     });
 
-    connect(ui->A_Paste, &QAction::triggered, [this]() -> void {
+    QObject::connect(ui->A_Paste, &QAction::triggered, [this]() -> void {
         Logger("connect(ui->A_Paste, &QAction::triggered, [this]() -> void {");
         ui->TE_Notebook->paste();
         ui->PTE_Notebook->paste();
     });
 
-    connect(ui->A_Close, &QAction::triggered, [this]() -> void {
+    QObject::connect(ui->A_Close, &QAction::triggered, [this]() -> void {
         Logger("connect(ui->A_Close, &QAction::triggered, [this]() -> void {");
         this->close();
     });
 
-    connect(ui->A_Bold, &QAction::triggered, [this](bool checked) -> void {
+    QObject::connect(ui->A_Bold, &QAction::triggered, [this](bool checked) -> void {
         Logger("connect(ui->A_Bold, &QAction::triggered, [this](bool checked) -> void {");
 
         ui->TE_Notebook->setFontWeight((checked == true) ? QFont::Bold : QFont::Normal);
@@ -40,7 +52,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
         ui->PTE_Notebook->setCurrentCharFormat(format);
     });
 
-    connect(ui->A_Italic, &QAction::triggered, [this](bool checked) -> void {
+    QObject::connect(ui->A_Italic, &QAction::triggered, [this](bool checked) -> void {
         Logger("connect(ui->A_Italic, &QAction::triggered, [this](bool checked) -> void {");
 
         ui->TE_Notebook->setFontItalic(checked);
@@ -50,7 +62,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
         ui->PTE_Notebook->setCurrentCharFormat(format);
     });
 
-    connect(ui->A_Underline, &QAction::triggered, [this](bool checked) -> void {
+    QObject::connect(ui->A_Underline, &QAction::triggered, [this](bool checked) -> void {
         Logger("connect(ui->A_Underline, &QAction::triggered, [this](bool checked) -> void {");
 
         ui->TE_Notebook->setFontUnderline(checked);
@@ -60,7 +72,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
         ui->PTE_Notebook->setCurrentCharFormat(format);
     });
 
-    connect(ui->TE_Notebook, &QTextEdit::copyAvailable, [this](bool available) -> void {
+    QObject::connect(ui->TE_Notebook, &QTextEdit::copyAvailable, [this](bool available) -> void {
         Logger("connect(ui->TE_Notebook, &QTextEdit::copyAvailable, [this](bool available) -> void {");
 
         ui->A_Copy->setEnabled(available);
@@ -68,13 +80,56 @@ MW_Notebook::MW_Notebook(QWidget *parent)
         ui->A_Paste->setEnabled(ui->TE_Notebook->canPaste());
     });
 
-    connect(ui->TE_Notebook, &QTextEdit::selectionChanged, [this]() -> void {
+    QObject::connect(ui->TE_Notebook, &QTextEdit::selectionChanged, [this]() -> void {
         Logger("connect(ui->TE_Notebook, &QTextEdit::selectionChanged, [this]() -> void {");
 
         QTextCharFormat format = ui->TE_Notebook->currentCharFormat();
         ui->A_Bold->setChecked(format.font().bold());
         ui->A_Italic->setChecked(format.font().italic());
         ui->A_Underline->setChecked(format.font().underline());
+    });
+
+    QObject::connect(ui->SB_Font_Size, (void (QSpinBox::*)(int))&QSpinBox::valueChanged, [this](int value) -> void {
+        Logger("connect(ui->SB_Font_Size, &QSpinBox::valueChanged, [this](int value) -> void {");
+
+        ui->TE_Notebook->setFontPointSize(value);
+
+        QTextCharFormat format = ui->PTE_Notebook->currentCharFormat();
+        format.setFontPointSize(value);
+        ui->PTE_Notebook->setCurrentCharFormat(format);
+    });
+
+    QObject::connect(ui->FCB_Font_Family, &QFontComboBox::currentTextChanged, [this](const QString &text) -> void {
+        Logger("QObject::connect(ui->CB_Font_Name, &QComboBox::currentTextChanged, [this](const QString &text) -> void {");
+
+        ui->TE_Notebook->setFontFamily(text);
+
+        QTextCharFormat format = ui->PTE_Notebook->currentCharFormat();
+        format.setFontFamily(text);
+        ui->PTE_Notebook->setCurrentCharFormat(format);
+    });
+
+    QObject::connect(ui->A_Open, (void (QAction::*)())&QAction::triggered, [this]() -> void {
+        Logger("QObject::connect(ui->A_Open, (void (QAction::*)())&QAction::triggered, [this]() -> void {");
+
+        const QList<QByteArray> &codes = QTextCodec::availableCodecs();
+        if (0 < codes.size()) {
+            QString buffer = ""; buffer.reserve(1024);
+            auto beg = codes.begin(), end = codes.end();
+            for (buffer += (*beg), beg += 1; beg != end; buffer += ", " + (*beg), beg += 1);
+            Logger("QTextCodec::availableCodecs() = \n{ %s }", buffer.toStdString().data());
+        }
+
+        const QString &directory = QCoreApplication::applicationDirPath();
+        const QString &filename = QFileDialog::getOpenFileName(this, "打开文件", directory, "文本文件(*.txt);;Markdown(*.md);;所有文件(*.*)");
+        if (0 < filename.size()) {
+            QFile file(filename);
+            if (file.open(QFile::ReadWrite | QFile::Text)) {
+                QTextStream stream(&file);
+                // stream.setCodec("UTF-8");
+                ui->TE_Notebook->append(stream.readAll());
+            }
+        }
     });
 }
 

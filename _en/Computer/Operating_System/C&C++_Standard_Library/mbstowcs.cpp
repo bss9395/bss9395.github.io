@@ -63,7 +63,7 @@ iptr Dump_File(std::string &filename_local, const std::string &filename_utf8) {
         fprintf(stderr, "\n""[%td] %s", (iptr)__LINE__, "file == NULL");
         exit(EXIT_FAILURE);
     }
-    char test[11] = { // encoded in zh_CN.936(GBK)
+    char test[/*11*/] = { // encoded in zh_CN.936(GBK)
         (char)0x23, (char)0x23, (char)0x23, (char)0x20, (char)0xC4, (char)0xE3, (char)0xBA, (char)0xC3, (char)0xA3, (char)0xA1,
         (char)0x0A // note: \n
     };
@@ -128,7 +128,7 @@ iptr Transcode(const std::string &filename_local) {
     // fwprintf(stdout, L"\n""%s", text.data());          // note: stderr, mess. two bugs on g++ (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
     fprintf(stderr, "\n""%ls", text.data());
     fprintf(stderr, "\n");
-    for (iptr i = 0; i < leng; i += 1) {
+    for (iptr i = 0; i < numb; i += 1) {
         fprintf(stderr, "%x,", (wide)text.data()[i]);
     }
     fprintf(stderr, "\n========================================");
@@ -153,7 +153,7 @@ iptr Transcode(const std::string &filename_local) {
     // fwprintf(stdout, L"\n""%s", text.data());         // note: stderr, mess. two bugs on g++ (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
     fprintf(stderr, "\n""%ls", text.data());
     fprintf(stderr, "\n");
-    for (iptr i = 0; i < leng; i += 1) {
+    for (iptr i = 0; i < numb; i += 1) {
         fprintf(stderr, "%x,", (wide)text.data()[i]);
     }
     fprintf(stderr, "\n========================================");
