@@ -16,6 +16,7 @@ SOURCES += \
 
 HEADERS += \
     Common.h \
+    Format.h \
     Notebook.h \
     System.h
 

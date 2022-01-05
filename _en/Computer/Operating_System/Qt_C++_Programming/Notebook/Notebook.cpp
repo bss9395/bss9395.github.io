@@ -1,3 +1,10 @@
+/* Notebook
+Author: BSS9395
+Update: 2022-01-05T23:10:00+08@China-Guangdong-Shenzhen+08
+Design: Notebook
+Encode: UTF-8
+*/
+
 #include "Common.h"
 
 MW_Notebook::MW_Notebook(QWidget *parent)
@@ -7,12 +14,11 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     ui->setupUi(this);
     this->setWindowIcon(QIcon(":/images/view_in_ar.png"));
 
-    ui->FCB_Font_Family->setFixedSize(126, 24);
+    ui->FCB_Font_Family->setFixedSize(126, 26);
     ui->SB_Font_Size->setRange(1, 127);
     ui->SB_Font_Size->setValue(ui->TE_Notebook->font().pointSize());
     ui->TB_Major->addWidget(ui->GB_Font);
 
-    ui->L_Filename->setText("当前文件: ");
     ui->PB_Font_Size->setRange(1, 127);
     ui->PB_Font_Size->setValue(ui->SB_Font_Size->font().pointSize());
     ui->SB_Status_Bar->addWidget(ui->GB_Status_Bar);
@@ -112,24 +118,50 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     QObject::connect(ui->A_Open, (void (QAction::*)())&QAction::triggered, [this]() -> void {
         Logger("QObject::connect(ui->A_Open, (void (QAction::*)())&QAction::triggered, [this]() -> void {");
 
-        const QList<QByteArray> &codes = QTextCodec::availableCodecs();
-        if (0 < codes.size()) {
-            QString buffer = ""; buffer.reserve(1024);
-            auto beg = codes.begin(), end = codes.end();
-            for (buffer += (*beg), beg += 1; beg != end; buffer += ", " + (*beg), beg += 1);
-            Logger("QTextCodec::availableCodecs() = \n{ %s }", buffer.toStdString().data());
-        }
+        QString &codecs = Format::Print<QString>(QTextCodec::availableCodecs());
+        Logger("QTextCodec::availableCodecs() = \n{ %s }", codecs.toStdString().data());
 
-        const QString &directory = QCoreApplication::applicationDirPath();
-        const QString &filename = QFileDialog::getOpenFileName(this, "打开文件", directory, "文本文件(*.txt);;Markdown(*.md);;所有文件(*.*)");
+        QString directory = QCoreApplication::applicationDirPath();
+        QString filename = QFileDialog::getOpenFileName(this, "打开文件", directory, "文本文件(*.txt);;Markdown(*.md);;所有文件(*.*)");
         if (0 < filename.size()) {
             QFile file(filename);
             if (file.open(QFile::ReadWrite | QFile::Text)) {
                 QTextStream stream(&file);
-                // stream.setCodec("UTF-8");
+                stream.setCodec("UTF-8");
                 ui->TE_Notebook->append(stream.readAll());
+
+                Update_Status_Bar(filename);
             }
         }
+    });
+
+    QObject::connect(ui->A_Font, &QAction::triggered, [this]() -> void {
+        Logger("QObject::connect(ui->A_Font, &QAction::triggered, [this]() -> void {");
+
+        bool ok = false;
+        QFont font = QFontDialog::getFont(&ok, this);
+        if (ok == true) {
+            ui->TE_Notebook->setCurrentFont(font); // note: predefined text, bug on QTextEdit::setFont().
+            ui->PTE_Notebook->setFont(font);
+        } else {
+            // application font, QApplication::font()
+        }
+    });
+
+    QObject::connect(ui->A_New, &QAction::triggered, [this]() -> void {
+        Logger("QObject::connect(ui->A_New, &QAction::triggered, [this]() -> void {");
+
+        ui->TE_Notebook->clear();
+        ui->PTE_Notebook->clear();
+        Update_Status_Bar("");
+    });
+
+    QObject::connect(ui->A_Show_Label, &QAction::triggered, [this](bool checked) -> void {
+        Logger("QObject::connect(ui->A_Show_Label, &QAction::triggered, [this](bool checked) -> void {");
+
+        (checked == true)
+            ? ui->TB_Major->setToolButtonStyle(Qt::ToolButtonTextUnderIcon)
+            : ui->TB_Major->setToolButtonStyle(Qt::ToolButtonIconOnly);
     });
 }
 
@@ -137,4 +169,8 @@ MW_Notebook::~MW_Notebook() {
     Logger(__FUNCTION__);
 
     delete ui;
+}
+
+void MW_Notebook::Update_Status_Bar(const QString &filename) {
+    ui->L_Filename->setText(filename);
 }

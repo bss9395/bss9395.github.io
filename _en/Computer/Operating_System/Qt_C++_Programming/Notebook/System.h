@@ -1,5 +1,14 @@
+/* Notebook
+Author: BSS9395
+Update: 2022-01-05T23:10:00+08@China-Guangdong-Shenzhen+08
+Design: System
+Encode: UTF-8
+*/
+
 #ifndef System_h
 #define System_h
+
+#include <QtGlobal>
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -58,13 +67,13 @@ public:
         static bool once = false;
         if (once == false) {
             once = true;
-            fprintf(stderr, "%s""\n", __TIMESTAMP__);
+            fprintf(stderr, "[%s] %s""\n", __TIMESTAMP__, QT_VERSION_STR);
             fflush(stderr);
             return 0;
         }
         return (_configuration + 1);
     }
-    static inline iptr _configuration = Configuration();
+    static inline iptr _configuration = Configuration(); // note: bug on Visual Studio 2017
 };
 
 #endif // System_h

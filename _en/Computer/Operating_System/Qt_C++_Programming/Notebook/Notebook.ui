@@ -56,7 +56,7 @@
           <bool>true</bool>
          </property>
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -87,7 +87,7 @@
        <item>
         <widget class="QSpinBox" name="SB_Font_Size">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -122,6 +122,11 @@ p, li { white-space: pre-wrap; }
         <horstretch>1</horstretch>
         <verstretch>1</verstretch>
        </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border:none
+}</string>
       </property>
       <property name="title">
        <string/>
@@ -203,7 +208,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="A_Italic"/>
     <addaction name="A_Underline"/>
     <addaction name="separator"/>
-    <addaction name="A_Show"/>
+    <addaction name="A_Show_Label"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -242,8 +247,9 @@ p, li { white-space: pre-wrap; }
    <addaction name="A_Italic"/>
    <addaction name="A_Underline"/>
    <addaction name="separator"/>
+   <addaction name="A_Font"/>
   </widget>
-  <widget class="QToolBar" name="toolBar_2">
+  <widget class="QToolBar" name="TB_Minor">
    <property name="windowTitle">
     <string>TB_Minor</string>
    </property>
@@ -353,7 +359,7 @@ p, li { white-space: pre-wrap; }
     <string>关闭</string>
    </property>
   </action>
-  <action name="A_Show">
+  <action name="A_Show_Label">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -362,6 +368,15 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>显示标签</string>
+   </property>
+  </action>
+  <action name="A_Font">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/images/font_download.png</normaloff>:/images/font_download.png</iconset>
+   </property>
+   <property name="text">
+    <string>字体</string>
    </property>
   </action>
  </widget>
