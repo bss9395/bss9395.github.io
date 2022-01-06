@@ -1,8 +1,10 @@
-/* Notebook
+/* Notebook.cpp
 Author: BSS9395
-Update: 2022-01-05T23:10:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-01-06T20:21:00+08@China-Guangdong-Shenzhen+08
 Design: Notebook
 Encode: UTF-8
+System: Qt 5.15.2
+Notice: Bug on Visual Studio 2017
 */
 
 #include "Common.h"
@@ -117,9 +119,6 @@ MW_Notebook::MW_Notebook(QWidget *parent)
 
     QObject::connect(ui->A_Open, (void (QAction::*)())&QAction::triggered, [this]() -> void {
         Logger("QObject::connect(ui->A_Open, (void (QAction::*)())&QAction::triggered, [this]() -> void {");
-
-        QString &codecs = Format::Print<QString>(QTextCodec::availableCodecs());
-        Logger("QTextCodec::availableCodecs() = \n{ %s }", codecs.toStdString().data());
 
         QString directory = QCoreApplication::applicationDirPath();
         QString filename = QFileDialog::getOpenFileName(this, "打开文件", directory, "文本文件(*.txt);;Markdown(*.md);;所有文件(*.*)");
