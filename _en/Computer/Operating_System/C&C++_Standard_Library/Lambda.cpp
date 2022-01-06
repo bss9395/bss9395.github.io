@@ -1,6 +1,6 @@
 /* lambda.cpp
 Author: BSS9395
-Update: 2022-01-06T04:28:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-01-06T16:48:00+08@China-Guangdong-Shenzhen+08
 Design: C++ Standard Expression: Generic Lambda
 Format: UTF-8
 System: G++
@@ -14,10 +14,16 @@ Notice: Bug on Visual Studio 2017
 
 typedef intptr_t iptr;
 
-class Format {
-public:
-    template<typename TBuffer>
-    static TBuffer &Buffer(iptr capacity = 1024, iptr shrink = 2048) {
+#ifdef QT_VERSION_STR
+typdef QString String;
+#else
+typedef std::string String;
+#endif
+
+namespace Format { // note: class Format, bug on Visual Studio 2017.
+    template<typename TBuffer = String>
+    static TBuffer &Buffer(const iptr capacity = 1024, const iptr shrink = 2048) {
+        fprintf(stderr, "%s""\n", __FUNCTION__);
         static TBuffer buffer = "";
         if ((iptr)buffer.capacity() < capacity) {
             if ((iptr)buffer.capacity() > shrink) {
@@ -28,44 +34,22 @@ public:
         return buffer;
     }
 
-public:
-    template<typename TBuffer, typename TContainer>
-    static TBuffer &Print(const TContainer &container, TBuffer &buffer = Buffer<TBuffer>(), const TBuffer &sepa = ", ") {
-        buffer = "";
-        if (0 < container.size()) {
-            auto beg = container.begin(), end = container.end();
-            for (buffer += (*beg), beg++; beg != end; buffer += sepa, buffer += (*beg), beg++);
-        }
-        return buffer;
-    }
-
-    static inline auto lambda = [](auto &container, std::string &buffer = "", const std::string &sepa = ", ") -> std::string & {
-        if (0 < container.size()) {
-            auto beg = container.begin(), end = container.end();
-            for (buffer += (*beg)[0], beg++; beg != end; beg++) {
-                buffer += sepa;
-                buffer += (*beg)[0];
-            }
-        }
-        return buffer;
-    };
-
+#define TBUFFER auto /* String or auto */
 #define MEMBER
-#define TBUFFER std::string
-#define Print(MEMBER, TBUFFER)                                                                                        \
-    [](const auto &container, TBUFFER &buffer = Format::Buffer<TBUFFER>(), const TBUFFER &sepa = ", ") -> TBUFFER & { \
-        buffer = "";                                                                                                  \
-        if (0 < container.size()) {                                                                                   \
-            auto beg = container.begin(), end = container.end();                                                      \
-            for (buffer += (*beg)MEMBER, beg++; beg != end; buffer += sepa, buffer += (*beg)MEMBER, beg++);           \
-        }                                                                                                             \
-        return buffer;                                                                                                \
-    }
-
-    static inline auto Print_ = Print(MEMBER, TBUFFER);
+#define Lambda_Print(MEMBER, TBUFFER)                                                                           \
+    [](const auto &container, TBUFFER &buffer = Format::Buffer<String>(), const TBUFFER &sepa = String(", ")) { \
+        buffer.clear();                                                                                         \
+        if (0 < container.size()) {                                                                             \
+            auto beg = container.begin(), end = container.end();                                                \
+            for (buffer += (*beg)MEMBER, beg++; beg != end; buffer += sepa, buffer += (*beg)MEMBER, beg++);     \
+        }                                                                                                       \
+        return buffer;                                                                                          \
+    }                                                                                                           \
+// Leave Blank Space
+    static inline const auto Print = Lambda_Print(, String);
 #undef MEMBER
 #undef TBUFFER
-};
+}; // note: class Format
 
 
 int main(int argc, char *argv[]) {
@@ -74,9 +58,10 @@ int main(int argc, char *argv[]) {
     container.push_back(std::string("b2"));
     container.push_back(std::string("c3"));
 
-    auto lambda = Print([0], std::string);
-    fprintf(stderr, "%s""\n", lambda(container).data());
-    fprintf(stderr, "%s""\n", Format::Print_(container).data());
+    auto lambda = Lambda_Print([0], auto);       // String or auto
+    std::wstring buffer = std::wstring(1024, 0);
+    fprintf(stderr, "%ls""\n", lambda(container, buffer, std::wstring(L", ")).data());  // note: std::wstring() + 'a';
+    fprintf(stderr, "%s""\n", Format::Print(container).data());
 
     return 0;
 }
