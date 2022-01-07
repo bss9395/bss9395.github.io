@@ -66,6 +66,7 @@ struct System {
 
         return 0;
     }
+
     static inline iptr _configuration = []() -> iptr {
         static iptr configuration = Configuration(); // note: bug on Visual Studio 2017
         return (configuration += 1);

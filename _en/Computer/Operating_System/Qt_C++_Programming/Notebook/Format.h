@@ -15,26 +15,24 @@ Notice: Bug on Visual Studio 2017
 namespace Format { // note: struct Format, bug on Visual Studio 2017.
     template<typename TBuffer = String>
     static TBuffer &Buffer(const iptr capacity = 1024, const iptr shrink = 2048) {
-        fprintf(stderr, "%s""\n", __FUNCTION__);
-        static TBuffer buffer = "";
+        // fprintf(stderr, "[%td] %s""\n", (iptr)__LINE__, __FUNCTION__);
+        static TBuffer buffer = TBuffer(capacity, 0);
+        if ((iptr)buffer.capacity() > shrink) {
+            buffer.shrink_to_fit();
+        }
         if ((iptr)buffer.capacity() < capacity) {
-            if ((iptr)buffer.capacity() > shrink) {
-                buffer.shrink_to_fit();
-            }
             buffer.reserve(capacity);
         }
         return buffer;
     }
 
-#define TBUFFER auto /* String or auto */
-#define MEMBER
-#define Lambda_Print(MEMBER, TBUFFER)                                                                                            \
-    [](const auto &container, TBUFFER &buffer = Format::Buffer<String>(), const TBUFFER &sepa = String(", ")) -> TBUFFER & { \
-        /* fprintf(stderr, "%s""\n", __FUNCTION__); */                                                                       \
+#define Lambda_Print(Member, TBuffer)                                                                                        \
+    [](const auto &container, TBuffer &buffer = Format::Buffer<String>(), const TBuffer &sepa = String(", ")) -> TBuffer & { \
+        /* fprintf(stderr, "[%td] %s""\n", (iptr)__LINE__, __FUNCTION__); */                                                 \
         buffer.clear();                                                                                                      \
         if (0 < container.size()) {                                                                                          \
             auto beg = container.begin(), end = container.end();                                                             \
-            for (buffer += (*beg)MEMBER, beg++; beg != end; buffer += sepa, buffer += (*beg)MEMBER, beg++);                  \
+            for (buffer += (*beg)Member, beg++; beg != end; buffer += sepa, buffer += (*beg)Member, beg++);                  \
         }                                                                                                                    \
         return buffer;                                                                                                       \
     }                                                                                                                        \
@@ -44,8 +42,6 @@ namespace Format { // note: struct Format, bug on Visual Studio 2017.
         static const auto lambda = Lambda_Print(, String);  // note: struct Format, bug on Visual Studio 2017.
         return lambda;
     }();
-#undef MEMBER
-#undef TBUFFER
 }; // note: struct Format
 
 #endif // Format_h

@@ -29,18 +29,21 @@ MW_Notebook::MW_Notebook(QWidget *parent)
 
     QObject::connect(ui->A_Cut, &QAction::triggered, [this]() -> void {
         Logger("connect(ui->A_Cut, &QAction::triggered, [this]() -> void {");
+
         ui->TE_Notebook->cut();
         ui->PTE_Notebook->cut();
     });
 
     QObject::connect(ui->A_Copy, &QAction::triggered, [this]() -> void {
         Logger("connect(ui->A_Copy, &QAction::triggered, [this]() -> void {");
+
         ui->TE_Notebook->copy();
         ui->PTE_Notebook->copy();
     });
 
     QObject::connect(ui->A_Paste, &QAction::triggered, [this]() -> void {
         Logger("connect(ui->A_Paste, &QAction::triggered, [this]() -> void {");
+
         ui->TE_Notebook->paste();
         ui->PTE_Notebook->paste();
     });
@@ -171,5 +174,7 @@ MW_Notebook::~MW_Notebook() {
 }
 
 void MW_Notebook::Update_Status_Bar(const QString &filename) {
+    Logger(__FUNCTION__);
+
     ui->L_Filename->setText(filename);
 }
