@@ -1,8 +1,9 @@
-QT       += core gui
+QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++17
+CONFIG += /std:c++17 /utf-8
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -14,7 +15,9 @@ SOURCES += \
 
 HEADERS += \
     Calculator.h \
-    Common.h
+    Common.h \
+    Format.h \
+    System.h
 
 FORMS += \
     Calculator.ui

@@ -15,6 +15,10 @@ MW_Notebook::MW_Notebook(QWidget *parent)
 
     ui->setupUi(this);
     this->setWindowIcon(QIcon(":/images/view_in_ar.png"));
+    this->setWindowTitle(QString("Notebook"));
+    Update_Theme();
+
+    ////////////////////////////////////
 
     ui->FCB_Font_Family->setFixedSize(126, 26);
     ui->SB_Font_Size->setRange(1, 127);
@@ -177,4 +181,22 @@ void MW_Notebook::Update_Status_Bar(const QString &filename) {
     Logger(__FUNCTION__);
 
     ui->L_Filename->setText(filename);
+}
+
+void MW_Notebook::Update_Theme() {
+    Logger(__FUNCTION__);
+
+    iptr RGBA = 255;
+    float red = 0.5 * RGBA;
+    float green = 0.5 * RGBA;
+    float blue = 0.5 * RGBA;
+    float alpha = 0.5;
+
+    QString css = QString::asprintf("background-color: rgba(%td, %td, %td, %lf);", (iptr)red, (iptr)green, (iptr)blue, alpha);
+    ui->TE_Notebook->setStyleSheet(css);
+
+    QColor color = QColor((int)red, (int)green, (int)blue, (int)(alpha * RGBA));
+    QPalette palette = ui->PTE_Notebook->palette();
+    palette.setColor(QPalette::Base, color);
+    ui->PTE_Notebook->setPalette(palette);
 }

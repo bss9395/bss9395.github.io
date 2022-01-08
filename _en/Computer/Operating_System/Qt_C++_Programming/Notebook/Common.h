@@ -11,35 +11,28 @@ Notice: Bug on Visual Studio 2017
 #define Common_h
 
 #define CRT_SECURE_NO_WARNINGS
-#include <QtGlobal>
-#include <QDebug>
-#include <QString>
 #include <QApplication>
-#include <QMainWindow>
+#include <QAudioDeviceInfo>
+#include <QDateTime>
+#include <QDebug>
 #include <QFileDialog>
 #include <QFontDialog>
+#include <QMainWindow>
+#include <QString>
 #include <QTextCodec>
-#include <QAudioDeviceInfo>
+#include <QtGlobal>
 
-#include <iostream>
 #include <fstream>
-#include <string>
+#include <iostream>
 #include <list>
+#include <string>
 
 ////////////////////////////////////////////////////////////////////////////////
 
-typedef intptr_t iptr;
-typedef wchar_t wide;
-
-#ifdef QT_VERSION_STR
-typedef QString String;
-#else
-typedef std::string String;
-#endif
-
 #include "ui_Notebook.h"
+
 #include "Format.h"
-#include "System.h"
 #include "Notebook.h"
+#include "System.h"
 
 #endif // Common_h

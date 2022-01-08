@@ -24,6 +24,7 @@ public:
 
 public:
     void Update_Status_Bar(const QString &filename);
+    void Update_Theme();
 };
 
 #endif // Notebook_h
