@@ -1,7 +1,7 @@
 /* Format.h
 Author: BSS9395
 Update: 2022-01-06T20:21:00+08@China-Guangdong-Shenzhen+08
-Design: Calculator
+Design: Timer
 Encode: UTF-8
 System: Qt 5.15.2
 */
@@ -49,6 +49,6 @@ struct Format { // note: struct Format, bug on Visual Studio 2017.
 // Leave Blank Space
 
     static inline const auto &Print = Lambda_Print(, String);  // note: struct Format, bug on Visual Studio 2017.
-};
+}; // note: struct Format
 
 #endif // Format_h

@@ -15,7 +15,7 @@ class Calculator : public QMainWindow {
     Q_OBJECT
 
 public:
-    Ui::MW_Calculator *ui;
+    Ui::MW_Calculator *_ui;
 
 public:
     Calculator(QWidget *parent = nullptr);

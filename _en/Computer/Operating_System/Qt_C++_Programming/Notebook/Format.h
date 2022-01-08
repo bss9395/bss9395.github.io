@@ -23,7 +23,7 @@ typedef std::string String;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-namespace Format { // note: struct Format, bug on Visual Studio 2017.
+struct Format { // note: struct Format, bug on Visual Studio 2017.
     template<typename TBuffer = String>
     static TBuffer &Buffer(const iptr capacity = 1024, const iptr shrink = 2048) {
         // fprintf(stderr, "[%td] %s""\n", (iptr)__LINE__, __FUNCTION__);
@@ -38,7 +38,7 @@ namespace Format { // note: struct Format, bug on Visual Studio 2017.
     }
 
 #define Lambda_Print(Member, TBuffer)                                                                                        \
-    [](const auto &container, TBuffer &buffer = Format::Buffer<String>(), const TBuffer &sepa = String(", ")) -> TBuffer & { \
+    [](const auto &container, TBuffer &buffer = Format::Buffer<String>(1024, 2048), const TBuffer &sepa = String(", ")) -> TBuffer & { \
         /* fprintf(stderr, "[%td] %s""\n", (iptr)__LINE__, __FUNCTION__); */                                                 \
         buffer.clear();                                                                                                      \
         if (0 < container.size()) {                                                                                          \
@@ -49,10 +49,7 @@ namespace Format { // note: struct Format, bug on Visual Studio 2017.
     }                                                                                                                        \
 // Leave Blank Space
 
-    static inline const auto &Print = []() -> auto {
-        static const auto lambda = Lambda_Print(, String);  // note: struct Format, bug on Visual Studio 2017.
-        return lambda;
-    }();
-}; // note: struct Format
+    static inline const auto &Print = Lambda_Print(, String);  // note: struct Format, bug on Visual Studio 2017.
+};
 
 #endif // Format_h

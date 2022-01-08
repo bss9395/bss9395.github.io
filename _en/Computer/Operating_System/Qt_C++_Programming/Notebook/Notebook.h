@@ -16,7 +16,7 @@ class MW_Notebook : public QMainWindow {
     Q_OBJECT
 
 public:
-    Ui::MW_Notebook *ui;
+    Ui::MW_Notebook *_ui;
 
 public:
     MW_Notebook(QWidget *parent = nullptr);

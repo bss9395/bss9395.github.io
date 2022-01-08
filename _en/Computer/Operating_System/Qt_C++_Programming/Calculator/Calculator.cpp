@@ -9,20 +9,24 @@ System: Qt 5.15.2
 #include "Common.h"
 
 Calculator::Calculator(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MW_Calculator) {
+    : QMainWindow(parent), _ui(new Ui::MW_Calculator) {
     Logger(__FUNCTION__);
 
-    ui->setupUi(this);
+    _ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/images/view_in_ar.png"));
     this->setWindowTitle(QString("Calculator"));
-    this->statusBar()->addWidget(ui->GB_Status_Bar);
+    this->statusBar()->addWidget(_ui->GB_Status_Bar);
 
+    // QDateTime datetime = QDateTime::fromString("2022-01-08T16:00:00.123", "yyyy-MM-ddThh:mm:ss.zzz");
+    // datetime.setTimeZone(QTimeZone("Asia/Shanghai"));
     QDateTime datetime = QDateTime::currentDateTime();
+    datetime.setTimeSpec(Qt::TimeZone); // Qt::LocalTime, Qt::TimeZone.
     QString timezone = datetime.timeZone().displayName(QTimeZone::StandardTime, QTimeZone::OffsetName).right(6).remove(':');
-    ui->L_Data_Time->setText(datetime.toString("yyyy-MM-ddThh:mm:ss.zzz") + timezone);
+    _ui->L_Data_Time->setText(datetime.toString("yyyy-MM-ddThh:mm:ss.zzz") + timezone);
 }
 
 Calculator::~Calculator() {
     Logger(__FUNCTION__);
 
-    delete ui;
+    delete _ui;
 }

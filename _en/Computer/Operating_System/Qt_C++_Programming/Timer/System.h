@@ -1,7 +1,7 @@
 /* System.h
 Author: BSS9395
 Update: 2022-01-06T20:21:00+08@China-Guangdong-Shenzhen+08
-Design: Calculator
+Design: Timer
 Encode: UTF-8
 System: Qt 5.15.2
 */
