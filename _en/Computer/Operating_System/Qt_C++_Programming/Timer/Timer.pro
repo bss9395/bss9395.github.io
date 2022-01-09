@@ -14,7 +14,6 @@ SOURCES += \
 
 HEADERS += \
     Common.h \
-    Format.h \
     System.h \
     Timer.h
 

@@ -11,7 +11,7 @@ Notice: Bug on Visual Studio 2017
 
 MW_Notebook::MW_Notebook(QWidget *parent)
     : QMainWindow(parent), _ui(new Ui::MW_Notebook) {
-    Logger(__FUNCTION__);
+    Logging(__FUNCTION__);
 
     _ui->setupUi(this);
     this->setWindowIcon(QIcon(":/images/view_in_ar.png"));
@@ -21,44 +21,42 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     ////////////////////////////////////
 
     _ui->FCB_Font_Family->setFixedSize(126, 26);
-    _ui->SB_Font_Size->setRange(1, 127);
-    _ui->SB_Font_Size->setValue(_ui->TE_Notebook->font().pointSize());
+    _ui->CB_Font_Size->setCurrentText(QString::asprintf("%d", _ui->TE_Notebook->font().pointSize()));
     _ui->TB_Major->addWidget(_ui->GB_Font);
 
     _ui->PB_Font_Size->setRange(1, 127);
-    _ui->PB_Font_Size->setValue(_ui->SB_Font_Size->font().pointSize());
     _ui->SB_Status_Bar->addWidget(_ui->GB_Status_Bar);
 
     ////////////////////////////////////
 
     QObject::connect(_ui->A_Cut, &QAction::triggered, [this]() -> void {
-        Logger("connect(ui->A_Cut, &QAction::triggered, [this]() -> void {");
+        Logging("connect(ui->A_Cut, &QAction::triggered, [this]() -> void {");
 
         _ui->TE_Notebook->cut();
         _ui->PTE_Notebook->cut();
     });
 
     QObject::connect(_ui->A_Copy, &QAction::triggered, [this]() -> void {
-        Logger("connect(ui->A_Copy, &QAction::triggered, [this]() -> void {");
+        Logging("connect(ui->A_Copy, &QAction::triggered, [this]() -> void {");
 
         _ui->TE_Notebook->copy();
         _ui->PTE_Notebook->copy();
     });
 
     QObject::connect(_ui->A_Paste, &QAction::triggered, [this]() -> void {
-        Logger("connect(ui->A_Paste, &QAction::triggered, [this]() -> void {");
+        Logging("connect(ui->A_Paste, &QAction::triggered, [this]() -> void {");
 
         _ui->TE_Notebook->paste();
         _ui->PTE_Notebook->paste();
     });
 
     QObject::connect(_ui->A_Close, &QAction::triggered, [this]() -> void {
-        Logger("connect(ui->A_Close, &QAction::triggered, [this]() -> void {");
+        Logging("connect(ui->A_Close, &QAction::triggered, [this]() -> void {");
         this->close();
     });
 
     QObject::connect(_ui->A_Bold, &QAction::triggered, [this](bool checked) -> void {
-        Logger("connect(ui->A_Bold, &QAction::triggered, [this](bool checked) -> void {");
+        Logging("connect(ui->A_Bold, &QAction::triggered, [this](bool checked) -> void {");
 
         _ui->TE_Notebook->setFontWeight((checked == true) ? QFont::Bold : QFont::Normal);
 
@@ -68,7 +66,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Italic, &QAction::triggered, [this](bool checked) -> void {
-        Logger("connect(ui->A_Italic, &QAction::triggered, [this](bool checked) -> void {");
+        Logging("connect(ui->A_Italic, &QAction::triggered, [this](bool checked) -> void {");
 
         _ui->TE_Notebook->setFontItalic(checked);
 
@@ -78,7 +76,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Underline, &QAction::triggered, [this](bool checked) -> void {
-        Logger("connect(ui->A_Underline, &QAction::triggered, [this](bool checked) -> void {");
+        Logging("connect(ui->A_Underline, &QAction::triggered, [this](bool checked) -> void {");
 
         _ui->TE_Notebook->setFontUnderline(checked);
 
@@ -88,7 +86,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     });
 
     QObject::connect(_ui->TE_Notebook, &QTextEdit::copyAvailable, [this](bool available) -> void {
-        Logger("connect(ui->TE_Notebook, &QTextEdit::copyAvailable, [this](bool available) -> void {");
+        Logging("connect(ui->TE_Notebook, &QTextEdit::copyAvailable, [this](bool available) -> void {");
 
         _ui->A_Copy->setEnabled(available);
         _ui->A_Cut->setEnabled(available);
@@ -96,7 +94,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     });
 
     QObject::connect(_ui->TE_Notebook, &QTextEdit::selectionChanged, [this]() -> void {
-        Logger("connect(ui->TE_Notebook, &QTextEdit::selectionChanged, [this]() -> void {");
+        Logging("connect(ui->TE_Notebook, &QTextEdit::selectionChanged, [this]() -> void {");
 
         QTextCharFormat format = _ui->TE_Notebook->currentCharFormat();
         _ui->A_Bold->setChecked(format.font().bold());
@@ -104,18 +102,19 @@ MW_Notebook::MW_Notebook(QWidget *parent)
         _ui->A_Underline->setChecked(format.font().underline());
     });
 
-    QObject::connect(_ui->SB_Font_Size, (void (QSpinBox::*)(int))&QSpinBox::valueChanged, [this](int value) -> void {
-        Logger("connect(ui->SB_Font_Size, &QSpinBox::valueChanged, [this](int value) -> void {");
+    QObject::connect(_ui->CB_Font_Size, &QComboBox::currentTextChanged, [this](QString text) -> void {
+        Logging("QObject::connect(_ui->CB_Font_Size, &QComboBox::currentTextChanged, [this](QString text) -> void {");
 
-        _ui->TE_Notebook->setFontPointSize(value);
+        iptr font_size = text.toLongLong();
+        _ui->TE_Notebook->setFontPointSize(font_size);
 
         QTextCharFormat format = _ui->PTE_Notebook->currentCharFormat();
-        format.setFontPointSize(value);
+        format.setFontPointSize(font_size);
         _ui->PTE_Notebook->setCurrentCharFormat(format);
     });
 
-    QObject::connect(_ui->FCB_Font_Family, &QFontComboBox::currentTextChanged, [this](const QString &text) -> void {
-        Logger("QObject::connect(ui->CB_Font_Name, &QComboBox::currentTextChanged, [this](const QString &text) -> void {");
+    QObject::connect(_ui->FCB_Font_Family, &QFontComboBox::currentTextChanged, [this](QString text) -> void {
+        Logging("QObject::connect(ui->CB_Font_Name, &QComboBox::currentTextChanged, [this](QString text) -> void {");
 
         _ui->TE_Notebook->setFontFamily(text);
 
@@ -125,7 +124,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Open, (void (QAction::*)())&QAction::triggered, [this]() -> void {
-        Logger("QObject::connect(ui->A_Open, (void (QAction::*)())&QAction::triggered, [this]() -> void {");
+        Logging("QObject::connect(ui->A_Open, (void (QAction::*)())&QAction::triggered, [this]() -> void {");
 
         QString directory = QCoreApplication::applicationDirPath();
         QString filename = QFileDialog::getOpenFileName(this, "打开文件", directory, "文本文件(*.txt);;Markdown(*.md);;所有文件(*.*)");
@@ -142,7 +141,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Font, &QAction::triggered, [this]() -> void {
-        Logger("QObject::connect(ui->A_Font, &QAction::triggered, [this]() -> void {");
+        Logging("QObject::connect(ui->A_Font, &QAction::triggered, [this]() -> void {");
 
         bool ok = false;
         QFont font = QFontDialog::getFont(&ok, this);
@@ -155,7 +154,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     });
 
     QObject::connect(_ui->A_New, &QAction::triggered, [this]() -> void {
-        Logger("QObject::connect(ui->A_New, &QAction::triggered, [this]() -> void {");
+        Logging("QObject::connect(ui->A_New, &QAction::triggered, [this]() -> void {");
 
         _ui->TE_Notebook->clear();
         _ui->PTE_Notebook->clear();
@@ -163,28 +162,48 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Show_Label, &QAction::triggered, [this](bool checked) -> void {
-        Logger("QObject::connect(ui->A_Show_Label, &QAction::triggered, [this](bool checked) -> void {");
+        Logging("QObject::connect(ui->A_Show_Label, &QAction::triggered, [this](bool checked) -> void {");
 
         (checked == true)
             ? _ui->TB_Major->setToolButtonStyle(Qt::ToolButtonTextUnderIcon)
             : _ui->TB_Major->setToolButtonStyle(Qt::ToolButtonIconOnly);
     });
+
+    _ui->TE_Notebook->setContextMenuPolicy(Qt::CustomContextMenu);
+    QObject::connect(_ui->TE_Notebook, &QTextEdit::customContextMenuRequested, [this](QPoint point) -> void {
+        Logging("QObject::connect(_ui->TE_Notebook, &QTextEdit::customContextMenuRequested, [this](QPoint point) -> void {");
+
+        (void)point;
+        QMenu *menu = _ui->TE_Notebook->createStandardContextMenu();
+        menu->exec(QCursor::pos());
+        delete menu;
+    });
+
+    _ui->PTE_Notebook->setContextMenuPolicy(Qt::CustomContextMenu);
+    QObject::connect(_ui->PTE_Notebook, &QPlainTextEdit::customContextMenuRequested, [this](QPoint point) -> void {
+        Logging("QObject::connect(_ui->PTE_Notebook, &QPlainTextEdit::customContextMenuRequested, [this](QPoint point) -> void {");
+
+        (void)point;
+        QMenu *menu = _ui->PTE_Notebook->createStandardContextMenu();
+        menu->exec(QCursor::pos());
+        delete menu;
+    });
 }
 
 MW_Notebook::~MW_Notebook() {
-    Logger(__FUNCTION__);
+    Logging(__FUNCTION__);
 
     delete _ui;
 }
 
 void MW_Notebook::Update_Status_Bar(const QString &filename) {
-    Logger(__FUNCTION__);
+    Logging(__FUNCTION__);
 
     _ui->L_Filename->setText(filename);
 }
 
 void MW_Notebook::Update_Theme() {
-    Logger(__FUNCTION__);
+    Logging(__FUNCTION__);
 
     iptr RGBA = 255;
     float red = 0.5 * RGBA;
@@ -192,7 +211,7 @@ void MW_Notebook::Update_Theme() {
     float blue = 0.5 * RGBA;
     float alpha = 0.5;
 
-    QString css = QString::asprintf("background-color: rgba(%td, %td, %td, %lf);", (iptr)red, (iptr)green, (iptr)blue, alpha);
+    QString css = QString::asprintf("QTextEdit {\n    background-color: rgba(%td, %td, %td, %lf); \n}", (iptr)red, (iptr)green, (iptr)blue, alpha);
     _ui->TE_Notebook->setStyleSheet(css);
 
     QColor color = QColor((int)red, (int)green, (int)blue, (int)(alpha * RGBA));

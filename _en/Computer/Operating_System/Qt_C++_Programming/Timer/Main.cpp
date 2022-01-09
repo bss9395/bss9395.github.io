@@ -9,7 +9,7 @@ System: Qt 5.15.2
 #include "Common.h"
 
 int main(int argc, char *argv[]) {
-    Logger(__FUNCTION__);
+    Logging(__FUNCTION__);
 
     QApplication application(argc, argv);
     Timer timer;

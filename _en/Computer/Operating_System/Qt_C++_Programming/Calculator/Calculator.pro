@@ -16,7 +16,6 @@ SOURCES += \
 HEADERS += \
     Calculator.h \
     Common.h \
-    Format.h \
     System.h
 
 FORMS += \

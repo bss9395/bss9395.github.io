@@ -10,7 +10,7 @@ System: Qt 5.15.2
 
 Timer::Timer(QWidget *parent)
     : QMainWindow(parent), _ui(new Ui::Timer) {
-    Logger(__FUNCTION__);
+    Logging(__FUNCTION__);
 
     _ui->setupUi(this);
     this->setWindowIcon(QIcon(":/images/view_in_ar.png"));
@@ -22,18 +22,18 @@ Timer::Timer(QWidget *parent)
     _ui->LCDN_Clock->setDigitCount(12);
     _ui->LCDN_Clock->display(QString("00:00:00:000"));
     _clock.start();
-    QObject::connect(&_clock, &QTimer::timeout, [this]() {
-        // Logger("QObject::connect(&_clock, &QTimer::timeout, [this]() {");
+    QObject::connect(&_clock, &QTimer::timeout, [this]() -> void {
+        // Logging("QObject::connect(&_clock, &QTimer::timeout, [this]() -> void {");
 
         QTime time = QTime::currentTime();
         QString stamp = time.toString("hh:mm:ss.zzz");
-        if(time.minute() % 30 == 29){
+        if (time.minute() % 30 == 29) {
             stamp[2] = ' ';
         }
-        if(time.second() % 30 == 29){
+        if (time.second() % 30 == 29) {
             stamp[5] = ' ';
         }
-        if(time.msec() < 500){
+        if (time.msec() >= 500) {
             stamp[8] = ' ';
         }
         _ui->LCDN_Clock->display(stamp);
@@ -42,49 +42,51 @@ Timer::Timer(QWidget *parent)
     _timer.setInterval(5);
     _ui->LCDN_Timer->setDigitCount(12);
     _ui->LCDN_Timer->display(QString("00:00:00.000"));
-    QObject::connect(_ui->PB_Update_Interval, &QPushButton::clicked, [this]() {
-        Logger("QObject::connect(_ui->PB_Update_Interval, &QPushButton::clicked, [this]() {");
+    QObject::connect(_ui->PB_Update_Interval, &QPushButton::clicked, [this]() -> void {
+        Logging("QObject::connect(_ui->PB_Update_Interval, &QPushButton::clicked, [this]() -> void {");
 
         _timer.setInterval(_ui->SB_Interval->value());
     });
 
-    QObject::connect(_ui->PB_Continue_Pause, &QPushButton::clicked, [this](bool checked) {
-        Logger("QObject::connect(_ui->PB_Start, &QPushButton::clicked, [this](bool checked) {");
+    QObject::connect(_ui->PB_Continue_Pause, &QPushButton::clicked, [this](bool checked) -> void {
+        Logging("QObject::connect(_ui->PB_Continue_Pause, &QPushButton::clicked, [this](bool checked) -> void {");
 
-        if(checked == true) {
+        if (checked == true) {
             _ui->PB_Continue_Pause->setText(QString("暂停"));
+            _ui->PB_Clear->setEnabled(false);
             _last = QTime::currentTime();
             _timer.start();
         } else {
             _ui->PB_Continue_Pause->setText(QString("继续"));
+            _ui->PB_Clear->setEnabled(true);
             _timer.stop();
             Update_Timer(true);
         }
     });
 
-    QObject::connect(_ui->PB_Clear, &QPushButton::clicked, [this]() {
-        Logger("QObject::connect(_ui->PB_Clear, &QPushButton::clicked, [this]() {");
+    QObject::connect(_ui->PB_Clear, &QPushButton::clicked, [this]() -> void {
+        Logging("QObject::connect(_ui->PB_Clear, &QPushButton::clicked, [this]() -> void {");
 
         _ui->LCDN_Timer->display(QString("00:00:00.000"));
         _elapsed = QTime(0, 0, 0, 0);
         _last = QTime::currentTime();
     });
 
-    QObject::connect(&_timer, &QTimer::timeout, [this]() {
-        // Logger("QObject::connect(&_timer, &QTimer::timeout, [this]() {");
+    QObject::connect(&_timer, &QTimer::timeout, [this]() -> void {
+        // Logging("QObject::connect(&_timer, &QTimer::timeout, [this]() -> void {");
 
         Update_Timer(false);
     });
 }
 
 Timer::~Timer() {
-    Logger(__FUNCTION__);
+    Logging(__FUNCTION__);
 
     delete _ui;
 }
 
 void Timer::Update_Timer(bool paused) {
-    // Logger(__FUNCTION__);
+    // Logging(__FUNCTION__);
 
     iptr hour = _elapsed.hour();
     iptr minute = _elapsed.minute();
@@ -111,17 +113,17 @@ void Timer::Update_Timer(bool paused) {
     (void)carry;
 
     QString stamp = QString::asprintf("%02td:%02td:%02td.%03td", hour, minute, second, milli);
-    if(paused == false) {
-        if(minute % 30 == 29) {
+    if (paused == false) {
+        if (minute % 30 == 29) {
             stamp[2] = ' ';
         }
-        if(second % 30 == 29) {
+        if (second % 30 == 29) {
             stamp[5] = ' ';
         }
-        if(milli < 500) {
+        if (milli >= 500) {
             stamp[8] = ' ';
         }
-    } else if(paused == true) {
+    } else if (paused == true) {
         _elapsed = QTime(hour, minute, second, milli); // save timer state
     }
     _ui->LCDN_Timer->display(stamp);

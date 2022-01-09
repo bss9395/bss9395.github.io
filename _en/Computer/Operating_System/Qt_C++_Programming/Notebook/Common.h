@@ -1,27 +1,29 @@
 /* Common.h
 Author: BSS9395
-Update: 2022-01-06T20:21:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-01-10T02:16:00+08@China-Guangdong-Shenzhen+08
 Design: Notebook
 Encode: UTF-8
 System: Qt 5.15.2
-Notice: Bug on Visual Studio 2017
 */
 
 #ifndef Common_h
 #define Common_h
 
-#define CRT_SECURE_NO_WARNINGS
 #include <QApplication>
 #include <QAudioDeviceInfo>
 #include <QDateTime>
 #include <QDebug>
+#include <QException>
 #include <QFileDialog>
 #include <QFontDialog>
 #include <QMainWindow>
 #include <QString>
 #include <QTextCodec>
+#include <QTimer>
+#include <QTimeZone>
 #include <QtGlobal>
 
+#define CRT_SECURE_NO_WARNINGS
 #include <fstream>
 #include <iostream>
 #include <list>
@@ -31,7 +33,6 @@ Notice: Bug on Visual Studio 2017
 
 #include "ui_Notebook.h"
 
-#include "Format.h"
 #include "Notebook.h"
 #include "System.h"
 

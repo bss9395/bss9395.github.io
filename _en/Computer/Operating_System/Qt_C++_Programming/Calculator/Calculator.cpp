@@ -10,7 +10,7 @@ System: Qt 5.15.2
 
 Calculator::Calculator(QWidget *parent)
     : QMainWindow(parent), _ui(new Ui::MW_Calculator) {
-    Logger(__FUNCTION__);
+    Logging(__FUNCTION__);
 
     _ui->setupUi(this);
     this->setWindowIcon(QIcon(":/images/view_in_ar.png"));
@@ -26,7 +26,7 @@ Calculator::Calculator(QWidget *parent)
 }
 
 Calculator::~Calculator() {
-    Logger(__FUNCTION__);
+    Logging(__FUNCTION__);
 
     delete _ui;
 }

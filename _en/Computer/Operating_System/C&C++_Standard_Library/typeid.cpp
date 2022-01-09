@@ -18,29 +18,28 @@ const char* name() const noexcept;
 #include <typeinfo>
 
 typedef intptr_t iptr;
-typedef std::string String;
 typedef const char *Level;
 
-template<typename TRecord = String, typename TSolution = String>
+template<typename TRecord = std::string, typename TSolution = std::string>
 class Exception : public std::exception {
 public:
     Level _level = Level();
-    String _file = String();
+    std::string _file = std::string();
     iptr _line = 0;
-    String _function = String();
+    std::string _function = std::string();
     TRecord _record = TRecord();
     TSolution _solution = TSolution();
-    String _report = String(512, 0);
+    std::string _report = std::string();
 
 public:
-    Exception(Level level, const String &file, iptr line, const String &function, const TRecord &record, const TSolution &solution = TSolution())
+    Exception(Level level, const std::string &file, iptr line, const std::string &function, const TRecord &record, const TSolution &solution = TSolution())
         : _level(level), _file(file), _line(line), _function(function), _record(record), _solution(solution) {
         // fprintf(stderr, "[%td] %s"";\n", (iptr)__LINE__, __FUNCTION__); fflush(stderr);
 
         fprintf(stderr, "[%td] typeid(record).name() = %s""\n", (iptr)__LINE__, typeid(record).name());
     }
 
-    Exception(Level level, const String &file, iptr line, const String &function, const char *record, const char *solution = "")
+    Exception(Level level, const std::string &file, iptr line, const std::string &function, const char *record, const char *solution = "")
         : _level(level), _file(file), _line(line), _function(function), _record(record), _solution(solution) {
         // fprintf(stderr, "[%td] %s"";\n", (iptr)__LINE__, __FUNCTION__); fflush(stderr);
 
@@ -52,7 +51,8 @@ public:
     }
 
 public:
-    virtual String &Report() {
+    virtual std::string &Report() {
+        _report.reserve(512);
         iptr numb = snprintf(&_report[0], _report.capacity(), "[%s : %s : %td : %s] ", _level, &_file[(iptr)(_file.find_last_of("/\\")) + 1], _line, &_function[0]);
         _report.resize(numb);
         _report += _record, _report += " : ";
