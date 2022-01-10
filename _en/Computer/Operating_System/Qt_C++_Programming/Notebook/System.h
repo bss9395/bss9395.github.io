@@ -1,9 +1,10 @@
 /* System.h
 Author: BSS9395
-Update: 2022-01-10T02:16:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-01-10T11:14:00+08@China-Guangdong-Shenzhen+08
 Design: Notebook
 Encode: UTF-8
 System: Qt 5.15.2
+Notice: Bug on Visual Studio 2017
 */
 
 #ifndef System_h
@@ -19,12 +20,18 @@ typedef wchar_t wide;
 ////////////////////////////////////////////////////////////////////////////////
 
 struct System {
+    static inline iptr _Success = 0;
+    static inline iptr _Failure = 1;
+    static inline iptr _Deprecated = 2;
+
     typedef const char *Level;
     static inline const Level _Info = "Info";
     static inline const Level _Note = "Note";
     static inline const Level _Warn = "Warn";
     static inline const Level _Error = "Error";
     static inline const Level _Fatal = "Fatal";
+
+    ////////////////////////////////////
 
     static iptr Log(iptr line, const char *format, ...) {
         fprintf(stderr, "[%td] ", line);
@@ -95,8 +102,35 @@ struct Format {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-template<typename TRecord = QString, typename TSolution = QString>
+template<typename TRecord, typename TSolution> class Anomaly;
 class Exception : public QException {
+public:
+    QString _report = QString();
+
+public:
+    virtual QString &Report() {
+        return _report;
+    }
+
+    [[ deprecated("obsolete function what(), use Report() instead.") ]]
+    virtual const char *what() const noexcept override final {
+        Checking(true, System::_Info, "obsolete function what()", " use Report() instead.");
+        exit(System::_Deprecated);
+    }
+
+public:
+    template<typename TRecord = QString, typename TSolution = QString>
+    static bool Except(bool failed, System::Level level, const QString &file, iptr line, const QString &function, const TRecord &record, const TSolution &solution = TSolution()) {
+        if(failed == true) {
+            throw Anomaly(level, file, line, function, record, solution);
+        }
+        return failed;
+    }
+#define Excepting(failed, level, record, solution) Exception::Except(failed, level, __FILE__, __LINE__, __FUNCTION__, record, solution)
+};
+
+template<typename TRecord = QString, typename TSolution = QString>
+class Anomaly : public Exception {
 public:
     System::Level _level = System::Level();
     QString _file = "";
@@ -104,30 +138,29 @@ public:
     QString _function = "";
     TRecord _record = TRecord();
     TSolution _solution = TSolution();
-    QString _report = QString();
 
 public:
-    Exception(System::Level level, const QString &file, iptr line, const QString &function, const TRecord &record, const TSolution &solution = TSolution())
+    Anomaly(System::Level level, const QString &file, iptr line, const QString &function, const TRecord &record, const TSolution &solution = TSolution())
         : _level(level), _file(file), _line(line), _function(function), _record(record), _solution(solution) {
-        Logging(R"(Exception(System::Level level, const QString &file, iptr line, const QString &function, const TRecord &record, const TSolution &solution = TSolution()))");
+        // Logging(R"(Exception(System::Level level, const QString &file, iptr line, const QString &function, const TRecord &record, const TSolution &solution = TSolution()))");
     }
 
-    Exception(System::Level level, const QString &file, iptr line, const QString &function, const char *record, const char *solution = "")
+    Anomaly(System::Level level, const QString &file, iptr line, const QString &function, const char *record, const char *solution = "")
         : _level(level), _file(file), _line(line), _function(function), _record(record), _solution(solution) {
-        Logging(R"(Exception(System::Level level, const QString &file, iptr line, const QString &function, const char *record, const char *solution = ""))");
+        // Logging(R"(Exception(System::Level level, const QString &file, iptr line, const QString &function, const char *record, const char *solution = ""))");
     }
 
-    virtual ~Exception() {
+    virtual ~Anomaly() {
         Logging(__FUNCTION__);
     }
 
 public:
-    virtual QString &Report() {
-        Logging(__FUNCTION__);
+    virtual QString &Report() override {
+        // Logging(__FUNCTION__);
         _report.reserve(512);
         int sepa = 0;
         ((sepa = _file.lastIndexOf('/')) < 0) && (sepa = _file.lastIndexOf('\\'));
-        _report += QString("[%s : %s : %td : %s] ").arg(_level).arg(_file[sepa + 1]).arg(_line).arg(_function);
+        _report += QString("[%1 : %2 : %3 : %4] ").arg(_level).arg(_file.midRef(sepa + 1)).arg(_line).arg(_function);
         _report += _record, _report += " : ";
         _report += _solution, _report += ";";
         return _report;
