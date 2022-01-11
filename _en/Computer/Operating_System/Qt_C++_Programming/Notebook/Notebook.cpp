@@ -126,8 +126,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     QObject::connect(_ui->A_Open, (void (QAction::*)())&QAction::triggered, [this]() -> void {
         Logging("QObject::connect(ui->A_Open, (void (QAction::*)())&QAction::triggered, [this]() -> void {");
 
-        QString directory = QCoreApplication::applicationDirPath();
-        QString filename = QFileDialog::getOpenFileName(this, "打开文件", directory, "文本文件(*.txt);;Markdown(*.md);;所有文件(*.*)");
+        QString filename = QFileDialog::getOpenFileName(this, "打开文件", QDir::currentPath(), "文本文件(*.txt);;Markdown(*.md);;所有文件(*.*)");
         if (0 < filename.size()) {
             QFile file(filename);
             if (file.open(QFile::ReadWrite | QFile::Text)) {

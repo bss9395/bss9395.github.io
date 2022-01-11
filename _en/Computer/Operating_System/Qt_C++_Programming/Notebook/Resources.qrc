@@ -44,5 +44,25 @@
         <file>images/view_in_ar.ico</file>
         <file>images/view_in_ar.png</file>
         <file>images/vpn_key.png</file>
+        <file>images/add_photo_alternate.png</file>
+        <file>images/broken_image.png</file>
+        <file>images/center_focus_strong.png</file>
+        <file>images/center_focus_weak.png</file>
+        <file>images/crop_free.png</file>
+        <file>images/file_download.png</file>
+        <file>images/file_upload.png</file>
+        <file>images/height.png</file>
+        <file>images/image.png</file>
+        <file>images/image_search.png</file>
+        <file>images/import_export.png</file>
+        <file>images/photo.png</file>
+        <file>images/search.png</file>
+        <file>images/swap_horiz.png</file>
+        <file>images/sync.png</file>
+        <file>images/width.png</file>
+        <file>images/zoom_in.png</file>
+        <file>images/zoom_in_map.png</file>
+        <file>images/zoom_out.png</file>
+        <file>images/zoom_out_map.png</file>
     </qresource>
 </RCC>
