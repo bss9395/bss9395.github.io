@@ -1,6 +1,6 @@
 /* Sketch.cpp
 Author: BSS9395
-Update: 2022-01-11T21:16:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-01-12T01:16:00+08@China-Guangdong-Shenzhen+08
 Design: Sketch
 Encode: UTF-8
 System: Qt 5.15.2
@@ -13,48 +13,97 @@ Sketch::Sketch(QWidget *parent)
     Logging(__FUNCTION__);
 
     _ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/images/view_in_ar.png"));
+    _ui->SB_Status_Bar->addWidget(_ui->GB_Status_Bar);
 
     _ui->TW_Picture->clear();
     QObject::connect(_ui->A_Scan, &QAction::triggered, [this]() -> void {
         Logging("QObject::connect(_ui->A_Scan, &QAction::triggered, [this]() -> void {");
 
         QString directory = QFileDialog::getExistingDirectory(this, "挂载目录", QDir::currentPath());
-        directory += '/';
-
-
+        if (0 < directory.size()) {
+            directory += '/';
+            QStringList filenames = QDir(directory, "*.png;;*.jpg").entryList(QDir::Files);
+            QTreeWidgetItem *folder = Attach_Folder(_ui->TW_Picture, directory);
+            Attach_Files(folder, directory, filenames, _hitted = _Enum_Relative);
+            _ui->TW_Picture->expandAll();
+        }
     });
 
     QObject::connect(_ui->A_Mount, &QAction::triggered, [this]() -> void {
         Logging("QObject::connect(_ui->A_Mount, &QAction::triggered, [this]() -> void {");
 
         QStringList filenames = QFileDialog::getOpenFileNames(this, "挂载图片", QDir::currentPath(), "图像文件(*.png *.jpg);;所有文件(*.*)");
-        if(0 < filenames.size()) {
-            iptr sepa = filenames[0].lastIndexOf('/') + 1;
-            QString directory = QString(filenames[0].data(), sepa);
-            QTreeWidgetItem *node = nullptr;
-            bool hitted = false;
-            for(iptr i = 0, count = _ui->TW_Picture->topLevelItemCount(); i < count; i += 1) {
-                node = Traverse(_ui->TW_Picture->topLevelItem(i), directory.data(), hitted);
-                if(node != nullptr) {
-                    break;
-                }
-            }
-            if(node == nullptr) {
-                node = new QTreeWidgetItem(_Folder);
-                node->setText(_Path, directory);
-                _ui->TW_Picture->addTopLevelItem(node);
-            }
-
-            ////////////////////////////
-
-            for(iptr i = 0, numb = filenames.size(); i < numb; i +=1) {
-                QTreeWidgetItem *file = new QTreeWidgetItem(_File);
-                file ->setText(_Path, filenames[i].mid(sepa));
-                node->addChild(file);
-            }
+        if (0 < filenames.size()) {
+            QString directory = filenames[0].left(filenames[0].lastIndexOf('/') + 1);
+            QTreeWidgetItem *folder = Attach_Folder(_ui->TW_Picture, directory);
+            Attach_Files(folder, directory, filenames, _hitted = _Enum_Absolute);
             _ui->TW_Picture->expandAll();
         }
-        return ;
+    });
+
+    QObject::connect(_ui->A_Unmount, &QAction::triggered, [this]() -> void {
+        QTreeWidgetItem *node = _ui->TW_Picture->currentItem();
+        if (node != nullptr) {
+            QTreeWidgetItem *parent = node->parent();
+            if (parent == nullptr) { // top level item
+                _ui->TW_Picture->takeTopLevelItem(_ui->TW_Picture->indexOfTopLevelItem(node));
+            } else {
+                parent->removeChild(node);
+            }
+            delete node;
+        }
+    });
+
+    _ui->L_Picture->setPixmap(_pixmap);
+    QObject::connect(_ui->TW_Picture, &QTreeWidget::currentItemChanged, [this](QTreeWidgetItem *current, QTreeWidgetItem *previous) -> void {
+        (void)previous;
+        if (current != nullptr) {
+            QString filename = current->data(_Enum_Path, Qt::UserRole).toString();
+            _ui->L_Path->setText(filename);
+
+            iptr type = current->type();
+            if (type == _Enum_File) {
+                _pixmap.load(filename);
+                _scale = 1.0;
+                _ui->L_Picture->setPixmap(_pixmap);
+            }
+        }
+    });
+
+    QObject::connect(_ui->A_Actual_Size, &QAction::triggered, [this]() -> void {
+        _scale = 1.0;
+        _ui->L_Picture->setPixmap(_pixmap);
+    });
+
+    QObject::connect(_ui->A_Zoom_In, &QAction::triggered, [this]() -> void {
+        _scale *= 1.1;
+        iptr width = _scale * _pixmap.width();
+        iptr height = _scale * _pixmap.height();
+        QPixmap pixmap = _pixmap.scaled(width, height);
+        _ui->L_Picture->setPixmap(pixmap);
+    });
+
+    QObject::connect(_ui->A_Zoom_Out, &QAction::triggered, [this]() -> void {
+        _scale /= 1.1;
+        iptr width = _scale * _pixmap.width();
+        iptr height = _scale * _pixmap.height();
+        QPixmap pixmap = _pixmap.scaled(width, height);
+        _ui->L_Picture->setPixmap(pixmap);
+    });
+
+    QObject::connect(_ui->A_Fit_Height, &QAction::triggered, [this]() -> void {
+        iptr height = _ui->SA_Picture->height();
+        _scale = (double)height / (double)_pixmap.height();
+        QPixmap pixmap = _pixmap.scaledToHeight(height);
+        _ui->L_Picture->setPixmap(pixmap);
+    });
+
+    QObject::connect(_ui->A_Fit_Width, &QAction::triggered, [this]() -> void {
+        iptr width = _ui->SA_Picture->width();
+        _scale = (double)width / (double)_pixmap.width();
+        QPixmap pixmap = _pixmap.scaledToWidth(width);
+        _ui->L_Picture->setPixmap(pixmap);
     });
 }
 
@@ -65,73 +114,131 @@ Sketch::~Sketch() {
 }
 
 // pointer can do anything, but reference can't.
-QTreeWidgetItem *Sketch::Traverse(QTreeWidgetItem *tree, const QChar *directory, bool &hitted) {
-    // Logging("QTreeWidgetItem *Sketch::Traverse(QTreeWidgetItem *tree, const QChar *directory, bool &hitted) {");
+QTreeWidgetItem *Sketch::Traverse(QTreeWidget *widget, QTreeWidgetItem *tree, const QChar *directory, iptr &hitted) {
+    Logging("QTreeWidgetItem *Sketch::Traverse(QTreeWidgetItem *tree, const QChar *directory, bool &hitted) {");
 
-    if(tree != nullptr) {
-        QString path = tree->text(_Path);
+    if (tree != nullptr) {
+        QString path = tree->text(_Enum_Path);
         QChar *folder = path.data();
         int last = 0;
         int idx = 0;
-        for(; folder[idx] != '\0' && directory[idx] != '\0' && folder[idx] == directory[idx]; idx += 1) {
-            if(folder[idx] == '/') {
+        for (; folder[idx] != '\0' && directory[idx] != '\0' && folder[idx] == directory[idx]; idx += 1) {
+            if (folder[idx] == '/') {
                 last = idx + 1;
             }
         }
-        if(last == 0) {
+        if (last == 0) {
             return nullptr;
-        } else if(folder[idx] == '\0' && directory[idx] == '\0') {
-            hitted = true;
+        } else if (folder[idx] == '\0' && directory[idx] == '\0') {
+            hitted += 1;
             return tree;
-        } else if(folder[idx] != '\0' && directory[idx] == '\0') {
-            QTreeWidgetItem *node = new QTreeWidgetItem(_Folder);
-            node->setText(_Path, QString(&directory[0]));
+        } else if (folder[idx] != '\0' && directory[idx] == '\0') {
+            QTreeWidgetItem *node = new QTreeWidgetItem(_Enum_Folder);
+            node->setText(_Enum_Path, QString(&directory[0]));
             QTreeWidgetItem *parent = tree->parent();
-            if(parent == nullptr) { // top level item
-                _ui->TW_Picture->takeTopLevelItem(_ui->TW_Picture->indexOfTopLevelItem(tree));
-                tree->setText(_Path, QString(&folder[last]));
+            if (parent == nullptr) { // top level item
+                widget->takeTopLevelItem(widget->indexOfTopLevelItem(tree));
+                tree->setText(_Enum_Path, QString(&folder[last]));
                 node->addChild(tree);
-                _ui->TW_Picture->addTopLevelItem(node);
+                widget->addTopLevelItem(node);
             } else {
                 parent->removeChild(tree);
-                tree->setText(_Path, QString(&folder[last]));
+                tree->setText(_Enum_Path, QString(&folder[last]));
                 node->addChild(tree);
                 parent->addChild(node);
             }
             return node;
-        } else if(folder[idx] != '\0' && directory[idx] != '\0') {
-            QTreeWidgetItem *node = new QTreeWidgetItem(_Folder);
-            node->setText(_Path, QString(&folder[0], last));
-            QTreeWidgetItem *sibling = new QTreeWidgetItem(_Folder);
-            sibling->setText(_Path, QString(&directory[last]));
+        } else if (folder[idx] != '\0' && directory[idx] != '\0') {
+            QTreeWidgetItem *node = new QTreeWidgetItem(_Enum_Folder);
+            node->setText(_Enum_Path, QString(&folder[0], last));
+            QTreeWidgetItem *sibling = new QTreeWidgetItem(_Enum_Folder);
+            sibling->setText(_Enum_Path, QString(&directory[last]));
             QTreeWidgetItem *parent = tree->parent();
-            if(parent == nullptr) {
-                _ui->TW_Picture->takeTopLevelItem(_ui->TW_Picture->indexOfTopLevelItem(tree));
-                tree->setText(_Path, QString(&folder[last]));
+            if (parent == nullptr) {
+                widget->takeTopLevelItem(widget->indexOfTopLevelItem(tree));
+                tree->setText(_Enum_Path, QString(&folder[last]));
                 node->addChild(tree);
                 node->addChild(sibling);
-                _ui->TW_Picture->addTopLevelItem(node);
+                widget->addTopLevelItem(node);
             } else {
                 parent->removeChild(tree);
-                tree->setText(_Path, QString(&folder[last]));
+                tree->setText(_Enum_Path, QString(&folder[last]));
                 node->addChild(tree);
                 node->addChild(sibling);
                 parent->addChild(node);
             }
             return sibling;
-        } else { // folder[idx] == '\0' && directory[idx] != '\0'
+        } else { // if (folder[idx] == '\0' && directory[idx] != '\0')
             // recursively
-            for(iptr i = 0, count = tree->childCount(); i < count; i += 1) {
-                QTreeWidgetItem *node = Traverse(tree->child(i), &directory[idx], hitted);
-                if(node != nullptr) {
+            for (iptr i = 0, count = tree->childCount(); i < count; i += 1) {
+                QTreeWidgetItem *node = Traverse(widget, tree->child(i), &directory[idx], hitted);
+                if (node != nullptr) {
                     return node;
                 }
             }
-            QTreeWidgetItem *node = new QTreeWidgetItem(_Folder);
-            node->setText(_Folder, QString(&directory[idx]));
+            QTreeWidgetItem *node = new QTreeWidgetItem(_Enum_Folder);
+            node->setText(_Enum_Folder, QString(&directory[idx]));
             tree->addChild(node);
             return node;
         }
     }
     return nullptr;
+}
+
+QTreeWidgetItem *Sketch::Attach_Folder(QTreeWidget *widget, const QString &directory, iptr &hitted) {
+    Logging("QTreeWidgetItem *Sketch::Attach_Folder(QTreeWidget *widget, const QChar *directory, bool &hitted) {");
+
+    hitted = 0;
+    QTreeWidgetItem *folder = nullptr;
+    for (iptr i = 0, count = widget->topLevelItemCount(); i < count; i += 1) {
+        folder = Traverse(widget, widget->topLevelItem(i), directory.data(), hitted);
+        if (folder != nullptr) {
+            break;
+        }
+    }
+    if (folder == nullptr) {
+        folder = new QTreeWidgetItem(_Enum_Folder);
+        folder->setText(_Enum_Path, directory);
+        widget->addTopLevelItem(folder);
+    }
+    if (hitted <= 0) {
+        folder->setIcon(_Enum_Path, _Icon_Folder);
+        folder->setData(_Enum_Path, Qt::UserRole, directory);
+        folder->setText(_Enum_Type, "folder");
+    }
+    return folder;
+}
+
+iptr Sketch::Attach_Files(QTreeWidgetItem *folder, const QString &directory, const QStringList &filenames, iptr &hitted) {
+    Logging("iptr Sketch::Attach_Files(QTreeWidgetItem *folder, const QString &directory, const QStringList &filenames, iptr &hitted) {");
+
+    // ToDo: check duplicated.
+    iptr attached = 0;
+    if (hitted == _Enum_Absolute) {
+        hitted = 0;
+        iptr sepa = directory.size();
+        for (iptr i = 0, numb = filenames.size(); i < numb; i += 1) {
+            QTreeWidgetItem *file = new QTreeWidgetItem(_Enum_File);
+            file->setIcon(_Enum_Path, _Icon_Image);
+            file->setText(_Enum_Path, filenames[i].mid(sepa));
+            file->setData(_Enum_Path, Qt::UserRole, filenames[i]);
+            file->setText(_Enum_Type, filenames[i].mid(filenames[i].lastIndexOf('.') + 1));
+            folder->addChild(file);
+            attached += 1;
+        }
+    } else if (hitted == _Enum_Relative) {
+        hitted = 0;
+        for (iptr i = 0, numb = filenames.size(); i < numb; i += 1) {
+            QTreeWidgetItem *file = new QTreeWidgetItem(_Enum_File);
+            file->setIcon(_Enum_Path, _Icon_Image);
+            file->setText(_Enum_Path, filenames[i]);
+            file->setData(_Enum_Path, Qt::UserRole, directory + filenames[i]);
+            file->setText(_Enum_Type, filenames[i].mid(filenames[i].lastIndexOf('.') + 1));
+            folder->addChild(file);
+            attached += 1;
+        }
+    } else {
+        Excepting(true, System::_Info, "an unknown mode", "choose a mode");
+    }
+    return attached;
 }

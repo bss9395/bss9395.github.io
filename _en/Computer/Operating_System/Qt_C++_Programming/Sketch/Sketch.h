@@ -15,19 +15,29 @@ class Sketch : public QMainWindow {
     Q_OBJECT
 
 public:
-    static inline iptr _Folder = 1000;
-    static inline iptr _File = 1001;
-    static inline iptr _Path = 0;
-    static inline iptr _Type = 1;
+    static inline iptr _Enum_Folder = 1000;
+    static inline iptr _Enum_File = 1001;
+    static inline iptr _Enum_Path = 0;
+    static inline iptr _Enum_Type = 1;
+    static inline iptr _Enum_Absolute = -1;
+    static inline iptr _Enum_Relative = -2;
+
+    static inline iptr _hitted = false;
 
 public:
     Ui::Sketch *_ui = nullptr;
+    QIcon _Icon_Folder = QIcon(":/images/folder.png"); // note: initialize after QGuiApplication.
+    QIcon _Icon_Image = QIcon(":/images/image.png");   // note: initialize after QGuiApplication.
+    QPixmap _pixmap = QPixmap(":/images/M31.png");
+    double _scale = 1.0;
 
 public:
     Sketch(QWidget *parent = nullptr);
     ~Sketch();
 
 public:
-    QTreeWidgetItem *Traverse(QTreeWidgetItem *tree, const QChar *directory, bool &hitted);
+    QTreeWidgetItem *Traverse(QTreeWidget *widget, QTreeWidgetItem *tree, const QChar *directory, iptr &hitted = _hitted);
+    QTreeWidgetItem *Attach_Folder(QTreeWidget *widget, const QString &directory, iptr &hitted = _hitted);
+    iptr Attach_Files(QTreeWidgetItem *folder, const QString &directory, const QStringList &filenames, iptr &hitted = _hitted);
 };
 #endif // Sketch_h
