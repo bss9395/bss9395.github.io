@@ -46,7 +46,8 @@ int main(int argc, char *argv[]) {
     fprintf(stderr, "offset_object = %td""\n", offset_object);
 
     Datum datum;
-    fprintf(stderr, "ID = %s""\n", datum._ID.data());
+    fprintf(stderr, "datum._ID = %s""\n", datum._ID.data());
+    fprintf(stderr, "datum._Mark._ID = %s""\n", datum._Mark._ID);
 
     return 0;
 }

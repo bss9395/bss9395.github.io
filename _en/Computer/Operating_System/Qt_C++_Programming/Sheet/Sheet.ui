@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Sheet</class>
+ <widget class="QMainWindow" name="Sheet">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Sheet</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QSpinBox" name="SB_Column">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+            <property name="suffix">
+             <string>行</string>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>9999</number>
+            </property>
+            <property name="value">
+             <number>4</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>×</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="SB_Row">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+            <property name="suffix">
+             <string>列</string>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>9999</number>
+            </property>
+            <property name="value">
+             <number>4</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="PB_Set">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>设置</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="TB_Select">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>选择格</string>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="TW_Sheet">
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::DoubleClicked</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <row>
+       <property name="text">
+        <string>R1</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>R2</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>R3</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>R4</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>C1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>C2</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>C3</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>C4</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="TW_Matrix">
+      <attribute name="horizontalHeaderVisible">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>true</bool>
+      </attribute>
+      <row>
+       <property name="text">
+        <string>R3</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>R2</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>R1</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>R0</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>C0</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>C1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>C2</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>C3</string>
+       </property>
+      </column>
+      <item row="4" column="0">
+       <property name="text">
+        <string>C0</string>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="4" column="1">
+       <property name="text">
+        <string>C1</string>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="4" column="2">
+       <property name="text">
+        <string>C2</string>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item row="4" column="3">
+       <property name="text">
+        <string>C3</string>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="GB_Status_Bar">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>1</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border: none;
+}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="L_Status_Bar">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="SB_Status_Bar"/>
+  <widget class="QToolBar" name="TB_Tool_Bar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="A_Testing"/>
+   <addaction name="A_Save"/>
+   <addaction name="separator"/>
+   <addaction name="A_Adjust_Height"/>
+   <addaction name="A_Adjuct_Width"/>
+   <addaction name="A_Select_Cell"/>
+   <addaction name="A_Select_Row"/>
+   <addaction name="A_Select_Column"/>
+  </widget>
+  <action name="A_Save">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/save.png</normaloff>:/images/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>保存表单</string>
+   </property>
+   <property name="toolTip">
+    <string>保存表单</string>
+   </property>
+  </action>
+  <action name="A_Adjust_Height">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/height.png</normaloff>:/images/height.png</iconset>
+   </property>
+   <property name="text">
+    <string>调节行高</string>
+   </property>
+  </action>
+  <action name="A_Adjuct_Width">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/width.png</normaloff>:/images/width.png</iconset>
+   </property>
+   <property name="text">
+    <string>调节列宽</string>
+   </property>
+  </action>
+  <action name="A_Select_Cell">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/window.png</normaloff>:/images/window.png</iconset>
+   </property>
+   <property name="text">
+    <string>选择格</string>
+   </property>
+  </action>
+  <action name="A_Select_Row">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/view_stream.png</normaloff>:/images/view_stream.png</iconset>
+   </property>
+   <property name="text">
+    <string>选择行</string>
+   </property>
+  </action>
+  <action name="A_Select_Column">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/column.png</normaloff>:/images/column.png</iconset>
+   </property>
+   <property name="text">
+    <string>选择列</string>
+   </property>
+  </action>
+  <action name="A_Testing">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/task.png</normaloff>:/images/task.png</iconset>
+   </property>
+   <property name="text">
+    <string>测试数据</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

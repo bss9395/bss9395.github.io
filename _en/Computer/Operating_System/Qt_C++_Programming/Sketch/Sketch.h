@@ -21,8 +21,13 @@ public:
     static inline iptr _Enum_Type = 1;
     static inline iptr _Enum_Absolute = -1;
     static inline iptr _Enum_Relative = -2;
-
     static inline iptr _hitted = false;
+
+public:
+    static inline QString _type = QString(R"(
+*.APNG;;*.BMP;;*.CDR;;*.CMX;;*.DIB;;*.DICOM;;*.DJVU;;*.DNG;;*.EMF;;*.EMZ;;*.EPS;;
+*.GIF;;*.J2K;;*.JP2;;*.JPG;;*.ODG;;*.OTG;;*.PNG;;*.SVG;;*.SVGZ;;*.TGA;;*.TIFF;;*.WEBP;;*.WMF;;*.WMZ
+)");
 
 public:
     Ui::Sketch *_ui = nullptr;

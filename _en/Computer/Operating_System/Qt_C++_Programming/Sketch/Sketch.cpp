@@ -115,11 +115,11 @@ Sketch::~Sketch() {
 
 // pointer can do anything, but reference can't.
 QTreeWidgetItem *Sketch::Traverse(QTreeWidget *widget, QTreeWidgetItem *tree, const QChar *directory, iptr &hitted) {
-    Logging("QTreeWidgetItem *Sketch::Traverse(QTreeWidgetItem *tree, const QChar *directory, bool &hitted) {");
+    Logging(__FUNCTION__);
 
     if (tree != nullptr) {
-        QString path = tree->text(_Enum_Path);
-        QChar *folder = path.data();
+        QString relative = tree->text(_Enum_Path);
+        QChar *folder = relative.data();
         int last = 0;
         int idx = 0;
         for (; folder[idx] != '\0' && directory[idx] != '\0' && folder[idx] == directory[idx]; idx += 1) {
@@ -134,7 +134,7 @@ QTreeWidgetItem *Sketch::Traverse(QTreeWidget *widget, QTreeWidgetItem *tree, co
             return tree;
         } else if (folder[idx] != '\0' && directory[idx] == '\0') {
             QTreeWidgetItem *node = new QTreeWidgetItem(_Enum_Folder);
-            node->setText(_Enum_Path, QString(&directory[0]));
+            node->setText(_Enum_Path, QString(&folder[0], last));
             QTreeWidgetItem *parent = tree->parent();
             if (parent == nullptr) { // top level item
                 widget->takeTopLevelItem(widget->indexOfTopLevelItem(tree));
@@ -150,7 +150,11 @@ QTreeWidgetItem *Sketch::Traverse(QTreeWidget *widget, QTreeWidgetItem *tree, co
             return node;
         } else if (folder[idx] != '\0' && directory[idx] != '\0') {
             QTreeWidgetItem *node = new QTreeWidgetItem(_Enum_Folder);
+            node->setIcon(_Enum_Path, _Icon_Folder);
             node->setText(_Enum_Path, QString(&folder[0], last));
+            QString data = tree->data(_Enum_Path, Qt::UserRole).toString();
+            node->setData(_Enum_Path, Qt::UserRole, data.chopped(relative.size() - last)); // absolute
+            node->setText(_Enum_Type, "folder");
             QTreeWidgetItem *sibling = new QTreeWidgetItem(_Enum_Folder);
             sibling->setText(_Enum_Path, QString(&directory[last]));
             QTreeWidgetItem *parent = tree->parent();
@@ -186,7 +190,7 @@ QTreeWidgetItem *Sketch::Traverse(QTreeWidget *widget, QTreeWidgetItem *tree, co
 }
 
 QTreeWidgetItem *Sketch::Attach_Folder(QTreeWidget *widget, const QString &directory, iptr &hitted) {
-    Logging("QTreeWidgetItem *Sketch::Attach_Folder(QTreeWidget *widget, const QChar *directory, bool &hitted) {");
+    Logging(__FUNCTION__);
 
     hitted = 0;
     QTreeWidgetItem *folder = nullptr;
@@ -210,7 +214,7 @@ QTreeWidgetItem *Sketch::Attach_Folder(QTreeWidget *widget, const QString &direc
 }
 
 iptr Sketch::Attach_Files(QTreeWidgetItem *folder, const QString &directory, const QStringList &filenames, iptr &hitted) {
-    Logging("iptr Sketch::Attach_Files(QTreeWidgetItem *folder, const QString &directory, const QStringList &filenames, iptr &hitted) {");
+    Logging(__FUNCTION__);
 
     // ToDo: check duplicated.
     iptr attached = 0;
