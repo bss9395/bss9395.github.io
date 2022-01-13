@@ -13,14 +13,18 @@ System: Qt 5.15.2
 #include <QAudioDeviceInfo>
 #include <QDateTime>
 #include <QDebug>
+#include <QDoubleSpinBox>
 #include <QException>
 #include <QFileDialog>
 #include <QFontDialog>
+#include <QItemDelegate>
 #include <QMainWindow>
+#include <QObject>
 #include <QString>
+#include <QStyledItemDelegate>
 #include <QTextCodec>
-#include <QTimer>
 #include <QTimeZone>
+#include <QTimer>
 #include <QtGlobal>
 
 #define CRT_SECURE_NO_WARNINGS
@@ -32,10 +36,11 @@ System: Qt 5.15.2
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "System.h"
-#include "ui_Sheet.h"
+#ifndef   Header_h
+#define   Header_h
 
+#include "System.h"
 #include "Sheet.h"
 
-
+#endif // Header_h
 #endif // Common_h

@@ -9,7 +9,9 @@ System: Qt 5.15.2
 #ifndef Timer_h
 #define Timer_h
 
+#define   Header_h
 #include "Common.h"
+#include "ui_Timer.h"
 
 class Timer : public QMainWindow {
     Q_OBJECT

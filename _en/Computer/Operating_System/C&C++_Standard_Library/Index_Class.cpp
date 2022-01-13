@@ -8,10 +8,13 @@ Design: C Macro Function: Index_Class, Index_Object, Offset_Class, Offset_Object
 #include <string>
 
 typedef intptr_t iptr;
-#define Index_Class(Object, _member)   (((iptr)&((Object *)0)->_member - (iptr)0) / (iptr)sizeof(((Object *)0)->_member))
-#define Index_Object(object, _member)  (((iptr)&object._member - (iptr)&object)   / (iptr)sizeof(object._member))
-#define Offset_Class(Object, _member)  ((iptr)&((Object *)0)->_member - (iptr)0)
-#define Offset_Object(object, _member) ((iptr)&object._member - (iptr)&object)
+typedef size_t   uptr;
+
+// note: the difference of two addresses can exceed the range of iptr type, although it's impossible.
+#define Index_Class(Object, _member)   (((uptr)&((Object *)0)->_member - (uptr)0) / (uptr)sizeof(((Object *)0)->_member))
+#define Index_Object(object, _member)  (((uptr)&object._member - (uptr)&object)   / (uptr)sizeof(object._member))
+#define Offset_Class(Object, _member)   ((uptr)&((Object *)0)->_member - (uptr)0)
+#define Offset_Object(object, _member)  ((uptr)&object._member - (uptr)&object)
 
 struct Datum {
     static inline struct EMark {

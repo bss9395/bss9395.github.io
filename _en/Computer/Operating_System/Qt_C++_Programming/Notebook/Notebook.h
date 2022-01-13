@@ -10,7 +10,9 @@ Notice: Bug on Visual Studio 2017
 #ifndef Notebook_h
 #define Notebook_h
 
+#define   Header_h
 #include "Common.h"
+#include "ui_Notebook.h"
 
 class MW_Notebook : public QMainWindow {
     Q_OBJECT

@@ -77,5 +77,13 @@
         <file>images/grid.png</file>
         <file>images/view_stream.png</file>
         <file>images/window.png</file>
+        <file>images/horizontal_distribute.png</file>
+        <file>images/vertical_distribute.png</file>
+        <file>images/table_rows.png</file>
+        <file>images/view_week.png</file>
+        <file>images/keyboard_double_arrow_down.png</file>
+        <file>images/keyboard_double_arrow_left.png</file>
+        <file>images/keyboard_double_arrow_right.png</file>
+        <file>images/keyboard_double_arrow_up.png</file>
     </qresource>
 </RCC>

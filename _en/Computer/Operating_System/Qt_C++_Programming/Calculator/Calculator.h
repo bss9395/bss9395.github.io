@@ -9,7 +9,9 @@ System: Qt 5.15.2
 #ifndef Calculator_h
 #define Calculator_h
 
+#define   Header_h
 #include "Common.h"
+#include "ui_Calculator.h"
 
 class Calculator : public QMainWindow {
     Q_OBJECT

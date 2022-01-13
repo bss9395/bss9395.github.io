@@ -31,9 +31,11 @@ System: Qt 5.15.2
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "ui_Notebook.h"
+#ifndef   Header_h
+#define   Header_h
 
 #include "Notebook.h"
 #include "System.h"
 
+#endif // Header_h
 #endif // Common_h

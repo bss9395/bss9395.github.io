@@ -1,6 +1,6 @@
 /* System.h
 Author: BSS9395
-Update: 2022-01-10T11:14:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-01-12T22:14:00+08@China-Guangdong-Shenzhen+08
 Design: Sketch
 Encode: UTF-8
 System: Qt 5.15.2
@@ -10,12 +10,20 @@ Notice: Bug on Visual Studio 2017
 #ifndef System_h
 #define System_h
 
+#define   Header_h
 #include "Common.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
 typedef intptr_t iptr;
-typedef wchar_t wide;
+typedef size_t   uptr;
+typedef wchar_t  wide;
+
+// note: the difference of two addresses can exceed the range of iptr type, although it's impossible.
+#define Index_Class(Object, _member)   (((uptr)&((Object *)0)->_member - (uptr)0) / (uptr)sizeof(((Object *)0)->_member))
+#define Index_Object(object, _member)  (((uptr)&object._member - (uptr)&object)   / (uptr)sizeof(object._member))
+#define Offset_Class(Object, _member)   ((uptr)&((Object *)0)->_member - (uptr)0)
+#define Offset_Object(object, _member)  ((uptr)&object._member - (uptr)&object)
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -171,7 +179,7 @@ public:
 
 struct Configuration {
     static inline iptr _configuration = []() -> iptr {
-        Logging("%s; %s;", __TIMESTAMP__, QT_VERSION_STR);
+        Logging("%s; %s", __TIMESTAMP__, QT_VERSION_STR);
 
         //Logging("QTextCodec::availableCodecs() = \n{ %s }", Format::Print(QTextCodec::availableCodecs()).toStdString().data());
 

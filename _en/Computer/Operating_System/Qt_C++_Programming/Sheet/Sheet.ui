@@ -16,24 +16,129 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="GB_Tool_Bar">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="title">
        <string/>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
-        <widget class="QGroupBox" name="groupBox_2">
+        <widget class="QToolButton" name="TB_Adjust">
+         <property name="text">
+          <string>调整格式</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/images/width.png</normaloff>:/images/width.png</iconset>
+         </property>
+         <property name="autoRepeatDelay">
+          <number>300</number>
+         </property>
+         <property name="autoRepeatInterval">
+          <number>100</number>
+         </property>
+         <property name="popupMode">
+          <enum>QToolButton::MenuButtonPopup</enum>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="TB_Manipulate">
+         <property name="text">
+          <string>操作行列</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/images/keyboard_double_arrow_down.png</normaloff>:/images/keyboard_double_arrow_down.png</iconset>
+         </property>
+         <property name="autoRepeatDelay">
+          <number>300</number>
+         </property>
+         <property name="autoRepeatInterval">
+          <number>100</number>
+         </property>
+         <property name="popupMode">
+          <enum>QToolButton::MenuButtonPopup</enum>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="TB_Select">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>选择格</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/images/window.png</normaloff>:/images/window.png</iconset>
+         </property>
+         <property name="autoRepeatDelay">
+          <number>300</number>
+         </property>
+         <property name="autoRepeatInterval">
+          <number>100</number>
+         </property>
+         <property name="popupMode">
+          <enum>QToolButton::MenuButtonPopup</enum>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="GB_Set">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	border: none;
+}
+</string>
          </property>
          <property name="title">
           <string/>
@@ -65,6 +170,9 @@
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::UpDownArrows</enum>
+            </property>
             <property name="suffix">
              <string>行</string>
             </property>
@@ -72,7 +180,7 @@
              <number>1</number>
             </property>
             <property name="maximum">
-             <number>9999</number>
+             <number>999</number>
             </property>
             <property name="value">
              <number>4</number>
@@ -110,7 +218,7 @@
              <number>1</number>
             </property>
             <property name="maximum">
-             <number>9999</number>
+             <number>999</number>
             </property>
             <property name="value">
              <number>4</number>
@@ -121,34 +229,25 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="PB_Set">
+        <widget class="QToolButton" name="TB_Set">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string>设置</string>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="TB_Select">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/images/grid.png</normaloff>:/images/grid.png</iconset>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>选择格</string>
+         <property name="popupMode">
+          <enum>QToolButton::MenuButtonPopup</enum>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -215,13 +314,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QTableWidget" name="TW_Matrix">
-      <attribute name="horizontalHeaderVisible">
-       <bool>true</bool>
-      </attribute>
-      <attribute name="verticalHeaderVisible">
-       <bool>true</bool>
-      </attribute>
+     <widget class="QTableWidget" name="tableWidget">
       <row>
        <property name="text">
         <string>R3</string>
@@ -271,12 +364,6 @@
        <property name="text">
         <string>C0</string>
        </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
@@ -284,12 +371,6 @@
       <item row="4" column="1">
        <property name="text">
         <string>C1</string>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
@@ -299,12 +380,6 @@
        <property name="text">
         <string>C2</string>
        </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
        </property>
@@ -312,12 +387,6 @@
       <item row="4" column="3">
        <property name="text">
         <string>C3</string>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
@@ -394,15 +463,10 @@
     <bool>false</bool>
    </attribute>
    <addaction name="A_Testing"/>
-   <addaction name="A_Save"/>
+   <addaction name="A_Save_Sheet"/>
    <addaction name="separator"/>
-   <addaction name="A_Adjust_Height"/>
-   <addaction name="A_Adjuct_Width"/>
-   <addaction name="A_Select_Cell"/>
-   <addaction name="A_Select_Row"/>
-   <addaction name="A_Select_Column"/>
   </widget>
-  <action name="A_Save">
+  <action name="A_Save_Sheet">
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/images/save.png</normaloff>:/images/save.png</iconset>
@@ -466,6 +530,81 @@
    </property>
    <property name="text">
     <string>测试数据</string>
+   </property>
+  </action>
+  <action name="A_Horizontal_Header">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/vertical_distribute.png</normaloff>:/images/vertical_distribute.png</iconset>
+   </property>
+   <property name="text">
+    <string>水平表头</string>
+   </property>
+  </action>
+  <action name="A_Vertical_Header">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/horizontal_distribute.png</normaloff>:/images/horizontal_distribute.png</iconset>
+   </property>
+   <property name="text">
+    <string>垂直表头</string>
+   </property>
+  </action>
+  <action name="A_Insert_Row">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/keyboard_double_arrow_down.png</normaloff>:/images/keyboard_double_arrow_down.png</iconset>
+   </property>
+   <property name="text">
+    <string>插入行</string>
+   </property>
+  </action>
+  <action name="A_Insert_Column">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/keyboard_double_arrow_right.png</normaloff>:/images/keyboard_double_arrow_right.png</iconset>
+   </property>
+   <property name="text">
+    <string>插入列</string>
+   </property>
+  </action>
+  <action name="A_Delete_Row">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/keyboard_double_arrow_up.png</normaloff>:/images/keyboard_double_arrow_up.png</iconset>
+   </property>
+   <property name="text">
+    <string>删除行</string>
+   </property>
+  </action>
+  <action name="A_Delete_Column">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/keyboard_double_arrow_left.png</normaloff>:/images/keyboard_double_arrow_left.png</iconset>
+   </property>
+   <property name="text">
+    <string>删除列</string>
+   </property>
+  </action>
+  <action name="A_Set">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/grid.png</normaloff>:/images/grid.png</iconset>
+   </property>
+   <property name="text">
+    <string>设置</string>
    </property>
   </action>
  </widget>

@@ -31,9 +31,11 @@ System: Qt 5.15.2
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "ui_Calculator.h"
+#ifndef   Header_h
+#define   Header_h
 
-#include "Calculator.h"
 #include "System.h"
+#include "Calculator.h"
 
+#endif // Header_h
 #endif // Common_h

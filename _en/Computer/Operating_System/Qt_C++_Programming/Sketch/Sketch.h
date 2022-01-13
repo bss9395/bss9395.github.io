@@ -9,7 +9,10 @@ System: Qt 5.15.2
 #ifndef Sketch_h
 #define Sketch_h
 
+#define   Header_h
 #include "Common.h"
+#include "System.h"
+#include "ui_Sketch.h"
 
 class Sketch : public QMainWindow {
     Q_OBJECT

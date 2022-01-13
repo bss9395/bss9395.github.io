@@ -32,10 +32,11 @@ System: Qt 5.15.2
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "System.h"
-#include "ui_Sketch.h"
+#ifndef   Header_h
+#define   Header_h
 
+#include "System.h"
 #include "Sketch.h"
 
-
+#endif // Header_h
 #endif // Common_h
