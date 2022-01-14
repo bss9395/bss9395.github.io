@@ -18,16 +18,33 @@
     <item>
      <widget class="QGroupBox" name="GB_Tool_Bar">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
+        <verstretch>1</verstretch>
        </sizepolicy>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QGroupBox {
+	border: none;
+}</string>
       </property>
       <property name="title">
        <string/>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <property name="spacing">
@@ -47,6 +64,27 @@
        </property>
        <item>
         <widget class="QToolButton" name="TB_Adjust">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>68</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string>调整格式</string>
          </property>
@@ -54,6 +92,12 @@
           <iconset resource="resources.qrc">
            <normaloff>:/images/width.png</normaloff>:/images/width.png</iconset>
          </property>
+         <property name="iconSize">
+          <size>
+           <width>36</width>
+           <height>36</height>
+          </size>
+         </property>
          <property name="autoRepeatDelay">
           <number>300</number>
          </property>
@@ -66,10 +110,19 @@
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
          </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QToolButton" name="TB_Manipulate">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
           <string>操作行列</string>
          </property>
@@ -77,6 +130,12 @@
           <iconset resource="resources.qrc">
            <normaloff>:/images/keyboard_double_arrow_down.png</normaloff>:/images/keyboard_double_arrow_down.png</iconset>
          </property>
+         <property name="iconSize">
+          <size>
+           <width>36</width>
+           <height>36</height>
+          </size>
+         </property>
          <property name="autoRepeatDelay">
           <number>300</number>
          </property>
@@ -89,10 +148,19 @@
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
          </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QToolButton" name="TB_Select">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -112,6 +180,12 @@
           <iconset resource="resources.qrc">
            <normaloff>:/images/window.png</normaloff>:/images/window.png</iconset>
          </property>
+         <property name="iconSize">
+          <size>
+           <width>36</width>
+           <height>36</height>
+          </size>
+         </property>
          <property name="autoRepeatDelay">
           <number>300</number>
          </property>
@@ -123,6 +197,12 @@
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+         <property name="arrowType">
+          <enum>Qt::NoArrow</enum>
          </property>
         </widget>
        </item>
@@ -231,9 +311,9 @@
        <item>
         <widget class="QToolButton" name="TB_Set">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
            <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
+           <verstretch>1</verstretch>
           </sizepolicy>
          </property>
          <property name="styleSheet">
@@ -246,11 +326,20 @@
           <iconset resource="resources.qrc">
            <normaloff>:/images/grid.png</normaloff>:/images/grid.png</iconset>
          </property>
+         <property name="iconSize">
+          <size>
+           <width>36</width>
+           <height>36</height>
+          </size>
+         </property>
          <property name="popupMode">
           <enum>QToolButton::MenuButtonPopup</enum>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

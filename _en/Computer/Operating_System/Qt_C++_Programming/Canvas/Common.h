@@ -36,7 +36,7 @@ System: Qt 5.15.2
 #define   Header_h
 
 #include "System.h"
-#include "Sketch.h"
+#include "Canvas.h"
 
 #endif // Header_h
 #endif // Common_h

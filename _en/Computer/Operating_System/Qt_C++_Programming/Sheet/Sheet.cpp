@@ -45,7 +45,6 @@ Sheet::Sheet(QWidget *parent)
     menu->addAction(_ui->A_Adjust_Height);
     _ui->TB_Adjust->setDefaultAction(_ui->A_Adjuct_Width);
     _ui->TB_Adjust->setMenu(menu);
-    _ui->TB_Tool_Bar->addWidget(_ui->TB_Adjust);
 
     menu = new QMenu(this);
     menu->addAction(_ui->A_Insert_Row);
@@ -54,7 +53,6 @@ Sheet::Sheet(QWidget *parent)
     menu->addAction(_ui->A_Delete_Column);
     _ui->TB_Manipulate->setDefaultAction(_ui->A_Insert_Row);
     _ui->TB_Manipulate->setMenu(menu);
-    _ui->TB_Tool_Bar->addWidget(_ui->TB_Manipulate);
 
     menu = new QMenu(this);
     menu->addAction(_ui->A_Select_Cell);
@@ -62,18 +60,14 @@ Sheet::Sheet(QWidget *parent)
     menu->addAction(_ui->A_Select_Column);
     _ui->TB_Select->setDefaultAction(_ui->A_Select_Cell);
     _ui->TB_Select->setMenu(menu);
-    _ui->TB_Tool_Bar->addWidget(_ui->TB_Select);
 
-    _ui->TB_Tool_Bar->addSeparator();
     menu= new QMenu(this);
     menu->addAction(_ui->A_Horizontal_Header);
     menu->addAction(_ui->A_Vertical_Header);
     _ui->TB_Set->setDefaultAction(_ui->A_Set);
     _ui->TB_Set->setMenu(menu);
-    _ui->TB_Tool_Bar->addWidget(_ui->GB_Set);
-    _ui->TB_Tool_Bar->addWidget(_ui->TB_Set);
 
-    delete _ui->GB_Tool_Bar;
+    _ui->TB_Tool_Bar->addWidget(_ui->GB_Tool_Bar);
 
     ////////////////////////////////////
 

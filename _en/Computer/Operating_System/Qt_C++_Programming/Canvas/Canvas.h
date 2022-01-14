@@ -12,7 +12,7 @@ System: Qt 5.15.2
 #define   Header_h
 #include "Common.h"
 #include "System.h"
-#include "ui_Sketch.h"
+#include "ui_Canvas.h"
 
 class Sketch : public QMainWindow {
     Q_OBJECT
