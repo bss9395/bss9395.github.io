@@ -14,7 +14,7 @@ System: Qt 5.15.2
 #include "System.h"
 #include "ui_Sheet.h"
 
-class Delegate : public QStyledItemDelegate {
+class QDoubleSpinBox_Delegate : public QStyledItemDelegate {
 public:
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const {
         Logging(__FUNCTION__);
@@ -50,12 +50,18 @@ class Sheet : public QMainWindow {
 
 public:
     Ui::Sheet *_ui = nullptr;
-    QMenu *menu = nullptr;
-    Delegate _qdoublespinbox_delegate = Delegate();
+    QString _filename = QString("untitled.sheet");
+    QMenu *_menu = nullptr;
+    QDoubleSpinBox_Delegate _qdoublespinbox_delegate = QDoubleSpinBox_Delegate();
 
 public:
     Sheet(QWidget *parent = nullptr);
-    ~Sheet();
+    virtual ~Sheet();
+
+public:
+    void Update_Theme();
+    // virtual void resizeEvent(QResizeEvent *event) override;
+    virtual bool event(QEvent *event) override;
 };
 
 #endif // Sheet_h

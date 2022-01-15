@@ -18,8 +18,12 @@ System: Qt 5.15.2
 #include <QFileDialog>
 #include <QFontDialog>
 #include <QItemDelegate>
+#include <QItemSelection>
+#include <QKeyEvent>
 #include <QMainWindow>
 #include <QObject>
+#include <QRegularExpression>
+#include <QStandardItem>
 #include <QString>
 #include <QStyledItemDelegate>
 #include <QTextCodec>

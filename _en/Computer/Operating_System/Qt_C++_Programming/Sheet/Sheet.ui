@@ -10,6 +10,11 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Consolas</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Sheet</string>
   </property>
@@ -18,7 +23,7 @@
     <item>
      <widget class="QGroupBox" name="GB_Tool_Bar">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
         <horstretch>0</horstretch>
         <verstretch>1</verstretch>
        </sizepolicy>
@@ -94,8 +99,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>36</width>
-           <height>36</height>
+           <width>24</width>
+           <height>24</height>
           </size>
          </property>
          <property name="autoRepeatDelay">
@@ -132,8 +137,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>36</width>
-           <height>36</height>
+           <width>24</width>
+           <height>24</height>
           </size>
          </property>
          <property name="autoRepeatDelay">
@@ -182,8 +187,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>36</width>
-           <height>36</height>
+           <width>24</width>
+           <height>24</height>
           </size>
          </property>
          <property name="autoRepeatDelay">
@@ -328,8 +333,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>36</width>
-           <height>36</height>
+           <width>24</width>
+           <height>24</height>
           </size>
          </property>
          <property name="popupMode">
@@ -348,6 +353,12 @@
     </item>
     <item>
      <widget class="QTableWidget" name="TW_Sheet">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
@@ -404,6 +415,12 @@
     </item>
     <item>
      <widget class="QTableWidget" name="tableWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
       <row>
        <property name="text">
         <string>R3</string>
@@ -486,7 +503,7 @@
     <item>
      <widget class="QGroupBox" name="GB_Status_Bar">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
         <horstretch>1</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -533,7 +550,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>30</height>
+     <height>28</height>
     </rect>
    </property>
   </widget>
@@ -541,6 +558,12 @@
   <widget class="QToolBar" name="TB_Tool_Bar">
    <property name="windowTitle">
     <string>toolBar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
    </property>
    <property name="toolButtonStyle">
     <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -552,8 +575,16 @@
     <bool>false</bool>
    </attribute>
    <addaction name="A_Testing"/>
+   <addaction name="A_Open"/>
    <addaction name="A_Save_Sheet"/>
    <addaction name="separator"/>
+   <addaction name="A_Bold"/>
+   <addaction name="A_Align_Left"/>
+   <addaction name="A_Align_Horizontal"/>
+   <addaction name="A_Align_Right"/>
+   <addaction name="A_Align_Top"/>
+   <addaction name="A_Align_Vertical"/>
+   <addaction name="A_Align_Bottom"/>
   </widget>
   <action name="A_Save_Sheet">
    <property name="icon">
@@ -694,6 +725,78 @@
    </property>
    <property name="text">
     <string>设置</string>
+   </property>
+  </action>
+  <action name="A_Align_Left">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/align_horizontal_left.png</normaloff>:/images/align_horizontal_left.png</iconset>
+   </property>
+   <property name="text">
+    <string>水平居左</string>
+   </property>
+  </action>
+  <action name="A_Align_Right">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/align_horizontal_right.png</normaloff>:/images/align_horizontal_right.png</iconset>
+   </property>
+   <property name="text">
+    <string>水平居右</string>
+   </property>
+  </action>
+  <action name="A_Align_Horizontal">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/align_horizontal_center.png</normaloff>:/images/align_horizontal_center.png</iconset>
+   </property>
+   <property name="text">
+    <string>水平居中</string>
+   </property>
+  </action>
+  <action name="A_Align_Top">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/align_vertical_top.png</normaloff>:/images/align_vertical_top.png</iconset>
+   </property>
+   <property name="text">
+    <string>垂直居上</string>
+   </property>
+  </action>
+  <action name="A_Align_Bottom">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/align_vertical_bottom.png</normaloff>:/images/align_vertical_bottom.png</iconset>
+   </property>
+   <property name="text">
+    <string>垂直居下</string>
+   </property>
+  </action>
+  <action name="A_Align_Vertical">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/align_vertical_center.png</normaloff>:/images/align_vertical_center.png</iconset>
+   </property>
+   <property name="text">
+    <string>垂直居中</string>
+   </property>
+  </action>
+  <action name="A_Open">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/file_open.png</normaloff>:/images/file_open.png</iconset>
+   </property>
+   <property name="text">
+    <string>打开表单</string>
+   </property>
+  </action>
+  <action name="A_Bold">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/format_bold.png</normaloff>:/images/format_bold.png</iconset>
+   </property>
+   <property name="text">
+    <string>粗体</string>
    </property>
   </action>
  </widget>

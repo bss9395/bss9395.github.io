@@ -1,6 +1,6 @@
 /* Sheet.cpp
 Author: BSS9395
-Update: 2022-01-14T00:04:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-01-15T23:54:00+08@China-Guangdong-Shenzhen+08
 Design: Sheet
 Encode: UTF-8
 System: Qt 5.15.2
@@ -28,44 +28,58 @@ struct Datum {
     QString _gender = "男";
     QDate _date = QDate(1993, 9, 5);
     QString _nationality = "汉";
-    double _score = 99.9;
+    double _score = 99.99;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 
+void Sheet::Update_Theme() {
+    static float font_size = 6.0;
+    QString filename = _filename.mid(_filename.lastIndexOf('/') + 1);
+    iptr padding = this->width() / font_size - filename.size();
+    this->setWindowTitle(QString(padding / 2, ' ') + filename);
+}
+
+bool Sheet::event(QEvent *event) {
+    if (event->type() == QEvent::Resize) {
+        Update_Theme();
+        return true;
+    }
+    return QWidget::event(event);
+}
+
 Sheet::Sheet(QWidget *parent)
     : QMainWindow(parent), _ui(new Ui::Sheet) {
     Logging(__FUNCTION__);
-
-    _ui->setupUi(this);
+    _ui->setupUi(this);   // note: first line
     _ui->SB_Status_Bar->addWidget(_ui->GB_Status_Bar);
 
-    menu = new QMenu(this);
-    menu->addAction(_ui->A_Adjuct_Width);
-    menu->addAction(_ui->A_Adjust_Height);
+    _menu = new QMenu(this);
+    _menu->addAction(_ui->A_Adjuct_Width);
+    _menu->addAction(_ui->A_Adjust_Height);
     _ui->TB_Adjust->setDefaultAction(_ui->A_Adjuct_Width);
-    _ui->TB_Adjust->setMenu(menu);
+    _ui->TB_Adjust->setMenu(_menu);
 
-    menu = new QMenu(this);
-    menu->addAction(_ui->A_Insert_Row);
-    menu->addAction(_ui->A_Insert_Column);
-    menu->addAction(_ui->A_Delete_Row);
-    menu->addAction(_ui->A_Delete_Column);
+    _menu = new QMenu(this);
+    _menu->addAction(_ui->A_Insert_Row);
+    _menu->addAction(_ui->A_Insert_Column);
+    _menu->addAction(_ui->A_Delete_Row);
+    _menu->addAction(_ui->A_Delete_Column);
     _ui->TB_Manipulate->setDefaultAction(_ui->A_Insert_Row);
-    _ui->TB_Manipulate->setMenu(menu);
+    _ui->TB_Manipulate->setMenu(_menu);
 
-    menu = new QMenu(this);
-    menu->addAction(_ui->A_Select_Cell);
-    menu->addAction(_ui->A_Select_Row);
-    menu->addAction(_ui->A_Select_Column);
+    _menu = new QMenu(this);
+    _menu->addAction(_ui->A_Select_Cell);
+    _menu->addAction(_ui->A_Select_Row);
+    _menu->addAction(_ui->A_Select_Column);
     _ui->TB_Select->setDefaultAction(_ui->A_Select_Cell);
-    _ui->TB_Select->setMenu(menu);
+    _ui->TB_Select->setMenu(_menu);
 
-    menu= new QMenu(this);
-    menu->addAction(_ui->A_Horizontal_Header);
-    menu->addAction(_ui->A_Vertical_Header);
+    _menu= new QMenu(this);
+    _menu->addAction(_ui->A_Horizontal_Header);
+    _menu->addAction(_ui->A_Vertical_Header);
     _ui->TB_Set->setDefaultAction(_ui->A_Set);
-    _ui->TB_Set->setMenu(menu);
+    _ui->TB_Set->setMenu(_menu);
 
     _ui->TB_Tool_Bar->addWidget(_ui->GB_Tool_Bar);
 
@@ -73,6 +87,8 @@ Sheet::Sheet(QWidget *parent)
 
     QObject::connect(_ui->A_Testing, &QAction::triggered, [this]() -> void {
         Logging("QObject::connect(_ui->A_Testing, &QAction::triggered, [this]() -> void {");
+        _filename = QString("untitled.sheet");
+        Update_Theme();
 
         _ui->TW_Sheet->setRowCount(0);
         _ui->TW_Sheet->setColumnCount(0);
@@ -129,6 +145,45 @@ Sheet::Sheet(QWidget *parent)
         }
 
         _ui->TW_Sheet->setItemDelegateForColumn(Index_Object(Datum::_Mark, _Score), &_qdoublespinbox_delegate);
+    });
+
+    QObject::connect(_ui->A_Open, &QAction::triggered, [this]() -> void {
+        QString filename = QFileDialog::getOpenFileName(this, "打开文件", QDir::currentPath(), "文本文件(*.txt);;表单文件(*.sheet);;所有文件(*.*)");
+        if (0 < filename.size()) {
+            _filename = filename;
+            Update_Theme();
+
+            QFile file(filename);
+            if (file.open(QFile::ReadWrite | QFile::Text)) {
+                _ui->TW_Sheet->setColumnCount(0);
+                _ui->TW_Sheet->setRowCount(0);
+
+                QTextStream stream(&file);
+                stream.setCodec("UTF-8");
+                QRegularExpression reg = QRegularExpression("[ \t\n\r\f]+");
+                if(!stream.atEnd()){
+                    QStringList header = stream.readLine().split(reg, QString::SkipEmptyParts);
+                    _ui->TW_Sheet->setColumnCount(header.size());
+                    _ui->TW_Sheet->setHorizontalHeaderLabels(header);
+                    iptr row = 0, capability = 20;
+                    _ui->TW_Sheet->setRowCount(capability);
+                    for(row = 0; !stream.atEnd(); row += 1) {
+                        if(!(row < capability)){
+                            capability += 20;
+                            _ui->TW_Sheet->setRowCount(capability);
+                        }
+                        QStringList items = stream.readLine().split(reg, QString::SkipEmptyParts);
+                        for(iptr col = 0, count = items.size(); col < count; col += 1) {
+                            _ui->TW_Sheet->setItem(row, col, new QTableWidgetItem(items[col]));
+                        }
+                    }
+                    _ui->TW_Sheet->setRowCount(row);
+                    _ui->TW_Sheet->resizeColumnsToContents();
+                    _ui->TW_Sheet->resizeRowsToContents();
+                }
+                // Update_Status_Bar(filename);
+            }
+        }
     });
 
     _ui->TW_Sheet->setAlternatingRowColors(true);
@@ -289,20 +344,80 @@ Sheet::Sheet(QWidget *parent)
         }
 
         ////////////////////////////////
-        // ToDo: advanced save.
 
-        Logging("%td, %s",buffer.size(), buffer.toStdString().data());
-        FILE *file = fopen("untitled.sheet", "wb");
-        if(file == NULL && Checking(true, System::_Error, "file == NULL", NULL)) {
-            return ;
+        QFile file(_filename);
+        if(file.open(QFile::ReadWrite | QFile::Text)) {
+            QTextStream stream(&file);
+            stream.setCodec("UTF-8");
+            stream << buffer;
         }
-        std::string data = buffer.toStdString();
-        iptr numb = fwrite(data.data(), sizeof(char), data.size(), file);
-        if(numb != (iptr)data.size() && Checking(true, System::_Error, "numb != (iptr)data.size()", NULL)) {
-            // none
-        }
-        fclose(file);
     });
+
+    QObject::connect(_ui->A_Align_Left, &QAction::triggered, [this]() -> void {
+        QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
+        if(0 < selected.size()) {
+            for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
+                (*beg)->setTextAlignment(Qt::AlignLeft | ((*beg)->textAlignment() & (~Qt::AlignHorizontal_Mask)));
+            }
+        }
+    });
+
+    QObject::connect(_ui->A_Align_Horizontal, &QAction::triggered, [this]() -> void {
+        QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
+        if(0 < selected.size()) {
+            for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
+                (*beg)->setTextAlignment(Qt::AlignHCenter | ((*beg)->textAlignment() & (~Qt::AlignHorizontal_Mask)));
+            }
+        }
+    });
+
+    QObject::connect(_ui->A_Align_Right, &QAction::triggered, [this]() -> void {
+        QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
+        if(0 < selected.size()) {
+            for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
+                (*beg)->setTextAlignment(Qt::AlignRight | ((*beg)->textAlignment() & (~Qt::AlignHorizontal_Mask)));
+            }
+        }
+    });
+
+    QObject::connect(_ui->A_Align_Top, &QAction::triggered, [this]() -> void {
+        QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
+        if(0 < selected.size()) {
+            for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
+                (*beg)->setTextAlignment(Qt::AlignTop | ((*beg)->textAlignment() & (~Qt::AlignVertical_Mask)));
+            }
+        }
+    });
+
+    QObject::connect(_ui->A_Align_Vertical, &QAction::triggered, [this]() -> void {
+        QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
+        if(0 < selected.size()) {
+            for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
+                (*beg)->setTextAlignment(Qt::AlignVCenter | ((*beg)->textAlignment() & (~Qt::AlignVertical_Mask)));
+            }
+        }
+    });
+
+    QObject::connect(_ui->A_Align_Bottom, &QAction::triggered, [this]() -> void {
+        QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
+        if(0 < selected.size()) {
+            for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
+                (*beg)->setTextAlignment(Qt::AlignBottom | ((*beg)->textAlignment() & (~Qt::AlignVertical_Mask)));
+            }
+        }
+    });
+
+    QObject::connect(_ui->A_Bold, &QAction::triggered, [this]() -> void {
+        QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
+        if(0 < selected.size()) {
+            for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
+                QFont font = (*beg)->font();
+                font.setBold(true);
+                (*beg)->setFont(font);
+            }
+        }
+    });
+
 }
 
 Sheet::~Sheet() {
