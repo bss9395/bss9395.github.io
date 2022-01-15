@@ -14,6 +14,7 @@ SOURCES += \
 
 HEADERS += \
     Common.h \
+    Delegate.h \
     System.h \
     Sheet.h
 

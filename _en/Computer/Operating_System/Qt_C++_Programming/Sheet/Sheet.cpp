@@ -1,6 +1,6 @@
 /* Sheet.cpp
 Author: BSS9395
-Update: 2022-01-15T23:54:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-01-16T02:26:00+08@China-Guangdong-Shenzhen+08
 Design: Sheet
 Encode: UTF-8
 System: Qt 5.15.2
@@ -34,6 +34,8 @@ struct Datum {
 ////////////////////////////////////////////////////////////////////////////////
 
 void Sheet::Update_Theme() {
+    Logging(__FUNCTION__);
+
     static float font_size = 6.0;
     QString filename = _filename.mid(_filename.lastIndexOf('/') + 1);
     iptr padding = this->width() / font_size - filename.size();
@@ -41,6 +43,8 @@ void Sheet::Update_Theme() {
 }
 
 bool Sheet::event(QEvent *event) {
+    // Logging(__FUNCTION__);
+
     if (event->type() == QEvent::Resize) {
         Update_Theme();
         return true;
@@ -144,10 +148,15 @@ Sheet::Sheet(QWidget *parent)
             _ui->TW_Sheet->setItem(row, Index_Class(Datum::EMark, _Score), item);
         }
 
-        _ui->TW_Sheet->setItemDelegateForColumn(Index_Object(Datum::_Mark, _Score), &_qdoublespinbox_delegate);
+        _qcombobox_delegate = QComboBox_Delegate(QStringList{"男", "女"}, this);
+        _qdoublespinbox_delegate = QDoubleSpinBox_Delegate( 0.0, 100.0, this);
+        _ui->TW_Sheet->setItemDelegateForColumn(Index_Class(Datum::EMark, _Gender), &_qcombobox_delegate);
+        _ui->TW_Sheet->setItemDelegateForColumn(Index_Class(Datum::EMark, _Score), &_qdoublespinbox_delegate);
     });
 
     QObject::connect(_ui->A_Open, &QAction::triggered, [this]() -> void {
+        Logging("QObject::connect(_ui->A_Open, &QAction::triggered, [this]() -> void {");
+
         QString filename = QFileDialog::getOpenFileName(this, "打开文件", QDir::currentPath(), "文本文件(*.txt);;表单文件(*.sheet);;所有文件(*.*)");
         if (0 < filename.size()) {
             _filename = filename;
@@ -334,10 +343,9 @@ Sheet::Sheet(QWidget *parent)
         Logging("QObject::connect(_ui->A_Save_Sheet, &QAction::triggered, [this]() -> void {");
 
         QString buffer = ""; buffer.reserve(1024);
-        QTableWidgetItem *item = nullptr;
         for(iptr row = 0, row_count = _ui->TW_Sheet->rowCount(); row < row_count; row += 1) {
             for(iptr col = 0, col_count = _ui->TW_Sheet->columnCount(); col < col_count; col += 1) {
-                item = _ui->TW_Sheet->item(row, col);
+                QTableWidgetItem *item = _ui->TW_Sheet->item(row, col);
                 buffer += item->text(), buffer += "; ";
             }
             buffer += "\n";
@@ -346,7 +354,7 @@ Sheet::Sheet(QWidget *parent)
         ////////////////////////////////
 
         QFile file(_filename);
-        if(file.open(QFile::ReadWrite | QFile::Text)) {
+        if(file.open(QFile::WriteOnly | QFile::Truncate)) {
             QTextStream stream(&file);
             stream.setCodec("UTF-8");
             stream << buffer;
@@ -354,6 +362,8 @@ Sheet::Sheet(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Align_Left, &QAction::triggered, [this]() -> void {
+        Logging("QObject::connect(_ui->A_Align_Left, &QAction::triggered, [this]() -> void {");
+
         QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
         if(0 < selected.size()) {
             for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
@@ -363,6 +373,8 @@ Sheet::Sheet(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Align_Horizontal, &QAction::triggered, [this]() -> void {
+        Logging("QObject::connect(_ui->A_Align_Horizontal, &QAction::triggered, [this]() -> void {");
+
         QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
         if(0 < selected.size()) {
             for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
@@ -372,6 +384,8 @@ Sheet::Sheet(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Align_Right, &QAction::triggered, [this]() -> void {
+        Logging("QObject::connect(_ui->A_Align_Right, &QAction::triggered, [this]() -> void {");
+
         QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
         if(0 < selected.size()) {
             for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
@@ -381,6 +395,8 @@ Sheet::Sheet(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Align_Top, &QAction::triggered, [this]() -> void {
+        Logging("QObject::connect(_ui->A_Align_Top, &QAction::triggered, [this]() -> void {");
+
         QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
         if(0 < selected.size()) {
             for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
@@ -390,6 +406,8 @@ Sheet::Sheet(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Align_Vertical, &QAction::triggered, [this]() -> void {
+        Logging("QObject::connect(_ui->A_Align_Vertical, &QAction::triggered, [this]() -> void {");
+
         QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
         if(0 < selected.size()) {
             for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
@@ -399,6 +417,8 @@ Sheet::Sheet(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Align_Bottom, &QAction::triggered, [this]() -> void {
+        Logging("QObject::connect(_ui->A_Align_Bottom, &QAction::triggered, [this]() -> void {");
+
         QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
         if(0 < selected.size()) {
             for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {
@@ -408,6 +428,8 @@ Sheet::Sheet(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Bold, &QAction::triggered, [this]() -> void {
+        Logging("QObject::connect(_ui->A_Bold, &QAction::triggered, [this]() -> void {");
+
         QList<QTableWidgetItem *> selected = _ui->TW_Sheet->selectedItems();
         if(0 < selected.size()) {
             for(auto beg = selected.begin(), end = selected.end(); beg != end; beg += 1) {

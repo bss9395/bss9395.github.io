@@ -1,7 +1,7 @@
 /* Common.h
 Author: BSS9395
 Update: 2022-01-10T02:16:00+08@China-Guangdong-Shenzhen+08
-Design: Notebook
+Design: Sheet
 Encode: UTF-8
 System: Qt 5.15.2
 */
@@ -13,6 +13,7 @@ System: Qt 5.15.2
 #include <QAudioDeviceInfo>
 #include <QDateTime>
 #include <QDebug>
+#include <QComboBox>
 #include <QDoubleSpinBox>
 #include <QException>
 #include <QFileDialog>
@@ -44,6 +45,7 @@ System: Qt 5.15.2
 #define   Header_h
 
 #include "System.h"
+#include "Delegate.h"
 #include "Sheet.h"
 
 #endif // Header_h
