@@ -2,6 +2,7 @@
 Author: BSS9395
 Update: 2021-12-29T22:47:00+08@China-Guangdong-Shenzhen+08
 Design: X-Z Coordinate
+Encode: UTF-8
 */
 
 #pragma comment(lib, "glad.lib")
@@ -32,8 +33,9 @@ unsigned int _VBO_Axis = 0;
 unsigned int _PS_Cube = 0;
 unsigned int _PS_Axis = 0;
 
+#define RESTART
 // ![Cube_Order.svg](figures/Cube_Order.svg)
-float _Cube[5 * 24] = {
+float _Cube[5 * 24] = { // GL_TRIANGLE_STRIP
     // X-Z coordinate
     // -X <= -Y <= -Z <= +Z <= +Y <= +X
     // +X, CCW => CW, upward
@@ -41,26 +43,31 @@ float _Cube[5 * 24] = {
     +0.5, +0.5, -0.5, 1.0, 0.0,
     +0.5, -0.5, +0.5, 0.0, 1.0,
     +0.5, +0.5, +0.5, 1.0, 1.0,
+    RESTART
     // +Y, CCW => CW, upward
     +0.5, +0.5, -0.5, 0.0, 0.0,
     -0.5, +0.5, -0.5, 1.0, 0.0,
     +0.5, +0.5, +0.5, 0.0, 1.0,
     -0.5, +0.5, +0.5, 1.0, 1.0,
+    RESTART
     // +Z, CCW => CW, outward
     +0.5, +0.5, +0.5, 0.0, 0.0,
     -0.5, +0.5, +0.5, 1.0, 0.0,
     +0.5, -0.5, +0.5, 0.0, 1.0,
     -0.5, -0.5, +0.5, 1.0, 1.0,
+    RESTART
     // -Z, CCW => CW, outward
     -0.5, +0.5, -0.5, 0.0, 0.0,
     +0.5, +0.5, -0.5, 1.0, 0.0,
     -0.5, -0.5, -0.5, 0.0, 1.0,
     +0.5, -0.5, -0.5, 1.0, 1.0,
+    RESTART
     // -Y, CCW => CW, upward
     -0.5, -0.5, -0.5, 0.0, 0.0,
     +0.5, -0.5, -0.5, 1.0, 0.0,
     -0.5, -0.5, +0.5, 0.0, 1.0,
     +0.5, -0.5, +0.5, 1.0, 1.0,
+    RESTART
     // -X, CCW => CW, upward
     -0.5, +0.5, -0.5, 0.0, 0.0,
     -0.5, -0.5, -0.5, 1.0, 0.0,
@@ -229,6 +236,7 @@ int main(int argc, char *argv[]) {
 
     ////////////////////////////////////
 
+    // glEnable(GL_PRIMITIVE_RESTART); // use glPrimitiveRestartIndex() instead.
     glEnable(GL_LINE_SMOOTH);
     glEnable(GL_MULTISAMPLE);
     glEnable(GL_DEPTH_TEST);
@@ -278,7 +286,9 @@ int main(int argc, char *argv[]) {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, _Texture);
         glBindVertexArray(_VAO_Cube);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 24);  // note: GL_TRIANGLES
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 24);  // note: 24 indexes for GL_TRIANGLE_STRIP, 36 indexes for GL_TRIANGLES.
+        // note: use glPrimitiveRestartIndex() and glDrawElements() instead.
+        // note: for more detail information, please check 《OpenGL Programming Guide(Ninth Edition)》 sample 3.8.
 
         ////////////////////////////////
 
