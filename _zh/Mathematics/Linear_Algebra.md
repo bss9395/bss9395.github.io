@@ -1,10 +1,10 @@
 ---
-layout:  zh_post
-Topic :  收敛极限
-Title :  线性代数
-Update:  2022-01-24T20:52:00+08@中国-广东-湛江+08
-Author:  璀璨星辰
-Link  :
+layout: zh_post
+Topic : 收敛极限
+Title : 线性代数
+Update: 2022-01-25T21:46:00+08@中国-广东-湛江+08
+Author: 璀璨星辰
+Credit: 《线性代数（数学专业用）》李尚志
 ---
 
 ### 特别注意
@@ -326,19 +326,21 @@ $$
 0 \\
 ⋮ \\
 β_{r+1} \\
+\hline
 β_r \\
 ⋮ \\
 β_1 \\
 β_0 \\
-\end{matrix}\right] &\mathop{===}\limits^{α_{k,k}=1} \mathop{\left[\begin{matrix}
+\end{matrix}\right] &\mathop{===}\limits^{α_{k,k}=1} \mathop{\left[\begin{array}{cccc|ccc}
 0 & 0 & ⋯ & 0 & 0 & ⋯ & 0 \\
 ⋮ & ⋮ & ⋰ & ⋮ & ⋮ & ⋰ & ⋮ \\
 0 & 0 & ⋯ & 0 & 0 & ⋯ & 0 \\
+\hline
 0 & 0 & ⋯ & α_{r,r} & α_{r,r+1} & ⋯ & α_{r,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ & ⋮ & ⋰ & ⋮ \\
 0 & α_{1,1} & ⋯ & 0 & α_{1,r+1} & ⋯ & α_{1,n} \\
 α_{0,0} & 0 & ⋯ & 0 & α_{0,r+1} & ⋯ & α_{0,n} \\
-\end{matrix}\right]}\limits_{(1 + m)×(1 + n)} \rlap{×}{+} \left[\begin{matrix}
+\end{array}\right]}\limits_{(1 + m)×(1 + n)} \rlap{×}{+} \left[\begin{matrix}
 x_n \\
 ⋮ \\
 x_{r+1} \\
@@ -352,15 +354,16 @@ x_r \\
 ⋮ \\
 x_1 \\
 x_0 \\
-\end{matrix}\right] &\mathop{===}\limits^{β_{r+1}=0} \mathop{\left[\begin{matrix}
+\end{matrix}\right] &\mathop{===}\limits^{β_{r+1}=0} \mathop{\left[\begin{array}{c|ccc}
 β_r & -α_{r,r+1} & ⋯ & -α_{r,n} \\
-⋮ & ⋮ & & ⋮ \\
+⋮ & ⋮ & ⋰ & ⋮ \\
 β_1 & -α_{1,r+1} & ⋯ & -α_{1,n} \\
 β_0 & -α_{0,r+1} & ⋯ & -α_{0,n} \\
-\end{matrix}\right]}\limits_{(1+r)×(1+n-r)} \rlap{×}{+} \left[\begin{matrix}
+\end{array}\right]}\limits_{(1+r)×(1+n-r)} \rlap{×}{+} \left[\begin{matrix}
 x_n \\
 ⋮ \\
 x_{r+1} \\
+\hline
 +1 \\
 \end{matrix}\right] = \left[\begin{matrix}
 β_r - α_{r,r+1} · x_{r+1} ⋯ - α_{r,n} · x_{n} \\
@@ -376,9 +379,121 @@ $$
 [不存在解] 若βᵣ₊₁ ≠ 0，则线性代数方程组无解。
 [有唯一解] 若βᵣ₊₁ = 0，且r = n，则线性代数方程组有唯一解。
 [有无数解] 若βᵣ₊₁ = 0，且r < n，则线性代数方程组有无数解，且通解中有n - r个自由变元。
-齐次线性方程组解的结构，共计1种。
+齐次线性代数方程组解的结构，共计1种。
 [有无数解] 若m < n，则r(≤m)< n，且线性代数方程组有无数解。
 ```
+
+若线性代数方程组中有某个方程是其余方程的线性组合，则该线性代数方程组满足线性相关性，否则该线性代数方程组满足线性无关性。注意：方程的变元变量即为向量的分量。
+
+若线性代数方程组的反置齐次线性代数方程组有非零解，则该线性代数方程组满足线性相关性，否则该线性代数方程组满足线性无关性。注意：方程组的反置即为向量组的反置。
+
+注意：含零向量方程的线性代数方程组必满足线性相关性，若线性代数方程组仅含有一个非零向量方程，则该线性代数方程组满足线性无关性。
+
+推论：线性代数方程组满足线性相关性，当且仅当其子集线性代数方程组满足线性相关性，当且仅当有某个方程是其前面所有方程的线性组合。
+
+$$
+\begin{aligned}
+\left[\begin{matrix}
+0 \\
+⋮ \\
+0 \\
+\hline
+0 \\
+\end{matrix}\right] &\mathop{===} \mathop{\left[\begin{matrix}
+a_{0,n} · x_n & a_{1,n} · x_n & ⋯ & a_{m,n} · x_n \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+a_{0,1} · x_1 & a_{1,1} · x_1 & ⋯ & a_{m,1} · x_1 \\
+a_{0,0} · x_0 & a_{1,0} · x_0 & ⋯ & a_{m,0} · x_0 \\
+\hline
+y_0 & y_1 & ⋯ & y_m \\
+\end{matrix}\right]}\limits_{(2+n)×(1+m)} \rlap{×}{+} \left[\begin{matrix}
+κ_m \\
+⋮ \\
+κ_1 \\
+κ_0 \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+0 \\
+⋮ \\
+0 \\
+\hline
+0 \\
+\end{matrix}\right] &\mathop{===}\limits^{\langle \rlap{×}{+},× \rangle} \left[\begin{matrix}
+x_n \\
+⋮ \\
+x_1 \\
+x_0 \\
+\hline
++1
+\end{matrix}\right] × \mathop{\left[\begin{matrix}
+a_{0,n} & a_{1,n} & ⋯ & a_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+a_{0,1} & a_{1,1} & ⋯ & a_{m,1} \\
+a_{0,0} & a_{1,0} & ⋯ & a_{m,0} \\
+\hline
+y_0 & y_1 & ⋯ & y_m \\
+\end{matrix}\right]}\limits_{(2+n)×(1+m)} \rlap{×}{+} \left[\begin{matrix}
+κ_m \\
+⋮ \\
+κ_1 \\
+κ_0 \\
+\end{matrix}\right] = \mathop{\left[\begin{matrix}
+a_{0,n} & a_{1,n} & ⋯ & a_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+a_{0,1} & a_{1,1} & ⋯ & a_{m,1} \\
+a_{0,0} & a_{1,0} & ⋯ & a_{m,0} \\
+\hline
+y_0 & y_1 & ⋯ & y_m \\
+\end{matrix}\right]}\limits_{(2+n)×(1+m)} \rlap{×}{+} \left[\begin{matrix}
+κ_m \\
+⋮ \\
+κ_1 \\
+κ_0 \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+0 \\
+⋮ \\
+0 \\
+\hline
+0 \\
+\end{matrix}\right] &\mathop{===} \left[\begin{matrix}
+\bold{η}_0 & \bold{η}_1 & ⋯ & \bold{η}_n \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+κ_n \\
+⋮ \\
+κ_1 \\
+κ_0 \\
+\end{matrix}\right] = \mathop{\left[\begin{matrix}
+0 & 0 & ⋯ & 1 \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+0 & 1 & ⋯ & 0 \\
+\hline
+1 & 0 & ⋯ & 0 \\
+\end{matrix}\right]}\limits_{(1+n)×(1+n)} \rlap{×}{+} \left[\begin{matrix}
+κ_n \\
+⋮ \\
+κ_1 \\
+κ_0 \\
+\end{matrix}\right] = \left[\begin{matrix}
+κ_n \\
+⋮ \\
+κ_1 \\
+κ_0 \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+
+在线性代数方程组中添加任意数量的分量，新线性代数方程组的反置齐次线性代数方程组的解，必定是原线性代数方程组的反置齐次线性代数方程组的解，反之不对。
+
+推论：若线性代数方程组满足线性无关性，则该线性代数方程组仅有非零解，因此在该线性代数方程组中添加任意数量的分量，新线性代数方程组必满足线性无关性。
+
+若$m > n$，则$(1 + n)$元$(1 + m)$量线性代数方程组的$(1+m)$元$(1+n)$量反置齐次线性代数方程组必有无数解因而有非零解，因此该线性代数方程组满足线性相关性。
+
+推论：在$(1 + n)$元向量空间中，至多存在$(1 + n)$个线性无关的向量，且至少存在$(1 + n)$个线性无关的基向量$\bold{η}_i$，因此$(1 + n)$元向量空间也称作$(1 + n)$维向量空间。
+
+推论：在$(1+n)$维向量空间中，任意一个向量与其$(1+n)$个基向量$\bold{η}_i$的向量组都满足线性相关性，因此任意一个向量都可以表示成其$(1 + n)$个基向量$\bold{η}_i$的线性组合。
+
+
 
 ### 基矢量的运算性质
 
@@ -506,7 +621,7 @@ a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
 \end{matrix}\right]}\limits_{(1+m)×(1+n)}
 $$
 
-$(1+m)×(1+n)$元矩阵与$(1+m)×(1+n)$元矩阵的点乘运算。矩阵的点乘运算满足必交换律。
+$(1+m)×(1+n)$元矩阵与$(1+m)×(1+n)$元矩阵的点乘运算。矩阵的点乘运算必满足交换律。
 
 $$
 \sum\limits_{i=0}^{m} \sum\limits_{j=0}^{n} b_{i,j} · a_{i,j} = \mathop{\left[\begin{matrix}
@@ -576,7 +691,7 @@ $$
 $$
 \begin{aligned}
 \mathrm{C}_{(l+1)×(1+n)} &= \mathrm{B}_{(l+1)×(1+m)} \rlap{×}{+} \mathrm{A}_{(1+m)×(1+n)} \\
-{'}\mathrm{C}_{(l+1)×(1+n)} &= {'}\mathrm{a}_{(1+m)×(1+n)} \rlap{×}{+} {'}\mathrm{B}_{(l+1)×(1+m)} \\
+{'}\mathrm{C}_{(l+1)×(1+n)} &= {'}\mathrm{A}_{(1+m)×(1+n)} \rlap{×}{+} {'}\mathrm{B}_{(l+1)×(1+m)} \\
 ba_{r,t} &= \sum\limits_{s=0}^{m} b_{r,s} · a_{s,t} \\
 ab_{t,r} &= \sum\limits_{s=0}^{m} a_{t,s} · b_{s,r} \\
 \end{aligned}
