@@ -2,7 +2,7 @@
 layout: zh_post
 Topic : 收敛极限
 Title : 线性代数
-Update: 2022-01-25T21:46:00+08@中国-广东-湛江+08
+Update: 2022-01-26T18:08:00+08@中国-广东-湛江+08
 Author: 璀璨星辰
 Credit: 《线性代数（数学专业用）》李尚志
 ---
@@ -247,7 +247,7 @@ $(1 + n)$元$(1 + m)$量线性代数方程组的线性组合。注意：$κ = 0$
 
 $$
 \begin{aligned}
-\left[\begin{matrix}
+β = \left[\begin{matrix}
 κ_0 & κ_1 & ⋯ & κ_m \\
 \end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
 y_m \\
@@ -387,7 +387,7 @@ $$
 
 若线性代数方程组的反置齐次线性代数方程组有非零解，则该线性代数方程组满足线性相关性，否则该线性代数方程组满足线性无关性。注意：方程组的反置即为向量组的反置。
 
-注意：含零向量方程的线性代数方程组必满足线性相关性，若线性代数方程组仅含有一个非零向量方程，则该线性代数方程组满足线性无关性。
+注意：含零向量方程的线性代数方程组必满足线性相关性，若线性代数方程组仅含有一个非零向量方程，则该线性代数方程组满足线性无关性。约定：空向量集满足线性无关性。
 
 推论：线性代数方程组满足线性相关性，当且仅当其子集线性代数方程组满足线性相关性，当且仅当有某个方程是其前面所有方程的线性组合。
 
@@ -407,10 +407,10 @@ a_{0,0} · x_0 & a_{1,0} · x_0 & ⋯ & a_{m,0} · x_0 \\
 \hline
 y_0 & y_1 & ⋯ & y_m \\
 \end{matrix}\right]}\limits_{(2+n)×(1+m)} \rlap{×}{+} \left[\begin{matrix}
-κ_m \\
+χ_m \\
 ⋮ \\
-κ_1 \\
-κ_0 \\
+χ_1 \\
+χ_0 \\
 \end{matrix}\right] \\
 \left[\begin{matrix}
 0 \\
@@ -433,10 +433,10 @@ a_{0,0} & a_{1,0} & ⋯ & a_{m,0} \\
 \hline
 y_0 & y_1 & ⋯ & y_m \\
 \end{matrix}\right]}\limits_{(2+n)×(1+m)} \rlap{×}{+} \left[\begin{matrix}
-κ_m \\
+χ_m \\
 ⋮ \\
-κ_1 \\
-κ_0 \\
+χ_1 \\
+χ_0 \\
 \end{matrix}\right] = \mathop{\left[\begin{matrix}
 a_{0,n} & a_{1,n} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
@@ -445,10 +445,10 @@ a_{0,0} & a_{1,0} & ⋯ & a_{m,0} \\
 \hline
 y_0 & y_1 & ⋯ & y_m \\
 \end{matrix}\right]}\limits_{(2+n)×(1+m)} \rlap{×}{+} \left[\begin{matrix}
-κ_m \\
+χ_m \\
 ⋮ \\
-κ_1 \\
-κ_0 \\
+χ_1 \\
+χ_0 \\
 \end{matrix}\right] \\
 \left[\begin{matrix}
 0 \\
@@ -459,10 +459,10 @@ y_0 & y_1 & ⋯ & y_m \\
 \end{matrix}\right] &\mathop{===} \left[\begin{matrix}
 \bold{η}_0 & \bold{η}_1 & ⋯ & \bold{η}_n \\
 \end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
-κ_n \\
+χ_n \\
 ⋮ \\
-κ_1 \\
-κ_0 \\
+χ_1 \\
+χ_0 \\
 \end{matrix}\right] = \mathop{\left[\begin{matrix}
 0 & 0 & ⋯ & 1 \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
@@ -470,15 +470,15 @@ y_0 & y_1 & ⋯ & y_m \\
 \hline
 1 & 0 & ⋯ & 0 \\
 \end{matrix}\right]}\limits_{(1+n)×(1+n)} \rlap{×}{+} \left[\begin{matrix}
-κ_n \\
+χ_n \\
 ⋮ \\
-κ_1 \\
-κ_0 \\
+χ_1 \\
+χ_0 \\
 \end{matrix}\right] = \left[\begin{matrix}
-κ_n \\
+χ_n \\
 ⋮ \\
-κ_1 \\
-κ_0 \\
+χ_1 \\
+χ_0 \\
 \end{matrix}\right] \\
 \end{aligned}
 $$
@@ -492,6 +492,114 @@ $$
 推论：在$(1 + n)$元向量空间中，至多存在$(1 + n)$个线性无关的向量，且至少存在$(1 + n)$个线性无关的基向量$\bold{η}_i$，因此$(1 + n)$元向量空间也称作$(1 + n)$维向量空间。
 
 推论：在$(1+n)$维向量空间中，任意一个向量与其$(1+n)$个基向量$\bold{η}_i$的向量组都满足线性相关性，因此任意一个向量都可以表示成其$(1 + n)$个基向量$\bold{η}_i$的线性组合。
+
+约定：对于$(1+n)$元$(1+m)$量向量组$\bold{S}_{(1+m)×(1+n)} = \lbrace ∀i; \bold{v}_i \rbrace$，$(1+n)$指示该向量组中向量的维数是$(1+n)$维，$(1+m)$指示该向量组中向量的个数是$(1+m)$个。
+
+推论：对于向量组$\lbrace ∀i; \bold{v}_i \rbrace_{(1+m)×(1+n)}$，若其任意一个向量$\bold{v}_i$都是其子集向量组$\lbrace ∀j; \bold{v}_j \rbrace_{(1+r)×(1+n)}$的线性组合，当且仅当此子集向量组是其极大线性无关向量组之一。
+
+若向量组$\lbrace ∀i; \bold{u}_i \rbrace_{(1+q)×(1+n)}$中每一个向量都是向量组$\lbrace ∀j; \bold{v}_j \rbrace_{(1+p)×(1+n)}$的线性组合，并且反之亦然，则此两个向量组互为线性组合等价$\bold{Q}_{(1+q)×(1+n)} ⇆ \bold{P}_{(1+p)×(1+n)}$。
+
+注意：互为线性组合等价的向量组$\bold{Q}_{(1+q)×(1+n)} ⇆ \bold{P}_{(1+p)×(1+n)}$两者的个数未必相等$p \not≡ q$。向量组的线性组合等价关系具有传递性，$\bold{Q}_{(1+q)×(1+n)} \mathop{⇆}\limits_{\bold{Q} ⇆ \bold{P}}^{\bold{P} ⇆ \bold{O}} \bold{O}_{(1+o)×(1+n)}$。
+$$
+\begin{aligned}
+\left[\begin{matrix}
+\bold{v}_0 & \bold{v}_1 & ⋯ & \bold{v}_p \\
+\end{matrix}\right] &= \left[\begin{matrix}
+\bold{u}_0 & \bold{u}_1 & ⋯ & \bold{u}_o \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+κ_{0,o} & κ_{1,o} & ⋯ & κ_{p,o} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+κ_{0,1} & κ_{1,1} & ⋯ & κ_{p,1} \\
+κ_{0,0} & κ_{1,0} & ⋯ & κ_{p,0} \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+\bold{w}_0 & \bold{w}_1 & ⋯ & \bold{w}_q \\
+\end{matrix}\right] &= \left[\begin{matrix}
+\bold{v}_0 & \bold{v}_1 & ⋯ & \bold{v}_p \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+ι_{0,p} & ι_{1,p} & ⋯ & ι_{q,p} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+ι_{0,1} & ι_{1,1} & ⋯ & ι_{q,1} \\
+ι_{0,0} & ι_{1,0} & ⋯ & ι_{q,0} \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+\bold{w}_0 & \bold{w}_1 & ⋯ & \bold{w}_q \\
+\end{matrix}\right] &= \left[\begin{matrix}
+\bold{u}_0 & \bold{u}_1 & ⋯ & \bold{u}_o \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+κ_{0,o} & κ_{1,o} & ⋯ & κ_{p,o} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+κ_{0,1} & κ_{1,1} & ⋯ & κ_{p,1} \\
+κ_{0,0} & κ_{1,0} & ⋯ & κ_{p,0} \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+ι_{0,p} & ι_{1,p} & ⋯ & ι_{q,p} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+ι_{0,1} & ι_{1,1} & ⋯ & ι_{q,1} \\
+ι_{0,0} & ι_{1,0} & ⋯ & ι_{q,0} \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+\bold{w}_0 & \bold{w}_1 & ⋯ & \bold{w}_q \\
+\end{matrix}\right] &= \left[\begin{matrix}
+\bold{u}_0 & \bold{u}_1 & ⋯ & \bold{u}_o \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+\sum\limits_{i=0}^{p} κ_{i,o} · ι_{0,i} & \sum\limits_{i=0}^{p} κ_{i,o} · ι_{1,p} & ⋯ & \sum\limits_{i=0}^{p} κ_{i,o} · ι_{q,i} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+\sum\limits_{i=0}^{p} κ_{i,1} · ι_{0,i} & \sum\limits_{i=0}^{p} κ_{i,1} · ι_{1,i} & ⋯ & \sum\limits_{i=0}^{p} κ_{i,1} · ι_{q,i} \\
+\sum\limits_{i=0}^{p} κ_{i,0} · ι_{0,i} & \sum\limits_{i=0}^{p} κ_{i,0} · ι_{1,i} & ⋯ & \sum\limits_{i=0}^{p} κ_{i,0} · ι_{q,i} \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+对于向量组$\lbrace ∀k; \bold{w}_k \rbrace_{(1+q)×(1+n)}$，若其任意一个向量$\bold{w}_k$都是向量组$\lbrace ∀j; \bold{v}_j \rbrace_{(1+p)×(1+n)}$的线性组合，且$q > p$，则前者必满足线性相关性。注意：后者可满足线性无关性。
+
+对于向量组$\bold{S}_{(1+m)×(1+n)} = \lbrace ∀i; \bold{v}_i \rbrace$，从其任意一个向量开始都能扩充成一个极大线性无关向量组，其所有极大线性无关向量组互为线性组合等价，向量的个数都相等。
+$$
+\begin{aligned}
+\left[\begin{matrix}
+0 \\
+⋮ \\
+0 \\
+0 \\
+\end{matrix}\right] &= \left[\begin{matrix}
+\bold{w}_0 & \bold{w}_1 & ⋯ & \bold{w}_q \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+χ_q \\
+⋮ \\
+χ_1 \\
+χ_0 \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+0 \\
+⋮ \\
+0 \\
+0 \\
+\end{matrix}\right] &= \left[\begin{matrix}
+\bold{v}_0 & \bold{v}_1 & ⋯ & \bold{v}_p \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+ι_{0,p} & ι_{1,p} & ⋯ & ι_{q,p} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+ι_{0,1} & ι_{1,1} & ⋯ & ι_{q,1} \\
+ι_{0,0} & ι_{1,0} & ⋯ & ι_{q,0} \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+χ_q \\
+⋮ \\
+χ_1 \\
+χ_0 \\
+\end{matrix}\right] \mathop{===}\limits^{q>p} \left[\begin{matrix}
+ι_{0,p} & ι_{1,p} & ⋯ & ι_{q,p} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+ι_{0,1} & ι_{1,1} & ⋯ & ι_{q,1} \\
+ι_{0,0} & ι_{1,0} & ⋯ & ι_{q,0} \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+χ_q \\
+⋮ \\
+χ_1 \\
+χ_0 \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+
+
+
 
 
 
