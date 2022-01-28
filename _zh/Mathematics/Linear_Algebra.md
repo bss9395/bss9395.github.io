@@ -2,7 +2,7 @@
 layout: zh_post
 Topic : 收敛极限
 Title : 线性代数
-Update: 2022-01-27T22:21:00+08@中国-广东-湛江+08
+Update: 2022-01-28T22:30:00+08@中国-广东-湛江+08
 Author: 璀璨星辰
 Credit: 《线性代数（数学专业用）》李尚志
 ---
@@ -215,7 +215,7 @@ $$
 
 ### 线性代数方程组
 
-$(1 + n)$元$(1 + m)$量线性代数方程组，其系数矩阵记作$A_{(1+m)×(1+n)}$，其记作$\tilde{A}_{(1+m)×(1+n)}$。当$y ≡ 0$时为齐次线性代数方程组，当$y \not≡ 0$时为非齐次线性方程组。
+$(1 + n)$元$(1 + m)$量线性代数方程组，其系数矩阵记作$A_{(1+m)×(1+n)}$，其增广矩阵记作$\tilde{A}_{(1+m)×(2+n)}$。当$\bold{b} ≡ \bold{0}$时为齐次线性代数方程组，当$\bold{b} ≠ \bold{0}$时为非齐次线性方程组。
 
 注意：线性代数方程组未必有解，零解$\bold{x} = \left[\begin{matrix} 0 \\ ⋮ \\ 0 \\ \end{matrix}\right]$必定是齐次线性方程组的解，并且必定不是非齐次线性方程组的解。
 
@@ -227,10 +227,10 @@ x_n \\
 x_1 \\
 x_0 \\
 \end{matrix}\right] = \left[\begin{matrix}
-y_m \\
+b_m \\
 ⋮ \\
-y_1 \\
-y_0 \\
+b_1 \\
+b_0 \\
 \end{matrix}\right] &= \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
@@ -248,12 +248,12 @@ a_{1,0} · x_0 + a_{1,1} · x_1 + ⋯ + a_{1,n} · x_n \\
 a_{0,0} · x_0 + a_{0,1} · x_1 + ⋯ + a_{0,n} · x_n \\
 \end{matrix}\right] \\
 \left[\begin{array}{c|c}
-\bold{y} & A_{(1+m)×(1+n)}
-\end{array}\right] = \tilde{A}_{(1+m)×(1+n)} &= \left[\begin{array}{c|ccc}
-y_m & a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
+\bold{b} & A_{(1+m)×(1+n)}
+\end{array}\right] = \tilde{A}_{(1+m)×(2+n)} &= \left[\begin{array}{c|ccc}
+b_m & a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋮ & ⋰ & ⋮ \\
-y_1 & a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
-y_0 & a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
+b_1 & a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
+b_0 & a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
 \end{array}\right] \\
 \end{aligned}
 $$
@@ -265,10 +265,10 @@ $$
 β = \left[\begin{matrix}
 κ_0 & κ_1 & ⋯ & κ_m \\
 \end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
-y_m \\
+b_m \\
 ⋮ \\
-y_1 \\
-y_0 \\
+b_1 \\
+b_0 \\
 \end{matrix}\right] &= \left[\begin{matrix}
 κ_0 & κ_1 & ⋯ & κ_m \\
 \end{matrix}\right] \rlap{×}{+} \mathop{\left[\begin{matrix}
@@ -637,18 +637,31 @@ $$
 
 ### 线性空间
 
+线性代数方程组的解集对于其增广矩阵所在的数域封闭。
 
+$$
+\begin{aligned}
+&线性空间\lbrace ∀i; \bold{x}_i \rbrace的运算性质，共计2个。注意：线性空间\lbrace ∀i; \bold{x}_i \rbrace也可以是空集Ø。 \\
+&\begin{array}{lllll}
+[满足位加性] && [\bold{x} ∈ \lbrace ∀i; \bold{x}_i \rbrace] ∧ [\bold{y} ∈ \lbrace ∀i; \bold{x}_i \rbrace] &⇒& [(\bold{x} + \bold{y}) ∈ \lbrace ∀i; \bold{x}_i \rbrace] \\
+[满足量乘性] && [\bold{x} ∈ \lbrace ∀i; \bold{x}_i \rbrace] ∧ [k ∈ \mathrm{Field}\langle \bold{x} \rangle] &⇒& [(k · \bold{x}) ∈ \lbrace ∀i; \bold{x}_i \rbrace] \\
+\end{array} \\
+\\
+&线性空间\lbrace ∀i; \bold{x}_i \rbrace的典型性质，共计8个。注意：此处线性空间\lbrace ∀i; \bold{x}_i \rbrace不是空集Ø。 \\
+&\begin{array}{lllll}
+[位加有零元] && \bold{0} ∈ \lbrace ∀i; \bold{x}_i \rbrace \\
+[位加有负元] && -\bold{x} ∈ \lbrace ∀i; \bold{x}_i \rbrace \\
+[位加结合律] && (\bold{x} + \bold{y}) + \bold{z} = \bold{x} + (\bold{y} + \bold{z}) \\
+[位加交换律] && \bold{x} + \bold{y} = \bold{y} + \bold{x} \\
+[量乘有幺元] && 1 · \bold{x} = \bold{x} \\
+[量乘结合律] && (ι · κ) · \bold{x} = ι · (κ · \bold{x}) \\
+[量乘分配律] && κ · (\bold{x} + \bold{y}) = κ · \bold{x} + κ · \bold{y} \\
+[量乘分配律] && (ι + κ) · \bold{x} = ι · \bold{x} + κ · \bold{x} \\
+\end{array} \\
+\end{aligned}
+$$
 
-```
-齐次线性代数方程组解集的运算性质，共计3个：
-[运算封闭性] 线性代数方程组的解空间{∀i;𝐱ᵢ}对于其系数所在的数域F封闭。
-[满足位加性] 若𝐱∈{∀i;𝐱ᵢ}，且𝐲∈{∀i;𝐱ᵢ}，则𝐱+𝐲∈{∀i;𝐱ᵢ}。
-[满足量乘性] 若𝐱∈{∀i;𝐱ᵢ}，且k∈F，则k·𝐱∈{∀i;𝐱ᵢ}。
-
-齐次线性代数方程组解集的典型性质，共计2个：
-[位加有零元] 𝟎∈{∀i;𝐱ᵢ}。
-[位加有负元] 𝐱∈{∀i;𝐱ᵢ} ⇒ -𝐱∈{∀i;𝐱ᵢ}。
-```
+线性空间对于位加运算与量乘运算封闭，齐次线性代数方程的解集是线性空间，非齐次线性代数方程的解集不是线性空间而是仿射空间。
 
 $$
 \begin{aligned}
@@ -713,9 +726,9 @@ k · x_0 \\
 \end{aligned}
 $$
 
-解空间中任意一个极大线性无关向量组构成解空间的基向量组，解空间中任意一个向量都是此基向量组的线性组合，线性组合的系数唯一确定，也称作基向量组的坐标。
+线性空间中任意一个极大线性无关向量组构成其基向量组，线性空间中任意一个向量都是此基向量组的线性组合，线性组合的系数必唯一确定，也称作基向量组的坐标。
 
-仅由零向量$\bold{0}$构成的解空间称为零空间，零空间$\lbrace \bold{0} \rbrace_{(1+n)×(1)}$中极大线性无关向量组为空集$Ø$，因此空集$Ø$是零空间的基向量组，零空间的维数是$\mathrm{Rank}\langle \lbrace \bold{0} \rbrace_{(1+n)×(1)} \rangle = 0$。
+仅由零向量构成的线性空间称为零空间，零空间$\lbrace \bold{0} \rbrace_{(1+n)×(1)}$中极大线性无关向量组为空集$Ø$，因此空集$Ø$是零空间的基向量组，零空间的维数是$\mathrm{Rank}\langle \lbrace \bold{0} \rbrace_{(1+n)×(1)} \rangle = 0$。
 
 $$
 \begin{aligned}
@@ -730,20 +743,174 @@ x_0 \\
 \end{aligned}
 $$
 
-约定：对于解空间$\lbrace ∀i;𝐱ᵢ \rbrace$，其解空间的维数dimension，指其任意一个基向量组的向量个数，记作$\mathrm{Dime}\langle \lbrace ∀i;𝐱ᵢ \rbrace \rangle$。注意：解空间的维数不等同于解空间中向量的维数。
+约定：对于线性空间$\lbrace ∀i;𝐱ᵢ \rbrace$，其维数dimension，指其任意一个基向量组的向量个数，记作$\mathrm{Dime}\langle \lbrace ∀i;𝐱ᵢ \rbrace \rangle$。注意：线性空间的维数不等同于线性空间中向量的维数。
 
-齐次线性代数方程组解空间$\lbrace ∀i;𝐱ᵢ \rbrace_{(1+n)}$有$(1 + n) - \mathrm{Rank}\langle A_{(1+m)×(1+n)} \rangle$个自由变元，因此解空间的维数必定满足$\mathrm{Dime}\langle \lbrace ∀i;𝐱ᵢ \rbrace \rangle = (1 + n) - \mathrm{Rank}\langle A_{(1+m)×(1+n)} \rangle$。
+齐次线性代数方程组的解集$\lbrace ∀i;𝐱ᵢ \rbrace_{(1+n)}$有$(1 + n) - \mathrm{Rank}\langle A_{(1+m)×(1+n)} \rangle$个自由变元，因此该线性空间的维数满足$\mathrm{Dime}\langle \lbrace ∀i;𝐱ᵢ \rbrace \rangle = (1 + n) - \mathrm{Rank}\langle A_{(1+m)×(1+n)} \rangle$。
 
-约定：向量集$\lbrace ∀j; \bold{x}_j \rbrace_{(1+n)}$的全体线性组合构成包含该向量集的最小线性空间$\mathrm{Linear}\langle \lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} \rangle$。齐次线性代数方程组解空间$\lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} ≡ \mathrm{L_{inear}}\langle \lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} \rangle$。
+约定：向量集$\lbrace ∀j; \bold{x}_j \rbrace_{(1+n)}$的全体线性组合构成包含该向量集的最小线性空间$\mathrm{Linear}\langle \lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} \rangle$。齐次线性代数方程组的解集$\lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} ≡ \mathrm{L_{inear}}\langle \lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} \rangle$。
 
-推论：向量集$\lbrace ∀j; \bold{x}_j \rbrace_{(1+n)}$的极大线性无关向量组，构成包含该向量集的最小线性空间的基向量组，因此必定满足$\mathrm{Rank}\langle \lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} \rangle = \mathrm{Dime}\langle \mathrm{Linear}\langle \lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} \rangle \rangle$。
+推论：向量集$\lbrace ∀j; \bold{x}_j \rbrace_{(1+n)}$的极大线性无关向量组，构成包含该向量集的最小线性空间的基向量组，因此必满足$\mathrm{Rank}\langle \lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} \rangle = \mathrm{Dime}\langle \mathrm{Linear}\langle \lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} \rangle \rangle$。
 
-注意：齐次线性代数方程组解空间$\lbrace ∀i;𝐱ᵢ \rbrace_{(1+n)}$的任意子集$\lbrace ∀j; \bold{x}_j \rbrace_{(1+n)}$未必是线性空间，其最小线性空间满足$\lbrace ∀i;𝐱ᵢ \rbrace_{(1+n)} ⊇ \mathrm{Linear}\langle \lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} \rangle ⊇ \lbrace ∀j; \bold{x}_j \rbrace_{(1+n)}$。
+注意：齐次线性代数方程组的解集$\lbrace ∀i;𝐱ᵢ \rbrace_{(1+n)}$的任意子集$\lbrace ∀j; \bold{x}_j \rbrace_{(1+n)}$未必是线性空间，其最小线性空间满足$\lbrace ∀i;𝐱ᵢ \rbrace_{(1+n)} ⊇ \mathrm{Linear}\langle \lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} \rangle ⊇ \lbrace ∀j; \bold{x}_j \rbrace_{(1+n)}$。
 
+若向量集$\lbrace ∀j; \bold{x}_j \rbrace_{(1+n)}$是向量集$\lbrace ∀k; \bold{v}_k \rbrace_{(1+n)}$的线性组合，当且仅当$\lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} ⊆ \mathrm{Linear}\langle \lbrace ∀k; \bold{v}_k \rbrace_{(1+n)} \rangle$，当且仅当$\mathrm{Linear}\lbrace ∀j; \bold{x}_j \rbrace_{(1+n)} ⊆ \mathrm{Linear}\langle \lbrace ∀k; \bold{v}_k \rbrace_{(1+n)} \rangle$。
 
+非齐次线性代数方程组存在解，当且仅当其系数矩阵的秩等同于其增广矩阵的秩$\mathrm{Rank}\langle A_{(1+m)×(1+n)} \rangle = \mathrm{Rank}\langle \tilde{A}_{(1+m)×(2+n)} \rangle$，当且仅当$\bold{y} ∈ \mathrm{Linear}\langle \lbrace \bold{a}_0, \bold{a}_1, ⋯, \bold{a}_n \rbrace \rangle$。
 
+约定：非齐次线性代数方程组的任意一个特解，记作$\bold{ρ} = \left[\begin{matrix} ρ_n \\ ⋮ \\ ρ_0 \end{matrix}\right]$。非齐次线性代数方程组的任意两个特解之差，必是其对应齐次线性代数方程组的解，记作$\bold{u} = \left[\begin{matrix} u_n \\ ⋮ \\ u_0 \end{matrix}\right]$。
 
+推论：非齐次线性代数方程组的通解满足$\bold{x} = \bold{ρ} + \bold{u}$。齐次线性代数方程组的解必经过原点$\bold{0}$，非齐次线性方程组的通解必不经过原点$\bold{0}$，且不满足线性空间的运算性质。
 
+$$
+\begin{aligned}
+\left[\begin{matrix}
+b_m \\
+⋮ \\
+b_1 \\
+b_0 \\
+\end{matrix}\right] &= \left[\begin{matrix}
+a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
+a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+ρ_n \\
+⋮ \\
+ρ_1 \\
+ρ_0 \\
+\end{matrix}\right] = ρ_0 · \left[\begin{matrix}
+a_{m,0} \\
+⋮ \\
+a_{1,0} \\
+a_{0,0} \\
+\end{matrix}\right] + ρ_1 · \left[\begin{matrix}
+a_{m,1} \\
+⋮ \\
+a_{m,1} \\
+a_{m,0} \\
+\end{matrix}\right] + ⋯ + ρ_n · \left[\begin{matrix}
+a_{m,n} \\
+⋮ \\
+a_{1,n} \\
+a_{0,n} \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+0 \\
+⋮ \\
+0 \\
+0 \\
+\end{matrix}\right] &= \left[\begin{matrix}
+a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
+a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+ϱ_n - ρ_n \\
+⋮ \\
+ϱ_1 - ρ_1 \\
+ϱ_0 - ρ_0 \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+b_m \\
+⋮ \\
+b_1 \\
+b_0 \\
+\end{matrix}\right] &= \left[\begin{matrix}
+a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
+a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+ρ_n + u_n \\
+⋮ \\
+ρ_1 + u_1 \\
+ρ_0 + u_0 \\
+\end{matrix}\right] = \left[\begin{matrix}
+a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
+a_{0,0} & a_{0,1} & ⋯ & a_{0,n} \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+x_n \\
+⋮ \\
+x_1 \\
+x_0 \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+
+典例：求非齐次线性代数方程组的通解。
+
+$$
+\begin{aligned}
+\left[\begin{matrix}
+-3 \\
+1 \\
+6 \\
+7 \\
+\end{matrix}\right] &= \left[\begin{matrix}
+1 & 2 & 3 & 4 \\
+1 & 2 & 0 & -5 \\
+2 & 4 & -3 & -19 \\
+3 & 6 & -3 & -24 \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+x_3 \\
+x_2 \\
+x_1 \\
+x_0 \\
+\end{matrix}\right] = \left[\begin{matrix}
+1 · x_0 + 2 · x_1 + 3 · x_2 + 4 · x_3 \\
+1 · x_0 + 2 · x_1 + 0 · x_2 - 5 · x_3 \\
+2 · x_0 + 4 · x_1 - 3 · x_2 - 19 · x_3 \\
+3 · x_0 + 6 · x_1 - 3 · x_2 - 24 · x_3 \\
+\end{matrix}\right] \\
+\tilde{A}_{(1+3)×(2+3)} &= \left[\begin{array}{c|ccc}
+-3 & 1 & 2 & 3 & 4 \\
+1 & 1 & 2 & 0 & -5 \\
+6 & 2 & 4 & -3 & -19 \\
+7 & 3 & 6 & -3 & -24 \\
+\end{array}\right] ≈ \left[\begin{array}{c|ccc}
+-\frac{4}{3} & 0 & 0 & 1 & 3 \\
+1 & 1 & 2 & 0 & -5 \\
+\end{array}\right] \mathop{≈≈≈≈≈≈≈}\limits^{\langle +1,x_0,x_2,x_1,x_3 \rangle} \left[\begin{array}{c|ccc}
+-\frac{4}{3} & 0 & 1 & 0 & 3 \\
+1 & 1 & 0 & 2 & -5 \\
+\end{array}\right] \\
+\left[\begin{matrix}
+x_3 \\
+x_1 \\
+x_2 \\
+x_0 \\
+\end{matrix}\right] &= \left[\begin{array}{c|cc}
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+\hline
+-\frac{4}{3} & 0 & -3 \\
+1 & -2 & 5 \\
+\end{array}\right] \rlap{×}{+} \left[\begin{matrix}
+x_3 \\
+x_1 \\
++1 \\
+\end{matrix}\right] = \left[\begin{matrix}
+0 \\
+0 \\
+\frac{4}{3} \\
+1 \\
+\end{matrix}\right] + x_1 · \left[\begin{matrix}
+0 \\
+1 \\
+0 \\
+-2 \\
+\end{matrix}\right] + x_2 · \left[\begin{matrix}
+1 \\
+0 \\
+-3 \\
+5 \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+
+典例：多项式集$\lbrace ∀a_i∈F; f(x) = a_0 · x^0 + a_1 · x^1 + ⋯ + a_n · x^n \rbrace_{(1)}$也即$\lbrace ∀f; f(x) \rbrace_{(1)}$是线性空间，其极大线性无关向量组也即基向量组是$\lbrace x^0, x^1, ⋯, x^n \rbrace_{(1)×(1+n)}$。
 
 
 
