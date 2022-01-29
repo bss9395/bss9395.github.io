@@ -2,9 +2,10 @@
 layout: zh_post
 Topic : 收敛极限
 Title : 线性代数
-Update: 2022-01-29T17:24:00+08@中国-广东-湛江+08
+Update: 2022-01-29T22:17:00+08@中国-广东-湛江+08
 Author: 璀璨星辰
 Credit: 《线性代数（数学专业用）》李尚志
+Notice: 本书限于本人能力范围，如果有疏漏之处请联系，brilliantstarrysky9395@gmail.com
 ---
 
 ### 特别注意
@@ -916,27 +917,132 @@ $$
 
 ### 线性变换
 
+两个线性空间的同态敛射$\mathrm{Homomorphism}\langle \lbrace ∀\bold{w}; \bold{w} \rbrace_{(1+m)} ↢ \lbrace ∀\bold{v}; \bold{v} \rbrace_{(1+n)} \rangle$，向量$\bold{w}$与向量$\bold{v}$的维数未必相等$(1 + m) \not≡ (1 + n)$。同构映射的运算性质更强于同态敛射。
 
 $$
 \begin{aligned}
-&两个线性空间的同态敛射\mathrm{Homomorphism}\langle \lbrace ∀\bold{w}; \bold{w} \rbrace ↢ \lbrace ∀\bold{v}; \bold{v} \rbrace \rangle的运算性质，共计3个。 \\
+&两个线性空间的同态敛射\mathrm{Homomorphism}\langle \lbrace ∀\bold{w}; \bold{w} \rbrace_{(1+m)} ↢ \lbrace ∀\bold{v}; \bold{v} \rbrace_{(1+n)} \rangle的运算性质，共计3个。 \\
 &\begin{array}{ll}
-[满足敛射性] & ∀\bold{v} ∈ \lbrace ∀\bold{v}; \bold{v} \rbrace; Ⅎ\bold{w} ∈ \lbrace ∀\bold{w}; \bold{w} \rbrace; \langle \bold{w}, \bold{v} \rangle ∈ \mathrm{I} \\
 [满足位加性] & \mathrm{H}\langle \bold{v}_i + \bold{v}_j \rangle = \mathrm{H}\langle \bold{v}_i \rangle + \mathrm{H}\langle \bold{v}_j \rangle \\
 [满足量乘性] & \mathrm{H}\langle k · \bold{v}_i \rangle = k · \mathrm{H}\langle \bold{v}_i \rangle \\
+[满足敛射性] & ∀\bold{v} ∈ \lbrace ∀\bold{v}; \bold{v} \rbrace; Ⅎ\bold{w} ∈ \lbrace ∀\bold{w}; \bold{w} \rbrace; \langle \bold{w}, \bold{v} \rangle ∈ \mathrm{I} \\
+[不足双射性] & [\bold{w} = \mathrm{H}\langle \lbrace ∀\bold{u};\bold{u} \rbrace \rangle] ⇔ [{^\imath}\mathrm{H}\langle \bold{w} \rangle = \lbrace ∀\bold{u}; \bold{u} \rbrace] \\
 \end{array} \\
 \\
-&两个线性空间的同构映射\mathrm{Isomorphism}\langle \lbrace ∀\bold{w}; \bold{w} \rbrace ⇼ \lbrace ∀\bold{v}; \bold{v} \rbrace \rangle的运算性质，共计3个。 \\
+&两个线性空间的同构映射\mathrm{Isomorphism}\langle \lbrace ∀\bold{w}; \bold{w} \rbrace_{(1+m)} ⇼ \lbrace ∀\bold{v}; \bold{v} \rbrace_{(1+n)} \rangle的运算性质，共计4个。 \\
 &\begin{array}{ll}
-[满足敛射性] & [∀\bold{v} ∈ \lbrace ∀\bold{v}; \bold{v} \rbrace; Ⅎ\bold{w} ∈ \lbrace ∀\bold{w}; \bold{w} \rbrace; \langle \bold{w}, \bold{v} \rangle ∈ \mathrm{I}] ∧ [∀\bold{w} ∈ \lbrace ∀\bold{w}; \bold{w} \rbrace; Ⅎ\bold{v} ∈ \lbrace ∀\bold{v}; \bold{v} \rbrace; \langle \bold{w}, \bold{v} \rangle ∈ \mathrm{I}] \\
 [满足位加性] & \mathrm{H}\langle \bold{v}_i + \bold{v}_j \rangle = \mathrm{H}\langle \bold{v}_i \rangle + \mathrm{H}\langle \bold{v}_j \rangle \\
 [满足量乘性] & \mathrm{H}\langle k · \bold{v}_i \rangle = k · \mathrm{H}\langle \bold{v}_i \rangle \\
+[满足映射性] & [∀\bold{v} ∈ \lbrace ∀\bold{v}; \bold{v} \rbrace; Ⅎ\bold{w} ∈ \lbrace ∀\bold{w}; \bold{w} \rbrace; \langle \bold{w}, \bold{v} \rangle ∈ \mathrm{I}] ∧ [∀\bold{w} ∈ \lbrace ∀\bold{w}; \bold{w} \rbrace; Ⅎ\bold{v} ∈ \lbrace ∀\bold{v}; \bold{v} \rbrace; \langle \bold{w}, \bold{v} \rangle ∈ \mathrm{I}] \\
+[满足双射性] & [\bold{w} = \mathrm{H}\langle \bold{v} \rangle] ⇔ [{^\imath}\mathrm{H}\langle \bold{w} \rangle = \bold{v}] \\
 \end{array} \\
 \end{aligned}
 $$
 
+两个线性空间的同态敛射，将零向量$\bold{0}$敛射到零向量$\bold{0} = \mathrm{H}\langle \bold{0} \rangle$。注意：每个线性空间中的零向量都唯一确定。
 
+$$
+\begin{aligned}
+\mathrm{H}\langle \bold{0} \rangle &= \mathrm{H}\langle \bold{0} + \bold{0} \rangle = \mathrm{H}\langle \bold{0} \rangle + \mathrm{H}\langle \bold{0} \rangle \\
+\bold{0} &= \mathrm{H}\langle \bold{0} \rangle \\
+\end{aligned}
+$$
 
+两个线性空间的同构映射，将线性无关向量集$\lbrace ∀i; \bold{v}_i \rbrace$映射到线性无关向量集$\mathrm{I}\langle \lbrace ∀i; \bold{v}_i \rbrace \rangle$，将基向量组$\lbrace ∀i; \bold{e}_i \rbrace$映射到基向量组$\mathrm{I}\langle ∀i; \bold{e}_i \rangle$。注意：同态敛射并不满足双射性。
+
+两个线性空间的同构映射，此两个线性空间的维数必相等$\mathrm{Dime}\langle \lbrace ∀\bold{v};\bold{v} \rbrace \rangle = \mathrm{Rank}\langle \lbrace ∀i; \bold{e}_i \rbrace \rangle = \mathrm{Rank}\langle \mathrm{I}\langle \lbrace ∀i; \bold{e}_i \rbrace \rangle \rangle = \mathrm{Dime}\langle \lbrace ∀\bold{w};\bold{w} \rbrace \rangle$。注意：同态敛射并不满足双射性。
+
+$$
+\begin{aligned}
+\left[\begin{matrix}
+0 \\
+⋮ \\
+0 \\
+0 \\
+\end{matrix}\right] &= \left[\begin{matrix}
+\bold{v}_0 & \bold{v}_1 & ⋯ & \bold{v}_n \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+χ_n \\
+⋮ \\
+χ_1 \\
+χ_0 \\
+\end{matrix}\right] = \bold{v}_0 · χ_0 + \bold{v}_1 · χ_1 + ⋯ + \bold{v}_n · χ_n \\
+\left[\begin{matrix}
+0 \\
+⋮ \\
+0 \\
+0 \\
+\end{matrix}\right] &= \left[\begin{matrix}
+\mathrm{I}\langle \bold{v}_0 \rangle & \mathrm{I}\langle \bold{v}_1 \rangle & ⋯ & \mathrm{I}\langle \bold{v}_n \rangle \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+χ_n \\
+⋮ \\
+χ_1 \\
+χ_0 \\
+\end{matrix}\right] = \mathrm{I}\langle \bold{v}_0 · χ_0 \rangle + \mathrm{I}\langle \bold{v}_1 · χ_1 \rangle + ⋯ + \mathrm{I}\langle \bold{v}_n · χ_n \rangle = \mathrm{I}\langle \bold{v}_0 · χ_0 + \bold{v}_1 · χ_1 + ⋯ + \bold{v}_n · χ_n \rangle \\
+\end{aligned}
+$$
+
+两个线性空间的同构映射，由基向量组$\lbrace ∀i; \bold{e}_i \rbrace_{(1+n)×(1+n)}$过渡到基向量组$\lbrace ∀i; \bold{r}_i \rbrace_{(1+n)×(1+n)}$的坐标转换，其中基向量$\bold{r}_i$对于基向量组$\lbrace ∀i; \bold{e}_i \rbrace$的映射坐标为$\bold{r}_i = \left[\begin{matrix} r_{i,n} \\ ⋮ \\ r_{i,0} \\ \end{matrix}\right]$。
+
+$$
+\begin{aligned}
+\mathrm{I}\left\langle\left[\begin{matrix}
+v_n \\
+⋮ \\
+v_1 \\
+v_0 \\
+\end{matrix}\right]\right\rangle &= \mathrm{I}\left\langle\left[\begin{matrix}
+\bold{e}_0 & \bold{e}_1 & ⋯ & \bold{e}_n \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+x_n \\
+⋮ \\
+x_1 \\
+x_0 \\
+\end{matrix}\right]\right\rangle \\
+\left[\begin{matrix}
+y_n \\
+⋮ \\
+y_1 \\
+y_0 \\
+\end{matrix}\right] &= \left[\begin{matrix}
+\mathrm{I}\langle \bold{e}_0 \rangle & \mathrm{I}\langle \bold{e}_1 \rangle & ⋯ & \mathrm{I}\langle \bold{e}_n \rangle \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+x_n \\
+⋮ \\
+x_1 \\
+x_0 \\
+\end{matrix}\right] = \left[\begin{matrix}
+\bold{r}_0 & \bold{r}_1 & ⋯ & \bold{r}_n \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+x_n \\
+⋮ \\
+x_1 \\
+x_0 \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+y_n \\
+⋮ \\
+y_1 \\
+y_0 \\
+\end{matrix}\right] &= \left[\begin{matrix}
+r_{0,n} & r_{1,n} & ⋯ & r_{n,n} \\
+⋮ & ⋮ & ⋰ & ⋮ \\
+r_{0,1} & r_{1,1} & ⋯ & r_{n,1} \\
+r_{0,0} & r_{1,0} & ⋯ & r_{n,0} \\
+\end{matrix}\right] \rlap{×}{+} \left[\begin{matrix}
+x_n \\
+⋮ \\
+x_1 \\
+x_0 \\
+\end{matrix}\right] = \left[\begin{matrix}
+r_{0,n} · x_0 + r_{1,n} · x_1 + ⋯ + r_{n,n} · x_n \\
+⋮ \\
+r_{0,1} · x_0 + r_{1,1} · x_1 + ⋯ + r_{n,1} · x_n \\
+r_{0,0} · x_0 + r_{1,0} · x_1 + ⋯ + r_{n,0} · x_n \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
 
 
 
