@@ -2,7 +2,7 @@
 layout: zh_post
 Topic : 收敛极限
 Title : 线性代数
-Update: 2022-01-28T22:30:00+08@中国-广东-湛江+08
+Update: 2022-01-29T17:24:00+08@中国-广东-湛江+08
 Author: 璀璨星辰
 Credit: 《线性代数（数学专业用）》李尚志
 ---
@@ -910,7 +910,31 @@ x_1 \\
 \end{aligned}
 $$
 
-典例：多项式集$\lbrace ∀a_i∈F; f(x) = a_0 · x^0 + a_1 · x^1 + ⋯ + a_n · x^n \rbrace_{(1)}$也即$\lbrace ∀f; f(x) \rbrace_{(1)}$是线性空间，其极大线性无关向量组也即基向量组是$\lbrace x^0, x^1, ⋯, x^n \rbrace_{(1)×(1+n)}$。
+典例：$1$元$n$方多项式集$\lbrace ∀a_i∈F; f(x) = a_0 · x^0 + a_1 · x^1 + ⋯ + a_n · x^n \rbrace$也即$\lbrace ∀f; f(x) \rbrace$是线性空间，其基向量组是$\lbrace x^0, x^1, ⋯, x^n \rbrace_{(1)×(1+n)}$。注意：$x^n$是变化的量。
+
+典例：复数集$ℤ ≡ \lbrace ∀z∈ℤ; z \rbrace ≡ \lbrace ∀a∈ℝ;∀b∈ℝ; τ · a + b \rbrace$，在数域$ℤ$上的基向量组是$\lbrace 1 \rbrace_{(1)×(1)}$，其维数是$1$，在数域$ℝ$上的基向量组是$\lbrace 1, τ \rbrace_{(1+1)×(1+1)}$，其维数是$2$。
+
+### 线性变换
+
+
+$$
+\begin{aligned}
+&两个线性空间的同态敛射\mathrm{Homomorphism}\langle \lbrace ∀\bold{w}; \bold{w} \rbrace ↢ \lbrace ∀\bold{v}; \bold{v} \rbrace \rangle的运算性质，共计3个。 \\
+&\begin{array}{ll}
+[满足敛射性] & ∀\bold{v} ∈ \lbrace ∀\bold{v}; \bold{v} \rbrace; Ⅎ\bold{w} ∈ \lbrace ∀\bold{w}; \bold{w} \rbrace; \langle \bold{w}, \bold{v} \rangle ∈ \mathrm{I} \\
+[满足位加性] & \mathrm{H}\langle \bold{v}_i + \bold{v}_j \rangle = \mathrm{H}\langle \bold{v}_i \rangle + \mathrm{H}\langle \bold{v}_j \rangle \\
+[满足量乘性] & \mathrm{H}\langle k · \bold{v}_i \rangle = k · \mathrm{H}\langle \bold{v}_i \rangle \\
+\end{array} \\
+\\
+&两个线性空间的同构映射\mathrm{Isomorphism}\langle \lbrace ∀\bold{w}; \bold{w} \rbrace ⇼ \lbrace ∀\bold{v}; \bold{v} \rbrace \rangle的运算性质，共计3个。 \\
+&\begin{array}{ll}
+[满足敛射性] & [∀\bold{v} ∈ \lbrace ∀\bold{v}; \bold{v} \rbrace; Ⅎ\bold{w} ∈ \lbrace ∀\bold{w}; \bold{w} \rbrace; \langle \bold{w}, \bold{v} \rangle ∈ \mathrm{I}] ∧ [∀\bold{w} ∈ \lbrace ∀\bold{w}; \bold{w} \rbrace; Ⅎ\bold{v} ∈ \lbrace ∀\bold{v}; \bold{v} \rbrace; \langle \bold{w}, \bold{v} \rangle ∈ \mathrm{I}] \\
+[满足位加性] & \mathrm{H}\langle \bold{v}_i + \bold{v}_j \rangle = \mathrm{H}\langle \bold{v}_i \rangle + \mathrm{H}\langle \bold{v}_j \rangle \\
+[满足量乘性] & \mathrm{H}\langle k · \bold{v}_i \rangle = k · \mathrm{H}\langle \bold{v}_i \rangle \\
+\end{array} \\
+\end{aligned}
+$$
+
 
 
 
