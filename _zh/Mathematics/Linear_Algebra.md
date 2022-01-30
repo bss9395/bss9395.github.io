@@ -2,7 +2,7 @@
 layout: zh_post
 Topic : 收敛极限
 Title : 线性代数
-Update: 2022-01-29T22:17:00+08@中国-广东-湛江+08
+Update: 2022-01-30T23:33:00+08@中国-广东-湛江+08
 Author: 璀璨星辰
 Credit: 《线性代数（数学专业用）》李尚志
 Notice: 本书限于本人能力范围，如果有疏漏之处请联系，brilliantstarrysky9395@gmail.com
@@ -911,7 +911,7 @@ x_1 \\
 \end{aligned}
 $$
 
-典例：$1$元$n$方多项式集$\lbrace ∀a_i∈F; f(x) = a_0 · x^0 + a_1 · x^1 + ⋯ + a_n · x^n \rbrace$也即$\lbrace ∀f; f(x) \rbrace$是线性空间，其基向量组是$\lbrace x^0, x^1, ⋯, x^n \rbrace_{(1)×(1+n)}$。注意：$x^n$是变化的量。
+典例：$1$元$n$方多项式集$\lbrace ∀a_i∈F; f\langle x \rangle = a_0 · x^0 + a_1 · x^1 + ⋯ + a_n · x^n \rbrace$也即$\lbrace ∀f; f\langle x \rangle \rbrace$是线性空间，其基向量组是$\lbrace x^0, x^1, ⋯, x^n \rbrace_{(1)×(1+n)}$。注意：$x^n$是变化的量。
 
 典例：复数集$ℤ ≡ \lbrace ∀z∈ℤ; z \rbrace ≡ \lbrace ∀a∈ℝ;∀b∈ℝ; τ · a + b \rbrace$，在数域$ℤ$上的基向量组是$\lbrace 1 \rbrace_{(1)×(1)}$，其维数是$1$，在数域$ℝ$上的基向量组是$\lbrace 1, τ \rbrace_{(1+1)×(1+1)}$，其维数是$2$。
 
@@ -1044,6 +1044,139 @@ r_{0,0} · x_0 + r_{1,0} · x_1 + ⋯ + r_{n,0} · x_n \\
 \end{aligned}
 $$
 
+典例：实数域$ℝ$上的线性空间，若向量集$\lbrace \bold{v}_0, \bold{v}_1, \bold{v}_2 \rbrace$线性无关，则向量集$\lbrace \bold{v}_0 + \bold{v}_1, \bold{v}_1 + \bold{v}_2, \bold{v}_2 + \bold{v}_0 \rbrace$线性无关。注意：线性无关向量组都可以同构映射到单位基向量组。
+
+$$
+\begin{aligned}
+\left[\begin{array}{c|c|c}
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+\end{array}\right] &= \mathrm{I}\langle [\bold{v}_0, \bold{v}_1, \bold{v}_2] \rangle \\
+\left[\begin{matrix}
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+\end{matrix}\right] ≈ \left[\begin{array}{c|c|c}
+0 & 1 & 1 \\
+1 & 1 & 0 \\
+1 & 0 & 1 \\
+\end{array}\right] &= \mathrm{I}\langle [\bold{v}_0 + \bold{v}_1, \bold{v}_1 + \bold{v}_2, \bold{v}_2 + \bold{v}_0] \rangle \\
+\end{aligned}
+$$
+
+### 线性空间的运算性质
+
+线性空间$V$与线性空间$W$的交集$V \cap W$，必定是线性空间。线性空间$U$的子集线性空间$V$与子集线性空间$W$的交集$V \cap W$，是线性空间$U$的子集线性空间。
+
+注意：线性空间$V$与线性空间$W$的合集$V \cup W$，未必是线性空间。
+
+$$
+\begin{aligned}
+&\begin{array}{|cl}
+⇓ & [\lbrace \bold{v}, \bold{w} \rbrace ∈ V \cap W] \\
+⇒ & [\bold{v} ∈ V] ∧ [\bold{w} ∈ V] ∧ [\bold{v} ∈ W] ∧ [\bold{w} ∈ W] \\
+⇒ & [(\bold{v} + \bold{w}) ∈ V] ∧ [(\bold{v} + \bold{w}) ∈ W] \\
+⇒ & [(\bold{v} + \bold{w}) ∈ V \cap W] \\
+\end{array} \\
+\hline
+&\begin{array}{|cl}
+⇓ & [\bold{v} ∈ V \cap W] \\
+⇒ & [\bold{v} ∈ V] ∧ [\bold{v} ∈ W] \\
+⇒ & [k · \bold{v} ∈ V] ∧ [k · \bold{v} ∈ W] \\
+⇒ & [k · \bold{v} ∈ V] \\
+\end{array} \\
+\end{aligned}
+$$
+
+约定：线性空间$V$与线性空间$W$的位加集$V + W$，是包含$V \cup W$的最小线性空间，也即$V + W ≡ \mathrm{Linear}\langle V \cup W \rangle$。
+
+若线性空间$V$的基向量组$\lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace$与线性空间$W$的基向量组$\lbrace ∀\bold{e}_{W}; \bold{e}_W \rbrace$满足线性无关性，当且仅当其交集的基向量组$\lbrace ∀\bold{e}_{V \cap W}; \bold{e}_{V \cap W} \rbrace = Ø$，当且仅当其交集$V \cap W = \lbrace 0 \rbrace$。
+
+线性空间$V$与线性空间$W$的位加集$V + W$，必满足$\mathrm{Dime}\langle V + W \rangle = \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle V \cap W \rangle ≤ \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle$，等号成立当且仅当$V \cap W = \lbrace \bold{0} \rbrace$。
+
+推论：线性空间$U$的子集线性空间$V$与子集线性空间$W$的交集$V \cap W$，必满足$\mathrm{Dime}\langle V \cap W \rangle ≥ \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle U \rangle$，等号成立当且仅当$V + W = U$。
+
+约定：若线性空间$U$的子集线性空间$V$与子集线性空间$W$，满足互斥性$V \cap W = \lbrace 0 \rbrace$，且满足互补性$V + W = U$，则子集线性空间$V$与子集线性空间$W$关于线性空间$U$互补。
+
+推论：子集线性空间$V$与子集线性空间$W$关于线性空间$U$互补，当且仅当$\mathrm{Dime}\langle \lbrace ∀\bold{e}_{V \cap W}; \bold{e}_{V \cap W} \rbrace \rangle = 0$，并且$\mathrm{Dime}\langle \lbrace ∀\bold{e}_{V \cup W}; \bold{e}_{V \cup W} \rbrace \rangle = \mathrm{Dime}\langle \lbrace ∀\bold{e}_U; \bold{e}_U \rbrace \rangle$。
+
+$$
+\begin{aligned}
+V + W &≡ \mathrm{Linear}\langle V \cup W \rangle \mathop{================}\limits^{\lbrace ∀\bold{e}_{V\cup W}; \bold{e}_{V\cup W} \rbrace ≈ \lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace \cup \lbrace ∀\bold{e}_W; \bold{e}_W \rbrace} \mathrm{Linear}\langle \lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace \cup \lbrace ∀\bold{e}_W; \bold{e}_W \rbrace \rangle \\
+\mathrm{Dime}\langle V + W \rangle &= \mathrm{Rank}\langle \lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace \cup \lbrace ∀\bold{e}_W; \bold{e}_W \rbrace \rangle = \mathrm{Rank}\langle \lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace \rangle + \mathrm{Rank}\langle \lbrace ∀\bold{e}_{W}; \bold{e}_W \rbrace \rangle - \mathrm{Rank}\langle \lbrace ∀\bold{e}_{V \cap W}; \bold{e}_{V \cap W} \rbrace \rangle \\
+\mathrm{Dime}\langle V + W \rangle &= \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle V \cap W \rangle ≤ \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle \\
+\mathrm{Dime}\langle V \cap W \rangle &= \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle V + W \rangle ≥ \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle U \rangle \\
+\end{aligned}
+$$
+
+典例：两个线性代数方程组的解集的交集。
+
+$$
+\begin{aligned}
+&\left\lbrace\begin{aligned}
+5 &= 1 · x_0 + 2 · x_1 + 7 · x_2 + 5 · x_3 - 4 · x_4 \\
+2 &= 0 · x_0 + 1 · x_1 + 4 · x_2 + 3 · x_3 - 1 · x_4 \\
+\end{aligned}\right. \\
+&\left\lbrace\begin{aligned}
+1 &= 1 · x_0 + 1 · x_1 + 1 · x_2 - 1 · x_3 - 1 · x_4 \\
+0 &= 0 · x_0 + 1 · x_1 + 2 · x_2 + 0 · x_3 + 1 · x_4 \\
+\end{aligned}\right. \\
+&\left[\begin{matrix}
+\tilde{A}_1 \\
+\hline
+\tilde{A}_0 \\
+\end{matrix}\right] = \left[\begin{array}{c|ccccc}
+5 & 1 & 2 & 7 & 5 & -4 \\
+2 & 0 & 1 & 4 & 3 & -1 \\
+\hline
+1 & 1 & 1 & 1 & -1 & -1 \\
+0 & 0 & 1 & 2 & 0 & 1 \\
+\end{array}\right] ≈ \left[\begin{array}{c|ccccc}
+1 & 0 & 0 & 1 & \frac{3}{2} & -1 \\
+-2 & 0 & 1 & 0 & -3 & 3 \\
+2 & 1 & 0 & 0 & \frac{1}{2} & -3 \\
+\end{array}\right] \\
+&\left[\begin{matrix}
+x_4 \\
+x_3 \\
+x_2 \\
+x_1 \\
+x_0 \\
+\end{matrix}\right] = \left[\begin{array}{c|cc}
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+\hline
+1 & -\frac{3}{2} & 1 \\
+-2 & 3 & -3 \\
+2 & -\frac{1}{2} & 3 \\
+\end{array}\right] \rlap{×}{+} \left[\begin{matrix}
+x_4 \\
+x_3 \\
++1 \\
+\end{matrix}\right] = \left[\begin{matrix}
+0 \\
+0 \\
+1 \\
+-2 \\
+2 \\
+\end{matrix}\right] + x_3 · \left[\begin{matrix}
+0 \\
+1 \\
+-\frac{3}{2} \\
+3 \\
+-\frac{1}{2} \\
+\end{matrix}\right] + x_4 · \left[\begin{matrix}
+1 \\
+0 \\
+1 \\
+-3 \\
+3 \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
+
+典例：
 
 
 ### 基矢量的运算性质
@@ -1127,7 +1260,7 @@ c + a_{m,0} & c + a_{m,1} & ⋯ & c + a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 c + a_{1,0} & c + a_{1,1} & ⋯ & c + a_{1,n} \\
 c + a_{0,0} & c + a_{0,1} & ⋯ & c + a_{0,n} \\
-\end{matrix}\right]}\limits_{(1+m)×(1+n)} = c \oplus \mathop{\left[\begin{matrix}
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} = c \boxplus \mathop{\left[\begin{matrix}
 a_{m,0} & a_{m,1} & ⋯ & a_{m,n} \\
 ⋮ & ⋮ & ⋰ & ⋮ \\
 a_{1,0} & a_{1,1} & ⋯ & a_{1,n} \\
@@ -1314,7 +1447,7 @@ c + v_n \\
 ⋮ \\
 c + v_1 \\
 c + v_0 \\
-\end{matrix}\right] = c \oplus \left[\begin{matrix}
+\end{matrix}\right] = c \boxplus \left[\begin{matrix}
 v_n \\
 ⋮ \\
 v_1 \\
