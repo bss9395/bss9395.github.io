@@ -2,7 +2,7 @@
 layout: zh_post
 Topic : 收敛极限
 Title : 线性代数
-Update: 2022-01-30T23:33:00+08@中国-广东-湛江+08
+Update: 2022-01-31T22:33:00+08@中国-广东-湛江+08
 Author: 璀璨星辰
 Credit: 《线性代数（数学专业用）》李尚志
 Notice: 本书限于本人能力范围，如果有疏漏之处请联系，brilliantstarrysky9395@gmail.com
@@ -1067,49 +1067,6 @@ $$
 
 ### 线性空间的运算性质
 
-线性空间$V$与线性空间$W$的交集$V \cap W$，必定是线性空间。线性空间$U$的子集线性空间$V$与子集线性空间$W$的交集$V \cap W$，是线性空间$U$的子集线性空间。
-
-注意：线性空间$V$与线性空间$W$的合集$V \cup W$，未必是线性空间。
-
-$$
-\begin{aligned}
-&\begin{array}{|cl}
-⇓ & [\lbrace \bold{v}, \bold{w} \rbrace ∈ V \cap W] \\
-⇒ & [\bold{v} ∈ V] ∧ [\bold{w} ∈ V] ∧ [\bold{v} ∈ W] ∧ [\bold{w} ∈ W] \\
-⇒ & [(\bold{v} + \bold{w}) ∈ V] ∧ [(\bold{v} + \bold{w}) ∈ W] \\
-⇒ & [(\bold{v} + \bold{w}) ∈ V \cap W] \\
-\end{array} \\
-\hline
-&\begin{array}{|cl}
-⇓ & [\bold{v} ∈ V \cap W] \\
-⇒ & [\bold{v} ∈ V] ∧ [\bold{v} ∈ W] \\
-⇒ & [k · \bold{v} ∈ V] ∧ [k · \bold{v} ∈ W] \\
-⇒ & [k · \bold{v} ∈ V] \\
-\end{array} \\
-\end{aligned}
-$$
-
-约定：线性空间$V$与线性空间$W$的位加集$V + W$，是包含$V \cup W$的最小线性空间，也即$V + W ≡ \mathrm{Linear}\langle V \cup W \rangle$。
-
-若线性空间$V$的基向量组$\lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace$与线性空间$W$的基向量组$\lbrace ∀\bold{e}_{W}; \bold{e}_W \rbrace$满足线性无关性，当且仅当其交集的基向量组$\lbrace ∀\bold{e}_{V \cap W}; \bold{e}_{V \cap W} \rbrace = Ø$，当且仅当其交集$V \cap W = \lbrace 0 \rbrace$。
-
-线性空间$V$与线性空间$W$的位加集$V + W$，必满足$\mathrm{Dime}\langle V + W \rangle = \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle V \cap W \rangle ≤ \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle$，等号成立当且仅当$V \cap W = \lbrace \bold{0} \rbrace$。
-
-推论：线性空间$U$的子集线性空间$V$与子集线性空间$W$的交集$V \cap W$，必满足$\mathrm{Dime}\langle V \cap W \rangle ≥ \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle U \rangle$，等号成立当且仅当$V + W = U$。
-
-约定：若线性空间$U$的子集线性空间$V$与子集线性空间$W$，满足互斥性$V \cap W = \lbrace 0 \rbrace$，且满足互补性$V + W = U$，则子集线性空间$V$与子集线性空间$W$关于线性空间$U$互补。
-
-推论：子集线性空间$V$与子集线性空间$W$关于线性空间$U$互补，当且仅当$\mathrm{Dime}\langle \lbrace ∀\bold{e}_{V \cap W}; \bold{e}_{V \cap W} \rbrace \rangle = 0$，并且$\mathrm{Dime}\langle \lbrace ∀\bold{e}_{V \cup W}; \bold{e}_{V \cup W} \rbrace \rangle = \mathrm{Dime}\langle \lbrace ∀\bold{e}_U; \bold{e}_U \rbrace \rangle$。
-
-$$
-\begin{aligned}
-V + W &≡ \mathrm{Linear}\langle V \cup W \rangle \mathop{================}\limits^{\lbrace ∀\bold{e}_{V\cup W}; \bold{e}_{V\cup W} \rbrace ≈ \lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace \cup \lbrace ∀\bold{e}_W; \bold{e}_W \rbrace} \mathrm{Linear}\langle \lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace \cup \lbrace ∀\bold{e}_W; \bold{e}_W \rbrace \rangle \\
-\mathrm{Dime}\langle V + W \rangle &= \mathrm{Rank}\langle \lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace \cup \lbrace ∀\bold{e}_W; \bold{e}_W \rbrace \rangle = \mathrm{Rank}\langle \lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace \rangle + \mathrm{Rank}\langle \lbrace ∀\bold{e}_{W}; \bold{e}_W \rbrace \rangle - \mathrm{Rank}\langle \lbrace ∀\bold{e}_{V \cap W}; \bold{e}_{V \cap W} \rbrace \rangle \\
-\mathrm{Dime}\langle V + W \rangle &= \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle V \cap W \rangle ≤ \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle \\
-\mathrm{Dime}\langle V \cap W \rangle &= \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle V + W \rangle ≥ \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle U \rangle \\
-\end{aligned}
-$$
-
 典例：两个线性代数方程组的解集的交集。
 
 $$
@@ -1176,8 +1133,106 @@ x_3 \\
 \end{aligned}
 $$
 
-典例：
+线性空间$V$与线性空间$W$的交集$V \cap W$，必定是线性空间。线性空间$U$的子集线性空间$V$与子集线性空间$W$的交集$V \cap W$，是线性空间$U$的子集线性空间。
 
+注意：线性空间$V$与线性空间$W$的合集$V \cup W$，未必是线性空间。
+
+$$
+\begin{aligned}
+&\begin{array}{|cl}
+⇓ & [\lbrace \bold{v}, \bold{w} \rbrace ⊆ V \cap W] \\
+⇒ & [\bold{v} ∈ V] ∧ [\bold{w} ∈ V] ∧ [\bold{v} ∈ W] ∧ [\bold{w} ∈ W] \\
+⇒ & [(\bold{v} + \bold{w}) ∈ V] ∧ [(\bold{v} + \bold{w}) ∈ W] \\
+⇒ & [(\bold{v} + \bold{w}) ∈ V \cap W] \\
+\end{array} \\
+\hline
+&\begin{array}{|cl}
+⇓ & [\bold{v} ∈ V \cap W] \\
+⇒ & [\bold{v} ∈ V] ∧ [\bold{v} ∈ W] \\
+⇒ & [k · \bold{v} ∈ V] ∧ [k · \bold{v} ∈ W] \\
+⇒ & [k · \bold{v} ∈ V] \\
+\end{array} \\
+\end{aligned}
+$$
+
+约定：线性空间$V$与线性空间$W$的位加集$V + W$，是包含$V \cup W$的最小线性空间，也即$V + W ≡ \mathrm{Linear}\langle V \cup W \rangle$。
+
+若线性空间$V$的基向量组$\lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace$与线性空间$W$的基向量组$\lbrace ∀\bold{e}_{W}; \bold{e}_W \rbrace$满足线性无关性，当且仅当其交集的基向量组$\lbrace ∀\bold{e}_{V \cap W}; \bold{e}_{V \cap W} \rbrace = Ø$，当且仅当其交集$V \cap W = \lbrace 0 \rbrace$。
+
+线性空间$V$与线性空间$W$的位加集$V + W$，必满足$\mathrm{Dime}\langle V + W \rangle = \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle V \cap W \rangle ≤ \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle$，等号成立当且仅当$V \cap W = \lbrace \bold{0} \rbrace$。
+
+推论：线性空间$U$的子集线性空间$V$与子集线性空间$W$的交集$V \cap W$，必满足$\mathrm{Dime}\langle V \cap W \rangle ≥ \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle U \rangle$，等号成立当且仅当$V + W = U$。
+
+约定：若线性空间$U$的子集线性空间$V$与子集线性空间$W$，满足互斥性$V \cap W = \lbrace 0 \rbrace$，且满足互补性$U = V + W$，则子集线性空间$V$与子集线性空间$W$关于线性空间$U$互补。
+
+推论：子集线性空间$V$与子集线性空间$W$关于线性空间$U$互补，当且仅当$\mathrm{Dime}\langle \lbrace ∀\bold{e}_{V \cap W}; \bold{e}_{V \cap W} \rbrace \rangle = 0$，并且$\mathrm{Dime}\langle \lbrace ∀\bold{e}_{V \cup W}; \bold{e}_{V \cup W} \rbrace \rangle = \mathrm{Dime}\langle \lbrace ∀\bold{e}_U; \bold{e}_U \rbrace \rangle$。
+
+$$
+\begin{aligned}
+V + W &≡ \mathrm{Linear}\langle V \cup W \rangle \mathop{================}\limits^{\lbrace ∀\bold{e}_{V\cup W}; \bold{e}_{V\cup W} \rbrace ≈ \lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace \cup \lbrace ∀\bold{e}_W; \bold{e}_W \rbrace} \mathrm{Linear}\langle \lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace \cup \lbrace ∀\bold{e}_W; \bold{e}_W \rbrace \rangle \\
+\mathrm{Dime}\langle V + W \rangle &= \mathrm{Rank}\langle \lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace \cup \lbrace ∀\bold{e}_W; \bold{e}_W \rbrace \rangle = \mathrm{Rank}\langle \lbrace ∀\bold{e}_{V}; \bold{e}_V \rbrace \rangle + \mathrm{Rank}\langle \lbrace ∀\bold{e}_{W}; \bold{e}_W \rbrace \rangle - \mathrm{Rank}\langle \lbrace ∀\bold{e}_{V \cap W}; \bold{e}_{V \cap W} \rbrace \rangle \\
+\mathrm{Dime}\langle V + W \rangle &= \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle V \cap W \rangle ≤ \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle \\
+\mathrm{Dime}\langle V \cap W \rangle &= \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle V + W \rangle ≥ \mathrm{Dime}\langle V \rangle + \mathrm{Dime}\langle W \rangle - \mathrm{Dime}\langle U \rangle \\
+\end{aligned}
+$$
+
+注意：子集线性空间$V$与子集线性空间$W$关于线性空间$U$互补，子集线性空间$W$并不唯一确定，但其基向量组满足$\lbrace ∀\bold{e}_U; \bold{e}_U \rbrace ≈ \lbrace ∀\bold{e}_V; \bold{e}_V \rbrace \cup \lbrace ∀\bold{e}_W; \bold{e}_W \rbrace$。
+
+推论：线性空间$U$中的向量$\bold{u}$可以由子集线性空间$V$中的向量$\bold{v}$与子集线性空间$W$中的向量$\bold{w}$唯一确定，当且仅当子集线性空间$V$与子集线性空间$W$关于线性空间$U$互补。
+
+约定：线性空间集合族$\lbrace ∀i;V_i \rbrace$的全乘积，记作$\lbrace ∀\bold{v}_i ∈ V_i; \langle \bold{v}_0, \bold{v}_1, ⋯, \bold{v}_i, ⋯ \rangle \rbrace$，全乘积是线性空间。注意：线性空间集合族$\lbrace ∀i;V_i \rbrace$未必满足互斥性$∀i;∀j; V_i \cap V_j = \lbrace \bold{0} \rbrace$。
+
+典例：对于$3$维向量空间$ℝ_{(3)}$，其中$xOy$平面为$\lbrace ∀x ∈ ℝ; ∀y ∈ ℝ; \left[\begin{matrix} 0 \\ y \\ x \end{matrix}\right] \rbrace$，$Z$轴为$\lbrace ∀z ∈ ℝ; \left[\begin{matrix} z \\ 0 \\ 0 \end{matrix}\right] \rbrace$。向量$\left[\begin{matrix} z \\ y \\ x \end{matrix}\right]$可以由此两个子集向量空间中的向量唯一确定。
+
+典例：对于$3$维向量空间$ℝ_{(3)}$，其中$xOy$平面为$\lbrace ∀x ∈ ℝ; ∀y ∈ ℝ; \left[\begin{matrix} 0 \\ y \\ x \end{matrix}\right] \rbrace$，$yOz$平面为$\lbrace ∀y ∈ ℝ; ∀z ∈ ℝ; \left[\begin{matrix} z \\ y \\ 0 \end{matrix}\right] \rbrace$。向量$\left[\begin{matrix} z \\ y \\ x \end{matrix}\right]$不可由此两个子集向量空间中的向量唯一确定。
+
+$$
+\begin{aligned}
+\bold{u} &\mathop{=======}\limits^{V \cap W ≠ \lbrace 0 \rbrace} \bold{v} + \bold{w} \mathop{=====}\limits_{\bold{vw} ∈ V \cap W}^{\bold{v} ∈ V, \bold{w} ∈ W} (\bold{v} + \bold{vw}) + (\bold{w} - \bold{vw}) \\
+\left[\begin{matrix}
+z \\
+y \\
+x \\
+\end{matrix}\right] &\mathop{=======}\limits^{\lbrace \bold{0} \rbrace = xOy \cap Z} \left[\begin{matrix}
+0 \\
+y \\
+x \\
+\end{matrix}\right] + \left[\begin{matrix}
+z \\
+0 \\
+0 \\
+\end{matrix}\right] \\
+\left[\begin{matrix}
+z \\
+y \\
+x \\
+\end{matrix}\right] &\mathop{=======}\limits^{\lbrace \bold{0} \rbrace ≠ xOy \cap yOz} \left[\begin{matrix}
+0 \\
+y \\
+x \\
+\end{matrix}\right] + \left[\begin{matrix}
+z \\
+0 \\
+0 \\
+\end{matrix}\right] = \left[\begin{matrix}
+0 \\
+0 \\
+x \\
+\end{matrix}\right] + \left[\begin{matrix}
+z \\
+y \\
+0 \\
+\end{matrix}\right] \mathop{==}\limits^{t∈ℝ} \left[\begin{matrix}
+0 \\
+t \\
+x \\
+\end{matrix}\right] + \left[\begin{matrix}
+z \\
+y - t \\
+0 \\
+\end{matrix}\right] \\
+\end{aligned}
+$$
 
 ### 基矢量的运算性质
 
