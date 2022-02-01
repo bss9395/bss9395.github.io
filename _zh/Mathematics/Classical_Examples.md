@@ -2,7 +2,7 @@
 layout: zh_post
 Topic : 收敛极限
 Title : 经典案例
-Update: 2022-02-01T18:32:00+08@中国-广东-湛江+08
+Update: 2022-02-01T23:26:00+08@中国-广东-湛江+08
 Author: 璀璨星辰
 Credit: 《线性代数（数学专业用）》李尚志
 Notice: 本书限于本人能力范围，如果有疏漏之处请联系，brilliantstarrysky9395@gmail.com
@@ -263,5 +263,86 @@ x_1 \\
 \end{matrix}\right] \\
 \hline
 f_n &\mathop{===}\limits_{f_0 = 1}^{f_1 = 1} q_1^n · x_1 + q_2^n · x_2 \mathop{=====}\limits_{x_1 = \frac{q_2 - 1}{q_2 - q_1}}^{x_2 = \frac{1 - q_1}{q_2 - q_1}} \dfrac{q_1^n · (q_2 - 1) + q_2^n · (1 - q_1)}{q_2 - q_1} \mathop{=====}\limits_{q_2 - q_1 = \sqrt{5}}^{q_2 + q_1 = 1} \dfrac{q_2^{n+1} - q_1^{n+1}}{q_2 - q_1} = \dfrac{(1 + \sqrt{5})^n + (1 - \sqrt{5})^n}{2^n · \sqrt{5}} \\
+\end{aligned}
+$$
+
+### 拟合方程
+
+拟合$1$元$n$方多项式方程。采用线性代数方程组。当$m = n$时才有唯一解。
+
+$$
+\begin{aligned}
+\left[\begin{matrix}
+y_m \\
+⋮ \\
+y_1 \\
+y_0 \\
+\end{matrix}\right] &= \mathop{\left[\begin{matrix}
+x_m^0 & x_m^1 & ⋯ & x_m^n \\
+⋮ & ⋮  & ⋰ & ⋮ \\
+x_1^0 & x_1^1 & ⋯ & x_1^n \\
+x_0^0 & x_0^1 & ⋯ & x_0^n \\
+\end{matrix}\right]}\limits_{(1+m)×(1+n)} \rlap{×}{+} \left[\begin{matrix}
+a_n \\
+⋮ \\
+a_1 \\
+a_0 \\
+\end{matrix}\right] = \left[\begin{matrix}
+a_0 · x_m^0 + a_1 · x_m^1 + ⋯ + a_n · x_m^n \\
+⋮ \\
+a_0 · x_1^0 + a_1 · x_1^1 + ⋯ + a_n · x_1^n \\
+a_0 · x_0^0 + a_1 · x_0^1 + ⋯ + a_n · x_0^n \\
+\end{matrix}\right] \\
+f\langle x \rangle &≡ a_0 · x^0 + a_1 · x^1 + ⋯ + a_n · x^n \\
+\end{aligned}
+$$
+
+拟合$1$元$n$方多项式方程。采用同态敛射泛函数。当$m = n$时为同构映射。
+
+$$
+\begin{aligned}
+\mathrm{Homo}\langle f \rangle &≡ \left[\begin{matrix}
+f\langle x_m \rangle \\
+⋮ \\
+f\langle x_1 \rangle \\
+f\langle x_0 \rangle \\
+\end{matrix}\right] \\
+\mathrm{Homo}\langle f + g \rangle &= \left[\begin{matrix}
+f\langle x_m \rangle + g\langle x_m \rangle \\
+⋮ \\
+f\langle x_1 \rangle + g\langle x_1 \rangle \\
+f\langle x_0 \rangle + g\langle x_0 \rangle \\
+\end{matrix}\right] = \left[\begin{matrix}
+f\langle x_m \rangle \\
+⋮ \\
+f\langle x_1 \rangle \\
+f\langle x_0 \rangle \\
+\end{matrix}\right] + \left[\begin{matrix}
+g\langle x_m \rangle \\
+⋮ \\
+g\langle x_1 \rangle \\
+g\langle x_0 \rangle \\
+\end{matrix}\right] \\
+\mathrm{Homo}\langle k · f \rangle &= \left[\begin{matrix}
+k · f\langle x_m \rangle \\
+⋮ \\
+k · f\langle x_1 \rangle \\
+k · f\langle x_0 \rangle \\
+\end{matrix}\right] = k · \left[\begin{matrix}
+f\langle x_m \rangle \\
+⋮ \\
+f\langle x_1 \rangle \\
+f\langle x_0 \rangle \\
+\end{matrix}\right] \\
+\hline
+\mathrm{Homo}\langle e_i \rangle &= \bold{η}_i \\
+e_i\langle x \rangle &\mathop{≡≡≡≡≡≡}\limits^{e_i\langle x_j \rangle = \mathop{0}\limits_{i≠j}; \mathop{1}\limits_{i=j}} \prod\limits_{j=0;i≠j}^{n} \dfrac{x - x_j}{x_i - x_j} \\
+\mathrm{Homo}\langle e_0 · y_0 + e_1 · y_1 + ⋯ + e_m · y_m \rangle &= \left[\begin{matrix}
+y_m \\
+⋮ \\
+y_1 \\
+y_0 \\
+\end{matrix}\right] \\
+f\langle x \rangle ≡ e_0 · y_0 + e_1 · y_1 + ⋯ + e_m · y_m &= \sum\limits_{i=0}^{m} y_i · \prod\limits_{j=0;i≠j}^{n} \dfrac{x - x_j}{x_i - x_j} \\
 \end{aligned}
 $$
