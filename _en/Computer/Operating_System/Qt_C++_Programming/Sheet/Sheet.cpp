@@ -346,7 +346,10 @@ Sheet::Sheet(QWidget *parent)
         for(iptr row = 0, row_count = _ui->TW_Sheet->rowCount(); row < row_count; row += 1) {
             for(iptr col = 0, col_count = _ui->TW_Sheet->columnCount(); col < col_count; col += 1) {
                 QTableWidgetItem *item = _ui->TW_Sheet->item(row, col);
-                buffer += item->text(), buffer += "; ";
+                if(item != nullptr){
+                    buffer += item->text();
+                }
+                buffer += "; ";
             }
             buffer += "\n";
         }
@@ -354,12 +357,45 @@ Sheet::Sheet(QWidget *parent)
         ////////////////////////////////
 
         QFile file(_filename);
-        if(file.open(QFile::WriteOnly | QFile::Truncate)) {
+        if(file.open(QFile::Text | QFile::WriteOnly | QFile::Truncate)) {
             QTextStream stream(&file);
             stream.setCodec("UTF-8");
             stream << buffer;
         }
     });
+
+    QObject::connect(_ui->A_Save_As, &QAction::triggered, [this]() -> void {
+        Logging("QObject::connect(_ui->A_Save_As, &QAction::triggered, [this]() -> void {");
+
+        QString buffer = ""; buffer.reserve(1024);
+        for(iptr row = 0, row_count = _ui->TW_Sheet->rowCount(); row < row_count; row += 1) {
+            for(iptr col = 0, col_count = _ui->TW_Sheet->columnCount(); col < col_count; col += 1) {
+                QTableWidgetItem *item = _ui->TW_Sheet->item(row, col);
+                if(item != nullptr){
+                    buffer += item->text();
+                }
+                buffer += "; ";
+            }
+            buffer += "\n";
+        }
+
+        ////////////////////////////////
+
+        QString caption = "保存文件";
+        QString directory = QDir::currentPath();
+        QString filter = "表单文件(*.sheet);;文本文件(*.txt);;所有文件(*.*)";
+        QString filename = QFileDialog::getSaveFileName(this, caption, directory, filter);
+        if(0 < filename.size()){
+            _filename = filename;
+            QFile file(_filename);
+            if(file.open(QFile::Text | QFile::WriteOnly | QFile::Truncate)) {
+                QTextStream stream(&file);
+                stream.setCodec("UTF-8");
+                stream << buffer;
+            }
+        }
+    });
+
 
     QObject::connect(_ui->A_Align_Left, &QAction::triggered, [this]() -> void {
         Logging("QObject::connect(_ui->A_Align_Left, &QAction::triggered, [this]() -> void {");

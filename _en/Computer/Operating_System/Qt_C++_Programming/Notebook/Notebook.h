@@ -19,6 +19,7 @@ class MW_Notebook : public QMainWindow {
 
 public:
     Ui::MW_Notebook *_ui;
+    QString _filename = QString("untitled.txt");
 
 public:
     MW_Notebook(QWidget *parent = nullptr);

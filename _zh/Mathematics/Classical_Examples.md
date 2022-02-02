@@ -205,55 +205,19 @@ $$
 
 ### 迭代数列
 
-迭代数列$f_{n+2} ≡ f_{n} + f_{n+1}$初始值的解集$\left\lbrace ∀f_0;∀f_1; \left[\begin{matrix}
-f_1 \\
-f_0 \\
-\end{matrix}\right] \right\rbrace$。注意：解集$\left\lbrace ∀f_0;∀f_1; \left[\begin{matrix}
-f_1 \\
-f_0 \\
-\end{matrix}\right] \right\rbrace$是线性空间。
+迭代数列$f_{n+2} ≡ f_{n} + f_{n+1}$初始值的解集$\left\lbrace ∀f_0;∀f_1; \langle f_0, f_1 \rangle \right\rbrace$。注意：解集$\left\lbrace ∀f_0;∀f_1; \langle f_0, f_1 \rangle \right\rbrace$是线性空间。
 
 $$
 \begin{aligned}
-\mathrm{Iso}\left\langle \left[\begin{matrix}
-f_1 \\
-f_0 \\
-\end{matrix}\right] \right\rangle &≡ \langle f_0, f_1, ⋯, f_n \rangle \\
-\mathrm{Iso}\left\langle \left[\begin{matrix}
-f_1 \\
-f_0 \\
-\end{matrix}\right] + \left[\begin{matrix}
-g_1 \\
-g_0 \\
-\end{matrix}\right] \right\rangle &≡ \langle f_0 + g_0, f_1 + g_1, ⋯, f_n + g_n \rangle ≡ \langle f_0, f_1, ⋯, f_n \rangle + \langle g_0, g_1, ⋯, g_n \rangle \\
-\mathrm{Iso}\left\langle k · \left[\begin{matrix}
-f_1 \\
-f_0 \\
-\end{matrix}\right] \right\rangle &≡ \langle k · f_0, k · f_1, ⋯, k · f_n \rangle ≡ k · \langle f_0, f_1, ⋯, f_n \rangle \\
-2 = \mathrm{Dime}\left\langle \left[\begin{matrix}
-f_1 \\
-f_0 \\
-\end{matrix}\right] \right\rangle &= \mathrm{Dime}\langle \langle f_0, f_1, ⋯, f_n \rangle \rangle \\
+\mathrm{Iso}\left\langle \langle f_0, f_1 \rangle \right\rangle &≡ \langle f_0, f_1, ⋯, f_n \rangle \\
+\mathrm{Iso}\left\langle \langle f_0, f_1 \rangle + \langle g_0, g_1 \rangle \right\rangle &≡ \langle f_0 + g_0, f_1 + g_1, ⋯, f_n + g_n \rangle ≡ \langle f_0, f_1, ⋯, f_n \rangle + \langle g_0, g_1, ⋯, g_n \rangle \\
+\mathrm{Iso}\left\langle k · \langle f_0, f_1 \rangle \right\rangle &≡ \langle k · f_0, k · f_1, ⋯, k · f_n \rangle ≡ k · \langle f_0, f_1, ⋯, f_n \rangle \\
+2 = \mathrm{Dime}\left\langle \left\lbrace ∀f_0;∀f_1; \langle f_0, f_1 \rangle \right\rbrace \right\rangle &= \mathrm{Dime}\langle \left\lbrace ∀f_0;∀f_1; \langle f_0, f_1, ⋯, f_n \rangle \right\rbrace \rangle \\
 \hline
-\mathrm{Iso}\langle \bold{e}_1 \rangle = \mathrm{Iso}\left\langle \left[\begin{matrix} q_1 \\ 1 \end{matrix}\right] \right\rangle &\mathop{=======}\limits_{q_1 = \frac{1 - \sqrt{5}}{2}}^{q^{n+2} = q^{n} + q^{n+1}} \langle 1, q_1, ⋯, q_1^n \rangle \\
-\mathrm{Iso}\langle \bold{e}_2 \rangle = \mathrm{Iso}\left\langle \left[\begin{matrix} q_2 \\ 1 \end{matrix}\right] \right\rangle &\mathop{=======}\limits_{q_2 = \frac{1 + \sqrt{5}}{2}}^{q^{n+2} = q^{n} + q^{n+1}} \langle 1, q_2, ⋯, q_2^n \rangle \\
+\mathrm{Iso}\langle \bold{e}_1 \rangle = \mathrm{Iso}\left\langle \langle 1, q_1 \rangle \right\rangle &\mathop{=======}\limits_{q_1 = \frac{1 - \sqrt{5}}{2}}^{q^{n+2} = q^{n} + q^{n+1}} \langle 1, q_1, ⋯, q_1^n \rangle \\
+\mathrm{Iso}\langle \bold{e}_2 \rangle = \mathrm{Iso}\left\langle \langle 1, q_2 \rangle \right\rangle &\mathop{=======}\limits_{q_2 = \frac{1 + \sqrt{5}}{2}}^{q^{n+2} = q^{n} + q^{n+1}} \langle 1, q_2, ⋯, q_2^n \rangle \\
 \mathrm{Iso}\left\langle \bold{e}_1 · x_1 + \bold{e}_2 · x_2 \right\rangle &= \langle x_1 + x_2, q_1 · x_1 + q_2 · x_2, ⋯, q_1^n · x_1 + q_2^n · x_2 \rangle \\
-\left[\begin{matrix}
-f_1 \\
-f_0 \\
-\end{matrix}\right] &= \bold{e}_1 · x_1 + \bold{e}_2 · x_2 = \left[\begin{matrix}
-q_1 \\
-1 \\
-\end{matrix}\right] · x_1 + \left[\begin{matrix}
-q_2 \\
-1 \\
-\end{matrix}\right] · x_2 = \left[\begin{matrix}
-\frac{1 - \sqrt{5}}{2} \\
-1 \\
-\end{matrix}\right] · x_1 + \left[\begin{matrix}
-\frac{1 + \sqrt{5}}{2} \\
-1 \\
-\end{matrix}\right] · x_2 \\
+\langle f_0, f_1 \rangle &= \bold{e}_1 · x_1 + \bold{e}_2 · x_2 = \langle 1, q_1 \rangle · x_1 + \langle 1, q_2 \rangle · x_2 = \left\langle 1, \frac{1 - \sqrt{5}}{2} \right\rangle · x_1 + \left\langle 1, \frac{1 + \sqrt{5}}{2} \right\rangle · x_2 \\
 \left[\begin{matrix}
 x_2 \\
 x_1 \\

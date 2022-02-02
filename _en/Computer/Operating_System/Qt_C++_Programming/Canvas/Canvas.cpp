@@ -20,7 +20,7 @@ Sketch::Sketch(QWidget *parent)
     QObject::connect(_ui->A_Scan, &QAction::triggered, [this]() -> void {
         Logging("QObject::connect(_ui->A_Scan, &QAction::triggered, [this]() -> void {");
 
-        QString directory = QFileDialog::getExistingDirectory(this, "挂载目录", QDir::currentPath());
+        QString directory = QFileDialog::getExistingDirectory(this, "挂载目录", QDir::currentPath(), QFileDialog::ShowDirsOnly);
         if (0 < directory.size()) {
             directory += '/';
             QStringList filenames = QDir(directory, "*.png;;*.jpg").entryList(QDir::Files);
@@ -105,6 +105,20 @@ Sketch::Sketch(QWidget *parent)
         QPixmap pixmap = _pixmap.scaledToWidth(width);
         _ui->L_Picture->setPixmap(pixmap);
     });
+
+    QObject::connect(_ui->A_Update_Theme, &QAction::triggered, [this]() -> void {
+        Logging("QObject::connect(_ui->A_Update_Theme, &QAction::triggered, [this]() -> void {");
+
+        QString caption = "选择颜色";
+        QColor color = _ui->L_Picture->palette().color(QPalette::Background);
+        color = QColorDialog::getColor(color, this, caption);
+        if(color.isValid()){
+            QString css = QString("QLabel {\n    background-color: rgba(%1, %2, %3, %4); \n}")
+                              .arg(color.red()).arg(color.green()).arg(color.blue()).arg(color.alpha() / 255);
+            _ui->L_Picture->setStyleSheet(css);
+        }
+    });
+
 }
 
 Sketch::~Sketch() {

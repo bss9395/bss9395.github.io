@@ -1,6 +1,6 @@
 /* Notebook.cpp
 Author: BSS9395
-Update: 2022-01-06T20:21:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-02-03T01:11:00+08@China-Guangdong-Shenzhen+08
 Design: Notebook
 Encode: UTF-8
 System: Qt 5.15.2
@@ -23,8 +23,6 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     _ui->FCB_Font_Family->setFixedSize(126, 26);
     _ui->CB_Font_Size->setCurrentText(QString::asprintf("%d", _ui->TE_Notebook->font().pointSize()));
     _ui->TB_Major->addWidget(_ui->GB_Font);
-
-    _ui->PB_Font_Size->setRange(1, 127);
     _ui->SB_Status_Bar->addWidget(_ui->GB_Status_Bar);
 
     ////////////////////////////////////
@@ -143,7 +141,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
         Logging("QObject::connect(ui->A_Font, &QAction::triggered, [this]() -> void {");
 
         bool ok = false;
-        QFont font = QFontDialog::getFont(&ok, this);
+        QFont font = QFontDialog::getFont(&ok, _ui->TE_Notebook->font());
         if (ok == true) {
             _ui->TE_Notebook->setCurrentFont(font); // note: predefined text, bug on QTextEdit::setFont().
             _ui->PTE_Notebook->setFont(font);
@@ -187,6 +185,58 @@ MW_Notebook::MW_Notebook(QWidget *parent)
         menu->exec(QCursor::pos());
         delete menu;
     });
+
+    QObject::connect(_ui->PB_Filename, &QPushButton::clicked, [this]() -> void {
+        Logging("QObject::connect(_ui->PB_Filename, &QPushButton::clicked, [this]() -> void {");
+
+        QString caption = QString("更改文件名");
+        QString label = QString("输入文件名");
+        bool ok = false;
+        QString filename = QInputDialog::getText(this, caption, label, QLineEdit::Normal, _filename, &ok);
+        if(ok == true && 0 < filename.size()){
+            _filename = filename;
+            Update_Status_Bar(_filename);
+        }
+    });
+
+    QObject::connect(_ui->TE_Notebook, &QTextEdit::textChanged, [this]() -> void {
+        Logging("QObject::connect(_ui->TE_Notebook, &QTextEdit::textChanged, [this]() -> void {");
+
+        emit _ui->TE_Notebook->cursorPositionChanged();
+    });
+
+    QObject::connect(_ui->TE_Notebook, &QTextEdit::cursorPositionChanged, [this]() -> void {
+        Logging("QObject::connect(_ui->TE_Notebook, &QTextEdit::cursorPositionChanged, [this]() -> void {");
+
+        QTextCursor cursor = _ui->TE_Notebook->textCursor();
+        iptr line = cursor.blockNumber();
+        // iptr column = cursor.columnNumber();  // note: position in line.
+        iptr column = cursor.positionInBlock();  // note: position in paragraph.
+        _ui->SB_Line->setValue(line);
+        _ui->SB_Column->setValue(column);
+
+        _ui->SB_Line->setRange(0, _ui->TE_Notebook->document()->blockCount() - 1);
+    });
+
+    QObject::connect(_ui->SB_Line, &QSpinBox::editingFinished, [this]() -> void {
+        Logging("QObject::connect(_ui->SB_Line, &QSpinBox::editingFinished, [this]() -> void {");
+
+        emit _ui->SB_Column->editingFinished();
+    });
+
+    QObject::connect(_ui->SB_Column, &QSpinBox::editingFinished, [this]() -> void {
+        Logging("QObject::connect(_ui->SB_Column, &QSpinBox::editingFinished, [this]() -> void {");
+
+        QTextCursor cursor = _ui->TE_Notebook->textCursor();
+        QTextBlock block = _ui->TE_Notebook->document()->findBlockByNumber(_ui->SB_Line->value());
+        _ui->SB_Column->setRange(0, block.length() - 1);
+
+        cursor.setPosition(block.position() + _ui->SB_Column->value());
+        _ui->TE_Notebook->setTextCursor(cursor);
+        _ui->TE_Notebook->setFocus();
+    });
+
+
 }
 
 MW_Notebook::~MW_Notebook() {
@@ -195,10 +245,11 @@ MW_Notebook::~MW_Notebook() {
     delete _ui;
 }
 
+
 void MW_Notebook::Update_Status_Bar(const QString &filename) {
     Logging(__FUNCTION__);
 
-    _ui->L_Filename->setText(filename);
+    _ui->PB_Filename->setText(filename);
 }
 
 void MW_Notebook::Update_Theme() {

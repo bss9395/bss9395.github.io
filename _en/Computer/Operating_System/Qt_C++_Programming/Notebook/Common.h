@@ -22,6 +22,8 @@ System: Qt 5.15.2
 #include <QTimer>
 #include <QTimeZone>
 #include <QtGlobal>
+#include <QInputDialog>
+#include <QTextBlock>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <fstream>

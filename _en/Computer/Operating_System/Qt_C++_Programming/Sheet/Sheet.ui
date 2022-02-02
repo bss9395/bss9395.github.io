@@ -583,6 +583,7 @@
    <addaction name="A_Testing"/>
    <addaction name="A_Open"/>
    <addaction name="A_Save_Sheet"/>
+   <addaction name="A_Save_As"/>
    <addaction name="separator"/>
    <addaction name="A_Bold"/>
    <addaction name="A_Align_Left"/>
@@ -803,6 +804,15 @@
    </property>
    <property name="text">
     <string>粗体</string>
+   </property>
+  </action>
+  <action name="A_Save_As">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/save.png</normaloff>:/images/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>另存表单</string>
    </property>
   </action>
  </widget>
