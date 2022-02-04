@@ -168,7 +168,7 @@ public:
         _report.reserve(512);
         int sepa = 0;
         ((sepa = _file.lastIndexOf('/')) < 0) && (sepa = _file.lastIndexOf('\\'));
-        _report += QString("[%1 : %2 : %3 : %4] ").arg(_level).arg(_file.midRef(sepa + 1)).arg(_line).arg(_function);
+        _report += QString("[%1 : %2 : %3 : %4] ").arg(_level).arg(_file.mid(sepa + 1)).arg(_line).arg(_function);
         _report += _record, _report += " : ";
         _report += _solution, _report += ";";
         return _report;

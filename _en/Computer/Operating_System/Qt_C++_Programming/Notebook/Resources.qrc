@@ -64,5 +64,43 @@
         <file>images/zoom_in_map.png</file>
         <file>images/zoom_out.png</file>
         <file>images/zoom_out_map.png</file>
+        <file>images/align_horizontal_center.png</file>
+        <file>images/align_horizontal_left.png</file>
+        <file>images/align_horizontal_right.png</file>
+        <file>images/align_vertical_bottom.png</file>
+        <file>images/align_vertical_center.png</file>
+        <file>images/align_vertical_top.png</file>
+        <file>images/arrow_back.png</file>
+        <file>images/arrow_downward.png</file>
+        <file>images/arrow_forward.png</file>
+        <file>images/arrow_upward.png</file>
+        <file>images/column.png</file>
+        <file>images/create_new_folder.png</file>
+        <file>images/description.png</file>
+        <file>images/favorite.png</file>
+        <file>images/favorite_border.png</file>
+        <file>images/find_in_page.png</file>
+        <file>images/folder.png</file>
+        <file>images/format_align_center.png</file>
+        <file>images/format_align_justify.png</file>
+        <file>images/format_align_left.png</file>
+        <file>images/format_align_right.png</file>
+        <file>images/format_list_bulleted.png</file>
+        <file>images/format_list_numbered.png</file>
+        <file>images/grid.png</file>
+        <file>images/horizontal_distribute.png</file>
+        <file>images/keyboard_double_arrow_down.png</file>
+        <file>images/keyboard_double_arrow_left.png</file>
+        <file>images/keyboard_double_arrow_right.png</file>
+        <file>images/keyboard_double_arrow_up.png</file>
+        <file>images/M31.png</file>
+        <file>images/save.png</file>
+        <file>images/table_rows.png</file>
+        <file>images/task.png</file>
+        <file>images/topic.png</file>
+        <file>images/vertical_distribute.png</file>
+        <file>images/view_stream.png</file>
+        <file>images/view_week.png</file>
+        <file>images/window.png</file>
     </qresource>
 </RCC>

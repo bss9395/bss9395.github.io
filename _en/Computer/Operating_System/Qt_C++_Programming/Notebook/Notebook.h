@@ -20,12 +20,14 @@ class MW_Notebook : public QMainWindow {
 public:
     Ui::MW_Notebook *_ui;
     QString _filename = QString("untitled.txt");
+    bool _modified = false;
 
 public:
     MW_Notebook(QWidget *parent = nullptr);
     ~MW_Notebook();
 
 public:
+    virtual bool event(QEvent *event) override;
     void Update_Status_Bar(const QString &filename);
     void Update_Theme();
 };

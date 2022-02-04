@@ -24,6 +24,8 @@ System: Qt 5.15.2
 #include <QtGlobal>
 #include <QInputDialog>
 #include <QTextBlock>
+#include <QMessageBox>
+#include <QKeyEvent>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <fstream>

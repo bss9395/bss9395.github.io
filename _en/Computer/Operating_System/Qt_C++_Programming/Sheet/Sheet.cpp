@@ -9,18 +9,14 @@ System: Qt 5.15.2
 #include "Common.h"
 
 struct Datum {
-    static inline struct EMark {
-        const char *_ID = "ID";
-        const char *_Name = "Name";
-        const char *_Gender = "Gender";
-        const char *_Date = "Date";
-        const char *_Nationality = "Nationality";
-        const char *_Score = "Score";
-
-        EMark() {
-
-        }
-    } _Mark;
+    struct EMark {
+        static inline const char *_ID = "ID";
+        static inline const char *_Name = "Name";
+        static inline const char *_Gender = "Gender";
+        static inline const char *_Date = "Date";
+        static inline const char *_Nationality = "Nationality";
+        static inline const char *_Score = "Score";
+    };
 
     // note: data of whatever type all could be represented as string.
     QString _ID = "20220112173800";
@@ -357,7 +353,7 @@ Sheet::Sheet(QWidget *parent)
         ////////////////////////////////
 
         QFile file(_filename);
-        if(file.open(QFile::Text | QFile::WriteOnly | QFile::Truncate)) {
+        if(file.open(QFile::WriteOnly | QFile::Truncate)) {
             QTextStream stream(&file);
             stream.setCodec("UTF-8");
             stream << buffer;
@@ -388,7 +384,7 @@ Sheet::Sheet(QWidget *parent)
         if(0 < filename.size()){
             _filename = filename;
             QFile file(_filename);
-            if(file.open(QFile::Text | QFile::WriteOnly | QFile::Truncate)) {
+            if(file.open(QFile::WriteOnly | QFile::Truncate)) {
                 QTextStream stream(&file);
                 stream.setCodec("UTF-8");
                 stream << buffer;

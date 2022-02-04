@@ -9,13 +9,38 @@ Notice: Bug on Visual Studio 2017
 
 #include "Common.h"
 
+bool MW_Notebook::event(QEvent *event) {
+    // Logging(__FUNCTION__);
+    // Logging("event->type() == %td", (iptr)event->type());
+
+    if(event->type() == QEvent::KeyPress && ((QKeyEvent *)event)->key() == Qt::Key_S && ((QKeyEvent *)event)->modifiers() == Qt::ControlModifier) {
+        emit _ui->A_Save->triggered();
+        return true;
+    } else if (event->type() == QEvent::Close || event->type() == QEvent::Quit) {
+        if(_modified == true){
+            QString caption = "文件未保存";
+            QString label = "文件已被修改，是否保存修改？";
+            iptr button = QMessageBox::question(this, caption, label, "是", "否", "取消", 0);
+            if(button == 0) {
+                emit _ui->A_Save->triggered();
+            } else if(button == 1) {
+                // no operation.
+            } else if(button == 2) {
+                // no operation.
+            }
+        }
+        return true;
+    }
+    return QWidget::event(event);
+}
+
 MW_Notebook::MW_Notebook(QWidget *parent)
     : QMainWindow(parent), _ui(new Ui::MW_Notebook) {
     Logging(__FUNCTION__);
 
     _ui->setupUi(this);
     this->setWindowIcon(QIcon(":/images/view_in_ar.png"));
-    this->setWindowTitle(QString("Notebook"));
+    this->setWindowTitle(QString("Notebook[*]"));
     Update_Theme();
 
     ////////////////////////////////////
@@ -26,6 +51,22 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     _ui->SB_Status_Bar->addWidget(_ui->GB_Status_Bar);
 
     ////////////////////////////////////
+
+    QObject::connect(_ui->A_Save, &QAction::triggered, [this]() -> void {
+        Logging("QObject::connect(_ui->A_Save, &QAction::triggered, [this]() -> void {");
+
+        // QString buffer = _ui->TE_Notebook->toHtml();
+        // QString buffer = _ui->TE_Notebook->toMarkdown();
+        QString buffer = _ui->TE_Notebook->toPlainText();
+        QFile file(_filename);
+        if(file.open(QFile::WriteOnly | QFile::Truncate)) {
+            QTextStream stream(&file);
+            stream.setCodec("UTF-8");
+            stream << buffer;
+        }
+        _modified = false;
+        this->setWindowModified(false);
+    });
 
     QObject::connect(_ui->A_Cut, &QAction::triggered, [this]() -> void {
         Logging("connect(ui->A_Cut, &QAction::triggered, [this]() -> void {");
@@ -127,7 +168,7 @@ MW_Notebook::MW_Notebook(QWidget *parent)
         QString filename = QFileDialog::getOpenFileName(this, "打开文件", QDir::currentPath(), "文本文件(*.txt);;Markdown(*.md);;所有文件(*.*)");
         if (0 < filename.size()) {
             QFile file(filename);
-            if (file.open(QFile::ReadWrite | QFile::Text)) {
+            if (file.open(QFile::ReadWrite)) {
                 QTextStream stream(&file);
                 stream.setCodec("UTF-8");
                 _ui->TE_Notebook->append(stream.readAll());
@@ -202,6 +243,9 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     QObject::connect(_ui->TE_Notebook, &QTextEdit::textChanged, [this]() -> void {
         Logging("QObject::connect(_ui->TE_Notebook, &QTextEdit::textChanged, [this]() -> void {");
 
+        _modified = true;
+        this->setWindowModified(true);
+
         emit _ui->TE_Notebook->cursorPositionChanged();
     });
 
@@ -214,7 +258,6 @@ MW_Notebook::MW_Notebook(QWidget *parent)
         iptr column = cursor.positionInBlock();  // note: position in paragraph.
         _ui->SB_Line->setValue(line);
         _ui->SB_Column->setValue(column);
-
         _ui->SB_Line->setRange(0, _ui->TE_Notebook->document()->blockCount() - 1);
     });
 
