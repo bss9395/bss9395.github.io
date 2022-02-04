@@ -11,15 +11,18 @@ CONFIG += /std:c++17 /utf-8
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Ending.cpp \
     Main.cpp \
     Notebook.cpp
 
 HEADERS += \
     Common.h \
+    Ending.h \
     Notebook.h \
     System.h
 
 FORMS += \
+    Ending.ui \
     Notebook.ui
 
 # Default rules for deployment.

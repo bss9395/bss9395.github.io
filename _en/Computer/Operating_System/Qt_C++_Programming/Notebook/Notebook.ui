@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MW_Notebook</class>
- <widget class="QMainWindow" name="MW_Notebook">
+ <class>Notebook</class>
+ <widget class="QMainWindow" name="Notebook">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -451,7 +451,7 @@ p, li { white-space: pre-wrap; }
 }</string>
          </property>
          <property name="text">
-          <string>Unix</string>
+          <string>LF</string>
          </property>
         </widget>
        </item>
@@ -552,7 +552,7 @@ p, li { white-space: pre-wrap; }
   </widget>
   <action name="A_New">
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/note_add.png</normaloff>:/images/note_add.png</iconset>
    </property>
    <property name="text">
@@ -561,7 +561,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="A_Open">
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/file_open.png</normaloff>:/images/file_open.png</iconset>
    </property>
    <property name="text">
@@ -570,7 +570,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="A_Clear">
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/clear_all.png</normaloff>:/images/clear_all.png</iconset>
    </property>
    <property name="text">
@@ -579,7 +579,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="A_Cut">
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/content_cut.png</normaloff>:/images/content_cut.png</iconset>
    </property>
    <property name="text">
@@ -588,7 +588,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="A_Copy">
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/content_copy.png</normaloff>:/images/content_copy.png</iconset>
    </property>
    <property name="text">
@@ -597,7 +597,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="A_Paste">
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/content_paste.png</normaloff>:/images/content_paste.png</iconset>
    </property>
    <property name="text">
@@ -609,7 +609,7 @@ p, li { white-space: pre-wrap; }
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/format_bold.png</normaloff>:/images/format_bold.png</iconset>
    </property>
    <property name="text">
@@ -621,7 +621,7 @@ p, li { white-space: pre-wrap; }
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/format_italic.png</normaloff>:/images/format_italic.png</iconset>
    </property>
    <property name="text">
@@ -633,7 +633,7 @@ p, li { white-space: pre-wrap; }
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/format_underlined.png</normaloff>:/images/format_underlined.png</iconset>
    </property>
    <property name="text">
@@ -642,7 +642,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="A_Close">
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/close.png</normaloff>:/images/close.png</iconset>
    </property>
    <property name="text">
@@ -662,7 +662,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="A_Font">
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/font_download.png</normaloff>:/images/font_download.png</iconset>
    </property>
    <property name="text">
@@ -671,7 +671,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="A_Save">
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/save.png</normaloff>:/images/save.png</iconset>
    </property>
    <property name="text">
@@ -680,7 +680,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="A_Save_As">
    <property name="icon">
-    <iconset resource="../Sheet/resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/images/save.png</normaloff>:/images/save.png</iconset>
    </property>
    <property name="text">
@@ -688,6 +688,8 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

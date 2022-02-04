@@ -40,6 +40,7 @@ System: Qt 5.15.2
 
 #include "Notebook.h"
 #include "System.h"
+#include "Ending.h"
 
 #endif // Header_h
 #endif // Common_h

@@ -1,6 +1,6 @@
 /* Notebook.cpp
 Author: BSS9395
-Update: 2022-02-03T01:11:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-02-05T00:05:00+08@China-Guangdong-Shenzhen+08
 Design: Notebook
 Encode: UTF-8
 System: Qt 5.15.2
@@ -9,7 +9,7 @@ Notice: Bug on Visual Studio 2017
 
 #include "Common.h"
 
-bool MW_Notebook::event(QEvent *event) {
+bool Notebook::event(QEvent *event) {
     // Logging(__FUNCTION__);
     // Logging("event->type() == %td", (iptr)event->type());
 
@@ -34,8 +34,8 @@ bool MW_Notebook::event(QEvent *event) {
     return QWidget::event(event);
 }
 
-MW_Notebook::MW_Notebook(QWidget *parent)
-    : QMainWindow(parent), _ui(new Ui::MW_Notebook) {
+Notebook::Notebook(QWidget *parent)
+    : QMainWindow(parent), _ui(new Ui::Notebook) {
     Logging(__FUNCTION__);
 
     _ui->setupUi(this);
@@ -51,6 +51,14 @@ MW_Notebook::MW_Notebook(QWidget *parent)
     _ui->SB_Status_Bar->addWidget(_ui->GB_Status_Bar);
 
     ////////////////////////////////////
+
+    QObject::connect(_ui->PB_Ending, &QPushButton::clicked, [this]() -> void {
+        Ending *ending = new Ending(_ui->PB_Ending);
+        QObject::connect(ending, &Ending::Update_Ending, [this](QString platform) -> void {
+            _ui->PB_Ending->setText(platform);
+        });
+        ending->show();
+    });
 
     QObject::connect(_ui->A_Save, &QAction::triggered, [this]() -> void {
         Logging("QObject::connect(_ui->A_Save, &QAction::triggered, [this]() -> void {");
@@ -282,20 +290,20 @@ MW_Notebook::MW_Notebook(QWidget *parent)
 
 }
 
-MW_Notebook::~MW_Notebook() {
+Notebook::~Notebook() {
     Logging(__FUNCTION__);
 
     delete _ui;
 }
 
 
-void MW_Notebook::Update_Status_Bar(const QString &filename) {
+void Notebook::Update_Status_Bar(const QString &filename) {
     Logging(__FUNCTION__);
 
     _ui->PB_Filename->setText(filename);
 }
 
-void MW_Notebook::Update_Theme() {
+void Notebook::Update_Theme() {
     Logging(__FUNCTION__);
 
     iptr RGBA = 255;

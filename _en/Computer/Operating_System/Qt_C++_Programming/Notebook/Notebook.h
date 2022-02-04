@@ -3,7 +3,7 @@ Author: BSS9395
 Update: 2022-01-06T20:21:00+08@China-Guangdong-Shenzhen+08
 Design: Notebook
 Encode: UTF-8
-System: Qt 5.15.2
+System: Qt 5.14
 Notice: Bug on Visual Studio 2017
 */
 
@@ -14,17 +14,17 @@ Notice: Bug on Visual Studio 2017
 #include "Common.h"
 #include "ui_Notebook.h"
 
-class MW_Notebook : public QMainWindow {
+class Notebook : public QMainWindow {
     Q_OBJECT
 
 public:
-    Ui::MW_Notebook *_ui;
+    Ui::Notebook *_ui;
     QString _filename = QString("untitled.txt");
     bool _modified = false;
 
 public:
-    MW_Notebook(QWidget *parent = nullptr);
-    ~MW_Notebook();
+    Notebook(QWidget *parent = nullptr);
+    ~Notebook();
 
 public:
     virtual bool event(QEvent *event) override;

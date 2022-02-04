@@ -102,5 +102,6 @@
         <file>images/view_stream.png</file>
         <file>images/view_week.png</file>
         <file>images/window.png</file>
+        <file>images/check.png</file>
     </qresource>
 </RCC>

@@ -11,7 +11,9 @@ Notice: Bug on Visual Studio 2017
 
 int main(int argc, char *argv[]) {
     QApplication application(argc, argv);
-    MW_Notebook mw_notebook;
-    mw_notebook.show();
+
+    Notebook notebook;
+    notebook.show();
+
     return application.exec();
 }
