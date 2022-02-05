@@ -21,8 +21,11 @@ public:
     Ui::Ending *_ui = nullptr;
 
 public:
-    explicit Ending(QWidget *parent = nullptr);
+    explicit Ending(QString platform, QWidget *parent = nullptr);
     virtual ~Ending();
+
+public:
+    virtual bool event(QEvent *event) override;
 
 signals:
     void Update_Ending(QString platform);

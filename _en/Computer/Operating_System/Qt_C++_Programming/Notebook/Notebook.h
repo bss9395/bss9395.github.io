@@ -13,12 +13,15 @@ Notice: Bug on Visual Studio 2017
 #define   Header_h
 #include "Common.h"
 #include "ui_Notebook.h"
+#include "Ending.h"
 
 class Notebook : public QMainWindow {
     Q_OBJECT
 
 public:
-    Ui::Notebook *_ui;
+    Ui::Notebook *_ui = nullptr;
+
+public:
     QString _filename = QString("untitled.txt");
     bool _modified = false;
 
@@ -28,6 +31,8 @@ public:
 
 public:
     virtual bool event(QEvent *event) override;
+
+public:
     void Update_Status_Bar(const QString &filename);
     void Update_Theme();
 };

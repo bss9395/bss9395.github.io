@@ -26,6 +26,8 @@ System: Qt 5.15.2
 #include <QTextBlock>
 #include <QMessageBox>
 #include <QKeyEvent>
+#include <QDesktopWidget>
+#include <QScreen>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <fstream>

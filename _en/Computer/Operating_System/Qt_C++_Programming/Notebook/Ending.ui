@@ -84,7 +84,7 @@ QGroupBox QRadioButton::indicator:checked {
       <item>
        <widget class="QRadioButton" name="RB_Unix">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -97,7 +97,7 @@ QGroupBox QRadioButton::indicator:checked {
       <item>
        <widget class="QRadioButton" name="RB_Windows">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -110,7 +110,7 @@ QGroupBox QRadioButton::indicator:checked {
       <item>
        <widget class="QRadioButton" name="RB_Mac">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>

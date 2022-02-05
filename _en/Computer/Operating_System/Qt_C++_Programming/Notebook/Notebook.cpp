@@ -11,7 +11,6 @@ Notice: Bug on Visual Studio 2017
 
 bool Notebook::event(QEvent *event) {
     // Logging(__FUNCTION__);
-    // Logging("event->type() == %td", (iptr)event->type());
 
     if(event->type() == QEvent::KeyPress && ((QKeyEvent *)event)->key() == Qt::Key_S && ((QKeyEvent *)event)->modifiers() == Qt::ControlModifier) {
         emit _ui->A_Save->triggered();
@@ -52,8 +51,9 @@ Notebook::Notebook(QWidget *parent)
 
     ////////////////////////////////////
 
+
     QObject::connect(_ui->PB_Ending, &QPushButton::clicked, [this]() -> void {
-        Ending *ending = new Ending(_ui->PB_Ending);
+        Ending *ending = new Ending(_ui->PB_Ending->text(), _ui->PB_Ending);
         QObject::connect(ending, &Ending::Update_Ending, [this](QString platform) -> void {
             _ui->PB_Ending->setText(platform);
         });
