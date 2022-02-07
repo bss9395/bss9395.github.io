@@ -82,7 +82,7 @@ QGroupBox QRadioButton::indicator:checked {
        <number>0</number>
       </property>
       <item>
-       <widget class="QRadioButton" name="RB_Unix">
+       <widget class="QRadioButton" name="RB_Mac">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -90,7 +90,7 @@ QGroupBox QRadioButton::indicator:checked {
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Unix Line Ending (LF)</string>
+         <string>Mac Line Ending (CR)</string>
         </property>
        </widget>
       </item>
@@ -108,7 +108,7 @@ QGroupBox QRadioButton::indicator:checked {
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="RB_Mac">
+       <widget class="QRadioButton" name="RB_Unix">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -116,7 +116,7 @@ QGroupBox QRadioButton::indicator:checked {
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Mac Line Ending (CR)</string>
+         <string>Unix Line Ending (LF)</string>
         </property>
        </widget>
       </item>

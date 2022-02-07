@@ -1,10 +1,9 @@
 /* System.h
 Author: BSS9395
-Update: 2022-01-12T22:14:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-02-08T00:24:00+08@China-Guangdong-Zhanjiang+08
 Design: Notebook
 Encode: UTF-8
-System: Qt 5.15.2
-Notice: Bug on Visual Studio 2017
+System: Qt 5.14.2
 */
 
 #ifndef System_h
@@ -41,7 +40,7 @@ struct System {
 
     ////////////////////////////////////
 
-    static iptr Log(iptr line, const char *format, ...) {
+    static iptr Logging(iptr line, const char *format, ...) {
         fprintf(stderr, "[%td] ", line);
 
         va_list list;
@@ -49,13 +48,13 @@ struct System {
         vfprintf(stderr, format, list);
         va_end(list);
 
-        fprintf(stderr, ";\n");
+        fprintf(stderr, "%ls", L";\n");
         fflush(stderr);
         return line;
     }
-#define Logging(...) System::Log(__LINE__, __VA_ARGS__)
+#define Logging(...) Logging(__LINE__, __VA_ARGS__)
 
-    static bool Check(bool failed, Level level, const char *file, iptr line, const char *function, const char *record, const char *extra, ...) {
+    static bool Checking(bool failed, Level level, const char *file, iptr line, const char *function, const char *record, const char *extra, ...) {
         // Logging(__FUNCTION__);
         if (failed == true) {
             const char *sepa = NULL;
@@ -75,7 +74,7 @@ struct System {
         }
         return failed;
     }
-#define Checking(failed, level, record, ...) System::Check(failed, level, __FILE__, __LINE__, __FUNCTION__, record, __VA_ARGS__)
+#define Checking(failed, level, record, ...) Checking(failed, level, __FILE__, __LINE__, __FUNCTION__, record, __VA_ARGS__)
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -94,7 +93,7 @@ struct Format {
         return buffer;
     }
 
-#define Lambda_Print(Member, TBuffer)                                                                                                    \
+#define Format_Print(Member, TBuffer)                                                                                                    \
     [](const auto &container, TBuffer &buffer = Format::Buffer<QString>(1024, 2048), const TBuffer &sepa = QString(", ")) -> TBuffer & { \
         /* Logging(__FUNCTION__); */                                                                                                     \
         buffer.clear();                                                                                                                  \
@@ -105,7 +104,7 @@ struct Format {
         return buffer;                                                                                                                   \
     }                                                                                                                                    \
 // Leave Blank Space
-    static inline const auto &Print = Lambda_Print(, QString);  // note: struct Format, bug on Visual Studio 2017.
+    static inline const auto Print = Format_Print(, QString);  // note: struct Format, bug on Visual Studio 2017.
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -122,7 +121,7 @@ public:
 
     [[ deprecated("obsolete function what(), use Report() instead.") ]]
     virtual const char *what() const noexcept override final {
-        Checking(true, System::_Info, "obsolete function what()", " use Report() instead.");
+        System::Checking(true, System::_Info, "obsolete function what()", " use Report() instead.");
         exit(System::_Deprecated);
     }
 
@@ -179,7 +178,7 @@ public:
 
 struct Configuration {
     static inline iptr _configuration = []() -> iptr {
-        Logging("%s; %s", __TIMESTAMP__, QT_VERSION_STR);
+        System::Logging("%s; %s", __TIMESTAMP__, QT_VERSION_STR);
 
         //Logging("QTextCodec::availableCodecs() = \n{ %s }", Format::Print(QTextCodec::availableCodecs()).toStdString().data());
 

@@ -1,9 +1,9 @@
 /* Common.h
 Author: BSS9395
-Update: 2022-01-10T02:16:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-02-08T00:24:00+08@China-Guangdong-Zhanjiang+08
 Design: Notebook
 Encode: UTF-8
-System: Qt 5.15.2
+System: Qt 5.14.2
 */
 
 #ifndef Common_h
@@ -28,8 +28,14 @@ System: Qt 5.15.2
 #include <QKeyEvent>
 #include <QDesktopWidget>
 #include <QScreen>
+#include <QTabBar>
+#include <QMdiArea>
+#include <QMdiSubWindow>
+#include <QToolButton>
 
 #define CRT_SECURE_NO_WARNINGS
+#include <clocale>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <list>
@@ -40,9 +46,10 @@ System: Qt 5.15.2
 #ifndef   Header_h
 #define   Header_h
 
-#include "Notebook.h"
 #include "System.h"
+#include "Notebook.h"
 #include "Ending.h"
+#include "Toolkit.h"
 
 #endif // Header_h
 #endif // Common_h
