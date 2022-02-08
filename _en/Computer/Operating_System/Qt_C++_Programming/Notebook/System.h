@@ -1,6 +1,6 @@
 /* System.h
 Author: BSS9395
-Update: 2022-02-08T00:24:00+08@China-Guangdong-Zhanjiang+08
+Update: 2022-02-08T11:24:00+08@China-Guangdong-Zhanjiang+08
 Design: Notebook
 Encode: UTF-8
 System: Qt 5.14.2
@@ -80,6 +80,11 @@ struct System {
 ////////////////////////////////////////////////////////////////////////////////
 
 struct Format {
+    template<typename TType>
+    static TType Function(TType type) {
+        return type;
+    }
+
     template<typename TBuffer = QString>
     static TBuffer &Buffer(const iptr capacity = 1024, const iptr shrink = 2048) {
         // Logging(__FUNCTION__);
@@ -93,9 +98,8 @@ struct Format {
         return buffer;
     }
 
-#define Format_Print(Member, TBuffer)                                                                                                    \
+#define Print_Member(Member, TBuffer)                                                                                                    \
     [](const auto &container, TBuffer &buffer = Format::Buffer<QString>(1024, 2048), const TBuffer &sepa = QString(", ")) -> TBuffer & { \
-        /* Logging(__FUNCTION__); */                                                                                                     \
         buffer.clear();                                                                                                                  \
         if (0 < container.size()) {                                                                                                      \
             auto beg = container.begin(), end = container.end();                                                                         \
@@ -104,7 +108,8 @@ struct Format {
         return buffer;                                                                                                                   \
     }                                                                                                                                    \
 // Leave Blank Space
-    static inline const auto Print = Format_Print(, QString);  // note: struct Format, bug on Visual Studio 2017.
+#define Lambda_Print(Member, TBuffer) Function(Print_Member(Member, TBuffer)) // note: here Function wrapper is necessary.
+    static inline const auto Print = Function(Print_Member(, QString));       // note: here Function wrapper is unnecessary.
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -127,13 +132,13 @@ public:
 
 public:
     template<typename TRecord = QString, typename TSolution = QString>
-    static bool Except(bool failed, System::Level level, const QString &file, iptr line, const QString &function, const TRecord &record, const TSolution &solution = TSolution()) {
+    static bool Excepting(bool failed, System::Level level, const QString &file, iptr line, const QString &function, const TRecord &record, const TSolution &solution = TSolution()) {
         if(failed == true) {
             throw Anomaly(level, file, line, function, record, solution);
         }
         return failed;
     }
-#define Excepting(failed, level, record, solution) Exception::Except(failed, level, __FILE__, __LINE__, __FUNCTION__, record, solution)
+#define Excepting(failed, level, record, solution) Excepting(failed, level, __FILE__, __LINE__, __FUNCTION__, record, solution)
 };
 
 template<typename TRecord = QString, typename TSolution = QString>
@@ -177,17 +182,27 @@ public:
 ////////////////////////////////////////////////////////////////////////////////
 
 struct Configuration {
-    static inline iptr _configuration = []() -> iptr {
-        System::Logging("%s; %s", __TIMESTAMP__, QT_VERSION_STR);
+    static iptr Configure() {
+        if ((char *)setlocale(LC_ALL, "") == NULL) { // ".936" for windows, "zh_CN.GBK" for linux.
+            System::Logging("%s", "invalid locale");
+        }
 
-        //Logging("QTextCodec::availableCodecs() = \n{ %s }", Format::Print(QTextCodec::availableCodecs()).toStdString().data());
+        // QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+        // QTextCodec::setCodecForLocale(codec);
 
-        //auto lambda = Lambda_Print(.deviceName(), QString);
-        //Logging("QAudioDeviceInfo::availableDevices(QAudio::AudioInput) = \n{ %s }", lambda(QAudioDeviceInfo::availableDevices(QAudio::AudioInput)).toStdString().data());
-        //Logging("QAudioDeviceInfo::availableDevices(QAudio::AudioOutput) = \n{ %s }", lambda(QAudioDeviceInfo::availableDevices(QAudio::AudioOutput)).toStdString().data());
+        ////////////////////////////////
+
+        System::Logging("timestamp = %s; Qt_version = %s", __TIMESTAMP__, QT_VERSION_STR);
+
+        // System::Logging("QTextCodec::availableCodecs() = \n{ %ls }", Format::Print(QTextCodec::availableCodecs()).toStdWString().data());
+
+        // auto lambda = Format::Lambda_Print(.deviceName(), QString);
+        // System::Logging("QAudioDeviceInfo::availableDevices(QAudio::AudioInput) = \n{ %ls }", lambda(QAudioDeviceInfo::availableDevices(QAudio::AudioInput)).toStdWString().data());
+        // System::Logging("QAudioDeviceInfo::availableDevices(QAudio::AudioOutput) = \n{ %ls }", lambda(QAudioDeviceInfo::availableDevices(QAudio::AudioOutput)).toStdWString().data());
 
         return 0;
-    }();
+    }
+    static inline iptr _configure = Configure();
 };
 
 #endif // System_h

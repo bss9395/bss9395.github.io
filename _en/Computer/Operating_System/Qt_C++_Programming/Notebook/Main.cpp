@@ -11,17 +11,6 @@ System: Qt 5.14.2
 int main(int argc, char *argv[]) {
     System::Logging(__FUNCTION__);
 
-//    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-//    QTextCodec::setCodecForLocale(codec);
-
-    char *locale = (char *)setlocale(LC_ALL, ".936");   // ".936" for windows, "zh_CN.GBK" for linux.
-    if (locale == NULL) {
-        fprintf(stderr, "[%td] %s""\n", (iptr)__LINE__, "invalid locale");
-        fflush(stderr);
-    }
-
-    ////////////////////////////////////
-
     QApplication application(argc, argv);
     Notebook notebook;
     notebook.show();
