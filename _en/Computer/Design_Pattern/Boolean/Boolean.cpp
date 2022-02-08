@@ -1,7 +1,7 @@
 /* Property.cpp
 Author: BSS9395
 Update: 2022-02-08T16:24:00+08@China-Guangdong-Zhanjiang+08
-Design: class member as property
+Design: three states boolean type
 Encode: UTF-8
 */
 

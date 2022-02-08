@@ -1,6 +1,6 @@
 /* System.h
 Author: BSS9395
-Update: 2022-02-08T11:24:00+08@China-Guangdong-Zhanjiang+08
+Update: 2022-02-08T17:48:00+08@China-Guangdong-Zhanjiang+08
 Design: Notebook
 Encode: UTF-8
 System: Qt 5.14.2
@@ -17,6 +17,13 @@ System: Qt 5.14.2
 typedef intptr_t iptr;
 typedef size_t   uptr;
 typedef wchar_t  wide;
+
+typedef const char *Bool;
+static inline const Bool _None = "None";
+static inline const Bool _Posi = "Posi";
+static inline const Bool _Nega = "Nega";
+
+////////////////////////////////////////////////////////////////////////////////
 
 // note: the difference of two addresses can exceed the range of iptr type, although it's impossible.
 #define Index_Class(Object, _member)   (((uptr)&((Object *)0)->_member - (uptr)0) / (uptr)sizeof(((Object *)0)->_member))
@@ -110,6 +117,92 @@ struct Format {
 // Leave Blank Space
 #define Lambda_Print(Member, TBuffer) Function(Print_Member(Member, TBuffer)) // note: here Function wrapper is necessary.
     static inline const auto Print = Function(Print_Member(, QString));       // note: here Function wrapper is unnecessary.
+};
+
+////////////////////////////////////////////////////////////////////////////////
+
+template<typename TType>
+class Property {
+public:
+    typedef std::function<void(void)> Function;
+
+    TType _value;
+    Function _function;
+    bool _once = false;
+
+public:
+    Property(const TType &value = TType(), const Function &function = Function()) {
+        // System::Logging(__FUNCTION__);
+        _value = value;
+        _function = function;
+    }
+
+    TType &operator=(const TType &value) {
+        // System::Logging(__FUNCTION__);
+        _value = value;
+        if (_once == false) {
+            _once = true;    // note: call once at a time.
+            _function();
+        }
+        _once = false;
+        return _value;
+    }
+
+    operator TType &() {
+        // System::Logging(__FUNCTION__);
+        return _value;
+    }
+};
+
+template<>
+class Property<Bool> {
+public:
+    typedef std::function<void(void)> Function;
+
+public:
+    Bool _value = _None;
+    Function _function = Function();
+    bool _once = false;
+
+public:
+    Property(const Bool &value = _None, const Function &function = Function()) {
+        // System::Logging("Property(const Bool &value = _None, const Function &function = Function()) {");
+        _value = value;
+        _function = function;
+    }
+
+    Property(const bool &value = bool(), const Function &function = Function()) {
+        // System::Logging("Property(const bool &value = bool(), const Function &function = Function()) {");
+        _value = (value == true) ? _Posi : _Nega;
+        _function = function;
+    }
+
+    Bool &operator=(const Bool &value) {
+        // System::Logging("Bool &operator=(const Bool &value) {");
+        _value = value;
+        if (_once == false) {
+            _once = true;    // note: call once at a time.
+            _function();
+        }
+        _once = false;
+        return _value;
+    }
+
+    Bool &operator=(const bool &value) {
+        // System::Logging("Bool &operator=(const bool &value) {");
+        _value = (value == true) ? _Posi : _Nega;
+        if (_once == false) {
+            _once = true;    // note: call once at a time.
+            _function();
+        }
+        _once = false;
+        return _value;
+    }
+
+    operator Bool &() {
+        // System::Logging(__FUNCTION__);
+        return _value;
+    }
 };
 
 ////////////////////////////////////////////////////////////////////////////////
