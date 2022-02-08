@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Notebook</string>
   </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonTextUnderIcon</enum>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
@@ -30,6 +33,206 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
+    <item>
+     <widget class="QGroupBox" name="GB_Font">
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border: 0px solid;
+}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFontComboBox" name="FCB_Font">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>192</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="maxVisibleItems">
+          <number>20</number>
+         </property>
+         <property name="insertPolicy">
+          <enum>QComboBox::NoInsert</enum>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToContents</enum>
+         </property>
+         <property name="minimumContentsLength">
+          <number>0</number>
+         </property>
+         <property name="currentFont">
+          <font>
+           <family>Consolas</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="CB_Font_Size">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>66</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <property name="currentText">
+          <string>10</string>
+         </property>
+         <property name="currentIndex">
+          <number>3</number>
+         </property>
+         <property name="maxVisibleItems">
+          <number>20</number>
+         </property>
+         <property name="insertPolicy">
+          <enum>QComboBox::NoInsert</enum>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+         </property>
+         <property name="minimumContentsLength">
+          <number>0</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9.5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10.5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>11</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>12</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>13</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>14</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>15</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>18</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>20</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>22</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>24</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>40</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>48</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>56</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
     <item>
      <widget class="QMdiArea" name="MA_Editor">
       <property name="styleSheet">
@@ -282,7 +485,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QMenuBar" name="MB_Menu">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -293,14 +496,20 @@
    </property>
   </widget>
   <widget class="QStatusBar" name="SB_Status"/>
-  <widget class="QToolBar" name="toolBar">
+  <widget class="QToolBar" name="TB_Major">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
    <property name="iconSize">
     <size>
-     <width>24</width>
-     <height>24</height>
+     <width>20</width>
+     <height>20</height>
     </size>
    </property>
    <property name="toolButtonStyle">
@@ -316,6 +525,7 @@
    <addaction name="A_Open"/>
    <addaction name="A_Save"/>
    <addaction name="A_Save_As"/>
+   <addaction name="A_Close"/>
    <addaction name="separator"/>
    <addaction name="A_Undo"/>
    <addaction name="A_Redo"/>
@@ -324,9 +534,33 @@
    <addaction name="A_Copy"/>
    <addaction name="A_Paste"/>
    <addaction name="separator"/>
+  </widget>
+  <widget class="QToolBar" name="TB_Minor">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
    <addaction name="A_Bold"/>
    <addaction name="A_Italic"/>
    <addaction name="A_Underline"/>
+   <addaction name="A_Strikeout"/>
   </widget>
   <action name="A_New">
    <property name="icon">
@@ -383,6 +617,9 @@
    </property>
   </action>
   <action name="A_Bold">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/images/format_bold.png</normaloff>:/images/format_bold.png</iconset>
@@ -392,6 +629,9 @@
    </property>
   </action>
   <action name="A_Italic">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/images/format_italic.png</normaloff>:/images/format_italic.png</iconset>
@@ -401,15 +641,18 @@
    </property>
   </action>
   <action name="A_Underline">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/images/format_underlined.png</normaloff>:/images/format_underlined.png</iconset>
    </property>
    <property name="text">
-    <string>划线</string>
+    <string>下划</string>
    </property>
    <property name="toolTip">
-    <string>划线</string>
+    <string>下划</string>
    </property>
   </action>
   <action name="A_Close">
@@ -419,20 +662,6 @@
    </property>
    <property name="text">
     <string>关闭</string>
-   </property>
-  </action>
-  <action name="A_Label">
-   <property name="text">
-    <string>标签</string>
-   </property>
-  </action>
-  <action name="A_Font">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/images/font_download.png</normaloff>:/images/font_download.png</iconset>
-   </property>
-   <property name="text">
-    <string>字体</string>
    </property>
   </action>
   <action name="A_Save">
@@ -469,6 +698,21 @@
    </property>
    <property name="text">
     <string>重做</string>
+   </property>
+  </action>
+  <action name="A_Strikeout">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/format_strikethrough.png</normaloff>:/images/format_strikethrough.png</iconset>
+   </property>
+   <property name="text">
+    <string>中划</string>
+   </property>
+   <property name="toolTip">
+    <string>中划</string>
    </property>
   </action>
  </widget>
