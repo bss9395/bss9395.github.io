@@ -53,8 +53,6 @@ QGroupBox QRadioButton::indicator {
 	border: 0px solid;
 }
 QGroupBox QRadioButton::indicator:checked {
-	max-width: 22px;
-	max-height: 22px;
 	image:url(&quot;:/images/check.png&quot;);
 	background-color: #BBDEFB;
 }</string>

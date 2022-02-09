@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Editor</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
     <number>0</number>
@@ -31,10 +34,14 @@
      <property name="font">
       <font>
        <family>Consolas</family>
+       <pointsize>10</pointsize>
       </font>
      </property>
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>

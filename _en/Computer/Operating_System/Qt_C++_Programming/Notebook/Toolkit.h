@@ -1,6 +1,6 @@
 /* Toolkit.h
 Author: BSS9395
-Update: 2022-02-08T00:24:00+08@China-Guangdong-Zhanjiang+08
+Update: 2022-02-10T00:27:00+08@China-Guangdong-Zhanjiang+08
 Design: Notebook
 Encode: UTF-8
 System: Qt 5.14.2
@@ -15,7 +15,7 @@ System: Qt 5.14.2
 
 class Style {
 public:
-    static inline const QString _close_unsaved = R"(
+    static inline const QString _Close_Unsaved = R"(
         QWidget {
             border: 0px solid;
             image: url(":/images/custom_circle.png");
@@ -26,10 +26,37 @@ public:
         }
     )";
 
-    static inline const QString _close_saved = R"(
+    static inline const QString _Close_Saved = R"(
         QWidget {
             border: 0px solid;
             image: url(":/images/custom_close.png");
+        }
+    )";
+
+    static inline const QString _Light_Background = R"(
+        QTextEdit {
+            background-color: rgba(255, 255, 255, 1.0);
+        }
+        QTabBar::Tab:selected {
+            background-color: rgba(255, 255, 255, 1.0);
+        }
+    )";
+
+    static inline const QString _Gray_Background = R"(
+        QTextEdit {
+            background-color: rgba(127, 127, 127, 1.0);
+        }
+        QTabBar::Tab:selected {
+            background-color: rgba(127, 127, 127, 1.0);
+        }
+    )";
+
+    static inline const QString _Dark_Background = R"(
+        QTextEdit {
+            background-color: rgba(0, 0, 0, 1.0);
+        }
+        QTabBar::Tab:selected {
+            background-color: rgba(0, 0, 0, 1.0);
         }
     )";
 };

@@ -10,8 +10,16 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Consolas</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Notebook</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">font-family: Consolas, Courier New;</string>
   </property>
   <property name="toolButtonStyle">
    <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -67,11 +75,36 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>192</width>
+           <height>24</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>192</width>
            <height>24</height>
           </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QFontComboBox {
+	padding-right: 2px;
+}
+QFontComboBox::Drop-Down {
+    image: url(&quot;:/images/expand_more.png&quot;);
+	width: 12px;
+	subcontrol-origin: margin;
+}
+QFontComboBox::Drop-Down:hover {
+	background-color: #E3F2FD;
+	border: 1px solid #2196F3;
+}
+QFontComboBox::Drop-Down:editable:on {
+	background-color: #E3F2FD;
+	border: 1px solid #2196F3;
+}
+</string>
          </property>
          <property name="maxVisibleItems">
           <number>20</number>
@@ -101,11 +134,36 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="maximumSize">
+         <property name="minimumSize">
           <size>
-           <width>66</width>
+           <width>64</width>
            <height>24</height>
           </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>64</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	padding-right: 2px;
+}
+QComboBox::Drop-Down {
+    image: url(&quot;:/images/expand_more.png&quot;);
+	width: 12px;
+	subcontrol-origin: margin;
+}
+QComboBox::Drop-Down:hover {
+	background-color: #E3F2FD;
+	border: 1px solid #2196F3;
+}
+QComboBox::Drop-Down:editable:on {
+	background-color: #E3F2FD;
+	border: 1px solid #2196F3;
+}
+</string>
          </property>
          <property name="editable">
           <bool>true</bool>
@@ -127,6 +185,12 @@
          </property>
          <property name="minimumContentsLength">
           <number>0</number>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>16</width>
+           <height>16</height>
+          </size>
          </property>
          <item>
           <property name="text">
@@ -345,7 +409,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="SB_Line">
+        <widget class="SpinBox" name="SB_Line">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -354,15 +418,20 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>48</width>
+           <width>72</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>48</width>
+           <width>72</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Consolas</family>
+          </font>
          </property>
          <property name="styleSheet">
           <string notr="true">QSpinBox {
@@ -380,7 +449,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="SB_Column">
+        <widget class="SpinBox" name="SB_Column">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -389,15 +458,20 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>48</width>
+           <width>72</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>48</width>
+           <width>72</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Consolas</family>
+          </font>
          </property>
          <property name="styleSheet">
           <string notr="true">QSpinBox {
@@ -408,6 +482,9 @@
          </property>
          <property name="buttonSymbols">
           <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+         <property name="showGroupSeparator" stdset="0">
+          <bool>false</bool>
          </property>
          <property name="prefix">
           <string>C</string>
@@ -424,13 +501,13 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>48</width>
+           <width>72</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>48</width>
+           <width>72</width>
            <height>16777215</height>
           </size>
          </property>
@@ -491,7 +568,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>30</height>
+     <height>28</height>
     </rect>
    </property>
   </widget>
@@ -557,6 +634,8 @@
    <attribute name="toolBarBreak">
     <bool>true</bool>
    </attribute>
+   <addaction name="A_Scheme"/>
+   <addaction name="separator"/>
    <addaction name="A_Bold"/>
    <addaction name="A_Italic"/>
    <addaction name="A_Underline"/>
@@ -569,6 +648,11 @@
    </property>
    <property name="text">
     <string>新建</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Consolas</family>
+    </font>
    </property>
   </action>
   <action name="A_Open">
@@ -715,7 +799,26 @@
     <string>中划</string>
    </property>
   </action>
+  <action name="A_Scheme">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/palette.png</normaloff>:/images/palette.png</iconset>
+   </property>
+   <property name="text">
+    <string>风格</string>
+   </property>
+  </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>Custom.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>

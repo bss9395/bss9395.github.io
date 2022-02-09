@@ -32,6 +32,7 @@ System: Qt 5.14.2
 #include <QMdiArea>
 #include <QMdiSubWindow>
 #include <QToolButton>
+#include <QSpinBox>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>
@@ -47,9 +48,9 @@ System: Qt 5.14.2
 #define   Header_h
 
 #include "System.h"
-#include "Notebook.h"
-#include "Ending.h"
 #include "Toolkit.h"
+#include "Custom.h"
+#include "Notebook.h"
 
 #endif // Header_h
 #endif // Common_h

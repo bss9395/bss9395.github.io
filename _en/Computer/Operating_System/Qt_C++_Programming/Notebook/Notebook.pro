@@ -20,7 +20,7 @@ SOURCES += \
 
 HEADERS += \
     Common.h \
-    Ending.h \
+    Custom.h \
     Notebook.h \
     System.h \
     Toolkit.h

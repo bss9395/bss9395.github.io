@@ -108,5 +108,7 @@
         <file>images/custom_circle.png</file>
         <file>images/custom_close.png</file>
         <file>images/format_strikethrough.png</file>
+        <file>images/expand_more.png</file>
+        <file>images/palette.png</file>
     </qresource>
 </RCC>
