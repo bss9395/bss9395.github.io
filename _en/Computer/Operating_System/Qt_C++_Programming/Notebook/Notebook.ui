@@ -25,7 +25,7 @@
    <enum>Qt::ToolButtonTextUnderIcon</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -299,11 +299,11 @@ QComboBox::Drop-Down:editable:on {
     </item>
     <item>
      <widget class="QMdiArea" name="MA_Editor">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="lineWidth">
-       <number>0</number>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
       </property>
       <property name="verticalScrollBarPolicy">
        <enum>Qt::ScrollBarAsNeeded</enum>
@@ -313,15 +313,6 @@ QComboBox::Drop-Down:editable:on {
       </property>
       <property name="sizeAdjustPolicy">
        <enum>QAbstractScrollArea::AdjustToContents</enum>
-      </property>
-      <property name="background">
-       <brush brushstyle="SolidPattern">
-        <color alpha="127">
-         <red>127</red>
-         <green>127</green>
-         <blue>127</blue>
-        </color>
-       </brush>
       </property>
       <property name="viewMode">
        <enum>QMdiArea::TabbedView</enum>
@@ -340,9 +331,9 @@ QComboBox::Drop-Down:editable:on {
     <item>
      <widget class="QGroupBox" name="GB_Status">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>1</horstretch>
-        <verstretch>1</verstretch>
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="minimumSize">
@@ -376,38 +367,6 @@ QComboBox::Drop-Down:editable:on {
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item>
-        <widget class="QPushButton" name="PB_Status">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton { 
-	background-color: rgba(127, 127, 127, 0.0);
-	border: 0px solid;
-	text-align: left;
-}</string>
-         </property>
-         <property name="text">
-          <string>文件路径</string>
-         </property>
-        </widget>
-       </item>
        <item>
         <widget class="SpinBox" name="SB_Line">
          <property name="sizePolicy">
@@ -603,6 +562,7 @@ QComboBox::Drop-Down:editable:on {
    <addaction name="A_Save"/>
    <addaction name="A_Save_As"/>
    <addaction name="A_Close"/>
+   <addaction name="A_Close_All"/>
    <addaction name="separator"/>
    <addaction name="A_Undo"/>
    <addaction name="A_Redo"/>
@@ -610,7 +570,6 @@ QComboBox::Drop-Down:editable:on {
    <addaction name="A_Cut"/>
    <addaction name="A_Copy"/>
    <addaction name="A_Paste"/>
-   <addaction name="separator"/>
   </widget>
   <widget class="QToolBar" name="TB_Minor">
    <property name="sizePolicy">
@@ -635,6 +594,10 @@ QComboBox::Drop-Down:editable:on {
     <bool>true</bool>
    </attribute>
    <addaction name="A_Scheme"/>
+   <addaction name="A_Cascade"/>
+   <addaction name="A_Tile_Grid"/>
+   <addaction name="A_Tile_Vertically"/>
+   <addaction name="A_Tile_Horizontally"/>
    <addaction name="separator"/>
    <addaction name="A_Bold"/>
    <addaction name="A_Italic"/>
@@ -809,6 +772,66 @@ QComboBox::Drop-Down:editable:on {
    </property>
    <property name="text">
     <string>风格</string>
+   </property>
+  </action>
+  <action name="A_Cascade">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/table_view.png</normaloff>:/images/table_view.png</iconset>
+   </property>
+   <property name="text">
+    <string>级联</string>
+   </property>
+  </action>
+  <action name="A_Tile_Grid">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/grid_view.png</normaloff>:/images/grid_view.png</iconset>
+   </property>
+   <property name="text">
+    <string>网铺</string>
+   </property>
+   <property name="toolTip">
+    <string>网铺</string>
+   </property>
+  </action>
+  <action name="A_Close_All">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/disabled_by_default.png</normaloff>:/images/disabled_by_default.png</iconset>
+   </property>
+   <property name="text">
+    <string>全闭</string>
+   </property>
+  </action>
+  <action name="A_Tile_Horizontally">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/splitscreen_Horizontally.png</normaloff>:/images/splitscreen_Horizontally.png</iconset>
+   </property>
+   <property name="text">
+    <string>平铺</string>
+   </property>
+   <property name="toolTip">
+    <string>平铺</string>
+   </property>
+  </action>
+  <action name="A_Tile_Vertically">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/splitscreen.png</normaloff>:/images/splitscreen.png</iconset>
+   </property>
+   <property name="text">
+    <string>直铺</string>
+   </property>
+   <property name="toolTip">
+    <string>直铺</string>
    </property>
   </action>
  </widget>

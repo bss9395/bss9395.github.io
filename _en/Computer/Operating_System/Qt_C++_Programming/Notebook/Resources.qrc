@@ -110,5 +110,10 @@
         <file>images/format_strikethrough.png</file>
         <file>images/expand_more.png</file>
         <file>images/palette.png</file>
+        <file>images/disabled_by_default.png</file>
+        <file>images/grid_view.png</file>
+        <file>images/table_view.png</file>
+        <file>images/splitscreen.png</file>
+        <file>images/splitscreen_Horizontally.png</file>
     </qresource>
 </RCC>

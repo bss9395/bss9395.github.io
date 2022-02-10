@@ -1,6 +1,6 @@
 /* Notebook.h
 Author: BSS9395
-Update: 2022-02-10T00:27:00+08@China-Guangdong-Zhanjiang+08
+Update: 2022-02-11T02:10:00+08@China-Guangdong-Zhanjiang+08
 Design: Notebook
 Encode: UTF-8
 System: Qt 5.14.2
@@ -24,16 +24,12 @@ class Notebook : public QMainWindow {
 public:
     class Editor : public QWidget {
     public:
-        static inline Notebook *_notebook = nullptr;
-        static inline QMdiArea *_mdiarea = nullptr;
-        static inline QTabBar *_tabbar = nullptr;
-
-    public:
+        Notebook *_notebook = nullptr;
         Ui::Editor *_ui = nullptr;
-        QFileInfo _fileinfo = QFileInfo();
-        QToolButton *_button = nullptr;
-        bool _once = false;
+        QToolButton *_button = new QToolButton(this);
 
+        QFileInfo _fileinfo = QFileInfo();
+        bool _once = false;
         Property<Bool> _saved = Property<Bool>(_None, [this]() {
             // System::Logging("Property<Bool> _saved = Property<Bool>(_None, [this]() {");
 
@@ -46,35 +42,12 @@ public:
         });
 
     public:
-        static iptr Index_SubWindow(QMdiSubWindow *window, QMdiArea::WindowOrder order = QMdiArea::CreationOrder) {
-            QList<QMdiSubWindow *> windows = window->mdiArea()->subWindowList(order);
-            iptr index = -1;
-            for(auto beg = windows.begin(), end = windows.end(); beg < end; beg += 1) {
-                index += 1;
-                if((*beg) == window) {
-                    // System::Logging("index = %td", index);
-                    return index;
-                }
-            }
-            return index;
-        }
-
-    public:
-        explicit Editor(Notebook *notebook, QMdiArea *mdiarea, Bool saved)
-            : QWidget(mdiarea), _ui(new Ui::Editor) {
+        explicit Editor(Notebook *notebook, const Bool &saved)
+            : QWidget(nullptr), _ui(new Ui::Editor) {
             System::Logging(__FUNCTION__);
-
+            _notebook = notebook;
             _ui->setupUi(this);
-            if(_mdiarea != mdiarea) {
-                _notebook = notebook;
-                _mdiarea = mdiarea;
-                _tabbar = _mdiarea->findChild<QTabBar *>();
-                _tabbar->setExpanding(false);
-            }
-            _button = new QToolButton(_tabbar);
             this->setAttribute(Qt::WA_DeleteOnClose);
-
-            ////////////////////////////////
 
             _saved = saved;
             if(Open(), _saved == _Nega) {
@@ -82,24 +55,23 @@ public:
                 return ;
             }
 
-            ////////////////////////////////
-
-            QMdiSubWindow *window = _mdiarea->addSubWindow(this);
+            QMdiSubWindow *window = _notebook->_ui->MA_Editor->addSubWindow(this); // note: this->parent() shifts to window.
+            window->setAttribute(Qt::WA_DeleteOnClose);
             window->setWindowIcon(QIcon());
             window->setWindowTitle(_fileinfo.fileName());
             QObject::connect(_button, &QToolButton::clicked, window, &QMdiSubWindow::close);
-            _tabbar->setTabButton(Index_SubWindow(window), QTabBar::RightSide, _button);
+            _notebook->_tabbar->setTabButton(Index_SubWindow(window), QTabBar::RightSide, _button);
             this->show();
 
             ////////////////////////////////
 
-            QObject::connect(_ui->TE_Editor, &QTextEdit::undoAvailable, [](bool can_undo) -> void {
+            QObject::connect(_ui->TE_Editor, &QTextEdit::undoAvailable, [this](bool can_undo) -> void {
                 System::Logging("QObject::connect(_ui->TE_Editor, &QTextEdit::undoAvailable, [this](bool can_undo) -> void {");
 
                 _notebook->Update_Undo(can_undo);
             });
 
-            QObject::connect(_ui->TE_Editor, &QTextEdit::redoAvailable, [](bool can_redo) -> void {
+            QObject::connect(_ui->TE_Editor, &QTextEdit::redoAvailable, [this](bool can_redo) -> void {
                 System::Logging("QObject::connect(_ui->TE_Editor, &QTextEdit::redoAvailable, [this](bool can_redo) -> void {");
 
                 _notebook->Update_Redo(can_redo);
@@ -111,7 +83,7 @@ public:
                 _notebook->Update_Copy_Cut_Paste(can_copy, _ui->TE_Editor->canPaste());
             });
 
-            QObject::connect(_ui->TE_Editor, &QTextEdit::currentCharFormatChanged, [](QTextCharFormat format) -> void {
+            QObject::connect(_ui->TE_Editor, &QTextEdit::currentCharFormatChanged, [this](QTextCharFormat format) -> void {
                 System::Logging("QObject::connect(_ui->TE_Editor, &QTextEdit::currentCharFormatChanged, [this](QTextCharFormat format) -> void {");
 
                 _notebook->Update_Format(format);
@@ -150,6 +122,20 @@ public:
         virtual ~Editor() override {
             System::Logging(__FUNCTION__);
             delete _ui;
+        }
+
+    public:
+        static iptr Index_SubWindow(QMdiSubWindow *window, QMdiArea::WindowOrder order = QMdiArea::CreationOrder) {
+            QList<QMdiSubWindow *> windows = window->mdiArea()->subWindowList(order);
+            iptr index = -1;
+            for(auto beg = windows.begin(), end = windows.end(); beg < end; beg += 1) {
+                index += 1;
+                if((*beg) == window) {
+                    // System::Logging("index = %td", index);
+                    return index;
+                }
+            }
+            return index;
         }
 
     public:
@@ -345,17 +331,16 @@ public:
 public:
     class Ending : public QDialog {
     public:
-        Ui::Ending *_ui = nullptr;
         Notebook *_notebook = nullptr;
+        Ui::Ending *_ui = nullptr;
 
     public:
-        explicit Ending(Notebook *notebook, QPushButton *parent = nullptr, const QString &form = QString("LF"))
+        explicit Ending(Notebook *notebook, QPushButton *parent, const QString &form)
             : QDialog(parent), _ui(new Ui::Ending) {
             System::Logging(__FUNCTION__);
+            _notebook = notebook;
             _ui->setupUi(this);
             this->setAttribute(Qt::WA_DeleteOnClose);
-
-            _notebook = notebook;
 
             if(form == "LF") {
                 _ui->RB_Unix->setChecked(true);
@@ -365,8 +350,6 @@ public:
                 _ui->RB_Mac->setChecked(true);
             }
 
-            ////////////////////////////////
-
             this->setWindowFlag(Qt::FramelessWindowHint, true);
             this->setWindowFlag(Qt::WindowStaysOnTopHint, true);
             this->resize(_ui->GB_Ending->sizeHint().width(), _ui->GB_Ending->sizeHint().height());
@@ -374,13 +357,14 @@ public:
             QPoint pos = (parent == nullptr) ? QCursor::pos() : parent->parentWidget()->mapToGlobal(parent->pos());
             QScreen *screen = QGuiApplication::screenAt(pos);
             if(screen->geometry().width() < pos.x() + this->size().width()) {
-                pos.setX(screen->geometry().width() - this->size().width());
+                pos.setX(screen->geometry().width() - this->size().width());  // note: ensure right border in screen range.
             }
-            pos.setY(pos.y() - this->size().height());
-            if(pos.y() < 0) {
-                pos.setY(0);
+            if(pos.setY(pos.y() - this->size().height()), pos.y() < 0) {
+                pos.setY(0);                                                  // note: ensure top border in screen range.
             }
-            this->move(pos);
+            // this->setParent(parent->parentWidget());  // note: global absolute position, no parent widget.
+            this->move(pos);                             // note: move to global absolute position.
+            this->show();
 
             ////////////////////////////////
 
@@ -404,8 +388,6 @@ public:
                 _notebook->Update_Ending("CR");
                 this->close();
             });
-
-            this->show();
         }
 
         virtual ~Ending() override {
@@ -428,7 +410,7 @@ public:
             } else if(event->type() == QEvent::MouseButtonPress) {
                 // System::Logging("} else if(event->type() == QEvent::MouseButtonPress) {");
                 this->releaseMouse();
-                this->close(); // note: mouse button press outside this widget.
+                this->close();        // note: mouse button press outside this widget.
                 return true;
             }
             return QWidget::event(event);
@@ -447,7 +429,7 @@ public:
 
 public:
     Ui::Notebook *_ui = nullptr;
-    QMdiSubWindow *_active = nullptr;
+    QTabBar *_tabbar = nullptr;
     Editor *_editor = nullptr;
 
 public:
@@ -456,16 +438,17 @@ public:
         System::Logging(__FUNCTION__);
         _ui->setupUi(this);
         _ui->TB_Minor->addWidget(_ui->GB_Font);
-        _ui->SB_Status->addWidget(_ui->GB_Status);
-
-        Update_Can(false);
+        _ui->SB_Status->addPermanentWidget(_ui->GB_Status);
+        _tabbar = _ui->MA_Editor->findChild<QTabBar *>();  // use QMdiArea::TabbedView with special caution.
+        _tabbar->setExpanding(false);
 
         this->setWindowIcon(QIcon(":/images/view_in_ar.png"));
         this->setWindowTitle(QString("记事本"));
+        Update_Can(false);
+        _ui->SB_Status->showMessage("记事本", 2000);
 
         QObject::connect(_ui->MA_Editor, &QMdiArea::subWindowActivated, [this](QMdiSubWindow *window) -> void {
             System::Logging("QObject::connect(_ui->MA_Editor, &QMdiArea::subWindowActivated, [this](QMdiSubWindow *window) -> void {");
-            _active = window;
             _editor = (window != nullptr) ? (Editor *)window->widget() : nullptr;
         });
 
@@ -474,13 +457,13 @@ public:
         QObject::connect(_ui->A_New, &QAction::triggered, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_New, &QAction::triggered, [this]() -> void {");
 
-            new Editor(this, _ui->MA_Editor, _None);
+            new Editor(this, _None);
         });
 
         QObject::connect(_ui->A_Open, &QAction::triggered, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_Open, &QAction::triggered, [this]() -> void {");
 
-            new Editor(this, _ui->MA_Editor, _Posi);
+            new Editor(this, _Posi);
         });
 
         QObject::connect(_ui->A_Save, &QAction::triggered, [this]() -> void {
@@ -604,12 +587,74 @@ public:
 
         ////////////////////////////////
 
+        QObject::connect(_ui->A_Cascade, &QAction::triggered, [this]() -> void {
+            System::Logging("QObject::connect(_ui->A_Cascade, &QAction::triggered, [this]() -> void {");
+
+            _ui->A_Tile_Grid->setChecked(false);
+            _ui->A_Tile_Vertically->setChecked(false);
+            _ui->A_Tile_Horizontally->setChecked(false);
+            _ui->MA_Editor->setViewMode(QMdiArea::TabbedView); // note: use QMdiArea::SubWindowView with special caution, QMdiArea constructs TabBar at requests.
+            _ui->MA_Editor->cascadeSubWindows();
+        });
+
+        QObject::connect(_ui->A_Tile_Grid, &QAction::triggered, [this]() -> void {
+            System::Logging("QObject::connect(_ui->A_Tile, &QAction::triggered, [this]() -> void {");
+
+            _ui->A_Cascade->setChecked(false);
+            _ui->A_Tile_Vertically->setChecked(false);
+            _ui->A_Tile_Horizontally->setChecked(false);
+            _ui->MA_Editor->setViewMode(QMdiArea::TabbedView); // note: use QMdiArea::SubWindowView with special caution, QMdiArea constructs TabBar at requests.
+            _ui->MA_Editor->tileSubWindows();
+        });
+
+        QObject::connect(_ui->A_Tile_Vertically, &QAction::triggered, [this]() -> void {
+            System::Logging("QObject::connect(_ui->A_Tile, &QAction::triggered, [this]() -> void {");
+
+            _ui->A_Cascade->setChecked(false);
+            _ui->A_Tile_Grid->setChecked(false);
+            _ui->A_Tile_Horizontally->setChecked(false);
+            _ui->MA_Editor->setViewMode(QMdiArea::TabbedView); // note: use QMdiArea::SubWindowView with special caution, QMdiArea constructs TabBar at requests.
+            _ui->MA_Editor->tileSubWindows();
+            QList<QMdiSubWindow *> windows = _ui->MA_Editor->subWindowList();
+            iptr width = _ui->MA_Editor->width(), height = (_ui->MA_Editor->height() - _tabbar->height()) / windows.size();
+            iptr top = 0;
+            for(iptr i = 0, numb = windows.size(); i < numb; i += 1) {
+                windows[i]->resize(width, height);  // note: use resize() not setFixedSize().
+                windows[i]->move(0, top);
+                top += height;
+            }
+        });
+
+        QObject::connect(_ui->A_Tile_Horizontally, &QAction::triggered, [this]() -> void {
+            System::Logging("QObject::connect(_ui->A_Tile, &QAction::triggered, [this]() -> void {");
+
+            _ui->A_Cascade->setChecked(false);
+            _ui->A_Tile_Grid->setChecked(false);
+            _ui->A_Tile_Vertically->setChecked(false);
+            _ui->MA_Editor->setViewMode(QMdiArea::TabbedView); // note: use QMdiArea::SubWindowView with special caution, QMdiArea constructs TabBar at requests.
+            _ui->MA_Editor->tileSubWindows();
+            QList<QMdiSubWindow *> windows = _ui->MA_Editor->subWindowList();
+            iptr width = _ui->MA_Editor->width() / windows.size(), height = _ui->MA_Editor->height() - _tabbar->height();
+            iptr left = 0;
+            for(iptr i = 0, numb = windows.size(); i < numb; i += 1) {
+                windows[i]->resize(width, height);  // note: use resize() not setFixedSize().
+                windows[i]->move(left, 0);
+                left += width;
+            }
+        });
+
         QObject::connect(_ui->A_Close, &QAction::triggered, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_Close, &QAction::triggered, [this]() -> void {");
 
             if(_editor != nullptr) {
                 _editor->close();
             }
+        });
+
+        QObject::connect(_ui->A_Close_All, &QAction::triggered, [this]() -> void {
+            System::Logging("QObject::connect(_ui->A_Close_All, &QAction::triggered, [this]() -> void {");
+
+            _ui->MA_Editor->closeAllSubWindows();
         });
 
         ////////////////////////////////////
