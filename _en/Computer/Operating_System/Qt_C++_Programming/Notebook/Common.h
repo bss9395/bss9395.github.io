@@ -33,6 +33,7 @@ System: Qt 5.14.2
 #include <QMdiSubWindow>
 #include <QToolButton>
 #include <QSpinBox>
+#include <QColorDialog>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>

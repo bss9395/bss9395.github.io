@@ -15,10 +15,13 @@ SOURCES += \
 HEADERS += \
     Common.h \
     Canvas.h \
+    Login.h \
+    Setting.h \
     System.h
 
 FORMS += \
-    Canvas.ui
+    Canvas.ui \
+    Login.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -26,4 +29,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    resources.qrc
+    images.qrc

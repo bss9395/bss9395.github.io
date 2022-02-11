@@ -1,24 +1,24 @@
-/* Sketch.cpp
+/* Canvas.cpp
 Author: BSS9395
-Update: 2022-01-12T01:16:00+08@China-Guangdong-Shenzhen+08
-Design: Sketch
+Update: 2022-02-12T02:12:00+08@China-Guangdong-Shenzhen+08
+Design: Canvas
 Encode: UTF-8
-System: Qt 5.15.2
+System: Qt 5.14.2
 */
 
 #include "Common.h"
 
-Sketch::Sketch(QWidget *parent)
-    : QMainWindow(parent), _ui(new Ui::Sketch) {
-    Logging(__FUNCTION__);
-
+Canvas::Canvas(QWidget *parent)
+    : QMainWindow(parent), _ui(new Ui::Canvas) {
+    System::Logging(__FUNCTION__);
     _ui->setupUi(this);
+    _ui->SB_Status->addWidget(_ui->GB_Status);
     this->setWindowIcon(QIcon(":/images/view_in_ar.png"));
-    _ui->SB_Status_Bar->addWidget(_ui->GB_Status_Bar);
+    this->setWindowTitle(QString("画布"));
 
     _ui->TW_Picture->clear();
     QObject::connect(_ui->A_Scan, &QAction::triggered, [this]() -> void {
-        Logging("QObject::connect(_ui->A_Scan, &QAction::triggered, [this]() -> void {");
+        System::Logging("QObject::connect(_ui->A_Scan, &QAction::triggered, [this]() -> void {");
 
         QString directory = QFileDialog::getExistingDirectory(this, "挂载目录", QDir::currentPath(), QFileDialog::ShowDirsOnly);
         if (0 < directory.size()) {
@@ -31,7 +31,7 @@ Sketch::Sketch(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Mount, &QAction::triggered, [this]() -> void {
-        Logging("QObject::connect(_ui->A_Mount, &QAction::triggered, [this]() -> void {");
+        System::Logging("QObject::connect(_ui->A_Mount, &QAction::triggered, [this]() -> void {");
 
         QStringList filenames = QFileDialog::getOpenFileNames(this, "挂载图片", QDir::currentPath(), "图像文件(*.png *.jpg);;所有文件(*.*)");
         if (0 < filenames.size()) {
@@ -107,10 +107,10 @@ Sketch::Sketch(QWidget *parent)
     });
 
     QObject::connect(_ui->A_Update_Theme, &QAction::triggered, [this]() -> void {
-        Logging("QObject::connect(_ui->A_Update_Theme, &QAction::triggered, [this]() -> void {");
+        System::Logging("QObject::connect(_ui->A_Update_Theme, &QAction::triggered, [this]() -> void {");
 
         QString caption = "选择颜色";
-        QColor color = _ui->L_Picture->palette().color(QPalette::Background);
+        QColor color = _ui->L_Picture->palette().color(QPalette::Window);
         color = QColorDialog::getColor(color, this, caption);
         if(color.isValid()){
             QString css = QString("QLabel {\n    background-color: rgba(%1, %2, %3, %4); \n}")
@@ -121,15 +121,15 @@ Sketch::Sketch(QWidget *parent)
 
 }
 
-Sketch::~Sketch() {
-    Logging(__FUNCTION__);
+Canvas::~Canvas() {
+    System::Logging(__FUNCTION__);
 
     delete _ui;
 }
 
 // pointer can do anything, but reference can't.
-QTreeWidgetItem *Sketch::Traverse(QTreeWidget *widget, QTreeWidgetItem *tree, const QChar *directory, iptr &hitted) {
-    Logging(__FUNCTION__);
+QTreeWidgetItem *Canvas::Traverse(QTreeWidget *widget, QTreeWidgetItem *tree, const QChar *directory, iptr &hitted) {
+    System::Logging(__FUNCTION__);
 
     if (tree != nullptr) {
         QString relative = tree->text(_Enum_Path);
@@ -203,8 +203,8 @@ QTreeWidgetItem *Sketch::Traverse(QTreeWidget *widget, QTreeWidgetItem *tree, co
     return nullptr;
 }
 
-QTreeWidgetItem *Sketch::Attach_Folder(QTreeWidget *widget, const QString &directory, iptr &hitted) {
-    Logging(__FUNCTION__);
+QTreeWidgetItem *Canvas::Attach_Folder(QTreeWidget *widget, const QString &directory, iptr &hitted) {
+    System::Logging(__FUNCTION__);
 
     hitted = 0;
     QTreeWidgetItem *folder = nullptr;
@@ -227,8 +227,8 @@ QTreeWidgetItem *Sketch::Attach_Folder(QTreeWidget *widget, const QString &direc
     return folder;
 }
 
-iptr Sketch::Attach_Files(QTreeWidgetItem *folder, const QString &directory, const QStringList &filenames, iptr &hitted) {
-    Logging(__FUNCTION__);
+iptr Canvas::Attach_Files(QTreeWidgetItem *folder, const QString &directory, const QStringList &filenames, iptr &hitted) {
+    System::Logging(__FUNCTION__);
 
     // ToDo: check duplicated.
     iptr attached = 0;
@@ -256,7 +256,7 @@ iptr Sketch::Attach_Files(QTreeWidgetItem *folder, const QString &directory, con
             attached += 1;
         }
     } else {
-        Excepting(true, System::_Info, "an unknown mode", "choose a mode");
+        Exception::Excepting(true, System::_Info, "an unknown mode", "choose a mode");
     }
     return attached;
 }

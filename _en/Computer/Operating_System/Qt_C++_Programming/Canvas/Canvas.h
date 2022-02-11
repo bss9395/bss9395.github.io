@@ -1,20 +1,20 @@
-/* Common.h
+/* Canvas.h
 Author: BSS9395
-Update: 2022-01-11T21:16:00+08@China-Guangdong-Shenzhen+08
-Design: Sketch
+Update: 2022-02-12T02:12:00+08@China-Guangdong-Shenzhen+08
+Design: Canvas
 Encode: UTF-8
-System: Qt 5.15.2
+System: Qt 5.14.2
 */
 
-#ifndef Sketch_h
-#define Sketch_h
+#ifndef Canvas_h
+#define Canvas_h
 
-#define   Header_h
+#define Header_h
 #include "Common.h"
 #include "System.h"
 #include "ui_Canvas.h"
 
-class Sketch : public QMainWindow {
+class Canvas : public QMainWindow {
     Q_OBJECT
 
 public:
@@ -33,15 +33,15 @@ public:
 )");
 
 public:
-    Ui::Sketch *_ui = nullptr;
+    Ui::Canvas *_ui = nullptr;
     QIcon _Icon_Folder = QIcon(":/images/folder.png"); // note: initialize after QGuiApplication.
     QIcon _Icon_Image = QIcon(":/images/image.png");   // note: initialize after QGuiApplication.
     QPixmap _pixmap = QPixmap(":/images/M31.png");
     double _scale = 1.0;
 
 public:
-    Sketch(QWidget *parent = nullptr);
-    ~Sketch();
+    Canvas(QWidget *parent = nullptr);
+    ~Canvas();
 
 public:
     QTreeWidgetItem *Traverse(QTreeWidget *widget, QTreeWidgetItem *tree, const QChar *directory, iptr &hitted = _hitted);

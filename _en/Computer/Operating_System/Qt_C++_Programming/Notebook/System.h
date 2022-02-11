@@ -256,7 +256,7 @@ public:
     }
 
     virtual ~Anomaly() {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
     }
 
 public:
