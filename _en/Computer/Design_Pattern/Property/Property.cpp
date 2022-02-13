@@ -28,9 +28,9 @@ public:
 
     TType &operator=(const TType &value) {
         fprintf(stderr, "%s""\n", __FUNCTION__);
-        _value = value;
         if (_once == false) {
             _once = true;    // note: call once at a time.
+            _value = value;
             _function();
         }
         _once = false;
@@ -74,9 +74,9 @@ public:
 
     Bool &operator=(const Bool &value) {
         fprintf(stderr, "%s""\n", "Bool &operator=(const Bool &value) {");
-        _value = value;
         if (_once == false) {
             _once = true;    // note: call once at a time.
+            _value = value;
             _function();
         }
         _once = false;
@@ -85,9 +85,9 @@ public:
 
     Bool &operator=(const bool &value) {
         fprintf(stderr, "%s""\n", "Bool &operator=(const bool &value) {");
-        _value = (value == true) ? _Posi : _Nega;
         if (_once == false) {
             _once = true;    // note: call once at a time.
+            _value = (value == true) ? _Posi : _Nega;
             _function();
         }
         _once = false;
