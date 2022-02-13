@@ -20,6 +20,7 @@ public:
     static inline const QCryptographicHash::Algorithm _Crypto = QCryptographicHash::Sha3_256;
     static inline const QString _Username = "bss";
     static inline const QString _Password = "pass";
+    static inline const QString _Encrypted = "73899d2adaad774417b0208da85162b61c8dbdf79bb0f7108c2686b93721d1f4";
     static inline const iptr _Tried = 3;
 };
 

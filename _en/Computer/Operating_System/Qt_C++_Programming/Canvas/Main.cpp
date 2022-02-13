@@ -13,15 +13,12 @@ int main(int argc, char *argv[]) {
 
     QApplication application(argc, argv);
 
-    iptr ret = 0;
-    Login *login = new Login(nullptr, &ret);
-    login->exec();
-    System::Logging("ret = %d", ret);
+    iptr ret = QDialog::Rejected;
+    (new Login(nullptr, &ret))->exec();
     if(ret != QDialog::Accepted) {  // note: login destructs itself before exec() return.
         return 0;
     }
 
-    System::Logging("if(login->exec() != QDialog::Accepted) { ");
     Canvas canvas;
     canvas.show();
     return application.exec();
