@@ -92,7 +92,7 @@
 	padding-right: 2px;
 }
 QFontComboBox::Drop-Down {
-    image: url(&quot;:/images/expand_more.png&quot;);
+    image: url(&quot;:/images/icons/expand_more.png&quot;);
 	width: 12px;
 	subcontrol-origin: margin;
 }
@@ -151,7 +151,7 @@ QFontComboBox::Drop-Down:editable:on {
 	padding-right: 2px;
 }
 QComboBox::Drop-Down {
-    image: url(&quot;:/images/expand_more.png&quot;);
+    image: url(&quot;:/images/icons/expand_more.png&quot;);
 	width: 12px;
 	subcontrol-origin: margin;
 }
@@ -607,7 +607,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_New">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/note_add.png</normaloff>:/images/note_add.png</iconset>
+     <normaloff>:/images/icons/note_add.png</normaloff>:/images/icons/note_add.png</iconset>
    </property>
    <property name="text">
     <string>新建</string>
@@ -621,7 +621,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Open">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/file_open.png</normaloff>:/images/file_open.png</iconset>
+     <normaloff>:/images/icons/file_open.png</normaloff>:/images/icons/file_open.png</iconset>
    </property>
    <property name="text">
     <string>打开</string>
@@ -630,7 +630,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Clear">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/clear_all.png</normaloff>:/images/clear_all.png</iconset>
+     <normaloff>:/images/icons/clear_all.png</normaloff>:/images/icons/clear_all.png</iconset>
    </property>
    <property name="text">
     <string>清空</string>
@@ -639,7 +639,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Cut">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/content_cut.png</normaloff>:/images/content_cut.png</iconset>
+     <normaloff>:/images/icons/content_cut.png</normaloff>:/images/icons/content_cut.png</iconset>
    </property>
    <property name="text">
     <string>剪切</string>
@@ -648,7 +648,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Copy">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/content_copy.png</normaloff>:/images/content_copy.png</iconset>
+     <normaloff>:/images/icons/content_copy.png</normaloff>:/images/icons/content_copy.png</iconset>
    </property>
    <property name="text">
     <string>复制</string>
@@ -657,7 +657,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Paste">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/content_paste.png</normaloff>:/images/content_paste.png</iconset>
+     <normaloff>:/images/icons/content_paste.png</normaloff>:/images/icons/content_paste.png</iconset>
    </property>
    <property name="text">
     <string>粘贴</string>
@@ -669,7 +669,7 @@ QComboBox::Drop-Down:editable:on {
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/format_bold.png</normaloff>:/images/format_bold.png</iconset>
+     <normaloff>:/images/icons/format_bold.png</normaloff>:/images/icons/format_bold.png</iconset>
    </property>
    <property name="text">
     <string>粗体</string>
@@ -681,7 +681,7 @@ QComboBox::Drop-Down:editable:on {
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/format_italic.png</normaloff>:/images/format_italic.png</iconset>
+     <normaloff>:/images/icons/format_italic.png</normaloff>:/images/icons/format_italic.png</iconset>
    </property>
    <property name="text">
     <string>斜体</string>
@@ -693,7 +693,7 @@ QComboBox::Drop-Down:editable:on {
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/format_underlined.png</normaloff>:/images/format_underlined.png</iconset>
+     <normaloff>:/images/icons/format_underlined.png</normaloff>:/images/icons/format_underlined.png</iconset>
    </property>
    <property name="text">
     <string>下划</string>
@@ -705,7 +705,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Close">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/close.png</normaloff>:/images/close.png</iconset>
+     <normaloff>:/images/icons/close.png</normaloff>:/images/icons/close.png</iconset>
    </property>
    <property name="text">
     <string>关闭</string>
@@ -714,7 +714,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Save">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/save.png</normaloff>:/images/save.png</iconset>
+     <normaloff>:/images/icons/save.png</normaloff>:/images/icons/save.png</iconset>
    </property>
    <property name="text">
     <string>保存</string>
@@ -723,7 +723,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Save_As">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/save.png</normaloff>:/images/save.png</iconset>
+     <normaloff>:/images/icons/save.png</normaloff>:/images/icons/save.png</iconset>
    </property>
    <property name="text">
     <string>另存</string>
@@ -732,7 +732,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Undo">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/undo.png</normaloff>:/images/undo.png</iconset>
+     <normaloff>:/images/icons/undo.png</normaloff>:/images/icons/undo.png</iconset>
    </property>
    <property name="text">
     <string>撤销</string>
@@ -741,7 +741,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Redo">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/redo.png</normaloff>:/images/redo.png</iconset>
+     <normaloff>:/images/icons/redo.png</normaloff>:/images/icons/redo.png</iconset>
    </property>
    <property name="text">
     <string>重做</string>
@@ -753,7 +753,7 @@ QComboBox::Drop-Down:editable:on {
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/format_strikethrough.png</normaloff>:/images/format_strikethrough.png</iconset>
+     <normaloff>:/images/icons/format_strikethrough.png</normaloff>:/images/icons/format_strikethrough.png</iconset>
    </property>
    <property name="text">
     <string>中划</string>
@@ -768,7 +768,7 @@ QComboBox::Drop-Down:editable:on {
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/palette.png</normaloff>:/images/palette.png</iconset>
+     <normaloff>:/images/icons/palette.png</normaloff>:/images/icons/palette.png</iconset>
    </property>
    <property name="text">
     <string>风格</string>
@@ -780,7 +780,7 @@ QComboBox::Drop-Down:editable:on {
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/table_view.png</normaloff>:/images/table_view.png</iconset>
+     <normaloff>:/images/icons/table_view.png</normaloff>:/images/icons/table_view.png</iconset>
    </property>
    <property name="text">
     <string>级联</string>
@@ -792,7 +792,7 @@ QComboBox::Drop-Down:editable:on {
    </property>
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/grid_view.png</normaloff>:/images/grid_view.png</iconset>
+     <normaloff>:/images/icons/grid_view.png</normaloff>:/images/icons/grid_view.png</iconset>
    </property>
    <property name="text">
     <string>网铺</string>
@@ -804,7 +804,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Close_All">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/disabled_by_default.png</normaloff>:/images/disabled_by_default.png</iconset>
+     <normaloff>:/images/icons/disabled_by_default.png</normaloff>:/images/icons/disabled_by_default.png</iconset>
    </property>
    <property name="text">
     <string>全闭</string>
@@ -813,7 +813,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Tile_Horizontally">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/splitscreen_Horizontally.png</normaloff>:/images/splitscreen_Horizontally.png</iconset>
+     <normaloff>:/images/icons/splitscreen_Horizontally.png</normaloff>:/images/icons/splitscreen_Horizontally.png</iconset>
    </property>
    <property name="text">
     <string>平铺</string>
@@ -825,7 +825,7 @@ QComboBox::Drop-Down:editable:on {
   <action name="A_Tile_Vertically">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/splitscreen.png</normaloff>:/images/splitscreen.png</iconset>
+     <normaloff>:/images/icons/splitscreen.png</normaloff>:/images/icons/splitscreen.png</iconset>
    </property>
    <property name="text">
     <string>直铺</string>

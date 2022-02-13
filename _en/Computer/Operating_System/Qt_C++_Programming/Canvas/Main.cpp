@@ -12,10 +12,16 @@ int main(int argc, char *argv[]) {
     System::Logging(__FUNCTION__);
 
     QApplication application(argc, argv);
-    Login *login = new Login();
-    if(login->exec() != QDialog::Accepted) {  // note: login destructs itself before exec() return.
+
+    iptr ret = 0;
+    Login *login = new Login(nullptr, &ret);
+    login->exec();
+    System::Logging("ret = %d", ret);
+    if(ret != QDialog::Accepted) {  // note: login destructs itself before exec() return.
         return 0;
     }
+
+    System::Logging("if(login->exec() != QDialog::Accepted) { ");
     Canvas canvas;
     canvas.show();
     return application.exec();

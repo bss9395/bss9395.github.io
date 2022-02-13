@@ -22,6 +22,9 @@ public:
 public:
     Calculator(QWidget *parent = nullptr);
     ~Calculator();
+
+public:
+    bool event(QEvent *event) override;
 };
 
 #endif // Calculator_h

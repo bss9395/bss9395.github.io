@@ -22,8 +22,7 @@ HEADERS += \
     Common.h \
     Custom.h \
     Notebook.h \
-    System.h \
-    Toolkit.h
+    System.h
 
 FORMS += \
     Editor.ui \
@@ -36,4 +35,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    resources.qrc
+    images.qrc

@@ -12,7 +12,6 @@ System: Qt 5.14.2
 #define Header_h
 #include "Common.h"
 #include "System.h"
-#include "Toolkit.h"
 #include "Custom.h"
 #include "ui_Notebook.h"
 #include "ui_Editor.h"

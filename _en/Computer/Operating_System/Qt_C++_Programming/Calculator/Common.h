@@ -22,6 +22,7 @@ System: Qt 5.15.2
 #include <QTimer>
 #include <QTimeZone>
 #include <QtGlobal>
+#include <QPainter>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <fstream>

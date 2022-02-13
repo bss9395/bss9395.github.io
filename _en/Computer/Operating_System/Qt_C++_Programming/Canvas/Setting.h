@@ -11,14 +11,16 @@ System: Qt 5.14.2
 
 #define Header_h
 #include "Common.h"
+#include "System.h"
 
 class Setting {
 public:
-    static inline QString _Organization = "BSS9395";
-    static inline QString _Software = "画布";
-    static inline QCryptographicHash::Algorithm _Crypto = QCryptographicHash::Sha3_256;
-    static inline QString _Username = "bss";
-    static inline QString _Password = "pass";
+    static inline const QString _Organization = "BSS9395";
+    static inline const QString _Software = "画布";
+    static inline const QCryptographicHash::Algorithm _Crypto = QCryptographicHash::Sha3_256;
+    static inline const QString _Username = "bss";
+    static inline const QString _Password = "pass";
+    static inline const iptr _Tried = 3;
 };
 
 #endif // Setting_h

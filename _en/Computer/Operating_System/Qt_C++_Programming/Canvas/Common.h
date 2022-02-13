@@ -37,14 +37,17 @@ System: Qt 5.14.2
 #include <QPainter>
 #include <QSettings>
 #include <QCryptographicHash>
+#include <QComboBox>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
-#include <list>
 #include <string>
+#include <list>
+#include <set>
+#include <map>
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -52,7 +55,7 @@ System: Qt 5.14.2
 #define   Header_h
 
 #include "System.h"
-#include "Toolkit.h"
+#include "Custom.h"
 #include "Setting.h"
 #include "Login.h"
 #include "Canvas.h"

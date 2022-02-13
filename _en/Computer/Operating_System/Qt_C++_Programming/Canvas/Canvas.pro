@@ -15,6 +15,7 @@ SOURCES += \
 HEADERS += \
     Common.h \
     Canvas.h \
+    Custom.h \
     Login.h \
     Setting.h \
     System.h

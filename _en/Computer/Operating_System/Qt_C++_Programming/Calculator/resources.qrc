@@ -64,5 +64,13 @@
         <file>images/zoom_in_map.png</file>
         <file>images/zoom_out.png</file>
         <file>images/zoom_out_map.png</file>
+        <file>images/Andromeda.jpg</file>
+        <file>images/create_new_folder.png</file>
+        <file>images/description.png</file>
+        <file>images/find_in_page.png</file>
+        <file>images/folder.png</file>
+        <file>images/M31.png</file>
+        <file>images/task.png</file>
+        <file>images/topic.png</file>
     </qresource>
 </RCC>

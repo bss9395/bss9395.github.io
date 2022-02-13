@@ -111,7 +111,7 @@ public:
             for (auto beg = (*_pointers).begin(), end = (*_pointers).end(); beg != end; beg++) {
                 if ((*beg) == pointer) {
                     _pointers->erase(beg);
-                    delete pointer;
+                    delete (Class *)pointer;
                     return _Hitted;
                 }
             }

@@ -1,15 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>images/M31.png</file>
-        <file>images/avatars/Facebook.svg</file>
-        <file>images/avatars/Line.svg</file>
-        <file>images/avatars/LinkedIn.svg</file>
-        <file>images/avatars/Pinterest.svg</file>
-        <file>images/avatars/QQ.svg</file>
-        <file>images/avatars/QZone.svg</file>
-        <file>images/avatars/Sina.svg</file>
-        <file>images/avatars/Twitter.svg</file>
-        <file>images/avatars/WeChat.svg</file>
         <file>images/icons/3d_rotation.png</file>
         <file>images/icons/account_box.png</file>
         <file>images/icons/account_circle.png</file>
@@ -41,8 +32,13 @@
         <file>images/icons/create_new_folder.png</file>
         <file>images/icons/Credit.md</file>
         <file>images/icons/crop_free.png</file>
+        <file>images/icons/custom_account.png</file>
+        <file>images/icons/custom_avatar.png</file>
         <file>images/icons/custom_circle.png</file>
         <file>images/icons/custom_close.png</file>
+        <file>images/icons/custom_imlock.png</file>
+        <file>images/icons/custom_lock.png</file>
+        <file>images/icons/custom_unlock.png</file>
         <file>images/icons/delete.png</file>
         <file>images/icons/delete_sweep.png</file>
         <file>images/icons/description.png</file>
@@ -90,6 +86,8 @@
         <file>images/icons/keyboard_double_arrow_right.png</file>
         <file>images/icons/keyboard_double_arrow_up.png</file>
         <file>images/icons/location_on.png</file>
+        <file>images/icons/lock.png</file>
+        <file>images/icons/lock_open.png</file>
         <file>images/icons/new_label.png</file>
         <file>images/icons/note_add.png</file>
         <file>images/icons/open_in_new.png</file>
@@ -127,14 +125,5 @@
         <file>images/icons/zoom_in_map.png</file>
         <file>images/icons/zoom_out.png</file>
         <file>images/icons/zoom_out_map.png</file>
-        <file>images/wallpapers/windows_10.png</file>
-        <file>images/icons/lock.png</file>
-        <file>images/icons/lock_open.png</file>
-        <file>images/icons/custom_lock.png</file>
-        <file>images/icons/custom_unlock.png</file>
-        <file>images/icons/custom_account.png</file>
-        <file>images/icons/custom_avatar.png</file>
-        <file>images/icons/custom_imlock.png</file>
-        <file>images/icons/custom_guest.png</file>
     </qresource>
 </RCC>

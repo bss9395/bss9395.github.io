@@ -8,6 +8,18 @@ System: Qt 5.15.2
 
 #include "Common.h"
 
+bool Calculator::event(QEvent *event) {
+    // Logging(__FUNCTION__);
+
+    if(event->type() == QEvent::Paint) {
+        QPainter painter(this);
+        QPoint point = _ui->centralwidget->pos();
+        painter.drawPixmap(point.x(), point.y(), _ui->centralwidget->width(), _ui->centralwidget->height(),
+                           QPixmap(":/images/Andromeda.jpg"));
+    }
+    return QWidget::event(event);
+}
+
 Calculator::Calculator(QWidget *parent)
     : QMainWindow(parent), _ui(new Ui::MW_Calculator) {
     Logging(__FUNCTION__);
