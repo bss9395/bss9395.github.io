@@ -1,7 +1,7 @@
 /* Reverse_Sentence.c
 Author: Bss9395
 Update: 2021-08-28T16:39:00+08@China-Guangdong-Zhanjiang+08
-Design: Reverse Sentence
+Design: Reverse Sentence by word decomposition.
 */
 
 #include <stdbool.h>
@@ -25,7 +25,9 @@ char *Reverse_Sentence(char *str) {
     for (fore = 0; fore < len && str[fore] == ' '; fore += 1);
     while (fore < len) {
         for (back = fore + 1; back < len && str[back] != ' '; back += 1);
-        stack[top] = (String) { &str[fore], back - fore };
+        stack[top] = (String) {
+            &str[fore], back - fore
+        };
         top += 1;
         for (fore = back + 1; fore < len && str[fore] == ' '; fore += 1);
     }
@@ -47,7 +49,7 @@ char *Reverse_Sentence(char *str) {
 }
 
 int main(int argc, char *argv[]) {
-    char *str = "I am a student.";
+    char *str = (char *)"I am a student.";
     char *rev = Reverse_Sentence(str);
     fprintf(stdout, "%s""\n", rev);
 
