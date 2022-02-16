@@ -7,10 +7,11 @@ Encode: UTF-8
 
 #include <iostream>
 #include <string>
-#include <functional>
+#include <vector>
 #include <list>
 #include <set>
 #include <map>
+#include <functional>
 
 typedef intptr_t iptr;
 
@@ -27,12 +28,12 @@ public:
 
         }
     };
-    static inline std::set<std::list<Class *> *> _Set;
+    static inline std::set<std::vector<Class *> *> _Set;
 
 public:
     iptr *_refer = nullptr;
     Function *_function = nullptr;
-    std::list<Class *> *_pointers = nullptr;
+    std::vector<Class *> *_pointers = nullptr;
 
 public:
     Clean() {
@@ -82,8 +83,8 @@ public:
             }
             if (_pointers != nullptr) {
                 if (0 < (*_pointers).size()) {
-                    for (auto beg = (*_pointers).begin(), end = (*_pointers).end(); beg != end; beg++) {
-                        delete (*beg);
+                    for (iptr i = 0, numb = (*_pointers).size(); i < numb; i += 1) {
+                        delete (*_pointers)[i];
                     }
                 }
                 Clean::_Set.erase(_pointers);
@@ -97,10 +98,10 @@ public:
         fprintf(stderr, "%s""\n", __FUNCTION__);
 
         if (_pointers == nullptr) {
-            _pointers = new std::list<Class *>();
+            _pointers = new std::vector<Class *>();
             Clean::_Set.insert(_pointers);
         }
-        _pointers->push_front((Class *)pointer);
+        _pointers->push_back((Class *)pointer);
         return (*this);
     }
 
@@ -108,10 +109,10 @@ public:
         fprintf(stderr, "%s""\n", __FUNCTION__);
 
         if (_pointers != nullptr && 0 < (*_pointers).size()) {
-            for (auto beg = (*_pointers).begin(), end = (*_pointers).end(); beg != end; beg++) {
-                if ((*beg) == pointer) {
-                    _pointers->erase(beg);
-                    delete (Class *)pointer;
+            for (iptr i = 0, numb = (*_pointers).size(); i < numb; i += 1) {
+                if ((*_pointers)[i] == pointer) {
+                    delete (*_pointers)[i];
+                    (*_pointers)[i] = nullptr;
                     return _Hitted;
                 }
             }
