@@ -1,7 +1,7 @@
 /* Common.h
 Author: BSS9395
-Update: 2022-02-08T00:24:00+08@China-Guangdong-Zhanjiang+08
-Design: Notebook
+Update: 2022-02-12T02:12:00+08@China-Guangdong-Shenzhen+08
+Design: Contacts
 Encode: UTF-8
 System: Qt 5.14.2
 */
@@ -34,12 +34,22 @@ System: Qt 5.14.2
 #include <QToolButton>
 #include <QSpinBox>
 #include <QColorDialog>
+#include <QPainter>
+#include <QSettings>
+#include <QCryptographicHash>
+#include <QComboBox>
+#include <QtSql/QSqlDatabase>
+#include <QSqlTableModel>
+#include <QSqlError>
+#include <QStyledItemDelegate>
+#include <QDataWidgetMapper>
+#include <QSqlRecord>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>
 #include <cstdlib>
-#include <fstream>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <list>
 #include <set>
@@ -51,8 +61,8 @@ System: Qt 5.14.2
 #define   Header_h
 
 #include "System.h"
-#include "Custom.h"
-#include "Notebook.h"
+#include "Delegate.h"
+#include "Contacts.h"
 
 #endif // Header_h
 #endif // Common_h

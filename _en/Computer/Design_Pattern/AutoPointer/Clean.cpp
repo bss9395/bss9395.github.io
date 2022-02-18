@@ -60,6 +60,7 @@ public:
     Clean &operator=(const Clean &clean) {
         fprintf(stderr, "%s""\n", "Clean &operator=(const Clean &clean) {");
         if (this != &clean) {
+            this->~Clean();
             _refer = clean._refer;
             _function = clean._function;
             _pointers = clean._pointers;
@@ -83,7 +84,7 @@ public:
             }
             if (_pointers != nullptr) {
                 if (0 < (*_pointers).size()) {
-                    for (iptr i = 0, numb = (*_pointers).size(); i < numb; i += 1) {
+                    for (iptr i = 0, size = (*_pointers).size(); i < size; i += 1) {
                         delete (*_pointers)[i];
                     }
                 }
@@ -109,7 +110,7 @@ public:
         fprintf(stderr, "%s""\n", __FUNCTION__);
 
         if (_pointers != nullptr && 0 < (*_pointers).size()) {
-            for (iptr i = 0, numb = (*_pointers).size(); i < numb; i += 1) {
+            for (iptr i = 0, size = (*_pointers).size(); i < size; i += 1) {
                 if ((*_pointers)[i] == pointer) {
                     delete (*_pointers)[i];
                     (*_pointers)[i] = nullptr;

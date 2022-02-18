@@ -1,7 +1,7 @@
 /* System.h
 Author: BSS9395
 Update: 2022-02-08T17:48:00+08@China-Guangdong-Zhanjiang+08
-Design: Notebook
+Design: Contacts
 Encode: UTF-8
 System: Qt 5.14.2
 */
