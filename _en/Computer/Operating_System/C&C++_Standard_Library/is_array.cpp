@@ -1,14 +1,15 @@
-/* typeid.cpp
+/* is_array.cpp
 Author: BSS9395
 Update: 2022-02-22T20:22:00+08@China-Guangdong-Zhanjiang+08
-Design: C++ Standard Library: typeid
+Design: C++ Standard Library: is_array
 Encode: UTF-8
-Credit: https://www.cplusplus.com/reference/typeinfo/type_info/name/
+Credit: https://www.cplusplus.com/reference/type_traits/is_array/
 */
 
 /*
-#include <typeinfo>
-const char *name() const noexcept;
+#include <type_traits>
+template<class T>
+struct is_array;
 */
 
 #include <iostream>
