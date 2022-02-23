@@ -1,6 +1,6 @@
 /* Sequence.cpp
 Author: BSS9395
-Update: 2022-02-23T22:20:00+08@China-Guangdong-Zhanjiang+08
+Update: 2022-02-23T23:57:00+08@China-Guangdong-Zhanjiang+08
 Design: Sequence
 Encode: UTF-8
 */
@@ -38,7 +38,7 @@ public:
     static inline const iptr _Argc = 0;
     static inline const iptr _Size = 0;
 
-private:
+public:
     Sequence() {
         fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
     }
@@ -48,21 +48,22 @@ private:
     }
 
 public:
+    template<typename TType>
+    Sequence &operator=(const TType &type) {
+        // note: do nothing.
+        return (*this);
+    }
+
+public:
     template<typename TType, typename ...TTypes>
     static auto Make(const TType &type, const TTypes &...types) {
         fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
         return Sequence<TType, TTypes...>(type, types...);
     }
-
-public:
-    template<typename ...TRefers>
-    static void Shift(char *address, TRefers *...refers) {  // note: do nothing.
-        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
-
-        return;
-    }
 };
+static Sequence<> _Ignore = Sequence<>();
+
 
 template<typename TType, typename ...TTypes>
 struct Sequence<TType, TTypes...> {
@@ -87,6 +88,7 @@ public:
         _objects = (char *)::operator new(_Size);  // note: allocate memory.
         char *address = _objects;
         char *inplace[] = {
+            // note: unwind the variadic parameter types.
             (Construct(address, type), address += sizeof(TType)),
             (Construct(address, types), address += sizeof(TTypes))...
         };
@@ -191,6 +193,37 @@ public:
 
 public:
     template<typename TRefer, typename ...TRefers>
+    void Unwind(TRefer &refer, TRefers &...refers) {
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
+
+        char *address = _objects;
+        char *inplace[] = {
+            // note: unwind the variadic parameter refers.
+            (Assign(&refer, (TType *)address), address += sizeof(TType)),
+            (Assign(&refers, (TTypes *)address), address += sizeof(TTypes))...
+        };
+    }
+
+    template<typename TRefer, typename TObject>
+    static void Assign(TRefer *refer, TObject *object) {
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
+
+        // std::cout << "typeid(refer).name() = " << typeid(refer).name() << std::endl;
+        // std::cout << "typeid(object).name() = " << typeid(object).name() << std::endl;
+        (*refer) = (*object);   // note: if left type is compatible with right type.
+    }
+
+    template<typename TRefer, typename TObject, const iptr numb>
+    static void Assign(TRefer(*refers)[numb], TObject(*objects)[numb]) {
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
+
+        for (iptr i = 0; i < numb; i += 1) {
+            Assign((TRefer *)&(*refers)[i], (TObject *)&(*objects)[i]);
+        }
+    }
+
+public:
+    template<typename TRefer, typename ...TRefers>
     void Unpack(TRefer &refer, TRefers &...refers) {
         fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
@@ -210,24 +243,6 @@ public:
 
         Assign(refer, (TType *)address);
         Sequence<TTypes...>::Shift(address + sizeof(TType), refers...);
-    }
-
-    template<typename TRefer, typename TObject>
-    static void Assign(TRefer *refer, const TObject *object) {
-        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
-
-        // std::cout << "typeid(refer).name() = " << typeid(refer).name() << std::endl;
-        // std::cout << "typeid(object).name() = " << typeid(object).name() << std::endl;
-        (*refer) = (*object);   // note: if left type is compatible with right type.
-    }
-
-    template<typename TRefer, typename TObject, const iptr numb>
-    static void Assign(TRefer(*refers)[numb], TObject(*objects)[numb]) {
-        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
-
-        for (iptr i = 0; i < numb; i += 1) {
-            Assign((TRefer *)&(*refers)[i], (TObject *)&(*objects)[i]);
-        }
     }
 };
 
@@ -254,14 +269,16 @@ void Test_Unpack() {
     // Sequence<int, double, const char[3]> sequence(12, 23.45, "ab");
     auto sequence = Sequence<>::Make(12, 23.45, "ab");
 
-    int i;
-    double d;
-    char str[3];
-    sequence.Unpack(i, d, str);
+    int i = 0;
+    double d = 0.0;
+    char strs[3] = { '\0' };
+    sequence.Unwind(i, _Ignore, strs);
+    // sequence.Unwind(i, d, strs);
+    // sequence.Unpack(i, d);
 
     std::cout << "i = " << i << std::endl;
     std::cout << "d = " << d << std::endl;
-    std::cout << "str = " << str << std::endl;
+    std::cout << "strs = " << strs << std::endl;
 }
 
 int main(int argc, char *argv[]) {
