@@ -1,6 +1,6 @@
 /* Sequence.cpp
 Author: BSS9395
-Update: 2022-02-23T17:30:00+08@China-Guangdong-Zhanjiang+08
+Update: 2022-02-23T22:20:00+08@China-Guangdong-Zhanjiang+08
 Design: Sequence
 Encode: UTF-8
 */
@@ -40,19 +40,27 @@ public:
 
 private:
     Sequence() {
-        fprintf(stderr, "%s""\n", "Sequence() {");
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
     }
 
     virtual ~Sequence() {
-        fprintf(stderr, "%s""\n", "virtual ~Sequence() {");
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
     }
 
 public:
     template<typename TType, typename ...TTypes>
     static auto Make(const TType &type, const TTypes &...types) {
-        fprintf(stderr, "%s""\n", __FUNCTION__);
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
         return Sequence<TType, TTypes...>(type, types...);
+    }
+
+public:
+    template<typename ...TRefers>
+    static void Shift(char *address, TRefers *...refers) {  // note: do nothing.
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
+
+        return;
     }
 };
 
@@ -60,7 +68,7 @@ template<typename TType, typename ...TTypes>
 struct Sequence<TType, TTypes...> {
 public:
     static inline const iptr _Argc = 1 + sizeof...(TTypes);
-    static inline const iptr _Size = sizeof(TType) + Sequence<TTypes...>::_Size; // note: it doesn't actually construct class.
+    static inline const iptr _Size = sizeof(TType) + Sequence<TTypes...>::_Size;
 
 public:
     iptr *_refer = nullptr;
@@ -69,7 +77,7 @@ public:
 public:
     // note: [const TType &] will transform the actual type, [TType &&] will not parse the actual type.
     explicit Sequence(const TType &type, const TTypes &...types) {
-        fprintf(stderr, "%s""\n", __FUNCTION__);
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
         // std::cout << "_Argc = " << _Argc << ", _Size = " << _Size << std::endl;
         // std::cout << "typeid(TType).name() = " << typeid(TType).name() << std::endl;
@@ -86,7 +94,7 @@ public:
     }
 
     Sequence(const Sequence &sequence) {
-        fprintf(stderr, "%s""\n", "Sequence(const Sequence &sequence) {");
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
         _refer = sequence._refer;
         _objects = sequence._objects;
@@ -94,7 +102,7 @@ public:
     }
 
     Sequence &operator=(const Sequence &sequence) {
-        fprintf(stderr, "%s""\n", "Sequence &operator=(const Sequence &sequence) {");
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
         if (this != &sequence) {
             this->~Sequence();
@@ -106,7 +114,7 @@ public:
     }
 
     virtual ~Sequence() {
-        fprintf(stderr, "%s""\n", __FUNCTION__);
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
         (*_refer) -= 1;
         if ((*_refer) <= 0) {
@@ -116,32 +124,32 @@ public:
     }
 
 public:
-    template<typename TObject>
-    void Construct(char *address, const TObject &object) {
-        fprintf(stderr, "%s""\n", "void Construct(char *address, const TObject &object) {");
+    template<typename TAddress>
+    void Construct(char *address, const TAddress &object) {
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
-        new (address) TObject(object);
+        new (address) TAddress(object);
     }
 
-    template<typename TArray, const iptr numb>
-    void Construct(char *address, const TArray(&array)[numb]) {
-        fprintf(stderr, "%s""\n", "void Construct(char *address, const TArray(&array)[numb]) {");
+    template<typename TAddress, const iptr numb>
+    void Construct(char *address, const TAddress(&objects)[numb]) {
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
         for (iptr i = 0; i < numb; i += 1) {
-            Construct(address, array[i]), address += sizeof(TArray);
+            Construct(address, objects[i]), address += sizeof(TAddress);
         }
     }
 
-    template<const iptr Idx = 0>
-    void Reverse(char *address) {
-        // fprintf(stderr, "%s""\n", "void Reverse(char *address) {");
+    template<const iptr = 0, const iptr = 0>
+    void Reverse(char *address) {  // note: do nothing.
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
         return;
     }
 
     template<typename TAddress, typename ...TAddresses>
     void Reverse(char *address) {
-        fprintf(stderr, "%s""\n", "void Reverse(char *address) {");
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
         // std::cout << "typeid(TAddress).name()" << typeid(TAddress).name() << std::endl;
         // std::cout << "typeid(TAddress *).name()" << typeid(TAddress *).name() << std::endl;
@@ -150,29 +158,29 @@ public:
         Destruct((TAddress *)address);
     }
 
-    template<typename TAddress>
-    void Destruct(TAddress *address) {
-        fprintf(stderr, "%s""\n", "void Destruct(TAddress *address) {");
+    template<typename TObject>
+    void Destruct(TObject *object) {
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
-        address->~TAddress();
+        object->~TObject();
     }
 
-    template<typename TArray, const iptr numb>
-    void Destruct(TArray(*array)[numb]) {
-        fprintf(stderr, "%s""\n", "void Destruct(TArray(*array)[numb]) {");
+    template<typename TObject, const iptr numb>
+    void Destruct(TObject(*objects)[numb]) {
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
-        // std::cout << "typeid(TArray).name() = " << typeid(TArray).name() << std::endl;
-        // std::cout << "typeid(array).name() = " << typeid(array).name() << std::endl;
+        // std::cout << "typeid(TObject).name() = " << typeid(TObject).name() << std::endl;
+        // std::cout << "typeid(objects).name() = " << typeid(objects).name() << std::endl;
 
         for (iptr i = numb - 1; 0 <= i; i -= 1) {
-            Destruct((TArray *)&(*array)[i]);
+            Destruct((TObject *)&(*objects)[i]);
         }
     }
 
 public:
     template<const iptr Idx>
     auto &At() {  // note: [auto <= auto &], reference type will automatically transform to pointer type.
-        fprintf(stderr, "%s""\n", __FUNCTION__);
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
         typedef typename Proto<Idx, TType, TTypes...>::Type Type;
         const iptr offset = Proto<Idx, TType, TTypes...>::_Offset;
@@ -180,11 +188,52 @@ public:
 
         return *(Type *)(_objects + offset);
     }
+
+public:
+    template<typename TRefer, typename ...TRefers>
+    void Unpack(TRefer &refer, TRefers &...refers) {
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
+
+        Shift(_objects, &refer, &refers...);
+    }
+
+    template<const iptr = 0, const iptr = 0>
+    static void Shift(char *address) {  // note: do nothing.
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
+
+        return;
+    }
+
+    template<typename TRefer, typename ...TRefers>
+    static void Shift(char *address, TRefer *refer, TRefers *...refers) {
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
+
+        Assign(refer, (TType *)address);
+        Sequence<TTypes...>::Shift(address + sizeof(TType), refers...);
+    }
+
+    template<typename TRefer, typename TObject>
+    static void Assign(TRefer *refer, const TObject *object) {
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
+
+        // std::cout << "typeid(refer).name() = " << typeid(refer).name() << std::endl;
+        // std::cout << "typeid(object).name() = " << typeid(object).name() << std::endl;
+        (*refer) = (*object);   // note: if left type is compatible with right type.
+    }
+
+    template<typename TRefer, typename TObject, const iptr numb>
+    static void Assign(TRefer(*refers)[numb], TObject(*objects)[numb]) {
+        fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
+
+        for (iptr i = 0; i < numb; i += 1) {
+            Assign((TRefer *)&(*refers)[i], (TObject *)&(*objects)[i]);
+        }
+    }
 };
 
+////////////////////////////////////////////////////////////////////////////////
 
-
-int main(int argc, char *argv[]) {
+void Test_Sequence() {
     std::string strs[3] = {
         "abc",
         "def",
@@ -199,6 +248,25 @@ int main(int argc, char *argv[]) {
     for (iptr i = 0; i < sizeof(object) / sizeof(object[0]); i += 1) {
         std::cout << object[i] << std::endl;
     }
+}
+
+void Test_Unpack() {
+    // Sequence<int, double, const char[3]> sequence(12, 23.45, "ab");
+    auto sequence = Sequence<>::Make(12, 23.45, "ab");
+
+    int i;
+    double d;
+    char str[3];
+    sequence.Unpack(i, d, str);
+
+    std::cout << "i = " << i << std::endl;
+    std::cout << "d = " << d << std::endl;
+    std::cout << "str = " << str << std::endl;
+}
+
+int main(int argc, char *argv[]) {
+    // Test_Sequence();
+    Test_Unpack();
 
     return 0;
 }
