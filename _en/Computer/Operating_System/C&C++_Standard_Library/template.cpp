@@ -17,8 +17,12 @@ public:
     char buffer[sizeof(TType)];
 
 public:
-    Emplace(const TType &type) {
+    // note: [const TType &] will transform the actual type, [TType &&] will not parse the actual type.
+    explicit Emplace(const TType &type) {
         fprintf(stderr, "%s""\n", __FUNCTION__);
+
+        std::cout << "typeid(TType).name() = " << typeid(TType).name() << std::endl;
+        std::cout << "typeid(TType &).name() = " << typeid(TType &).name() << std::endl;
 
         Construct((char *)buffer, type);
     }
@@ -26,8 +30,8 @@ public:
     virtual ~Emplace() {
         fprintf(stderr, "%s""\n", __FUNCTION__);
 
-        std::cout << typeid(TType *).name() << std::endl;
-        // std::cout << std::boolalpha << std::is_array<TType *> ::value << std::endl;
+        std::cout << "typeid(TType).name() = " << typeid(TType).name() << std::endl;
+        std::cout << "typeid(TType *).name() = " << typeid(TType *).name() << std::endl;
 
         Destruct((TType *)buffer);
     }
@@ -40,7 +44,7 @@ public:
         new (address) TObject(object); // note: construct object, not copy object from memory to memory. 
     }
 
-    template<typename TArray, iptr numb>
+    template<typename TArray, const iptr numb>
     void Construct(char *address, const TArray(&array)[numb]) {
         fprintf(stderr, "%s""\n", "void Construct(char *address, const TArray(&array)[numb]) {");
 
@@ -57,14 +61,14 @@ public:
         object->~TObject();
     }
 
-    template<typename TArray, iptr numb>
+    template<typename TArray, const iptr numb>
     void Destruct(TArray(*array)[numb]) {
         fprintf(stderr, "%s""\n", "void Destruct(TArray(*array)[numb]) {");
 
-        // std::cout << typeid(array).name() << std::endl;
-        // std::cout << typeid(TArray *).name() << std::endl;
+        std::cout << "typeid(TArray).name() = " << typeid(TArray).name() << std::endl;
+        std::cout << "typeid(array).name() = " << typeid(array).name() << std::endl;
 
-        for (iptr i = 0; i < numb; i += 1) {
+        for (iptr i = numb - 1; 0 <= i; i -= 1) {  // note: the order of destruction is the reversed order of construction.
             Destruct((TArray *)&(*array)[i]);
         }
     }
