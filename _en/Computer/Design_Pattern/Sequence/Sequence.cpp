@@ -213,10 +213,13 @@ public:
         (*refer) = (*object);   // note: if left type is compatible with right type.
     }
 
-    template<typename TRefer, typename TObject, const iptr numb>
-    static void Assign(TRefer(*refers)[numb], TObject(*objects)[numb]) {
+    template<typename TRefer, const iptr numb, typename TObject, const iptr size>
+    static void Assign(TRefer(*refers)[numb], TObject(*objects)[size]) {
         fprintf(stderr, "[%td] %s""\n", __LINE__, __FUNCTION__);
 
+        if (numb > size) {
+            throw std::string("if (numb > size) {");
+        }
         for (iptr i = 0; i < numb; i += 1) {
             Assign((TRefer *)&(*refers)[i], (TObject *)&(*objects)[i]);
         }
@@ -249,14 +252,14 @@ public:
 ////////////////////////////////////////////////////////////////////////////////
 
 void Test_Sequence() {
-    std::string strs[3] = {
+    std::string str3[3] = {
         "abc",
         "def",
         "ghi"
     };
 
     // Sequence<int, double, const char[3], std::string[3]> sequence(12, 23.45, "ab", strs);
-    auto sequence = Sequence<>::Make(12, 23.45, "ab", strs);
+    auto sequence = Sequence<>::Make(12, 23.45, "ab", str3);
     auto &object = sequence.At<3>();  // note: [auto <= auto &], reference type will automatically transform to pointer type.
 
     std::cout << typeid(object).name() << std::endl;
@@ -266,19 +269,29 @@ void Test_Sequence() {
 }
 
 void Test_Unpack() {
+    std::string str3[3] = {
+    "abc",
+    "def",
+    "ghi"
+    };
+    std::string str2[2];
+
     // Sequence<int, double, const char[3]> sequence(12, 23.45, "ab");
-    auto sequence = Sequence<>::Make(12, 23.45, "ab");
+    auto sequence = Sequence<>::Make(12, 23.45, "ab", str3);
 
     int i = 0;
     double d = 0.0;
-    char strs[3] = { '\0' };
-    sequence.Unwind(i, _Ignore, strs);
-    // sequence.Unwind(i, d, strs);
+    char lite[3] = { '\0' };
+    sequence.Unwind(i, _Ignore, lite, str2);
+    // sequence.Unwind(i, d, lite, str2);
     // sequence.Unpack(i, d);
 
     std::cout << "i = " << i << std::endl;
     std::cout << "d = " << d << std::endl;
-    std::cout << "strs = " << strs << std::endl;
+    std::cout << "strs = " << lite << std::endl;
+    for (iptr i = 0; i < 2; i += 1) {
+        std::cout << str2[i] << std::endl;
+    }
 }
 
 int main(int argc, char *argv[]) {
