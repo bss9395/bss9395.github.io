@@ -1,4 +1,4 @@
-﻿/* Application.h
+/* Application.h
 Author: BSS9395
 Update: 2022-02-26T00:27:00+08@China-Guangdong-Zhanjiang+08
 Design: Studio for OpenGL
@@ -363,8 +363,8 @@ public:
 
         ////////////////////////////////
 
-        Window* window = new Window();
-        window->Loop();
+        //Window* window = new Window();
+        //window->Loop();
         //for (bool close = false; close == false;) {
         //    close = true;
         //    auto windows = Window::_Windows;

@@ -1,4 +1,4 @@
-﻿/* System.h
+/* System.h
 Author: BSS9395
 Update: 2022-02-26T00:27:00+08@China-Guangdong-Zhanjiang+08
 Design: Studio for OpenGL
@@ -8,23 +8,8 @@ Encode: UTF-8
 #ifndef System_h
 #define System_h
 
-#include <cstdarg>
-#include <iostream>
-#include <sstream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <list>
-#include <set>
-#include <map>
-#include <functional>
-
-////////////////////////////////////////////////////////////////////////////////
-
-typedef intptr_t iptr;
-typedef size_t   uptr;
-typedef wchar_t  wide;
-////////////////////////////////////////////////////////////////////////////////
+#define Header_h
+#include "Common.h"
 
 typedef intptr_t iptr;
 typedef size_t   uptr;
@@ -99,6 +84,11 @@ struct System {
 ////////////////////////////////////////////////////////////////////////////////
 
 struct Format {
+    static const char* Signify(const char* sign) {
+        return sign;
+    }
+#define Signifying(sign)    Signify(""#sign)
+
     template<typename TType>
     static TType Functor(TType type) {
         return type;
@@ -220,6 +210,250 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////
 
+template<const iptr = 0, typename ...>
+struct Proto;
+
+template<typename TType, typename ...TTypes>
+struct Proto<0, TType, TTypes...> {
+    typedef typename TType Type;
+    static inline const iptr _Offset = 0;
+};
+
+template<const iptr Idx, typename TType, typename ...TTypes>
+struct Proto<Idx, TType, TTypes...> {
+    typedef typename Proto<Idx - 1, TTypes...>::Type Type;
+    static inline const iptr _Offset = sizeof(TType) + Proto<Idx - 1, TTypes...>::_Offset;
+};
+
+template<typename ...>
+struct Sequence;
+
+template<>
+struct Sequence<> {
+public:
+    static inline const iptr _Argc = 0;
+    static inline const iptr _Size = 0;
+
+public:
+    Sequence() {
+        // System::Logging(__FUNCTION__);
+    }
+
+    virtual ~Sequence() {
+        // System::Logging(__FUNCTION__);
+    }
+
+public:
+    template<typename TType>
+    Sequence& operator=(const TType& type) {
+        // note: do nothing.
+        return (*this);
+    }
+
+public:
+    template<typename TType, typename ...TTypes>
+    static auto Make(const TType& type, const TTypes &...types) {
+        System::Logging(__FUNCTION__);
+
+        return Sequence<TType, TTypes...>(type, types...);
+    }
+};
+static Sequence<> _Ignore = Sequence<>();
+
+
+template<typename TType, typename ...TTypes>
+struct Sequence<TType, TTypes...> {
+public:
+    static inline const iptr _Argc = 1 + sizeof...(TTypes);
+    static inline const iptr _Size = sizeof(TType) + Sequence<TTypes...>::_Size;
+
+public:
+    iptr* _refer = nullptr;
+    char* _objects = nullptr;
+
+public:
+    explicit Sequence() {
+        System::Logging(__FUNCTION__);
+
+        _refer = new iptr(0);
+        (*_refer) += 1;
+    }
+
+    // note: [const TType &] will transform the actual type, [TType &&] will not parse the actual type.
+    explicit Sequence(const TType& type, const TTypes &...types) {
+        System::Logging(__FUNCTION__);
+
+        // std::cout << "_Argc = " << _Argc << ", _Size = " << _Size << std::endl;
+        // std::cout << "typeid(TType).name() = " << typeid(TType).name() << std::endl;
+        // std::cout << "typeid(TType &).name() = " << typeid(TType &).name() << std::endl;
+
+        _refer = new iptr(0);
+        _objects = (char*)::operator new(_Size);  // note: allocate memory.
+        char* address = _objects;
+        char* inplace[] = {
+            // note: unwind the variadic parameter types.
+            (Construct(address, type), address += sizeof(TType)),
+            (Construct(address, types), address += sizeof(TTypes))...
+        };
+        (*_refer) += 1;
+    }
+
+    Sequence(const Sequence& sequence) {
+        System::Logging(__FUNCTION__);
+
+        _refer = sequence._refer;
+        _objects = sequence._objects;
+        (*_refer) += 1;
+    }
+
+    Sequence& operator=(const Sequence& sequence) {
+        System::Logging(__FUNCTION__);
+
+        if (this != &sequence) {
+            this->~Sequence();
+            _refer = sequence._refer;
+            _objects = sequence._objects;
+            (*_refer) += 1;
+        }
+        return (*this);
+    }
+
+    virtual ~Sequence() {
+        System::Logging(__FUNCTION__);
+
+        (*_refer) -= 1;
+        if ((*_refer) <= 0 && _objects != nullptr) {
+            Reverse<TType, TTypes...>(_objects);
+            ::operator delete(_objects);           // note: deallocate memory.
+        }
+    }
+
+public:
+    template<typename TAddress>
+    void Construct(char* address, const TAddress& object) {
+        System::Logging(__FUNCTION__);
+
+        new (address) TAddress(object);
+    }
+
+    template<typename TAddress, const iptr numb>
+    void Construct(char* address, const TAddress(&objects)[numb]) {
+        System::Logging(__FUNCTION__);
+
+        for (iptr i = 0; i < numb; i += 1) {
+            Construct(address, objects[i]), address += sizeof(TAddress);
+        }
+    }
+
+    template<const iptr = 0, const iptr = 0>
+    void Reverse(char* address) {  // note: do nothing.
+        System::Logging(__FUNCTION__);
+
+        return;
+    }
+
+    template<typename TAddress, typename ...TAddresses>
+    void Reverse(char* address) {
+        System::Logging(__FUNCTION__);
+
+        // std::cout << "typeid(TAddress).name()" << typeid(TAddress).name() << std::endl;
+        // std::cout << "typeid(TAddress *).name()" << typeid(TAddress *).name() << std::endl;
+
+        Reverse<TAddresses...>(address + sizeof(TAddress));
+        Destruct((TAddress*)address);
+    }
+
+    template<typename TObject>
+    void Destruct(TObject* object) {
+        System::Logging(__FUNCTION__);
+
+        object->~TObject();
+    }
+
+    template<typename TObject, const iptr numb>
+    void Destruct(TObject(*objects)[numb]) {
+        System::Logging(__FUNCTION__);
+
+        // std::cout << "typeid(TObject).name() = " << typeid(TObject).name() << std::endl;
+        // std::cout << "typeid(objects).name() = " << typeid(objects).name() << std::endl;
+
+        for (iptr i = numb - 1; 0 <= i; i -= 1) {
+            Destruct((TObject*)&(*objects)[i]);
+        }
+    }
+
+public:
+    template<const iptr Idx>
+    auto& At() const {  // note: [auto <= auto &], reference type will automatically transform to pointer type.
+        System::Logging(__FUNCTION__);
+
+        typedef typename Proto<Idx, TType, TTypes...>::Type Type;
+        const iptr offset = Proto<Idx, TType, TTypes...>::_Offset;
+        // std::cout << "typeid(Type).name() = " << typeid(Type).name() << std::endl;
+
+        return *(Type*)(_objects + offset);
+    }
+
+public:
+    template<typename TRefer, typename ...TRefers>
+    void Unwind(TRefer& refer, TRefers &...refers) {
+        System::Logging(__FUNCTION__);
+
+        char* address = _objects;
+        char* inplace[] = {
+            // note: unwind the variadic parameter refers.
+            (Assign(&refer, (TType*)address), address += sizeof(TType)),
+            (Assign(&refers, (TTypes*)address), address += sizeof(TTypes))...
+        };
+    }
+
+    template<typename TRefer, typename TObject>
+    static void Assign(TRefer* refer, TObject* object) {
+        System::Logging(__FUNCTION__);
+
+        // std::cout << "typeid(refer).name() = " << typeid(refer).name() << std::endl;
+        // std::cout << "typeid(object).name() = " << typeid(object).name() << std::endl;
+        (*refer) = (*object);   // note: if left type is compatible with right type.
+    }
+
+    template<typename TRefer, const iptr numb, typename TObject, const iptr size>
+    static void Assign(TRefer(*refers)[numb], TObject(*objects)[size]) {
+        System::Logging(__FUNCTION__);
+
+        if (numb > size) {
+            throw std::string("if (numb > size) {");
+        }
+        for (iptr i = 0; i < numb; i += 1) {
+            Assign((TRefer*)&(*refers)[i], (TObject*)&(*objects)[i]);
+        }
+    }
+
+public:
+    template<typename TRefer, typename ...TRefers>
+    void Unpack(TRefer& refer, TRefers &...refers) {
+        System::Logging(__FUNCTION__);
+
+        Shift(_objects, &refer, &refers...);
+    }
+
+    template<const iptr = 0, const iptr = 0>
+    static void Shift(char* address) {  // note: do nothing.
+        System::Logging(__FUNCTION__);
+
+        return;
+    }
+
+    template<typename TRefer, typename ...TRefers>
+    static void Shift(char* address, TRefer* refer, TRefers *...refers) {
+        System::Logging(__FUNCTION__);
+
+        Assign(refer, (TType*)address);
+        Sequence<TTypes...>::Shift(address + sizeof(TType), refers...);
+    }
+};
+
+////////////////////////////////////////////////////////////////////////////////
+
 class Clean {
 public:
     typedef std::function<void(void)> Functor;
@@ -230,7 +464,7 @@ public:
 public:
     struct Class {
         virtual ~Class() {
-
+            System::Logging(__FUNCTION__);
         }
     };
     static inline std::set<std::vector<Class*>*> _Set;
@@ -242,14 +476,14 @@ public:
 
 public:
     Clean() {
-        System::Logging("Clean() {");
+        System::Logging(__FUNCTION__);
 
         _refer = new iptr(0);
         (*_refer) += 1;
     }
 
     Clean(const Functor& function) {
-        System::Logging("Clean(const Function &function) {");
+        System::Logging(__FUNCTION__);
 
         _refer = new iptr(0);
         _function = new Functor(function);
@@ -257,7 +491,7 @@ public:
     }
 
     Clean(const Clean& clean) {
-        System::Logging("Clean(const Clean &clean) {");
+        System::Logging(__FUNCTION__);
 
         _refer = clean._refer;
         _function = clean._function;
@@ -266,7 +500,7 @@ public:
     }
 
     Clean& operator=(const Clean& clean) {
-        System::Logging("Clean &operator=(const Clean &clean) {");
+        System::Logging(__FUNCTION__);
 
         if (this != &clean) {
             this->~Clean();
@@ -368,16 +602,17 @@ public:
         std::string _file = "";
         iptr _line = 0;
         std::string _function = "";
-        TRecord _record = TRecord();
-        TSolution _solution = TSolution();
+        TRecord _record;        // note: in C++, array can not be assigned.
+        TSolution _solution;    // note: in C++, array can not be assigned.
+        std::string _report = "";
     } *_datum = nullptr;
 
 public:
-    Anomaly(System::Level level, const std::string& file, iptr line, const std::string& function, const TRecord& record, const TSolution& solution = TSolution()) {
+    Anomaly(System::Level level, const std::string& file, iptr line, const std::string& function, const TRecord& record, const TSolution& solution) {
         System::Logging(__FUNCTION__);
         _refer = new iptr(0);
         _datum = new Datum();
-        _datam->_level = level;
+        _datum->_level = level;
         _datum->_file = file;
         _datum->_line = line;
         _datum->_function = function;
@@ -386,12 +621,12 @@ public:
         (*_refer) += 1;
     }
 
-    Anomaly(System::Level level, const std::string& file, iptr line, const std::string& function, const char* record, const char* solution = "") {
+    Anomaly(System::Level level, const std::string& file, iptr line, const std::string& function, const char* record, const char* solution) {
         System::Logging(__FUNCTION__);
 
         _refer = new iptr(0);
         _datum = new Datum();
-        _datam->_level = level;
+        _datum->_level = level;
         _datum->_file = file;
         _datum->_line = line;
         _datum->_function = function;
@@ -432,14 +667,14 @@ public:
 public:
     virtual std::string& Report() override {
         // System::Logging(__FUNCTION__);
-        std::string report = ""; report.reserve(512);
+        _datum->_report = "";
 
         iptr sepa = -1;
-        ((sepa = _file.find_last_of('/')) == -1) && (sepa = _file.find_last_of('\\'));
-        report += std::string(&_file[sepa + 1]);
-        report += _record, report += " : ";
-        report += _solution, report += ";";
-        return report;
+        ((sepa = _datum->_file.find_last_of('/')) == -1) && (sepa = _datum->_file.find_last_of('\\'));
+        _datum->_report += std::string(&_datum->_file[sepa + 1]);
+        _datum->_report += _datum->_record, _datum->_report += " : ";
+        _datum->_report += _datum->_solution, _datum->_report += ";";
+        return _datum->_report;
     }
 };
 

@@ -1,4 +1,4 @@
-﻿/* Common.h
+/* Common.h
 Author: BSS9395
 Update: 2022-02-26T00:27:00+08@China-Guangdong-Zhanjiang+08
 Design: Studio for OpenGL
@@ -16,22 +16,29 @@ Encode: UTF-8
 #define _CRT_SECURE_NO_WARNINGS
 #define STB_IMAGE_IMPLEMENTATION
 
+#include <glm/glm.hpp>                         // note: header only.
+#include <glm/ext.hpp>                         // note: header only.
+#include <glm/ext/quaternion_geometric.hpp>    // note: header only.
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <stb/stb_image.h>
+#include <stb/stb_image.h>                     // note: header only.
 
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <iostream>
-#include <sstream>
+#include <cstdarg>
+#include <cstring>
 #include <fstream>
-#include <string>
-#include <vector>
-#include <list>
-#include <set>
-#include <map>
 #include <functional>
+#include <iostream>
+#include <list>
+#include <map>
+#include <set>
+#include <sstream>
+#include <string>
 #include <thread>
+#include <type_traits>
+#include <typeinfo>
+#include <vector>
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -42,15 +49,12 @@ Encode: UTF-8
 
 ////////////////////////////////////////////////////////////////////////////////
 
-typedef intptr_t iptr;
-typedef size_t   uptr;
-typedef wchar_t  wide;
-
 #ifndef Header_h
 #define Header_h
 
 #include "System.h"
 #include "Setting.h"
+#include "Shader.h"
 #include "Application.h"
 
 #endif // Header_h

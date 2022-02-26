@@ -1,3 +1,17 @@
 *.pro.user
+
 *.lib
 *.pdb
+*.suo
+*.db
+*.db-shm
+*.db-wal
+*.opendb
+*.ipch
+*.obj
+*.exe.recipe
+*.ilk
+*.log
+*.tlog
+*.idb
+*.exe

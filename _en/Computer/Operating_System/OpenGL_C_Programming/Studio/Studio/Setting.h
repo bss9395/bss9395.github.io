@@ -1,4 +1,4 @@
-﻿/* Setting.h
+/* Setting.h
 Author: BSS9395
 Update: 2022-02-26T00:27:00+08@China-Guangdong-Zhanjiang+08
 Design: Studio for OpenGL
