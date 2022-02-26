@@ -8,26 +8,26 @@
 
 typedef const char* Type;
 static const struct {
-	const Type _Null;
-	const Type _Boole;
-	const Type _Long;
-	const Type _Double;
-	const Type _String;
+    const Type _Null;
+    const Type _Boole;
+    const Type _Long;
+    const Type _Double;
+    const Type _String;
 } EType = { "Null", "Boole", "Long", "Double", "String" };
-static const Type *AType = (Type *)&EType;
+static const Type* AType = (Type*)&EType;
 
 int main(int argc, char* argv[]) {
-	Type type = EType._Null;
-	fprintf(stderr, "%X: %s""\n", type, type);
+    Type type = EType._Null;
+    fprintf(stderr, "%X: %s""\n", type, type);
 
-	type = EType._Boole;
-	fprintf(stderr, "%X: %s""\n", type, type);
+    type = EType._Boole;
+    fprintf(stderr, "%X: %s""\n", type, type);
 
-	fprintf(stderr, "------------------""\n");
+    fprintf(stderr, "------------------""\n");
 
-	for (int i = 0; i < sizeof(EType) / sizeof(Type); ++i) {
-		printf("%X: %s""\n", AType[i], AType[i]);
-	}
+    for (int i = 0; i < sizeof(EType) / sizeof(Type); ++i) {
+        printf("%X: %s""\n", AType[i], AType[i]);
+    }
 
-	return 0;
+    return 0;
 }
