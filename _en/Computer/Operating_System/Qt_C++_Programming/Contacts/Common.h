@@ -11,39 +11,44 @@ System: Qt 5.14.2
 
 #include <QApplication>
 #include <QAudioDeviceInfo>
+#include <QColorDialog>
+#include <QComboBox>
+#include <QCryptographicHash>
+#include <QDataWidgetMapper>
 #include <QDateTime>
 #include <QDebug>
+#include <QDesktopWidget>
+#include <QDialog>
 #include <QException>
 #include <QFileDialog>
 #include <QFontDialog>
-#include <QMainWindow>
-#include <QString>
-#include <QTextCodec>
-#include <QTimer>
-#include <QTimeZone>
-#include <QtGlobal>
 #include <QInputDialog>
-#include <QTextBlock>
-#include <QMessageBox>
 #include <QKeyEvent>
-#include <QDesktopWidget>
-#include <QScreen>
-#include <QTabBar>
+#include <QMainWindow>
 #include <QMdiArea>
 #include <QMdiSubWindow>
-#include <QToolButton>
-#include <QSpinBox>
-#include <QColorDialog>
+#include <QMessageBox>
 #include <QPainter>
+#include <QRegularExpression>
+#include <QScreen>
 #include <QSettings>
-#include <QCryptographicHash>
-#include <QComboBox>
-#include <QtSql/QSqlDatabase>
-#include <QSqlTableModel>
+#include <QSpinBox>
 #include <QSqlError>
-#include <QStyledItemDelegate>
-#include <QDataWidgetMapper>
+#include <QSqlQuery>
 #include <QSqlRecord>
+#include <QSqlRelationalDelegate>
+#include <QSqlRelationalTableModel>
+#include <QSqlTableModel>
+#include <QString>
+#include <QStyledItemDelegate>
+#include <QTabBar>
+#include <QTextBlock>
+#include <QTextCodec>
+#include <QTimeZone>
+#include <QTimer>
+#include <QToolButton>
+#include <QtGlobal>
+#include <QtSql/QSqlDatabase>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>
@@ -61,7 +66,7 @@ System: Qt 5.14.2
 #define   Header_h
 
 #include "System.h"
-#include "Delegate.h"
+// #include "Delegate.h"
 #include "Contacts.h"
 
 #endif // Header_h
