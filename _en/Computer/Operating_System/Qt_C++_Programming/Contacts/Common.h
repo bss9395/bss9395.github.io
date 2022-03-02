@@ -67,6 +67,7 @@ System: Qt 5.14.2
 
 #include "System.h"
 // #include "Delegate.h"
+#include "Settings.h"
 #include "Contacts.h"
 
 #endif // Header_h

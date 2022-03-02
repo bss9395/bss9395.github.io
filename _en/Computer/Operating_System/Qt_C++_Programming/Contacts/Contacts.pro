@@ -21,7 +21,7 @@ SOURCES += \
 HEADERS += \
     Common.h \
     Contacts.h \
-    Setting.h \
+    Settings.h \
     System.h
 
 FORMS += \

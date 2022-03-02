@@ -134,7 +134,9 @@
         <file>images/avatars/Sina.svg</file>
         <file>images/avatars/Twitter.svg</file>
         <file>images/avatars/WeChat.svg</file>
-        <file>images/BSS9395.png</file>
-        <file>images/BSS9395.svg</file>
+        <file>images/M31.png</file>
+        <file>images/M31.svg</file>
+        <file>images/icons/add_circle.png</file>
+        <file>images/icons/cancel.png</file>
     </qresource>
 </RCC>

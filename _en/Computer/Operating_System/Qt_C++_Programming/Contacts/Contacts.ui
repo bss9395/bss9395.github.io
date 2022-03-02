@@ -37,10 +37,11 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QTableView" name="TV_People"/>
-    </item>
-    <item>
-     <widget class="QTableWidget" name="TW_People"/>
+     <widget class="QTableWidget" name="TW_People">
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -75,6 +76,10 @@
     <bool>false</bool>
    </attribute>
    <addaction name="A_Load"/>
+   <addaction name="A_Insert"/>
+   <addaction name="A_Delete"/>
+   <addaction name="A_Submit"/>
+   <addaction name="A_Revert"/>
   </widget>
   <widget class="QDockWidget" name="DW_Dock">
    <property name="sizePolicy">
@@ -176,7 +181,7 @@
           </property>
           <property name="icon">
            <iconset resource="images.qrc">
-            <normaloff>:/images/BSS9395.svg</normaloff>:/images/BSS9395.svg</iconset>
+            <normaloff>:/images/M31.svg</normaloff>:/images/M31.svg</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -390,7 +395,49 @@
      <normaloff>:/images/icons/file_open.png</normaloff>:/images/icons/file_open.png</iconset>
    </property>
    <property name="text">
-    <string>加载通讯录</string>
+    <string>加载</string>
+   </property>
+   <property name="toolTip">
+    <string>加载</string>
+   </property>
+  </action>
+  <action name="A_Insert">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/icons/add_circle.png</normaloff>:/images/icons/add_circle.png</iconset>
+   </property>
+   <property name="text">
+    <string>添加</string>
+   </property>
+   <property name="toolTip">
+    <string>添加</string>
+   </property>
+  </action>
+  <action name="A_Delete">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/icons/cancel.png</normaloff>:/images/icons/cancel.png</iconset>
+   </property>
+   <property name="text">
+    <string>删除</string>
+   </property>
+  </action>
+  <action name="A_Submit">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/icons/save.png</normaloff>:/images/icons/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>提交</string>
+   </property>
+  </action>
+  <action name="A_Revert">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/icons/undo.png</normaloff>:/images/icons/undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>还原</string>
    </property>
   </action>
  </widget>

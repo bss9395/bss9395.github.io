@@ -5,7 +5,7 @@
 #include "Common.h"
 #include "System.h"
 
-class Setting {
+class Settings {
 public:
     static inline const QString _Create_Table = R"(
 CREATE TABLE "People" (
@@ -46,9 +46,17 @@ DELETE FROM [People];
 )";
 
 public:
+    typedef const char *Mark;
+    static inline const Mark _Select = "Select";
+    static inline const Mark _Insert = "Insert";
+    static inline const Mark _Update = "Update";
+    static inline const Mark _Delete = "Delete";
+
+
     typedef Sequence<iptr, const char *, const char *> Type;
     static inline const Type _Database = Type(-2, "Contacts", "通讯录");
     static inline const Type _Table = Type(-1, "People", "人脉");
+    static inline const Type _Primary = Type(0, "_Identity", "身份证");
     static inline const Type _Identity = Type(0, "_Identity", "身份证");
     static inline const Type _Name = Type(1, "_Name", "姓名");
     static inline const Type _Avatar = Type(2, "_Avatar", "头像");
