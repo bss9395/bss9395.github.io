@@ -10,12 +10,12 @@ System: Qt 5.15.2
 
 struct Datum {
     struct EMark {
-        static inline const char *_ID = "ID";
-        static inline const char *_Name = "Name";
-        static inline const char *_Gender = "Gender";
-        static inline const char *_Date = "Date";
-        static inline const char *_Nationality = "Nationality";
-        static inline const char *_Score = "Score";
+        const char *_ID = "ID";
+        const char *_Name = "Name";
+        const char *_Gender = "Gender";
+        const char *_Date = "Date";
+        const char *_Nationality = "Nationality";
+        const char *_Score = "Score";
     };
 
     // note: data of whatever type all could be represented as string.
@@ -263,14 +263,18 @@ Sheet::Sheet(QWidget *parent)
             row += 1;
             _ui->TW_Sheet->insertRow(row);
             iptr col = _ui->TW_Sheet->currentColumn();
+            if(col < 0) {
+                col = 0;
+            }
             _ui->TW_Sheet->setCurrentCell(row, col);
             QTableWidgetItem *item = new QTableWidgetItem();
             item->setText(QString("R%1").arg(row + 1));
             _ui->TW_Sheet->setVerticalHeaderItem(row, item);
             row += 1;
-            for(iptr count = _ui->TW_Sheet->rowCount(); row < count; row += 1){
-                QTableWidgetItem *item = _ui->TW_Sheet->verticalHeaderItem(row);
+            for(iptr count = _ui->TW_Sheet->rowCount(); row < count; row += 1) {
+                QTableWidgetItem *item = new QTableWidgetItem();
                 item->setText(QString("R%1").arg(row + 1));
+                _ui->TW_Sheet->setVerticalHeaderItem(row, item);
             }
         }
     });
@@ -472,6 +476,25 @@ Sheet::Sheet(QWidget *parent)
         }
     });
 
+    QObject::connect(_ui->A_Test, &QAction::triggered, [this]() -> void {
+        System::Logging("QObject::connect(_ui->A_Test, &QAction::triggered, [this]() -> void {");
+
+        //        static bool once = true;
+        //        if(once == true) {
+        //            once = false;
+        //            QTableWidgetItem *it = new QTableWidgetItem();
+        //            _ui->TW_Sheet->setVerticalHeaderItem(1, it);
+        //        }
+        //        static QTableWidgetItem *item = _ui->TW_Sheet->verticalHeaderItem(1);
+        //        iptr row = item->row();
+        //        System::Logging("row = %td", row);
+
+        static QTableWidgetItem *item = _ui->TW_Sheet->item(1, 0);
+        //static QTableWidgetItem *item = _ui->TW_Sheet->verticalHeaderItem(1);
+        System::Logging("row = %td, %td, %s", item->row(), (uptr)-1, item->text().toStdString().data());
+
+
+    });
 }
 
 Sheet::~Sheet() {

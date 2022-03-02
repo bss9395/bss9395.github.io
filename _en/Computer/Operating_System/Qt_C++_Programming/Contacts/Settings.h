@@ -52,6 +52,23 @@ public:
     static inline const Mark _Update = "Update";
     static inline const Mark _Delete = "Delete";
 
+    static inline const QStringList _Genders = {
+        "男",
+        "女"
+    };
+    static inline const QStringList _Degrees = {
+        "博士研究生",
+        "硕士研究生",
+        "大学本科",
+        "高中",
+        "初中",
+        "小学"
+    };
+    static inline const std::map<QString, QStringList> _Regions = {
+        { "北京", { "北京" }},
+        { "上海", { "上海" }},
+        { "广东", { "广州", "深圳" }},
+    };
 
     typedef Sequence<iptr, const char *, const char *> Type;
     static inline const Type _Database = Type(-2, "Contacts", "通讯录");

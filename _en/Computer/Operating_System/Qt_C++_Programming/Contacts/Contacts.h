@@ -1,6 +1,6 @@
 /* Contacts.h
 Author: BSS9395
-Update: 2022-03-02T20:10:00+08@China-Guangdong-Shenzhen+08
+Update: 2022-03-03T00:23:00+08@China-Guangdong-Shenzhen+08
 Design: Contacts
 Encode: UTF-8
 System: Qt 5.14.2
@@ -31,12 +31,15 @@ public:
     std::vector<QString> _deletes;
     bool _dirty = false;
     bool _guard = false;
+    iptr _row = -1;
 
 public:
     explicit Contacts(QWidget *parent = nullptr)
         : QMainWindow(parent), _ui(new Ui::Contacts) {
         System::Logging(__FUNCTION__);
         _ui->setupUi(this);
+        _ui->CB_Gender->addItems(Settings::_Genders);
+        _ui->CB_Degree->addItems(Settings::_Degrees);
 
         QObject::connect(_ui->A_Load, &QAction::triggered, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_Load, &QAction::triggered, [this]() -> void {");
@@ -250,6 +253,59 @@ WHERE  [_Identity]=:Original;
                 _updates.push_back(item);
             }
         });
+
+        QItemSelectionModel *model = _ui->TW_People->selectionModel();
+        QObject::connect(model, &QItemSelectionModel::currentRowChanged, [this](const QModelIndex &current, const QModelIndex &previous) -> void {
+            System::Logging("QObject::connect(model, &QItemSelectionModel::currentRowChanged, [this]() -> void {");
+
+            (void) previous;
+            if(current.isValid() == true) {
+                QTableWidgetItem *item = nullptr;
+                _row = current.row();
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Identity"));
+                _ui->LE_Identity->setText(item->text());
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Name"));
+                _ui->LE_Name->setText(item->text());
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Gender"));
+                _ui->CB_Gender->setCurrentText(item->text());
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Birthday"));
+                _ui->DE_Birthday->setDate(QDate::fromString(item->text(), "yyyy-MM-dd"));
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Homepage"));
+                _ui->LE_Homepage->setText(item->text());
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Mobile"));
+                _ui->LE_Mobile->setText(item->text());
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Email"));
+                _ui->LE_Email->setText(item->text());
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Company"));
+                _ui->LE_Company->setText(item->text());
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Department"));
+                _ui->LE_Department->setText(item->text());
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Title"));
+                _ui->LE_Title->setText(item->text());
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Employee"));
+                _ui->LE_Employee->setText(item->text());
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Degree"));
+                _ui->CB_Degree->setCurrentText(item->text());
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Address"));
+                _ui->LE_Address->setText(item->text());
+                item = _ui->TW_People->item(_row, _fields.indexOf("_Memo"));
+                _ui->PLE_Memo->setPlainText(item->text());
+            }
+        });
+
+        QObject::connect(_ui->LE_Identity, &QLineEdit::editingFinished, [this]() -> void {
+            System::Logging("QObject::connect(_ui->LE_Identity, &QLineEdit::editingFinished, [this]() -> void {");
+
+
+        });
+
+        QObject::connect(_ui->LE_Name, &QLineEdit::editingFinished, [this]() -> void {
+            System::Logging("QObject::connect(_ui->LE_Name, &QLineEdit::editingFinished, [this]() -> void {");
+
+            _ui->TW_People->item(_row, _fields.indexOf("_Name"))->setText(_ui->LE_Name->text());
+        });
+
+
     }
 
     virtual ~Contacts() override {

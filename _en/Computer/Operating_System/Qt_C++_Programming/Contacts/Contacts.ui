@@ -20,24 +20,18 @@
    <string>Contacts</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="spacing">
-     <number>0</number>
-    </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
-     <number>0</number>
-    </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <widget class="QTableWidget" name="TW_People">
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SingleSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
       <property name="sortingEnabled">
        <bool>true</bool>
       </property>
@@ -83,15 +77,15 @@
   </widget>
   <widget class="QDockWidget" name="DW_Dock">
    <property name="sizePolicy">
-    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
    <property name="minimumSize">
     <size>
-     <width>256</width>
-     <height>659</height>
+     <width>194</width>
+     <height>617</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -113,7 +107,13 @@
     <number>2</number>
    </attribute>
    <widget class="QWidget" name="W_Information">
-    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
      <property name="spacing">
       <number>0</number>
      </property>
@@ -132,10 +132,16 @@
      <item>
       <widget class="QGroupBox" name="GB_Avatar">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="title">
         <string>Avatar</string>
@@ -159,21 +165,21 @@
         <item>
          <widget class="QToolButton" name="TB_Avatar">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="minimumSize">
            <size>
-            <width>64</width>
-            <height>64</height>
+            <width>100</width>
+            <height>100</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>64</width>
-            <height>64</height>
+            <width>100</width>
+            <height>100</height>
            </size>
           </property>
           <property name="text">
@@ -185,8 +191,8 @@
           </property>
           <property name="iconSize">
            <size>
-            <width>64</width>
-            <height>64</height>
+            <width>100</width>
+            <height>100</height>
            </size>
           </property>
          </widget>
@@ -197,7 +203,7 @@
      <item>
       <widget class="QGroupBox" name="GB_Detail">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -205,7 +211,28 @@
        <property name="title">
         <string>Detail</string>
        </property>
-       <layout class="QFormLayout" name="formLayout">
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <layout class="QFormLayout">
+        <property name="horizontalSpacing">
+         <number>5</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>5</number>
+        </property>
+        <property name="leftMargin">
+         <number>5</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>5</number>
+        </property>
+        <property name="bottomMargin">
+         <number>5</number>
+        </property>
         <item row="0" column="0">
          <widget class="QLabel" name="L_Identity">
           <property name="text">
@@ -216,7 +243,7 @@
         <item row="0" column="1">
          <widget class="QLineEdit" name="LE_Identity">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -243,7 +270,14 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="LE_Name"/>
+         <widget class="QLineEdit" name="LE_Name">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="L_Gender">
@@ -252,10 +286,46 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="1">
+         <widget class="QComboBox" name="CB_Gender">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="insertPolicy">
+           <enum>QComboBox::InsertAlphabetically</enum>
+          </property>
+         </widget>
+        </item>
         <item row="3" column="0">
          <widget class="QLabel" name="L_Birthday">
           <property name="text">
            <string>生日</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QDateEdit" name="DE_Birthday">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="displayFormat">
+           <string>yyyy-MM-dd</string>
+          </property>
+          <property name="calendarPopup">
+           <bool>true</bool>
+          </property>
+          <property name="date">
+           <date>
+            <year>2022</year>
+            <month>2</month>
+            <day>1</day>
+           </date>
           </property>
          </widget>
         </item>
@@ -267,7 +337,14 @@
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QLineEdit" name="LE_Homepage"/>
+         <widget class="QLineEdit" name="LE_Homepage">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item row="5" column="0">
          <widget class="QLabel" name="L_Mobile">
@@ -277,7 +354,14 @@
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QLineEdit" name="LE_Mobile"/>
+         <widget class="QLineEdit" name="LE_Mobile">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item row="6" column="0">
          <widget class="QLabel" name="L_Email">
@@ -287,7 +371,14 @@
          </widget>
         </item>
         <item row="6" column="1">
-         <widget class="QLineEdit" name="LE_Email"/>
+         <widget class="QLineEdit" name="LE_Email">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item row="7" column="0">
          <widget class="QLabel" name="L_Company">
@@ -297,7 +388,14 @@
          </widget>
         </item>
         <item row="7" column="1">
-         <widget class="QLineEdit" name="LE_Company"/>
+         <widget class="QLineEdit" name="LE_Company">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item row="8" column="0">
          <widget class="QLabel" name="L_Department">
@@ -307,7 +405,14 @@
          </widget>
         </item>
         <item row="8" column="1">
-         <widget class="QLineEdit" name="LE_Department"/>
+         <widget class="QLineEdit" name="LE_Department">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item row="9" column="0">
          <widget class="QLabel" name="L_Title">
@@ -317,7 +422,14 @@
          </widget>
         </item>
         <item row="9" column="1">
-         <widget class="QLineEdit" name="LE_Title"/>
+         <widget class="QLineEdit" name="LE_Title">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item row="10" column="0">
          <widget class="QLabel" name="L_Employee">
@@ -327,12 +439,32 @@
          </widget>
         </item>
         <item row="10" column="1">
-         <widget class="QLineEdit" name="LE_Employee"/>
+         <widget class="QLineEdit" name="LE_Employee">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item row="11" column="0">
          <widget class="QLabel" name="L_Degree">
           <property name="text">
            <string>学历</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="1">
+         <widget class="QComboBox" name="CB_Degree">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="insertPolicy">
+           <enum>QComboBox::InsertAlphabetically</enum>
           </property>
          </widget>
         </item>
@@ -346,7 +478,7 @@
         <item row="12" column="1">
          <widget class="QLineEdit" name="LE_Address">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -361,27 +493,32 @@
          </widget>
         </item>
         <item row="13" column="1">
-         <widget class="QPlainTextEdit" name="PLE_Memo"/>
-        </item>
-        <item row="2" column="1">
-         <widget class="QComboBox" name="CB_Gender"/>
-        </item>
-        <item row="3" column="1">
-         <widget class="QDateEdit" name="DE_Birthday">
-          <property name="displayFormat">
-           <string>yyyy-MM-dd</string>
+         <widget class="QPlainTextEdit" name="PLE_Memo">
+          <property name="enabled">
+           <bool>true</bool>
           </property>
-          <property name="date">
-           <date>
-            <year>2022</year>
-            <month>2</month>
-            <day>1</day>
-           </date>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>48</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="documentTitle">
+           <string/>
           </property>
          </widget>
-        </item>
-        <item row="11" column="1">
-         <widget class="QComboBox" name="CB_Degree"/>
         </item>
        </layout>
       </widget>

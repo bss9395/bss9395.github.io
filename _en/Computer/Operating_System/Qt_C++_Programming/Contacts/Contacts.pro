@@ -21,6 +21,7 @@ SOURCES += \
 HEADERS += \
     Common.h \
     Contacts.h \
+    Custom.h \
     Settings.h \
     System.h
 

@@ -49,6 +49,7 @@ System: Qt 5.14.2
 #include <QToolButton>
 #include <QtGlobal>
 #include <QtSql/QSqlDatabase>
+#include <QStringListModel>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>
