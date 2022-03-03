@@ -30,7 +30,7 @@
        <enum>QAbstractItemView::SingleSelection</enum>
       </property>
       <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectRows</enum>
+       <enum>QAbstractItemView::SelectItems</enum>
       </property>
       <property name="sortingEnabled">
        <bool>true</bool>
@@ -74,6 +74,8 @@
    <addaction name="A_Delete"/>
    <addaction name="A_Submit"/>
    <addaction name="A_Revert"/>
+   <addaction name="A_Update_Avatar"/>
+   <addaction name="A_Clear_Avatar"/>
   </widget>
   <widget class="QDockWidget" name="DW_Dock">
    <property name="sizePolicy">
@@ -162,7 +164,7 @@
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <item>
+        <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
          <widget class="QToolButton" name="TB_Avatar">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -194,6 +196,9 @@
             <width>100</width>
             <height>100</height>
            </size>
+          </property>
+          <property name="popupMode">
+           <enum>QToolButton::InstantPopup</enum>
           </property>
          </widget>
         </item>
@@ -294,6 +299,12 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="currentText">
+           <string/>
+          </property>
+          <property name="currentIndex">
+           <number>-1</number>
+          </property>
           <property name="insertPolicy">
            <enum>QComboBox::InsertAlphabetically</enum>
           </property>
@@ -314,6 +325,26 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="specialValueText">
+           <string/>
+          </property>
+          <property name="minimumDateTime">
+           <datetime>
+            <hour>0</hour>
+            <minute>0</minute>
+            <second>0</second>
+            <year>1900</year>
+            <month>1</month>
+            <day>1</day>
+           </datetime>
+          </property>
+          <property name="minimumDate">
+           <date>
+            <year>1900</year>
+            <month>1</month>
+            <day>1</day>
+           </date>
+          </property>
           <property name="displayFormat">
            <string>yyyy-MM-dd</string>
           </property>
@@ -323,7 +354,7 @@
           <property name="date">
            <date>
             <year>2022</year>
-            <month>2</month>
+            <month>1</month>
             <day>1</day>
            </date>
           </property>
@@ -575,6 +606,24 @@
    </property>
    <property name="text">
     <string>还原</string>
+   </property>
+  </action>
+  <action name="A_Update_Avatar">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/icons/account_box.png</normaloff>:/images/icons/account_box.png</iconset>
+   </property>
+   <property name="text">
+    <string>更新头像</string>
+   </property>
+  </action>
+  <action name="A_Clear_Avatar">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/icons/disabled_by_default.png</normaloff>:/images/icons/disabled_by_default.png</iconset>
+   </property>
+   <property name="text">
+    <string>置空头像</string>
    </property>
   </action>
  </widget>

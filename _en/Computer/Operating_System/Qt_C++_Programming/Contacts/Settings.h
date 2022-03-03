@@ -8,37 +8,37 @@
 class Settings {
 public:
     static inline const QString _Create_Table = R"(
-CREATE TABLE "People" (
-    "_Identity"	     TEXT NOT NULL UNIQUE,
-    "_Name"	         TEXT NOT NULL,
-    "_Avatar"	     BLOB,
-    "_Gender"	     TEXT,
-    "_Birthday"	     TEXT,
-    "_Homepage"	     TEXT,
-    "_Mobile"	     TEXT,
-    "_Email"	     TEXT,
-    "_Company"	     TEXT,
-    "_Department"    TEXT,
-    "_Title"	     TEXT,
-    "_Employee"	     TEXT,
-    "_Degree"	     TEXT,
-    "_Address"	     TEXT,
-    "_Memo"	         TEXT,
+CREATE TABLE [People] (
+    [_Identity]	   TEXT  NOT NULL  UNIQUE,
+    [_Name]	       TEXT  NOT NULL,
+    [_Avatar]	   BLOB  NOT NULL,
+    [_Gender]	   TEXT  NOT NULL,
+    [_Birthday]	   TEXT  NOT NULL,
+    [_Homepage]	   TEXT  NOT NULL,
+    [_Mobile]	   TEXT  NOT NULL,
+    [_Email]	   TEXT  NOT NULL,
+    [_Company]	   TEXT  NOT NULL,
+    [_Department]  TEXT  NOT NULL,
+    [_Title]	   TEXT  NOT NULL,
+    [_Employee]	   TEXT  NOT NULL,
+    [_Degree]	   TEXT  NOT NULL,
+    [_Address]	   TEXT  NOT NULL,
+    [_Memo]	       TEXT  NOT NULL,
     PRIMARY KEY("_Identity")
 );
-)";
-
-    static inline const QString _Select_Table = R"(
-SELECT *
-FROM [People];
 )";
 
     static inline const QString _Initialize_Table = R"(
 INSERT INTO [People]
 ([_Identity], [_Name], [_Avatar], [_Gender], [_Birthday], [_Homepage], [_Mobile], [_Email], [_Company], [_Department], [_Title], [_Employee], [_Degree], [_Address], [_Memo])
 VALUES
-("440882199309051156", "黄志贵", NULL, "男", "1993-09-05", "http://github.com/bss9395", "13611464445", "brilliantstarrysky9395@outlook.com", "Andromeda", "DoLang编译器部", "软件工程师", "20220905", "本科", "中国-广东-湛江", NULL),
-("440882199308051156", "黄志贵", NULL, "男", "1993-08-05", "http://bss9395.me", "13611464445", "bss9395@yeah.net", "BSS9395", "数据库开发部", "软件工程师", "20220805", "本科", "中国-广东-深圳", NULL);
+("440882199309051156", "黄志贵", "", "男", "1993-09-05", "http://github.com/bss9395", "13611464445", "brilliantstarrysky9395@outlook.com", "Andromeda", "DoLang编译器部", "软件工程师", "20220905", "硕士研究生", "中国-广东-湛江", ""),
+("440882199308051156", "黄志贵", "", "男", "1993-08-05", "http://bss9395.me", "13611464445", "bss9395@yeah.net", "BSS9395", "ToDo操作系统部", "软件工程师", "20220805", "大学本科", "中国-广东-深圳", "");
+)";
+
+    static inline const QString _Select_Table = R"(
+SELECT *
+FROM [People];
 )";
 
     static inline const QString _Delete_Talbe = R"(
@@ -65,9 +65,9 @@ public:
         "小学"
     };
     static inline const std::map<QString, QStringList> _Regions = {
-        { "北京", { "北京" }},
-        { "上海", { "上海" }},
-        { "广东", { "广州", "深圳" }},
+        { "北京", { "北京" } },
+        { "上海", { "上海" } },
+        { "广东", { "广州", "深圳" } },
     };
 
     typedef Sequence<iptr, const char *, const char *> Type;

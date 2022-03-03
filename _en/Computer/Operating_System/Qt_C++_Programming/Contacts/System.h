@@ -275,7 +275,7 @@ public:
 
 public:
     explicit Sequence() {
-        System::Logging(__FUNCTION__);
+        // System::Logging(__FUNCTION__);
 
         _refer = new iptr(0);
         (*_refer) += 1;
@@ -283,7 +283,7 @@ public:
 
     // note: [const TType &] will transform the actual type, [TType &&] will not parse the actual type.
     explicit Sequence(const TType& type, const TTypes &...types) {
-        System::Logging(__FUNCTION__);
+        // System::Logging(__FUNCTION__);
 
         // std::cout << "_Argc = " << _Argc << ", _Size = " << _Size << std::endl;
         // std::cout << "typeid(TType).name() = " << typeid(TType).name() << std::endl;
@@ -302,7 +302,7 @@ public:
     }
 
     Sequence(const Sequence& sequence) {
-        System::Logging(__FUNCTION__);
+        // System::Logging(__FUNCTION__);
 
         _refer = sequence._refer;
         _objects = sequence._objects;
@@ -310,7 +310,7 @@ public:
     }
 
     Sequence& operator=(const Sequence& sequence) {
-        System::Logging(__FUNCTION__);
+        // System::Logging(__FUNCTION__);
 
         if (this != &sequence) {
             this->~Sequence();
@@ -322,7 +322,7 @@ public:
     }
 
     virtual ~Sequence() {
-        System::Logging(__FUNCTION__);
+        // System::Logging(__FUNCTION__);
 
         (*_refer) -= 1;
         if ((*_refer) <= 0 && _objects != nullptr) {
@@ -334,14 +334,14 @@ public:
 public:
     template<typename TAddress>
     void Construct(char* address, const TAddress& object) {
-        System::Logging(__FUNCTION__);
+        // System::Logging(__FUNCTION__);
 
         new (address) TAddress(object);
     }
 
     template<typename TAddress, const iptr numb>
     void Construct(char* address, const TAddress(&objects)[numb]) {
-        System::Logging(__FUNCTION__);
+        // System::Logging(__FUNCTION__);
 
         for (iptr i = 0; i < numb; i += 1) {
             Construct(address, objects[i]), address += sizeof(TAddress);
@@ -350,7 +350,7 @@ public:
 
     template<const iptr = 0, const iptr = 0>
     void Reverse(char* address) {  // note: do nothing.
-        System::Logging(__FUNCTION__);
+        // System::Logging(__FUNCTION__);
 
         (void)address;
         return;
@@ -358,7 +358,7 @@ public:
 
     template<typename TAddress, typename ...TAddresses>
     void Reverse(char* address) {
-        System::Logging(__FUNCTION__);
+        // System::Logging(__FUNCTION__);
 
         // std::cout << "typeid(TAddress).name()" << typeid(TAddress).name() << std::endl;
         // std::cout << "typeid(TAddress *).name()" << typeid(TAddress *).name() << std::endl;
@@ -369,14 +369,14 @@ public:
 
     template<typename TObject>
     void Destruct(TObject* object) {
-        System::Logging(__FUNCTION__);
+        // System::Logging(__FUNCTION__);
 
         object->~TObject();
     }
 
     template<typename TObject, const iptr numb>
     void Destruct(TObject(*objects)[numb]) {
-        System::Logging(__FUNCTION__);
+        // System::Logging(__FUNCTION__);
 
         // std::cout << "typeid(TObject).name() = " << typeid(TObject).name() << std::endl;
         // std::cout << "typeid(objects).name() = " << typeid(objects).name() << std::endl;
