@@ -29,7 +29,7 @@ public:
     std::vector<QTableWidgetItem *> _updates;
     std::vector<QTableWidgetItem *> _inserts;
     std::vector<QString> _deletes;
-    bool _dirty = false;
+    bool _dirty = true;
     iptr _row = -1;
     iptr _col = -1;
     QByteArray _avatar = QByteArray();
@@ -45,6 +45,7 @@ public:
         _ui->CB_Degree->setCurrentIndex(-1);
         _ui->DE_Birthday->setSpecialValueText("          ");
         _ui->DE_Birthday->setDate(QDate::fromString("0001-01-01", "yyyy-MM-dd"));
+        Enable(false);
 
         ////////////////////////////////
 
@@ -67,7 +68,7 @@ public:
                 return ;
             }
 
-            Populate(true);
+            Populate();
         });
 
         QObject::connect(_ui->A_Insert, &QAction::triggered, [this]() -> void {
@@ -107,8 +108,6 @@ public:
             // System::Logging("_row = %td, _col = %td", _row, _col);
             if(0 <= _row && 0 <= _col) {
                 QTableWidgetItem *item = _ui->TW_People->item(_row, _fields.indexOf("_Identity"));
-                _deletes.push_back(item->text());
-                _ui->TW_People->removeRow(_row);
                 if(1 <= _ui->TW_People->rowCount()) {
                     _ui->TW_People->setCurrentCell(_row, _col);
                 }
@@ -116,13 +115,20 @@ public:
                 for(iptr i = 0, numb = _inserts.size(); i < numb; i += 1) {
                     if(_inserts[i] == item) {
                         _inserts[i] = nullptr;
+                        _ui->TW_People->removeRow(_row);
+                        return ;
                     }
                 }
                 for(iptr i = 0, numb = _updates.size(); i < numb; i += 1) {
                     if(_updates[i] == item) {
                         _updates[i] = nullptr;
+                        _deletes.push_back(item->data(Qt::UserRole).toString());
+                        _ui->TW_People->removeRow(_row);
+                        return ;
                     }
                 }
+                _deletes.push_back(item->text());
+                _ui->TW_People->removeRow(_row);
             }
         });
 
@@ -210,7 +216,7 @@ where  [_Identity]=:Original;
                 _query.bindValue(":Employee", _ui->TW_People->item(row, _fields.indexOf("_Employee"))->text());
                 _query.bindValue(":Degree", _ui->TW_People->item(row, _fields.indexOf("_Degree"))->text());
                 _query.bindValue(":Address", _ui->TW_People->item(row, _fields.indexOf("_Address"))->text());
-                _query.bindValue(":_Memo", _ui->TW_People->item(row, _fields.indexOf("_Memo"))->text());
+                _query.bindValue(":Memo", _ui->TW_People->item(row, _fields.indexOf("_Memo"))->text());
                 _query.bindValue(":Avatar", _ui->TW_People->item(row, _fields.indexOf("_Avatar"))->data(Qt::UserRole));
                 _query.bindValue(":Original", _ui->TW_People->item(row, _fields.indexOf("_Identity"))->data(Qt::UserRole).toString());
                 _query.exec();
@@ -230,7 +236,9 @@ where  [_Identity]=:Original;
                     continue;
                 }
                 QTableWidgetItem *item = _ui->TW_People->item(_updates[i]->row(), _fields.indexOf("_Identity"));
-                item->setData(Qt::UserRole, QVariant::String);  // note: set NULL.
+                item->setData(Qt::UserRole, QVariant::String);                                           // note: set NULL.
+                item=_ui->TW_People->item(_updates[i]->row(), _fields.indexOf("_Avatar"));
+                item->setText((item->data(Qt::UserRole).toByteArray().length() <= 0) ? "VOID" : "BLOB"); // note: reset UI.
             }
             _deletes.clear();
             _inserts.clear();
@@ -241,7 +249,7 @@ where  [_Identity]=:Original;
         QObject::connect(_ui->A_Revert, &QAction::triggered, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_Revert, &QAction::triggered, [this]() -> void {");
 
-            Populate(_dirty == true);
+            Populate();
         });
 
         ////////////////////////////////
@@ -268,12 +276,13 @@ where  [_Identity]=:Original;
             System::Logging("QObject::connect(model, &QItemSelectionModel::currentRowChanged, [this]() -> void {");
             Block_Signals(true);
 
+            (void) current;
             (void) previous;
             if(current.isValid() == false) {
                 return ;
             }
-            _row = current.row();     // note: set row number to class member variable.
-            _col = current.column();
+            _row = _ui->TW_People->currentRow();
+            _col = _ui->TW_People->currentColumn();
 
             static const QString query_avatar = R"(
 select [_Avatar]
@@ -281,11 +290,10 @@ from   [People]
 where  [_Identity]=:Identity;
 )";
 
+            QTableWidgetItem *identity = nullptr;
             QTableWidgetItem *item = nullptr;
-            item = _ui->TW_People->item(_row, _fields.indexOf("_Identity"));
+            identity = item = _ui->TW_People->item(_row, _fields.indexOf("_Identity"));
             _ui->LE_Identity->setText(item->text());
-            _query.prepare(query_avatar);
-            _query.bindValue(":Identity", item->text());
             item = _ui->TW_People->item(_row, _fields.indexOf("_Name"));
             _ui->LE_Name->setText(item->text());
             item = _ui->TW_People->item(_row, _fields.indexOf("_Gender"));
@@ -307,7 +315,7 @@ where  [_Identity]=:Identity;
             item = _ui->TW_People->item(_row, _fields.indexOf("_Employee"));
             _ui->LE_Employee->setText(item->text());
             item = _ui->TW_People->item(_row, _fields.indexOf("_Degree"));
-            (item->text().size() <= 0) ? _ui->CB_Gender->setCurrentIndex(-1) : _ui->CB_Gender->setCurrentText(item->text());
+            (item->text().size() <= 0) ? _ui->CB_Degree->setCurrentIndex(-1) : _ui->CB_Degree->setCurrentText(item->text());
             item = _ui->TW_People->item(_row, _fields.indexOf("_Address"));
             _ui->LE_Address->setText(item->text());
             item = _ui->TW_People->item(_row, _fields.indexOf("_Memo"));
@@ -315,27 +323,31 @@ where  [_Identity]=:Identity;
 
             ////////////////////////
 
-            if(System::Checking(_query.exec() == false, System::_Error, NULL)) {
-                _caption = "查询数据表失败";
-                _label = _query.lastError().text();
-                QMessageBox::warning(this, _caption, _label, QMessageBox::Ok, QMessageBox::NoButton);
-                Exception::Excepting(true, System::_Error, _label, QString(""));
-                return ;
+            item = _ui->TW_People->item(_row, _fields.indexOf("_Avatar"));
+            if(item->text() == "Update") {    // note: retrive avatar from cache.
+                Set_Avatar(item->data(Qt::UserRole).toByteArray());
+            } else {                          // note: retrive avatar from database.
+                _query.prepare(query_avatar);
+                _query.bindValue(":Identity", identity->text());
+                if(System::Checking(_query.exec() == false, System::_Error, NULL)) {
+                    _caption = "查询数据表失败";
+                    _label = _query.lastError().text();
+                    QMessageBox::warning(this, _caption, _label, QMessageBox::Ok, QMessageBox::NoButton);
+                    Exception::Excepting(true, System::_Error, _label, QString(""));
+                    return ;
+                }
+                _query.first();               // note: move record cursor to the first one.
+                _avatar = _query.record().value("_Avatar").toByteArray();
+                Set_Avatar(_avatar);
             }
-            _query.first();  // note: move record cursor to the first one.
-            _avatar = _query.record().value("_Avatar").toByteArray();
-            QPixmap avatar = QPixmap();
-            avatar.loadFromData(_avatar);
-            _ui->TB_Avatar->setIcon(avatar);
-
             Block_Signals(false);
         });
 
         ////////////////////////////////
 
-        _ui->TB_Avatar->setDefaultAction(_ui->A_Update_Avatar);
         _ui->TB_Avatar->addAction(_ui->A_Update_Avatar);
         _ui->TB_Avatar->addAction(_ui->A_Clear_Avatar);
+        _ui->TB_Avatar->setDefaultAction(_ui->A_Update_Avatar);
         QObject::connect(_ui->A_Update_Avatar, &QAction::triggered, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_Update_Avatar, &QAction::triggered, [this]() -> void {");
 
@@ -354,22 +366,20 @@ where  [_Identity]=:Identity;
                 return ;
             }
             _avatar = file.readAll();
-            QPixmap avatar = QPixmap();
-            avatar.loadFromData(_avatar);
-            _ui->TB_Avatar->setIcon(avatar);
+            Set_Avatar(_avatar);
             QTableWidgetItem *item = _ui->TW_People->item(_row, _fields.indexOf("_Avatar"));
-            item->setText("BLOB");
             item->setData(Qt::UserRole, _avatar);
+            item->setText("Update");
         });
 
         QObject::connect(_ui->A_Clear_Avatar, &QAction::triggered, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_Clear_Avatar, &QAction::triggered, [this]() -> void {");
 
             _avatar.clear();
-            _ui->TB_Avatar->setIcon(QIcon());
+            Set_Avatar(_avatar);
             QTableWidgetItem *item = _ui->TW_People->item(_row, _fields.indexOf("_Avatar"));
-            item->setText("VOID");
             item->setData(Qt::UserRole, _avatar);
+            item->setText("Update");
         });
 
         QObject::connect(_ui->LE_Identity, &QLineEdit::editingFinished, [this]() -> void {
@@ -458,6 +468,18 @@ where  [_Identity]=:Identity;
     }
 
 public:
+    void Set_Avatar(const QByteArray &avatar) {
+        System::Logging(__FUNCTION__);
+
+        if(0 < avatar.size()) {
+            QPixmap pixmap = QPixmap();
+            pixmap.loadFromData(avatar);
+            _ui->TB_Avatar->setIcon(pixmap);
+        } else {
+            _ui->TB_Avatar->setDefaultAction(_ui->A_Update_Avatar);  // note: if avatar is VOID, reset UI.
+        }
+    }
+
     void Update_Identity() {
         System::Logging(__FUNCTION__);
 
@@ -469,7 +491,7 @@ public:
         }
     }
 
-    void Populate(bool select) {
+    void Populate() {
         System::Logging(__FUNCTION__);
         Block_Signals(true);
 
@@ -481,7 +503,7 @@ select [_Identity], [_Name], [_Gender], [_Birthday], [_Homepage],
 from   [People];
 )";
 
-        if(select == true) {
+        if(_dirty == true) {
             _query.prepare(query_select);
             if(System::Checking(_query.exec() == false, System::_Error, NULL)) {
                 _caption = "查询数据表失败";
@@ -515,11 +537,7 @@ from   [People];
             for(iptr col = 0, cols = record.count(); col < cols; col += 1) {
                 QTableWidgetItem *item = new QTableWidgetItem();
                 QVariant variant = record.value(col);
-                if(variant.isNull() == true) {
-                    item->setText("NULL");
-                } else {
-                    item->setText(variant.toString());
-                }
+                item->setText(variant.toString());
                 item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
                 _ui->TW_People->setItem(row, col, item);
             }
@@ -532,6 +550,7 @@ from   [People];
         Block_Signals(false);
         _ui->TW_People->selectRow(0);
         _dirty = false;
+        Enable(true);
     }
 
     void Block_Signals(bool block) {
@@ -554,6 +573,18 @@ from   [People];
         _ui->CB_Degree->blockSignals(block);
         _ui->LE_Address->blockSignals(block);
         _ui->PLE_Memo->blockSignals(block);
+    }
+
+    void Enable(bool enable) {
+        System::Logging(__FUNCTION__);
+
+        _ui->A_Insert->setEnabled(enable);
+        _ui->A_Delete->setEnabled(enable);
+        _ui->A_Submit->setEnabled(enable);
+        _ui->A_Revert->setEnabled(enable);
+        _ui->A_Update_Avatar->setEnabled(enable);
+        _ui->A_Clear_Avatar->setEnabled(enable);
+        _ui->W_Information->setEnabled(enable);
     }
 };
 

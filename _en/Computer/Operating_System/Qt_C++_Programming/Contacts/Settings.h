@@ -9,21 +9,21 @@ class Settings {
 public:
     static inline const QString _Create_Table = R"(
 CREATE TABLE [People] (
-    [_Identity]	   TEXT  NOT NULL  UNIQUE,
-    [_Name]	       TEXT  NOT NULL,
-    [_Avatar]	   BLOB  NOT NULL,
-    [_Gender]	   TEXT  NOT NULL,
-    [_Birthday]	   TEXT  NOT NULL,
-    [_Homepage]	   TEXT  NOT NULL,
-    [_Mobile]	   TEXT  NOT NULL,
-    [_Email]	   TEXT  NOT NULL,
-    [_Company]	   TEXT  NOT NULL,
+    [_Identity]    TEXT  NOT NULL  UNIQUE,
+    [_Name]        TEXT  NOT NULL,
+    [_Avatar]      BLOB  NOT NULL,
+    [_Gender]      TEXT  NOT NULL,
+    [_Birthday]    TEXT  NOT NULL,
+    [_Homepage]    TEXT  NOT NULL,
+    [_Mobile]      TEXT  NOT NULL,
+    [_Email]       TEXT  NOT NULL,
+    [_Company]     TEXT  NOT NULL,
     [_Department]  TEXT  NOT NULL,
-    [_Title]	   TEXT  NOT NULL,
-    [_Employee]	   TEXT  NOT NULL,
-    [_Degree]	   TEXT  NOT NULL,
-    [_Address]	   TEXT  NOT NULL,
-    [_Memo]	       TEXT  NOT NULL,
+    [_Title]       TEXT  NOT NULL,
+    [_Employee]    TEXT  NOT NULL  UNIQUE,
+    [_Degree]      TEXT  NOT NULL,
+    [_Address]     TEXT  NOT NULL,
+    [_Memo]        TEXT  NOT NULL,
     PRIMARY KEY("_Identity")
 );
 )";
@@ -34,15 +34,6 @@ INSERT INTO [People]
 VALUES
 ("440882199309051156", "黄志贵", "", "男", "1993-09-05", "http://github.com/bss9395", "13611464445", "brilliantstarrysky9395@outlook.com", "Andromeda", "DoLang编译器部", "软件工程师", "20220905", "硕士研究生", "中国-广东-湛江", ""),
 ("440882199308051156", "黄志贵", "", "男", "1993-08-05", "http://bss9395.me", "13611464445", "bss9395@yeah.net", "BSS9395", "ToDo操作系统部", "软件工程师", "20220805", "大学本科", "中国-广东-深圳", "");
-)";
-
-    static inline const QString _Select_Table = R"(
-SELECT *
-FROM [People];
-)";
-
-    static inline const QString _Delete_Talbe = R"(
-DELETE FROM [People];
 )";
 
 public:

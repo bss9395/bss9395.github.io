@@ -70,12 +70,11 @@
     <bool>false</bool>
    </attribute>
    <addaction name="A_Load"/>
+   <addaction name="separator"/>
    <addaction name="A_Insert"/>
    <addaction name="A_Delete"/>
    <addaction name="A_Submit"/>
    <addaction name="A_Revert"/>
-   <addaction name="A_Update_Avatar"/>
-   <addaction name="A_Clear_Avatar"/>
   </widget>
   <widget class="QDockWidget" name="DW_Dock">
    <property name="sizePolicy">
@@ -187,10 +186,6 @@
           <property name="text">
            <string/>
           </property>
-          <property name="icon">
-           <iconset resource="images.qrc">
-            <normaloff>:/images/M31.svg</normaloff>:/images/M31.svg</iconset>
-          </property>
           <property name="iconSize">
            <size>
             <width>100</width>
@@ -199,6 +194,9 @@
           </property>
           <property name="popupMode">
            <enum>QToolButton::InstantPopup</enum>
+          </property>
+          <property name="arrowType">
+           <enum>Qt::NoArrow</enum>
           </property>
          </widget>
         </item>
