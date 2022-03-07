@@ -1,6 +1,6 @@
 /* System.h
 Author: BSS9395
-Update: 2022-02-26T00:27:00+08@China-Guangdong-Zhanjiang+08
+Update: 2022-03-07T18:00:00+08@China-Guangdong-Zhanjiang+08
 Design: Fortune
 Encode: UTF-8
 */
@@ -20,6 +20,27 @@ static inline const Bool _None = "None";
 static inline const Bool _Posi = "Posi";
 static inline const Bool _Nega = "Nega";
 
+Q_DECLARE_METATYPE(iptr);
+Q_DECLARE_METATYPE(uptr);
+Q_DECLARE_METATYPE(wide);
+Q_DECLARE_METATYPE(Bool);
+
+class Registration {
+public:
+    static iptr Register() {
+        iptr ret = 0;
+
+        qRegisterMetaType<iptr>("iptr");
+        qRegisterMetaType<uptr>("uptr");
+        qRegisterMetaType<wide>("wide");
+        qRegisterMetaType<Bool>("Bool");
+        ret += 4;
+
+        return ret;
+    }
+    static inline iptr _register = Register();
+};
+
 ////////////////////////////////////////////////////////////////////////////////
 
 // note: the difference of two addresses can exceed the range of iptr type, although it's impossible.
@@ -31,16 +52,15 @@ static inline const Bool _Nega = "Nega";
 ////////////////////////////////////////////////////////////////////////////////
 
 struct System {
-    static inline iptr _Success = 0;
-    static inline iptr _Failure = 1;
-    static inline iptr _Deprecated = 2;
+    static inline iptr _Success = iptr(0);
+    static inline iptr _Failure = iptr(1);
+    static inline iptr _Deprecated = iptr(2);
 
     typedef const char* Level;
-    static inline const Level _Info = "Info";
-    static inline const Level _Note = "Note";
-    static inline const Level _Warn = "Warn";
-    static inline const Level _Error = "Error";
-    static inline const Level _Fatal = "Fatal";
+    static inline const Level _Note = Level("Note");
+    static inline const Level _Warn = Level("Warn");
+    static inline const Level _Error = Level("Error");
+    static inline const Level _Fatal = Level("Fatal");
 
     ////////////////////////////////////
 
@@ -583,7 +603,7 @@ public:
 
     [[deprecated("obsolete function what(), use Report() instead.")]]
     virtual const char* what() const noexcept override final {
-        System::Check(true, System::_Info, __FILE__, __LINE__, __FUNCTION__, "obsolete function what()", " use Report() instead.");
+        System::Check(true, System::_Note, __FILE__, __LINE__, __FUNCTION__, "obsolete function what()", " use Report() instead.");
         exit((int)System::_Deprecated);
     }
 
@@ -680,6 +700,38 @@ public:
         _datum->_report += _datum->_record, _datum->_report += " : ";
         _datum->_report += _datum->_solution, _datum->_report += ";";
         return _datum->_report;
+    }
+};
+
+////////////////////////////////////////////////////////////////////////////////
+
+class Thread : public QThread {
+    Q_OBJECT
+
+public:
+    typedef const char *State;
+    static inline State _Created = State("Created");
+    static inline State _Running = State("Running");
+    static inline State _Blocked = State("Blocked");
+    static inline State _Stopped = State("Stopped");
+
+public:
+    State _state = _Created;
+
+public:
+    explicit Thread() {
+        System::Logging(__FUNCTION__);
+    }
+
+    virtual ~Thread() override {
+        System::Logging(__FUNCTION__);
+    }
+
+public:
+    void Transfer(const State &state) {
+        System::Logging(__FUNCTION__);
+
+        _state = state;
     }
 };
 

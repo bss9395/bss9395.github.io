@@ -1,7 +1,7 @@
 /* Common.h
 Author: BSS9395
 Update: 2022-02-12T02:12:00+08@China-Guangdong-Shenzhen+08
-Design: Contacts
+Design: Fortune
 Encode: UTF-8
 System: Qt 5.14.2
 */

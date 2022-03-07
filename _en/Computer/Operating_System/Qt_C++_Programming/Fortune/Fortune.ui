@@ -14,81 +14,89 @@
    <string>Fortune</string>
   </property>
   <widget class="QWidget" name="Q_Central">
-   <widget class="QGroupBox" name="GB_Dice">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>30</y>
-      <width>231</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="title">
-     <string/>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <property name="leftMargin">
-      <number>0</number>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
-     <item>
-      <widget class="QToolButton" name="TB_Dice">
-       <property name="minimumSize">
-        <size>
-         <width>100</width>
-         <height>100</height>
-        </size>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QGroupBox" name="GB_Dice">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
        </property>
-       <property name="maximumSize">
-        <size>
-         <width>100</width>
-         <height>100</height>
-        </size>
+       <property name="leftMargin">
+        <number>0</number>
        </property>
-       <property name="text">
-        <string/>
+       <property name="topMargin">
+        <number>0</number>
        </property>
-       <property name="icon">
-        <iconset resource="images.qrc">
-         <normaloff>:/images/dice/dice_0.png</normaloff>:/images/dice/dice_0.png</iconset>
+       <property name="rightMargin">
+        <number>0</number>
        </property>
-       <property name="iconSize">
-        <size>
-         <width>100</width>
-         <height>100</height>
-        </size>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QPlainTextEdit" name="PTE_Logging">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>270</y>
-      <width>421</width>
-      <height>107</height>
-     </rect>
-    </property>
-   </widget>
+       <item>
+        <widget class="QToolButton" name="TB_Dice">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="images.qrc">
+           <normaloff>:/images/dice/dice_0.png</normaloff>:/images/dice/dice_0.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>100</width>
+           <height>100</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPlainTextEdit" name="PTE_Logging">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="MB_Menu">
    <property name="geometry">
@@ -120,35 +128,44 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="A_Start"/>
-   <addaction name="A_Pause"/>
-   <addaction name="A_Stop"/>
+   <addaction name="A_Running"/>
+   <addaction name="A_Blocked"/>
+   <addaction name="A_Stopped"/>
    <addaction name="A_Clear"/>
   </widget>
-  <action name="A_Start">
+  <action name="A_Running">
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/images/icons/play_circle.png</normaloff>:/images/icons/play_circle.png</iconset>
    </property>
    <property name="text">
-    <string>启动线程</string>
+    <string>运行线程</string>
+   </property>
+   <property name="toolTip">
+    <string>运行线程</string>
    </property>
   </action>
-  <action name="A_Pause">
+  <action name="A_Blocked">
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/images/icons/pause_circle.png</normaloff>:/images/icons/pause_circle.png</iconset>
    </property>
    <property name="text">
-    <string>暂停线程</string>
+    <string>阻塞线程</string>
+   </property>
+   <property name="toolTip">
+    <string>阻塞线程</string>
    </property>
   </action>
-  <action name="A_Stop">
+  <action name="A_Stopped">
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/images/icons/stop_circle.png</normaloff>:/images/icons/stop_circle.png</iconset>
    </property>
    <property name="text">
+    <string>终止线程</string>
+   </property>
+   <property name="toolTip">
     <string>终止线程</string>
    </property>
   </action>
@@ -158,7 +175,10 @@
      <normaloff>:/images/icons/clear.png</normaloff>:/images/icons/clear.png</iconset>
    </property>
    <property name="text">
-    <string>清空日志</string>
+    <string>清空文本</string>
+   </property>
+   <property name="toolTip">
+    <string>清空文本</string>
    </property>
   </action>
  </widget>
