@@ -18,7 +18,7 @@ class Dice : public Thread {
     Q_OBJECT
 
 public:
-    iptr _seed = 0;
+    uptr _seed = 0;  // note: unsigned integer for cyclic variable.
     iptr _dice = 0;
 
 public:
@@ -27,7 +27,6 @@ public:
 
         qsrand(QTime::currentTime().msec());
         while(_state != _Stopped) {
-
             if(_state == _Running) {
                 _dice = (qrand() % 6) + 1;
                 Yield(_seed, _dice);
@@ -39,7 +38,7 @@ public:
     }
 
 signals:
-    void Yield(iptr seed, iptr dice);
+    void Yield(uptr seed, iptr dice);
 };
 
 class Fortune : public QMainWindow {
@@ -80,10 +79,10 @@ public:
             _dice.Transfer(Dice::_Running);
         });
 
-        QObject::connect(_ui->A_Blocked, &QAction::triggered, this, [this]() -> void {
+        QObject::connect(_ui->A_Pending, &QAction::triggered, this, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_Blocked, &QAction::triggered, this, [this]() -> void {");
 
-            _dice.Transfer(Dice::_Blocked);
+            _dice.Transfer(Dice::_Pending);
         });
 
         QObject::connect(_ui->A_Stopped, &QAction::triggered, this, [this]() -> void {
@@ -93,8 +92,8 @@ public:
             _dice.wait();
         });
 
-        QObject::connect(&_dice, &Dice::Yield, this, [this](iptr seed, iptr dice) -> void {
-            // System::Logging("QObject::connect(&_dice, &Dice::Yield, this, [this](iptr seed, iptr dice) -> void {");
+        QObject::connect(&_dice, &Dice::Yield, this, [this](uptr seed, iptr dice) -> void {
+            // System::Logging("QObject::connect(&_dice, &Dice::Yield, this, [this](uptr seed, iptr dice) -> void {");
 
             _ui->PTE_Logging->appendPlainText(QString("第%1次掷骰子点数为%2").arg(seed).arg(dice));
 
@@ -107,7 +106,7 @@ public:
     virtual ~Fortune() override {
         System::Logging(__FUNCTION__);
 
-        if(_dice.isRunning()) {
+        if(_dice.isRunning() == true) {
             _dice.Transfer(Dice::_Stopped);
             _dice.wait();
         }

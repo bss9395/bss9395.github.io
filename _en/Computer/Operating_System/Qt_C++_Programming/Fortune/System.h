@@ -712,7 +712,7 @@ public:
     typedef const char *State;
     static inline State _Created = State("Created");
     static inline State _Running = State("Running");
-    static inline State _Blocked = State("Blocked");
+    static inline State _Pending = State("Pending");
     static inline State _Stopped = State("Stopped");
 
 public:

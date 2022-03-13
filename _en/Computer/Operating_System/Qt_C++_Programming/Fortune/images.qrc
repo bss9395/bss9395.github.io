@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>images/dice/dice_0.png</file>
-        <file>images/dice/dice_0.svg</file>
         <file>images/dice/dice_1.png</file>
         <file>images/dice/dice_2.png</file>
         <file>images/dice/dice_3.png</file>

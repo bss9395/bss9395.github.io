@@ -129,7 +129,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="A_Running"/>
-   <addaction name="A_Blocked"/>
+   <addaction name="A_Pending"/>
    <addaction name="A_Stopped"/>
    <addaction name="A_Clear"/>
   </widget>
@@ -145,16 +145,16 @@
     <string>运行线程</string>
    </property>
   </action>
-  <action name="A_Blocked">
+  <action name="A_Pending">
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/images/icons/pause_circle.png</normaloff>:/images/icons/pause_circle.png</iconset>
    </property>
    <property name="text">
-    <string>阻塞线程</string>
+    <string>挂起线程</string>
    </property>
    <property name="toolTip">
-    <string>阻塞线程</string>
+    <string>挂起线程</string>
    </property>
   </action>
   <action name="A_Stopped">
