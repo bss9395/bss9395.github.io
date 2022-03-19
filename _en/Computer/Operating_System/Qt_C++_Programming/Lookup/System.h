@@ -1,7 +1,7 @@
 /* System.h
 Author: BSS9395
 Update: 2022-03-07T18:00:00+08@China-Guangdong-Zhanjiang+08
-Design: Fortune
+Design: Lookup
 Encode: UTF-8
 */
 
@@ -710,7 +710,7 @@ public:
     typedef const char *State;
     static inline State _Created = State("Created");
     static inline State _Running = State("Running");
-    static inline State _Pending = State("Pending");
+    static inline State _Blocked = State("Blocked");
     static inline State _Stopped = State("Stopped");
 
 public:
@@ -726,7 +726,7 @@ public:
     }
 
 public:
-    virtual void Transfer(const State &state) {
+    void Transfer(const State &state) {
         System::Logging(__FUNCTION__);
 
         _state = state;

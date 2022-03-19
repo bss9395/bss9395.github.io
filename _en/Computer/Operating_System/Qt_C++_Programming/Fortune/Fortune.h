@@ -26,15 +26,16 @@ public:
         System::Logging(__FUNCTION__);
 
         qsrand(QTime::currentTime().msec());
-        while(_state != _Stopped) {
-            if(_state == _Running) {
+        while(_state != Thread::_Stopped) {
+            if(_state == Thread::_Running) {
                 _dice = (qrand() % 6) + 1;
                 Yield(_seed, _dice);
                 _seed += 1;
             }
             msleep(500);
         }
-        this->quit();   // note: unkown issue with this->terminate();
+        this->quit();          // note: use this->quit() inside the thread body.
+        // this->terminate();  // note: use terminate() outside the thread body.
     }
 
 signals:
@@ -75,21 +76,19 @@ public:
         QObject::connect(_ui->A_Running, &QAction::triggered, this, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_Running, &QAction::triggered, this, [this]() -> void {");
 
-            _dice.start();
-            _dice.Transfer(Dice::_Running);
+            Running();
         });
 
         QObject::connect(_ui->A_Pending, &QAction::triggered, this, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_Blocked, &QAction::triggered, this, [this]() -> void {");
 
-            _dice.Transfer(Dice::_Pending);
+            Pending();
         });
 
         QObject::connect(_ui->A_Stopped, &QAction::triggered, this, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_Stopped, &QAction::triggered, this, [this]() -> void {");
 
-            _dice.Transfer(Dice::_Stopped);
-            _dice.wait();
+            Stopped();
         });
 
         QObject::connect(&_dice, &Dice::Yield, this, [this](uptr seed, iptr dice) -> void {
@@ -106,10 +105,7 @@ public:
     virtual ~Fortune() override {
         System::Logging(__FUNCTION__);
 
-        if(_dice.isRunning() == true) {
-            _dice.Transfer(Dice::_Stopped);
-            _dice.wait();
-        }
+        Stopped();
         delete _ui;
     }
 
@@ -118,14 +114,37 @@ public:
         // System::Logging(__FUNCTION__);
 
         if(event->type() == QEvent::Close) {
-            if(_dice.isRunning() == true) {
-                _dice.Transfer(Dice::_Stopped);
-                _dice.wait();
-            }
+            Stopped();
             event->accept();
             return true;
         }
         return QWidget::event(event);
+    }
+
+public:
+    void Running() {
+        System::Logging(__FUNCTION__);
+
+        if(_dice.isRunning() == false) {
+            _dice.start();
+        }
+        _dice.Transfer(Thread::_Running);
+    }
+
+    void Pending() {
+        System::Logging(__FUNCTION__);
+
+        _dice.Transfer(Thread::_Pending);
+    }
+
+    void Stopped() {
+        System::Logging(__FUNCTION__);
+
+        _dice.Transfer(Thread::_Stopped);
+        if(_dice.isRunning() == true) {
+            _dice.quit();
+            _dice.wait();
+        }
     }
 };
 

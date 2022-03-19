@@ -1,7 +1,7 @@
 /* Common.h
 Author: BSS9395
 Update: 2022-02-12T02:12:00+08@China-Guangdong-Shenzhen+08
-Design: Fortune
+Design: Lookup
 Encode: UTF-8
 System: Qt 5.14.2
 */
@@ -51,7 +51,8 @@ System: Qt 5.14.2
 #include <QtSql/QSqlDatabase>
 #include <QStringListModel>
 #include <QThread>
-#include <QWaitCondition>
+#include <QHostInfo>
+#include <QNetworkInterface>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>
@@ -69,7 +70,7 @@ System: Qt 5.14.2
 #define   Header_h
 
 #include "System.h"
-#include "Fortune.h"
+#include "Lookup.h"
 
 #endif // Header_h
 #endif // Common_h
