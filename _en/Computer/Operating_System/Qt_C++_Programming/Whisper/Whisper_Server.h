@@ -143,7 +143,7 @@ public:
     }
 
 public:
-    void Socket_State(QAbstractSocket::SocketState state) {
+    void Socket_State(const QAbstractSocket::SocketState &state) {
         QString info = "";
         if(state == QAbstractSocket::UnconnectedState) {
             info += "The socket is not connected.";
