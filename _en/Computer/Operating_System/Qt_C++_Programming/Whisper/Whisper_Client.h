@@ -23,7 +23,7 @@ public:
 
 public:
     Ui::Whisper_Client *_ui = nullptr;
-    QTcpSocket _client = QTcpSocket();
+    QTcpSocket _client = QTcpSocket(this);
 
 public:
     explicit Whisper_Client(QWidget *parent = nullptr)
