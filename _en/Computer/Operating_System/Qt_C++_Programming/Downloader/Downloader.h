@@ -35,6 +35,7 @@ public:
         : QMainWindow(parent), _ui(new Ui::Downloader) {
         System::Logging(__FUNCTION__);
         _ui->setupUi(this);
+        Enable(true);
         _state = _Created;
 
         QObject::connect(_ui->PB_Terminate, &QPushButton::clicked, this, [this]() -> void {
@@ -79,7 +80,7 @@ public:
                 QMessageBox::critical(this, title, caption, QMessageBox::Ok, QMessageBox::NoButton);
                 return ;
             }
-            _ui->PB_Download->setEnabled(false);
+            Enable(false);
 
             _reply = _manager.get(QNetworkRequest(uri));
             QObject::connect(_reply, &QNetworkReply::downloadProgress, this, [this](qint64 received, qint64 total) -> void {
@@ -109,7 +110,7 @@ public:
                     if(_ui->CB_Trigger->isChecked() == true) {
                         QDesktopServices::openUrl(QUrl::fromLocalFile(info.absoluteFilePath()));
                     }
-                    _ui->PB_Download->setEnabled(true);
+                    Enable(true);
                 }
             });
 
@@ -120,6 +121,14 @@ public:
     virtual ~Downloader() override {
         System::Logging(__FUNCTION__);
         delete _ui;
+    }
+
+public:
+    void Enable(bool enabled) {
+        System::Logging(__FUNCTION__);
+
+        _ui->PB_Download->setEnabled(enabled);
+        _ui->PB_Terminate->setEnabled(!enabled);
     }
 };
 
