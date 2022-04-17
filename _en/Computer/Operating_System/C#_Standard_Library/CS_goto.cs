@@ -1,4 +1,4 @@
-/* _goto.cs
+/* CS_goto.cs
 Author: BSS9395
 Update: 2022-04-14T23:11:00+08@China-Shanghai+08
 Design: C# Keyword: goto
@@ -8,12 +8,12 @@ Encode: UTF-8
 using System;
 using System.Diagnostics;
 
-class _goto {
-    static void Main(string[] args) {
-        Login();
+class CS_goto {
+    public static void Main(string[] args) {
+        _Login();
     }
 
-    static void Login() {
+    public static void _Login() {
         long count = 3;
     Label:
         count -= 1;

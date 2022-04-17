@@ -1,4 +1,4 @@
-/* _Console.cs
+/* CS_Console.cs
 Author: BSS9395
 Update: 2022-04-14T23:11:00+08@China-Shanghai+08
 Design: C# Standard Library: Console
@@ -8,12 +8,12 @@ Encode: UTF-8
 using System;
 using System.Diagnostics;
 
-class _Console {
-    static void Main(string[] args) {
-        Login();
+class CS_Console {
+    public static void Main(string[] args) {
+        _Login();
     }
 
-    static void Login() {
+    public static void _Login() {
         for (long count = 3; true;) {
             count -= 1;
             Console.Write("请输入用户名：");
