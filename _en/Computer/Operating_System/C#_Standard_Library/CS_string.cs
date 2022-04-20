@@ -1,6 +1,6 @@
 /* CS_string.cs
 Author: BSS9395
-Update: 2022-04-17T18:20:00+08@China-Shanghai+08
+Update: 2022-04-20T20:40:00+08@China-Shanghai+08
 Design: C# Keyword: string
 */
 
@@ -12,7 +12,9 @@ class CS_string {
         //_Replace();
         //_SubString();
         //_Insert();
-        _Split();
+        //_Split();
+        //_Format();
+        _Verbatim();
     }
 
     public static void _Reverse() {
@@ -51,4 +53,18 @@ class CS_string {
             Console.WriteLine("{0}", word);
         }
     }
+    public static void _Format() {
+        Console.WriteLine(string.Format("{0:00.00}", 2));   // note: $02.00
+        Console.WriteLine(string.Format("{0:##.##}", 2));   // note: 2
+        Console.WriteLine(string.Format("{0:C}", 2));       // note: ￥2.00, $2.00
+        Console.WriteLine(string.Format("{0:E}", 2.3));     // note: 2.300000E+000
+        Console.WriteLine(string.Format("{0:N}", 250000));  // note: 250,000.00
+        Console.WriteLine(string.Format("{0:X}", 1234));    // note: 4D2
+        Console.WriteLine(string.Format("{0:P}", 0.24583)); // note: 24.58%
+    }
+    public static void _Verbatim() {
+        string verbatim = @"C:\Users\Public\Desktop\";
+        Console.WriteLine("{0}", verbatim);
+    }
+
 }
