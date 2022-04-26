@@ -8,8 +8,9 @@ using System;
 
 class CS_Boxing {
     public static void Main(string[] args) {
-        _Boxing();
-        _UnBoxing();
+        //_Boxing();
+        //_UnBoxing();
+        _Copy();
     }
     public static void _Boxing() {
         double num = 123.456;
@@ -33,6 +34,14 @@ class CS_Boxing {
         } catch (InvalidCastException e) {
             Console.WriteLine("Error: {0}.", e.Message);
         }
+    }
+    public static void _Copy() {
+        int i = 10;
+        object oi = i;
+        Console.WriteLine($"i = {i}, oi = {oi}");
+        i = 12;
+        oi = 15;
+        Console.WriteLine($"i = {i}, oi = {oi}");
     }
 }
 
