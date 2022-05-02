@@ -17,15 +17,17 @@ class CS_Thread {
         }
     }
     public static void Main(string[] args) {
-        // _ThreadStart();
+        _ThreadStart();
         // _ParameterizedThreadStart();
-        _ParameterizedThreadStart_Object();
+        // _ParameterizedThreadStart_Object();
     }
     public static void _ThreadStart() {
         ThreadStart start_even = new ThreadStart(_Print_Even);
         Thread thread_even = new Thread(start_even);
         ThreadStart start_odd = new ThreadStart(_Print_Odd);
         Thread thread_odd = new Thread(start_odd);
+        thread_even.Priority = ThreadPriority.Lowest;  // note: maybe useless.
+        thread_odd.Priority = ThreadPriority.Highest;  // note: maybe useless.
         thread_even.Start();
         thread_odd.Start();
     }
@@ -48,14 +50,23 @@ class CS_Thread {
     }
     public static void _Print_Even() {
         Console.WriteLine("public static void _Print_Even() {");
-        for (int i = 0; i <= 10; i += 2) {
+        for (int i = 0; i <= 50; i += 2) {
+            Thread.Sleep(500);
             Console.WriteLine(i);
+            if (i >= 20) {
+                Thread.CurrentThread.Abort();
+            }
+            Thread.CurrentThread.IsBackground = true;
         }
     }
     public static void _Print_Odd() {
         Console.WriteLine("public static void _Print_Odd() {");
-        for (int i = 1; i <= 10; i += 2) {
+        for (int i = 1; i <= 50; i += 2) {
             Console.WriteLine(i);
+            Thread.Sleep(500);
+            if (i >= 20) {
+                Thread.CurrentThread.Abort();
+            }
         }
     }
     public static void _Print_Even(object max) {
