@@ -1,7 +1,7 @@
 /* Loop_Label.java
 Author: BSS9395
 Update: 2021-10-07T20:57:00+08@China-Guangdong-Shenzhen+08
-Design: Java Loop Label
+Design: Java Language Feature: Loop Label
 */
 
 public class Loop_Label {

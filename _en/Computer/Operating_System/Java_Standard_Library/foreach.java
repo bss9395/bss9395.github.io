@@ -1,7 +1,7 @@
 /* foreach.java
 Author: BSS9395
 Update: 2021-10-10T21:31:00+08@China-Guangdong-Shenzhen+08
-Design: Java foreach Loop
+Design: Java Language Feature: foreach Loop
 */
 
 public class foreach {

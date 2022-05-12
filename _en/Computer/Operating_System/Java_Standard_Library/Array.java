@@ -1,7 +1,7 @@
 /* Array.java
 Author: BSS9395
 Update: 2021-10-13T21:00:00+08@China-Guangdong-Shenzhen+08
-Design: Java Array
+Design: Java Language Feature: Array
 */
 
 public class Array {
