@@ -5,7 +5,8 @@ Design: C# Language Feature: LINQ
 */
 class CS_LINQ {
     public static void Main(String[] args) {
-        _LINQ_Method();
+        _LINQ_Select();
+        // _LINQ_Where();
         // _LINQ();
         // _LINQ_from();
         // _LINQ_join();
@@ -17,15 +18,27 @@ class CS_LINQ {
         // _LINQ_into();
     }
     ////////////////////////////////////////////////////////////////////////////
-    public static void _LINQ_Method() {
+    public static void _LINQ_Select() {
+        String[] fruits = {
+            "apple", "banana", "mango", "orange", "passionfruit", "grape"
+        };
+
+        var query = fruits.AsQueryable().Select((fruit, index) => new { index, str = fruit.Substring(0, index) });
+
+        foreach (var obj in query) {
+            Console.WriteLine("{0}", obj);
+        }
+    }
+    ////////////////////////////////////////////////////////////////////////////
+    public static void _LINQ_Where() {
         int[] numbers = {
             2, 5, 28, 31, 17, 16, 42
         };
 
-        var method = numbers.Where(num => num < 10);
+        var query = numbers.Where(num => num < 10);
 
-        foreach (int num in method) {
-            Console.WriteLine($"{num} ");
+        foreach (int number in query) {
+            Console.WriteLine($"{number} ");
         }
     }
     ////////////////////////////////////////////////////////////////////////////

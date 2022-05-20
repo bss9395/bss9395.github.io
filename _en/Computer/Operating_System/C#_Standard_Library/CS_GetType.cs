@@ -1,13 +1,13 @@
-/* CS_MethodBase.cs
+/* CS_GetType.cs
 Author: BSS9395
 Update: 2022-05-20T12:10:00+08@China-Shanghai+08
-Design: C# Standard Library: MethodBase 
+Design: C# Standard Library: GetType 
 */
 
 using System;
 using System.Reflection;
 
-class CS_MethodBase {
+class CS_GetType {
     class Super {
         public int _super = 0;
     }
@@ -53,7 +53,7 @@ class CS_MethodBase {
         Console.WriteLine();
     }
     public static void _nameof() {
-        Console.WriteLine($"{nameof(CS_MethodBase)}.{nameof(_nameof)}, ");
+        Console.WriteLine($"{nameof(CS_GetType)}.{nameof(_nameof)}, ");
     }
     public static void _MethodBase() {
         Console.WriteLine($"{MethodBase.GetCurrentMethod()}");
