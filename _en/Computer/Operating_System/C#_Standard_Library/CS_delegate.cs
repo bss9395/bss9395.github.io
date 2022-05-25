@@ -11,12 +11,14 @@ class CS_delegate {
     class Datum : IComparable<Datum> {
         public string _name { get; set; }
         public double _price { get; set; }
+
         public static void _Static() {
             Console.WriteLine("{0}.{1}", typeof(Datum).FullName, MethodBase.GetCurrentMethod().Name);
         }
         public void _NonStatic() {
             Console.WriteLine("{0}.{1}", typeof(Datum).FullName, MethodBase.GetCurrentMethod().Name);
         }
+
         public Datum() {
 
         }
@@ -24,31 +26,54 @@ class CS_delegate {
             _name = name;
             _price = price;
         }
+
         public override string ToString() {
             return string.Format("[{0}:{1}]", _name, _price);
         }
         public int CompareTo(Datum other) {
             return (int)(_price - other._price);
         }
+
         public static void _Sort(Datum[] data) {
             Array.Sort(data);
         }
-        public static void _Buy_Meat() {
+
+        public static String _Buy_Meat() {
             Console.WriteLine("{0}.{1}", typeof(Datum).FullName, MethodBase.GetCurrentMethod().Name);
+            return "Meat";
         }
-        public static void _Buy_Vegetable() {
+
+        public static String _Buy_Vegetable() {
             Console.WriteLine("{0}.{1}", typeof(Datum).FullName, MethodBase.GetCurrentMethod().Name);
+            return "Vegetable";
         }
-        public static void _Buy_Fruit() {
+
+        public static String _Buy_Fruit() {
             Console.WriteLine("{0}.{1}", typeof(Datum).FullName, MethodBase.GetCurrentMethod().Name);
+            return "Fruit";
+        }
+
+        public static void _Buy_Meat(ref String food) {
+            food += "[meat]";
+        }
+
+        public static void _Buy_Vegetable(ref String food) {
+            food += "[vegetable]";
+        }
+
+        public static void _Buy_Fruit(ref String food) {
+            food += "[fruit]";
         }
     }
+
     public static void Main(string[] args) {
         // _Delegate();
         // _Delegate_Param();
         // _Delegate_Multi();
+        // _Delegate_Multi_ref();
         _Delegate_Anonymous();
     }
+
     delegate void Dele_Void();  // note: resembles std::Functional<> in C++.
     public static void _Delegate_Void() {
         Dele_Void dele_static = new Dele_Void(Datum._Static);
@@ -70,24 +95,39 @@ class CS_delegate {
             Console.WriteLine("{0}", datum);
         }
     }
-    delegate void Dele_Multi();
+
+    delegate String Dele_Multi();
     public static void _Delegate_Multi() {
         Dele_Multi dele_multi = new Dele_Multi(Datum._Buy_Meat);
         dele_multi += Datum._Buy_Vegetable;
         dele_multi += Datum._Buy_Fruit;
-        dele_multi();
+        String retu = dele_multi();
+        Console.WriteLine($"retu = {retu}");
         Console.WriteLine("========================================");
         dele_multi -= Datum._Buy_Vegetable;
-        dele_multi();
+        retu = dele_multi();
+        Console.WriteLine($"retu = {retu}");
     }
+
+    delegate void Dele_Multi_ref(ref String food);
+    public static void _Delegate_Multi_ref() {
+        Dele_Multi_ref dele_multi_ref = new Dele_Multi_ref(Datum._Buy_Meat);
+        dele_multi_ref += Datum._Buy_Vegetable;
+        dele_multi_ref += Datum._Buy_Fruit;
+        String food = "";
+        dele_multi_ref(ref food);
+        Console.WriteLine($"food = {food}");
+    }
+
     delegate void Dele_Anony(double width, double height);
     public static void _Delegate_Anonymous() {
-        double width = 1.0;
-        double height = 2.0;
-        Dele_Anony dele_anony = delegate {
+        Dele_Anony dele_anony = delegate (double width, double height) {
             Console.WriteLine("{0}.{1}", typeof(Datum).FullName, MethodBase.GetCurrentMethod().Name);
             Console.WriteLine("area = {0}", width * height);
         };
-        dele_anony(3.0, 4.0);  // note: parameters are of no use.
+        dele_anony += delegate { // note: parameters are of no use.
+            Console.WriteLine("{0}.{1}", typeof(Datum).FullName, MethodBase.GetCurrentMethod().Name);
+        };
+        dele_anony(3.0, 4.0);
     }
 }
