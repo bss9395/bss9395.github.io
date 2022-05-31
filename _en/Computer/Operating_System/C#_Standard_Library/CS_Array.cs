@@ -10,8 +10,8 @@ class CS_Array {
     public static void Main(string[] args) {
         //_Array();
         //_Jagged();
-        _Sort();
-
+        // _Sort();
+        _Clone();
     }
 
     public static void _Array() {
@@ -151,5 +151,32 @@ class CS_Array {
         }
         Console.WriteLine();
     }
-}
 
+    class Datum {
+        public double _value = 0.0;
+        public Datum(double value) {
+            _value = value;
+        }
+    }
+    public static void _Clone() {
+        double[] value_array = new double[3] {
+            1.0, 2.0, 3.0
+        };
+
+        Datum[] reference_array = new Datum[3] {
+            new Datum(1.0), new Datum(2.0), new Datum(3.0)
+        };
+
+        double[] clone_value_array = (double[])value_array.Clone();
+        for (int i = 0; i < clone_value_array.Length; i += 1) {
+            clone_value_array[i] += 10.0;
+            Console.WriteLine($"value_array[{i}] == {value_array[i]}");
+        }
+
+        Datum[] clone_reference_array = (Datum[])reference_array.Clone();
+        for (int i = 0; i < clone_reference_array.Length; i += 1) {
+            clone_reference_array[i]._value += 10.0;
+            Console.WriteLine($"reference_array[{i}]._value == {reference_array[i]._value}");
+        }
+    }
+}
