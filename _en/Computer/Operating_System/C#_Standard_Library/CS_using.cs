@@ -6,9 +6,15 @@ Design: C# keyword: using
 
 using System;
 using System.IO;
+using Sy = System;
+using SC = System.Console;
 
 class CS_using {
     public static void Main(String[] args) {
+        System.Console.WriteLine("Hello, World!");
+        Sy.Console.WriteLine("Hello, World!");
+        SC.WriteLine("Hello, World!");
+
         _using();
     }
     public static void _using() {

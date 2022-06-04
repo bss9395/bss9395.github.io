@@ -1,36 +1,59 @@
 /* CS_interface.cs
 Author: BSS9395
-Update: 2022-04-17T18:20:00+08@China-Shanghai+08
-Design: C# keyword: interface
+Update: 2022-06-01T13:38:00+08@China-Shanghai+08
+Design: C# Keyword: interface
 */
 
 using System;
-using System.Diagnostics;
 
 class CS_interface {
-    public static void Main(string[] args) {
-        Father person = new Child();
-        person._Print();
-        IPerson iperson = new Child();
-        iperson._Print();
+    public interface IInfo {
+        String _Print_Id();
     }
-    interface IPerson {
-        string _id { get; set; }
-        string _name { get; set; }
-        void _Print();
+    public interface ISame {
+        String _Print_Id();
     }
-    class Father {
-        public string _wife = "brilliant";
-        public virtual void _Print() {
-            Console.WriteLine("{0}.{1}", this.GetType(), new StackTrace(true).GetFrame(0).GetMethod());
+    class Person : IInfo, ISame {
+        public String _id = "";
+        public String _Print_Id() {
+            Console.WriteLine($"_id = {_id}");
+            return _id;
         }
     }
-    class Child : Father, IPerson {
-        public string _id { get; set; } = "20220417";
-        public string _name { get; set; } = "bss9395";
-        public override void _Print() {
-            Console.WriteLine("id = {0}, name = {1}", _id, _name);
+    class Child : IInfo, ISame {
+        public String _id = "";
+        public String _father = "";
+        public String _Print_Id() {
+            String id = _father + "-" + _id;
+            Console.WriteLine($"id = {id}");
+            return id;
+
         }
+        String IInfo._Print_Id() {
+            String id = "IInfo-" + _father + "-" + _id;
+            Console.WriteLine($"id = {id}");
+            return id;
+        }
+        String ISame._Print_Id() {
+            String id = "ISame-" + _father + "-" + _id;
+            Console.WriteLine($"id = {id}");
+            return id;
+        }
+    }
+    public static void _Print_Info(IInfo info) {
+        info._Print_Id();
+    }
+    public static void Main() {
+        Person person = new Person { _id = "20220601" };
+        Child child = new Child { _id = "20220602", _father = "bss9395" };
+        _Print_Info(person);
+        _Print_Info(child);
+
+
+        IInfo info = (IInfo)child;
+        ISame same = (ISame)child;
+        child._Print_Id();
+        info._Print_Id();
+        same._Print_Id();
     }
 }
-

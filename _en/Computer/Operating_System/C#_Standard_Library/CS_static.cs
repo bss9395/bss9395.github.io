@@ -7,6 +7,7 @@ Encode: UTF-8
 
 using static System.Console;
 using static System.Math;
+
 class CS_const {
     static class Compile {
         public static String _class_name = "CS_const";
