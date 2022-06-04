@@ -1,14 +1,14 @@
-/* CS_Parallel_For.cs
+/* CS_Parallel_ForEach.cs
 Author: BSS9395
 Update: 2022-06-04T10:50:00+08@China-Shanghai+08
-Design: C# Standard Library: Parallel.For()
+Design: C# Standard Library: Parallel.ForEach()
 */
 
 using System;
 using System.Threading.Tasks;
-class CS_Parallel_For {
+class CS_Parallel_ForEach {
     public static void Main(String[] args) {
-        CS_Parallel_For cs_parallel = new CS_Parallel_For();
+        CS_Parallel_ForEach cs_parallel = new CS_Parallel_ForEach();
         cs_parallel._Parallel_For();
         cs_parallel._Parallel_ForEach();
     }
