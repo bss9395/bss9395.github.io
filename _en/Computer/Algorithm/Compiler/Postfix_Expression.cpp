@@ -27,7 +27,7 @@ public:
 		stack<char> run;
 		string postfix = "";
 		for (char* iter = &infix[0], *end = &infix[infix.length()]; iter < end;) {
-			if (iter[0] == ' ' || iter[0] == '\r' || iter[0] == '\n' || iter[0] == '\t' || iter[0] == '\v') {
+			if (iter[0] == ' ' || iter[0] == '\t' || iter[0] == '\v' || iter[0] == '\r' || iter[0] == '\n' || iter[0] == '\f') {
 				;
 			}
 			else if (iter[0] == '(') {
