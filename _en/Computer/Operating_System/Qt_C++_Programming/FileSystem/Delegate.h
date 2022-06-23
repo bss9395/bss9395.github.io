@@ -1,9 +1,9 @@
-/* Common.h
+/* Delegate.h
 Author: BSS9395
-Update: 2022-01-16T02:26:00+08@China-Guangdong-Shenzhen+08
-Design: Sheet
+Update: 2022-06-23T21:53:00+08@China-Shanghai+08
+Design: FileSystem
 Encode: UTF-8
-System: Qt 5.15.2
+System: Qt 5.14.2
 */
 
 #ifndef Delegate_h
@@ -20,18 +20,18 @@ public:
 public:
     QComboBox_Delegate(const QStringList &items, QObject *parent = nullptr)
         : QStyledItemDelegate(parent) {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
         _items = items;
     }
 
     QComboBox_Delegate(const QComboBox_Delegate &delegate, QObject *parent = nullptr)
         : QStyledItemDelegate(parent) {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
         _items = delegate._items;
     }
 
     QComboBox_Delegate &operator=(const QComboBox_Delegate &delegate) {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
         if(this != &delegate) {
             _items = delegate._items;
         }
@@ -39,12 +39,12 @@ public:
     }
 
     virtual ~QComboBox_Delegate() {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
     }
 
 public:
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
         (void)option;
         (void)index;
 
@@ -55,21 +55,21 @@ public:
     }
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
 
         QString value = index.data(Qt::EditRole).toString();
         ((QComboBox *)editor)->setCurrentText(value);
     }
 
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
 
         QString value = ((QComboBox *)editor)->currentText();
         model->setData(index, value, Qt::EditRole);
     }
 
     void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
 
         (void)index;
         editor->setGeometry(option.rect);
@@ -87,7 +87,7 @@ public:
 public:
     QDoubleSpinBox_Delegate(double value_mini, double value_maxi, QObject *parent = nullptr)
         : QStyledItemDelegate(parent) {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
         _value_mini = value_mini;
         _value_maxi = value_maxi;
         _width = QString("%1").arg(value_maxi, 4, 'f', 2).size();
@@ -110,12 +110,12 @@ public:
     }
 
     virtual ~QDoubleSpinBox_Delegate() {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
     }
 
 public:
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
         (void)option;
         (void)index;
 
@@ -127,21 +127,21 @@ public:
     }
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
 
         double value = index.data(Qt::EditRole).toDouble();
         ((QDoubleSpinBox *)editor)->setValue(value);
     }
 
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
 
         QString value = QString("%1").arg(((QDoubleSpinBox *)editor)->value(), _width, 'f', 2); // note: save as string to eliminate ambiguity.
         model->setData(index, value, Qt::EditRole);
     }
 
     void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const {
-        Logging(__FUNCTION__);
+        System::Logging(__FUNCTION__);
         (void)index;
 
         editor->setGeometry(option.rect);
