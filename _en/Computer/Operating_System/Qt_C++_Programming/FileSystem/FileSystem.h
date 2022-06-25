@@ -172,7 +172,7 @@ public:
             _ui->TW_File->setCurrentIndex(_Binary.At<0>());
         });
 
-        auto save_datastream = [this](const QString &filename) -> void {
+        static auto save_datastream = [this](const QString &filename) -> void {
             QFile file(filename);
             if(file.open(QFile::ReadWrite | QFile::Truncate) == false) {
                 System::Checking(true, System::_Error, "if(file.open(QFile::ReadWrite | QFile::Truncate) == false) {", NULL);
@@ -211,7 +211,7 @@ public:
 
         QObject::connect(_ui->PB_Open_Binary, &QPushButton::clicked, this, [this]() -> void {
             System::Logging("QObject::connect(_ui->PB_Open_Binary, &QPushButton::clicked, this, [this]() -> void {");
-            auto read_string = [](QFile &file, QString &text) -> void {
+            static auto read_string = [](QFile &file, QString &text) -> void {
                 static QByteArray bytes = QByteArray(1024, '\0');
                 int leng = 0;
                 file.read((char *)&leng, sizeof(leng));
@@ -266,8 +266,8 @@ public:
             }
         });
 
-        auto save_binary = [this](const QString &filename) -> void {
-            auto write_string = [](QFile& file, const QString& text) -> void {
+        static auto save_binary = [this](const QString &filename) -> void {
+            static auto write_string = [](QFile& file, const QString& text) -> void {
                 QByteArray bytes = text.toUtf8();
                 int leng = bytes.length();
                 file.write((char *)&leng, sizeof(leng));
