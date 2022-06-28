@@ -40,16 +40,21 @@ public:
 
     virtual ~Window() {
         System::Logging(__FUNCTION__);
+
         delete _ui;
     }
 
 public:
     void _Setup_Background() {
+        System::Logging(__FUNCTION__);
+
         this->setPalette(QPalette(Qt::white));
         this->setAutoFillBackground(true);
     }
 
     void _Setup_Pen() {
+        System::Logging(__FUNCTION__);
+
         _pen.setWidth(1);
         _pen.setColor(Qt::black);
         _pen.setStyle(Qt::SolidLine);
@@ -58,11 +63,15 @@ public:
     }
 
     void _Setup_Brush() {
+        System::Logging(__FUNCTION__);
+
         _brush.setColor(Qt::green);
         _brush.setStyle(Qt::SolidPattern);
     }
 
     void _Setup_Gradient() {
+        System::Logging(__FUNCTION__);
+
         _linear = QLinearGradient(0, 0, 100, 0);
         _linear.setColorAt(0.0, Qt::white);
         _linear.setColorAt(1.0, Qt::green);
@@ -80,7 +89,9 @@ public:
     }
 
     void paintEvent(QPaintEvent *event) override {
+        System::Logging(__FUNCTION__);
         (void) event;
+
         QPainter painter = QPainter(this);
         painter.setRenderHint(QPainter::Antialiasing);
         painter.setRenderHint(QPainter::TextAntialiasing);

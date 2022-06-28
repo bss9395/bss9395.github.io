@@ -57,11 +57,15 @@ public:
 
 public:
     void _Setup_Background() {
+        System::Logging(__FUNCTION__);
+
         this->setPalette(QPalette(Qt::white));
         this->setAutoFillBackground(true);
     }
 
     void _Setup_Pen() {
+        System::Logging(__FUNCTION__);
+
         _dotted.setWidth(1);
         _dotted.setColor(Qt::gray);
         _dotted.setStyle(Qt::DotLine);
@@ -82,6 +86,8 @@ public:
     }
 
     void _Generate_Points() {
+        System::Logging(__FUNCTION__);
+
         qreal step = (_x_max - _x_min) / _cells;
         qreal t = _x_min;
         qreal w = 4.0;
@@ -93,6 +99,8 @@ public:
     }
 
     void _Plot_Grid() {
+        System::Logging(__FUNCTION__);
+
         if(_figure.isValid() == false) {
             return ;
         }
@@ -154,6 +162,8 @@ public:
     }
 
     void _Plot_Curve() {
+        System::Logging(__FUNCTION__);
+
         qreal x = 0.0;
         qreal y = 0.0;
         iptr x_pos = 0;
@@ -174,7 +184,9 @@ public:
     }
 
     void paintEvent(QPaintEvent *event) override {
+        System::Logging(__FUNCTION__);
         (void) event;
+
         _painter.begin(this);
         _painter.setRenderHint(QPainter::Antialiasing);
         _painter.setRenderHint(QPainter::TextAntialiasing);
