@@ -1,6 +1,6 @@
 /* Chart.h
 Author: BSS9395
-Update: 2022-07-02T21:56:00+08@China-Shanghai+08
+Update: 2022-07-05T22:56:00+08@China-Shanghai+08
 Design: Chart
 Encode: UTF-8
 System: Qt 5.14.2
@@ -13,6 +13,7 @@ System: Qt 5.14.2
 #include "Common.h"
 #include "System.h"
 #include "ui_Chart.h"
+#include "QChartView_Handler.h"
 
 class Chart : public QMainWindow {
     Q_OBJECT
@@ -51,21 +52,20 @@ class Chart : public QMainWindow {
         Enume _DashDotDotLine = Enume(this, Qt::DashDotDotLine, "-..");
     } _penstyle;
 
-    static inline double _zoom_ratio = 0.1;
-
 public:
     Ui::Chart   *_ui   = nullptr;
+    QLabel    *_status = nullptr;
     QLineSeries *_line = nullptr;
     QValueAxis  *_axis = nullptr;
-    QPen _pen_dotted = QPen();
-    QPen _pen_solid = QPen();
-    QBrush _brush = QBrush();
+    QPen _pen_dotted   = QPen();
+    QPen _pen_solid    = QPen();
+    QBrush _brush      = QBrush();
 
-    qreal _x_min = 0.0;
-    qreal _x_max = 10.0;
+    qreal _x_min  = 0.0;
+    qreal _x_max  = 10.0;
     qreal _x_step = 0.5;
-    qreal _y_min = -1.0;
-    qreal _y_max = +1.0;
+    qreal _y_min  = -1.0;
+    qreal _y_max  = +1.0;
 
 public:
     explicit Chart(QWidget *parent = nullptr)
@@ -75,7 +75,6 @@ public:
 
         _Setup();
         _Setup_Data();
-        _Setup_Attributes();
 
         ////////////////////////////////
 
@@ -88,13 +87,13 @@ public:
         QObject::connect(_ui->A_Zoom_In, &QAction::triggered, this, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_Zoom_In, &QAction::triggered, this, [this]() -> void {");
 
-            _ui->CV_ChartView->chart()->zoom(1 + _zoom_ratio);
+            _ui->CV_ChartView->chart()->zoom(1 + QChartView_Handler::_zoom_ratio);
         });
 
         QObject::connect(_ui->A_Zoom_Out, &QAction::triggered, this, [this]() -> void {
             System::Logging("QObject::connect(_ui->A_Zoom_Out, &QAction::triggered, this, [this]() -> void {");
 
-            _ui->CV_ChartView->chart()->zoom(1 - _zoom_ratio);
+            _ui->CV_ChartView->chart()->zoom(1 - QChartView_Handler::_zoom_ratio);
         });
 
         QObject::connect(_ui->A_Restore, &QAction::triggered, this, [this]() -> void {
@@ -407,25 +406,37 @@ public:
             "(@xPoint, @yPoint)",
             "@xPoint, @yPoint"
         });
+
+        _status = new QLabel();
+        _ui->SB_Status->addWidget(_status);
+        QObject::connect(_ui->CV_ChartView, &QChartView_Handler::_Mouse_Pos, this, [this](QPoint pos) -> void {
+            System::Logging("QObject::connect(_ui->CV_ChartView, &QChartView_Handler::_Mouse_Pos, this, [this]() -> void {");
+
+            QPointF value = _ui->CV_ChartView->chart()->mapToValue(pos);
+            _status->setText(QString::asprintf("value[%-5.2f, %-5.2f]", value.x(), value.y()));
+        });
     }
 
     void _Setup_Data() {
         System::Logging(__FUNCTION__);
 
-        QLineSeries *line_0 = nullptr;
-        QLineSeries *line_1 = nullptr;
-        if(_ui->CV_ChartView->chart()->series().count() < 1) {
-            line_0 = new QLineSeries();
-            line_1 = new QLineSeries();
-            _ui->CV_ChartView->chart()->addSeries(line_0);
-            _ui->CV_ChartView->chart()->addSeries(line_1);
-        } else {
-            line_0 = (QLineSeries *)_ui->CV_ChartView->chart()->series().at(0);
-            line_1 = (QLineSeries *)_ui->CV_ChartView->chart()->series().at(1);
-            line_0->clear();
-            line_1->clear();
+        QChart *chart = _ui->CV_ChartView->chart();
+        if(1 <= chart->series().count()) {
+            chart->removeAllSeries();
+        }
+        while(1 <= chart->axes(Qt::Horizontal).count()) {
+            chart->removeAxis(chart->axes(Qt::Horizontal).at(0));
+        }
+        while(1 <= chart->axes(Qt::Vertical).count()) {
+            chart->removeAxis(chart->axes(Qt::Vertical).at(0));
         }
 
+        QLineSeries *line_0 = new QLineSeries();
+        QLineSeries *line_1 = new QLineSeries();
+        chart->addSeries(line_0);
+        chart->addSeries(line_1);
+        line_0->setName("y = sin(x)");
+        line_1->setName("y = cos(x)");
         qreal y = 0.0;
         qreal err = 0.0;
         for(qreal x = _x_min; x <= _x_max; x += _x_step) {
@@ -437,71 +448,65 @@ public:
             y = qCos(x) + err;
             line_1->append(x, y);
         }
-    }
-
-    void _Setup_Attributes() {
-        System::Logging(__FUNCTION__);
 
         QValueAxis *axis_x = new QValueAxis();
+        chart->addAxis(axis_x, Qt::AlignBottom);
         axis_x->setRange(0, 10);
         axis_x->setTitleText("x /sec");
         axis_x->setTickCount(11);
         axis_x->setMinorTickCount(4);
         axis_x->setLabelFormat("%.1f");
+        line_0->attachAxis(axis_x);
+        line_1->attachAxis(axis_x);
 
         QValueAxis *axis_y = new QValueAxis();
+        chart->addAxis(axis_y, Qt::AlignLeft);
         axis_y->setRange(-2, +2);
         axis_y->setTitleText("y /1");
         axis_y->setTickCount(5);
         axis_y->setMinorTickCount(4);
         axis_y->setLabelFormat("%.2f");
-
-        _ui->CV_ChartView->chart()->addAxis(axis_x, Qt::AlignBottom);
-        _ui->CV_ChartView->chart()->addAxis(axis_y, Qt::AlignLeft);
-        QLineSeries *line_0 = (QLineSeries *)_ui->CV_ChartView->chart()->series().at(0);
-        QLineSeries *line_1 = (QLineSeries *)_ui->CV_ChartView->chart()->series().at(1);
-        _ui->CV_ChartView->chart()->setTitle("三角曲线");
-        line_0->setName("y = sin(x)");
-        line_1->setName("y = cos(x)");
-        line_0->attachAxis(axis_x);
         line_0->attachAxis(axis_y);
-        line_1->attachAxis(axis_x);
         line_1->attachAxis(axis_y);
 
-        auto Legend_Marker = [](QLegendMarker *marker) {
-            // QLegendMarker *marker = (QLegendMarker *)sender();   // note: this->sender();
-            int type = marker->type();
-            if(type == QLegendMarker::LegendMarkerTypeXY) {
-                bool visible = marker->series()->isVisible();
-                marker->series()->setVisible(!visible);
-                marker->setVisible(true);
-                qreal alpha = (visible == true ? 0.5 : 1.0);
+        chart->setTitle("三角曲线");
+        chart->legend()->setVisible(true);
 
-                QPen pen = marker->pen();
-                QColor color = pen.color();
-                color.setAlphaF(alpha);
-                pen.setColor(color);
-                marker->setPen(pen);
+        auto markers = chart->legend()->markers();
+        System::Logging("markers.count() = %d", markers.count());
+        for(auto iter = markers.begin(), end = markers.end(); iter != end; iter += 1) {
+            QObject::connect(*iter, &QLegendMarker::clicked, this, [this]() -> void {
+                System::Logging("QObject::connect(*iter, &QLegendMarker::clicked, this, [iter]() -> void {");
 
-                QBrush brush = marker->labelBrush();
-                color = brush.color();
-                color.setAlphaF(alpha);
-                brush.setColor(color);
-                marker->setLabelBrush(brush);
+                // QLegendMarker *marker = (*iter);                 // note: iter is transient.
+                QLegendMarker *marker = (QLegendMarker *)sender();
+                int type = marker->type();
 
-                brush = marker->brush();
-                color = brush.color();
-                color.setAlphaF(alpha);
-                brush.setColor(color);
-                marker->setBrush(brush);
-            }
-        };
-        auto markers = _ui->CV_ChartView->chart()->legend()->markers();
-        for(auto iter = markers.begin(), end = markers.end(); iter != end; ) {
-            QObject::connect(*iter, &QLegendMarker::clicked, this, [&Legend_Marker, &iter]() -> void {
-                Legend_Marker(*iter);
+                if(type == QLegendMarker::LegendMarkerTypeXY) {
+                    bool visible = marker->series()->isVisible();
+                    marker->series()->setVisible(!visible);
+                    marker->setVisible(true);
+                    qreal alpha = (visible == true ? 0.5 : 1.0);
+
+                    QPen pen = marker->pen();
+                    QColor color = pen.color();
+                    color.setAlphaF(alpha);
+                    pen.setColor(color);
+                    marker->setPen(pen);
+
+                    QBrush brush = marker->labelBrush();
+                    color = brush.color();
+                    color.setAlphaF(alpha);
+                    brush.setColor(color);
+                    marker->setLabelBrush(brush);
+
+                    brush = marker->brush();
+                    color = brush.color();
+                    color.setAlphaF(alpha);
+                    brush.setColor(color);
+                    marker->setBrush(brush);
+                }
             });
-            iter += 1;
         }
 
         auto LineSeries = [this](QLineSeries *line) -> void {
@@ -513,7 +518,6 @@ public:
                 _ui->S_Curve_Sequence_Opacity->setRange(0, 255);
                 _ui->S_Curve_Sequence_Opacity->setSingleStep(1);
 
-                _line = line;
                 _ui->LE_Curve_Sequence_Name->setText(line->name());
                 _ui->S_Curve_Sequence_Opacity->setValue(line->opacity() * 255);
                 _ui->CB_Curve_Sequence_Style->setCurrentText(_penstyle._Alias(line->pen().style()));

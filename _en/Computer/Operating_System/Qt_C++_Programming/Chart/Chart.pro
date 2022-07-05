@@ -21,6 +21,7 @@ SOURCES += \
 HEADERS += \
     Chart.h \
     Common.h \
+    QChartView_Handler.h \
     System.h
 
 FORMS += \

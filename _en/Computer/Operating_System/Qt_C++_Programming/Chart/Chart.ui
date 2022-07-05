@@ -2246,7 +2246,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QChartView" name="CV_ChartView">
+          <widget class="QChartView_Handler" name="CV_ChartView">
            <property name="renderHints">
             <set>QPainter::Antialiasing|QPainter::TextAntialiasing</set>
            </property>
@@ -2339,9 +2339,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QChartView</class>
+   <class>QChartView_Handler</class>
    <extends>QGraphicsView</extends>
-   <header location="global">QChartView</header>
+   <header location="global">QChartView_Handler.h</header>
   </customwidget>
  </customwidgets>
  <resources>

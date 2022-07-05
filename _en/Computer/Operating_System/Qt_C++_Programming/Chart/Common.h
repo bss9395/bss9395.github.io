@@ -1,6 +1,6 @@
 /* Common.h
 Author: BSS9395
-Update: 2022-07-02T21:56:00+08@China-Shanghai+08
+Update: 2022-07-05T22:56:00+08@China-Shanghai+08
 Design: Chart
 Encode: UTF-8
 System: Qt 5.14.2
@@ -11,6 +11,7 @@ System: Qt 5.14.2
 
 #include <QApplication>
 #include <QAudioDeviceInfo>
+#include <QChartView>
 #include <QColorDialog>
 #include <QComboBox>
 #include <QCryptographicHash>
@@ -60,10 +61,10 @@ System: Qt 5.14.2
 #include <QTimer>
 #include <QToolButton>
 #include <QUdpSocket>
+#include <QtCharts>
 #include <QtGlobal>
 #include <QtMath>
 #include <QtSql/QSqlDatabase>
-#include <QtCharts>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>
@@ -82,6 +83,7 @@ System: Qt 5.14.2
 
 #include "System.h"
 #include "Chart.h"
+#include "QChartView_Handler.h"
 
 #endif // Header_h
 #endif // Common_h
