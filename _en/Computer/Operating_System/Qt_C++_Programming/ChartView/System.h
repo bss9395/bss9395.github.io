@@ -1,7 +1,7 @@
 /* System.h
 Author: BSS9395
-Update: 2022-07-02T21:56:00+08@China-Shanghai+08
-Design: Chart
+Update: 2022-07-05T14:13:00+08@China-Shanghai+08
+Design: ChartView
 Encode: UTF-8
 System: Qt 5.14.2
 */
@@ -796,6 +796,16 @@ public:
             }
         }
         return "";
+    }
+};
+
+template<typename Field>
+struct Enumeration {
+public:
+    Field &operator[](iptr idx) {
+        // System::Logging(__FUNCTION__);
+
+        return ((Field*)this)[idx + 1];
     }
 };
 

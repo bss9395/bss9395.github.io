@@ -17,15 +17,40 @@ System: Qt 5.14.2
 class Chart : public QMainWindow {
     Q_OBJECT
 
-public:
-    static inline QMap<QString, Qt::Alignment>            _alignment;
-    static inline QMap<Qt::Alignment, QString>            _alignment_reverse;
-    static inline QMap<QString, QChart::ChartTheme>       _theme;
-    static inline QMap<QChart::ChartTheme, QString>       _theme_reverse;
-    static inline QMap<QString, QChart::AnimationOptions> _animation;
-    static inline QMap<QChart::AnimationOptions, QString> _animation_reverse;
-    static inline QMap<QString, Qt::PenStyle>             _penstyle;
-    static inline QMap<Qt::PenStyle, QString>             _penstyle_reverse;
+    struct : public Enume {
+        Enume _AlignTop    = Enume(this, Qt::AlignTop   , "上侧");
+        Enume _AlignBottom = Enume(this, Qt::AlignBottom, "下侧");
+        Enume _AlignLeft   = Enume(this, Qt::AlignLeft  , "左侧");
+        Enume _AlignRight  = Enume(this, Qt::AlignRight , "右侧");
+    } _alignment;
+
+    struct : public Enume {
+        Enume _ChartThemeLight        = Enume(this, QChart::ChartThemeLight       , "ChartThemeLight");
+        Enume _ChartThemeBlueCerulean = Enume(this, QChart::ChartThemeBlueCerulean, "ChartThemeBlueCerulean");
+        Enume _ChartThemeDark         = Enume(this, QChart::ChartThemeDark        , "ChartThemeDark");
+        Enume _ChartThemeBrownSand    = Enume(this, QChart::ChartThemeBrownSand   , "ChartThemeBrownSand");
+        Enume _ChartThemeBlueNcs      = Enume(this, QChart::ChartThemeBlueNcs     , "ChartThemeBlueNcs");
+        Enume _ChartThemeHighContrast = Enume(this, QChart::ChartThemeHighContrast, "ChartThemeHighContrast");
+        Enume _ChartThemeBlueIcy      = Enume(this, QChart::ChartThemeBlueIcy     , "ChartThemeBlueIcy");
+        Enume _ChartThemeQt           = Enume(this, QChart::ChartThemeQt          , "ChartThemeQt");
+    } _theme;
+
+    struct : public Enume {
+        Enume _NoAnimation        = Enume(this, QChart::NoAnimation       , "NoAnimation");
+        Enume _GridAxisAnimations = Enume(this, QChart::GridAxisAnimations, "GridAxisAnimations");
+        Enume _SeriesAnimations   = Enume(this, QChart::SeriesAnimations  , "SeriesAnimations");
+        Enume _AllAnimations      = Enume(this, QChart::AllAnimations     , "AllAnimations");
+    } _animation;
+
+    struct : public Enume {
+        Enume _NoPen          = Enume(this, Qt::NoPen         , "   ");
+        Enume _SolidLine      = Enume(this, Qt::SolidLine     , "-  ");
+        Enume _DashLine       = Enume(this, Qt::DashLine      , "-- ");
+        Enume _DotLine        = Enume(this, Qt::DotLine       , ".. ");
+        Enume _DashDotLine    = Enume(this, Qt::DashDotLine   , "-. ");
+        Enume _DashDotDotLine = Enume(this, Qt::DashDotDotLine, "-..");
+    } _penstyle;
+
     static inline double _zoom_ratio = 0.1;
 
 public:
@@ -105,7 +130,7 @@ public:
         QObject::connect(_ui->PB_Legend_Metrics_Submit, &QPushButton::clicked, this, [this]() -> void {
             System::Logging("QObject::connect(_ui->PB_Legend_Metrics_Submit, &QPushButton::clicked, this, [this]() -> void {");
 
-            _ui->CV_ChartView->chart()->legend()->setAlignment(_alignment[_ui->CB_Legend_Metrics_Location->currentText()]);
+            _ui->CV_ChartView->chart()->legend()->setAlignment((Qt::AlignmentFlag)_alignment[_ui->CB_Legend_Metrics_Location->currentIndex()]._enume);
 
             QMargins margins = QMargins();
             margins.setLeft(_ui->SB_Legend_Metrics_Left->value());
@@ -120,8 +145,8 @@ public:
         QObject::connect(_ui->PB_Legend_Effect_Submit, &QPushButton::clicked, this, [this]() -> void {
             System::Logging("QObject::connect(_ui->PB_Legend_Effect_Submit, &QPushButton::clicked, this, [this]() -> void {");
 
-            _ui->CV_ChartView->chart()->setTheme(_theme[_ui->CB_Legend_Effect_Theme->currentText()]);
-            _ui->CV_ChartView->chart()->setAnimationOptions(_animation[_ui->CB_Legend_Effect_Animation->currentText()]);
+            _ui->CV_ChartView->chart()->setTheme((QChart::ChartTheme)_theme[_ui->CB_Legend_Effect_Theme->currentIndex()]._enume);
+            _ui->CV_ChartView->chart()->setAnimationOptions((QChart::AnimationOption)_animation[_ui->CB_Legend_Effect_Animation->currentIndex()]._enume);
         });
 
         QObject::connect(_ui->PB_Legend_Display_Submit, &QPushButton::clicked, this, [this]() -> void {
@@ -140,7 +165,7 @@ public:
                 _line->setName(_ui->LE_Curve_Sequence_Name->text());
                 _line->setOpacity(_ui->S_Curve_Sequence_Opacity->value() / 255.0);
                 QPen pen = QPen();
-                pen.setStyle(_penstyle[_ui->CB_Curve_Sequence_Style->currentText()]);
+                pen.setStyle((Qt::PenStyle)_penstyle[_ui->CB_Curve_Sequence_Style->currentIndex()]._enume);
                 pen.setWidth(_ui->SB_Curve_Sequence_Width->value());
                 pen.setColor(_ui->PB_Curve_Sequence_Color->palette().color(QPalette::Button));
                 _line->setPen(pen);
@@ -217,17 +242,17 @@ public:
 
                 _ui->SB_Metrics_Interval_Major_Count->setValue(_axis->tickCount() - 1);
                 _ui->SB_Metrics_Interval_Minor_Count->setValue(_axis->minorTickCount() + 1);
-                _ui->CB_Metrics_Interval_Major_Style->setCurrentText(_penstyle_reverse[_axis->gridLinePen().style()]);
+                _ui->CB_Metrics_Interval_Major_Style->setCurrentText(_penstyle._Alias(_axis->gridLinePen().style()));
                 _ui->SB_Metrics_Interval_Major_Width->setValue(_axis->gridLinePen().width());
                 palette = _ui->PB_Metrics_Interval_Major_Color->palette();
                 palette.setColor(QPalette::Button, _axis->gridLineColor());
                 _ui->PB_Metrics_Interval_Major_Color->setPalette(palette);
-                _ui->CB_Metrics_Interval_Minor_Style->setCurrentText(_penstyle_reverse[_axis->minorGridLinePen().style()]);
+                _ui->CB_Metrics_Interval_Minor_Style->setCurrentText(_penstyle._Alias(_axis->minorGridLinePen().style()));
                 _ui->SB_Metrics_Interval_Minor_Width->setValue(_axis->minorGridLinePen().width());
                 palette = _ui->PB_Metrics_Interval_Minor_Color->palette();
                 palette.setColor(QPalette::Button, _axis->minorGridLineColor());
                 _ui->PB_Metrics_Interval_Minor_Color->setPalette(palette);
-                _ui->CB_Metrics_Interval_Axis_Style->setCurrentText(_penstyle_reverse[_axis->linePen().style()]);
+                _ui->CB_Metrics_Interval_Axis_Style->setCurrentText(_penstyle._Alias(_axis->linePen().style()));
                 _ui->SB_Metrics_Interval_Axis_Width->setValue(_axis->linePen().width());
                 palette = _ui->PB_Metrics_Interval_Axis_Color->palette();
                 palette.setColor(QPalette::Button, _axis->linePenColor());
@@ -318,15 +343,15 @@ public:
                 _axis->setMinorTickCount(_ui->SB_Metrics_Interval_Minor_Count->value() - 1);
 
                 QPen pen = QPen();
-                pen.setStyle(_penstyle[_ui->CB_Metrics_Interval_Major_Style->currentText()]);
+                pen.setStyle((Qt::PenStyle)_penstyle[_ui->CB_Metrics_Interval_Major_Style->currentIndex()]._enume);
                 pen.setWidth(_ui->SB_Metrics_Interval_Major_Width->value());
                 _axis->setGridLinePen(pen);
                 _axis->setGridLineColor(_ui->PB_Metrics_Interval_Major_Color->palette().color(QPalette::Button));
-                pen.setStyle(_penstyle[_ui->CB_Metrics_Interval_Minor_Style->currentText()]);
+                pen.setStyle((Qt::PenStyle)_penstyle[_ui->CB_Metrics_Interval_Minor_Style->currentIndex()]._enume);
                 pen.setWidth(_ui->SB_Metrics_Interval_Minor_Width->value());
                 _axis->setMinorGridLinePen(pen);
                 _axis->setMinorGridLineColor(_ui->PB_Metrics_Interval_Minor_Color->palette().color(QPalette::Button));
-                pen.setStyle(_penstyle[_ui->CB_Metrics_Interval_Axis_Style->currentText()]);
+                pen.setStyle((Qt::PenStyle)_penstyle[_ui->CB_Metrics_Interval_Axis_Style->currentIndex()]._enume);
                 pen.setWidth(_ui->SB_Metrics_Interval_Axis_Width->value());
                 _axis->setLinePen(pen);
                 _axis->setLinePenColor(_ui->PB_Metrics_Interval_Axis_Color->palette().color(QPalette::Button));
@@ -369,47 +394,13 @@ public:
         _pen_solid.setStyle(Qt::SolidLine);
 
         _ui->CV_ChartView->setChart(new QChart());
-
-        if(_alignment.size() < 1) {
-            _alignment["上侧"] = Qt::AlignTop;    _alignment_reverse[Qt::AlignTop]    = "上侧";
-            _alignment["下侧"] = Qt::AlignBottom; _alignment_reverse[Qt::AlignBottom] = "下侧";
-            _alignment["左侧"] = Qt::AlignLeft;   _alignment_reverse[Qt::AlignLeft]   = "左侧";
-            _alignment["右侧"] = Qt::AlignRight;  _alignment_reverse[Qt::AlignRight]  = "右侧";
-        }
-        _ui->CB_Legend_Metrics_Location->addItems(_alignment.keys());
-
-        if(_theme.size() < 1) {
-            _theme["ChartThemeLight"]        = QChart::ChartThemeLight;        _theme_reverse[QChart::ChartThemeLight]        = "ChartThemeLight";
-            _theme["ChartThemeBlueCerulean"] = QChart::ChartThemeBlueCerulean; _theme_reverse[QChart::ChartThemeBlueCerulean] = "ChartThemeBlueCerulean";
-            _theme["ChartThemeDark"]         = QChart::ChartThemeDark;         _theme_reverse[QChart::ChartThemeDark]         = "ChartThemeDark";
-            _theme["ChartThemeBrownSand"]    = QChart::ChartThemeBrownSand;    _theme_reverse[QChart::ChartThemeBrownSand]    = "ChartThemeBrownSand";
-            _theme["ChartThemeBlueNcs"]      = QChart::ChartThemeBlueNcs;      _theme_reverse[QChart::ChartThemeBlueNcs]      = "ChartThemeBlueNcs";
-            _theme["ChartThemeHighContrast"] = QChart::ChartThemeHighContrast; _theme_reverse[QChart::ChartThemeHighContrast] = "ChartThemeHighContrast";
-            _theme["ChartThemeBlueIcy"]      = QChart::ChartThemeBlueIcy;      _theme_reverse[QChart::ChartThemeBlueIcy]      = "ChartThemeBlueIcy";
-            _theme["ChartThemeQt"]           = QChart::ChartThemeQt;           _theme_reverse[QChart::ChartThemeQt]           = "ChartThemeQt";
-        }
-        _ui->CB_Legend_Effect_Theme->addItems(_theme.keys());
-
-        if(_animation.size() < 1) {
-            _animation["NoAnimation"]        = QChart::NoAnimation;        _animation_reverse[QChart::NoAnimation]        = "NoAnimation";
-            _animation["GridAxisAnimations"] = QChart::GridAxisAnimations; _animation_reverse[QChart::GridAxisAnimations] = "GridAxisAnimations";
-            _animation["SeriesAnimations"]   = QChart::SeriesAnimations;   _animation_reverse[QChart::SeriesAnimations]   = "SeriesAnimations";
-            _animation["AllAnimations"]      = QChart::AllAnimations;      _animation_reverse[QChart::AllAnimations]      = "AllAnimations";
-        }
-        _ui->CB_Legend_Effect_Animation->addItems(_animation.keys());
-
-        if(_penstyle.size() < 1) {
-            _penstyle["   "] = Qt::NoPen;           _penstyle_reverse[Qt::NoPen]          = "   ";
-            _penstyle["-  "] = Qt::SolidLine;       _penstyle_reverse[Qt::SolidLine]      = "-  ";
-            _penstyle["-- "] = Qt::DashLine;        _penstyle_reverse[Qt::DashLine]       = "-- ";
-            _penstyle[".. "] = Qt::DotLine;         _penstyle_reverse[Qt::DotLine]        = ".. ";
-            _penstyle["-. "] = Qt::DashDotLine;     _penstyle_reverse[Qt::DashDotLine]    = "-. ";
-            _penstyle["-.."] = Qt::DashDotDotLine;  _penstyle_reverse[Qt::DashDotDotLine] = "-..";
-        }
-        _ui->CB_Curve_Sequence_Style->addItems(_penstyle.keys());
-        _ui->CB_Metrics_Interval_Major_Style->addItems(_penstyle.keys());
-        _ui->CB_Metrics_Interval_Minor_Style->addItems(_penstyle.keys());
-        _ui->CB_Metrics_Interval_Axis_Style->addItems(_penstyle.keys());
+        _ui->CB_Legend_Metrics_Location->addItems(_alignment._Aliases());
+        _ui->CB_Legend_Effect_Theme->addItems(_theme._Aliases());
+        _ui->CB_Legend_Effect_Animation->addItems(_animation._Aliases());
+        _ui->CB_Curve_Sequence_Style->addItems(_penstyle._Aliases());
+        _ui->CB_Metrics_Interval_Major_Style->addItems(_penstyle._Aliases());
+        _ui->CB_Metrics_Interval_Minor_Style->addItems(_penstyle._Aliases());
+        _ui->CB_Metrics_Interval_Axis_Style->addItems(_penstyle._Aliases());
 
         _ui->CB_Curve_Label_Format->addItems(QStringList {
             "@yPoint",
@@ -525,7 +516,7 @@ public:
                 _line = line;
                 _ui->LE_Curve_Sequence_Name->setText(line->name());
                 _ui->S_Curve_Sequence_Opacity->setValue(line->opacity() * 255);
-                _ui->CB_Curve_Sequence_Style->setCurrentText(_penstyle_reverse[line->pen().style()]);
+                _ui->CB_Curve_Sequence_Style->setCurrentText(_penstyle._Alias(line->pen().style()));
                 _ui->SB_Curve_Sequence_Width->setValue(line->pen().width());
                 QPalette palette = _ui->PB_Curve_Sequence_Color->palette();
                 palette.setColor(QPalette::Button, line->color());
@@ -551,15 +542,15 @@ public:
         palette.setColor(QPalette::Button, _ui->CV_ChartView->chart()->titleBrush().color());
         _ui->PB_Legend_Label_Color->setPalette(palette);
 
-        _ui->CB_Legend_Metrics_Location->setCurrentText(_alignment_reverse[_ui->CV_ChartView->chart()->legend()->alignment()]);
+        _ui->CB_Legend_Metrics_Location->setCurrentText(_alignment._Alias(_ui->CV_ChartView->chart()->legend()->alignment()));
         QMargins margins = _ui->CV_ChartView->chart()->margins();
         _ui->SB_Legend_Metrics_Left->setValue(margins.left());
         _ui->SB_Legend_Metrics_Right->setValue(margins.right());
         _ui->SB_Legend_Metrics_Top->setValue(margins.top());
         _ui->SB_Legend_Metrics_Bottom->setValue(margins.bottom());
 
-        _ui->CB_Legend_Effect_Theme->setCurrentText(_theme_reverse[_ui->CV_ChartView->chart()->theme()]);
-        _ui->CB_Legend_Effect_Animation->setCurrentText(_animation_reverse[_ui->CV_ChartView->chart()->animationOptions()]);
+        _ui->CB_Legend_Effect_Theme->setCurrentText(_theme._Alias(_ui->CV_ChartView->chart()->theme()));
+        _ui->CB_Legend_Effect_Animation->setCurrentText(_animation._Alias(_ui->CV_ChartView->chart()->animationOptions()));
 
         _ui->CB_Legend_Display_Legend->setChecked(_ui->CV_ChartView->chart()->legend()->isVisible());
         _ui->CB_Legend_Display_Border->setChecked(_ui->CV_ChartView->chart()->legend()->isBackgroundVisible());

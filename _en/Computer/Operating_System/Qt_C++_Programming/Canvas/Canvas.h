@@ -34,8 +34,8 @@ public:
 
 public:
     Ui::Canvas *_ui = nullptr;
-    QIcon _Icon_Folder = QIcon(":/images/folder.png"); // note: initialize after QGuiApplication.
-    QIcon _Icon_Image = QIcon(":/images/image.png");   // note: initialize after QGuiApplication.
+    QIcon _Icon_Folder = QIcon(":/images/icons/folder.png"); // note: initialize after QGuiApplication.
+    QIcon _Icon_Image = QIcon(":/images/icons/image.png");   // note: initialize after QGuiApplication.
     QPixmap _pixmap = QPixmap(":/images/M31.png");
     double _scale = 1.0;
 
