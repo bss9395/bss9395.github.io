@@ -778,24 +778,33 @@ public:
         // System::Logging(__FUNCTION__);
 
         QStringList aliases = QStringList();
-        Enume *iter = (Enume *)this + 1;
+        Enume *base = (Enume *)this + 1;
         for(iptr idx = 0; idx < _index; idx += 1) {
-            aliases.append(iter->_alias);
-            iter += 1;
+            aliases.append(base[idx]._alias);
         }
         return aliases;
     }
 
-    QString _Alias(iptr enume) {
+    iptr _Alias(iptr enume) {
         // System::Logging(__FUNCTION__);
 
-        Enume *iter = (Enume *)this + 1;
+        Enume *base = (Enume *)this + 1;
         for(iptr idx = 0; idx < _index; idx += 1) {
-            if(iter->_enume == enume) {
-                return iter->_alias;
+            if(base[idx]._enume == enume) {
+                return idx;
             }
         }
-        return "";
+        return -1;
+    }
+};
+
+template<typename Field>
+struct Enumeration {
+public:
+    Field &operator[](iptr idx) {
+        // System::Logging(__FUNCTION__);
+
+        return ((Field*)this)[idx + 1];
     }
 };
 

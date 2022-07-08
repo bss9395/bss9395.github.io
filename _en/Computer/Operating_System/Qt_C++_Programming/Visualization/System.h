@@ -1,7 +1,7 @@
 /* System.h
 Author: BSS9395
-Update: 2022-07-05T14:13:00+08@China-Shanghai+08
-Design: ChartView
+Update: 2022-07-08T20:00:00+08@China-Shanghai+08
+Design: Visualization
 Encode: UTF-8
 System: Qt 5.14.2
 */

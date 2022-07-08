@@ -241,17 +241,17 @@ public:
 
                 _ui->SB_Metrics_Interval_Major_Count->setValue(_axis->tickCount() - 1);
                 _ui->SB_Metrics_Interval_Minor_Count->setValue(_axis->minorTickCount() + 1);
-                _ui->CB_Metrics_Interval_Major_Style->setCurrentText(_penstyle._Alias(_axis->gridLinePen().style()));
+                _ui->CB_Metrics_Interval_Major_Style->setCurrentIndex(_penstyle._Alias(_axis->gridLinePen().style()));
                 _ui->SB_Metrics_Interval_Major_Width->setValue(_axis->gridLinePen().width());
                 palette = _ui->PB_Metrics_Interval_Major_Color->palette();
                 palette.setColor(QPalette::Button, _axis->gridLineColor());
                 _ui->PB_Metrics_Interval_Major_Color->setPalette(palette);
-                _ui->CB_Metrics_Interval_Minor_Style->setCurrentText(_penstyle._Alias(_axis->minorGridLinePen().style()));
+                _ui->CB_Metrics_Interval_Minor_Style->setCurrentIndex(_penstyle._Alias(_axis->minorGridLinePen().style()));
                 _ui->SB_Metrics_Interval_Minor_Width->setValue(_axis->minorGridLinePen().width());
                 palette = _ui->PB_Metrics_Interval_Minor_Color->palette();
                 palette.setColor(QPalette::Button, _axis->minorGridLineColor());
                 _ui->PB_Metrics_Interval_Minor_Color->setPalette(palette);
-                _ui->CB_Metrics_Interval_Axis_Style->setCurrentText(_penstyle._Alias(_axis->linePen().style()));
+                _ui->CB_Metrics_Interval_Axis_Style->setCurrentIndex(_penstyle._Alias(_axis->linePen().style()));
                 _ui->SB_Metrics_Interval_Axis_Width->setValue(_axis->linePen().width());
                 palette = _ui->PB_Metrics_Interval_Axis_Color->palette();
                 palette.setColor(QPalette::Button, _axis->linePenColor());
@@ -520,7 +520,7 @@ public:
 
                 _ui->LE_Curve_Sequence_Name->setText(line->name());
                 _ui->S_Curve_Sequence_Opacity->setValue(line->opacity() * 255);
-                _ui->CB_Curve_Sequence_Style->setCurrentText(_penstyle._Alias(line->pen().style()));
+                _ui->CB_Curve_Sequence_Style->setCurrentIndex(_penstyle._Alias(line->pen().style()));
                 _ui->SB_Curve_Sequence_Width->setValue(line->pen().width());
                 QPalette palette = _ui->PB_Curve_Sequence_Color->palette();
                 palette.setColor(QPalette::Button, line->color());
@@ -546,15 +546,15 @@ public:
         palette.setColor(QPalette::Button, _ui->CV_ChartView->chart()->titleBrush().color());
         _ui->PB_Legend_Label_Color->setPalette(palette);
 
-        _ui->CB_Legend_Metrics_Location->setCurrentText(_alignment._Alias(_ui->CV_ChartView->chart()->legend()->alignment()));
+        _ui->CB_Legend_Metrics_Location->setCurrentIndex(_alignment._Alias(_ui->CV_ChartView->chart()->legend()->alignment()));
         QMargins margins = _ui->CV_ChartView->chart()->margins();
         _ui->SB_Legend_Metrics_Left->setValue(margins.left());
         _ui->SB_Legend_Metrics_Right->setValue(margins.right());
         _ui->SB_Legend_Metrics_Top->setValue(margins.top());
         _ui->SB_Legend_Metrics_Bottom->setValue(margins.bottom());
 
-        _ui->CB_Legend_Effect_Theme->setCurrentText(_theme._Alias(_ui->CV_ChartView->chart()->theme()));
-        _ui->CB_Legend_Effect_Animation->setCurrentText(_animation._Alias(_ui->CV_ChartView->chart()->animationOptions()));
+        _ui->CB_Legend_Effect_Theme->setCurrentIndex(_theme._Alias(_ui->CV_ChartView->chart()->theme()));
+        _ui->CB_Legend_Effect_Animation->setCurrentIndex(_animation._Alias(_ui->CV_ChartView->chart()->animationOptions()));
 
         _ui->CB_Legend_Display_Legend->setChecked(_ui->CV_ChartView->chart()->legend()->isVisible());
         _ui->CB_Legend_Display_Border->setChecked(_ui->CV_ChartView->chart()->legend()->isBackgroundVisible());
