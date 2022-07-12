@@ -71,6 +71,8 @@ System: Qt 5.14.2
 #include <QAbstract3DGraph>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
+#include <QSoundEffect>
+#include <QSound>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>

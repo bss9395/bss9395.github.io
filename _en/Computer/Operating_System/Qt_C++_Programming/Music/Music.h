@@ -30,6 +30,7 @@ public:
     Ui::Music *_ui = nullptr;
     iptr _volume = 0;
     QMediaPlayer *_player = nullptr;
+    QSoundEffect *_effect = nullptr;
 
 public:
     explicit Music(QWidget *parent = nullptr)
@@ -145,8 +146,23 @@ public:
 
         QObject::connect(_ui->LW_Music, &QListWidget::doubleClicked, this, [this](const QModelIndex &index) -> void {
             System::Logging("QObject::connect(_ui->LW_Music, &QListWidget::doubleClicked, this, [this](const QModelIndex &index) -> void {");
+            if(index.isValid() == false) {
+                return;
+            }
 
-            if(index.isValid() == true) {
+            QUrl url = _player->playlist()->media(index.row()).request().url();
+            if(url.fileName().endsWith(".wav")) {
+                if(url.fileName().contains("fire")) {
+                    // WAV file
+                    _effect->setSource(url);
+                    _effect->setLoopCount(1);
+                    _effect->setVolume(1);
+                    _effect->play();
+                } else {
+                    // WAV file
+                    QSound::play(url.toLocalFile());   // note: QSound could only play local WAV file asynchronously.
+                }
+            } else {
                 _player->playlist()->setCurrentIndex(index.row());
                 _player->play();
             }
@@ -233,6 +249,8 @@ public:
     virtual ~Music() {
         System::Logging(__FUNCTION__);
         delete _ui;
+        delete _player;
+        delete _effect;
     }
 
 public:
@@ -248,6 +266,12 @@ public:
         _player->setPlaylist(new QMediaPlaylist(this));
         _player->playlist()->setPlaybackMode((QMediaPlaylist::PlaybackMode)_PlaybackMode._Loop._enume);
         _player->setVolume(qRound(100 * QAudio::convertVolume(_ui->S_Volume->value() / qreal(100.0), QAudio::LogarithmicVolumeScale, QAudio::LinearVolumeScale)));
+
+        QUrl url = QUrl("qrc:///musics/Never Saying Goodbye.mp3");
+        _player->playlist()->addMedia(url);
+        _ui->LW_Music->addItem(url.fileName());
+
+        _effect = new QSoundEffect();
     }
 };
 

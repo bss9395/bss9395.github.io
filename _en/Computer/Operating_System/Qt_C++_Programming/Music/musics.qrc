@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>musics/Chris Medina - What Are Words.mp3</file>
-        <file>musics/Jason Mraz - I'm Yours.mp3</file>
-        <file>musics/Lenka - Trouble Is A Friend.mp3</file>
+        <file>musics/Never Saying Goodbye.mp3</file>
     </qresource>
 </RCC>

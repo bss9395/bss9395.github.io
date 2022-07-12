@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Oscillometer</class>
+ <widget class="QMainWindow" name="Oscillometer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Consolas</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Oscillometer</string>
+  </property>
+  <widget class="QWidget" name="W_Central">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <widget class="QSplitter" name="S_Central">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QGroupBox" name="GB_Settings">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>输入音频设置</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout_3">
+        <property name="verticalSpacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="L_Available_Devices">
+          <property name="text">
+           <string>输入设备</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="CB_Available_Devices"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="L_Supported_Codecs">
+          <property name="text">
+           <string>编码</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="CB_Supported_Codecs"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="L_Supported_Sample_Rates">
+          <property name="text">
+           <string>采样频率</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QComboBox" name="CB_Supported_Sample_Rates"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="L_Supported_Channel_Counts">
+          <property name="text">
+           <string>通道</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QComboBox" name="CB_Supported_Channel_Counts"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="L_Supported_Sample_Types">
+          <property name="text">
+           <string>采样类型</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="CB_Supported_Sample_Types"/>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="L_Supported_Sample_Sizes">
+          <property name="text">
+           <string>采样大小</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QComboBox" name="CB_Supported_Sample_Sizes"/>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="L_Supported_Byte_Orders">
+          <property name="text">
+           <string>字节序</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QComboBox" name="CB_Supported_Byte_Orders"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="GB_Displayer">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>3</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>实时音频波形</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QChartView" name="CV_Displayer"/>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="GB_Parameter">
+          <property name="title">
+           <string>实时音频参数</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_2">
+           <property name="verticalSpacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="L_Buffer_Size">
+             <property name="text">
+              <string>缓冲区大小</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="L_Block_Size">
+             <property name="text">
+              <string>缓冲块大小</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="SB_Block_Size">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="showGroupSeparator" stdset="0">
+              <bool>false</bool>
+             </property>
+             <property name="suffix">
+              <string> bytes</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="SB_Buffer_Size">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="suffix">
+              <string> bytes</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="MB_Menu">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="SB_Status"/>
+  <widget class="QToolBar" name="TB_Tool">
+   <property name="font">
+    <font>
+     <family>Consolas</family>
+     <pointsize>6</pointsize>
+    </font>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="A_Start"/>
+   <addaction name="A_Stop"/>
+  </widget>
+  <action name="A_Start">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/icons/play_circle.png</normaloff>:/images/icons/play_circle.png</iconset>
+   </property>
+   <property name="text">
+    <string>开始</string>
+   </property>
+  </action>
+  <action name="A_Stop">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/icons/stop_circle.png</normaloff>:/images/icons/stop_circle.png</iconset>
+   </property>
+   <property name="text">
+    <string>停止</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">QChartView</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
+ <connections/>
+</ui>
