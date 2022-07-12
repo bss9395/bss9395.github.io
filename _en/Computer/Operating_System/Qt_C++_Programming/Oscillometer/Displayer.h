@@ -20,7 +20,7 @@ class Displayer : public QIODevice {
 public:
     QAudioInput *_input = nullptr;
     Ui::Oscillometer *_ui = nullptr;
-    QLineSeries *_series = nullptr;
+    QLineSeries *_series = nullptr;  // QScatterSeries *_series = nullptr;
     iptr _samples = 4000;
     iptr _resolution = 4;
 
@@ -43,7 +43,7 @@ public:
         _ui->CV_Displayer->setChart(new QChart());
         _ui->CV_Displayer->chart()->setTitle("音频输入信号");
 
-        _series = new QLineSeries();
+        _series = new QLineSeries();  // _series = new QScatterSeries();
         _ui->CV_Displayer->chart()->addSeries(_series);
 
         QValueAxis *axisY = new QValueAxis();
@@ -61,6 +61,13 @@ public:
         axisZ->setTitleText("Level");
 
         _ui->CV_Displayer->chart()->legend()->hide();
+
+        QVector<QPointF> points;
+        points.reserve(_samples);
+        for(iptr i = 0; i < _samples; i += 1) {
+            points.append(QPointF(i, (quint8)128));
+        }
+        _series->replace(points);
     }
 
 public:
@@ -75,16 +82,10 @@ public:
     virtual qint64 writeData(const char *data, qint64 len) override {
         System::Logging(__FUNCTION__);
 
-        // note: len < _samples < _series->pointsVector().count()
-        QVector<QPointF> points;
-        if(_series->pointsVector().count() < _samples) {
-            points = _series->pointsVector();
-        }
-        else {
-            points = _series->pointsVector().mid(len, -1);
-            for(auto beg = points.begin(), end = points.end(); beg != end; beg += 1) {
-                beg->setX(beg->x() - len);
-            }
+        // note: len <= _samples <= _series->pointsVector().count()
+        QVector<QPointF> points = _series->pointsVector().mid(len, -1);
+        for(iptr i = 0, count = points.count(); i < count; i += 1) {
+            points[i].setX(points[i].x() - len);
         }
         for(iptr head = points.count(), i = 0; i < len; i += 1) {
             points.append(QPointF(head + i, (quint8)data[i]));
