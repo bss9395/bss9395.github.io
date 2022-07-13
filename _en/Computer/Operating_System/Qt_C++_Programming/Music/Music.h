@@ -28,7 +28,7 @@ public:
 
 public:
     Ui::Music *_ui = nullptr;
-    iptr _volume = 0;
+    iptr _volume = 50;
     QMediaPlayer *_player = nullptr;
     QSoundEffect *_effect = nullptr;
 
@@ -66,12 +66,18 @@ public:
                 _player->playlist()->addMedia(url);
                 _ui->LW_Music->addItem(url.fileName());
             }
+
+            _ui->TB_Remove->setEnabled(true);
+            _ui->TB_Clear->setEnabled(true);
         });
 
         QObject::connect(_ui->TB_Remove, &QToolButton::clicked, this, [this]() -> void {
             System::Logging("QObject::connect(_ui->TB_Remove, &QToolButton::clicked, this, [this]() -> void {");
 
             iptr index = _ui->LW_Music->currentRow();
+            if(index < 0) {
+                return ;
+            }
             delete _ui->LW_Music->takeItem(index);
             if(_player->playlist()->currentIndex() == index) {
                 _player->playlist()->removeMedia(index);
@@ -84,6 +90,12 @@ public:
             } else {
                 _player->playlist()->removeMedia(index);
             }
+
+            if(_player->playlist()->mediaCount() < 1) {
+                _ui->TB_Remove->setEnabled(false);
+                _ui->TB_Clear->setEnabled(false);
+                _ui->GB_Panel->setEnabled(false);
+            }
         });
 
         QObject::connect(_ui->TB_Clear, &QToolButton::clicked, this, [this]() -> void {
@@ -91,6 +103,10 @@ public:
 
             _ui->LW_Music->clear();
             _player->playlist()->clear();
+
+            _ui->TB_Remove->setEnabled(false);
+            _ui->TB_Clear->setEnabled(false);
+            _ui->GB_Panel->setEnabled(false);
         });
 
         ////////////////////////////////
@@ -126,7 +142,7 @@ public:
         });
 
         QObject::connect(_player, &QMediaPlayer::stateChanged, this, [this](QMediaPlayer::State state) -> void {
-            System::Logging("");
+            System::Logging("QObject::connect(_player, &QMediaPlayer::stateChanged, this, [this](QMediaPlayer::State state) -> void {");
 
             if(state == QMediaPlayer::PlayingState) {
                 _ui->TB_Play_Pause->setIcon(QIcon(":/images/icons/pause_circle.png"));
@@ -136,8 +152,11 @@ public:
         });
 
         QObject::connect(_player->playlist(), &QMediaPlaylist::currentIndexChanged, this, [this](int index) -> void {
-            System::Logging("");
+            System::Logging("QObject::connect(_player->playlist(), &QMediaPlaylist::currentIndexChanged, this, [this](int index) -> void {");
 
+            if(index < 0) {
+                return;
+            }
             _ui->LW_Music->setCurrentRow(index);
             _ui->L_Name->setText(_player->playlist()->media(index).request().url().fileName());
         });
@@ -166,6 +185,8 @@ public:
                 _player->playlist()->setCurrentIndex(index.row());
                 _player->play();
             }
+
+            _ui->GB_Panel->setEnabled(true);
         });
 
         QObject::connect(_ui->TB_Mode, &QToolButton::clicked, this, [this]() -> void {
@@ -260,18 +281,24 @@ public:
         _ui->S_Volume->setTracking(false);
         _ui->S_Volume->setRange(0, 100);
         _ui->S_Volume->setSingleStep(1);
-        _ui->S_Volume->setValue(50);
+        _ui->S_Volume->setValue(_volume);
+
+        ////////////////////////////////
 
         _player = new QMediaPlayer(this);
         _player->setPlaylist(new QMediaPlaylist(this));
         _player->playlist()->setPlaybackMode((QMediaPlaylist::PlaybackMode)_PlaybackMode._Loop._enume);
         _player->setVolume(qRound(100 * QAudio::convertVolume(_ui->S_Volume->value() / qreal(100.0), QAudio::LogarithmicVolumeScale, QAudio::LinearVolumeScale)));
 
-        QUrl url = QUrl("qrc:///musics/Never Saying Goodbye.mp3");
-        _player->playlist()->addMedia(url);
-        _ui->LW_Music->addItem(url.fileName());
-
         _effect = new QSoundEffect();
+
+        ////////////////////////////////
+
+        QUrl url = QUrl("qrc:///musics/Never Saying Goodbye.mp3");
+        _ui->LW_Music->addItem(url.fileName());
+        _player->playlist()->addMedia(url);
+
+        _ui->GB_Panel->setEnabled(false);
     }
 };
 
