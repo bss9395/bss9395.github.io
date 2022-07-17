@@ -1,7 +1,7 @@
 /* Common.h
 Author: BSS9395
-Update: 2022-07-14T01:54:00+08@China-Shanghai+08
-Design: Player
+Update: 2022-07-17T16:42:00+08@China-Shanghai+08
+Design: Camera
 Encode: UTF-8
 System: Qt 5.14.2
 */
@@ -18,6 +18,10 @@ System: Qt 5.14.2
 #include <QAudioProbe>
 #include <QAudioRecorder>
 #include <QBar3DSeries>
+#include <QCamera>
+#include <QCameraImageCapture>
+#include <QCameraInfo>
+#include <QCameraViewfinder>
 #include <QColorDialog>
 #include <QComboBox>
 #include <QCryptographicHash>
@@ -31,6 +35,7 @@ System: Qt 5.14.2
 #include <QFileSystemWatcher>
 #include <QFontDialog>
 #include <QGraphicsRectItem>
+#include <QGraphicsVideoItem>
 #include <QGraphicsView>
 #include <QHostInfo>
 #include <QInputDialog>
@@ -71,13 +76,13 @@ System: Qt 5.14.2
 #include <QTimer>
 #include <QToolButton>
 #include <QUdpSocket>
+#include <QVideoProbe>
+#include <QVideoWidget>
 #include <QtCharts>
 #include <QtDataVisualization>
 #include <QtGlobal>
 #include <QtMath>
 #include <QtSql/QSqlDatabase>
-#include <QVideoWidget>
-#include <QGraphicsVideoItem>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>
@@ -95,7 +100,7 @@ System: Qt 5.14.2
 #define   Header_h
 
 #include "System.h"
-#include "Player.h"
+#include "Camera.h"
 
 #endif // Header_h
 #endif // Common_h

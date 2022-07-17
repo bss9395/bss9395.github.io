@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>musics/sounds/shutter.wav</file>
+    </qresource>
+</RCC>

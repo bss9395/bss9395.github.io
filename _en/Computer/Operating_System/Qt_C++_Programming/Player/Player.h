@@ -185,6 +185,7 @@ public:
     virtual ~Player() {
         System::Logging(__FUNCTION__);
         delete _ui;
+        delete _player;
     }
 
     void _Setup() {
@@ -203,6 +204,26 @@ public:
         _player->setPlaylist(new QMediaPlaylist());
         _player->setVideoOutput(_ui->VW_Video);
         _player->setVolume(qRound(100 * QAudio::convertVolume(_ui->S_Volume->value() / qreal(100.0), QAudio::LogarithmicVolumeScale, QAudio::LinearVolumeScale)));
+
+        ////////////////////////////////
+
+//        _player = new QMediaPlayer(this);
+//        _player->setPlaylist(new QMediaPlaylist());
+//        QGraphicsScene *scene = new QGraphicsScene(this);
+//        _ui->GV_Video->setScene(scene);
+//        QGraphicsVideoItem *video = new QGraphicsVideoItem();
+//        scene->addItem(video);
+//        _player->setVideoOutput(video);
+//        video->setFlags(QGraphicsVideoItem::ItemIsMovable | QGraphicsVideoItem::ItemIsSelectable | QGraphicsVideoItem::ItemIsFocusable);
+//        QGraphicsEllipseItem *ellipse = new QGraphicsEllipseItem(0, 0, 100, 50);
+//        scene->addItem(ellipse);
+//        ellipse->setBrush(QBrush(Qt::green));
+//        ellipse->setFlags(QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable);
+//        QGraphicsRectItem *rect = new QGraphicsRectItem(0, 0, 200, 100);
+//        scene->addItem(rect);
+//        rect->setPos(0, 0);
+//        rect->setBrush(QBrush(Qt::yellow));
+//        rect->setFlags(QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable);
 
         ////////////////////////////////
 

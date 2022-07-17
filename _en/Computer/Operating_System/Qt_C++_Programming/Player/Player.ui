@@ -40,7 +40,7 @@
       <property name="title">
        <string/>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -58,7 +58,23 @@
        </property>
        <item>
         <widget class="QVideoWidget_Handler" name="VW_Video" native="true">
-         <layout class="QVBoxLayout" name="verticalLayout_4"/>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5"/>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGraphicsView" name="GV_Video">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
         </widget>
        </item>
       </layout>
@@ -195,7 +211,7 @@ QSlider::sub-page:horizontal {
              <string>播放暂停</string>
             </property>
             <property name="icon">
-             <iconset resource="images.qrc">
+             <iconset>
               <normaloff>:/images/icons/play_circle.png</normaloff>:/images/icons/play_circle.png</iconset>
             </property>
             <property name="iconSize">
@@ -276,7 +292,7 @@ QSlider::sub-page:horizontal {
              <string>音量</string>
             </property>
             <property name="icon">
-             <iconset resource="images.qrc">
+             <iconset>
               <normaloff>:/images/icons/volume_up.png</normaloff>:/images/icons/volume_up.png</iconset>
             </property>
             <property name="iconSize">
@@ -306,7 +322,7 @@ QSlider::sub-page:horizontal {
              <string>缩放</string>
             </property>
             <property name="icon">
-             <iconset resource="images.qrc">
+             <iconset>
               <normaloff>:/images/icons/zoom_out_map.png</normaloff>:/images/icons/zoom_out_map.png</iconset>
             </property>
             <property name="iconSize">
@@ -417,7 +433,7 @@ QSlider::sub-page:horizontal {
   </widget>
   <action name="A_Add">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset>
      <normaloff>:/images/icons/add.png</normaloff>:/images/icons/add.png</iconset>
    </property>
    <property name="text">
@@ -429,7 +445,7 @@ QSlider::sub-page:horizontal {
   </action>
   <action name="A_Remove">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset>
      <normaloff>:/images/icons/remove.png</normaloff>:/images/icons/remove.png</iconset>
    </property>
    <property name="text">
@@ -438,7 +454,7 @@ QSlider::sub-page:horizontal {
   </action>
   <action name="A_Clear">
    <property name="icon">
-    <iconset resource="images.qrc">
+    <iconset>
      <normaloff>:/images/icons/clear.png</normaloff>:/images/icons/clear.png</iconset>
    </property>
    <property name="text">
@@ -454,8 +470,6 @@ QSlider::sub-page:horizontal {
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="images.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
