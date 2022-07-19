@@ -124,7 +124,6 @@ public:
             _camera->stop();
             _ui->TB_Camera_Open->show();
             _ui->TB_Camera_Close->hide();
-            _Destruct();
         });
 
         _ui->TB_Recorder_Stop->hide();

@@ -1,7 +1,7 @@
 /* System.h
 Author: BSS9395
-Update: 2022-07-17T16:42:00+08@China-Shanghai+08
-Design: Camera
+Update: 2022-07-19T12:52:00+08@China-Shanghai+08
+Design: Camera_Ubuntu
 Encode: UTF-8
 System: Qt 5.14.2
 */
@@ -17,9 +17,11 @@ typedef size_t   uptr;
 typedef wchar_t  wide;
 
 typedef const char* Bool;
-static inline const Bool _None = "None";
-static inline const Bool _Posi = "Posi";
-static inline const Bool _Nega = "Nega";
+struct Boolean{
+    const Bool _None = (Bool)"None";
+    const Bool _Posi = (Bool)"Posi";
+    const Bool _Nega = (Bool)"Nega";
+};
 
 Q_DECLARE_METATYPE(iptr);
 Q_DECLARE_METATYPE(uptr);
@@ -179,7 +181,7 @@ public:
 };
 
 template<>
-class Property<Bool> {
+class Property<Bool> : public Boolean {
 public:
     typedef std::function<void(void)> Functor;
 
@@ -189,7 +191,7 @@ public:
     bool _once = false;
 
 public:
-    Property(const Bool& value = _None, const Functor& function = Functor()) {
+    Property(const Bool& value = (Bool)"None", const Functor& function = Functor()) {
         // System::Logging("Property(const Bool &value = _None, const Function &function = Function()) {");
         _value = value;
         _function = function;
@@ -775,6 +777,16 @@ public:
         base->_index += 1;
     }
 
+    Enume(Enume *base, iptr enume, const char *field, const char *alias) {
+        // System::Logging("Enume(Enume *base, iptr enume, const char *field, const char *alias) {");
+
+        _index = base->_index;
+        _enume = enume;
+        _field = field;
+        _alias = alias;
+        base->_index += 1;
+    }
+
 public:
     Enume &operator[](iptr idx) {
         // System::Logging(__FUNCTION__);
@@ -840,6 +852,185 @@ public:
         return ((Field*)this)[idx + 1];
     }
 };
+
+static struct : public Enume {
+    // Enume _None                             = Enume(this, QEvent::None                            , "None"                            , "invalid event");
+    Enume _Timer                            = Enume(this, QEvent::Timer                           , "Timer"                           , "timer event");
+    Enume _MouseButtonPress                 = Enume(this, QEvent::MouseButtonPress                , "MouseButtonPress"                , "mouse button pressed");
+    Enume _MouseButtonRelease               = Enume(this, QEvent::MouseButtonRelease              , "MouseButtonRelease"              , "mouse button released");
+    Enume _MouseButtonDblClick              = Enume(this, QEvent::MouseButtonDblClick             , "MouseButtonDblClick"             , "mouse button double click");
+    Enume _MouseMove                        = Enume(this, QEvent::MouseMove                       , "MouseMove"                       , "mouse move");
+    Enume _KeyPress                         = Enume(this, QEvent::KeyPress                        , "KeyPress"                        , "key pressed");
+    Enume _KeyRelease                       = Enume(this, QEvent::KeyRelease                      , "KeyRelease"                      , "key released");
+    Enume _FocusIn                          = Enume(this, QEvent::FocusIn                         , "FocusIn"                         , "keyboard focus received");
+    Enume _FocusOut                         = Enume(this, QEvent::FocusOut                        , "FocusOut"                        , "keyboard focus lost");
+    Enume _FocusAboutToChange               = Enume(this, QEvent::FocusAboutToChange              , "FocusAboutToChange"              , "keyboard focus is about to be lost");
+    Enume _Enter                            = Enume(this, QEvent::Enter                           , "Enter"                           , "mouse enters widget");
+    Enume _Leave                            = Enume(this, QEvent::Leave                           , "Leave"                           , "mouse leaves widget");
+    Enume _Paint                            = Enume(this, QEvent::Paint                           , "Paint"                           , "paint widget");
+    Enume _Move                             = Enume(this, QEvent::Move                            , "Move"                            , "move widget");
+    Enume _Resize                           = Enume(this, QEvent::Resize                          , "Resize"                          , "resize widget");
+    Enume _Create                           = Enume(this, QEvent::Create                          , "Create"                          , "after widget creation");
+    Enume _Destroy                          = Enume(this, QEvent::Destroy                         , "Destroy"                         , "during widget destruction");
+    Enume _Show                             = Enume(this, QEvent::Show                            , "Show"                            , "widget is shown");
+    Enume _Hide                             = Enume(this, QEvent::Hide                            , "Hide"                            , "widget is hidden");
+    Enume _Close                            = Enume(this, QEvent::Close                           , "Close"                           , "request to close widget");
+    Enume _Quit                             = Enume(this, QEvent::Quit                            , "Quit"                            , "request to quit application");
+    Enume _ParentChange                     = Enume(this, QEvent::ParentChange                    , "ParentChange"                    , "widget has been reparented");
+    Enume _ParentAboutToChange              = Enume(this, QEvent::ParentAboutToChange             , "ParentAboutToChange"             , "sent just before the parent change is done");
+    Enume _ThreadChange                     = Enume(this, QEvent::ThreadChange                    , "ThreadChange"                    , "object has changed threads");
+    Enume _WindowActivate                   = Enume(this, QEvent::WindowActivate                  , "WindowActivate"                  , "window was activated");
+    Enume _WindowDeactivate                 = Enume(this, QEvent::WindowDeactivate                , "WindowDeactivate"                , "window was deactivated");
+    Enume _ShowToParent                     = Enume(this, QEvent::ShowToParent                    , "ShowToParent"                    , "widget is shown to parent");
+    Enume _HideToParent                     = Enume(this, QEvent::HideToParent                    , "HideToParent"                    , "widget is hidden to parent");
+    Enume _Wheel                            = Enume(this, QEvent::Wheel                           , "Wheel"                           , "wheel event");
+    Enume _WindowTitleChange                = Enume(this, QEvent::WindowTitleChange               , "WindowTitleChange"               , "window title changed");
+    Enume _WindowIconChange                 = Enume(this, QEvent::WindowIconChange                , "WindowIconChange"                , "icon changed");
+    Enume _ApplicationWindowIconChange      = Enume(this, QEvent::ApplicationWindowIconChange     , "ApplicationWindowIconChange"     , "application icon changed");
+    Enume _ApplicationFontChange            = Enume(this, QEvent::ApplicationFontChange           , "ApplicationFontChange"           , "application font changed");
+    Enume _ApplicationLayoutDirectionChange = Enume(this, QEvent::ApplicationLayoutDirectionChange, "ApplicationLayoutDirectionChange", "application layout direction changed");
+    Enume _ApplicationPaletteChange         = Enume(this, QEvent::ApplicationPaletteChange        , "ApplicationPaletteChange"        , "application palette changed");
+    Enume _PaletteChange                    = Enume(this, QEvent::PaletteChange                   , "PaletteChange"                   , "widget palette changed");
+    Enume _Clipboard                        = Enume(this, QEvent::Clipboard                       , "Clipboard"                       , "internal clipboard event");
+    Enume _Speech                           = Enume(this, QEvent::Speech                          , "Speech"                          , "reserved for speech input");
+    Enume _MetaCall                         = Enume(this, QEvent::MetaCall                        , "MetaCall"                        , "meta call event");
+    Enume _SockAct                          = Enume(this, QEvent::SockAct                         , "SockAct"                         , "socket activation");
+    Enume _WinEventAct                      = Enume(this, QEvent::WinEventAct                     , "WinEventAct"                     , "win event activation");
+    Enume _DeferredDelete                   = Enume(this, QEvent::DeferredDelete                  , "DeferredDelete"                  , "deferred delete event");
+    Enume _DragEnter                        = Enume(this, QEvent::DragEnter                       , "DragEnter"                       , "drag moves into widget");
+    Enume _DragMove                         = Enume(this, QEvent::DragMove                        , "DragMove"                        , "drag moves in widget");
+    Enume _DragLeave                        = Enume(this, QEvent::DragLeave                       , "DragLeave"                       , "drag leaves or is cancelled");
+    Enume _Drop                             = Enume(this, QEvent::Drop                            , "Drop"                            , "actual drop");
+    Enume _DragResponse                     = Enume(this, QEvent::DragResponse                    , "DragResponse"                    , "drag accepted/rejected");
+    Enume _ChildAdded                       = Enume(this, QEvent::ChildAdded                      , "ChildAdded"                      , "new child widget");
+    Enume _ChildPolished                    = Enume(this, QEvent::ChildPolished                   , "ChildPolished"                   , "polished child widget");
+    Enume _ChildRemoved                     = Enume(this, QEvent::ChildRemoved                    , "ChildRemoved"                    , "deleted child widget");
+    Enume _ShowWindowRequest                = Enume(this, QEvent::ShowWindowRequest               , "ShowWindowRequest"               , "widget's window should be mapped");
+    Enume _PolishRequest                    = Enume(this, QEvent::PolishRequest                   , "PolishRequest"                   , "widget should be polished");
+    Enume _Polish                           = Enume(this, QEvent::Polish                          , "Polish"                          , "widget is polished");
+    Enume _LayoutRequest                    = Enume(this, QEvent::LayoutRequest                   , "LayoutRequest"                   , "widget should be relayouted");
+    Enume _UpdateRequest                    = Enume(this, QEvent::UpdateRequest                   , "UpdateRequest"                   , "widget should be repainted");
+    Enume _UpdateLater                      = Enume(this, QEvent::UpdateLater                     , "UpdateLater"                     , "request update() later");
+    Enume _EmbeddingControl                 = Enume(this, QEvent::EmbeddingControl                , "EmbeddingControl"                , "ActiveX embedding");
+    Enume _ActivateControl                  = Enume(this, QEvent::ActivateControl                 , "ActivateControl"                 , "ActiveX activation");
+    Enume _DeactivateControl                = Enume(this, QEvent::DeactivateControl               , "DeactivateControl"               , "ActiveX deactivation");
+    Enume _ContextMenu                      = Enume(this, QEvent::ContextMenu                     , "ContextMenu"                     , "context popup menu");
+    Enume _InputMethod                      = Enume(this, QEvent::InputMethod                     , "InputMethod"                     , "input method");
+    Enume _TabletMove                       = Enume(this, QEvent::TabletMove                      , "TabletMove"                      , "Wacom tablet event");
+    Enume _LocaleChange                     = Enume(this, QEvent::LocaleChange                    , "LocaleChange"                    , "the system locale changed");
+    Enume _LanguageChange                   = Enume(this, QEvent::LanguageChange                  , "LanguageChange"                  , "the application language changed");
+    Enume _LayoutDirectionChange            = Enume(this, QEvent::LayoutDirectionChange           , "LayoutDirectionChange"           , "the layout direction changed");
+    Enume _Style                            = Enume(this, QEvent::Style                           , "Style"                           , "internal style event");
+    Enume _TabletPress                      = Enume(this, QEvent::TabletPress                     , "TabletPress"                     , "tablet press");
+    Enume _TabletRelease                    = Enume(this, QEvent::TabletRelease                   , "TabletRelease"                   , "tablet release");
+    Enume _OkRequest                        = Enume(this, QEvent::OkRequest                       , "OkRequest"                       , "CE (Ok) button pressed");
+    Enume _HelpRequest                      = Enume(this, QEvent::HelpRequest                     , "HelpRequest"                     , "CE (?)  button pressed");
+    Enume _IconDrag                         = Enume(this, QEvent::IconDrag                        , "IconDrag"                        , "proxy icon dragged");
+    Enume _FontChange                       = Enume(this, QEvent::FontChange                      , "FontChange"                      , "font has changed");
+    Enume _EnabledChange                    = Enume(this, QEvent::EnabledChange                   , "EnabledChange"                   , "enabled state has changed");
+    Enume _ActivationChange                 = Enume(this, QEvent::ActivationChange                , "ActivationChange"                , "window activation has changed");
+    Enume _StyleChange                      = Enume(this, QEvent::StyleChange                     , "StyleChange"                     , "style has changed");
+    Enume _IconTextChange                   = Enume(this, QEvent::IconTextChange                  , "IconTextChange"                  , "icon text has changed.  Deprecated.");
+    Enume _ModifiedChange                   = Enume(this, QEvent::ModifiedChange                  , "ModifiedChange"                  , "modified state has changed");
+    Enume _MouseTrackingChange              = Enume(this, QEvent::MouseTrackingChange             , "MouseTrackingChange"             , "mouse tracking state has changed");
+    Enume _WindowBlocked                    = Enume(this, QEvent::WindowBlocked                   , "WindowBlocked"                   , "window is about to be blocked modally");
+    Enume _WindowUnblocked                  = Enume(this, QEvent::WindowUnblocked                 , "WindowUnblocked"                 , "windows modal blocking has ended");
+    Enume _WindowStateChange                = Enume(this, QEvent::WindowStateChange               , "WindowStateChange"               , "");
+    Enume _ReadOnlyChange                   = Enume(this, QEvent::ReadOnlyChange                  , "ReadOnlyChange"                  , "readonly state has changed");
+    Enume _ToolTip                          = Enume(this, QEvent::ToolTip                         , "ToolTip"                         , "");
+    Enume _WhatsThis                        = Enume(this, QEvent::WhatsThis                       , "WhatsThis"                       , "");
+    Enume _StatusTip                        = Enume(this, QEvent::StatusTip                       , "StatusTip"                       , "");
+    Enume _ActionChanged                    = Enume(this, QEvent::ActionChanged                   , "ActionChanged"                   , "");
+    Enume _ActionAdded                      = Enume(this, QEvent::ActionAdded                     , "ActionAdded"                     , "");
+    Enume _ActionRemoved                    = Enume(this, QEvent::ActionRemoved                   , "ActionRemoved"                   , "");
+    Enume _FileOpen                         = Enume(this, QEvent::FileOpen                        , "FileOpen"                        , "file open request");
+    Enume _Shortcut                         = Enume(this, QEvent::Shortcut                        , "Shortcut"                        , "shortcut triggered");
+    Enume _ShortcutOverride                 = Enume(this, QEvent::ShortcutOverride                , "ShortcutOverride"                , "shortcut override request");
+    Enume _WhatsThisClicked                 = Enume(this, QEvent::WhatsThisClicked                , "WhatsThisClicked"                , "");
+    Enume _ToolBarChange                    = Enume(this, QEvent::ToolBarChange                   , "ToolBarChange"                   , "toolbar visibility toggled");
+    Enume _ApplicationActivate              = Enume(this, QEvent::ApplicationActivate             , "ApplicationActivate"             , "deprecated. Use ApplicationStateChange instead.");
+    Enume _ApplicationActivated             = Enume(this, QEvent::ApplicationActivated            , "ApplicationActivated"            , "deprecated");
+    Enume _ApplicationDeactivate            = Enume(this, QEvent::ApplicationDeactivate           , "ApplicationDeactivate"           , "deprecated. Use ApplicationStateChange instead.");
+    Enume _ApplicationDeactivated           = Enume(this, QEvent::ApplicationDeactivated          , "ApplicationDeactivated"          , "deprecated");
+    Enume _QueryWhatsThis                   = Enume(this, QEvent::QueryWhatsThis                  , "QueryWhatsThis"                  , "query what's this widget help");
+    Enume _EnterWhatsThisMode               = Enume(this, QEvent::EnterWhatsThisMode              , "EnterWhatsThisMode"              , "");
+    Enume _LeaveWhatsThisMode               = Enume(this, QEvent::LeaveWhatsThisMode              , "LeaveWhatsThisMode"              , "");
+    Enume _ZOrderChange                     = Enume(this, QEvent::ZOrderChange                    , "ZOrderChange"                    , "child widget has had its z-order changed");
+    Enume _HoverEnter                       = Enume(this, QEvent::HoverEnter                      , "HoverEnter"                      , "mouse cursor enters a hover widget");
+    Enume _HoverLeave                       = Enume(this, QEvent::HoverLeave                      , "HoverLeave"                      , "mouse cursor leaves a hover widget");
+    Enume _HoverMove                        = Enume(this, QEvent::HoverMove                       , "HoverMove"                       , "mouse cursor move inside a hover widget");
+#ifdef    QT_KEYPAD_NAVIGATION
+    Enume _EnterEditFocus                   = Enume(this, QEvent::EnterEditFocus                  , "EnterEditFocus"                  , "enter edit mode in keypad navigation");
+    Enume _LeaveEditFocus                   = Enume(this, QEvent::LeaveEditFocus                  , "LeaveEditFocus"                  , "enter edit mode in keypad navigation");
+#endif // QT_KEYPAD_NAVIGATION
+    Enume _AcceptDropsChange                = Enume(this, QEvent::AcceptDropsChange               , "AcceptDropsChange"               , "");
+    Enume _ZeroTimerEvent                   = Enume(this, QEvent::ZeroTimerEvent                  , "ZeroTimerEvent"                  , "Used for Windows Zero timer events");
+    Enume _GraphicsSceneMouseMove           = Enume(this, QEvent::GraphicsSceneMouseMove          , "GraphicsSceneMouseMove"          , "GraphicsView");
+    Enume _GraphicsSceneMousePress          = Enume(this, QEvent::GraphicsSceneMousePress         , "GraphicsSceneMousePress"         , "");
+    Enume _GraphicsSceneMouseRelease        = Enume(this, QEvent::GraphicsSceneMouseRelease       , "GraphicsSceneMouseRelease"       , "");
+    Enume _GraphicsSceneMouseDoubleClick    = Enume(this, QEvent::GraphicsSceneMouseDoubleClick   , "GraphicsSceneMouseDoubleClick"   , "");
+    Enume _GraphicsSceneContextMenu         = Enume(this, QEvent::GraphicsSceneContextMenu        , "GraphicsSceneContextMenu"        , "");
+    Enume _GraphicsSceneHoverEnter          = Enume(this, QEvent::GraphicsSceneHoverEnter         , "GraphicsSceneHoverEnter"         , "");
+    Enume _GraphicsSceneHoverMove           = Enume(this, QEvent::GraphicsSceneHoverMove          , "GraphicsSceneHoverMove"          , "");
+    Enume _GraphicsSceneHoverLeave          = Enume(this, QEvent::GraphicsSceneHoverLeave         , "GraphicsSceneHoverLeave"         , "");
+    Enume _GraphicsSceneHelp                = Enume(this, QEvent::GraphicsSceneHelp               , "GraphicsSceneHelp"               , "");
+    Enume _GraphicsSceneDragEnter           = Enume(this, QEvent::GraphicsSceneDragEnter          , "GraphicsSceneDragEnter"          , "");
+    Enume _GraphicsSceneDragMove            = Enume(this, QEvent::GraphicsSceneDragMove           , "GraphicsSceneDragMove"           , "");
+    Enume _GraphicsSceneDragLeave           = Enume(this, QEvent::GraphicsSceneDragLeave          , "GraphicsSceneDragLeave"          , "");
+    Enume _GraphicsSceneDrop                = Enume(this, QEvent::GraphicsSceneDrop               , "GraphicsSceneDrop"               , "");
+    Enume _GraphicsSceneWheel               = Enume(this, QEvent::GraphicsSceneWheel              , "GraphicsSceneWheel"              , "");
+    Enume _KeyboardLayoutChange             = Enume(this, QEvent::KeyboardLayoutChange            , "KeyboardLayoutChange"            , "keyboard layout changed");
+    Enume _DynamicPropertyChange            = Enume(this, QEvent::DynamicPropertyChange           , "DynamicPropertyChange"           , "A dynamic property was changed through setProperty/property");
+    Enume _TabletEnterProximity             = Enume(this, QEvent::TabletEnterProximity            , "TabletEnterProximity"            , "");
+    Enume _TabletLeaveProximity             = Enume(this, QEvent::TabletLeaveProximity            , "TabletLeaveProximity"            , "");
+    Enume _NonClientAreaMouseMove           = Enume(this, QEvent::NonClientAreaMouseMove          , "NonClientAreaMouseMove"          , "");
+    Enume _NonClientAreaMouseButtonPress    = Enume(this, QEvent::NonClientAreaMouseButtonPress   , "NonClientAreaMouseButtonPress"   , "");
+    Enume _NonClientAreaMouseButtonRelease  = Enume(this, QEvent::NonClientAreaMouseButtonRelease , "NonClientAreaMouseButtonRelease" , "");
+    Enume _NonClientAreaMouseButtonDblClick = Enume(this, QEvent::NonClientAreaMouseButtonDblClick, "NonClientAreaMouseButtonDblClick", "");
+    Enume _MacSizeChange                    = Enume(this, QEvent::MacSizeChange                   , "MacSizeChange"                   , "when the Qt::WA_Mac{Normal,Small,Mini}Size changes");
+    Enume _ContentsRectChange               = Enume(this, QEvent::ContentsRectChange              , "ContentsRectChange"              , "sent by QWidget::setContentsMargins (internal)");
+    Enume _MacGLWindowChange                = Enume(this, QEvent::MacGLWindowChange               , "MacGLWindowChange"               , "Internal! the window of the GLWidget has changed");
+    Enume _FutureCallOut                    = Enume(this, QEvent::FutureCallOut                   , "FutureCallOut"                   , "");
+    Enume _GraphicsSceneResize              = Enume(this, QEvent::GraphicsSceneResize             , "GraphicsSceneResize"             , "");
+    Enume _GraphicsSceneMove                = Enume(this, QEvent::GraphicsSceneMove               , "GraphicsSceneMove"               , "");
+    Enume _CursorChange                     = Enume(this, QEvent::CursorChange                    , "CursorChange"                    , "");
+    Enume _ToolTipChange                    = Enume(this, QEvent::ToolTipChange                   , "ToolTipChange"                   , "");
+    Enume _NetworkReplyUpdated              = Enume(this, QEvent::NetworkReplyUpdated             , "NetworkReplyUpdated"             , "Internal for QNetworkReply");
+    Enume _GrabMouse                        = Enume(this, QEvent::GrabMouse                       , "GrabMouse"                       , "");
+    Enume _UngrabMouse                      = Enume(this, QEvent::UngrabMouse                     , "UngrabMouse"                     , "");
+    Enume _GrabKeyboard                     = Enume(this, QEvent::GrabKeyboard                    , "GrabKeyboard"                    , "");
+    Enume _UngrabKeyboard                   = Enume(this, QEvent::UngrabKeyboard                  , "UngrabKeyboard"                  , "");
+    Enume _MacGLClearDrawable               = Enume(this, QEvent::MacGLClearDrawable              , "MacGLClearDrawable"              , "Internal Cocoa, the window has changed, so we must clear");
+    Enume _StateMachineSignal               = Enume(this, QEvent::StateMachineSignal              , "StateMachineSignal"              , "");
+    Enume _StateMachineWrapped              = Enume(this, QEvent::StateMachineWrapped             , "StateMachineWrapped"             , "");
+    Enume _TouchBegin                       = Enume(this, QEvent::TouchBegin                      , "TouchBegin"                      , "");
+    Enume _TouchUpdate                      = Enume(this, QEvent::TouchUpdate                     , "TouchUpdate"                     , "");
+    Enume _TouchEnd                         = Enume(this, QEvent::TouchEnd                        , "TouchEnd"                        , "");
+    Enume _NativeGesture                    = Enume(this, QEvent::NativeGesture                   , "NativeGesture"                   , "QtGui native gesture");
+    Enume _RequestSoftwareInputPanel        = Enume(this, QEvent::RequestSoftwareInputPanel       , "RequestSoftwareInputPanel"       , "");
+    Enume _CloseSoftwareInputPanel          = Enume(this, QEvent::CloseSoftwareInputPanel         , "CloseSoftwareInputPanel"         , "");
+    Enume _WinIdChange                      = Enume(this, QEvent::WinIdChange                     , "WinIdChange"                     , "");
+    Enume _Gesture                          = Enume(this, QEvent::Gesture                         , "Gesture"                         , "");
+    Enume _GestureOverride                  = Enume(this, QEvent::GestureOverride                 , "GestureOverride"                 , "");
+    Enume _ScrollPrepare                    = Enume(this, QEvent::ScrollPrepare                   , "ScrollPrepare"                   , "");
+    Enume _Scroll                           = Enume(this, QEvent::Scroll                          , "Scroll"                          , "");
+    Enume _Expose                           = Enume(this, QEvent::Expose                          , "Expose"                          , "");
+    Enume _InputMethodQuery                 = Enume(this, QEvent::InputMethodQuery                , "InputMethodQuery"                , "");
+    Enume _OrientationChange                = Enume(this, QEvent::OrientationChange               , "OrientationChange"               , "Screen orientation has changed");
+    Enume _TouchCancel                      = Enume(this, QEvent::TouchCancel                     , "TouchCancel"                     , "");
+    Enume _ThemeChange                      = Enume(this, QEvent::ThemeChange                     , "ThemeChange"                     , "");
+    Enume _SockClose                        = Enume(this, QEvent::SockClose                       , "SockClose"                       , "socket closed");
+    Enume _PlatformPanel                    = Enume(this, QEvent::PlatformPanel                   , "PlatformPanel"                   , "");
+    Enume _StyleAnimationUpdate             = Enume(this, QEvent::StyleAnimationUpdate            , "StyleAnimationUpdate"            , "style animation target should be updated");
+    Enume _ApplicationStateChange           = Enume(this, QEvent::ApplicationStateChange          , "ApplicationStateChange"          , "");
+    Enume _WindowChangeInternal             = Enume(this, QEvent::WindowChangeInternal            , "WindowChangeInternal"            , "internal for QQuickWidget");
+    Enume _ScreenChangeInternal             = Enume(this, QEvent::ScreenChangeInternal            , "ScreenChangeInternal"            , "");
+    Enume _PlatformSurface                  = Enume(this, QEvent::PlatformSurface                 , "PlatformSurface"                 , "Platform surface created or about to be destroyed");
+    Enume _Pointer                          = Enume(this, QEvent::Pointer                         , "Pointer"                         , "QQuickPointerEvent; ### Qt 6: QPointerEvent");
+    Enume _TabletTrackingChange             = Enume(this, QEvent::TabletTrackingChange            , "TabletTrackingChange"            , "tablet tracking state has changed");
+    Enume _User                             = Enume(this, QEvent::User                            , "User"                            , "first user event id");
+    Enume _MaxUser                          = Enume(this, QEvent::MaxUser                         , "MaxUser"                         , "last user event id");
+} _event_type;
 
 struct State : Enume {
     Enume _Created = Enume(this, 0x01, "Created");

@@ -134,8 +134,6 @@
         <file>images/icons/vertical_distribute.png</file>
         <file>images/icons/view_in_ar.ico</file>
         <file>images/icons/view_in_ar.png</file>
-        <file>images/icons/volume_down.png</file>
-        <file>images/icons/volume_mute.png</file>
         <file>images/icons/volume_off.png</file>
         <file>images/icons/volume_up.png</file>
         <file>images/icons/vpn_key.png</file>
@@ -146,5 +144,12 @@
         <file>images/icons/zoom_in_map.png</file>
         <file>images/icons/zoom_out.png</file>
         <file>images/icons/zoom_out_map.png</file>
+        <file>images/icons/pause_circle_White.png</file>
+        <file>images/icons/play_circle_White.png</file>
+        <file>images/icons/stop_circle_White.png</file>
+        <file>images/icons/volume_off_White.png</file>
+        <file>images/icons/volume_up_White.png</file>
+        <file>images/icons/zoom_in_map_White.png</file>
+        <file>images/icons/zoom_out_map_White.png</file>
     </qresource>
 </RCC>

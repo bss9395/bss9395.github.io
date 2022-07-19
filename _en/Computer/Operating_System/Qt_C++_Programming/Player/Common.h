@@ -1,6 +1,6 @@
 /* Common.h
 Author: BSS9395
-Update: 2022-07-14T01:54:00+08@China-Shanghai+08
+Update: 2022-07-20T02:00:00+08@China-Shanghai+08
 Design: Player
 Encode: UTF-8
 System: Qt 5.14.2
@@ -26,11 +26,13 @@ System: Qt 5.14.2
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QDialog>
+#include <QEvent>
 #include <QException>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
 #include <QFontDialog>
 #include <QGraphicsRectItem>
+#include <QGraphicsVideoItem>
 #include <QGraphicsView>
 #include <QHostInfo>
 #include <QInputDialog>
@@ -71,13 +73,12 @@ System: Qt 5.14.2
 #include <QTimer>
 #include <QToolButton>
 #include <QUdpSocket>
+#include <QVideoWidget>
 #include <QtCharts>
 #include <QtDataVisualization>
 #include <QtGlobal>
 #include <QtMath>
 #include <QtSql/QSqlDatabase>
-#include <QVideoWidget>
-#include <QGraphicsVideoItem>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>
