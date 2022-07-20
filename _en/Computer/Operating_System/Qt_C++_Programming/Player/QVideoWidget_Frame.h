@@ -22,7 +22,9 @@ public:
     QMediaPlayer *_player = nullptr;
     QMediaPlaylist *_play_list = nullptr;
     QTimer _timer = QTimer();
+    QTimer _delayer = QTimer();
     iptr _interval = 1500;
+    iptr _delay = 250;
     Bool _state = _None;
     Area _area = Area();
     iptr _volume = 50;
@@ -37,6 +39,7 @@ public:
     void _Resize();
     void _Mouse_Press(QMouseEvent *event);
     void _Key_Press(QKeyEvent *event);
+    void _Show_Hide(bool show_hide);
 
 public:
     virtual void moveEvent(QMoveEvent *event) override;

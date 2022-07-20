@@ -30,6 +30,8 @@ public:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void showEvent(QShowEvent *event) override;
+    virtual void hideEvent(QHideEvent *event) override;
 };
 
 #endif // QVideoWidget_Handler_h

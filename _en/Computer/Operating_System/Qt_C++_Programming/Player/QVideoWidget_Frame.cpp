@@ -61,6 +61,20 @@ void QVideoWidget_Handler::keyPressEvent(QKeyEvent *event) {
     return QVideoWidget::keyPressEvent(event);
 }
 
+void QVideoWidget_Handler::showEvent(QShowEvent *event) {
+    System::Logging(__FUNCTION__);
+
+    _frame->_Show_Hide(true);
+    QVideoWidget::showEvent(event);
+}
+
+void QVideoWidget_Handler::hideEvent(QHideEvent *event) {
+    System::Logging(__FUNCTION__);
+
+    _frame->_Show_Hide(false);
+    QVideoWidget::hideEvent(event);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 QVideoWidget_Frame::QVideoWidget_Frame(QWidget *parent)
@@ -78,10 +92,15 @@ QVideoWidget_Frame::QVideoWidget_Frame(QWidget *parent)
             _timer.start(_interval);
         } else if(_state == _Nega) {
             _ui->F_Tool->hide();
-            // _ui->F_Panel->hide();
             _state = _None;
             _timer.stop();
         }
+    });
+
+    QObject::connect(&_delayer, &QTimer::timeout, this, [this]() -> void {
+        System::Logging("QObject::connect(&_delayer, &QTimer::timeout, this, [this]() -> void {");
+        _ui->F_Panel->show();
+        _delayer.stop();
     });
 
     ////////////////////////////////
@@ -169,7 +188,7 @@ QVideoWidget_Frame::QVideoWidget_Frame(QWidget *parent)
     });
 
     QObject::connect(_player, &QMediaPlayer::positionChanged, this, [this](qint64 position) -> void {
-        System::Logging("QObject::connect(_player, &QMediaPlayer::positionChanged, this, [this](qint64 position) -> void {");
+        // System::Logging("QObject::connect(_player, &QMediaPlayer::positionChanged, this, [this](qint64 position) -> void {");
 
         _ui->S_Progress->setValue(position);
         iptr tune = position % 1000;
@@ -181,11 +200,10 @@ QVideoWidget_Frame::QVideoWidget_Frame(QWidget *parent)
 
     ////////////////////////////////////
 
-//    // QUrl url = QUrl("qrc:///videos/Two_Black_Holes_Merge_into_One.mp4");
-//    QUrl url = QUrl("E:/Downloads/QtProjects/Player/videos/abc.1080P.mp4");
-//    _player->playlist()->addMedia(url);
-//    _player->playlist()->setCurrentIndex(0);
-//    _ui->TB_Play->click();
+    // QUrl url = QUrl("qrc:///videos/Two_Black_Holes_Merge_into_One.mp4");
+    // _player->playlist()->addMedia(url);
+    // _player->playlist()->setCurrentIndex(0);
+    // _ui->TB_Play->click();
 }
 
 QVideoWidget_Frame::~QVideoWidget_Frame() {
@@ -270,6 +288,16 @@ void QVideoWidget_Frame::_Key_Press(QKeyEvent *event) {
         _ui->VWH_Video->setFullScreen(false);
         _ui->TB_Full->show();
         _ui->TB_Restore->hide();
+    }
+}
+
+void QVideoWidget_Frame::_Show_Hide(bool show_hide) {
+    System::Logging(__FUNCTION__);
+
+    if(show_hide == true) {
+        _delayer.start(_delay);
+    } else if(show_hide == false) {
+        _ui->F_Panel->hide();
     }
 }
 
