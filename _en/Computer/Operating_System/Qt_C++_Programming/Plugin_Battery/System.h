@@ -1,7 +1,7 @@
 /* System.h
 Author: BSS9395
-Update: 2022-07-22T01:23:00+08@China-Shanghai+08
-Design: Battery
+Update: 2022-07-24T00:17:00+08@China-Shanghai+08
+Design: Plugin_Battery
 Encode: UTF-8
 System: Qt 5.14.2
 */
