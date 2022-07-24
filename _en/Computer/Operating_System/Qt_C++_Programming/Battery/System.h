@@ -153,14 +153,16 @@ public:
     typedef std::function<void(void)> Functor;
 
     TType _value;
-    Functor _function;
+    Functor _setter;
+    Functor _getter;
     bool _once = false;
 
 public:
-    Property(const TType& value = TType(), const Functor& function = Functor()) {
-        // System::Logging(__FUNCTION__);
+    explicit Property(const TType& value = TType(), const Functor& setter = []() -> void {}, const Functor& getter = []() -> void {}) {
+        System::Logging("explicit Property(const TType& value = TType(), const Functor& setter = []() -> void {}, const Functor& getter = []() -> void {}) {");
         _value = value;
-        _function = function;
+        _setter = setter;
+        _getter = getter;
     }
 
     TType& operator=(const TType& value) {
@@ -168,14 +170,20 @@ public:
         if (_once == false) {
             _once = true;    // note: call once at a time.
             _value = value;
-            _function();
+            _setter();
         }
         _once = false;
         return _value;
     }
 
-    operator TType& () {
+    operator TType () {
         // System::Logging(__FUNCTION__);
+
+        if(_once == false) {
+            _once = true;
+            _getter();
+        }
+        _once = false;
         return _value;
     }
 };
@@ -187,20 +195,23 @@ public:
 
 public:
     Bool _value = _None;
-    Functor _function = Functor();
+    Functor _setter;
+    Functor _getter;
     bool _once = false;
 
 public:
-    Property(const Bool& value = (Bool)"None", const Functor& function = Functor()) {
-        // System::Logging("Property(const Bool &value = _None, const Function &function = Function()) {");
+    explicit Property(const Bool& value = (Bool)"None", const Functor& setter = []() -> void {}, const Functor& getter = []() -> void {}) {
+        System::Logging("explicit Property(const Bool& value = (Bool)\"None\", const Functor& setter = []() -> void {}, const Functor& getter = []() -> void {}) {");
         _value = value;
-        _function = function;
+        _setter = setter;
+        _getter = getter;
     }
 
-    Property(const bool& value = bool(), const Functor& function = Functor()) {
-        // System::Logging("Property(const bool &value = bool(), const Function &function = Function()) {");
+    explicit Property(const bool& value = bool(), const Functor& setter = []() -> void {}, const Functor& getter = []() -> void {}) {
+        System::Logging("explicit Property(const bool& value = bool(), const Functor& setter = []() -> void {}, const Functor& getter = []() -> void {}) {");
         _value = (value == true) ? _Posi : _Nega;
-        _function = function;
+        _setter = setter;
+        _getter = getter;
     }
 
     Bool& operator=(const Bool& value) {
@@ -208,7 +219,7 @@ public:
         if (_once == false) {
             _once = true;    // note: call once at a time.
             _value = value;
-            _function();
+            _setter();
         }
         _once = false;
         return _value;
@@ -219,7 +230,7 @@ public:
         if (_once == false) {
             _once = true;    // note: call once at a time.
             _value = (value == true) ? _Posi : _Nega;
-            _function();
+            _setter();
         }
         _once = false;
         return _value;
@@ -227,6 +238,11 @@ public:
 
     operator Bool& () {
         // System::Logging(__FUNCTION__);
+        if(_once == false) {
+            _once = true;
+            _getter();
+        }
+        _once = false;
         return _value;
     }
 };
@@ -367,7 +383,7 @@ public:
         // System::Logging(__FUNCTION__);
 
         for (iptr i = 0; i < numb; i += 1) {
-            Construct(address, objects[i]), address += sizeof(TAddress);
+            Construct(address, objects[i]); address += sizeof(TAddress);
         }
     }
 
@@ -495,7 +511,7 @@ public:
             System::Logging(__FUNCTION__);
         }
     };
-    static inline std::set<std::vector<Class*>*> _Set;
+    std::set<std::vector<Class*>*> _set;
 
 public:
     iptr* _refer = nullptr;
@@ -560,7 +576,7 @@ public:
                         delete (*_pointers)[i];
                     }
                 }
-                Clean::_Set.erase(_pointers);
+                _set.erase(_pointers);
                 delete _pointers;
             }
         }
@@ -572,7 +588,7 @@ public:
 
         if (_pointers == nullptr) {
             _pointers = new std::vector<Class*>();
-            Clean::_Set.insert(_pointers);
+            _set.insert(_pointers);
         }
         _pointers->push_back((Class*)pointer);
         return (*this);
@@ -1074,8 +1090,8 @@ public:
 
 public:
     iptr _x_min = 0;
-    iptr _x_max = 0;
     iptr _y_min = 0;
+    iptr _x_max = 0;
     iptr _y_max = 0;
 
 public:
@@ -1105,21 +1121,37 @@ public:
     }
 
 public:
-    static QRect _Viewport(iptr width, iptr height, double ratio) {
+    static QRect _Viewport(iptr x_from, iptr y_from, iptr x_upto, iptr y_upto, double ratio) {
         System::Logging(__FUNCTION__);
 
         iptr x_min = 0;
         iptr y_min = 0;
         iptr x_max = 0;
         iptr y_max = 0;
-        if(width * ratio < height) {
-            x_max = width;
-            y_max = width * ratio;
+        if(x_from < x_upto) {
+            x_min = x_from;
+            x_max = x_upto;
         } else {
-            x_max = height / ratio;
-            y_max = height;
+            x_min = x_upto;
+            x_max = x_from;
         }
-        return QRect(x_min, y_min, x_max - x_min, y_max - y_min);
+        if(y_from < y_upto) {
+            y_min = y_from;
+            y_max = y_upto;
+        } else {
+            y_min = y_upto;
+            y_max = y_from;
+        }
+
+        iptr width = x_max - x_min;
+        iptr height = y_max - y_min;
+        if(width * ratio < height) {
+            height = width * ratio;
+        } else {
+            width = height / ratio;
+        }
+
+        return QRect((x_min + x_max - width) / 2, (y_min + y_max - height) / 2, width, height);
     }
 
     static QRect _Proption(QRect rect, double prop) {
@@ -1129,7 +1161,7 @@ public:
     }
 
 public:
-    QRect _XY_Rect(iptr x_from, iptr y_from, iptr x_upto, iptr y_upto) {
+    QRect _XY_Rect(iptr x_from, iptr y_from, iptr x_upto, iptr y_upto, iptr border = 0) {
         System::Logging(__FUNCTION__);
 
         if(x_from < x_upto) {
@@ -1146,10 +1178,15 @@ public:
             _y_min = y_upto;
             _y_max = y_from;
         }
+        border /= 2;
+        _x_min += border;
+        _y_min += border;
+        _x_max -= border;
+        _y_max -= border;
         return QRect(_x_min, _y_min, _x_max - _x_min, _y_max - _y_min);
     }
 
-    QRect _YZ_Rect(iptr Y_FROM, iptr Z_FROM, iptr Y_UPTO, iptr Z_UPTO) {
+    QRect _YZ_Rect(iptr Y_FROM, iptr Z_FROM, iptr Y_UPTO, iptr Z_UPTO, iptr BORDER = 0) {
         System::Logging(__FUNCTION__);
 
         iptr x_from = Y_FROM + _X_Min;
@@ -1171,6 +1208,13 @@ public:
             _y_min = y_upto;
             _y_max = y_from;
         }
+        BORDER /= 2;
+        _x_min += BORDER;
+        _y_min += BORDER;
+        _x_max -= BORDER;
+        _y_max -= BORDER;
+
+        System::Logging("[%d, %d, %d, %d]", _x_min, _y_min, _x_max, _y_max);
         return QRect(_x_min, _y_min, _x_max - _x_min, _y_max - _y_min);
     }
 

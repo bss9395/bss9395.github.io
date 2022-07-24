@@ -1,6 +1,6 @@
 /* Common.h
 Author: BSS9395
-Update: 2022-07-24T00:17:00+08@China-Shanghai+08
+Update: 2022-07-20T02:00:00+08@China-Shanghai+08
 Design: Plugin_Battery
 Encode: UTF-8
 System: Qt 5.14.2
@@ -17,6 +17,7 @@ System: Qt 5.14.2
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QDialog>
+#include <QEvent>
 #include <QException>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
@@ -54,6 +55,16 @@ System: Qt 5.14.2
 #include <QtPlugin>
 #include <QtUiPlugin/QDesignerCustomWidgetInterface>
 #include <QLayout>
+#include <QtCore/qglobal.h>
+
+#ifdef SHARED_LIBRARY
+#undef SHARED_LIBRARY
+    #define SHARED_LIBRARY Q_DECL_EXPORT
+#else
+    #define SHARED_LIBRARY Q_DECL_IMPORT
+#endif
+
+////////////////////////////////////////////////////////////////////////////////
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>

@@ -75,26 +75,26 @@ public:
             iptr width = 800;
             iptr height = 500;
             Area window = Area(0, 0, width, height);
-            painter.setViewport(Area::_Viewport(this->width(), this->height(), 1.0 * height / width));  // note: physical coordiante.
-            painter.setWindow((QRect)window);                                            // note: logical coordinate.
+            painter.setViewport(Area::_Viewport(0, 0, this->width(), this->height(), 1.0 * height / width));  // note: physical coordiante.
+            painter.setWindow((QRect)window);                                                           // note: logical coordinate.
 
             _pen.setWidth(10);
             _pen.setColor(_color_border);
             _brush.setColor(_color_background);
             painter.setPen(_pen);
             painter.setBrush(_brush);
-            painter.drawRect(window._YZ_Rect(5, 5, width * (11.0 / 12.0), height - 5));
+            painter.drawRect(window._YZ_Rect(0, 0, width * (11.0 / 12.0), height, 10));
 
             _pen.setWidth(10);
             _pen.setColor(_color_border);
             _brush.setColor(_color_cap);
             painter.setPen(_pen);
             painter.setBrush(_brush);
-            painter.drawRect(window._YZ_Rect(width * (11.0 / 12.0), height * (1.0 / 3.0), width - 5, height * (2.0 / 3.0)));
+            painter.drawRect(window._YZ_Rect(width * (11.0 / 12.0), height * (1.0 / 3.0), width, height * (2.0 / 3.0), 10));
 
-            if(0 < _power) {
+            if(0 < _power._value) {
                 _pen.setWidth(0);
-                if(_warn <= _power) {
+                if(_warn <= _power._value) {
                     _pen.setColor(_color_power);
                     _brush.setColor(_color_power);
                 } else {
@@ -103,10 +103,10 @@ public:
                 }
                 painter.setPen(_pen);
                 painter.setBrush(_brush);
-                painter.drawRect(window._YZ_Rect(10, 10, 10 + (width * (11.0 / 12.0) - 15) * (_power / 100.0), height - 10));
+                painter.drawRect(window._YZ_Rect(10, 10, 10 + (width * (11.0 / 12.0) - 20) * (_power._value / 100.0), height - 10, 0));
             }
 
-            QString text = QString::asprintf("%td%%", (iptr)_power);
+            QString text = QString::asprintf("%td%%", _power._value);
             double prop = 2.0 * width / this->width();
             QRect bound = Area::_Proption(QFontMetrics(this->font()).boundingRect(text), prop);
             _pen.setColor(_color_border);
@@ -169,10 +169,10 @@ public:
         QColor _color_warn = QColor(255, 0, 0, 255);
         iptr _warn = 15;
         Property<iptr> _power = Property<iptr>(0, [this]() -> void {
-            System::Logging("Property<iptr> _power = Property<iptr>(60, [this]() -> void {");
+            System::Logging("Property<iptr> _power = Property<iptr>(0, [this]() -> void {");
 
             this->update();
-            _battery->_label->setText(QString::asprintf("%3td%%", (iptr)(this->_power)));
+            _battery->_label->setText(QString::asprintf("%3td%%", _power._value));
         });
 
     public:
@@ -212,26 +212,26 @@ public:
             iptr width = 800;
             iptr height = 500;
             Area window = Area(0, 0, width, height);
-            painter.setViewport(Area::_Viewport(this->width(), this->height(), 1.0 * height / width));  // note: physical coordiante.
-            painter.setWindow((QRect)window);                                            // note: logical coordinate.
+            painter.setViewport(Area::_Viewport(0, 0, this->width(), this->height(), 1.0 * height / width));  // note: physical coordiante.
+            painter.setWindow((QRect)window);                                                                 // note: logical coordinate.
 
             _pen.setWidth(10);
             _pen.setColor(_color_border);
             _brush.setColor(_color_background);
             painter.setPen(_pen);
             painter.setBrush(_brush);
-            painter.drawRect(window._YZ_Rect(5, 5, width * (11.0 / 12.0), height - 5));
+            painter.drawRect(window._YZ_Rect(0, 0, width * (11.0 / 12.0), height, 10));
 
             _pen.setWidth(10);
             _pen.setColor(_color_border);
             _brush.setColor(_color_cap);
             painter.setPen(_pen);
             painter.setBrush(_brush);
-            painter.drawRect(window._YZ_Rect(width * (11.0 / 12.0), height * (1.0 / 3.0), width - 5, height * (2.0 / 3.0)));
+            painter.drawRect(window._YZ_Rect(width * (11.0 / 12.0), height * (1.0 / 3.0), width, height * (2.0 / 3.0), 10));
 
-            if(0 < _power) {
+            if(0 < _power._value) {
                 _pen.setWidth(0);
-                if(_warn <= _power) {
+                if(_warn <= _power._value) {
                     _pen.setColor(_color_power);
                     _brush.setColor(_color_power);
                 } else {
@@ -240,10 +240,10 @@ public:
                 }
                 painter.setPen(_pen);
                 painter.setBrush(_brush);
-                painter.drawRect(window._YZ_Rect(10, 10, 10 + (width * (11.0 / 12.0) - 15) * (_power / 100.0), height - 10));
+                painter.drawRect(window._YZ_Rect(10, 10, 10 + (width * (11.0 / 12.0) - 20) * (_power._value / 100.0), height - 10, 0));
             }
 
-            QString text = QString::asprintf("%td%%", (iptr)_power);
+            QString text = QString::asprintf("%td%%", _power._value);
             double prop = 2.0 * width / this->width();
             QRect bound = Area::_Proption(QFontMetrics(this->font()).boundingRect(text), prop);
             _pen.setColor(_color_border);

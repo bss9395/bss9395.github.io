@@ -13,7 +13,7 @@ System: Qt 5.14.2
 #include "Common.h"
 #include "System.h"
 
-class QDESIGNER_WIDGET_EXPORT Widget_Battery : public QWidget {
+class SHARED_LIBRARY Widget_Battery : public QWidget {
     Q_OBJECT
 
     // Q_PROPERTY(int  powerLevel READ powerLevel WRITE setPowerLevel NOTIFY powerLevelChanged DESIGNABLE true)
@@ -74,22 +74,22 @@ public:
             iptr width = 800;
             iptr height = 500;
             Area window = Area(0, 0, width, height);
-            painter.setViewport(Area::_Viewport(this->width(), this->height(), 1.0 * height / width));  // note: physical coordiante.
-            painter.setWindow((QRect)window);                                            // note: logical coordinate.
+            painter.setViewport(Area::_Viewport(0, 0, this->width(), this->height(), 1.0 * height / width));  // note: physical coordiante.
+            painter.setWindow((QRect)window);                                                           // note: logical coordinate.
 
             _pen.setWidth(10);
             _pen.setColor(_color_border);
             _brush.setColor(_color_background);
             painter.setPen(_pen);
             painter.setBrush(_brush);
-            painter.drawRect(window._YZ_Rect(5, 5, width * (11.0 / 12.0), height - 5));
+            painter.drawRect(window._YZ_Rect(0, 0, width * (11.0 / 12.0), height, 10));
 
             _pen.setWidth(10);
             _pen.setColor(_color_border);
             _brush.setColor(_color_cap);
             painter.setPen(_pen);
             painter.setBrush(_brush);
-            painter.drawRect(window._YZ_Rect(width * (11.0 / 12.0), height * (1.0 / 3.0), width - 5, height * (2.0 / 3.0)));
+            painter.drawRect(window._YZ_Rect(width * (11.0 / 12.0), height * (1.0 / 3.0), width, height * (2.0 / 3.0), 10));
 
             if(0 < _power) {
                 _pen.setWidth(0);
@@ -102,7 +102,7 @@ public:
                 }
                 painter.setPen(_pen);
                 painter.setBrush(_brush);
-                painter.drawRect(window._YZ_Rect(10, 10, 10 + (width * (11.0 / 12.0) - 15) * (_power / 100.0), height - 10));
+                painter.drawRect(window._YZ_Rect(10, 10, 10 + (width * (11.0 / 12.0) - 20) * (_power / 100.0), height - 10, 0));
             }
 
             QString text = QString::asprintf("%td%%", (iptr)_power);
