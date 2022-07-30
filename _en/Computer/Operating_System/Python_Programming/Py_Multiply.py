@@ -5,19 +5,15 @@ Update: 2022-07-29T23:55:00+08@China-Shanghai+08
 Design: Python Language Feature: Multiply
 """
 
-lhs = 3.2
-rhs = 2.3
-print("%f" % (lhs * rhs))
+print("%f" % (3.2 * 2.3))
 
 ################################################################################
 
-print("%f" % (lhs ** 2))
-print("%f" % (lhs ** rhs))
+print("%f" % (3.2 ** 2))
+print("%f" % (3.2 ** (1 / 2)))
+print("%f" % (3.2 ** 2.3))
 
 ################################################################################
 
-string = "hello, "
-print("%s" % (string * 3))
-print("%r" % (string * 3))
-
-
+print("%s" % ("hello, " * 3))
+print("%r" % ("hello, " * 3))

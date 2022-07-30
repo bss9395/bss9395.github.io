@@ -7,10 +7,10 @@ Design: Python Built-in Class: complex
 
 import cmath
 
-complex = cmath.sqrt(-1)
-print(complex)
-print(type(complex))
+number = cmath.sqrt(-1)
+print(number)
+print(type(number))
 
-complex = 2 + 3j
-print(complex)
-print(type(complex))
+number = 2 + 3j
+print(number)
+print(type(number))
