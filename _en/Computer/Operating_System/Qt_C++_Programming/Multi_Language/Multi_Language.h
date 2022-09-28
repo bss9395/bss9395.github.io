@@ -23,8 +23,8 @@ public:
         Enume _Organization = Enume(this, "BSS9395", "BSS9395");
         Enume _Application = Enume(this, "Application", "Application");
         Enume _Language = Enume(this, "Language", "Language");
-        Enume _CN = Enume(this, "CN", "E:/Downloads/QtProjects/Multi_Language_cn.qm");
-        Enume _EN = Enume(this, "EN", "E:/Downloads/QtProjects/Multi_Language_en.qm");
+        Enume _CN = Enume(this, "CN", "E:/Downloads/QtProjects/Projects/Multi_Language/Multi_Language_han.qm");
+        Enume _EN = Enume(this, "EN", "E:/Downloads/QtProjects/Projects/Multi_Language/Multi_Language_english.qm");
     } _Settings;
 
 public:
@@ -55,6 +55,7 @@ public:
             _translator->load(_Settings._CN._alias);
             QCoreApplication::instance()->installTranslator(_translator);
             _ui->retranslateUi(this);
+            _widget_pen._ui->retranslateUi(&_widget_pen);
 
             QSettings settings = QSettings(_Settings._Organization._field, _Settings._Application._field);
             settings.setValue(_Settings._Language._field, _Settings._CN._field);
@@ -70,6 +71,7 @@ public:
             _translator->load(_Settings._EN._alias);
             QCoreApplication::instance()->installTranslator(_translator);
             _ui->retranslateUi(this);
+            _widget_pen._ui->retranslateUi(this);
 
             QSettings settings = QSettings(_Settings._Organization._field, _Settings._Application._field);
             settings.setValue(_Settings._Language._field, _Settings._EN._field);
@@ -89,6 +91,7 @@ public:
         _translator->load(_Settings._Alias(language));
         QCoreApplication::instance()->installTranslator(_translator);
         _ui->retranslateUi(this);
+        _widget_pen._ui->retranslateUi(&_widget_pen);
     }
 
 public:

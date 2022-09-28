@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS version="2.1" language="zh_CN">
 <context>
     <name>Multi_Language</name>
     <message>
         <location filename="Multi_Language.ui" line="19"/>
         <source>Multi_Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">多语言</translation>
     </message>
     <message>
         <location filename="Multi_Language.ui" line="60"/>
         <source>设置画笔</source>
-        <translation type="unfinished">Settings</translation>
+        <translation type="unfinished">设置画笔</translation>
     </message>
     <message>
         <location filename="Multi_Language.ui" line="69"/>
         <location filename="Multi_Language.ui" line="72"/>
         <source>汉语</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">汉语</translation>
     </message>
     <message>
         <location filename="Multi_Language.ui" line="81"/>
         <location filename="Multi_Language.ui" line="84"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">English</translation>
     </message>
 </context>
 <context>
@@ -31,12 +31,12 @@
     <message>
         <location filename="Widget_Pen.ui" line="20"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">窗体</translation>
     </message>
     <message>
         <location filename="Widget_Pen.ui" line="47"/>
         <source>画笔属性</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">画笔属性</translation>
     </message>
     <message>
         <location filename="Widget_Pen.ui" line="89"/>
@@ -71,6 +71,11 @@
     <message>
         <location filename="Widget_Pen.ui" line="274"/>
         <source>取消</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Widget_Pen.h" line="115"/>
+        <source>选择颜色</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

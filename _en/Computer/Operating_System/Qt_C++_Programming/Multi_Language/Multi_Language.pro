@@ -29,8 +29,8 @@ FORMS += \
     Widget_Pen.ui
 
 TRANSLATIONS += \
-    Multi_Language_cn.ts \
-    Multi_Language_en.ts
+    Multi_Language_han.ts \
+    Multi_Language_english.ts
 
 
 
