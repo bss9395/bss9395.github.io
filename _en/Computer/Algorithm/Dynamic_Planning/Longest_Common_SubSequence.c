@@ -25,15 +25,15 @@ Trace trace = { ._numb = 0 };
 
 ////////////////////////////////////////////////////////////////////////////////
 
-int Longest_Common_SebSequence_Recursion(char *strX, int i, char *strY, int j) {
+int Longest_Common_SubSequence_Recursion(char *strX, int i, char *strY, int j) {
     if (i == 0 || j == 0) {
         return 0;
     }
     if (strX[i - 1] == strY[j - 1]) {
-        return Longest_Common_SebSequence_Recursion(strX, i - 1, strY, j - 1) + 1;
+        return Longest_Common_SubSequence_Recursion(strX, i - 1, strY, j - 1) + 1;
     }
     else {
-        return max(Longest_Common_SebSequence_Recursion(strX, i - 1, strY, j), Longest_Common_SebSequence_Recursion(strX, i, strY, j - 1));
+        return max(Longest_Common_SubSequence_Recursion(strX, i - 1, strY, j), Longest_Common_SubSequence_Recursion(strX, i, strY, j - 1));
     }
 }
 
@@ -189,7 +189,7 @@ int main(int argc, char *argv[]) {
 
     ////////////////////////////////////
 
-    longest = Longest_Common_SebSequence_Recursion(strX, lenX, strY, lenY);
+    longest = Longest_Common_SubSequence_Recursion(strX, lenX, strY, lenY);
     fprintf(stdout, "%d""\n", longest);
 
     ////////////////////////////////////
