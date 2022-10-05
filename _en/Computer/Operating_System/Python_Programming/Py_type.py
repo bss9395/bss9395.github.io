@@ -1,13 +1,23 @@
 """ Py_type.py
-Author: BSS9395
-Update: 2022-07-29T00:44:00+08@China-Shanghai+08
+Author: bss9395
+Update: 2022-10-03T15:00:00+08@China-Guangdong-Zhanjiang+08
 Design: Python Built-in Function: type()
 """
 
-var = 321
-print(var)
-print(type(var))
+class Person():
+    pass
 
-var = "321"
-print(var)
-print(type(var))
+person = Person()
+print(type(person))
+print(type(Person))
+
+################################################################################
+
+def func(self):
+    print("hello, world!")
+
+Child = type("Child", (object, ), dict(greet=func, name="bss9395"))
+child = Child()
+print(type(child))
+print(type(Child))
+child.greet()

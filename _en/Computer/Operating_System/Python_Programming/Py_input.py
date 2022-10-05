@@ -6,5 +6,5 @@ Design: Python Built-in Function: input()
 """
 
 message = input("请输入一个值: ")
-print("message = ", message, end="")
-print("type(message) == ", type(message), end="")
+print("message = ", message)
+print("type(message) == ", type(message))

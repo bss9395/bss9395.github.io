@@ -59,3 +59,14 @@ print(case.split(","))
 
 words = case.split(",")
 print("%r" % "/".join(words))
+
+################################################################################
+
+class Apple():
+    def __init__(self, color):
+        self.color = color
+    def __repr__(self):
+        return "Apple[color=" + self.color + "]"
+
+apple = Apple("青色")
+print(apple)

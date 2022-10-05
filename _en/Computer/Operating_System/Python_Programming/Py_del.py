@@ -21,3 +21,18 @@ items.clear()
 print(items)
 
 del items
+
+################################################################################
+
+class Item():
+    def __init__(self, name):
+        self.name = name
+
+    def __del__(self):
+        print("del object")
+
+
+item = Item("Apple")
+item2 = item
+del item
+print("-" * 40)

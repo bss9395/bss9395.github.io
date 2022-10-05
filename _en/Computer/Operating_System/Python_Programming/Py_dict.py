@@ -51,3 +51,15 @@ print(type(values))
 
 format = "大学: %(大学)d，硕士: %(硕士)d"
 print(format % steps)
+
+################################################################################
+
+class Person():
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+person = Person("bss9395", 28)
+print(person.__dict__)
+person.__dict__["age"] = 29
+print(person.__dict__)

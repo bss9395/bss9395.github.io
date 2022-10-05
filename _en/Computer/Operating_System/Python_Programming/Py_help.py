@@ -1,15 +1,19 @@
-"""
-Py_help.py
-Author: BSS9395
-Update: 2022-07-30T23:21:00+08@China-Shanghai+08
-Design: Python Built-in Function: help()
+""" Py_help.py
+Author: bss9395
+Update: 2022-10-03T15:00:00+08@China-Guangdong-Zhanjiang+08
+Design: Python Builtin Function: help
 """
 
-def Max(lhs, rhs):
+class Person:
     """
-    return the max value of lhs and rhs.
+    This is class Person.
     """
-    return (lhs if lhs > rhs else rhs)
+    hair = "black"
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def greet(self, message):
+        print(message)
 
-help(Max)
-print(Max.__doc__)
+help(Person)
+person = Person("bss9395", 28)
