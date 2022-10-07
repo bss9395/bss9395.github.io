@@ -6,14 +6,15 @@ Design: Python Standard Library: sys
 
 import sys
 
-try:
-    lhs = int(sys.argv[1])
-    rhs = int(sys.argv[2])
-    res = lhs / rhs
-    print("%d / %d = %d" % (lhs, rhs, res))
-except (IndexError, ValueError, ArithmeticError):
-    print("except (IndexError, ValueError, ArithmeticError):")
-except Exception:
-    print("except Exception:")
-except:
-    print("except:")
+print(sorted([item for item in dir(sys) if not item.startswith("_") ]))
+
+print(sys.argv[0])
+print(sys.byteorder)
+print(sys.executable)
+print(sys.getfilesystemencoding())
+print(sys.maxsize)                  # note: max integer
+print(sys.platform)
+print(sys.version)
+print(sys.winver)
+
+sys.path.append("E:/")
