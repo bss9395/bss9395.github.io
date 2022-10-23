@@ -1,5 +1,4 @@
-"""
-Py_Nested.py
+""" Py_Nested.py
 Author: BSS9395
 Update: 2022-08-01T00:51:00+08@China-Shanghai+08
 Design: Python Language Feature: Nested Function

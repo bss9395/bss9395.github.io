@@ -1,5 +1,4 @@
-"""
-Py_while.py
+""" Py_while.py
 Author: BSS9395
 Update: 2022-07-30T23:21:00+08@China-Shanghai+08
 Design: Python Language Feature: while-loop

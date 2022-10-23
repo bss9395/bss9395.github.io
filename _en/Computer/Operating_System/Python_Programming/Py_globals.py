@@ -1,5 +1,4 @@
-"""
-Py_globals.py
+""" Py_globals.py
 Author: BSS9395
 Update: 2022-08-01T00:51:00+08@China-Shanghai+08
 Design: Python Built-in Function: globals()

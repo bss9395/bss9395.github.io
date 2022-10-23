@@ -1,5 +1,4 @@
-"""
-Py_list.py
+""" Py_list.py
 Author: BSS9395
 Update: 2022-07-30T18:02:+08@China-Shanghai+08
 Design: Python Built-in Class: list

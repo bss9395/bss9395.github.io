@@ -1,4 +1,4 @@
-""" Py_pathlib.PurePath.py
+""" Py_pathlib_PurePath.py
 Author: bss9395
 Update: 2022-10-07T08:57:00+08@China-Guangdong-Zhanjiang+08
 Design: Python Standard Library: pathlib.PurePath()

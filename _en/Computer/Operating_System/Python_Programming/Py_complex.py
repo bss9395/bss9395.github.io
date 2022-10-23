@@ -1,5 +1,4 @@
-"""
-Py_complex.py
+""" Py_complex.py
 Author: BSS9395
 Update: 2022-07-29T23:55:00+08@China-Shanghai+08
 Design: Python Built-in Class: complex

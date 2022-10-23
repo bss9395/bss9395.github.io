@@ -1,5 +1,4 @@
-"""
-Py_del.py
+""" Py_del.py
 Author: BSS9395
 Update: 2022-07-30T18:02:+08@China-Shanghai+08
 Design: Python Keyword: del
