@@ -40,7 +40,7 @@
   <widget class="QWidget" name="W_Central">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QGraphicsView_Handler" name="GV_Graphics">
+     <widget class="Graphics_View" name="GV_Graphics">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -72,7 +72,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>29</height>
     </rect>
    </property>
   </widget>
@@ -80,6 +80,7 @@
   <widget class="QToolBar" name="TB_Main">
    <property name="font">
     <font>
+     <family>Consolas</family>
      <pointsize>6</pointsize>
     </font>
    </property>
@@ -117,6 +118,7 @@
   <widget class="QToolBar" name="TB_Vice">
    <property name="font">
     <font>
+     <family>Consolas</family>
      <pointsize>6</pointsize>
     </font>
    </property>
@@ -145,6 +147,8 @@
    <addaction name="A_Text"/>
    <addaction name="A_Ellipse"/>
    <addaction name="A_Trapezoid"/>
+   <addaction name="A_Widget"/>
+   <addaction name="A_Image"/>
   </widget>
   <action name="A_Retangle">
    <property name="icon">
@@ -299,12 +303,30 @@
     <string>删除</string>
    </property>
   </action>
+  <action name="A_Widget">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/icons/view_in_ar.png</normaloff>:/images/icons/view_in_ar.png</iconset>
+   </property>
+   <property name="text">
+    <string>组件</string>
+   </property>
+  </action>
+  <action name="A_Image">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/icons/image.png</normaloff>:/images/icons/image.png</iconset>
+   </property>
+   <property name="text">
+    <string>图片</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QGraphicsView_Handler</class>
+   <class>Graphics_View</class>
    <extends>QGraphicsView</extends>
-   <header location="global">QGraphicsView_Handler.h</header>
+   <header>Graphics_View.h</header>
   </customwidget>
  </customwidgets>
  <resources>

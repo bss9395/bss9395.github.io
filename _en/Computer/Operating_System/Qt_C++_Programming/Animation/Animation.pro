@@ -1,4 +1,4 @@
-QT       += core gui multimedia
+QT       += core gui multimedia sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,16 +12,12 @@ SOURCES += \
     Main.cpp
 
 HEADERS += \
+    Animation.h \
     Common.h \
-    Canvas.h \
-    Custom.h \
-    Login.h \
-    Setting.h \
     System.h
 
 FORMS += \
-    Canvas.ui \
-    Login.ui
+    Animation.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

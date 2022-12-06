@@ -13,8 +13,135 @@ System: Qt 5.14.2
 #include "Common.h"
 #include "System.h"
 
+class Graphics_Item : public QGraphicsItem {
+    // Q_OBJECT
 
-class QGraphicsView_Handler : public QGraphicsView {
+public:
+    QPixmap _pixmap = QPixmap(":/images/M31.png");
+    double _scale = 1.0;
+    double _scale_step = 0.1;
+    double _scale_max = 10.0;
+    double _scale_min = 0.5;
+    QPointF _from_ = QPointF();
+    QPointF *_from = nullptr;
+
+public:
+    explicit Graphics_Item(QGraphicsItem *parent = nullptr)
+        : QGraphicsItem(parent) {
+        System::Logging(__FUNCTION__);
+
+    }
+
+    virtual ~Graphics_Item() {
+        System::Logging(__FUNCTION__);
+    }
+
+public:
+    virtual QRectF boundingRect() const override {
+        System::Logging(__FUNCTION__);
+        return QRectF(-_pixmap.width() / 2.0, -_pixmap.height() / 2.0, _pixmap.width(), _pixmap.height());
+    }
+
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+        System::Logging(__FUNCTION__);
+
+        painter->drawPixmap(-_pixmap.width() / 2.0, -_pixmap.height() / 2.0, _pixmap);
+    }
+
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) {
+        System::Logging(__FUNCTION__);
+
+        if(event->button() == Qt::LeftButton) {
+            _from = &(_from_ = event->pos());
+        }
+    }
+
+    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override {
+        System::Logging(__FUNCTION__);
+
+        if(_from != nullptr) {
+            QPointF shift = (event->pos() - (*_from)) * _scale;
+            this->moveBy(shift.x(), shift.y());
+        }
+    }
+
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override {
+        System::Logging(__FUNCTION__);
+
+        _from = nullptr;
+    }
+
+    virtual void wheelEvent(QGraphicsSceneWheelEvent *event) override {
+        System::Logging(__FUNCTION__);
+
+        if(0 < event->delta() && _scale_max <= _scale) {
+            return;
+        }
+        if(event->delta() < 0 && _scale <= _scale_min) {
+            return;
+        }
+
+        if(0 < event->delta()) {
+            _scale += _scale_step;
+            this->setScale(_scale);
+            qDebug() << "event->pos(): " << event->pos();
+            QPointF shift = event->pos() * _scale_step;  // event->pos() is in item coordinate.
+            this->moveBy(-shift.x(), -shift.y());
+        } else if(event->delta() < 0) {
+            _scale -= _scale_step;
+            this->setScale(_scale);
+            QPointF shift = event->pos() * _scale_step;
+            this->moveBy(+shift.x(), +shift.y());
+        }
+    }
+};
+
+class Graphics_Polygon_Item : public QGraphicsPolygonItem {
+//    Q_OBEJCT
+
+public:
+    explicit Graphics_Polygon_Item(QGraphicsItem *parent = nullptr)
+        : QGraphicsPolygonItem(parent) {
+        System::Logging(__FUNCTION__);
+    }
+
+    explicit Graphics_Polygon_Item(const QPolygonF &polygon, QGraphicsItem *parent = nullptr)
+        : QGraphicsPolygonItem(polygon, parent) {
+        System::Logging(__FUNCTION__);
+    }
+
+    virtual ~Graphics_Polygon_Item() {
+        System::Logging(__FUNCTION__);
+    }
+
+public:
+    virtual QPainterPath shape() const override {
+        System::Logging(__FUNCTION__);
+
+        QPainterPath path;
+        path.addPolygon(this->polygon());
+        return path;
+    }
+
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override {
+        System::Logging(__FUNCTION__);
+
+        if(this->hasFocus() == true && this->collidingItems().isEmpty() == false) {
+            painter->save();
+            QBrush brush;
+            brush.setColor(Qt::black);
+            brush.setStyle(Qt::SolidPattern);
+            painter->setBrush(brush);
+            painter->drawPolygon(this->polygon());
+            painter->restore();
+        }
+        else {
+            QGraphicsPolygonItem::paint(painter, option, widget);
+        }
+    }
+};
+
+class Graphics_View : public QGraphicsView {
     Q_OBJECT
 
 public:
@@ -34,12 +161,12 @@ public:
     double _rotate_step = 5.0;
 
 public:
-    explicit QGraphicsView_Handler(QWidget *parent = nullptr)
+    explicit Graphics_View(QWidget *parent = nullptr)
         : QGraphicsView(parent) {
         System::Logging(__FUNCTION__);
     }
 
-    virtual ~QGraphicsView_Handler() {
+    virtual ~Graphics_View() {
         System::Logging(__FUNCTION__);
     }
 
@@ -50,7 +177,8 @@ public:
         QGraphicsRectItem *item = new QGraphicsRectItem(-50, -25, 100, 50);
         item->setPen(_pen);
         item->setBrush(_brush);
-        item->setPos(qrand() % 100 - 50, qrand() % 100 - 50);
+        // item->setPos(qrand() % 100 - 50, qrand() % 100 - 50);
+        item->setPos(0, 0);
         item->setZValue(_type._z_out);                                            _type._z_out += 1;
         item->setData(_type._item_id, QString::asprintf("%td", (iptr)_type._id)); _type._id += 1;
         item->setData(_type._item_desc, "矩形");
@@ -84,7 +212,8 @@ public:
         points.append(QPointF(60, 40));
         points.append(QPointF(-60, 40));
 
-        QGraphicsPolygonItem *item = new QGraphicsPolygonItem(points);
+//        QGraphicsPolygonItem *item = new QGraphicsPolygonItem(points);
+        Graphics_Polygon_Item *item = new Graphics_Polygon_Item(points);
         item->setPen(_pen);
         item->setBrush(_brush);
         item->setPos(qrand() % 100 - 50, qrand() % 100 - 50);
@@ -170,6 +299,40 @@ public:
         item->setData(_type._item_id, QString::asprintf("%td", (iptr)_type._id)); _type._id += 1;
         item->setData(_type._item_desc, "椭圆");
         item->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsFocusable);
+        _scene.addItem(item);
+        _scene.clearSelection();
+        item->setSelected(true);
+    }
+
+    void _Attach_Widget() {
+        System::Logging(__FUNCTION__);
+
+        QPushButton *button = new QPushButton("按键");
+        button->setFixedSize(100, 50);
+        QGraphicsProxyWidget *widget = _scene.addWidget(button);
+        widget->setPos(0, 0);
+        widget->setZValue(_type._z_out);                                            _type._z_out += 1;
+        widget->setData(_type._item_id, QString::asprintf("%td", (iptr)_type._id)); _type._id += 1;
+        widget->setData(_type._item_desc, "组件");
+        widget->setPos(-50, 0);
+        widget->setTransformOriginPoint(50, 0);  // 不影响原来的坐标系
+        widget->setRotation(45);                 // 不影响原来的坐标系
+        widget->setPos(-50, 0);
+
+        // widget->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsFocusable);  // no-effects
+        _scene.clearSelection();
+        widget->setSelected(true);
+    }
+
+    void _Attach_Image() {
+        System::Logging(__FUNCTION__);
+        Graphics_Item *item = new Graphics_Item();
+        item->setPos(qrand() % 100 - 50, qrand() % 100 - 50);
+        item->setZValue(_type._z_out);                                            _type._z_out += 1;
+        item->setData(_type._item_id, QString::asprintf("%td", (iptr)_type._id)); _type._id += 1;
+        item->setData(_type._item_desc, "图片");
+        item->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable);
+        // item->setFlag(QGraphicsItem::ItemIsMovable, true);
         _scene.addItem(item);
         _scene.clearSelection();
         item->setSelected(true);
@@ -326,6 +489,7 @@ public:
         iptr height = this->height();
         _scene.setSceneRect(-width / 2, -height / 2, width, height);  // note: change the origin point and the dimension of the canvas.
         this->setScene(&_scene);                                      // note: the proportion of the logical coordinate to the device coordinate is 1:1.
+        this->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
         this->setInteractive(true);
         this->setDragMode(QGraphicsView::RubberBandDrag);
 
@@ -428,25 +592,29 @@ public:
             else if(key == Qt::Key_Left) {
                 for(iptr i = 0; i < count; i += 1) {
                     QGraphicsItem *item = _scene.selectedItems().at(i);
-                    item->setX(item->x() - 1);
+                    // item->setX(item->x() - 1);
+                    item->moveBy(-1, 0);
                 }
             }
             else if(key == Qt::Key_Right) {
                 for(iptr i = 0; i < count; i += 1) {
                     QGraphicsItem *item = _scene.selectedItems().at(i);
-                    item->setX(item->x() + 1);
+                    // item->setX(item->x() + 1);
+                    item->moveBy(+1, 0);
                 }
             }
             else if(key == Qt::Key_Up) {
                 for(iptr i = 0; i < count; i += 1) {
                     QGraphicsItem *item = _scene.selectedItems().at(i);
-                    item->setY(item->y() - 1);
+                    // item->setY(item->y() - 1);
+                    item->moveBy(0, -1);
                 }
             }
             else if(key == Qt::Key_Down) {
                 for(iptr i = 0; i < count; i += 1) {
                     QGraphicsItem *item = _scene.selectedItems().at(i);
-                    item->setY(item->y() + 1);
+                    // item->setY(item->y() + 1);
+                    item->moveBy(0, +1);
                 }
             }
         }

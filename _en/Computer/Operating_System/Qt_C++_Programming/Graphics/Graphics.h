@@ -13,7 +13,7 @@ System: Qt 5.14.2
 #include "Common.h"
 #include "System.h"
 #include "ui_Graphics.h"
-#include "QGraphicsView_Handler.h"
+#include "Graphics_View.h"
 
 class Graphics : public QMainWindow {
     Q_OBJECT
@@ -74,6 +74,18 @@ public:
             System::Logging("QObject::connect(_ui->A_Ellipse, &QAction::triggered, this, [this]() -> void {");
 
             _ui->GV_Graphics->_Attach_Ellipse();
+        });
+
+        QObject::connect(_ui->A_Widget, &QAction::triggered, this, [this]() -> void {
+            System::Logging("QObject::connect(_ui->A_Widget, &QAction::triggered, this, [this]() -> void {");
+
+            _ui->GV_Graphics->_Attach_Widget();
+        });
+
+        QObject::connect(_ui->A_Image, &QAction::triggered, this, [this]() -> void {
+            System::Logging("QObject::connect(_ui->A_Image, &QAction::triggered, this, [this]() -> void {");
+
+            _ui->GV_Graphics->_Attach_Image();
         });
 
         QObject::connect(_ui->A_Zoom_In, &QAction::triggered, this, [this]() -> void {
@@ -138,7 +150,7 @@ public:
 
         ////////////////////////////////
 
-        QObject::connect(_ui->GV_Graphics, &QGraphicsView_Handler::_Info, this, [this](QPoint view_pos, QPointF scene_pos, QPointF *item_pos, QString *info) -> void {
+        QObject::connect(_ui->GV_Graphics, &Graphics_View::_Info, this, [this](QPoint view_pos, QPointF scene_pos, QPointF *item_pos, QString *info) -> void {
             // System::Logging("QObject::connect(_ui->GV_Graphics, &QGraphicsView_Handler::_Info, this, [this](QPoint view_pos, QPointF scene_pos, QPointF *item_pos, QString *info) -> void {");
 
             _view_pos.setText(QString::asprintf("View[%3td, %3td]", (iptr)view_pos.x(), (iptr)view_pos.y()));

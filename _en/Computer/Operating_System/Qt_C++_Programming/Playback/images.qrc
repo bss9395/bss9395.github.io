@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/butterfly_background.png</file>
+        <file>images/butterfly_transparent.png</file>
+    </qresource>
+</RCC>

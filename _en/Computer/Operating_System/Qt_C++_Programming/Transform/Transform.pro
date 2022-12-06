@@ -1,4 +1,4 @@
-QT       += core gui multimedia
+QT       += core gui multimedia sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,21 +12,15 @@ SOURCES += \
     Main.cpp
 
 HEADERS += \
-    Common.h \
     Canvas.h \
-    Custom.h \
-    Login.h \
-    Setting.h \
-    System.h
+    Common.h \
+    System.h \
+    Transform.h
 
 FORMS += \
-    Canvas.ui \
-    Login.ui
+    Transform.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-RESOURCES += \
-    images.qrc

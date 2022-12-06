@@ -21,7 +21,7 @@ SOURCES += \
 HEADERS += \
     Common.h \
     Graphics.h \
-    QGraphicsView_Handler.h \
+    Graphics_View.h \
     System.h
 
 FORMS += \

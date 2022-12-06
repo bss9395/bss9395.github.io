@@ -1,9 +1,9 @@
 /* Common.h
 Author: BSS9395
-Update: 2022-06-28T23:53:00+08@China-Shanghai+08
-Design: Graphics
+Update: 2022-12-06T22:22:00+08@China-Shanghai+08
+Design: Animation
 Encode: UTF-8
-System: Qt 5.14.2
+System: Qt 5.15.2
 */
 
 #ifndef Common_h
@@ -21,19 +21,13 @@ System: Qt 5.14.2
 #include <QDialog>
 #include <QException>
 #include <QFileDialog>
-#include <QFileSystemWatcher>
 #include <QFontDialog>
-#include <QGraphicsRectItem>
-#include <QGraphicsView>
-#include <QHostInfo>
 #include <QInputDialog>
 #include <QKeyEvent>
-#include <QLabel>
 #include <QMainWindow>
 #include <QMdiArea>
 #include <QMdiSubWindow>
 #include <QMessageBox>
-#include <QNetworkInterface>
 #include <QPainter>
 #include <QRegularExpression>
 #include <QScreen>
@@ -46,37 +40,39 @@ System: Qt 5.14.2
 #include <QSqlRelationalTableModel>
 #include <QSqlTableModel>
 #include <QString>
-#include <QStringListModel>
 #include <QStyledItemDelegate>
 #include <QTabBar>
-#include <QTcpServer>
-#include <QTcpSocket>
-#include <QTemporaryDir>
-#include <QTemporaryFile>
 #include <QTextBlock>
 #include <QTextCodec>
-#include <QThread>
 #include <QTimeZone>
 #include <QTimer>
 #include <QToolButton>
-#include <QUdpSocket>
 #include <QtGlobal>
-#include <QtMath>
 #include <QtSql/QSqlDatabase>
+#include <QStringListModel>
+#include <QThread>
+#include <QHostInfo>
+#include <QNetworkInterface>
+#include <QTcpServer>
+#include <QTcpSocket>
+#include <QUdpSocket>
+#include <QGraphicsScene>
 #include <QPushButton>
+#include <QGraphicsView>
 #include <QGraphicsProxyWidget>
-#include <QGraphicsSceneMouseEvent>
-#include <QGraphicsSceneWheelEvent>
+#include <QPropertyAnimation>
+#include <QLabel>
+#include <QLayout>
 
 #define CRT_SECURE_NO_WARNINGS
 #include <clocale>
 #include <cstdlib>
-#include <fstream>
 #include <iostream>
-#include <list>
-#include <map>
-#include <set>
+#include <fstream>
 #include <string>
+#include <list>
+#include <set>
+#include <map>
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -84,8 +80,7 @@ System: Qt 5.14.2
 #define   Header_h
 
 #include "System.h"
-#include "Graphics.h"
-#include "Graphics_View.h"
+#include "Animation.h"
 
 #endif // Header_h
 #endif // Common_h
