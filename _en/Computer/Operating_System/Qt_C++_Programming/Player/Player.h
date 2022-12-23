@@ -40,7 +40,8 @@ public:
                 QUrl url = QUrl(*beg);
                 bool hitted = false;
                 for(iptr idx = 0, count = _ui->VWF_Video->_play_list->mediaCount(); idx < count; idx += 1) {
-                    if(url == _ui->VWF_Video->_play_list->media(idx).request().url()) {
+                    //if(url == _ui->VWF_Video->_play_list->media(idx).request().url()) {
+                    if(url == _ui->VWF_Video->_play_list->media(idx).canonicalUrl()) {
                         hitted = true;
                         break;
                     }

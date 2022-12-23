@@ -1,0 +1,33 @@
+#PB_SetProperty {
+    border:4px solid blue;
+}
+
+StyleSheet[border_color="red"] #PB_SetProperty {
+	border:4px solid red;
+}
+
+StyleSheet[border_color="green"] #PB_SetProperty {
+	border:4px solid green;
+}
+
+StyleSheet[border_color="blue"] #PB_SetProperty {
+	border:4px solid blue;
+}
+
+/**************************************/
+
+#PB_Property {
+    border:4px solid blue;
+}
+
+StyleSheet[border_color="red"] #PB_Property {
+        border:4px solid red;
+}
+
+StyleSheet[border_color="green"] #PB_Property {
+        border:4px solid green;
+}
+
+StyleSheet[border_color="blue"] #PB_Property {
+        border:4px solid blue;
+}

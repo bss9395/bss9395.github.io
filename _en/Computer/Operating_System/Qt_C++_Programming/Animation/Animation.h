@@ -16,7 +16,7 @@ System: Qt 5.15.2
 
 class Animation : public QWidget {
     Q_OBJECT
-    Q_PROPERTY(double _rotation READ _Rotation WRITE _Set_Rotation)
+    Q_PROPERTY(double _rotation READ _Get_Rotation WRITE _Set_Rotation)
 
 public:
     Ui::Animation *_ui = nullptr;
@@ -27,7 +27,7 @@ public:
     QPixmap _pixmap = QPixmap();
 
 public:
-    double _Rotation() {
+    double _Get_Rotation() {
         System::Logging(__FUNCTION__);
 
         return _rotation;

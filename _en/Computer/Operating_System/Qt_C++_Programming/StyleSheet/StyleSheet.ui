@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>StyleSheet</class>
+ <widget class="QMainWindow" name="StyleSheet">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>StyleSheet</string>
+  </property>
+  <widget class="QWidget" name="W_Central">
+   <widget class="QPushButton" name="PB_SetProperty">
+    <property name="geometry">
+     <rect>
+      <x>344</x>
+      <y>252</y>
+      <width>112</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>setProperty</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="PB_Property">
+    <property name="geometry">
+     <rect>
+      <x>344</x>
+      <y>286</y>
+      <width>112</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Property</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="MB_Menu">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="SB_Status"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
