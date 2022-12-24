@@ -1,15 +1,15 @@
 /* Common.h
 Author: BSS9395
-Update: 2022-12-06T22:22:00+08@China-Shanghai+08
-Design: Animation
+Update: 2022-12-23T22:19:00+08@China-Shanghai+08
+Design: Concurrent
 Encode: UTF-8
 System: Qt 5.15.2
 */
 
+
 #ifndef Common_h
 #define Common_h
 
-#include <QAnimationGroup>
 #include <QApplication>
 #include <QAudioDeviceInfo>
 #include <QColorDialog>
@@ -23,6 +23,8 @@ System: Qt 5.15.2
 #include <QException>
 #include <QFileDialog>
 #include <QFontDialog>
+#include <QFuture>
+#include <QGraphicsEffect>
 #include <QGraphicsProxyWidget>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -37,12 +39,10 @@ System: Qt 5.15.2
 #include <QMessageBox>
 #include <QNetworkInterface>
 #include <QPainter>
-#include <QParallelAnimationGroup>
 #include <QPropertyAnimation>
 #include <QPushButton>
 #include <QRegularExpression>
 #include <QScreen>
-#include <QSequentialAnimationGroup>
 #include <QSettings>
 #include <QSpinBox>
 #include <QSqlError>
@@ -60,10 +60,12 @@ System: Qt 5.15.2
 #include <QTextBlock>
 #include <QTextCodec>
 #include <QThread>
+#include <QThreadPool>
 #include <QTimeZone>
 #include <QTimer>
 #include <QToolButton>
 #include <QUdpSocket>
+#include <QtConcurrent>
 #include <QtGlobal>
 #include <QtSql/QSqlDatabase>
 
@@ -83,7 +85,7 @@ System: Qt 5.15.2
 #define   Header_h
 
 #include "System.h"
-#include "Animation.h"
+#include "Concurrent.h"
 
 #endif // Header_h
 #endif // Common_h

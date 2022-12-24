@@ -67,8 +67,14 @@ public:
 
         _ui->PB_SetProperty->setGraphicsEffect(&_effect);
         // _ui->PB_Property->setGraphicsEffect(&_effect);  // note: QGraphicsOpacityEffect applys on one widget.
-        _animation.setStartValue(1.0);
-        _animation.setEndValue(0.0);
+//        _animation.setStartValue(1.0);
+//        _animation.setEndValue(0.0);
+//        _animation.setDuration(5000);
+//        _animation.setLoopCount(-1);
+//        _animation.start();
+        _animation.setKeyValueAt(0.0, 1.0);
+        _animation.setKeyValueAt(0.5, 0.0);
+        _animation.setKeyValueAt(1.0, 1.0);
         _animation.setDuration(5000);
         _animation.setLoopCount(-1);
         _animation.start();

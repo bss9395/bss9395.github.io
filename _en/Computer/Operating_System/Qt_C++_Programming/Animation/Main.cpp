@@ -12,8 +12,14 @@ int main(int argc, char *argv[]) {
     System::Logging(__FUNCTION__);
     QApplication application(argc, argv);
 
-    Animation animation;
-    animation.show();
+//    PropertyAnimation propertyanimation = PropertyAnimation();
+//    propertyanimation.show();
+
+//    ParallelAnimationGroup parallelanimationgroup = ParallelAnimationGroup();
+//    parallelanimationgroup.show();
+
+    SequentialAnimationGroup sequentialanimationgroup = SequentialAnimationGroup();
+    sequentialanimationgroup.show();
 
     return application.exec();
 }

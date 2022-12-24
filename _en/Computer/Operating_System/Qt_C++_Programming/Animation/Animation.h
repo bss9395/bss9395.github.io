@@ -14,7 +14,7 @@ System: Qt 5.15.2
 #include "System.h"
 #include "ui_Animation.h"
 
-class Animation : public QWidget {
+class PropertyAnimation : public QWidget {
     Q_OBJECT
     Q_PROPERTY(double _rotation READ _Get_Rotation WRITE _Set_Rotation)
 
@@ -61,7 +61,7 @@ public:
     }
 
 public:
-    explicit Animation(QWidget *parent = nullptr)
+    explicit PropertyAnimation(QWidget *parent = nullptr)
         : QWidget(parent), _ui(new Ui::Animation) {
         System::Logging(__FUNCTION__);
         _ui->setupUi(this);
@@ -95,6 +95,81 @@ public:
 //        _timer->start(50);
 
         QWidget::showEvent(event);
+    }
+};
+
+
+class ParallelAnimationGroup: public QWidget {
+    Q_OBJECT
+
+public:
+    explicit ParallelAnimationGroup(QWidget *parent = nullptr)
+        : QWidget(parent) {
+        System::Logging(__FUNCTION__);
+        this->resize(400,400);
+
+        QPushButton *button_0 = new QPushButton(this);
+        button_0->setText("button_0");
+        button_0->show();
+        QPushButton *button_1 = new QPushButton(this);
+        button_1->setText("button_1");
+        button_1->show();
+
+        QPropertyAnimation *animation_0 = new QPropertyAnimation(button_0, "geometry", this);
+        animation_0->setDuration(10000);
+        animation_0->setStartValue(button_0->rect());
+        animation_0->setEndValue(button_0->rect().adjusted(100,300,100,300));
+        QPropertyAnimation *animation_1 = new QPropertyAnimation(button_1, "geometry", this);
+        animation_1->setDuration(10000);
+        animation_1->setStartValue(button_1->rect());
+        animation_1->setEndValue(button_1->rect().adjusted(300,100,300,100));
+
+        QParallelAnimationGroup *group = new QParallelAnimationGroup(this);
+        group->addAnimation(animation_0);
+        group->addAnimation(animation_1);
+        group->start();
+    }
+
+    virtual ~ParallelAnimationGroup() {
+        System::Logging(__FUNCTION__);
+    }
+};
+
+
+
+class SequentialAnimationGroup: public QWidget {
+    Q_OBJECT
+
+public:
+    explicit SequentialAnimationGroup(QWidget *parent = nullptr)
+        : QWidget(parent) {
+        System::Logging(__FUNCTION__);
+        this->resize(400,400);
+
+        QPushButton *button_0 = new QPushButton(this);
+        button_0->setText("button_0");
+        button_0->show();
+        QPushButton *button_1 = new QPushButton(this);
+        button_1->setText("button_1");
+        button_1->show();
+
+        QPropertyAnimation *animation_0 = new QPropertyAnimation(button_0, "geometry", this);
+        animation_0->setDuration(10000);
+        animation_0->setStartValue(button_0->rect());
+        animation_0->setEndValue(button_0->rect().adjusted(100,300,100,300));
+        QPropertyAnimation *animation_1 = new QPropertyAnimation(button_1, "geometry", this);
+        animation_1->setDuration(10000);
+        animation_1->setStartValue(button_1->rect());
+        animation_1->setEndValue(button_1->rect().adjusted(300,100,300,100));
+
+        QSequentialAnimationGroup *group = new QSequentialAnimationGroup(this);
+        group->addAnimation(animation_0);
+        group->addAnimation(animation_1);
+        group->start();
+    }
+
+    virtual ~SequentialAnimationGroup() {
+        System::Logging(__FUNCTION__);
     }
 };
 
