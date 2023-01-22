@@ -1,10 +1,10 @@
-/* printf.java
+/* Java_printf.java
 Author: BSS9395
 Update: 2021-10-07T17:12:00+08@China-Guangdong-Shenzhen+08
 Design: Java Standard Library printf
 */
 
-public class printf {
+public class Java_printf {
     public static void main(String[] args) {
         boolean b1 = true;
         boolean b2 = false;
@@ -29,6 +29,7 @@ public class printf {
         System.out.println("========================================");
         float f = 123.456F;
         double d = 123.456E3; // 123.456 × 10^3
-        System.out.printf("%f, %f %n", f, d);
+        double pi = 3.14_15_92_65_36;
+        System.out.printf("%f, %f, %.8f %n", f, d, pi);
     }
 }

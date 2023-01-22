@@ -5,7 +5,7 @@ Design: Number to RMB
 '''
 
 class RMB(object):
-    _han = ['零' , '壹' , '贰' , '叁' , '肆' , '伍' , '陆' , '柒' , '捌' , '玖']
+    _han = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖']
     _integer_unit = ['', '拾', '佰', '仟', '万', '拾', '佰', '仟', '亿', '拾', '佰', '仟']
     _fraction_unit = ['角', '分']
 
@@ -13,7 +13,7 @@ class RMB(object):
     def _Number_To_RMB(number):
         integer = int(number)
         fraction = float(number) - integer
-        (integer, fraction) = (f'{integer}', f'{round(fraction * 100):02}')
+        (integer, fraction) = (f'{integer}', f'{int(fraction * 100 + 0.5):02}')
         print((integer, fraction))
 
         rmb = ''

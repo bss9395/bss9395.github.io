@@ -1,10 +1,10 @@
-/* Numerical_Limits.java
+/* Java_Numerical_Limits.java
 Author: BSS9395
 Update: 2021-10-07T15:23:00+08@China-Guangdong-ShenZhen+08
 Design: Java Type Numerical Limits
 */
 
-public class Numerical_Limits {
+public class Java_Numerical_Limits {
     public static void main(String[] args) {
         double double_min = Double.MIN_VALUE;
         double double_max = Double.MAX_VALUE;

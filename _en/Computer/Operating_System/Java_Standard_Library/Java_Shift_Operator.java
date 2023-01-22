@@ -1,10 +1,10 @@
-/* Shift_Operator.java
+/* Java_Shift_Operator.java
 Author: BSS9395
 Update: 2021-10-08T17:01:00+08@China-Guangdong-Shenzhen+08
 Design: Java Shift Operator
 */
 
-public class Shift_Operator {
+public class Java_Shift_Operator {
     public static void main(String[] args) {
         int int_value = 5;
         int int_right = int_value >> 33;

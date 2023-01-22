@@ -1,22 +1,22 @@
-/* Array.java
+/* Java_Array.java
 Author: BSS9395
 Update: 2021-10-13T21:00:00+08@China-Guangdong-Shenzhen+08
 Design: Java Language Feature: Array
 */
 
-public class Array {
+public class Java_Array {
     public static void main(String[] args) {
         double array_C[] = new double[3];
         double[] array_Java = new double[3];
         double[] array_static = {
-                1.0, 2.0, 3.0
+            1.0, 2.0, 3.0
         };
-        double[] array_new = new double[]{
-                1.0, 2.0, 3.0
+        double[] array_new = new double[] {
+            1.0, 2.0, 3.0
         };
 
-        Object[] array = new Object[]{
-                1, 2.0, "3.0"
+        Object[] array = new Object[] {
+            1, 2.0, "3.0"
         };
         for (var e : array) {
             System.out.println(e.getClass());
@@ -35,13 +35,23 @@ public class Array {
 
         ////////////////////////////////
         System.out.println("========================================");
+        double[][] dim34 = new double[3][4];
+        for(int i = 0; i < dim34.length; i += 1) {
+            for(int j = 0; j < dim34[0].length; j += 1) {
+                dim34[i][j] = i + j;
+            }
+        }
+        System.out.println(dim34[1][2]);
+
+        ////////////////////////////////
+        System.out.println("========================================");
         /* Array of Array in Java. */
         Object dim = new Object[1];
         ((Object[]) dim)[0] = new Object[2];
         ((Object[]) (((Object[]) dim)[0]))[1] = new Object[3];
         ((Object[]) (((Object[]) (((Object[]) dim)[0]))[1]))[2] = new Object[4];
         ((Object[]) (((Object[]) (((Object[]) (((Object[]) dim)[0]))[1]))[2]))[3] = new Object[]{
-                1, 2, 3, 4, 5
+            1, 2, 3, 4, 5
         };
 
         for (var obj : (Object[]) (((Object[]) (((Object[]) (((Object[]) (((Object[]) dim)[0]))[1]))[2]))[3])) {
