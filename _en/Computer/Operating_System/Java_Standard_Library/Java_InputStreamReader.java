@@ -10,10 +10,12 @@ import java.io.InputStreamReader;
 
 public class Java_InputStreamReader {
     static public void main(String[] args) {
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));){
             String line = null;
             while((line = reader.readLine()) != null) {
+                if(line.equals("exit") == true) {
+                    System.exit(0);
+                }
                 System.out.println(line);
             }
         } catch(IOException exception) {

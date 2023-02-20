@@ -4,16 +4,18 @@ Update: 2023-01-08T17:37:00+08@China-Shanghai+08
 Design: Java Standard Library: System
 */
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Scanner;
 
 public class Java_System {
     static public void main(String[] args) {
         // _getenv();
         // _getProperties();
-        _identityHashCode();
+        // _identityHashCode();
+        // _setOut();
+        _setIn();
     }
     static public void _getenv() {
         System.out.println("static public void _getenv() {");
@@ -43,5 +45,30 @@ public class Java_System {
         String world_1 = new String("World");
         System.out.println(world_0.hashCode() == world_1.hashCode());
         System.out.println(System.identityHashCode(world_0) == System.identityHashCode(world_1));
+    }
+    static public void _setOut() {
+        try(PrintStream stream = new PrintStream(new FileOutputStream("output.text"));) {
+            System.setOut(stream);
+            System.out.println("《武陵春·春晚》[宋代]李清照");
+            System.out.println("风住尘香花已尽，日晚倦梳头。");
+            System.out.println("物是人非事事休，欲语泪先流。");
+            System.out.println("闻说双溪春尚好，也拟泛轻舟。");
+            System.out.println("只恐双溪蚱蜢舟，载不动许多愁。");
+        } catch (FileNotFoundException exception) {
+            exception.printStackTrace();
+        }
+    }
+    static public void _setIn() {
+        try(FileInputStream stream = new FileInputStream("src/Java_System.java");) {
+            System.setIn(stream);
+            Scanner scanner = new Scanner(System.in);
+            scanner.useDelimiter("\n");
+            while(scanner.hasNext() == true) {
+                System.out.println(scanner.next());
+            }
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+
     }
 }
