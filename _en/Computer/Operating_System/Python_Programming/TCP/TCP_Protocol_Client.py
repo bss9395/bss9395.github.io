@@ -30,7 +30,7 @@ class Client(object):
                 (head, tail) = (tail + 1, body_decode.find(TCP_Protocol._private_sign, tail + 1))
                 user_to      = body_decode[head:tail]
                 message      = body_decode[tail + 1:]
-                print(f'{user_from} speak to you: {message}', flush=True)
+                print(f'{user_from} speaks to you: {message}', flush=True)
             elif header_unpack[1] == TCP_Protocol._group_message:
                 body_decode = body.decode('utf-8')
                 (head, tail) = (0, body_decode.find(TCP_Protocol._group_sign, 0))
@@ -38,7 +38,7 @@ class Client(object):
                 (head, tail) = (tail + 1, body_decode.find(TCP_Protocol._group_sign, tail + 1))
                 group_to = body_decode[head:tail]
                 message = body_decode[tail + 1:]
-                print(f'{user_from} speak to all: {message}', flush=True)
+                print(f'{user_from} speaks to all: {message}', flush=True)
             return True
 
         try:
