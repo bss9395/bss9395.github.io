@@ -17,12 +17,18 @@ public class TCP_Client {
                 OutputStream output = _client.getOutputStream();
                 byte[] buffer = new byte[1024];
                 for(int count = -1; 0 < (count = System.in.read(buffer, 0, buffer.length)); ) {
-                    byte[] sink = new String(buffer, 0, count, Charset.forName(TCP_Client._encoding_source)).getBytes(TCP_Client._encoding_sink);
+                    byte[] sink = new String(buffer, 0, count).getBytes(TCP_Client._encoding_sink);
                     output.write(sink, 0, sink.length);
                 }
                 System.out.println("for(int count = -1; 0 < (count = System.in.read(buffer, 0, buffer.length)); ) {");
             } catch(Exception exception) {
                 exception.printStackTrace();
+            } finally {
+                try {
+                    _client.shutdownOutput();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         }
     }
@@ -38,24 +44,34 @@ public class TCP_Client {
                 InputStream input = _client.getInputStream();
                 byte[] buffer = new byte[1024];
                 for(int count = -1; 0 < (count = input.read(buffer, 0, buffer.length)); ) {
-                    System.out.print(new String(buffer, 0, count, Charset.forName(TCP_Client._encoding_sink)));
+                    System.out.print(new String(buffer, 0, count, TCP_Client._encoding_sink));
                 }
                 System.out.println("for(int count = -1; 0 < (count = input.read(buffer, 0, buffer.length)); ) {");
             } catch(Exception exception) {
                 exception.printStackTrace();
+            } finally {
+                try {
+                    _client.shutdownInput();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         }
     }
 
     static public String _encoding_source = "GBK";
     static public String _encoding_sink = "UTF-8";
-    static public String _server_ipv4 = "127.0.0.1";
+    static public String _server_ipv4 = "localhost";
     static public int _server_port = 30000;
-    public TCP_Client(String ipv4, int port)
+    Socket _client = null;
+    public TCP_Client(String server_ipv4, int server_port)
         throws Exception {
-        Socket client = new Socket(ipv4, port);
-        new Send(client).start();
-        new Recv(client).start();
+        _client = new Socket(server_ipv4, server_port);
+        Send send = new Send(_client);
+        Recv recv = new Recv(_client);
+        send.start(); recv.start();
+        send.join();  recv.join();
+        _client.close();
     }
     static public void main(String[] args)
         throws Exception {
