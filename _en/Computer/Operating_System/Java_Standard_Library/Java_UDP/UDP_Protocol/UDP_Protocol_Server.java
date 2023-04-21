@@ -288,6 +288,7 @@ class UDP_Protocol {
         "maker",
         "doggie",
         "piggie",
+        "pigeon",
         "trilobite",
         "limulus",
         "clover",

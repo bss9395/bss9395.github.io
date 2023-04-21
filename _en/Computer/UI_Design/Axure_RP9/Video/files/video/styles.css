@@ -1,0 +1,35 @@
+﻿body {
+  margin:0px;
+  background-image:none;
+  position:relative;
+  left:-101px;
+  width:300px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+}
+.form_sketch {
+  border-color:transparent;
+  background-color:transparent;
+}
+#base {
+  position:absolute;
+  z-index:0;
+}
+#u0 {
+  border-width:0px;
+  position:absolute;
+  left:101px;
+  top:100px;
+  width:296px;
+  height:166px;
+}
+#u0_input {
+  border-width:2px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:296px;
+  height:166px;
+  overflow:auto;
+}

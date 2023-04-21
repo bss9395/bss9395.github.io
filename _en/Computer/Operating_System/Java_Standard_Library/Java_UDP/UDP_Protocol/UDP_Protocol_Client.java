@@ -162,7 +162,7 @@ class ChatDialog extends JDialog {
                         send_buffer._Cover(0, send_head);
                         for(int i = 0; i < _handler._main_dialog._dlm_users.size(); i += 1) {
                             User user = _handler._main_dialog._dlm_users.get(i);
-                            if(user != null && 0 < user._online) {
+                            if(user != _user && user != null && 0 < user._online) {
                                 _handler._Send_Packet(send_head, new DatagramPacket(send_buffer._data, 0, send_buffer._length, user._address));
                             }
                         }

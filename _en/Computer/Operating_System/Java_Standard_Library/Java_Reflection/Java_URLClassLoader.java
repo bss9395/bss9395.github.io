@@ -20,7 +20,6 @@ public class Java_URLClassLoader {
         if(_connection == null) {
             URL[] urls = {
                 new URL("file:mysql-connector-j-8.0.31.jar")
-                // new URL("file:mysql-connector-java-8.0.13.jar")
             };
             URLClassLoader loader = new URLClassLoader(urls);
             Driver driver = (Driver)loader.loadClass("com.mysql.cj.jdbc.Driver").getConstructor().newInstance();
@@ -39,7 +38,7 @@ public class Java_URLClassLoader {
     static public void _URLClassLoader() {
         try {
             Java_URLClassLoader connect = new Java_URLClassLoader();
-            Connection connection = connect._Connect("jdbc:mysql://localhost:3306/world?serverTimezone=UTC", "bss9395", "Password");
+            Connection connection = connect._Connect("jdbc:mysql://localhost:3306/world", "bss9395", "Password");
             System.out.println(connection);
         } catch(Exception exception) {
             exception.printStackTrace();
