@@ -26,5 +26,7 @@ public class Java_CallableStatement {
         callable.registerOutParameter(3, Types.DOUBLE);
         callable.execute();
         System.out.println(callable.getDouble(3));
+        callable.close();
+        connection.close();
     }
 }

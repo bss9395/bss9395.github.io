@@ -22,30 +22,31 @@ public class Java_ResultSet {
         String sql = "select *                " +
                      "from Management.Student;";
 
-        Connection connection = DriverManager.getConnection(_schema + _address, _username, _password);
-        PreparedStatement prepared = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        ResultSet result = prepared.executeQuery();
+        try (Connection connection = DriverManager.getConnection(_schema + _address, _username, _password)) {
+            PreparedStatement prepared = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet result = prepared.executeQuery();
 
-        result.first();
-        System.out.printf("result.first().getRow() = %s%n", result.getRow());
-        result.last();
-        System.out.printf("result.last().getRow()  = %s%n", result.getRow());
+            result.first();
+            System.out.printf("result.first().getRow() = %s%n", result.getRow());
+            result.last();
+            System.out.printf("result.last().getRow()  = %s%n", result.getRow());
 
-        ResultSetMetaData metadata = result.getMetaData();
-        for(int i = 1; i <= metadata.getColumnCount(); i += 1) {
-            System.out.printf("%15s", metadata.getColumnName(i));
-        }
-        System.out.println();
-
-        result.afterLast();
-        while(result.previous() == true) {
-            for(int j = 1; j <= metadata.getColumnCount(); j += 1) {
-                System.out.printf("%15s", result.getString(j));
+            ResultSetMetaData metadata = result.getMetaData();
+            for (int i = 1; i <= metadata.getColumnCount(); i += 1) {
+                System.out.printf("%15s", metadata.getColumnName(i));
             }
             System.out.println();
 
-            result.updateString(2, String.format("id_%s_%s", result.getString(1), result.getString(2)));
-            result.updateRow();
+            result.afterLast();
+            while (result.previous() == true) {
+                for (int j = 1; j <= metadata.getColumnCount(); j += 1) {
+                    System.out.printf("%15s", result.getString(j));
+                }
+                System.out.println();
+
+                result.updateString(2, String.format("id_%s_%s", result.getString(1), result.getString(2)));
+                result.updateRow();
+            }
         }
     }
 }

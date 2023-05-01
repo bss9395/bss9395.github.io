@@ -47,7 +47,12 @@ public class Querier extends JDialog {
 
         this.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosing(WindowEvent event) {
+                try {
+                    _self._connection.close();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
                 System.exit(0);
             }
         });

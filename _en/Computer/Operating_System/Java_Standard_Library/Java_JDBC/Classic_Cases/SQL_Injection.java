@@ -95,8 +95,7 @@ public class SQL_Injection {
         String sql = "select *                      " +
                      "from Management.Teacher       " +
                      "where _id='%s' and _name='%s';";
-        try {
-            Connection connection = DriverManager.getConnection(_schema + _address, _username, _password);
+        try (Connection connection = DriverManager.getConnection(_schema + _address, _username, _password)) {
             Statement statement = connection.createStatement();
             String query = String.format(sql, id, name);
             System.out.println(query);
@@ -113,8 +112,7 @@ public class SQL_Injection {
         String sql = "select *                " +
                      "from Management.Teacher " +
                      "where _id=? and _name=?;";
-        try {
-            Connection connection = DriverManager.getConnection(_schema + _address, _username, _password);
+        try (Connection connection = DriverManager.getConnection(_schema + _address, _username, _password)) {
             PreparedStatement prepared = connection.prepareStatement(sql);
             prepared.setString(1, id);
             prepared.setString(2, name);

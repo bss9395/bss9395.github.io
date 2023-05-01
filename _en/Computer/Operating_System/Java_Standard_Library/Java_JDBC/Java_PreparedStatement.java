@@ -79,13 +79,14 @@ public class Java_PreparedStatement {
             String password = properties.getProperty("password");
 
             Class.forName(driver);
-            Connection connection = DriverManager.getConnection(schema + address, username, password);
-            Statement statement = connection.createStatement();
-            long begin = System.currentTimeMillis();
-            for(int i = 0; i < 100; i += 1) {
-                statement.executeUpdate(String.format(sql, "姓名" + i));
+            try (Connection connection = DriverManager.getConnection(schema + address, username, password)) {
+                Statement statement = connection.createStatement();
+                long begin = System.currentTimeMillis();
+                for (int i = 0; i < 100; i += 1) {
+                    statement.executeUpdate(String.format(sql, "姓名" + i));
+                }
+                System.out.printf("end - begin = %s%n", System.currentTimeMillis() - begin);
             }
-            System.out.printf("end - begin = %s%n", System.currentTimeMillis() - begin);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -103,14 +104,15 @@ public class Java_PreparedStatement {
             String password = properties.getProperty("password");
 
             Class.forName(driver);
-            Connection connection = DriverManager.getConnection(schema + address, username, password);
-            PreparedStatement prepared = connection.prepareStatement(sql);
-            long begin = System.currentTimeMillis();
-            for(int i = 0; i < 100; i += 1) {
-                prepared.setString(1, "姓名" + i);
-                prepared.executeUpdate();
+            try (Connection connection = DriverManager.getConnection(schema + address, username, password)) {
+                PreparedStatement prepared = connection.prepareStatement(sql);
+                long begin = System.currentTimeMillis();
+                for (int i = 0; i < 100; i += 1) {
+                    prepared.setString(1, "姓名" + i);
+                    prepared.executeUpdate();
+                }
+                System.out.printf("end - begin = %s%n", System.currentTimeMillis() - begin);
             }
-            System.out.printf("end - begin = %s%n", System.currentTimeMillis() - begin);
         } catch (Exception exception) {
             exception.printStackTrace();
         }

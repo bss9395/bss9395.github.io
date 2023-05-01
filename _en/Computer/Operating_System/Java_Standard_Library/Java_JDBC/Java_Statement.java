@@ -75,27 +75,28 @@ public class Java_Statement {
             String password = properties.getProperty("password");
 
             Class.forName(driver);
-            Connection connection = DriverManager.getConnection(schema + address, username, password);
-            Statement statement = connection.createStatement();
+            try(Connection connection = DriverManager.getConnection(schema + address, username, password)) {
+                Statement statement = connection.createStatement();
 
-            for(String sql : _sqls) {
-                boolean result = statement.execute(sql);
-                if(result == true) {
-                    ResultSet resultset = statement.getResultSet();
-                    ResultSetMetaData metadata = resultset.getMetaData();
-                    for(int i = 1; i <= metadata.getColumnCount(); i += 1) {
-                        System.out.printf("%15s", metadata.getColumnName(i));
-                    }
-                    System.out.println();
-
-                    while(resultset.next() == true) {
-                        for(int i = 1; i <= metadata.getColumnCount(); i += 1) {
-                            System.out.printf("%15s", resultset.getString(i));
+                for (String sql : _sqls) {
+                    boolean result = statement.execute(sql);
+                    if (result == true) {
+                        ResultSet resultset = statement.getResultSet();
+                        ResultSetMetaData metadata = resultset.getMetaData();
+                        for (int i = 1; i <= metadata.getColumnCount(); i += 1) {
+                            System.out.printf("%15s", metadata.getColumnName(i));
                         }
                         System.out.println();
+
+                        while (resultset.next() == true) {
+                            for (int i = 1; i <= metadata.getColumnCount(); i += 1) {
+                                System.out.printf("%15s", resultset.getString(i));
+                            }
+                            System.out.println();
+                        }
+                    } else {
+                        System.out.printf("%s rows affected.%n", statement.getUpdateCount());
                     }
-                } else {
-                    System.out.printf("%s rows affected.%n", statement.getUpdateCount());
                 }
             }
         } catch (Exception exception) {
@@ -113,15 +114,16 @@ public class Java_Statement {
             String password = properties.getProperty("password");
 
             Class.forName(driver);
-            Connection connection = DriverManager.getConnection(schema + address, username, password);
-            Statement statement = connection.createStatement();
-            int result = 0;
-            result = statement.executeUpdate(_sql0);
-            result = statement.executeUpdate(_sql1);
-            result = statement.executeUpdate(_sql2);
-            result = statement.executeUpdate(_sql3);
-            result = statement.executeUpdate(_sql4);
-            result = statement.executeUpdate(_sql5);
+            try(Connection connection = DriverManager.getConnection(schema + address, username, password)) {
+                Statement statement = connection.createStatement();
+                int result = 0;
+                result = statement.executeUpdate(_sql0);
+                result = statement.executeUpdate(_sql1);
+                result = statement.executeUpdate(_sql2);
+                result = statement.executeUpdate(_sql3);
+                result = statement.executeUpdate(_sql4);
+                result = statement.executeUpdate(_sql5);
+            }
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -137,11 +139,12 @@ public class Java_Statement {
             String password = properties.getProperty("password");
 
             Class.forName(driver);
-            Connection connection = DriverManager.getConnection(schema + address, username, password);
-            Statement statement = connection.createStatement();
-            ResultSet resultset = statement.executeQuery(_sql6);
-            while(resultset.next() == true) {
-                System.out.printf("%3s,%10s,%3s,%10s%n", resultset.getString(1), resultset.getString(2), resultset.getString(3), resultset.getString(4));
+            try(Connection connection = DriverManager.getConnection(schema + address, username, password)) {
+                Statement statement = connection.createStatement();
+                ResultSet resultset = statement.executeQuery(_sql6);
+                while (resultset.next() == true) {
+                    System.out.printf("%3s,%10s,%3s,%10s%n", resultset.getString(1), resultset.getString(2), resultset.getString(3), resultset.getString(4));
+                }
             }
         } catch (Exception exception) {
             exception.printStackTrace();

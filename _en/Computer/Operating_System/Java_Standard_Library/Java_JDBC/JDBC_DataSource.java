@@ -24,7 +24,7 @@ public class JDBC_DataSource extends JDialog {
     static public int      _connection_init = 5;
     static public int      _connection_max  = 20;
     static public int      _connection_min  = 2;
-    static public BasicDataSource       _basicdatasource = new BasicDataSource();
+    static public BasicDataSource       _basicdatasource       = new BasicDataSource();
     static public ComboPooledDataSource _combopooleddatasource = new ComboPooledDataSource();
     static {
         try {
@@ -78,7 +78,7 @@ public class JDBC_DataSource extends JDialog {
 
         this.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosing(WindowEvent event) {
                 System.exit(0);
             }
         });

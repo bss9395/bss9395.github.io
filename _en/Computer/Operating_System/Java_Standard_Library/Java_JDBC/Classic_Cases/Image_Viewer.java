@@ -124,15 +124,16 @@ public class Image_Viewer extends JDialog {
     static public String[] _image_extensions = new String[] {
         ".png", ".jpg", ".jpeg", ".gif"
     };
-    public Connection _connection = DriverManager.getConnection(_schema + _address, _username, _password);
 
-    public Vector<Datum> _v_images  = new Vector<Datum>();
-    public JList<Datum>  _l_images  = new JList<Datum>();
-    public PopupMenu     _pm_menu   = new PopupMenu();
-    public MenuItem      _mi_insert = new MenuItem("Add");
-    public MenuItem      _mi_delete = new MenuItem("Delete");
-    public JLabel        _l_image   = new JLabel();
-    public Popup         _d_popup   = new Popup(this);
+    public Image_Viewer  _self       = this;
+    public Connection    _connection = DriverManager.getConnection(_schema + _address, _username, _password);
+    public Vector<Datum> _v_images   = new Vector<Datum>();
+    public JList<Datum>  _l_images   = new JList<Datum>();
+    public PopupMenu     _pm_menu    = new PopupMenu();
+    public MenuItem      _mi_insert  = new MenuItem("Add");
+    public MenuItem      _mi_delete  = new MenuItem("Delete");
+    public JLabel        _l_image    = new JLabel();
+    public Popup         _d_popup    = new Popup(this);
     public Image_Viewer() throws Exception {
         super((JDialog) null, "图片查看器", false);
         System.err.println("Image_Viewer");
@@ -152,6 +153,11 @@ public class Image_Viewer extends JDialog {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent event) {
+                try {
+                    _self._connection.close();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
                 System.exit(0);
             }
         });

@@ -1,12 +1,12 @@
-/* Java_ProcessBuilder.java
+/* Gobang.java
 Author: BSS9395
 Update: 2023-04-28T17:50:00+08@China-Guangdong-Zhanjiang+08
-Design: Java Standard Library: ProcessBuilder
+Design: Gobang
 */
 
 import java.util.Scanner;
 
-public class Java_ProcessBuilder {
+public class Gobang {
 	static public String  _cls[] = System.getProperty("os.name").toLowerCase().startsWith("windows")
 			? new String[] {
 				"cmd", "/c", "cls"
@@ -21,7 +21,7 @@ public class Java_ProcessBuilder {
 	static public char _chess = '⊗';
 
 	public char[][] _board  = new char[_side_x][_side_y];
-	public Java_ProcessBuilder() {
+	public Gobang() {
 		for (int x = 0; x < _side_x; x += 1) {
 			for (int y = 0; y < _side_y; y += 1) {
 				_board[x][y] = _cross;
@@ -245,6 +245,6 @@ public class Java_ProcessBuilder {
 	}
 
 	static public void main(String[] args) {
-		new Java_ProcessBuilder();
+		new Gobang();
 	}
 }

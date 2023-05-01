@@ -49,41 +49,47 @@ public class Poker {
 		}
 	}
 
+	public void _Print_Cards() {
+		System.out.println("_Print_Cards");
+
+		for(int i = 0; i < _players_count; i += 1) {
+			System.out.printf("[%s]", _players[i]);
+
+			ListIterator<String> iter = _cards[i].listIterator();
+			while(iter.hasNext() == true) {
+				System.out.printf(" %s", iter.next());
+			}
+			System.out.println();
+		}
+	}
 	public void _Print_Cards(String player) {
 		System.out.println("_Print_Cards");
 
 		if(player == null) {
-			for(int i = 0; i < _players_count; i += 1) {
-				System.out.printf("[%s]", _players[i]);
+			System.out.println("player == null");
+			return ;
+		}
 
-				ListIterator<String> iter = _cards[i].listIterator();
-				while(iter.hasNext() == true) {
-					System.out.printf(" %s", iter.next());
-				}
-				System.out.println();
+		int index = 0;
+		for(; index < _players.length; index += 1) {
+			if(_players[index].equals(player)) {
+				break;
 			}
-		} else {
-			int index = 0;
-			for(; index < _players.length; index += 1) {
-				if(_players[index].equals(player)) {
-					break;
-				}
+		}
+		if(0 <= index && index < _players.length) {
+			System.out.printf("[%s]", player);
+			ListIterator<String> iter = _cards[index].listIterator();
+			while(iter.hasNext() == true) {
+				System.out.printf(" %s", iter.next());
 			}
-			if(0 <= index && index < _players.length) {
-				System.out.printf("[%s]", player);
-				ListIterator<String> iter = _cards[index].listIterator();
-				while(iter.hasNext() == true) {
-					System.out.printf(" %s", iter.next());
-				}
-				System.out.println();
-			}
+			System.out.println();
 		}
 	}
 
 	public static void main(String[] args)	{
 		Poker poker = new Poker();
 		poker._Deliver_Cards();
-		poker._Print_Cards(null);
+		poker._Print_Cards();
 		poker._Print_Cards("电脑玩家");
 	}
 }

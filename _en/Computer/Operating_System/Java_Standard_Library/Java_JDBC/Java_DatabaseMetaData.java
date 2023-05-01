@@ -11,32 +11,33 @@ public class Java_DatabaseMetaData {
         _DatabaseMetaData();
     }
     static public void _DatabaseMetaData() throws Exception {
-        Connection connection = DriverManager.getConnection(_schema + _address, _username, _password);
-        DatabaseMetaData meta = connection.getMetaData();
-        System.out.printf("DatabaseMetaData.getDatabaseProductName() = %s%n", meta.getDatabaseProductName());
-        System.out.printf("DatabaseMetaData.getDatabaseProductVersion() = %s%n", meta.getDatabaseProductVersion());
-        System.out.printf("DatabaseMetaData.getDriverName() = %s%n", meta.getDriverName());
-        System.out.printf("DatabaseMetaData.getDriverVersion() = %s%n", meta.getDriverVersion());
+        try (Connection connection = DriverManager.getConnection(_schema + _address, _username, _password)) {
+            DatabaseMetaData meta = connection.getMetaData();
+            System.out.printf("DatabaseMetaData.getDatabaseProductName() = %s%n", meta.getDatabaseProductName());
+            System.out.printf("DatabaseMetaData.getDatabaseProductVersion() = %s%n", meta.getDatabaseProductVersion());
+            System.out.printf("DatabaseMetaData.getDriverName() = %s%n", meta.getDriverName());
+            System.out.printf("DatabaseMetaData.getDriverVersion() = %s%n", meta.getDriverVersion());
 
-        ////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////
 
-        _Print_ResultSet("DatabaseMetaData.getTableTypes();",
-                meta.getTableTypes());
+            _Print_ResultSet("DatabaseMetaData.getTableTypes();",
+                    meta.getTableTypes());
 
-        _Print_ResultSet("DatabaseMetaData.getTables();",
-                meta.getTables("Management", null, "%", new String[] { "TABLE", "VIEW" }));
+            _Print_ResultSet("DatabaseMetaData.getTables();",
+                    meta.getTables("Management", null, "%", new String[]{"TABLE", "VIEW"}));
 
-        _Print_ResultSet("DatabaseMetaData.getPrimaryKeys();",
-                meta.getPrimaryKeys("Management", null, "Student"));
+            _Print_ResultSet("DatabaseMetaData.getPrimaryKeys();",
+                    meta.getPrimaryKeys("Management", null, "Student"));
 
-        _Print_ResultSet("DatabaseMetaData.getProcedures();",
-                meta.getProcedures("Management", null, "%"));
+            _Print_ResultSet("DatabaseMetaData.getProcedures();",
+                    meta.getProcedures("Management", null, "%"));
 
-        _Print_ResultSet("DatabaseMetaData.getCrossReference();",
-                meta.getCrossReference("Management", null, "Teacher", null, null, "Student"));
+            _Print_ResultSet("DatabaseMetaData.getCrossReference();",
+                    meta.getCrossReference("Management", null, "Teacher", null, null, "Student"));
 
-        _Print_ResultSet("DatabaseMetaData.getColumns();",
-                meta.getColumns("Management", null, "Student", "%"));
+            _Print_ResultSet("DatabaseMetaData.getColumns();",
+                    meta.getColumns("Management", null, "Student", "%"));
+        }
     }
     static public void _Print_ResultSet(String tip, ResultSet result) {
         try {
