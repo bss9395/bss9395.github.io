@@ -17,7 +17,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
-class Generation {
+class Generator {
     static Random _random = new Random(System.currentTimeMillis());
     static public String _charset = "";
     static {
@@ -25,19 +25,26 @@ class Generation {
         _charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         _charset += "abcdefghijklmnopqrstuvwxyz";
     };
+    static public int _Generate_Int(int min, int max) {
+        return (min + _random.nextInt(max - min));
+    }
+    static public double _Generate_Double(double min, double max) {
+        return (min + _random.nextDouble() * (max - min));
+    }
     static public String _Generate_String(int length) {
-        Logger._udp_client._Note(null);
-        StringBuilder data = new StringBuilder(length);
+        StringBuilder text = new StringBuilder(length);
         for(int i = 0; i < length; i += 1) {
             int index = _random.nextInt(_charset.length());
-            data.append(_charset.charAt(index));
+            text.append(_charset.charAt(index));
         }
-        return data.toString();
+        return text.toString();
     }
-    static public int _Generate_Int(int min, int max) {
-        Logger._udp_client._Note(null);
-        int data = min + _random.nextInt(max - min);
-        return data;
+    static public Color _Generate_RGBA() {
+        int red   = _Generate_Int(0, 256);
+        int green = _Generate_Int(0, 256);
+        int blue  = _Generate_Int(0, 256);
+        int alpha = _Generate_Int(128, 256);
+        return new Color(red, green, blue, alpha);
     }
 }
 
@@ -56,9 +63,9 @@ class LoginDialog extends JDialog {
         Logger._udp_client._Note(null);
         _handler = handler;
 
-        _tf_identity.setText(UDP_Protocol._identities[Generation._Generate_Int(0, UDP_Protocol._identities.length)]);
-        _cb_avatars.setSelectedIndex(Generation._Generate_Int(0, _cb_avatars.getModel().getSize()));
-        _tf_password.setText(Generation._Generate_String(5));
+        _tf_identity.setText(UDP_Protocol._identities[Generator._Generate_Int(0, UDP_Protocol._identities.length)]);
+        _cb_avatars.setSelectedIndex(Generator._Generate_Int(0, _cb_avatars.getModel().getSize()));
+        _tf_password.setText(Generator._Generate_String(5));
 
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -168,7 +175,7 @@ class ChatDialog extends JDialog {
                         }
                     }
                     _ta_area.append(read_body + "\n");
-                    _tf_field.setText(UDP_Protocol._greetings[Generation._Generate_Int(0, UDP_Protocol._greetings.length)]);
+                    _tf_field.setText(UDP_Protocol._greetings[Generator._Generate_Int(0, UDP_Protocol._greetings.length)]);
                 } else {
                     String read_body = UDP_Protocol._sign_peer + _handler._main_dialog._self._identity
                                      + UDP_Protocol._sign_peer + _user._identity
@@ -181,7 +188,7 @@ class ChatDialog extends JDialog {
                         _handler._Send_Packet(send_head, new DatagramPacket(send_buffer._data, 0, send_buffer._length, user._address));
                     }
                     _ta_area.append(read_body + "\n");
-                    _tf_field.setText(UDP_Protocol._greetings[Generation._Generate_Int(0, UDP_Protocol._greetings.length)]);
+                    _tf_field.setText(UDP_Protocol._greetings[Generator._Generate_Int(0, UDP_Protocol._greetings.length)]);
                 }
             }
         };

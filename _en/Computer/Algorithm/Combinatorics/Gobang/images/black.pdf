@@ -1,0 +1,115 @@
+%PDF-1.7
+
+4 0 obj
+<<
+/C0 [ 0.0 0.0 0.0 ]
+/C1 [ 1.0 1.0 1.0 ]
+/Domain [ 0.0 1.0 ]
+/FunctionType 2
+/N 1.0
+>>
+endobj
+5 0 obj
+<<
+/C0 [ 1.0 1.0 1.0 ]
+/C1 [ 1.0 1.0 1.0 ]
+/Domain [ 0.0 1.0 ]
+/FunctionType 2
+/N 1.0
+>>
+endobj
+6 0 obj
+<<
+/Bounds [ 0.99 ]
+/Domain [ 0.0 1.0 ]
+/Encode [ 0.0 1.0 0.0 1.0 ]
+/FunctionType 3
+/Functions [ 4 0 R 5 0 R ]
+>>
+endobj
+7 0 obj
+<<
+/Matrix [ 0.86775 0.0 0.0 -0.86775 7.37587 834.51416 ]
+/PatternType 2
+/Shading <<
+/ColorSpace /DeviceRGB
+/Coords [ 0.0 0.0 0.0 0.0 0.0 16.7917 ]
+/Extend [ true true ]
+/Function 6 0 R
+/ShadingType 3
+>>
+/Type /Pattern
+>>
+endobj
+8 0 obj
+<<
+/Filter /FlateDecode
+/Length 242
+>>
+stream
+xúùQÀé¬0ºÁ+r^)^;MHÚÙƒU<K%ˇ/'•°m/£±«ûqRD˛,‚∏y-Ç\)⁄·`é¸œeìJ	±‰RŸøñ%Ú¢GÙ∑ÇÙº°õ{≥˙±#Ø%†òt€JÏôj€+8Ì‘4ãºPú4lIl…∑Æuvíek˙/£∏ˆQjÑòCGÅ%î€Ÿ∏JëΩΩCIqR…ä⁄g—»)êª¿V+‡øÀıÂ≤9çv8&{∆∫Œ%àœ·~◊	)¿I±R2ƒFXÈõ§_jÉÁ√úæ’)˛ú"R‚≤˙qﬂﬁÙÊ
+$Ãµ/
+endstream
+endobj
+9 0 obj
+<<
+/Pattern <<
+/Pattern1 7 0 R
+>>
+>>
+endobj
+3 0 obj
+<<
+/Contents [ 8 0 R ]
+/CropBox [ 0.0 0.0 595.27576 841.89001 ]
+/MediaBox [ 0.0 0.0 595.27576 841.89001 ]
+/Parent 2 0 R
+/Resources 9 0 R
+/Rotate 0
+/Type /Page
+>>
+endobj
+2 0 obj
+<<
+/Count 1
+/Kids [ 3 0 R ]
+/Type /Pages
+>>
+endobj
+1 0 obj
+<<
+/Pages 2 0 R
+/Type /Catalog
+>>
+endobj
+10 0 obj
+<<
+/Author (Brilliant)
+/CreationDate (D:20230507195040+08'00')
+/ModDate (D:20230507195040+08'00')
+/Producer (Microsoft: Print To PDF)
+/Title (Axure RP Document)
+>>
+endobj
+xref
+0 11
+0000000000 65535 f
+0000001185 00000 n
+0000001126 00000 n
+0000000949 00000 n
+0000000009 00000 n
+0000000113 00000 n
+0000000217 00000 n
+0000000346 00000 n
+0000000583 00000 n
+0000000897 00000 n
+0000001234 00000 n
+trailer
+<<
+/Info 10 0 R
+/Root 1 0 R
+/Size 11
+>>
+startxref
+1415
+%%EOF
