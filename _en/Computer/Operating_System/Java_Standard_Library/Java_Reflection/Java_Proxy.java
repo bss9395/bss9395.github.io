@@ -22,10 +22,10 @@ public class Java_Proxy {
         }
     }
     static class Util {
-        public void _Beg() {
+        static public void _Beg() {
             System.out.printf("%s%s%s%n", "==========", "Beg", "==========");
         }
-        public void _End() {
+        static public void _End() {
             System.out.printf("%s%s%s%n", "==========", "End", "==========");
         }
     }
@@ -38,10 +38,9 @@ public class Java_Proxy {
         @Override
         public Object invoke(Object proxy, Method method, Object[] args)
             throws Exception {
-            Util util = new Util();
-            util._Beg();
+            Util._Beg();
             Object result = method.invoke(_target, args);
-            util._End();
+            Util._End();
             return result;
         }
     }

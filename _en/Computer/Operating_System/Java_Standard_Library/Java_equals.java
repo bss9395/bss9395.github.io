@@ -5,7 +5,7 @@ Design: Java equals()
 */
 
 public class Java_equals {
-    public static class Datum {
+    static public class Datum {
         public String _id = "id";
         public String _name = "name";
         public Datum(String id, String name) {
@@ -17,9 +17,16 @@ public class Java_equals {
             if(this == object) {
                 return true;
             }
-            if(object != null && Datum.class == object.getClass()) {
-                Datum datum = (Datum)object;
-                return _id.equals(datum._id);
+            if(object == null || false == (object instanceof Datum)) {
+                return false;
+            }
+
+            Datum that = (Datum) object;
+            if(_id == that._id && _name == that._name) {
+                return true;
+            }
+            if(_id != null && _id.equals(that._id) && _name != null && _name.equals(that._name)) {
+                return true;
             }
             return false;
         }
@@ -28,7 +35,9 @@ public class Java_equals {
         Datum datum_0 = new Datum("1156", "bss9395");
         Datum datum_1 = new Datum("1157", "maker");
         Datum datum_2 = new Datum("1156", "brilliant");
+        Datum datum_3 = new Datum(new String("1156"), new String("bss9395"));
         System.out.println(datum_0.equals(datum_1));
         System.out.println(datum_0.equals(datum_2));
+        System.out.println(datum_0.equals(datum_3));
     }
 }

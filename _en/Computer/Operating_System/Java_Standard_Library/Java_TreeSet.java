@@ -14,9 +14,11 @@ public class Java_TreeSet {
         public Datum(String id) {
             _id = id;
         }
+        @Override
         public int compareTo(Datum datum) {
             return _id.compareTo(datum._id);
         }
+        @Override
         public boolean equals(Object datum) {
             if(this == datum) {
                 return true;
@@ -26,6 +28,7 @@ public class Java_TreeSet {
             }
             return false;
         }
+        @Override
         public String toString() {
             return String.format("%d@%s", super.hashCode(), _id);
         }
