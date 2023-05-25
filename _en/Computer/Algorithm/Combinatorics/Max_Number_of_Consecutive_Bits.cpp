@@ -1,7 +1,7 @@
-/* Max_Number_of_Continuous_Bits.cpp
+/* Max_Number_of_Consecutive_Bits.cpp
 Author: bss9395
 Update: 2022-09-30T16:40:00+08@China-Guangdong-Zhanjiang+08
-Design: Max Number of Continuous Bits
+Design: Max Number of Consecutive Bits
 */
 
 #include <iostream>
@@ -11,7 +11,7 @@ Design: Max Number of Continuous Bits
 #include <algorithm>
 using namespace std;
 
-void Max_Number_of_Continuous_Bits_Regular() {
+void Max_Number_of_Consecutive_Bits_Regular() {
 	int bits = 7;
 
 	int count = 0;
@@ -34,7 +34,7 @@ void Max_Number_of_Continuous_Bits_Regular() {
 	fprintf(stdout, "%d\n", max_count);
 }
 
-void Max_Number_of_Continuous_Bits() {
+void Max_Number_of_Consecutive_Bits() {
 	int bits = 7;
 
 	int count = 0;
@@ -46,8 +46,8 @@ void Max_Number_of_Continuous_Bits() {
 }
 
 int main(int argc, char* argv[]) {
-	// Max_Number_of_Continuous_Bits_Regular();
-	Max_Number_of_Continuous_Bits();
+	// Max_Number_of_Consecutive_Bits_Regular();
+	Max_Number_of_Consecutive_Bits();
 
 	return 0;
 }

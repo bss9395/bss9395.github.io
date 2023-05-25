@@ -218,12 +218,13 @@ public:
 
 		//////////////////////////////////////
 
-		auto width = (width_mini <= (int)type.size()) ? (int)type.size() : width_mini;
+		auto width = (int)type.size();
+		(width_mini <= width) ? width : (width = width_mini);
 		(width <= width_maxi) ? width : (width = width_maxi);
 		stream.resize(stream.size() + width);
 		auto iter = &stream[stream.size() - width];
 		auto i = 0;
-		for (auto size = type.size(); i < size && i < width; ) {
+		for (auto size = type.size() < width ? type.size() : width; i < size; ) {
 			iter[i] = type[i];
 			i += 1;
 		}
