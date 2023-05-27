@@ -57,7 +57,13 @@ public:
 	static inline Locale _gbk        = _Platform(".936"  , "zh_CN.GBK");
 	static inline Locale _ios_8859_1 = _Platform(".28591", "en_GB.ISO-8859-1");
 
+	static inline Locale _locale = _native;
+
 public:
+	static auto _Update_Locale(Locale locale = _native) {
+		_locale = locale;
+	}
+
 	static auto _From_WString(const wstring& wstr = L"ÄãºÃ£¬ÊÀ½ç£¡", Locale locale = _native) -> string {
 		char* lc_all = setlocale(LC_ALL, locale);
 		// fprintf(stderr, "[%s:%d, %s]locale=%s\n", __FILE__, __LINE__, __FUNCTION__, lc_all);
@@ -70,6 +76,8 @@ public:
 		int count = (int)wcstombs(&str[0], &wstr[0], str.size());
 		// fprintf(stderr, "[%s:%d, %s]numb=%d, %s\n", __FILE__, __LINE__, __FUNCTION__, count, &str[0]);
 		str.resize((1 <= count) ? count : 0);
+		
+		setlocale(LC_ALL, _locale);
 		return str;
 	}
 
@@ -85,6 +93,8 @@ public:
 		int count = (int)mbstowcs(&wstr[0], &str[0], wstr.size());
 		// fprintf(stderr, "[%s:%d, %s]numb=%d, %ls\n", __FILE__, __LINE__, __FUNCTION__, count, &wstr[0]);
 		wstr.resize((1 <= count) ? count : 0);
+
+		setlocale(LC_ALL, _locale);
 		return wstr;
 	}
 

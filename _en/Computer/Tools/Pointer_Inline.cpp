@@ -9,74 +9,71 @@ Design: Pointer Inline
 using namespace std;
 
 //////////////////////////////////////////////////////////////////////////////
-struct Instance {
-	int *_count = new int(1);
-	virtual ~Instance() = 0 {
-
-	}
-};
-//////////////////////////////////////////////////////////////////////////////
 #define _Delete(pointer)  (delete pointer, pointer = nullptr)
 //////////////////////////////////////////////////////////////////////////////
-#define _Member_Access_Operator(Pointer_, Member_, instance_)                \
-	Member* operator->() {                                                   \
-		return instance_;                                                    \
+#define _self  _instance 
+#define _Counter(Pointer_, Member_)                                          \
+	Member_* _instance = nullptr;                                            \
+	int*     _count    = new int{1};                                         \
+	Member_* operator->() {                                                  \
+		return _instance;                                                    \
 	}                                                                        \
 //////////////////////////////////////////////////////////////////////////////
-#define _Assign_Constructor(Pointer_, Member_, instance_)                    \
+#define _Assign_Constructor(Pointer_, Member_)                               \
 	Pointer_(const Pointer_& share) {                                        \
 		fprintf(stderr, "[%s:%d, %s]\n", __FILE__, __LINE__, __FUNCTION__);  \
-		instance_ = share.instance_;                                         \
+		_instance = share._instance;                                         \
 		_count    = share._count;                                            \
 		(*_count) += 1;                                                      \
 	}                                                                        \
 //////////////////////////////////////////////////////////////////////////////
-#define _Copy_Constructor(Pointer_, Member_, instance_)                      \
+#define _Copy_Constructor(Pointer_, Member_)                                 \
 	Pointer_& operator=(const Pointer_& share) {                             \
 		fprintf(stderr, "[%s:%d, %s]\n", __FILE__, __LINE__, __FUNCTION__);  \
 		if (this == &share) {                                                \
-			return *this;                                                    \
+			return (*this);                                                  \
 		}                                                                    \
-		instance_ = share.instance_;                                         \
+		_instance = share._instance;                                         \
 		_count    = share._count;                                            \
 		(*_count) += 1;                                                      \
 	}                                                                        \
 //////////////////////////////////////////////////////////////////////////////
-#define _Virtual_Destructor(Pointer_, Member_, instance_)                    \
+#define _Virtual_Destructor(Pointer_, Member_)                               \
 	virtual ~Pointer_() {                                                    \
 		fprintf(stderr, "[%s:%d, %s]\n", __FILE__, __LINE__, __FUNCTION__);  \
 		(*_count) -= 1;                                                      \
 		if (false == (1 <= (*_count))) {                                     \
-			fprintf(stderr, "delete _instance;\n");                          \
-			delete((Member_ *)instance_), instance_ = nullptr;               \
+			fprintf(stderr, "delete _instance; delete _count;\n");           \
+			delete((Member_ *)_instance), _instance = nullptr;               \
 			delete _count, _count = nullptr;                                 \
 		}                                                                    \
 	}                                                                        \
 //////////////////////////////////////////////////////////////////////////////
-#define _Inline(Pointer_, Member_, instance_)                                \
-	_Member_Access_Operator(Pointer_, Member_, instance_)                    \
-	_Assign_Constructor(Pointer_, Member_, instance_)                        \
-	_Copy_Constructor(Pointer_, Member_, instance_)                          \
-	_Virtual_Destructor(Pointer_, Member_, instance_)                        \
+#define _Inline(Pointer_, Member_)                                           \
+	_Counter(Pointer_, Member_)                                              \
+	_Assign_Constructor(Pointer_, Member_)                                   \
+	_Copy_Constructor(Pointer_, Member_)                                     \
+	_Virtual_Destructor(Pointer_, Member_)                                   \
 //////////////////////////////////////////////////////////////////////////////
 
-class Type : Instance {
+class Type {
 public:
 	struct Member {
 		wstring _key = L"";
 		wstring _value = L"";
+		Member(const wstring& key, const wstring& value) {
+			_key = key;
+			_value = value;
+		}
 	};
-	Member* _instance = nullptr;                                                                    
-
+                                                                
 public:
 	Type(const wstring& key, const wstring& value) {
 		fprintf(stderr, "[%s:%d, %s]\n", __FILE__, __LINE__, __FUNCTION__);
-		_instance = new Member{};
-		_instance->_key   = key;
-		_instance->_value = value;
+		_self = new Member(key, value);
 	}
-	_Inline(Type, Member, _instance)
-
+	_Inline(Type, Member)
+	
 public:
 	static void _Test_Pointer_Inline() {
 		Type share = Type(L"abc", L"ABC");

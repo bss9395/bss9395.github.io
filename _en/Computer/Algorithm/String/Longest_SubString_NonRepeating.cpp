@@ -9,7 +9,7 @@ Credit: https://leetcode-cn.com/problems/longest-substring-without-repeating-cha
 #include <string>
 #include <vector>
 #include <queue>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
 class Longest_SubString_NonRepeating {
@@ -64,7 +64,7 @@ public:
 			return 0;
 		}
 		auto longest = (int)1;
-		auto slide = map<wchar_t, int>{};
+		auto slide = unordered_map<wchar_t, int>{};
 		auto fore = 0, back = fore + 1;
 		for (auto iend = (int)data.size(); back < iend; ) {
 			auto jump = slide[data[back]];
