@@ -4,6 +4,7 @@ Update: 2023-05-21T00:48:00+08@China-Guangdong-Zhanjiang+08
 Design: Logger for Debugging
 */
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <array>
 #include <iostream>
 #include <string>
@@ -22,6 +23,18 @@ public:
 
 class Logger {
 public:
+#ifdef _WIN32
+#define _Platform(windows, linux) windows
+#elif __linux__
+#define _Platform(windows, linux) linux
+#endif
+	typedef const char* Locale;
+	static inline Locale _native     = _Platform("", "");
+	static inline Locale _utf_8      = _Platform(".UTF-8", "en_GB.UTF-8");
+	static inline Locale _gbk        = _Platform(".936", "zh_CN.GBK");
+	static inline Locale _ios_8859_1 = _Platform(".28591", "en_GB.ISO-8859-1");
+
+public:
 	static auto _Instance(const wstring& instance) -> Logger* {
 		for (int i = 0; i < Logger::_loggers.size(); i += 1) {
 			if (instance == Logger::_loggers[i]->_instance) {
@@ -39,20 +52,25 @@ public:
 
 public:
 	static inline auto _levels = array<const char*, 10>{};
-	static inline auto _index = 0;
-	static inline auto _note = (_levels[_index += 1] = "note ", _index);
-	static inline auto _debug = (_levels[_index += 1] = "debug", _index);
-	static inline auto _alert = (_levels[_index += 1] = "alert", _index);
-	static inline auto _error = (_levels[_index += 1] = "error", _index);
-	static inline auto _fatal = (_levels[_index += 1] = "fatal", _index);
+	static inline auto _index  = 0;
+	static inline auto _note   = (_levels[_index += 1] = "note ", _index);
+	static inline auto _debug  = (_levels[_index += 1] = "debug", _index);
+	static inline auto _alert  = (_levels[_index += 1] = "alert", _index);
+	static inline auto _error  = (_levels[_index += 1] = "error", _index);
+	static inline auto _fatal  = (_levels[_index += 1] = "fatal", _index);
 	static inline auto _loggers_pool = 10;
-	static inline auto _loggers = vector<Logger*>{};
-	static inline auto _logger = Logger::_Instance(L"logger");
+	static inline auto _loggers      = vector<Logger*>{};
+	static inline auto _logger       = Logger::_Instance(L"logger");
 
 public:
 	wstring _instance = L"logger";
 	int     _level    = Logger::_debug;
-	FILE*   _output   = stderr;
+	Locale  _locale   = _utf_8;
+	bool    _console  = true;
+	FILE*   _file     = stderr;
+	bool    _make     = true;
+	string  _filename = "logger.text";
+	string  _mode     = "at";
 
 public:
 	void _Logging(int level, const char* filename, int line, const char* function) {
@@ -61,23 +79,29 @@ public:
 	template<typename ...Types_>
 	void _Logging(int level, const char* filename, int line, const char* function, const wstring& format, const Types_& ...types) {
 		if (_level <= level) {
+			(_make    == true) ? (remove(&_filename[0]), _make = false) : _make;  // note: delete file, not truncate file.
+			(_console == true) ? _file : (setlocale(LC_ALL, &_locale[0]), _file = fopen(&_filename[0], &_mode[0]));
+
 			const char* idx = strrchr(filename, '/');
 			(idx == NULL) ? (idx = strrchr(filename, '\\')) : idx;
-			fprintf(_output, "[%s, %s:%d, %s]", _levels[level], idx == NULL ? filename : idx + 1, line, function);
+			fprintf(_file, "[%s, %s:%d, %s]", _levels[level], idx == NULL ? filename : idx + 1, line, function);
 
 			if (0 < format.size()) {
 				try {
 					auto stream = wstring{};
 					auto format0 = &format[0];
 					_Format(stream, format0, types...);
-					fwprintf(_output, L"%ls", &stream[0]);
+					fwprintf(_file, L"%ls", &stream[0]);
 				}
 				catch (const Exception& exception) {
-					fwprintf(_output, L"\n\nSystem exited due to exception: %ls\n\n", &exception._what[0]);
+					fwprintf(_file, L"\n\nSystem exited due to exception: %ls\n\n", &exception._what[0]);
 					exit(1);
 				}
 			}
-			fwprintf(_output, L"\n");
+			fwprintf(_file, L"\n");
+			fflush(_file);
+
+			(_console == true) ? 0 : (setlocale(LC_ALL, _native), fclose(_file));
 		}
 	}
 #define _Note(...)   _Logging(Logger::_note , __FILE__, __LINE__, __FUNCTION__, __VA_ARGS__)
@@ -213,14 +237,14 @@ public:
 	}
 
 	static auto _Print(wstring& stream, int width_mini, int width_maxi, const wstring& type) -> void {
-		(0 <= width_mini) ? width_mini : (width_mini = 0);
+		(1 <= width_mini) ? width_mini : (width_mini = 0);
 		(width_mini <= width_maxi) ? width_maxi : (width_maxi = width_mini);
 
 		//////////////////////////////////////
 
 		auto width = (int)type.size();
-		(width_mini <= width) ? width : (width = width_mini);
-		(width <= width_maxi) ? width : (width = width_maxi);
+		(width_mini <= 0 || width_mini <= width) ? width : (width = width_mini);
+		(width_maxi <= 0 || width <= width_maxi) ? width : (width = width_maxi);
 		stream.resize(stream.size() + width);
 		auto iter = &stream[stream.size() - width];
 		auto i = 0;
@@ -235,9 +259,9 @@ public:
 	}
 };
 
-int main(int argc, char* argv[]) {
-	Logger::_logger->_Debug(L"{}", 112345);
-	Logger::_logger->_Debug(L"{5:2}", 11.2345);
-	Logger::_logger->_Debug(L"{5:2}", L"11.2345");
-	return 0;
-}
+//int main(int argc, char* argv[]) {
+//	Logger::_logger->_Debug(L"{}", 112345);
+//	Logger::_logger->_Debug(L"{5:2}", 11.2345);
+//	Logger::_logger->_Debug(L"{5:2}", L"11.2345");
+//	return 0;
+//}

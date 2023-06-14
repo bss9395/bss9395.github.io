@@ -56,13 +56,17 @@ public:
 	static inline Locale _utf_8      = _Platform(".UTF-8", "en_GB.UTF-8");
 	static inline Locale _gbk        = _Platform(".936"  , "zh_CN.GBK");
 	static inline Locale _ios_8859_1 = _Platform(".28591", "en_GB.ISO-8859-1");
-
-	static inline Locale _locale = _native;
-
+	
 public:
-	static auto _Update_Locale(Locale locale = _native) {
-		_locale = locale;
+	static auto _Update_Locale(Locale locale = _native) -> Locale {
+		char* lc_all = setlocale(LC_ALL, NULL);
+		fprintf(stderr, "[%s:%d, %s]locale=%s\n", __FILE__, __LINE__, __FUNCTION__, lc_all);
+		setlocale(LC_ALL, locale), _locale = locale;
+		lc_all = setlocale(LC_ALL, NULL);
+		fprintf(stderr, "[%s:%d, %s]locale=%s\n", __FILE__, __LINE__, __FUNCTION__, lc_all);
+		return locale;
 	}
+	static inline Locale _locale = _Update_Locale(_native);
 
 	static auto _From_WString(const wstring& wstr = L"ÄãºÃ£¬ÊÀ½ç£¡", Locale locale = _native) -> string {
 		char* lc_all = setlocale(LC_ALL, locale);

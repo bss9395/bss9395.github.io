@@ -23,7 +23,7 @@ typedef struct _HTree {
     char **_code;
 } HTree;
 
-HTree Huffman_Conding(double weight[], int numb) {
+HTree Huffman_Coding(double weight[], int numb) {
     int size = 2 * numb - 1;
     Node *tree = (Node *)malloc(size * sizeof(Node));
     char **code = (char **)malloc(numb * sizeof(char *));
@@ -99,7 +99,7 @@ int main(int argc, char *argv[]) {
     double weight[5] = { 3, 5, 2, 4, 1 };
     char alpha[5] = { 'A', 'B', 'C', 'D', 'E' };
 
-    HTree htree = Huffman_Conding(weight, numb);
+    HTree htree = Huffman_Coding(weight, numb);
     for (int i = 0; i < numb; i += 1) {
         fprintf(stdout, "%c: %s""\n", alpha[i], htree._code[i]);
     }

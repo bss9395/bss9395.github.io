@@ -290,9 +290,9 @@ $$
 
 $$
 \begin{aligned}
-\sin(\arg\bold{q}) &= \dfrac{{^\imath}\vec{n}_{\vec{q}} \rlap{×}{+} \vec{q}}{|\bold{q}|} \\
+\sin(\arg\bold{q}) &= \dfrac{ {^\imath}\vec{n}_{\vec{q}} \rlap{×}{+} \vec{q}}{|\bold{q}|} \\
 \cos(\arg\bold{q}) &= \dfrac{q}{|\bold{q}|} \\
-\tan(\arg\bold{q}) &= \dfrac{{^\imath}\vec{n}_{\vec{q}} \rlap{×}{+} \vec{q}}{q} \\
+\tan(\arg\bold{q}) &= \dfrac{ {^\imath}\vec{n}_{\vec{q}} \rlap{×}{+} \vec{q}}{q} \\
 |\tan(\arg\bold{q})| &≠ \dfrac{|\vec{q}|}{|q|} \\
 \left[ \tan\dfrac{\arg\bold{p}}{2} = \tan\dfrac{\arg\bold{q}}{2} \right] &⇔ \left[ \arg\bold{p} = \arg\bold{q} \mod 360° \right] \\
 \end{aligned}
