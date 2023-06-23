@@ -11,7 +11,7 @@ using namespace std;
 class Drinking_Bottles {
 public:
 	/*
-	一元钱买一瓶汽水，2个空瓶换一瓶汽水，你有20元，最多能买多少瓶汽水。
+	1元钱买一瓶汽水，2个空瓶换一瓶汽水，现在有20元，最多能喝多少瓶汽水？
 	*/
 	static auto _Count_Bottles(double money, double price = 1.0, int exchange_bottles = 2, int drinks = 1) -> int {
 		auto total   = (int)(money / price);
@@ -25,6 +25,9 @@ public:
 		return total;
 	}
 
+	/*
+	1元钱买一瓶汽水，2个空瓶换一瓶汽水，3个瓶盖换一瓶汽水，现在有20元，最多能喝多少瓶汽水？
+	*/
 	static auto _Total_Bottles(int drinks, int exchange_bottles = 2 / 1, int exchange_caps = 3 / 1) -> int {
 		auto total   = drinks;
 		auto bottles = total;
