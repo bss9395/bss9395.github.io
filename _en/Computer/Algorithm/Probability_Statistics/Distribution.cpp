@@ -45,21 +45,26 @@ public:
 	}
 
 	static auto _Generate_Primes(ui06 range, const string& filename = "primes.txt") -> void {
-		static ui06 _primes_256[] = {
-			1, 2, 3, 5, 7, 11, 13,
-			17, 19, 23, 29, 31,
-			37, 41, 43, 47, 53, 59, 61,
-			67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127,
-			131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251
-		};
-
-		auto file  = fopen(&filename[0], "wt+");
-		fwprintf(file, L"  %llu", (ui06)1);
-		fwprintf(file, L", %llu", (ui06)2);
+		auto primes = vector<ui06>();
+		primes.push_back(2);
 		for (auto prime = (ui06)3; prime <= range; prime += 2) {
-			if ((prime & 0x01) == 0x01 && _Confirm_Prime(prime) == true) {
-				fwprintf(file, L", %llu", prime);
+			auto confirm = true;
+			auto root = (ui06)sqrt(prime);
+			for (auto fact = (in05)1, size = (in05)primes.size(); fact < size && primes[fact] <= root; fact += 1) {
+				if (prime % primes[fact] == 0) {
+					confirm = false;
+					break;
+				}
 			}
+			if (confirm == true) {
+				primes.push_back(prime);
+			}
+		}
+
+		auto file = fopen(&filename[0], "wt+");
+		for (auto i = (in05)0, size = (in05)primes.size(); i < size; i += 1) {
+			(i == 0) ? fwprintf(stdout, L"%llu", primes[i]) : fwprintf(stdout, L", %llu", primes[i]);
+			// (i == 0) ? fwprintf(file, L"%llu", primes[i]) : fwprintf(file, L", %llu", primes[i]);
 		}
 		fclose(file);
 	}
@@ -81,15 +86,15 @@ public:
 
 					auto prime = (1 <= _primes.size()) ? _primes[(in06)_primes.size() - 1] : (ui06)(_module * prefer);
 					while ((in06)_primes.size() < steps) {
-						prime += 1;
-						if ((prime & 0x01) == 0x01 && _Confirm_Prime(prime) == true) {
+						if (_Confirm_Prime(prime) == true) {
 							_primes.push_back(prime);
 						}
+						prime += 1;
 					}
 				};
 				
 				_Generate_Primes(steps);
-				_seed = seed;
+				_seed = seed % _module;
 				_steps = steps;
 			}
 
@@ -97,7 +102,7 @@ public:
 				_seed = (_seed + 1) % _module;
 				auto permute = _seed;
 				for (auto step = (in06)0; step < _steps; step += 1) {
-					permute = ((permute + 1) * _primes[step]) % _module;
+					permute = (permute * _primes[step]) % _module;
 				}
 				return (ui05)permute;
 			}
@@ -112,35 +117,32 @@ public:
 			ui06 _seeds[33] = {};
 			Generator_Cyclic_Permuted_32bits(ui06 seed) {
 				static auto _Generate_Modulo_Primes = [](double prefer = 3.0 / 5.0) -> bool {
-					_modulo[0] = 32;
+					_modulo[0] = 31;
 					for (auto i = (ui06)1, size = sizeof(_modulo) / sizeof(_modulo[0]); i < size; i += 1) {
 						_modulo[i] = ((~(ui06)0x00) >> (64 - i));
 					}
 
-					_primes[0] = 17;
+					_primes[0] = 19;
 					for (auto i = (ui06)1, size = sizeof(_primes) / sizeof(_primes[0]); i < size; i += 1) {
 						auto prime = (ui06)(_modulo[i] * prefer);
-						while (false == ((prime & 0x01) == 0x01 && _Confirm_Prime(prime))) {
+						while (false == _Confirm_Prime(prime) || (1 < prime && _modulo[i] % prime == 0)) {
 							prime += 1;
 						}
 						_primes[i] = prime;
 					}
-
 					return true;
 				};
 				static auto _static = _Generate_Modulo_Primes();
 
-
-				_seeds[0] = seed;
-				for (in06 i = 1, size = sizeof(_seeds) / sizeof(_seeds[0]); i < size; i += 1) {
-					_seeds[0] = (_seeds[0] + 1) % _modulo[0];
-					_seeds[i] = ((_seeds[0] * _primes[0]) % _modulo[0]);
+				_seeds[0] = seed % _modulo[0];
+				for (in06 bits = 1, size = sizeof(_seeds) / sizeof(_seeds[0]); bits < size; bits += 1) {
+					_seeds[bits] = seed % _modulo[bits];
 				}
 			}
 
 			auto operator()() -> ui05 {
 				_seeds[0] = (_seeds[0] + 1) % _modulo[0];
-				auto bits = ((_seeds[0] * _primes[0]) % _modulo[0]) + 1;
+				auto bits = ((_seeds[0] * _primes[0]) % _modulo[0]) + 2;  // note: skip bits==1
 				_seeds[bits] = (_seeds[bits] + 1) % _modulo[bits];
 				auto permute = (_seeds[bits] * _primes[bits]) % _modulo[bits];
 				return (ui05)permute;
@@ -260,17 +262,16 @@ public:
 	}
 
 public:
+	static auto _Test_Generate_Primes() -> void {
+		_Generate_Primes(256);
+	}
+
 	static auto _Test_Generator_Cyclic_Permuted_32bits_Prototype(in05 sample = 50) -> void {
 		auto generator = _Generator_Cyclic_Permuted_32bits_Prototype((ui05)time(NULL));
 		fwprintf(stdout, L"[");
 		for (auto i = (in05)0; i < sample; i += 1) {
 			auto yield = generator();
-			if (i == 0) {
-				fwprintf(stdout, L"%u", yield);
-			}
-			else {
-				fwprintf(stdout, L", %u", yield);
-			}
+			(i == 0) ? fwprintf(stdout, L"%u", yield) : fwprintf(stdout, L", %u", yield);
 		}
 		fwprintf(stdout, L"]\n\n");
 	}
@@ -280,12 +281,7 @@ public:
 		fwprintf(stdout, L"[");
 		for (in05 i = 0; i < sample; i += 1) {
 			auto yield = generator();
-			if (i == 0) {
-				fwprintf(stdout, L"%u", yield);
-			}
-			else {
-				fwprintf(stdout, L", %u", yield);
-			}
+			(i == 0) ? fwprintf(stdout, L"%u", yield) : fwprintf(stdout, L", %u", yield);
 		}
 		fwprintf(stdout, L"]\n\n");
 	}
@@ -295,12 +291,7 @@ public:
 		fwprintf(stdout, L"[");
 		for (in05 i = 0; i < sample; i += 1) {
 			auto yield = generator();
-			if (i == 0) {
-				fwprintf(stdout, L"%llu", yield);
-			}
-			else {
-				fwprintf(stdout, L", %llu", yield);
-			}
+			(i == 0) ? fwprintf(stdout, L"%llu", yield) : fwprintf(stdout, L", %llu", yield);
 		}
 		fwprintf(stdout, L"]\n\n");
 	}
@@ -310,12 +301,7 @@ public:
 		fwprintf(stdout, L"[");
 		for (in05 i = 0; i < sample; i += 1) {
 			auto yield = generator();
-			if (i == 0) {
-				fwprintf(stdout, L"%llu", yield);
-			}
-			else {
-				fwprintf(stdout, L", %llu", yield);
-			}
+			(i == 0) ? fwprintf(stdout, L"%llu", yield) : fwprintf(stdout, L", %llu", yield);
 		}
 		fwprintf(stdout, L"]\n\n");
 	}
@@ -327,12 +313,7 @@ public:
 		fwprintf(stdout, L"[");
 		for (in05 i = 0; i < sample; i += 1) {
 			auto yield = generator();
-			if (i == 0) {
-				fwprintf(stdout, L"%u", yield);
-			}
-			else {
-				fwprintf(stdout, L", %u", yield);
-			}
+			(i == 0) ? fwprintf(stdout, L"%u\n", yield) : fwprintf(stdout, L", %u\n", yield);
 		}
 		fwprintf(stdout, L"]\n\n");
 	}
@@ -342,12 +323,7 @@ public:
 		fwprintf(stdout, L"[");
 		for (in05 i = 0; i < sample; i += 1) {
 			auto yield = generator();
-			if (i == 0) {
-				fwprintf(stdout, L"%llu", yield);
-			}
-			else {
-				fwprintf(stdout, L", %llu", yield);
-			}
+			(i == 0) ? fwprintf(stdout, L"%llu", yield) : fwprintf(stdout, L", %llu", yield);
 		}
 		fwprintf(stdout, L"]\n\n");
 	}
@@ -357,12 +333,7 @@ public:
 		fwprintf(stdout, L"[");
 		for (in05 i = 0; i < sample; i += 1) {
 			auto yield = generator();
-			if (i == 0) {
-				fwprintf(stdout, L"%llu", yield);
-			}
-			else {
-				fwprintf(stdout, L", %llu", yield);
-			}
+			(i == 0) ? fwprintf(stdout, L"%llu\n", yield) : fwprintf(stdout, L", %llu\n", yield);
 		}
 		fwprintf(stdout, L"]\n\n");
 	}
@@ -370,13 +341,14 @@ public:
 
 
 int main(int argc, char* argv[]) {
+	// Distribution::_Test_Generate_Primes();
 	// Distribution::_Test_Generator_Cyclic_Permuted_32bits_Prototype();
 	// Distribution::_Test_Generator_Cyclic_Permuted_32bits();
 	// Distribution::_Test_Generator_Uniform_Distribution_Two_rand();
 	// Distribution::_Test_Generator_Uniform_Distribution_Two();
-	Distribution::_Test_rand();
+	// Distribution::_Test_rand();
 	// Distribution::_Test_Generator_Uniform_Distribution_rand();
-	// Distribution::_Test_Generator_Uniform_Distribution();
+	Distribution::_Test_Generator_Uniform_Distribution();
 
 	return 0;
 }

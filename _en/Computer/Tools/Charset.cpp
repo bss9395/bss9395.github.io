@@ -102,19 +102,19 @@ public:
 		return wstr;
 	}
 
-#define _SW(wstr)  Charset::_From_WString(wstr)
-#define _WS(str)   Charset::_Into_WString(str)
+#define _WS(wstr)  Charset::_From_WString(wstr)
+#define _SW(str)   Charset::_Into_WString(str)
 
 public:
 	static void _Test_From_WString() {
-		string str = _SW(L"你好，世界！");
+		string str = _WS(L"你好，世界！");
 		fprintf(stdout, "%s\n", &str[0]);
 			
 		str = Charset::_From_WString();
 		fprintf(stdout, "%s\n", &str[0]);
 	}
 	static void _Test_Into_WString() {
-		wstring wstr = _WS("你好，世界！");
+		wstring wstr = _SW("你好，世界！");
 		fwprintf(stdout, L"%ls\n", &wstr[0]);
 
 		wstr = Charset::_Into_WString();
