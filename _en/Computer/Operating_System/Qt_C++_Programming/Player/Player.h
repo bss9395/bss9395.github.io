@@ -13,6 +13,8 @@ System: Qt 5.14.2
 #include "Common.h"
 #include "System.h"
 #include "ui_Player.h"
+#include "QVideoWidget_Frame.h"
+#include "QVideoWidget_Handler.h"
 
 
 class Player : public QMainWindow {
@@ -81,6 +83,14 @@ public:
             _ui->VWF_Video->_play_list->clear();
         });
 
+        QObject::connect(_ui->LW_List, &QListWidget::clicked, this, [this](QModelIndex index) -> void {
+            System::Logging("QObject::connect(_ui->LW_List, &QListWidget::clicked, this, [this](QModelIndex index) -> void {");
+            if(index.isValid() == false) {
+                return;
+            }
+            _ui->VWF_Video->_play_list->setCurrentIndex(index.row());
+        });
+
         QObject::connect(_ui->LW_List, &QListWidget::doubleClicked, this, [this](QModelIndex index) -> void {
             System::Logging("QObject::connect(_ui->LW_List, &QListWidget::doubleClicked, this, [this](QModelIndex index) -> void {");
 
@@ -141,6 +151,19 @@ public:
         player->playlist()->addMedia(url);
         player->playlist()->setCurrentIndex(0);
         player->play();
+    }
+
+public:
+    void moveEvent(QMoveEvent *event) override {
+        System::Logging(__FUNCTION__);
+
+        static int counter = 0;
+        counter += 1;
+        if(2 <= counter) {
+            counter = 0;
+            _ui->VWF_Video->moveEvent(event);  // note: bug
+        }
+        return QMainWindow::moveEvent(event);
     }
 };
 

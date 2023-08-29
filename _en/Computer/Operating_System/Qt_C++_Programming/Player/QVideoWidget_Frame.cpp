@@ -106,7 +106,7 @@ QVideoWidget_Frame::QVideoWidget_Frame(QWidget *parent)
     ////////////////////////////////
 
     QObject::connect(_ui->TB_Play, &QToolButton::clicked, this, [this]() -> void {
-        // System::Logging("QObject::connect(_ui->TB_Play, &QToolButton::clicked, this, [this]() -> void {");
+        System::Logging("QObject::connect(_ui->TB_Play, &QToolButton::clicked, this, [this]() -> void {");
 
         _player->play();
         _ui->TB_Play->hide();
@@ -162,7 +162,6 @@ QVideoWidget_Frame::QVideoWidget_Frame(QWidget *parent)
         _ui->TB_Full->hide();
         _ui->TB_Restore->show();
 
-        _ui->F_Panel->hide();
         _ui->F_Panel->show();
         _state = _Posi;
     });
