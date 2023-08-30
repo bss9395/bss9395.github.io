@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>musics/Ak7.wav</file>
+        <file>musics/background.jpg</file>
+        <file>musics/blast.wav</file>
+        <file>musics/blast2.wav</file>
+        <file>musics/fire.wav</file>
+        <file>musics/fire2.wav</file>
+        <file>musics/gun.wav</file>
+        <file>musics/machinegun.wav</file>
+        <file>musics/mine.wav</file>
+        <file>musics/shell.wav</file>
+        <file>musics/tank.wav</file>
+    </qresource>
+</RCC>

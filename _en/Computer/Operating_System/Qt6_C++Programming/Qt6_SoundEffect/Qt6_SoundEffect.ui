@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Qt6_SoundEffect</class>
+ <widget class="QMainWindow" name="Qt6_SoundEffect">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Qt6_SoundEffect</string>
+  </property>
+  <widget class="QWidget" name="W_Central">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QGroupBox" name="GB_Defense">
+      <property name="title">
+       <string>防守方</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="PB_Defense_AK47">
+         <property name="text">
+          <string>AK47</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="PB_Defense_Gun">
+         <property name="text">
+          <string>机枪</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="PB_Defense_Attack">
+         <property name="text">
+          <string>开枪</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="PB_Defense_bullet">
+         <property name="text">
+          <string>炮弹</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="PB_Defense_Explode1">
+         <property name="text">
+          <string>爆炸1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="PB_Defense_Explode2">
+         <property name="text">
+          <string>爆炸2</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="GB_Attack">
+      <property name="title">
+       <string>进攻方</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="PB_Attack_AK47">
+         <property name="text">
+          <string>AK47</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="PB_Attack_Gun">
+         <property name="text">
+          <string>机枪</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="PB_Attack_Attack">
+         <property name="text">
+          <string>开枪</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="PB_Attack_Landmine">
+         <property name="text">
+          <string>地雷</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="PB_Attack_Explode">
+         <property name="text">
+          <string>爆炸</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="PB_Attack_Tank">
+         <property name="text">
+          <string>坦克</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
