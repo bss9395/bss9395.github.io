@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Qt6_QHostInfo</class>
+ <widget class="QMainWindow" name="Qt6_QHostInfo">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Qt6_QHostInfo</string>
+  </property>
+  <widget class="QWidget" name="W_Central">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QWidget" name="W_Button" native="true">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="PB_HostInfo">
+         <property name="text">
+          <string>获取本机主机名和IP地址</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QCheckBox" name="CB_IPv4">
+         <property name="text">
+          <string>只显示IPv4</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="LE_Domain">
+         <property name="text">
+          <string>www.bing.com.cn</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="PB_Lookup">
+         <property name="text">
+          <string>查找域名的IP地址</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPlainTextEdit" name="PTE_Message"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="MB_Menu">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="SB_Status"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
