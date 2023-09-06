@@ -14,8 +14,6 @@ System: Qt 5.14.2
 #include "System.h"
 
 class Graphics_Item : public QGraphicsItem {
-    // Q_OBJECT
-
 public:
     QPixmap _pixmap = QPixmap(":/images/M31.png");
     double _scale = 1.0;
@@ -97,8 +95,6 @@ public:
 };
 
 class Graphics_Polygon_Item : public QGraphicsPolygonItem {
-//    Q_OBEJCT
-
 public:
     explicit Graphics_Polygon_Item(QGraphicsItem *parent = nullptr)
         : QGraphicsPolygonItem(parent) {
@@ -231,7 +227,6 @@ public:
 
         QGraphicsLineItem *item = new QGraphicsLineItem(-100, 0, 100, 0);
         item->setPen(_pen);
-        // item->setBrush(_brush);
         item->setPos(qrand() % 100 - 50, qrand() % 100 - 50);
         item->setZValue(_type._z_out);                                            _type._z_out += 1;
         item->setData(_type._item_id, QString::asprintf("%td", (iptr)_type._id)); _type._id += 1;
@@ -317,9 +312,8 @@ public:
         widget->setPos(-50, 0);
         widget->setTransformOriginPoint(50, 0);  // 不影响原来的坐标系
         widget->setRotation(45);                 // 不影响原来的坐标系
-        widget->setPos(-50, 0);
 
-        // widget->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsFocusable);  // no-effects
+        widget->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsFocusable);  // no-effects
         _scene.clearSelection();
         widget->setSelected(true);
     }
@@ -332,7 +326,7 @@ public:
         item->setData(_type._item_id, QString::asprintf("%td", (iptr)_type._id)); _type._id += 1;
         item->setData(_type._item_desc, "图片");
         item->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable);
-        // item->setFlag(QGraphicsItem::ItemIsMovable, true);
+        item->setFlag(QGraphicsItem::ItemIsMovable, true);
         _scene.addItem(item);
         _scene.clearSelection();
         item->setSelected(true);
@@ -359,7 +353,7 @@ public:
             return;
         }
         for(iptr i = 0, count = _scene.selectedItems().count(); i < count; i += 1) {
-            QGraphicsItem *item = _scene.selectedItems().at(0);
+            QGraphicsItem *item = _scene.selectedItems().at(i);
             item->setScale(item->scale() - _scale_step);
         }
     }
@@ -372,7 +366,7 @@ public:
             return;
         }
         for(iptr i = 0, count = _scene.selectedItems().count(); i < count; i += 1) {
-            QGraphicsItem *item = _scene.selectedItems().at(0);
+            QGraphicsItem *item = _scene.selectedItems().at(i);
             item->setRotation(item->rotation() - _rotate_step);
         }
     }
@@ -385,7 +379,7 @@ public:
             return;
         }
         for(iptr i = 0, count = _scene.selectedItems().count(); i < count; i += 1) {
-            QGraphicsItem *item = _scene.selectedItems().at(0);
+            QGraphicsItem *item = _scene.selectedItems().at(i);
             item->setRotation(item->rotation() + _rotate_step);
         }
     }
@@ -398,10 +392,10 @@ public:
             return;
         }
         for(iptr i = 0, count = _scene.selectedItems().count(); i < count; i += 1) {
-            QGraphicsItem *item = _scene.selectedItems().at(0);
+            QGraphicsItem *item = _scene.selectedItems().at(i);
             item->setScale(1.0);
             item->setRotation(0);
-            // item->resetTransform();  // note: the transform matrix of item is related to its parent item.
+            item->resetTransform();  // note: the transform matrix of item is related to its parent item.
         }
     }
 
@@ -533,21 +527,21 @@ public:
             if(type == QGraphicsRectItem::Type
             || type == QGraphicsEllipseItem::Type
             || type == QGraphicsPolygonItem::Type) {
-                QAbstractGraphicsShapeItem *shape = (QGraphicsRectItem *)item;
+                QAbstractGraphicsShapeItem *shape = static_cast<QGraphicsRectItem *>(item);
                 QColor color = shape->brush().color();
                 color = QColorDialog::getColor(color, this, "请选择颜色: ");
                 if(color.isValid() == true) {
                     shape->setBrush(QBrush(color));
                 }
             } else if(type == QGraphicsLineItem::Type) {
-                QGraphicsLineItem *line = (QGraphicsLineItem *)item;
+                QGraphicsLineItem *line = static_cast<QGraphicsLineItem *>(item);
                 QColor color = line->pen().color();
                 color = QColorDialog::getColor(color, this, "请选择颜色: ");
                 if(color.isValid() == true) {
                     line->setPen(QPen(color));
                 }
             } else if(type == QGraphicsTextItem::Type) {
-                QGraphicsTextItem *text = (QGraphicsTextItem *)item;
+                QGraphicsTextItem *text = static_cast<QGraphicsTextItem *>(item);
                 QFont font = text->font();
                 bool ok = false;
                 font = QFontDialog::getFont(&ok, font, this, "请选择字体: ");
@@ -567,7 +561,7 @@ public:
             int key = event->key();
             if(key == Qt::Key_Delete) {
                 for(iptr i = 0; i < count; i += 1) {
-                    QGraphicsItem *item = _scene.selectedItems().at(0);
+                    QGraphicsItem *item = _scene.selectedItems().at(i);
                     _scene.removeItem(item);
                 }
             }
