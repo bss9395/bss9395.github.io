@@ -513,6 +513,7 @@ public:
             QObject::connect(line, &QLineSeries::clicked, this, [this, line]() -> void {
                 System::Logging("QObject::connect(line, &QLineSeries::clicked, this, [this](QLineSeries *line) -> void {");
 
+                _line = line;
                 _ui->PB_Curve_Sequence_Color->setAutoFillBackground(true);
                 _ui->PB_Curve_Sequence_Color->setFlat(true);
                 _ui->S_Curve_Sequence_Opacity->setRange(0, 255);
