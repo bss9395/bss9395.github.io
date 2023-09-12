@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Qt6_QSqlQueryModel</class>
+ <widget class="QMainWindow" name="Qt6_QSqlQueryModel">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>632</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Qt6_QSqlQueryModel</string>
+  </property>
+  <widget class="QWidget" name="W_Central">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QTableView" name="TV_Data"/>
+    </item>
+    <item>
+     <widget class="QWidget" name="W_Info" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QWidget" name="W_Avatar" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="L_Avatar">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="W_Detail" native="true">
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="5" column="0">
+           <widget class="QLabel" name="L_Department">
+            <property name="text">
+             <string>部门</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="L_Gender">
+            <property name="text">
+             <string>性别</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="LE_Name"/>
+          </item>
+          <item row="3" column="1">
+           <widget class="QDateEdit" name="DE_Birthday"/>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="CB_Gender">
+            <item>
+             <property name="text">
+              <string>男</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>女</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QSpinBox" name="SB_Salary">
+            <property name="maximum">
+             <number>50000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QComboBox" name="CB_Department">
+            <item>
+             <property name="text">
+              <string>销售部</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>技术部</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>生产部</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>行政部</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="L_Address">
+            <property name="text">
+             <string>地址</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="L_ID">
+            <property name="text">
+             <string>工号</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QComboBox" name="CB_Address">
+            <item>
+             <property name="text">
+              <string>北京</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>上海</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>天津</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>重庆</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>安徽</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>河北</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>河南</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>湖北</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>湖南</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>山西</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>山东</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>陕西</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>江苏</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>江西</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="SB_ID">
+            <property name="maximum">
+             <number>50000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="L_Name">
+            <property name="text">
+             <string>姓名</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="L_Salary">
+            <property name="text">
+             <string>工资</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="L_Birthday">
+            <property name="text">
+             <string>出生</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="L_Memo">
+            <property name="text">
+             <string>备注</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QPlainTextEdit" name="PTE_Memo"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="A_Open_Database"/>
+   <addaction name="separator"/>
+   <addaction name="A_First"/>
+   <addaction name="A_Previous"/>
+   <addaction name="A_Next"/>
+   <addaction name="A_Last"/>
+  </widget>
+  <action name="A_Open_Database">
+   <property name="text">
+    <string>打开数据库</string>
+   </property>
+  </action>
+  <action name="A_First">
+   <property name="text">
+    <string>首记录</string>
+   </property>
+  </action>
+  <action name="A_Previous">
+   <property name="text">
+    <string>前一记录</string>
+   </property>
+  </action>
+  <action name="A_Next">
+   <property name="text">
+    <string>后一记录</string>
+   </property>
+  </action>
+  <action name="A_Last">
+   <property name="text">
+    <string>尾记录</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

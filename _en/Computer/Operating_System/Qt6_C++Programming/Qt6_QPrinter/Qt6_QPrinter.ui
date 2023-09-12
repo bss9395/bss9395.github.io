@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Qt6_Qimage</class>
+ <widget class="QMainWindow" name="Qt6_Qimage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>562</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>695</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Qt6_Qimage</string>
+  </property>
+  <widget class="QWidget" name="W_Central">
+   <layout class="QVBoxLayout" name="verticalLayout_4">
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QWidget" name="widget" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QGroupBox" name="GB_Attribute">
+          <property name="title">
+           <string>图像属性</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="LE_Height"/>
+           </item>
+           <item row="6" column="1">
+            <widget class="QLineEdit" name="LE_Size"/>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="L_Size">
+             <property name="text">
+              <string>图像大小: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="L_Depth">
+             <property name="text">
+              <string>图像深度: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QLineEdit" name="LE_DPI"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="L_Width">
+             <property name="text">
+              <string>图像宽度: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLineEdit" name="LE_Bits"/>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="L_DPI">
+             <property name="text">
+              <string>DPI分辨率: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="LE_Width"/>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="LE_Format"/>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="L_Bits">
+             <property name="text">
+              <string>位平面数: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="L_Format">
+             <property name="text">
+              <string>图像格式: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="L_Height">
+             <property name="text">
+              <string>图像高度: </string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="LE_Depth"/>
+           </item>
+           <item row="8" column="0">
+            <widget class="QCheckBox" name="CB_Gray">
+             <property name="text">
+              <string>灰度图</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QCheckBox" name="CB_Alpha">
+             <property name="text">
+              <string>Alpha通道</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="GB_Convert">
+          <property name="title">
+           <string>格式转换</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QComboBox" name="CB_Convert">
+             <item>
+              <property name="text">
+               <string>Format_RGB16</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Format_RGB888</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Format_RGB32</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Format_Grayscale8</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Format_Grayscale16</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Format_Indexed8</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="PB_Convert">
+             <property name="text">
+              <string>转换图片格式</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="GB_RGB565">
+          <property name="title">
+           <string>GroupBox</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="PB_RGB565_Convert">
+             <property name="text">
+              <string>生成RGB565</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="PB_RGB565_Save">
+             <property name="text">
+              <string>保存RGB565</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QTabWidget" name="TW_Tab">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="W_Image">
+        <attribute name="title">
+         <string>图像</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QScrollArea" name="scrollArea">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>500</width>
+              <height>404</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="QLabel" name="L_Image">
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="text">
+                <string>图片</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="W_RGB565">
+        <attribute name="title">
+         <string>RGB565</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QPlainTextEdit" name="PTE_RGB565"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="MB_Menu">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="SB_Status"/>
+  <widget class="QToolBar" name="TB_Tool">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="A_Open"/>
+   <addaction name="A_Reload"/>
+   <addaction name="A_Zoom_In"/>
+   <addaction name="A_Zoom_Out"/>
+   <addaction name="A_Rotate_Posi"/>
+   <addaction name="A_Rotate_Nega"/>
+   <addaction name="A_Flip_UP_Down"/>
+   <addaction name="A_Flip_Left_Right"/>
+   <addaction name="separator"/>
+   <addaction name="A_Save_As"/>
+   <addaction name="A_Print_Preview"/>
+   <addaction name="A_Print"/>
+  </widget>
+  <action name="A_Open">
+   <property name="text">
+    <string>打开</string>
+   </property>
+  </action>
+  <action name="A_Zoom_In">
+   <property name="text">
+    <string>放大</string>
+   </property>
+  </action>
+  <action name="A_Zoom_Out">
+   <property name="text">
+    <string>缩小</string>
+   </property>
+  </action>
+  <action name="A_Rotate_Posi">
+   <property name="text">
+    <string>正旋</string>
+   </property>
+  </action>
+  <action name="A_Rotate_Nega">
+   <property name="text">
+    <string>逆旋</string>
+   </property>
+  </action>
+  <action name="A_Flip_UP_Down">
+   <property name="text">
+    <string>上下翻转</string>
+   </property>
+  </action>
+  <action name="A_Flip_Left_Right">
+   <property name="text">
+    <string>左右翻转</string>
+   </property>
+  </action>
+  <action name="A_Reload">
+   <property name="text">
+    <string>重新载入</string>
+   </property>
+  </action>
+  <action name="A_Save_As">
+   <property name="text">
+    <string>另存为</string>
+   </property>
+  </action>
+  <action name="A_Print_Preview">
+   <property name="text">
+    <string>打印预览</string>
+   </property>
+  </action>
+  <action name="A_Print">
+   <property name="text">
+    <string>打印</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
