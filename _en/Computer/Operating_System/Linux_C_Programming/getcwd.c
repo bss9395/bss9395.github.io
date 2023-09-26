@@ -1,11 +1,11 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#if 0
+/*
 char *getcwd(char *buf, size_t size);
 char *getwd(char *buf);
 char *get_current_dir_name(void);
-#endif // 0
+*/
 
 #define PATH_MAX 4096
 

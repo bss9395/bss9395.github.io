@@ -30,7 +30,6 @@ int main(int argc, char *argv[]) {
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
 
-	printf("while true\n");
 	while(true) {
 		printf("getpid = %d, getppid = %d\n", getpid(), getppid());
 		sleep(1);

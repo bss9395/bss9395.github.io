@@ -6,12 +6,10 @@
 #include <string.h>
 #include <stdlib.h>
 
-#if 0
-int pthread_rwlock_rdlock(pthread_rwlock_t *rwlock);
-int pthread_rwlock_tryrdlock(pthread_rwlock_t *rwlock);
+/*
+#include <pthread.h>
 int pthread_rwlock_wrlock(pthread_rwlock_t *rwlock);
-int pthread_rwlock_trywrlock(pthread_rwlock_t *rwlock);
-#endif // 0
+*/
 
 static pthread_rwlock_t rwlock;
 static long count = 0;

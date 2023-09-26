@@ -3,7 +3,7 @@
 
 #if 0
 void perror(const char *s);
-#endif // 0
+#endif
 
 int main(int argc, char *argv[]) {
 	errno = 1;

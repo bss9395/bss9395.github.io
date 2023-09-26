@@ -3,9 +3,10 @@
 #include <assert.h>
 #include <stdio.h>
 
-#if 0
-int fcntl(int fd, int cmd, ... /* arg */);
-#endif // 0
+/*
+#include <fcntl.h>
+int fcntl(int fd, int cmd, ...);
+*/
 
 int main(int argc, char *argv[]) {
 	int fd = open("tmp.txt", O_RDWR | O_CREAT | O_TRUNC);

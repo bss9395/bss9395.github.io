@@ -2,10 +2,10 @@
 #include <dirent.h>
 #include <stdio.h>
 
-#if 0
+/*
 DIR *opendir(const char *name);
 DIR *fdopendir(int fd);
-#endif // 0
+*/
 
 int main(int argc, char *argv[]) {
 	DIR *dir = opendir("/home/");

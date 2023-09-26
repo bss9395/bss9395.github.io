@@ -6,10 +6,11 @@
 #include <string.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <pthread.h>
 int pthread_join(pthread_t thread, void **retval);
-// Compile and link with -pthread.
-#endif // 0
+// Compile and link with -lpthread.
+*/
 
 void *routine(void *args) {
 	double *num = (double *)args;

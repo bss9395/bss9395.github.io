@@ -3,10 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <unistd.h>
 int pipe(int pipefd[2]);
 int pipe2(int pipefd[2], int flags);
-#endif // 0
+*/
 
 int main(int argc, char *argv[]) {
     int fd[2] = { 0 };

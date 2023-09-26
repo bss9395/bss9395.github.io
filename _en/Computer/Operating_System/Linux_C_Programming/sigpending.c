@@ -1,58 +1,50 @@
-#include <fcntl.h>
+/* sigpending.c
+Author: BSS9395
+Update: 2023-09-18T10:30:00+08@China-Guangdong-Zhanjiang+08
+Design: Linux Standard Library: sigpending
+*/
+
+#include <stdio.h>
+#include <string.h> 
+#include <stdlib.h> 
+#include <stdbool.h>
 #include <signal.h>
 #include <unistd.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include <sys/types.h>
 
-#if 0
+/*
+#include <signal.h>
 int sigpending(sigset_t *set);
-#endif // 0
+*/
 
-void handler(int signo) {
-	switch(signo) {
-	case SIGINT:
-		printf("SIGINT = %d\n", signo);
-		break;
-	case SIGQUIT:
-		printf("SIGQUIT = %d\n", signo);
-		break;
-	default:
-		printf("signal = %d\n", signo);
-		break;
-	}
-}
 
-int main(int argc, char *argv[]) {
-	signal(SIGINT, handler);
-	signal(SIGQUIT, handler);
+int main() {
+    sigset_t set, old;
+    sigemptyset(&set);
+    sigaddset(&set, SIGINT);
+    sigaddset(&set, SIGQUIT);
+    sigaddset(&set, SIGKILL);
+    sigprocmask(SIG_BLOCK, &set, &old);
 
-	sigset_t set;
-	sigemptyset(&set);
-	sigaddset(&set, SIGINT);
-	sigaddset(&set, SIGQUIT);
+    sigset_t pend;    
+    for (int i = 0; true; i += 1) {
+        sigpending(&pend);
+        for (int j = 1; j < 32; j += 1) {
+            if (sigismember(&pend, j) == true) {
+                printf("1");
+            }
+            else {
+                printf("0");
+            }
+        }
+        printf("\n");
+        sleep(1);
+        if (10 <= i) {
+            // sigprocmask(SIG_UNBLOCK, &set, NULL);
+            sigprocmask(SIG_SETMASK, &old, NULL);
+        }
+    }
 
-	sigset_t old;
-	sigprocmask(SIG_BLOCK, &set, &old);
+    return 0;
 
-	sigset_t pend;
-	while(true) {
-		sigpending(&pend);
-		if(sigismember(&pend, SIGINT)) {
-			printf("SIGINT pending. \n");
-		}
-		if(sigismember(&pend, SIGQUIT)) {
-			printf("SIGQUIT pending. \n");
-		}
-		sleep(1);
-
-		static int i = 0;
-		i++;
-		if(10 < i) {
-			sigprocmask(SIG_SETMASK, &old, NULL);
-		}
-	}
-
-	return 0;
 }

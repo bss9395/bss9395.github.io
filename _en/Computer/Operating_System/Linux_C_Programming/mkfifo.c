@@ -7,10 +7,15 @@
 #include <string.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <sys/types.h>
+#include <sys/stat.h>
 int mkfifo(const char *pathname, mode_t mode);
+
+#include <fcntl.h>          
+#include <sys/stat.h>
 int mkfifoat(int dirfd, const char *pathname, mode_t mode);
-#endif // 0
+*/
 
 int main(int argc, char *argv[]) {
     int fifo = mkfifo("fifo", 0644);
@@ -34,9 +39,10 @@ int main(int argc, char *argv[]) {
 
         char buf[BUFSIZ] = { '\0' };
         int len = 0;
-        static int i = 0;
+        int i = 0;
         do {
-            sprintf(buf, "i = %d, getpid = %d, getppid = %d", i++, getpid(), getppid());
+            sprintf(buf, "i = %d, getpid = %d, getppid = %d", i, getpid(), getppid());
+            i += 1;
             sleep(1);
         } while(len = write(fd, buf, strlen(buf)), 0 < len && i < 10);
 
@@ -58,7 +64,6 @@ int main(int argc, char *argv[]) {
         close(fd);
         remove("fifo");
     }
-
 
     return 0;
 }

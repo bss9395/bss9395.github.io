@@ -6,9 +6,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#if 0
+/*
+#include <signal.h>
 int sigqueue(pid_t pid, int sig, const union sigval value);
-#endif // 0
+*/
 
 void handler(int signo, siginfo_t *info, void *ptr) {
 	switch(signo) {

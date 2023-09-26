@@ -6,15 +6,16 @@
 #include <string.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <pthread.h>
 int pthread_attr_init(pthread_attr_t *attr);
 int pthread_attr_destroy(pthread_attr_t *attr);
 // Compile and link with -pthread.
-#endif // 0
+*/
 
 void *routine(void *args) {
-	for(int i = 0; i < 10; ++i) {
-		printf("gettid = %lu, getpid = %d, getppid = %d, getpgid = %d, getsid = %d\n", pthread_self(), getpid(), getppid(), getpgid(getpid()), getsid(0));
+	for(int i = 0; i < 5; ++i) {
+		printf("child thread: gettid = %lu, getpid = %d, getppid = %d, getpgid = %d, getsid = %d\n", pthread_self(), getpid(), getppid(), getpgid(getpid()), getsid(0));
 		sleep(1);
 	}
 
@@ -44,17 +45,12 @@ int main(int argc, char *argv[]) {
 		exit(1);
 	}
 
-	ret = pthread_join(tid, NULL);
-	if(ret) {
-		printf("failed: pthread_join\n");
-		exit(1);
-	}
+    pthread_attr_destroy(&attr);
 
-	ret = pthread_attr_destroy(&attr);
-	if(ret) {
-		printf("failed: pthread_attr_destroy\n");
-		exit(1);
-	}
-
+    for(int i = 0; i < 5; ++i) {
+		printf("parent thread: gettid = %lu, getpid = %d, getppid = %d, getpgid = %d, getsid = %d\n", pthread_self(), getpid(), getppid(), getpgid(getpid()), getsid(0));
+		sleep(1);
+    }
+	
 	return 0;
 }

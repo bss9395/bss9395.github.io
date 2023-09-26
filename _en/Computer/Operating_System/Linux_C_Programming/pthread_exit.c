@@ -6,10 +6,11 @@
 #include <string.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <pthread.h>
 void pthread_exit(void *retval);
 // Compile and link with -pthread.
-#endif // 0
+*/
 
 void thread_exit() {
 	pthread_exit((void *)0x02);
@@ -27,7 +28,7 @@ void *routine(void *args) {
 		sleep(1);
 	}
 
-	return (void *)0x03;
+	return (void *)0x05;
 }
 
 int main(int argc, char *argv[]) {

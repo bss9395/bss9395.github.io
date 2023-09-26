@@ -4,9 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <signal.h>
 int kill(pid_t pid, int sig);
-#endif // 0
+*/
 
 int main(int argc, char *argv[]) {
     pid_t pid = fork();

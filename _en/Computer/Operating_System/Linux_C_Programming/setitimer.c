@@ -7,10 +7,11 @@
 #include <string.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <sys/time.h>
 int getitimer(int which, struct itimerval *curr_value);
 int setitimer(int which, const struct itimerval *new_value, struct itimerval *old_value);
-#endif // 0
+*/
 
 void fun(int signo) {
     static char label[5] = { '\0' };
@@ -33,18 +34,19 @@ void fun(int signo) {
 }
 
 int main(int argc, char *argv[]) {
-    struct itimerval timerval;
     signal(SIGALRM, fun);
-
+    struct itimerval timerval;
     timerval.it_value.tv_sec = 0;
     timerval.it_value.tv_usec = 500000;
     timerval.it_interval.tv_sec = 0;
     timerval.it_interval.tv_usec = 200000;
     setitimer(ITIMER_REAL, &timerval, NULL);
 
+    static int i = 0;
     while(true) {
-        printf("getpid = %d, getppid = %d\n", getpid(), getppid());
-        sleep(1);
+        sleep(10);
+        fprintf(stderr, "i = %d, getpid = %d, getppid = %d\n", i, getpid(), getppid()); 
+        i += 1;
     }
 
     return 0;

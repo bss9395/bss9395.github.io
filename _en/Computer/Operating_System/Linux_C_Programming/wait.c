@@ -15,8 +15,8 @@ int waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options);
 void wait_child(int signo) {
     pid_t pid;
     int status;
-	// while(pid = wait(status), 0 < pid) {
-    while(pid = waitpid(-1, &status, WNOHANG), 0 < pid) {
+	while(pid = wait(&status), 0 < pid) {
+    // while(pid = waitpid(-1, &status, WNOHANG), 0 < pid) {
         if(WIFEXITED(status)) {
             fprintf(stdout, "exit status: %d\n", WEXITSTATUS(status));
         }
@@ -51,16 +51,10 @@ int main(int argc, char *argv[]) {
         exit(10);
     }
     else if(0 < pid) {
-        //signal(SIGCHLD, SIG_IGN);
-        //signal(SIGCHLD, SIG_DFL);
     	signal(SIGCHLD, wait_child);
         printf("father process: pid = %d, getpid = %d, getppid = %d\n", pid, getpid(), getppid());
 
-		//int ret = pause();
-        int res = sleep(24);
-        if(0 < res){
-        	printf("res = %d\n", res);
-        }
+        sleep(24);
 
         char buf[BUFSIZ] = { '\0' };
         sprintf(buf, "ps ajx | grep %s", argv[0]);

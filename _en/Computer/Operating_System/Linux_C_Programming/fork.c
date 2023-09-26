@@ -3,8 +3,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double d = 0;
+/*
+#include <unistd.h>
+pid_t fork(void);
+*/
 
+double d = 0;
 int main(void) {
 	fprintf(stdout, "hello, \n");
 
@@ -22,11 +26,11 @@ int main(void) {
 		char *it = buf;
 		for (int i = 0; i < 10; ++i) {
 			usleep(500000);
-			sprintf(it, "%d", i);
+			sprintf(it, "%c", i);
 			it++;
 		}
 		write(fd, buf, 10);
-		sync();
+		fsync(fd);
 
 		fprintf(stdout, "child process: &d = %p, d = %lf\n", &d, d);
 		d = 12;

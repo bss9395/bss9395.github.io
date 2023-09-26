@@ -5,9 +5,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <signal.h>
 int raise(int sig);
-#endif // 0
+*/
 
 int main(int argc, char *argv[]) {
     while(true) {
@@ -18,6 +19,7 @@ int main(int argc, char *argv[]) {
 
         if(5 == i) {
             raise(SIGINT);
+			// kill(getpid(), SIGINT);
         }
         i++;
     }

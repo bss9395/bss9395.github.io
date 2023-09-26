@@ -1,59 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
-#include <signal.h>
 #include <pthread.h>
 #include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
-#if 0
+/*
+#include <pthread.h>
 int pthread_cond_broadcast(pthread_cond_t *cond);
 int pthread_cond_signal(pthread_cond_t *cond);
-#endif // 0
+*/
 
-static pthread_cond_t cond;
-static pthread_mutex_t mutex;
-static long count = 0;
+typedef struct node {
+    int data;
+    struct node* next;
+} Node;
 
-static pthread_t tid1;
-static pthread_t tid2;
+Node *head = NULL;
+pthread_mutex_t mutex;
+pthread_cond_t cond;
 
-void *calculate(void *args) {
-    for(int i = 0; i < 10; ++i) {
-        pthread_mutex_lock(&mutex);
-        count++;
-        if(count % 3 == 0) {
-            //pthread_cond_signal(&cond);
-            pthread_cond_broadcast(&cond);
-        }
-        pthread_mutex_unlock(&mutex);
-        usleep(500 * 1000);
-    }
-
-    pthread_cancel(tid2);
-    pthread_exit(NULL);
-}
-
-void *print(void *args) {
+void* producer(void* arg) {
     while(true) {
+        Node* pnew = (Node*)malloc(sizeof(Node));
+        pnew->data = rand() % 1000;
         pthread_mutex_lock(&mutex);
-        pthread_cond_wait(&cond, &mutex);
-        printf("count = %ld\n", count);
+        pnew->next = head;
+        head = pnew;
+        printf("Producer: %lu, %d\n", pthread_self(), pnew->data);
+        pthread_cond_broadcast(&cond);
         pthread_mutex_unlock(&mutex);
+        sleep(rand() % 3);
     }
-
-    pthread_exit(NULL);
+    return NULL;
 }
 
-int main(int argc, char *argv[]) {
-    pthread_cond_init(&cond, NULL);
+void* customer(void* arg) {
+    while (true) {
+        pthread_mutex_lock(&mutex);
+        while (head == NULL) {                 // note: 使用while而不是if
+            pthread_cond_wait(&cond, &mutex);  // note: 该函数会对互斥锁解锁。解除阻塞之后，对互斥锁做加锁操作。
+        }
+
+        Node* pdel = head;
+        head = head->next;
+        printf("Customer: %lu, %d\n", pthread_self(), pdel->data);
+        free(pdel);
+        pthread_mutex_unlock(&mutex);
+    }
+    return NULL;
+}
+
+
+int main(int argc, const char* argv[]) {
     pthread_mutex_init(&mutex, NULL);
+    pthread_cond_init(&cond, NULL);
 
-    pthread_create(&tid1, NULL, calculate, NULL);
-    pthread_create(&tid2, NULL, print, NULL);
-
-    pthread_join(tid1, NULL);
-    pthread_join(tid2, NULL);
+    pthread_t p1;
+    pthread_t p2;
+    pthread_t c1;
+    pthread_t c2;
+    pthread_create(&p1, NULL, producer, NULL);
+    pthread_create(&p2, NULL, producer, NULL);
+    pthread_create(&c1, NULL, customer, NULL);
+    pthread_create(&c2, NULL, customer, NULL);
+    pthread_join(p1, NULL);
+    pthread_join(p2, NULL);
+    pthread_join(c1, NULL);
+    pthread_join(c2, NULL);
 
     pthread_mutex_destroy(&mutex);
     pthread_cond_destroy(&cond);

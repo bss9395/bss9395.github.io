@@ -1,72 +1,32 @@
-#include <unistd.h>
-#include <pthread.h>
-#include <signal.h>
-#include <semaphore.h>
-#include <stdbool.h>
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include <string.h> 
+#include <stdlib.h> 
+#include <semaphore.h>
 
-#if 0
+/*
+#include <semaphore.h>
 int sem_getvalue(sem_t *sem, int *sval);
-//Link with -pthread.
-#endif // 0
-
-static sem_t power;
-static long count = 0;
-
-void poweron() {
-	int ret = sem_trywait(&power);
-	// fprintf(stdout, "poweron: ret = %d\n", ret);
-	if(!ret) {
-		fprintf(stdout, "printer power on\n");
-		sem_post(&power);
-	}
-	int val = 0;
-	sem_getvalue(&power, &val);
-	fprintf(stdout, "poweron: val = %d\n", val);
-}
-
-void printer(const char *content) {
-	poweron();
-
-	sem_wait(&power);
-	while(*content) {
-		fputc(*content, stdout);
-		fflush(stdout);
-		content++;
-
-		count++;
-		usleep(100 * 1000);
-	}
-	sem_post(&power);
-}
-
-void *thread01(void *args) {
-	printer("ABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
-
-	pthread_exit(NULL);
-}
-
-void *thread02(void *args) {
-	printer("abcdefghijklmnopqrstuvwxyz\n");
-
-	pthread_exit(NULL);
-}
+// Link with -pthread.
+*/
 
 int main(int argc, char *argv[]) {
-	sem_init(&power, 0, 1);
+    sem_t sem;
+    sem_init(&sem, 0, 3);
 
-	pthread_t tid1;
-	pthread_t tid2;
-	pthread_create(&tid1, NULL, thread01, NULL);
-	pthread_create(&tid2, NULL, thread02, NULL);
+    int value = 0;
+    sem_getvalue(&sem, &value);
+    printf("–≈∫≈¡øval = %d\n", value);
 
-	pthread_join(tid1, NULL);
-	pthread_join(tid2, NULL);
+    sem_wait(&sem);
+    sem_wait(&sem);
+    sem_wait(&sem);
+    sem_getvalue(&sem, &value);
+    printf("sem_getvalue = %d\n", value);
 
-	printf("count = %ld\n", count);
-
-	sem_destroy(&power);
-	return 0;
+    sem_post(&sem);
+    sem_getvalue(&sem, &value);
+    printf("sem_getvalue = %d\n", value);
+    
+    sem_destroy(&sem);
+    return 0;
 }

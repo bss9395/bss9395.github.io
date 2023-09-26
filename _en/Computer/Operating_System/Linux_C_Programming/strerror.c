@@ -9,7 +9,7 @@ int strerror_r(int errnum, char *buf, size_t buflen);
 char *strerror_r(int errnum, char *buf, size_t buflen);
 /* GNU-specific */
 char *strerror_l(int errnum, locale_t locale);
-#endif // 0
+#endif
 
 int main(int argc, char *argv[]) {
 	errno = 1;

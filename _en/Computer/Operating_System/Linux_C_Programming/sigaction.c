@@ -11,24 +11,21 @@ int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
 
 void handler(int signo) {
 	printf("void handler(int signo);\n");
-	sleep(5);
+	sleep(2);
 	printf("void handler(int signo);\n");
 }
 
 void action(int signo, siginfo_t *info, void *context) {
 	printf("void action(int signo, siginfo_t *info, void *context);\n");
-	sleep(5);
+	sleep(2);
 	printf("void action(int signo, siginfo_t *info, void *context);\n");
 }
 
 int main(int argc, char *argv[]) {
 	struct sigaction act;
 	// act.sa_handler = handler;
-	// act.sa_flags = 0;
 	act.sa_sigaction = action;
-	act.sa_flags = SA_SIGINFO | SA_RESTART;
 
-	sigfillset(&act.sa_mask);
 	sigaction(SIGINT, &act, NULL);
 	sigaction(SIGQUIT, &act, NULL);
 

@@ -3,10 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <pthread.h>
 int pthread_equal(pthread_t t1, pthread_t t2);
-//Compile and link with -pthread.
-#endif // 0
+//Compile and link with -lpthread.
+*/
 
 int main(int argc, char *argv[]) {
 	pthread_t tid = pthread_self();

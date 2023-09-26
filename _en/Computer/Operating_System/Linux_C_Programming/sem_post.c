@@ -7,28 +7,18 @@
 #include <string.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <semaphore.h>
 int sem_post(sem_t *sem);
-//Link with -pthread.
-#endif // 0
+// Link with -pthread.
+*/
 
 static sem_t power;
 static long count = 0;
 
-void poweron() {
-	int ret = sem_trywait(&power);
-	// fprintf(stdout, "poweron: ret = %d\n", ret);
-	if(!ret) {
-		fprintf(stdout, "printer power on\n");
-		sem_post(&power);
-	}
-}
-
 void printer(const char *content) {
-	poweron();
-
 	sem_wait(&power);
-	while(*content) {
+	while(content[0] != '\0') {
 		fputc(*content, stdout);
 		fflush(stdout);
 		content++;
@@ -52,7 +42,7 @@ void *thread02(void *args) {
 }
 
 int main(int argc, char *argv[]) {
-	sem_init(&power, 0, 1);
+	sem_init(&power, 0, 1); 
 
 	pthread_t tid1;
 	pthread_t tid2;

@@ -6,10 +6,11 @@
 #include <stdlib.h>
 #include <time.h>
 
-#if 0
+/*
+#include <pthread.h>
 int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg);
-// Compile and link with -pthread.
-#endif // 0
+// Compile and link with -lpthread.
+*/
 
 void *routine(void *args) {
     double *num = (double *)args;

@@ -1,15 +1,15 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <fcntl.h>           /* Definition of AT_* constants */
+#include <fcntl.h>     
 #include <sys/stat.h>
 
-#if 0
+/*
 int stat(const char *pathname, struct stat *statbuf);
 int fstat(int fd, struct stat *statbuf);
 int lstat(const char *pathname, struct stat *statbuf);
 int fstatat(int dirfd, const char *pathname, struct stat *statbuf, int flags);
-#enif // 0
+*/
 
 struct stat {
 		dev_t     st_dev;         /* ID of device containing file */

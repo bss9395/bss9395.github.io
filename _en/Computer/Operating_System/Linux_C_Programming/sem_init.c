@@ -7,18 +7,19 @@
 #include <string.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <semaphore.h>
 int sem_init(sem_t *sem, int pshared, unsigned int value);
 int sem_destroy(sem_t *sem);
 //Link with -pthread.
-#endif // 0
+*/
 
 static sem_t power;
 static long count = 0;
 
 void printer(const char *content) {
 	sem_wait(&power);
-	while(*content) {
+	while(content[0] != '\0') {
 		fputc(*content, stdout);
 		fflush(stdout);
 		content++;
@@ -42,7 +43,7 @@ void *thread02(void *args) {
 }
 
 int main(int argc, char *argv[]) {
-	sem_init(&power, 0, 1);
+	sem_init(&power, 0, 1); 
 
 	pthread_t tid1;
 	pthread_t tid2;

@@ -3,10 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <pthread.h>
 pthread_t pthread_self(void);
-//Compile and link with -pthread.
-#endif // 0
+//Compile and link with -lpthread.
+*/
 
 int main(int argc, char *argv[]) {
 	pthread_t tid = pthread_self();

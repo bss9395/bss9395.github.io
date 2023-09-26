@@ -1,68 +1,56 @@
-#include <unistd.h>
-#include <signal.h>
-#include <pthread.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+/* pthread_mutex_lock.c
+Author: BSS9395
+Update: 2023-09-20T11:55:00+08@China-Guangdong-Zhanjiang+08
+Design: Linux Standard Library: pthread_mutex_lock
+*/
 
-#if 0
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <pthread.h>
+
+/*
+#include <pthread.h>
 int pthread_mutex_lock(pthread_mutex_t *mutex);
 int pthread_mutex_trylock(pthread_mutex_t *mutex);
 int pthread_mutex_unlock(pthread_mutex_t *mutex);
-#endif // 0
+*/
 
-static pthread_mutex_t power;
-static long count = 0;
+pthread_mutex_t mutex;
 
-void poweron() {
-    int ret = pthread_mutex_trylock(&power);
-    //fprintf(stdout, "poweron: ret = %d\n", ret);
-    if(!ret) {
-        fprintf(stdout, "printer power on...\n");
-        pthread_mutex_unlock(&power);
-    }
-}
-
-void printer(const char *content) {
-    poweron();
-
-    pthread_mutex_lock(&power);
-    while(*content) {
-        fputc(*content, stdout);
+void _Printer(const char *str) {
+    while(str[0] != '\0') {
+        putchar(str[0]);
         fflush(stdout);
-        content++;
-
-        count++;
-        usleep(100 * 1000);
+        str += 1;
+        usleep(100000);
     }
-    pthread_mutex_unlock(&power);
+    putchar('\n');
 }
 
-void *thread01(void *args) {
-    printer("ABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
-
-    pthread_exit(NULL);
+void *_Printer_A(void *arg) {
+    pthread_mutex_lock(&mutex);
+    _Printer("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    pthread_mutex_unlock(&mutex);
 }
 
-void *thread02(void *args) {
-    printer("abcdefghijklmnopqrstuvwxyz\n");
-
-    pthread_exit(NULL);
+void *_Printer_a(void *arg) {
+    pthread_mutex_lock(&mutex);
+    _Printer("abcdefghijklmnopqrstuvwxyz");
+    pthread_mutex_unlock(&mutex);
 }
 
 int main(int argc, char *argv[]) {
-    pthread_mutex_init(&power, NULL);
+    pthread_t tid_A;
+    pthread_t tid_a;
 
-    pthread_t tid1;
-    pthread_t tid2;
-    pthread_create(&tid1, NULL, thread01, NULL);
-    pthread_create(&tid2, NULL, thread02, NULL);
+    pthread_mutex_init(&mutex, NULL);
+    pthread_create(&tid_A, NULL, _Printer_A, NULL);
+    pthread_create(&tid_a, NULL, _Printer_a, NULL);
+    pthread_join(tid_A, NULL);
+    pthread_join(tid_a, NULL);
 
-    pthread_join(tid1, NULL);
-    pthread_join(tid2, NULL);
-
-    printf("count = %ld\n", count);
-    pthread_mutex_destroy(&power);
+    pthread_mutex_destroy(&mutex);
     return 0;
 }

@@ -70,7 +70,7 @@ void *consumer(void *args) {
 		pthread_mutex_unlock(&mutex);
 		sem_post(&sem_produce);
 
-		sleep(1);
+		usleep(rand() % 500 + 500);
 	}
 
 	for(int i = 0; i < sizeof(tids) / sizeof(*tids); ++i) {
@@ -81,14 +81,14 @@ void *consumer(void *args) {
 
 int main(int argc, char *argv[]) {
 	srand(time(NULL));
-	sem_init(&sem_produce, 0, N - 1);
+	sem_init(&sem_produce, 0, N);
 	sem_init(&sem_consume, 0, 0);
 	pthread_mutex_init(&mutex, NULL);
 
 	pthread_create(&tids[0], NULL, producer, (void *)0x01);
 	pthread_create(&tids[1], NULL, producer, (void *)0x02);
 	pthread_create(&tids[2], NULL, consumer, (void *)0x01);
-	//pthread_create(&tids[3], NULL, consumer, (void *)0x02);
+	pthread_create(&tids[3], NULL, consumer, (void *)0x02);
 
 	for(int i = 0; i < sizeof(tids) / sizeof(*tids); ++i) {
 		pthread_join(tids[i], NULL);

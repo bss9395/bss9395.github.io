@@ -6,11 +6,12 @@
 #include <string.h>
 #include <stdlib.h>
 
-#if 0
+/*
+#include <pthread.h>
 int pthread_cond_destroy(pthread_cond_t *cond);
 int pthread_cond_init(pthread_cond_t *restrict cond, const pthread_condattr_t *restrict attr);
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
-#endif // 0
+*/
 
 static pthread_cond_t cond;
 static pthread_mutex_t mutex;
@@ -20,11 +21,11 @@ static pthread_t tid1;
 static pthread_t tid2;
 
 void *calculate(void *args) {
-    for(int i = 0; i < 10; ++i) {
+    for(int i = 0; i < 10; i += 1) {
         pthread_mutex_lock(&mutex);
-        count++;
+        count += 1;
         if(count % 3 == 0) {
-            //pthread_cond_signal(&cond);
+            // pthread_cond_signal(&cond);
             pthread_cond_broadcast(&cond);
         }
         pthread_mutex_unlock(&mutex);

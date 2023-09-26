@@ -1,10 +1,10 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#if 0
+/*
 int chdir(const char *path);
 int fchdir(int fd);
-#endif // 0
+*/
 
 #define PATH_MAX 4096
 
