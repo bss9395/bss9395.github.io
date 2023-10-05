@@ -1,3 +1,8 @@
+/* TCP.c
+Author: BSS9395
+Update: 2023-09-27T15:21:00+08@China-Guangdong-Zhanjiang+08
+*/
+
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <pthread.h>

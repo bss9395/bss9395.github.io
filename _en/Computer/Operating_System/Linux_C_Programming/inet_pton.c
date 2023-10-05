@@ -7,10 +7,10 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#if 0
+/*
+#include <arpa/inet.h>
 const char *inet_ntop(int af, const void *src, char *dst, socklen_t size);
-int inet_pton(int af, const char *src, void *dst);
-#endif // 0
+*/
 
 static const char *SERVER_ADDR = "127.0.0.1";
 static const unsigned SERVER_PORT = 6666;
