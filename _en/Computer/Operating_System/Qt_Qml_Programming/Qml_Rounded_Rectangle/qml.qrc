@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Rounded_Rectangle.qml</file>
+    </qresource>
+</RCC>

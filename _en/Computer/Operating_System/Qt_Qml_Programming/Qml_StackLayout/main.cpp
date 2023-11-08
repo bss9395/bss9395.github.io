@@ -1,0 +1,18 @@
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QSslSocket>
+#include <QQuickView>
+
+int main(int argc, char *argv[])
+{
+    qDebug() << QSslSocket::sslLibraryBuildVersionString();
+
+    QGuiApplication app(argc, argv);
+
+    QQuickView *view = new QQuickView();
+    view->setResizeMode(QQuickView::SizeRootObjectToView);
+    view->setSource(QUrl("qrc:/main.qml"));
+    view->show();
+
+    return app.exec();
+}

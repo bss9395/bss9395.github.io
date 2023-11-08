@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Rectangle_Color.qml</file>
+    </qresource>
+</RCC>

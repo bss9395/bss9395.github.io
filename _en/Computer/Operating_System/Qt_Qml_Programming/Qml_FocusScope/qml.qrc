@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Rectangle_FocusScope.qml</file>
+    </qresource>
+</RCC>
