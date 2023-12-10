@@ -15,8 +15,13 @@ void _QProcess_Asynchronous() {
         qDebug() << "QObject::connect(process, (void (QProcess::*)(int, QProcess::ExitStatus))&QProcess::finished, [process](int exitCode, QProcess::ExitStatus exitStatus) -> void {";
 
         qDebug() << "exitCode = " << exitCode << ", exitStatus = " << exitStatus;
-        QString result = (exitCode == 0) ? QString(process->readAllStandardOutput()).split("\n")[0] : QString();
-        qDebug() << "result = " << result;
+        QString output = (exitCode == 0) ? QString(process->readAllStandardOutput()).split("\n")[0] : QString();
+        qDebug() << "output = " << output;
+
+        qDebug() << "process->readChannel() = " << process->readChannel() << ", process->readChannelMode() = " << process->readChannelMode();
+        QString error = QString(process->readAllStandardError());
+        qDebug() << "error = " << error;
+
         process->deleteLater();
     });
     QString command = R"!(ls "/home/$(whoami)" | grep 桌面)!";
@@ -31,8 +36,12 @@ void _QProcess_Synchronous() {
     process.start("bash", QStringList() << "-c" << command);
     bool ret = process.waitForFinished();
     qDebug() << "ret = " << ret << ", exitCode() = " << process.exitCode() << ", error() = " << process.error();
-    QString result = (ret == true && process.exitCode() == 0) ? QString(process.readAllStandardOutput()).split("\n")[0] : QString();
-    qDebug() << "result = " << result;
+    QString output = (ret == true && process.exitCode() == 0) ? QString(process.readAllStandardOutput()).split("\n")[0] : QString();
+    qDebug() << "output = " << output;
+
+    qDebug() << "process.readChannel() = " << process.readChannel() << ", process.readChannelMode() = " << process.readChannelMode();
+    QString error = (ret == true) ? QString(process.readAllStandardError()) : QString();
+    qDebug() << "error = " << error;
 }
 
 int main(int argc, char *argv[]) {
