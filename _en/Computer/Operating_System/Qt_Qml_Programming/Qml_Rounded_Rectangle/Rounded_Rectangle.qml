@@ -4,11 +4,15 @@ import QtQuick.Layouts 1.12
 import QtQuick.Shapes 1.12
 
 Shape {
-    property var radius: 0
+    property var radius: [0.0, 0.0, 0.0, 0.0]
     property color color: "#FFFFFFFF"
-    property color borderColor: "#00FFFFFF"
-    property real borderWidth: 1
+    property real  borderWidth  : 1
+    property color borderColor  : "#00FFFFFF"
+    property int   borderStyle  : ShapePath.SolidLine
+    property var   borderPattern: [4, 2]
     id: shape
+    antialiasing: true
+    smooth: true
     layer.enabled: true
     layer.samples: 4
     layer.smooth: true
@@ -16,7 +20,9 @@ Shape {
     ShapePath {
         fillColor: color
         strokeColor: borderColor
-        strokeWidth: borderWidth
+        strokeWidth: borderWidth * 2
+        strokeStyle: borderStyle
+        dashPattern: borderPattern
 
         // 起始点
         startX: 0

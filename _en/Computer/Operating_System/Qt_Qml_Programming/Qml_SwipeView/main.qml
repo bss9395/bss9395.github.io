@@ -1,123 +1,133 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
-import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
+import QtQuick.Controls 2.12
+import QtQml 2.12
 
-ApplicationWindow {
-    visible: true
-    width: 640
+Rectangle {
+    property bool carousel_entered: false
+    id: window
+    width: 800
     height: 480
-    title: qsTr("Hello World")
+    visible: true
+    color: "red"
 
-    header: ToolBar {
-        RowLayout {
-            ToolButton {
-                text: "Home"
-
-                onClicked: {
-                    swipeview.setCurrentIndex(0)
-                }
-            }
-
-            ToolButton {
-                enabled: swipeview.currentIndex > 0
-                text: "<"
-
-                onClicked: {
-                    swipeview.decrementCurrentIndex()
-                }
-            }
-
-            ToolButton {
-                enabled: swipeview.currentIndex < swipeview.count - 1
-                text: ">"
-
-                onClicked: {
-                    swipeview.currentIndex += 1;
-                }
-            }
-        }
-    }
-
-    SwipeView {
-        id: swipeview
-        currentIndex: tabbar.currentIndex
+    Control {
         width: parent.width
-        height: 100
-        background: Rectangle {
-            color: "lightblue"
+        height: swipeview.height
+
+        MouseArea {
+            id: mousearea
+            anchors.fill: parent
+            hoverEnabled: true
+
+            onEntered: {
+                console.debug('mousearea:onEntered')
+                carousel_entered = true
+            }
+
+            onExited: {
+                console.debug('mousearea:onExited')
+                carousel_entered = false
+            }
+
+            onPositionChanged: {
+                console.debug('mousearea:onPositionChanged')
+                carousel_entered = true
+            }
         }
 
-        Repeater {
-            model: 5
+        Label {
+            id: label_navigation_left
+            visible: (carousel_entered === true) && (0 < swipeview.currentIndex)
+            width: 24
+            height: swipeview.height
+            anchors.right: swipeview.left
+            anchors.verticalCenter: swipeview.verticalCenter
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            text: "<"
 
-            Loader {
-                active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
-                sourceComponent: Text {
-                    text: "页面" + (index + 1)
+            MouseArea {
+                anchors.fill: parent
 
-                    Component.onCompleted: {
-                        console.debug("created " + index)
-                    }
-
-                    Component.onDestruction: {
-                        console.debug("destroyed " + index)
+                onClicked: {
+                    console.debug('label_navigation_left:onClicked')
+                    if(0 <= swipeview.currentIndex - 1) {
+                        swipeview.currentIndex = swipeview.currentIndex - 1
                     }
                 }
             }
         }
-    }
 
-    TabBar {
-        id: tabbar
-        width: parent.width
-        anchors.top: swipeview.bottom
-        currentIndex: swipeview.currentIndex
+        SwipeView {
+            id: swipeview
+            width: 618
+            x: (window.width - width) / 2
+            orientation: Qt.Horizontal
+            clip: true
+            hoverEnabled: false
+            currentIndex: 0
 
-        Repeater {
-            id: repeater
-            model: ["First", "Second", "Third", "Fourth", "Fifth"]
+            Repeater {
+                model: 5
 
-            TabButton {
-                text: modelData
-                width: tabbar.width / repeater.model.length
-            }
-        }
-    }
+                Row {
+                    height: 135
+                    spacing: 16
+                    rightPadding: 16
 
-    Row {
-        anchors.top: tabbar.bottom
-        anchors.topMargin: 30
-        width: parent.width
+                    Image {
+                        width: 220
+                        height: parent.height
+                        source: "images/Frame.jpg"
+                        // fillMode: Image.PreserveAspectFit
+                    }
 
-        TabBar {
-            id: tabbar_button
-            width: parent.width - button.width
-
-            Component {
-                id: component
-
-                TabButton {
-                    text: "TabButton"
+                    Image {
+                        width: 220
+                        height: parent.height
+                        source: "images/Frame.jpg"
+                        // fillMode: Image.PreserveAspectFit
+                    }
                 }
             }
 
-            Component.onCompleted: {
-                console.debug(button.width, ", ", tabbar_button.width)
+            Timer {
+                running: (1 < swipeview.count) && (carousel_entered === false)
+                interval: 5000
+                repeat: true
+
+                onTriggered: {
+                    if(swipeview.currentIndex + 1 < swipeview.count) {
+                        swipeview.currentIndex = swipeview.currentIndex + 1
+                    } else {
+                        swipeview.currentIndex = 0
+                    }
+                }
             }
         }
 
-        Button {
-            id: button
-            flat: true
-            text: "+"
+        Label {
+            id: label_navigation_right
+            visible: (carousel_entered === true) && (swipeview.currentIndex < swipeview.count - 1)
+            width: 24
+            height: swipeview.height
+            anchors.left: swipeview.right
+            anchors.verticalCenter: swipeview.verticalCenter
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            text: ">"
 
-            onClicked: {
-                tabbar_button.addItem(component.createObject(tabbar_button))
-            }
+            MouseArea {
+                anchors.fill: parent
 
-            Component.onCompleted: {
-                button.clicked()
+                onClicked: {
+                    console.debug('label_navigation_right:onClicked')
+                    if(swipeview.currentIndex + 1 < swipeview.count) {
+                        swipeview.currentIndex = swipeview.currentIndex + 1
+                    }
+                }
             }
         }
     }

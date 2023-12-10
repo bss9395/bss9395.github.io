@@ -6,12 +6,6 @@ Rectangle {
     height: 20
     color: "red"
 
-    property alias abc: mousearea.drag.active
-
-    onAbcChanged: {
-        console.debug(abc)
-    }
-
     Drag.active: mousearea.drag.active
     Drag.hotSpot.x: rectangle.width / 2
     Drag.hotSpot.y: rectangle.height / 2

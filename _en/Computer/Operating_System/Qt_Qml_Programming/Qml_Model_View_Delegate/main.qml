@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
+import QtQml 2.12
 
 Item {
     width: 480
@@ -20,6 +21,7 @@ Item {
                 }
             ]
         }
+
         ListElement {
             name: "Orange"
             cost: 3.25
@@ -30,6 +32,7 @@ Item {
 
             ]
         }
+
         ListElement {
             name: "Banana"
             cost: 1.95
@@ -53,10 +56,10 @@ Item {
 
             Text {
                 id: text_name
-                text: name
+                text: model.name
             }
             Text {
-                text: "$" + cost
+                text: "$" + model.cost
                 anchors.left: text_name.right
             }
             Row {

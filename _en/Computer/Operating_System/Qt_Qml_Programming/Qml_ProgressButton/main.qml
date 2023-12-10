@@ -20,8 +20,6 @@ Rectangle {
         text: "下载中"
         background: Rectangle {
             id: rectangle
-            width: parent.width
-            height: parent.height
             border.color: "#4399F3"
             border.width: 1
             radius: 16

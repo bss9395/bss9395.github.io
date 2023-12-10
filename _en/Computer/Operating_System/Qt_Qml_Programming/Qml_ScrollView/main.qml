@@ -10,33 +10,33 @@ Window {
     title: qsTr("Hello World")
 
     ScrollView {
+        id: scrollview
         width: 200
         height: 200
-        x: 10
-        y: 10
-
-        Label {
-            font.pixelSize: 224
-            text: "ABC"
-        }
-    }
-
-    ScrollView {
-        width: 200
-        height: 200
-        x: 240
-        y: 10
+        clip: true
 
         ListView {
             id: listview
             model: 20
 
             delegate: ItemDelegate {
+                anchors.horizontalCenter: parent.horizontalCenter
                 text: "Item " + index
             }
         }
-
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
         ScrollBar.vertical.policy: ScrollBar.AlwaysOn
+    }
+
+    ScrollView {
+        width: 200
+        height: 200
+        x: 200
+        clip: true
+
+        Label {
+            font.pixelSize: 224
+            text: "ABC"
+        }
     }
 }

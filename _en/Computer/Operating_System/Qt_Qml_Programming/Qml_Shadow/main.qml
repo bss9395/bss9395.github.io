@@ -1,6 +1,6 @@
-import QtQuick 2.14
+import QtQuick 2.12
 import QtQuick.Layouts 1.12
-import QtQuick.Window 2.14
+import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.0         // Qt5
 // import Qt5Compat.GraphicalEffects  // Qt6
@@ -13,9 +13,26 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.topMargin:10
-        columnSpacing: 20
-        rowSpacing: 20
+        columnSpacing: 40
+        rowSpacing: 40
         columns: 2
+
+        DropShadow {
+            width: 200
+            height: 200
+            horizontalOffset: 0
+            verticalOffset: 0
+            radius: 24
+            samples: 24
+            color: "#80000000"
+            cached: true  // 注意不要使用cached，效果不好
+            source: Rectangle {
+                width: 200
+                height: 200
+                color: "#FFFFFF"
+                radius: 8
+            }
+        }
 
         Rectangle {
             id: rectangle
@@ -27,11 +44,10 @@ Item {
             layer.effect: DropShadow {
                 horizontalOffset: 0
                 verticalOffset: 0
-                radius: 10
+                radius: 24
                 samples: 24
-                color: "#50000000"
-                // opacity: 0.32  // bug
-                cached: true
+                color: "#80000000"
+                cached: false  // 注意不要使用cached，效果不好
             }
 
             MouseArea {
@@ -74,7 +90,7 @@ Item {
                 verticalOffset: 0
                 radius: 24
                 samples: 24
-                color: "#50000000"
+                color: "#80000000"
             }
 
             MouseArea {

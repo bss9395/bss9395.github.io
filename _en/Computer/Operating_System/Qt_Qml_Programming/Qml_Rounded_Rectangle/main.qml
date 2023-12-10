@@ -1,5 +1,5 @@
-import QtQuick 2.14
-import QtQuick.Window 2.14
+import QtQuick 2.12
+import QtQuick.Window 2.12
 
 Rectangle {
     visible: true
@@ -16,7 +16,7 @@ Rectangle {
             height: 160
             radius: [20, 0, 20, 0]
             color: "cyan"
-            borderColor: "grey"
+            borderColor: "black"
             borderWidth: 1
         }
 
