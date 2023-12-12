@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>Function.js</file>
-        <file>Button.js</file>
     </qresource>
 </RCC>

@@ -8,7 +8,3 @@ function factorial(a) {
         return a * factorial(a - 1)
     }
 }
-
-function jsFunction() {
-    console.log("called JavaScript function")
-}

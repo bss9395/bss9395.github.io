@@ -1,38 +1,78 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
+import QtQml 2.12
+import "Button.js"   as ButtonJs
 import "Function.js" as FunctionJs
 
-Item {
+Rectangle {
     visible: true
     width: 640
     height: 480
-
-    Row {
-        Button {
-            color: "red"
-        }
-
-        Button {
-            color: "blue"
-        }
-
-        Button {
-            color: "green"
-        }
-    }
+    color: "lightblue"
 
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        propagateComposedEvents: true
 
         onClicked: {
             console.log(FunctionJs.factorial(10))
-            mouse.accepted = false
+        }
+    }
+
+    Row {
+        Rectangle {
+            id: rectangle_red
+            width: 200
+            height: 100
+            color: "red"
+
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    ButtonJs.onClicked(rectangle_red)
+                }
+            }
+        }
+
+        Rectangle {
+            id: rectangle_green
+            width: 200
+            height: 100
+            color: "green"
+
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    ButtonJs.onClicked(rectangle_green)
+                }
+            }
+        }
+
+        Rectangle {
+            id: rectangle_blue
+            width: 200
+            height: 100
+            color: "blue"
+
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    ButtonJs.onClicked(rectangle_blue)
+                }
+            }
         }
     }
 
     Component.onCompleted: {
-        mouseArea.clicked.connect(FunctionJs.jsFunction)
+        var numerator   = 100
+        var denominator = 256
+        console.debug(`numerator / denominator = ${numerator / denominator}`)
+
+        var numerator_string   = "100"
+        var denominator_string = "256"
+        console.debug(`numerator_string / denominatro_string = ${numerator_string / denominator_string}`)
     }
 }
