@@ -1,5 +1,5 @@
-import QtQuick 2.14
-import QtQuick.Window 2.14
+import QtQuick 2.12
+import QtQuick.Window 2.12
 
 Image {
     id: image_fengche
@@ -14,22 +14,34 @@ Image {
 
         onClicked: {
             propertyanimation_opacity.start()
-            numberanimation_rotation.start()
+            // numberanimation_rotation.start()
+            propertyanimation_rotation.start()
         }
     }
 
     PropertyAnimation {
         id: propertyanimation_opacity
         target: image_fengche
-        properties: "opacity"
+        property: "opacity"
         to: 1.0
         duration: 2000
     }
 
-    NumberAnimation {
-        id: numberanimation_rotation
+//    NumberAnimation {
+//        id: numberanimation_rotation
+//        target: image_fengche
+//        property: "rotation"
+//        from: 0
+//        to: 360
+//        duration: 3000
+//        loops: Animation.Infinite
+//        easing.type: Easing.OutBack
+//    }
+
+    PropertyAnimation {
+        id: propertyanimation_rotation
         target: image_fengche
-        properties: "rotation"
+        property: "rotation"
         from: 0
         to: 360
         duration: 3000

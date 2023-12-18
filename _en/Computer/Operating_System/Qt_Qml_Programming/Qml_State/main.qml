@@ -1,46 +1,71 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 
-Rectangle {
-    id: rectangle_window
-    width: 160
-    height: 200
-    color: "lightgrey"
-
-    states: State {
-        name: "reanchored"
-
-        AnchorChanges {
-            target: rectangle
-            anchors.top: rectangle_window.top
-            anchors.bottom: rectangle_window.bottom
-        }
-
-        PropertyChanges {
-            target: rectangle
-            anchors.topMargin: 10
-            anchors.bottomMargin: 10
-        }
-    }
-
-    transitions: Transition {
-        AnchorAnimation {
-            duration: 1000
-        }
-    }
+Window {
+    visible: true
+    width: 640
+    height: 480
+    title: qsTr("Hello World")
 
     Rectangle {
         id: rectangle
-        width: 100
-        height: 100
-        color: "grey"
-    }
-
-    MouseArea {
         anchors.fill: parent
+        color: "lightgrey"
+        state: "Warning"
+        states: [
+            State {
+                name: "Warning"
+                when: mouseArea.pressed === false
 
-        onClicked: {
-            rectangle_window.state = "reanchored"
+                PropertyChanges {
+                    target: rectangle
+                    color: "lightgrey"
+                }
+
+                PropertyChanges {
+                    target: image
+                    source: "qrc:/images/warning.png"
+                }
+            },
+            State {
+                name: "Critical"
+                when: mouseArea.pressed === true
+
+                PropertyChanges {
+                    target: rectangle
+                    color: "red"
+                }
+
+                PropertyChanges {
+                    target: image
+                    source: "qrc:/images/critical.png"
+                }
+            }
+        ]
+
+        Image {
+            width: 24
+            height: 24
+            source: "qrc:/images/switch.png"
+
+            MouseArea {
+                id: mouseArea
+                anchors.fill: parent
+
+//                onClicked: {
+//                    if(rectangle.state === "Warning") {
+//                        rectangle.state = "Critical"
+//                    } else if(rectangle.state === "Critical") {
+//                        rectangle.state = "Warning"
+//                    }
+//                }
+            }
+        }
+
+        Image {
+            id: image
+            anchors.centerIn: parent
+            source: "qrc:/images/warning.png"
         }
     }
 }

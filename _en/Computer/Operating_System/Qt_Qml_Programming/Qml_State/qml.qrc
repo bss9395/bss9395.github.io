@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>images/critical.png</file>
+        <file>images/switch.png</file>
+        <file>images/warning.png</file>
     </qresource>
 </RCC>
