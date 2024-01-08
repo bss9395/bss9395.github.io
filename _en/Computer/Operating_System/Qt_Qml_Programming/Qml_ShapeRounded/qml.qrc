@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ShapeRoundedCorner.qml</file>
+        <file>ShapeRounded.qml</file>
+    </qresource>
+</RCC>

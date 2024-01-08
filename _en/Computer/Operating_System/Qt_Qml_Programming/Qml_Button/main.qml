@@ -1,16 +1,15 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
-import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 
 Window {
-    visible: true
     width: 640
     height: 480
+    visible: true
     title: qsTr("Hello World")
 
     Row {
-        anchors.fill: parent
+        anchors.centerIn: parent
         spacing: 10
 
         Button {
@@ -37,6 +36,29 @@ Window {
             implicitWidth: 60
             implicitHeight: 60
             radius: width / 2
+        }
+
+        Button {
+            id: button2
+            width: 80
+            height: 32
+            background: Rectangle {
+                radius: 8
+                border.color: "#FF4399F3"
+                border.width: 1
+                color: "#FFFFFFFF"
+            }
+            contentItem: Text {
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                font.pixelSize: 12
+                color: "#FF4399F3"
+                text: "Button"
+            }
+
+            onClicked: {
+                console.debug(`button2:onClicked`)
+            }
         }
     }
 }

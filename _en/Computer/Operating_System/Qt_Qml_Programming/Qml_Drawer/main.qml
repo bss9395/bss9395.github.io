@@ -1,5 +1,5 @@
-import QtQuick 2.14
-import QtQuick.Window 2.14
+import QtQuick 2.12
+import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
@@ -28,6 +28,11 @@ ApplicationWindow {
         y: header.height
         width: parent.width * 0.6
         height: parent.height - header.height
+        modal: true
+        dim: true
+        // closePolicy: Popup.CloseOnPressOutside
+        closePolicy: Popup.NoAutoClose
+        leftPadding: 10
 
         Text {
             anchors.centerIn: parent
@@ -35,15 +40,20 @@ ApplicationWindow {
         }
     }
 
-    Text {
-        id: label
+    Rectangle {
         anchors.fill: parent
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: 60
-        text: "Content"
-        transform: Translate {
-            x: drawer.position * label.width * 0.33
+        color: "red"
+//        transform: Translate {
+//            x: drawer.position * label.width * 0.33
+//        }
+
+        Text {
+            id: label
+            anchors.fill: parent
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 60
+            text: "Content"
         }
     }
 }

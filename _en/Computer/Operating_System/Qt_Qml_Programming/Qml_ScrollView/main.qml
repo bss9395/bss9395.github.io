@@ -9,13 +9,15 @@ Window {
     height: 480
     title: qsTr("Hello World")
 
+    Row {
     ScrollView {
-        id: scrollview
         width: 200
         height: 200
         clip: true
 
         ListView {
+            width: 200
+            height: 200
             id: listview
             model: 20
 
@@ -31,12 +33,40 @@ Window {
     ScrollView {
         width: 200
         height: 200
-        x: 200
         clip: true
 
         Label {
             font.pixelSize: 224
             text: "ABC"
         }
+
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOn
+        ScrollBar.vertical.policy: ScrollBar.AlwaysOn
+    }
+
+
+    ScrollView {
+        id: scrollview
+        width: 200
+        height: 200
+        contentWidth: rect.width
+        contentHeight: rect.height
+        clip: true
+
+        Rectangle {
+            id: rect
+            width: 1000
+            height: 1000
+            color: "lightblue"
+
+            Label {
+                id: label
+                text: "label"
+            }
+        }
+
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOn
+        ScrollBar.vertical.policy: ScrollBar.AlwaysOn
+    }
     }
 }

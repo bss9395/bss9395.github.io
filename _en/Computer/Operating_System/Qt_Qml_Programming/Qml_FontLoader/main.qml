@@ -1,16 +1,26 @@
 import QtQuick 2.12
+import QtQuick.Controls 2.12
 import QtQuick.Window 2.12
+import Modu 1.0
 
-Rectangle {
-    FontLoader {
-        id: webFont
-        source: "https://qter-images.qter.org/other/myfont.ttf"
-    }
+Window {
+    property real dpi: 1
+    visible: true
+    width: 200
+    height: 200
 
-    Text {
-        width: 200
-        text: webFont.status === FontLoader.Ready ? "Loaded" : "Not loaded"
-        font.family: webFont.name
-        font.pointSize: 20
+    Label {
+        font.pixelSize: 14
+        font.weight: Font.Medium
+        font.family: Config.font2
+        wrapMode: Text.WrapAnywhere
+        lineHeightMode: Text.ProportionalHeight
+        lineHeight: 1.2
+        color: "#FF000000"
+        text: "手机号注册"
+
+        Component.onCompleted: {
+            console.debug(`height = ${height}`)
+        }
     }
 }

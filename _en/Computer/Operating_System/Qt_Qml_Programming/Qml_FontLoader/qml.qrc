@@ -1,5 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>images/icon_done.png</file>
+        <file>fonts/FZLanTingHeiS-R-GB-Regular01.TTF</file>
+        <file>fonts/FZLanTingHeiS-R-GB-Regular02.TTF</file>
+        <file>fonts/Lato-Bold.ttf</file>
+        <file>fonts/Lato-Regular.ttf</file>
+        <file>Modu/Config.qml</file>
+        <file>Modu/qmldir</file>
     </qresource>
 </RCC>
