@@ -6,14 +6,19 @@
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 
+void _Process(const QJsonObject &jsonObject) {
+    qDebug().noquote() << __FUNCTION__;
+    qDebug().noquote() << "jsonObject = " << jsonObject;
+}
+
 void _Parse_Stream() {
     qDebug() << __FUNCTION__;
 
     static QString response = R"!(
-{"requestType": 1, "defaultParameter": "", "responseText": "我", "scene": "other", "urlList": []}
-{"requestType": 1, "defaultParameter": "", "responseText": "我是一个名为", "scene": "other", "urlList": []}
-{"requestType": 1, "defaultParameter": "", "responseText": "我是一个名为开天智能助手", "scene": "other", "urlList": []}
-{"requestType": 1, "defaultParameter": "", "responseText": "我是一个名为开天智能助手的人工智能程序。", "scene": "other", "urlList": []}
+{ "responseText": "人工智能程序指的是" }
+{ "responseText": "人工智能程序指的是利用计算机算法" }
+{ "responseText": "人工智能程序指的是利用计算机算法模拟、延伸和扩充" }
+{ "responseText": "人工智能程序指的是利用计算机算法模拟、延伸和扩充人类智能的软件。" }
 )!";
 
 
@@ -37,8 +42,12 @@ void _Parse_Stream() {
             miniLen = jsonString.length() - 2 + 1;          // 去掉左右圆括号长度增加1
         }
     }
+
+    delete streamResponse;
+    delete lastPos;
     if(jsonDocument.isObject() == true) {                   // 每个数据包只处理最后一个匹配的项
         qDebug().noquote() << "jsonDocument.object() = " << jsonDocument.object();
+        _Process(jsonDocument.object());
     }
 }
 

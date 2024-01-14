@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>RectangleFit.qml</file>
+        <file>images/driver/start.png</file>
+        <file>images/driver/pause.png</file>
+        <file>images/driver/icon_upward.png</file>
+        <file>images/driver/icon_upload.png</file>
+        <file>images/driver/icon_show.png</file>
+        <file>images/driver/icon_navigation_right.png</file>
+        <file>images/driver/icon_navigation_left.png</file>
+        <file>images/driver/icon_logo.png</file>
+        <file>images/driver/icon_info.png</file>
+        <file>images/driver/icon_hide.png</file>
+        <file>images/driver/icon_downward.png</file>
+        <file>images/driver/icon_done.png</file>
+        <file>images/driver/icon_close.png</file>
+        <file>images/driver/icon_avatar.png</file>
+        <file>images/driver/card_waiting.png</file>
+        <file>images/driver/card_success.png</file>
+        <file>images/driver/card_network.png</file>
+        <file>images/driver/card_info.png</file>
+        <file>images/driver/card_failed.png</file>
+        <file>images/driver/card_data.png</file>
+        <file>images/driver/card_avatar.png</file>
+        <file>images/driver/bgLine.png</file>
+        <file>images/driver/bg_dropShadow.png</file>
+        <file>images/driver/abort.png</file>
+        <file>CusConfig.js</file>
+    </qresource>
+</RCC>

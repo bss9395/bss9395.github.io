@@ -1,0 +1,1 @@
+var fontCNFamily = "Sans Serif"
