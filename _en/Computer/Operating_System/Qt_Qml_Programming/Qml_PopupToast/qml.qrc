@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>PopupToast.qml</file>
+        <file>images/icon_warning.png</file>
+    </qresource>
+</RCC>

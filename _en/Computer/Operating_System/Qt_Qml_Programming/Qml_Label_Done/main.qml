@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
+import QtQml 2.12
 
 Window {
     property var dpi: 1
@@ -10,17 +11,17 @@ Window {
     title: qsTr("Hello World")
 
     Label {
-        property var displayText: "完成"
+        property var displayText: "完成完成完成完成完成完成完成完成完成完成完成完成完成完成"
         id: label_done
-        width: parent.width
+        width: 200
         height: {
             var fitHeight = implicitHeight - (contentHeight / lineCount - fontmetrics.height)
-            return (image_done.y + image_done.height < fitHeight) ? (image_done.y + image_done.height) : fitHeight
+            return (image_done.y + image_done.height < fitHeight) ? fitHeight : (image_done.y + image_done.height)
         }
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.topMargin: 0 * dpi
-        leftPadding: image_done.anchors.leftMargin + image_done.width + fontmetrics.height / 5
+        leftPadding: image_done.x + image_done.width + fontmetrics.height / 5
         topPadding: {
             var offset = image_done.height / 2 - fontmetrics.height / 2
             return (0 <= offset) ? offset : 0
@@ -47,7 +48,11 @@ Window {
 
         FontMetrics {
             id: fontmetrics
-            font: label_done.font
+            font: label_done.font  // "Sans Serif" on Linux
+
+            Component.onCompleted: {
+                console.debug(`fontmetrics.font = ${fontmetrics.font}, fontmetrics.height = ${fontmetrics.height}`)
+            }
         }
 
         Rectangle {

@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ImageRounded.qml</file>
+        <file>ShapeRoundedCorner.qml</file>
+        <file>images/avatar_bss9395.png</file>
+        <file>images/avatar_test.png</file>
+        <file>images/avatar_greatwall.png</file>
+    </qresource>
+</RCC>

@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.12
 
 Rectangle {
     property var initedWidth : false
@@ -7,66 +8,102 @@ Rectangle {
     id    : rectangle
     width : 0
     height: 0
-    color : "#FFFF0000"
+    color : "#00FFFFFF"
 
     Component.onCompleted: {
-        console.debug(`rectangle:onCompleted, childrenRect = ${JSON.stringify(childrenRect)}`)
+        // console.debug(`rectangle:onCompleted`)
         if(0 < width) {
             initedWidth  = true
         }
         if(0 < height) {
             initedHeight = true
         }
-
-        slot_updateChildrenRect()
-        func_childrenChanged()
         inited = true
+
+        func_childrenChanged_connect()
+    }
+
+    Component.onDestruction: {
+        console.debug(`rectangle:onDestruction`)
+        func_childrenChanged_disconnect()
     }
 
     onChildrenChanged: {
+        // console.debug(`onChildrenChanged`)
         if(inited === false) {
             return
         }
-        console.debug(`onChildrenChanged`)
-        func_childrenChanged()
+        func_childrenChanged_disconnect()
+        func_childrenChanged_connect()
     }
 
-    function func_childrenChanged() {
-        console.debug(`function func_childrenChanged() {`)
+    function func_childrenChanged_disconnect() {
+        // console.debug(`function func_childrenChanged_disconnect() {`)
         for(var i = 0; i < children.length; i += 1) {
+            // 注意调试时slot_updateChildrenRect有外包
             children[i].visibleChanged.disconnect(slot_updateChildrenRect)
             children[i].widthChanged.disconnect(slot_updateChildrenRect)
             children[i].heightChanged.disconnect(slot_updateChildrenRect)
             children[i].xChanged.disconnect(slot_updateChildrenRect)
             children[i].yChanged.disconnect(slot_updateChildrenRect)
         }
-        for(var j = 0; j < children.length; j += 1) {
-            if(children[i] instanceof MouseArea) {  // MouseArea是visual组件
-                console.debug(`if(children[i] instanceof MouseArea) {`)
+    }
+
+    function func_childrenChanged_connect() {
+        // console.debug(`function func_childrenChanged_connect() {`)
+        slot_updateChildrenRect()
+        for(var i = 0; i < children.length; i += 1) {
+            if(children[i] instanceof MouseArea) {     // MouseArea是visual组件
+                // console.debug(`if(children[i] instanceof MouseArea) {`)
+                continue
+            } else if(children[i] instanceof Popup) {  // Popup是外围组件
+                // console.debug(`} else if(children[i] instanceof Popup) {`)
                 continue
             }
-            children[j].visibleChanged.connect(function() {
-                console.debug(`children[j].visibleChanged.connect(function() {`)
-                slot_updateChildrenRect()
-            })
-            children[j].widthChanged.connect(function() {
-                console.debug(`children[j].widthChanged.connect(function() {`)
-                slot_updateChildrenRect()
-            })
-            children[j].heightChanged.connect(function() {
-                console.debug(`children[j].heightChanged.connect(function() {`)
-                slot_updateChildrenRect()
-            })
-            children[j].xChanged.connect(function() {
-                console.debug(`children[j].xChanged.connect(function() {`)
-                slot_updateChildrenRect()
-            })
-            children[j].yChanged.connect(function() {
-                console.debug(`children[j].yChanged.connect(function() {`)
-                slot_updateChildrenRect()
-            })
+            // 注意调试时slot_updateChildrenRect有外包
+            children[i].visibleChanged.connect(slot_updateChildrenRect)
+            children[i].widthChanged.connect(slot_updateChildrenRect)
+            children[i].heightChanged.connect(slot_updateChildrenRect)
+            children[i].xChanged.connect(slot_updateChildrenRect)
+            children[i].yChanged.connect(slot_updateChildrenRect)
         }
     }
+
+//    function func_childrenChanged_connect_debug() {
+//        console.debug(`function func_childrenChanged_connect() {`)
+//        slot_updateChildrenRect()
+//        for(var i = 0; i < children.length; i += 1) {
+//            if(children[i] instanceof MouseArea) {     // MouseArea是visual组件
+//                console.debug(`if(children[i] instanceof MouseArea) {`)
+//                continue
+//            } else if(children[i] instanceof Popup) {  // Popup是外围组件
+//                console.debug(`} else if(children[i] instanceof Popup) {`)
+//                continue
+//            }
+//            // 注意调试时slot_updateChildrenRect有外包
+//            children[i].visibleChanged.connect(function() {
+//                console.debug(`children[i].visibleChanged.connect(function() {`)
+//                slot_updateChildrenRect()
+//            })
+//            children[i].widthChanged.connect(function() {
+//                console.debug(`children[i].widthChanged.connect(function() {`)
+//                slot_updateChildrenRect()
+//            })
+//            children[i].heightChanged.connect(function() {
+//                console.debug(`children[i].heightChanged.connect(function() {`)
+//                slot_updateChildrenRect()
+//            })
+//            children[i].xChanged.connect(function() {
+//                console.debug(`children[i].xChanged.connect(function() {`)
+//                slot_updateChildrenRect()
+//            })
+//            children[i].yChanged.connect(function() {
+//                console.debug(`children[i].yChanged.connect(function() {`)
+//                slot_updateChildrenRect()
+//            })
+//        }
+//    }
+
 
     function slot_updateChildrenRect() {
         // console.debug(`function slot_updateChildrenRect() {`)
@@ -75,8 +112,11 @@ Rectangle {
         var miniY = 0
         var maxiY = 0
         for(var i = 0; i < children.length; i += 1) {
-            if(children[i] instanceof MouseArea) {  // MouseArea是visual组件
-                console.debug(`if(children[i] instanceof MouseArea) {`)
+            if(children[i] instanceof MouseArea) {     // MouseArea是visual组件
+                // console.debug(`if(children[i] instanceof MouseArea) {`)
+                continue
+            } else if(children[i] instanceof Popup) {  // Popup是外围组件
+                // console.debug(`} else if(children[i] instanceof Popup) {`)
                 continue
             } else if(children[i].visible === true) {
                 if(children[i].x < miniX) {
@@ -99,6 +139,6 @@ Rectangle {
         if(initedHeight === false) {
             rectangle.height = maxiY - miniY
         }
-        console.debug(`rectangle.width = ${rectangle.width}, rectangle.height = ${rectangle.height}`)
+        // console.debug(`rectangle.width = ${rectangle.width}, rectangle.height = ${rectangle.height}`)
     }
 }
