@@ -3,101 +3,54 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
-ApplicationWindow {
+Window {
     visible: true
     width: 640
     height: 480
     title: qsTr("Hello World")
 
-    header: ToolBar {
-        RowLayout {
-            anchors.fill: parent
+    Button {
+        id: button
+        width: 100
+        height: 32
+        text: (1 <= stackview.depth) ? "卸载" : "加载"
 
-            ToolButton {
-                text: "Push"
+        onClicked: {
+            console.debug(`button:onClicked`)
+            if(stackview.depth === 0) {
+                var component = Qt.createComponent("Page.qml")
+                if (component.status === Component.Ready){
+                    var page = component.createObject(stackview)
 
-                onClicked: {
-                    stack.push(rectangle_1, { color: "red" }, rectangle_2, { color: "green" }, rectangle_3, { color: "blue" })
-                    console.debug("stack.depth = ", stack.depth)
-                }
-            }
-
-            ToolButton {
-                text: "Pop"
-
-                onClicked: {
-                    stack.pop()
-                    console.debug("stack.depth = ", stack.depth)
-                }
-            }
-
-            ToolButton {
-                text: "Replace"
-
-                onClicked: {
-                    stack.replace(rectangle_2, [rectangle_1, rectangle_2, rectangle_3])
-                    console.debug("stack.depth = ", stack.depth)
-                }
-            }
-
-            ToolButton {
-                text: "Find"
-
-                onClicked: {
-                    stack.find(function (item, index) {
-                        console.debug("item.text = ", item.text, ", index = ", index)
-                        // return item === rectangle_3
-                        return null;
+                    page.closed.connect(function(userInfo) {
+                        console.debug(`userInfo = ${JSON.stringify(userInfo)}`)
                     })
-                }
-            }
 
-            ToolButton {
-                text: "Clear"
-
-                onClicked: {
-                    stack.clear()
-                    console.debug("stack.depth = ", stack.depth)
+                    stackview.push(page)
+                    console.debug(`stackview.depth = ${stackview.depth}`)
                 }
+            } else {
+                var obj = stackview.currentItem
+                if(obj){
+                    obj.destroy()
+                }
+
+                // 注意stackview.depth===1时，stackview.pop()无效。
+                if(1 < stackview.depth) {
+                    stackview.pop()
+                } else {
+                    stackview.clear()
+                }
+                console.debug(`stackview.depth = ${stackview.depth}`)
             }
         }
     }
 
     StackView {
-        id: stack
-        anchors.fill: parent
-
-        Rectangle {
-            id: rectangle_1
-            visible: false
-            property alias text: text_1.text
-
-            Text {
-                id: text_1
-                text: "1"
-            }
-        }
-
-        Rectangle {
-            id: rectangle_2
-            visible: false
-            property alias text: text_2.text
-
-            Text {
-                id: text_2
-                text: "2"
-            }
-        }
-
-        Rectangle {
-            id: rectangle_3
-            visible: false
-            property alias text: text_3.text
-
-            Text {
-                id: text_3
-                text: "3"
-            }
-        }
+        id: stackview
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: button.bottom
+        anchors.bottom: parent.bottom
     }
 }

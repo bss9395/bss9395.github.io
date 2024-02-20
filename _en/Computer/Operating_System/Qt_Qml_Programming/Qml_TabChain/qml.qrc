@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>Page.qml</file>
+        <file>images/icon_show.png</file>
+        <file>images/icon_hide.png</file>
     </qresource>
 </RCC>

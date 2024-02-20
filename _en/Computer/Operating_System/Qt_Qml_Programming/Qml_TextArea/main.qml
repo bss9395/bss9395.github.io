@@ -3,51 +3,56 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
-ApplicationWindow {
+Window {
     visible: true
     width: 640
     height: 480
+    title: qsTr("Hello World")
 
-    ScrollView {
-        width: parent.width
-        height: parent.height
-
-        TextArea {
-            width: parent.width
-            height: parent.height
-            wrapMode: Text.WrapAnywhere
-            placeholderText: "可以在这里输入内容"
+    Column {
+        ScrollView {
+            id: scrollview
+            width: 100
+            height: 60
             background: Rectangle {
-                color: "lightgrey"
+                radius: 6
+                border.width: 1
+                border.color: "#FFE6E6E6"
+                color: "#FFFFFFFF"
+            }
+            contentWidth: textarea.contentWidth
+            contentHeight: textarea.contentHeight
+            clip: true
+
+            ScrollBar.vertical.policy: ScrollBar.AsNeeded
+			ScrollBar.horizontal.policy: ScrollBar.AsNeeded
+
+            TextArea {
+                property var countLast: 0
+                property var countMaxi: 100
+                id: textarea
+                font.pixelSize: 12
+                font.weight: Font.Normal
+                color: "#FF666666"
+                text: ""
+                wrapMode: Text.WrapAnywhere
+                selectByMouse: true
+
+                onTextChanged: {
+                    console.debug(`textarea:onTextChanged`)
+                    // 注意textarea.length <= textarea.text.length
+                    if((textarea.length <= textarea.countMaxi) === false) {
+                        textarea.text = textarea.text.slice(0, textarea.countLast)
+                        textarea.cursorPosition = textarea.text.length
+                    }
+                    textarea.countLast = textarea.text.length
+                }
             }
         }
 
-        ScrollBar.vertical.policy: ScrollBar.AlwaysOn
-        ScrollBar.horizontal.policy: ScrollBar.AsNeeded
-    }
-
-    footer: RowLayout {
         Label {
-            font.pointSize: 7
-            text: "姓名："
-            background: Rectangle {
-                color: "lightgrey"
-            }
-
-            Component.onCompleted: {
-                console.debug(width)
-            }
-        }
-
-        TextField {
-            id: textfield
-            placeholderText: "Enter name"
-            Layout.fillWidth: true
-
-            onAccepted: {
-                console.debug(textfield.text)
-                textfield.clear()
-            }
+            id: label
+            text: `${textarea.length}/${textarea.countMaxi}`
         }
     }
 }
