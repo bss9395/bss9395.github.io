@@ -3,6 +3,7 @@ import QtQuick.Window 2.12
 import QtQml 2.12
 
 Rectangle {
+    id: rectangle_root
     visible: true
     width: 640
     height: 480
@@ -113,7 +114,7 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     drag.target: rectangle
-                    drag.axis: Drag.XAxis
+                    drag.axis: Drag.XAndYAxis
                     drag.minimumX: 0
                     drag.maximumX: rectangle_parent.width - rectangle.width
                 }
@@ -154,19 +155,22 @@ Rectangle {
                 color: "green"
             }
 
-            DropArea {
+            Rectangle {
+                id: area
                 width: 50
                 height: 50
                 anchors.centerIn: parent
-
-                Rectangle {
-                    id: area
-                    anchors.fill: parent
-                    border.color: "black"
+                border.color: "black"
+                color: {
+                    if(droparea.containsDrag) {
+                        return droparea.drag.source.color
+                    }
+                    return "#FFFFFFFF"
                 }
 
-                onEntered: {
-                    area.color = drag.source.color
+                DropArea {
+                    id: droparea
+                    anchors.fill: parent
                 }
             }
         }
