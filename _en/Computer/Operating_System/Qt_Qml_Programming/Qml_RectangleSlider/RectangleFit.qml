@@ -11,7 +11,7 @@ Rectangle {
     color : "#00FFFFFF"
 
     onChildrenChanged: {
-        console.debug(`rectangle:onChildrenChanged`)
+        // console.debug(`rectangle:onChildrenChanged`)
         if(inited === false) {
             return
         }
@@ -20,7 +20,7 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        console.debug(`rectangle:onCompleted, width = ${width}`)
+        // console.debug(`rectangle:onCompleted, width = ${width}`)
         if(0 < width) {
             initedWidth  = true
         }
@@ -33,7 +33,7 @@ Rectangle {
     }
 
     Component.onDestruction: {
-        console.debug(`rectangle:onDestruction`)
+        // console.debug(`rectangle:onDestruction`)
         func_childrenChanged_disconnect()
     }
 
@@ -87,7 +87,7 @@ Rectangle {
                 // console.debug(`} else if(children[i] instanceof Popup) {`)
                 continue
             } else if(children[i].visible === true) {
-                console.debug(`children[i] = ${children[i].name}, ${children[i].x}, ${children[i].y}, ${children[i].width}, ${children[i].height}, ${children[i].visible}`)
+                // console.debug(`children[i] = ${children[i].name}, ${children[i].x}, ${children[i].y}, ${children[i].width}, ${children[i].height}, ${children[i].visible}`)
                 var headX = children[i].x - children[i].anchors.leftMargin                         // 瞬态水平锚点
                 var tailX = children[i].x + children[i].width  + children[i].anchors.rightMargin   // 瞬态右边界
                 var headY = children[i].y - children[i].anchors.topMargin                          // 瞬态垂直锚点
@@ -107,13 +107,13 @@ Rectangle {
             }
         }
 
-        console.debug(`before :rectangle.width = ${maxiX - miniX}, rectangle.height = ${rectangle.height}`)
+        // console.debug(`before :rectangle.width = ${maxiX - miniX}, rectangle.height = ${rectangle.height}`)
         if(initedWidth === false) {
             rectangle.width  = maxiX - miniX
         }
         if(initedHeight === false) {
             rectangle.height = maxiY - miniY
         }
-        console.debug(`after :rectangle.width = ${rectangle.width}, rectangle.height = ${rectangle.height}`)
+        // console.debug(`after :rectangle.width = ${rectangle.width}, rectangle.height = ${rectangle.height}`)
     }
 }

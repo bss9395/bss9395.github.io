@@ -1,7 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>LabelFit.qml</file>
+        <file>RectanglePopup.qml</file>
         <file>images/icon_delete.png</file>
+        <file>LabelFit.qml</file>
     </qresource>
 </RCC>

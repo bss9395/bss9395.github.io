@@ -11,57 +11,73 @@ Window {
     title: qsTr("Hello World")
 
     Column {
+        property var tabChain: ([])
+        id: column
+
+        Keys.onTabPressed: (event) => {
+            console.debug(`column:onTabPressed`)
+            func_tabChain()
+        }
+
+        Component.onCompleted: {
+            tabChain.push(textfield0)
+            tabChain.push(textfield_account)
+            tabChain.push(textfield2)
+            column.focus = true  // 根组件获取初始焦点
+        }
+
+        function func_tabChain() {
+            console.debug(`column:function func_tabChain() {`)
+            if((1 <= tabChain.length) === false) {
+                return
+            }
+
+            var i = 0
+            var hitted = false
+            for(; i < tabChain.length; i += 1) {
+                if(tabChain[i].focus === true) {
+                    console.debug(`if(tabChain[${i}].focus === true) {`)
+                    hitted = true
+                    break
+                }
+            }
+            if(hitted === true) {
+                if(0 <= i + 1 && i + 1 < tabChain.length && tabChain[i + 1] === textfield_account) {
+                    popup_accounts.open()   // 遇见输入框前打开弹窗组件
+                    return
+                } else if(tabChain[i] === textfield_account) {
+                    popup_accounts.close()  // 离开输入框时关闭弹窗组件
+                }
+                i = (i + 1) % tabChain.length
+            } else {
+                i = 0
+            }
+            tabChain[i].focus = true
+        }
+
+
         TextField {
             id: textfield0
             text: "textfield0"
-            activeFocusOnTab: true
+            activeFocusOnTab: false
             activeFocusOnPress: true
         }
 
         TextField {
-            property var stating    : "none"  // "none", "pressed", "tabbed"
-            property var shielding: false
             property var echo: ({})
             id: textfield_account
-            height: 32
-            font.pixelSize: 12
-            font.weight: Font.Normal
             placeholderText: "请输入账号"
             text: ""
-            activeFocusOnTab: true     // 键盘焦点自动触发
-            activeFocusOnPress: false  // 鼠标焦点手动触发
+            activeFocusOnTab: false
+            activeFocusOnPress: true
 
-            onPressed: {
+            onPressed: (event) => {
                 console.debug(`textfield_account:onPressed`)
-                stating = "pressed"
                 popup_accounts.open()
-                textfield_account.forceActiveFocus()
+                // 点击输入框后自动获取焦点
             }
 
-            // 鼠标或键盘或程序都可获取与失去焦点
-            onFocusChanged: {
-                console.debug(`textfield_account:onFocusChanged, focus = ${focus}`)
-                if(focus === true) {
-                    if(stating === "none") {               // 此状态为瞬态，触发随即丢弃
-                        shielding = true
-                        popup_accounts.open()
-                        popup_accounts.forceActiveFocus()  // 焦点转移，函数阻塞递归调用
-                    }
-                } else {
-                    if(stating !== "none") {
-                        popup_accounts.close()
-                    }
-                    // 失去焦点则重置状态为基本状态none
-                    stating = "none"
-                }
-            }
-
-            // 校验函数也可手动调用
             onEditingFinished: {
-                if(shielding === true) {
-                    shielding = false
-                    return
-                }
                 console.debug(`textfield_account:onEditingFinished`)
                 if(textfield_account.text === "") {
                     textfield_account.echo = {
@@ -76,30 +92,28 @@ Window {
                 }
             }
 
-            function func_forceActiveFocus() {
-                console.debug(`function func_forceActiveFocus() {`)
-                stating = "tabbed"
-                textfield_account.forceActiveFocus()
+            onTextChanged: {
+                console.debug(`textfield_account:onTextChanged`)
+                label_account_echo.visible = false
             }
 
-            // 账号下拉列表
-            Popup {
+            // 下拉账号列表
+            RectanglePopup {
                 id: popup_accounts
                 visible: false
-                width: parent.width
                 height: column_accounts.height
-                x: parent.width - width
-                y: parent.height
-                margins: 0
-                padding: 0
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.bottom
                 background: Rectangle {
                     border.width: 1
                     border.color: "#FFE6E6E6"
                     color: "#FFFFFFFF"
                 }
-                closePolicy: Popup.CloseOnPressOutside
+                strategy: enum_closeOutsideEscape
                 modal: false
                 dim: false
+                draggable: false
 
                 // 弹窗组件打开以后，加载列表项，根组件获取焦点
                 onOpened: {
@@ -110,6 +124,7 @@ Window {
                     listmodel_accounts.append({
                         "accountname": "bss9395@yeah.net"
                     })
+                    column_accounts.focus = true
                 }
 
                 // 弹窗组件关闭以后，清空列表项
@@ -119,24 +134,78 @@ Window {
                 }
 
                 Column {
+                    property var tabChain: ([])
                     id: column_accounts
                     width: parent.width
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 0
 
+                    Keys.onTabPressed: (event) => {
+                        console.debug(`popup_accounts:onTabPressed`)
+                        func_tabChain()
+                    }
+
+                    function func_tabChain() {
+                        console.debug(`popup_accounts:function func_tabChain() {`)
+                        if((1 <= tabChain.length) === false) {
+                            return
+                        }
+                        var i = 0
+                        var hitted = false
+                        for(; i < tabChain.length; i += 1) {
+                            if(tabChain[i].focus === true) {
+                                console.debug(`if(tabChain[${i}].focus === true) {`)
+                                hitted = true
+                                break
+                            }
+                        }
+                        if(hitted === true) {
+                            if(i === tabChain.length - 1) {
+                                textfield_account.focus = true  // Tab键导航到末项，原组件获取焦点
+                                return
+                            }
+                             i = (i + 1) % tabChain.length
+                        } else {
+                            i = 0
+                        }
+                        tabChain[i].focus = true
+                    }
+
+                    function func_tabAppend(item) {
+                        console.debug(`function func_tabAppend(item) {`)
+                        tabChain.push(item)
+                    }
+
+                    function func_tabRemove(item) {
+                        console.debug(`function func_tabRemove(item) {`)
+                        var i = 0
+                        var hitted = false
+                        for(; i < tabChain.length; i += 1) {
+                            if(tabChain[i] === item) {
+                                console.debug(`if(tabChain[${i}] === item) {`)
+                                hitted = true
+                                break
+                            }
+                        }
+                        if(hitted === true) {
+                            tabChain.splice(i, 1)
+                        }
+                    }
+
                     Repeater {
                         model: ListModel {
                             id: listmodel_accounts
                         }
                         delegate: Label {
+                            property var inited : false
                             property var hovered: false
                             id: label_account
                             width: column_accounts.width
                             height: 32
                             background: Rectangle {
                                 border.width: 1
-                                // border.color: "#00FFFFFF"
+                                // border.color: "#00FFFFFF"  // 此处完全透明无效果
                                 border.color: "#01FFFFFF"
                                 color: (label_account.hovered === true) ? "#FFF0F7FE" : "#FFFFFFFF"
                             }
@@ -150,16 +219,26 @@ Window {
                             elide: Text.ElideRight
                             color: "#FF4F4E69"
                             text: model["accountname"]
-                            activeFocusOnTab: true
+                            activeFocusOnTab: false
 
                             onFocusChanged: {
                                 // console.debug(`label_account:onFocusChanged, focus = ${focus}`)
                                 label_account.hovered = focus
                             }
 
-                            Keys.onReturnPressed: (event) => {
+                            Keys.onReturnPressed: {
                                 console.debug(`label_account:onReturnPressed`)
                                 mousearea_account.clicked(null)
+                            }
+
+                            Component.onCompleted: {
+                                column_accounts.func_tabAppend(label_account)
+                                column_accounts.func_tabAppend(image_delete)
+                            }
+
+                            Component.onDestruction: {
+                                column_accounts.func_tabRemove(label_account)
+                                column_accounts.func_tabRemove(image_delete)
                             }
 
                             MouseArea {
@@ -179,9 +258,11 @@ Window {
 
                                 onClicked: {
                                     console.debug(`label_account:onClicked`)
+                                    var textfield = textfield_account
                                     label_account.focus = true
                                     textfield_account.text = label_account.text
-                                    textfield_account.func_forceActiveFocus()
+                                    popup_accounts.close()
+                                    textfield.focus = true
                                 }
                             }
 
@@ -195,17 +276,7 @@ Window {
                                 anchors.verticalCenter: parent.verticalCenter
                                 fillMode: Image.PreserveAspectFit
                                 source: "qrc:/images/icon_delete.png"
-                                activeFocusOnTab: true
-
-                                Keys.onTabPressed: (event) => {
-                                    console.debug(`image_delete:onTabPressed`)
-                                    if(listmodel_accounts.count - 1 <= model.index) {
-                                        textfield_account.func_forceActiveFocus()
-                                        event.accepted = true
-                                    } else {
-                                        event.accepted = false
-                                    }
-                                }
+                                activeFocusOnTab: false
 
                                 Keys.onReturnPressed: {
                                     console.debug(`image_delete:onReturnPressed`)
@@ -218,7 +289,7 @@ Window {
 
                                     onClicked: {
                                         console.debug(`image_delete:onClicked`)
-                                        image_deleta.focus = true
+                                        image_delete.focus = true
                                         listmodel_accounts.remove(model.index)
                                     }
                                 }
@@ -230,19 +301,22 @@ Window {
         }
 
         LabelFit {
-            id: label_accounts_echo
+            id: label_account_echo
             visible: false
             anchors.left: parent.left
             anchors.right: parent.right
+            font.pixelSize: 12
+            font.weight: Font.Normal
             wrapMode: Text.WrapAnywhere
             lineHeightMode: Text.ProportionalHeight
             lineHeight: 1.2
             text: {
+                console.debug(`label_account_echo:text`)
                 if(textfield_account.echo["code"]) {
                     if(textfield_account.echo["code"] === 100 || textfield_account.echo["code"] === 200) {
-                        label_accounts_echo.visible = false
+                        label_account_echo.visible = false
                     } else {
-                        label_accounts_echo.visible = true
+                        label_account_echo.visible = true
                     }
                     return textfield_account.echo["info"]
                 }
@@ -254,7 +328,7 @@ Window {
         TextField {
             id: textfield2
             text: "textfield2"
-            activeFocusOnTab: true
+            activeFocusOnTab: false
             activeFocusOnPress: true
         }
     }

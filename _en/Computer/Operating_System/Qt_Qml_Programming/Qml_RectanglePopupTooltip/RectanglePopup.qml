@@ -21,9 +21,9 @@ Rectangle {
     id: rectangle
     enabled: true
     visible: true
-    width: parent.width / 4
+    width : parent.width  / 4
     height: parent.height / 2
-    x: (parent.width - width) / 2
+    x: (parent.width  - width ) / 2
     y: (parent.height - height) / 2
     color: "#00FFFFFF"
     clip: false
@@ -218,6 +218,7 @@ Rectangle {
                     return mapping_overlay.x
                 }
                 y: {
+                    console.debug(`rectangle_popup.y = ${rectangle.y}`)
                     rectangle.y
                     var mapping_overlay = rectangle.mapToItem(parent, 0, 0)
                     return mapping_overlay.y

@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>Group.qml</file>
+        <file>Container.qml</file>
     </qresource>
 </RCC>

@@ -7,19 +7,28 @@ Window {
     height: 480
     title: qsTr("Hello World")
 
-    Group {
-        title: "title"
-
-        Rectangle {
-            width: 100
-            height: 50
+    Container {
+        id: container
+        width: 400
+        height: 400
+        background: Rectangle {
             color: "red"
+        }
+
+        onChildrenChanged: {
+            console.debug(`container:onChildrenChanged`)
+
         }
 
         Rectangle {
             width: 100
-            height: 50
-            color: "lightblue"
+            height: 100
+            color: "green"
+        }
+
+        Text {
+            anchors.centerIn: parent
+            text: "text"
         }
     }
 }
