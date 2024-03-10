@@ -17,7 +17,7 @@ RectanglePopup {
 
     property alias widthLabel : label_tooltip.width
     property alias heightLabel: label_tooltip.height
-    property var widthLabelMaxi: widthLabel
+    property var widthLabelMaxi: Overlay.overlay.width
     property var radiusLabel: 10
     property var orientation: enum_right_top
     property var heightPeak : 10
@@ -158,9 +158,8 @@ RectanglePopup {
                 }
                 return rectanglepopup.radiusLabel
             }
-
             id: label_tooltip
-            width: 0
+            width : 0
             height: 0
             anchors.left  : (orientation === enum_left_top    || orientation === enum_left_bottom ) ? parent.left   : undefined
             anchors.right : (orientation === enum_right_top   || orientation === enum_right_bottom) ? parent.right  : undefined

@@ -7,9 +7,11 @@
 #include <QDebug>
 
 
-class Config : public QGuiApplication
-{
+class Config : public QGuiApplication {
     Q_OBJECT
+
+public:
+    int _cursorStackDepth = 0;
 
 public:
     explicit Config(int &argc, char **argv)
@@ -18,9 +20,24 @@ public:
     }
 
 public:
-    Q_INVOKABLE QPointF pos() {
-        // qDebug() << __FUNCTION__;
+    Q_INVOKABLE QPointF cursorPos() {
+        // qDebug().noquote() << __FUNCTION__;
         return QCursor::pos();  // 返回鼠标的全局坐标
+    }
+
+    Q_INVOKABLE void restoreCursorShape() {
+        qDebug().noquote() << __FUNCTION__;
+        while(0 < _cursorStackDepth) {
+            QGuiApplication::restoreOverrideCursor();
+            _cursorStackDepth -= 1;
+        }
+    }
+
+    Q_INVOKABLE void overrideCursorShape(Qt::CursorShape cursorShape) {
+        qDebug().noquote() << __FUNCTION__;
+        QCursor cursor = QCursor(cursorShape);
+        QGuiApplication::setOverrideCursor(cursor);
+        _cursorStackDepth += 1;
     }
 
     Q_INVOKABLE QString colorLinearize(const QString &from_argb, const QString &into_argb, const double &snap) {

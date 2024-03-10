@@ -1,5 +1,8 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
+
 
 Window {
     id: window
@@ -10,8 +13,8 @@ Window {
 
     Rectangle {
         id: rectangle
-        width: 320
-        height: 240
+        width: 200
+        height: 200
         x: (window.width  - width) / 2
         y: (window.height - height) / 2
         color: "#FF00FF00"
@@ -20,12 +23,13 @@ Window {
 
         RectanglePopupTooltip {
             id: rectanglepopuptooltip
+            visible: true
             anchors.left: parent.left
             anchors.leftMargin: 10
             anchors.top: parent.bottom
             orientation: enum_left_top
             heightPeak : 10
-            offsetPeak: 20
+            offsetPeak: 10
             offsetInner: 0
             widthLabelMaxi: 150
             radius: 10
