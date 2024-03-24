@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>RectangleFit.qml</file>
+        <file>rectangleslider.h</file>
+        <file>RectangleSlider.qml</file>
+    </qresource>
+</RCC>
