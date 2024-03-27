@@ -40,15 +40,6 @@ Window {
         }
     }
 
-    Rectangle {
-        id: rectangle_background
-        width: 200
-        height: 200
-        x: 200
-        y: 200
-        color: "yellow"
-    }
-
     Control {
         id: control
         width: 200

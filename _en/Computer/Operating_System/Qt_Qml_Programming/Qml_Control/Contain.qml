@@ -29,8 +29,6 @@ Rectangle {
 
     Rectangle {
         id: rectangle_background
-        width: rectangle_data.width
-        height: rectangle_data.height
         anchors.fill: rectangle_data
         color: "transparent"
 
@@ -38,10 +36,14 @@ Rectangle {
             console.debug(`rectangle_background:onChildrenChanged`)
             for(var i = 0; i < children.length; i += 1) {
                 if(children[i].width <= 0) {
-                    children[i].width = rectangle_background.width
+                    children[i].width = Qt.binding(function () {
+                        return rectangle_background.width
+                    })
                 }
                 if(children[i].height <= 0) {
-                    children[i].height = rectangle_background.height
+                    children[i].height = Qt.binding(function () {
+                        return rectangle_background.height
+                    })
                 }
                 console.debug(`rectangle_background.width = ${rectangle_background.width}, rectangle_background.height = ${rectangle_background.height}, children[i].width = ${children[i].width}, children[i].height = ${children[i].height}`)
             }
@@ -50,8 +52,6 @@ Rectangle {
 
     Rectangle {
         id: rectangle_data
-        width: parent.width
-        height: parent.height
         anchors.fill: parent
         color: "transparent"
 

@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
-    engine.load(url);
     engine.rootContext()->setContextProperty("config", &app);
+    engine.load(url);
 
     return app.exec();
 }

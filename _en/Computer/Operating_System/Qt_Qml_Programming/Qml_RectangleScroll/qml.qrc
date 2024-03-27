@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>RectangleResize.qml</file>
+        <file>RectangleScroll.qml</file>
+        <file>RectangleFit.qml</file>
     </qresource>
 </RCC>
