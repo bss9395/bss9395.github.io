@@ -11,14 +11,16 @@ Design: C/C++ Type Numerical Limits
 
 /*
 C/C++ type int: 32bits
-                      0x87654321
-Iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+                     0x876543210
+¡Àiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+
 -2^{32-1}  to  +2^{32-1}-1
 
-////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 C/C++ type long: 64bits
-Iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+                                                     0x876543210
+¡Àiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
 -2^{64-1}  to  +2^{64-1}-1
 */
 void Limits_Fixed() {
@@ -28,29 +30,37 @@ void Limits_Fixed() {
     fprintf(stdout, "int_min = %+i, %+E""\n", int_min, (double)int_min);
     fprintf(stdout, "--------------------------------------------------------------------------------""\n");
 
-    ////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
-    fprintf(stdout, "abs(int_max) = %+i""\n", abs(int_max));
-    fprintf(stdout, "abs(int_min) = %+i""\n", abs(int_min));
+    fprintf(stdout, "abs(int_max) = %+u""\n", abs(int_max));
+    fprintf(stdout, "abs(int_min) = %+u""\n", abs(int_min));
     fprintf(stdout, "--------------------------------------------------------------------------------""\n");
 }
 
 /* IEEE
 C/C++ type float: 32bits
-                      0x87654321
-¡Àeeeeeeeefffffffffffffffffffffff
+                     0x876543210
+¡Àssssssssfffffffffffffffffffffff
 1       8                     23
-Bias=2^{8-1}-1=127    Exponent-Bias=[1~254]-127=[-126~+127]
-(-1)^{Sign} ¡Á 2^{Exponent-Bias} ¡Á (1.Fraction)
+Bias       = 2^(8-1)-1         = 127
+Shift-Bias = [1~254]-127       = [-126~+127]
+number     = (-1)^Voltage * 2^(Shift-Bias) * 1.Fraction
+precision  = log10(2^(23+1+1)) ¡Ö 7.5
+mini       = 2^(-126)          ¡Ö 1.17*10^(-38)
+maxi       = 2^(+127+1)        ¡Ö 3.4*10^(+38)
 
-////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 C/C++ type double: 64bits
-                                                      0x87654321
-¡Àeeeeeeeeeeeffffffffffffffffffffffffffffffffffffffffffffffffffff
+                                                     0x876543210
+¡Àsssssssssssffffffffffffffffffffffffffffffffffffffffffffffffffff
 1         11                                                  52
-Bias=2^{11-1}-1=1023  Exponent-Bias=(1~2046)-1023=(-1022~+1023)
-(-1)^{Sign} ¡Á 2^{Exponent-Bias} ¡Á (1.Fraction)
+Bias       = 2^(11-1)-1        = 1023
+Shift-Bias = [1~2046]-1023     = [-1022~+1023]
+number     = (-1)^(Voltage) * 2^(Shift-Bias) * 1.Fraction
+precision  = log10(2^(52+1+1)) ¡Ö 16.2
+mini       = 2^(-1022)         ¡Ö 2.22*10^(-308)
+maxi       = 2^(+1023+1)       ¡Ö 1.80*10^(+308)
 */
 void Limits_Floating() {
     float f0 = (float)000.12345678901234567890;
@@ -62,16 +72,16 @@ void Limits_Floating() {
 
     ////////////////////////////////////
 
-    float float_nan_plus; *(unsigned int *)&float_nan_plus = 0x7FFFFFFF;
-    float float_nan_minus; *(unsigned int *)&float_nan_minus = 0xFFFFFFFF;
-    float float_inf_plus; *(unsigned int *)&float_inf_plus = 0x7F800000;
-    float float_inf_minus; *(unsigned int *)&float_inf_minus = 0xFF800000;
-    float float_max; *(unsigned int *)&float_max = 0x7F7FFFFF;
-    float float_min; *(unsigned int *)&float_min = 0x00800000;
+    float float_nan_plus   ; *(unsigned int *)&float_nan_plus = 0x7FFFFFFF;
+    float float_nan_minus  ; *(unsigned int *)&float_nan_minus = 0xFFFFFFFF;
+    float float_inf_plus   ; *(unsigned int *)&float_inf_plus = 0x7F800000;
+    float float_inf_minus  ; *(unsigned int *)&float_inf_minus = 0xFF800000;
+    float float_max        ; *(unsigned int *)&float_max = 0x7F7FFFFF;
+    float float_min        ; *(unsigned int *)&float_min = 0x00800000;
     float float_max_epsilon; *(unsigned int *)&float_max_epsilon = 0x007FFFFF;
     float float_min_epsilon; *(unsigned int *)&float_min_epsilon = 0x00000001;
-    float float_zero_plus; *(unsigned int *)&float_zero_plus = 0x00000000;
-    float float_zero_minus; *(unsigned int *)&float_zero_minus = 0x80000000;
+    float float_zero_plus  ; *(unsigned int *)&float_zero_plus = 0x00000000;
+    float float_zero_minus ; *(unsigned int *)&float_zero_minus = 0x80000000;
     fprintf(stdout, "float_nan_plus = %+f, %+E, %0#10X""\n", float_nan_plus, float_nan_plus, *(unsigned int *)&float_nan_plus);
     fprintf(stdout, "float_nan_minus = %+f, %+E, %0#10X""\n", float_nan_minus, float_nan_minus, *(unsigned int *)&float_nan_minus);
     fprintf(stdout, "float_inf_plus = %+f, %+E, %0#10X""\n", float_inf_plus, float_inf_plus, *(unsigned int *)&float_inf_plus);
