@@ -21,7 +21,7 @@ typedef uint32_t  ui32;
 typedef uint64_t  ui64;
 typedef uintptr_t uptr;
 
-typedef const ui08 *Level;
+typedef const ui08* Level;
 struct {
 	const Level _Info;
 	const Level _ToDo;
@@ -36,9 +36,9 @@ struct {
 	._Fatal = "Fatal"
 };
 
-bool Check(bool failed, Level level, const ui08 *function, const ui08 *record, const ui08 *extra) {
+bool Check(bool failed, Level level, const ui08* function, const ui08* record, const ui08* extra) {
 	if (failed) {
-		(extra == NULL) ? extra = (const ui08 *)"" : extra;
+		(extra == NULL) ? extra = (const ui08*)"" : extra;
 		fprintf(stderr, "[%s] %s: %s%s; ""\n", level, function, record, extra);
 	}
 
@@ -106,7 +106,7 @@ Init = { 0, 0, 0, ..., 0 }
 Pick = { ..., i, 0, 0, 0 }
 NULL = { M, M, ..., M, M }
 */
-long *Next_Permutation(long perm[], long samp, long pick, bool once) {
+long* Next_Permutation(long perm[], long samp, long pick, bool once) {
 	if (Check(perm == NULL, ELevel._Error, __FUNCTION__, "perm == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -195,7 +195,12 @@ Samp = { ..., i, j, k, l }      # i > j > k > l
 Pick = { ..., i, j, k, l }      # i < j < k < l
 NULL = { M, M-1, ..., 1, 0 }
 */
-long *Next_Permutation_Full(long perm[], long samp, bool once) {
+void Swap(long* lhs, long* rhs) {
+	long tmp = (*lhs);
+	(*lhs) = (*rhs);
+	(*rhs) = tmp;
+}
+long* Next_Permutation_Full(long perm[], long samp, bool once) {
 	if (Check(perm == NULL, ELevel._Error, __FUNCTION__, "perm == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -240,7 +245,7 @@ Init = { 0, 0, 0, ..., 0 }
 Comb = { ..., i, i, i, i }
 NULL = { M, M, ..., M, M }
 */
-long *Next_Combination(long comb[], long samp, long pick, bool once) {
+long* Next_Combination(long comb[], long samp, long pick, bool once) {
 	if (Check(comb == NULL, ELevel._Error, __FUNCTION__, "comb == NULL", NULL)) {
 		exit(EXIT_FAILURE);
 	}
@@ -332,11 +337,27 @@ void Test_Next_Permutation() {
 	fprintf(stdout, "%ld\n", count);
 }
 
+void Test_Next_Permutation_Full() {
+	long perm[10];
+	long samp = 4;
+	bool once = true;
+	Next_Permutation_Full(perm, -samp, once);
+	long count = 0;
+	do {
+		for (long i = 0; i < samp; i += 1) {
+			fprintf(stdout, "%ld, ", perm[i]);
+		}
+		fprintf(stdout, "\n");
+		count += 1;
+	} while (Next_Permutation_Full(perm, samp, once) != NULL);
+	fprintf(stdout, "%ld\n", count);
+}
+
 void Test_Next_Combination() {
 	long comb[10];
 	long samp = 5;
 	long pick = 3;
-	bool once = false;
+	bool once = true;
 	Next_Combination(comb, 0, pick, once);
 	long count = 0;
 	do {
@@ -350,11 +371,12 @@ void Test_Next_Combination() {
 }
 
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
 	// Test_Permutation();
 	// Test_Combination();
 	// Test_Next_Permutation();
-	Test_Next_Combination();
+	Test_Next_Permutation_Full();
+	// Test_Next_Combination();
 
 	return 0;
 }
