@@ -1,25 +1,25 @@
-/* Qt6_TCP_Client.h
+/* Qt_TCP_Client.h
 Author: BSS9395
 Update: 2023-09-01T10:14:00+08@China-Guangdong-Zhanjiang+08
 */
 
-#ifndef QT6_TCP_CLIENT_H
-#define QT6_TCP_CLIENT_H
+#ifndef QT_TCP_CLIENT_H
+#define QT_TCP_CLIENT_H
 
 #include <QMainWindow>
-#include "ui_Qt6_TCP_Client.h"
+#include "ui_Qt_TCP_Client.h"
 #include <QtNetwork>
 
-class Qt6_TCP_Client : public QMainWindow {
+class Qt_TCP_Client : public QMainWindow {
     Q_OBJECT
 
 private:
-    Ui::Qt6_TCP_Client *_ui = nullptr;
+    Ui::Qt_TCP_Client *_ui = nullptr;
     QTcpSocket *_tcp_socket = new QTcpSocket();
 
 public:
-    explicit Qt6_TCP_Client(QWidget *parent = nullptr)
-        : QMainWindow(parent), _ui(new Ui::Qt6_TCP_Client) {
+    explicit Qt_TCP_Client(QWidget *parent = nullptr)
+        : QMainWindow(parent), _ui(new Ui::Qt_TCP_Client) {
         _ui->setupUi(this);
 
         _ui->CB_IPv4->addItems(_Local_Addresses());
@@ -96,7 +96,7 @@ public:
         });
     }
 
-    ~Qt6_TCP_Client() {
+    virtual ~Qt_TCP_Client() {
         delete _ui;
         delete _tcp_socket;
     }
@@ -124,4 +124,4 @@ public:
     }
 };
 
-#endif // QT6_TCP_CLIENT_H
+#endif // QT_TCP_CLIENT_H

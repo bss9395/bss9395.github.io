@@ -1,12 +1,12 @@
 
-### µ¼³ö¶¯Ì¬¿â
+### å¯¼å‡ºåŠ¨æ€åº“
 
-ÔÚVisual StudioÏîÄ¿¡·Properties¡·General¡·Configuration Type¡·Dynamic Library(.dll)¡£
-ÔÚVisual StudioÏîÄ¿¡·Properties¡·Preprocessor Definitions¡·Ìí¼ÓLIBRARY_EXPORT¡£
+åœ¨Visual Studioé¡¹ç›®ã€‹Propertiesã€‹Generalã€‹Configuration Typeã€‹Dynamic Library(.dll)ã€‚
+åœ¨Visual Studioé¡¹ç›®ã€‹Propertiesã€‹Preprocessor Definitionsã€‹æ·»åŠ LIBRARY_EXPORTã€‚
 
-### µ¼Èë¶¯Ì¬¿â
+### å¯¼å…¥åŠ¨æ€åº“
 
-´´½¨ÎÄ¼ş¼ĞLibrary£¬½«Library_Export.lib·ÅÈëÆäÖĞ¡£
-ÔÚVisual StudioÏîÄ¿¡·Properties¡·VC++ Directories¡·Library Directories¡·Ìí¼ÓLibraryÄ¿Â¼¡£
-ÔÚVisual StudioÏîÄ¿¡·Properties¡·Linker¡·Input¡·Additional Dependencies¡·Ìí¼ÓLibrary_Export.lib¡£
-½«Library_Export.dll·ÅÔÚ.exeÔËĞĞÄ¿Â¼¡£
+åˆ›å»ºæ–‡ä»¶å¤¹Libraryï¼Œå°†Library_Export.libæ”¾å…¥å…¶ä¸­ã€‚
+åœ¨Visual Studioé¡¹ç›®ã€‹Propertiesã€‹VC++ Directoriesã€‹Library Directoriesã€‹æ·»åŠ Libraryç›®å½•ã€‚
+åœ¨Visual Studioé¡¹ç›®ã€‹Propertiesã€‹Linkerã€‹Inputã€‹Additional Dependenciesã€‹æ·»åŠ Library_Export.libã€‚
+å°†Library_Export.dllæ”¾åœ¨.exeè¿è¡Œç›®å½•ã€‚

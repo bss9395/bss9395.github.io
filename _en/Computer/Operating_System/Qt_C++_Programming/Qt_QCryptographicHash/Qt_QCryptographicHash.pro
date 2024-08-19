@@ -1,8 +1,7 @@
-QT       += core gui network
+QT -= gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-CONFIG += c++17
+CONFIG += c++11 console
+CONFIG -= app_bundle
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -10,14 +9,6 @@ CONFIG += c++17
 
 SOURCES += \
     Main.cpp
-
-HEADERS += \
-    Qt6_TCP_Client.h \
-    Qt6_TCP_Server.h
-
-FORMS += \
-    Qt6_TCP_Client.ui \
-    Qt6_TCP_Server.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -55,7 +55,7 @@ public:
         _Send_Login();
     }
 
-    ~Dialog() {
+    virtual ~Dialog() {
         qDebug() << __FUNCTION__;
         delete _ui;
         delete _udp_socket;

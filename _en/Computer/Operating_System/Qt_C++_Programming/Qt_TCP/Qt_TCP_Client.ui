@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Qt6_TCP_Client</class>
- <widget class="QMainWindow" name="Qt6_TCP_Client">
+ <class>Qt_TCP_Client</class>
+ <widget class="QMainWindow" name="Qt_TCP_Client">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -99,7 +99,7 @@
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>30</height>
+     <height>31</height>
     </rect>
    </property>
   </widget>
