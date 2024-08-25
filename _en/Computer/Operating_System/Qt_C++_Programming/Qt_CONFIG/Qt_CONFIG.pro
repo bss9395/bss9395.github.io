@@ -17,3 +17,6 @@ win32-msvc {
 } else {
     message("} else {")
 }
+
+## 设置Windows环境变量，PATH=D:/Poco/bin;%PATH%
+## 设置编译器环境变量 ，PATH=D:/Poco/bin;%PATH%，在visual studio中设置环境变量可能无效。
