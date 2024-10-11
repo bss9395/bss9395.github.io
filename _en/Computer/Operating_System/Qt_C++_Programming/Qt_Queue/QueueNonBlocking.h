@@ -37,28 +37,30 @@ public:
 
 static void _Test_QueueNonBlocking() {
 	QueueNonBlocking<QString> *queue = new QueueNonBlocking<QString>();
-    QObject* producer = Concurrent::_Asyn([queue]() -> void {
-        qDebug().noquote() << "QTimer::singleShot(0, Qt::PreciseTimer, producer, [queue]() -> void {";
-        int i = 0;
-        while (true) {
-            queue->_Push(QString("%1").arg(i));
-            i += 1;
-            QThread::msleep(1000);
-        }
-    });
-    QObject* consumer = Concurrent::_Asyn([queue]() -> void {
-        qDebug().noquote() << "QTimer::singleShot(0, Qt::PreciseTimer, consumer, [queue]() -> void {";
-        while (true) {
-            if (queue->_Empty() == false) {        // 非阻塞程序
-                QString element = queue->_Pull();  // 非阻塞程序
-                qDebug().noquote() << QString("element = %1").arg(element);
-            }
-            QThread::msleep(500);
-        }
-    });
+	QThread* producer = Concurrent::_Asyn([queue]() -> void {
+        qDebug().noquote() << "QThread* producer = Concurrent::_Asyn([queue]() -> void {";
+		int i = 0;
+		while (true) {
+			queue->_Push(QString("%1").arg(i));
+			i += 1;
+			QThread::msleep(1000);
+		}
+	});
+	QThread* consumer = Concurrent::_Asyn([queue]() -> void {
+        qDebug().noquote() << "QThread* consumer = Concurrent::_Asyn([queue]() -> void {";
+		while (true) {
+			if (queue->_Empty() == false) {        // 非阻塞程序
+				QString element = queue->_Pull();  // 非阻塞程序
+				qDebug().noquote() << QString("element = %1").arg(element);
+			}
+			QThread::msleep(500);
+		}
+	});
 
 	QThread::sleep(5);
-	delete producer, producer = nullptr;  // use delete producer, instead of producer->deleteLater()
-	delete consumer, consumer = nullptr;  // use delete consumer, instead of consumer->deleteLater()
+    producer->terminate();          // use producer->terminate(), instead of producer->quit()
+    producer->deleteLater(), producer = nullptr;
+    consumer->terminate();          // use consumer->terminate(), instead of consumer->quit()
+    consumer->deleteLater(), consumer = nullptr;
 	delete queue, queue = nullptr;
 }

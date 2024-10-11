@@ -8,12 +8,15 @@ Design: C++ Standard Library: tuple
 #include <tuple>
 #include <string>
 
-std::tuple<int, double, std::string> f() {
-    return std::make_tuple(1, 2.3, "456");
+std::tuple<int, double, std::string> _Func() {
+	return std::make_tuple(1, 2.3, "456");
 }
 
 int main() {
-    auto [x, y, z] = f();
-    std::cout << x << ", " << y << ", " << z << std::endl;
-    return 0;
+	int x = 0;
+	double y = 0.0;
+	std::string z = "";
+	std::tie(x, y, z) = _Func();
+	std::cout << x << ", " << y << ", " << z << std::endl;
+	return 0;
 }

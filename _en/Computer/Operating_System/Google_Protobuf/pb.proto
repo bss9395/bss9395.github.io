@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package pb_sample;
-
-message Student {
-    int32  No = 1;
-    string Name = 2;
-}
-
