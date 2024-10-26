@@ -10,6 +10,7 @@
 #include <QFileInfo>
 #include <QGridLayout>
 #include <QHeaderView>
+#include <QKeyEvent>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
@@ -95,11 +96,10 @@ public:
     explicit Stamp(QWidget *parent = nullptr)
         : QDialog(parent) {
         _tw_folderinfo = new QTreeWidget();
-        _tw_delegate = new TreeWidgetDelegate(QVector<int>{ 0 }, this);
+        _tw_delegate = new TreeWidgetDelegate(QVector<int>{ _index_header_name }, this);
         _tw_folderinfo->setItemDelegate(_tw_delegate);
         QObject::connect(_tw_delegate, &TreeWidgetDelegate::_Signal_Edited, this, [this](int row, int column) -> void {
             // 更新界面
-            qDebug().noquote() << "hello, world!";
             QTreeWidgetItem* item = _tw_folderinfo->topLevelItem(row);
             if(_index_header_name == column) {
                 item->setData(_index_header_name, _role_flag, "_posi");
@@ -163,22 +163,21 @@ public:
         gl_grid->addWidget(dbb_box, 2, 0);
         this->setLayout(gl_grid);
         this->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        this->resize(1000, 800);
+        this->resize(1536, 1000);
         // Dialog会自动居中显示在父缘顶层窗口。
 
         ////////////////////////////////
 
         QObject::connect(_tw_folderinfo, &QTreeWidget::itemDoubleClicked, this, [this](QTreeWidgetItem *item, int column) -> void {
+            qDebug().noquote() << QString("[%1] \n").arg("QObject::connect(_tw_folderinfo, &QTreeWidget::itemDoubleClicked, this, [this](QTreeWidgetItem *item, int column) -> void {");
             (void)column;
-            qDebug().noquote() << "QObject::connect(_tw_folderinfo, &QTreeWidget::itemDoubleClicked, this, [this](QTreeWidgetItem *item, int column) -> void {";
             QString filepath = item->data(_index_header_name, _role_filepath).toString();
             QString url = QString("file:///%1").arg(filepath);
-            qDebug().noquote() << QString("url = %1").arg(url);
             QDesktopServices::openUrl(QUrl(url, QUrl::TolerantMode));
         });
 
         QObject::connect(_pb_folderpath, &QPushButton::clicked, this, [this]() -> void {
-            qDebug().noquote() << "QObject::connect(_pb_folderpath, &QPushButton::clicked, this, [this]() -> void {";
+            qDebug().noquote() << QString("[%1] \n").arg("QObject::connect(_pb_folderpath, &QPushButton::clicked, this, [this]() -> void {");
             _tw_folderinfo->clear();
             QFileInfoList folderinfo = QDir(_le_folderpath->text()).entryInfoList(QStringList(), QDir::Files | QDir::NoDotAndDotDot, QDir::Name);
             for(auto iter = folderinfo.begin(); iter != folderinfo.end(); iter += 1) {
@@ -204,7 +203,7 @@ public:
         });
 
         QObject::connect(_pb_pattern, &QPushButton::clicked, this, [this]() -> void {
-            qDebug().noquote() << "QObject::connect(_pb_pattern, &QPushButton::clicked, this, [this]() -> void {";
+            qDebug().noquote() << QString("[%1] \n").arg("QObject::connect(_pb_pattern, &QPushButton::clicked, this, [this]() -> void {");
             QString pattern = _le_pattern->text();
             QBrush brush = QBrush(_color_forground_matched, Qt::SolidPattern);
             for(int i = 0, end = _tw_folderinfo->topLevelItemCount(); i < end; i += 1) {
@@ -221,7 +220,7 @@ public:
 			pattern: ^([0-9]{4,4})([0-9]{2,2})([0-9]{2,2})_([0-9]{2,2})([0-9]{2,2})([0-9]{2,2}).{0,}([.]{1,1}jpg)$
 			replace: (1)-(2)-(3)T(4)-(5)-(6)@Shanghai(7)
 			*/
-            qDebug().noquote() << "QObject::connect(_pb_replace, &QPushButton::clicked, this, [this]() -> void {";
+            qDebug().noquote() << QString("[%1] \n").arg("QObject::connect(_pb_replace, &QPushButton::clicked, this, [this]() -> void {");
 			_tw_folderinfo->setSortingEnabled(false);
             QBrush brush = QBrush(_color_forground_replaced, Qt::SolidPattern);
             QString pattern = _le_pattern->text();
@@ -283,17 +282,17 @@ public:
         });
 
 		QObject::connect(_pb_confirm, &QPushButton::clicked, this, [this]() -> void {
-			qDebug().noquote() << "QObject::connect(_pb_confirm, &QPushButton::clicked, this, [this]() -> void {";
+            qDebug().noquote() << QString("[%1] \n").arg("QObject::connect(_pb_confirm, &QPushButton::clicked, this, [this]() -> void {");
 			QBrush brush_renamed = QBrush(_color_forground_renamed, Qt::SolidPattern);
 			QBrush brush_failed = QBrush(_color_forground_failed, Qt::SolidPattern);
 			for (int i = 0, endi = _tw_folderinfo->topLevelItemCount(); i < endi; i += 1) {
 				QTreeWidgetItem* item = _tw_folderinfo->topLevelItem(i);
 				if (item->data(_index_header_name, _role_flag).toString() == "_posi") {
                     QString filepath_old = item->data(_index_header_name, Qt::UserRole).toString();
-                    QString folderpath = QFileInfo(filepath_old).path() + "/";
-					QString filename_new = item->text(_index_header_name);
-                    bool renamed = QFile::rename(filepath_old, folderpath + filename_new);
+                    QString filepath_new = QFileInfo(filepath_old).path() + "/" + item->text(_index_header_name);
+                    bool renamed = QFile::rename(filepath_old, filepath_new);
 					if (renamed == true) {
+                        item->setData(_index_header_name, _role_filepath, filepath_new);
 						item->setData(_index_header_name, _role_flag, "_none");
 						item->setForeground(_index_header_name, brush_renamed);
 					} else if (renamed == false) {
@@ -311,10 +310,39 @@ public:
     }
 
 public:
-	virtual void closeEvent(QCloseEvent *event) override {
-		(void)event;
-		emit _Signal_Closed();
-	}
+    virtual void keyReleaseEvent(QKeyEvent *event) override {
+        qDebug().noquote() << QString("[%1] key()=%2, modifiers()=%3").arg(__FUNCTION__).arg(event->key()).arg(event->modifiers());
+
+        if(event->key() == Qt::Key_Shift) {
+            if(_tw_folderinfo->selectedItems().length() == 1) {
+                QTreeWidgetItem* item = _tw_folderinfo->selectedItems().at(0);
+                QString filepath = item->data(_index_header_name, _role_filepath).toString();
+                QString url = QString("file:///%1").arg(filepath);
+                QDesktopServices::openUrl(QUrl(url, QUrl::TolerantMode));
+            }
+        } else if(event->modifiers() == Qt::ControlModifier && event->key() == Qt::Key_Delete) {
+            if(_tw_folderinfo->selectedItems().length() == 1) {
+                QTreeWidgetItem* item = _tw_folderinfo->selectedItems().at(0);
+                QString filepath = item->data(_index_header_name, _role_filepath).toString();
+                QString tempfolder = QFileInfo(filepath).path() + "/~temp";
+                QString temppath = tempfolder + "/" + QFileInfo(filepath).fileName();
+                bool made = QDir().mkpath(tempfolder);
+                bool moved = QFile::rename(filepath, temppath);
+                if(made == true && moved == true) {
+                    delete item; item = nullptr;
+                } else if(moved == false) {
+                    QBrush brush_failed = QBrush(_color_forground_failed, Qt::SolidPattern);
+                    item->setForeground(_index_header_name, brush_failed);
+                }
+            }
+        }
+    }
+
+    virtual void closeEvent(QCloseEvent *event) override {
+        qDebug().noquote() << QString("[%1] \n").arg(__FUNCTION__);
+        (void)event;
+        emit _Signal_Closed();
+    }
 
 public:
     void _Set_Folderpath(const QString& folderpath) {
