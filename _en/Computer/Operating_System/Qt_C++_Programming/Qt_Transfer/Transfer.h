@@ -571,6 +571,7 @@ public:
                                     handle->_Reset();  // 解析完毕，重置把柄
                                 } else {
                                     handle->_tcp_client->close();  // 不明操作类型
+                                    break;  // 注意已经销毁handle
                                 }
                             }
                         } catch (const Exception& exception) {
@@ -699,6 +700,7 @@ public:
                                 break;  // 注意已经销毁handle
                             } else {
                                 handle->_tcp_client->close();  // 不明操作类型
+                                break;  // 注意已经销毁handle
                             }
                         }
                     } catch (const std::exception& exception) {
@@ -854,6 +856,7 @@ public:
                                 }
                             } else {
                                 handle->_tcp_client->close();  // 不明操作类型
+                                break;  // 注意已经销毁handle
                             }
                         }
                     } catch (const std::exception& exception) {
