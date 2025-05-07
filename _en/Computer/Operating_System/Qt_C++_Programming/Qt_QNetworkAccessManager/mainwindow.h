@@ -26,6 +26,9 @@ public:
         QObject::connect(ui->pushButton, &QPushButton::clicked, this, [this]() -> void {
             QUrl url = QUrl(ui->lineEdit->text());
             QNetworkRequest request;
+            QSslConfiguration config = QSslConfiguration::defaultConfiguration();
+            config.setPeerVerifyMode(QSslSocket::AutoVerifyPeer);
+            request.setSslConfiguration(config);
             request.setUrl(url);
             QNetworkReply *reply = manager.get(request);
             connect(reply, &QNetworkReply::finished, this, [this, reply]() -> void {
