@@ -159,21 +159,4 @@ Window {
             }
         }
     }
-
-    ////////////////////////////////////////////////////////////////////////////
-
-    RectangleResize {
-        anchors.fill: rectangle_content
-    }
-
-    Rectangle {
-        id: rectangle_content
-        width : 100
-        height: 100
-        x: 200
-        y: 350
-        color: "green"
-        clip: true
-
-    }
 }
