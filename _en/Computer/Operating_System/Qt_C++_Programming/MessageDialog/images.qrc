@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/close.svg</file>
+        <file>images/correct.svg</file>
+        <file>images/error.svg</file>
+        <file>images/information.svg</file>
+        <file>images/question.svg</file>
+        <file>images/warning.svg</file>
+        <file>images/weixin.svg</file>
+    </qresource>
+</RCC>
