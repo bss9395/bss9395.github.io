@@ -183,9 +183,9 @@ private:
 
                 // 移除QLabel多行文本的尾空白
                 if(item->_widget->property("_lineHeightRatio").isValid() == true) {
-					bool ok = false;
-					double lineHeightRatio = item->_widget->property("_lineHeightRatio").toDouble(&ok);
-					if (ok == true && 1.0 < lineHeightRatio) {
+                    bool ok = false;
+                    double lineHeightRatio = item->_widget->property("_lineHeightRatio").toDouble(&ok);
+                    if (ok == true && 1.0 < lineHeightRatio) {
                         item->_widget->style()->unpolish(item->_widget);
                         item->_widget->style()->polish(item->_widget);
                         QFontMetrics fontMetrics = item->_widget->fontMetrics();
@@ -281,14 +281,14 @@ public:
             lastL += item->_metricWidth + _spacingH;
         }
 
-		////////////////////////////////
+        ////////////////////////////////
 
-		QSize fitSizeHint = sizeHint();    // sizeHint()有修正
-		bool relayout = (_lastSizeHint != fitSizeHint);
-		_lastSizeHint = fitSizeHint;
-		if (relayout == true) {
-			emit this->signalRelayout();
-		}
+        QSize fitSizeHint = sizeHint();    // sizeHint()有修正
+        bool relayout = (_lastSizeHint != fitSizeHint);
+        _lastSizeHint = fitSizeHint;
+        if (relayout == true) {
+            emit this->signalRelayout();
+        }
     }
 
 private:
@@ -319,5 +319,5 @@ private:
     QVector<Item> _items;
     int _metricWidth = 0;
     int _metricHeight = 0;
-	QSize _lastSizeHint;
+    QSize _lastSizeHint;
 };

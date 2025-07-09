@@ -27,24 +27,24 @@
 ################################################################################
 ### 不确定进度
 
-# package require Tk
-# 
-# ttk::progressbar .progressbar -orient horizontal -length 200 -mode indeterminate -value 50 -maximum 100
-# pack .progressbar
-# 
-# button .startBtn -text "Start" -command {
-# 	.progressbar start
-# }
-# button .stopBtn -text "Stop" -command {
-# 	.progressbar stop
-# }
-# pack .startBtn .stopBtn
+package require Tk
+
+ttk::progressbar .progressbar -orient horizontal -length 200 -mode indeterminate -maximum 40 -value 50 
+pack .progressbar
+
+button .startBtn -text "Start" -command {
+	.progressbar start
+}
+button .stopBtn -text "Stop" -command {
+	.progressbar stop
+}
+pack .startBtn .stopBtn
 
 ################################################################################
 ### 垂直进度条
 
-package require Tk
-
-ttk::progressbar .progressbar -orient vertical -length 200 -mode determinate -maximum 100 -value 50
-pack .progressbar
+# package require Tk
+# 
+# ttk::progressbar .progressbar -orient vertical -length 200 -mode determinate -maximum 100 -value 50
+# pack .progressbar
 

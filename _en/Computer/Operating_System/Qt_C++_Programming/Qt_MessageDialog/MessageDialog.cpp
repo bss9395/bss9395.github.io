@@ -71,7 +71,7 @@ void MessageDialog::LabelFit::adjustSizeFit(double lineHeightRatio) {
 	}
 }
 
-MessageDialog::MessageDialog(QWidget* parent, const QString& title, EIcon eicon, const QString& info, const QPair<QString, QVector<QString>>& checks, const QPair<QString, QVector<QString>>& radios, const QVector<QString>& buttontexts)
+MessageDialog::MessageDialog(QWidget* parent, const QString& title, EIcon eicon, const QString& info, const QPair<QString, QVector<QString>>& checks, const QPair<QString, QVector<QString>>& radios, const QVector<QString>& buttons)
 	: QDialog(parent) {
 	// _Fonts_Avaliable();
 	_Dpi_Change();
@@ -222,13 +222,13 @@ MessageDialog::MessageDialog(QWidget* parent, const QString& title, EIcon eicon,
 	_mainbody_buttonbox->setObjectName("_mainbody_buttonbox");
 
 	// mainbody_buttonbox_button
-	for (int i = buttontexts.size() - 1; 0 <= i; i -= 1) {
+    for (int i = 0; i < buttons.size(); i += 1) {
 		QLabel* button = new QLabel(_mainbody_buttonbox);
 		button->setObjectName(QString("_mainbody_buttonbox_button%1").arg(i));
 		button->installEventFilter(this);
-		button->setText(buttontexts[i]);
+        button->setText(buttons[i]);
 		button->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-		_mainbody_buttonbox_buttons.push_front(button);
+        _mainbody_buttonbox_buttons.push_back(button);
 	}
 }
 
@@ -246,27 +246,25 @@ void MessageDialog::_Fonts_Avaliable() {
 	}
 }
 
-QString MessageDialog::_Format(const QString &format, const QVector<QPair<QString, QVariant>> &values) {
-	QString result = format;
-	for (int i = 0; i < values.size(); i += 1) {
-		result.replace("{" + values[i].first + "}", values[i].second.toString());
-	}
-	// qDebug().noquote() << result;
-	return result;
+QString MessageDialog::_Format(const QString& format, const QVector<QPair<QString, QVariant>>& values) {
+    QString result = format;
+    for (int i = 0; i < values.size(); i += 1) {
+        QRegularExpression expression = QRegularExpression("[{]{1,1}[ ]{0,}" + values[i].first + "[ ]{0,}[}]{1,1}", QRegularExpression::DotMatchesEverythingOption);
+        result.replace(expression, values[i].second.toString());
+    }
+    return result;
 }
 
 void MessageDialog::_Dpi_Change() {
-	QList<QScreen*> screens = QApplication::screens();
-	for (int i = 0; i < screens.size(); i += 1) {
-		QScreen* screen = screens[i];
-		QObject::connect(screen, &QScreen::logicalDotsPerInchChanged, [this, i, screen](qreal dpi_logical) {
-			qDebug().nospace() << "Screen[" << i << "]"
-				<< "  dpi logical = " << dpi_logical;
-
-			QResizeEvent event(this->size(), this->size());
-			this->resizeEvent(&event);
-		});
-	}
+    QList<QScreen*> screens = QApplication::screens();
+    for (int i = 0; i < screens.size(); i += 1) {
+        QScreen* screen = screens[i];
+        QObject::connect(screen, &QScreen::logicalDotsPerInchChanged, [this, i, screen](qreal dpi_logical) {
+            // qDebug().nospace() << "Screen[" << i << "]" << "  dpi logical = " << dpi_logical;
+            (void)dpi_logical;
+            update();
+        });
+    }
 }
 
 void MessageDialog::_Dpi_Auto() {
@@ -417,7 +415,9 @@ int MessageDialog::_Resizing_Enable(const QPoint& local) {
 
 bool MessageDialog::_Dragging_Enable(const QPoint& local) {
 	bool dragging = false;
-	if (_titlebar_geometry.contains(local)) {
+    QPoint topLeft = _titlebar->mapTo(this, _titlebar->rect().topLeft());
+    QPoint bottomRight = _titlebar->mapTo(this, _titlebar->rect().bottomRight());
+    if(topLeft.x() <= local.x() && local.x() < bottomRight.x() && topLeft.y() <= local.y() && local.y() < bottomRight.y()) {
 		dragging = true;
 	}
 	return dragging;
@@ -429,20 +429,12 @@ bool MessageDialog::eventFilter(QObject *watched, QEvent *event) {
 			emit this->_Signal_Close();
 		} else if (watched->objectName().startsWith("_mainbody_scrollarea_frame_content_checkbox")) {
 			QCheckBox* checkbox = qobject_cast<QCheckBox*>(watched);
-			bool checked = !checkbox->isChecked();
-			if (checked == true) {
-				emit this->_Signal_Checkbox(checkbox->text(), true);
-			} else {
-				emit this->_Signal_Checkbox(checkbox->text(), false);
-			}
+            bool checked = !checkbox->isChecked();       // checkbox还未更新其checked状态
+            emit this->_Signal_Checkbox(checkbox->text(), checked);
 		} else if (watched->objectName().startsWith("_mainbody_scrollarea_frame_content_radiobutton")) {
 			QRadioButton* radiobutton = qobject_cast<QRadioButton*>(watched);
-			bool checked = !radiobutton->isChecked();
-			if (checked == true) {
-				emit this->_Signal_Radiobutton(radiobutton->text(), true);
-			} else {
-				emit this->_Signal_Radiobutton(radiobutton->text(), false);
-			}
+            bool checked = !radiobutton->isChecked();    // radiobutton还未更新其checked状态
+            emit this->_Signal_Radiobutton(radiobutton->text(), checked);
 		} else if (watched->objectName().startsWith("_mainbody_buttonbox_button")) {
 			QLabel* button = qobject_cast<QLabel*>(watched);
 			emit this->_Signal_Button(button->text());
@@ -653,11 +645,6 @@ void MessageDialog::resizeEvent(QResizeEvent *event) {
         this->move(toplevelGeometry.x() + (toplevelGeometry.width() - this->width()) / 2, toplevelGeometry.y() + (toplevelGeometry.height() - this->height()) / 2);
 	}
 
-	// titlebar geometry
-	QPoint topLeft = _titlebar->mapTo(this, _titlebar->rect().topLeft());
-	QPoint bottomRight = _titlebar->mapTo(this, _titlebar->rect().bottomRight());
-	_titlebar_geometry = QRect(topLeft, bottomRight);
-
 	_first_inited = true;
 }
 
@@ -776,32 +763,32 @@ void MessageDialog::mouseReleaseEvent(QMouseEvent *event) {
 void MessageDialog::_InformationDialog(QWidget* parent, const QString& title, MessageDialog::EIcon eicon, const QString& info, const QString& button) {
 	QPair<QString, QVector<QString>> checks;
 	QPair<QString, QVector<QString>> radios;
-	MessageDialog* messagebox = new MessageDialog(parent, title, eicon, info, checks, radios, { button });
+    MessageDialog* messageDialog = new MessageDialog(parent, title, eicon, info, checks, radios, { button });
 
-	QObject::connect(messagebox, &MessageDialog::_Signal_Close, [messagebox]() {
-		messagebox->close();
+    QObject::connect(messageDialog, &MessageDialog::_Signal_Close, [messageDialog]() {
+        messageDialog->close();
 	});
-	QObject::connect(messagebox, &MessageDialog::_Signal_Button, [messagebox](const QString& button) {
+    QObject::connect(messageDialog, &MessageDialog::_Signal_Button, [messageDialog](const QString& button) {
 		(void)button;
-		messagebox->close();
+        messageDialog->close();
 	});
 
-	messagebox->exec();
-	messagebox->deleteLater();
+    messageDialog->exec();
+    messageDialog->deleteLater();
 }
 
 QVector<QString> MessageDialog::_OptionCheckDialog(QWidget* parent, const QString& title, const QString& checktip, const QVector<QString>& checkboxs, const QPair<QString, QString>& buttons) {
 	MessageDialog::EIcon eicon = MessageDialog::_eicon_question;
 	QString info = "";
 	QPair<QString, QVector<QString>> radios;
-	MessageDialog* messagebox = new MessageDialog(parent, title, eicon, info, { checktip, checkboxs }, radios, { buttons.first, buttons.second });
+    MessageDialog* messageDialog = new MessageDialog(parent, title, eicon, info, { checktip, checkboxs }, radios, { buttons.first, buttons.second });
 
 	QVector<QString> options;
-	QObject::connect(messagebox, &MessageDialog::_Signal_Close, [messagebox, &options]() {
+    QObject::connect(messageDialog, &MessageDialog::_Signal_Close, [messageDialog, &options]() {
 		options.clear();
-		messagebox->close();
+        messageDialog->close();
 	});
-	QObject::connect(messagebox, &MessageDialog::_Signal_Checkbox, [messagebox, &options](const QString& checkbox, bool checked) {
+    QObject::connect(messageDialog, &MessageDialog::_Signal_Checkbox, [messageDialog, &options](const QString& checkbox, bool checked) {
 		// qDebug() << checkbox << ": " << checked;
 		if (checked == true) {
 			bool hit = false;
@@ -824,14 +811,14 @@ QVector<QString> MessageDialog::_OptionCheckDialog(QWidget* parent, const QStrin
 			}
 		}
 	});
-	QObject::connect(messagebox, &MessageDialog::_Signal_Button, [messagebox, &buttons, &options](const QString& button) {
+    QObject::connect(messageDialog, &MessageDialog::_Signal_Button, [messageDialog, &buttons, &options](const QString& button) {
 		if (buttons.second == button) {
 			options.clear();
 		}
-		messagebox->close();
+        messageDialog->close();
 	});
-	messagebox->exec();
-	messagebox->deleteLater();
+    messageDialog->exec();
+    messageDialog->deleteLater();
 	return options;
 }
 
@@ -839,27 +826,27 @@ QString MessageDialog::_OptionRadioDialog(QWidget* parent, const QString& title,
 	MessageDialog::EIcon eicon = MessageDialog::_eicon_question;
 	QString info = "";
 	QPair<QString, QVector<QString>> checks;
-	MessageDialog* messagebox = new MessageDialog(parent, title, eicon, info, checks, { radiotip, radiobuttons }, { buttons.first, buttons.second });
+    MessageDialog* messageDialog = new MessageDialog(parent, title, eicon, info, checks, { radiotip, radiobuttons }, { buttons.first, buttons.second });
 
 	QString option;
-	QObject::connect(messagebox, &MessageDialog::_Signal_Close, [messagebox, &option]() {
+    QObject::connect(messageDialog, &MessageDialog::_Signal_Close, [messageDialog, &option]() {
 		option = "";
-		messagebox->close();
+        messageDialog->close();
 	});
-	QObject::connect(messagebox, &MessageDialog::_Signal_Radiobutton, [messagebox, &option](const QString& radiobutton, bool checked) {
+    QObject::connect(messageDialog, &MessageDialog::_Signal_Radiobutton, [messageDialog, &option](const QString& radiobutton, bool checked) {
 		// qDebug() << radiobutton << ": " << checked;
 		if (checked == true) {
 			option = radiobutton;
 		}
 	});
-	QObject::connect(messagebox, &MessageDialog::_Signal_Button, [messagebox, &buttons, &option](const QString& button) {
+    QObject::connect(messageDialog, &MessageDialog::_Signal_Button, [messageDialog, &buttons, &option](const QString& button) {
 		if (buttons.second == button) {
 			option = "";
 		}
-		messagebox->close();
+        messageDialog->close();
 	});
-	messagebox->exec();
-	messagebox->deleteLater();
+    messageDialog->exec();
+    messageDialog->deleteLater();
 	return option;
 }
 
@@ -876,36 +863,36 @@ void MessageDialog::_Test_MessageDialog(QWidget* parent) {
 		{ "Radio1", "Radio2", "Radio3", "Radio4", "Radio5", "Radio6", "Radio7" }
 	};
 	QVector<QString> buttons = { "Ok", "Cancel" };
-	MessageDialog *messagebox = new MessageDialog(parent, title, eicon, info, checks, radios, buttons);
+    MessageDialog *messagedialog = new MessageDialog(parent, title, eicon, info, checks, radios, buttons);
 
-	QObject::connect(messagebox, &MessageDialog::_Signal_Close, [messagebox]() {
+    QObject::connect(messagedialog, &MessageDialog::_Signal_Close, [messagedialog]() {
 		qDebug() << "Close";
-		messagebox->close();
+        messagedialog->close();
 	});
-	QObject::connect(messagebox, &MessageDialog::_Signal_Checkbox, [messagebox](const QString& checkbox, bool checked) {
+    QObject::connect(messagedialog, &MessageDialog::_Signal_Checkbox, [messagedialog](const QString& checkbox, bool checked) {
 		qDebug() << checkbox << ": " << checked;
 	});
-	QObject::connect(messagebox, &MessageDialog::_Signal_Radiobutton, [messagebox](const QString& radiobutton, bool checked) {
+    QObject::connect(messagedialog, &MessageDialog::_Signal_Radiobutton, [messagedialog](const QString& radiobutton, bool checked) {
 		qDebug() << radiobutton << ": " << checked;
 	});
-	QObject::connect(messagebox, &MessageDialog::_Signal_Button, [messagebox](const QString& button) {
+    QObject::connect(messagedialog, &MessageDialog::_Signal_Button, [messagedialog](const QString& button) {
 		qDebug() << button;
-		messagebox->close();
+        messagedialog->close();
 	});
-	messagebox->exec();
-	messagebox->deleteLater();
+    messagedialog->exec();
+    messagedialog->deleteLater();
 }
 
-void MessageDialog::_Test_InformationDialog() {
-	MessageDialog::_InformationDialog(nullptr, "Title", MessageDialog::_eicon_information, "This large piece of text may be too long, so use a 425px Size Model. ", { "Ok" });
+void MessageDialog::_Test_InformationDialog(QWidget* parent) {
+    MessageDialog::_InformationDialog(parent, "Title", MessageDialog::_eicon_information, "This large piece of text may be too long, so use a 425px Size Model. ", { "Ok" });
 }
 
-void MessageDialog::_Test_OptionCheckDialog() {
-	QVector<QString> options = MessageDialog::_OptionCheckDialog(nullptr, "Title", "Do you want to save project changes? ", { "Option1", "Option2", "Option3", "Option4", "Option5", "Option6", "Option7" }, { "Ok", "Cancel" });
+void MessageDialog::_Test_OptionCheckDialog(QWidget* parent) {
+    QVector<QString> options = MessageDialog::_OptionCheckDialog(parent, "Title", "Do you want to save project changes? ", { "Option1", "Option2", "Option3", "Option4", "Option5", "Option6", "Option7" }, { "Ok", "Cancel" });
 	qDebug() << options;
 }
 
-void MessageDialog::_Test_OptionRadioDialog() {
-	QString option = MessageDialog::_OptionRadioDialog(nullptr, "Title", "Please select: ", { "Option1", "Option2", "Option3", "Option4", "Option5", "Option6", "Option7" }, { "Ok", "Cancel" });
+void MessageDialog::_Test_OptionRadioDialog(QWidget* parent) {
+    QString option = MessageDialog::_OptionRadioDialog(parent, "Title", "Please select: ", { "Option1", "Option2", "Option3", "Option4", "Option5", "Option6", "Option7" }, { "Ok", "Cancel" });
 	qDebug() << option;
 }

@@ -11,20 +11,20 @@
 #include <QWidget>
 #include <array>
 
-class FVWidget: public QWidget {
+class FHWidget: public QWidget {
     Q_OBJECT
 
 signals:
     void signalRelayout();
 
 public:
-    explicit FVWidget(QWidget* parent = nullptr)
+    explicit FHWidget(QWidget* parent = nullptr)
         : QWidget(parent) {
         QWidget::setAttribute(Qt::WA_StyledBackground, true);    // 启用O_OBJECT宏，需要设置Qt::WA_StyledBackground，否则背景样式不生效
 
     }
 
-    virtual ~FVWidget() {
+    virtual ~FHWidget() {
 
     }
 
@@ -39,18 +39,11 @@ public:
     static const int _esaturate_none = 0b0000;
     static const int _esaturate_line = 0b0001;
     static const int _esaturate_box  = 0b0010;
-    void setSaturateH(int saturateH) {
-        _saturateH = saturateH;
+    void setSaturateV(int saturateV) {
+        _saturateV = saturateV;
     }
-    int getSaturateH() {
-        return _saturateH;
-    }
-
-    void setFit(bool fit) {
-        _fit = fit;
-    }
-    bool getFit() {
-        return _fit;
+    int getSaturateV() {
+        return _saturateV;
     }
 
     void setMargins(std::array<int, 4> margins) {
@@ -76,7 +69,7 @@ public:
     }
 
     void setAlignments(std::array<int, 2> alignments) {
-        _alignMain = alignments[0];
+        _alignMain  = alignments[0];
         _alignMinor = alignments[1];
     }
     std::array<int, 2> getAlignments() {
@@ -99,10 +92,10 @@ public:
     }
 
 public:
-    void addWidget(QWidget* widget, double stretchV) {
-        qDebug().nospace() << __FUNCTION__ << ", stretchV = " << stretchV;
-        if(stretchV <= 0.0 || qFuzzyIsNull(stretchV) == true) {
-            stretchV = 0.0;
+    void addWidget(QWidget* widget, double stretchH) {
+        qDebug().nospace() << __FUNCTION__ << ", stretchH = " << stretchH;
+        if(stretchH <= 0.0 || qFuzzyIsNull(stretchH) == true) {
+            stretchH = 0.0;
         }
 
         for(auto iter = _items.begin(); iter != _items.end(); ) {
@@ -113,18 +106,18 @@ public:
             ++iter;
         }
         widget->setParent(this);
-        _items.push_back(Item(widget, stretchV));
+        _items.push_back(Item(widget, stretchH));
     }
 
-    void setStretchV(QWidget* widget, double stretchV) {
-        qDebug().nospace() << __FUNCTION__ << ", stretchV = " << stretchV;
-        if(stretchV <= 0.0 || qFuzzyIsNull(stretchV) == true) {
-            stretchV = 0.0;
+    void setStretchV(QWidget* widget, double stretchH) {
+        qDebug().nospace() << __FUNCTION__ << ", stretchH = " << stretchH;
+        if(stretchH <= 0.0 || qFuzzyIsNull(stretchH) == true) {
+            stretchH = 0.0;
         }
 
         for(int col = 0; col < _items.size(); col += 1) {
             if(_items[col]._widget == widget) {
-                _items[col]._stretchV = stretchV;
+                _items[col]._stretchH = stretchH;
             }
         }
     }
@@ -143,9 +136,9 @@ private:
     void doWrap() {
         // qDebug().nospace() << __FUNCTION__;
         _lines.resize(0);
-        int boxHeight = this->height() - _marginT - _marginB;
+        int boxWidth = this->width() - _marginL - _marginR;
         Line* line = nullptr;
-        int lastHeight = 0;
+        int lastWidth = 0;
         for(int idx = 0; idx < _items.size(); idx += 1) {
             Item* item = &_items[idx];
             QSize sizeHint = item->_widget->sizeHint();
@@ -168,52 +161,53 @@ private:
                 item->_hintHeight = item->_widget->maximumHeight();
             }
 
-            if(_lines.empty() == true || (_wrap == true && (lastHeight + item->_hintHeight < boxHeight) == false)) {
+            if(_lines.empty() == true || (_wrap == true && (lastWidth + item->_hintWidth < boxWidth) == false)) {
                 _lines.resize(_lines.size() + 1);
                 line = &_lines[_lines.size() - 1];
-                lastHeight = 0;
+                lastWidth = 0;
             }
             line->_items.push_back(*item);
-            lastHeight += item->_hintHeight + _spacingV;
+            lastWidth += item->_hintWidth + _spacingH;
         }
     }
 
     void doBalance() {
-        // qDebug().nospace() << __FUNCTION__;
+        qDebug().nospace() << __FUNCTION__;
         doWrap();
 
-        // 计算line->_metricWidth
-        // 计算_metricWidth
-        _metricWidth = 0;
-        for(int row = 0; row < _lines.size(); row += 1) {
-            Line* line = &_lines[row];
-            line->_metricWidth = 0;
-            for(int col = 0; col < line->_items.size(); col += 1) {
-                Item* item = &(line->_items[col]);
-                if(line->_metricWidth < item->_hintWidth) {
-                    line->_metricWidth = item->_hintWidth;
-                }
-            }
-            _metricWidth += (row == 0) ? line->_metricWidth : (_spacingH + line->_metricWidth);
-        }
-
-        // 计算_metricHeight
+        // 计算_metricWidth和计算_metricHeight
+        _metricWidth  = 0;
         _metricHeight = 0;
-        int boxWidth = this->width() - _marginL - _marginR;
         for(int row = 0; row < _lines.size(); row += 1) {
             Line* line = &_lines[row];
-            // 计算line->fixedHeight和计算line->denominator
-            int fixedHeight = _marginT + _marginB;
+            // 计算line->fixedWidth和line->denominator
+            int fixedWidth = _marginL + _marginR;
             double denominator = 0.0;
             for(int col = 0; col < line->_items.size(); col += 1) {
                 Item* item = &(line->_items[col]);
+                fixedWidth += (col == 0) ? 0 : _spacingH;
+                if(item->_stretchH == 0.0 || item->_hintWidth == 0) {
+                    fixedWidth  += item->_hintWidth;
+                } else {
+                    denominator += item->_stretchH * item->_hintWidth;
+                }
+            }
+
+            // 计算item->_metricWidth
+            // 计算line->_metricWidth和计算line->_metricHeight
+            line->_metricWidth = 0;
+            int varyWidth = this->width() - fixedWidth;    // varyWidth有可能为负值
+            for(int col = 0; col < line->_items.size(); col += 1) {
+                Item* item = &(line->_items[col]);
+                if(item->_stretchH == 0.0 || item->_hintWidth == 0) {
+                    item->_metricWidth = item->_hintWidth;
+                } else {
+                    item->_metricWidth = varyWidth * (item->_stretchH * item->_hintWidth) / denominator;    // denominator有可能为零值
+                }
+                line->_metricWidth += (col == 0) ? item->_metricWidth : (_spacingH + item->_metricWidth);
+
                 if(item->_widget->inherits("QLabel") == true && item->_widget->hasHeightForWidth() == true) {
-                    int width = item->_hintWidth;
-                    if(_saturateH == _esaturate_line) {
-                        width = line->_metricWidth;
-                    } else if(_saturateH == _esaturate_box && _wrap == false) {
-                        width = boxWidth;
-                    }
+                    int width = item->_metricWidth;
                     if((item->_widget->minimumWidth() <= width) == false) {
                         width = item->_widget->minimumWidth();
                     }
@@ -224,9 +218,9 @@ private:
 
                     // 移除QLabel多行文本的尾空白
                     if(item->_widget->property("_lineHeightRatio").isValid() == true) {
-						bool ok = false;
-						double lineHeightRatio = item->_widget->property("_lineHeightRatio").toDouble(&ok);
-						if (ok == true && 1.0 < lineHeightRatio) {
+                        bool ok = false;
+                        double lineHeightRatio = item->_widget->property("_lineHeightRatio").toDouble(&ok);
+                        if (ok == true && 1.0 < lineHeightRatio) {
                             item->_widget->style()->unpolish(item->_widget);
                             item->_widget->style()->polish(item->_widget);
                             QFontMetrics fontMetrics = item->_widget->fontMetrics();
@@ -242,46 +236,32 @@ private:
                         item->_hintHeight = item->_widget->maximumHeight();
                     }
                 }
-
-                fixedHeight += (col == 0) ? 0 : _spacingV;
-                if(item->_stretchV == 0.0 || item->_hintHeight == 0) {
-                    fixedHeight += item->_hintHeight;
-                } else {
-                    denominator += item->_stretchV * item->_hintHeight;
+                if(line->_metricHeight < item->_hintHeight) {
+                    line->_metricHeight = item->_hintHeight;
                 }
             }
+            if(_metricWidth < line->_metricWidth) {
+                _metricWidth = line->_metricWidth;
+            }
+            _metricHeight += (row == 0) ? line->_metricHeight : (_spacingV + line->_metricHeight);
 
-            // 计算item->_metricHeight和执行item->_widget->resize()
-            // 计算line->_metricHeight
-            // 更新_metricWidth
-            int varyHeight = this->height() - fixedHeight;    // varyHeight有可能为负值
-            line->_metricHeight = 0;
+            // 执行item->resize()和更新_metricHeight
+            int boxHeight = this->height() - _marginT - _marginB;
             for(int col = 0; col < line->_items.size(); col += 1) {
                 Item* item = &(line->_items[col]);
-                if(item->_stretchV == 0.0 || item->_hintHeight == 0) {
-                    item->_metricHeight = item->_hintHeight;
-                } else {
-                    item->_metricHeight = varyHeight * (item->_stretchV * item->_hintHeight) / denominator;
-                }
-                line->_metricHeight += (col == 0) ? item->_metricHeight : (_spacingV + item->_metricHeight);
-
-                if(_saturateH == _esaturate_none) {
-                    item->_widget->resize(item->_hintWidth, item->_hintHeight);      // resize()有可能为minimumSize()或者maximumSize()
-                } else if(_saturateH == _esaturate_line) {
-                    item->_widget->resize(line->_metricWidth, item->_hintHeight);    // resize()有可能为minimumSize()或者maximumSize()
-                } else if(_saturateH == _esaturate_box && _wrap == false) {
-                    item->_widget->resize(boxWidth, item->_hintHeight);              // resize()有可能为minimumSize()或者maximumSize()
+                if(_saturateV == _esaturate_none) {
+                    item->_widget->resize(item->_metricWidth, item->_hintHeight);      // resize()有可能为minimumSize()或者maximumSize()
+                } else if(_saturateV == _esaturate_line) {
+                    item->_widget->resize(item->_metricWidth, line->_metricHeight);    // resize()有可能为minimumSize()或者maximumSize()
+                } else if(_saturateV == _esaturate_box && _wrap == false) {
+                    item->_widget->resize(item->_metricWidth, boxHeight);              // resize()有可能为minimumSize()或者maximumSize()
                     if(row == 0 && col == 0) {
-                        _metricWidth = 0;
+                        _metricHeight = 0;
                     }
-                    if(_metricWidth < item->_widget->width()) {
-                        _metricWidth = item->_widget->width();
+                    if(_metricHeight < item->_widget->height()) {
+                        _metricHeight = item->_widget->height();
                     }
                 }
-            }
-
-            if(_metricHeight < line->_metricHeight) {
-                _metricHeight = line->_metricHeight;
             }
         }
     }
@@ -294,7 +274,7 @@ public:
         // 测试用，无实际作用
         static bool fit = false;
         if(fit == true) {
-            int fitWidth = _marginL + _metricWidth + _marginR;
+            int fitWidth  = _marginL + _metricWidth + _marginR;
             int fitHeight = _marginT + _metricHeight + _marginB;
             this->resize(fitWidth, fitHeight);    // this->resize()不触发ResizeEvent()
         }
@@ -303,23 +283,23 @@ public:
 
         int boxWidth = this->width() - _marginL - _marginR;
         int boxHeight = this->height() - _marginT - _marginB;
-        int lastL = 0;
-        if(_alignMain & Qt::AlignLeft) {
-            lastL = _marginL;
-        } else if(_alignMain & Qt::AlignHCenter) {
-            lastL = _marginL + (boxWidth - _metricWidth) / 2;
-        } else if(_alignMain & Qt::AlignRight) {
-            lastL = _marginL + boxWidth - _metricWidth;
+        int lastT = 0;
+        if(_alignMain & Qt::AlignTop) {
+            lastT = _marginT;
+        } else if(_alignMain & Qt::AlignVCenter) {
+            lastT = _marginT + (boxHeight -  _metricHeight) / 2;
+        } else if(_alignMain & Qt::AlignBottom) {
+            lastT = _marginT + boxHeight - _metricHeight;
         }
         for(int row = 0; row < _lines.size(); row += 1) {
             Line* line = &_lines[row];
-            int lastT = 0;
-            if(_alignMain & Qt::AlignTop) {
-                lastT = _marginT;
-            } else if(_alignMain & Qt::AlignVCenter)  {
-                lastT = _marginT + (boxHeight - line->_metricHeight) / 2;
-            } else if(_alignMain & Qt::AlignBottom) {
-                lastT = _marginT + boxHeight - line->_metricHeight;
+            int lastL = 0;
+            if(_alignMain & Qt::AlignLeft) {
+                lastL = _marginL;
+            } else if(_alignMain & Qt::AlignHCenter) {
+                lastL = _marginL + (boxWidth - line->_metricWidth) / 2;
+            } else if(_alignMain & Qt::AlignRight) {
+                lastL = _marginL + boxWidth - line->_metricWidth;
             }
             for(int col = 0; col < line->_items.size(); col += 1) {
                 Item* item = &(line->_items[col]);
@@ -327,39 +307,38 @@ public:
                 if(_alignMinor & Qt::AlignLeft) {
                     offsetL = 0;
                 } else if(_alignMinor & Qt::AlignHCenter) {
-                    offsetL = 0 + (line->_metricWidth - item->_widget->width()) / 2;
+                    offsetL = 0 + (item->_metricWidth - item->_widget->width()) / 2;
                 } else if(_alignMinor & Qt::AlignRight) {
-                    offsetL = 0 + line->_metricWidth - item->_widget->width();
+                    offsetL = 0 + item->_metricWidth - item->_widget->width();
                 }
                 int offsetT = 0;
                 if(_alignMinor & Qt::AlignTop) {
                     offsetT = 0;
                 } else if(_alignMinor & Qt::AlignVCenter) {
-                    offsetT = 0 + (item->_metricHeight - item->_widget->height()) / 2;
+                    offsetT = 0 + (line->_metricHeight - item->_widget->height()) / 2;
                 } else if(_alignMinor & Qt::AlignBottom) {
-                    offsetT = 0 + item->_metricHeight - item->_widget->height();
+                    offsetT = 0 + line->_metricHeight - item->_widget->height();
                 }
                 item->_widget->move(lastL + offsetL, lastT + offsetT);
-                lastT += item->_metricHeight + _spacingV;
+                lastL += item->_metricWidth + _spacingH;
             }
-            lastL += line->_metricWidth + _spacingH;
+            lastT += line->_metricHeight + _spacingV;
         }
 
-		////////////////////////////////
+        ////////////////////////////////
 
-		QSize fitSizeHint = sizeHint();    // sizeHint()有修正
-		bool relayout = (_lastSizeHint != fitSizeHint);
-		_lastSizeHint = fitSizeHint;
-		if (relayout == true) {
-			emit this->signalRelayout();
-		}
+        QSize fitSizeHint = sizeHint();    // sizeHint()有修正
+        bool relayout = (_lastSizeHint != fitSizeHint);
+        _lastSizeHint = fitSizeHint;
+        if (relayout == true) {
+            emit this->signalRelayout();
+        }
     }
 
 private:
     bool _wrap = true;
-    int _saturateH = _esaturate_none;
-    bool _fit = false;
-    int _alignMain = Qt::AlignHCenter | Qt::AlignVCenter;
+    int _saturateV = _esaturate_none;
+    int _alignMain  = Qt::AlignHCenter | Qt::AlignVCenter;
     int _alignMinor = Qt::AlignHCenter | Qt::AlignVCenter;
     int _marginL = 0;
     int _marginT = 0;
@@ -370,17 +349,17 @@ private:
 
     struct Item {
         QWidget* _widget = nullptr;
-        double _stretchV = 0.0;
+        double _stretchH = 0;
         int _hintWidth = 0;
         int _hintHeight = 0;
-        int _metricHeight = 0;
+        int _metricWidth = 0;
 
         Item() {
 
         }
-        Item(QWidget* widget, double stretchV) {
+        Item(QWidget* widget, double stretchH) {
             _widget = widget;
-            _stretchV = stretchV;
+            _stretchH = stretchH;
         }
     };
     QVector<Item> _items;
@@ -392,5 +371,5 @@ private:
     QVector<Line> _lines;
     int _metricWidth = 0;
     int _metricHeight = 0;
-	QSize _lastSizeHint;
+    QSize _lastSizeHint;
 };

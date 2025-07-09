@@ -1,0 +1,77 @@
+[objectName = "_this"] {
+    background-color: "#FFF2F9FC";
+}
+[objectName = "_titlebar"] {
+    background-color: "#FFDFE5ED";
+}
+[objectName = "_titlebar_title"] {
+    font-family: "Roboto";
+    font-size: {_titlebar_title_fontsize}px;
+    font-weight: 400;
+    line-height: 1.0;    /* qss不支持line-height */
+    color: "#FF000000";
+}
+[objectName = "_scrollarea"] {
+    background-color: "#00FFFFFF";
+}
+[objectName = "_scrollarea_frame"] {
+    background-color: "#00FFFFFF";    /* QScrollArea会为其内部widget设置背景色 */
+}
+[objectName = "_scrollarea_frame_content_info"] {
+    font-family: "Roboto";
+    font-size: {_scrollarea_frame_content_info_fontsize}px;
+    font-weight: 400;
+    line-height: 1.0;    /* qss不支持line-height */
+    color: "#FF333333";
+}
+[objectName = "_scrollarea_frame_content_checktip"] {
+    font-family: "Roboto";
+    font-size: {_scrollarea_frame_content_checktip_fontsize}px;
+    font-weight: 400;
+    line-height: 1.0;    /* qss不支持line-height */
+    color: "#FF333333";
+}
+[objectName ^= "_scrollarea_frame_content_checkflow_checkbox"] {
+    font-family: "Roboto";
+    font-size: {_scrollarea_frame_content_checkflow_checkbox_fontsize}px;
+    font-weight: 400;
+    line-height: 1.0;    /* qss不支持line-height */
+    color: "#FF333333";
+}
+[objectName = "_scrollarea_frame_content_radiotip"] {
+    font-family: "Roboto";
+    font-size: {_scrollarea_frame_content_radiotip_fontsize}px;
+    font-weight: 400;
+    line-height: 1.0;    /* qss不支持line-height */
+    color: "#FF333333";
+}
+[objectName ^= "_scrollarea_frame_content_radioflow_radiobutton"] {
+    font-family: "Roboto";
+    font-size: {_scrollarea_frame_content_radioflow_radiobutton_fontsize}px;
+    font-weight: 400;
+    line-height: 1.0;    /* qss不支持line-height */
+    color: "#FF333333";
+}
+[objectName = "_buttonbox_button0"] {
+    background-color: "#FF255CA2";
+    border-width: 1px;
+    border-radius: 2px;
+    border-color: "#FF255CA2";
+    font-family: "Roboto";
+    font-size: {_buttonbox_button_fontsize}px;
+    font-weight: 400;
+    line-height: 1.0;    /* qss不支持line-height */
+    color: "#FFFFFFFF";
+}
+
+[objectName = "_buttonbox_button1"] {
+    background-color: "#FFFFFFFF";
+    border-width: 1px;
+    border-radius: 2px;
+    border-color: "#FFC7CDD5";
+    font-family: "Roboto";
+    font-size: {_buttonbox_button_fontsize}px;
+    font-weight: 400;
+    line-height: 1.0;    /* qss不支持line-height */
+    color: "#FF000000";
+}

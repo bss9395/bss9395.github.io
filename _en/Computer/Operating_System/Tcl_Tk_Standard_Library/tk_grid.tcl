@@ -146,16 +146,59 @@
 ################################################################################
 ### 重新布局
 
+# package require Tk
+# 
+# button .btn1 -text "Button 1"
+# button .btn2 -text "Button 2"
+# grid .btn1 -row 0 -column 0
+# grid .btn2 -row 0 -column 1
+# 
+# button .rearrangeBtn -text "Rearrange" -command {
+# #    grid forget .btn1 .btn2
+#     grid .btn1 -row 1 -column 0
+#     grid .btn2 -row 2 -column 1
+# }
+# grid .rearrangeBtn -row 3 -column 0 -columnspan 2
+
+################################################################################
+### grid info
+
+# package require Tk
+# 
+# toplevel .top
+# button .top.btn -text "Clicke Me"
+# grid .top.btn -row 0 -column 0 -ipadx 10 -ipady 10
+# set info [grid info .top.btn]
+# puts $info
+
+################################################################################
+###
+
+# package require Tk
+# 
+# frame .frame
+# frame .frame.frame
+# button .frame.frame.button -text "button" -width 6 -height 2
+# 
+# pack .frame.frame.button -side top
+# pack .frame.frame
+# pack .frame
+# 
+# update
+# 
+# puts "geometry = [winfo geometry .frame.frame.button], reqheight = [winfo reqheight .frame.frame.button], reqwidth = [winfo reqwidth .frame.frame.button], height = [winfo height .frame.frame.button], width = [winfo width .frame.frame.button]"
+
+
+################################################################################
+### 
+
 package require Tk
 
-button .btn1 -text "Button 1"
-button .btn2 -text "Button 2"
-grid .btn1 -row 0 -column 0
-grid .btn2 -row 0 -column 1
+frame .frame
+button .frame.button -text "Click Me"
+pack .frame.button
+pack .frame
 
-button .rearrangeBtn -text "Rearrange" -command {
-    grid forget .btn1 .btn2
-    grid .btn1 -row 1 -column 0
-    grid .btn2 -row 1 -column 1
-}
-grid .rearrangeBtn -row 2 -column 0 -columnspan 2
+update
+
+puts "geometry = [winfo geometry .frame.button], reqheight = [winfo reqheight .frame.button], reqwidth = [winfo reqwidth .frame.button], height = [winfo height .frame.button], width = [winfo width .frame.button]"

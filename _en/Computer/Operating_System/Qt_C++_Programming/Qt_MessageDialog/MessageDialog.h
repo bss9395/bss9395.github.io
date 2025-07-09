@@ -80,10 +80,10 @@ public:
 	static void _InformationDialog(QWidget* parent, const QString& title, MessageDialog::EIcon eicon, const QString& info, const QString& button);
 	static QVector<QString> _OptionCheckDialog(QWidget* parent, const QString& title, const QString& checktip, const QVector<QString>& checkboxs, const QPair<QString, QString>& buttons);
 	static QString _OptionRadioDialog(QWidget* parent, const QString& title, const QString& radiotip, const QVector<QString>& radiobuttons, const QPair<QString, QString>& buttons);
-    static void _Test_MessageDialog(QWidget* parent = nullptr);
-	static void _Test_InformationDialog();
-	static void _Test_OptionCheckDialog();
-	static void _Test_OptionRadioDialog();
+    static void _Test_MessageDialog(QWidget* parent);
+    static void _Test_InformationDialog(QWidget* parent);
+    static void _Test_OptionCheckDialog(QWidget* parent);
+    static void _Test_OptionRadioDialog(QWidget* parent);
 
 private:
 	static const int _edge_none = 0b0000;
