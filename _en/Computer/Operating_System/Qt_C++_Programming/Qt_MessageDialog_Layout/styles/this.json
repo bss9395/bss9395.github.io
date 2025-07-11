@@ -2,7 +2,7 @@
     "###########################################################################": "",
     "_edge_length": 5,
     "_this_miniWidth": 425,     "####_this_miniWidth": "建议宽度",
-    "_this_miniHeight": 160,    "####_this_miniHeight": "建议高度",
+    "_this_miniHeight": 100,    "####_this_miniHeight": "建议高度",
     "_titlebar_height": 36,
     "_titlebar_marginL": 12,
     "_titlebar_marginR": 12,
