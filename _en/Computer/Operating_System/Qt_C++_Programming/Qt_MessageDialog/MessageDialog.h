@@ -19,6 +19,7 @@
 #include <QPainter>
 #include <QPen>
 #include <QRadioButton>
+#include <QRegularExpression>
 #include <QScreen>
 #include <QScrollArea>
 #include <QScrollBar>

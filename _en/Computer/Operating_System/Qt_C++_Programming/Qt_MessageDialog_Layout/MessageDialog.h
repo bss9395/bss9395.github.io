@@ -196,7 +196,7 @@ public:
 
                 // 居中对齐在父级顶层控件中央
                 QWidget *parentWidget = this->parentWidget();
-                QRect toplevelGeometry = (parentWidget == nullptr)? this->screen()->geometry() : parentWidget->topLevelWidget()->frameGeometry();    // frameGeometry()包含标题栏
+                QRect toplevelGeometry = (parentWidget == nullptr)? this->windowHandle()->screen()->geometry() : parentWidget->topLevelWidget()->frameGeometry();    // frameGeometry()包含标题栏
                 this->move(toplevelGeometry.x() + (toplevelGeometry.width() - this->width()) / 2, toplevelGeometry.y() + (toplevelGeometry.height() - this->height()) / 2);
             }
 
@@ -746,7 +746,7 @@ private:
 	}
 	
 public:
-    static void MessageDialog::informationDialog(QWidget* parent, const QString& title, MessageDialog::EIcon eicon, const QString& info, const QString& button) {
+    static void informationDialog(QWidget* parent, const QString& title, MessageDialog::EIcon eicon, const QString& info, const QString& button) {
         QPair<QString, QVector<QString>> checks;
         QPair<QString, QVector<QString>> radios;
         MessageDialog* messageDialog = new MessageDialog(parent, title, eicon, info, checks, radios, { button });
@@ -763,7 +763,7 @@ public:
         messageDialog->deleteLater();
     }
 
-    static QVector<QString> MessageDialog::optionCheckDialog(QWidget* parent, const QString& title, const QString& checktip, const QVector<QString>& checkboxs, const QPair<QString, QString>& buttons) {
+    static QVector<QString> optionCheckDialog(QWidget* parent, const QString& title, const QString& checktip, const QVector<QString>& checkboxs, const QPair<QString, QString>& buttons) {
         MessageDialog::EIcon eicon = MessageDialog::_eicon_question;
         QString info = "";
         QPair<QString, QVector<QString>> radios;
@@ -809,7 +809,7 @@ public:
         return options;
     }
 
-    static QString MessageDialog::optionRadioDialog(QWidget* parent, const QString& title, const QString& radiotip, const QVector<QString>& radiobuttons, const QPair<QString, QString>& buttons) {
+    static QString optionRadioDialog(QWidget* parent, const QString& title, const QString& radiotip, const QVector<QString>& radiobuttons, const QPair<QString, QString>& buttons) {
         MessageDialog::EIcon eicon = MessageDialog::_eicon_question;
         QString info = "";
         QPair<QString, QVector<QString>> checks;
@@ -838,7 +838,7 @@ public:
         return option;
     }
 
-    static void MessageDialog::_Test_MessageDialog(QWidget* parent) {
+    static void _Test_MessageDialog(QWidget* parent) {
         QString title = "Title";
         MessageDialog::EIcon eicon = MessageDialog::_eicon_information;
         QString info = "This large piece of text may be too long, so use a 425px Size Model. \nThis large piece of text may be too long, so use a 425px Size Model.";
@@ -872,16 +872,16 @@ public:
         messagedialog->deleteLater();
     }
 
-    static void MessageDialog::_Test_InformationDialog(QWidget* parent) {
+    static void _Test_InformationDialog(QWidget* parent) {
         MessageDialog::informationDialog(parent, "Title", MessageDialog::_eicon_information, "This large piece of text may be too long, so use a 425px Size Model. ", { "Ok" });
     }
 
-    static void MessageDialog::_Test_OptionCheckDialog(QWidget* parent) {
+    static void _Test_OptionCheckDialog(QWidget* parent) {
         QVector<QString> options = MessageDialog::optionCheckDialog(parent, "Title", "Do you want to save project changes? ", { "Option1", "Option2", "Option3", "Option4", "Option5", "Option6", "Option7" }, { "Ok", "Cancel" });
         qDebug() << __FUNCTION__ << ", options = " << options;
     }
 
-    static void MessageDialog::_Test_OptionRadioDialog(QWidget* parent) {
+    static void _Test_OptionRadioDialog(QWidget* parent) {
         QString option = MessageDialog::optionRadioDialog(parent, "Title", "Please select: ", { "Option1", "Option2", "Option3", "Option4", "Option5", "Option6", "Option7" }, { "Ok", "Cancel" });
         qDebug() << __FUNCTION__ << ", option = " << option;
     }

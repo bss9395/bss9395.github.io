@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/jennifer.xbel</file>
+    </qresource>
+</RCC>

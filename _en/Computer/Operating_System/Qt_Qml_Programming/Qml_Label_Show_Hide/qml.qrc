@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>main.qml</file>
-        <file>Label_Show_Hide_Count.qml</file>
-        <file>Label_Show_Hide_Line.qml</file>
-    </qresource>
-</RCC>

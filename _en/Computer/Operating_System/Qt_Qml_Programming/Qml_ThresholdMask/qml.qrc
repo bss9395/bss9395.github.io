@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>main.qml</file>
-    </qresource>
-    <qresource prefix="/images">
-        <file>bug.png</file>
-        <file>mask.png</file>
-    </qresource>
-</RCC>

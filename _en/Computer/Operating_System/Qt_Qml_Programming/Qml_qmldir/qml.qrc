@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>main.qml</file>
-        <file>Custom/qmldir</file>
-        <file>Custom/RectangleTest.qml</file>
-    </qresource>
-</RCC>

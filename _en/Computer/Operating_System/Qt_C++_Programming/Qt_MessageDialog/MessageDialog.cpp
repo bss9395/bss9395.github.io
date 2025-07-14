@@ -641,7 +641,7 @@ void MessageDialog::resizeEvent(QResizeEvent *event) {
 
         // 居中对齐在父级顶层控件中央
         QWidget *parentWidget = this->parentWidget();
-        QRect toplevelGeometry = (parentWidget == nullptr)? this->screen()->geometry() : parentWidget->topLevelWidget()->frameGeometry();
+        QRect toplevelGeometry = (parentWidget == nullptr)? this->windowHandle()->screen()->geometry() : parentWidget->topLevelWidget()->frameGeometry();
         this->move(toplevelGeometry.x() + (toplevelGeometry.width() - this->width()) / 2, toplevelGeometry.y() + (toplevelGeometry.height() - this->height()) / 2);
 	}
 

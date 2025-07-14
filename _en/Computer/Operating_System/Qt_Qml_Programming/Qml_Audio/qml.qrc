@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>main.qml</file>
-    </qresource>
-    <qresource prefix="/music">
-        <file>music.mp3</file>
-    </qresource>
-</RCC>
