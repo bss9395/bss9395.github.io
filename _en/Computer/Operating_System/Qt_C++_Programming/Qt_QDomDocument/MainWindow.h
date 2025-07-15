@@ -114,26 +114,23 @@ public:
                 item_folder->setExpanded(folder_folded);
 
 
-                QDomElement element_child = element.firstChildElement();
-                while(element_child.isNull() == false) {
-                    if(element_child.tagName() == "folder") {
-                        _Parse_Xbel(element_child, item_folder);
-                    } else if(element_child.tagName() == "bookmark") {
-                        QTreeWidgetItem* item_bookmark = new QTreeWidgetItem(item_folder);
-                        item_bookmark->setData(0, Qt::UserRole + 1, QVariant::fromValue(element_child));
-                        QDomElement element_bookmark_title = element_child.firstChildElement("title");
-                        item_bookmark->setFlags(item_bookmark->flags() | Qt::ItemIsEditable);
-                        item_bookmark->setIcon(0, _icon_bookmark);
-                        item_bookmark->setText(0, element_bookmark_title.text());
-                        item_bookmark->setText(1, element_child.attribute("href"));
-                    } else if(element_child.tagName() == "separator") {
-                        QTreeWidgetItem* item_separator = new QTreeWidgetItem(item_folder);
-                        item_separator->setData(0, Qt::UserRole + 1, QVariant::fromValue(element_child));
-                        item_separator->setFlags(item_separator->flags() & ~(Qt::ItemIsSelectable | Qt::ItemIsEditable));
-                        item_separator->setText(0, QString(30, '-'));
-                    }
-                    element_child = element_child.nextSiblingElement();
+                QDomElement element_child = element_folder_title.nextSiblingElement();
+                if(element_child.isNull() == false) {
+                    _Parse_Xbel(element_child, item_folder);
                 }
+            } else if(element.tagName() == "bookmark") {
+				QTreeWidgetItem* item_bookmark = (parent == nullptr) ? new QTreeWidgetItem(_treewidget) : new QTreeWidgetItem(parent);
+				item_bookmark->setData(0, Qt::UserRole + 1, QVariant::fromValue(element));
+                QDomElement element_bookmark_title = element.firstChildElement("title");
+                item_bookmark->setFlags(item_bookmark->flags() | Qt::ItemIsEditable);
+                item_bookmark->setIcon(0, _icon_bookmark);
+                item_bookmark->setText(0, element_bookmark_title.text());
+                item_bookmark->setText(1, element.attribute("href"));
+            } else if(element.tagName() == "separator") {
+				QTreeWidgetItem* item_separator = (parent == nullptr) ? new QTreeWidgetItem(_treewidget) : new QTreeWidgetItem(parent);
+				item_separator->setData(0, Qt::UserRole + 1, QVariant::fromValue(element));
+                item_separator->setFlags(item_separator->flags() & ~(Qt::ItemIsSelectable | Qt::ItemIsEditable));
+                item_separator->setText(0, QString(30, '-'));
             }
             element = element.nextSiblingElement();
         }
