@@ -12,6 +12,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.util.Random;
 import javax.imageio.ImageIO;
 
@@ -56,7 +57,14 @@ public class Captcha {
         double            max_height = 0.0;
         for(int i = 0; i < code.length(); i += 1) {
             bounds[i] = font.getStringBounds("" + code.charAt(i), context);
-            System.out.printf("[%s, %s, %s, %s, %s, %s, %s]%n", bounds[i].getWidth(), bounds[i].getHeight(), -bounds[i].getY(), -bounds[i].getCenterY() * 2.0, bounds[i].getHeight() - (-bounds[i].getY()), (-bounds[i].getY()) - (-bounds[i].getCenterY() * 2.0), (-bounds[i].getY() - bounds[i].getHeight() / 2.0) * 2.0);
+            System.out.printf("[%s, %s, %s, %s, %s, %s, %s]%n",
+                    bounds[i].getWidth(),
+                    bounds[i].getHeight(),
+                    -bounds[i].getY(),                                           // Y==baseline
+                    -bounds[i].getCenterY() * 2.0,                               // centerY==(baseline-overline)/2
+                    bounds[i].getHeight() - (-bounds[i].getY()),                 // descent, leading
+                    (-bounds[i].getY()) - (-bounds[i].getCenterY() * 2.0),       // descent, leading
+                    (-bounds[i].getY() - bounds[i].getHeight() / 2.0) * 2.0);    // boxHeight, centerY*2
             if(max_width < bounds[i].getWidth()) {
                 max_width = bounds[i].getWidth();
             }
@@ -65,7 +73,7 @@ public class Captcha {
             }
         }
 
-        BufferedImage image = new BufferedImage((int)(max_width * (_count * 2 + 1)), (int)(max_height * 3), BufferedImage.TYPE_INT_ARGB);
+        BufferedImage image = new BufferedImage((int)(max_width * (_count * 2 + 1)), (int)(max_height * 3), BufferedImage.TYPE_INT_ARGB);    // ã€0.5 + 0.5 + 1.0 + 0.5 + 0.5ã€‘
         System.out.printf("[%s, %s, %s, %s]%n", max_width, max_height, image.getWidth(), image.getHeight());
 
         Graphics2D graphics = image.createGraphics();
@@ -83,13 +91,14 @@ public class Captcha {
         }
 
         for(int i = 0; i < code.length(); i += 1) {
-            AffineTransform transform = new AffineTransform();
-            transform.rotate(Generator._Generate_Double(-75.0, +75.0) / 180.0 * Math.PI);
-            transform.translate(-bounds[i].getWidth() * 0.5, 0.0);
-            graphics.setFont(font.deriveFont(transform));
-            // graphics.setFont(font);
             graphics.setColor(Generator._Generate_RGBA());
-            graphics.drawString("" + code.charAt(i), (float)(max_width * (i * 2 + 1) + max_width * 0.5), (float)(max_height * 2));
+            graphics.setFont(font);
+            AffineTransform transform = new AffineTransform();
+            transform.translate((float)(max_width * 0.5 + max_width * (i * 2 + 0.5)) + bounds[i].getWidth() * 0.5, (float)(max_height * 2));
+            transform.rotate(Generator._Generate_Double(-75.0, +75.0) / 180.0 * Math.PI);    // ä»¥åŸºçº¿å·¦ä¸‹è§’ä¸ºåŽŸç‚¹
+            transform.translate(-bounds[i].getWidth() * 0.5, 0.0);
+            graphics.setTransform(transform);
+            graphics.drawString("" + code.charAt(i), 0, 0);    // ä»¥åŸºçº¿å·¦ä¸‹è§’ä¸ºåŽŸç‚¹
         }
 
         try {
@@ -126,7 +135,7 @@ public class Captcha {
 
         ////////////////////////////////////////////////////////////////////////
         // note: head string.
-        Font        font   = new Font("¿¬Ìå", Font.PLAIN,45);
+        Font        font   = new Font("æ¥·ä½“", Font.PLAIN,45);
         Rectangle2D bounds = font.getStringBounds(head, graphics.getFontRenderContext());
         double half   = bounds.getWidth() / head.length() * 0.5;
         double inner  = radius - bounds.getHeight();
@@ -146,14 +155,14 @@ public class Captcha {
 
         ////////////////////////////////////////////////////////////////////////
         // note: waist string.
-        font   = new Font("ºÚÌå", Font.BOLD, 35);
+        font   = new Font("é»‘ä½“", Font.BOLD, 35);
         bounds = font.getStringBounds(waist, graphics.getFontRenderContext());
         graphics.setFont(font);
         graphics.drawString(waist, (int)(radius - bounds.getCenterX()), (int)(radius - bounds.getCenterY()));
 
         ////////////////////////////////////////////////////////////////////////
         // note: foot string.
-        font = new Font("ËÎÌå", Font.PLAIN,40);
+        font = new Font("å®‹ä½“", Font.PLAIN,40);
         bounds = font.getStringBounds(foot, graphics.getFontRenderContext());
         graphics.setFont(font);
         graphics.drawString(foot, (int) (radius - bounds.getCenterX()), (int) (radius * 1.5 - bounds.getCenterY()));
@@ -170,6 +179,6 @@ public class Captcha {
 
     public static void main(String[] args) {
         _Captcha(5);
-        // _Seal(700, 160.0, "ÖÐ¹úÊÚÊ±ÌìÎÄÌ¨", "2023Äê05ÔÂ06ÈÕ 18Ê±08·Ö00Ãë ¶«°ËÇø", "Ê±¼ä´Á×¨ÓÃÕÂ");
+        // _Seal(700, 160.0, "ä¸­å›½æŽˆæ—¶å¤©æ–‡å°", "2023å¹´05æœˆ06æ—¥ 18æ—¶08åˆ†00ç§’ ä¸œå…«åŒº", "æ—¶é—´æˆ³ä¸“ç”¨ç« ");
     }
 }
