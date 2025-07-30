@@ -53,7 +53,7 @@ public class Java_enum {
 
     public static void main(String[] args) {
         for (var season : Season.values()) {
-            System.out.println(season);
+            System.out.println(season.ordinal() + ": " + season.name() + ": " + season);
         }
 
         Season summer = Enum.valueOf(Season.class, "_summer");

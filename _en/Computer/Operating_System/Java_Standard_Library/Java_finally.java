@@ -1,30 +1,30 @@
 /* Java_finally.java
-Author: BSS9395
-Update: 2023-05-16T19:47:00+08@China-Guangdong-Zhanjiang+08
-Design: Java Keyword: finally
+Author: bss9395
+Update: 2025-07-29T22:43:00+08@China-GuangDong-ZhanJiang+08
 */
 
 public class Java_finally {
-    public int _finally() {
-        int x = 1;
-        try {
-            return x++;
-        } finally {
-            System.out.printf("finally: x=%s%n", ++x);
+    public static void _Function() throws Throwable {
+        System.out.println("begin function.");
+        if(true) {
+            throw new Throwable("error occurred.");
         }
-    }
-    public int _finally_return() {
-        int x = 1;
-        try {
-            return x++;
-        } finally {
-            System.out.printf("finally: x=%s%n", ++x);
-            return x;
-        }
+        System.out.println("end function.");
     }
 
     public static void main(String[] args) {
-        System.out.printf("main: x=%s%n", new Java_finally()._finally());
-        System.out.printf("main: x=%s%n", new Java_finally()._finally_return());
+        try {
+            try {
+                _Function();
+            } catch (Throwable except) {
+                System.out.println("exception caught: " + except.getMessage());
+                throw except;
+            } finally {
+                System.out.println("finally executed.");
+            }
+            System.out.println("after try.");
+        } catch (Throwable except) {
+            System.out.println("outer try: " + except.getMessage());
+        }
     }
 }

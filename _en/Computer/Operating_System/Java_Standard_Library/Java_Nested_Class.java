@@ -4,7 +4,7 @@ Update: 2023-01-02T20:48:00+08@China-Shanghai+08
 Design: Java Nested Class
 */
 
-class Java_Nested_Class {
+public class Java_Nested_Class {
     private class Inner {
         private String _id = "inner";
 

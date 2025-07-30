@@ -17,7 +17,7 @@ public class Java_equals {
             if(this == object) {
                 return true;
             }
-            if(object == null || false == (object instanceof Datum)) {
+            if(object == null || (object instanceof Datum) == false) {
                 return false;
             }
 

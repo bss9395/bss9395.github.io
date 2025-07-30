@@ -56,7 +56,7 @@ public class Java_Exception {
         }
     }
     static public void _try() {
-        try(
+        try (
             BufferedReader reader = new BufferedReader(new FileReader("src/Java_Exception.java"));
         ) {
             System.out.println(reader.readLine());
@@ -65,13 +65,14 @@ public class Java_Exception {
         }
     }
     static public void _Thread() {
-        new Thread(new CustomRunnable()).start();
         try {
+            new Thread(new CustomRunnable()).start();
             for (int i = 0; i < 10000; i += 1) {
                 System.out.println(i);
                 Thread.sleep(500);
             }
-        } catch (InterruptedException exception) {
+            System.out.println("after exception occurred.");
+        } catch (Throwable exception) {
             exception.printStackTrace();
         }
     }

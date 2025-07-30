@@ -25,13 +25,13 @@ public class Java_instanceof {
 
     static public void main(String[] args) {
         Base base = new Descendant();
-        System.out.println("_id = " + base._id);
-        base._Info();
+        System.out.println("_id = " + base._id);  // 输出123.456
+        base._Info();                             // 输出9395
 
-        System.out.println(base.getClass());
+        System.out.println(base.getClass());      // 输出Descendant
         if(base instanceof Derived) {
             Derived derived = (Derived) base;
-            derived._Info();
+            derived._Info();                      // 输出9395
         }
     }
 }

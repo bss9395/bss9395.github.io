@@ -1,114 +1,112 @@
 class Student1 {
-    private int number;
+    private int _number;
 
     public int getNumber() {
-        return number;
+        return _number;
     }
 
     public void setNumber(int number) {
-        this.number = number;
+        _number = number;
     }
 }
 
 class Address2 {
-    private String add;
+    private String _address;
 
-    public String getAdd() {
-        return add;
+    public String getAddress() {
+        return _address;
     }
 
-    public void setAdd(String add) {
-        this.add = add;
+    public void setAddress(String address) {
+        _address = address;
     }
 }
 
 class Student2 implements Cloneable {
-    private int number;
+    private int _number;
+    private Address2 _address;
 
-    private Address2 addr;
-
-    public Address2 getAddr() {
-        return addr;
+    public Address2 getAddress() {
+        return _address;
     }
 
-    public void setAddr(Address2 addr) {
-        this.addr = addr;
+    public void setAddress(Address2 address) {
+        _address = address;
     }
 
     public int getNumber() {
-        return number;
+        return _number;
     }
 
     public void setNumber(int number) {
-        this.number = number;
+        _number = number;
     }
 
     @Override
     public Object clone() {
-        Student2 stu = null;
-        try{
-            stu = (Student2)super.clone();   //浅复制
-        }catch(CloneNotSupportedException e) {
+        Student2 student = null;
+        try {
+            student = (Student2)super.clone();   //浅复制
+        } catch(CloneNotSupportedException e) {
             e.printStackTrace();
         }
-        return stu;
+        return student;
     }
 }
 
 class Address3 implements Cloneable {
-    private String add;
+    private String _address;
 
-    public String getAdd() {
-        return add;
+    public String getAddress() {
+        return _address;
     }
 
-    public void setAdd(String add) {
-        this.add = add;
+    public void setAddress(String address) {
+        _address = address;
     }
 
     @Override
     public Object clone() {
-        Address3 addr = null;
-        try{
-            addr = (Address3)super.clone();
-        }catch(CloneNotSupportedException e) {
+        Address3 address = null;
+        try {
+            address = (Address3)super.clone();
+        } catch(CloneNotSupportedException e) {
             e.printStackTrace();
         }
-        return addr;
+        return address;
     }
 }
 
-class Student3 implements Cloneable{
-    private int number;
+class Student3 implements Cloneable {
+    private int _number;
+    private Address3 _address;
 
-    private Address3 addr;
-
-    public Address3 getAddr() {
-        return addr;
+    public Address3 getAddress() {
+        return _address;
     }
 
-    public void setAddr(Address3 addr) {
-        this.addr = addr;
+    public void set_address(Address3 address) {
+        _address = address;
     }
 
     public int getNumber() {
-        return number;
+        return _number;
     }
 
     public void setNumber(int number) {
-        this.number = number;
+        _number = number;
     }
 
     @Override
     public Object clone() {
-        Student3 stu = null;
-        try{
-            stu = (Student3)super.clone();   //浅复制
-        }catch(CloneNotSupportedException e) {
+        Student3 student = null;
+        try {
+            student = (Student3)super.clone();   //浅复制
+        } catch(CloneNotSupportedException e) {
             e.printStackTrace();
         }
-        stu.addr = (Address3)addr.clone();   //深度复制
-        return stu;
+        student._address = (Address3) _address.clone();   //深度复制
+        return student;
     }
 }
 
@@ -124,34 +122,34 @@ public class Java_clone {
 
     public static void Test_ShadowClone() {
         Address2 addr = new Address2();
-        addr.setAdd("杭州市");
+        addr.setAddress("杭州市");
         Student2 stu1 = new Student2();
         stu1.setNumber(123);
-        stu1.setAddr(addr);
+        stu1.setAddress(addr);
 
         Student2 stu2 = (Student2)stu1.clone();
-        System.out.println("学生1:" + stu1.getNumber() + ",地址:" + stu1.getAddr().getAdd());
-        System.out.println("学生2:" + stu2.getNumber() + ",地址:" + stu2.getAddr().getAdd());
+        System.out.println("学生1: " + stu1.getNumber() + ", 地址: " + stu1.getAddress().getAddress());
+        System.out.println("学生2: " + stu2.getNumber() + ", 地址: " + stu2.getAddress().getAddress());
 
-        addr.setAdd("西湖区");
-        System.out.println("学生1:" + stu1.getNumber() + ",地址:" + stu1.getAddr().getAdd());
-        System.out.println("学生2:" + stu2.getNumber() + ",地址:" + stu2.getAddr().getAdd());
+        addr.setAddress("西湖区");
+        System.out.println("学生1: " + stu1.getNumber() + ", 地址: " + stu1.getAddress().getAddress());
+        System.out.println("学生2: " + stu2.getNumber() + ", 地址: " + stu2.getAddress().getAddress());
     }
 
     public static void Test_DeepClone() {
         Address3 addr = new Address3();
-        addr.setAdd("杭州市");
+        addr.setAddress("杭州市");
         Student3 stu1 = new Student3();
         stu1.setNumber(123);
-        stu1.setAddr(addr);
+        stu1.set_address(addr);
 
         Student3 stu2 = (Student3)stu1.clone();
-        System.out.println("学生1:" + stu1.getNumber() + ",地址:" + stu1.getAddr().getAdd());
-        System.out.println("学生2:" + stu2.getNumber() + ",地址:" + stu2.getAddr().getAdd());
+        System.out.println("学生1:" + stu1.getNumber() + ",地址:" + stu1.getAddress().getAddress());
+        System.out.println("学生2:" + stu2.getNumber() + ",地址:" + stu2.getAddress().getAddress());
 
-        addr.setAdd("西湖区");
-        System.out.println("学生1:" + stu1.getNumber() + ",地址:" + stu1.getAddr().getAdd());
-        System.out.println("学生2:" + stu2.getNumber() + ",地址:" + stu2.getAddr().getAdd());
+        addr.setAddress("西湖区");
+        System.out.println("学生1:" + stu1.getNumber() + ",地址:" + stu1.getAddress().getAddress());
+        System.out.println("学生2:" + stu2.getNumber() + ",地址:" + stu2.getAddress().getAddress());
     }
 
     public static void main(String[] args) {
