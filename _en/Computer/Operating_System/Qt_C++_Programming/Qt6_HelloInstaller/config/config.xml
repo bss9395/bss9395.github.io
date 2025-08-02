@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>Hello World</Name>
+    <Version>1.0.0</Version>
+    <Title>Hello World Created by Qt 6</Title>
+    <Publisher>bss9395</Publisher>
+    <StartMenuDir>Hello Samples</StartMenuDir>
+    <TargetDir>@HomeDir@/Hello Samples</TargetDir>
+    <CreateLocalRepository>true</CreateLocalRepository>
+    <WizardStyle>Aero</WizardStyle>
+    <WizardShowPageList>true</WizardShowPageList>
+        <WizardDefaultWidth>650</WizardDefaultWidth>
+        <WizardDefaultHeight>430</WizardDefaultHeight>
+</Installer>
