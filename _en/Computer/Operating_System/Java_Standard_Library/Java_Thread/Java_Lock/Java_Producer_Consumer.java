@@ -14,27 +14,21 @@ public class Java_Producer_Consumer {
         }
 
         synchronized public void _Draw(double amount)
-            throws InterruptedException {
-            if (amount <= _balance) {
-                double balance = _balance;
-                _balance = _balance - amount;
-                System.out.printf("%s: %f - %f = %f%n", Thread.currentThread().getName(), balance, amount, _balance);
-                notifyAll();
-            } else {
+                throws InterruptedException {
+            while((amount <= _balance) == false) {
                 wait();
             }
+            double balance = _balance;
+            _balance = _balance - amount;
+            System.out.printf("%s: %f - %f = %f%n", Thread.currentThread().getName(), balance, amount, _balance);
         }
 
         synchronized public void _Deposit(double amount)
-            throws InterruptedException {
-            if(_balance < amount) {
-                double balance = _balance;
-                _balance = _balance + amount;
-                System.out.printf("%s: %f + %f = %f%n", Thread.currentThread().getName(), balance, amount, _balance);
-                notifyAll();
-            } else {
-                wait();
-            }
+                throws InterruptedException {
+            double balance = _balance;
+            _balance = _balance + amount;
+            System.out.printf("%s: %f + %f = %f%n", Thread.currentThread().getName(), balance, amount, _balance);
+            notifyAll();
         }
     }
 
@@ -53,6 +47,7 @@ public class Java_Producer_Consumer {
             try {
                 for(int i = 0; i < 100; i += 1) {
                     _account._Draw(_amount);
+                    Thread.sleep(1);  // synchronized性能逊于ReentrantLock
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -75,6 +70,7 @@ public class Java_Producer_Consumer {
             try {
                 for(int i = 0; i < 100; i += 1) {
                     _account._Deposit(_amount);
+                    Thread.sleep(1);  // synchronized性能逊于ReentrantLock
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -88,9 +84,8 @@ public class Java_Producer_Consumer {
     static public void _Draw_Deposit() {
         Account account = new Account("1156", 0);
         new Java_Draw   ("Draw-0   ", account, 800).start();
-        new Java_Draw   ("Draw-1   ", account, 800).start();
         new Java_Deposit("Deposit-0", account, 800).start();
+        new Java_Draw   ("Draw-1   ", account, 800).start();
         new Java_Deposit("Deposit-1", account, 800).start();
-        new Java_Deposit("Deposit-2", account, 800).start();
     }
 }

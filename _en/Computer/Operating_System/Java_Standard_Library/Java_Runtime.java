@@ -1,26 +1,40 @@
 /* Java_Runtime.java
-Author: BSS9395
-Update: 2023-01-08T20:25:00+08@China-Shanghai+08
-Design: Ja
+Author: bss9395
+Update: 2025-08-04T19:47:00+08@China-GuangDong-ZhanJiang+08
 */
 
 import java.io.IOException;
 
 public class Java_Runtime {
     static public void main(String[] args) {
-        // _getRuntime();
-        _exec();
+        // _Test_getRuntime();
+        _Test_exec();
     }
-    static public void _getRuntime() {
-        System.out.println("static public void _getRuntime() {");
-        Runtime runtime = Runtime.getRuntime();
-        System.out.printf("%30s: %s %n", "availableProcessors()", runtime.availableProcessors());
-        System.out.printf("%30s: %s %n", "maxMemory()", runtime.maxMemory());
-        System.out.printf("%30s: %s %n", "totalMemory()", runtime.totalMemory());
-        System.out.printf("%30s: %s %n", "freeMemory()", runtime.freeMemory());
+    static public void _Test_getRuntime() {
+        Runtime run = Runtime.getRuntime();
+        System.out.println("availableProcessors = " + run.availableProcessors());
+        System.out.println("maxMemory = " + run.maxMemory());
+        System.out.println("totalMemory = " + run.totalMemory());
+        System.out.println("freeMemory = " + run.freeMemory());
+
+        System.out.println("----------------------------------------");
+        String str = "";
+        for(int i = 0; i < 30000; i += 1) {
+            str += i;
+        }
+        System.out.println("availableProcessors = " + run.availableProcessors());
+        System.out.println("maxMemory = " + run.maxMemory());
+        System.out.println("totalMemory = " + run.totalMemory());
+        System.out.println("freeMemory = " + run.freeMemory());
+
+        System.out.println("----------------------------------------");
+        run.gc();
+        System.out.println("availableProcessors = " + run.availableProcessors());
+        System.out.println("maxMemory = " + run.maxMemory());
+        System.out.println("totalMemory = " + run.totalMemory());
+        System.out.println("freeMemory = " + run.freeMemory());
     }
-    static public void _exec() {
-        System.out.println("static public void _exec() {");
+    static public void _Test_exec() {
         try {
             Runtime runtime = Runtime.getRuntime();
             runtime.exec("notepad.exe");

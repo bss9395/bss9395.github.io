@@ -44,6 +44,7 @@ public class Java_Thread_State {
                     try {
                         System.out.printf("begin %s%n", Thread.currentThread().getName());
                         Thread.currentThread().suspend(); // note: don't release current lock, and transfer current thread to blocked state.
+                        System.out.printf("run: getState()=%s, %s%n", Thread.currentThread().getState(), Thread.currentThread().getName());
                         Thread.sleep(3000);
                         System.out.printf("end %s%n", Thread.currentThread().getName());
                     } catch (Exception exception) {
@@ -54,7 +55,7 @@ public class Java_Thread_State {
         };
         thread.start();
         Thread.sleep(1000);
-        System.out.printf("getState()=%s, %s%n", thread.getState(), thread.getName());
+        System.out.printf("main: getState()=%s, %s%n", thread.getState(), thread.getName());
         thread.resume();
         synchronized (lock) {
             System.out.printf("begin %s%n", Thread.currentThread().getName());

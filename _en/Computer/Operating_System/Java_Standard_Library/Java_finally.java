@@ -4,18 +4,12 @@ Update: 2025-07-29T22:43:00+08@China-GuangDong-ZhanJiang+08
 */
 
 public class Java_finally {
-    public static void _Function() throws Throwable {
-        System.out.println("begin function.");
-        if(true) {
-            throw new Throwable("error occurred.");
-        }
-        System.out.println("end function.");
-    }
-
-    public static void main(String[] args) {
+    public static void _Test_finally() {
         try {
             try {
-                _Function();
+                if(true) {
+                    throw new Throwable("error occurred.");
+                }
             } catch (Throwable except) {
                 System.out.println("exception caught: " + except.getMessage());
                 throw except;
@@ -26,5 +20,28 @@ public class Java_finally {
         } catch (Throwable except) {
             System.out.println("outer try: " + except.getMessage());
         }
+    }
+
+    public int _finally() {
+        int x = 1;
+        try {
+            return x++;
+        } finally {
+            System.out.printf("finally: x=%s%n", ++x);
+        }
+    }
+    public int _finally_return() {
+        int x = 1;
+        try {
+            return x++;
+        } finally {
+            System.out.printf("finally: x=%s%n", ++x);
+            return x;
+        }
+    }
+    public static void main(String[] args) {
+        // _Test_finally();
+        System.out.printf("main: x=%s%n", new Java_finally()._finally());
+        System.out.printf("main: x=%s%n", new Java_finally()._finally_return());
     }
 }

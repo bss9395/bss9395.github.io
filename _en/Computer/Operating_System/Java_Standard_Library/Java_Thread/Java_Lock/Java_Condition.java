@@ -21,34 +21,28 @@ public class Java_Condition {
         }
 
         public void _Deposit(double amount)
-            throws InterruptedException {
+                throws InterruptedException {
             _lock.lock();
             try {
-                if(_balance < amount) {
-                    double balance = _balance;
-                    _balance = _balance + amount;
-                    System.out.printf("%s: %f + %f = %f%n", Thread.currentThread().getName(), balance, amount, _balance);
-                    _condition.signalAll();
-                } else {
-                    _condition.await();
-                }
+                double balance = _balance;
+                _balance = _balance + amount;
+                System.out.printf("%s: %f + %f = %f%n", Thread.currentThread().getName(), balance, amount, _balance);
+                _condition.signalAll();
             } finally {
                 _lock.unlock();
             }
         }
 
         public void _Draw(double amount)
-            throws InterruptedException {
+                throws InterruptedException {
             _lock.lock();
             try {
-                if (amount <= _balance) {
-                    double balance = _balance;
-                    _balance = _balance - amount;
-                    System.out.printf("%s: %f - %f = %f%n", Thread.currentThread().getName(), balance, amount, _balance);
-                    _condition.signalAll();
-                } else {
+                while((amount <= _balance) == false) {
                     _condition.await();
                 }
+                double balance = _balance;
+                _balance = _balance - amount;
+                System.out.printf("%s: %f - %f = %f%n", Thread.currentThread().getName(), balance, amount, _balance);
             } finally {
                 _lock.unlock();
             }
@@ -101,9 +95,8 @@ public class Java_Condition {
     static public void _Draw_Deposit() {
         Account account = new Account("1156", 0);
         new Java_Draw   ("Draw-0   ", account, 800).start();
-        new Java_Draw   ("Draw-1   ", account, 800).start();
         new Java_Deposit("Deposit-0", account, 800).start();
+        new Java_Draw   ("Draw-1   ", account, 800).start();
         new Java_Deposit("Deposit-1", account, 800).start();
-        new Java_Deposit("Deposit-2", account, 800).start();
     }
 }
