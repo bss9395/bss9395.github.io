@@ -1,0 +1,14 @@
+{
+"_windowmain": {
+	"_title": "主窗口标题",
+	"_label": "主窗口欢迎您！"
+},
+"_windowminor": {
+	"_title": "次窗口标题",
+	"_label": "次窗口欢迎您！"
+},
+"_windowpopup": {
+	"_title": "弹窗口标题",
+	"_label": "弹窗口欢迎您！"
+}
+}

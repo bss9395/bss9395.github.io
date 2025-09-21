@@ -1,0 +1,14 @@
+{
+"_windowmain": {
+	"_title": "WindowMain Title",
+	"_label": "WindowMain Welcome You!"
+},
+"_windowminor": {
+	"_title": "WindowMinor Title",
+	"_label": "WindowMinor Welcome You!"
+},
+"_windowpopup": {
+	"_title": "WindowPopup Title",
+	"_label": "WindowPopup Welcome You!"
+}
+}
