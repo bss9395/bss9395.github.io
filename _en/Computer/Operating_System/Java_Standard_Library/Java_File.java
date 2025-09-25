@@ -9,18 +9,36 @@ import java.io.IOException;
 
 public class Java_File {
     static public void main(String[] args) {
-        // _File();
-        _TempFile();
+        _File();
+        // _mkdirs();
+        // _TempFile();
         // _exists();
         // _list();
         // _listRoots();
     }
     static public void _File() {
-        File file = new File("abc.text");
+        File file = new File("abcd.text");
         System.out.println(file.getName());
         System.out.println(file.getParent());
         System.out.println(file.getAbsoluteFile());
         System.out.println(file.getAbsoluteFile().getParent());
+        System.out.println(file.canRead());
+        System.out.println(file.canWrite());
+        System.out.println(file.canExecute());
+        System.out.println(file.isDirectory());
+        System.out.println(file.isFile());
+    }
+    static public void _mkdirs() {
+        File file = new File("directory/abc.text");
+        File parent = file.getParentFile();
+        if(parent.exists() == false) {
+            parent.mkdirs();
+        }
+        try {
+            file.createNewFile();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
     static public void _TempFile() {
         try {

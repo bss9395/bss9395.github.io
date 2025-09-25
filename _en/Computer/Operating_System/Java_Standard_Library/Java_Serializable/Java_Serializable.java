@@ -21,46 +21,16 @@ public class Java_Serializable {
         public String toString() {
             return String.format("[%s: %s]", _id, _name);
         }
-        public void set_id(String id) {
-            _id = id;
-        }
-        public String get_id() {
-            return _id;
-        }
-        public void set_name(String name) {
-            _name = name;
-        }
-        public String get_name() {
-            return _name;
-        }
     }
     static public class Data implements java.io.Serializable {
         static final private long serialVersionUID = 9395L;
         public String _id;
-        public transient String _name;
+        public transient String _name;  // 不序列化
         public Datum _datum;
         public Data(String id, String name, Datum datum) {
             _id = id;
             _name = name;
             _datum = datum;
-        }
-        public void set_id(String id) {
-            _id = id;
-        }
-        public String get_id() {
-            return _id;
-        }
-        public void set_name(String name) {
-            _name = name;
-        }
-        public String get_name() {
-            return _name;
-        }
-        public void set_datum(Datum datum) {
-            _datum = datum;
-        }
-        public Datum get_datum() {
-            return _datum;
         }
     }
 
@@ -112,9 +82,10 @@ public class Java_Serializable {
             Data data_1 = (Data) stream.readObject();
             Data data_2 = (Data) stream.readObject();
 
-            System.out.println(datum == data_0.get_datum());
+            System.out.println(datum == data_0._datum);
             System.out.println(data_0 == data_1);
-            System.out.println(data_1.get_datum() == data_2.get_datum());
+            System.out.println(data_1._datum == data_2._datum);
+            System.out.println(data_0._datum._name);
         } catch (IOException exception) {
             exception.printStackTrace();
         } catch (ClassNotFoundException exception) {
@@ -126,14 +97,14 @@ public class Java_Serializable {
             ObjectInputStream input = new ObjectInputStream(new FileInputStream("object.data"));) {
             Datum datum = new Datum("1156", "BSS9395");
             output.writeObject(datum);
-            datum.set_name("Brilliant");
+            datum._name = "Brilliant";
             output.writeObject(datum);
 
             Datum datum_0 = (Datum)input.readObject();
             Datum datum_1 = (Datum)input.readObject();
             System.out.println(datum_0 == datum_1);
-            System.out.println(datum_0.get_name());
-            System.out.println(datum_1.get_name());
+            System.out.println(datum_0._name);  // 输出BSS9395
+            System.out.println(datum_1._name);  // 输出BSS9395
         } catch(FileNotFoundException exception) {
             exception.printStackTrace();
         } catch(IOException exception) {
