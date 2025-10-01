@@ -1,24 +1,67 @@
 /* Java_Singleton.java
 Author: bss9395
-Update: 2025-07-29T16:01:00+08@China-GuangDong-ZhanJiang+08
+Update: 2025/09/25T21:37:00+08@China-GuangDong-ZhanJiang+08
 */
 
-class Singleton {
-    private static Singleton _instance = new Singleton();
-    public static Singleton _Instance() {
-        return _instance;
+public class Java_Singleton {
+    static public void main(String[] args) {
+        // _Test_Singleton0();
+        _Test_Singleton1();
     }
-    private Singleton() {
 
+    static public void _Test_Singleton0() {
+        for(int i = 0; i < 3; i += 1) {
+            new Thread(() -> {
+                Singleton0._Instance()._Print();
+            }, "单例" + i).start();
+        }
     }
-    public void print() {
-        System.out.println("Singleton.print()");
+
+    static public void _Test_Singleton1() {
+        for(int i = 0; i < 3; i += 1) {
+            new Thread(() -> {
+                Singleton1._Instance()._Print();
+            }, "单例" + i).start();
+        }
     }
 }
 
-public class Java_Singleton {
-    public static void main(String[] args) {
-        Singleton instance = Singleton._Instance();
-        instance.print();
+class Singleton0 {
+    static private Singleton0 _instance = new Singleton0();
+
+    static public Singleton0 _Instance() {
+        return _instance;
+    }
+
+    private Singleton0() {
+        System.out.println("[" + Thread.currentThread().getName() + "]");
+    }
+
+    public void _Print() {
+        System.out.println("hello!");
+    }
+}
+
+
+class Singleton1 {
+    static private volatile Singleton1 _instance = null;
+
+    static public Singleton1 _Instance() {
+        if(_instance == null) {
+            synchronized (Singleton1.class) {
+                if(_instance == null) {
+                    _instance = new Singleton1();
+                }
+            }
+        }
+        return _instance;
+    }
+
+    private Singleton1() {
+        System.out.println("[" + Thread.currentThread().getName() + "]");
+    }
+
+    public void _Print() {
+        System.out.println("hello!");
     }
 }

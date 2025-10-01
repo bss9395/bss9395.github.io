@@ -4,8 +4,8 @@ Update: 2023-01-22T14:32:00+08@China-Shanghai+08
 Design: Java Standard Library: TreeSet
 */
 
-import com.sun.source.util.Trees;
-
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 public class Java_TreeSet {
@@ -16,6 +16,11 @@ public class Java_TreeSet {
         }
         @Override
         public int compareTo(Datum datum) {
+            if(_id == null && datum._id != null) {
+                return -1;
+            } else if(_id != null && datum._id == null) {
+                return +1;
+            }
             return _id.compareTo(datum._id);
         }
         @Override
@@ -35,8 +40,9 @@ public class Java_TreeSet {
     }
     static public void main(String[] args) {
         // _TreeSet();
+        _remove();
         // _compareTo();
-        _comparator();
+        // _comparator();
     }
     static public void _TreeSet() {
         TreeSet<String> langs = new TreeSet<String>();
@@ -53,12 +59,30 @@ public class Java_TreeSet {
         System.out.println(langs.tailSet("C++"));
         System.out.println(langs.subSet("C#", "Java"));
     }
+    static public void _remove() {
+        TreeSet<String> langs = new TreeSet<String>();
+        langs.add("C");
+        langs.add("C++");
+        langs.add("C#");
+        langs.add("Java");
+        langs.add("Python");
+        System.out.println(langs);
+
+        Iterator<String> iterator = langs.iterator();
+        while(iterator.hasNext()) {
+            String lang = iterator.next();
+            if(lang.equals("C#")) {
+                iterator.remove();
+            }
+        }
+        System.out.println(langs);
+    }
     static public void _compareTo() {
         Datum datum = new Datum("1156");
         TreeSet<Datum> set = new TreeSet<Datum>();
         set.add(datum);
         System.out.println(set.add(datum));
-        System.out.println(set);
+        System.out.println(Arrays.toString(set.toArray()));
 
         System.out.println(set.first()._id);
         System.out.println(set.last()._id);
@@ -71,7 +95,7 @@ public class Java_TreeSet {
             if(lhs == rhs) {
                 return 0;
             }
-            return (((Datum)lhs)._id.compareTo(((Datum)rhs)._id));
+            return (lhs._id.compareTo(rhs._id));
         });
         langs.add(new Datum("C"));
         langs.add(new Datum("C++"));

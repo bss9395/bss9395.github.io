@@ -5,10 +5,12 @@ Design: Java Standard Library: LinkedList
 */
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class Java_LinkedList {
     static public void main(String[] args) {
-        _LinkedList();
+        // _LinkedList();
+        _ListIterator();
     }
     static public void _LinkedList() {
         LinkedList<String> langs = new LinkedList<String>();
@@ -26,5 +28,24 @@ public class Java_LinkedList {
         System.out.println(langs.pollFirst());
         System.out.println(langs.pollLast());
         System.out.println(langs);
+    }
+    static public void _ListIterator() {
+        LinkedList<String> langs = new LinkedList<String>();
+        langs.addFirst("C");
+        langs.addLast("C++");
+        langs.addLast("C#");
+        langs.addLast("Java");
+        langs.addLast("Python");
+        System.out.println(langs);
+
+        ListIterator<String> iterator = langs.listIterator();
+        while(iterator.hasNext()) {
+            System.out.print(iterator.next() + ", ");
+        }
+        System.out.println();
+        while(iterator.hasPrevious()) {
+            System.out.print(iterator.previous() + ", ");
+        }
+        System.out.println();
     }
 }

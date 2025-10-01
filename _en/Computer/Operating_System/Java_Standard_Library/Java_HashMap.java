@@ -67,7 +67,7 @@ public class Java_HashMap {
         langs.put("Python", 70);
         System.out.println(langs);
 
-        langs.put(null, null);
+        langs.put(null, null);  // 不存储
         langs.put(null, 100);
         langs.put("Matlab", null);
         System.out.println(langs);

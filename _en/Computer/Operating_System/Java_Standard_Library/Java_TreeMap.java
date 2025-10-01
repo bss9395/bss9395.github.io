@@ -4,6 +4,9 @@ Update: 2023-01-28T21:51:00+08@China-Shanghai+08
 Design: Java Standard Library: TreeMap
 */
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class Java_TreeMap {
@@ -12,9 +15,16 @@ public class Java_TreeMap {
         public Datum(String id) {
             _id = id;
         }
+
+        @Override
+        public int hashCode() {
+            System.out.println("public int hashCode() {");
+            return super.hashCode();
+        }
+
         @Override
         public int compareTo(Datum datum) {
-            System.out.printf("_id=%s, Datum.compareTo(); %n", _id);
+            // System.out.printf("_id=%s, Datum.compareTo(); %n", _id);
             if(this == datum) {
                 return 0;
             }
@@ -34,6 +44,7 @@ public class Java_TreeMap {
             return String.format("Java_Tree$Datum@%s", _id);
         }
     }
+
     static class Derived extends Datum {
         public String _id = "";
         public Derived(String id) {
@@ -42,13 +53,17 @@ public class Java_TreeMap {
 
         @Override
         public int compareTo(Datum datum) {
-            System.out.println("Type.compareTo();");
+            // System.out.println("Type.compareTo();");
             return super.compareTo(datum);
         }
     }
+
     static public void main(String[] args) {
-        _TreeMap();
+        // _TreeMap();
+        // _Iterator();
+        _foreach();
     }
+
     static public void _TreeMap() {
         TreeMap<Datum, String> map = new TreeMap<Datum, String>();
         map.put(new Datum("1156"), "BSS9395");
@@ -63,5 +78,36 @@ public class Java_TreeMap {
         System.out.println(map.higherEntry(new Datum("1157")));
         System.out.println(map.lowerEntry(new Datum("1157")));
         System.out.println(map.subMap(new Datum("1157"), new Datum("1159")));
+    }
+
+    static public void _Iterator() {
+        TreeMap<Datum, String> map = new TreeMap<Datum, String>();
+        map.put(new Datum("1156"), "BSS9395");
+        map.put(new Datum("1157"), "Maker");
+        map.put(new Datum("1158"), "Brilliant");
+        map.put(new Datum("1159"), "Emperor");
+        map.put(new Derived("1160"), "BSS9395");
+        System.out.println(map);
+
+        Set<Map.Entry<Datum, String>> set = map.entrySet();
+        Iterator<Map.Entry<Datum, String>> iterator = set.iterator();
+        while(iterator.hasNext()) {
+            Map.Entry<Datum, String> entry = iterator.next();
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+        }
+    }
+
+    static public void _foreach() {
+        TreeMap<Datum, String> map = new TreeMap<Datum, String>();
+        map.put(new Datum("1156"), "BSS9395");
+        map.put(new Datum("1157"), "Maker");
+        map.put(new Datum("1158"), "Brilliant");
+        map.put(new Datum("1159"), "Emperor");
+        map.put(new Derived("1160"), "BSS9395");
+        System.out.println(map);
+
+        for(Map.Entry<Datum, String> entry: map.entrySet()) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+        }
     }
 }
