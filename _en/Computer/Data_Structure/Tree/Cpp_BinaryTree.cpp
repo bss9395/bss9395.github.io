@@ -1,86 +1,401 @@
 /* Cpp_BinaryTree.cpp
 Author: bss9395
-Update: 2025/09/23T21:26:00+08@China-GuangDong-ZhanJiang+08
+Update: 2025-10-02T20:56:00+08@China-GuangDong-ZhanJiang+08
 */
 
-#include <iostream>
-#include <string>
-#include <queue>
-#include <vector>
+#include<iostream>
+#include<string>
+#include<vector>
+#include<algorithm>
+#include<functional>
+#include<stack>
+#include<queue>
+#include<map>
 using namespace std;
 
-struct Person {
-	string _name = "";
-	int _age = 0;
-
-	Person() {
-
-	}
-	Person(const string& name, int age) {
-		_name = name;
-		_age = age;
-	}
-
-	friend bool operator==(const Person &lhs, const Person &rhs) {
-		return (lhs._name == rhs._name && lhs._age == rhs._age);
-	}
-	friend bool operator!=(const Person &lhs, const Person &rhs) {
-		return !(lhs._name == rhs._name && lhs._age == rhs._age);
-	}
-
-	friend bool operator <(const Person &lhs, const Person &rhs) {
-		return (lhs._age < rhs._age);
-	}
-
-	friend ostream &operator<<(ostream &os, const Person &that) {
-		os << "Datum{" << that._name << ", " << that._age << "}";
-		return os;
-	}
-};
-
-template<typename Datum>
-class BinaryTree {
-public:
+template<typename Key_, typename Value_>
+struct BinaryTree {
 	struct Node {
-		Node *_parent = nullptr;
-		Node *_left = nullptr;
-		Node *_right = nullptr;
-		Datum _datum;
+		Key_   _key = Key_();
+		Value_ _value = Value_();
+		Node* _parent = nullptr;
+		Node* _left = nullptr;
+		Node* _right = nullptr;
+		Node* _prev = nullptr;
+		Node* _next = nullptr;
 
-		explicit Node(const Datum &datum) {
-			_datum = datum;
+		Node() {
+
+		}
+		Node(const Key_ &key) {
+			_key = key;
+		}
+		Node(const Key_ &key, const Value_ &value) {
+			_key = key;
+			_value = value;
+		}
+		virtual ~Node() {
+
+		}
+
+		friend ostream &operator<<(ostream &os, const Node &that) {
+			os << "{" << that._parent->_key << "|" << that._key << ":" << that._value << "}";
+			return os;
 		}
 	};
-	Node _root = Node(Datum("", 0));
-	int _size = 0;
 
-	BinaryTree(const vector<Datum> data) {
-		vector<Node*> nodes;
-		for (int i = 0; i < data.size(); i += 1) {
-			nodes.push_back(new Node(data[i]));
+	struct PreorderIterator {
+		stack<Node *> _stack;
+		Node *_curr = nullptr;
+
+		PreorderIterator() {
+
+		}
+		PreorderIterator(Node *root) {
+			if (root == nullptr) {
+				_curr = nullptr;
+				return;
+			}
+			_stack.push(root);
+			operator++();
 		}
 
-		const Datum Null = data[0];
-		for (int node = 0, end = (int)data.size() / 2; node <= end; node += 1) {
-			if (node * 2 < data.size() && nodes[node * 2]->_datum != Null) {
+		PreorderIterator &operator++() {
+			if (_stack.empty() == true) {
+				_curr = nullptr;
+				return (*this);
+			}
+			_curr = _stack.top();
+			_stack.pop();
+			if (_curr->_right != nullptr) {
+				_stack.push(_curr->_right);
+			}
+			if (_curr->_left != nullptr) {
+				_stack.push(_curr->_left);
+			}
+			return (*this);
+		}
+		PreorderIterator operator++(int) {
+			PreorderIterator temp = (*this);
+			++(*this);
+			return temp;
+		}
+
+		bool operator==(const PreorderIterator& iter) const {
+			return (_curr == iter._curr);
+		}
+
+		bool operator!=(const PreorderIterator& iter) const {
+			return (_curr != iter._curr);
+		}
+
+		Node &operator*() {
+			return (*_curr);
+		}
+		Node *operator->() {
+			return &(operator*());
+		}
+	};
+
+	struct InorderIterator {
+		stack<Node *> _stack;
+		Node *_curr = nullptr;
+
+		InorderIterator() {
+
+		}
+		InorderIterator(Node *root) {
+			if (root == nullptr) {
+				_curr = nullptr;
+				return;
+			}
+			while (root != nullptr) {
+				_stack.push(root);
+				root = root->_left;
+			}
+			operator++();
+		}
+
+		InorderIterator &operator++() {
+			if (_stack.empty() == true) {
+				_curr = nullptr;
+				return (*this);
+			}
+			_curr = _stack.top();
+			_stack.pop();
+			Node *root = _curr->_right;
+			while (root != nullptr) {
+				_stack.push(root);
+				root = root->_left;
+			}
+			return (*this);
+		}
+		InorderIterator operator++(int) {
+			InorderIterator temp = (*this);
+			++(*this);
+			return temp;
+		}
+
+		bool operator==(const InorderIterator &iter) const {
+			return (_curr == iter._curr);
+		}
+
+		bool operator!=(const InorderIterator &iter) const {
+			return (_curr != iter._curr);
+		}
+
+		Node &operator*() {
+			return (*_curr);
+		}
+		Node *operator->() {
+			return &(operator*());
+		}
+	};
+
+	struct PostorderIterator {
+		stack<Node*> _stack;
+		Node *_curr = nullptr;
+
+		PostorderIterator() {
+
+		}
+		PostorderIterator(Node* root) {
+			if (root == nullptr) {
+				_curr = nullptr;
+				return;
+			}
+			stack<Node*> temp;
+			temp.push(root);
+			while (temp.empty() == false) {
+				Node* node = temp.top();
+				temp.pop();
+				_stack.push(node);
+				if (node->_left != nullptr) {
+					temp.push(node->_left);
+				}
+				if (node->_right != nullptr) {
+					temp.push(node->_right);
+				}
+			}
+			operator++();
+		}
+
+		PostorderIterator& operator++() {
+			if (_stack.empty() == true) {
+				_curr = nullptr;
+				return (*this);
+			}
+			_curr = _stack.top();
+			_stack.pop();
+			return (*this);
+		}
+		PostorderIterator operator++(int) {
+			PostorderIterator temp = (*this);
+			++(*this);
+			return temp;
+		}
+
+		bool operator==(const PostorderIterator& iter) const {
+			return (_curr == iter._curr);
+		}
+		bool operator!=(const PostorderIterator& iter) const {
+			return (_curr != iter._curr);
+		}
+
+		Node &operator*() {
+			return (*_curr);
+		}
+		Node *operator->() {
+			return &(operator*());
+		}
+	};
+
+	struct LevelorderIterator {
+		queue<Node*> _queue;
+		Node* _curr = nullptr;
+
+		LevelorderIterator() {
+
+		}
+		LevelorderIterator(Node* root) {
+			if (root == nullptr) {
+				return;
+			}
+			_queue.push(root);
+			operator++();
+		}
+
+		LevelorderIterator& operator++() {
+			if (_queue.empty() == true) {
+				_curr = nullptr;
+			} else {
+				_curr = _queue.front();
+				_queue.pop();
+				if (_curr->_left != nullptr) {
+					_queue.push(_curr->_left);
+				}
+				if (_curr->_right != nullptr) {
+					_queue.push(_curr->_right);
+				}
+			}
+			return (*this);
+		}
+		LevelorderIterator operator++(int) {
+			LevelorderIterator temp = (*this);
+			++(*this);
+			return temp;
+		}
+
+		bool operator==(const LevelorderIterator& iter) const {
+			return (_curr == iter._curr);
+		}
+		bool operator!=(const LevelorderIterator& iter) const {
+			return (_curr != iter._curr);
+		}
+
+		Node &operator*() {
+			return (*_curr);
+		}
+		Node *operator->() {
+			return &(operator*());
+		}
+	};
+
+	struct CircularDoublyLinkedIterator {
+		Node* _curr = nullptr;
+
+		CircularDoublyLinkedIterator() {
+
+		}
+		CircularDoublyLinkedIterator(Node* curr) {
+			_curr = curr;
+		}
+
+		CircularDoublyLinkedIterator& operator++() {
+			_curr = _curr->_next;
+			return (*this);
+		}
+		CircularDoublyLinkedIterator operator++(int) {
+			CircularDoublyLinkedIterator temp = (*this);
+			++(*this);
+			return temp;
+		}
+		CircularDoublyLinkedIterator& operator--() {
+			_curr = _curr->_prev;
+			return (*this);
+		}
+		CircularDoublyLinkedIterator operator--(int) {
+			CircularDoublyLinkedIterator temp = (*this);
+			--(*this);
+			return temp;
+		}
+
+		bool operator==(const CircularDoublyLinkedIterator& iter) const {
+			return (_curr == iter._curr);
+		}
+		bool operator!=(const CircularDoublyLinkedIterator& iter) const {
+			return (_curr != iter._curr);
+		}
+
+		Node &operator*() {
+			return (*_curr);
+		}
+		Node *operator->() {
+			return &(operator*());
+		}
+	};
+
+	static long _Compare(const Key_ &lhs, const Key_ &rhs) {
+		if (lhs < rhs) {
+			return -1;
+		} else if (lhs > rhs) {
+			return +1;
+		}
+		return 0;
+	}
+
+public:
+	Node _root = Node();
+	Node _head = Node();
+	long _size = 0;
+	function<long(const Key_ &, const Key_ &)> _compare = _Compare;
+
+	BinaryTree() {
+		_Init();
+	}
+	BinaryTree(const function<long(const Key_ &, const Key_ &)> compare) {
+		_Init();
+		_compare = compare;
+	}
+	BinaryTree(const vector<Key_> &data) {
+		_Init();
+
+		vector<Node*> nodes;
+		for (long i = 0; i < data.size(); i += 1) {
+			if (std::is_same<Key_, Value_>::value) {
+				nodes.push_back(new Node(data[i], data[i]));
+			} else {
+				nodes.push_back(new Node(data[i]));
+			}
+		}
+
+		const Key_ null = data[0];
+		for (long node = 0, end = (int)data.size() / 2; node <= end; node += 1) {
+			if (node * 2 < (int)data.size() && nodes[node * 2]->_key != null) {
 				nodes[node * 2]->_parent = nodes[node];
 				nodes[node]->_left = nodes[node * 2];
 				_size += 1;
-			} 
-			if (node * 2 + 1 < data.size() && nodes[node * 2 + 1]->_datum != Null) {
+				_head._prev->_next = nodes[node * 2];
+				nodes[node * 2]->_prev = _head._prev;
+				_head._prev = nodes[node * 2];
+				nodes[node * 2]->_next = &_head;
+			}
+			if (node * 2 + 1 < (int)data.size() && nodes[node * 2 + 1]->_key != null) {
 				nodes[node * 2 + 1]->_parent = nodes[node];
 				nodes[node]->_right = nodes[node * 2 + 1];
 				_size += 1;
+				_head._prev->_next = nodes[node * 2 + 1];
+				nodes[node * 2 + 1]->_prev = _head._prev;
+				_head._prev = nodes[node * 2 + 1];
+				nodes[node * 2 + 1]->_next = &_head;
 			}
 		}
-		_root._datum = Null;
 		_root._left = nullptr;
 		nodes[0]->_right->_parent = &_root;
 		_root._right = nodes[0]->_right;
-		delete nodes[0];
+
+		for (long i = 0; i < data.size(); i += 1) {
+			if (nodes[i]->_key == null) {
+				delete nodes[i];
+			}
+		}
+	}
+	void _Init() {
+		_root._left = nullptr;
+		_root._right = nullptr;
+		_head._next = &_head;
+		_head._prev = &_head;
+		_size = 0;
+	}
+
+	virtual ~BinaryTree() {
+		_Clear();
+	}
+	void _Clear() {
+		for (Node *head = _head._prev; head != &_head; ) {
+			Node *node = head;
+			head = head->_prev;
+			delete node;
+		}
+		_root._left = nullptr;
+		_root._right = nullptr;
+		_head._next = &_head;
+		_head._prev = &_head;
+		_size = 0;
 	}
 
 	BinaryTree(const BinaryTree &that) {
+		_Init();
 		_Copy(that);
 	}
 	BinaryTree &operator=(const BinaryTree &that) {
@@ -98,325 +413,635 @@ public:
 			level.pop();
 
 			if (node.first->_left != nullptr) {
-				node.second->_left = new Node(node.first->_left->_datum);
+				node.second->_left = new Node(node.first->_left->_key, node.first->_left->_value);
 				node.second->_left->_parent = node.second;
+				_size += 1;
+				_head._prev->_next = node.second->_left;
+				node.second->_left->_prev = _head._prev;
+				_head._prev = node.second->_left;
+				node.second->_left->_next = &_head;
 				level.push({ node.first->_left, node.second->_left });
 			}
 			if (node.first->_right != nullptr) {
-				node.second->_right = new Node(node.first->_right->_datum);
+				node.second->_right = new Node(node.first->_right->_key, node.first->_right->_value);
 				node.second->_right->_parent = node.second;
+				_size += 1;
+				_head._prev->_next = node.second->_right;
+				node.second->_right->_prev = _head._prev;
+				_head._prev = node.second->_right;
+				node.second->_right->_next = &_head;
 				level.push({ node.first->_right, node.second->_right });
 			}
 		}
-		_size = that._size;
 	}
-	
-	virtual ~BinaryTree() {
-		_Clear(_root._right);
-	}
-	void _Clear(Node *tree) {
-		queue<Node *> level;
-		level.push(tree);
-		while (level.empty() == false) {
-			Node *node = level.front();
-			level.pop();
 
-			if (node->_left != nullptr) {
-				level.push(node->_left);
-			}
-			if (node->_right != nullptr) {
-				level.push(node->_right);
-			}
-			delete node;
+	void _Next(ostream &os) {
+		for (Node *iter = _head._next; iter != &_head; iter = iter->_next) {
+			os << (*iter);
+		}
+	}
+	void _Prev(ostream &os) {
+		for (Node *iter = _head._prev; iter != &_head; iter = iter->_prev) {
+			os << (*iter);
 		}
 	}
 
-public:
-	int _Height() {
-		return _Height_Node(_root._right);
+	void _Preorder_Recursion(ostream &os) {
+		__Preorder_Recursion(os, _root._right);
+		os << std::endl;
 	}
-	int _Height_Node(Node* tree) {
+	void __Preorder_Recursion(ostream &os, Node *root) {
+		if (root == nullptr) {
+			return;
+		}
+		os << (*root);
+		__Preorder_Recursion(os, root->_left);
+		__Preorder_Recursion(os, root->_right);
+	}
+
+	void _Inorder_Recursion(ostream &os) {
+		__Inorder_Recursion(os, _root._right);
+		os << std::endl;
+	}
+	void __Inorder_Recursion(ostream &os, Node *root) {
+		if (root == nullptr) {
+			return;
+		}
+		__Inorder_Recursion(os, root->_left);
+		os << (*root);
+		__Inorder_Recursion(os, root->_right);
+	}
+
+	void _Postorder_Recursion(ostream &os) {
+		__Postorder_Recursion(os, _root._right);
+		os << std::endl;
+	}
+	void __Postorder_Recursion(ostream &os, Node *root) {
+		if (root == nullptr) {
+			return;
+		}
+		__Postorder_Recursion(os, root->_left);
+		__Postorder_Recursion(os, root->_right);
+		os << (*root);
+	}
+
+	void _Preorder_Nonrecursion(ostream &os) {
+		Node *root = _root._right;
+		if (root == nullptr) {
+			return;
+		}
+		stack<Node *> stack;
+		stack.push(root);
+		while (stack.empty() == false) {
+			Node *curr = stack.top();
+			stack.pop();
+			os << (*curr);
+			if (curr->_right != nullptr) {
+				stack.push(curr->_right);
+			}
+			if (curr->_left != nullptr) {
+				stack.push(curr->_left);
+			}
+		}
+	}
+
+	void _Inorder_Nonrecursion(ostream &os) {
+		Node *root = _root._right;
+		if (root == nullptr) {
+			return;
+		}
+		stack<Node*> stack;
+		while (root != nullptr) {
+			stack.push(root);
+			root = root->_left;
+		}
+		while (stack.empty() == false) {
+			Node *curr = stack.top();
+			stack.pop();
+			os << (*curr);
+			root = curr->_right;
+			while (root != nullptr) {
+				stack.push(root);
+				root = root->_left;
+			}
+		}
+	}
+
+	void _Postorder_Nonrecursion(ostream &os) {
+		Node *root = _root._right;
+		if (root == nullptr) {
+			return;
+		}
+		stack<Node *> temp;
+		stack<Node *> stack;
+		temp.push(root);
+		while (temp.empty() == false) {
+			root = temp.top();
+			temp.pop();
+			stack.push(root);
+			if (root->_left != nullptr) {
+				temp.push(root->_left);
+			}
+			if (root->_right != nullptr) {
+				temp.push(root->_right);
+			}
+		}
+		while (stack.empty() == false) {
+			Node *curr = stack.top();
+			stack.pop();
+			os << (*curr);
+		}
+	}
+
+	void _Levelorder(ostream &os) {
+		Node *root = _root._right;
+		if (root == nullptr) {
+			return;
+		}
+		queue<Node *> level;
+		level.push(root);
+		while (level.empty() == false) {
+			Node *curr = level.front();
+			level.pop();
+			if (curr->_left != nullptr) {
+				level.push(curr->_left);
+			}
+			if (curr->_right != nullptr) {
+				level.push(curr->_right);
+			}
+			os << (*curr);
+		}
+	}
+
+	long _Height() {
+		return __Height(_root._right);
+	}
+	long __Height(Node *tree) {
 		if (tree == nullptr) {
 			return 0;
 		}
-		int heightLeft = _Height_Node(tree->_left);
-		int heightRight = _Height_Node(tree->_right);
-		return (1 + (heightLeft < heightRight ? heightRight : heightLeft));
+		long height_left = __Height(tree->_left);
+		long height_right = __Height(tree->_right);
+		return (1 + (height_left < height_right ? height_right : height_left));
 	}
 
-	void _Insert(Datum datum) {
-		Node *node = new Node(datum);
-		_Insert_Node(&_root, _root._right, node);
-	}
-	void _Insert_Node(Node *parent, Node *&tree, Node *node) {
-		if (tree == nullptr) {
-			tree = node;
-			node->_parent = parent;
-			_size += 1;
-		} else if (node->_datum < tree->_datum) {
-			_Insert_Node(tree, tree->_left, node);
-		} else if (tree->_datum < node->_datum) {
-			_Insert_Node(tree, tree->_right, node);
-		} else {
-			delete node;
-		}
-	}
-
-	void _Insert_Search(Datum datum) {
-		Node *node = new Node(datum);
+	void _Search(const Key_ &key, Node *&rparent, Node **&rtree) {
 		Node *parent = &_root;
-		Node *tree = _root._right;
-		while (tree != nullptr) {
-			if (node->_datum < tree->_datum) {
-				parent = tree;
-				tree = tree->_left;					
-			} else if (tree->_datum < node->_datum) {
-				parent = tree;
-				tree = tree->_right;				
+		Node **tree = &(_root._right);
+		while ((*tree) != nullptr) {
+			if (_compare(key, (*tree)->_key) < 0) {
+				parent = (*tree);
+				tree = &((*tree)->_left);
+			} else if (_compare(key, (*tree)->_key) > 0) {
+				parent = (*tree);
+				tree = &((*tree)->_right);
 			} else {
-				delete node;
-				return;
+				break;
 			}
 		}
-		if (parent == &_root) {
-			node->_parent = parent;
-			parent->_right = node;	
-		} else if (node->_datum < parent->_datum) {
-			node->_parent = parent;
-			parent->_left = node;
-			
-		} else if (parent->_datum < node->_datum) {
-			node->_parent = parent;
-			parent->_right = node;			
+		rparent = parent;
+		rtree = tree;
+		return;
+	}
+	
+	Node **_Insert(const Key_ &key) {
+		Node *rparent = nullptr;
+		Node **rtree = nullptr;
+		_Search(key, rparent, rtree);
+		if ((*rtree) == nullptr) {
+			Node *node = new Node(key, Value_());
+			node->_parent = rparent;
+			(*rtree) = node;
+			_size += 1;
+			_head._prev->_next = node;
+			node->_prev = _head._prev;
+			_head._prev = node;
+			node->_next = &_head;
 		}
-		_size += 1;
+		return rtree;
+	}
+	Value_ &operator[](const Key_ &key) {
+		Node **node = _Insert(key);
+		return (*node)->_value;
 	}
 
-	void _Erase(Datum datum) {
-		Node node = Node(datum);
-		Node **tree = &_root._right;
-		while (tree != nullptr) {
-			if (node._datum < (*tree)->_datum) {
-				tree = &(*tree)->_left;
-			} else if ((*tree)->_datum < node._datum) {
-				tree = &(*tree)->_right;
-			} else {
-				Node *wipe = (*tree);
-				if ((*tree)->_left == nullptr) {          // 待删除节点的左子树为空
-					if ((*tree)->_right != nullptr) {
-						(*tree)->_right->_parent = (*tree)->_parent;
-					}
-					(*tree) = (*tree)->_right;
-				} else if ((*tree)->_right == nullptr) {  // 待删除节点的右子树为空
-					if ((*tree)->_left != nullptr) {
-						(*tree)->_left->_parent = (*tree)->_parent;
-					}
-					(*tree) = (*tree)->_left;
-				} else {                                  // 待删除节点的左右子树不为空
-					Node **refer = &(*tree)->_right;
-					while ((*refer)->_left != nullptr) {
-						refer = &(*refer)->_left;
-					}
-					Node *take = (*refer);
-					if ((*refer)->_right != nullptr) {
-						(*refer)->_right->_parent = (*refer)->_parent;
-					}
-					(*tree)->_left->_parent = take;
-					(*tree)->_right->_parent = take;
-					take->_parent = (*tree)->_parent;
-					(*refer) = (*refer)->_right;					
-					take->_left = (*tree)->_left;					
-					take->_right = (*tree)->_right;					
-					(*tree) = take;
-				}
-				delete wipe;
-				_size -= 1;
-				return;
+	bool _Put(const Key_ &key, const Value_ &value) {
+		long size = _size;
+		operator[](key) = value;
+		if (size == _size) {
+			return true;
+		}
+		return false;
+	}
+
+	Value_ _Get(const Key_ &key, const Value_ &hold) {
+		Node *rparent = nullptr;
+		Node **rtree = nullptr;
+		_Search(key, rparent, rtree);
+		if ((*rtree) == nullptr) {
+			return hold;
+		}
+		return (*rtree)->_value;
+	}
+
+	bool _Erase(const Key_ &key) {
+		Node *rparent = nullptr;
+		Node **rtree = nullptr;
+		_Search(key, rparent, rtree);
+		if ((*rtree) != nullptr) {
+			_Wipe(rtree);
+			return true;
+		}
+		return false;
+	}
+	void _Wipe(Node **tree) {
+		Node *wipe = (*tree);
+		if ((*tree)->_left == nullptr) {          // 待删除节点的左子树为空
+			if ((*tree)->_right != nullptr) {
+				(*tree)->_right->_parent = (*tree)->_parent;
 			}
-		}
-	}
-
-	void _Travel_Preorder() {
-		_Travel_Preorder_Node(_root._right);
-	}
-	void _Travel_Preorder_Node(Node *node) {
-		if (node != nullptr) {
-			cout << node->_parent->_datum << " | " << node->_datum << endl;
-			_Travel_Preorder_Node(node->_left);
-			_Travel_Preorder_Node(node->_right);
-		}
-	}
-
-	void _Travel_Inorder() {
-		_Travel_Inorder_Node(_root._right);
-	}
-	void _Travel_Inorder_Node(Node *node) {
-		if (node != nullptr) {
-			_Travel_Inorder_Node(node->_left);
-			cout << node->_parent->_datum << " | " << node->_datum << endl;
-			_Travel_Inorder_Node(node->_right);
-		}
-	}
-
-	void _Travel_Postorder() {
-		_Travel_Postorder_Node(_root._right);
-	}
-	void _Travel_Postorder_Node(Node *node) {
-		if (node != nullptr) {			
-			_Travel_Postorder_Node(node->_left);
-			_Travel_Postorder_Node(node->_right);
-			cout << node->_parent->_datum << " | " << node->_datum << endl;
-		}
-	}
-
-	void _Travel_Levelorder() {
-		queue<Node *> level;
-		level.push(_root._right);
-		Node *node = nullptr;
-		while (level.empty() == false) {
-			node = level.front();
-			level.pop();
-			if (node->_left != nullptr) {
-				level.push(node->_left);
+			(*tree) = (*tree)->_right;
+		} else if ((*tree)->_right == nullptr) {  // 待删除节点的右子树为空
+			if ((*tree)->_left != nullptr) {
+				(*tree)->_left->_parent = (*tree)->_parent;
 			}
-			if (node->_right != nullptr) {
-				level.push(node->_right);
+			(*tree) = (*tree)->_left;
+		} else {                                  // 待删除节点的左右子树不为空
+			Node **refer = &(*tree)->_right;
+			while ((*refer)->_left != nullptr) {
+				refer = &(*refer)->_left;
 			}
-			cout << node->_parent->_datum << " | " << node->_datum << endl;
+			Node *take = (*refer);
+			if ((*refer)->_right != nullptr) {
+				(*refer)->_right->_parent = (*refer)->_parent;
+			}
+			(*tree)->_left->_parent = take;
+			(*tree)->_right->_parent = take;
+			take->_parent = (*tree)->_parent;
+			(*refer) = (*refer)->_right;
+			take->_left = (*tree)->_left;
+			take->_right = (*tree)->_right;
+			(*tree) = take;
 		}
+		_size -= 1;
+		wipe->_prev->_next = wipe->_next;
+		wipe->_next->_prev = wipe->_prev;
+		delete wipe;
 	}
 
-	Node* _Search(Datum datum) {
-		Node node = Node(datum);
-		Node *tree = _root._right;
-		while (tree != nullptr) {
-			if (node._datum < tree->_datum) {
-				tree = tree->_left;
-			} else if (tree->_datum < node._datum) {
-				tree = tree->_right;
-			} else {
-				return tree;
-			}
-		}
-		return nullptr;
+	PreorderIterator _Preorder_Begin() {
+		return PreorderIterator(_root._right);
 	}
-	  
+	PreorderIterator _Preorder_End() {
+		return PreorderIterator();
+	}
+
+	InorderIterator _Inorder_Begin() {
+		return InorderIterator(_root._right);
+	}
+	InorderIterator _Inorder_End() {
+		return InorderIterator();
+	}
+	InorderIterator &_Erase(InorderIterator &iter) {
+		if (iter._curr == nullptr) {  // end
+			return iter;
+		}
+		Node *node = iter._curr;
+		++iter;
+
+		Node **tree = nullptr;
+		if (node->_parent->_left == node) {
+			tree = &(node->_parent->_left);
+		} else if (node->_parent->_right == node) {
+			tree = &(node->_parent->_right);
+		}
+		_Wipe(tree);
+		return iter;
+	}
+
+	PostorderIterator _Postorder_Begin() {
+		return PostorderIterator(_root._right);
+	}
+	PostorderIterator _Postorder_End() {
+		return PostorderIterator();
+	}
+
+	LevelorderIterator _Levelorder_Begin() {
+		return LevelorderIterator(_root._right);
+	}
+	LevelorderIterator _Levelorder_End() {
+		return LevelorderIterator();
+	}
+
+	CircularDoublyLinkedIterator _CircularDoublyLinked_Next_Begin() {
+		return CircularDoublyLinkedIterator(_head._next);
+	}
+	CircularDoublyLinkedIterator _CircularDoublyLinked_Next_End() {
+		return CircularDoublyLinkedIterator(&_head);
+	}
+	CircularDoublyLinkedIterator _CircularDoublyLinked_Prev_Begin() {
+		return CircularDoublyLinkedIterator(_head._prev);
+	}
+	CircularDoublyLinkedIterator _CircularDoublyLinked_Prev_End() {
+		return CircularDoublyLinkedIterator(&_head);
+	}
+	CircularDoublyLinkedIterator &_Erase(CircularDoublyLinkedIterator &iter) {
+		if (iter._curr == &_head) {  // end
+			return iter;
+		}
+		Node *node = iter._curr;
+		++iter;
+
+		Node **tree = nullptr;
+		if (node->_parent->_left == node) {
+			tree = &(node->_parent->_left);
+		} else if (node->_parent->_right == node) {
+			tree = &(node->_parent->_right);
+		}
+		_Wipe(tree);
+		return iter;
+	}
 };
 
-void _Test_Insert(BinaryTree<Person>& binaryTree) {
-/*
-		 40
-		/ \
-	  20   60
-	 / |   | \
-   10  30  50 70
-       |      /
-	   35    65
-*/
-	binaryTree._Insert(Person("brilliant-40", 40));
-	binaryTree._Insert(Person("brilliant-20", 20));
-	binaryTree._Insert(Person("brilliant-10", 10));
-	binaryTree._Insert(Person("brilliant-30", 30));
-	binaryTree._Insert(Person("brilliant-35", 35));
-	binaryTree._Insert(Person("brilliant-60", 60));
-	binaryTree._Insert(Person("brilliant-50", 50));
-	binaryTree._Insert(Person("brilliant-70", 70));
-	binaryTree._Insert(Person("brilliant-65", 65));
+void _Test_Preorder_Recursion() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Preorder_Recursion(std::cout);
+	std::cout << std::endl;
 }
 
-void _Test_Insert_Search(BinaryTree<Person>& binaryTree) {
-/*
-		 40
-		/ \
-	  20   60
-	 / |   | \
-   10  30  50 70
-	   |      /
-	   35    65
-*/
-	binaryTree._Insert_Search(Person("brilliant-40", 40));
-	binaryTree._Insert_Search(Person("brilliant-20", 20));
-	binaryTree._Insert_Search(Person("brilliant-10", 10));
-	binaryTree._Insert_Search(Person("brilliant-30", 30));
-	binaryTree._Insert_Search(Person("brilliant-35", 35));
-	binaryTree._Insert_Search(Person("brilliant-60", 60));
-	binaryTree._Insert_Search(Person("brilliant-50", 50));
-	binaryTree._Insert_Search(Person("brilliant-70", 70));
-	binaryTree._Insert_Search(Person("brilliant-65", 65));
+void _Test_Inorder_Recursion() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Inorder_Recursion(std::cout);
+	std::cout << std::endl;
 }
 
-void _Test_Erase(BinaryTree<Person>& binaryTree) {
-	binaryTree._Erase(Person("brilliant-40", 40));
+void _Test_Postorder_Recursion() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Postorder_Recursion(std::cout);
+	std::cout << std::endl;
 }
 
-void _Test_Travel_Preorder(BinaryTree<Person>& binaryTree) {
-	binaryTree._Travel_Preorder();
+void _Test_Preorder_Nonrecursion() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Preorder_Nonrecursion(std::cout);
+	std::cout << std::endl;
 }
 
-void _Test_Travel_Inorder(BinaryTree<Person>& binaryTree) {
-	binaryTree._Travel_Inorder();
+void _Test_Inorder_Nonrecursion() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Inorder_Nonrecursion(std::cout);
+	std::cout << std::endl;
 }
 
-void _Test_Travel_Postorder(BinaryTree<Person>& binaryTree) {
-	binaryTree._Travel_Postorder();
+void _Test_Postorder_Nonrecursion() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Postorder_Nonrecursion(std::cout);
+	std::cout << std::endl;
 }
 
-void _Test_Travel_Levelorder(BinaryTree<Person>& binaryTree) {
-	binaryTree._Travel_Levelorder();
+void _Test_Levelorder() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Levelorder(std::cout);
+	std::cout << std::endl;
 }
 
-void _Test_Search(BinaryTree<Person> &binaryTree) {
-	BinaryTree<Person>::Node *node = binaryTree._Search(Person("brilliant-35", 35));
-	if (node != nullptr) {
-		cout << node->_parent->_datum << " | " << node->_datum << endl;
-	} else {
-		cout << "nullptr" << endl;
+void _Test_PreorderIterator() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Inorder_Recursion(std::cout);
+
+	for (BinaryTree<long, long>::PreorderIterator iter = tree._Preorder_Begin(); iter != tree._Preorder_End(); iter++) {
+		std::cout << (*iter);
 	}
+	std::cout << std::endl;
 }
 
-void _Test_Size(BinaryTree<Person> &binaryTree) {
-	cout << binaryTree._size << endl;
-}
-
-void _Test_Height(BinaryTree<Person> &binaryTree) {
-	cout << binaryTree._Height() << endl;
-}
-
-int main(int argc, char *argv[]) {
 /*
-	     40
-		/ \
-	  20   60
-	 / |   | \
-   10  30  50 70
-	   |      /
-	  35    65
+	N
+	 \
+	  5
+	 / \
+	2   8
+   /\   /\
+  N  3 7  N
 */
-	BinaryTree<Person> binaryTree({
-		{"null", 0},         
-		{"brilliant-40", 40},
-		{"brilliant-20", 20}, 
-		{"brilliant-60", 60}, 
-		{"brilliant-10", 10}, 
-		{"brilliant-30", 30}, 
-		{"brilliant-50", 50}, 
-		{"brilliant-70", 70}, 
-		{"null", 0},
-		{"brilliant-35", 35},
-		{"null", 0},
-		{"brilliant-65", 65},
-	});
-	// BinaryTree<Person> another(binaryTree);
-	// _Test_Insert(binaryTree);
-	// _Test_Insert_Search(binaryTree);
-	_Test_Erase(binaryTree);
-	// _Test_Search(binaryTree);
-	// _Test_Travel_Preorder(binaryTree);
-	// _Test_Travel_Inorder(binaryTree);
-	_Test_Travel_Levelorder(binaryTree);
-	// _Test_Travel_Postorder(binaryTree);
-	// _Test_Size(binaryTree);
-	// _Test_Height(binaryTree);
+void _Test_InorderIterator() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Inorder_Recursion(std::cout);
+
+	for (BinaryTree<long, long>::InorderIterator iter = tree._Inorder_Begin(); iter != tree._Inorder_End(); iter++) {
+		std::cout << (*iter);
+	}
+	std::cout << std::endl;
+
+	long i = 0;
+	for (BinaryTree<long, long>::InorderIterator iter = tree._Inorder_Begin(); iter != tree._Inorder_End(); ) {
+		if (i == 0) {
+			iter = tree._Erase(iter);
+		} else {
+			std::cout << (*iter);
+			iter++;
+		}
+		i += 1;
+	}
+	std::cout << std::endl;
+
+	for (BinaryTree<long, long>::Node *iter = tree._head._next; iter != &tree._head; iter = iter->_next) {
+		std::cout << (*iter);
+	}
+	std::cout << std::endl;
+	for (BinaryTree<long, long>::Node *iter = tree._head._prev; iter != &tree._head; iter = iter->_prev) {
+		std::cout << (*iter);
+	}
+	std::cout << std::endl;
+}
+
+void _Test_PostorderIterator() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Inorder_Recursion(std::cout);
+
+	for (BinaryTree<long, long>::PostorderIterator iter = tree._Postorder_Begin(); iter != tree._Postorder_End(); iter++) {
+		std::cout << (*iter);
+	}
+	std::cout << std::endl;
+}
+
+void _Test_LevelorderIterator() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Inorder_Recursion(std::cout);
+
+	for (BinaryTree<long, long>::LevelorderIterator iter = tree._Levelorder_Begin(); iter != tree._Levelorder_End(); iter++) {
+		std::cout << (*iter);
+	}
+	std::cout << std::endl;
+}
+
+void _Test_CircularDoublyLinkedIterator() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Inorder_Recursion(std::cout);
+
+	long i = 0;
+	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Next_Begin(); iter != tree._CircularDoublyLinked_Next_End(); ) {
+		if (i == 0) {
+			iter = tree._Erase(iter);
+		} else {
+			std::cout << (*iter);
+			iter++;
+		}
+		i += 1;
+	}
+	std::cout << std::endl;
+
+	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Next_Begin(); iter != tree._CircularDoublyLinked_Next_End(); iter++) {
+		std::cout << (*iter);
+	}
+	std::cout << std::endl;
+	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Prev_Begin(); iter != tree._CircularDoublyLinked_Prev_End(); iter--) {
+		std::cout << (*iter);
+	}
+	std::cout << std::endl;
+}
+
+void _Test_Copy() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	BinaryTree<long, long> that = tree;
+	that._Inorder_Recursion(std::cout);
+	std::cout << that._size << std::endl;
+
+	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Next_Begin(); iter != tree._CircularDoublyLinked_Next_End(); iter++) {
+		std::cout << (*iter);
+	}
+	std::cout << std::endl;
+	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Prev_Begin(); iter != tree._CircularDoublyLinked_Prev_End(); iter--) {
+		std::cout << (*iter);
+	}
+	std::cout << std::endl;
+}
+
+void _Test_Height() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Inorder_Recursion(std::cout);
+
+	std::cout << tree._Height() << std::endl;
+}
+
+/*
+	N
+	 \
+	  5
+	 / \
+	2   8
+   /\   /\
+  N  3 7  N
+*/
+void _Test_Put() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Inorder_Recursion(std::cout);
+
+	tree._Put(1, 1);
+	tree[4] = 4;
+	tree._Inorder_Recursion(std::cout);
+
+	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Next_Begin(); iter != tree._CircularDoublyLinked_Next_End(); iter++) {
+		std::cout << (*iter);
+	}
+	std::cout << std::endl;
+	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Prev_Begin(); iter != tree._CircularDoublyLinked_Prev_End(); iter--) {
+		std::cout << (*iter);
+	}
+	std::cout << std::endl;
+}
+
+void _Test_Get() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Inorder_Recursion(std::cout);
+
+	long value1 = tree._Get(4, long());
+	std::cout << value1 << std::endl;
+	long value2 = tree._Get(8, long());
+	std::cout << value2 << std::endl;
+}
+
+void _Test_Erase() {
+	long null = INT_MAX;
+	BinaryTree<long, long> tree = vector<long>{
+		null, 5, 2, 8, null, 3, 7, null
+	};
+	tree._Inorder_Recursion(std::cout);
+
+	tree._Erase(5);
+	tree._Inorder_Recursion(std::cout);
+}
+
+int main() {
+	// _Test_Preorder_Recursion();
+	// _Test_Inorder_Recursion();
+	// _Test_Postorder_Recursion();
+
+	// _Test_Preorder_Nonrecursion();
+	// _Test_Inorder_Nonrecursion();
+	// _Test_Postorder_Nonrecursion();
+	// _Test_Levelorder();
+
+	// _Test_PreorderIterator();
+	// _Test_InorderIterator();
+	// _Test_PostorderIterator();
+	// _Test_LevelorderIterator();
+	// _Test_CircularDoublyLinkedIterator();
+
+	// _Test_Copy();
+	// _Test_Height();
+
+	// _Test_Put();
+	// _Test_Get();
+	_Test_Erase();
 
 	return 0;
 }
