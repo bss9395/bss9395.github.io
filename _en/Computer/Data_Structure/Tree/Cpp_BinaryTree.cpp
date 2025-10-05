@@ -75,11 +75,6 @@ struct BinaryTree {
 			}
 			return (*this);
 		}
-		PreorderIterator operator++(int) {
-			PreorderIterator temp = (*this);
-			++(*this);
-			return temp;
-		}
 
 		bool operator==(const PreorderIterator& iter) const {
 			return (_curr == iter._curr);
@@ -129,11 +124,6 @@ struct BinaryTree {
 				root = root->_left;
 			}
 			return (*this);
-		}
-		InorderIterator operator++(int) {
-			InorderIterator temp = (*this);
-			++(*this);
-			return temp;
 		}
 
 		bool operator==(const InorderIterator &iter) const {
@@ -189,11 +179,6 @@ struct BinaryTree {
 			_stack.pop();
 			return (*this);
 		}
-		PostorderIterator operator++(int) {
-			PostorderIterator temp = (*this);
-			++(*this);
-			return temp;
-		}
 
 		bool operator==(const PostorderIterator& iter) const {
 			return (_curr == iter._curr);
@@ -240,11 +225,6 @@ struct BinaryTree {
 			}
 			return (*this);
 		}
-		LevelorderIterator operator++(int) {
-			LevelorderIterator temp = (*this);
-			++(*this);
-			return temp;
-		}
 
 		bool operator==(const LevelorderIterator& iter) const {
 			return (_curr == iter._curr);
@@ -275,19 +255,9 @@ struct BinaryTree {
 			_curr = _curr->_next;
 			return (*this);
 		}
-		CircularDoublyLinkedIterator operator++(int) {
-			CircularDoublyLinkedIterator temp = (*this);
-			++(*this);
-			return temp;
-		}
 		CircularDoublyLinkedIterator& operator--() {
 			_curr = _curr->_prev;
 			return (*this);
-		}
-		CircularDoublyLinkedIterator operator--(int) {
-			CircularDoublyLinkedIterator temp = (*this);
-			--(*this);
-			return temp;
 		}
 
 		bool operator==(const CircularDoublyLinkedIterator& iter) const {
@@ -315,7 +285,6 @@ struct BinaryTree {
 	}
 
 public:
-	Node _root = Node();
 	Node _head = Node();
 	long _size = 0;
 	function<long(const Key_ &, const Key_ &)> _compare = _Compare;
@@ -330,27 +299,28 @@ public:
 	BinaryTree(const vector<Key_> &data) {
 		_Init();
 
-		vector<Node*> nodes;
-		for (long i = 0; i < data.size(); i += 1) {
-			if (std::is_same<Key_, Value_>::value) {
-				nodes.push_back(new Node(data[i], data[i]));
+		vector<Node*> nodes(data.size());
+		nodes[0] = &_head;
+		for (long i = 1; i < data.size(); i += 1) {
+			if (std::is_same<Key_, Value_>::value == true) {
+				nodes[i] = new Node(data[i], (Value_)data[i]);
 			} else {
-				nodes.push_back(new Node(data[i]));
+				nodes[i] = new Node(data[i]);
 			}
 		}
 
 		const Key_ null = data[0];
-		for (long node = 0, end = (int)data.size() / 2; node <= end; node += 1) {
-			if (node * 2 < (int)data.size() && nodes[node * 2]->_key != null) {
+		for (long node = 0, end = (long)nodes.size() / 2; node <= end; node += 1) {
+			if (node != 0 && node * 2 < (long)nodes.size() && nodes[node * 2]->_key != null) {
 				nodes[node * 2]->_parent = nodes[node];
 				nodes[node]->_left = nodes[node * 2];
-				_size += 1;
+				_size += 1;  // 头节点的左孩子为空节点
 				_head._prev->_next = nodes[node * 2];
 				nodes[node * 2]->_prev = _head._prev;
 				_head._prev = nodes[node * 2];
 				nodes[node * 2]->_next = &_head;
 			}
-			if (node * 2 + 1 < (int)data.size() && nodes[node * 2 + 1]->_key != null) {
+			if (node * 2 + 1 < (long)nodes.size() && nodes[node * 2 + 1]->_key != null) {
 				nodes[node * 2 + 1]->_parent = nodes[node];
 				nodes[node]->_right = nodes[node * 2 + 1];
 				_size += 1;
@@ -360,19 +330,17 @@ public:
 				nodes[node * 2 + 1]->_next = &_head;
 			}
 		}
-		_root._left = nullptr;
-		nodes[0]->_right->_parent = &_root;
-		_root._right = nodes[0]->_right;
 
-		for (long i = 0; i < data.size(); i += 1) {
+		// 删除空节点
+		for (long i = 0; i < nodes.size(); i += 1) {
 			if (nodes[i]->_key == null) {
 				delete nodes[i];
 			}
 		}
 	}
 	void _Init() {
-		_root._left = nullptr;
-		_root._right = nullptr;
+		_head._left = nullptr;
+		_head._right = nullptr;
 		_head._next = &_head;
 		_head._prev = &_head;
 		_size = 0;
@@ -387,8 +355,8 @@ public:
 			head = head->_prev;
 			delete node;
 		}
-		_root._left = nullptr;
-		_root._right = nullptr;
+		_head._left = nullptr;
+		_head._right = nullptr;
 		_head._next = &_head;
 		_head._prev = &_head;
 		_size = 0;
@@ -400,13 +368,13 @@ public:
 	}
 	BinaryTree &operator=(const BinaryTree &that) {
 		if (this != &that) {
-			_Clear(_root._right);
+			_Clear(_head._right);
 			_Copy(that);
 		}
 	}
 	void _Copy(const BinaryTree &that) {
 		queue<pair<const Node *, Node *>> level;
-		level.push({ &that._root, &_root });
+		level.push({ &that._head, &_head });
 
 		while (level.empty() == false) {
 			pair<const Node *, Node *> node = level.front();
@@ -447,7 +415,7 @@ public:
 	}
 
 	void _Preorder_Recursion(ostream &os) {
-		__Preorder_Recursion(os, _root._right);
+		__Preorder_Recursion(os, _head._right);
 		os << std::endl;
 	}
 	void __Preorder_Recursion(ostream &os, Node *root) {
@@ -460,7 +428,7 @@ public:
 	}
 
 	void _Inorder_Recursion(ostream &os) {
-		__Inorder_Recursion(os, _root._right);
+		__Inorder_Recursion(os, _head._right);
 		os << std::endl;
 	}
 	void __Inorder_Recursion(ostream &os, Node *root) {
@@ -473,7 +441,7 @@ public:
 	}
 
 	void _Postorder_Recursion(ostream &os) {
-		__Postorder_Recursion(os, _root._right);
+		__Postorder_Recursion(os, _head._right);
 		os << std::endl;
 	}
 	void __Postorder_Recursion(ostream &os, Node *root) {
@@ -486,7 +454,7 @@ public:
 	}
 
 	void _Preorder_Nonrecursion(ostream &os) {
-		Node *root = _root._right;
+		Node *root = _head._right;
 		if (root == nullptr) {
 			return;
 		}
@@ -506,7 +474,7 @@ public:
 	}
 
 	void _Inorder_Nonrecursion(ostream &os) {
-		Node *root = _root._right;
+		Node *root = _head._right;
 		if (root == nullptr) {
 			return;
 		}
@@ -528,7 +496,7 @@ public:
 	}
 
 	void _Postorder_Nonrecursion(ostream &os) {
-		Node *root = _root._right;
+		Node *root = _head._right;
 		if (root == nullptr) {
 			return;
 		}
@@ -554,7 +522,7 @@ public:
 	}
 
 	void _Levelorder(ostream &os) {
-		Node *root = _root._right;
+		Node *root = _head._right;
 		if (root == nullptr) {
 			return;
 		}
@@ -574,7 +542,7 @@ public:
 	}
 
 	long _Height() {
-		return __Height(_root._right);
+		return __Height(_head._right);
 	}
 	long __Height(Node *tree) {
 		if (tree == nullptr) {
@@ -586,8 +554,8 @@ public:
 	}
 
 	void _Search(const Key_ &key, Node *&rparent, Node **&rtree) {
-		Node *parent = &_root;
-		Node **tree = &(_root._right);
+		Node *parent = &_head;
+		Node **tree = &_head._right;
 		while ((*tree) != nullptr) {
 			if (_compare(key, (*tree)->_key) < 0) {
 				parent = (*tree);
@@ -603,7 +571,7 @@ public:
 		rtree = tree;
 		return;
 	}
-	
+
 	Node **_Insert(const Key_ &key) {
 		Node *rparent = nullptr;
 		Node **rtree = nullptr;
@@ -613,10 +581,18 @@ public:
 			node->_parent = rparent;
 			(*rtree) = node;
 			_size += 1;
-			_head._prev->_next = node;
-			node->_prev = _head._prev;
-			_head._prev = node;
-			node->_next = &_head;
+
+			if (rparent->_left == node) {
+				rparent->_prev->_next = node;
+				node->_prev = rparent->_prev;
+				rparent->_prev = node;
+				node->_next = rparent;
+			} else if (rparent->_right == node) {
+				rparent->_next->_prev = node;
+				node->_next = rparent->_next;
+				rparent->_next = node;
+				node->_prev = rparent;
+			}
 		}
 		return rtree;
 	}
@@ -690,14 +666,14 @@ public:
 	}
 
 	PreorderIterator _Preorder_Begin() {
-		return PreorderIterator(_root._right);
+		return PreorderIterator(_head._right);
 	}
 	PreorderIterator _Preorder_End() {
 		return PreorderIterator();
 	}
 
 	InorderIterator _Inorder_Begin() {
-		return InorderIterator(_root._right);
+		return InorderIterator(_head._right);
 	}
 	InorderIterator _Inorder_End() {
 		return InorderIterator();
@@ -720,14 +696,14 @@ public:
 	}
 
 	PostorderIterator _Postorder_Begin() {
-		return PostorderIterator(_root._right);
+		return PostorderIterator(_head._right);
 	}
 	PostorderIterator _Postorder_End() {
 		return PostorderIterator();
 	}
 
 	LevelorderIterator _Levelorder_Begin() {
-		return LevelorderIterator(_root._right);
+		return LevelorderIterator(_head._right);
 	}
 	LevelorderIterator _Levelorder_End() {
 		return LevelorderIterator();
@@ -764,8 +740,8 @@ public:
 };
 
 void _Test_Preorder_Recursion() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Preorder_Recursion(std::cout);
@@ -773,8 +749,8 @@ void _Test_Preorder_Recursion() {
 }
 
 void _Test_Inorder_Recursion() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Inorder_Recursion(std::cout);
@@ -782,8 +758,8 @@ void _Test_Inorder_Recursion() {
 }
 
 void _Test_Postorder_Recursion() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Postorder_Recursion(std::cout);
@@ -791,8 +767,8 @@ void _Test_Postorder_Recursion() {
 }
 
 void _Test_Preorder_Nonrecursion() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Preorder_Nonrecursion(std::cout);
@@ -800,8 +776,8 @@ void _Test_Preorder_Nonrecursion() {
 }
 
 void _Test_Inorder_Nonrecursion() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Inorder_Nonrecursion(std::cout);
@@ -809,8 +785,8 @@ void _Test_Inorder_Nonrecursion() {
 }
 
 void _Test_Postorder_Nonrecursion() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Postorder_Nonrecursion(std::cout);
@@ -818,8 +794,8 @@ void _Test_Postorder_Nonrecursion() {
 }
 
 void _Test_Levelorder() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Levelorder(std::cout);
@@ -827,13 +803,13 @@ void _Test_Levelorder() {
 }
 
 void _Test_PreorderIterator() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Inorder_Recursion(std::cout);
 
-	for (BinaryTree<long, long>::PreorderIterator iter = tree._Preorder_Begin(); iter != tree._Preorder_End(); iter++) {
+	for (BinaryTree<double, double>::PreorderIterator iter = tree._Preorder_Begin(); iter != tree._Preorder_End(); ++iter) {
 		std::cout << (*iter);
 	}
 	std::cout << std::endl;
@@ -849,116 +825,116 @@ void _Test_PreorderIterator() {
   N  3 7  N
 */
 void _Test_InorderIterator() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Inorder_Recursion(std::cout);
 
-	for (BinaryTree<long, long>::InorderIterator iter = tree._Inorder_Begin(); iter != tree._Inorder_End(); iter++) {
+	for (BinaryTree<double, double>::InorderIterator iter = tree._Inorder_Begin(); iter != tree._Inorder_End(); ++iter) {
 		std::cout << (*iter);
 	}
 	std::cout << std::endl;
 
 	long i = 0;
-	for (BinaryTree<long, long>::InorderIterator iter = tree._Inorder_Begin(); iter != tree._Inorder_End(); ) {
+	for (BinaryTree<double, double>::InorderIterator iter = tree._Inorder_Begin(); iter != tree._Inorder_End(); ) {
 		if (i == 0) {
 			iter = tree._Erase(iter);
 		} else {
 			std::cout << (*iter);
-			iter++;
+			++iter;
 		}
 		i += 1;
 	}
 	std::cout << std::endl;
 
-	for (BinaryTree<long, long>::Node *iter = tree._head._next; iter != &tree._head; iter = iter->_next) {
+	for (BinaryTree<double, double>::Node *iter = tree._head._next; iter != &tree._head; iter = iter->_next) {
 		std::cout << (*iter);
 	}
 	std::cout << std::endl;
-	for (BinaryTree<long, long>::Node *iter = tree._head._prev; iter != &tree._head; iter = iter->_prev) {
+	for (BinaryTree<double, double>::Node *iter = tree._head._prev; iter != &tree._head; iter = iter->_prev) {
 		std::cout << (*iter);
 	}
 	std::cout << std::endl;
 }
 
 void _Test_PostorderIterator() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Inorder_Recursion(std::cout);
 
-	for (BinaryTree<long, long>::PostorderIterator iter = tree._Postorder_Begin(); iter != tree._Postorder_End(); iter++) {
+	for (BinaryTree<double, double>::PostorderIterator iter = tree._Postorder_Begin(); iter != tree._Postorder_End(); ++iter) {
 		std::cout << (*iter);
 	}
 	std::cout << std::endl;
 }
 
 void _Test_LevelorderIterator() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Inorder_Recursion(std::cout);
 
-	for (BinaryTree<long, long>::LevelorderIterator iter = tree._Levelorder_Begin(); iter != tree._Levelorder_End(); iter++) {
+	for (BinaryTree<double, double>::LevelorderIterator iter = tree._Levelorder_Begin(); iter != tree._Levelorder_End(); ++iter) {
 		std::cout << (*iter);
 	}
 	std::cout << std::endl;
 }
 
 void _Test_CircularDoublyLinkedIterator() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Inorder_Recursion(std::cout);
 
 	long i = 0;
-	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Next_Begin(); iter != tree._CircularDoublyLinked_Next_End(); ) {
+	for (BinaryTree<double, double>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Next_Begin(); iter != tree._CircularDoublyLinked_Next_End(); ) {
 		if (i == 0) {
 			iter = tree._Erase(iter);
 		} else {
 			std::cout << (*iter);
-			iter++;
+			++iter;
 		}
 		i += 1;
 	}
 	std::cout << std::endl;
 
-	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Next_Begin(); iter != tree._CircularDoublyLinked_Next_End(); iter++) {
+	for (BinaryTree<double, double>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Next_Begin(); iter != tree._CircularDoublyLinked_Next_End(); ++iter) {
 		std::cout << (*iter);
 	}
 	std::cout << std::endl;
-	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Prev_Begin(); iter != tree._CircularDoublyLinked_Prev_End(); iter--) {
+	for (BinaryTree<double, double>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Prev_Begin(); iter != tree._CircularDoublyLinked_Prev_End(); --iter) {
 		std::cout << (*iter);
 	}
 	std::cout << std::endl;
 }
 
 void _Test_Copy() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
-	BinaryTree<long, long> that = tree;
+	BinaryTree<double, double> that = tree;
 	that._Inorder_Recursion(std::cout);
 	std::cout << that._size << std::endl;
 
-	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Next_Begin(); iter != tree._CircularDoublyLinked_Next_End(); iter++) {
+	for (BinaryTree<double, double>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Next_Begin(); iter != tree._CircularDoublyLinked_Next_End(); ++iter) {
 		std::cout << (*iter);
 	}
 	std::cout << std::endl;
-	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Prev_Begin(); iter != tree._CircularDoublyLinked_Prev_End(); iter--) {
+	for (BinaryTree<double, double>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Prev_Begin(); iter != tree._CircularDoublyLinked_Prev_End(); --iter) {
 		std::cout << (*iter);
 	}
 	std::cout << std::endl;
 }
 
 void _Test_Height() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Inorder_Recursion(std::cout);
@@ -976,42 +952,43 @@ void _Test_Height() {
   N  3 7  N
 */
 void _Test_Put() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Inorder_Recursion(std::cout);
 
 	tree._Put(1, 1);
-	tree[4] = 4;
+	//tree[4] = 4;
+	std::cout << tree._size << std::endl;
 	tree._Inorder_Recursion(std::cout);
 
-	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Next_Begin(); iter != tree._CircularDoublyLinked_Next_End(); iter++) {
+	for (BinaryTree<double, double>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Next_Begin(); iter != tree._CircularDoublyLinked_Next_End(); ++iter) {
 		std::cout << (*iter);
 	}
 	std::cout << std::endl;
-	for (BinaryTree<long, long>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Prev_Begin(); iter != tree._CircularDoublyLinked_Prev_End(); iter--) {
+	for (BinaryTree<double, double>::CircularDoublyLinkedIterator iter = tree._CircularDoublyLinked_Prev_Begin(); iter != tree._CircularDoublyLinked_Prev_End(); --iter) {
 		std::cout << (*iter);
 	}
 	std::cout << std::endl;
 }
 
 void _Test_Get() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Inorder_Recursion(std::cout);
 
-	long value1 = tree._Get(4, long());
+	double value1 = tree._Get(4, long());
 	std::cout << value1 << std::endl;
-	long value2 = tree._Get(8, long());
+	double value2 = tree._Get(8, long());
 	std::cout << value2 << std::endl;
 }
 
 void _Test_Erase() {
-	long null = INT_MAX;
-	BinaryTree<long, long> tree = vector<long>{
+	double null = INT_MAX;
+	BinaryTree<double, double> tree = vector<double>{
 		null, 5, 2, 8, null, 3, 7, null
 	};
 	tree._Inorder_Recursion(std::cout);

@@ -48,19 +48,9 @@ struct CircularDoublyLinkedList {
 			_curr = _curr->_next;
 			return (*this);
 		}
-		CircularDoublyLinkedIterator operator++(int) {
-			CircularDoublyLinkedIterator temp = (*this);
-			++(*this);
-			return temp;
-		}
 		CircularDoublyLinkedIterator& operator--() {
 			_curr = _curr->_prev;
 			return (*this);
-		}
-		CircularDoublyLinkedIterator operator--(int) {
-			CircularDoublyLinkedIterator temp = (*this);
-			--(*this);
-			return temp;
 		}
 
 		bool operator==(const CircularDoublyLinkedIterator& iter) const {
@@ -165,35 +155,17 @@ public:
 
 	CircularDoublyLinkedIterator _Search(const Datum_ &datum) {
 		Node *head = _head._next;
-		while (head != &_head) {
-			if (head->_datum == datum) {
-				break;
-			} else {
-				head = head->_next;
-			}
-		}
+		for (; head != &_head && _compare(head->_datum, datum) != 0; head = head->_next);
 		return CircularDoublyLinkedIterator(head);
 	}
 	CircularDoublyLinkedIterator _Search_Lower(const Datum_ &datum) {
 		Node *head = _head._next;
-		while (head != &_head) {
-			if (_compare(head->_datum, datum) < 0) {
-				head = head->_next;
-			} else {
-				break;
-			}
-		}
+		for (; head != &_head && _compare(head->_datum, datum) < 0; head = head->_next);
 		return CircularDoublyLinkedIterator(head);
 	}
 	CircularDoublyLinkedIterator _Search_Upper(const Datum_ &datum) {
 		Node *head = _head._next;
-		while (head != &_head) {
-			if (_compare(head->_datum, datum) <= 0) {
-				head = head->_next;
-			} else {
-				break;
-			}
-		}
+		for (; head != &_head && _compare(head->_datum, datum) <= 0; head = head->_next);
 		return CircularDoublyLinkedIterator(head);
 	}
 
@@ -764,7 +736,7 @@ void _Test_CircularDoublyLinkedIterator() {
 			iter = list._Erase(iter);
 		} else {
 			std::cout << (*iter);
-			iter++;
+			++iter;
 		}
 		i += 1;
 	}
