@@ -1,19 +1,8 @@
-QT       += core gui sql multimedia
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+# 本项目使用Visual Studio 2017运行会报错
+QT       += core gui sql multimedia widgets
 
 CONFIG += c++17
-
-# The following define makes your compiler emit warnings if you use
-# any Qt feature that has been marked deprecated (the exact warnings
-# depend on your compiler). Please consult the documentation of the
-# deprecated API in order to know how to port your code away from it.
-DEFINES += QT_DEPRECATED_WARNINGS
-
-# You can also make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-# You can also select to disable deprecated APIs only up to a certain version of Qt.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
     Main.cpp
@@ -28,10 +17,40 @@ HEADERS += \
 FORMS += \
     Contacts.ui
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
-
 RESOURCES += \
     images.qrc
+
+
+### CMAKE配置示例
+#cmake_minimum_required(VERSION 3.10)
+#set(CMAKE_CXX_STANDARD 17)
+#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#set(CMAKE_AUTOUIC ON)
+#set(CMAKE_AUTOMOC ON)
+#set(CMAKE_AUTORCC ON)
+#
+#project(Contacts VERSION 0.1 LANGUAGES CXX)
+#
+#set(PROJECT_SOURCES
+#        main.cpp
+#        Common.h
+#        Contacts.h
+#        Settings.h
+#        System.h
+#        Contacts.ui
+#        images.qrc
+#)
+#
+#add_executable(Contacts
+#    ${PROJECT_SOURCES}
+#)
+#
+## 需要手动设置环境变量D:\Qt\Qt5.12.11\5.12.11\msvc2017_64\bin
+#set(Qt5_DIR "D:/Qt/Qt5.12.11/5.12.11/msvc2017_64/lib/cmake/Qt5")
+#find_package(Qt5 COMPONENTS Core Widgets Sql Gui Multimedia REQUIRED)
+#target_link_libraries(Contacts PRIVATE
+#    Qt5::Widgets
+#    Qt5::Sql
+#    Qt5::Multimedia
+#)

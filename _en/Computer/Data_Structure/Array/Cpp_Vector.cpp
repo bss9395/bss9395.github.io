@@ -114,7 +114,7 @@ struct Vector {
 		return index;
 	}
 
-	long _Search_Bianry_Circulation(const Datum_ &datum) {
+	long _Search_Bianry_Ordered_Circulation(const Datum_ &datum) {
 		long fore = 0;
 		long back = _size;
 		while (fore < back) {
@@ -130,16 +130,16 @@ struct Vector {
 		return _size;
 	}
 
-	long _Search_Bianry_Recursion(const Datum_ &datum) {
-		return __Search_Bianry_Recursion(datum, 0, _size);
+	long _Search_Bianry_Ordered_Recursion(const Datum_ &datum) {
+		return __Search_Bianry_Ordered_Recursion(datum, 0, _size);
 	}
-	long __Search_Bianry_Recursion(const Datum_ &datum, long fore, long back) {
+	long __Search_Bianry_Ordered_Recursion(const Datum_ &datum, long fore, long back) {
 		if (fore < back) {
 			long midd = (fore + back) / 2;
 			if (_compare(datum, _head[midd]) < 0) {
-				return __Search_Bianry_Recursion(datum, fore, midd);
+				return __Search_Bianry_Ordered_Recursion(datum, fore, midd);
 			} else if (_compare(_head[midd], datum) < 0) {
-				return __Search_Bianry_Recursion(datum, midd + 1, back);
+				return __Search_Bianry_Ordered_Recursion(datum, midd + 1, back);
 			} else {
 				return midd;
 			}
@@ -190,19 +190,19 @@ void _Test_Search_Upper() {
 	std::cout << index << std::endl;
 }
 
-void _Test_Search_Bianry_Circulation() {
+void _Test_Search_Bianry_Ordered_Circulation() {
 	Vector<double> array = vector<double>{
 		0, 1, 2, 3, 4, 5
 	};
-	long index = array._Search_Bianry_Circulation(2.5);
+	long index = array._Search_Bianry_Ordered_Circulation(2.5);
 	std::cout << index << std::endl;
 }
 
-void _Test_Search_Bianry_Recursion() {
+void _Test_Search_Bianry_Ordered_Recursion() {
 	Vector<double> array = vector<double>{
 		0, 1, 2, 3, 4, 5
 	};
-	long index = array._Search_Bianry_Recursion(2.5);
+	long index = array._Search_Bianry_Ordered_Recursion(2.5);
 	std::cout << index << std::endl;
 }
 
@@ -213,8 +213,8 @@ int main() {
 	// _Test_Search_Lower();
 	// _Test_Search_Upper();
 
-	// _Test_Search_Bianry_Circulation();
-	_Test_Search_Bianry_Recursion();
+	// _Test_Search_Bianry_Ordered_Circulation();
+	_Test_Search_Bianry_Ordered_Recursion();
 
 	return 0;
 }

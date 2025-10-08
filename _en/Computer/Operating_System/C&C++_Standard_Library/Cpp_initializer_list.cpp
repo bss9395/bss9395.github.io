@@ -1,57 +1,35 @@
 /* Cpp_initializer_list.cpp
-Author: BSS9395
-Update: 2023-10-05T10:28:00+08@China-Guangdong-Zhanjiang+08
-Design: C++ Standard Library: initializer_list
+Author: bss9395
+Update: 2025/10/08T11:04:00+08@China-GuangDong-ZhanJiang+08
+Keepin: bss9395@yeah.net
 */
 
 #include <iostream>
-#include <initializer_list>
+#include <string>
 #include <vector>
+#include <initializer_list>
 
-class Foo {
-public:
-    int value_a;
-    int value_b;
-    Foo(int a, int b) : value_a(a), value_b(b) {}
+struct Vector {
+	std::vector<long> _head;
+	Vector(bool flag, const std::initializer_list<long> &data) {
+		for (auto iter = data.begin(); iter != data.end(); ++iter) {
+			_head.push_back(*iter);
+		}
+	}
 };
 
-class MagicFoo {
-public:
-    std::vector<int> vec;
-    MagicFoo(std::initializer_list<int> list) {
-        for (std::initializer_list<int>::iterator it = list.begin(); it != list.end(); ++it) {
-            vec.push_back(*it);
-        }
-    }
-    void foo(std::initializer_list<int> list) {
-        for (std::initializer_list<int>::iterator it = list.begin(); it != list.end(); ++it) {
-            vec.push_back(*it);
-        }
-    }
-};
+void _Test_initializer_list() {
+	std::vector<long> vector0{ {
+		(long)1.0, 2, 3
+	} };
 
-int main() {
-    // before C++11
-    int arr[3] = { 1, 2, 3 };
-    Foo foo(1, 2);
-    std::vector<int> vec = { 1, 2, 3, 4, 5 };
+	Vector vector1(true, {
+		(long)1.0, 2, 3
+	});
+}
 
-    // after C++11
-    MagicFoo magicFoo = { 1, 2, 3, 4, 5 };
-    magicFoo.foo({ 6,7,8,9 });
-    Foo foo2{ 3, 4 };
+int main(int argc, char *argv[]) {
+	_Test_initializer_list();
 
-    std::cout << "arr[0]: " << arr[0] << std::endl;
-    std::cout << "foo:" << foo.value_a << ", " << foo.value_b << std::endl;
-    std::cout << "vec: ";
-    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it) {
-        std::cout << *it << std::endl;
-    }
-    std::cout << "magicFoo: ";
-    for (std::vector<int>::iterator it = magicFoo.vec.begin(); it != magicFoo.vec.end(); ++it) {
-        std::cout << *it << std::endl;
-    }
-    std::cout << "foo2: " << foo2.value_a << ", " << foo2.value_b << std::endl;
-
-    return 0;
+	return 0;
 }

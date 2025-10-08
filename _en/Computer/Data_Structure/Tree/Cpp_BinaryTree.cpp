@@ -1,6 +1,7 @@
 /* Cpp_BinaryTree.cpp
 Author: bss9395
 Update: 2025-10-02T20:56:00+08@China-GuangDong-ZhanJiang+08
+Keepin: bss9395@yeah.net
 */
 
 #include<iostream>
@@ -553,7 +554,16 @@ public:
 		return (1 + (height_left < height_right ? height_right : height_left));
 	}
 
-	void _Search(const Key_ &key, Node *&rparent, Node **&rtree) {
+	CircularDoublyLinkedIterator _Search(const Key_ &key) {
+		Node *rparent = nullptr;
+		Node **rtree = nullptr;
+		__Search(key, rparent, rtree);
+		if ((*tree) == nullptr) {
+			return CircularDoublyLinkedIterator(&_head);
+		}
+		return CircularDoublyLinkedIterator(*rtree);
+	}
+	void __Search(const Key_ &key, Node *&rparent, Node **&rtree) {
 		Node *parent = &_head;
 		Node **tree = &_head._right;
 		while ((*tree) != nullptr) {
@@ -572,10 +582,10 @@ public:
 		return;
 	}
 
-	Node **_Insert(const Key_ &key) {
+	Node **__Insert(const Key_ &key) {
 		Node *rparent = nullptr;
 		Node **rtree = nullptr;
-		_Search(key, rparent, rtree);
+		__Search(key, rparent, rtree);
 		if ((*rtree) == nullptr) {
 			Node *node = new Node(key, Value_());
 			node->_parent = rparent;
@@ -597,7 +607,7 @@ public:
 		return rtree;
 	}
 	Value_ &operator[](const Key_ &key) {
-		Node **node = _Insert(key);
+		Node **node = __Insert(key);
 		return (*node)->_value;
 	}
 
@@ -613,7 +623,7 @@ public:
 	Value_ _Get(const Key_ &key, const Value_ &hold) {
 		Node *rparent = nullptr;
 		Node **rtree = nullptr;
-		_Search(key, rparent, rtree);
+		__Search(key, rparent, rtree);
 		if ((*rtree) == nullptr) {
 			return hold;
 		}
@@ -623,7 +633,7 @@ public:
 	bool _Erase(const Key_ &key) {
 		Node *rparent = nullptr;
 		Node **rtree = nullptr;
-		_Search(key, rparent, rtree);
+		__Search(key, rparent, rtree);
 		if ((*rtree) != nullptr) {
 			_Wipe(rtree);
 			return true;

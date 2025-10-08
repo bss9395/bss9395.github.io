@@ -1,6 +1,7 @@
 /* Cpp_CircularDoublyLinkedList.cpp
 Author: bss9395
 Update: 2025/10/03T16:06:00+08@China-GuangDong-ZhanJiang+08
+Keepin: bss9395@yeah.net
 */
 
 #include<iostream>
