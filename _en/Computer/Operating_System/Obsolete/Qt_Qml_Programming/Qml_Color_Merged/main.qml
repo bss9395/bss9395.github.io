@@ -109,7 +109,7 @@ Window {
                 width: 40
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
-                text: `R ${rectangleslider_back_blue.value}`
+                text: `B ${rectangleslider_back_blue.value}`
             }
 
             RectangleSlider {
@@ -265,19 +265,12 @@ Window {
 
     Label {
         property var formula_alpha: `A_merged = A_front + A_back * (1 - A_front)`
-        property var formula_color: `C_merged = C_front * A_front + C_back * A_back * (1 - A_front) = C_front * A_front + C_back * A_back - C_back * A_front * A_back`
-        id:label_merged_equation
-        anchors.left: label_merged.left
-        anchors.bottom: label_merged.top
-        text:`${formula_alpha}\n${formula_color}`
-    }
-
-    Label {
+        property var formula_color: `C_merged = C_front * A_front + C_back * A_back * (1 - A_front)`
         property var color_merged: app.colorReal(rectangle_merged.color_merged)
         id: label_merged
         anchors.left: rectangle_merged.left
         anchors.bottom: rectangle_merged.top
-        text: `Merged: ${color_merged}`
+        text:`${formula_alpha}\n${formula_color}\nMerged: ${color_merged}`
     }
 
     Rectangle {
@@ -285,11 +278,34 @@ Window {
         id: rectangle_merged
         width: height
         anchors.left: rectangle_back.right
-        anchors.leftMargin: 5
+        anchors.leftMargin: 50
         anchors.top: rectangle_back.verticalCenter
         anchors.bottom: rectangle_front.verticalCenter
         border.width: 1
         border.color: "black"
         color: color_merged
+    }
+
+    Rectangle {
+        property var color_merged_factorized: app.colorMergeFactorized(rectangle_back.color_snap, rectangle_front.color_snap)
+        id: rectangle_merged_factorized
+        width: height
+        anchors.left: rectangle_merged.right
+        anchors.leftMargin: 50
+        anchors.top: rectangle_merged.top
+        anchors.bottom: rectangle_merged.bottom
+        border.width: 1
+        border.color: "black"
+        color: color_merged_factorized
+    }
+
+    Label {
+        property var formula_alpha: `A_merged = A_front + A_back * (1 - A_front)`
+        property var formula_color_factorized: `C_merged_factorized = (C_front * A_front + C_back * A_back * (1 - A_front)) / A_merged`
+        property var color_merged_factorized: app.colorReal(rectangle_merged_factorized.color_merged_factorized)
+        id: label_merged_factorized
+        anchors.left: rectangle_merged_factorized.left
+        anchors.top: rectangle_merged_factorized.bottom
+        text:`${formula_alpha}\n${formula_color_factorized}\nMerged: ${color_merged_factorized}`
     }
 }

@@ -11,13 +11,12 @@ Keepin: bss9395@yeah.net
 #include <QMouseEvent>
 
 /* Qt事件流程
-步骤零：事件拦截。bool eventFilter(QObject *watched, QEvent *event) ? [return false]步骤一                 | [return true]步骤三
-步骤一：事件分发。bool event(QEvent *event)                         ? [return QLabel::event(event)]步骤二  | []步骤四
-步骤二：事件处理。void mousePressEvent(QMouseEvent *event)          ? [event->ignore()]步骤三              | [event->accept()]步骤四
+步骤零：事件拦截。bool eventFilter(QObject *watched, QEvent *event) ? [return false]步骤一                 ?? [return true]步骤三
+步骤一：事件分发。bool event(QEvent *event)                         ? [return QLabel::event(event)]步骤二  ?? []步骤四
+步骤二：事件处理。void mousePressEvent(QMouseEvent *event)          ? [event->ignore()]步骤三              ?? [event->accept()]步骤四
 步骤三：事件传播。Event Propagates to Parent Widget.
 步骤四：事件终止。Event Ends.
 */
-
 
 class Background: public QLabel {
     Q_OBJECT
@@ -36,19 +35,23 @@ public:
 
     // 事件分发
     bool event(QEvent *event) override {
+        // qDebug() << __FUNCTION__ << event << event->isAccepted();
         if(event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonRelease || event->type() == QEvent::Leave) {
             qDebug() << __FUNCTION__ << event << event->isAccepted();
         }
-        return QLabel::event(event);
-        // return false;
+        return QLabel::event(event);  // 调用事件分发函数
+        // return false;                 // 拦截事件
+        // return true;                  // 拦截事件
     }
 
+	// 事件处理
     void mousePressEvent(QMouseEvent *event) override {
         qDebug() << __FUNCTION__ << event << event->isAccepted();
         // event->accept();
         event->ignore();
     }
 
+	// 事件处理
     void mouseReleaseEvent(QMouseEvent *event) override {
         qDebug() << __FUNCTION__ << event << event->isAccepted();
         // event->accept();
@@ -74,18 +77,21 @@ public:
 
     // 事件分发
     bool event(QEvent *event) override {
+        // qDebug() << __FUNCTION__ << event << event->isAccepted();
         if(event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonRelease || event->type() == QEvent::Leave) {
             qDebug() << __FUNCTION__ << event << event->isAccepted();
         }
         return QLabel::event(event);
     }
 
+	// 事件处理
     void mousePressEvent(QMouseEvent *event) override {
         qDebug() << __FUNCTION__ << event << event->isAccepted();
         // event->accept();
         event->ignore();
     }
 
+	// 事件处理
     void mouseReleaseEvent(QMouseEvent *event) override {
         qDebug() << __FUNCTION__ << event << event->isAccepted();
         // event->accept();
@@ -110,18 +116,21 @@ public:
 
     // 事件分发
     bool event(QEvent *event) override {
+        // qDebug() << __FUNCTION__ << event << event->isAccepted();
         if(event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonRelease || event->type() == QEvent::Leave) {
             qDebug() << __FUNCTION__ << event << event->isAccepted();
         }
         return QLabel::event(event);
     }
 
+	// 事件处理
     void mousePressEvent(QMouseEvent *event) override {
         qDebug() << __FUNCTION__ << event << event->isAccepted();
         // event->accept();
         event->ignore();
     }
 
+	// 事件处理
     void mouseReleaseEvent(QMouseEvent *event) override {
         qDebug() << __FUNCTION__ << event << event->isAccepted();
         // event->accept();
@@ -137,7 +146,8 @@ public:
     Label0 *_label0 = nullptr;
     Label1 *_label1 = nullptr;
 
-    explicit Main() {
+    explicit Main()
+		: QMainWindow(nullptr) {
         _background = new Background(this);
         _background->installEventFilter(this);
         _label0 = new Label0(_background);

@@ -12,7 +12,7 @@ using namespace std;
 
 template<typename Datum_>
 struct Vector {
-	static long _Compare(const Datum_ &lhs, const Datum_ &rhs) {
+	static long _Compare(const Datum_& lhs, const Datum_& rhs) {
 		if (lhs < rhs) {
 			return -1;
 		} else if (lhs > rhs) {
@@ -21,36 +21,29 @@ struct Vector {
 		return 0;
 	}
 
-	function<long(const Datum_ &, const Datum_ &)> _compare = _Compare;
-	Datum_ *_head = nullptr;
+	function<long(const Datum_&, const Datum_&)> _compare = _Compare;
+	Datum_* _head = nullptr;
 	long _capacity = 0;
 	long _size = 0;
 
 	Vector() {
-		_Init(10);
+		_Ensure(10);
 	}
-	Vector(const function<long(const Datum_ &, const Datum_ &)> &compare) {
+	Vector(const function<long(const Datum_&, const Datum_&)>& compare) {
 		_compare = compare;
-		_Init(10);
+		_Ensure(10);
 	}
 	Vector(long capacity) {
-		_Init(capacity);
+		_Ensure(capacity);
 	}
-	Vector(const vector<Datum_> &data) {
-		_Init((long)data.size());
+	Vector(const vector<Datum_>& data) {
+		std::cout << __FUNCTION__ << std::endl;
+		_Ensure((long)data.size());
 
 		for (long i = 0; i < (long)data.size(); i += 1) {
 			_head[i] = data[i];
 		}
 		_size = (long)data.size();
-	}
-	void _Init(long capacity) {
-		if ((0 < capacity) == false) {
-			capacity = 10;
-		}
-		_head = new Datum_[capacity];
-		_capacity = capacity;
-		_size = 0;
 	}
 
 	virtual ~Vector() {
@@ -62,15 +55,17 @@ struct Vector {
 		_size = 0;
 	}
 
-	Vector(const Vector &that) {
-		_Init(that._size);
-		_Copy(that);
+	Vector(const Vector& that) {
+		std::cout << __FUNCTION__ << std::endl;
+		this->operator=(that);
 	}
-	Vector &operator=(const Vector &that) {
+	Vector& operator=(const Vector& that) {
+		std::cout << __FUNCTION__ << std::endl;
 		if (this != &that) {
 			_Ensure(that._size);
 			_Copy(that);
 		}
+		return (*this);
 	}
 	void _Ensure(long capacity) {
 		if ((capacity <= _capacity) == false) {
@@ -80,41 +75,41 @@ struct Vector {
 			_size = 0;
 		}
 	}
-	void _Copy(const Vector &that) {
+	void _Copy(const Vector& that) {
 		for (int i = 0; i < that._size; i += 1) {
 			_head[i] = that._head[i];
 		}
 		_size = that._size;
 	}
 
-	void _Next(ostream &os) {
+	void _Next(ostream& os) {
 		for (int i = 0; i < _size; i += 1) {
 			os << _head[i];
 		}
 	}
-	void _Prev(ostream &os) {
+	void _Prev(ostream& os) {
 		for (int i = _size - 1; 0 <= i; i -= 1) {
 			os << _head[i];
 		}
 	}
 
-	long _Search(const Datum_ &datum) {
+	long _Search(const Datum_& datum) {
 		long index = 0;
 		for (; index < _size && _compare(_head[index], datum) != 0; index += 1);
 		return index;
 	}
-	long _Search_Lower(const Datum_ &datum) {
+	long _Search_Lower(const Datum_& datum) {
 		long index = 0;
 		for (; index < _size && _compare(_head[index], datum) < 0; index += 1);
 		return index;
 	}
-	long _Search_Upper(const Datum_ &datum) {
+	long _Search_Upper(const Datum_& datum) {
 		long index = 0;
 		for (; index < _size && _compare(_head[index], datum) <= 0; index += 1);
 		return index;
 	}
 
-	long _Search_Bianry_Ordered_Circulation(const Datum_ &datum) {
+	long _Search_Bianry_Ordered_Circulation(const Datum_& datum) {
 		long fore = 0;
 		long back = _size;
 		while (fore < back) {
@@ -130,10 +125,10 @@ struct Vector {
 		return _size;
 	}
 
-	long _Search_Bianry_Ordered_Recursion(const Datum_ &datum) {
+	long _Search_Bianry_Ordered_Recursion(const Datum_& datum) {
 		return __Search_Bianry_Ordered_Recursion(datum, 0, _size);
 	}
-	long __Search_Bianry_Ordered_Recursion(const Datum_ &datum, long fore, long back) {
+	long __Search_Bianry_Ordered_Recursion(const Datum_& datum, long fore, long back) {
 		if (fore < back) {
 			long midd = (fore + back) / 2;
 			if (_compare(datum, _head[midd]) < 0) {
@@ -158,12 +153,14 @@ void _Test_Copy() {
 	array._Prev(std::cout);
 	std::cout << std::endl;
 
-	Vector<double> copy = array;
-	std::cout << copy._size << ", " << copy._capacity << std::endl;
-	copy._Next(std::cout);
+	Vector<double> assign_copy = array;
+	std::cout << assign_copy._size << ", " << assign_copy._capacity << std::endl;
+	assign_copy._Next(std::cout);
 	std::cout << std::endl;
 	array._Prev(std::cout);
 	std::cout << std::endl;
+
+	assign_copy = array;
 }
 
 void _Test_Search() {
@@ -207,14 +204,14 @@ void _Test_Search_Bianry_Ordered_Recursion() {
 }
 
 int main() {
-	// _Test_Copy();
+	_Test_Copy();
 
 	// _Test_Search();
 	// _Test_Search_Lower();
 	// _Test_Search_Upper();
 
 	// _Test_Search_Bianry_Ordered_Circulation();
-	_Test_Search_Bianry_Ordered_Recursion();
+	// _Test_Search_Bianry_Ordered_Recursion();
 
 	return 0;
 }

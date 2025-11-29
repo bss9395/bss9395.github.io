@@ -57,13 +57,28 @@ public:
         QColor color_front = QColor(front);
 
         // A_merged = A_front + A_back * (1 - A_front)
-        // C_merged = C_front * A_front + C_back * A_back * (1 - A_front) = C_front * A_front + C_back * A_back - C_back * A_front * A_back
+        // C_merged = C_front * A_front + C_back * A_back * (1 - A_front)
         // 采用方法：前本背补。前景色为本色，背景色为补色，前景色叠加背景色。
         double alpha = color_front.alphaF() + color_back.alphaF() * (1.0 - color_front.alphaF());
         double red   = color_front.redF()   * color_front.alphaF() + color_back.redF()   * (1.0 - color_front.alphaF());
         double green = color_front.greenF() * color_front.alphaF() + color_back.greenF() * (1.0 - color_front.alphaF());
         double blue  = color_front.blueF()  * color_front.alphaF() + color_back.blueF()  * (1.0 - color_front.alphaF());
         return QColor::fromRgbF(red, green, blue, alpha).name(QColor::HexArgb);
+    }
+
+    Q_INVOKABLE QString colorMergeFactorized(const QString &back, const QString &front) {
+        qDebug().noquote() << __FUNCTION__;
+        QColor color_back  = QColor(back);
+        QColor color_front = QColor(front);
+
+        // A_merged = A_front + A_back * (1 - A_front)
+        // C_merged_factorized = (C_front * A_front + C_back * A_back * (1 - A_front)) / A_merged
+        // 采用方法：前本背补。前景色为本色，背景色为补色，前景色叠加背景色。
+        double alpha = color_front.alphaF() + color_back.alphaF() * (1.0 - color_front.alphaF());
+        double red   = color_front.redF()   * color_front.alphaF() + color_back.redF()   * (1.0 - color_front.alphaF());
+        double green = color_front.greenF() * color_front.alphaF() + color_back.greenF() * (1.0 - color_front.alphaF());
+        double blue  = color_front.blueF()  * color_front.alphaF() + color_back.blueF()  * (1.0 - color_front.alphaF());
+        return QColor::fromRgbF(red / alpha, green / alpha, blue / alpha, alpha).name(QColor::HexArgb);
     }
 };
 
