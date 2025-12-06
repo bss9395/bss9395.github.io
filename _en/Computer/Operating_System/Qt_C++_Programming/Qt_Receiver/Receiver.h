@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QDebug>
 
 class Sender : public QObject {
     Q_OBJECT
@@ -11,4 +12,9 @@ signals:
 
 class Receiver : public QObject {
     Q_OBJECT
+
+public:
+    virtual ~Receiver() {
+        qDebug().nospace().noquote() << __FUNCTION__;
+    }
 };

@@ -17,6 +17,7 @@ static void _Test_Receiver_delete() {
     });
 
     emit sender->_Signal("abc");
+    // 析构receiver，自动断开信号连接
     emit sender->_Signal("def");
     qDebug().noquote() << "leave";
 }
@@ -25,13 +26,14 @@ static void _Test_Receiver_Local() {
     Sender *sender = new Sender();
     Receiver *local = nullptr;
     {
-        Receiver receiver1;
-        local = &receiver1;
+        Receiver receiver;
+        local = &receiver;
         QObject::connect(sender, &Sender::_Signal, local, [local](const QString& text) -> void {
             qDebug().noquote() << "text = " << text;
         });
 
         emit sender->_Signal("abc");
+        // 析构receiver，自动断开信号连接
     }
     emit sender->_Signal("def");
 }

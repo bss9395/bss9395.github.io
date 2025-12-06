@@ -22,7 +22,7 @@ public slots:
         if(except == true) {
             throw QString("error occurred.");
         }
-        for(qint64 i = 0; i < (qint64)1024 * 1024 * 1024; i += 1) {
+        for(qint64 i = 0; i < (qint64)1024 * 1024 * 1024 * 50; i += 1) {
             ;
         }
         qDebug().noquote() << QString("leave %1(%2), %3").arg(__FUNCTION__).arg(para).arg((quint64)QThread::currentThreadId());
@@ -30,4 +30,16 @@ public slots:
 
 signals:
     void _Signal_DoWork(bool, QString);
+};
+
+class Thread: public QThread {
+    Q_OBJECT
+public:
+    explicit Thread() {
+        qDebug().nospace().noquote() << __FUNCTION__;
+    }
+
+    virtual ~Thread() {
+        qDebug().nospace().noquote() << __FUNCTION__;
+    }
 };

@@ -20,7 +20,7 @@ signals:
 public:
     void _Send(){
         auto _Emit = [this](QString bulk) -> void {
-            QString print = QString("[_Emit] threadID = %2, &bulk = %3, bulk.size() = %4, bulk[0:10) = %5")
+            QString print = QString("[_Emit] threadID = %1, &bulk = %2, bulk.size() = %3, bulk[0:10) = %4")
                     .arg((quint64)QThread::currentThreadId())
                     .arg((quint64)&bulk)
                     .arg((quint64)bulk.size())
@@ -32,7 +32,7 @@ public:
         };
 
         QString bulk = QString(100, 'A');
-        QString print = QString("[_Send] threadID = %2, &bulk = %3, bulk.size() = %4, bulk[0:10) = %5")
+        QString print = QString("[_Send] threadID = %1, &bulk = %2, bulk.size() = %3, bulk[0:10) = %4")
                 .arg((quint64)QThread::currentThreadId())
                 .arg((quint64)&bulk)
                 .arg((quint64)bulk.size())
@@ -58,14 +58,14 @@ public:
         QString extra = "Hello";
         QString *pextra = new QString("Hello");
         QObject::connect(this, &Receiver::destroyed, [pextra]() -> void {
-            QString print = QString("[destroyed] threadID = %2")
+            QString print = QString("[destroyed] threadID = %1")
                     .arg((quint64)QThread::currentThreadId());
             qDebug().nospace().noquote() << print;
             delete pextra;
         });
 
         QObject::connect(_sender, &Sender::_Signal, this, [this, extra, pextra](const QString& bulk) {
-            QString print = QString("[_Signal0] threadID = %2, &bulk = %3, bulk.size() = %4, bulk[0:10) = %5")
+            QString print = QString("[_Signal0] threadID = %1, &bulk = %2, bulk.size() = %3, bulk[0:10) = %4")
                     .arg((quint64)QThread::currentThreadId())
                     .arg((quint64)&bulk)
                     .arg((quint64)bulk.size())
@@ -80,7 +80,7 @@ public:
 
         QObject::connect(_sender, &Sender::_Signal, this, [this, extra, pextra](const QString& bulk) {
             QThread::msleep(5000);
-            QString print = QString("[_Signal1] threadID = %2, &bulk = %3, bulk.size() = %4, bulk[0:10) = %5")
+            QString print = QString("[_Signal1] threadID = %1, &bulk = %2, bulk.size() = %3, bulk[0:10) = %4")
                     .arg((quint64)QThread::currentThreadId())
                     .arg((quint64)&bulk)
                     .arg((quint64)bulk.size())
@@ -95,7 +95,7 @@ public:
         }, Qt::QueuedConnection);
 
 
-        QString print = QString("[_Receive] threadID = %2")
+        QString print = QString("[_Receive] threadID = %1")
                 .arg((quint64)QThread::currentThreadId());
         qDebug().nospace().noquote() << print;
         _sender->_Send();
