@@ -39,7 +39,7 @@ void _Parse_Stream() {
             miniLen = 0;
             // processCopilot(uid, jsonDocument.object());  // 每个数据包只处理最后一个匹配的项
         } else {                                            // 解析失败
-            miniLen = jsonString.length() - 2 + 1;          // 去掉左右圆括号长度增加1
+            miniLen = jsonString.length() - 2 + 1;          // 去掉左右花括号长度增加1
         }
     }
 
