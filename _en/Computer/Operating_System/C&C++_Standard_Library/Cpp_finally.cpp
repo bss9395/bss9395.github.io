@@ -8,10 +8,10 @@ Update: 2025-07-29T22:43:00+08@China-GuangDong-ZhanJiang+08
 
 class Finally {
 public:
-	explicit Finally(const std::function<void()>& cleanup) 
+	explicit Finally(const std::function<void()>& cleanup)
 		: _cleanup(cleanup) {}
 
-	~Finally() {
+	virtual ~Finally() {
 		_Execute();
 	}
 
@@ -29,11 +29,11 @@ private:
 };
 
 void _Function() {
-	std::cout << "begin function." << std::endl;
+	std::cout << "begin function" << std::endl;
 	if (true) {
 		throw std::runtime_error("error occurred.");
 	}
-	std::cout << "end function." << std::endl;
+	std::cout << "endup function" << std::endl;
 }
 
 int main() {
@@ -48,9 +48,9 @@ int main() {
 			throw except;
 		} catch (...) {
 			std::cout << "any exception caught: " << std::endl;
-		}
+		} 
 		finally._Execute();
-		std::cout << "after try." << std::endl;
+		std::cout << "after try" << std::endl;
 	} catch (const std::exception& except) {
 		std::cout << "outer try: " << except.what() << std::endl;
 	}
