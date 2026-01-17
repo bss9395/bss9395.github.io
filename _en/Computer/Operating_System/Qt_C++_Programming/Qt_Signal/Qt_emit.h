@@ -99,6 +99,7 @@ public:
                 .arg((quint64)QThread::currentThreadId());
         qDebug().nospace().noquote() << print;
         _sender->_Send();
+        QObject::disconnect()
     }
 
     virtual ~Receiver() {
