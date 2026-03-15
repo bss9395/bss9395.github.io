@@ -4,6 +4,47 @@
 !!! Slogan: Idea rests everywhere.
 !!! Update: 2025/12/28⊥10:28:00&+08$08@China-BeiJing
 !!! Keepin: brilliant9395@yeah.net
+!!! Verify: [37, 4261]
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+;;; ### Do语言的设计原理
+;;; ### Do语言的语言规范
+;;; ### Do语言的关键字与特性与操作符
+;;; ### Do语言的注释与日志
+;;; ### Do语言的内存序与字符编码
+;;; ### Do语言的原码芯片与数字信号
+;;; ### Do语言的定长浮点型
+;;; ### Do语言的基码与颜色
+;;; ### Do语言的基本类型与字面量
+;;; ### Do语言的位域类型与地理戳
+;;; ### Do语言的泛型模板
+;;; ### Do语言的数组类型
+;;; ### Do语言的字节数组与字符数组
+;;; ### Do语言的类型规则与值交换
+;;; ### Do语言的类型转换与移位运算
+;;; ### Do语言的成员变量与读写控制符
+;;; ### Do语言的入口方法
+;;; ### Do语言的生命方法与特殊方法与全局单例
+;;; ### Do语言的多重继承与类型推断
+;;; ### Do语言的成员方法与占位值
+;;; ### Do语言的操作符方法与打印格式
+;;; ### Do语言的匿名函数与函数变量
+;;; ### Do语言的指纹与限定域
+;;; ### Do语言的条件语句与循环语句
+;;; ### Do语言的异常语句与异常体系
+;;; ### Do语言的比较运算与逻辑演绎
+;;; ### Do语言的特性与单位制
+;;; ### Do语言的协程与进程
+;;; ### Do语言的信号机制与事件机制
+;;; ### Do语言的读写锁机制与协程调度机制
+;;; ### Do语言的字节流与序列化
+;;; ### Do语言的正则表达式
+;;; ### Do语言的运行库与归档库
+;;; ### Do语言用于界面应用程序
+;;; ### Do语言用于数值计算与符号计算
+;;; ### 案例：Do语言的数据结构
+;;; ### 案例：Do语言的智能指针
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ### Do语言的设计原理
 
@@ -48,7 +89,7 @@ Do语言将成为历史上最强大也最简单的计算机语言，没有之一
 
 Do语言的关键字是必要的，但特性不是必要的。
 
-| 类别       | 关键字共64个                  | 关联类共8个 | C/C++语言以及Qt框架                                          | 其它语言                                                     |
+| 类别       | 关键字共65个                  | 关联类共8个 | C/C++语言以及Qt框架                                          | 其它语言                                                     |
 | :--------- | :---------------------------- | :---------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | 地址型     | iptr                          |             | nullptr_t、uintptr_t、intptr_t、ssize_t、size_t              |                                                              |
 | 地址值     | null                          |             | nullptr、NULL                                                | None                                                         |
@@ -78,7 +119,7 @@ Do语言的关键字是必要的，但特性不是必要的。
 | 成员方法   | func+hold                     |             |                                                              | def、function                                                |
 | 操作符方法 | oper+hold                     |             | operator                                                     |                                                              |
 | 方法返回   | exit                          |             | return                                                       | return                                                       |
-| 条件语句   | test+else                     |             | if+else if+else、switch                                      | if+elif+else、switch                                         |
+| 条件语句   | test+case+rest                |             | if+else if+else、switch+case+default                         | if+elif+else、switch+case+default                            |
 | 循环语句   | `loop+keep|quit+else`         |             | `for|while+continue|break`、 `do+continue|break+while`       | `for|while+continue|break+else`                              |
 | 异常语句   | deem+cast+what+last           |             | try+throw+catch                                              | try+throw+catch+finally、try+raise+except+else+finally、with |
 | 创建进程   | fork+free                     |             | fork、free、delete                                           |                                                              |
@@ -2619,7 +2660,7 @@ type Main
 
 ### Do语言的条件语句与循环语句
 
-相关关键字：test、else、loop、keep、quit
+相关关键字：test、case、rest、loop、keep、quit、else
 相关关键词：条件语句、循环语句、序数标、迭代器
 
 Do语言的条件语句由多项组成，末项是必选项判断条件，其它项是可选项，通常是变量定义。Do语言的条件语句中定义的变量是局部变量。
@@ -2639,9 +2680,9 @@ type Main
         auto locale ⊏ Enum._zh_cn;
         test(locale = Enum._zh_cn)
             Console._Print〈Enum._zh_cn〉;
-        else(locale = Enum._en_us)
+        case(locale = Enum._en_us)
             Console._Print〈Enum._en_us〉;
-        else
+        rest
             Console._Print〈!'????'〉;
 
     !! Do语言的循环语句的示例
@@ -2650,7 +2691,7 @@ type Main
             test(ordi < 5)
                 ordi +⊏ 1;
                 keep;
-            else(ordi = 7)
+            case(ordi = 7)
                 Console._Print〈!'found and quit from loop.'〉;
                 quit;
             Console._Print〈!'ordi = {ordi}'〉;
@@ -2698,7 +2739,7 @@ type Main
         loop(auto iter ⊏ vector._Begin; iter ¬= vector._Endup)
             test(iter. = 2.0)
                 iter\_Erase〈〉;  !! Do语言的迭代器采用C++语言的迭代器与Java语言的迭代器的综合形式。
-            else
+            rest
                 ++iter;
 
 
@@ -4202,10 +4243,10 @@ type Main
             Console._Print〈!item.〉;
 
     main Main{}
-        auto array ⊏ &&make &&$Type[10]{};  !! array的类型是&&$(&&$Type[10])
-        auto item  ⊏ &&make Type{12.34};    !! item的引用计数为1
-        array[0] ⊏ item;                    !! item的引用计数为2
-        auto retrive ⊏ array[0];            !! item的引用计数为3
+        auto array ⊏ &&make &&$Type[10]{};   !! array的类型是&&$(&&$Type[10])
+        auto item  ⊏ &&make Type{12.34};     !! item的引用计数为1
+        array[0] ⊏ item;                     !! item的引用计数为2
+        auto retrive ⊏ array[0];             !! item的引用计数为3
         Type._Function〈retrive〉;
 
         auto reset ⊏ retrive._Reset〈〉;     !! 重置retrive的引用地址为null，引用计数保持不变
@@ -4213,8 +4254,7 @@ type Main
         Console._Print〈retrive._Address〉;  !! retrive的引用地址为null
         Console._Print〈item._Refer〉        !! item的引用计数为3
         Console._Print〈item._Address〉;     !! item的引用地址为null
-        free reset;                         !! 手动销毁item的引用指针的实例
+        free reset;                          !! 手动销毁item的引用指针的实例
         !! 自动析构retrive
         !! 自动析构item
         !! 自动析构array数组及其元素
-
