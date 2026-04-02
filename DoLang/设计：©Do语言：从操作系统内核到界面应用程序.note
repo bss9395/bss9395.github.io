@@ -89,47 +89,47 @@ Do语言将成为历史上最强大也最简单的计算机语言，没有之一
 
 Do语言的关键字是必要的，但特性不是必要的。
 
-| 类别       | 关键字共65个                  | 关联类共8个 | C/C++语言以及Qt框架                                          | 其它语言                                                     |
-| :--------- | :---------------------------- | :---------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| 地址型     | iptr                          |             | nullptr_t、uintptr_t、intptr_t、ssize_t、size_t              |                                                              |
-| 地址值     | null                          |             | nullptr、NULL                                                | None                                                         |
-| 布尔型     | bool                          |             | bool                                                         | boolean                                                      |
-| 布尔值     | posi、nega                    |             | true、false                                                  | True、False                                                  |
-| 位域型     | bite                          |             |                                                              |                                                              |
-| 字节型     | byte                          | Byte        | char、string、QByteArray                                     | byte、byte[]、ByteBuffer                                     |
-| 字符型     | char                          | Char        | wchar_t、wstring、QString                                    | char、char[]、String、CharBuffer、StringBuilder、StringBuffer、str |
-| 无符号整型 | uin4、uin8、uin16             |             | unsigned int、unsigned long、unsigned long long              |                                                              |
-| 有符号整型 | int1、int2、int4、int8、int16 |             | char、short、int、long、long long                            |                                                              |
-| 定长浮点型 | num4、num8、num16             |             | float、double、long double                                   |                                                              |
-| 定长复数型 | com4、com8、com16             |             | complex                                                      | complex                                                      |
-| 共用体     | sole                          |             | union                                                        |                                                              |
-| 组合体     | pack                          |             | struct                                                       |                                                              |
-| 类体       | type                          |             | struct、class                                                | class                                                        |
-| 成员属性   | prop+para                     |             | property                                                     | setter()                                                     |
-| 强类型     | auto                          |             | auto                                                         |                                                              |
-| 弱类型     | flex                          |             |                                                              | var、let                                                     |
-| 访问枚举   | enum                          | Enum        | enum                                                         | enum                                                         |
-| 全量编译   | bind                          |             |                                                              |                                                              |
-| 足量编译   | load                          |             | QLibrary::load()、QLibrary::unload()                         |                                                              |
-| 类型别名   | take                          |             | #include、using、typedef、decltype                           | package、import                                              |
-| 编译期信息 | comp                          |             | `__FILE__`、`__LINE__`、`__FUNCTION__`、 `__DATE__`、`__TIME__`、`__TIMESTAMP__` |                                                              |
-| 运行期信息 | dyna                          | Dyna        | typeid、type_info                                            | .class、getClass()、Class.forName()                          |
-| 入口方法   | main+hold                     | Main        | main                                                         | main                                                         |
-| 生命方法   | ctor+hold                     |             |                                                              |                                                              |
-| 成员方法   | func+hold                     |             |                                                              | def、function                                                |
-| 操作符方法 | oper+hold                     |             | operator                                                     |                                                              |
-| 方法返回   | exit                          |             | return                                                       | return                                                       |
-| 条件语句   | test+case+rest                |             | if+else if+else、switch+case+default                         | if+elif+else、switch+case+default                            |
-| 循环语句   | `loop+keep|quit+else`         |             | `for|while+continue|break`、 `do+continue|break+while`       | `for|while+continue|break+else`                              |
-| 异常语句   | deem+cast+what+last           |             | try+throw+catch                                              | try+throw+catch+finally、try+raise+except+else+finally、with |
-| 创建进程   | fork+free                     |             | fork、free、delete                                           |                                                              |
-| 创建实例   | make+free                     |             | malloc、calloc、new、free、delete                            | new                                                          |
-| 本进程指针 | self                          | Self        | QCoreApplication::applicationPid()                           |                                                              |
-| 协程机制   | asyn+task                     | Asyn、Task  | asyn+await、this_thread::get_id()、QThread::currentThread()  | asyn+await、Thread. currentThread()                          |
-| 本实例指针 | this                          |             | this                                                         | this、self                                                   |
-| 信号机制   | post+emit+pick+undo           |             | signals+emit+connect+disconnect                              | getter()                                                     |
-| 事件机制   | vine                          |             | parent                                                       |                                                              |
-| 读写锁机制 | lock+sync                     |             | QReadWriteLock                                               | synchronized、ReentrantReadWriteLock                         |
+| 类别       | 关键字共68个                    | 关联类共8个 | C/C++语言以及Qt框架                                          | 其它语言                                                     |
+| :--------- | :------------------------------ | :---------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 地址型     | `iptr`                          |             | nullptr_t、uintptr_t、intptr_t、ssize_t、size_t              |                                                              |
+| 地址值     | `null`                          |             | nullptr、NULL                                                | None                                                         |
+| 布尔型     | `bool`                          |             | bool                                                         | boolean                                                      |
+| 布尔值     | `posi、nega`                    |             | true、false                                                  | True、False                                                  |
+| 位域型     | `bite`                          |             |                                                              |                                                              |
+| 字节型     | `byte`                          | Byte        | char、string、QByteArray                                     | byte、byte[]、ByteBuffer                                     |
+| 字符型     | `char`                          | Char        | wchar_t、wstring、QString                                    | char、char[]、String、CharBuffer、StringBuilder、StringBuffer、str |
+| 无符号整型 | `uin1、uin2、uin4、uin8、uin16` |             | unsigned int、unsigned long、unsigned long long              |                                                              |
+| 有符号整型 | `int1、int2、int4、int8、int16` |             | char、short、int、long、long long                            |                                                              |
+| 定长浮点型 | `num4、num8、num16`             |             | float、double、long double                                   |                                                              |
+| 定长复数型 | `com4、com8、com16`             |             | complex                                                      | complex                                                      |
+| 共用体     | `sole`                          |             | union                                                        |                                                              |
+| 组合体     | `pack`                          |             | struct                                                       |                                                              |
+| 类体       | `type`                          |             | struct、class                                                | class                                                        |
+| 成员属性   | `prop+para`                     |             | property                                                     | setter()                                                     |
+| 强类型     | `auto`                          |             | auto                                                         |                                                              |
+| 弱类型     | `flex`                          |             |                                                              | var、let                                                     |
+| 访问枚举   | `enum`                          | Enum        | enum                                                         | enum                                                         |
+| 全量编译   | `bind`                          |             |                                                              |                                                              |
+| 足量编译   | `load`                          |             | QLibrary::load()、QLibrary::unload()                         |                                                              |
+| 类型别名   | `take`                          |             | #include、using、typedef、decltype                           | package、import                                              |
+| 编译期信息 | `comp`                          |             | `__FILE__`、`__LINE__`、`__FUNCTION__`、 `__DATE__`、`__TIME__`、`__TIMESTAMP__` |                                                              |
+| 运行期信息 | `dyna`                          | Dyna        | typeid、type_info                                            | .class、getClass()、Class.forName()                          |
+| 入口方法   | `main+hold`                     | Main        | main                                                         | main                                                         |
+| 生命方法   | `ctor+hold`                     |             |                                                              |                                                              |
+| 成员方法   | `func+hold`                     |             |                                                              | def、function                                                |
+| 操作符方法 | `oper+hold`                     |             | operator                                                     |                                                              |
+| 方法返回   | `exit`                          |             | return                                                       | return                                                       |
+| 条件语句   | `test+case+rest`                |             | if+else if+else、switch+case+default                         | if+elif+else、switch+case+default                            |
+| 循环语句   | `loop+keep|quit+else+away`      |             | `for|while+continue|break`、 `do+continue|break+while`       | `for|while+continue|break+else`                              |
+| 异常语句   | `deem+cast+what+last`           |             | try+throw+catch                                              | try+throw+catch+finally、try+raise+except+else+finally、with |
+| 创建进程   | `fork+free`                     |             | fork、free、delete                                           |                                                              |
+| 创建实例   | `make+free`                     |             | malloc、calloc、new、free、delete                            | new                                                          |
+| 本进程指针 | `self`                          | Self        | QCoreApplication::applicationPid()                           |                                                              |
+| 协程机制   | `asyn+task`                     | Asyn、Task  | asyn+await、this_thread::get_id()、QThread::currentThread()  | asyn+await、Thread. currentThread()                          |
+| 本实例指针 | `this`                          |             | this                                                         | this、self                                                   |
+| 信号机制   | `post+emit+pick+undo`           |             | signals+emit+connect+disconnect                              | getter()                                                     |
+| 事件机制   | `vine`                          |             | parent                                                       |                                                              |
+| 读写锁机制 | `lock+sync`                     |             | QReadWriteLock                                               | synchronized、ReentrantReadWriteLock                         |
 
 Do语言的特性是编译期静态存储的，不支持运行期动态修改，也不支持运行期动态查询。
 
