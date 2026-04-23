@@ -2,7 +2,7 @@
 !!! Author: Brilliant9395
 !!! Create: ©奇思科技 ©Idear Technology
 !!! Slogan: Idea rests everywhere.
-!!! Update: 2026/03/17⊥4:44:00&+08$08@China-GuangDong-ZhanJiang
+!!! Update: 2026/03/17T4:44:00&+00@China-GuangDong-ZhanJiang
 !!! Keepin: brilliant9395@yeah.net
 !!! Verify: [6, 293]
 
@@ -172,10 +172,10 @@ z来源于英文单词zenith。
 d来源于英文单词deviation。
 o来源于英文单词offset。
 [公元历当地时间戳格式，变长精确度相关]
-±YYYY/MM/DD⊥hh:mm:ss.tttt&+ZZ:zz:dd.oooo$ZZ:zz:dd.oooo@Primary-Secondary-Site
+±YYYY/MM/DDThh:mm:ss.tttt&+ZZ:zz:dd.oooo$ZZ:zz:dd.oooo@Primary-Secondary-Site
 伦敦当地时间2026/03/21⊥12:00:00.1234&+08:00:00.0000$00:00:00.0000@China-ShangHai
 [公元历标准时间戳格式，变长精确度相关]
-±YYYY/MM/DD⊥hh:mm:ss.tttt&-ZZ:zz:dd.oooo$ZZ:zz:dd.oooo@Primary-Secondary-Site
+±YYYY/MM/DDThh:mm:ss.tttt&-ZZ:zz:dd.oooo$ZZ:zz:dd.oooo@Primary-Secondary-Site
 上海标准时间2026/03/21⊥20:00:00.1234&-08:00:00.0000$00:00:00.0000@China-ShangHai
 [自然历当地时间戳格式，变长精确度相关]
 ±YYYY/WW/DD⊥hh:mm:ss.tttt&+ZZ:zz:dd.oooo$ZZ:zz:dd.oooo@Primary-Secondary-Site

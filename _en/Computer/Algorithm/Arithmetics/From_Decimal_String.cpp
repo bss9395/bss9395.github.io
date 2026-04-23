@@ -1,16 +1,15 @@
-/// Record: From_Decimal_String.cpp
+﻿/// Record: From_Decimal_String.cpp
 /// Author: Brilliant9395
-/// Update: 2026/04/02⊥08:40:00&+08$08@China-GuangDong-ZhanJiang
+/// Update: 2026/04/02T08:40:00&+00@China-GuangDong-ZhanJiang
 /// Keepin: brilliant9395@yeah.net
-/// Verify: [2, 121]
 
 #include <stdio.h>
 #include <inttypes.h>
 
-/// uint64_t _From_Decimal_String(int8_t* sign, uint8_t* check, char* decimal)
+/// uint64_t _From_Decimal_String(int8_t* sign, uint8_t* error, char* decimal)
 /// para:
 ///     sign   : 结果值的正负号
-///     check  :
+///     error  :
 ///         0b??01: 字符串起始无效
 ///         0b??10: 字符串终止无效
 ///         0b01??: 结果值无符号上溢出
@@ -20,14 +19,19 @@
 /// exit:
 ///     value  : 结果值
 uint64_t _From_Decimal_String(int8_t* sign, uint8_t* error, char* decimal) {
-    static const uint64_t overhead_uin8_mul10 = (~uint64_t{ 0 }) / 10;
-    static const uint64_t overhead_uin8 = (~uint64_t{ 0 });
-    static const uint64_t overtail_int8 = (uint64_t{ 1 } << 63);
+    static const uint64_t overhead_uin8_mul10 = (~uint64_t{ 0 }) / 10;  // 0x1999999999999999
+    static const uint64_t overhead_uin8       = (~uint64_t{ 0 });       // 0xFFFFFFFFFFFFFFFF
+    static const uint64_t overtail_int8       = (uint64_t{ 1 } << 63);  // 0X8000000000000000
 
     uint64_t value = 0;
     int8_t ternary = 0;
     uint8_t check = 0b00000000;
     if (decimal == NULL) {
+        check &= 0b11111100;
+        check |= 0b00000001;
+        if (error != NULL) {
+            (*error) = check;
+        }
         return value;
     }
     // 字符串起始检查
@@ -79,7 +83,7 @@ uint64_t _From_Decimal_String(int8_t* sign, uint8_t* error, char* decimal) {
         decimal += 1;
     }
     // 结果值有符号检查
-    if (check == 0b00000000 && ternary == -1) {
+    if (ternary == -1) {
         if (value <= overtail_int8) {
             value = ~value + 1;
         }
@@ -114,7 +118,7 @@ int main(int argc, char* argv[]) {
     int8_t sign = 0;
     uint8_t error = 0;
     uint64_t value = _From_Decimal_String(&sign, &error, decimal);
-    printf("value = 0x%016I64X, value = %I64d, sign = %d, error = %0u, decimal = %s\n", value, value, sign, error, decimal);
+    printf("value = 0x%016I64X, value = %I64d, sign = %d, error = %02X, decimal = %s\n", value, value, sign, error, decimal);
 
     return 0;
 }

@@ -1,8 +1,7 @@
 /// Record: Into_Decimal_String.cpp
 /// Author: Brilliant9395
-/// Update: 2026/04/02⊥08:40:00&+08$08@China-GuangDong-ZhanJiang
+/// Update: 2026/04/02T08:40:00&+00@China-GuangDong-ZhanJiang
 /// Keepin: brilliant9395@yeah.net
-/// Verify: [4, 89]
 
 #include <stdio.h>
 #include <inttypes.h>
