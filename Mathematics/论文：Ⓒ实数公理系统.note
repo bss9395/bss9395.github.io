@@ -1,6 +1,6 @@
-!!! Record: 论文：©实数公理系统.note
+!!! Record: 论文：Ⓒ实数公理系统.note
 !!! Author: Brilliant9395
-!!! Create: ©奇思科技 ©Idear Technology
+!!! Create: Ⓒ奇思科技 ⒸIdear Technology
 !!! Slogan: Idea rests everywhere. 奇思无处不在。
 !!! Update: 2026/02/06T22:03:00&+00@China-GuangDong-ZhanJiang
 !!! Keepin: brilliant9395@yeah.net
@@ -368,4 +368,3 @@ x៷  = 0.β៷₁β៷₂β៷₃⋯⋯
 对于任意无限小数E，总是存在自然数N，使得满足关系式Α.α₁α₂⋯⋯α៷ ≤ E < Α + \limi⌄(N→∞) \summ⌄(o∈[1:N:1]) α⌄o/β^o。
 对于任意的非理数I，自然数N趋于无穷时两端可无限逼近Α.α₁α₂⋯⋯α៷ ≤ I < Α + \limi⌄(N→∞) \summ⌄(o∈[1:N:1]) α⌄o/β^o。
 因此对于实数轴上任意一个点e，总是可以与实数建立一一对应关系。
-
