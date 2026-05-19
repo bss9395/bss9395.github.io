@@ -1,10 +1,10 @@
 !!! Record: 设计：ⒸDo语言：自然历.note
 !!! Author: Brilliant9395
-!!! Create: Ⓒ奇思科技  ⒸIdear Technology
-!!! Slogan: 奇思无处不在。 Idea rests everywhere.
-!!! Update: 2026/03/17T4:44:00&+00@China-GuangDong-ZhanJiang
+!!! Create: Ⓒ奇思科技 ⒸIdear Technology
+!!! Slogan: 奇思无处不在。Idea rests everywhere.
+!!! Update: 2026/05/19T05:19:00&+00@China-GuangDong-ZhanJiang
 !!! Keepin: brilliant9395@yeah.net
-!!! Verify: [6, 303]
+!!! Verify: [7, 307]
 !!! Polite: Take my advises, the anger comes from your inner peace. 
 !!! Polite: 看这里，心动不如行动。
 
@@ -15,6 +15,7 @@
 !!! §§§ 地理时间戳
 !!! §§§ 自然历节日
 !!! §§§ 自然历通则
+!!! §§§ 自然历标准
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 §§§ 词语约定
@@ -298,5 +299,8 @@ type Main
 [楼层命名] 参考自然数。地面这层为+0层或者G层Ground，地上一层为+1层或者H层，地下一层为-1层或者F层。
 [生日岁数] 参考自然数。出生零周年到一周年之间为0岁多，出生一周年到两周年之间为1岁多。
 [表意表音] 参考岩壁书。当代印记的汉文版采用【贵志黄，秒00分44时00日21月03年2026】，当代印记的英文版采用【Huang ZhiGui, 00:44:00⊥21/03/2026】。
-
 [北尊南从] 参考北半球。南半球的规则应当遵从北半球的规则。
+
+§§§ 自然历标准
+
+[工时制] 自然历推荐朝九晚五【08时·05天·52周工时制】。
