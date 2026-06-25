@@ -875,57 +875,57 @@ pack Color
 | 蓝色   | #b11111111_00000000_00000000_11111111          | #hFF0000FF       | h#FF0000FF       |
 
 ERGB像素点操作b#00是近景色融合远景色（色彩变幻技术）：
-E⌄(near_far)  ⊏ 1.0       · E⌄(near) + E⌄(far)  · (1 - E⌄(near));  !! E 概念值可以调换近景色与远景色
+E⌄(near_far)  = 1.0       · E⌄(near) + E⌄(far)  · (1 - E⌄(near));  !! E 概念值可以调换近景色与远景色
 Cr⌄(near_far) ⊏ Cr⌄(near) · E⌄(near) + Cr⌄(far) · (1 - E⌄(near));  !! Cr实效值不可调换近景色与远景色
 Cg⌄(near_far) ⊏ Cg⌄(near) · E⌄(near) + Cg⌄(far) · (1 - E⌄(near));  !! Cg实效值不可调换近景色与远景色
 Cb⌄(near_far) ⊏ Cb⌄(near) · E⌄(near) + Cb⌄(far) · (1 - E⌄(near));  !! Cb实效值不可调换近景色与远景色
 
 ERGB像素点操作b#10是近景色覆盖远景色（图像处理技术）：
-E⌄(near_far)  ⊏ E⌄(near) ;                                         !! E 概念值不可调换近景色与远景色
+E⌄(near_far)  = E⌄(near) ;                                         !! E 概念值不可调换近景色与远景色
 Cr⌄(near_far) ⊏ Cr⌄(near);                                         !! Cr实效值不可调换近景色与远景色
 Cg⌄(near_far) ⊏ Cg⌄(near);                                         !! Cg实效值不可调换近景色与远景色
 Cb⌄(near_far) ⊏ Cb⌄(near);                                         !! Cb实效值不可调换近景色与远景色
 
 ERGB像素点操作b#01是近景色浮雕远景色（三维增材技术）：
-E⌄(near_far)  ⊏ E⌄(far) ≤ E⌄(near) ? E⌄(near)  : E⌄(far) ;         !! E 实效值不可调换近景色与远景色
+E⌄(near_far)  = E⌄(far) ≤ E⌄(near) ? E⌄(near)  : E⌄(far) ;         !! E 概念值不可调换近景色与远景色
 Cr⌄(near_far) ⊏ E⌄(far) ≤ E⌄(near) ? Cr⌄(near) : Cr⌄(far);         !! Cr实效值不可调换近景色与远景色
 Cg⌄(near_far) ⊏ E⌄(far) ≤ E⌄(near) ? Cg⌄(near) : Cg⌄(far);         !! Cg实效值不可调换近景色与远景色
 Cb⌄(near_far) ⊏ E⌄(far) ≤ E⌄(near) ? Cb⌄(near) : Cb⌄(far);         !! Cb实效值不可调换近景色与远景色
 
 ERGB像素点操作b#11是近景色镂刻远景色（三维减材技术）：
-E⌄(near_far)  ⊏ E⌄(near) ≤ E⌄(far) ? E⌄(far)  : E⌄(near) ;         !! E 实效值不可调换近景色与远景色
+E⌄(near_far)  = E⌄(near) ≤ E⌄(far) ? E⌄(far)  : E⌄(near) ;         !! E 概念值不可调换近景色与远景色
 Cr⌄(near_far) ⊏ E⌄(near) ≤ E⌄(far) ? Cr⌄(far) : Cr⌄(near);         !! Cr实效值不可调换近景色与远景色
 Cg⌄(near_far) ⊏ E⌄(near) ≤ E⌄(far) ? Cg⌄(far) : Cg⌄(near);         !! Cg实效值不可调换近景色与远景色
 Cb⌄(near_far) ⊏ E⌄(near) ≤ E⌄(far) ? Cb⌄(far) : Cb⌄(near);         !! Cb实效值不可调换近景色与远景色
 
 ORGB像素点操作b#00是近景色融合远景色（色彩变幻技术）：
 E⌄(vacant)    ⊏ 1.0;
-E⌄(near)      ⊏ (0.0 + 1.0)/2 = 0.5;                               !! E 概念值为最低值与最高值之平分
-E⌄(near_far)  ⊏ 1.0 · E⌄(near)       + E⌄(far)  · (1 - E⌄(near));  !! E 概念值可以调换近景色与远景色
+E⌄(near)      ⊏ (0.0 + 1.0)/2 = 0.5;                               !! E 实效值为最低值与最高值之平分
+E⌄(near_far)  = 1.0 · E⌄(near)       + E⌄(far)  · (1 - E⌄(near));  !! E 概念值可以调换近景色与远景色
 Cr⌄(near_far) ⊏ Cr⌄(near) · E⌄(near) + Cr⌄(far) · (1 - E⌄(near));  !! Cr实效值不可调换近景色与远景色
 Cg⌄(near_far) ⊏ Cg⌄(near) · E⌄(near) + Cg⌄(far) · (1 - E⌄(near));  !! Cg实效值不可调换近景色与远景色
 Cb⌄(near_far) ⊏ Cb⌄(near) · E⌄(near) + Cb⌄(far) · (1 - E⌄(near));  !! Cb实效值不可调换近景色与远景色
 
 ORGB像素点操作b#10是近景色覆盖远景色（图像处理技术）：
 E⌄(vacant)    ⊏ 1.0;
-E⌄(near)      ⊏ (1.0 + 1.0)/2 = 1.0;                               !! E 概念值为最高值与最高值之平分
-E⌄(near_far)  ⊏ E⌄(near);                                          !! E 概念值不可调换近景色与远景色
+E⌄(near)      ⊏ (1.0 + 1.0)/2 = 1.0;                               !! E 实效值为最高值与最高值之平分
+E⌄(near_far)  = E⌄(near);                                          !! E 概念值不可调换近景色与远景色
 Cr⌄(near_far) ⊏ Cr⌄(near);                                         !! Cr实效值不可调换近景色与远景色
 Cg⌄(near_far) ⊏ Cg⌄(near);                                         !! Cg实效值不可调换近景色与远景色
 Cb⌄(near_far) ⊏ Cb⌄(near);                                         !! Cb实效值不可调换近景色与远景色
 
 ORGB像素点操作b#01是近景色浮雕远景色（三维增材技术）：
 E⌄(vacant)    ⊏ 1.0;
-E⌄(near)      ⊏ (E⌄(near) + E⌄(far))/2;                            !! E 实效值为近景色与前景色之平分
-E⌄(near_far)  ⊏ E⌄(far) ≤ E⌄(near) ? E⌄(near)  : E⌄(far);          !! E 实效值不可调换近景色与远景色
+E⌄(near)      ⊏ (E⌄(vacant) + E⌄(far))/2;                          !! E 实效值为近景色与前景色之平分
+E⌄(near_far)  = E⌄(far) ≤ E⌄(near) ? E⌄(near)  : E⌄(far);          !! E 概念值不可调换近景色与远景色
 Cr⌄(near_far) ⊏ E⌄(far) ≤ E⌄(near) ? Cr⌄(near) : Cr⌄(far);         !! Cr实效值不可调换近景色与远景色
 Cg⌄(near_far) ⊏ E⌄(far) ≤ E⌄(near) ? Cg⌄(near) : Cg⌄(far);         !! Cg实效值不可调换近景色与远景色
 Cb⌄(near_far) ⊏ E⌄(far) ≤ E⌄(near) ? Cb⌄(near) : Cb⌄(far);         !! Cb实效值不可调换近景色与远景色
 
 ORGB像素点操作b#11是近景色镂刻远景色（三维减材技术）：
 E⌄(vacant)    ⊏ 1.0;
-E⌄(near)      ⊏ (E⌄(near) + E⌄(far))/2;                            !! E 实效值为前景色与近景色之平分
-E⌄(near_far)  ⊏ E⌄(near) ≤ E⌄(far) ? E⌄(far)  : E⌄(near);          !! E 实效值不可调换近景色与远景色
+E⌄(near)      ⊏ (E⌄(vacant) + E⌄(far))/2;                          !! E 实效值为前景色与近景色之平分
+E⌄(near_far)  = E⌄(near) ≤ E⌄(far) ? E⌄(far)  : E⌄(near);          !! E 概念值不可调换近景色与远景色
 Cr⌄(near_far) ⊏ E⌄(near) ≤ E⌄(far) ? Cr⌄(far) : Cr⌄(near);         !! Cr实效值不可调换近景色与远景色
 Cg⌄(near_far) ⊏ E⌄(near) ≤ E⌄(far) ? Cg⌄(far) : Cg⌄(near);         !! Cg实效值不可调换近景色与远景色
 Cb⌄(near_far) ⊏ E⌄(near) ≤ E⌄(far) ? Cb⌄(far) : Cb⌄(near);         !! Cb实效值不可调换近景色与远景色
