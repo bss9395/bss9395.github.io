@@ -4,7 +4,7 @@
 !!! Slogan: 奇思无处不在。Idea rests everywhere.
 !!! Update: 2026/06/04T19:33:00&+00@China-GuangDong-ZhanJiang
 !!! Keepin: brilliant9395@yeah.net
-!!! Verify: [6, 275]
+!!! Verify: [6, 270]
 !!! Polite: Cancer is cancer, not cancel.
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -206,35 +206,31 @@ Cr⌄(near_far) ⊏ E⌄(near) ≤ E⌄(far) ? Cr⌄(far) : Cr⌄(near);        
 Cg⌄(near_far) ⊏ E⌄(near) ≤ E⌄(far) ? Cg⌄(far) : Cg⌄(near);         !! Cg实效值不可调换近景色与远景色
 Cb⌄(near_far) ⊏ E⌄(near) ≤ E⌄(far) ? Cb⌄(far) : Cb⌄(near);         !! Cb实效值不可调换近景色与远景色
 
-为便于用户界面设计，在Do语言中ORGB色彩有4种基本像素点操作，跟ERGB色彩保持一致，区别是ORGB色彩的近景色分量E⌄(near)根据二分线性插值算法生成。
+为便于用户界面设计，在Do语言中ORGB色彩有4种基本像素点操作，跟ERGB色彩保持一致，区别是ORGB色彩的缺省分量E⌄(vacant)根据操作类型被赋予固定值。
 
 ORGB像素点操作b#00是近景色融合远景色（色彩变幻技术）：
-E⌄(vacant)    ⊏ 1.0;
-E⌄(near)      ⊏ (0.0 + 1.0)/2 = 0.5;                               !! E 实效值为最低值与最高值之平分
+E⌄(vacant)    ⊏ 0.5;                                               !! E 实效值为中间值               
 E⌄(near_far)  = 1.0 · E⌄(near)       + E⌄(far)  · (1 - E⌄(near));  !! E 概念值可以调换近景色与远景色
 Cr⌄(near_far) ⊏ Cr⌄(near) · E⌄(near) + Cr⌄(far) · (1 - E⌄(near));  !! Cr实效值不可调换近景色与远景色
 Cg⌄(near_far) ⊏ Cg⌄(near) · E⌄(near) + Cg⌄(far) · (1 - E⌄(near));  !! Cg实效值不可调换近景色与远景色
 Cb⌄(near_far) ⊏ Cb⌄(near) · E⌄(near) + Cb⌄(far) · (1 - E⌄(near));  !! Cb实效值不可调换近景色与远景色
 
 ORGB像素点操作b#10是近景色覆盖远景色（图像处理技术）：
-E⌄(vacant)    ⊏ 1.0;
-E⌄(near)      ⊏ (1.0 + 1.0)/2 = 1.0;                               !! E 实效值为最高值与最高值之平分
+E⌄(vacant)    ⊏ 1.0;                                               !! E 实效值为最高值                        
 E⌄(near_far)  = E⌄(near);                                          !! E 概念值不可调换近景色与远景色
 Cr⌄(near_far) ⊏ Cr⌄(near);                                         !! Cr实效值不可调换近景色与远景色
 Cg⌄(near_far) ⊏ Cg⌄(near);                                         !! Cg实效值不可调换近景色与远景色
 Cb⌄(near_far) ⊏ Cb⌄(near);                                         !! Cb实效值不可调换近景色与远景色
 
 ORGB像素点操作b#01是近景色浮雕远景色（三维增材技术）：
-E⌄(vacant)    ⊏ 1.0;
-E⌄(near)      ⊏ (E⌄(vacant) + E⌄(far))/2;                          !! E 实效值为近景色与前景色之平分
+E⌄(vacant)    ⊏ 1.0;                                               !! E 实效值为最高值                      
 E⌄(near_far)  = E⌄(far) ≤ E⌄(near) ? E⌄(near)  : E⌄(far);          !! E 概念值不可调换近景色与远景色
 Cr⌄(near_far) ⊏ E⌄(far) ≤ E⌄(near) ? Cr⌄(near) : Cr⌄(far);         !! Cr实效值不可调换近景色与远景色
 Cg⌄(near_far) ⊏ E⌄(far) ≤ E⌄(near) ? Cg⌄(near) : Cg⌄(far);         !! Cg实效值不可调换近景色与远景色
 Cb⌄(near_far) ⊏ E⌄(far) ≤ E⌄(near) ? Cb⌄(near) : Cb⌄(far);         !! Cb实效值不可调换近景色与远景色
 
-ORGB像素点操作b#11是近景色镂刻远景色（三维减材技术）：
-E⌄(vacant)    ⊏ 1.0;
-E⌄(near)      ⊏ (E⌄(vacant) + E⌄(far))/2;                          !! E 实效值为前景色与近景色之平分
+ORGB像素点操作b#11是近景色镂刻远景色（三维减材技术）：         
+E⌄(vacant)    ⊏ 0.0;                                               !! E 实效值为最低值                        
 E⌄(near_far)  = E⌄(near) ≤ E⌄(far) ? E⌄(far)  : E⌄(near);          !! E 概念值不可调换近景色与远景色
 Cr⌄(near_far) ⊏ E⌄(near) ≤ E⌄(far) ? Cr⌄(far) : Cr⌄(near);         !! Cr实效值不可调换近景色与远景色
 Cg⌄(near_far) ⊏ E⌄(near) ≤ E⌄(far) ? Cg⌄(far) : Cg⌄(near);         !! Cg实效值不可调换近景色与远景色
@@ -242,8 +238,7 @@ Cb⌄(near_far) ⊏ E⌄(near) ≤ E⌄(far) ? Cb⌄(far) : Cb⌄(near);        
 
 §§§ 色彩人格心理学
 
-在自然界中，太阳光穿透地球大气层在地球表面的光能量强度分布是长期稳定的，类似于地区的气候气象。
-正因为如此，地球表面的各种生物尤其指人类，在长期适应光能量强度分布的过程中形成特定的人格特征。根据此原理，可以采用概率统计学的方法，来标定典型色系以及其象征事物跟特定人格特征之间的关联性。由此可建立色彩人格心理学。
+在自然界中，太阳光穿透地球大气层在地球表面的光能量强度分布是长期稳定的，类似于地区的气候气象。正因为如此，地球表面的各种生物尤其指人类，在长期适应光能量强度分布的过程中形成特定的人格特征。根据此原理，可以采用概率统计学的方法，来标定典型色系以及其象征事物跟特定人格特征之间的关联性。由此可建立色彩人格心理学。
 
 典型色系与人格特征的对照表：
 | 典型色系 | 象征事物   | 人格特征 |
