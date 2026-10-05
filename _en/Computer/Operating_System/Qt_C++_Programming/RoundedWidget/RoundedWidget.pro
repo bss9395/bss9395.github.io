@@ -12,7 +12,8 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
-    Widget.h
+    Widget1.h \
+    Widget2.h
 
 FORMS +=
 

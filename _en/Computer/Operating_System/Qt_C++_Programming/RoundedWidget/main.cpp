@@ -1,6 +1,7 @@
 
 #include <QApplication>
-#include "Widget.h"
+#include "Widget1.h"
+#include "Widget2.h"
 
 int main(int argc, char *argv[]) {
     QApplication application(argc, argv);
